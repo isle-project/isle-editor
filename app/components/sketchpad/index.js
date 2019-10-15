@@ -1668,7 +1668,7 @@ class Sketchpad extends Component {
 		if ( inDeleteMode ) {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 			const deleted = elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
-			elems.splice( elems.length - this.state.nUndos, 0, ...deleted )
+			elems.splice( elems.length - this.state.nUndos, 0, ...deleted );
 			this.setState({
 				nUndos: this.state.nUndos + deleted.length
 			}, () => {
