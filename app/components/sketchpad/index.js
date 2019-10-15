@@ -419,7 +419,7 @@ class Sketchpad extends Component {
 							this.redraw();
 						});
 					}
-					else if ( type === SKETCHPAD_DELETE_ELEMENT ) {
+					else if ( type === SKETCHPAD_DELETE_ELEMENT && ( action.email !== session.user.email ) ) {
 						const { drawID, page, user } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID} by user ${user}` );
 						const elems = this.elements[ page ];
@@ -761,7 +761,7 @@ class Sketchpad extends Component {
 			.then( () => {
 				const elems = this.elements[ currentPage ];
 				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-				for ( let i = recordingEndPos; i < elems.length; i++ ) {
+				for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
 				this.pageRendering = false;
@@ -782,7 +782,7 @@ class Sketchpad extends Component {
 		const elems = this.elements[ currentPage ];
 		debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
-		for ( let i = recordingEndPos; i < elems.length; i++ ) {
+		for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
 	}
@@ -798,7 +798,7 @@ class Sketchpad extends Component {
 			const elems = this.elements[ currentPage ];
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			const recordingEndPos = this.recordingEndPositions[ currentPage ];
-			for ( let i = recordingEndPos; i < elems.length; i++ ) {
+			for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
 				if ( elems[ i ] !== this.selectedElement ) {
 					this.drawElement( elems[ i ] );
 				}
@@ -1619,7 +1619,7 @@ class Sketchpad extends Component {
 		}
 		if ( !isNull( found ) ) {
 			const id = elems[ found ].drawID;
-			this.deleteElement( id, found, elems );
+			this.deleteElement( id, found );
 			if ( this.state.mode === 'delete' ) {
 				const session = this.context;
 				const username = session.user.email || '';
@@ -1644,13 +1644,15 @@ class Sketchpad extends Component {
 		}
 	}
 
-	deleteElement = ( id, foundPos, elems ) => {
+	deleteElement = ( id, foundPos ) => {
 		let deleteStart;
 		let deleteEnd;
-		for ( let j = foundPos; j < elems.length; j++ ) {
+		const elems = this.elements[ this.state.currentPage ];
+		const inDeleteMode = this.state.mode === 'delete';
+		for ( let j = foundPos; j < elems.length - this.state.nUndos; j++ ) {
 			if ( elems[ j ].drawID === id ) {
 				deleteEnd = j;
-				elems[ j ].selected = true;
+				elems[ j ].selected = !inDeleteMode;
 			} else {
 				break;
 			}
@@ -1658,16 +1660,21 @@ class Sketchpad extends Component {
 		for ( let j = foundPos; j >= 0; j-- ) {
 			if ( elems[ j ].drawID === id ) {
 				deleteStart = j;
-				elems[ j ].selected = true;
+				elems[ j ].selected = !inDeleteMode;
 			} else {
 				break;
 			}
 		}
-		if ( this.state.mode === 'delete' ) {
+		if ( inDeleteMode ) {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
-			elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
+			const deleted = elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
+			elems.splice( elems.length - this.state.nUndos, 0, ...deleted )
+			this.setState({
+				nUndos: this.state.nUndos + deleted.length
+			}, () => {
+				this.onlyRedrawElements();
+			});
 		}
-		this.onlyRedrawElements();
 	}
 
 	firstPage = () => {
