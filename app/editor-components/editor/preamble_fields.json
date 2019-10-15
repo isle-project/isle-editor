@@ -105,6 +105,11 @@
 		"description": "Do not automatically dismiss the signup/login notification window"
 	},
 	{
+		"name": "fixedView",
+		"value": "fixedView: ${1:true}",
+		"description": "Disables the scrollbars and any zoom and move events and in ISLE lesson (e.g. useful for Sketchpad-only lessons on mobile devices)"
+	},
+	{
 		"name": "css",
 		"value": "css: ${1:}",
 		"description": "Absolute or relative path to CSS file to be loaded"

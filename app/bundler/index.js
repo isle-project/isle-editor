@@ -427,6 +427,7 @@ function writeIndexFile({
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				title: meta.title,
+				preventScaleGestures: meta.preventScaleGestures,
 				template: resolve( basePath, './app/bundler/index.html' ),
 				templateParameters: {
 					meta
