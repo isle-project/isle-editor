@@ -151,6 +151,10 @@
     ],
     "description": "Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
   },
+  "Bibliography": {
+    "props": [],
+    "description": "Bibliography component which prints all references used in the lesson."
+  },
   "Calculator": {
     "props": [
       {
@@ -183,6 +187,15 @@
   "undefined": {
     "props": [],
     "description": "Description is missing."
+  },
+  "Citation": {
+    "props": [
+      {
+        "name": "citeKey",
+        "type": "string (required)"
+      }
+    ],
+    "description": "Citation component."
   },
   "Clock": {
     "props": [
@@ -242,6 +255,7 @@
       {
         "name": "onClick",
         "type": "function",
+        "description": "event handler invoked when header is clicked",
         "default": "onClick() {}"
       }
     ],
@@ -555,6 +569,7 @@
           "Decision Tree",
           "Random Forest",
           "Logistic Regression",
+          "Naive Bayes",
           "PCA",
           "Hierarchical Clustering",
           "kmeans"
@@ -638,12 +653,12 @@
         "description": "array of strings indicating which hypothesis tests to include",
         "default": [
           "One-Sample Mean Test",
-          "One-Sample Proportion Test",
           "Two-Sample Mean Test",
+          "One-Way ANOVA",
+          "One-Sample Proportion Test",
           "Two-Sample Proportion Test",
           "Correlation Test",
-          "Chi-squared Independence Test",
-          "One-Way ANOVA"
+          "Chi-squared Independence Test"
         ]
       },
       {
@@ -706,10 +721,20 @@
         "default": []
       },
       {
+        "name": "onColumnDrag",
+        "type": "function",
+        "default": "onColumnDrag() {}"
+      },
+      {
         "name": "onColumnDelete",
         "type": "function",
         "description": "function invoked with the name of a column when the respective delete button for a column is clicked",
         "default": "onColumnDelete() {}"
+      },
+      {
+        "name": "onColumnNameChange",
+        "type": "function",
+        "default": "onColumnNameChange() {}"
       },
       {
         "name": "onClickRemove",
@@ -752,7 +777,7 @@
         "default": {}
       }
     ],
-    "description": "A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/)."
+    "description": "Dragging behavior adapted from code by:\n\nCopyright (c) 2019 by Matt Lockyer (https://codepen.io/mattlockyer/pen/LydeLj)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n/\n\n\n// MODULES //\n\nimport React, { Component, Fragment } from 'react';\nimport { findDOMNode } from 'react-dom';\nimport logger from 'debug';\nimport PropTypes from 'prop-types';\nimport ReactTable from 'react-table';\nimport InputRange from 'react-input-range';\nimport unique from 'uniq';\nimport Alert from 'react-bootstrap/Alert';\nimport Button from 'react-bootstrap/Button';\nimport Modal from 'react-bootstrap/Modal';\nimport Tooltip from 'react-bootstrap/Tooltip';\nimport OverlayTrigger from 'components/overlay-trigger';\nimport markdownit from 'markdown-it';\nimport hasOwnProp from '@stdlib/assert/has-own-property';\nimport contains from '@stdlib/assert/contains';\nimport lowercase from '@stdlib/string/lowercase';\nimport floor from '@stdlib/math/base/special/floor';\nimport ceil from '@stdlib/math/base/special/ceil';\nimport round from '@stdlib/math/base/special/round';\nimport isNumberArray from '@stdlib/assert/is-number-array';\nimport isEmptyArray from '@stdlib/assert/is-empty-array';\nimport isEmptyObject from '@stdlib/assert/is-empty-object';\nimport isObject from '@stdlib/assert/is-object';\nimport isArray from '@stdlib/assert/is-array';\nimport isNull from '@stdlib/assert/is-null';\nimport objectKeys from '@stdlib/utils/keys';\nimport min from 'utils/statistic/min';\nimport max from 'utils/statistic/max';\nimport generateUID from 'utils/uid';\nimport SessionContext from 'session/context.js';\nimport { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';\nimport SelectInput from 'components/input/select';\nimport { components } from 'react-select';\nimport TutorialButton from './tutorial-button/index.js';\nimport ColumnTitle from './column_title.js';\nimport 'react-table/react-table.css';\nimport './input_range.css';\nimport './react_table_height.css';\nimport './data_table.css';\n\n\n// VARIABLES //\n\nconst md = markdownit({\nhtml: true,\nxhtmlOut: true,\nbreaks: true,\ntypographer: false\n});\nconst debug = logger( 'isle:data-table' );\nconst uid = generateUID( 'data-table' );\nconst RE_NUMBER = /[0-9.,]+/;\nconst LOCALE_COMPARE_OPTS = {\nnumeric: true\n};\n\n\n// FUNCTIONS //\n\nfunction comparer( a, b ) {\nreturn a.localeCompare( b, void 0, LOCALE_COMPARE_OPTS );\n}\n\nfunction createDescriptions( descriptions ) {\nconst strTable = [];\nfor ( let varName in descriptions ) {\nif ( hasOwnProp( descriptions, varName ) ) {\nstrTable.push( <tr key={varName} >\n<td>{varName}</td><td>{descriptions[varName]}</td>\n</tr>);\n}\n}\nreturn ( <table className=\"table-bordered table-condensed\" style={{ width: '100%' }} >\n<thead>\n<tr><th>Name</th><th>Description</th></tr>\n</thead>\n<tbody>\n{strTable}\n</tbody>\n</table> );\n}\n\nfunction filterMethodStrings( filter, row ) {\nconst rowValue = row[ filter.id ];\nif ( !rowValue && filter.value ) {\nreturn false;\n}\nif ( isArray( filter.value ) ) {\nreturn contains( filter.value, rowValue );\n}\n// Check whether string contains search phrase:\nreturn contains( lowercase( rowValue ), lowercase( filter.value ) );\n}\n\nfunction filterMethodNumbers( filter, row ) {\nconst val = row[ filter.id ];\nreturn val >= filter.value.min && val <= filter.value.max;\n}\n\nfunction filterMethodCategories( filter, row, column ) {\nif ( !filter.value || isEmptyArray( filter.value ) ) {\nreturn true;\n}\nconst id = filter.pivotId || filter.id;\nif ( row[ id ] === void 0 ) {\nreturn true;\n}\nif ( isArray( filter.value ) ) {\nreturn contains( filter.value, String( row[ id ] ) );\n}\nreturn String( row[ id ] ) === filter.value;\n}\n\nfunction createRows( data ) {\nif ( isEmptyObject( data ) ) {\nreturn [];\n}\nconst keys = objectKeys( data );\nconst nRows = data[ keys[ 0 ] ].length;\nconst rows = new Array( nRows );\nfor ( let i = 0; i < nRows; i++ ) {\nrows[ i ] = {};\nfor ( let j = 0; j < keys.length; j++ ) {\nlet key = keys[ j ];\nrows[ i ][ key ] = data[ key ][ i ];\n}\n}\nreturn rows;\n}\n\nconst CustomIndicator = () => {\nreturn <div />;\n};\n\nfunction adjustWidth( event ) {\nevent.target.style.width = (event.target.value.length+1) + 'ch';\n}\n\nfunction createColumns( props, state ) {\ndebug( 'Create columns...' );\nconst columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {\nlet header = key;\nconst isOriginal = props.dataInfo &&\nprops.dataInfo.variables &&\nprops.dataInfo.variables[ key ];\nconst out = {\nid: key,\naccessor: ( d ) => d[ key ],\nminWidth: isOriginal ? 125 : 150\n};\nif ( isOriginal ) {\nheader = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;\n} else if ( props.deletable ) {\nheader = <div style={{ backgroundColor: 'papayawhip' }}>\n<OverlayTrigger placement=\"left\" overlay={<Tooltip>Rename variable</Tooltip>} >\n\n<span>\n<input type=\"text\" className=\"header-text-input\"\nstyle={{\nwidth: `${key.length}ch`\n}}\ndefaultValue={key}\nonBlur={( e ) => {\nconst newKey = e.target.value;\ndocument.getElementById( `header-${key}`).setAttribute( 'draggable', true );\nif ( newKey.length > 0 && key !== newKey ) {\nprops.onColumnNameChange( key, newKey );\n}\n}}\nonMouseEnter={( e ) => {\n// Update draggable attribute to handle Firefox bug (https://stackoverflow.com/questions/21680363/prevent-drag-event-to-interfere-with-input-elements-in-firefox-using-html5-drag)\ndocument.getElementById( `header-${key}`).setAttribute( 'draggable', false );\n}}\nonChange={adjustWidth}\nonClick={( e ) => {\ne.stopPropagation();\n}}\n/>\n</span>\n</OverlayTrigger>\n<OverlayTrigger placement=\"left\" overlay={<Tooltip>Remove variable</Tooltip>} >\n<button className=\"fa fa-times delete-button\" onClick={( evt ) => {\nevt.stopPropagation();\nprops.onColumnDelete( key );\n}} />\n</OverlayTrigger>\n</div>;\n}\nout.Header = header;\nif ( contains( props.editable, key ) ) {\nout.Cell = this.renderEditable;\n}\nlet vals;\nif ( !isArray( props.data ) ) {\nvals = props.data[ key ].slice();\n} else {\nvals = new Array( state.rows.length );\nfor ( let i = 0; i < state.rows.length; i++ ) {\nvals[ i ] = props.data[ i ][ key ];\n}\n}\nif ( props.filterable ) {\nvals = vals.filter( x => !isNull( x ) && x !== '' );\nlet uniqueValues = unique( vals );\nif ( isNumberArray( vals ) && uniqueValues.length > 2 ) {\nout[ 'filterMethod' ] = filterMethodNumbers;\nout[ 'Filter' ] = ({ filter, onChange }) => {\nconst defaultVal = {\nmax: ceil( max( uniqueValues ) ),\nmin: floor( min( uniqueValues ) )\n};\nreturn (\n<div style={{\npaddingLeft: '4px',\npaddingRight: '4px',\npaddingTop: '8px',\npaddingBottom: '4px'\n}}>\n<InputRange\nallowSameValues\nmaxValue={ceil( max( uniqueValues ) )}\nminValue={floor( min( uniqueValues ) )}\nvalue={filter ? filter.value : defaultVal}\nonChange={( newValue ) => {\nonChange( newValue );\n}}\nformatLabel={( val ) => {\nreturn round( val );\n}}\n/>\n</div>\n);\n};\n} else if ( uniqueValues.length <= 50 ) {\n// Cast values to strings for select component to work and sort:\nuniqueValues = uniqueValues.map( x => String( x ) ).sort( comparer );\nout[ 'filterMethod' ] = filterMethodCategories;\nout[ 'Filter' ] = ({ filter, onChange }) => {\nreturn (\n<SelectInput\nonChange={( vals ) => {\nif ( vals && vals.length > 0 ) {\nout.minWidth = 300;\n} else {\nout.minWidth = 125;\n}\nonChange( vals );\n}}\nstyle={{ width: '100%' }}\nvalue={filter ? filter.value : null}\nsearchable={false}\noptions={uniqueValues}\nmenuPlacement=\"auto\"\nmulti\nplaceholder=\"Show all\"\ncomponents={{\nDropdownIndicator: CustomIndicator,\nMultiValueLabel: props => {\nconst invertSelection = () => {\nonChange( uniqueValues.filter( x => x !== props.children ) );\n};\nreturn (\n<OverlayTrigger\noverlay={<Tooltip id=\"invert_selection\">Select all others</Tooltip>}\nplacement=\"bottom\"\n>\n<span\nrole=\"button\" tabIndex={0}\nonClick={invertSelection}\nonKeyPress={invertSelection}\nonMouseDown={( event ) => {\n// See: https://github.com/JedWatson/react-select/issues/3117\nevent.preventDefault();\nevent.stopPropagation();\n}}\nstyle={{ cursor: 'cursor' }}\n>\n<components.MultiValueLabel {...props} />\n</span>\n</OverlayTrigger>\n);\n}\n}}\nescapeClearsValue\nmenuPortalTarget={document.body}\nstyles={{\nmenuPortal: base => ({ ...base, zIndex: 9999 })\n}}\n/>\n);\n};\n} else {\nout[ 'filterMethod' ] = filterMethodStrings;\n}\n}\nreturn out;\n});\nif ( props.showIdColumn ) {\ncolumns.unshift({\nHeader: 'id',\naccessor: 'id',\nfilterable: false\n});\n}\nif ( props.showRemove ) {\ncolumns.push({\nHeader: 'Remove',\naccessor: 'remove',\nCell: this.renderCheckboxRemovable,\nfilterable: false\n});\n}\nreturn columns;\n}\n\n\n// MAIN //\n\n/**\nA component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/)."
   },
   "DateDisplay": {
     "props": [],
@@ -1408,10 +1433,6 @@
         "default": null
       },
       {
-        "name": "width",
-        "type": "number"
-      },
-      {
         "name": "tooltipPlacement",
         "type": "string",
         "description": "direction of the tooltip",
@@ -1493,7 +1514,7 @@
       },
       {
         "name": "defaultValue",
-        "type": "(number|string|array)",
+        "type": "(number|string|array|object)",
         "description": "default value of the input at startup",
         "default": null
       },
@@ -1614,6 +1635,18 @@
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "numberInputStyle",
+        "type": "object",
+        "description": "CSS inline styles for number input component",
+        "default": {}
+      },
+      {
+        "name": "rangeInputStyle",
+        "type": "object",
+        "description": "CSS inline style for range input component",
         "default": {}
       }
     ],
@@ -2035,6 +2068,11 @@
           "exponential",
           "normal"
         ]
+      },
+      {
+        "name": "hideFormulas",
+        "type": "boolean",
+        "default": false
       }
     ],
     "description": "A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution."
@@ -2216,6 +2254,12 @@
   "LearnExponentialDistribution": {
     "props": [
       {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
+      {
         "name": "step",
         "type": "(number|string)",
         "description": "step size of the scroll input",
@@ -2351,6 +2395,12 @@
         "default": null
       },
       {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
+      {
         "name": "minStDev",
         "type": "number",
         "description": "minimum standard deviation",
@@ -2417,6 +2467,12 @@
   },
   "LearnUniformDistribution": {
     "props": [
+      {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
       {
         "name": "step",
         "type": "(number|string)",
@@ -2660,6 +2716,12 @@
         "default": ""
       },
       {
+        "name": "requireLogin",
+        "type": "boolean",
+        "description": "= controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)",
+        "default": true
+      },
+      {
         "name": "sendConfirmationEmail",
         "type": "boolean",
         "description": "controls whether to send confirmation email upon lesson submission",
@@ -2856,7 +2918,7 @@
       },
       {
         "name": "feedback",
-        "type": "object",
+        "type": "boolean",
         "description": "controls whether to display feedback buttons",
         "default": true
       },
@@ -4230,6 +4292,17 @@
     ],
     "description": "Component for rendering a R data frame or matrix in a tabular display."
   },
+  "RandomVideo": {
+    "props": [
+      {
+        "name": "videos",
+        "type": "array<string>",
+        "description": "video URLs",
+        "default": []
+      }
+    ],
+    "description": "Displays a random video from a list of videos."
+  },
   "RangeQuestion": {
     "props": [
       {
@@ -4330,6 +4403,22 @@
       }
     ],
     "description": "A range question component that asks students to supply a lower and upper end point."
+  },
+  "Reaction": {
+    "props": [
+      {
+        "name": "actionID",
+        "type": "string (required)",
+        "description": "ID of component to watch"
+      },
+      {
+        "name": "show",
+        "type": "(object|function)",
+        "description": "hash table of components to display given the different responses or function that returns a component to display (sole argument of function is the latest result)",
+        "default": {}
+      }
+    ],
+    "description": "Shows different components depending on user actions."
   },
   "Recorder": {
     "props": [

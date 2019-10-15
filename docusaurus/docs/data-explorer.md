@@ -62,6 +62,7 @@ We will include the explorer with the following code:
   'Decision Tree',
   'Random Forest',
   'Logistic Regression',
+  'Naive Bayes',
   'PCA',
   'Hierarchical Clustering',
   'kmeans'
@@ -100,11 +101,11 @@ We will include the explorer with the following code:
 * __tabs__ | `array`: array of objects and keys indicating any custom tabs to add. Default: `[]`.
 * __tests__ | `array`: array of strings indicating which hypothesis tests to include. Default: `[
   'One-Sample Mean Test',
-  'One-Sample Proportion Test',
   'Two-Sample Mean Test',
+  'One-Way ANOVA',
+  'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
-  'One-Way ANOVA'
+  'Chi-squared Independence Test'
 ]`.
 * __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `true`.
