@@ -19,6 +19,7 @@ import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
 import FeedbackButtons from 'components/feedback';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
@@ -44,7 +45,7 @@ import Loadable from 'components/loadable';
 import {
 	SKETCHPAD_INIT_PAGES, SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_REPLAY, SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
-	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENT,
+	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENTS,
 	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
 	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
@@ -83,7 +84,7 @@ function preventGesture( e ) {
 }
 
 function stopPropagation( e ) {
-	console.log( 'Stop propagation...' );
+	debug( 'Stop propagation...' );
 	e.stopPropagation();
 }
 
@@ -364,7 +365,10 @@ class Sketchpad extends Component {
 						let elem = JSON.parse( action.value );
 						const elements = this.elements[ elem.page ];
 						let present = false;
-						if ( elem.user === session.user.email ) {
+						if (
+							elem.user === session.user.email ||
+							elem.user === session.anonymousIdentifier
+						) {
 							for ( let i = 0; i < elements.length; i++ ) {
 								if ( elements[ i ].drawID === elem.drawID ) {
 									present = true;
@@ -438,21 +442,14 @@ class Sketchpad extends Component {
 							this.redraw();
 						}
 					}
-					else if ( type === SKETCHPAD_DRAG_ELEMENT ) {
-						const { drawID, user, page, dx, dy } = JSON.parse( action.value );
-						debug( `Should drag element with id ${drawID} by dx: ${dx} and dy: ${dy}...` );
-						let ownAction = false;
-						if (
-							this.selectedElement &&
-							this.selectedElement.drawID === drawID
-						) {
-							ownAction = true;
-						}
-						if ( !ownAction ) {
+					else if ( type === SKETCHPAD_DRAG_ELEMENTS ) {
+						const { drawIDs, user, page, dx, dy, sessionID } = JSON.parse( action.value );
+						debug( `Should drag specified elements by dx: ${dx} and dy: ${dy}...` );
+						if ( sessionID !== session.sessionID ) {
 							const elems = this.elements[ page ];
 							for ( let i = 0; i < elems.length; i++ ) {
 								const e = elems[ i ];
-								if ( e.drawID === drawID && e.user === user ) {
+								if ( contains( drawIDs, e.drawID ) && e.user === user ) {
 									if ( e.type === 'curve' ) {
 										const points = e.points;
 
@@ -799,14 +796,17 @@ class Sketchpad extends Component {
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			const recordingEndPos = this.recordingEndPositions[ currentPage ];
 			for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
-				if ( elems[ i ] !== this.selectedElement ) {
+				if ( !contains( this.selectedElements, elems[ i ] ) ) {
 					this.drawElement( elems[ i ] );
 				}
 			}
 			this.draggingImageData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
 		}
 		this.ctx.putImageData( this.draggingImageData, 0, 0 );
-		this.drawElement( this.selectedElement );
+		const selected = this.selectedElements;
+		for ( let i = 0; i < selected.length; i++ ) {
+			this.drawElement( selected[ i ] );
+		}
 	}
 
 	replay = () => {
@@ -1102,7 +1102,7 @@ class Sketchpad extends Component {
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
 			ctx.shadowBlur = 0;
-			ctx.strokeStyle = selected ? 'yellow' : color;
+			ctx.strokeStyle = selected ? 'orange' : color;
 			ctx.beginPath();
 			ctx.moveTo( startX, startY );
 			ctx.lineTo( endX, endY );
@@ -1120,7 +1120,7 @@ class Sketchpad extends Component {
 				ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
 				ctx.shadowBlur = lineWidth * 2.0;
 			}
-			ctx.strokeStyle = selected ? 'yellow' : color;
+			ctx.strokeStyle = selected ? 'orange' : color;
 			ctx.beginPath();
 			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
 			ctx.stroke();
@@ -1151,6 +1151,18 @@ class Sketchpad extends Component {
 				});
 			}
 			this.draw( event );
+		} else if ( this.state.mode === 'drag' ) {
+			const ctx = this.ctx;
+			if ( !this.selectedElements ) {
+				ctx.beginPath();
+				ctx.setLineDash([ 2, 15 ]);
+				ctx.lineWidth = 2;
+				ctx.strokeStyle = 'orange';
+				ctx.lineCap = 'round';
+				ctx.lineJoin = 'round';
+				ctx.shadowBlur = 0;
+				this.draw( event );
+			}
 		} else if ( hasTouch ) {
 			this.handleClick( event );
 		}
@@ -1186,7 +1198,7 @@ class Sketchpad extends Component {
 			const elems = this.elements[ this.state.currentPage ];
 
 			const session = this.context;
-			const username = session.user.email || '';
+			const username = session.user.email || session.anonymousIdentifier;
 
 			// Save smoothed points & convert to relative coordinates:
 			const points = this.currentPoints;
@@ -1234,6 +1246,44 @@ class Sketchpad extends Component {
 			}
 			this.currentPoints = [];
 		}
+		else if ( this.state.mode === 'drag' ) {
+			if ( this.selectedElements ) {
+				debug( 'Deselect elements...' );
+				const elems = this.selectedElements;
+				for ( let i = 0; i < elems.length; i++ ) {
+					elems[ i ].selected = false;
+				}
+				this.selectedElements = null;
+				this.draggingImageData = null;
+				this.onlyRedrawElements();
+			} else {
+				debug( 'Select elements...' );
+				const elems = this.elements[ this.state.currentPage ];
+				this.selectedElements = null;
+				this.ctx.stroke();
+				this.ctx.closePath();
+				this.ctx.setLineDash( [] );
+				const selected = [];
+				for ( let i = 0; i < elems.length; i++ ) {
+					const elem = elems[ i ];
+					elem.selected = false;
+					const points = elem.points;
+					for ( let j = 0, l = points.length; j < l; j += 2 ) {
+						const x = points[ j ] * ( this.canvas.width / DPR );
+						const y = points[ j+1 ] * ( this.canvas.height / DPR );
+						if ( this.ctx.isPointInPath( x, y ) ) {
+							elem.selected = true;
+							selected.push( elem );
+							break;
+						}
+					}
+				}
+				if ( selected.length > 0 ) {
+					this.selectedElements = selected;
+				}
+				this.onlyRedrawElements();
+			}
+		}
 		this.isMouseDown = false;
 		this.forceUpdate();
 	}
@@ -1250,12 +1300,13 @@ class Sketchpad extends Component {
 		}
 		const session = this.context;
 		let { x, y } = this.mousePosition( evt );
-		if ( this.selectedElement ) {
-			if ( this.state.mode === 'drag' ) {
-				debug( 'Drag elements around...' );
-				const dx = ( x - this.x ) / ( this.canvas.width / DPR );
-				const dy = ( y - this.y ) / ( this.canvas.height / DPR );
-				const e = this.selectedElement;
+		if ( this.state.mode === 'drag' && this.selectedElements ) {
+			debug( 'Drag elements around...' );
+			const dx = ( x - this.x ) / ( this.canvas.width / DPR );
+			const dy = ( y - this.y ) / ( this.canvas.height / DPR );
+			const selected = this.selectedElements;
+			for ( let i = 0; i < selected.length; i++ ) {
+				const e = selected[ i ];
 				if ( e.type === 'curve' ) {
 					const points = e.points;
 					for ( let i = 0; i < points.length; i++ ) {
@@ -1266,28 +1317,29 @@ class Sketchpad extends Component {
 					e.x += dx;
 					e.y += dy;
 				}
-				const username = session.user.email || '';
-				const action = {
-					id: this.id,
-					type: SKETCHPAD_DRAG_ELEMENT,
-					value: JSON.stringify({
-						dx: dx,
-						dy: dy,
-						page: this.state.currentPage,
-						drawID: this.selectedElement.drawID,
-						user: username
-					}),
-					noSave: true
-				};
-				if ( session.isOwner() || this.state.groupMode ) {
-					session.log( action, 'members' );
-				} else {
-					session.log( action );
-				}
-				this.x = x;
-				this.y = y;
-				return this.redrawWhenDragging();
 			}
+			const username = session.user.email || session.anonymousIdentifier;
+			const action = {
+				id: this.id,
+				type: SKETCHPAD_DRAG_ELEMENTS,
+				value: JSON.stringify({
+					dx: dx,
+					dy: dy,
+					page: this.state.currentPage,
+					drawIDs: selected.map( x => x.drawID ),
+					user: username,
+					sessionID: session.sessionID
+				}),
+				noSave: true
+			};
+			if ( session.isOwner() || this.state.groupMode ) {
+				session.log( action, 'members' );
+			} else {
+				session.log( action );
+			}
+			this.x = x;
+			this.y = y;
+			return this.redrawWhenDragging();
 		}
 		if ( this.isMouseDown && !this.props.disabled ) {
 			if ( this.state.mode === 'delete' ) {
@@ -1308,6 +1360,10 @@ class Sketchpad extends Component {
 					type: 'line'
 				};
 				this.drawElement( line );
+			}
+			else if ( this.state.mode === 'drag' && !this.selectedElements ) {
+				this.ctx.lineTo( x, y );
+				this.ctx.stroke();
 			}
 			// Set to current coordinates:
 			this.x = x;
@@ -1487,7 +1543,7 @@ class Sketchpad extends Component {
 			this.textInput.value = '';
 			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
 			const session = this.context;
-			const username = session.user.email || '';
+			const username = session.user.email || session.anonymousIdentifier;
 			const text = {
 				value: value,
 				x: x / ( this.canvas.width / DPR ),
@@ -1523,7 +1579,7 @@ class Sketchpad extends Component {
 		const ctx = this.ctx;
 		ctx.font = `${fontSize}px ${fontFamily}`;
 		ctx.shadowBlur = 0;
-		ctx.fillStyle = selected ? 'yellow' : color;
+		ctx.fillStyle = selected ? 'orange' : color;
 		const xval = round( x*(this.canvas.width/DPR) );
 		const yval = round( y*(this.canvas.height/DPR) ) + fontSize;
 		debug( `Draw text at x: ${xval} and y: ${yval}` );
@@ -1565,15 +1621,8 @@ class Sketchpad extends Component {
 			debug( `Resize to width ${width}...` );
 			input.style.width = `${width}px`;
 			input.focus();
-		} else if ( this.state.mode === 'drawing' ) {
-			// Handle click while drawing...
-		} else if ( this.selectedElement ) {
-			// Deselect element:
-			this.selectedElement.selected = false;
-			this.selectedElement = null;
-			this.draggingImageData = null;
-			this.onlyRedrawElements();
-		} else {
+		}
+		else if ( this.state.mode === 'deletion' ) {
 			debug( 'Checking whether a shape has been selected...' );
 			this.checkDeletion( event );
 		}
@@ -1597,7 +1646,6 @@ class Sketchpad extends Component {
 				if ( this.ctx.isPointInStroke( x*DPR, y*DPR ) ) {
 					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
 					found = i;
-					this.selectedElement = elem;
 					break;
 				}
 			}
@@ -1612,7 +1660,6 @@ class Sketchpad extends Component {
 					y <= yabs + elem.fontSize
 				) {
 					found = i;
-					this.selectedElement = elem;
 					break;
 				}
 			}
@@ -1620,26 +1667,24 @@ class Sketchpad extends Component {
 		if ( !isNull( found ) ) {
 			const id = elems[ found ].drawID;
 			this.deleteElement( id, found );
-			if ( this.state.mode === 'delete' ) {
-				const session = this.context;
-				const username = session.user.email || '';
-				const action = {
-					id: this.id,
-					type: SKETCHPAD_DELETE_ELEMENT,
-					value: JSON.stringify({
-						drawID: id,
-						page: this.state.currentPage,
-						user: username
-					})
-				};
-				if (
-					( session.isOwner() && this.state.transmitOwner ) ||
-					this.state.groupMode
-				) {
-					session.log( action, 'members' );
-				} else {
-					session.log( action, 'owners' );
-				}
+			const session = this.context;
+			const username = session.user.email || session.anonymousIdentifier;
+			const action = {
+				id: this.id,
+				type: SKETCHPAD_DELETE_ELEMENT,
+				value: JSON.stringify({
+					drawID: id,
+					page: this.state.currentPage,
+					user: username
+				})
+			};
+			if (
+				( session.isOwner() && this.state.transmitOwner ) ||
+				this.state.groupMode
+			) {
+				session.log( action, 'members' );
+			} else {
+				session.log( action, 'owners' );
 			}
 		}
 	}
