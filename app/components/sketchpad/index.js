@@ -423,23 +423,25 @@ class Sketchpad extends Component {
 							this.redraw();
 						});
 					}
-					else if ( type === SKETCHPAD_DELETE_ELEMENT && ( action.email !== session.user.email ) ) {
-						const { drawID, page, user } = JSON.parse( action.value );
+					else if ( type === SKETCHPAD_DELETE_ELEMENT ) {
+						const { drawID, page, user, sessionID } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID} by user ${user}` );
-						const elems = this.elements[ page ];
-						let elemPos;
-						for ( let i = 0; i < elems.length; i++ ) {
-							if (
-								elems[ i ].drawID === drawID &&
-								elems[ i ].user === user
-							) {
-								elemPos = i;
-								break;
+						if ( sessionID !== session.sessionID ) {
+							const elems = this.elements[ page ];
+							let elemPos;
+							for ( let i = 0; i < elems.length; i++ ) {
+								if (
+									elems[ i ].drawID === drawID &&
+									elems[ i ].user === user
+								) {
+									elemPos = i;
+									break;
+								}
 							}
-						}
-						if ( isNumber( elemPos ) ) {
-							elems.splice( elemPos, 1 );
-							this.redraw();
+							if ( isNumber( elemPos ) ) {
+								elems.splice( elemPos, 1 );
+								this.redraw();
+							}
 						}
 					}
 					else if ( type === SKETCHPAD_DRAG_ELEMENTS ) {
@@ -1269,8 +1271,8 @@ class Sketchpad extends Component {
 					elem.selected = false;
 					const points = elem.points;
 					for ( let j = 0, l = points.length; j < l; j += 2 ) {
-						const x = points[ j ] * ( this.canvas.width / DPR );
-						const y = points[ j+1 ] * ( this.canvas.height / DPR );
+						const x = points[ j ] * this.canvas.width;
+						const y = points[ j+1 ] * this.canvas.height;
 						if ( this.ctx.isPointInPath( x, y ) ) {
 							elem.selected = true;
 							selected.push( elem );
@@ -1675,7 +1677,8 @@ class Sketchpad extends Component {
 				value: JSON.stringify({
 					drawID: id,
 					page: this.state.currentPage,
-					user: username
+					user: username,
+					sessionID: session.sessionID
 				})
 			};
 			if (
