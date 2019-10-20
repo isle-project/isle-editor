@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import BinTransformer from './bin_transformer.js';
 import FormulaTransformer from './formula_transformer.js';
 import CategoricalModal from './categorical_transformer.js';
+import GroupModal from './group_transformer.js';
 
 
 // MAIN //
@@ -14,19 +15,18 @@ class Transformer extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			formulaModalActive: false,
-			binModalActive: false,
-			categoricalModalActive: false
+			active: null
 		};
 	}
 
 	renderFormulaModal = () => {
-		if ( !this.state.formulaModalActive || !this.props.data ) {
+		const isActive = this.state.active === 'formula';
+		if ( !isActive || !this.props.data ) {
 			return null;
 		}
 		return (
 			<FormulaTransformer
-				show={this.state.formulaModalActive}
+				show={isActive}
 				onHide={this.toggleFormulaModal}
 				categorical={this.props.categorical}
 				quantitative={this.props.quantitative}
@@ -40,12 +40,13 @@ class Transformer extends Component {
 	}
 
 	renderBinModal = () => {
-		if ( !this.state.binModalActive || !this.props.data ) {
+		const isActive = this.state.active === 'bin';
+		if ( !isActive || !this.props.data ) {
 			return null;
 		}
 		return (
 			<BinTransformer
-				show={this.state.binModalActive}
+				show={isActive}
 				onHide={this.toggleBinModal}
 				quantitative={this.props.quantitative}
 				logAction={this.props.logAction}
@@ -56,12 +57,13 @@ class Transformer extends Component {
 	}
 
 	renderCategoricalModal = () => {
-		if ( !this.state.categoricalModalActive || !this.props.data ) {
+		const isActive = this.state.active === 'categorical';
+		if ( !isActive || !this.props.data ) {
 			return null;
 		}
 		return (
 			<CategoricalModal
-				show={this.state.categoricalModalActive}
+				show={isActive}
 				onHide={this.toggleCategoricalModal}
 				categorical={this.props.categorical}
 				logAction={this.props.logAction}
@@ -71,21 +73,43 @@ class Transformer extends Component {
 		);
 	}
 
+	renderGroupModal = () => {
+		const isActive = this.state.active === 'group';
+		if ( !isActive || !this.props.data ) {
+			return null;
+		}
+		return (
+			<GroupModal
+				show={isActive}
+				onHide={this.toggleCategoricalModal}
+				logAction={this.props.logAction}
+				onGenerate={this.props.onGenerate}
+				data={this.props.data}
+			/>
+		);
+	}
+
 	toggleFormulaModal = () => {
 		this.setState({
-			formulaModalActive: !this.state.formulaModalActive
+			active: this.state.active ? null : 'formula'
 		});
 	}
 
 	toggleBinModal = () => {
 		this.setState({
-			binModalActive: !this.state.binModalActive
+			active: this.state.active ? null : 'bin'
 		});
 	}
 
 	toggleCategoricalModal = () => {
 		this.setState({
-			categoricalModalActive: !this.state.categoricalModalActive
+			active: this.state.active ? null : 'categorical'
+		});
+	}
+
+	toggleGroupModal = () => {
+		this.setState({
+			active: this.state.active ? null : 'group'
 		});
 	}
 
@@ -105,6 +129,7 @@ class Transformer extends Component {
 				<div>
 					<Button
 						onClick={this.toggleBinModal}
+						disabled={this.props.quantitative.length === 0}
 						variant="primary"
 						size="large"
 						block
@@ -115,6 +140,7 @@ class Transformer extends Component {
 				<div>
 					<Button
 						onClick={this.toggleCategoricalModal}
+						disabled={this.props.categorical.length === 0}
 						variant="primary"
 						size="large"
 						block
@@ -122,9 +148,20 @@ class Transformer extends Component {
 						Rename or combine categories
 					</Button>
 				</div>
+				<div>
+					<Button
+						onClick={this.toggleGroupModal}
+						variant="primary"
+						size="large"
+						block
+					>
+						Create groups (e.g., for training-test set split or cross-validation)
+					</Button>
+				</div>
 				{this.renderBinModal()}
 				{this.renderFormulaModal()}
 				{this.renderCategoricalModal()}
+				{this.renderGroupModal()}
 			</div>
 		);
 	}
