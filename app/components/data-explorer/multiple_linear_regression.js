@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MLR from 'ml-regression-multivariate-linear';
 import uniq from 'uniq';
+import MLR from 'ml-regression-multivariate-linear';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
@@ -12,6 +12,7 @@ import pow from '@stdlib/math/base/special/pow';
 import round from '@stdlib/math/base/special/round';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import fCDF from '@stdlib/stats/base/dists/f/cdf';
+import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -28,6 +29,42 @@ const DESCRIPTION = 'Predict a quantitative response variable using one or more 
 
 
 // FUNCTIONS //
+
+function designMatrix( x, data, quantitative, intercept ) {
+	const matrix = [];
+	const predictors = [];
+	const hash = {};
+	const nobs = data[ x[ 0 ] ].length;
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = x[ j ].categories || uniq( values.slice() );
+			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	for ( let i = 0; i < nobs; i++ ) {
+		const row = [];
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				row.push( values[ i ] );
+			} else {
+				const categories = hash[ x[ j ] ];
+				const val = values[ i ];
+				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+					row.push( ( val === categories[ k ] ) ? 1 : 0 );
+				}
+			}
+		}
+		matrix.push( row );
+	}
+	return { matrix, predictors };
+}
 
 const summaryTable = ( y, x, nobs, result ) => {
 	const cdf = tCDF.factory( nobs - x.length - 1 );
@@ -80,37 +117,8 @@ class MultipleLinearRegression extends Component {
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		const matrix = [];
-		const predictors = [];
-		const hash = {};
-		for ( let j = 0; j < x.length; j++ ) {
-			const values = this.props.data[ x[ j ] ];
-			if ( contains( this.props.quantitative, x[ j ] ) ) {
-				predictors.push( x[ j ] );
-			} else {
-				const categories = x[ j ].categories || uniq( values.slice() );
-				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					predictors.push( `${x[ j ]}_${categories[ k ]}` );
-				}
-				hash[ x[ j ] ] = categories;
-			}
-		}
-		for ( let i = 0; i < n; i++ ) {
-			const row = [];
-			for ( let j = 0; j < x.length; j++ ) {
-				const values = this.props.data[ x[ j ] ];
-				if ( contains( this.props.quantitative, x[ j ] ) ) {
-					row.push( values[ i ] );
-				} else {
-					const categories = hash[ x[ j ] ];
-					const val = values[ i ];
-					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-						row.push( ( val === categories[ k ] ) ? 1 : 0 );
-					}
-				}
-			}
-			matrix.push( row );
-		}
+		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+		console.log( matrix );
 		const result = new MLR( matrix, yvalues, {
 			intercept
 		});
@@ -159,6 +167,25 @@ class MultipleLinearRegression extends Component {
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
 				<p>F-statistic: {fScore.toFixed( 3 )} (df: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
+				<Button variant="secondary" onClick={() => {
+					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+					const yhat = result.predict( matrix ).map( v => v[ 0 ] );
+					const resid = subtract( yhat, this.props.data[ y ] );
+					const newData = copy( this.props.data, 1 );
+					const newQuantitative = this.props.quantitative.slice();
+					const suffix = x.map( x => x[ 0 ] ).join( '' );
+					let name = y+'_pred_lm_' + suffix;
+					newData[ name ] = yhat;
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					name = y+'_resid_lm_' + suffix;
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					newData[ name ] = resid;
+					this.props.onGenerate( newQuantitative, newData );
+				}}>Attach predictions and residuals for current data</Button>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -181,6 +208,7 @@ class MultipleLinearRegression extends Component {
 					legend="Predictors (X):" multi
 					options={quantitative.concat( categorical )}
 					defaultValue={quantitative[ 1 ]}
+					closeMenuOnSelect={false}
 				/>
 				<CheckboxInput
 					legend="Include intercept?"
