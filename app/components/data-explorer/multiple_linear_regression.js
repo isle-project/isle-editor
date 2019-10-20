@@ -82,19 +82,19 @@ const summaryTable = ( y, x, nobs, result ) => {
 			<tbody>
 				{ result.intercept ? <tr>
 					<th>Intercept</th>
-					<td>{result.weights[ x.length ][ 0 ].toFixed( 3 )}</td>
-					<td>{result.stdErrors[ x.length ].toFixed( 3 )}</td>
-					<td>{result.tStats[ x.length ].toFixed( 3 )}</td>
-					<td>{2.0 * (1.0-cdf( abs( result.tStats[ x.length ] ) ) ).toFixed( 3 )}</td>
+					<td>{result.weights[ x.length ][ 0 ].toFixed( 6 )}</td>
+					<td>{result.stdErrors[ x.length ].toFixed( 4 )}</td>
+					<td>{result.tStats[ x.length ].toFixed( 4 )}</td>
+					<td>{2.0 * (1.0-cdf( abs( result.tStats[ x.length ] ) ) ).toFixed( 4 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
 					return (
 						<tr key={idx} >
 							<th>{name}</th>
-							<td>{result.weights[ idx ][ 0 ].toFixed( 3 )}</td>
-							<td>{result.stdErrors[ idx ].toFixed( 3 )}</td>
-							<td>{result.tStats[ idx ].toFixed( 3 )}</td>
-							<td>{2.0 * (1.0-cdf( abs( result.tStats[ idx ] ) ) ).toFixed( 3 )}</td>
+							<td>{result.weights[ idx ][ 0 ].toFixed( 6 )}</td>
+							<td>{result.stdErrors[ idx ].toFixed( 4 )}</td>
+							<td>{result.tStats[ idx ].toFixed( 4 )}</td>
+							<td>{2.0 * (1.0-cdf( abs( result.tStats[ idx ] ) ) ).toFixed( 4 )}</td>
 						</tr>
 					);
 				})}
@@ -118,7 +118,6 @@ class MultipleLinearRegression extends Component {
 			x = [ x ];
 		}
 		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-		console.log( matrix );
 		const result = new MLR( matrix, yvalues, {
 			intercept
 		});

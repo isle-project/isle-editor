@@ -13,6 +13,10 @@ import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
 import roundn from '@stdlib/math/base/special/roundn';
+import abs from '@stdlib/math/base/special/abs';
+import pow from '@stdlib/math/base/special/pow';
+import sqrt from '@stdlib/math/base/special/sqrt';
+import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
@@ -36,18 +40,30 @@ const summaryTable = ( x, intercept, result ) => {
 				<tr>
 					<th>Predictor</th>
 					<th>Coefficient</th>
+					<th>Std. Error</th>
+					<th>t</th>
+					<th>p-value</th>
 				</tr>
 			</thead>
 			<tbody>
 				{ intercept ? <tr>
 					<th>Intercept</th>
 					<td>{result.coefficients[ 0 ].toFixed( 6 )}</td>
+					<td>{result.stdErrors[ 0 ].toFixed( 4 )}</td>
+					<td>{( result.coefficients[ 0 ] / result.stdErrors[ 0 ] ).toFixed( 4 )}</td>
+					<td>{( 2.0 * pnorm( -abs( result.coefficients[ 0 ] / result.stdErrors[ 0 ] ), 0.0, 1.0 ) ).toFixed( 4 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
+					idx = idx + Number( intercept );
+					const tStat = result.coefficients[ idx ]/ result.stdErrors[ idx ];
+					const pVal = 2.0 * pnorm( -abs( tStat ), 0.0, 1.0 );
 					return (
 						<tr key={idx} >
 							<th>{name}</th>
-							<td>{result.coefficients[ idx+Number(intercept) ].toFixed( 6 )}</td>
+							<td>{result.coefficients[ idx ].toFixed( 6 )}</td>
+							<td>{result.stdErrors[ idx ].toFixed( 4 )}</td>
+							<td>{tStat.toFixed( 4 )}</td>
+							<td>{pVal.toFixed( 4 )}</td>
 						</tr>
 					);
 				})}
@@ -68,6 +84,23 @@ function predict( X, coefs ) {
 	const finalData = mmult( X, coefs );
 	const predictions = sigmoid( finalData );
 	return predictions;
+}
+
+function stdErrors( matrix, yhat ) {
+	const w = new Array( yhat.length );
+	for ( let i = 0; i < w.length; i++ ) {
+		w[ i ] = yhat[ i ] * ( 1 - yhat[ i ] );
+	}
+	const [ nrow, ncol ] = matrix.shape;
+	const errs = new Array( ncol );
+	for ( let j = 0; j < errs.length; j++ ) {
+		let sum = 0;
+		for ( let i = 0; i < nrow; i++ ) {
+			sum += pow( matrix.get( i, j ), 2 ) * w[ i ];
+		}
+		errs[ j ] = sqrt( 1.0 / sum );
+	}
+	return errs;
 }
 
 
@@ -149,13 +182,14 @@ class LogisticRegression extends Component {
 		matrix = ndarray( matrix );
 
 		const results = irls( matrix, yvalues, n );
+		const yhat = predict( matrix, results.coefficients );
+		results.stdErrors = stdErrors( matrix, yhat );
 
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[ 0 ] ).join( '' );
 			let name = y+'_pred_logis_' + suffix;
-			const yhat = predict( matrix, results.coefficients );
 			newData[ name ] = yhat;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
