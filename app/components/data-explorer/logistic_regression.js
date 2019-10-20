@@ -230,6 +230,8 @@ class LogisticRegression extends Component {
 						options={quantitative.concat( categorical )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
+						closeMenuOnSelect={false}
+						selectAllOption
 					/>
 					<CheckboxInput
 						legend="Include intercept?"

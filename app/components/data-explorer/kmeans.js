@@ -112,6 +112,7 @@ class KMeans extends Component {
 					legend="Variables:" multi
 					defaultValue={originalQuantitative}
 					options={quantitative}
+					closeMenuOnSelect={false}
 				/>
 				<NumberInput
 					legend="Number of clusters"

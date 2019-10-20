@@ -138,6 +138,7 @@ class PrincipalComponentAnalysis extends Component {
 					legend="Variables:" multi
 					defaultValue={originalQuantitative}
 					options={quantitative}
+					closeMenuOnSelect={false}
 				/>
 				<CheckboxInput
 					legend="Center values (= subtract the mean)?"

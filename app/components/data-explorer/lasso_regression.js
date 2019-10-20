@@ -202,6 +202,7 @@ class LassoRegression extends Component {
 					legend="Predictors (X):" multi
 					options={quantitative.concat( categorical )}
 					defaultValue={quantitative[ 1 ]}
+					closeMenuOnSelect={false}
 				/>
 				<SliderInput
 					legend={<span>L1 Penalty Term <TeX raw="\lambda" /></span>}
