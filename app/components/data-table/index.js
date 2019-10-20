@@ -363,8 +363,7 @@ class DataTable extends Component {
 				name: dataInfo.name || '',
 				variables: dataInfo.variables || null,
 				showOnStartup: dataInfo.showOnStartup || null
-			},
-			trigger: 0
+			}
 		};
 	}
 
@@ -443,16 +442,22 @@ class DataTable extends Component {
 		}
 	}
 
-	componentDidUpdate( prevProps ) {
+	componentDidUpdate( prevProps, prevState ) {
 		debug( 'Component has updated...' );
 		let newState = {};
 		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
 			newState.filtered = this.props.filters;
 		}
-		if ( this.props.data !== prevProps.data ) {
-			this.setState({
-				columns: createColumns( this.props, this.state )
-			});
+		if (
+			this.props.data !== prevProps.data &&
+			this.state.keys.length !== prevState.keys.length
+		) {
+			const thead = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 0 ];
+			const theadControls = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 1 ];
+			const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
+			thead.scrollLeft = thead.scrollWidth;
+			theadControls.scrollLeft = theadControls.scrollWidth;
+			tbody.scrollLeft = tbody.scrollWidth;
 		}
 		if ( !isEmptyObject( newState ) ) {
 			debug( 'Trigger a state change after update...' );
@@ -646,7 +651,7 @@ class DataTable extends Component {
 						}
 						this.props.onColumnDrag( keys );
 						this.reorder.push({ a, b });
-						this.setState({ trigger: Math.random() });
+						this.forceUpdate();
 					}}
 				>{col.Header}</span>
 			});
