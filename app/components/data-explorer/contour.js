@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -17,7 +19,6 @@ import runif from '@stdlib/random/base/discrete-uniform';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import max from 'utils/statistic/max';
@@ -97,7 +98,9 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 				mode: 'lines',
 				name: 'Linear Fit',
 				type: 'line',
-				color: 'blue'
+				line: {
+					color: 'steelblue'
+				}
 			});
 		}
 		if ( contains( regressionMethod, 'smooth' ) ) {
@@ -109,7 +112,10 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 				y: predictedSmooth,
 				mode: 'lines',
 				name: 'Smoothed Fit',
-				type: 'line'
+				type: 'line',
+				line: {
+					color: 'tomato'
+				}
 			});
 		}
 	}
@@ -138,9 +144,18 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 class ContourChart extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			xval: props.defaultX || props.variables[ 0 ],
+			yval: props.defaultY || props.variables[ 1 ],
+			overlayPoints: false,
+			regressionMethod: [],
+			smoothSpan: 0.66
+		};
 	}
 
-	generateContourChart( xval, yval, overlayPoints, regressionMethod, smoothSpan ) {
+	generateContourChart = () => {
+		const { xval, yval, overlayPoints, regressionMethod, smoothSpan } = this.state;
 		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
 		const plotId = randomstring( 6 );
 		const action = {
@@ -176,54 +191,86 @@ class ContourChart extends Component {
 	}
 
 	render() {
-		const { variables, defaultX, defaultY } = this.props;
+		const { variables } = this.props;
 		return (
-			<Dashboard autoStart={false} title={<span>Contour Chart<QuestionButton title="Contour Chart" content={DESCRIPTION} /></span>} onGenerate={this.generateContourChart.bind( this )}>
-				<Row>
-					<Col>
-						<SelectInput
-							legend="Variable on x-axis:"
-							defaultValue={defaultX || variables[ 0 ]}
-							options={variables}
-						/>
-					</Col>
-					<Col>
-						<SelectInput
-							legend="Variable on y-axis:"
-							defaultValue={defaultY || variables[ 1 ]}
-							options={variables}
-							menuPlacement="top"
-						/>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<CheckboxInput
-							legend="Overlay observations"
-							defaultValue={false}
-						/>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<SelectInput
-							legend="Overlay regression line?"
-							defaultValue=""
-							multi={true}
-							options={[ 'linear', 'smooth' ]}
-						/>
-					</Col>
-					<Col>
-						<SliderInput
-							legend="Smoothing Parameter"
-							min={0.01}
-							max={1}
-							step={0.01}
-							defaultValue={0.66}
-						/>
-					</Col>
-				</Row>
-			</Dashboard>
+			<Card style={{ minWidth: 650 }}>
+				<Card.Header as="h4" >
+					Contour Chart<QuestionButton title="Contour Chart" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<Row>
+						<Col>
+							<SelectInput
+								legend="Variable on x-axis:"
+								defaultValue={this.state.xval}
+								options={variables}
+								onChange={( value ) => {
+									this.setState({
+										xval: value
+									});
+								}}
+							/>
+						</Col>
+						<Col>
+							<SelectInput
+								legend="Variable on y-axis:"
+								defaultValue={this.state.yval}
+								options={variables}
+								menuPlacement="top"
+								onChange={( value ) => {
+									this.setState({
+										yval: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<CheckboxInput
+								legend="Overlay observations"
+								defaultValue={this.state.overlayPoints}
+								onChange={() => {
+									this.setState({
+										overlayPoints: !this.state.overlayPoints
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<SelectInput
+								legend="Overlay regression line?"
+								defaultValue={this.state.regressionMethod}
+								multi={true}
+								options={[ 'linear', 'smooth' ]}
+								onChange={( value ) => {
+									this.setState({
+										regressionMethod: value
+									});
+								}}
+							/>
+						</Col>
+						<Col>
+							<SliderInput
+								legend="Smoothing Parameter"
+								min={0.01}
+								max={1}
+								step={0.01}
+								defaultValue={this.state.smoothSpan}
+								disabled={!contains( this.state.regressionMethod, 'smooth' )}
+								onChange={( value ) => {
+									this.setState({
+										smoothSpan: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Button variant="primary" block onClick={this.generateContourChart}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
