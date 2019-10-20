@@ -642,13 +642,29 @@ class DataExplorer extends Component {
 		newData[ 'id' ] = ids;
 		this.setState({
 			data: newData,
+			oldData: this.state.data,
 			subsetFilters: this.state.filters
 		});
 	}
 
 	onRestoreData = () => {
+		const newVars = objectKeys( this.state.data );
+		const oldVars = objectKeys( this.state.oldData );
+		const data = copy( this.state.oldData, 1 );
+		const ids = this.state.data.id;
+		const nOriginal = data[ oldVars[ 0 ] ].length;
+		for ( let i = 0; i < newVars.length; i++ ) {
+			const name = newVars[ i ];
+			if ( name !== 'id' && !hasProp( data, name ) ) {
+				data[ name ] = new Array( nOriginal );
+				for ( let j = 0; j < ids.length; j++ ) {
+					const idx = ids[ j ] - 1;
+					data[ name ][ idx ] = this.state.data[ name ][ idx ];
+				}
+			}
+		}
 		this.setState({
-			data: this.props.data,
+			data,
 			subsetFilters: null,
 			filters: []
 		});
