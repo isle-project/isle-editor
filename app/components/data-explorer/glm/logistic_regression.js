@@ -8,6 +8,7 @@ import exp from '@stdlib/math/base/special/exp';
 import xlogy from '@stdlib/math/base/special/xlogy';
 import EPS from '@stdlib/constants/math/float64-eps';
 import dbern from '@stdlib/stats/base/dists/bernoulli/pmf';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import mmult from 'utils/mmult';
 import transpose from 'utils/transpose';
 import multiplyMatrices from './multiply_matrices.js';
@@ -112,6 +113,31 @@ const calcZ = ( eta, y, mu, gprime ) => {
 	return out;
 };
 
+function sigmoid( x ) {
+	const result = new Array( x.length );
+	for ( let i = 0; i < x.length; i++) {
+		result[ i ]= 1 / (1 + Math.exp(-x[i]) );
+	}
+	return result;
+}
+
+function stdErrors( matrix, yhat ) {
+	const w = new Array( yhat.length );
+	for ( let i = 0; i < w.length; i++ ) {
+		w[ i ] = yhat[ i ] * ( 1 - yhat[ i ] );
+	}
+	const [ nrow, ncol ] = matrix.shape;
+	const errs = new Array( ncol );
+	for ( let j = 0; j < errs.length; j++ ) {
+		let sum = 0;
+		for ( let i = 0; i < nrow; i++ ) {
+			sum += pow( matrix.get( i, j ), 2 ) * w[ i ];
+		}
+		errs[ j ] = sqrt( 1.0 / sum );
+	}
+	return errs;
+}
+
 
 // MAIN //
 
@@ -152,10 +178,20 @@ function irls( X, y, nObs ) {
 		devOld = dev;
 	}
 	const coefficients = beta.to1DArray();
+
+	const predict = ( X ) => {
+		const finalData = mmult( X, coefficients );
+		const predictions = sigmoid( finalData );
+		return predictions;
+	};
+	const fitted = predict( X, coefficients );
 	return {
 		aic: aic( y, logitLinkInv( eta ), coefficients.length ),
+		stdErrors: stdErrors( X, fitted ),
+		fitted,
 		coefficients,
-		iterations: j
+		iterations: j,
+		predict
 	};
 }
 

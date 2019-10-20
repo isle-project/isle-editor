@@ -14,14 +14,11 @@ import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
 import roundn from '@stdlib/math/base/special/roundn';
 import abs from '@stdlib/math/base/special/abs';
-import pow from '@stdlib/math/base/special/pow';
-import sqrt from '@stdlib/math/base/special/sqrt';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
-import mmult from 'utils/mmult';
 import QuestionButton from './question_button.js';
 import irls from './glm/logistic_regression.js';
 
@@ -112,37 +109,6 @@ const summaryTable = ( x, intercept, result ) => {
 	);
 };
 
-function sigmoid( x ) {
-	const result = new Array( x.length );
-	for ( let i = 0; i < x.length; i++) {
-		result[ i ]= 1 / (1 + Math.exp(-x[i]) );
-	}
-	return result;
-}
-
-function predict( X, coefs ) {
-	const finalData = mmult( X, coefs );
-	const predictions = sigmoid( finalData );
-	return predictions;
-}
-
-function stdErrors( matrix, yhat ) {
-	const w = new Array( yhat.length );
-	for ( let i = 0; i < w.length; i++ ) {
-		w[ i ] = yhat[ i ] * ( 1 - yhat[ i ] );
-	}
-	const [ nrow, ncol ] = matrix.shape;
-	const errs = new Array( ncol );
-	for ( let j = 0; j < errs.length; j++ ) {
-		let sum = 0;
-		for ( let i = 0; i < nrow; i++ ) {
-			sum += pow( matrix.get( i, j ), 2 ) * w[ i ];
-		}
-		errs[ j ] = sqrt( 1.0 / sum );
-	}
-	return errs;
-}
-
 
 // MAIN //
 
@@ -187,20 +153,17 @@ class LogisticRegression extends Component {
 		}
 		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
 		const results = irls( matrix, yvalues, n );
-		const yhat = predict( matrix, results.coefficients );
-		results.stdErrors = stdErrors( matrix, yhat );
-
 		if ( attach ) {
 			const newData = copy( this.props.data, 1 );
 			const newQuantitative = this.props.quantitative.slice();
 			const suffix = x.map( x => x[ 0 ] ).join( '' );
 			let name = y+'_pred_logis_' + suffix;
-			newData[ name ] = yhat;
+			newData[ name ] = results.fitted;
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
 			name = y+'_resid_logis_' + suffix;
-			newData[ name ] = subtract( yhat, yvalues );
+			newData[ name ] = subtract( results.fitted, yvalues );
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
@@ -220,7 +183,7 @@ class LogisticRegression extends Component {
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
 				<Button variant="secondary" onClick={() => {
 					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-					const yhat = predict( matrix, results.coefficients );
+					const yhat = results.predict( matrix );
 					const yvalues = this.props.data[ y ].map( v => {
 						return v === success ? 1 : 0;
 					});
