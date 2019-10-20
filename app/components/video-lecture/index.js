@@ -58,6 +58,7 @@ const waitStatuses = ( steps ) => {
 *
 * @property {Array} steps - array of video URLs and components to be displayed in-between
 * @property {boolean} controls - indicates whether to display control elements of the video players
+* @property {boolean} instructorView - controls whether to include instructor view
 */
 class VideoLecture extends Component {
 	constructor( props ) {
@@ -243,7 +244,7 @@ class VideoLecture extends Component {
 						</Alert> : null
 					}
 					{steps}
-					<Gate owner>
+					{ this.props.instructorView ? <Gate owner>
 						<Button
 							className="video-lecture-instructor-button"
 							variant="secondary"
@@ -252,7 +253,7 @@ class VideoLecture extends Component {
 						>
 							{this.state.showInstructorView ? 'Close Instructor View' : 'Open Instructor View' }
 						</Button>
-					</Gate>
+					</Gate> : null }
 				</div>
 				<KeyControls
 					container={this.videoLectureWrapper}
@@ -271,11 +272,13 @@ class VideoLecture extends Component {
 
 VideoLecture.propTypes = {
 	controls: PropTypes.bool,
+	instructorView: PropTypes.bool,
 	steps: PropTypes.array.isRequired
 };
 
 VideoLecture.defaultProps = {
-	controls: true
+	controls: true,
+	instructorView: true
 };
 
 VideoLecture.contextType = SessionContext;

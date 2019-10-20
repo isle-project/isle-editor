@@ -6083,6 +6083,12 @@
         "default": true
       },
       {
+        "name": "instructorView",
+        "type": "boolean",
+        "description": "controls whether to include instructor view",
+        "default": true
+      },
+      {
         "name": "steps",
         "type": "array (required)",
         "description": "array of video URLs and components to be displayed in-between"

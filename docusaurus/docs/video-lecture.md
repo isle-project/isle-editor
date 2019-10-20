@@ -20,4 +20,5 @@ A video lecture component that displays videos interspersed with interactive ele
 ## Options
 
 * __controls__ | `boolean`: indicates whether to display control elements of the video players. Default: `true`.
+* __instructorView__ | `boolean`: controls whether to include instructor view. Default: `true`.
 * __steps__ | `array (required)`: array of video URLs and components to be displayed in-between. Default: `none`.
