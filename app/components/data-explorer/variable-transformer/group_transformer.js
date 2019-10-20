@@ -103,6 +103,7 @@ class GroupTransformer extends Component {
 						step={0.01}
 						min={0}
 						max={1}
+						numbersOnly={false}
 					/>
 				</Col>
 			</Row>;
