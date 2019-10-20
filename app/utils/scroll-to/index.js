@@ -1,7 +1,7 @@
 // MAIN //
 
 /**
-* Scrolls a vertical scrolbar to the specified position.
+* Scrolls a vertical scrollbar to the specified position.
 *
 * @param {Node} element - DOM node with the scrollbar to change
 * @param {number} to - vertical position of the scroll bar after animation
