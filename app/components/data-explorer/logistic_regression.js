@@ -33,6 +33,46 @@ const DESCRIPTION = 'Predict a categorical response variable using one or more e
 
 // FUNCTIONS //
 
+function designMatrix( x, data, quantitative, intercept ) {
+	let matrix = [];
+	const predictors = [];
+	const hash = {};
+	const nobs = data[ x[ 0 ] ].length;
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = x[ j ].categories || uniq( values.slice() );
+			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	for ( let i = 0; i < nobs; i++ ) {
+		const row = [];
+		if ( intercept ) {
+			row.push( 1 );
+		}
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				row.push( values[ i ] );
+			} else {
+				const categories = hash[ x[ j ] ];
+				const val = values[ i ];
+				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+					row.push( ( val === categories[ k ] ) ? 1 : 0 );
+				}
+			}
+		}
+		matrix.push( row );
+	}
+	matrix = ndarray( matrix );
+	return { matrix, predictors };
+}
+
 const summaryTable = ( x, intercept, result ) => {
 	return (
 		<Table bordered size="sm">
@@ -145,42 +185,7 @@ class LogisticRegression extends Component {
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		let matrix = [];
-		const predictors = [];
-		const hash = {};
-		for ( let j = 0; j < x.length; j++ ) {
-			const values = this.props.data[ x[ j ] ];
-			if ( contains( this.props.quantitative, x[ j ] ) ) {
-				predictors.push( x[ j ] );
-			} else {
-				const categories = x[ j ].categories || uniq( values.slice() );
-				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					predictors.push( `${x[ j ]}_${categories[ k ]}` );
-				}
-				hash[ x[ j ] ] = categories;
-			}
-		}
-		for ( let i = 0; i < n; i++ ) {
-			const row = [];
-			if ( intercept ) {
-				row.push( 1 );
-			}
-			for ( let j = 0; j < x.length; j++ ) {
-				const values = this.props.data[ x[ j ] ];
-				if ( contains( this.props.quantitative, x[ j ] ) ) {
-					row.push( values[ i ] );
-				} else {
-					const categories = hash[ x[ j ] ];
-					const val = values[ i ];
-					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-						row.push( ( val === categories[ k ] ) ? 1 : 0 );
-					}
-				}
-			}
-			matrix.push( row );
-		}
-		matrix = ndarray( matrix );
-
+		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
 		const results = irls( matrix, yvalues, n );
 		const yhat = predict( matrix, results.coefficients );
 		results.stdErrors = stdErrors( matrix, yhat );
@@ -195,7 +200,7 @@ class LogisticRegression extends Component {
 				newQuantitative.push( name );
 			}
 			name = y+'_resid_logis_' + suffix;
-			newData[ name ] = subtract( yhat, this.props.data[ y ] );
+			newData[ name ] = subtract( yhat, yvalues );
 			if ( !contains( newQuantitative, name ) ) {
 				newQuantitative.push( name );
 			}
@@ -213,6 +218,28 @@ class LogisticRegression extends Component {
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
+				<Button variant="secondary" onClick={() => {
+					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+					const yhat = predict( matrix, results.coefficients );
+					const yvalues = this.props.data[ y ].map( v => {
+						return v === success ? 1 : 0;
+					});
+					const resid = subtract( yhat, yvalues );
+					const newData = copy( this.props.data, 1 );
+					const newQuantitative = this.props.quantitative.slice();
+					const suffix = x.map( x => x[ 0 ] ).join( '' );
+					let name = y+'_pred_logis_' + suffix;
+					newData[ name ] = yhat;
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					name = y+'_resid_logis_' + suffix;
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					newData[ name ] = resid;
+					this.props.onGenerate( newQuantitative, newData );
+				}}>Attach predictions and residuals for current data</Button>
 			</div>
 		};
 		this.props.onCreated( output );
