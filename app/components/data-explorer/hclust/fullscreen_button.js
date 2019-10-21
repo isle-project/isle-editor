@@ -36,7 +36,7 @@ class FullscreenButton extends Component {
 						variant="outline-danger"
 						size="sm"
 						onClick={this.toggleFullscreen}
-						style={{ position: 'absolute', top: '10px', right: '32px', fontSize: '11px' }}
+						style={{ position: 'absolute', top: '10px', right: '32px' }}
 					>
 						<div className="fa fa-window-maximize" />
 					</Button>

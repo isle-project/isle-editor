@@ -36,6 +36,7 @@ const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilter
 	</ButtonGroup> );
 };
 
+
 /**
 * Wraps the supplied div element such that it can be dragged.
 */
@@ -117,10 +118,12 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			e.value.props.meta.filters = subsetFilters;
 		}
 		return ( <div key={idx}>
-			<ClearButton
-				onClick={() => { clearOutput( idx ); }}
-				style={{ float: 'right', padding: '0.1rem 0.3rem' }}
-			/>
+			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', zIndex: 1 }}>
+				<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
+				<ClearButton
+					onClick={() => { clearOutput( idx ); }}
+				/>
+			</ButtonGroup>
 			<div style={{
 				position: 'relative',
 				height: 300,
@@ -163,11 +166,21 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Hierarchical Clustering'
 	) {
 		const elem = <pre key={idx}>
-			<ClearButton
-				onClick={() => { clearOutput( idx ); }}
-				style={{ float: 'right', padding: '0.1rem 0.3rem' }}
-			/>
-			<div>{e.value}</div>
+			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', top: '-1px' }} >
+				<DatasetButton
+					filters={subsetFilters} onActivateFilters={onFilters}
+					style={{
+						right: 55, position: 'absolute'
+					}}
+				/>
+				<ClearButton
+					onClick={() => { clearOutput( idx ); }}
+					style={{
+						right: -5, position: 'absolute'
+					}}
+				/>
+			</ButtonGroup>
+			<div style={{ marginTop: 25 }}>{e.value}</div>
 		</pre>;
 		return elem;
 	}

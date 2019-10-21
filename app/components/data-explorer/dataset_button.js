@@ -33,6 +33,7 @@ class DatasetButton extends Component {
 				size="sm"
 				disabled
 				ref={( button ) => { this.button = button; }}
+				style={this.props.style}
 			>
 				No Filters
 			</Button> );
@@ -48,6 +49,7 @@ class DatasetButton extends Component {
 						variant="outline-danger"
 						size="sm"
 						ref={( button ) => { this.button = button; }}
+						style={this.props.style}
 						onClick={() => {
 							this.toggleOverlay(() => {
 								if ( this.state.show ) {
@@ -103,13 +105,15 @@ class DatasetButton extends Component {
 DatasetButton.propTypes = {
 	header: PropTypes.string,
 	filters: PropTypes.array,
-	onActivateFilters: PropTypes.func
+	onActivateFilters: PropTypes.func,
+	style: PropTypes.object
 };
 
 DatasetButton.defaultProps = {
 	header: 'Show applied filters for used data',
 	filters: null,
-	onActivateFilters() {}
+	onActivateFilters() {},
+	style: {}
 };
 
 
