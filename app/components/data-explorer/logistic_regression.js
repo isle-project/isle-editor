@@ -162,7 +162,7 @@ class LogisticRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'Logistic Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y} (id: logis{COUNTER})</span>
+				<span className="title" >Regression Summary for Response {y} (model id:logis{COUNTER})</span>
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>

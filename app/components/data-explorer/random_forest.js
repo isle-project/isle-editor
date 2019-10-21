@@ -85,7 +85,7 @@ class RandomForest extends Component {
 			variable: 'Random Forest',
 			type: 'Random Forest',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Random Forest for {y} (id: forest{COUNTER})</span>
+				<span className="title" >Random Forest for {y} (model id:forest{COUNTER})</span>
 				<div></div>
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {

@@ -162,7 +162,7 @@ class NaiveBayes extends Component {
 			variable: ' Summary',
 			type: 'Naive Bayes',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Naive Bayes for Response {y} (id: bayes{COUNTER})</span>
+				<span className="title" >Naive Bayes for Response {y} (model id:bayes{COUNTER})</span>
 				{summaryTable( predictors, results, this.props.quantitative )}
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {

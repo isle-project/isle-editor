@@ -165,7 +165,7 @@ class LassoRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'LASSO Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >LASSO Regression for Response {y} (id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
+				<span className="title" >LASSO Regression for Response {y} (model id:lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
 				{summaryTable( predictors, intercept, result )}
 				<p>Karush-Khun-Tucker (KKT) conditions for an optimal solution {result.testKKT() ? 'are' : 'are not'} satisfied</p>
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">

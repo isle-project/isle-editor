@@ -69,7 +69,7 @@ class DecisionTree extends Component {
 			variable: 'Decision Tree',
 			type: 'Decision Tree',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Decision Tree for {y} (id: tree{COUNTER})</span>
+				<span className="title" >Decision Tree for {y} (model id:tree{COUNTER})</span>
 				<TreePlot tree={tree.root} />
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
