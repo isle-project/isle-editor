@@ -8,7 +8,7 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_DECISION_TREE } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import QuestionButton from './question_button.js';
@@ -18,6 +18,7 @@ import { RegressionTree, ClassificationTree, TreePlot } from './tree';
 // VARIABLES //
 
 const DESCRIPTION = 'Grow a decision tree for either a regression or classification problem. For quantitative responses, at each iteration of the algorithm the data are split by the variable which leads to splits with the greatest reduction in variance for the response. For categorical responses, the data are split on the feature which leads to the largest information gain (measured either in terms of the Gini index or entropy)';
+let COUNTER = 0;
 
 
 // MAIN //
@@ -29,15 +30,14 @@ class DecisionTree extends Component {
 		this.state = {
 			y: props.categorical[ 0 ],
 			x: props.quantitative[ 0 ],
-			attach: false,
 			type: 'Classification',
 			impurityMeasure: 'gini'
 		};
 	}
 
 	compute = () => {
-		let { y, x, attach, type, impurityMeasure } = this.state;
-
+		let { y, x, type, impurityMeasure } = this.state;
+		COUNTER += 1;
 		let predictors;
 		if ( isArray( x ) ) {
 			predictors = x;
@@ -62,53 +62,51 @@ class DecisionTree extends Component {
 				quantitative: this.props.quantitative
 			});
 		}
-
-		if ( attach ) {
-			const newData = copy( this.props.data, 1 );
-			const suffix = predictors.map( x => x[ 0 ] ).join( '' );
-
-			if ( type === 'Classification' ) {
-				const newCategorical = this.props.categorical.slice();
-				const yhat = tree.predict( newData ).map( x => String( x ) );
-				let name = y+'_pred_tree_' + suffix;
-				newData[ name ] = yhat;
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				name = y+'_correct_tree_' + suffix;
-				const yvalues = this.props.data[ y ];
-				newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				this.props.onGenerate( this.props.quantitative, newCategorical, newData );
-			}
-			else {
-				const newQuantitative = this.props.quantitative.slice();
-				const yhat = tree.predict( newData );
-				let name = y+'_pred_tree_' + suffix;
-				newData[ name ] = yhat;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				name = y+'_resid_tree_' + suffix;
-				newData[ name ] = subtract( yhat, this.props.data[ y ] );
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				this.props.onGenerate( newQuantitative, this.props.categorical, newData );
-			}
-		}
-
 		this.props.logAction( DATA_EXPLORER_DECISION_TREE, {
-			y, x, type, attach
+			y, x, type
 		});
 		const output = {
 			variable: 'Decision Tree',
 			type: 'Decision Tree',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Decision Tree for {y}</span>
+				<span className="title" >Decision Tree for {y} (id: tree{COUNTER})</span>
 				<TreePlot tree={tree.root} />
+				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
+						const newData = copy( this.props.data, 1 );
+						if ( type === 'Classification' ) {
+							const newCategorical = this.props.categorical.slice();
+							const yhat = tree.predict( newData ).map( x => String( x ) );
+							let name = 'pred_tree' + COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newCategorical, name ) ) {
+								newCategorical.push( name );
+							}
+							name = 'correct_tree' + COUNTER;
+							const yvalues = this.props.data[ y ];
+							newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+							if ( !contains( newCategorical, name ) ) {
+								newCategorical.push( name );
+							}
+							this.props.onGenerate( this.props.quantitative, newCategorical, newData );
+						}
+						else {
+							const newQuantitative = this.props.quantitative.slice();
+							const yhat = tree.predict( newData );
+							let name = 'pred_tree' + COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							name = 'resid_tree' + COUNTER;
+							newData[ name ] = subtract( yhat, this.props.data[ y ] );
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							this.props.onGenerate( newQuantitative, this.props.categorical, newData );
+						}
+					}}>Use this model to predict for currently selected data</Button>
+				</Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -116,7 +114,7 @@ class DecisionTree extends Component {
 
 	render() {
 		const { categorical, quantitative } = this.props;
-		const { x, y, type, attach } = this.state;
+		const { x, y, type } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px', maxWidth: 600 }}
@@ -149,11 +147,7 @@ class DecisionTree extends Component {
 						options={quantitative.concat( categorical )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
-					/>
-					<CheckboxInput
-						legend="Attach predictions and residuals to data table?"
-						defaultValue={attach}
-						onChange={( attach ) => this.setState({ attach })}
+						closeMenuOnSelect={false}
 					/>
 					{ type === 'Classification' ? <SelectInput
 						legend="Impurity Measure"
