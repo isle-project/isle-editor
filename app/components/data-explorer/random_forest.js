@@ -10,7 +10,7 @@ import copy from '@stdlib/utils/copy';
 import floor from '@stdlib/math/base/special/floor';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import NumberInput from 'components/input/number';
 import { DATA_EXPLORER_RANDOM_FOREST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
@@ -20,6 +20,7 @@ import { RandomForestClassifier } from './tree';
 // VARIABLES //
 
 const DESCRIPTION = 'Instead of growing a single decision tree, a random forest as an ensemble method constructs many decision trees at once and returns the average of the predictions (regression case) or the majority vote (classification case) of the individual trees';
+let COUNTER = 0;
 
 
 // FUNCTIONS //
@@ -47,7 +48,6 @@ class RandomForest extends Component {
 		this.state = {
 			y: props.categorical[ 0 ],
 			x: props.quantitative[ 0 ],
-			attach: false,
 			type: 'Classification',
 			nTrees: 50,
 			nTry: 1,
@@ -56,7 +56,8 @@ class RandomForest extends Component {
 	}
 
 	compute = () => {
-		let { y, x, attach, type, nTrees, nTry, impurityMeasure } = this.state;
+		let { y, x, type, nTrees, nTry, impurityMeasure } = this.state;
+		COUNTER += 1;
 
 		let predictors;
 		if ( isArray( x ) ) {
@@ -77,36 +78,36 @@ class RandomForest extends Component {
 				nTry
 			});
 		}
-
-		if ( attach ) {
-			const newData = copy( this.props.data, 1 );
-			const suffix = predictors.map( x => x[ 0 ] ).join( '' );
-			if ( type === 'Classification' ) {
-				const newCategorical = this.props.categorical.slice();
-				const yhat = forest.predict( newData ).map( x => String( x ) );
-				let name = y+'_pred_forest_' + suffix;
-				newData[ name ] = yhat;
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				name = y+'_correct_forest_' + suffix;
-				const yvalues = this.props.data[ y ];
-				newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				this.props.onGenerate( this.props.quantitative, newCategorical, newData );
-			}
-		}
-
 		this.props.logAction( DATA_EXPLORER_RANDOM_FOREST, {
-			y, x, type, nTrees, nTry, attach
+			y, x, type, nTrees, nTry
 		});
 		const output = {
 			variable: 'Random Forest',
 			type: 'Random Forest',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Random Forest for {y}</span>
+				<span className="title" >Random Forest for {y} (id: forest{COUNTER})</span>
+				<div></div>
+				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
+						const newData = copy( this.props.data, 1 );
+						if ( type === 'Classification' ) {
+							const newCategorical = this.props.categorical.slice();
+							const yhat = forest.predict( newData ).map( x => String( x ) );
+							let name = 'pred_forest' + COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newCategorical, name ) ) {
+								newCategorical.push( name );
+							}
+							name = 'correct_forest' + COUNTER;
+							const yvalues = this.props.data[ y ];
+							newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+							if ( !contains( newCategorical, name ) ) {
+								newCategorical.push( name );
+							}
+							this.props.onGenerate( this.props.quantitative, newCategorical, newData );
+						}
+					}}>Use this model to predict for currently selected data</Button>
+				</Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -114,7 +115,7 @@ class RandomForest extends Component {
 
 	render() {
 		const { categorical, quantitative } = this.props;
-		const { x, y, type, attach, nTrees, nTry } = this.state;
+		const { x, y, type, nTrees, nTry } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px', maxWidth: 600 }}
@@ -170,11 +171,6 @@ class RandomForest extends Component {
 						tooltipPlacement="top"
 						min={1}
 						max={isArray( x ) ? x.length : 1}
-					/>
-					<CheckboxInput
-						legend="Attach predictions and residuals to data table?"
-						defaultValue={attach}
-						onChange={( attach ) => this.setState({ attach })}
 					/>
 					{ type === 'Classification' ? <SelectInput
 						legend="Impurity Measure"
