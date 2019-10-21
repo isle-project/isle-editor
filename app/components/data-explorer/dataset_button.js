@@ -74,13 +74,12 @@ class DatasetButton extends Component {
 									color: 'white',
 									marginRight: '5px',
 									borderRadius: 3,
-									minWidth: 300,
 									zIndex: 1002,
 									...props.style
 								}}
 							>
 								{formatFilters( this.props.filters )}
-								<Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
+								{ this.props.restoreButton ? <Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
 									<Button
 										size="sm"
 										variant="danger"
@@ -89,7 +88,7 @@ class DatasetButton extends Component {
 										}}
 										style={{ marginTop: 12 }}
 									>Restore dataset</Button>
-								</Tooltip>
+								</Tooltip> : null }
 							</pre>
 						);
 					}}
@@ -106,6 +105,7 @@ DatasetButton.propTypes = {
 	header: PropTypes.string,
 	filters: PropTypes.array,
 	onActivateFilters: PropTypes.func,
+	restoreButton: PropTypes.func,
 	style: PropTypes.object
 };
 
@@ -113,6 +113,7 @@ DatasetButton.defaultProps = {
 	header: 'Show applied filters for used data',
 	filters: null,
 	onActivateFilters() {},
+	restoreButton: false,
 	style: {}
 };
 
