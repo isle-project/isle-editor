@@ -25,10 +25,8 @@
 }
 
 .data-explorer-subset-filter-display {
-	margin-top: 10px;
-	margin-left: 10px;
 	background: lightcoral;
-	width: 100%;
+	margin-left: 15px;
 }
 
 .data-explorer-toolbox {

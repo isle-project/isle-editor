@@ -51,6 +51,7 @@ class DatasetButton extends Component {
 							});
 						}}
 					>
+						{formatFilters( this.props.filters, true )}
 						<div className="fa fa-table" />
 					</Button>
 				</Tooltip>
@@ -65,18 +66,21 @@ class DatasetButton extends Component {
 									color: 'white',
 									marginRight: '5px',
 									borderRadius: 3,
+									minWidth: 300,
 									zIndex: 1002,
 									...props.style
 								}}
 							>
 								{formatFilters( this.props.filters )}
-								<Button
-									size="sm"
-									variant="danger"
-									onClick={() => {
-										this.props.onActivateFilters( this.props.filters );
-									}}
-								>Apply filters</Button>
+								<Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
+									<Button
+										size="sm"
+										variant="danger"
+										onClick={() => {
+											this.props.onActivateFilters( this.props.filters );
+										}}
+									>Restore dataset</Button>
+								</Tooltip>
 							</pre>
 						);
 					}}

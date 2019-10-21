@@ -1331,29 +1331,37 @@ class DataExplorer extends Component {
 									deletable
 									id={this.id + '_table'}
 								/>
-								{ this.state.filters.length > 0 ?
-									<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
-										<Button
-											onClick={this.onFilterCreate}
-											variant="secondary"
-											size="xsmall"
-										>
-											Create filtered dataset
-										</Button>
-									</OverlayTrigger> : null
-								}
-								{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
-									<Button
-										onClick={this.onRestoreData}
-										variant="secondary"
-										size="xsmall"
-									>
-										Restore original dataset
-									</Button>
-								</OverlayTrigger> : null }
-								{ this.state.subsetFilters ? <pre className="data-explorer-subset-filter-display">
-									{formatFilters( this.state.subsetFilters )}
-								</pre> : null }
+								<Row>
+									<Col>
+										{ this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
+											<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
+												<Button
+													onClick={this.onFilterCreate}
+													variant="secondary"
+													size="xsmall"
+												>
+													Create filtered dataset
+													</Button>
+												</OverlayTrigger> : null
+											}
+									</Col>
+									<Col>
+										{ this.state.subsetFilters ? <pre className="data-explorer-subset-filter-display">
+											{formatFilters( this.state.subsetFilters )}
+										</pre> : null }
+									</Col>
+									<Col>
+										{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
+											<Button
+												onClick={this.onRestoreData}
+												variant="secondary"
+												size="xsmall"
+											>
+												Restore original dataset
+											</Button>
+										</OverlayTrigger> : null }
+									</Col>
+								</Row>
 						</div>
 						{ this.props.editor ?
 						<MarkdownEditor {...this.props.editorProps}

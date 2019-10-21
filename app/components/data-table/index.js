@@ -660,9 +660,8 @@ class DataTable extends Component {
 
 		// Run re-order events:
 		this.reorder.forEach( o => {
-			cols[o.a] = cols.splice(o.b, 1, cols[o.a])[ 0 ];
+			cols[ o.a ] = cols.splice( o.b, 1, cols[o.a] )[ 0 ];
 		});
-
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" style={this.props.style} >
@@ -701,6 +700,7 @@ class DataTable extends Component {
 								variant="light"
 								size="xsmall"
 								className="reset-button"
+								disabled={this.props.filters.length === 0}
 							>
 								Reset Table Display
 							</Button>
