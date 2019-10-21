@@ -199,7 +199,7 @@ class LogisticRegression extends Component {
 		const { x, y, categories, success, intercept } = this.state;
 		return (
 			<Card
-				style={{ fontSize: '14px' }}
+				style={{ fontSize: '14px', maxWidth: 500 }}
 			>
 				<Card.Header as="h4">
 					Logistic Regression<QuestionButton title="Logistic Regression" content={DESCRIPTION} />
