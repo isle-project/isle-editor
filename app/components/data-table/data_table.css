@@ -48,10 +48,18 @@
 	letter-spacing: 2.5px;
 }
 
-.data-table-footer-button {
+.variable-descriptions-button {
+	background: rgba(0, 0, 0, 0.045);
+	box-shadow: none;
+	border-color: #0000004d;
+	float: left;
+}
+
+.reset-button {
+	background: rgba(0, 0, 0, 0.045);
+	box-shadow: none;
+	border-color: #0000004d;
 	float: right;
-	margin-top: -2px;
-	margin-right: 7px;
 }
 
 .data_button_wrapper {

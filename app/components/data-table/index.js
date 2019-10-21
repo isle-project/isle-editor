@@ -21,6 +21,7 @@ import ReactTable from 'react-table';
 import InputRange from 'react-input-range';
 import unique from 'uniq';
 import Alert from 'react-bootstrap/Alert';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -685,6 +686,26 @@ class DataTable extends Component {
 							{dataInfo.name ? dataInfo.name : 'Data'}
 						</h4>: null
 					}
+					<ButtonToolbar style={{ width: '100%', paddingBottom: '10px', display: 'inline-block' }}>
+						{ dataInfo.variables ? <OverlayTrigger placement="right" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
+							onClick={this.showDescriptions}
+							variant="light"
+							size="xsmall"
+							className="variable-descriptions-button"
+						>
+							Variable Descriptions
+						</Button></OverlayTrigger> : null }
+						<OverlayTrigger placement="left" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
+							<Button
+								onClick={this.reset}
+								variant="light"
+								size="xsmall"
+								className="reset-button"
+							>
+								Reset Table Display
+							</Button>
+						</OverlayTrigger>
+					</ButtonToolbar>
 					<ReactTable
 						id={this.id}
 						ref={( table ) => { this.table = table; }}
@@ -703,24 +724,6 @@ class DataTable extends Component {
 						style={this.props.style}
 					/>
 					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
-					<OverlayTrigger placement="top" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
-						<Button
-							onClick={this.reset}
-							variant="primary"
-							size="xsmall"
-							className="data-table-footer-button reset-button"
-						>
-							Reset
-						</Button>
-					</OverlayTrigger>
-					{ dataInfo.variables ? <OverlayTrigger placement="top" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
-						onClick={this.showDescriptions}
-						variant="primary"
-						size="xsmall"
-						className="data-table-footer-button variable-descriptions-button"
-					>
-						Variable Descriptions
-					</Button></OverlayTrigger> : null }
 				</div>
 				{modal}
 			</Fragment>
