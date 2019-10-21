@@ -685,7 +685,7 @@ class DataTable extends Component {
 							{dataInfo.name ? dataInfo.name : 'Data'}
 						</h4>: null
 					}
-					<ButtonToolbar style={{ width: '100%', paddingBottom: '10px', display: 'inline-block' }}>
+					<ButtonToolbar className="data-table-header-toolbar">
 						{ dataInfo.variables ? <OverlayTrigger placement="right" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
 							onClick={this.showDescriptions}
 							variant="light"
@@ -694,17 +694,16 @@ class DataTable extends Component {
 						>
 							Variable Descriptions
 						</Button></OverlayTrigger> : null }
-						<OverlayTrigger placement="left" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
+						{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ? <OverlayTrigger placement="left" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
 							<Button
 								onClick={this.reset}
 								variant="light"
 								size="xsmall"
 								className="reset-button"
-								disabled={this.props.filters.length === 0}
 							>
 								Reset Table Display
 							</Button>
-						</OverlayTrigger>
+						</OverlayTrigger> : null }
 					</ButtonToolbar>
 					<ReactTable
 						id={this.id}
