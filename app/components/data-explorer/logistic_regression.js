@@ -17,6 +17,7 @@ import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import QuestionButton from './question_button.js';
@@ -137,13 +138,12 @@ class LogisticRegression extends Component {
 			y,
 			success,
 			x: props.quantitative[ 0 ],
-			intercept: true,
-			attach: false
+			intercept: true
 		};
 	}
 
 	compute = () => {
-		let { y, success, x, intercept, attach } = this.state;
+		let { y, success, x, intercept } = this.state;
 		const yvalues = this.props.data[ y ].map( v => {
 			return v === success ? 1 : 0;
 		});
@@ -153,23 +153,6 @@ class LogisticRegression extends Component {
 		}
 		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
 		const results = irls( matrix, yvalues, n );
-		if ( attach ) {
-			const newData = copy( this.props.data, 1 );
-			const newQuantitative = this.props.quantitative.slice();
-			const suffix = x.map( x => x[ 0 ] ).join( '' );
-			let name = y+'_pred_logis_' + suffix;
-			newData[ name ] = results.fitted;
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
-			}
-			name = y+'_resid_logis_' + suffix;
-			newData[ name ] = subtract( results.fitted, yvalues );
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
-			}
-			this.props.onGenerate( newQuantitative, newData );
-		}
-
 		this.props.logAction( DATA_EXPLORER_LOGISTIC_REGRESSION, {
 			y, x, intercept
 		});
@@ -181,7 +164,7 @@ class LogisticRegression extends Component {
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
-				<Button variant="secondary" onClick={() => {
+				<Tooltip tooltip="Predictions and residuals will be attached to data table"><Button variant="secondary" onClick={() => {
 					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
 					const yhat = results.predict( matrix );
 					const yvalues = this.props.data[ y ].map( v => {
@@ -202,7 +185,7 @@ class LogisticRegression extends Component {
 					}
 					newData[ name ] = resid;
 					this.props.onGenerate( newQuantitative, newData );
-				}}>Attach predictions and residuals for current data</Button>
+				}}>Use this model to predict for currently selected data</Button></Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -210,7 +193,7 @@ class LogisticRegression extends Component {
 
 	render() {
 		const { categorical, quantitative, data } = this.props;
-		const { x, y, categories, success, attach, intercept } = this.state;
+		const { x, y, categories, success, intercept } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
@@ -261,11 +244,6 @@ class LogisticRegression extends Component {
 						legend="Include intercept?"
 						defaultValue={intercept}
 						onChange={( intercept ) => this.setState({ intercept })}
-					/>
-					<CheckboxInput
-						legend="Attach predictions and residuals to data table?"
-						defaultValue={attach}
-						onChange={( attach ) => this.setState({ attach })}
 					/>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>

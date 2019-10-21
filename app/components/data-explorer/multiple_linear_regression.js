@@ -17,6 +17,7 @@ import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
+import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import mean from 'utils/statistic/mean';
@@ -111,7 +112,7 @@ class MultipleLinearRegression extends Component {
 		super( props );
 	}
 
-	compute = ( y, x, intercept, attach ) => {
+	compute = ( y, x, intercept ) => {
 		let yvalues = this.props.data[ y ].map( v => [ v ]);
 		const n = yvalues.length;
 		if ( !isArray( x ) ) {
@@ -121,7 +122,6 @@ class MultipleLinearRegression extends Component {
 		const result = new MLR( matrix, yvalues, {
 			intercept
 		});
-
 		const yhat = result.predict( matrix ).map( v => v[ 0 ] );
 		const avgFitted = mean( yhat );
 		let mss = 0;
@@ -133,23 +133,6 @@ class MultipleLinearRegression extends Component {
 		for ( let i = 0; i < resid.length; i++ ) {
 			rss += pow( resid[ i ], 2 );
 		}
-		if ( attach ) {
-			const newData = copy( this.props.data, 1 );
-			const newQuantitative = this.props.quantitative.slice();
-			const suffix = x.map( x => x[ 0 ] ).join( '' );
-			let name = y+'_pred_lm_' + suffix;
-			newData[ name ] = yhat;
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
-			}
-			name = y+'_resid_lm_' + suffix;
-			newData[ name ] = resid;
-			if ( !contains( newQuantitative, name ) ) {
-				newQuantitative.push( name );
-			}
-			this.props.onGenerate( newQuantitative, newData );
-		}
-
 		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, {
 			y, x, intercept
 		});
@@ -166,25 +149,27 @@ class MultipleLinearRegression extends Component {
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
 				<p>F-statistic: {fScore.toFixed( 3 )} (df: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
-				<Button variant="secondary" onClick={() => {
-					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-					const yhat = result.predict( matrix ).map( v => v[ 0 ] );
-					const resid = subtract( yhat, this.props.data[ y ] );
-					const newData = copy( this.props.data, 1 );
-					const newQuantitative = this.props.quantitative.slice();
-					const suffix = x.map( x => x[ 0 ] ).join( '' );
-					let name = y+'_pred_lm_' + suffix;
-					newData[ name ] = yhat;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					name = y+'_resid_lm_' + suffix;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					newData[ name ] = resid;
-					this.props.onGenerate( newQuantitative, newData );
-				}}>Attach predictions and residuals for current data</Button>
+				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+					<Button variant="secondary" onClick={() => {
+						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+						const yhat = result.predict( matrix ).map( v => v[ 0 ] );
+						const resid = subtract( yhat, this.props.data[ y ] );
+						const newData = copy( this.props.data, 1 );
+						const newQuantitative = this.props.quantitative.slice();
+						const suffix = x.map( x => x[ 0 ] ).join( '' );
+						let name = y+'_pred_lm_' + suffix;
+						newData[ name ] = yhat;
+						if ( !contains( newQuantitative, name ) ) {
+							newQuantitative.push( name );
+						}
+						name = y+'_resid_lm_' + suffix;
+						if ( !contains( newQuantitative, name ) ) {
+							newQuantitative.push( name );
+						}
+						newData[ name ] = resid;
+						this.props.onGenerate( newQuantitative, newData );
+					}}>Use this model to predict for currently selected data</Button>
+				</Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -212,10 +197,6 @@ class MultipleLinearRegression extends Component {
 				<CheckboxInput
 					legend="Include intercept?"
 					defaultValue={true}
-				/>
-				<CheckboxInput
-					legend="Attach predictions and residuals to data table?"
-					defaultValue={false}
 				/>
 			</Dashboard>
 		);
