@@ -57,7 +57,6 @@ class DatasetButton extends Component {
 								}
 							});
 						}}
-						style={{ marginTop: 12 }}
 					>
 						Filters
 					</Button>
@@ -86,6 +85,7 @@ class DatasetButton extends Component {
 										onClick={() => {
 											this.props.onActivateFilters( this.props.filters );
 										}}
+										style={{ marginTop: 12 }}
 									>Restore dataset</Button>
 								</Tooltip>
 							</pre>
@@ -107,7 +107,7 @@ DatasetButton.propTypes = {
 };
 
 DatasetButton.defaultProps = {
-	header: 'Dataset Info',
+	header: 'Show applied filters for used data',
 	filters: null,
 	onActivateFilters() {}
 };

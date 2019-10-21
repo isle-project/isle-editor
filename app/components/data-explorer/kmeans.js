@@ -41,7 +41,7 @@ const summaryTable = ( variables, centroids ) => {
 					return (
 						<tr key={idx} >
 							<th>{name}</th>
-							{centroids.map( ( x, i ) => <td key={i} >{x.centroid[ idx ]}</td>)}
+							{centroids.map( ( x, i ) => <td key={i} >{x.centroid[ idx ].toFixed( 4 )}</td>)}
 						</tr>
 					);
 				})}
