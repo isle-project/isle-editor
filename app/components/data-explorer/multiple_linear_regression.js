@@ -146,7 +146,7 @@ class MultipleLinearRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'Multiple Linear Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y} (model id:lm{COUNTER})</span>
+				<span className="title" >Regression Summary for Response {y} (model id: lm{COUNTER})</span>
 				{summaryTable( y, predictors, n, result )}
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
