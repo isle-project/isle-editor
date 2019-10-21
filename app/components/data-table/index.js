@@ -402,6 +402,7 @@ class DataTable extends Component {
 						}
 						rows[ i ][ 'id' ] = i + 1;
 					}
+					keys.push( 'id' );
 				}
 				newState.rows = rows;
 				newState.keys = keys;
