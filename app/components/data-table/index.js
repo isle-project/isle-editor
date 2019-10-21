@@ -18,7 +18,6 @@ import { findDOMNode } from 'react-dom';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
-import InputRange from 'react-input-range';
 import unique from 'uniq';
 import Alert from 'react-bootstrap/Alert';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -32,7 +31,6 @@ import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
-import round from '@stdlib/math/base/special/round';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -49,6 +47,7 @@ import SelectInput from 'components/input/select';
 import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
+import FilterInputRange from './input_range.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -221,31 +220,16 @@ function createColumns( props, state ) {
 			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
 				out[ 'filterMethod' ] = filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
+					const maxValue = ceil( max( uniqueValues ) );
+					const minValue = floor( min( uniqueValues ) );
 					const defaultVal = {
-						max: ceil( max( uniqueValues ) ),
-						min: floor( min( uniqueValues ) )
+						max: maxValue,
+						min: minValue
 					};
-					return (
-						<div style={{
-							paddingLeft: '4px',
-							paddingRight: '4px',
-							paddingTop: '8px',
-							paddingBottom: '4px'
-						}}>
-							<InputRange
-								allowSameValues
-								maxValue={ceil( max( uniqueValues ) )}
-								minValue={floor( min( uniqueValues ) )}
-								value={filter ? filter.value : defaultVal}
-								onChange={( newValue ) => {
-									onChange( newValue );
-								}}
-								formatLabel={( val ) => {
-									return round( val );
-								}}
-							/>
-						</div>
-					);
+					return ( <FilterInputRange
+						defaultValue={filter ? filter.value : defaultVal}
+						onChange={onChange} maxValue={maxValue} minValue={minValue}
+					/> );
 				};
 			} else if ( uniqueValues.length <= 50 ) {
 				// Cast values to strings for select component to work and sort:
