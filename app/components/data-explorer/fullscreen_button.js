@@ -51,11 +51,9 @@ class FullscreenButton extends Component {
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
+						className="data-explorer-fullscreen-output"
 						style={{
-							height: 0.75 * window.innerHeight,
-							width: '100%',
-							fontSize: 32,
-							overflow: 'scroll'
+							height: 0.75 * window.innerHeight
 						}}
 					>
 						{this.props.table}

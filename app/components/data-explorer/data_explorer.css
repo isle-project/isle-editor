@@ -24,6 +24,16 @@
 	margin-bottom: 0;
 }
 
+.data-explorer-fullscreen-output {
+	font-size: 32px;
+	overflow: scroll;
+	width: 100%;
+}
+
+.data-explorer-fullscreen-output .btn {
+	display: none;
+}
+
 .data-explorer-subset-filter-display {
 	background: lightcoral;
 	width: 100%;
