@@ -27,6 +27,7 @@ import irls from './glm/logistic_regression.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Predict a categorical response variable using one or more explanatory variables.';
+let COUNTER = 0;
 
 
 // FUNCTIONS //
@@ -143,6 +144,7 @@ class LogisticRegression extends Component {
 	}
 
 	compute = () => {
+		COUNTER += 1;
 		let { y, success, x, intercept } = this.state;
 		const yvalues = this.props.data[ y ].map( v => {
 			return v === success ? 1 : 0;
@@ -160,7 +162,7 @@ class LogisticRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'Logistic Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y}</span>
+				<span className="title" >Regression Summary for Response {y} (id: logis{COUNTER})</span>
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm converged after {results.iterations} iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
@@ -173,13 +175,12 @@ class LogisticRegression extends Component {
 					const resid = subtract( yhat, yvalues );
 					const newData = copy( this.props.data, 1 );
 					const newQuantitative = this.props.quantitative.slice();
-					const suffix = x.map( x => x[ 0 ] ).join( '' );
-					let name = y+'_pred_logis_' + suffix;
+					let name = 'pred_logis' + COUNTER;
 					newData[ name ] = yhat;
 					if ( !contains( newQuantitative, name ) ) {
 						newQuantitative.push( name );
 					}
-					name = y+'_resid_logis_' + suffix;
+					name = 'resid_logis' + COUNTER;
 					if ( !contains( newQuantitative, name ) ) {
 						newQuantitative.push( name );
 					}

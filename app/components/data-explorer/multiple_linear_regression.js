@@ -27,6 +27,7 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Predict a quantitative response variable using one or more explanatory variables.';
+let COUNTER = 0;
 
 
 // FUNCTIONS //
@@ -113,6 +114,7 @@ class MultipleLinearRegression extends Component {
 	}
 
 	compute = ( y, x, intercept ) => {
+		COUNTER += 1;
 		let yvalues = this.props.data[ y ].map( v => [ v ]);
 		const n = yvalues.length;
 		if ( !isArray( x ) ) {
@@ -144,7 +146,7 @@ class MultipleLinearRegression extends Component {
 			variable: 'Regression Summary',
 			type: 'Multiple Linear Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y}</span>
+				<span className="title" >Regression Summary for Response {y} (id: lm{COUNTER})</span>
 				{summaryTable( y, predictors, n, result )}
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
@@ -156,13 +158,12 @@ class MultipleLinearRegression extends Component {
 						const resid = subtract( yhat, this.props.data[ y ] );
 						const newData = copy( this.props.data, 1 );
 						const newQuantitative = this.props.quantitative.slice();
-						const suffix = x.map( x => x[ 0 ] ).join( '' );
-						let name = y+'_pred_lm_' + suffix;
+						let name = 'pred_lm'+COUNTER;
 						newData[ name ] = yhat;
 						if ( !contains( newQuantitative, name ) ) {
 							newQuantitative.push( name );
 						}
-						name = y+'_resid_lm_' + suffix;
+						name = 'resid_lm'+COUNTER;
 						if ( !contains( newQuantitative, name ) ) {
 							newQuantitative.push( name );
 						}

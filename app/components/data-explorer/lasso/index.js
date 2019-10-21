@@ -106,7 +106,7 @@ LassoFit.prototype.testKKT = function testKKT() {
 LassoFit.prototype.testActiveSet = function testActiveSet() {
 	let changed = false;
 
-	const { residuals } = this.calcValues();
+	const { residuals } = this.predict( this.x );
 
 	// See whether non-active variables all pass exclusion test:
 	for ( let j = 0; j < this.nonactive.length; j++ ) {
@@ -176,10 +176,13 @@ LassoFit.prototype.iterate = function iterate() {
 /**
 * Calculates the current model fitted values (yhat) and residuals (e = y - yhat).
 *
-* @returns {Float64Array} array of residuals
+* @returns {Object} fitted values and residuals
 */
-LassoFit.prototype.calcValues = function calcValues() {
-	const fitted = mmult( this.x, this.beta );
+LassoFit.prototype.predict = function predict( x ) {
+	if ( isArrayArray( x ) ) {
+		x = ndarray( x );
+	}
+	const fitted = mmult( x, this.beta );
 	const residuals = new Array( this.N );
 	for ( let i = 0; i < this.N; i++ ) {
 		residuals[ i ] = this.y[ i ] - fitted[ i ];
@@ -196,7 +199,7 @@ LassoFit.prototype.calcValues = function calcValues() {
 * @param {Matrix|Array} x - design matrix
 * @param {NumberArray} y - response vector
 * @param {number} lambda - L1 penalty value
-* @returns {Object} regression output
+* @returns {Object} regression model
 */
 function lasso( x, y, lambda ) {
 	if ( !isNumber ) {
@@ -211,15 +214,7 @@ function lasso( x, y, lambda ) {
 		const msg = 'invalid input argument. The first argument must be a matrix or an array-of-arrays. Value: `' + x + '`';
 		throw new TypeError( msg );
 	}
-	const fit = new LassoFit( y, x, lambda );
-	const ret = {};
-	ret.coefficients = fit.beta;
-
-	const vals = fit.calcValues();
-	ret.residuals = vals.residuals;
-	ret.fitted = vals.fitted;
-	ret.optimumFound = fit.testKKT();
-	return ret;
+	return new LassoFit( y, x, lambda );
 }
 
 
