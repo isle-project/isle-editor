@@ -12,7 +12,7 @@ import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
 import exp from '@stdlib/math/base/special/exp';
 import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import { gaussian } from './naive-bayes';
@@ -21,9 +21,47 @@ import { gaussian } from './naive-bayes';
 // VARIABLES //
 
 const DESCRIPTION = '';
+let COUNTER = 0;
 
 
 // FUNCTIONS //
+
+function designMatrix( x, data, quantitative ) {
+	let matrix = [];
+	const predictors = [];
+	const hash = {};
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = x[ j ].categories || uniq( values.slice() );
+			for ( let k = 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	const nobs = data[ x[ 0 ] ].length;
+	for ( let i = 0; i < nobs; i++ ) {
+		const row = [];
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				row.push( values[ i ] );
+			} else {
+				const categories = hash[ x[ j ] ];
+				const val = values[ i ];
+				for ( let k = 0; k < categories.length; k++ ) {
+					row.push( ( val === categories[ k ] ) ? 1 : 0 );
+				}
+			}
+		}
+		matrix.push( row );
+	}
+	matrix = ndarray( matrix );
+	return { matrix, predictors };
+}
 
 const summaryTable = ( predictors, result, quantitative ) => {
 	return (
@@ -103,74 +141,19 @@ class NaiveBayes extends Component {
 
 		this.state = {
 			y: props.categorical[ 0 ],
-			x: props.quantitative[ 0 ],
-			attach: false
+			x: props.quantitative[ 0 ]
 		};
 	}
 
 	compute = () => {
-		let { y, x, attach } = this.state;
+		COUNTER += 1;
+		let { y, x } = this.state;
 		const yvalues = this.props.data[ y ];
-		const n = yvalues.length;
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		let matrix = [];
-		const predictors = [];
-		const hash = {};
-		for ( let j = 0; j < x.length; j++ ) {
-			const values = this.props.data[ x[ j ] ];
-			if ( contains( this.props.quantitative, x[ j ] ) ) {
-				predictors.push( x[ j ] );
-			} else {
-				const categories = x[ j ].categories || uniq( values.slice() );
-				for ( let k = 0; k < categories.length; k++ ) {
-					predictors.push( `${x[ j ]}_${categories[ k ]}` );
-				}
-				hash[ x[ j ] ] = categories;
-			}
-		}
-		for ( let i = 0; i < n; i++ ) {
-			const row = [];
-			for ( let j = 0; j < x.length; j++ ) {
-				const values = this.props.data[ x[ j ] ];
-				if ( contains( this.props.quantitative, x[ j ] ) ) {
-					row.push( values[ i ] );
-				} else {
-					const categories = hash[ x[ j ] ];
-					const val = values[ i ];
-					for ( let k = 0; k < categories.length; k++ ) {
-						row.push( ( val === categories[ k ] ) ? 1 : 0 );
-					}
-				}
-			}
-			matrix.push( row );
-		}
-		matrix = ndarray( matrix );
-
+		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative );
 		const results = gaussian( matrix, yvalues );
-		if ( attach ) {
-			const newData = copy( this.props.data, 1 );
-			const newQuantitative = this.props.quantitative.slice();
-			const suffix = x.map( x => x[ 0 ] ).join( '' );
-			const probs = results.predictProbs( matrix );
-			for ( let i = 0; i < results.classes.length; i++ ) {
-				const name = 'probs_' + results.classes[ i ] + '_' + suffix;
-				const classProbs = probs.map( x => x[ i ] );
-				newData[ name ] = classProbs;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-			}
-			const pred = results.predict( matrix );
-			const name = 'pred_' + y + '_' + suffix;
-			newData[ name ] = pred;
-			const newCategorical = this.props.categorical.slice();
-			if ( !contains( newCategorical, name ) ) {
-				newCategorical.push( name );
-			}
-			this.props.onGenerate( newQuantitative, newCategorical, newData );
-		}
 
 		this.props.logAction( DATA_EXPLORER_NAIVE_BAYES, {
 			y, x
@@ -179,8 +162,32 @@ class NaiveBayes extends Component {
 			variable: ' Summary',
 			type: 'Naive Bayes',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Naive Bayes for Response {y}</span>
+				<span className="title" >Naive Bayes for Response {y} (id: bayes{COUNTER})</span>
 				{summaryTable( predictors, results, this.props.quantitative )}
+				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+					<Button variant="secondary" onClick={() => {
+						const newData = copy( this.props.data, 1 );
+						const newQuantitative = this.props.quantitative.slice();
+						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative );
+						const probs = results.predictProbs( matrix );
+						for ( let i = 0; i < results.classes.length; i++ ) {
+							const name = 'probs_' + results.classes[ i ] + '_bayes' + COUNTER;
+							const classProbs = probs.map( x => x[ i ] );
+							newData[ name ] = classProbs;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+						}
+						const pred = results.predict( matrix );
+						const name = 'pred_bayes'+ COUNTER;
+						newData[ name ] = pred;
+						const newCategorical = this.props.categorical.slice();
+						if ( !contains( newCategorical, name ) ) {
+							newCategorical.push( name );
+						}
+						this.props.onGenerate( newQuantitative, newCategorical, newData );
+					}}>Use this model to predict for currently selected data</Button>
+				</Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );
@@ -188,7 +195,7 @@ class NaiveBayes extends Component {
 
 	render() {
 		const { categorical, quantitative } = this.props;
-		const { x, y, attach } = this.state;
+		const { x, y } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
@@ -208,11 +215,6 @@ class NaiveBayes extends Component {
 						options={quantitative.concat( categorical )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
-					/>
-					<CheckboxInput
-						legend="Attach predictions to data table?"
-						defaultValue={attach}
-						onChange={( attach ) => this.setState({ attach })}
 					/>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
