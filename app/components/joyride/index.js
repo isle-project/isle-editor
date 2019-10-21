@@ -42,6 +42,7 @@ class Wrapper extends Component {
 			run={this.props.run}
 			steps={this.props.steps}
 			styles={STYLES}
+			showSkipButton
 			{...this.props}
 		/> );
 	}
