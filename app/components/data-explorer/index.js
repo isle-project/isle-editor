@@ -650,9 +650,9 @@ class DataExplorer extends Component {
 	onRestoreData = () => {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
-		const data = copy( this.state.oldData, 1 );
+		const data = copy( this.props.data, 1 );
 		const ids = this.state.data.id;
-		const nOriginal = data[ oldVars[ 0 ] ].length;
+		const nOriginal = this.props.data[ oldVars[ 0 ] ].length;
 		for ( let i = 0; i < newVars.length; i++ ) {
 			const name = newVars[ i ];
 			if ( name !== 'id' && !hasProp( data, name ) ) {
@@ -660,6 +660,16 @@ class DataExplorer extends Component {
 				for ( let j = 0; j < ids.length; j++ ) {
 					const idx = ids[ j ] - 1;
 					data[ name ][ idx ] = this.state.data[ name ][ idx ];
+				}
+			}
+		}
+		for ( let i = 0; i < oldVars.length; i++ ) {
+			const name = oldVars[ i ];
+			if ( name !== 'id' && !hasProp( data, name ) ) {
+				data[ name ] = new Array( nOriginal );
+				for ( let j = 0; j < ids.length; j++ ) {
+					const idx = ids[ j ] - 1;
+					data[ name ][ idx ] = this.state.oldData[ name ][ idx ];
 				}
 			}
 		}
