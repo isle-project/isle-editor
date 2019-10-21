@@ -168,26 +168,28 @@ class LassoRegression extends Component {
 				<span className="title" >LASSO Regression for Response {y} (id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
 				{summaryTable( predictors, intercept, result )}
 				<p>Karush-Khun-Tucker (KKT) conditions for an optimal solution {result.testKKT() ? 'are' : 'are not'} satisfied</p>
-				<Tooltip tooltip="Predictions and residuals will be attached to data table"><Button variant="secondary" onClick={() => {
-					const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-					let { fitted, residuals } = result.predict( matrix );
-					// Convert fitted values and residuals back to original scale before standardizing:
-					fitted = multiply( fitted, yvalues.sigma );
-					residuals = multiply( residuals, -yvalues.sigma );
-					const newData = copy( this.props.data, 1 );
-					const newQuantitative = this.props.quantitative.slice();
-					let name = 'pred_lasso' + COUNTER;
-					newData[ name ] = fitted;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					name = 'resid_lasso' + COUNTER;
-					newData[ name ] = residuals;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					this.props.onGenerate( newQuantitative, newData );
-				}}>Use this model to predict for currently selected data</Button></Tooltip>
+				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+					<Button variant="secondary" size="sm" onClick={() => {
+						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+						let { fitted, residuals } = result.predict( matrix );
+						// Convert fitted values and residuals back to original scale before standardizing:
+						fitted = multiply( fitted, yvalues.sigma );
+						residuals = multiply( residuals, -yvalues.sigma );
+						const newData = copy( this.props.data, 1 );
+						const newQuantitative = this.props.quantitative.slice();
+						let name = 'pred_lasso' + COUNTER;
+						newData[ name ] = fitted;
+						if ( !contains( newQuantitative, name ) ) {
+							newQuantitative.push( name );
+						}
+						name = 'resid_lasso' + COUNTER;
+						newData[ name ] = residuals;
+						if ( !contains( newQuantitative, name ) ) {
+							newQuantitative.push( name );
+						}
+						this.props.onGenerate( newQuantitative, newData );
+					}}>Use this model to predict for currently selected data</Button>
+				</Tooltip>
 			</div>
 		};
 		this.props.onCreated( output );

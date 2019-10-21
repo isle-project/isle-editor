@@ -165,7 +165,7 @@ class NaiveBayes extends Component {
 				<span className="title" >Naive Bayes for Response {y} (id: bayes{COUNTER})</span>
 				{summaryTable( predictors, results, this.props.quantitative )}
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" onClick={() => {
+					<Button variant="secondary" size="sm" onClick={() => {
 						const newData = copy( this.props.data, 1 );
 						const newQuantitative = this.props.quantitative.slice();
 						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative );
