@@ -19,6 +19,8 @@ import roundn from '@stdlib/math/base/special/roundn';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
+import sample from '@stdlib/random/sample';
+import runif from '@stdlib/random/base/discrete-uniform';
 import unique from 'uniq';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
@@ -67,16 +69,56 @@ function scale( arr, a, b ) {
 }
 
 export function generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan }) {
+	let textValues;
 	let nColors;
 	let traces;
+	let colors;
+	let sizes;
+	let types;
+	let x;
+	let y;
 
 	let mode = 'markers';
 	if ( text ) {
 		mode += '+text';
 	}
+	const seed = runif( -40, 40 );
+	const sampleSize = 5000;
+	const nobs = data[ xval ].length;
+	if ( nobs > size ) {
+		const opts = { size: sampleSize, seed };
+		if ( color ) {
+			colors = sample( data[ colors ], opts );
+		}
+		if ( type ) {
+			types = sample( data[ type ], opts );
+		}
+		if ( size ) {
+			sizes = sample( data[ size ], opts );
+		}
+		if ( text ) {
+			textValues = sample( data[ text ], opts );
+		}
+		x = sample( data[ xval ], opts );
+		y = sample( data[ yval ], opts );
+	} else {
+		if ( color ) {
+			colors = data[ colors ];
+		}
+		if ( type ) {
+			types = data[ type ];
+		}
+		if ( size ) {
+			sizes = data[ size ];
+		}
+		if ( text ) {
+			textValues = data[ text ];
+		}
+		x = data[ xval ];
+		y = data[ yval ];
+	}
+
 	if ( color && type ) {
-		const colors = data[ color ];
-		const types = data[ type ];
 		const uniqueColors = colors.slice();
 		unique( uniqueColors );
 		nColors = uniqueColors.length;
@@ -84,10 +126,10 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		unique( uniqueTypes );
 
 		traces = [];
-		const xgrouped = groupBy( data[ xval ], ( v, i ) => {
+		const xgrouped = groupBy( x, ( v, i ) => {
 			return colors[ i ] + ':' + types[ i ];
 		});
-		const ygrouped = groupBy( data[ yval ], ( v, i ) => {
+		const ygrouped = groupBy( y, ( v, i ) => {
 			return colors[ i ] + ':' + types[ i ];
 		});
 		let texts;
@@ -98,7 +140,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 		let sizegrouped;
 		if ( size ) {
-			sizegrouped = groupBy( data[ size ], ( v, i ) => {
+			sizegrouped = groupBy( sizes, ( v, i ) => {
 				return colors[ i ] + ':' + types[ i ];
 			});
 			sizegrouped = mapValues( sizegrouped, ( value ) => {
@@ -130,13 +172,13 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 	}
 	else if ( type ) {
-		const groups = data[ type ].slice();
+		const groups = types.slice();
 		unique( groups );
-		const xgrouped = group( data[ xval ], data[ type ]);
-		const ygrouped = group( data[ yval ], data[ type ]);
+		const xgrouped = group( x, types );
+		const ygrouped = group( y, types );
 		let texts;
 		if ( text ) {
-			texts = group( data[ text ], data[ type ]);
+			texts = group( textValues, types );
 		}
 		traces = new Array( groups.length );
 		for ( let i = 0; i < groups.length; i++ ) {
@@ -148,7 +190,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				name: groups[ i ],
 				marker: {
 					symbol: SYMBOLS[ i ],
-					size: size ? scale( group( data[ size ], data[ type ])[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
+					size: size ? scale( group( sizes, data[ type ])[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
 					autocolorscale: false,
 					color: 'rgba(0,0,0,1)'
 				}
@@ -160,14 +202,14 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 	}
 	else if ( color ) {
-		const groups = data[ color ].slice();
+		const groups = colors.slice();
 		unique( groups );
 		nColors = groups.length;
-		const xgrouped = group( data[ xval ], data[ color ]);
-		const ygrouped = group( data[ yval ], data[ color ]);
+		const xgrouped = group( x, colors );
+		const ygrouped = group( y, colors );
 		let texts;
 		if ( text ) {
-			texts = group( data[ text ], data[ color ]);
+			texts = group( textValues, colors );
 		}
 		traces = new Array( nColors );
 		for ( let i = 0; i < nColors; i++ ) {
@@ -179,7 +221,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				name: groups[ i ],
 				marker: {
 					symbol: 'circle',
-					size: size ? scale( group( data[ size ], data[ color ])[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
+					size: size ? scale( group( sizes, colors)[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
 					autocolorscale: false,
 					color: CAT20[ i ]
 				}
@@ -191,8 +233,8 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		}
 	} else {
 		traces = [ {
-			x: data[ xval ],
-			y: data[ yval ],
+			x: x,
+			y: y,
 			type: 'scatter',
 			mode: mode,
 			name: 'Points',
@@ -202,7 +244,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 			}
 		} ];
 		if ( text ) {
-			traces[ 0 ].text = data[ text ];
+			traces[ 0 ].text = textValues;
 			traces[ 0 ].textposition = 'bottom';
 		}
 	}
@@ -211,8 +253,8 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		if ( lineBy ) {
 			const groups = data[ lineBy ].slice();
 			unique( groups );
-			const xgrouped = group( data[ xval ], data[ lineBy ]);
-			const ygrouped = group( data[ yval ], data[ lineBy ]);
+			const xgrouped = group( x, data[ lineBy ]);
+			const ygrouped = group( y, data[ lineBy ]);
 			let colorOffset = 0;
 			if ( color && color !== lineBy ) {
 				colorOffset += nColors;
@@ -272,8 +314,8 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				}
 			}
 		} else {
-			let xvals = data[ xval ];
-			let yvals = data[ yval ];
+			let xvals = x;
+			let yvals = y;
 			let xc = [];
 			let yc = [];
 			for ( let j = 0; j < xvals.length; j++ ) {

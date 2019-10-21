@@ -82,8 +82,8 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			const seed = runif( -40, 40 );
 			const size = 5000;
 			const points = {
-				x: x.length > 5000 ? sample( x, { size, seed }) : x,
-				y: y.length > 5000 ? sample( y, { size, seed }) : y,
+				x: x.length > size ? sample( x, { size, seed }) : x,
+				y: y.length > size ? sample( y, { size, seed }) : y,
 				mode: 'markers',
 				name: 'points',
 				marker: {
