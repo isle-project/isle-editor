@@ -1,3 +1,9 @@
+.data-table-header-toolbar {
+	width: 100%;
+	padding-bottom: 6px;
+	display: inline-block;
+}
+
 .title-button {
 	float: center;
 	background: rgba(0, 0, 0, 0.045);

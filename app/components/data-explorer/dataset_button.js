@@ -28,7 +28,14 @@ class DatasetButton extends Component {
 
 	render() {
 		if ( !this.props.filters ) {
-			return null;
+			return ( <Button
+				variant="outline-danger"
+				size="sm"
+				disabled
+				ref={( button ) => { this.button = button; }}
+			>
+				No Filters
+			</Button> );
 		}
 		return (
 			<Fragment>
@@ -50,9 +57,9 @@ class DatasetButton extends Component {
 								}
 							});
 						}}
+						style={{ marginTop: 12 }}
 					>
-						{formatFilters( this.props.filters, true )}
-						<div className="fa fa-table" />
+						Filters
 					</Button>
 				</Tooltip>
 				<Overlay target={this.button} show={this.state.show} placement="left">

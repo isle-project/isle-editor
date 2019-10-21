@@ -1332,30 +1332,32 @@ class DataExplorer extends Component {
 									id={this.id + '_table'}
 								/>
 								<Row>
-									<Col>
+									<Col md={4} >
 										{ this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
 											<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
 												<Button
 													onClick={this.onFilterCreate}
 													variant="secondary"
 													size="xsmall"
+													style={{ float: 'left' }}
 												>
 													Create filtered dataset
 													</Button>
 												</OverlayTrigger> : null
 											}
 									</Col>
-									<Col>
+									<Col md={4} >
 										{ this.state.subsetFilters ? <pre className="data-explorer-subset-filter-display">
 											{formatFilters( this.state.subsetFilters )}
 										</pre> : null }
 									</Col>
-									<Col>
+									<Col md={4} >
 										{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
 											<Button
 												onClick={this.onRestoreData}
 												variant="secondary"
 												size="xsmall"
+												style={{ float: 'right' }}
 											>
 												Restore original dataset
 											</Button>
