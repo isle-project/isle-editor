@@ -73,8 +73,8 @@ function mostFrequentValue( values, indices ) {
 	let mostFrequentCount = 0;
 	let mostFrequentValue;
 	for ( let value in counter ) {
-		if ( counter[value] > mostFrequentCount ) {
-			mostFrequentCount = counter[value];
+		if ( counter[ value ] > mostFrequentCount ) {
+			mostFrequentCount = counter[ value ];
 			mostFrequentValue = value;
 		}
 	}
@@ -342,7 +342,6 @@ function buildClassificationTree( opts ) {
 			}
 		}
 	}
-
 	if ( !bestSplit.gain || ( bestSplit.gain / initialScore ) < scoreThreshold ) {
 		return { category: mostFrequentValue( data[ response ], indices ) };
 	}

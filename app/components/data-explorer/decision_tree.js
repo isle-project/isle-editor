@@ -8,7 +8,9 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import SelectInput from 'components/input/select';
+import NumberInput from 'components/input/number';
 import Tooltip from 'components/tooltip';
+import Collapse from 'components/collapse';
 import { DATA_EXPLORER_DECISION_TREE } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import QuestionButton from './question_button.js';
@@ -31,7 +33,8 @@ class DecisionTree extends Component {
 			y: props.categorical[ 0 ],
 			x: props.quantitative[ 0 ],
 			type: 'Classification',
-			impurityMeasure: 'gini'
+			impurityMeasure: 'gini',
+			scoreThreshold: 0.01
 		};
 	}
 
@@ -52,14 +55,16 @@ class DecisionTree extends Component {
 				predictors,
 				data: this.props.data,
 				quantitative: this.props.quantitative,
-				criterion: impurityMeasure
+				criterion: impurityMeasure,
+				scoreThreshold: this.state.scoreThreshold
 			});
 		} else {
 			tree = new RegressionTree({
 				response: y,
 				predictors,
 				data: this.props.data,
-				quantitative: this.props.quantitative
+				quantitative: this.props.quantitative,
+				scoreThreshold: this.state.scoreThreshold
 			});
 		}
 		this.props.logAction( DATA_EXPLORER_DECISION_TREE, {
@@ -155,6 +160,14 @@ class DecisionTree extends Component {
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
+					<Collapse header="Toggle controls" >
+						<NumberInput legend="Score Threshold for split"
+							min={0} max={1} step={0.01}
+							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
+						/>
+						<NumberInput legend="Maximum tree depth" min={1} max={50} defaultValue={20} />
+						<NumberInput legend="Minimum # of observations in leaf nodes" min={1} defaultValue={50} />
+					</Collapse>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
 			</Card>
