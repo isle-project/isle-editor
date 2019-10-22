@@ -100,7 +100,7 @@
     "@stdlib/stdlib": "0.0.87",
     "acorn": "^7.0.0",
     "ajv": "^6.10.1",
-    "ansi-to-react": "^5.0.0",
+    "ansi-to-react": "^5.1.0",
     "archiver": "^3.1.1",
     "autobind-decorator": "^2.2.1",
     "babel-core": "^7.0.0-bridge.0",
