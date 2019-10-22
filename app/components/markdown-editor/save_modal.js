@@ -54,8 +54,8 @@ class SaveModal extends Component {
 	}
 
 	savePDF = () => {
-		var config = {};
-		var pageDims = {};
+		const config = {};
+		const pageDims = {};
 		if ( this.state.useString ) {
 			// If we use the string make page dimension the string:
 			pageDims.width = 72 * pageSizes[this.state.pageSize].width;
@@ -174,8 +174,8 @@ class SaveModal extends Component {
 												options={['portrait', 'landscape']}
 												onChange={( value )=>{
 													if ( value !== this.state.pageOrientation ) {
-														var oldWidth = this.state.visibleWidth;
-														var oldHeight = this.state.visibleHeight;
+														const oldWidth = this.state.visibleWidth;
+														const oldHeight = this.state.visibleHeight;
 														this.setState({
 															pageOrientation: value,
 															visibleWidth: oldHeight,

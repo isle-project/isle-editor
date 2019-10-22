@@ -129,8 +129,8 @@ function extractTable( ast, widthTable ) {
 		switch ( node.type ) {
 			case 'thead_open':
 				headerRows = 1;
-				var count;
-				var zElem;
+				let count;
+				let zElem;
 				for ( let z = i; z < ast.length; z++ ) {
 					zElem = ast[z];
 					if ( zElem.type === 'tr_open' ) {
@@ -325,7 +325,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 	if ( isUndefinedOrNull( end ) ) {
 		end = ast.length;
 	}
-	var content = [];
+	const content = [];
 
 	// In this case AST that is passed wont be the whole thing
 	for ( let i = start; i < end; i++ ) {
@@ -382,7 +382,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				// Move to right past `src="`
 				start += 5;
 				const end = elem.content.indexOf( '"', start );
-				var width;
+				let width;
 				if ( config.pageOrientation === 'landscape' ) {
 					width = config.pageSize.height;
 				} else {
@@ -396,7 +396,7 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 				});
 			} else if ( contains( elem.content, '<!--TitleText' ) ) {
 				// We know the title starts after \nTitle
-				var ids = extractTitles( elem.content );
+				const ids = extractTitles( elem.content );
 
 				if ( ids.title ) {
 					content.push({
@@ -404,14 +404,11 @@ function parsePDF( ast, config, state, start, end, columnCount = 1 ) {
 						style: 'titleText'
 					});
 				}
-
 				if ( ids.name ) {
-					var tmpStr = ids.name;
-
+					let tmpStr = ids.name;
 					if ( ids.advisor ) {
 						tmpStr += `\nAdvisors(s): ${ids.advisor}`;
 					}
-
 					content.push({
 						text: tmpStr,
 						style: 'advisorText'
@@ -491,6 +488,7 @@ function isPoster( config ) {
 	return false;
 }
 
+
 // MAIN //
 
 function generatePDF( ast, config, standardFontSize = 16 ) {
@@ -508,10 +506,10 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 	const state = {};
 
 	// Get the indices that have column tags
-	var colNumbers = [];
-	var startTag = [];
-	var endTag = [];
-	var colGroups = [];
+	const colNumbers = [];
+	const startTag = [];
+	const endTag = [];
+	const colGroups = [];
 	for ( let z = 0; z < ast.length; z++ ) {
 		if ( isStartTag( ast[ z ] ) ) {
 			colNumbers = [z];
@@ -529,22 +527,21 @@ function generatePDF( ast, config, standardFontSize = 16 ) {
 		doc.content = parsePDF(ast, config, {});
 		return doc;
 	}
-
-	var zeroStart = false; // zeroth index is not a column
+	let zeroStart = false; // zeroth index is not a column
 	if ( colGroups.length === 0 || colGroups[0][0] === 0 ) {
 		zeroStart = true;
 	}
 
-	var subDoc;
-	var columns;
+	let subDoc;
+	let columns;
 	if ( !zeroStart ) {
 		subDoc = parsePDF(ast, config, state, 0, startTag[0]);
 		doc.content = subDoc;
 	}
 
 	// We know we are in column group 1:
-	var colTmp;
-	var colObj;
+	let colTmp;
+	let colObj;
 	for ( let z = 0; z < colGroups.length; z++ ) {
 		// Handle columns group
 		columns = new Array(colGroups[z].length - 1);

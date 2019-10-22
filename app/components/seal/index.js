@@ -62,24 +62,23 @@ class Seal extends Component {
 
 	curvedText = ( txt, size, arc, offset ) => {
 		txt = txt.split( '' );
-		var deg = arc / (txt.length-1);
+		const deg = arc / (txt.length-1);
 		let origin = 184 - (arc/2)*-1;
 		origin -= offset;
-		let lines = [];
+		const lines = [];
 
-		let radius = size/2;
-
+		const radius = size/2;
 		txt.forEach((ea) => {
-			let sin = sinDegrees(origin);
-			let cos = cosDegrees(origin);
+			const sin = sinDegrees(origin);
+			const cos = cosDegrees(origin);
 
-			let left = (radius*sin) + radius + DIFF;
-			let top = (radius*cos) + radius;
+			const left = (radius*sin) + radius + DIFF;
+			const top = (radius*cos) + radius;
 
-			let rotation = origin*-1 - 180;
+			const rotation = origin*-1 - 180;
 			rotation = 'rotate(' + rotation + 'deg)';
 
-			let style = {
+			const style = {
 				position: 'absolute',
 				left: left,
 				top: top,
@@ -87,7 +86,7 @@ class Seal extends Component {
 				transform: rotation
 			};
 
-			let l = <p style={style}>{ea}</p>;
+			const l = <p style={style}>{ea}</p>;
 			lines.push(l);
 			origin -= deg;
 		});
@@ -96,23 +95,22 @@ class Seal extends Component {
 
 	curvedInvertedText = ( txt, size, arc, offset ) => {
 		txt = txt.split('');
-		var deg = arc / (txt.length-1);
-		let origin = 0 - (arc/2);
-		let lines = [];
-
-		let radius = size/2;
+		const deg = arc / (txt.length-1);
+		const origin = 0 - (arc/2);
+		const lines = [];
+		const radius = size/2;
 
 		txt.forEach((ea) => {
-			let sin = sinDegrees(origin);
-			let cos = cosDegrees(origin);
+			const sin = sinDegrees(origin);
+			const cos = cosDegrees(origin);
 
-			let left = (radius*sin) + radius + DIFF;
-			let top = (radius*cos) + radius;
+			const left = (radius*sin) + radius + DIFF;
+			const top = (radius*cos) + radius;
 
-			let rotation = origin*-1;
+			const rotation = origin*-1;
 			rotation = 'rotate(' + rotation + 'deg)';
 
-			let style = {
+			const style = {
 				position: 'absolute',
 				left: left,
 				top: top,
@@ -120,7 +118,7 @@ class Seal extends Component {
 				transform: rotation
 			};
 
-			let l = <p style={style}>{ea}</p>;
+			const l = <p style={style}>{ea}</p>;
 			lines.push(l);
 			origin += deg;
 		});

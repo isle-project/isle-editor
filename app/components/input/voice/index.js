@@ -20,8 +20,10 @@ const debug = logger( 'isle:voice-input' );
 
 function getSpeechRecognition() {
 	try {
-		var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
-		if ( SpeechRecognition) return true;
+		const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
+		if ( SpeechRecognition ) {
+			return true;
+		}
 		return false;
 	} catch ( error) {
 		return false;
@@ -158,10 +160,10 @@ class VoiceInput extends Input {
 	}
 
 	createGrammarList() {
-		var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
-		var grammarList = new SpeechGrammarList();
+		const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
+		const grammarList = new SpeechGrammarList();
 		for ( let i = 0; i < this.props.grammars.length; i++ ) {
-			var { src, weight } = this.props.grammars[ i ];
+			const { src, weight } = this.props.grammars[ i ];
 			grammarList.addFromString( src, weight );
 		}
 		return grammarList;
@@ -169,7 +171,7 @@ class VoiceInput extends Input {
 
 	start() {
 		this.recognizer = null;
-		var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
+		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
 		if ( SpeechRecognition ) {
 			const recognizer = new SpeechRecognition();
 			recognizer.lang = this.props.language;

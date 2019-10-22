@@ -40,7 +40,7 @@ const GridLayout = WidthProvider( ReactGridLayout );
 
 // FUNCTIONS //
 
-var isBinaryArray = ( arr, guess = true ) => {
+const isBinaryArray = ( arr, guess = true ) => {
 	const cache = {};
 	let counter = 0;
 	for ( let j = 0; j < arr.length; j++ ) {
@@ -63,11 +63,11 @@ function bidx( bmin, h, v ) {
 }
 
 function getBins( data ) {
-	var h = 2 * iqr( data ) * pow( data.length, -1/3 );
-	var bmax = max( data );
-	var bmin = min( data );
-	var nBins = round( ( bmax - bmin ) / h ) + 1;
-	var out = new Array( nBins );
+	const h = 2 * iqr( data ) * pow( data.length, -1/3 );
+	const bmax = max( data );
+	const bmin = min( data );
+	const nBins = round( ( bmax - bmin ) / h ) + 1;
+	const out = new Array( nBins );
 	inmap( out, x => {
 		return { 'y': 0 };
 	});

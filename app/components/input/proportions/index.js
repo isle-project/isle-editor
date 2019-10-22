@@ -75,7 +75,6 @@ class ProportionInput extends Input {
 
 		this.legends = this.checkLegends();
 		let values = null;
-
 		if ( props.values ) {
 			values = props.values;
 		}
@@ -110,8 +109,8 @@ class ProportionInput extends Input {
 	}
 
 	setColors() {
-		var no = this.props.nElements;
-		var c = this.props.colors.slice( 0, no );
+		const no = this.props.nElements;
+		const c = this.props.colors.slice( 0, no );
 		c.push( 'transparent' );
 		return c;
 	}
@@ -165,9 +164,9 @@ class ProportionInput extends Input {
 	}
 
 	renderInputs() {
-		var list = [];
-		let n = this.props.nElements;
-		for ( var i = 0; i < n; i++ ) {
+		const list = [];
+		const n = this.props.nElements;
+		for ( let i = 0; i < n; i++ ) {
 			list.push( this.getNumber( i ) );
 		}
 		return list;
@@ -185,7 +184,7 @@ class ProportionInput extends Input {
 	}
 
 	render() {
-		var pos = {
+		const pos = {
 			marginLeft: this.props.margin
 		};
 		return (

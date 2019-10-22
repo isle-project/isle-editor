@@ -17,7 +17,7 @@ import isArray from '@stdlib/assert/is-array';
 * @returns {number} i-th weight
 */
 function weight( kernel, bandwidth, x0, xi ) {
-	var arg = ( xi - x0 ) / bandwidth;
+	const arg = ( xi - x0 ) / bandwidth;
 	return kernel( arg );
 }
 

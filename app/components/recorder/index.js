@@ -70,7 +70,7 @@ function getVideoConfig({ bitsPerSecond, screen }) {
 }
 
 function keepStreamActive(stream) {
-	var video = document.createElement('video');
+	const video = document.createElement('video');
 	video.muted = true;
 	video.srcObject = stream;
 	video.style.display = 'none';
@@ -309,7 +309,7 @@ class Recorder extends Component {
 			finished: true
 		});
 		this.recorder.stopRecording( () => {
-			var blob = this.recorder.getBlob();
+			const blob = this.recorder.getBlob();
 			this.player.src = URL.createObjectURL( blob );
 			this.player.muted = false;
 		});

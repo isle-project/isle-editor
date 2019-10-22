@@ -78,7 +78,7 @@ function SpellChecker( options ) {
 		// Load AFF/DIC data
 		if ( !SpellChecker.affLoading ) {
 			SpellChecker.affLoading = true;
-			var xhrAFF = new XMLHttpRequest();
+			const xhrAFF = new XMLHttpRequest();
 			xhrAFF.open('GET', AFF_URL, true);
 			xhrAFF.onload = function onLoad() {
 				if ( xhrAFF.readyState === 4 && xhrAFF.status === 200) {
@@ -97,7 +97,7 @@ function SpellChecker( options ) {
 
 		if ( !SpellChecker.dicLoading ) {
 			SpellChecker.dicLoading = true;
-			var xhrDIC = new XMLHttpRequest();
+			const xhrDIC = new XMLHttpRequest();
 			xhrDIC.open('GET', DIC_URL, true);
 			xhrDIC.onload = function onLoad() {
 				if ( xhrDIC.readyState === 4 && xhrDIC.status === 200 ) {
@@ -115,7 +115,7 @@ function SpellChecker( options ) {
 		}
 
 		// Create the overlay and such
-		var overlay = {
+		const overlay = {
 			token: function process( stream ) {
 				let ch = stream.peek();
 				let word = '';
@@ -156,7 +156,7 @@ function SpellChecker( options ) {
 			}
 		};
 
-		var mode = options.codeMirrorInstance.getMode(
+		const mode = options.codeMirrorInstance.getMode(
 			config, config.backdrop || 'text/plain'
 		);
 		return options.codeMirrorInstance.overlayMode( mode, overlay, true );

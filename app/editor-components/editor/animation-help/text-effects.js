@@ -29,7 +29,6 @@ function getEffect(ndx) {
 		width: '60%',
 		float: 'left'
 	};
-
 	const style = styles[ndx];
 	return (
 		<div>
@@ -43,10 +42,9 @@ function getEffect(ndx) {
 	);
 }
 
-
 function getEffects() {
-	var list = [];
-	for (var i = 0; i < styles.length; i++) {
+	const list = [];
+	for ( let i = 0; i < styles.length; i++) {
 		list.push( getEffect(i) );
 	}
 	return list;

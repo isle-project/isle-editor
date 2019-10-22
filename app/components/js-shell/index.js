@@ -137,7 +137,7 @@ class JSShell extends Component {
 		};
 		this.id = props.id || uid( props );
 		if ( this.props.vars ) {
-			for ( var key in this.props.vars ) {
+			for ( let key in this.props.vars ) {
 				if ( hasOwnProp( this.props.vars, key ) ) {
 					global[ key ] = this.props.vars[ key ];
 				}
@@ -347,10 +347,10 @@ class JSShell extends Component {
 	}
 
 	renderLogs() {
-		let list = this.state.log;
-		let res = [];
-		for ( var i = 0; i < list.length; i++ ) {
-			let e = list[ i ];
+		const list = this.state.log;
+		const res = [];
+		for ( let i = 0; i < list.length; i++ ) {
+			const e = list[ i ];
 			res.push( makeLog( e, i ) );
 		}
 		return res;

@@ -28,8 +28,8 @@ class ScrollingText extends Component {
 	}
 
 	componentDidMount() {
-		var int = this.props.interval * 1000;
-		this.interval = setInterval(this.next.bind(this), int);
+		const int = this.props.interval * 1000;
+		this.interval = setInterval( this.next.bind(this), int );
 	}
 
 	componentWillUnmount() {

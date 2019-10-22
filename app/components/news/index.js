@@ -21,7 +21,7 @@ const debug = logger( 'isle:news' );
 // FUNCTIONS //
 
 function exceptions( name ) {
-	var x = EXCEPTIONS[ name ];
+	const x = EXCEPTIONS[ name ];
 	if ( x ) {
 		return x;
 	}
@@ -108,10 +108,9 @@ class News extends Component {
 		name = name.replace( 'the ', '' );
 		name = exceptions( name );
 
-		var result = null;
-		for ( var i = 0; i < newslist.length; i++ ) {
-			var item = newslist[ i ].title;
-
+		let result = null;
+		for ( let i = 0; i < newslist.length; i++ ) {
+			const item = newslist[ i ].title;
 			if ( item.search( name ) !== -1 ) {
 				result = newslist[ i ].trig;
 			}
@@ -123,7 +122,7 @@ class News extends Component {
 
 	trigger = ( value ) => {
 		debug( 'News component is externally triggered...' );
-		var marker = 'in';
+		let marker = 'in';
 		switch ( this.props.language ) {
 		case 'en-US':
 			marker = 'in';
@@ -138,10 +137,10 @@ class News extends Component {
 			marker = 'in';
 			break;
 		}
-		var x = value.search( marker );
+		let x = value.search( marker );
 		if ( x !== -1 ){
 			x += ( marker.length +1 );
-			var text = value.substring( x, value.length );
+			const text = value.substring( x, value.length );
 			this.find( text );
 		}
 	}
@@ -161,7 +160,7 @@ class News extends Component {
 		if ( author === 'null' ) {
 			author = '';
 		}
-		var date = this.getDate( item.publishedAt );
+		const date = this.getDate( item.publishedAt );
 		return (
 			<div className="article">
 				<div className="article-author">{author}</div>

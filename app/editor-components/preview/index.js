@@ -265,7 +265,7 @@ class Preview extends Component {
 		>
 			${code}
 		</Lesson>`;
-		code = `var out = ${code}`;
+		code = `const out = ${code}`;
 		this.props.onCode( code );
 
 		debug( 'Transpile code to ES5...' );
