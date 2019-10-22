@@ -30,8 +30,8 @@ function treeToHtml( tree ) {
 		}
 		return (
 			<ul>
-				<li>
-					<span> Predict: {value} </span>
+				<li >
+					<span className="decision-tree-leaf" > Predict: {value} </span>
 				</li>
 			</ul>
 		);

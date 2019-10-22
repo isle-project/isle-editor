@@ -251,7 +251,6 @@ function RegressionTreeConstructor( opts ) {
 */
 function RandomForestClassifierConstructor( opts ) {
 	this.trees = buildRandomForestClassifier( opts );
-	console.log( this.trees );
 	this.importances = {};
 	for ( let i = 0; i < opts.predictors.length; i++ ) {
 		const attr = opts.predictors[ i ];
@@ -261,7 +260,6 @@ function RandomForestClassifierConstructor( opts ) {
 		}
 		this.importances[ attr ] /= this.trees.length;
 	}
-	console.log( this.importances );
 	this.predict = ( data, idx ) => {
 		if ( idx === void 0 ) {
 			const nobs = data[ opts.predictors[ 0 ] ].length;
@@ -299,8 +297,6 @@ function buildClassificationTree( opts, importances ) {
 	let bestSplit = {
 		gain: 0
 	};
-	console.log( "TEST")
-
 	if ( nTry ) {
 		predictors = sample( predictors, { size: nTry });
 	}

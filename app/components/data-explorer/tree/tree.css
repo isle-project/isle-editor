@@ -179,6 +179,11 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 	-moz-transition: all 0.5s;
 }
 
+.decision-tree-leaf {
+	border: 1px solid #ca5800 !important;
+	background: #c8e4f8;
+}
+
 /* We will apply the hover effect the the lineage of the element */
 .decision-tree li span:hover,
 .decision-tree li span:hover + ul li span {
