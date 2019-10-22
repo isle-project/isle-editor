@@ -25,7 +25,6 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import generateUID from 'utils/uid';
 import ResponseVisualizer from 'components/response-visualizer';
 import VoiceInput from 'components/input/voice';
@@ -42,7 +41,6 @@ const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const TableSelect = Loadable( () => import( './table_select.js' ) );
 const ColumnSelect = Loadable( () => import( './column_select.js' ) );
 const Guides = Loadable( () => import( './guides' ) );
-const FigureInsert = Loadable( () => import( './figure_insert.js' ) );
 const TitleInsert = Loadable( () => import( './title_insert.js' ) );
 import titleTagConvert from './title_tag_convert.js';
 import createHTML from './create_html.js';
@@ -149,7 +147,6 @@ class MarkdownEditor extends Component {
 			showTableSelect: false,
 			showColumnSelect: false,
 			fontSize: 16,
-			showFigureInsert: false,
 			showTitleInsert: false,
 			showGuides: false,
 			peer: null,
@@ -353,14 +350,6 @@ class MarkdownEditor extends Component {
 				name: 'font_size',
 				className: 'font_size_button',
 				title: 'Select Font Size'
-			},
-			'figure_insert': {
-				name: 'figure_insert',
-				className: 'fa fa-clone',
-				title: 'Insert Figures',
-				action: () => {
-					this.toggleFigureInsert();
-				}
 			},
 			'title_insert': {
 				name: 'title_insert',
@@ -680,11 +669,6 @@ class MarkdownEditor extends Component {
 		if ( this.props.voiceControl && !contains( toolbarConfig, 'voice' ) ) {
 			toolbarConfig.push( 'voice' );
 		}
-		// Handle case of adding in figure insert:
-		if ( contains( toolbarConfig, 'figure_insert' ) ) {
-			toolbarConfig.push( '|' );
-			toolbarConfig.push( 'figure_insert' );
-		}
 		if ( this.props.defaultValue !== DEFAULT_VALUE ) {
 			toolbarConfig.push( 'reset' );
 		}
@@ -741,12 +725,6 @@ class MarkdownEditor extends Component {
 	toggleColumnSelect = () => {
 		this.setState({
 			showColumnSelect: !this.state.showColumnSelect
-		});
-	}
-
-	toggleFigureInsert = () => {
-		this.setState({
-			showFigureInsert: !this.state.showFigureInsert
 		});
 	}
 
@@ -1113,15 +1091,6 @@ class MarkdownEditor extends Component {
 						var c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
-				/>
-				<FigureInsert
-					show={this.state.showFigureInsert && (!isUndefinedOrNull(this.props.plots))}
-					onHide={()=>{
-						this.setState({
-							showFigureInsert: false
-						});
-					}}
-					studentPlots={this.props.plots}
 				/>
 				<Guides
 					show={this.state.showGuides}
