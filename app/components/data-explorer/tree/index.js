@@ -178,6 +178,10 @@ const predicates = {
 function ClassificationTreeConstructor( opts ) {
 	const nobs = opts.data[ opts.response ].length;
 
+	this.importances = {};
+	for ( let j = 0; j < opts.predictors.length; j++ ) {
+		this.importances[ opts.predictors[ j ] ] = 0;
+	}
 	this.root = buildClassificationTree({
 		data: opts.data,
 		response: opts.response,
@@ -189,7 +193,7 @@ function ClassificationTreeConstructor( opts ) {
 		maxTreeDepth: opts.maxTreeDepth || 20,
 		quantitative: opts.quantitative,
 		criterion: opts.criterion === 'gini' ? gini : entropy
-	});
+	}, this.importances );
 
 	this.predict = ( data, idx ) => {
 		if ( idx === void 0 ) {
@@ -247,7 +251,17 @@ function RegressionTreeConstructor( opts ) {
 */
 function RandomForestClassifierConstructor( opts ) {
 	this.trees = buildRandomForestClassifier( opts );
-
+	console.log( this.trees );
+	this.importances = {};
+	for ( let i = 0; i < opts.predictors.length; i++ ) {
+		const attr = opts.predictors[ i ];
+		this.importances[ attr ] = 0;
+		for ( let j = 0; j < this.trees.length; j++ ) {
+			this.importances[ attr ] += this.trees[ j ].importances[ attr ];
+		}
+		this.importances[ attr ] /= this.trees.length;
+	}
+	console.log( this.importances );
 	this.predict = ( data, idx ) => {
 		if ( idx === void 0 ) {
 			const nobs = data[ opts.predictors[ 0 ] ].length;
@@ -264,7 +278,7 @@ function RandomForestClassifierConstructor( opts ) {
 /**
 * Function for building classification decision tree.
 */
-function buildClassificationTree( opts ) {
+function buildClassificationTree( opts, importances ) {
 	const {
 		data, predictors, indices, response,
 		minItemsCount, scoreThreshold, maxTreeDepth,
@@ -285,6 +299,7 @@ function buildClassificationTree( opts ) {
 	let bestSplit = {
 		gain: 0
 	};
+	console.log( "TEST")
 
 	if ( nTry ) {
 		predictors = sample( predictors, { size: nTry });
@@ -348,11 +363,13 @@ function buildClassificationTree( opts ) {
 	// Building sub-trees:
 	opts.maxTreeDepth = maxTreeDepth - 1;
 
+	importances[ bestSplit.attribute ] += bestSplit.gain;
+
 	opts.indices = bestSplit.match;
-	const matchSubTree = buildClassificationTree( opts );
+	const matchSubTree = buildClassificationTree( opts, importances );
 
 	opts.indices = bestSplit.notMatch;
-	const notMatchSubTree = buildClassificationTree( opts );
+	const notMatchSubTree = buildClassificationTree( opts, importances );
 
 	return {
 		attribute: bestSplit.attribute,
@@ -386,11 +403,11 @@ function buildRegressionTree( opts ) {
 		};
 	}
 
-	var initialScore = variance( data[ response ], indices );
+	const initialScore = variance( data[ response ], indices );
 
 	// used as hash-set for avoiding the checking of split by rules
 	// with the same 'attribute-predicate-pivot' more than once
-	var alreadyChecked = {};
+	const alreadyChecked = {};
 
 	// this variable expected to contain rule, which splits training set
 	// into subsets with smaller values of entropy (produces informational gain)
@@ -409,50 +426,45 @@ function buildRegressionTree( opts ) {
 			const attr = predictors[ j ];
 
 			// let the value of current attribute be the pivot
-			var pivot = data[ attr ][ idx ];
+			const pivot = data[ attr ][ idx ];
 
-			// pick the predicate
-			// depending on the type of the attribute value
-			var predicateName;
+			// Pick the predicate depending on the type of the attribute value:
+			let predicateName;
 			if ( contains( quantitative, attr ) ) {
 				predicateName = '>=';
 			} else {
-				// there is no sense to compare non-numeric attributes
-				// so we will check only equality of such attributes
+				// There is no sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
 			}
 
-			var attrPredPivot = attr + predicateName + pivot;
+			const attrPredPivot = attr + predicateName + pivot;
 			if ( alreadyChecked[attrPredPivot] ) {
 				// skip such pairs of 'attribute-predicate-pivot',
 				// which been already checked
 				continue;
 			}
-			alreadyChecked[attrPredPivot] = true;
+			alreadyChecked[ attrPredPivot ] = true;
 
-			var predicate = predicates[predicateName];
+			const predicate = predicates[ predicateName ];
 
 			// splitting training set by given 'attribute-predicate-value'
-			var currSplit = split( data, indices, attr, predicate, pivot );
+			const currSplit = split( data, indices, attr, predicate, pivot );
 
 			// calculating for subsets:
-			var matchEntropy = variance( data[ response ], currSplit.match );
-			var notMatchEntropy = variance( data[ response ], currSplit.notMatch );
+			const matchEntropy = variance( data[ response ], currSplit.match );
+			const notMatchEntropy = variance( data[ response ], currSplit.notMatch );
 
 			// calculating informational gain
 			let newScore = 0;
 			newScore += matchEntropy * currSplit.match.length;
 			newScore += notMatchEntropy * currSplit.notMatch.length;
 			newScore /= nobs;
-			var currGain = initialScore - newScore;
-
+			const currGain = initialScore - newScore;
 			if (
 				currGain > bestSplit.gain &&
 				currSplit.match.length > minBucket &&
 				currSplit.notMatch.length > minBucket
 			) {
-				// remember pairs 'attribute-predicate-value'
-				// which provides informational gain
 				bestSplit = currSplit;
 				bestSplit.predicateName = predicateName;
 				bestSplit.predicate = predicate;
@@ -462,7 +474,6 @@ function buildRegressionTree( opts ) {
 			}
 		}
 	}
-
 	if ( !bestSplit.gain || ( bestSplit.gain / initialScore ) < scoreThreshold ) {
 		return { category: mean( data[ response ], indices ) };
 	}
@@ -471,10 +482,10 @@ function buildRegressionTree( opts ) {
 	opts.maxTreeDepth = maxTreeDepth - 1;
 
 	opts.indices = bestSplit.match;
-	var matchSubTree = buildRegressionTree( opts );
+	const matchSubTree = buildRegressionTree( opts );
 
 	opts.indices = bestSplit.notMatch;
-	var notMatchSubTree = buildRegressionTree( opts );
+	const notMatchSubTree = buildRegressionTree( opts );
 
 	return {
 		attribute: bestSplit.attribute,

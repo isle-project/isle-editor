@@ -34,7 +34,9 @@ class DecisionTree extends Component {
 			x: props.quantitative[ 0 ],
 			type: 'Classification',
 			impurityMeasure: 'gini',
-			scoreThreshold: 0.01
+			scoreThreshold: 0.01,
+			maxTreeDepth: 20,
+			minItemsCount: 50
 		};
 	}
 
@@ -56,7 +58,9 @@ class DecisionTree extends Component {
 				data: this.props.data,
 				quantitative: this.props.quantitative,
 				criterion: impurityMeasure,
-				scoreThreshold: this.state.scoreThreshold
+				scoreThreshold: this.state.scoreThreshold,
+				maxTreeDepth: this.state.maxTreeDepth,
+				minItemsCount: this.state.minItemsCount
 			});
 		} else {
 			tree = new RegressionTree({
@@ -64,7 +68,9 @@ class DecisionTree extends Component {
 				predictors,
 				data: this.props.data,
 				quantitative: this.props.quantitative,
-				scoreThreshold: this.state.scoreThreshold
+				scoreThreshold: this.state.scoreThreshold,
+				maxTreeDepth: this.state.maxTreeDepth,
+				minItemsCount: this.state.minItemsCount
 			});
 		}
 		this.props.logAction( DATA_EXPLORER_DECISION_TREE, {
@@ -162,11 +168,18 @@ class DecisionTree extends Component {
 					/> : null }
 					<Collapse header="Change tree features..." >
 						<NumberInput legend="Score threshold for split"
-							min={0} max={1} step={0.01}
+							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
 						/>
-						<NumberInput legend="Maximum tree depth" min={1} max={50} defaultValue={20} />
-						<NumberInput legend="Minimum # of observations in leaf nodes" min={1} defaultValue={50} />
+						<NumberInput legend="Maximum tree depth"
+							min={1} max={50}
+							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
+						/>
+						<NumberInput legend="Minimum # of observations in leaf nodes"
+							min={1}
+							defaultValue={this.state.minItemsCount}
+							onChange={( minItemsCount ) => this.setState({ minItemsCount })}
+						/>
 					</Collapse>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>

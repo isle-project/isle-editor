@@ -9,9 +9,11 @@ import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import floor from '@stdlib/math/base/special/floor';
 import sqrt from '@stdlib/math/base/special/sqrt';
+import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import Tooltip from 'components/tooltip';
 import NumberInput from 'components/input/number';
+import Collapse from 'components/collapse';
 import { DATA_EXPLORER_RANDOM_FOREST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import { RandomForestClassifier } from './tree';
@@ -51,7 +53,10 @@ class RandomForest extends Component {
 			type: 'Classification',
 			nTrees: 50,
 			nTry: 1,
-			impurityMeasure: 'gini'
+			impurityMeasure: 'gini',
+			scoreThreshold: 0.01,
+			maxTreeDepth: 20,
+			minItemsCount: 50
 		};
 	}
 
@@ -65,7 +70,6 @@ class RandomForest extends Component {
 		} else {
 			predictors = [ x ];
 		}
-
 		let forest;
 		if ( type === 'Classification' ) {
 			forest = new RandomForestClassifier({
@@ -75,18 +79,37 @@ class RandomForest extends Component {
 				quantitative: this.props.quantitative,
 				criterion: impurityMeasure,
 				nTrees,
-				nTry
+				nTry,
+				scoreThreshold: this.state.scoreThreshold,
+				maxTreeDepth: this.state.maxTreeDepth,
+				minItemsCount: this.state.minItemsCount
 			});
 		}
 		this.props.logAction( DATA_EXPLORER_RANDOM_FOREST, {
 			y, x, type, nTrees, nTry
 		});
+		const importances = [];
+		for ( let i = 0; i < predictors.length; i++ ) {
+			const attr = predictors[ i ];
+			importances.push( forest.importances[ attr ] );
+		}
 		const output = {
 			variable: 'Random Forest',
 			type: 'Random Forest',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Random Forest for {y} (model id: forest{COUNTER})</span>
-				<div></div>
+				<Plotly editable data={[{
+					type: 'bar',
+					x: predictors,
+					y: importances
+				}]} layout={{
+					xaxis: {
+						title: 'Variable'
+					},
+					yaxis: {
+						title: 'Importance'
+					}
+				}} />
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
 						const newData = copy( this.props.data, 1 );
@@ -172,6 +195,21 @@ class RandomForest extends Component {
 						min={1}
 						max={isArray( x ) ? x.length : 1}
 					/>
+					<Collapse header="Change tree features..." >
+						<NumberInput legend="Score threshold for split"
+							min={0} max={1} step={0.001}
+							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
+						/>
+						<NumberInput legend="Maximum tree depth"
+							min={1} max={50}
+							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
+						/>
+						<NumberInput legend="Minimum # of observations in leaf nodes"
+							min={1}
+							defaultValue={this.state.minItemsCount}
+							onChange={( minItemsCount ) => this.setState({ minItemsCount })}
+						/>
+					</Collapse>
 					{ type === 'Classification' ? <SelectInput
 						legend="Impurity Measure"
 						defaultValue={this.state.impurityMeasure}
