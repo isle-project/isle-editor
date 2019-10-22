@@ -26,6 +26,7 @@ import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 import markdownit from 'markdown-it';
+import isTypedArray from '@stdlib/assert/is-typed-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
@@ -168,7 +169,6 @@ function createColumns( props, state ) {
 		} else if ( props.deletable ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
 					<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
-
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
@@ -215,9 +215,17 @@ function createColumns( props, state ) {
 			}
 		}
 		if ( props.filterable ) {
-			vals = vals.filter( x => !isNull( x ) && x !== '' );
-			let uniqueValues = unique( vals );
-			if ( isNumberArray( vals ) && uniqueValues.length > 2 ) {
+			let isNumColumn = false;
+			let uniqueValues;
+			if ( isTypedArray( vals ) ) {
+				isNumColumn = true;
+				uniqueValues = vals;
+			} else {
+				vals = vals.filter( x => !isNull( x ) && x !== '' );
+				uniqueValues = unique( vals );
+				isNumColumn = isNumberArray( vals ) && uniqueValues.length > 2;
+			}
+			if ( isNumColumn ) {
 				out[ 'filterMethod' ] = filterMethodNumbers;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					const maxValue = ceil( max( uniqueValues ) );

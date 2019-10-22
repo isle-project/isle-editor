@@ -60,7 +60,7 @@ class FilterInputRange extends Component {
 // PROPERTIES //
 
 FilterInputRange.propTypes = {
-	defaultValue: PropTypes.array.isRequired,
+	defaultValue: PropTypes.object.isRequired,
 	maxValue: PropTypes.number.isRequired,
 	minValue: PropTypes.number.isRequired,
 	onChange: PropTypes.func.isRequired

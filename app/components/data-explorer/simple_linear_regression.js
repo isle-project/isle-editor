@@ -53,11 +53,11 @@ class SimpleLinearRegression extends Component {
 	fitRegression( yval, xval, group ) {
 		const x = this.props.data[ xval ];
 		const y = this.props.data[ yval ];
-
+		let output;
 		COUNTER += 1;
 		if ( group ) {
 			const res = by2( x, y, this.props.data[ group ], calculateCoefficients );
-			let output = {
+			output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
 				type: 'Simple Linear Regression',
 				value: <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -89,13 +89,39 @@ class SimpleLinearRegression extends Component {
 							</div>
 						);
 					}) )}
+					<Tooltip tooltip="Predictions and residuals will be attached to data table">
+						<Button variant="secondary" size="sm" onClick={() => {
+							const x = this.props.data[ xval ];
+							const y = this.props.data[ yval ];
+							const yhat = new Float64Array( y.length );
+							const resid = new Float64Array( y.length );
+							const groups = this.props.data[ group ];
+							for ( let i = 0; i < yhat.length; i++ ) {
+								const [ yint, slope ] = res[ groups[ i ] ];
+								yhat[ i ] = yint + slope * x[ i ];
+								resid[ i ] = yhat[ i ] - y[ i ];
+							}
+							const newData = copy( this.props.data, 1 );
+							const newQuantitative = this.props.quantitative.slice();
+							let name = 'pred_slm'+COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							name = 'resid_slm'+COUNTER;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							newData[ name ] = resid;
+							this.props.onGenerate( newQuantitative, newData );
+						}}>Use this model to predict for currently selected data</Button>
+					</Tooltip>
 					</div>
 			};
-			this.props.onCreated( output );
 		}
 		else {
 			const [ yint, slope ] = calculateCoefficients( x, y );
-			let output = {
+			output = {
 				variable: `Regression of ${yval} on ${xval}`,
 				type: 'Simple Linear Regression',
 				value: <div style={{ overflowX: 'auto', width: '100%' }}>
@@ -120,8 +146,8 @@ class SimpleLinearRegression extends Component {
 						<Button variant="secondary" size="sm" onClick={() => {
 							const x = this.props.data[ xval ];
 							const y = this.props.data[ yval ];
-							const yhat = new Float64Array( y.length );
-							const resid = new Float64Array( y.length );
+							const yhat = new Array( y.length );
+							const resid = new Array( y.length );
 							for ( let i = 0; i < yhat.length; i++ ) {
 								yhat[ i ] = yint + slope * x[ i ];
 								resid[ i ] = yhat[ i ] - y[ i ];
@@ -143,11 +169,11 @@ class SimpleLinearRegression extends Component {
 					</Tooltip>
 				</div>
 			};
-			this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
-				yval, xval, group
-			});
-			this.props.onCreated( output );
 		}
+		this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
+			yval, xval, group
+		});
+		this.props.onCreated( output );
 	}
 
 	render() {
