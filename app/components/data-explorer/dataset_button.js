@@ -105,7 +105,7 @@ DatasetButton.propTypes = {
 	header: PropTypes.string,
 	filters: PropTypes.array,
 	onActivateFilters: PropTypes.func,
-	restoreButton: PropTypes.func,
+	restoreButton: PropTypes.bool,
 	style: PropTypes.object
 };
 
