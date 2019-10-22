@@ -2,9 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import Tooltip from 'components/tooltip';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
 import mean from 'utils/statistic/mean';
@@ -16,6 +18,7 @@ import by2 from './by2.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Statistical model which estimates a best-fit line for a response variable of interest (Y) given exactly one predictor variable (X). The line is determined by its intercept (Y-value at X = 0) and slope (the increase in Y associated with a unit increase of X).';
+let COUNTER = 0;
 
 
 // FUNCTIONS //
@@ -49,6 +52,7 @@ class SimpleLinearRegression extends Component {
 		const x = this.props.data[ xval ];
 		const y = this.props.data[ yval ];
 
+		COUNTER += 1;
 		if ( group ) {
 			const res = by2( x, y, this.props.data[ group ], calculateCoefficients );
 			let output = {
@@ -93,7 +97,7 @@ class SimpleLinearRegression extends Component {
 				variable: `Regression of ${yval} on ${xval}`,
 				type: 'Simple Linear Regression',
 				value: <div style={{ overflowX: 'auto', width: '100%' }}>
-					<label>Regression of {yval} on {xval}:</label>
+					<label>Regression of {yval} on {xval} (model id: slm{COUNTER})</label>
 					<Table bordered size="sm" >
 						<tbody>
 							<tr>
@@ -110,6 +114,11 @@ class SimpleLinearRegression extends Component {
 							</tr>
 						</tbody>
 					</Table>
+					<Tooltip tooltip="Predictions and residuals will be attached to data table">
+						<Button variant="secondary" size="sm" onClick={() => {
+
+						}}>Use this model to predict for currently selected data</Button>
+					</Tooltip>
 				</div>
 			};
 			this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
