@@ -19,6 +19,7 @@ import multiply from './multiply.js';
 // VARIABLES //
 
 const MAX_IT = 25;
+const EPSILON = 1e-8;
 
 
 // FUNCTIONS //
@@ -150,17 +151,16 @@ function irls( X, y, nObs ) {
 
 	const mustart = new Float64Array( weights.length );
 	for ( let i = 0; i < nObs; i++ ) {
-		mustart[ i ] = ( weights[ i ] * y[ i ] + 0.5) / ( weights[ i ] + 1 );
+		mustart[ i ] = ( weights[ i ] * y[ i ] + 0.5 ) / ( weights[ i ] + 1 );
 	}
-
 	let eta = logitLink( mustart );
-	let dev = sum( devResids( y, logitLinkInv( eta ), weights ) );
-	let devOld = 0.0;
+	let mu = logitLinkInv( eta );
+	let devOld = sum( devResids( y, mu, weights ) );
 
 	let beta;
 	let j;
+	let converged = false;
 	for ( j = 0; j < MAX_IT; j++ ) {
-		const mu = logitLinkInv( eta );
 		const varg = variance( mu );
 		const gprime = logitMuEta( eta );
 		const z = calcZ( eta, y, mu, gprime );
@@ -171,14 +171,15 @@ function irls( X, y, nObs ) {
 		const b = mmult( Xt, wz );
 		beta = solve( A, Matrix.columnVector( b ) );
 		eta = mmult( X, beta.to1DArray() );
-		dev = sum( devResids( y, mu, weights ) );
-		if ( abs( dev - devOld ) / ( 0.1 + abs( dev ) ) < EPS ) {
+		mu = logitLinkInv( eta );
+		const dev = sum( devResids( y, mu, weights ) );
+		if ( abs( dev - devOld ) / ( 0.1 + abs( dev ) ) < EPSILON ) {
+			converged = true;
 			break;
 		}
 		devOld = dev;
 	}
 	const coefficients = beta.to1DArray();
-
 	const predict = ( X ) => {
 		const finalData = mmult( X, coefficients );
 		const predictions = sigmoid( finalData );
@@ -191,6 +192,7 @@ function irls( X, y, nObs ) {
 		fitted,
 		coefficients,
 		iterations: j,
+		converged,
 		predict
 	};
 }

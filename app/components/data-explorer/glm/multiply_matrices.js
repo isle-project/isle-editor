@@ -16,7 +16,7 @@ function multiplyMatrices( A, B ) {
 	const [ m, n ] = A.shape;
 	const p = B.shape[ 1 ];
 	const result = Matrix.zeros( m, p );
-	const Bcolj = new Float64Array(n);
+	const Bcolj = new Float64Array( n );
 	for ( let j = 0; j < p; j++ ) {
 		for ( let k = 0; k < n; k++ ) {
 			Bcolj[ k ] = B.get(k, j);

@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'uniq';
 import Button from 'react-bootstrap/Button';
@@ -33,7 +33,6 @@ let COUNTER = 0;
 // FUNCTIONS //
 
 function designMatrix( x, data, quantitative, intercept ) {
-	let matrix = [];
 	const predictors = [];
 	const hash = {};
 	const nobs = data[ x[ 0 ] ].length;
@@ -49,26 +48,30 @@ function designMatrix( x, data, quantitative, intercept ) {
 			hash[ x[ j ] ] = categories;
 		}
 	}
+	const buffer = new Float64Array( nobs * (predictors.length+1) );
 	for ( let i = 0; i < nobs; i++ ) {
-		const row = [];
 		if ( intercept ) {
-			row.push( 1 );
+			buffer[ (predictors.length+1)*i ] = 1;
 		}
+		let colIndex = 0;
 		for ( let j = 0; j < x.length; j++ ) {
 			const values = data[ x[ j ] ];
 			if ( contains( quantitative, x[ j ] ) ) {
-				row.push( values[ i ] );
+				colIndex += 1;
+				buffer[ (predictors.length+1)*i + colIndex ] = values[ i ];
 			} else {
 				const categories = hash[ x[ j ] ];
 				const val = values[ i ];
 				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					row.push( ( val === categories[ k ] ) ? 1 : 0 );
+					colIndex += 1;
+					buffer[ (predictors.length+1)*i + colIndex ] = ( val === categories[ k ] ) ? 1 : 0;
 				}
 			}
 		}
-		matrix.push( row );
 	}
-	matrix = ndarray( matrix );
+	const matrix = ndarray( buffer, {
+		shape: [ nobs, predictors.length+1 ]
+	});
 	return { matrix, predictors };
 }
 
@@ -164,7 +167,7 @@ class LogisticRegression extends Component {
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {y} (model id: logis{COUNTER})</span>
 				{summaryTable( predictors, intercept, results )}
-				<i>The algorithm converged after {results.iterations} iterations</i>
+				<i>The algorithm {results.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {results.iterations} Fisher Scoring iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {
