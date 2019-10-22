@@ -12,8 +12,8 @@ import noop from '@stdlib/utils/noop';
 // FUNCTIONS //
 
 function scroll( element ) {
-	var y = element.scrollTop;
-	var x = element.scrollLeft;
+	const y = element.scrollTop;
+	const x = element.scrollLeft;
 	return { top: y, left: x };
 }
 
@@ -23,9 +23,8 @@ function scroll( element ) {
 function scrollToElement(element, x, y, options) {
 	options = options || {};
 
-	var start = scroll(element);
-
-	var tween = Tween( start )
+	const start = scroll(element);
+	const tween = Tween( start )
 		.ease(options.ease || 'out-circ')
 		.to({ top: y, left: x })
 		.duration(options.duration || 1000);
@@ -45,7 +44,6 @@ function scrollToElement(element, x, y, options) {
 	}
 
 	animate();
-
 	return tween;
 }
 

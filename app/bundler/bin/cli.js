@@ -36,7 +36,7 @@ function init() {
 * // => '...'
 */
 function help() {
-	var fpath = path.join( __dirname, 'usage.txt' );
+	const fpath = path.join( __dirname, 'usage.txt' );
 	fs.createReadStream( fpath )
 		.pipe( process.stdout )
 		.on( 'close', onClose );
@@ -55,7 +55,7 @@ function help() {
 * // => '#.#.#'
 */
 function version() {
-	var msg = pkg.version.toString()+'\n';
+	const msg = pkg.version.toString()+'\n';
 	process.stdout.write( msg, 'utf8' );
 	process.exit( 0 ); // eslint-disable-line no-process-exit
 }

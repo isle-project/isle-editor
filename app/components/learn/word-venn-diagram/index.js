@@ -89,11 +89,11 @@ class WordVennDiagram extends Component {
 	}
 
 	drawPlot = () => {
-		var sets = this.state.freqs;
-		var chart = d3.select( '#'+this.state.id );
+		const sets = this.state.freqs;
+		const chart = d3.select( '#'+this.state.id );
 		chart.select( 'svg' ).remove();
 
-		var tooltip;
+		let tooltip;
 		if ( !this.state.tooltip ) {
 			tooltip = d3.select( 'body' ).append( 'div' )
 				.attr( 'class', 'venntooltip' );
@@ -112,7 +112,7 @@ class WordVennDiagram extends Component {
 					.duration( 400 )
 					.style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				var selection = d3.select( this )
+				const selection = d3.select( this )
 					.transition( 'tooltip' )
 					.duration( 400 );
 				selection.select( 'path' )
@@ -130,7 +130,7 @@ class WordVennDiagram extends Component {
 					.transition()
 					.duration( 400 )
 					.style( 'opacity', 0 );
-				var selection = d3.select( this )
+				const selection = d3.select( this )
 					.transition( 'tooltip' )
 					.duration( 400 );
 				selection.select( 'path' )

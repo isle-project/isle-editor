@@ -69,7 +69,7 @@ class Text extends Component {
 
 	textToSpeech() {
 		debug( 'Read out text: '+this.props.raw );
-		var ssu = new SpeechSynthesisUtterance( this.props.raw );
+		const ssu = new SpeechSynthesisUtterance( this.props.raw );
 		ssu.lang = 'en-US';
 		window.speechSynthesis.speak( ssu );
 	}

@@ -95,7 +95,7 @@ class VennDiagramBuilder extends Component {
 	}
 
 	generateThreeCategories( first, second, third, sizeA, sizeB, sizeC, sizeAB, sizeBC, sizeAC, sizeABC ) {
-		var sets = [
+		const sets = [
 			{ sets: [ first ], size: sizeA },
 			{ sets: [ second ], size: sizeB },
 			{ sets: [ third ], size: sizeC },
@@ -104,9 +104,9 @@ class VennDiagramBuilder extends Component {
 			{ sets: [ second, third ], size: sizeBC },
 			{ sets: [ first, second, third ], size: sizeABC }
 		];
-		var chart = d3.select( '#'+this.state.id );
+		const chart = d3.select( '#'+this.state.id );
 
-		var tooltip;
+		let tooltip;
 		if ( !this.state.tooltip ) {
 			tooltip = d3.select( 'body' ).append( 'div' )
 				.attr( 'class', 'venn-builder-tooltip' );
@@ -129,7 +129,7 @@ class VennDiagramBuilder extends Component {
 					duration( 400 ).
 					style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				var selection = d3.select( this ).
+				const selection = d3.select( this ).
 					transition( 'tooltip' ).
 					duration( 400 );
 				selection.select( 'path' )
@@ -146,7 +146,7 @@ class VennDiagramBuilder extends Component {
 				tooltip.transition().
 					duration( 400 ).
 					style( 'opacity', 0 );
-				var selection = d3.
+				const selection = d3.
 					select( this ).
 					transition( 'tooltip' ).
 					duration( 400 );

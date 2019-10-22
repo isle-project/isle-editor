@@ -168,7 +168,7 @@ class Session {
 		if ( !isElectron ) {
 			const url = window.location.pathname;
 			if ( isString( url ) ) {
-				var matches = url.match( PATH_REGEXP );
+				const matches = url.match( PATH_REGEXP );
 				if ( matches && matches.length >= 2 && url.endsWith( '/' ) ) {
 					this.namespaceName = decodeURIComponent( matches[ 1 ]);
 					this.lessonName = decodeURIComponent( matches[ 2 ]);

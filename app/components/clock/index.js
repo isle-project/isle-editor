@@ -35,32 +35,29 @@ class Clock extends Component {
 		clearInterval( this.interval );
 	}
 
-
 	updateTime = () => {
 		if (this.props.duration) this.updateDuration();
 		else this.updateDate();
 	}
 
 	updateDuration = () => {
-		var date = new Date().getTime() - this.state.startTime;
-		var currentTime = new Date(date).toLocaleTimeString([], {
+		const date = new Date().getTime() - this.state.startTime;
+		const currentTime = new Date(date).toLocaleTimeString([], {
 			hour: '2-digit',
 			minute: '2-digit',
 			second: '2-digit'
 
 		});
-
 		this.setState({
 			time: currentTime
 		});
 	}
 
 	updateDate = () => {
-		var currentTime = new Date().toLocaleTimeString([], {
+		const currentTime = new Date().toLocaleTimeString([], {
 			hour: '2-digit',
 			minute: '2-digit'
 		});
-
 		if ( this.props.format ) {
 			switch ( this.props.format ) {
 				case 'HH:MM':

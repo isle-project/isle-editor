@@ -10,7 +10,7 @@ import './wikipedia.css';
 
 // VARIABLES //
 
-var debug = logger( 'isle:wikipedia' );
+const debug = logger( 'isle:wikipedia' );
 
 
 // MAIN //
@@ -51,12 +51,11 @@ class Wikipedia extends Component {
 			marker= 'about';
 			break;
 		}
-
-		var x = value.search( marker );
+		let x = value.search( marker );
 		if ( x !== -1 ){
 			debug( 'Found a marker...' );
 			x += ( marker.length +1 );
-			var text = value.substring( x, value.length );
+			const text = value.substring( x, value.length );
 			this.wikipediaIFrame( text );
 		}
 		else {

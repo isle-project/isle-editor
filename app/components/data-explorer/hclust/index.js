@@ -26,8 +26,8 @@ import PriorityQueue from './queue.js';
 * @return {Array} an empty array of arrays
 */
 function create2dArray( m, n ) {
-	var ret = [];
-	for ( var i = 0; i < m; i++ ) {
+	const ret = [];
+	for ( let i = 0; i < m; i++ ) {
 		ret[ i ] = new Array( n );
 	}
 	return ret;
@@ -206,16 +206,16 @@ function hclust( dat, opts ) {
 	}
 
 	function getTree() {
-		var clusters = [];
+		const clusters = [];
 		for ( let i = 0; i < dat.length; i++ ) {
-			var current = {};
+			const current = {};
 			current.name = dat[ i ].join( ', ' );
 			current.value = 1;
 			clusters.push( current );
 		}
 		let j = 0;
 		while ( j < A.length ) {
-			var node = {
+			const node = {
 				children: [ clusters[ A[j][0] ], clusters[ A[j][1] ] ],
 				value: clusters[ A[j][0] ].value + clusters[ A[j][1] ].value,
 				name: clusters[ A[j][0] ].value + clusters[ A[j][1] ].value

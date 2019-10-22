@@ -9,41 +9,40 @@ import CodeMirror from 'codemirror';
 // MAIN //
 
 CodeMirror.commands.tabAndIndentMarkdownList = ( cm ) => {
-	var ranges = cm.listSelections();
-	var pos = ranges[0].head;
-	var eolState = cm.getStateAfter(pos.line);
-	var inList = eolState.list !== false;
+	const ranges = cm.listSelections();
+	const pos = ranges[0].head;
+	const eolState = cm.getStateAfter( pos.line );
+	const inList = eolState.list !== false;
 
-	if (inList) {
-		cm.execCommand('indentMore');
+	if ( inList ) {
+		cm.execCommand( 'indentMore' );
 		return;
 	}
-
-	if (cm.options.indentWithTabs) {
-		cm.execCommand('insertTab');
+	if ( cm.options.indentWithTabs ) {
+		cm.execCommand( 'insertTab' );
 	}
 	else {
-		var spaces = Array(cm.options.tabSize + 1).join(' ');
-		cm.replaceSelection(spaces);
+		const spaces = new Array( cm.options.tabSize + 1 ).join( ' ' );
+		cm.replaceSelection( spaces );
 	}
 };
 
 CodeMirror.commands.shiftTabAndUnindentMarkdownList = ( cm ) => {
-	var ranges = cm.listSelections();
-	var pos = ranges[0].head;
-	var eolState = cm.getStateAfter(pos.line);
-	var inList = eolState.list !== false;
+	const ranges = cm.listSelections();
+	const pos = ranges[0].head;
+	const eolState = cm.getStateAfter( pos.line );
+	const inList = eolState.list !== false;
 
-	if (inList) {
-		cm.execCommand('indentLess');
+	if ( inList ) {
+		cm.execCommand( 'indentLess' );
 		return;
 	}
 
-	if (cm.options.indentWithTabs) {
-		cm.execCommand('insertTab');
+	if ( cm.options.indentWithTabs ) {
+		cm.execCommand( 'insertTab' );
 	}
 	else {
-		var spaces = Array(cm.options.tabSize + 1).join(' ');
+		const spaces = new Array( cm.options.tabSize + 1 ).join(' ');
 		cm.replaceSelection(spaces);
 	}
 };

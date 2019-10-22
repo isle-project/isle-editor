@@ -76,7 +76,7 @@ function SpellChecker( text, options ) {
 	// Load AFF/DIC data
 	if ( !SpellChecker.affLoading ) {
 		SpellChecker.affLoading = true;
-		var xhrAFF = new XMLHttpRequest();
+		const xhrAFF = new XMLHttpRequest();
 		xhrAFF.open('GET', AFF_URL, true);
 		xhrAFF.onload = function onLoad() {
 			if ( xhrAFF.readyState === 4 && xhrAFF.status === 200) {
@@ -94,7 +94,7 @@ function SpellChecker( text, options ) {
 	}
 	if ( !SpellChecker.dicLoading ) {
 		SpellChecker.dicLoading = true;
-		var xhrDIC = new XMLHttpRequest();
+		const xhrDIC = new XMLHttpRequest();
 		xhrDIC.open('GET', DIC_URL, true);
 		xhrDIC.onload = function onLoad() {
 			if ( xhrDIC.readyState === 4 && xhrDIC.status === 200 ) {

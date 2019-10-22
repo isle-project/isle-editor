@@ -18,7 +18,7 @@ function PriorityQueue( values ) {
 	const _initial = values;
 	this._queue = [];
 	if ( _initial ) {
-		for ( var i = 0; i < _initial.length; i++ ) {
+		for ( let i = 0; i < _initial.length; i++ ) {
 			this.insert( _initial[ i ] );
 		}
 	}
@@ -28,8 +28,8 @@ function PriorityQueue( values ) {
  * Insert a new element to the queue. Elements are assumed to be objects with `sim` and `index` properties.
  */
 PriorityQueue.prototype.insert = function insert( elem ) {
-	var pos = this.search( elem );
-	this._queue.splice(pos, 0, elem);
+	const pos = this.search( elem );
+	this._queue.splice( pos, 0, elem );
 };
 
 /**

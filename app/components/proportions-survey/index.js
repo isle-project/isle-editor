@@ -87,26 +87,23 @@ class ProportionsSurvey extends Component {
 	}
 
 	getAverage( data ) {
-		var list = new Array( data.length );
-		for ( var i = 0; i < data.length; i++ ) {
-			var temp = JSON.parse( data[ i ]);
-			list[ i ] = temp;
+		const list = new Array( data.length );
+		for ( let i = 0; i < data.length; i++ ) {
+			list[ i ] = JSON.parse( data[ i ] );
 		}
-		var sum = new Array( this.props.nElements ).fill( 0 );
-		var mean = new Array( this.props.nElements ).fill( 0 );
-
-		for ( i = 0; i < list.length; i++ ) {
+		const sum = new Array( this.props.nElements ).fill( 0 );
+		const mean = new Array( this.props.nElements ).fill( 0 );
+		for ( let i = 0; i < list.length; i++ ) {
 			// Reflects arrays of arrays = results
 			for ( let j = 0; j < list[ i ].length; j++ ) {
 				sum[ j ] += list[ i ][ j ];
 			}
 		}
-		debug( 'The sum is'+ sum );
-		var no = this.props.nElements;
-		for ( let j = 0; j < no; j++ ) {
+		debug( 'The sum is '+ sum );
+		for ( let j = 0; j < this.props.nElements; j++ ) {
 			mean[ j ] = sum[ j ] / list.length;
 		}
-		debug( 'Mean is ' + mean );
+		debug( 'The mean is ' + mean );
 		this.setState({
 			resultValues: mean,
 			nResults: list.length

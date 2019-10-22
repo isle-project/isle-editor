@@ -69,12 +69,10 @@ class Background extends Component {
 		});
 	}
 
-	initialize(image) {
-		var self = this;
-		image.onload = function loadImage() {
+	initialize( image ) {
+		image.onload = () => {
 			let ratio = image.width / image.height;
-
-			self.setState({
+			this.setState({
 				initialized: true,
 				foregroundRatio: ratio
 			});
@@ -107,9 +105,9 @@ class Background extends Component {
 		}
 	}
 
-	getImageRatio(ct) {
-		if ( this.imageList[ct] ) {
-			let img = this.imageList[ct];
+	getImageRatio( ct ) {
+		if ( this.imageList[ ct ] ) {
+			const img = this.imageList[ ct ];
 			return img.width / img.height;
 		}
 	}

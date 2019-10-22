@@ -77,7 +77,7 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
 		if ( relative ) {
-			var catCounts = countBy( data[ variable ], identity );
+			const catCounts = countBy( data[ variable ], identity );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];

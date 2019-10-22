@@ -22,7 +22,7 @@ class NetworkPlot extends D3Plot {
 	}
 
 	drawPlot( chart, data ) {
-		var link = chart.append( 'g' )
+		const link = chart.append( 'g' )
 			.attr( 'class', 'links' )
 			.selectAll( 'line' )
 			.data( data.links )
@@ -30,7 +30,7 @@ class NetworkPlot extends D3Plot {
 			.append( 'line' )
 			.attr( 'stroke-width', 2 );
 
-		var node = chart.append( 'g' )
+		const node = chart.append( 'g' )
 			.attr( 'class', 'nodes' )
 			.selectAll( 'circle' )
 			.data( data.nodes )

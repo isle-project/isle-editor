@@ -191,7 +191,7 @@ class Sunburst extends Component {
 	// Update the breadcrumb trail to show the current sequence and percentage.
 	updateBreadcrumbs = ( nodeArray, percentageString ) => {
 		// Data join; key function combines name and depth (= position in sequence).
-		var trail = d3.select( `#${this.id}_trail` )
+		const trail = d3.select( `#${this.id}_trail` )
 			.selectAll( 'g' )
 			.data( nodeArray, d => d.data.name + d.depth );
 
@@ -199,7 +199,7 @@ class Sunburst extends Component {
 		trail.exit().remove();
 
 		// Add breadcrumb and label for entering nodes.
-		var entering = trail.enter().append( 'svg:g' );
+		const entering = trail.enter().append( 'svg:g' );
 
 		entering.append( 'svg:polygon' )
 			.attr( 'points', this.breadcrumbPoints )

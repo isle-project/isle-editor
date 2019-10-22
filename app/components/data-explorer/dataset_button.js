@@ -43,7 +43,7 @@ class DatasetButton extends Component {
 				<Tooltip
 					id="fullscreen_tooltip"
 					placement="bottom"
-					tooltip="Dataset Info"
+					tooltip="Show dataset info"
 				>
 					<Button
 						variant="outline-danger"

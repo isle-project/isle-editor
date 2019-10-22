@@ -92,7 +92,7 @@ class TableSelect extends Component {
 	}
 
 	insertTableText = () => {
-		var tableStr = '|';
+		let tableStr = '|';
 
 		// First make the header:
 		for ( let colStrIndex = 0; colStrIndex < this.state.cols; colStrIndex++ ) {
