@@ -33,7 +33,7 @@ function getFrequencies( variable, x, relativeFreqs ) {
 	}
 	if ( relativeFreqs ) {
 		let totalCount = freqs
-			.map( x => x.count )
+			.map( x => x.count ? x.count : 0 )
 			.reduce( ( a, b ) => a + b );
 		freqs = freqs.map( x => {
 			x.count = x.count / totalCount;
