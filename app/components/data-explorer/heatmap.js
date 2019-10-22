@@ -16,8 +16,6 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
-import sample from '@stdlib/random/sample';
-import runif from '@stdlib/random/base/discrete-uniform';
 import linspace from '@stdlib/math/utils/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
 import maxScalar from '@stdlib/math/base/special/max';
@@ -79,18 +77,16 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			}
 		];
 		if ( overlayPoints ) {
-			const seed = runif( -40, 40 );
-			const size = 5000;
 			const points = {
-				x: x.length > size ? sample( x, { size, seed }) : x,
-				y: y.length > size ? sample( y, { size, seed }) : y,
+				x,
+				y,
 				mode: 'markers',
 				name: 'points',
 				marker: {
 					color: 'white',
 					opacity: calculateOpacity( x.length )
 				},
-				type: 'scatter'
+				type: x.length > 2000 ? 'scattergl' : 'scatter'
 			};
 			traces.push( points );
 		}

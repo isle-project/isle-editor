@@ -19,8 +19,6 @@ import roundn from '@stdlib/math/base/special/roundn';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
-import sample from '@stdlib/random/sample';
-import runif from '@stdlib/random/base/discrete-uniform';
 import unique from 'uniq';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
@@ -82,41 +80,21 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	if ( text ) {
 		mode += '+text';
 	}
-	const seed = runif( -40, 40 );
-	const sampleSize = 5000;
 	const nobs = data[ xval ].length;
-	if ( nobs > size ) {
-		const opts = { size: sampleSize, seed };
-		if ( color ) {
-			colors = sample( data[ colors ], opts );
-		}
-		if ( type ) {
-			types = sample( data[ type ], opts );
-		}
-		if ( size ) {
-			sizes = sample( data[ size ], opts );
-		}
-		if ( text ) {
-			textValues = sample( data[ text ], opts );
-		}
-		x = sample( data[ xval ], opts );
-		y = sample( data[ yval ], opts );
-	} else {
-		if ( color ) {
-			colors = data[ colors ];
-		}
-		if ( type ) {
-			types = data[ type ];
-		}
-		if ( size ) {
-			sizes = data[ size ];
-		}
-		if ( text ) {
-			textValues = data[ text ];
-		}
-		x = data[ xval ];
-		y = data[ yval ];
+	if ( color ) {
+		colors = data[ color ];
 	}
+	if ( type ) {
+		types = data[ type ];
+	}
+	if ( size ) {
+		sizes = data[ size ];
+	}
+	if ( text ) {
+		textValues = data[ text ];
+	}
+	x = data[ xval ];
+	y = data[ yval ];
 
 	if ( color && type ) {
 		const uniqueColors = colors.slice();
@@ -153,7 +131,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				const trace = {
 					x: xgrouped[ grouping ],
 					y: ygrouped[ grouping ],
-					type: 'scatter',
+					type: nobs > 2000 ? 'scattergl' : 'scatter',
 					mode: mode,
 					name: grouping,
 					marker: {
@@ -185,7 +163,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 			traces[ i ] = {
 				x: xgrouped[ groups[ i ] ],
 				y: ygrouped[ groups[ i ] ],
-				type: 'scatter',
+				type: nobs > 2000 ? 'scattergl' : 'scatter',
 				mode: mode,
 				name: groups[ i ],
 				marker: {
@@ -216,7 +194,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 			traces[ i ] = {
 				x: xgrouped[ groups[ i ] ],
 				y: ygrouped[ groups[ i ] ],
-				type: 'scatter',
+				type: nobs > 2000 ? 'scattergl' : 'scatter',
 				mode: mode,
 				name: groups[ i ],
 				marker: {
@@ -235,7 +213,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		traces = [ {
 			x: x,
 			y: y,
-			type: 'scatter',
+			type: nobs > 2000 ? 'scattergl' : 'scatter',
 			mode: mode,
 			name: 'Points',
 			marker: {
