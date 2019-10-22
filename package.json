@@ -262,7 +262,7 @@
     "stylelint-config-standard": "^19.0.0",
     "victory": "33.1.1",
     "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.9.0"
   },
   "devEngines": {
     "node": "9.x || 10.x || 11.x || 12.x"
