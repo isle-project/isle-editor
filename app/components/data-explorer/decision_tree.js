@@ -82,7 +82,7 @@ class DecisionTree extends Component {
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Decision Tree for {y} (model id: tree{COUNTER})</span>
 				<TreePlot tree={tree.root} />
-				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+				<Tooltip tooltip="Predictions will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
 						const newData = copy( this.props.data, 1 );
 						if ( type === 'Classification' ) {

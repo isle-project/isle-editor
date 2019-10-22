@@ -111,7 +111,7 @@ class RandomForest extends Component {
 						title: 'Importance'
 					}
 				}} />
-				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+				<Tooltip tooltip="Predictions will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
 						const newData = copy( this.props.data, 1 );
 						if ( type === 'Classification' ) {
