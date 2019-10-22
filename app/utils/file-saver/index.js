@@ -22,7 +22,7 @@ const ARBITRARY_REVOKE_TIMEOUT = 1000 * 40; // in ms
 // FUNCTIONS //
 
 function click(node) {
-	var event = new MouseEvent( 'click' );
+	const event = new MouseEvent( 'click' );
 	node.dispatchEvent( event );
 }
 
@@ -44,9 +44,9 @@ function autoBOM( blob ) {
 
 function dispatch( filesaver, eventTypes, event ) {
 	eventTypes = [].concat( eventTypes );
-	var i = eventTypes.length;
+	let i = eventTypes.length;
 	while ( i-- ) {
-		var listener = filesaver[ 'on' + eventTypes[i] ];
+		constlistener = filesaver[ 'on' + eventTypes[i] ];
 		if ( typeof listener === 'function' ) {
 			try {
 				listener.call( filesaver, event || filesaver );
@@ -68,7 +68,7 @@ function saveFactory( view ) {
 	) {
 		return;
 	}
-	var doc = view.document;
+	const doc = view.document;
 	// only get URL when necessary in case Blob.js hasn't overridden it yet
 	function getURL() {
 		return view.URL || view.webkitURL || view;
@@ -84,22 +84,22 @@ function saveFactory( view ) {
 		setTimeout( revoker, ARBITRARY_REVOKE_TIMEOUT );
 	}
 
-	var saveLink = doc.createElementNS( 'http://www.w3.org/1999/xhtml', 'a' );
-	var canUseSaveLink = 'download' in saveLink;
-	var isSafari = /constructor/i.test( view.HTMLElement ) || view.safari;
-	var isChromeIOS =/CriOS\/[\d]+/.test( navigator.userAgent );
-	var setImmediate = view.setImmediate || view.setTimeout;
-	var forceSavableType = 'application/octet-stream';
+	const saveLink = doc.createElementNS( 'http://www.w3.org/1999/xhtml', 'a' );
+	const canUseSaveLink = 'download' in saveLink;
+	const isSafari = /constructor/i.test( view.HTMLElement ) || view.safari;
+	const isChromeIOS =/CriOS\/[\d]+/.test( navigator.userAgent );
+	const setImmediate = view.setImmediate || view.setTimeout;
+	const forceSavableType = 'application/octet-stream';
 
 	function FileSaver(blob, name, noAutoBOM ) {
 		if ( !noAutoBOM ) {
 			blob = autoBOM(blob);
 		}
 		// First try a.download, then web filesystem, then object URLs
-		var self = this;
-		var type = blob.type;
-		var force = type === forceSavableType;
-		var objectURL;
+		const self = this;
+		const type = blob.type;
+		const force = type === forceSavableType;
+		let objectURL;
 		function dispatchAll() {
 			dispatch( self, 'writestart progress write writeend'.split(' ') );
 		}
@@ -107,10 +107,10 @@ function saveFactory( view ) {
 		function fsError() {
 			if ((isChromeIOS || (force && isSafari)) && view.FileReader) {
 				// Safari doesn't allow downloading of blob urls
-				var reader = new FileReader();
+				const reader = new FileReader();
 				reader.onloadend = function onLoadEnd() {
-					var url = isChromeIOS ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');
-					var popup = view.open(url, '_blank');
+					let url = isChromeIOS ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');
+					const popup = view.open(url, '_blank');
 					if ( !popup ) {
 						view.location.href = url;
 					}
@@ -129,7 +129,7 @@ function saveFactory( view ) {
 			if ( force ) {
 				view.location.href = objectURL;
 			} else {
-				var opened = view.open( objectURL, '_blank' );
+				const opened = view.open( objectURL, '_blank' );
 				if ( !opened ) {
 					// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
 					view.location.href = objectURL;
@@ -156,7 +156,7 @@ function saveFactory( view ) {
 
 		fsError();
 	}
-	var proto = FileSaver.prototype;
+	const proto = FileSaver.prototype;
 	function saveAs( blob, name, noAutoBOM ) {
 		return new FileSaver( blob, name || blob.name || 'download', noAutoBOM );
 	}

@@ -120,12 +120,12 @@ class MarkdownEditor extends Component {
 	constructor( props ) {
 		super( props );
 
-		var value = props.defaultValue;
-		var hash = {};
-		var out;
+		let value = props.defaultValue;
+		let hash = {};
+		let out;
 		this.id = props.id || uid( props );
 		if ( props.autoSave ) {
-			var previous = localStorage.getItem( this.id );
+			const previous = localStorage.getItem( this.id );
 			if ( previous ) {
 				out = remakeText( previous );
 				value = out.text;
@@ -218,7 +218,7 @@ class MarkdownEditor extends Component {
 						cm.replaceRange( '\\\n', pos );
 					}
 					while ( startPoint.line !== endPoint.line ) {
-						var currentLine = cm.getLine( startPoint.line );
+						const currentLine = cm.getLine( startPoint.line );
 						if ( endsWith( currentLine, '\\' ) ) {
 							cm.replaceRange( removeLast( currentLine ),
 								{ line: startPoint.line, ch: 0 },
@@ -681,12 +681,12 @@ class MarkdownEditor extends Component {
 	}
 
 	recordedText = ( text ) => {
-		var sel = this.simplemde.codemirror.somethingSelected();
+		const sel = this.simplemde.codemirror.somethingSelected();
 		if ( sel ) {
 			this.simplemde.codemirror.replaceSelection( text );
 		}
 		else {
-			var c = this.simplemde.codemirror.getCursor();
+			const c = this.simplemde.codemirror.getCursor();
 			this.simplemde.codemirror.replaceRange( text, c );
 		}
 	}
@@ -701,21 +701,21 @@ class MarkdownEditor extends Component {
 		plainText = titleTagConvert( plainText );
 
 		// Cycle through and remove old stylings:
-		var allStyles = document.getElementsByTagName('style');
-		var tmpStyle;
-		for ( var i = allStyles.length - 1; i >= 0; i-- ) {
+		const allStyles = document.getElementsByTagName('style');
+		let tmpStyle;
+		for ( let i = allStyles.length - 1; i >= 0; i-- ) {
 			tmpStyle = allStyles[i];
-			if ( contains(tmpStyle.innerText, '.editor-preview-active') ) {
-				tmpStyle.parentNode.removeChild(tmpStyle);
+			if ( contains( tmpStyle.innerText, '.editor-preview-active' ) ) {
+				tmpStyle.parentNode.removeChild( tmpStyle );
 			}
 		}
 
 		// Side effect: Create style object and add to document head
-		var style = document.createElement('style');
+		const style = document.createElement('style');
 		style.type = 'text/css';
 		style.appendChild( document.createTextNode( createPreviewStyles( this.state.fontSize ) ) );
 
-		var head = document.head;
+		const head = document.head;
 		head.appendChild( style );
 
 		// Render the markdown:
@@ -1075,8 +1075,8 @@ class MarkdownEditor extends Component {
 						});
 					}}
 					onClick={( tblString )=>{
-						// Insert into markdown editor
-						var c = this.simplemde.codemirror.getCursor();
+						// Insert into markdown editor:
+						const c = this.simplemde.codemirror.getCursor();
 						this.simplemde.codemirror.replaceRange( tblString, c);
 					}}
 				/>
@@ -1087,9 +1087,9 @@ class MarkdownEditor extends Component {
 							showColumnSelect: false
 						});
 					}}
-					onClick={( tblString, lines )=>{
-						var c = this.simplemde.codemirror.getCursor();
-						this.simplemde.codemirror.replaceRange( tblString, c);
+					onClick={( tblString )=>{
+						const c = this.simplemde.codemirror.getCursor();
+						this.simplemde.codemirror.replaceRange( tblString, c );
 					}}
 				/>
 				<Guides

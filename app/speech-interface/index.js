@@ -13,6 +13,11 @@ import camelcase from 'utils/camelcase';
 
 // VARIABLES //
 
+const RE_LIGHT = /light /;
+const RE_DARK = /dark /;
+const RE_VW = / viewport*/;
+const RE_NUM = /number */g;
+const RE_PIXELS = / pixels*/;
 const RE_SELECT = /select (?:the|or|a|) ?([\S]*)/i;
 const RE_STYLE_SETTER = /CSS (?:set|change|modify|alter) (?:the|a)? ?([\s\S]*) to ([\s\S]*)/i;
 const debug = logger( 'isle-editor:speech-interface' );
@@ -137,7 +142,7 @@ class SpeechInterface {
 
 	resetStyle() {
 		debug( 'Resetting the styling of the active element: '+JSON.stringify( this.active.originalStyle ) );
-		var div = ReactDOM.findDOMNode( this.active.reference );
+		const div = ReactDOM.findDOMNode( this.active.reference );
 		if ( div ) {
 			for ( let key in this.active.originalStyle ) {
 				if ( hasOwnProp( this.active.originalStyle, key ) ) {
@@ -158,12 +163,11 @@ class SpeechInterface {
 
 		function shadow( value ) {
 			debug( 'Setting shadow...' );
-			var number = /number */g;
-			value = value.replace( number, '' );
+			value = value.replace( RE_NUM, '' );
 			value = value.split( ' ' );
-			var s = '';
-			for ( var i = 0; i < value.length; i++ ) {
-				var item = value[ i ];
+			let s = '';
+			for ( let i = 0; i < value.length; i++ ) {
+				let item = value[ i ];
 				if ( item === 'four' || item === 'for') item = 4;
 				if ( item === 'one' ) item = 1;
 				if ( i < 3 ) {
@@ -173,10 +177,10 @@ class SpeechInterface {
 			}
 			return s;
 		}
-		var matches = text.match( RE_STYLE_SETTER );
+		const matches = text.match( RE_STYLE_SETTER );
 		if ( matches && matches[ 1 ] && matches[ 2 ]) {
-			var property = matches[ 1 ];
-			var value = matches[ 2 ];
+			let property = matches[ 1 ];
+			let value = matches[ 2 ];
 
 			if ( property === 'in a text' ) {
 				property = 'inner text';
@@ -184,19 +188,13 @@ class SpeechInterface {
 			if ( property === 'inner Html' ) {
 				property = 'inner HTML';
 			}
-
 			property = camelcase( property );
 			if ( property === 'colour' ) {
 				property = 'color';
 			}
-
 			if ( property === 'color' || property === 'background' ) {
-				var dark = /dark /;
-				value = value.replace( dark, 'dark' );
-
-				dark = /light /;
-				value = value.replace( dark, 'light' );
-
+				value = value.replace( RE_DARK, 'dark' );
+				value = value.replace( RE_LIGHT, 'light' );
 				if ( value.search( 'RGB' ) !== -1 )	{
 					value = rgb( value );
 				}
@@ -204,32 +202,23 @@ class SpeechInterface {
 					value = rgb( value );
 				}
 			}
-
 			if ( property === 'with' ) {
 				property = 'width';
 			}
-
 			if ( property === 'textDecoration' ) {
 				if ( value === 'line through' ) value = 'line-through';
 			}
-
 			if ( property === 'textShadow' || property === 'boxShadow' ) {
 				value = shadow( value );
 			}
-
 			if ( property === 'textAlign' ) {
 				if ( value === 'Centre' ) {
 					value = 'center';
 				}
 			}
-
-			var repix = / pixels*/;
-			value = value.replace( repix, 'px' );
-
-			var vw = / viewport*/;
-			value = value.replace( vw, 'vw' );
-
-			var div = ReactDOM.findDOMNode( this.active.reference );
+			value = value.replace( RE_PIXELS, 'px' );
+			value = value.replace( RE_VW, 'vw' );
+			const div = ReactDOM.findDOMNode( this.active.reference );
 			if ( !this.active.originalStyle ) {
 				this.active.originalStyle = {};
 			}
@@ -249,8 +238,8 @@ class SpeechInterface {
 	}
 
 	sendNotUnderstoodMsg = () => {
-		var resp = 'Sorry, I didn\'t get that.';
-		var ssu = new SpeechSynthesisUtterance( resp );
+		const resp = 'Sorry, I didn\'t get that.';
+		const ssu = new SpeechSynthesisUtterance( resp );
 		ssu.lang = 'en-US';
 		window.speechSynthesis.speak( ssu );
 	}
@@ -277,7 +266,7 @@ class SpeechInterface {
 		} else {
 			resp = 'Component selected.';
 		}
-		var ssu = new SpeechSynthesisUtterance( resp );
+		const ssu = new SpeechSynthesisUtterance( resp );
 		ssu.lang = 'en-US';
 		window.speechSynthesis.speak( ssu );
 	}
