@@ -268,7 +268,7 @@ function buildClassificationTree( opts ) {
 	const {
 		data, predictors, indices, response,
 		minItemsCount, scoreThreshold, maxTreeDepth,
-		quantitative, criterion, minBucket, mTry
+		quantitative, criterion, minBucket, nTry
 	} = opts;
 	const nobs = indices.length;
 	if ( ( maxTreeDepth === 0 ) || ( nobs <= minItemsCount ) ) {
@@ -286,8 +286,8 @@ function buildClassificationTree( opts ) {
 		gain: 0
 	};
 
-	if ( mTry ) {
-		predictors = sample( predictors, { size: mTry });
+	if ( nTry ) {
+		predictors = sample( predictors, { size: nTry });
 	}
 	for ( let i = nobs - 1; i >= 0; i-- ) {
 		const idx = indices[ i ];
@@ -373,7 +373,7 @@ function buildRegressionTree( opts ) {
 	const {
 		data, predictors, indices, response,
 		minItemsCount, scoreThreshold, maxTreeDepth,
-		quantitative, minBucket, mTry
+		quantitative, minBucket, nTry
 	} = opts;
 
 	const nobs = indices.length;
@@ -398,8 +398,8 @@ function buildRegressionTree( opts ) {
 		gain: 0
 	};
 
-	if ( mTry ) {
-		predictors = sample( predictors, { size: mTry });
+	if ( nTry ) {
+		predictors = sample( predictors, { size: nTry });
 	}
 	for ( let i = nobs - 1; i >= 0; i-- ) {
 		const idx = indices[ i ];
