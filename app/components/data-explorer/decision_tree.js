@@ -34,8 +34,8 @@ class DecisionTree extends Component {
 			x: props.quantitative[ 0 ],
 			type: 'Classification',
 			impurityMeasure: 'gini',
-			scoreThreshold: 0.01,
-			maxTreeDepth: 20,
+			scoreThreshold: 0.0075,
+			maxTreeDepth: 5,
 			minItemsCount: 50
 		};
 	}
