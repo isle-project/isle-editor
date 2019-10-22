@@ -20,7 +20,6 @@ import VoiceInput from 'components/input/voice';
 import VictoryAxis from 'components/victory/axis';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 import factor from 'utils/factor-variable';
-import Repetition from 'utils/repetition';
 
 
 // VARIABLES //
@@ -30,7 +29,6 @@ const SCOPE = {
 	Component,
 	render,
 	factor,
-	Repetition,
 	Draggable,
 
 	Accordion: Loadable( () => import( 'components/accordion' ) ),
