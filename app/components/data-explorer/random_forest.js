@@ -98,6 +98,7 @@ class RandomForest extends Component {
 			type: 'Random Forest',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Random Forest for {y} (model id: forest{COUNTER})</span>
+				<p>Created from {nTrees} trees by checking {nTry} features at each split.</p>
 				<Plotly editable data={[{
 					type: 'bar',
 					x: predictors,

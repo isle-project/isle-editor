@@ -7,6 +7,8 @@ import Table from 'react-bootstrap/Table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
+import copy from '@stdlib/utils/copy';
+import contains from '@stdlib/assert/contains';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
 import mean from 'utils/statistic/mean';
@@ -116,7 +118,27 @@ class SimpleLinearRegression extends Component {
 					</Table>
 					<Tooltip tooltip="Predictions and residuals will be attached to data table">
 						<Button variant="secondary" size="sm" onClick={() => {
-
+							const x = this.props.data[ xval ];
+							const y = this.props.data[ yval ];
+							const yhat = new Float64Array( y.length );
+							const resid = new Float64Array( y.length );
+							for ( let i = 0; i < yhat.length; i++ ) {
+								yhat[ i ] = yint + slope * x[ i ];
+								resid[ i ] = yhat[ i ] - y[ i ];
+							}
+							const newData = copy( this.props.data, 1 );
+							const newQuantitative = this.props.quantitative.slice();
+							let name = 'pred_slm'+COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							name = 'resid_slm'+COUNTER;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							newData[ name ] = resid;
+							this.props.onGenerate( newQuantitative, newData );
 						}}>Use this model to predict for currently selected data</Button>
 					</Tooltip>
 				</div>
@@ -170,6 +192,7 @@ SimpleLinearRegression.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
+	onGenerate: PropTypes.func.isRequired,
 	onCreated: PropTypes.func.isRequired
 };
 

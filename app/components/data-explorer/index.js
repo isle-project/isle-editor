@@ -1185,6 +1185,12 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
+						onGenerate={( quantitative, data ) => {
+							this.setState({
+								quantitative,
+								data
+							});
+						}}
 					/>;
 					break;
 				case 'PCA':
