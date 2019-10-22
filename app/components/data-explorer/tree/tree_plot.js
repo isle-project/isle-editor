@@ -11,7 +11,7 @@ import './tree.css';
 
 // VARIABLES //
 
-const RE_NUMBER = /[+-]?[\d.]+e?[+-]?\d*/;
+const RE_NUMBER = /^[+-]?[\d.]+e?[+-]?\d*$/;
 
 
 // FUNCTIONS //
