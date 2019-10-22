@@ -115,20 +115,20 @@ const calcZ = ( eta, y, mu, gprime ) => {
 };
 
 function sigmoid( x ) {
-	const result = new Array( x.length );
+	const result = new Float64Array( x.length );
 	for ( let i = 0; i < x.length; i++) {
-		result[ i ]= 1 / (1 + Math.exp(-x[i]) );
+		result[ i ]= 1 / (1 + exp(-x[i]) );
 	}
 	return result;
 }
 
 function stdErrors( matrix, yhat ) {
-	const w = new Array( yhat.length );
+	const w = new Float64Array( yhat.length );
 	for ( let i = 0; i < w.length; i++ ) {
 		w[ i ] = yhat[ i ] * ( 1 - yhat[ i ] );
 	}
 	const [ nrow, ncol ] = matrix.shape;
-	const errs = new Array( ncol );
+	const errs = new Float64Array( ncol );
 	for ( let j = 0; j < errs.length; j++ ) {
 		let sum = 0;
 		for ( let i = 0; i < nrow; i++ ) {
