@@ -46,7 +46,7 @@ function dispatch( filesaver, eventTypes, event ) {
 	eventTypes = [].concat( eventTypes );
 	let i = eventTypes.length;
 	while ( i-- ) {
-		constlistener = filesaver[ 'on' + eventTypes[i] ];
+		const listener = filesaver[ 'on' + eventTypes[i] ];
 		if ( typeof listener === 'function' ) {
 			try {
 				listener.call( filesaver, event || filesaver );
