@@ -29,6 +29,7 @@ import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import incrspace from '@stdlib/math/utils/incrspace';
 import generateUID from 'utils/uid';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
@@ -555,11 +556,13 @@ class DataExplorer extends Component {
 		let newQuantitative = state.quantitative.filter( x => x !== variable );
 		let newCategorical = state.categorical.filter( x => x !== variable );
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
+		let filters = state.filters.filter( x => x.id !== variable );
 		return {
 			data: newData,
 			quantitative: newQuantitative,
 			categorical: newCategorical,
-			groupVars: newGroupVars
+			groupVars: newGroupVars,
+			filters
 		};
 	}
 
@@ -602,6 +605,7 @@ class DataExplorer extends Component {
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
 			const filter = this.state.filters[ i ];
 			const col = this.state.data[ filter.id ];
+			console.log( filter );
 			if ( contains( this.state.quantitative, filter.id ) ) {
 				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
@@ -612,7 +616,7 @@ class DataExplorer extends Component {
 			} else {
 				// Case: We have a categorical variable
 				for ( let z = 0; z < col.length; z++ ) {
-					if ( !contains( filter.value, col[ z ] ) ) {
+					if ( !contains( filter.value, String( col[ z ] ) ) ) {
 						indices.add( z );
 					}
 				}
@@ -650,26 +654,31 @@ class DataExplorer extends Component {
 	onRestoreData = () => {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
+		console.log( this.state.oldData );
 		const data = copy( this.props.data, 1 );
+		const originalVariables = this.props.quantitative.concat( this.props.categorical );
 		const ids = this.state.data.id;
 		const nOriginal = this.props.data[ oldVars[ 0 ] ].length;
-		for ( let i = 0; i < newVars.length; i++ ) {
-			const name = newVars[ i ];
-			if ( name !== 'id' && !hasProp( data, name ) ) {
-				data[ name ] = new Array( nOriginal );
-				for ( let j = 0; j < ids.length; j++ ) {
-					const idx = ids[ j ] - 1;
-					data[ name ][ idx ] = this.state.data[ name ][ idx ];
+		const oldIds = this.state.oldData.id || incrspace( 1, nOriginal+1, 1 );
+		for ( let i = 0; i < oldVars.length; i++ ) {
+			const name = oldVars[ i ];
+			if ( name !== 'id' && !contains( originalVariables, name ) ) {
+				data[ name ] = new Array( nOriginal ).fill( null );
+				for ( let j = 0; j < oldIds.length; j++ ) {
+					const idx = oldIds[ j ] - 1;
+					data[ name ][ idx ] = this.state.oldData[ name ][ j ];
 				}
 			}
 		}
-		for ( let i = 0; i < oldVars.length; i++ ) {
-			const name = oldVars[ i ];
-			if ( name !== 'id' && !hasProp( data, name ) ) {
-				data[ name ] = new Array( nOriginal );
+		for ( let i = 0; i < newVars.length; i++ ) {
+			const name = newVars[ i ];
+			if ( name !== 'id' && !contains( originalVariables, name ) ) {
+				if ( !data[ name ] ) {
+					data[ name ] = new Array( nOriginal ).fill( null );
+				}
 				for ( let j = 0; j < ids.length; j++ ) {
 					const idx = ids[ j ] - 1;
-					data[ name ][ idx ] = this.state.oldData[ name ][ idx ];
+					data[ name ][ idx ] = this.state.data[ name ][ j ];
 				}
 			}
 		}
@@ -1336,7 +1345,8 @@ class DataExplorer extends Component {
 									data={this.state.data}
 									dataInfo={this.props.dataInfo}
 									filters={this.state.filters}
-									onFilteredChange={(filtered) => {
+									onFilteredChange={( filtered ) => {
+										debug( 'Filters have changed...' );
 										this.setState({
 											filters: filtered
 										});

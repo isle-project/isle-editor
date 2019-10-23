@@ -511,7 +511,7 @@ class DataTable extends Component {
 			selectedRows,
 			filtered
 		}, () => {
-			this.props.onFilteredChange( this.state.filtered );
+			this.props.onFilteredChange( this.state.filtered.filter( x => !isNull( x.value ) ) );
 		});
 	}
 
