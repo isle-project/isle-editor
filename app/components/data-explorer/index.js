@@ -605,7 +605,6 @@ class DataExplorer extends Component {
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
 			const filter = this.state.filters[ i ];
 			const col = this.state.data[ filter.id ];
-			console.log( filter );
 			if ( contains( this.state.quantitative, filter.id ) ) {
 				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
@@ -654,7 +653,6 @@ class DataExplorer extends Component {
 	onRestoreData = () => {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
-		console.log( this.state.oldData );
 		const data = copy( this.props.data, 1 );
 		const originalVariables = this.props.quantitative.concat( this.props.categorical );
 		const ids = this.state.data.id;
