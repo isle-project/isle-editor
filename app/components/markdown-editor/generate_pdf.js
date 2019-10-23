@@ -127,7 +127,7 @@ function extractTable( ast, widthTable ) {
 	for ( let i = 0; i < ast.length; i++ ) {
 		const node = ast[ i ];
 		switch ( node.type ) {
-			case 'thead_open':
+			case 'thead_open': {
 				headerRows = 1;
 				let count;
 				let zElem;
@@ -147,6 +147,7 @@ function extractTable( ast, widthTable ) {
 				for ( let j = 0; j < count; j++ ) {
 					out.table.widths[j] = widthTable / count;
 				}
+			}
 			break;
 			case 'tr_open':
 				row = [];
