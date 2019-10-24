@@ -5,6 +5,7 @@ import logger from 'debug';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import isArray from '@stdlib/assert/is-array';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/statusbar/action-log';
@@ -26,11 +27,12 @@ const debug = logger( 'isle:statusbar-instructor-view' );
 // MAIN //
 
 class InstructorView extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
+		const hasResponseVisualizers = !isEmptyObject( context.responseVisualizers );
 		this.state = {
-			activeTab: 'response_visualizers',
+			activeTab: hasResponseVisualizers ? 'response_visualizers' : 'active_users',
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 ),
 			selectedEmail: null,
@@ -143,6 +145,7 @@ class InstructorView extends Component {
 		if ( this.state.hidden ) {
 			return null;
 		}
+		const hasResponseVisualizers = !isEmptyObject( session.responseVisualizers );
 		return (
 			<Tabs
 				activeKey={this.state.activeTab}
@@ -153,7 +156,7 @@ class InstructorView extends Component {
 					});
 				}}
 			>
-				<Tab eventKey="response_visualizers" title="Responses" >
+				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title="Responses" >
 					<ResponseVisualizers
 						selectedCohort={this.state.selectedCohort}
 						session={session}
@@ -165,7 +168,7 @@ class InstructorView extends Component {
 							});
 						}}
 					/>
-				</Tab>
+				</Tab> : null }
 				<Tab eventKey="active_users" title="Active Users" >
 					<UserList
 						session={session}
