@@ -4,6 +4,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'uniq';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -142,7 +145,8 @@ class LogisticRegression extends Component {
 			y,
 			success,
 			x: props.quantitative[ 0 ],
-			intercept: true
+			intercept: true,
+			probabilityThreshold: 0.5
 		};
 	}
 
@@ -169,29 +173,56 @@ class LogisticRegression extends Component {
 				{summaryTable( predictors, intercept, results )}
 				<i>The algorithm {results.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {results.iterations} Fisher Scoring iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( results.aic, -3 )}</p>
-				<Tooltip tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={() => {
-						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-						const yhat = results.predict( matrix );
-						const yvalues = this.props.data[ y ].map( v => {
-							return v === success ? 1 : 0;
-						});
-						const resid = subtract( yhat, yvalues );
-						const newData = copy( this.props.data, 1 );
-						const newQuantitative = this.props.quantitative.slice();
-						let name = 'pred_logis' + COUNTER;
-						newData[ name ] = yhat;
-						if ( !contains( newQuantitative, name ) ) {
-							newQuantitative.push( name );
-						}
-						name = 'resid_logis' + COUNTER;
-						if ( !contains( newQuantitative, name ) ) {
-							newQuantitative.push( name );
-						}
-						newData[ name ] = resid;
-						this.props.onGenerate( newQuantitative, newData );
-					}}>Use this model to predict for currently selected data</Button>
-				</Tooltip>
+				<ButtonGroup>
+					<Tooltip tooltip="Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table">
+						<Button variant="secondary" size="sm" onClick={() => {
+							const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+							const probs = results.predict( matrix );
+							const yvalues = this.props.data[ y ].map( v => {
+								return v === success ? 1 : 0;
+							});
+							const resid = subtract( probs, yvalues );
+							const newData = copy( this.props.data, 1 );
+							const newQuantitative = this.props.quantitative.slice();
+							const newCategorical = this.props.categorical.slice();
+
+							let name = 'probs_logis' + COUNTER;
+							newData[ name ] = probs;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							const yhat = probs.map( x => x > this.state.probabilityThreshold );
+							name = 'pred_logis' + COUNTER;
+							newData[ name ] = yhat;
+							if ( !contains( newCategorical, name ) ) {
+								newCategorical.push( name );
+							}
+							name = 'resid_logis' + COUNTER;
+							if ( !contains( newQuantitative, name ) ) {
+								newQuantitative.push( name );
+							}
+							newData[ name ] = resid;
+							this.props.onGenerate( newQuantitative, newCategorical, newData );
+						}}>Use this model to predict for currently selected data</Button>
+					</Tooltip>
+					<InputGroup size="sm" >
+						<InputGroup.Prepend>
+							<InputGroup.Text>Threshold:</InputGroup.Text>
+						</InputGroup.Prepend>
+						<FormControl
+							type="number"
+							min={0}
+							max={1}
+							defaultValue={0.5}
+							step={0.01}
+							onChange={( event ) => {
+								this.setState({
+									probabilityThreshold: event.target.value
+								});
+							}}
+						/>
+					</InputGroup>
+			</ButtonGroup>
 			</div>
 		};
 		this.props.onCreated( output );

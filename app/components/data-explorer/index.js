@@ -1176,9 +1176,11 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
-						onGenerate={( quantitative, data ) => {
+						onGenerate={( quantitative, categorical, data ) => {
 							this.setState({
 								quantitative,
+								categorical,
+								groupVars: categorical.slice(),
 								data
 							});
 						}}
