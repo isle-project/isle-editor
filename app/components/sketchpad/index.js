@@ -523,9 +523,10 @@ class Sketchpad extends Component {
 		const opts = {
 			passive: false
 		};
-		document.body.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
-		document.body.addEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.body.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		document.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
+		document.addEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		document.addEventListener( 'visibilitychange', this.handleVisibilityChange );
 
 		if ( this.props.fullscreen ) {
 			document.body.addEventListener( 'gesturestart', preventGesture );
@@ -574,9 +575,10 @@ class Sketchpad extends Component {
 		const opts = {
 			passive: false
 		};
-		document.body.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
-		document.body.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.body.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		document.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
+		document.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
+		document.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		document.removeEventListener( 'visibilitychange', this.handleVisibilityChange, opts );
 		if ( this.props.fullscreen ) {
 			document.removeEventListener( 'gesturestart', preventGesture );
 		}
@@ -666,6 +668,12 @@ class Sketchpad extends Component {
 			( e.target === this.canvas || e.target === this.textLayer || e.target === this.canvasWrapper )
 		) {
 			e.preventDefault();
+		}
+	}
+
+	handleVisibilityChange = () => {
+		if ( !document.hidden ) {
+			this.redraw();
 		}
 	}
 
@@ -787,7 +795,12 @@ class Sketchpad extends Component {
 	}
 
 	redrawWhenDragging = () => {
-		if ( !this.draggingImageData ) {
+		if ( !this.canvasBuffer ) {
+			// Canvas to temporarily store data:
+			this.canvasBuffer = document.createElement( 'canvas');
+			this.canvasBuffer.width = this.canvas.width;
+			this.canvasBuffer.height = this.canvas.height;
+			console.log( 'Prepare data for non-dragged elements...' );
 			if ( this.backgroundData ) {
 				this.ctx.putImageData( this.backgroundData, 0, 0 );
 			} else {
@@ -802,9 +815,9 @@ class Sketchpad extends Component {
 					this.drawElement( elems[ i ] );
 				}
 			}
-			this.draggingImageData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
+			this.canvasBuffer.getContext( '2d' ).drawImage( this.canvas, 0, 0, this.canvas.width / DPR, this.canvas.height / DPR );
 		}
-		this.ctx.putImageData( this.draggingImageData, 0, 0 );
+		this.ctx.drawImage( this.canvasBuffer, 0, 0 );
 		const selected = this.selectedElements;
 		for ( let i = 0; i < selected.length; i++ ) {
 			this.drawElement( selected[ i ] );
@@ -1121,11 +1134,16 @@ class Sketchpad extends Component {
 			if ( !selected ) {
 				ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
 				ctx.shadowBlur = lineWidth * 2.0;
+				ctx.strokeStyle = color;
+				ctx.beginPath();
+				curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
+				ctx.stroke();
+			} else {
+				ctx.strokeStyle = 'orange';
+				ctx.beginPath();
+				curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 1 );
+				ctx.stroke();
 			}
-			ctx.strokeStyle = selected ? 'orange' : color;
-			ctx.beginPath();
-			curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
-			ctx.stroke();
 		}
 	}
 
@@ -1248,7 +1266,7 @@ class Sketchpad extends Component {
 			}
 			this.currentPoints = [];
 		}
-		else if ( this.state.mode === 'drag' ) {
+		else if ( this.state.mode === 'drag' && this.isMouseDown ) {
 			if ( this.selectedElements ) {
 				debug( 'Deselect elements...' );
 				const elems = this.selectedElements;
@@ -1256,7 +1274,8 @@ class Sketchpad extends Component {
 					elems[ i ].selected = false;
 				}
 				this.selectedElements = null;
-				this.draggingImageData = null;
+				this.canvasBuffer = null;
+				this.ctx.closePath();
 				this.onlyRedrawElements();
 			} else {
 				debug( 'Select elements...' );
@@ -1287,7 +1306,7 @@ class Sketchpad extends Component {
 			}
 		}
 		this.isMouseDown = false;
-		this.forceUpdate();
+		// this.forceUpdate();
 	}
 
 	draw = ( evt ) => {
