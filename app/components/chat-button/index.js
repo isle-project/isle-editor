@@ -23,6 +23,7 @@ const debug = logger( 'isle:chat-button' );
 * @property {string} for - chat room identifier
 * @property {boolean} showTooltip - controls whether to show tooltip
 * @property {string} size - button size
+* @property {Object} style - CSS inline styles
 */
 class ChatButton extends Component {
 	constructor( props ) {
@@ -100,6 +101,7 @@ class ChatButton extends Component {
 			variant="secondary"
 			size={this.props.size}
 			onClick={this.handleClick}
+			style={this.props.style}
 		>
 			<span style={{ pointerEvents: 'none' }} >{this.state.opened ? 'Leave Chat' : 'Join Chat' }</span>
 			{ nMessages ? <Badge variant="dark" style={{ marginLeft: '5px', fontSize: '10px', pointerEvents: 'none' }}>{nMessages}</Badge> : null }
@@ -126,12 +128,14 @@ class ChatButton extends Component {
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
 	showTooltip: PropTypes.bool,
-	size: PropTypes.string
+	size: PropTypes.string,
+	style: PropTypes.object
 };
 
 ChatButton.defaultProps = {
 	showTooltip: true,
-	size: 'sm'
+	size: 'sm',
+	style: {}
 };
 
 ChatButton.contextType = SessionContext;

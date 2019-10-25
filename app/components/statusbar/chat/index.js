@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Draggable from 'components/draggable';
 import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
@@ -170,32 +171,33 @@ class Chat extends Component {
 		const { chat, left, width } = this.props;
 		const ident = 'chat_' + chat.name;
 		return (
-			<div id={ident} className="chat-outer-div" style={{
-				position: isElectron ? 'absolute' : 'fixed',
-				left: left,
-				width: width
-			}}>
-				<div
-					className="chat-div"
-					role="button" tabIndex={0}
-					style={{
-						opacity: this.state.opened ? 1.0 : 0.7
-					}}
-					ref={( chat ) => { this.chat = chat; }}
-					onMouseOver={this.onMouseOver}
-					onFocus={this.onMouseOver}
-					onMouseOut={this.onMouseOut}
-					onBlur={this.onMouseOut}
-					onClick={this.toggleChat} onKeyPress={this.toggleChat}
-				>{chat.name}
-					<span className="chat-presence" style={{
-						display: this.state.hasNews ? 'inline' : 'none'
-					}} />
-					<button className="chatexit" onClick={this.closeChat}>X</button>
+			<Draggable cancel=".chat-textarea" >
+				<div id={ident} className="chat-outer-div" style={{
+					position: isElectron ? 'absolute' : 'fixed',
+					left: left,
+					width: width
+				}}>
+					<div
+						className="chat-div"
+						style={{
+							opacity: this.state.opened ? 1.0 : 0.7
+						}}
+						ref={( chat ) => { this.chat = chat; }}
+						onMouseOver={this.onMouseOver}
+						onFocus={this.onMouseOver}
+						onMouseOut={this.onMouseOut}
+						onBlur={this.onMouseOut}
+					>{chat.name}
+						<span className="chat-presence" style={{
+							display: this.state.hasNews ? 'inline' : 'none'
+						}} />
+						<button className="chat-header-button" onClick={this.closeChat}>X</button>
+						<button className="chat-header-button" onClick={this.toggleChat}>–</button>
+					</div>
+					{this.renderMembers()}
+					{this.renderChatBody()}
 				</div>
-				{this.renderMembers()}
-				{this.renderChatBody()}
-			</div>
+			</Draggable>
 		);
 	}
 }

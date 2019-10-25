@@ -1163,7 +1163,6 @@ MarkdownEditor.defaultProps = {
 	groupMode: false,
 	intervalTime: 60000,
 	peerReview: null,
-	plots: [],
 	voiceControl: false,
 	voiceTimeout: 5000,
 	language: 'en-US',
@@ -1186,7 +1185,6 @@ MarkdownEditor.propTypes = {
 		submitButtonLabel: PropTypes.string,
 		reviewButtonLabel: PropTypes.string
 	}),
-	plots: PropTypes.array,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };
