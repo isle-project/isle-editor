@@ -108,6 +108,7 @@ function loadFonts() {
 * @property {Array} toolbarConfig - array of toolbar element identifiers to be displayed
 * @property {Object} options - options passed to the SimpleMDE constructor, the package on which this component is based; see their documentation for available options
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {boolean} groupMode - controls whether to sync editor changes across users
 * @property {Object} peerReview - if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {boolean} voiceControl - controls whether voice input is enabled
@@ -431,6 +432,19 @@ class MarkdownEditor extends Component {
 					localStorage.setItem( this.id+'_peer_comments', action.value );
 					this.addPeerComments( action.value );
 				}
+				else if ( action.type === 'MARKDOWN_EDITOR_GROUP' && action.email !== session.user.email ) {
+					const value = JSON.parse( action.value );
+					this.noLogging = true;
+					this.simplemde.codemirror.replaceRange( value.text, value.from, value.to );
+				}
+				else if ( action.type === PLOT_DRAGGED && action.email !== session.user.email ) {
+					const { html, key } = JSON.parse( action.value );
+					const { hash } = this.state;
+					hash[ key ] = html;
+					this.setState({
+						hash
+					});
+				}
 			}
 		});
 		window.addEventListener( 'beforeunload', this.handleAutosave );
@@ -555,6 +569,17 @@ class MarkdownEditor extends Component {
 		// Add event listeners:
 		this.simplemde.codemirror.on( 'change', ( instance, change ) => {
 			let obj = this.state.change;
+			if ( this.props.groupMode && !this.noLogging ) {
+				const session = this.context;
+				session.log({
+					id: this.id,
+					type: 'MARKDOWN_EDITOR_GROUP',
+					value: JSON.stringify( change, replacer ),
+					noSave: true
+				}, 'members' );
+			} else {
+				this.noLogging = false;
+			}
 			if ( !obj.origin ) {
 				obj.origin = change.origin;
 			}
@@ -618,8 +643,13 @@ class MarkdownEditor extends Component {
 					this.context.log({
 						id: this.id,
 						type: PLOT_DRAGGED,
-						value: key.substring( 14, 20 )
-					});
+						value: JSON.stringify({
+							key,
+							id: key.substring( 14, 20 ),
+							html
+						}),
+						noSave: true
+					}, this.props.groupMode ? 'members' : 'owners' );
 				}
 				const { hash } = this.state;
 				hash[ key ] = html;
@@ -1130,6 +1160,7 @@ MarkdownEditor.defaultProps = {
 		'guides'
 	],
 	autoSave: true,
+	groupMode: false,
 	intervalTime: 60000,
 	peerReview: null,
 	plots: [],
@@ -1146,6 +1177,7 @@ MarkdownEditor.propTypes = {
 	toolbarConfig: PropTypes.array,
 	options: PropTypes.object,
 	autoSave: PropTypes.bool,
+	groupMode: PropTypes.bool,
 	intervalTime: PropTypes.number,
 	voiceControl: PropTypes.bool,
 	voiceTimeout: PropTypes.number,

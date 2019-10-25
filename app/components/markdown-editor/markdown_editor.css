@@ -7,6 +7,12 @@
 	font-size: 16px;
 }
 
+.Lesson > .markdown-editor {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1200px;
+}
+
 .CodeMirror {
 	max-height: 420px;
 }
