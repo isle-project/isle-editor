@@ -6,6 +6,7 @@ import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, mkdirSync, createWriteStream } from 'fs';
 import https from 'https';
 import http from 'http';
+import url from 'url';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -271,7 +272,7 @@ class Editor extends Component {
 		const selection = this.editor.getSelection();
 		const selectedText = this.editor.getModel().getValueInRange( selection );
 		if ( isURI( selectedText ) ) {
-			const ext = extname( selectedText );
+			const ext = extname( url.parse( selectedText ).pathname );
 			if ( contains( IMAGE_EXTENSIONS, ext ) ) {
 				actions.push({
 					command: {
@@ -292,8 +293,11 @@ class Editor extends Component {
 				});
 			}
 		}
-		else if ( startsWith( selectedText, '<img' ) ) {
+		else if ( startsWith( selectedText, '<img' ) || startsWith( selectedText, '<Image' ) ) {
 			const match = selectedText.match( RE_IMG_SRC );
+			const model = this.editor.getModel();
+			const range = model.findMatches( RE_IMG_SRC, 0, true );
+			console.log( range );
 			if ( match ) {
 				const url = match[ 1 ];
 				const ext = extname( url );
@@ -419,7 +423,7 @@ class Editor extends Component {
 			const destPath = join( imgDir, name );
 			copyFileSync( path, destPath );
 			const src = './' + relative( destDir, destPath );
-			const text = `<img src="${src}" alt="Enter description" width="100%" height="auto" />`;
+			const text = `<Image src="${src}" alt="Enter description" width="50%" height="auto" />`;
 			if ( placeCursor ) {
 				const selection = new this.monaco.Selection( coords[0], coords[1], coords[0], coords[1] );
 				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [ selection ] );
@@ -489,9 +493,11 @@ class Editor extends Component {
 				) {
 					text = `<VideoPlayer url="${text}" />`;
 				}
-				const ext = extname( text );
-				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
-					text = `<img src="${text}" alt="Enter description" width="100%" height="auto" />`;
+				else {
+					const ext = extname( url.parse( text ).pathname );
+					if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+						text = `<Image src="${text}" alt="Enter description" width="50%" height="auto" />`;
+					}
 				}
 			}
 			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
