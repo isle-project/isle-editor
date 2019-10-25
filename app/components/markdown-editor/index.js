@@ -435,7 +435,9 @@ class MarkdownEditor extends Component {
 				else if ( action.type === 'MARKDOWN_EDITOR_GROUP' && action.email !== session.user.email ) {
 					const value = JSON.parse( action.value );
 					this.noLogging = true;
+					const cursor = this.simplemde.codemirror.getCursor();
 					this.simplemde.codemirror.replaceRange( value.text, value.from, value.to );
+					this.simplemde.codemirror.setCursor( cursor );
 				}
 				else if ( action.type === PLOT_DRAGGED && action.email !== session.user.email ) {
 					const { html, key } = JSON.parse( action.value );
