@@ -294,19 +294,19 @@ class Editor extends Component {
 			}
 		}
 		else if ( startsWith( selectedText, '<img' ) || startsWith( selectedText, '<Image' ) ) {
-			const match = selectedText.match( RE_IMG_SRC );
 			const model = this.editor.getModel();
-			const range = model.findMatches( RE_IMG_SRC, 0, true );
-			console.log( range );
-			if ( match ) {
-				const url = match[ 1 ];
-				const ext = extname( url );
+			const { matches, range } = model.findNextMatch( RE_IMG_SRC, 0, true, false, null, true );
+			range.startColumn += 5; // handles leading src="
+			range.endColumn -= 1; // handles trailing "
+			if ( matches ) {
+				const imgURL = matches[ 1 ];
+				const ext = extname( url.parse( imgURL ).pathname );
 				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
 					actions.push({
 						command: {
 							id: this.copyToLocal,
 							title: 'Copy image to local location',
-							arguments: [ url, 'img', ext, selection ]
+							arguments: [ imgURL, 'img', ext, range ]
 						},
 						title: 'Copy image to local location'
 					});
