@@ -116,44 +116,44 @@ class Transformer extends Component {
 	render() {
 		return (
 			<div className="well" style={{ padding: 15, margin: 15 }} >
-				<div>
+				<div style={{ padding: 12 }} >
 					<Button
 						onClick={this.toggleFormulaModal}
 						variant="primary"
-						size="large"
 						block
+						style={{ fontSize: '1.2em' }}
 					>
 						Interactions, Transformations (e.g., sqrt), Functions
 					</Button>
 				</div>
-				<div>
+				<div style={{ padding: 12 }} >
 					<Button
 						onClick={this.toggleBinModal}
 						disabled={this.props.quantitative.length === 0}
 						variant="primary"
-						size="large"
 						block
+						style={{ fontSize: '1.2em' }}
 					>
 						Bin quantitative variables into categorical
 					</Button>
 				</div>
-				<div>
+				<div style={{ padding: 12 }} >
 					<Button
 						onClick={this.toggleCategoricalModal}
 						disabled={this.props.categorical.length === 0}
 						variant="primary"
-						size="large"
 						block
+						style={{ fontSize: '1.2em' }}
 					>
 						Rename or combine categories
 					</Button>
 				</div>
-				<div>
+				<div style={{ padding: 12 }} >
 					<Button
 						onClick={this.toggleGroupModal}
 						variant="primary"
-						size="large"
 						block
+						style={{ fontSize: '1.2em' }}
 					>
 						Create groups (e.g., for training-test set split or cross-validation)
 					</Button>

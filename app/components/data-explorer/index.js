@@ -1481,7 +1481,7 @@ class DataExplorer extends Component {
 							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
 							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
 						</Card.Header>
-						<Card.Body style={{ paddingBottom: '0px' }}>
+						<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '80vh' }}>
 							<Tab.Container defaultActiveKey={defaultActiveKey}>
 								{navbar}
 								{tabs}

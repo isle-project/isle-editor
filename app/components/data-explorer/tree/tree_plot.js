@@ -42,12 +42,12 @@ function treeToHtml( tree ) {
 				<span><b> {tree.attribute} {tree.predicateName} {tree.pivot} ?</b></span>
 				<ul>
 					<li>
-						<span>yes ( {tree.matchedCount} obs) </span>
-						{treeToHtml(tree.match)}
-					</li>
-					<li>
 						<span>no ( {tree.notMatchedCount} obs) </span>
 						{treeToHtml(tree.notMatch)}
+					</li>
+					<li>
+						<span>yes ( {tree.matchedCount} obs) </span>
+						{treeToHtml(tree.match)}
 					</li>
 				</ul>
 			</li>

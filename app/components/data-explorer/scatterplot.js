@@ -558,7 +558,7 @@ class Scatterplot extends Component {
 
 	render() {
 		return (
-			<Card>
+			<Card style={{ minWidth: 650 }} >
 				<Card.Header as="h4" >
 					Scatterplot<QuestionButton title="Scatterplot" content={DESCRIPTION} />
 				</Card.Header>
