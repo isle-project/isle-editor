@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import randomstring from 'utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
+import './image.css';
 
 
 // MAIN //
@@ -96,9 +97,7 @@ class Image extends Component {
 		return (
 			<Fragment>
 				<img
-					style={{
-						cursor: 'zoom-in'
-					}}
+					className="isle-image"
 					alt={this.props.alt}
 					src={this.props.src}
 					width={this.props.width}
