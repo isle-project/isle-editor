@@ -420,6 +420,12 @@ mark {
 	margin-right: auto;
 }
 
+.Lesson > img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .Lesson > label {
 	display: block;
 }

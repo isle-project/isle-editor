@@ -39,6 +39,7 @@ const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)
 const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
+const RE_IMG_SRC = /src="([^"]+)"/;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	minimap: {
@@ -291,6 +292,23 @@ class Editor extends Component {
 				});
 			}
 		}
+		else if ( startsWith( selectedText, '<img' ) ) {
+			const match = selectedText.match( RE_IMG_SRC );
+			if ( match ) {
+				const url = match[ 1 ];
+				const ext = extname( url );
+				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+					actions.push({
+						command: {
+							id: this.copyToLocal,
+							title: 'Copy image to local location',
+							arguments: [ url, 'img', ext, selection ]
+						},
+						title: 'Copy image to local location'
+					});
+				}
+			}
+		}
 		return {
 			actions,
 			dispose(){}
@@ -401,10 +419,10 @@ class Editor extends Component {
 			const destPath = join( imgDir, name );
 			copyFileSync( path, destPath );
 			const src = './' + relative( destDir, destPath );
-			const text = `<img src="${src}" alt="Enter description" />`;
+			const text = `<img src="${src}" alt="Enter description" width="100%" height="auto" />`;
 			if ( placeCursor ) {
-				const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
-				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [selection]);
+				const selection = new this.monaco.Selection( coords[0], coords[1], coords[0], coords[1] );
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [ selection ] );
 				this.editor.focus();
 			} else {
 				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }]);
@@ -415,7 +433,7 @@ class Editor extends Component {
 
 	insertVideoAtPos = (
 		file,
-		coords = [0, 0],
+		coords = [ 0, 0 ],
 		placeCursor= false
 	) => {
 		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
@@ -454,10 +472,10 @@ class Editor extends Component {
 		const range = new this.monaco.Range(coords[0], coords[1], coords[0], coords[1]);
 		if ( placeCursor ) {
 			const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
-			this.editor.executeEdits('insert', [{ range, text, forceMoveMarkers: true }], [selection]);
+			this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [ selection ] );
 			this.editor.focus();
 		} else {
-			this.editor.executeEdits('insert', [{ range, text, forceMoveMarkers: true }]);
+			this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }] );
 		}
 		this.editor.pushUndoStop();
 	}
@@ -473,7 +491,7 @@ class Editor extends Component {
 				}
 				const ext = extname( text );
 				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
-					text = `<img src="${text}" alt="Enter description" />`;
+					text = `<img src="${text}" alt="Enter description" width="100%" height="auto" />`;
 				}
 			}
 			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
