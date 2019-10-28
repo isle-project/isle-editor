@@ -10,11 +10,7 @@ import React, { Component } from 'react';
 import { transformSync } from '@babel/core';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { dirname, resolve, extname } from 'path';
-import { readFileSync } from 'fs';
 import objectKeys from '@stdlib/utils/keys';
-import isAbsolutePath from '@stdlib/assert/is-absolute-path';
-import isRelativePath from '@stdlib/assert/is-relative-path';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import repeat from '@stdlib/string/repeat';
@@ -67,24 +63,6 @@ class Preview extends Component {
 		};
 		global.lesson = this;
 		if ( isObject( props.preamble ) ) {
-			try {
-				if ( props.preamble.instructorNotes ) {
-					let instructorNotes = props.preamble.instructorNotes;
-					if ( extname( instructorNotes ) === '.md' ) {
-						if ( isRelativePath( instructorNotes ) ) {
-							const fPath = resolve( dirname( props.filePath ), instructorNotes );
-							instructorNotes = readFileSync( fPath );
-							instructorNotes = instructorNotes.toString();
-						} else if ( isAbsolutePath( instructorNotes ) ) {
-							instructorNotes = readFileSync( instructorNotes );
-							instructorNotes = instructorNotes.toString();
-						}
-						props.preamble.instructorNotes = instructorNotes;
-					}
-				}
-			} catch ( err ) {
-				props.encounteredError( new Error( 'Ensure that instructor notes path is correct.' ) );
-			}
 			try {
 				applyStyles( props.preamble, props.filePath || '' );
 			} catch ( err ) {
@@ -187,22 +165,6 @@ class Preview extends Component {
 			}, () => {
 				this.props.encounteredError( err );
 			});
-		}
-		try {
-			let instructorNotes = newPreamble.instructorNotes;
-			if ( instructorNotes && extname( instructorNotes ) === '.md' ) {
-				if ( isRelativePath( instructorNotes ) ) {
-					const fPath = resolve( dirname(this.props.filePath), instructorNotes );
-					instructorNotes = readFileSync( fPath );
-					instructorNotes = instructorNotes.toString();
-				} else if ( isAbsolutePath( instructorNotes ) ) {
-					instructorNotes = readFileSync( instructorNotes );
-					instructorNotes = instructorNotes.toString();
-				}
-				newPreamble.instructorNotes = instructorNotes;
-			}
-		} catch ( err ) {
-			return this.props.encounteredError( new Error( 'Ensure that instructor notes path is correct' ) );
 		}
 		try {
 			applyStyles( newPreamble, this.props.filePath || '' );

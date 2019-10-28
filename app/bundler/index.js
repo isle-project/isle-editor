@@ -230,19 +230,7 @@ const getComponentList = ( code ) => {
 	return ret;
 };
 
-const getISLEcode = ( config, filePath ) => {
-	if ( config.instructorNotes && extname( config.instructorNotes ) === '.md' ) {
-		if ( isRelativePath( config.instructorNotes ) ) {
-			debug( 'Loading instructor notes from the supplied relative path...' );
-			const fPath = resolve( dirname(filePath), config.instructorNotes );
-			config.instructorNotes = readFileSync( fPath );
-			config.instructorNotes = config.instructorNotes.toString();
-		} else if ( isAbsolutePath( config.instructorNotes ) ) {
-			debug( 'Loading instructor notes from the supplied absolute path...' );
-			config.instructorNotes = readFileSync( config.instructorNotes );
-			config.instructorNotes = config.instructorNotes.toString();
-		}
-	}
+const getISLEcode = ( config ) => {
 	return `const preamble = ${JSON.stringify( config )};`;
 };
 
@@ -283,7 +271,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 		res += 'import SPECTACLE_THEME from \'components/spectacle/theme.json\';';
 	}
 	res += '\n';
-	res += getISLEcode( meta, filePath );
+	res += getISLEcode( meta );
 
 	res += getSessionCode( basePath );
 

@@ -95,11 +95,6 @@
 		"description": "Hide the icon in the statusbar to toggle on and off voice control"
 	},
 	{
-		"name": "instructorNotes",
-		"value": "instructorNotes: ${1:}",
-		"description": "Absolute or relative path to Markdown file with notes for the instructor or the teaching assistants"
-	},
-	{
 		"name": "noLoginDismiss",
 		"value": "noLoginDismiss: ${1:true}",
 		"description": "Do not automatically dismiss the signup/login notification window"
