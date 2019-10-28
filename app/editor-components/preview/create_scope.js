@@ -99,7 +99,6 @@ const SCOPE = {
 	LearnImagePixelPicker: Loadable( () => import( 'components/learn/image-pixel-picker' ) ),
 	LessonSubmit: Loadable( () => import( 'components/lesson-submit' ) ),
 	LikertScale: Loadable( () => import( 'components/likert-scale' ) ),
-	MarkdownEditor: Loadable( () => import( 'components/markdown-editor' ) ),
 	MatchListQuestion: Loadable( () => import( 'components/match-list-question' ) ),
 	Metrics: Loadable( () => import( 'components/metrics/db' ) ),
 	MetricsContingencyTable: Loadable( () => import( 'components/metrics/contingency-table' ) ),

@@ -59,7 +59,6 @@
 	"DensityPlot": "components/d3/density-plot",
 	"DraggableGrid": "components/draggable-grid",
 	"DraggableList": "components/draggable-list",
-	"MarkdownEditor": "components/markdown-editor",
 	"EnlargeableGrid": "components/enlargeable-grid",
 	"Expire": "components/expire",
 	"FeedbackButtons": "components/feedback",
