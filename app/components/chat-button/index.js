@@ -23,6 +23,7 @@ const debug = logger( 'isle:chat-button' );
 * @property {string} for - chat room identifier
 * @property {boolean} showTooltip - controls whether to show tooltip
 * @property {string} size - button size
+* @property {string} tooltipPlacement - position of button tooltip
 * @property {Object} style - CSS inline styles
 */
 class ChatButton extends Component {
@@ -109,7 +110,7 @@ class ChatButton extends Component {
 		if ( this.props.showTooltip ) {
 			button = <Tooltip
 				tooltip={`${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`}
-				placement="top"
+				placement={this.props.tooltipPlacement}
 			>
 				{button}
 			</Tooltip>;
@@ -129,12 +130,14 @@ ChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
 	showTooltip: PropTypes.bool,
 	size: PropTypes.string,
+	tooltipPlacement: PropTypes.oneOf([ 'left', 'top', 'right', 'bottom' ]),
 	style: PropTypes.object
 };
 
 ChatButton.defaultProps = {
 	showTooltip: true,
 	size: 'sm',
+	tooltipPlacement: 'top',
 	style: {}
 };
 
