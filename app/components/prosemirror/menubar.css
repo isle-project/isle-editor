@@ -1,0 +1,36 @@
+.menu-item:hover {
+	background: #fcfcfc;
+	border-color: #95a5a6;
+}
+
+.menu-item {
+	background: transparent;
+	border: none;
+	font-size: inherit;
+	cursor: pointer;
+	border-radius: 2px;
+	border-color: transparent;
+	border-style: solid;
+	padding: 5px 10px;
+}
+
+i.prose-separator {
+	display: inline-block;
+	width: 0;
+	border-left: 1px solid #d9d9d9;
+	border-right: 1px solid #fff;
+	color: transparent;
+	text-indent: -10px;
+	margin: 0 6px;
+}
+
+.prose-menu-bar {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	align-items: baseline;
+	border-bottom: 1px solid silver;
+}
+
