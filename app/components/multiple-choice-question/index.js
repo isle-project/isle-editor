@@ -425,7 +425,6 @@ class MultipleChoiceQuestion extends Component {
 						<Button
 							className="submit-button"
 							size="small"
-							variant="success"
 							onClick={this.submitQuestion}
 							disabled={this.checkDisabledStatus()}
 							block
