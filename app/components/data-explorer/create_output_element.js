@@ -2,7 +2,6 @@
 
 import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
-import TurndownService from 'turndown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Table from 'react-bootstrap/Table';
 import logger from 'debug';
@@ -18,9 +17,6 @@ import DatasetButton from './dataset_button.js';
 
 const debug = logger( 'isle:data-explorer' );
 const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
-const turndownService = new TurndownService();
-const turndownPluginGfm = require( 'turndown-plugin-gfm' );
-turndownService.use( turndownPluginGfm.gfm );
 
 
 // FUNCTIONS //
@@ -40,12 +36,9 @@ const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilter
 /**
 * Wraps the supplied div element such that it can be dragged.
 */
-const makeDraggable = ( div, asMarkdown = true ) => {
+const makeDraggable = ( div ) => {
 	let markup = renderToString( div );
 	markup = replace( markup, RE_CLEAR_BUTTON, '' );
-	if ( asMarkdown ) {
-		markup = turndownService.turndown( markup );
-	}
 	return (
 		<Fragment>
 			<div
@@ -53,7 +46,7 @@ const makeDraggable = ( div, asMarkdown = true ) => {
 				className="data-explorer-draggable-bar"
 				onDragStart={( ev ) => {
 					ev.dataTransfer.setData( 'text/plain', markup );
-					ev.dataTransfer.setData( 'text/html', '' );
+					ev.dataTransfer.setData( 'text/html', markup );
 				}}
 			>
 				Drag Table

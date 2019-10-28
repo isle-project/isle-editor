@@ -64,8 +64,6 @@ const EXTERNALS = [
 	'stemmer',
 	'svgo',
 	'terser',
-	'turndown',
-	'turndown-plugin-gfm',
 	'typo-js',
 	'uglify-es',
 	'uniq',
