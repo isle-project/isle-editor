@@ -190,10 +190,7 @@ class InstructorView extends Component {
 					/>
 				</Tab>
 				<Tab eventKey="instructor_notes" title="Instructor Notes" >
-					<InstructorNotes
-						id={session.lessonID+'instructor_notebook'}
-						className="instructor_notebook"
-					/>
+					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotes /> : null }
 				</Tab>
 			</Tabs>
 		);

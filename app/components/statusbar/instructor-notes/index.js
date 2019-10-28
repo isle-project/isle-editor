@@ -1,9 +1,14 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import MarkdownEditor from 'components/markdown-editor';
-import SessionContext from 'session/context.js';
+import logger from 'debug';
+import TextEditor from 'components/text-editor';
 import './instructor_notes.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:instructor-notes' );
 
 
 // MAIN //
@@ -14,12 +19,12 @@ class InstructorNotes extends Component {
 	}
 
 	render() {
-		const session = this.context;
+		debug( 'Rendering instructor notes...' );
 		return (
-			<MarkdownEditor
+			<TextEditor
 				className="instructor-notes"
-				defaultValue={session.config.instructorNotes || ''}
-				id={this.props.id}
+				groupMode
+				id="instructor-notes"
 				toolbarConfig={[
 					'bold',
 					'italic',
@@ -34,11 +39,6 @@ class InstructorNotes extends Component {
 		);
 	}
 }
-
-
-// TYPES //
-
-InstructorNotes.contextType = SessionContext;
 
 
 // EXPORTS //
