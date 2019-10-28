@@ -620,6 +620,50 @@ class Session {
 	}
 
 	/**
+	* Joins collaborative editing of document.
+	*
+	* @param {string} name - document identifier
+	*/
+	joinCollaborativeEditing( name ) {
+		name = `${this.namespaceName}-${this.lessonName}-${name}`;
+		if ( this.socket ) {
+			this.socket.emit( 'join_collaborative_editing', name );
+		}
+	}
+
+	/**
+	* Send document edits.
+	*
+	* @param {string} name - document identifier
+	* @param {Object} data - document edit events
+	*/
+	sendCollaborativeEvents( name, data ) {
+		if ( this.socket ) {
+			name = `${this.namespaceName}-${this.lessonName}-${name}`;
+			this.socket.emit( 'send_collaborative_editing_events', {
+				docId: name,
+				data: data
+			});
+		}
+	}
+
+	/**
+	* Poll server for collaborative editing events.
+	*
+	* @param {string} name - document identifier
+	* @param {Object} data - object with `version` and `commentVersion`
+	*/
+	pollCollaborativeEditingEvents( name, data ) {
+		if ( this.socket ) {
+			name = `${this.namespaceName}-${this.lessonName}-${name}`;
+			this.socket.emit( 'poll_collaborative_editing_events', {
+				docId: name,
+				data
+			});
+		}
+	}
+
+	/**
 	* Marks all chat messages in the specified room as read.
 	*
 	* @param {string} name - name of chat room
@@ -847,6 +891,22 @@ class Session {
 				debug( 'Somebody else has left the chat' );
 				this.update( 'member_has_left_chat', name );
 			}
+		});
+
+		socket.on( 'joined_collaborative_editing', ( data ) => {
+			this.update( 'joined_collaborative_editing', data );
+		});
+
+		socket.on( 'sent_collaborative_editing_events', ( data ) => {
+			this.update( 'sent_collaborative_editing_events', data );
+		});
+
+		socket.on( 'polled_collaborative_editing_events', ( data ) => {
+			this.update( 'polled_collaborative_editing_events', data );
+		});
+
+		socket.on( 'collaborative_editing_events', () => {
+			this.update( 'collaborative_editing_events' );
 		});
 
 		socket.on( 'chat_message', ( data ) => {
