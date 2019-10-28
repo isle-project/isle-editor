@@ -149,8 +149,8 @@ const SCOPE = {
 	SliderInput,
 	Slider: Loadable( () => import( 'components/slider' ) ),
 	Spinner: Loadable( () => import( 'components/spinner' ) ),
-
 	StatusBar: Loadable( () => import( 'components/statusbar' ) ),
+	TextEditor: Loadable( () => import( 'components/text-editor' ) ),
 	Toolbar: Loadable( () => import( 'components/toolbar' ) ),
 	Sunburst: Loadable( () => import( 'components/d3/sunburst' ) ),
 	SurveyGenerator: Loadable( () => import( 'components/survey-generator' ) ),

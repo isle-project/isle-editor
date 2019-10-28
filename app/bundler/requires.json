@@ -94,6 +94,7 @@
 	"NumberSurvey": "components/number-survey",
 	"OrderQuestion": "components/order-question",
 	"Pages": "components/pages",
+	"TextEditor": "components/text-editor",
 	"Panel": "components/panel",
 	"Playground": "components/playground",
 	"Plotly": "components/plotly",
