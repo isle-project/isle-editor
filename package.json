@@ -167,6 +167,7 @@
     "pressure": "^2.1.2",
     "profanities": "^2.10.2",
     "prop-types": "^15.5.10",
+    "prosemirror-collab": "^1.1.2",
     "prosemirror-commands": "^1.0.8",
     "prosemirror-dropcursor": "^1.2.0",
     "prosemirror-gapcursor": "^1.0.4",
