@@ -33,15 +33,15 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen }) => {
 		e.preventDefault();
 		if ( item.run ) {
 			debug( 'Run command', item, e );
-			item.run(state, dispatch, view, e.nativeEvent);
+			item.run( state, dispatch, view, e.nativeEvent );
 		}
 	};
 	const createGroupButtons = ( item, itemKey ) => (
 		<Button
 			key={itemKey}
 			type="button"
-			active={item.active ? item.active(state) : false}
-			disabled={item.enable ? !item.enable(state) : false}
+			active={item.active && state ? item.active( state ) : false}
+			disabled={item.enable && state ? !item.enable( state ) : false}
 			title={typeof item.title === 'string' ? item.title : ''}
 			onMouseDown={onMenuMouseDown(item)}
 		>
