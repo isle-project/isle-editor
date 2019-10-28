@@ -113,6 +113,7 @@ class MosaicPlot extends Component {
 				autoStart={false}
 				title={<span>Mosaic Plot<QuestionButton title="Mosaic Plot" content={DESCRIPTION} /></span>}
 				onGenerate={this.generateMosaicPlot.bind( this )}
+				style={{ minHeight: 380 }}
 			>
 				<SelectInput
 					legend="Variables"
