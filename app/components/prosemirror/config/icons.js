@@ -6,6 +6,7 @@ import React from 'react';
 // MAIN //
 
 const icons = {
+	annotation: <i className="prosemirror-icon fas fa-comment"></i>,
 	blockquote: <i className="prosemirror-icon fas fa-quote-left"></i>,
 	bold: <i className="prosemirror-icon fas fa-bold"></i>,
 	bullet_list: <i className="prosemirror-icon fas fa-list-ul"></i>,
