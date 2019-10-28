@@ -242,13 +242,27 @@ class Editor extends Component {
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
-		this._codeActionProvider.dispose();
-		this._attributeProvider.dispose();
-		this._snippetProvider.dispose();
-		this._preambleProvider.dispose();
-		this._requireProvider.dispose();
-		this._preambleHoverProvider.dispose();
-		this._snippetHoverProvider.dispose();
+		if ( this._codeActionProvider ) {
+			this._codeActionProvider.dispose();
+		}
+		if ( this._attributeProvider ) {
+			this._attributeProvider.dispose();
+		}
+		if ( this._snippetProvider ) {
+			this._snippetProvider.dispose();
+		}
+		if ( this._preambleProvider ) {
+			this._preambleProvider.dispose();
+		}
+		if ( this._requireProvider ) {
+			this._requireProvider.dispose();
+		}
+		if ( this._preambleHoverProvider ) {
+			this._preambleHoverProvider.dispose();
+		}
+		if ( this._snippetHoverProvider ) {
+			this._snippetHoverProvider.dispose();
+		}
 	}
 
 	provideCodeActions = ( textModel, range, context ) => {
