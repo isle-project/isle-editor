@@ -226,6 +226,13 @@ mark {
 	margin-bottom: 8px;
 }
 
+.list-group-item.active {
+	z-index: 2;
+	color: #fff;
+	background-color: var(--tertiarylight);
+	border-color: var(--tertiarylight);
+}
+
 .Presentation {
 	font-family: 'Open Sans', sans-serif;
 	width: 100%;
