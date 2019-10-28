@@ -36,7 +36,7 @@ import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
-import MarkdownEditor from 'components/markdown-editor';
+import TextEditor from 'components/text-editor';
 import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';
 import ChatButton from 'components/chat-button';
@@ -114,7 +114,7 @@ const uid = generateUID( 'data-explorer' );
 * @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
 * @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
-* @property {Object} editorProps - object to be passed to `MarkdownEditor` indicating properties to be used
+* @property {Object} editorProps - object to be passed to `TextEditor` indicating properties to be used
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
 * @property {boolean} groupMode - controls whether to sync editor changes across users
 * @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
@@ -1325,7 +1325,7 @@ class DataExplorer extends Component {
 								);
 							}) : null }
 						</Nav>
-						{ this.props.groupMode ? <ChatButton style={{ position: 'absolute', right: '135px' }} for={this.id} /> : null }
+						{ this.props.groupMode ? <ChatButton style={{ position: 'absolute', right: '135px' }} for={this.id} tooltipPlacement="bottom" /> : null }
 						<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
 					</Navbar>
 					<Card.Body>
@@ -1395,7 +1395,7 @@ class DataExplorer extends Component {
 								</Row>
 						</div>
 						{ this.props.editor ?
-						<MarkdownEditor {...this.props.editorProps}
+						<TextEditor {...this.props.editorProps}
 							groupMode={this.props.groupMode}
 							id={this.id + '_editor'}
 							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
