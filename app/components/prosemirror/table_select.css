@@ -1,0 +1,47 @@
+table.tableSelect {
+	border: 1px solid;
+	text-align: center;
+	width: 100%;
+	background-color: #9999ff;
+	border-collapse: collapse;
+}
+
+table.tableSelect tr td.cell {
+	border: 1px solid;
+	cursor: pointer;
+}
+
+table.tableSelect tr td.cell:hover {
+	background-color: yellow;
+}
+
+table.tableSelect tr td.grid_select {
+	background-color: gray;
+	border: 1.25px solid;
+	cursor: pointer;
+}
+
+table.tableSelect tr td.grid_select:hover {
+	background-color: yellow;
+	cursor: pointer;
+}
+
+.selected_cols {
+	background-color: #D3E272;
+	border: 1.5px solid;
+	padding: 4px 4px;
+	text-align: center;
+	border-bottom: 3.5px solid #444444;
+}
+
+.un_selected_cols {
+	background-color: #CB97F0;
+	border: 1.5px solid;
+	padding: 4px 4px;
+	text-align: center;
+	border-bottom: 3.5px solid #444444;
+}
+
+.titleTable {
+	margin: 0 auto;
+}
