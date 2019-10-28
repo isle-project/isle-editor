@@ -220,6 +220,7 @@ class Calculator extends Component {
 					<Panel id="calc-panel-full" tabIndex={0} role="button" header={this.renderHeader()}>
 						<Container className="desaturated" >
 							<FormControl
+								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 								type="text" id="calc-text-area"
 								value={String(this.state.visible)}
 								onChange={this.handleTypeChange}
@@ -311,6 +312,7 @@ class Calculator extends Component {
 					>
 						<Container className="desaturated" >
 							<FormControl
+								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 								type="text" id="calc-text-area"
 								value={String(this.state.visible)}
 								onChange={this.handleTypeChange}
