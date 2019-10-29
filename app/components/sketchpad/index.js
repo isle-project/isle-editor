@@ -99,6 +99,15 @@ function isAlreadyInserted( pos, insertedPages ) {
 	return alreadyInserted;
 }
 
+function setDashedLines( ctx ) {
+	ctx.setLineDash([ 2, 15 ]);
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = 'orange';
+	ctx.lineCap = 'round';
+	ctx.lineJoin = 'round';
+	ctx.shadowBlur = 0;
+}
+
 
 // MAIN //
 
@@ -800,7 +809,7 @@ class Sketchpad extends Component {
 			this.canvasBuffer = document.createElement( 'canvas');
 			this.canvasBuffer.width = this.canvas.width;
 			this.canvasBuffer.height = this.canvas.height;
-			console.log( 'Prepare data for non-dragged elements...' );
+			debug( 'Prepare data for non-dragged elements...' );
 			if ( this.backgroundData ) {
 				this.ctx.putImageData( this.backgroundData, 0, 0 );
 			} else {
@@ -811,7 +820,7 @@ class Sketchpad extends Component {
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			const recordingEndPos = this.recordingEndPositions[ currentPage ];
 			for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
-				if ( !contains( this.selectedElements, elems[ i ] ) ) {
+				if ( !this.selectedElements || !contains( this.selectedElements, elems[ i ] ) ) {
 					this.drawElement( elems[ i ] );
 				}
 			}
@@ -819,9 +828,24 @@ class Sketchpad extends Component {
 		}
 		this.ctx.drawImage( this.canvasBuffer, 0, 0 );
 		const selected = this.selectedElements;
-		for ( let i = 0; i < selected.length; i++ ) {
-			this.drawElement( selected[ i ] );
+		if ( selected ) {
+			for ( let i = 0; i < selected.length; i++ ) {
+				this.drawElement( selected[ i ] );
+			}
 		}
+		const ctx = this.ctx;
+		ctx.beginPath();
+		setDashedLines( ctx );
+		if ( this.dragPoints ) {
+			for ( let i = 0; i < this.dragPoints.length; i += 2 ) {
+				const x = this.dragPoints[ i ];
+				const y = this.dragPoints[ i+1 ];
+				this.ctx.lineTo( x, y );
+			}
+		}
+		ctx.stroke();
+		ctx.closePath();
+		ctx.setLineDash( [] );
 	}
 
 	replay = () => {
@@ -1122,6 +1146,7 @@ class Sketchpad extends Component {
 			ctx.moveTo( startX, startY );
 			ctx.lineTo( endX, endY );
 			ctx.stroke();
+			ctx.closePath();
 		}
 	}
 
@@ -1138,11 +1163,13 @@ class Sketchpad extends Component {
 				ctx.beginPath();
 				curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
 				ctx.stroke();
+				ctx.closePath();
 			} else {
 				ctx.strokeStyle = 'orange';
 				ctx.beginPath();
 				curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 1 );
 				ctx.stroke();
+				ctx.closePath();
 			}
 		}
 	}
@@ -1173,23 +1200,29 @@ class Sketchpad extends Component {
 			this.draw( event );
 		} else if ( this.state.mode === 'drag' ) {
 			const ctx = this.ctx;
-			if ( !this.selectedElements ) {
-				ctx.beginPath();
-				ctx.setLineDash([ 2, 15 ]);
-				ctx.lineWidth = 2;
-				ctx.strokeStyle = 'orange';
-				ctx.lineCap = 'round';
-				ctx.lineJoin = 'round';
-				ctx.shadowBlur = 0;
-				this.draw( event );
+			ctx.closePath();
+			if ( !ctx.isPointInPath( x, y ) ) {
+				// Deselect elements when clicked outside selection path:
+				debug( 'Deselect elements...' );
+				const elems = this.selectedElements;
+				if ( elems ) {
+					for ( let i = 0; i < elems.length; i++ ) {
+						elems[ i ].selected = false;
+					}
+				}
+				this.selectedElements = null;
+				this.dragPoints = null;
+				this.canvasBuffer = null;
+				this.onlyRedrawElements();
 			}
+			ctx.beginPath();
+			this.draw( event );
 		} else if ( hasTouch ) {
 			this.handleClick( event );
 		}
 	}
 
 	drawEnd = ( event ) => {
-		// Mouse is not clicked anymore...
 		event.stopPropagation();
 		if (
 			(
@@ -1267,23 +1300,13 @@ class Sketchpad extends Component {
 			this.currentPoints = [];
 		}
 		else if ( this.state.mode === 'drag' && this.isMouseDown ) {
-			if ( this.selectedElements ) {
-				debug( 'Deselect elements...' );
-				const elems = this.selectedElements;
-				for ( let i = 0; i < elems.length; i++ ) {
-					elems[ i ].selected = false;
-				}
-				this.selectedElements = null;
-				this.canvasBuffer = null;
-				this.ctx.closePath();
-				this.onlyRedrawElements();
-			} else {
+			this.ctx.stroke();
+			this.ctx.closePath();
+			this.ctx.setLineDash( [] );
+			if ( !this.selectedElements ) {
 				debug( 'Select elements...' );
 				const elems = this.elements[ this.state.currentPage ];
 				this.selectedElements = null;
-				this.ctx.stroke();
-				this.ctx.closePath();
-				this.ctx.setLineDash( [] );
 				const selected = [];
 				for ( let i = 0; i < elems.length; i++ ) {
 					const elem = elems[ i ];
@@ -1294,6 +1317,7 @@ class Sketchpad extends Component {
 						const y = points[ j+1 ] * this.canvas.height;
 						if ( this.ctx.isPointInPath( x, y ) ) {
 							elem.selected = true;
+							console.log( 'isSelected... ');
 							selected.push( elem );
 							break;
 						}
@@ -1301,12 +1325,12 @@ class Sketchpad extends Component {
 				}
 				if ( selected.length > 0 ) {
 					this.selectedElements = selected;
+					this.dragPoints = this.currentPoints;
 				}
-				this.onlyRedrawElements();
 			}
+			this.redrawWhenDragging();
 		}
 		this.isMouseDown = false;
-		// this.forceUpdate();
 	}
 
 	draw = ( evt ) => {
@@ -1321,7 +1345,7 @@ class Sketchpad extends Component {
 		}
 		const session = this.context;
 		let { x, y } = this.mousePosition( evt );
-		if ( this.state.mode === 'drag' && this.selectedElements ) {
+		if ( this.state.mode === 'drag' && this.selectedElements && this.isMouseDown ) {
 			debug( 'Drag elements around...' );
 			const dx = ( x - this.x ) / ( this.canvas.width / DPR );
 			const dy = ( y - this.y ) / ( this.canvas.height / DPR );
@@ -1338,6 +1362,10 @@ class Sketchpad extends Component {
 					e.x += dx;
 					e.y += dy;
 				}
+			}
+			for ( let i = 0; i < this.dragPoints.length; i += 2 ) {
+				this.dragPoints[ i ] += ( x - this.x );
+				this.dragPoints[ i+1 ] += ( y - this.y );
 			}
 			const username = session.user.email || session.anonymousIdentifier;
 			const action = {
@@ -1367,9 +1395,9 @@ class Sketchpad extends Component {
 				debug( 'Check whether to delete element...' );
 				return this.checkDeletion( evt );
 			}
+			this.currentPoints.push( x );
+			this.currentPoints.push( y );
 			if ( this.state.mode === 'drawing' ) {
-				this.currentPoints.push( x );
-				this.currentPoints.push( y );
 				const line = {
 					color: this.state.color,
 					lineWidth: this.state.brushSize * ( 1.0 + this.force ) * 0.5,
@@ -1383,6 +1411,7 @@ class Sketchpad extends Component {
 				this.drawElement( line );
 			}
 			else if ( this.state.mode === 'drag' && !this.selectedElements ) {
+				setDashedLines( this.ctx );
 				this.ctx.lineTo( x, y );
 				this.ctx.stroke();
 			}
