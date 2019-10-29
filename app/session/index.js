@@ -641,7 +641,7 @@ class Session {
 		if ( this.socket ) {
 			name = `${this.namespaceName}-${this.lessonName}-${name}`;
 			this.socket.emit( 'send_collaborative_editing_events', {
-				docId: name,
+				docID: name,
 				data: data
 			});
 		}
@@ -657,7 +657,7 @@ class Session {
 		if ( this.socket ) {
 			name = `${this.namespaceName}-${this.lessonName}-${name}`;
 			this.socket.emit( 'poll_collaborative_editing_events', {
-				docId: name,
+				docID: name,
 				data
 			});
 		}
@@ -893,20 +893,20 @@ class Session {
 			}
 		});
 
-		socket.on( 'joined_collaborative_editing', ( data ) => {
-			this.update( 'joined_collaborative_editing', data );
+		socket.on( 'joined_collaborative_editing', ( id, data ) => {
+			this.update( 'joined_collaborative_editing', { id, data });
 		});
 
-		socket.on( 'sent_collaborative_editing_events', ( data ) => {
-			this.update( 'sent_collaborative_editing_events', data );
+		socket.on( 'sent_collaborative_editing_events', ( id, data ) => {
+			this.update( 'sent_collaborative_editing_events', { id, data });
 		});
 
-		socket.on( 'polled_collaborative_editing_events', ( data ) => {
-			this.update( 'polled_collaborative_editing_events', data );
+		socket.on( 'polled_collaborative_editing_events', ( id, data ) => {
+			this.update( 'polled_collaborative_editing_events', { id, data });
 		});
 
-		socket.on( 'collaborative_editing_events', () => {
-			this.update( 'collaborative_editing_events' );
+		socket.on( 'collaborative_editing_events', ( id ) => {
+			this.update( 'collaborative_editing_events', { id });
 		});
 
 		socket.on( 'chat_message', ( data ) => {
