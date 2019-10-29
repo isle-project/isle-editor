@@ -32,6 +32,18 @@ const debug = logger( 'isle:multiple-choice-question' );
 const uid = generateUID( 'multiple-choice-question' );
 
 
+// FUNCTIONS //
+
+const hasExplanations = ( answers ) => {
+	for ( let i = 0; i < answers.length; i++ ) {
+		if ( answers[ i ].explanation ) {
+			return true;
+		}
+	}
+	return false;
+};
+
+
 // MAIN //
 
 /**
@@ -154,39 +166,44 @@ class MultipleChoiceQuestion extends Component {
 
 	sendSubmitNotification = () => {
 		const session = this.context;
-		if ( this.state.submitted ) {
-			if ( this.props.provideFeedback === 'incremental' ) {
-				session.addNotification({
-					title: 'Answer re-submitted.',
-					message: 'You have successfully submitted another answer.',
-					level: 'success',
-					position: 'tr'
-				});
+		let isCorrect = false;
+		console.log( this.state.correct );
+			for ( let i = 0; i < this.state.correct.length; i++ ) {
+				if ( this.state.correct[ i ] === true ) {
+					isCorrect = true;
+					break;
+				}
+			}
+		let msg;
+		let level = 'success';
+		if ( this.props.provideFeedback === 'incremental' ) {
+			if ( isCorrect ) {
+				msg = 'Hooray, your answer is correct!';
 			} else {
-				session.addNotification({
-					title: 'Answer re-submitted.',
-					message: 'You have successfully re-submitted your answer.',
-					level: 'success',
-					position: 'tr'
-				});
+				msg = 'Unfortunately, your answer is incorrect. You may try again by selecting another answer choice.';
+				level = 'error';
 			}
-		} else {
-			let msg;
-			if ( this.props.provideFeedback === 'incremental' ) {
-				msg = 'You have successfully submitted an answer. If incorrect, you may try again by selecting another answer choice.';
-			} else {
-				msg = 'You have successfully submitted your answer.';
-			}
-			if ( this.props.provideFeedback === 'none' ) {
-				msg += ' You can change your answer and re-submit if you want to.';
-			}
-			session.addNotification({
-				title: 'Answer submitted.',
-				message: msg,
-				level: 'success',
-				position: 'tr'
-			});
 		}
+		if ( this.props.provideFeedback === 'full' ) {
+			if ( isCorrect ) {
+				msg = 'Hooray, your answer is correct!';
+			} else {
+				msg = 'Unfortunately, your answer is incorrect. The correct answer is displayed in orange.';
+				if ( hasExplanations( this.props.answers ) ) {
+					msg += 'You may hover over the different answer choices to bring up a tooltip with an explanation why the respective answer is wrong';
+				}
+				level = 'error';
+			}
+		}
+		if ( this.props.provideFeedback === 'none' ) {
+			msg = 'You have successfully submitted your answer. You may change your answer and re-submit if you want to.';
+		}
+		session.addNotification({
+			title: 'Answer submitted.',
+			message: msg,
+			level,
+			position: 'tr'
+		});
 	}
 
 	submitQuestion = () => {
@@ -200,9 +217,6 @@ class MultipleChoiceQuestion extends Component {
 			type: MULTIPLE_CHOICE_SUBMISSION,
 			value: this.state.active
 		});
-		if ( !this.props.disableSubmitNotification ) {
-			this.sendSubmitNotification();
-		}
 		if ( isArray( sol ) ) {
 			for ( let i = 0; i < this.state.active.length; i++ ) {
 				if ( this.state.active[ i ] === true ) {
@@ -218,6 +232,10 @@ class MultipleChoiceQuestion extends Component {
 				correct: newCorrect,
 				submitted: true,
 				active
+			}, () => {
+				if ( !this.props.disableSubmitNotification ) {
+					this.sendSubmitNotification();
+				}
 			});
 		}
 		else {
@@ -235,6 +253,10 @@ class MultipleChoiceQuestion extends Component {
 				correct: newCorrect,
 				submitted: true,
 				active
+			}, () => {
+				if ( !this.props.disableSubmitNotification ) {
+					this.sendSubmitNotification();
+				}
 			});
 		}
 		this.props.onSubmit( this.state.active );
