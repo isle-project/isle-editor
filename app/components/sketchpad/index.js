@@ -1209,6 +1209,7 @@ class Sketchpad extends Component {
 			const ctx = this.ctx;
 			if ( !ctx.isPointInPath( x*DPR, y*DPR ) ) {
 				this.deselectElements();
+				this.onlyRedrawElements();
 			}
 			ctx.beginPath();
 			this.draw( event );
@@ -1434,7 +1435,6 @@ class Sketchpad extends Component {
 		this.selectedElements = null;
 		this.dragPoints = null;
 		this.canvasBuffer = null;
-		this.onlyRedrawElements();
 	}
 
 	uploadSketches = () => {
@@ -1783,6 +1783,9 @@ class Sketchpad extends Component {
 			return;
 		}
 		this.canvasWrapper.scrollTop = 0;
+		if ( this.selectedElements ) {
+			this.deselectElements();
+		}
 		this.setState({
 			currentPage: 0
 		}, () => {
@@ -1803,6 +1806,9 @@ class Sketchpad extends Component {
 			return;
 		}
 		this.canvasWrapper.scrollTop = 0;
+		if ( this.selectedElements ) {
+			this.deselectElements();
+		}
 		this.setState({
 			currentPage: this.state.noPages - 1
 		}, () => {
@@ -1836,6 +1842,9 @@ class Sketchpad extends Component {
 			debug( 'Should go to next page...' );
 			this.canvasWrapper.scrollTop = 0;
 			const currentPage = this.state.currentPage + 1;
+			if ( this.selectedElements ) {
+				this.deselectElements();
+			}
 			this.setState({
 				currentPage
 			}, () => {
@@ -1856,6 +1865,9 @@ class Sketchpad extends Component {
 		if ( this.state.currentPage > 0 ) {
 			this.canvasWrapper.scrollTop = 0;
 			const currentPage = this.state.currentPage - 1;
+			if ( this.selectedElements ) {
+				this.deselectElements();
+			}
 			this.setState({
 				currentPage
 			}, () => {
@@ -1878,6 +1890,9 @@ class Sketchpad extends Component {
 		if ( idx !== this.state.currentPage ) {
 			if ( this.canvasWrapper ) {
 				this.canvasWrapper.scrollTop = 0;
+			}
+			if ( this.selectedElements ) {
+				this.deselectElements();
 			}
 			this.setState({
 				currentPage: idx,
@@ -2141,6 +2156,7 @@ class Sketchpad extends Component {
 			onModeChange={( mode ) => {
 				if ( this.state.mode === 'drag' && mode !== 'drag' ) {
 					this.deselectElements();
+					this.onlyRedrawElements();
 				}
 				this.setState({ mode });
 				if ( mode !== 'pointer' ) {
