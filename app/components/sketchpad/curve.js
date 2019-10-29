@@ -35,7 +35,7 @@ const debug = logger( 'isle:sketchpad:curve' );
 * @param {integer} width - canvas width
 * @param {integer} height - canvas height
 * @param {number} [tension=0.9] - tension. Typically between [0.0, 1.0] but can be exceeded
-* @param {number} [numOfSeg=50] - number of segments between two points (line resolution)
+* @param {number} [numOfSeg=30] - number of segments between two points (line resolution)
 * @param {boolean} [close=false] - Close the ends making the line continuous
 * @returns {Float32Array} New array with the calculated points that was added to the path
 */
@@ -47,7 +47,7 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 
 	// options or defaults
 	tension = typeof tension === 'number' ? tension : 0.9;
-	numOfSeg = typeof numOfSeg === 'number' ? numOfSeg : 50;
+	numOfSeg = typeof numOfSeg === 'number' ? numOfSeg : 30;
 
 	let pts; // for cloning point array
 	let i = 1;

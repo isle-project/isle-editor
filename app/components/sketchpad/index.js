@@ -824,7 +824,9 @@ class Sketchpad extends Component {
 					this.drawElement( elems[ i ] );
 				}
 			}
-			this.canvasBuffer.getContext( '2d' ).drawImage( this.canvas, 0, 0, this.canvas.width / DPR, this.canvas.height / DPR );
+			const bufferContext = this.canvasBuffer.getContext( '2d' );
+			bufferContext.imageSmoothingEnabled = false;
+			bufferContext.drawImage( this.canvas, 0, 0, this.canvas.width / DPR, this.canvas.height / DPR );
 		}
 		this.ctx.drawImage( this.canvasBuffer, 0, 0 );
 		const selected = this.selectedElements;
@@ -1200,20 +1202,8 @@ class Sketchpad extends Component {
 			this.draw( event );
 		} else if ( this.state.mode === 'drag' ) {
 			const ctx = this.ctx;
-			ctx.closePath();
-			if ( !ctx.isPointInPath( x, y ) ) {
-				// Deselect elements when clicked outside selection path:
-				debug( 'Deselect elements...' );
-				const elems = this.selectedElements;
-				if ( elems ) {
-					for ( let i = 0; i < elems.length; i++ ) {
-						elems[ i ].selected = false;
-					}
-				}
-				this.selectedElements = null;
-				this.dragPoints = null;
-				this.canvasBuffer = null;
-				this.onlyRedrawElements();
+			if ( !ctx.isPointInPath( x*DPR, y*DPR ) ) {
+				this.deselectElements();
 			}
 			ctx.beginPath();
 			this.draw( event );
@@ -1255,16 +1245,17 @@ class Sketchpad extends Component {
 
 			// Save smoothed points & convert to relative coordinates:
 			const points = this.currentPoints;
-			points[ 0 ] /= ( this.canvas.width / DPR );
-			points[ 1 ] /= ( this.canvas.height / DPR );
+			const { width, height } = this.canvas;
+			points[ 0 ] /= ( width / DPR );
+			points[ 1 ] /= ( height / DPR );
 			for ( let i = 2; i < points.length - 2; i += 2 ) {
 				const c = ( points[i] + points[i+2] ) / 2;
 				const d = ( points[i+1] + points[i+3] ) / 2;
-				points[ i ] = c / ( this.canvas.width / DPR );
-				points[ i+1 ] = d / ( this.canvas.height / DPR );
+				points[ i ] = c / ( width / DPR );
+				points[ i+1 ] = d / ( height / DPR );
 			}
-			points[ points.length-2 ] /= ( this.canvas.width / DPR );
-			points[ points.length-1 ] /= ( this.canvas.height / DPR );
+			points[ points.length-2 ] /= ( width / DPR );
+			points[ points.length-1 ] /= ( height / DPR );
 
 			const line = {
 				points: points,
@@ -1317,7 +1308,6 @@ class Sketchpad extends Component {
 						const y = points[ j+1 ] * this.canvas.height;
 						if ( this.ctx.isPointInPath( x, y ) ) {
 							elem.selected = true;
-							console.log( 'isSelected... ');
 							selected.push( elem );
 							break;
 						}
@@ -1425,6 +1415,21 @@ class Sketchpad extends Component {
 		this.setState({
 			transmitOwner: !this.state.transmitOwner
 		});
+	}
+
+	deselectElements() {
+		// Deselect elements when clicked outside selection path:
+		debug( 'Deselect elements...' );
+		const elems = this.selectedElements;
+		if ( elems ) {
+			for ( let i = 0; i < elems.length; i++ ) {
+				elems[ i ].selected = false;
+			}
+		}
+		this.selectedElements = null;
+		this.dragPoints = null;
+		this.canvasBuffer = null;
+		this.onlyRedrawElements();
 	}
 
 	uploadSketches = () => {
@@ -1691,7 +1696,7 @@ class Sketchpad extends Component {
 
 				// Use a minimum line width to make selecting easier:
 				this.ctx.lineWidth = max( elem.lineWidth, 16.0 );
-				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
+				curve( this.ctx, points, this.canvas.width / DPR, this.canvas.height / DPR, 0.9, 1 );
 				this.ctx.closePath();
 				if ( this.ctx.isPointInStroke( x*DPR, y*DPR ) ) {
 					debug( `Point (${x}, ${y}) is in path of element with ID ${elem.drawID}` );
@@ -1765,10 +1770,9 @@ class Sketchpad extends Component {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 			const deleted = elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
 			elems.splice( elems.length - this.state.nUndos, 0, ...deleted );
+			this.onlyRedrawElements();
 			this.setState({
 				nUndos: this.state.nUndos + deleted.length
-			}, () => {
-				this.onlyRedrawElements();
 			});
 		}
 	}
@@ -2134,6 +2138,9 @@ class Sketchpad extends Component {
 			fontFamily={this.state.fontFamily}
 			fontSize={this.state.fontSize}
 			onModeChange={( mode ) => {
+				if ( this.state.mode === 'drag' && mode !== 'drag' ) {
+					this.deselectElements();
+				}
 				this.setState({ mode });
 				if ( mode !== 'pointer' ) {
 					this.pointer.style.opacity = 0.0;
