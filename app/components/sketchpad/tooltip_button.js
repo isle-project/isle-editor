@@ -17,6 +17,6 @@ const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, size, variant
 };
 
 
-// EXPORTSS //
+// EXPORTS //
 
 export default TooltipButton;
