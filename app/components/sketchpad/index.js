@@ -184,6 +184,7 @@ class Sketchpad extends Component {
 			mode: 'none',
 			showNavigationModal: false,
 			transmitOwner: props.transmitOwner,
+			showInstructorAnnotations: true,
 			receiveFrom: {},
 			showResetModal: false,
 			showFeedbackModal: false,
@@ -812,14 +813,15 @@ class Sketchpad extends Component {
 	redrawWhenDragging = () => {
 		if ( !this.canvasBuffer ) {
 			// Canvas to temporarily store data:
-			this.canvasBuffer = document.createElement( 'canvas');
+			this.canvasBuffer = document.createElement( 'canvas' );
 			this.canvasBuffer.width = this.canvas.width;
 			this.canvasBuffer.height = this.canvas.height;
 			debug( 'Prepare data for non-dragged elements...' );
 			if ( this.backgroundData ) {
 				this.ctx.putImageData( this.backgroundData, 0, 0 );
 			} else {
-				this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
+				this.ctx.fillStyle = 'white';
+				this.ctx.fillRect( 0, 0, this.canvas.width, this.canvas.height );
 			}
 			const currentPage = this.state.currentPage;
 			const elems = this.elements[ currentPage ];
@@ -2366,16 +2368,29 @@ class Sketchpad extends Component {
 			<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
 		</Popover>;
 		return (
-			<Gate owner>
-				<ButtonGroup size="sm" className="sketch-button-group" >
-					<TooltipButton size="sm" variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
-					<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
-						<Button size="sm" variant="light" >
-							<div className="fa fa-eye" />
-						</Button>
-					</OverlayTrigger>
-				</ButtonGroup>
-			</Gate>
+			<Fragment>
+				<Gate owner>
+					<ButtonGroup size="sm" className="sketch-button-group" >
+						<TooltipButton size="sm" tooltip={`Click to ${ this.state.transmitOwner ? 'disable' : 'enable'} transmitting actions`} variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
+						<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
+							<Button size="sm" variant="light" >
+								<div className="fa fa-eye" />
+							</Button>
+						</OverlayTrigger>
+					</ButtonGroup>
+				</Gate>
+				<Gate cohort >
+					<ButtonGroup size="sm" className="sketch-button-group" >
+						<TooltipButton
+							size="sm"
+							tooltip={`Click to ${ this.state.showInstructorAnnotations ? 'only show own' : 'all'} annotations`}
+							variant={this.state.showInstructorAnnotations ? 'success' : 'light'}
+							onClick={() => this.setState({ showInstructorAnnotations: !this.state.showInstructorAnnotations })}
+							glyph={this.state.showInstructorAnnotations ? 'fa fa-toggle-on' : 'fa fa-toggle-off'}
+						/>
+					</ButtonGroup>
+				</Gate>
+			</Fragment>
 		);
 	}
 
