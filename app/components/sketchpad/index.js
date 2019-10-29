@@ -1303,9 +1303,10 @@ class Sketchpad extends Component {
 			if ( !this.selectedElements ) {
 				debug( 'Select elements...' );
 				const elems = this.elements[ this.state.currentPage ];
+				const nUndos = this.nUndos[ this.state.currentPage ];
 				this.selectedElements = null;
 				const selected = [];
-				for ( let i = 0; i < elems.length; i++ ) {
+				for ( let i = 0; i < elems.length - nUndos; i++ ) {
 					const elem = elems[ i ];
 					elem.selected = false;
 					const points = elem.points;
