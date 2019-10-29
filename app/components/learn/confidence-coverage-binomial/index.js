@@ -36,6 +36,8 @@ const ELEM_TOOLTIPS = {
 /**
 * A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution.
 *
+* @property {(string|node)} intro - overrides default (interactive) intro text
+* @property {boolean} quartileNotation - controls whether to use quartile notation in intro text
 * @property {boolean} sampleStats - controls whether one should be able to switch between using the sample proportion or the known population success probability when calculating the standard error
 */
 class ConfidenceCoverageBinomial extends Component {
@@ -158,17 +160,22 @@ class ConfidenceCoverageBinomial extends Component {
 	}
 
 	render() {
-		const intro = <div>
-			<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} active={this.props.sampleStats} onChange={( pos ) => {
-				this.setState({
-					useSampleProp: pos === 1
-				});
-			}}>
-				<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{p(1-p)}{n}}`} elems={ELEM_TOOLTIPS} />
-				<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{\\hat p(1-\\hat p)}{n}}`} elems={ELEM_TOOLTIPS} />
-			</Switch>.</p>
-			<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
-		</div>;
+		let intro;
+		if ( this.props.intro ) {
+			intro = this.props.intro;
+		} else {
+			intro = <div>
+				<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} active={this.props.sampleStats} onChange={( pos ) => {
+					this.setState({
+						useSampleProp: pos === 1
+					});
+				}}>
+					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{p(1-p)}{n}}`} elems={ELEM_TOOLTIPS} />
+					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{\\hat p(1-\\hat p)}{n}}`} elems={ELEM_TOOLTIPS} />
+				</Switch>.</p>
+				<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
+			</div>;
+		}
 		return (
 			<Card id="coverageModuleBinomial">
 				<Card.Header as="h4">
@@ -236,11 +243,13 @@ class ConfidenceCoverageBinomial extends Component {
 // PROPERTIES //
 
 ConfidenceCoverageBinomial.defaultProps = {
+	intro: null,
 	quartileNotation: true,
 	sampleStats: true
 };
 
 ConfidenceCoverageBinomial.propTypes = {
+	intro: PropTypes.oneOfType([ PropTypes.node, PropTypes.string ]),
 	quartileNotation: PropTypes.bool,
 	sampleStats: PropTypes.bool
 };

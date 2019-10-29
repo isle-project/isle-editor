@@ -40,6 +40,7 @@ const ELEM_TOOLTIPS = {
 /**
 * A learning component illustrating coverage of confidence intervals for the mean of a normal distribution.
 *
+* @property {(string|node)} intro - overrides default (interactive) intro text
 * @property {boolean} quartileNotation - controls whether to use `alpha/2` as the subscript for the critical value or just `critical`
 * @property {boolean} sampleStats - controls whether one should be able to switch between using the sample standard deviation or the known population standard deviation when calculating the standard error
 */
@@ -164,14 +165,20 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
-		const intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <Switch tooltip={`${this.state.useSampleSD ? 'Click to use population standard deviation' : 'Click to use sample standard deviation'}`} active={this.props.sampleStats} onChange={( pos ) => {
-			this.setState({
-				useSampleSD: pos === 1
-			});
-		}}>
-			<TeX raw={`\\bar X \\pm Z_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{\\sigma}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
-			<TeX raw={`\\bar X \\pm t_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{S}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
-		</Switch>. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.</p>;
+		let intro;
+		if ( this.props.intro ) {
+			intro = this.props.intro
+		} else {
+			intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <Switch tooltip={`${this.state.useSampleSD ? 'Click to use population standard deviation' : 'Click to use sample standard deviation'}`} active={this.props.sampleStats} onChange={( pos ) => {
+					this.setState({
+						useSampleSD: pos === 1
+					});
+				}}>
+				<TeX raw={`\\bar X \\pm Z_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{\\sigma}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
+				<TeX raw={`\\bar X \\pm t_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{S}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
+			</Switch>. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
+			</p>;
+		}
 		return (
 			<Card id="coverageModuleNormal">
 				<Card.Header as="h4">
@@ -247,11 +254,13 @@ class ConfidenceCoverageNormal extends Component {
 // PROPERTIES //
 
 ConfidenceCoverageNormal.defaultProps = {
+	intro: null,
 	quartileNotation: true,
 	sampleStats: true
 };
 
 ConfidenceCoverageNormal.propTypes = {
+	intro: PropTypes.oneOfType([ PropTypes.node, PropTypes.string ]),
 	quartileNotation: PropTypes.bool,
 	sampleStats: PropTypes.bool
 };
