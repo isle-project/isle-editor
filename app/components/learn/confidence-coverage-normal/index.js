@@ -167,7 +167,7 @@ class ConfidenceCoverageNormal extends Component {
 	render() {
 		let intro;
 		if ( this.props.intro ) {
-			intro = this.props.intro
+			intro = this.props.intro;
 		} else {
 			intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <Switch tooltip={`${this.state.useSampleSD ? 'Click to use population standard deviation' : 'Click to use sample standard deviation'}`} active={this.props.sampleStats} onChange={( pos ) => {
 					this.setState({
