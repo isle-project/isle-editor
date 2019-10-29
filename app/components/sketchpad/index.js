@@ -149,10 +149,12 @@ class Sketchpad extends Component {
 		this.elements = new Array( props.noPages );
 		this.backgrounds = new Array( props.noPages );
 		this.recordingEndPositions = new Array( props.noPages );
+		this.nUndos = new Array( props.noPages );
 		for ( let i = 0; i < props.noPages; i++ ) {
 			this.elements[ i ] = [];
 			this.backgrounds[ i ] = null;
 			this.recordingEndPositions[ i ] = 0;
+			this.nUndos[ i ] = 0;
 		}
 
 		this.canvas = null;
@@ -176,7 +178,6 @@ class Sketchpad extends Component {
 			isExporting: false,
 			finishedRecording: false,
 			modalMessage: null,
-			nUndos: 0,
 			noPages: props.noPages,
 			insertedPages: [],
 			showUploadModal: false,
@@ -773,11 +774,12 @@ class Sketchpad extends Component {
 
 		debug( `Redrawing page ${currentPage+1}` );
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
+		const nUndos = this.nUndos[ currentPage ];
 		this.renderBackground( currentPage )
 			.then( () => {
 				const elems = this.elements[ currentPage ];
 				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-				for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
+				for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
 				this.pageRendering = false;
@@ -798,7 +800,8 @@ class Sketchpad extends Component {
 		const elems = this.elements[ currentPage ];
 		debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
-		for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
+		const nUndos = this.nUndos[ currentPage ];
+		for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
 	}
@@ -819,7 +822,8 @@ class Sketchpad extends Component {
 			const elems = this.elements[ currentPage ];
 			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
 			const recordingEndPos = this.recordingEndPositions[ currentPage ];
-			for ( let i = recordingEndPos; i < elems.length - this.state.nUndos; i++ ) {
+			const nUndos = this.nUndos[ currentPage ];
+			for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
 				if ( !this.selectedElements || !contains( this.selectedElements, elems[ i ] ) ) {
 					this.drawElement( elems[ i ] );
 				}
@@ -1060,7 +1064,7 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 		const elems = this.elements[ currentPage ];
 		const recordingEndPos = this.recordingEndPositions[ currentPage ];
-		let nUndos = this.state.nUndos;
+		let nUndos = this.nUndos[ currentPage ];
 		const ctx = this.ctx;
 		const canvas = this.canvas;
 		if ( ctx ) {
@@ -1082,9 +1086,7 @@ class Sketchpad extends Component {
 					}
 				}
 				debug( 'Current number of undos: '+nUndos );
-				this.setState({
-					nUndos
-				});
+				this.nUndos[ currentPage ] = nUndos;
 				if ( !isNull( end ) ) {
 					debug( `UNDO: Redrawing elements 0 to ${end} out of ${elems.length} elements` );
 					for ( let i = 0; i <= end; i++ ) {
@@ -1095,8 +1097,9 @@ class Sketchpad extends Component {
 	}
 
 	redo = () => {
-		const elems = this.elements[ this.state.currentPage ];
-		let nUndos = this.state.nUndos;
+		const currentPage = this.state.currentPage;
+		const elems = this.elements[ currentPage ];
+		let nUndos = this.nUndos[ currentPage ];
 		if ( nUndos > 0 ) {
 			const idx = min( elems.length - nUndos, 0 );
 			debug( 'Line index: '+idx );
@@ -1115,9 +1118,7 @@ class Sketchpad extends Component {
 				for ( let i = idx; i <= end; i++ ) {
 					this.drawElement( elems[ i ]);
 				}
-				this.setState({
-					nUndos
-				});
+				this.nUndos[ currentPage ] = nUndos;
 			}
 		}
 	}
@@ -1191,13 +1192,13 @@ class Sketchpad extends Component {
 		this.isMouseDown = true;
 		this.imageData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
 		if ( this.state.mode === 'drawing' ) {
-			if ( this.state.nUndos > 0 ) {
-				const elems = this.elements[ this.state.currentPage ];
-				elems.splice( elems.length-this.state.nUndos );
-				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
-				this.setState({
-					nUndos: 0
-				});
+			const currentPage = this.state.currentPage;
+			const nUndos = this.nUndos[ currentPage ];
+			if ( nUndos > 0 ) {
+				const elems = this.elements[ currentPage ];
+				elems.splice( elems.length-nUndos );
+				debug( `Page ${currentPage} now has ${elems.length} elements`);
+				this.nUndos[ currentPage ] = 0;
 			}
 			this.draw( event );
 		} else if ( this.state.mode === 'drag' ) {
@@ -1599,6 +1600,7 @@ class Sketchpad extends Component {
 			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
 			const session = this.context;
 			const username = session.user.email || session.anonymousIdentifier;
+			const currentPage = this.state.currentPage;
 			const text = {
 				value: value,
 				x: x / ( this.canvas.width / DPR ),
@@ -1608,21 +1610,18 @@ class Sketchpad extends Component {
 				fontFamily: this.state.fontFamily,
 				time: this.time,
 				type: 'text',
-				page: this.state.currentPage,
+				page: currentPage,
 				user: username,
 				drawID: randomstring( 6 )
 			};
 			this.drawText( text );
-			const elems = this.elements[ this.state.currentPage ];
-
-			if ( this.state.nUndos > 0 ) {
-				elems.splice( elems.length-this.state.nUndos );
-				debug( `Page ${this.state.currentPage} now has ${elems.length} elements`);
-				this.setState({
-					nUndos: 0
-				});
+			const elems = this.elements[ currentPage ];
+			const nUndos = this.nUndos[ currentPage ];
+			if ( nUndos > 0 ) {
+				elems.splice( elems.length-nUndos );
+				debug( `Page ${currentPage} now has ${elems.length} elements`);
+				this.nUndos[ currentPage ] = 0;
 			}
-
 			// Prevent future logging when redrawing element:
 			text.shouldLog = false;
 			elems.push( text );
@@ -1750,7 +1749,8 @@ class Sketchpad extends Component {
 		let deleteEnd;
 		const elems = this.elements[ this.state.currentPage ];
 		const inDeleteMode = this.state.mode === 'delete';
-		for ( let j = foundPos; j < elems.length - this.state.nUndos; j++ ) {
+		const nUndos = this.nUndos[ this.state.currentPage ];
+		for ( let j = foundPos; j < elems.length - nUndos; j++ ) {
 			if ( elems[ j ].drawID === id ) {
 				deleteEnd = j;
 				elems[ j ].selected = !inDeleteMode;
@@ -1769,11 +1769,9 @@ class Sketchpad extends Component {
 		if ( inDeleteMode ) {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 			const deleted = elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
-			elems.splice( elems.length - this.state.nUndos, 0, ...deleted );
+			elems.splice( elems.length - nUndos, 0, ...deleted );
 			this.onlyRedrawElements();
-			this.setState({
-				nUndos: this.state.nUndos + deleted.length
-			});
+			this.nUndos[ this.state.currentPage ] = nUndos + deleted.length;
 		}
 	}
 
@@ -2175,7 +2173,8 @@ class Sketchpad extends Component {
 			return null;
 		}
 		const page = this.state.currentPage;
-		const showUndo = this.elements[ page ] && this.elements[ page ].length > this.state.nUndos;
+		const nUndos = this.nUndos[ page ];
+		const showUndo = this.elements[ page ] && this.elements[ page ].length > nUndos;
 		return (
 			<ButtonGroup size="sm" className="sketch-undo-redo sketch-button-group">
 				<TooltipButton
@@ -2185,7 +2184,7 @@ class Sketchpad extends Component {
 					disabled={!showUndo || this.state.playing}
 					size="sm"
 				/>
-				<TooltipButton tooltip="Redo" disabled={this.state.nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
+				<TooltipButton tooltip="Redo" disabled={nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
 				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" disabled={this.state.playing || this.state.recording} size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
