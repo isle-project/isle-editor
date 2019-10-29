@@ -180,7 +180,7 @@ class ConfidenceCoverageNormal extends Component {
 			</p>;
 		}
 		return (
-			<Card id="coverageModuleNormal">
+			<Card className="coverage-card" >
 				<Card.Header as="h4">
 					Confidence Interval Coverage for Sample Mean
 				</Card.Header>
@@ -212,7 +212,7 @@ class ConfidenceCoverageNormal extends Component {
 										step={1}
 									/>
 									<NumberInput
-										legend="Standard deviation (sigma)"
+										legend="Standard deviation"
 										defaultValue={1}
 										max={20}
 										min={1}
@@ -228,7 +228,7 @@ class ConfidenceCoverageNormal extends Component {
 									/>
 								</Dashboard>
 								<FeedbackButtons
-									id="coverageModuleNormal"
+									id="coverage-module-normal"
 								/>
 							</Col>
 							<Col md={8}>

@@ -19,6 +19,7 @@ import mean from 'utils/statistic/mean.js';
 import FeedbackButtons from 'components/feedback';
 import SliderInput from 'components/input/slider';
 import NumberInput from 'components/input/number';
+import './confidence_coverage_binomial.css';
 
 
 // VARIABLES //
@@ -177,7 +178,7 @@ class ConfidenceCoverageBinomial extends Component {
 			</div>;
 		}
 		return (
-			<Card id="coverageModuleBinomial">
+			<Card className="coverage-card">
 				<Card.Header as="h4">
 					Confidence Interval Coverage for Sample Proportion
 				</Card.Header>
@@ -217,7 +218,7 @@ class ConfidenceCoverageBinomial extends Component {
 									/>
 								</Dashboard>
 								<FeedbackButtons
-									id="coverageModuleBinomial"
+									id="coverage-module-binomial"
 								/>
 							</Col>
 							<Col md={8}>
