@@ -229,7 +229,7 @@ class Wrapper extends Component {
 		if ( this.props.draggable && !this.state.fullscreen ) {
 			draggableBar = <div
 				className="plotly-draggable-bar"
-				draggable="true"
+				draggable={true}
 				onDragStart={( ev ) => {
 					ev.dataTransfer.setData( 'text/html', this.plotData.value );
 					ev.dataTransfer.setData( 'text/plain', this.plotData.key );

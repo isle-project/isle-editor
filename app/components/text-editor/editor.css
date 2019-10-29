@@ -33,7 +33,7 @@
 
 .editorview-wrapper > div > .ProseMirror {
 	min-height: 350px;
-	max-height: 500px;
+	max-height: 65vh;
 }
 
 .ProseMirror {
