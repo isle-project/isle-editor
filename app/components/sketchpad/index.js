@@ -422,6 +422,7 @@ class Sketchpad extends Component {
 								this.elements.splice( idx, 0, []);
 								this.backgrounds.splice( idx, 0, null );
 								this.recordingEndPositions.splice( idx, 0, 0 );
+								this.nUndos.splice( idx, 0, 0 );
 								newInsertedPages.push( val );
 								inserted += 1;
 							}
@@ -549,10 +550,12 @@ class Sketchpad extends Component {
 			this.elements = new Array( this.props.noPages );
 			this.backgrounds = new Array( this.props.noPages );
 			this.recordingEndPositions = new Array( this.props.noPages );
+			this.nUndos = new Array( this.props.noPages );
 			for ( let i = 0; i < this.props.noPages; i++ ) {
 				this.elements[ i ] = [];
 				this.backgrounds[ i ] = null;
 				this.recordingEndPositions[ i ] = 0;
+				this.nUndos[ i ] = 0;
 			}
 			this.setState({
 				noPages: this.props.noPages
@@ -941,6 +944,7 @@ class Sketchpad extends Component {
 			this.elements.splice( selectedPage, 1 );
 			this.backgrounds.splice( selectedPage, 1 );
 			this.recordingEndPositions.splice( selectedPage, 1 );
+			this.nUndos.splice( selectedPage, 1 );
 			const newInsertedPages = [];
 			for ( let i = 0; i < this.state.insertedPages.length; i++ ) {
 				const val = this.state.insertedPages[ i ];
@@ -1000,7 +1004,6 @@ class Sketchpad extends Component {
 			this.initializePDF().then( () => {
 				this.redraw();
 				this.setState({
-					nUndos: 0,
 					finishedRecording: false,
 					insertedPages: []
 				});
@@ -1010,13 +1013,14 @@ class Sketchpad extends Component {
 			this.elements = new Array( noPages );
 			this.backgrounds = new Array( noPages );
 			this.recordingEndPositions = new Array( noPages );
+			this.nUndos = new Array( noPages );
 			for ( let i = 0; i < noPages; i++ ) {
 				this.elements[ i ] = [];
 				this.backgrounds[ i ] = null;
 				this.recordingEndPositions[ i ] = 0;
+				this.nUndos[ i ] = 0;
 			}
 			this.setState({
-				nUndos: 0,
 				currentPage: 0,
 				noPages: noPages,
 				finishedRecording: false,
@@ -1053,10 +1057,10 @@ class Sketchpad extends Component {
 			}
 		}
 		this.elements[ currentPage ] = [];
+		this.nUndos[ currentPage ] = 0;
 		this.recordingEndPositions[ currentPage ] = 0;
 		this.setState({
-			finishedRecording: false,
-			nUndos: 0
+			finishedRecording: false
 		});
 	}
 
@@ -1557,6 +1561,7 @@ class Sketchpad extends Component {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.recordingEndPositions.splice( idx, 0, 0 );
+		this.nUndos.splice( idx, 0, 0 );
 		const textLayer = document.querySelector( '.textLayer' );
 		while ( textLayer.firstChild ) {
 			textLayer.removeChild( textLayer.firstChild );
@@ -1570,12 +1575,10 @@ class Sketchpad extends Component {
 		this.setState({
 			noPages: this.state.noPages + 1,
 			currentPage: idx,
-			insertedPages: newInsertedPages,
-			nUndos: 0
+			insertedPages: newInsertedPages
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
-
 			this.redraw();
 			if ( !from ) {
 				session.log({
@@ -1781,8 +1784,7 @@ class Sketchpad extends Component {
 		}
 		this.canvasWrapper.scrollTop = 0;
 		this.setState({
-			currentPage: 0,
-			nUndos: 0
+			currentPage: 0
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
@@ -1802,8 +1804,7 @@ class Sketchpad extends Component {
 		}
 		this.canvasWrapper.scrollTop = 0;
 		this.setState({
-			currentPage: this.state.noPages - 1,
-			nUndos: 0
+			currentPage: this.state.noPages - 1
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
@@ -1834,9 +1835,9 @@ class Sketchpad extends Component {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
 			debug( 'Should go to next page...' );
 			this.canvasWrapper.scrollTop = 0;
+			const currentPage = this.state.currentPage + 1;
 			this.setState({
-				currentPage: this.state.currentPage + 1,
-				nUndos: 0
+				currentPage
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
@@ -1854,9 +1855,9 @@ class Sketchpad extends Component {
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
 			this.canvasWrapper.scrollTop = 0;
+			const currentPage = this.state.currentPage - 1;
 			this.setState({
-				currentPage: this.state.currentPage - 1,
-				nUndos: 0
+				currentPage
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
@@ -1880,8 +1881,7 @@ class Sketchpad extends Component {
 			}
 			this.setState({
 				currentPage: idx,
-				showNavigationModal: false,
-				nUndos: 0
+				showNavigationModal: false
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
@@ -1960,10 +1960,12 @@ class Sketchpad extends Component {
 		const elems = new Array( noPages );
 		const promises = new Array( noPages );
 		const recordingEndPositions = new Array( noPages );
+		const nUndos = new Array( noPages );
 		for ( let i = 0; i < noPages; i++ ) {
 			elems[ i ] = [];
 			promises[ i ] = pdf.getPage( i + 1 );
 			recordingEndPositions[ i ] = 0;
+			nUndos[ i ] = 0;
 		}
 		return Promise.all( promises )
 			.then( values => {
@@ -1971,6 +1973,7 @@ class Sketchpad extends Component {
 				this.backgrounds = values;
 				this.elements = elems;
 				this.recordingEndPositions = recordingEndPositions;
+				this.nUndos = nUndos;
 				this.setState({
 					currentPage: 0,
 					noPages
@@ -2172,19 +2175,16 @@ class Sketchpad extends Component {
 		if ( this.state.hideInputButtons ) {
 			return null;
 		}
-		const page = this.state.currentPage;
-		const nUndos = this.nUndos[ page ];
-		const showUndo = this.elements[ page ] && this.elements[ page ].length > nUndos;
 		return (
 			<ButtonGroup size="sm" className="sketch-undo-redo sketch-button-group">
 				<TooltipButton
 					tooltip="Undo"
 					onClick={this.undo}
 					glyph="step-backward"
-					disabled={!showUndo || this.state.playing}
+					disabled={this.state.playing}
 					size="sm"
 				/>
-				<TooltipButton tooltip="Redo" disabled={nUndos <= 0 ||this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
+				<TooltipButton tooltip="Redo" disabled={this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
 				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" disabled={this.state.playing || this.state.recording} size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
