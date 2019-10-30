@@ -3,13 +3,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Draggable from 'components/draggable';
 import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Popover from 'react-bootstrap/Popover';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
+import Draggable from 'components/draggable';
+import Tooltip from 'components/tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
@@ -191,8 +192,8 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<button className="chat-header-button" onClick={this.closeChat}>X</button>
-						<button className="chat-header-button" onClick={this.toggleChat}>–</button>
+						<Tooltip tooltip="Close chat" placement="right"><button className="chat-header-button" onClick={this.closeChat}>X</button></Tooltip>
+						<Tooltip tooltip="Minimize chat" placement="right"><button className="chat-header-button" onClick={this.toggleChat}>–</button></Tooltip>
 					</div>
 					{this.renderMembers()}
 					{this.renderChatBody()}
