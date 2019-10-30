@@ -192,8 +192,8 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<Tooltip tooltip="Close chat" placement="right"><button className="chat-header-button" onClick={this.closeChat}>X</button></Tooltip>
-						<Tooltip tooltip="Minimize chat" placement="right"><button className="chat-header-button" onClick={this.toggleChat}>–</button></Tooltip>
+						<Tooltip tooltip="Close" placement="right"><button className="chat-header-button" onClick={this.closeChat}>X</button></Tooltip>
+						<Tooltip tooltip="Minimize" placement="left"><button className="chat-header-button" onClick={this.toggleChat}>–</button></Tooltip>
 					</div>
 					{this.renderMembers()}
 					{this.renderChatBody()}
