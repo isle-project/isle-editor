@@ -38,6 +38,10 @@
 	color: var(--quartary);
 }
 
+.label-number-rows {
+	font-size: 16px;
+}
+
 .title-button-h4 {
 	text-align: center;
 	cursor: pointer;
