@@ -225,7 +225,7 @@
     "d3": "5.9.7",
     "doctrine": "^3.0.0",
     "electron": "6.1.2",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^22.1.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-plugin-import": "^2.18.2",
