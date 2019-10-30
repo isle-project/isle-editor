@@ -905,8 +905,8 @@ class Session {
 			this.update( 'polled_collaborative_editing_events', { id, data });
 		});
 
-		socket.on( 'collaborative_editing_events', ( id ) => {
-			this.update( 'collaborative_editing_events', { id });
+		socket.on( 'collaborative_editing_events', ( id, data ) => {
+			this.update( 'collaborative_editing_events', { id, data });
 		});
 
 		socket.on( 'chat_message', ( data ) => {
