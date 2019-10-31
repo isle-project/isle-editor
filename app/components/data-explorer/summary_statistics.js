@@ -20,7 +20,7 @@ import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'Compute various statistics of interest, i.e. summary measures of the variables in the data set.';
+const DESCRIPTION = <span>Compute various statistics of interest, i.e. summary measures of the <i>quantitative</i> variables in the data set.</span>;
 const customStyles = {
 	control: ( base, state ) => {
 		if ( state.isDisabled ) {
