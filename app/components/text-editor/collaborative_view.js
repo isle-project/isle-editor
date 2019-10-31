@@ -12,8 +12,8 @@ import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
 import { commentPlugin, commentUI } from './config/comments.js';
-import FootnoteView from './views/footnote';
-import PlotDragView from './views/plot_drag';
+import FootnoteView from './views/footnote.js';
+import PlotDragView from './views/plot_drag.js';
 import countWords from './count_words.js';
 
 

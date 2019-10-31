@@ -314,10 +314,12 @@ li.ProseMirror-selectednode::after {
 }
 
 .ProseMirror blockquote {
-	padding-left: 1em;
-	border-left: 3px solid #eee;
-	margin-left: 0;
-	margin-right: 0;
+	font-size: 22px;
+	padding: 10px 20px;
+	margin: 0px 0px 20px;
+	border-left: 5px solid lightgray;
+	background-color: rgb(238, 238, 238);
+	font-style: italic;
 }
 
 .ProseMirror-example-setup-style img {
