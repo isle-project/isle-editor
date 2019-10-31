@@ -91,6 +91,7 @@ class ProseMirror extends Component {
 				}
 			});
 		});
+		this.props.onEditorState( editorState );
 		this.setState({ editorState, nWords, nChars });
 	}
 
@@ -135,10 +136,12 @@ ProseMirror.propTypes = {
 	defaultValue: PropTypes.string.isRequired,
 	fullscreen: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
+	onEditorState: PropTypes.func,
 	onMount: PropTypes.func
 };
 
 ProseMirror.defaultProps = {
+	onEditorState() {},
 	onMount() {}
 };
 

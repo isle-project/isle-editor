@@ -167,13 +167,12 @@ class MultipleChoiceQuestion extends Component {
 	sendSubmitNotification = () => {
 		const session = this.context;
 		let isCorrect = false;
-		console.log( this.state.correct );
-			for ( let i = 0; i < this.state.correct.length; i++ ) {
-				if ( this.state.correct[ i ] === true ) {
-					isCorrect = true;
-					break;
-				}
+		for ( let i = 0; i < this.state.correct.length; i++ ) {
+			if ( this.state.correct[ i ] === true ) {
+				isCorrect = true;
+				break;
 			}
+		}
 		let msg;
 		let level = 'success';
 		if ( this.props.provideFeedback === 'incremental' ) {

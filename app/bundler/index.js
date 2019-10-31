@@ -15,7 +15,6 @@ import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
-import isRelativePath from '@stdlib/assert/is-relative-path';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';

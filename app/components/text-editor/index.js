@@ -268,9 +268,7 @@ class TextEditor extends Component {
 	}
 
 	handleAutosave = () => {
-		let text = this.state.value;
-		localStorage.setItem( this.id, text );
-		const logged = this.logChange();
+		// TODO: Re-implement autosaving
 	}
 
 	recordedText = ( text ) => {
@@ -336,7 +334,7 @@ class TextEditor extends Component {
 				position: 'tr'
 			});
 		}
-		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
+		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( this.editorState.doc.content );
 		let tmp = document.createElement( 'div' );
 		tmp.appendChild( domNode );
 		const html = createHTML( 'test', tmp.innerHTML, 16 );
@@ -549,6 +547,9 @@ class TextEditor extends Component {
 							session={this.context}
 							fullscreen={this.state.isFullscreen}
 							id={this.id}
+							onEditorState={( editorState ) => {
+								this.editorState = editorState;
+							}}
 						/> :
 						<ProseMirrorEditorView
 							defaultValue={this.state.value}
@@ -558,6 +559,9 @@ class TextEditor extends Component {
 							}}
 							fullscreen={this.state.isFullscreen}
 							id={this.id}
+							onEditorState={( editorState ) => {
+								this.editorState = editorState;
+							}}
 						/>
 					}
 				</div>
