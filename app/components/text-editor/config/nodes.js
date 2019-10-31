@@ -12,6 +12,7 @@ const plotSpec = {
 		src: {},
 		alt: { default: null },
 		title: { default: null },
+		meta: { default: null },
 		width: { default: '550px' }
 	},
 	inline: false,
@@ -22,23 +23,27 @@ const plotSpec = {
 		if ( node.attrs.width ) {
 			style += `width: ${node.attrs.width};`;
 		}
-		return [ 'img', {
-			src: node.attrs.src,
-			style,
-			alt: node.attrs.alt,
-			title: node.attrs.title
-		}];
+		return [ 'span', { class: 'img-container' }, [ 'img', {
+				src: node.attrs.src,
+				style,
+				alt: node.attrs.alt,
+				title: node.attrs.title
+			} ], [ 'pre',
+			{
+				class: 'img-tooltip'
+			}, node.attrs.meta ]
+		];
 	},
 	parseDOM: [{
 		priority: 51,
-		tag: 'img[src][data-tooltip]',
+		tag: 'img[src][data-plot-id]',
 		getAttrs: dom => {
 			const src = dom.getAttribute( 'src' );
 			const title = dom.getAttribute( 'title' );
 			const alt = dom.getAttribute( 'alt' );
 			const width = dom.getAttribute( 'width' ) || '550px';
-			const dataTooltip = dom.getAttribute( 'data-tooltip' );
-			return { src, alt, title, dataTooltip, width };
+			const meta = dom.getAttribute( 'data-plot-meta' );
+			return { src, alt, title, meta, width };
 		}
 	}]
 };

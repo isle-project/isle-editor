@@ -8,21 +8,32 @@ class PlotDragView {
 		outer.style.margin = '0 auto';
 		outer.style.display = 'block';
 		outer.style.lineHeight = '0';
+
+		const imgContainer = document.createElement( 'span' );
+		imgContainer.className = 'img-container';
 		const img = document.createElement( 'img' );
-		img.setAttribute('src', node.attrs.src);
-		img.setAttribute('style', 'display: block; margin: 0 auto;' );
+		img.setAttribute( 'src', node.attrs.src );
+		img.setAttribute( 'style', 'display: block; margin: 0 auto;' );
 		img.style.width = node.attrs.width;
+		imgContainer.appendChild( img );
+
+		const tooltip = document.createElement( 'pre' );
+		tooltip.className = 'img-tooltip';
+		tooltip.innerHTML = node.attrs.meta;
+		imgContainer.appendChild( tooltip );
+
 		const handle = document.createElement( 'span' );
 		handle.style.position = 'absolute';
 		handle.style.bottom = '0px';
 		handle.style.right = '0px';
 		handle.style.width = '10px';
 		handle.style.height = '10px';
-		handle.style.border = '3px solid black';
+		handle.style.border = '3px solid red';
 		handle.style.borderTop = 'none';
 		handle.style.borderLeft = 'none';
 		handle.style.display = 'none';
 		handle.style.cursor = 'nwse-resize';
+		handle.style.zIndex = '2';
 
 		handle.onmousedown = function onMouseDown( e ) {
 			e.preventDefault();
@@ -36,8 +47,8 @@ class PlotDragView {
 			};
 			const onMouseUp = ( e ) => {
 				e.preventDefault();
-				document.removeEventListener('mousemove', onMouseMove);
-				document.removeEventListener('mouseup', onMouseUp);
+				document.removeEventListener( 'mousemove', onMouseMove );
+				document.removeEventListener( 'mouseup', onMouseUp );
 				const transaction = view.state.tr.setNodeMarkup( getPos(), null, {
 					src: node.attrs.src, width: outer.style.width } ).setSelection( view.state.selection );
 				view.dispatch( transaction );
@@ -46,9 +57,9 @@ class PlotDragView {
 			document.addEventListener( 'mouseup', onMouseUp );
 		};
 		outer.appendChild( handle );
-		outer.appendChild( img );
+		outer.appendChild( imgContainer );
 		this.dom = outer;
-		this.img = img;
+		this.img = imgContainer;
 		this.handle = handle;
 	}
 

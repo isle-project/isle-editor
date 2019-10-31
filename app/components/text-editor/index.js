@@ -155,7 +155,7 @@ class TextEditor extends Component {
 					let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 					let tmp = document.createElement( 'div' );
 					tmp.appendChild( domNode );
-					const text = createHTML( 'test', tmp.innerHTML );
+					const text = createHTML( 'test', tmp.innerHTML, 16 );
 					const blob = new Blob([ text ], {
 						type: 'text/html'
 					});
@@ -339,7 +339,7 @@ class TextEditor extends Component {
 		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 		let tmp = document.createElement( 'div' );
 		tmp.appendChild( domNode );
-		const html = createHTML( 'test', tmp.innerHTML );
+		const html = createHTML( 'test', tmp.innerHTML, 16 );
 
 		// Create the config so that the function can run:
 		const config = {

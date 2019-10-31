@@ -120,20 +120,22 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 			}
 
 			.img-tooltip {
-				top: 0%;
-				right: 0%;
+				top: 24px;
+				right: 24px;
+				width: max-content;
 				background-color: lightgray;
 				color: black;
 				border-radius: 5px;
 				opacity: 0;
 				padding: 15px;
-				position: absolute;
+				position: fixed;
 				font-size: 22px;
 				-webkit-transition: opacity 0.5s;
 				-moz-transition: opacity 0.5s;
 				-ms-transition: opacity 0.5s;
 				-o-transition: opacity 0.5s;
 				transition: opacity 0.5s;
+				z-index: 9999;
 			}
 
 			.img-container {

@@ -86,10 +86,7 @@ class Wrapper extends Component {
 			layout,
 			oldPropLayout: layout
 		};
-		this.plotData = {
-			key: null,
-			value: null
-		};
+		this.plotData = null;
 
 		const buttonsToAdd = [];
 		if ( props.legendButtons && !props.removeButtons ) {
@@ -181,11 +178,10 @@ class Wrapper extends Component {
 		const opts = { format: 'png', height: 425, width: 675 };
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
-				const value = !this.props.meta ? `<img src="${data}" style="display: block; margin: 0 auto;" />` : `<img src="${data}" style="display: block; margin: 0 auto;" data-tooltip=${yaml.safeDump(this.props.meta)}"></img>`;
-				this.plotData = {
-					key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
-					value
-				};
+				const value = !this.props.meta ?
+					`<img src="${data}" style="display: block; margin: 0 auto;" />` :
+					`<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${yaml.safeDump(this.props.meta)}"></img>`;
+				this.plotData = value;
 			});
 	}
 
@@ -231,8 +227,7 @@ class Wrapper extends Component {
 				className="plotly-draggable-bar"
 				draggable={true}
 				onDragStart={( ev ) => {
-					ev.dataTransfer.setData( 'text/html', this.plotData.value );
-					ev.dataTransfer.setData( 'text/plain', this.plotData.key );
+					ev.dataTransfer.setData( 'text/html', this.plotData );
 				}}
 			>Drag Plot</div>;
 		}

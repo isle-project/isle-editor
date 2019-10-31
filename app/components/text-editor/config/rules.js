@@ -14,7 +14,7 @@ import schema from './schema';
 
 // FUNCTIONS //
 
-function markInputRule(regexp, markType, getAttrs) {
+function markInputRule( regexp, markType, getAttrs ) {
 	return new InputRule(regexp, (state, match, start, end) => {
 		let attrs = getAttrs instanceof Function ? getAttrs( match ) : getAttrs;
 		let tr = state.tr;
