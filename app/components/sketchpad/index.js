@@ -2379,7 +2379,7 @@ class Sketchpad extends Component {
 						</OverlayTrigger>
 					</ButtonGroup>
 				</Gate>
-				<Gate cohort >
+				<Gate notUser notOwner >
 					<ButtonGroup size="sm" className="sketch-button-group" >
 						<TooltipButton
 							size="sm"
