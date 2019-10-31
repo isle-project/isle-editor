@@ -59,7 +59,7 @@ class PlotDragView {
 		outer.appendChild( handle );
 		outer.appendChild( imgContainer );
 		this.dom = outer;
-		this.img = imgContainer;
+		this.img = img;
 		this.handle = handle;
 	}
 
