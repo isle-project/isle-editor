@@ -1,11 +1,10 @@
 // MODULES //
 
 import { nodes } from 'prosemirror-schema-basic';
-import { listItem, orderedList } from 'prosemirror-schema-list';
+import { listItem, bulletList, orderedList } from 'prosemirror-schema-list';
 import { tableNodes } from 'prosemirror-tables';
 import paragraphSpec from './paragraph.js';
 import headingSpec from './heading.js';
-import bulletListSpec from './bullet_list.js';
 
 
 // MAIN //
@@ -57,7 +56,11 @@ const listNodes = {
 		content: 'list_item+',
 		group: 'block'
 	},
-	bullet_list: bulletListSpec,
+	bullet_list: {
+		...bulletList,
+		content: 'list_item+',
+		group: 'block'
+	},
 	list_item: {
 		...listItem,
 		content: 'paragraph block*',
