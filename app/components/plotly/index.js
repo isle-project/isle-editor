@@ -10,7 +10,6 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
 import yaml from 'js-yaml';
-import randomstring from 'utils/randomstring/alphanumeric';
 import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import deepEqual from '@stdlib/assert/deep-equal';
