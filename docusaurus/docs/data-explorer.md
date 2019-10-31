@@ -51,9 +51,10 @@ We will include the explorer with the following code:
   'variables': null
 }`.
 * __editor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `true`.
-* __editorProps__ | `object`: object to be passed to `MarkdownEditor` indicating properties to be used. Default: `none`.
+* __editorProps__ | `object`: object to be passed to `TextEditor` indicating properties to be used. Default: `none`.
 * __editorTitle__ | `string`: string indicating the title of the explorer to be displayed. Default: `'Report'`.
 * __dataTable__ | `boolean`: boolean value indicating whether to hide the data table from view. Default: `true`.
+* __groupMode__ | `boolean`: controls whether to sync editor changes across users. Default: `false`.
 * __histogramDensities__ | `boolean`: boolean value indicating whether to display histogram densities. Default: `true`.
 * __models__ | `array`: array of strings indicating models that may be fit on the data. Default: `[
   'Simple Linear Regression',

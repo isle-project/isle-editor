@@ -56,8 +56,8 @@
 		"value": "<DraggableList\n\tdata={[\n\t\t{ id: 0, text: \"${1:First Choice}\" },\n\t\t{ id: 1, text: \"${2:Second Choice}\" },\n\t\t{ id: 2, text: \"${3:Third Choice}\" }\n\t]}\n\tonChange={ ( newData ) => {\n\t\t${4:}\n\t}}\n/>\n"
 	},
 	{
-		"name": "MarkdownEditor",
-		"value": "<MarkdownEditor ${1:voiceControl} />\n"
+		"name": "TextEditor",
+		"value": "<TextEditor ${1:voiceControl} />\n"
 	},
 	{
 		"name": "EngagementMeter",

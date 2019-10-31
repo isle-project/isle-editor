@@ -1,4 +1,4 @@
-/**
+/*
 * Dragging behavior adapted from code by:
 *
 * Copyright (c) 2019 by Matt Lockyer (https://codepen.io/mattlockyer/pen/LydeLj)

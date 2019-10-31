@@ -74,7 +74,7 @@
 		"DataTable",
 		"FeedbackButtons",
 		"Gate",
-		"MarkdownEditor",
+		"TextEditor",
 		"Sketchpad",
 		"TeX",
 		"LessonSubmit"
