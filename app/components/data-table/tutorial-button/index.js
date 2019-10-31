@@ -31,7 +31,6 @@ class Tutorial extends Component {
 	}
 
 	render() {
-		console.log( this.stepsWithId );
 		return (
 			<Fragment>
 				<OverlayTrigger

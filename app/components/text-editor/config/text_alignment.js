@@ -102,7 +102,6 @@ const isActiveFactory = ( alignment ) => {
 		let keepLooking = true;
 		let active = false;
 		doc.nodesBetween( from, to, ( node, pos ) => {
-			console.log( node.attrs.align );
 			if ( keepLooking && node.attrs.align === alignment ) {
 				keepLooking = false;
 				active = true;
