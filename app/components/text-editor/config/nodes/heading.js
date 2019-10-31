@@ -1,4 +1,4 @@
-/**
+/*
 * Adapted from: https://raw.githubusercontent.com/chanzuckerberg/czi-prosemirror/master/src/HeadingNodeSpec.js
 *
 * MIT License

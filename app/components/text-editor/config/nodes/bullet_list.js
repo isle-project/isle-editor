@@ -1,5 +1,5 @@
 
-/**
+/*
 * Adapted from: https://raw.githubusercontent.com/chanzuckerberg/czi-prosemirror/master/src/BulletListNodeSpec.js
 *
 * MIT License

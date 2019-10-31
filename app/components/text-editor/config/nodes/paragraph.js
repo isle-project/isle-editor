@@ -1,5 +1,5 @@
-/**
-* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ParagraphNodeSpec.js
+/*
+* Adapted from: https://raw.githubusercontent.com/chanzuckerberg/czi-prosemirror/master/src/ListItemNodeSpec.js
 *
 * MIT License
 *
@@ -23,7 +23,6 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-
 
 // VARIABLES //
 
@@ -90,7 +89,7 @@ function toDOM( node ) {
 		attrs.style = style;
 	}
 	if ( indent ) {
-		attrs[ATTRIBUTE_INDENT] = String(indent);
+		attrs[ ATTRIBUTE_INDENT ] = String(indent);
 	}
 	if ( id ) {
 		attrs.id = id;
