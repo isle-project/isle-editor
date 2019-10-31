@@ -10,6 +10,7 @@ import { addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefor
 import icons from './icons';
 import schema from './schema';
 import canInsert from './can_insert.js';
+import textAlignment from './text_alignment.js';
 
 
 // FUNCTIONS //
@@ -42,19 +43,19 @@ const promptForURL = () => {
 const menu = {
 	marks: [
 		{
-			title: 'Toggle strong',
+			title: 'Strong',
 			content: icons.strong,
 			active: markActive( schema.marks.strong ),
 			run: toggleMark( schema.marks.strong )
 		},
 		{
-			title: 'Toggle emphasis',
+			title: 'Emphasis',
 			content: icons.em,
 			active: markActive( schema.marks.em ),
 			run: toggleMark( schema.marks.em )
 		},
 		{
-			title: 'Toggle underline',
+			title: 'Underline',
 			content: icons.underline,
 			active: markActive( schema.marks.underline ),
 			run: toggleMark( schema.marks.underline )
@@ -62,25 +63,25 @@ const menu = {
 	],
 	extraMarks: [
 		{
-			title: 'Toggle strikethrough',
+			title: 'Strikethrough',
 			content: icons.strikethrough,
 			active: markActive( schema.marks.strikethrough ),
 			run: toggleMark( schema.marks.strikethrough )
 		},
 		{
-			title: 'Toggle code',
+			title: 'Code',
 			content: icons.code,
 			active: markActive( schema.marks.code ),
 			run: toggleMark( schema.marks.code )
 		},
 		{
-			title: 'Toggle subscript',
+			title: 'Subscript',
 			content: icons.subscript,
 			active: markActive( schema.marks.subscript ),
 			run: toggleMark( schema.marks.subscript )
 		},
 		{
-			title: 'Toggle superscript',
+			title: 'Superscript',
 			content: icons.superscript,
 			active: markActive( schema.marks.superscript ),
 			run: toggleMark( schema.marks.superscript)
@@ -95,7 +96,7 @@ const menu = {
 			run: setBlockType( schema.nodes.paragraph )
 		},
 		{
-			title: 'Change to heading level 1',
+			title: 'Change to heading 1',
 			content: 'H1',
 			active: blockActive( schema.nodes.heading, { level: 1 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 1 } ),
@@ -104,34 +105,35 @@ const menu = {
 	],
 	headers: [
 		{
-			title: 'Change to heading level 2',
+			title: 'Change to heading 2',
 			content: 'Heading 2',
 			active: blockActive( schema.nodes.heading, { level: 2 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 2 } ),
 			run: setBlockType( schema.nodes.heading, { level: 2 } )
 		},
 		{
-			title: 'Change to heading level 3',
+			title: 'Change to heading 3',
 			content: 'Heading 3',
 			active: blockActive( schema.nodes.heading, { level: 3 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 3 } ),
 			run: setBlockType( schema.nodes.heading, { level: 3 } )
 		},
 		{
-			title: 'Change to heading level 4',
+			title: 'Change to heading 4',
 			content: 'Heading 4',
 			active: blockActive( schema.nodes.heading, { level: 4 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 4 } ),
 			run: setBlockType( schema.nodes.heading, { level: 4 } )
 		},
 		{
-			title: 'Change to heading level 5',
+			title: 'Change to heading 5',
 			content: 'Heading 5',
 			active: blockActive( schema.nodes.heading, { level: 5 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 5 } ),
 			run: setBlockType( schema.nodes.heading, { level: 5 } )
 		}
 	],
+	alignment: textAlignment,
 	wraps: [
 		{
 			title: 'Wrap in block quote',

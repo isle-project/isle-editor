@@ -9,6 +9,7 @@ const icons = {
 	alignLeft: <i className="prosemirror-icon fas fa-align-left"></i>,
 	alignCenter: <i className="prosemirror-icon fas fa-align-center"></i>,
 	alignRight: <i className="prosemirror-icon fas fa-align-right"></i>,
+	alignJustify: <i className="prosemirror-icon fas fa-align-justify"></i>,
 	annotation: <i className="prosemirror-icon fas fa-comment"></i>,
 	blockquote: <i className="prosemirror-icon fas fa-quote-left"></i>,
 	bold: <i className="prosemirror-icon fas fa-bold"></i>,

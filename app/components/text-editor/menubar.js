@@ -68,6 +68,12 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen }) => {
 			{menu.headers.map( createDropdownButtons )}
 			</DropdownButton>
 			{menu.wraps.map( createGroupButtons )}
+			{ fullscreen ?
+				<Fragment>
+					<i className="prose-separator">|</i>
+					{menu.alignment.map( createGroupButtons )}
+				</Fragment> : null
+			}
 			<i className="prose-separator">|</i>
 			<DropdownButton
 				title={icons.insert}
