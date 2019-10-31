@@ -5,7 +5,7 @@
 	background-color: lightgray;
 	color: black;
 	border-radius: 5px;
-	opacity: 0;
+	display: none;
 	padding: 15px;
 	position: fixed;
 	font-size: 22px;
@@ -22,5 +22,5 @@
 }
 
 .img-container:hover .img-tooltip {
-	opacity: 1;
+	display: initial;
 }
