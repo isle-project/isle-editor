@@ -96,7 +96,7 @@ class Seal extends Component {
 	curvedInvertedText = ( txt, size, arc, offset ) => {
 		txt = txt.split('');
 		const deg = arc / (txt.length-1);
-		const origin = 0 - (arc/2);
+		let origin = 0 - (arc/2);
 		const lines = [];
 		const radius = size/2;
 
