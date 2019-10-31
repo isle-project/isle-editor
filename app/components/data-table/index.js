@@ -304,31 +304,6 @@ function createColumns( props, state ) {
 		}
 		return out;
 	});
-	if ( props.showIdColumn ) {
-		columns.unshift({
-			Header: 'id',
-			accessor: 'id',
-			className: 'frozen',
-			headerClassName: 'frozen',
-			filterable: false,
-			width: 50
-		});
-	}
-	if ( props.showRemove ) {
-		columns.push({
-			Header: 'Remove',
-			accessor: 'remove',
-			Cell: this.renderCheckboxRemovable,
-			filterable: false
-		});
-	}
-	columns.push({
-		className: 'table_last_col',
-		filterable: false,
-		sortable: false,
-		resizable: false,
-		width: 30
-	});
 	return columns;
 }
 
@@ -617,8 +592,13 @@ class DataTable extends Component {
 				</Modal.Body>
 			</Modal>;
 		}
+		let cols = this.state.columns.slice();
 
-		const cols = this.state.columns.map( ( col, i ) => {
+		// Run re-order events:
+		this.reorder.forEach( o => {
+			cols[ o.a ] = cols.splice( o.b, 1, cols[o.a] )[ 0 ];
+		});
+		cols = cols.map( ( col, i ) => {
 			if ( col.Header === 'id' ) {
 				return col;
 			}
@@ -630,14 +610,14 @@ class DataTable extends Component {
 					onDragStart={e => {
 						e.stopPropagation();
 						e.dataTransfer.setData( 'Text', i );
-						this.dragged = this.props.showIdColumn ? i-1 : i;
+						this.dragged = i;
 					}}
 					onDrag={e => e.stopPropagation}
 					onDragEnd={e => {
 						e.stopPropagation();
 						setTimeout(() => {
 							this.dragged = null;
-						}, 1000 );
+						}, 100 );
 					}}
 					onDragOver={e => {
 						e.preventDefault();
@@ -645,17 +625,13 @@ class DataTable extends Component {
 					}}
 					onDrop={e => {
 						e.preventDefault();
-						let a = this.props.showIdColumn ? i-1 : i;
+						let a = i;
 						let b = this.dragged;
 						const keys = this.state.columns.map( x => x.id );
 						keys.shift();
 						const tmp = keys[ a ];
 						keys[ a ] = keys[ b ];
 						keys[ b ] = tmp;
-						if ( this.props.showIdColumn ) {
-							a += 1;
-							b += 1;
-						}
 						this.props.onColumnDrag( keys );
 						this.reorder.push({ a, b });
 						this.forceUpdate();
@@ -663,10 +639,31 @@ class DataTable extends Component {
 				>{col.Header}</span>
 			});
 		});
-
-		// Run re-order events:
-		this.reorder.forEach( o => {
-			cols[ o.a ] = cols.splice( o.b, 1, cols[o.a] )[ 0 ];
+		if ( this.props.showIdColumn ) {
+			cols.unshift({
+				Header: 'id',
+				accessor: 'id',
+				className: 'frozen',
+				headerClassName: 'frozen',
+				filterable: false,
+				width: 50
+			});
+		}
+		if ( this.props.showRemove ) {
+			cols.push({
+				Header: 'Remove',
+				accessor: 'remove',
+				Cell: this.renderCheckboxRemovable,
+				filterable: false
+			});
+		}
+		cols.push({
+			Header: '',
+			className: 'table_last_col',
+			filterable: false,
+			sortable: false,
+			resizable: false,
+			width: 30
 		});
 		return (
 			<Fragment>
