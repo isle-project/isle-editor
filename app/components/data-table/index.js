@@ -511,6 +511,8 @@ class DataTable extends Component {
 	}
 
 	handleFilterChange = ( filtered, column ) => {
+		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
+		tbody.scrollTop = 0;
 		const selectedRows = this.table.getResolvedState().sortedData.length;
 		const session = this.context;
 		session.log({
