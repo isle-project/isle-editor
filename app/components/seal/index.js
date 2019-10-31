@@ -107,7 +107,7 @@ class Seal extends Component {
 			const left = (radius*sin) + radius + DIFF;
 			const top = (radius*cos) + radius;
 
-			const rotation = origin*-1;
+			let rotation = origin*-1;
 			rotation = 'rotate(' + rotation + 'deg)';
 
 			const style = {
