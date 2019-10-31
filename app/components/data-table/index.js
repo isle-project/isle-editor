@@ -667,7 +667,7 @@ class DataTable extends Component {
 		});
 		return (
 			<Fragment>
-				<div className="data-table-wrapper" style={this.props.style} >
+				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
 					{ dataInfo.info.length > 0 ?
 					<div className='data_button_wrapper'>
 						<OverlayTrigger placement="bottom" overlay={<Tooltip>Open dataset description</Tooltip>} >
@@ -681,7 +681,7 @@ class DataTable extends Component {
 								</h4>
 							</Button>
 						</OverlayTrigger>
-						<TutorialButton />
+						<TutorialButton id={this.id} />
 					</div> : null}
 					{ dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">

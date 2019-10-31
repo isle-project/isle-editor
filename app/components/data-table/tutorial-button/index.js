@@ -5,7 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 import Joyride, { EVENTS } from 'components/joyride';
-import steps from './steps.json';
+import copy from '@stdlib/utils/copy';
+import STEPS from './steps.json';
 
 
 // MAIN //
@@ -17,6 +18,10 @@ class Tutorial extends Component {
 		this.state = {
 			running: false
 		};
+		this.stepsWithId = copy( STEPS, 2 ).map( x => {
+			x.target = `#${props.id} ` + x.target;
+			return x;
+		});
 	}
 
 	startTour = () => {
@@ -26,6 +31,7 @@ class Tutorial extends Component {
 	}
 
 	render() {
+		console.log( this.stepsWithId );
 		return (
 			<Fragment>
 				<OverlayTrigger
@@ -41,8 +47,8 @@ class Tutorial extends Component {
 					</Button>
 				</OverlayTrigger>
 				<Joyride
-					steps={steps}
-					scrollToSteps={false}
+					steps={this.stepsWithId}
+					disableScrolling
 					showProgress
 					run={this.state.running}
 					callback={( tour ) => {
