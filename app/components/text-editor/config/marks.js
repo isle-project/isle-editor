@@ -15,12 +15,12 @@ const subscript = {
 };
 
 const superscript = {
-	excludes: 'superscript',
+	excludes: 'subscript',
 	parseDOM: [
-		{ tag: 'sub' },
-		{ style: 'vertical-align=sub' }
+		{ tag: 'sup' },
+		{ style: 'vertical-align=super' }
 	],
-	toDOM: () => ['sub']
+	toDOM: () => ['sup']
 };
 
 const strikethrough = {
