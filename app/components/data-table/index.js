@@ -247,7 +247,7 @@ function createColumns( props, state ) {
 					return (
 						<SelectInput
 							onChange={( vals ) => {
-								if ( vals && vals.length > 0 ) {
+								if ( vals && vals.length > 0 && uniqueValues.length > 3 ) {
 									out.minWidth = 300;
 								} else {
 									out.minWidth = 125;
@@ -290,6 +290,7 @@ function createColumns( props, state ) {
 								}
 							}}
 							escapeClearsValue
+							closeMenuOnSelect={uniqueValues.length <= 2}
 							menuPortalTarget={document.body}
 							styles={{
 								menuPortal: base => ({ ...base, zIndex: 9999 })
@@ -307,7 +308,10 @@ function createColumns( props, state ) {
 		columns.unshift({
 			Header: 'id',
 			accessor: 'id',
-			filterable: false
+			className: 'frozen',
+			headerClassName: 'frozen',
+			filterable: false,
+			width: 50
 		});
 	}
 	if ( props.showRemove ) {
@@ -318,6 +322,13 @@ function createColumns( props, state ) {
 			filterable: false
 		});
 	}
+	columns.push({
+		className: 'table_last_col',
+		filterable: false,
+		sortable: false,
+		resizable: false,
+		width: 30
+	});
 	return columns;
 }
 
@@ -700,7 +711,12 @@ class DataTable extends Component {
 					</ButtonToolbar>
 					<ReactTable
 						id={this.id}
-						ref={( table ) => { this.table = table; }}
+						ref={( table ) => {
+							if ( table ) {
+								this.table = table;
+								this.frozenElems = findDOMNode( this.table ).getElementsByClassName( 'frozen' );
+							}
+						}}
 						data={rows}
 						columns={cols}
 						showPagination={true}
@@ -714,6 +730,16 @@ class DataTable extends Component {
 						onFilteredChange={this.handleFilterChange}
 						onSortedChange={this.handleSortedChange}
 						style={this.props.style}
+						getTableProps={() => {
+							return {
+								onScroll: e => {
+									let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
+									for ( let i = 0; i < this.frozenElems.length; i++ ) {
+										this.frozenElems[ i ].style.left = `${left}px`;
+									}
+								}
+							};
+						}}
 					/>
 					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
 				</div>
