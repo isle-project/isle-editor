@@ -197,6 +197,7 @@ class FrequencyTable extends Component {
 								group: value // eslint-disable-line react/no-unused-state
 							});
 						}}
+						tooltip="Generate a frequency table for each category of a chosen grouping variable"
 					/>
 					<CheckboxInput
 						legend="Relative Frequency"

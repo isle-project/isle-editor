@@ -10,6 +10,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-object';
+import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
 import './select.css';
 
@@ -103,6 +104,7 @@ const transformValue = ( value ) => {
 * @property {boolean} multi - controls whether one may select multiple answers
 * @property {string} menuPlacement - placement of the menu in relation to the control (either `auto`, `top`, or `bottom`)
 * @property {string} placeholder - value to be displayed before an initial choice is made
+* @property {string} tooltip - text displayed when hovering over legend
 * @property {Object} style - CSS inline styles
 */
 class SelectInput extends Input {
@@ -225,28 +227,28 @@ class SelectInput extends Input {
 			clearable = this.props.clearable;
 		}
 		return (
-			<Form className="input" style={{ ...style }} >
-				<FormGroup controlId="form-controls-select">
-					{ this.props.legend ?
-						<label>{this.props.legend}</label> :
-						null
-					}
-					<Select
-						name="form-field-name"
-						className="select-field"
-						{...this.props}
-						value={value}
-						options={this.state.options}
-						onChange={this.handleChange}
-						placeholder={this.props.placeholder}
-						isMulti={this.props.multi}
-						styles={customStyles}
-						isClearable={clearable}
-						isDisabled={this.props.disabled}
-						menuPlacement={this.props.menuPlacement}
-					/>
-				</FormGroup>
-			</Form>
+				<Form className="input" style={{ ...style }} >
+					<FormGroup controlId="form-controls-select">
+						{ this.props.legend ?
+							<Tooltip tooltip={this.props.tooltip}><label>{this.props.legend}</label></Tooltip> :
+							null
+						}
+						<Select
+							name="form-field-name"
+							className="select-field"
+							{...this.props}
+							value={value}
+							options={this.state.options}
+							onChange={this.handleChange}
+							placeholder={this.props.placeholder}
+							isMulti={this.props.multi}
+							styles={customStyles}
+							isClearable={clearable}
+							isDisabled={this.props.disabled}
+							menuPlacement={this.props.menuPlacement}
+						/>
+					</FormGroup>
+				</Form>
 		);
 	}
 }
@@ -265,6 +267,7 @@ SelectInput.defaultProps = {
 	options: [],
 	multi: false,
 	placeholder: 'Select...',
+	tooltip: null,
 	style: {}
 };
 
@@ -292,6 +295,7 @@ SelectInput.propTypes = {
 	onChange: PropTypes.func,
 	options: PropTypes.array,
 	placeholder: PropTypes.string,
+	tooltip: PropTypes.string,
 	style: PropTypes.object
 };
 

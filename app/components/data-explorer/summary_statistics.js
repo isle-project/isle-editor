@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import SelectInput from 'components/input/select';
+import Tooltip from 'components/tooltip';
 import statistic from 'utils/statistic';
 import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
@@ -263,7 +264,12 @@ class SummaryStatistics extends Component {
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="form-controls-select">
-						<FormLabel>Statistic(s):</FormLabel>
+						<Tooltip
+							tooltip="One or more statistics to compute for the variable of interest"
+							placement="right"
+						>
+							<FormLabel>Statistic(s):</FormLabel>
+						</Tooltip>
 						<Select
 							value={selectedStats}
 							options={statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ))}
@@ -301,6 +307,7 @@ class SummaryStatistics extends Component {
 								variable: value
 							});
 						}}
+						tooltip="Quantitative variable for which to compute statistic(s)"
 					/>
 					<SelectInput
 						legend="Second Variable:"
@@ -315,6 +322,7 @@ class SummaryStatistics extends Component {
 								secondVariable: value
 							});
 						}}
+						tooltip="Second variable for computing bivariate statistic"
 					/>
 					{ groupingVariables.length > 0 ?
 						<SelectInput
@@ -328,10 +336,12 @@ class SummaryStatistics extends Component {
 									group: value
 								});
 							}}
+							tooltip="Calculate the statistic(s) separately for observations from each category of a chosen grouping variable"
 						/> : null
 					}
 					<CheckboxInput
 						legend="Omit missing values"
+						tooltip="If not ticked, result will be null if variable contains missing values"
 						defaultValue={this.state.omit}
 						onChange={( value ) => {
 							this.setState({

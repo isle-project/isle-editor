@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import noop from '@stdlib/utils/noop';
 import Input from 'components/input/base';
+import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import './checkbox.css';
 
@@ -19,6 +20,7 @@ import './checkbox.css';
 * @property {boolean} disabled - indicates whether the input is active or not
 * @property {boolean} inline - indicates whether the checkbox is displayed inline
 * @property {string} legend - text displayed next to the checkbox
+* @property {string} tooltip - text displayed when hovering over checkbox
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
 */
@@ -91,7 +93,25 @@ class CheckboxInput extends Input {
 		></input>;
 		if ( this.props.inline === true ) {
 			return (
-				<span style={{ marginLeft: '8px', ...this.props.style }}>
+				<Tooltip tooltip={this.props.tooltip}>
+					<span style={{ marginLeft: '8px', ...this.props.style }}>
+						{input}
+						<span
+							role="button" tabIndex={0}
+							className="checkbox-legend"
+							style={{
+								color: this.props.disabled ? 'darkgray' : null
+							}}
+							onClick={this.handleChange} onKeyPress={this.handleChange}
+						>{this.props.legend}</span>
+					</span>
+				</Tooltip>
+			);
+		}
+		const onChange = this.props.disabled ? noop : this.handleChange;
+		return (
+			<Tooltip tooltip={this.props.tooltip}>
+				<div className="input checkbox-input-div" style={this.props.style}>
 					{input}
 					<span
 						role="button" tabIndex={0}
@@ -99,24 +119,10 @@ class CheckboxInput extends Input {
 						style={{
 							color: this.props.disabled ? 'darkgray' : null
 						}}
-						onClick={this.handleChange} onKeyPress={this.handleChange}
+						onClick={onChange} onKeyPress={this.onChange}
 					>{this.props.legend}</span>
-				</span>
-			);
-		}
-		const onChange = this.props.disabled ? noop : this.handleChange;
-		return (
-			<div className={`input checkbox-input-div ${this.props.className}`} style={this.props.style}>
-				{input}
-				<span
-					role="button" tabIndex={0}
-					className="checkbox-legend"
-					style={{
-						color: this.props.disabled ? 'darkgray' : null
-					}}
-					onClick={onChange} onKeyPress={this.onChange}
-				>{this.props.legend}</span>
-			</div>
+				</div>
+			</Tooltip>
 		);
 	}
 }
