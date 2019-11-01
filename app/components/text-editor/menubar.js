@@ -107,9 +107,9 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			>
 				<Dropdown.Toggle
 					size="sm" variant="outline-secondary"
-					disabled={!isTextStyleMarkCommandEnabled( state, 'fontSize' )}
+					disabled={!state || !isTextStyleMarkCommandEnabled( state, 'fontSize' )}
 				>
-					{findActiveFontSize( state )}
+					{state ? findActiveFontSize( state ) : '12'}
 				</Dropdown.Toggle>
 				<Dropdown.Menu style={{ minWidth: '24px' }}>
 					{menu.fontSizes.map( createFontButtons )}
