@@ -355,6 +355,8 @@ class ProseMirror extends Component {
 				dispatch={this.dispatchTransaction}
 				view={this.view}
 				fullscreen={this.props.fullscreen}
+				showColorPicker={this.props.showColorPicker}
+				onColorChoice={this.props.onColorChoice}
 			/>
 			<div ref={( div ) => {
 				this.editorDiv = div;
@@ -376,12 +378,15 @@ class ProseMirror extends Component {
 ProseMirror.propTypes = {
 	fullscreen: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
+	showColorPicker: PropTypes.bool.isRequired,
 	session: PropTypes.object.isRequired,
+	onColorChoice: PropTypes.func,
 	onEditorState: PropTypes.func,
 	onMount: PropTypes.func
 };
 
 ProseMirror.defaultProps = {
+	onColorChoice() {},
 	onEditorState() {},
 	onMount() {}
 };
