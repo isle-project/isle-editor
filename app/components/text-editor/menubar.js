@@ -10,6 +10,7 @@ import Tooltip from 'components/tooltip';
 import icons from './config/icons';
 import findActiveFontSize from './config/find_active_font_size.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
+import FONT_COLORS from './font_colors.json';
 import './menubar.css';
 
 
@@ -98,7 +99,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			{menu.marks.map( createGroupButtons )}
 			{fullscreen ? menu.extraMarks.map( createGroupButtons ) : null}
 			<div style={{ display: showColorPicker ? 'initial' : 'none', position: 'absolute', top: '50px', left: '100px', zIndex: 2 }}>
-				<CirclePicker width="600px" circleSize={16} onChangeComplete={onColorChoice} />
+				<CirclePicker width="600px" colors={FONT_COLORS} circleSize={16} onChangeComplete={onColorChoice} />
 			</div>
 			<i className="prose-separator">|</i>
 			<Dropdown
