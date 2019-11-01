@@ -3,6 +3,8 @@
 import {
 	joinUp, joinDown, lift, setBlockType, toggleMark, wrapIn, selectParentNode
 } from 'prosemirror-commands';
+import { findParentNodeOfType } from 'prosemirror-utils';
+import { AllSelection, TextSelection } from 'prosemirror-state';
 import { redo, undo } from 'prosemirror-history';
 import { wrapInList } from 'prosemirror-schema-list';
 import { addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
@@ -11,9 +13,19 @@ import icons from './icons';
 import schema from './schema';
 import canInsert from './can_insert.js';
 import textAlignment from './text_alignment.js';
+import applyMark from './apply_mark.js';
+import FONT_SIZES from './font_sizes.json';
+import isTextStyleMarkCommandEnabled from './is_text_style_mark_command_enabled.js';
 
 
 // FUNCTIONS //
+
+const isEnabled = ( state ) => {
+	const { selection } = state;
+	return (
+		selection instanceof TextSelection || selection instanceof AllSelection
+	);
+};
 
 const markActive = ( type ) => ( state ) => {
 	const { from, $from, to, empty } = state.selection;
@@ -37,6 +49,52 @@ const promptForURL = () => {
 	return url;
 };
 
+const setFontSize = ( tr, schema, pt ) => {
+	const markType = schema.marks.fontSize;
+	if ( !markType ) {
+		return tr;
+	}
+	const attrs = pt ? { pt } : null;
+	tr = applyMark( tr, schema, markType, attrs );
+	return tr;
+};
+
+const fontSizeFactory = ( pt ) => {
+	return ( state, dispatch ) => {
+		const { schema, selection } = state;
+		const tr = setFontSize( state.tr.setSelection( selection ), schema, pt );
+		if ( tr.docChanged || tr.storedMarksSet ) {
+			if ( dispatch ) {
+				return dispatch( tr );
+			}
+			return true;
+		}
+		return false;
+	};
+};
+
+const isFontEnabled = ( state ) => {
+	return isTextStyleMarkCommandEnabled( state, 'fontSize' );
+};
+
+const activeHeadingFactory = ( level ) => {
+	return ( state ) => {
+		const heading = state.schema.nodes.heading;
+		let result;
+		if ( heading ) {
+			result = findParentNodeOfType( heading )( state.selection );
+		} else {
+			result = state.selection;
+		}
+		return (
+			result &&
+			result.node &&
+			result.node.attrs &&
+			result.node.attrs.level === level
+		);
+	};
+};
+
 
 // MAIN //
 
@@ -45,18 +103,21 @@ const menu = {
 		{
 			title: 'Strong',
 			content: icons.strong,
+			enable: isEnabled,
 			active: markActive( schema.marks.strong ),
 			run: toggleMark( schema.marks.strong )
 		},
 		{
 			title: 'Emphasis',
 			content: icons.em,
+			enable: isEnabled,
 			active: markActive( schema.marks.em ),
 			run: toggleMark( schema.marks.em )
 		},
 		{
 			title: 'Underline',
 			content: icons.underline,
+			enable: isEnabled,
 			active: markActive( schema.marks.underline ),
 			run: toggleMark( schema.marks.underline )
 		}
@@ -65,24 +126,28 @@ const menu = {
 		{
 			title: 'Strikethrough',
 			content: icons.strikethrough,
+			enable: isEnabled,
 			active: markActive( schema.marks.strikethrough ),
 			run: toggleMark( schema.marks.strikethrough )
 		},
 		{
 			title: 'Code',
 			content: icons.code,
+			enable: isEnabled,
 			active: markActive( schema.marks.code ),
 			run: toggleMark( schema.marks.code )
 		},
 		{
 			title: 'Subscript',
 			content: icons.subscript,
+			enable: isEnabled,
 			active: markActive( schema.marks.subscript ),
 			run: toggleMark( schema.marks.subscript )
 		},
 		{
 			title: 'Superscript',
 			content: icons.superscript,
+			enable: isEnabled,
 			active: markActive( schema.marks.superscript ),
 			run: toggleMark( schema.marks.superscript)
 		}
@@ -98,37 +163,34 @@ const menu = {
 		{
 			title: 'Change to heading 1',
 			content: 'H1',
-			active: blockActive( schema.nodes.heading, { level: 1 } ),
+			active: activeHeadingFactory( 1 ),
 			enable: setBlockType( schema.nodes.heading, { level: 1 } ),
 			run: setBlockType( schema.nodes.heading, { level: 1 } )
+		},
+		{
+			title: 'Change to heading 2',
+			content: 'H2',
+			active: activeHeadingFactory( 2 ),
+			enable: setBlockType( schema.nodes.heading, { level: 2 } ),
+			run: setBlockType( schema.nodes.heading, { level: 2 } )
 		}
 	],
 	headers: [
 		{
-			title: 'Change to heading 2',
-			content: 'Heading 2',
-			active: blockActive( schema.nodes.heading, { level: 2 } ),
-			enable: setBlockType( schema.nodes.heading, { level: 2 } ),
-			run: setBlockType( schema.nodes.heading, { level: 2 } )
-		},
-		{
 			title: 'Change to heading 3',
 			content: 'Heading 3',
-			active: blockActive( schema.nodes.heading, { level: 3 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 3 } ),
 			run: setBlockType( schema.nodes.heading, { level: 3 } )
 		},
 		{
 			title: 'Change to heading 4',
 			content: 'Heading 4',
-			active: blockActive( schema.nodes.heading, { level: 4 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 4 } ),
 			run: setBlockType( schema.nodes.heading, { level: 4 } )
 		},
 		{
 			title: 'Change to heading 5',
 			content: 'Heading 5',
-			active: blockActive( schema.nodes.heading, { level: 5 } ),
 			enable: setBlockType( schema.nodes.heading, { level: 5 } ),
 			run: setBlockType( schema.nodes.heading, { level: 5 } )
 		}
@@ -157,6 +219,14 @@ const menu = {
 			run: wrapInList( schema.nodes.ordered_list )
 		}
 	],
+	fontSizes: FONT_SIZES.map( pt => {
+		return {
+			title: String( pt ),
+			content: String( pt ),
+			run: fontSizeFactory( pt ),
+			enable: isFontEnabled
+		};
+	}),
 	actions: [
 		{
 			title: 'Lift out of enclosing block',

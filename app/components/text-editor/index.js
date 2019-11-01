@@ -31,6 +31,8 @@ import { addAnnotation } from './config/comments';
 import createHTML from './create_html.js';
 import schema from './config/schema';
 import canInsert from './config/can_insert.js';
+import applyMark from './config/apply_mark.js';
+import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constants/actions.js';
 import './editor.css';
@@ -99,6 +101,7 @@ class TextEditor extends Component {
 			showSubmitModal: false,
 			showTableModal: false,
 			showPDFModal: false,
+			showColorPicker: false,
 			showGuides: false,
 			isFullscreen: false,
 			value,
@@ -135,6 +138,37 @@ class TextEditor extends Component {
 				return false;
 			}
 		});
+		this.menu.marks.push({
+			title: 'Font color',
+			content: icons.color,
+			enable: ( state ) => {
+				return isTextStyleMarkCommandEnabled( state, 'textColor' );
+			},
+			run: ( state, dispatch ) => {
+				this.setState({ showColorPicker: !this.state.showColorPicker });
+				this.onColorChoice = ( color ) => {
+					const { schema } = state;
+					let { tr } = state;
+					const markType = schema.marks.textColor;
+					const attrs = color ? { color: color.hex } : null;
+					tr = applyMark(
+						state.tr.setSelection( state.selection ),
+						schema,
+						markType,
+						attrs
+					);
+					if ( tr.docChanged || tr.storedMarksSet ) {
+						if ( dispatch ) {
+							dispatch( tr );
+						}
+						this.setState({ showColorPicker: !this.state.showColorPicker });
+						return true;
+					}
+					this.setState({ showColorPicker: !this.state.showColorPicker });
+					return false;
+				};
+			}
+		});
 		this.menu.addons = [
 			{
 				title: 'Open HTML',
@@ -152,14 +186,15 @@ class TextEditor extends Component {
 				title: 'Save HTML',
 				content: icons.save,
 				run: ( state, dispatch ) => {
-					let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
-					let tmp = document.createElement( 'div' );
+					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
+					const tmp = document.createElement( 'div' );
 					tmp.appendChild( domNode );
-					const text = createHTML( 'test', tmp.innerHTML, 16 );
+					const title = document.title || 'provisoric';
+					const text = createHTML( title, tmp.innerHTML );
 					const blob = new Blob([ text ], {
 						type: 'text/html'
 					});
-					saveAs( blob, 'test.html' );
+					saveAs( blob, `${title}.html` );
 				}
 			},
 			{
@@ -337,7 +372,8 @@ class TextEditor extends Component {
 		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( this.editorState.doc.content );
 		let tmp = document.createElement( 'div' );
 		tmp.appendChild( domNode );
-		const html = createHTML( 'test', tmp.innerHTML, 16 );
+		const title = document.title || 'provisoric';
+		const html = createHTML( title, tmp.innerHTML );
 
 		// Create the config so that the function can run:
 		const config = {
@@ -546,6 +582,8 @@ class TextEditor extends Component {
 							}}
 							session={this.context}
 							fullscreen={this.state.isFullscreen}
+							showColorPicker={this.state.showColorPicker}
+							onColorChoice={this.onColorChoice}
 							id={this.id}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
@@ -558,6 +596,8 @@ class TextEditor extends Component {
 								this.editorDiv = div;
 							}}
 							fullscreen={this.state.isFullscreen}
+							showColorPicker={this.state.showColorPicker}
+							onColorChoice={this.onColorChoice}
 							id={this.id}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;

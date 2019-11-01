@@ -33,17 +33,14 @@ import findActiveMark from './find_active_mark.js';
 
 // VARIABLES //
 
-// This should map to `--czi-content-font-size` at `czi-editor.css`.
-const FONT_PT_SIZE_DEFAULT = 11;
+const FONT_PT_SIZE_DEFAULT = 12;
 
-// This should map to `czi-heading.css`.
 const MAP_HEADING_LEVEL_TO_FONT_PT_SIZE = {
-	'1': 20,
-	'2': 18,
-	'3': 16,
-	'4': 14,
-	'5': 11,
-	'6': 11
+	'1': 26,
+	'2': 20,
+	'3': 18,
+	'4': 15,
+	'5': 12
 };
 
 
