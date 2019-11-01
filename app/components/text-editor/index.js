@@ -72,6 +72,7 @@ function loadFonts() {
 /**
 * A text editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
 *
+* @property {boolean} allowSubmissions - controls whether students may submit their reports to the server
 * @property {string} defaultValue - default text of the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
@@ -224,8 +225,10 @@ class TextEditor extends Component {
 					};
 					return false;
 				}
-			},
-			{
+			}
+		];
+		if ( this.props.allowSubmissions ) {
+			this.menu.addons.push({
 				title: 'Submit',
 				content: icons.submit,
 				run: ( state, dispatch ) => {
@@ -233,7 +236,9 @@ class TextEditor extends Component {
 					this.toggleSubmitModal();
 					return false;
 				}
-			},
+			});
+		}
+		this.menu.addons = this.menu.addons.concat([
 			{
 				title: 'Open tutorials',
 				run: this.toggleGuides,
@@ -270,7 +275,7 @@ class TextEditor extends Component {
 					onFinalText={this.recordedText}
 				/>
 			}
-		];
+		]);
 		if ( this.props.groupMode ) {
 			this.menu.addons.push({
 				title: 'Add an annotation',
@@ -680,6 +685,7 @@ class TextEditor extends Component {
 // PROPERTIES //
 
 TextEditor.propTypes= {
+	allowSubmissions: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	groupMode: PropTypes.bool,
 	voiceTimeout: PropTypes.number,
@@ -688,6 +694,7 @@ TextEditor.propTypes= {
 };
 
 TextEditor.defaultProps = {
+	allowSubmissions: true,
 	defaultValue: DEFAULT_VALUE,
 	groupMode: false,
 	voiceTimeout: 5000,
