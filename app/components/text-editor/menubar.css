@@ -32,5 +32,13 @@ i.prose-separator {
 	user-select: none;
 	align-items: baseline;
 	border-bottom: 1px solid silver;
+	position: relative;
 }
 
+.prose-menu-bar .circle-picker {
+	background: rgb(248, 248, 255);
+	border: 2px solid silver;
+	border-radius: 8px;
+	padding-left: 15px;
+	padding-top: 15px;
+}

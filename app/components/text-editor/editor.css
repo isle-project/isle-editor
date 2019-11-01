@@ -69,6 +69,36 @@
 	float: left;
 }
 
+.ProseMirror h1 {
+	color: #2e4468;
+	font-size: 26pt;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.ProseMirror h2 {
+	font-size: 20pt;
+	color: #3c763d;
+	font-weight: 600;
+}
+
+.ProseMirror h3 {
+	font-size: 18pt;
+	color: #2e4468;
+	font-weight: 600;
+}
+
+.ProseMirror h4 {
+	font-size: 15pt;
+	color: #ca5800;
+	font-weight: 600;
+}
+
+.ProseMirror h5 {
+	font-size: 12pt;
+	font-weight: 600;
+}
+
 .ProseMirror table {
 	border: 1px solid #dee2e6;
 }
@@ -319,7 +349,6 @@ li.ProseMirror-selectednode::after {
 	margin: 0px 0px 20px;
 	border-left: 5px solid lightgray;
 	background-color: rgb(238, 238, 238);
-	font-style: italic;
 }
 
 .ProseMirror-example-setup-style img {

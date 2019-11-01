@@ -1,6 +1,6 @@
 // MAIN //
 
-const createHTML = ( title, body, fontSize ) => `<!doctype html>
+const createHTML = ( title, body ) => `<!doctype html>
 <html lang=en>
 	<head>
 		<meta charset=utf-8>
@@ -10,7 +10,7 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 		<style media="screen" type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;
-				font-size: ${fontSize}px !important;
+				font-size: 12pt;
 				margin-left: auto;
 				margin-right: auto;
 				padding: 10px;
@@ -22,26 +22,31 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 
 			h1 {
 				color: #2e4468;
-				font-size: ${fontSize + 24}px !important;
+				font-size: 26pt;
 				font-weight: bold;
 				letter-spacing: 1px;
 			}
 
 			h2 {
-				font-size: ${fontSize + 16}px !important;
+				font-size: 20pt;
 				color: #3c763d;
 				font-weight: 600;
 			}
 
 			h3 {
-				font-size: ${fontSize + 8}px !important;
+				font-size: 18pt;
 				color: #2e4468;
 				font-weight: 600;
 			}
 
 			h4 {
-				font-size: ${fontSize + 4}px !important;
+				font-size: 15pt;
 				color: #ca5800;
+				font-weight: 600;
+			}
+
+			h5 {
+				font-size: 12pt;
 				font-weight: 600;
 			}
 
@@ -105,18 +110,12 @@ const createHTML = ( title, body, fontSize ) => `<!doctype html>
 				white-space: pre-wrap;
 			}
 
-			.center {
-				width: 50%;
-				display: block;
-				margin: 0 auto;
-				text-align: center;
-			}
-
 			blockquote {
-				font-size: ${fontSize + 3.5}px;
+				font-size: 22px;
 				padding: 10px 20px;
 				margin: 0px 0px 20px;
-				border-left: 5px solid rgb(238, 238, 238);
+				border-left: 5px solid lightgray;
+				background-color: rgb(238, 238, 238);
 			}
 
 			.img-tooltip {
