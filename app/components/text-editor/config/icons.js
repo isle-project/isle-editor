@@ -16,6 +16,7 @@ const icons = {
 	bullet_list: <i className="prosemirror-icon fas fa-list-ul"></i>,
 	code_block: <i className="prosemirror-icon fas fa-file-code"></i>,
 	code: <i className="prosemirror-icon fas fa-code"></i>,
+	color: <i className="prosemirror-icon fas fa-palette"></i>,
 	editTable: <i className="prosemirror-icon fas fa-table"></i>,
 	em: <i className="prosemirror-icon fas fa-italic"></i>,
 	fullscreen: <i className="prosemirror-icon fas fa-expand"></i>,
