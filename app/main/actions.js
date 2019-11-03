@@ -51,8 +51,8 @@ ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
 	if ( filePath ) {
 		opts.defaultPath = filePath;
 	}
-	dialog.showSaveDialog( opts, ( filePath ) => {
-		if ( filePath ) {
+	dialog.showSaveDialog( opts ).then( ({ canceled, filePath }) => {
+		if ( !canceled && filePath ) {
 			fs.writeFile( filePath, data, 'utf-8', ( err ) => {
 				if ( err ) {
 					return;
@@ -135,11 +135,11 @@ export function open({ browserWindow }) {
 	if ( filePath ) {
 		opts.defaultPath = filePath;
 	}
-	dialog.showOpenDialog( browserWindow, opts, ( fileNames ) => {
-		if ( fileNames === void 0 ) {
+	dialog.showOpenDialog( browserWindow, opts ).then( ({ canceled, filePaths }) => {
+		if ( canceled || filePaths === void 0 ) {
 			return;
 		}
-		openFile( fileNames[ 0 ], browserWindow );
+		openFile( filePaths[ 0 ], browserWindow );
 	});
 }
 
