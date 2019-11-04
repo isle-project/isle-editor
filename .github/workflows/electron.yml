@@ -1,0 +1,56 @@
+name: Electron
+
+on: [push]
+
+jobs:
+  build_on_mac:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: electron
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install, lint, build, and test
+      run: |
+        npm ci
+        npm run lint
+        npm test
+        npm run build
+      env:
+        CI: true
+  build_on_win:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: feature/github-actions        
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install, lint, build, and test
+      run: |
+        npm ci
+        npm run lint
+        npm test
+        npm run build
+      env:
+        CI: true
+  build_on_ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: feature/github-actions        
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install, lint, build, and test
+      run: |
+        npm ci
+        npm run lint
+        npm test
+        npm run build
+      env:
+        CI: true
