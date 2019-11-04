@@ -6,6 +6,7 @@ jobs:
   build_on_mac:
     runs-on: macOS-latest
     steps:
+    - uses: actions/checkout@v1
     - uses: actions/setup-node@master
       with:
         node-version: 12.x
@@ -20,6 +21,7 @@ jobs:
   build_on_win:
     runs-on: windows-latest
     steps:      
+    - uses: actions/checkout@v1
     - uses: actions/setup-node@master
       with:
         node-version: 12.x
@@ -34,6 +36,7 @@ jobs:
   build_on_ubuntu:
     runs-on: ubuntu-latest
     steps:    
+    - uses: actions/checkout@v1
     - uses: actions/setup-node@master
       with:
         node-version: 12.x
