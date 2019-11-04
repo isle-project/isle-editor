@@ -19,7 +19,7 @@ describe( '<Pages />', function test() {
 		expect( wrapper.html() ).toBeNull();
 	});
 
-	it( 'renders a user-suppslied `title`', () => {
+	it( 'renders a user-supplied `title`', () => {
 		const wrapper = shallow( <Pages title="A Title" >
 			<div>ONE</div>
 			<div>TWO</div>
