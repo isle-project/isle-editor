@@ -135,6 +135,8 @@ class SelectQuestion extends Component {
 							placeholder="select"
 							onChange={this.handleChange}
 							style={{ display: 'inline', width: 'max-content' }}
+							isInvalid={this.state.answerState === 'error'}
+							isValid={this.state.answerState === 'success'}
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option key={idx} value={e}>{e}</option>;
