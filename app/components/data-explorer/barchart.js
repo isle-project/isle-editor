@@ -49,7 +49,6 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 			counts[ i ] = freqs[ categories[ i ] ];
 		}
 		if ( totalPercent ) {
-			// faster than map
 			for ( let i = 0; i < counts.length; i++ ) {
 				counts[ i ] = counts[ i ] / nObs;
 			}
@@ -121,7 +120,6 @@ export function generateBarchartConfig({ data, variable, group, horiz, stackBars
 					counts[ i ] = val[ categories[ i ] ];
 				}
 				if ( totalPercent ) {
-					// faster than map
 					for ( let i = 0; i < counts.length; i++ ) {
 						counts[ i ] = counts[ i ] / nObs;
 					}
@@ -305,9 +303,9 @@ class Barchart extends Component {
 								relative: value
 							});
 						}}
-						disabled={(!this.state.stackBars) || (this.state.stackBars & this.state.totalPercent)}
+						disabled={(!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent)}
 						style={{
-							opacity: (!this.state.stackBars) || (this.state.stackBars & this.state.totalPercent) ? 0.2 : 1
+							opacity: (!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent) ? 0.2 : 1
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
