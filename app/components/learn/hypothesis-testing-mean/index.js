@@ -333,7 +333,7 @@ class MeanTest extends Component {
 					{samples === 'Two-Sample' ? secondSampleParams : null}
 				</Card>
 				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
-				<Switch onChange={this.onDirectionChange}>
+				<Switch onChange={this.onDirectionChange} style={{ width: '100%' }} >
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />

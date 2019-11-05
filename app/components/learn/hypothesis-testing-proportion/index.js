@@ -258,7 +258,7 @@ class ProportionTest extends Component {
 					{samples === 'Two-Sample' ? secondSampleParams : null }
 				</Card>
 				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
-				<Switch onChange={this.onDirectionChange}>
+				<Switch onChange={this.onDirectionChange} style={{ width: '100%' }} >
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
@@ -286,7 +286,7 @@ class ProportionTest extends Component {
 						displayMode
 						tag=""
 						style={{ fontSize: '1.5em' }}
-						raw="z = \frac{\hat p - p_0}{\sqrt{p_0 (1-p_0) / n}}"
+						raw="z = \frac{\hat p - p}{\sqrt{p (1-p) / n}}"
 						elems={{
 							'n': {
 								tooltip: 'Sample Size'

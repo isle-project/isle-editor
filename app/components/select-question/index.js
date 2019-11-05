@@ -60,7 +60,7 @@ class SelectQuestion extends Component {
 		// Initialize state variables...
 		this.state = {
 			value: props.options[ props.preselected ],
-			answerState: null
+			answerState: 'secondary'
 		};
 	}
 
@@ -68,7 +68,7 @@ class SelectQuestion extends Component {
 		const value = event.target.value;
 		this.setState({
 			value,
-			answerState: null
+			answerState: 'secondary'
 		}, () => {
 			this.props.onChange( value );
 		});
@@ -110,7 +110,7 @@ class SelectQuestion extends Component {
 		});
 		this.props.onSubmit( this.state.value, correct );
 		this.setState({
-			answerState: correct ? 'success' : 'error',
+			answerState: correct ? 'success' : 'danger',
 			submitted: true
 		});
 	}
@@ -120,6 +120,8 @@ class SelectQuestion extends Component {
 	*/
 	render() {
 		const nHints = this.props.hints.length;
+		const isValid = this.state.answerState === 'success';
+		const isInvalid = this.state.answerState === 'danger';
 		if ( this.props.inline ) {
 			return (
 				<span
@@ -135,14 +137,15 @@ class SelectQuestion extends Component {
 							placeholder="select"
 							onChange={this.handleChange}
 							style={{ display: 'inline', width: 'max-content' }}
-							isInvalid={this.state.answerState === 'error'}
-							isValid={this.state.answerState === 'success'}
+							isInvalid={isInvalid}
+							isValid={isValid}
+							disabled={isValid}
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option key={idx} value={e}>{e}</option>;
 							})}
 						</FormControl>
-						<Button size="small" variant="outline-secondary" style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
+						<Button size="small" variant={`outline-${this.state.answerState}`} disabled={isValid} style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
 							<i className="fa fa-check-square"></i>
 						</Button>
 					</InputGroup>
@@ -163,8 +166,9 @@ class SelectQuestion extends Component {
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
-							isInvalid={this.state.answerState === 'error'}
-							isValid={this.state.answerState === 'success'}
+							isInvalid={this.state.answerState === 'danger'}
+							isValid={isValid}
+							disabled={isValid}
 						>
 							{this.props.options.map( ( e, idx ) => {
 								return <option className="select-question-option" key={idx} value={e}>{e}</option>;
@@ -173,7 +177,7 @@ class SelectQuestion extends Component {
 					</FormGroup>
 				</Form>
 				<div className="select-question-toolbar">
-					<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
+					<TimedButton className="submit-button" variant="primary" disabled={isValid} size="sm" onClick={this.handleSubmit}>
 						{ this.state.submitted ? 'Resubmit' : 'Submit' }
 					</TimedButton>
 					{ nHints > 0 ?
