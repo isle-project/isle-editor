@@ -1,7 +1,7 @@
 // MODULES //
 
-import { dirname, resolve, join } from 'path';
-import { readFileSync } from 'fs';
+import { basename, dirname, resolve, join } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
 import { text } from 'd3';
 import uniq from 'uniq';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -9,6 +9,8 @@ import isURI from '@stdlib/assert/is-uri';
 import replace from '@stdlib/string/replace';
 import merge from '@stdlib/utils/merge';
 import endsWith from '@stdlib/string/ends-with';
+import readJSON from '@stdlib/fs/read-json';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 
 
 // VARIABLES //
@@ -66,6 +68,14 @@ function matchPreamble( str, preamble ) {
 async function isleFileIncludes( code, preamble, filePath ) {
 	let out = {};
 	let match = RE_INCLUDES.exec( code );
+	const manifestPath = join( dirname( filePath ), `${basename( filePath, '.isle' )}-resources`, 'manifest.json' );
+	let manifest = readJSON.sync( manifestPath );
+	if ( manifest instanceof Error ) {
+		manifest = {};
+	}
+	if ( !hasOwnProp( manifest, 'include' ) ) {
+		manifest.include = {};
+	}
 	const asyncOps = [];
 	const asyncMatches = [];
 	const asyncDirs = [];
@@ -83,12 +93,19 @@ async function isleFileIncludes( code, preamble, filePath ) {
 			str = readFileSync( resolve( dirname( filePath ), path ), 'utf8' );
 			matchPreamble( str, preamble );
 			out[ match[ 0 ] ] = str;
+			manifest.include[ match[ 0 ] ] = {
+				lastAccessed: new Date().toLocaleString()
+			};
 		}
 		match = RE_INCLUDES.exec( code );
 	}
 	const res = await Promise.all( asyncOps );
 	for ( let i = 0; i < res.length; i++ ) {
 		let str = res[ i ];
+
+		manifest.include[ asyncDirs[ i ] ] = {
+			lastAccessed: new Date().toLocaleString()
+		};
 		matchPreamble( str, preamble );
 
 		str = replace( str, RE_RELATIVE_FILE, ( match ) => {
@@ -98,6 +115,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 		out[ asyncMatches[ i ] ] = str;
 	}
 	out[ 'preamble' ] = preamble;
+	writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
 	return out;
 }
 
