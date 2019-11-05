@@ -32,6 +32,26 @@ const areaStyle = {
 	}
 };
 const debug = logger( 'isle:learn:hypothesis-testing-mean' );
+const EQN_TOOLTIPS = {
+	'n': {
+		tooltip: 'Sample Size'
+	},
+	's': {
+		tooltip: 'Standard Deviation'
+	},
+	'μ': {
+		tooltip: 'True mean'
+	},
+	'x': {
+		tooltip: 'Sample Mean'
+	},
+	'z': {
+		tooltip: 'Test Statistic'
+	},
+	't': {
+		tooltip: 'Test Statistic'
+	}
+};
 
 
 // MAIN //
@@ -200,7 +220,7 @@ class MeanTest extends Component {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
 		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		const firstSampleParams = <div>
-			<Badge variant="secondary">First Sample</Badge>
+			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar}
@@ -212,7 +232,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample standard deviation"
+				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : 'Sample standard deviation'}
 				defaultValue={sigma}
 				min={0.1}
 				step="any"
@@ -235,7 +255,7 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			<Badge variant="secondary">Second Sample</Badge>
+			{ samples === 'Two-Sample' ? <Badge variant="secondary">Second Sample</Badge> : null }
 			<NumberInput
 				legend="Sample mean"
 				defaultValue={xbar2}
@@ -247,7 +267,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample standard deviation"
+				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : 'Sample standard deviation'}
 				defaultValue={sigma2}
 				min={0.1}
 				step="any"
@@ -271,6 +291,7 @@ class MeanTest extends Component {
 		</div>;
 		const testStat = samples === 'Two-Sample' ? '\\mu_1 - \\mu_2' : '\\mu';
 		const asValue = this.props.nullHypothesisAsValue;
+		const sSym = selectedTest === 'Z-Test' ? '\\sigma' : 's';
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
 				Parameters
@@ -325,24 +346,8 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw={`${statChar}  = \\frac{(\\bar x_1 - \\bar x_2) - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{s_1^2}{n_1}+\\tfrac{s_2^2}{n_2}}}`}
-						elems={{
-							'n': {
-								tooltip: 'Sample Size'
-							},
-							's': {
-								tooltip: 'Standard Deviation'
-							},
-							'μ': {
-								tooltip: 'True mean'
-							},
-							'x': {
-								tooltip: 'Sample Mean'
-							},
-							'z': {
-								tooltip: 'Test Statistic'
-							}
-						}}
+						raw={`${statChar}  = \\frac{(\\bar x_1 - \\bar x_2) - (\\mu_1 - \\mu_2)}{\\sqrt{\\tfrac{${sSym}_1^2}{n_1}+\\tfrac{${sSym}_2^2}{n_2}}}`}
+						elems={EQN_TOOLTIPS}
 					/> :
 					<TeX
 						displayMode
@@ -350,24 +355,8 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw={`${statChar} = \\frac{\\bar x - \\mu}{s/\\sqrt{n}}`}
-						elems={{
-							'n': {
-								tooltip: 'Sample Size'
-							},
-							's': {
-								tooltip: 'Standard Deviation'
-							},
-							'μ': {
-								tooltip: 'Mean under the Null Hypothesis'
-							},
-							'x': {
-								tooltip: 'Sample Mean'
-							},
-							'z': {
-								tooltip: 'Test Statistic'
-							}
-						}}
+						raw={`${statChar} = \\frac{\\bar x - \\mu}{${sSym} / \\sqrt{n}}`}
+						elems={EQN_TOOLTIPS}
 					/>
 				}
 			</Card.Body>

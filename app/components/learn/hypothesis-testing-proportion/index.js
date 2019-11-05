@@ -168,8 +168,9 @@ class ProportionTest extends Component {
 	}
 
 	renderParametersPanel() {
+		const { p0, samples } = this.state;
 		const firstSampleParams = <div>
-			<Badge variant="secondary">First Sample</Badge>
+			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
 			<NumberInput
 				legend="Sample proportion"
 				defaultValue={this.state.phat}
@@ -195,7 +196,7 @@ class ProportionTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			<Badge variant="secondary">Second Sample</Badge>
+			{ samples === 'Two-Sample' ? <Badge variant="secondary">Second Sample</Badge> : null }
 			<NumberInput
 				legend="Sample proportion"
 				defaultValue={this.state.phat2}
@@ -220,7 +221,6 @@ class ProportionTest extends Component {
 				}}
 			/>
 		</div>;
-		const { p0, samples } = this.state;
 		const testStat = samples === 'Two-Sample' ? 'p_1 - p_2' : 'p';
 		const asValue = this.props.nullHypothesisAsValue;
 		return ( <Card maxWidth={1600}>
