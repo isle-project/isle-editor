@@ -19,6 +19,7 @@ import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
 import Session from 'session';
 import transformToPresentation from 'utils/transform-to-presentation';
+import isleFileIncludes from './isle_file_includes.js';
 import createScope from './create_scope.js';
 import loadRequires from './load_requires.js';
 import applyStyles from './apply_styles.js';
@@ -59,7 +60,8 @@ class Preview extends Component {
 		const lessonState = session.config.state;
 		this.state = {
 			...lessonState,
-			isLoading: true
+			isLoading: true,
+			includes: null
 		};
 		global.lesson = this;
 		if ( isObject( props.preamble ) ) {
@@ -77,6 +79,10 @@ class Preview extends Component {
 		if ( isObject( preamble ) ) {
 			await this.loadRequires( preamble, filePath );
 		}
+		const includes = await isleFileIncludes( this.props.code, preamble, filePath );
+		this.setState({
+			includes
+		});
 	}
 
 	shouldComponentUpdate( nextProps, nextState ) {
@@ -86,7 +92,8 @@ class Preview extends Component {
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
 			this.props.hideToolbar !== nextProps.hideToolbar ||
-			this.state.isLoading !== nextState.isLoading
+			this.state.isLoading !== nextState.isLoading ||
+			this.state.includes !== nextState.includes
 		) {
 			return true;
 		}
@@ -180,12 +187,18 @@ class Preview extends Component {
 
 		// Remove preamble and comments:
 		let noEmptyLines = 0;
+
+		const keys = objectKeys( this.state.includes );
+		for ( let i = 0; i < keys.length; i++ ) {
+			code = code.replace( keys[ i ], this.state.includes[ keys[ i ] ] );
+		}
+
 		const replacer = ( match, p1 ) => {
-			noEmptyLines += ( p1.match( RE_LINES ) || '').length;
+			noEmptyLines += ( p1.match( RE_LINES ) || '' ).length;
 			return '';
 		};
-		code = code.replace( /^---([\S\s]*?)---/, replacer );
-		code = code.replace( /<!--([\S\s]*)-->/, replacer );
+		code = code.replace( /---([\S\s]*?)---/g, replacer );
+		code = code.replace( /<!--([\S\s]*)-->/g, replacer );
 
 		// Replace Markdown by HTML...
 		code = markdownToHTML( code, this.props.filePath, preamble.type !== 'presentation' );

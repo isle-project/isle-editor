@@ -3,10 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
-import { copyFileSync, mkdirSync, createWriteStream } from 'fs';
+import { copyFileSync, mkdirSync, createWriteStream, writeFileSync } from 'fs';
 import https from 'https';
 import http from 'http';
 import url from 'url';
+import { text } from 'd3';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -17,6 +18,7 @@ import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-plain-object';
 import startsWith from '@stdlib/string/starts-with';
+import endsWith from '@stdlib/string/ends-with';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import Loadable from 'components/loadable';
@@ -41,6 +43,8 @@ const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_IMG_SRC = /src="([^"]+)"/;
+const RE_INCLUDE = /<!-- #include "([^"]+)"/;
+const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	minimap: {
@@ -148,15 +152,15 @@ class Editor extends Component {
 
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, url, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
-			const fileName = basename( this.props.filePath, ext );
+			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
 			let subdir = type;
 			const resDir = join( isleDir, subdir );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
-			}
-			if ( !exists.sync( resDir ) ) {
-				mkdirSync( resDir );
+				mkdirSync( join( isleDir, 'img' ) );
+				mkdirSync( join( isleDir, 'video' ) );
+				mkdirSync( join( isleDir, 'include' ) );
 			}
 			const name = basename( url );
 			const destFilePath = join( resDir, name );
@@ -178,6 +182,69 @@ class Editor extends Component {
 					};
 					this.editor.executeEdits( 'my-source', [ fix ] );
 					file.close();
+				});
+			});
+		});
+
+		this.copyIncludeToLocal = this.editor.addCommand( 'copy-include-to-local', ( _, url, p ) => {
+			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+			const id = { major: 1, minor: 1 };
+			const destDir = dirname( this.props.filePath );
+			const fileName = basename( this.props.filePath, '.isle' );
+			const isleDir = join( destDir, `${fileName}-resources` );
+
+			const includeName = basename( url );
+			const includePath = join( isleDir, 'include' );
+			if ( !exists.sync( isleDir ) ) {
+				mkdirSync( isleDir );
+				mkdirSync( join( isleDir, 'img' ) );
+				mkdirSync( join( isleDir, 'video' ) );
+				mkdirSync( includePath );
+			}
+			const includeResources = join( includePath, `${includeName}-resources` );
+			if ( !exists.sync( includeResources ) ) {
+				mkdirSync( includeResources );
+				mkdirSync( join( includeResources, 'img' ) );
+				mkdirSync( join( includeResources, 'video' ) );
+			}
+			if ( !endsWith( url, '.isle' ) ) {
+				url += '/index.isle';
+			}
+			const outPath = join( includePath, `${includeName}.isle` );
+			text( url ).then( res => {
+				const files = res.match( RE_RELATIVE_FILE );
+				let done = 0;
+				files.forEach( ( match ) => {
+					// Replace path:
+					res = replace( res, match, join( includePath, match ) );
+
+					// Download all remote resources to disk:
+					const remotePath = join( dirname( url ), match );
+					const destFilePath = join( includePath, match );
+					const file = createWriteStream( destFilePath );
+					const get = startsWith( url, 'https' ) ? https.get : http.get;
+					const handleResponse = ( response ) => {
+						response.pipe( file );
+						const onDone = ( err ) => {
+							done += 1;
+							if ( done === files.length ) {
+								writeFileSync( outPath, res );
+								const fix = {
+									title: 'Copy to local',
+									identifier: id,
+									range,
+									text: './' + relative( destDir, outPath )
+								};
+								this.editor.executeEdits( 'my-source', [ fix ] );
+							}
+							if ( err ) {
+								return debug( err );
+							}
+							file.close();
+						};
+						file.on( 'finish', onDone );
+					};
+					get( remotePath, handleResponse );
 				});
 			});
 		});
@@ -284,45 +351,65 @@ class Editor extends Component {
 				}
 			});
 		const selection = this.editor.getSelection();
-		const selectedText = this.editor.getModel().getValueInRange( selection );
-		if ( isURI( selectedText ) ) {
-			const ext = extname( url.parse( selectedText ).pathname );
-			if ( contains( IMAGE_EXTENSIONS, ext ) ) {
-				actions.push({
-					command: {
-						id: this.copyToLocal,
-						title: 'Copy image to local location',
-						arguments: [ selectedText, 'img', ext, selection ]
-					},
-					title: 'Copy image to local location'
-				});
-			} else if ( contains( VIDEO_EXTENSIONS, ext ) ) {
-				actions.push({
-					command: {
-						id: this.copyToLocal,
-						title: 'Copy video to local location',
-						arguments: [ selectedText, 'video', ext, selection ]
-					},
-					title: 'Copy video to local location'
-				});
-			}
-		}
-		else if ( startsWith( selectedText, '<img' ) || startsWith( selectedText, '<Image' ) ) {
-			const model = this.editor.getModel();
-			const { matches, range } = model.findNextMatch( RE_IMG_SRC, 0, true, false, null, true );
-			range.startColumn += 5; // handles leading src="
-			range.endColumn -= 1; // handles trailing "
-			if ( matches ) {
-				const imgURL = matches[ 1 ];
-				const ext = extname( url.parse( imgURL ).pathname );
+		const model = this.editor.getModel();
+		if ( model ) {
+			const selectedText = model.getValueInRange( selection );
+			if ( isURI( selectedText ) ) {
+				const ext = extname( url.parse( selectedText ).pathname );
 				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
 					actions.push({
 						command: {
 							id: this.copyToLocal,
 							title: 'Copy image to local location',
-							arguments: [ imgURL, 'img', ext, range ]
+							arguments: [ selectedText, 'img', ext, selection ]
 						},
 						title: 'Copy image to local location'
+					});
+				} else if ( contains( VIDEO_EXTENSIONS, ext ) ) {
+					actions.push({
+						command: {
+							id: this.copyToLocal,
+							title: 'Copy video to local location',
+							arguments: [ selectedText, 'video', ext, selection ]
+						},
+						title: 'Copy video to local location'
+					});
+				}
+			}
+			else if ( startsWith( selectedText, '<img' ) || startsWith( selectedText, '<Image' ) ) {
+				const model = this.editor.getModel();
+				const { matches, range } = model.findNextMatch( RE_IMG_SRC, 0, true, false, null, true );
+				range.startColumn += 5; // handles leading src="
+				range.endColumn -= 1; // handles trailing "
+				if ( matches ) {
+					const imgURL = matches[ 1 ];
+					const ext = extname( url.parse( imgURL ).pathname );
+					if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+						actions.push({
+							command: {
+								id: this.copyToLocal,
+								title: 'Copy image to local location',
+								arguments: [ imgURL, 'img', ext, range ]
+							},
+							title: 'Copy image to local location'
+						});
+					}
+				}
+			}
+			else if ( startsWith( selectedText, '<!-- #include "' ) ) {
+				const model = this.editor.getModel();
+				const { matches, range } = model.findNextMatch( RE_INCLUDE, 0, true, false, null, true );
+				range.startColumn += 15; // handles leading src=" <!-- #include "
+				range.endColumn -= 1; // handles trailing "
+				if ( matches ) {
+					const lessonURL = matches[ 1 ];
+						actions.push({
+						command: {
+							id: this.copyIncludeToLocal,
+							title: 'Download included lesson and all associated resources',
+							arguments: [ lessonURL, range ]
+						},
+						title: 'Download included lesson  and all associated resources'
 					});
 				}
 			}
@@ -430,9 +517,9 @@ class Editor extends Component {
 			const imgDir = join( isleDir, 'img' );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
-			}
-			if ( !exists.sync( imgDir ) ) {
 				mkdirSync( imgDir );
+				mkdirSync( join( isleDir, 'video' ) );
+				mkdirSync( join( isleDir, 'include' ) );
 			}
 			const destPath = join( imgDir, name );
 			copyFileSync( path, destPath );
@@ -463,9 +550,10 @@ class Editor extends Component {
 			const videoDir = join( isleDir, 'video' );
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
-			}
-			if ( !exists.sync( videoDir ) ) {
+				mkdirSync( isleDir );
 				mkdirSync( videoDir );
+				mkdirSync( join( isleDir, 'img' ) );
+				mkdirSync( join( isleDir, 'include' ) );
 			}
 			const destPath = join( videoDir, name );
 			copyFileSync( path, destPath );
@@ -502,7 +590,9 @@ class Editor extends Component {
 		let text = e.dataTransfer.getData( 'text' );
 		if ( text ) {
 			if ( isURI( text ) ) {
-				if (
+				if ( contains( text, this.props.preamble.server ) ) {
+					text = `<!-- #include "${text}" -->`;
+				} else if (
 					contains( text, 'youtu' )
 				) {
 					text = `<VideoPlayer url="${text}" />`;
