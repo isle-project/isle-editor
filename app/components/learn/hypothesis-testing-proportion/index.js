@@ -319,7 +319,7 @@ class ProportionTest extends Component {
 					<TeX
 						tag=""
 						displayMode
-						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{${roundn( p0*( 1-p0 )/n, -3 )}}} = ${pStat}`}
+						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{\\frac{${roundn( p0, -3 )} \\cdot ${roundn( 1-p0, -3 )}}{${n}} }} = ${pStat}`}
 					/>
 				}
 				<p>Under the null hypothesis, we calculate the p-value: </p>
