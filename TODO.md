@@ -23,14 +23,10 @@ Summer 2019
 ===========
 
 * Close hints when moving to another question
-* Markdown code blocks do not render in exported PDF
 
 LONG-TERM
 ===
-* Data Explorer Output Behavior 
 * Mobile. `isle-app`. Mobile responsiveness
-* Needed learning components:   
-    - ...
 * Landing page before start of lesson showing the title, brief overview of content, learning objectives. Should include a way for users to clear the ISLE variables in localStorage.
 * Many of the react components need properties for event handlers (onClick, onChange)...
 * Data Explorer
