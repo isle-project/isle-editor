@@ -21,7 +21,9 @@ import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
+import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/loadable';
+import { ipcRenderer } from 'electron';
 import MonacoEditor from 'react-monaco-editor';
 import SpellChecker from 'utils/spell-checker';
 import VIDEO_EXTENSIONS from './video_extensions.json';
@@ -193,8 +195,22 @@ class Editor extends Component {
 			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
 
+			const manifestPath = join( isleDir, 'manifest.json' );
+			let manifest = readJSON.sync( manifestPath );
+			if ( manifest instanceof Error ) {
+				manifest = {
+					include: {}
+				};
+			}
+			console.log( manifest );
 			const includeName = basename( url );
 			const includePath = join( isleDir, 'include' );
+			const outPath = join( includePath, `${includeName}.isle` );
+			const localPath = './' + relative( destDir, outPath );
+			manifest.include[ localPath ] = {
+				lastAccessed: new Date().toLocaleString(),
+				origin: url
+			};
 			if ( !exists.sync( isleDir ) ) {
 				mkdirSync( isleDir );
 				mkdirSync( join( isleDir, 'img' ) );
@@ -207,10 +223,10 @@ class Editor extends Component {
 				mkdirSync( join( includeResources, 'img' ) );
 				mkdirSync( join( includeResources, 'video' ) );
 			}
+			writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
 			if ( !endsWith( url, '.isle' ) ) {
 				url += '/index.isle';
 			}
-			const outPath = join( includePath, `${includeName}.isle` );
 			text( url ).then( res => {
 				const files = res.match( RE_RELATIVE_FILE );
 				let done = 0;
@@ -233,7 +249,7 @@ class Editor extends Component {
 									title: 'Copy to local',
 									identifier: id,
 									range,
-									text: './' + relative( destDir, outPath )
+									text: localPath
 								};
 								this.editor.executeEdits( 'my-source', [ fix ] );
 							}
@@ -246,6 +262,12 @@ class Editor extends Component {
 					};
 					get( remotePath, handleResponse );
 				});
+			});
+		});
+
+		this.openISLEFile = this.editor.addCommand( 'open-file', ( _, lessonURL, p ) => {
+			ipcRenderer.send( 'open-file', {
+				path: lessonURL
 			});
 		});
 	}
@@ -403,14 +425,26 @@ class Editor extends Component {
 				range.endColumn -= 1; // handles trailing "
 				if ( matches ) {
 					const lessonURL = matches[ 1 ];
+					if ( isURI( lessonURL ) ) {
 						actions.push({
-						command: {
-							id: this.copyIncludeToLocal,
-							title: 'Download included lesson and all associated resources',
-							arguments: [ lessonURL, range ]
-						},
-						title: 'Download included lesson  and all associated resources'
-					});
+							command: {
+								id: this.copyIncludeToLocal,
+								title: 'Download included lesson and all associated resources',
+								arguments: [ lessonURL, range ]
+							},
+							title: 'Download included lesson and all associated resources'
+						});
+					}
+					else {
+						actions.push({
+							command: {
+								id: this.openISLEFile,
+								title: 'Load ISLE file in new window',
+								arguments: [ lessonURL ]
+							},
+							title: 'Load ISLE file in new window'
+						});
+					}
 				}
 			}
 		}
