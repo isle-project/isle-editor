@@ -180,7 +180,7 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	itemSizeGetter = ( index ) => {
-		let lines = 2 * LINE_HEIGHT;
+		let lines = 2.0 * LINE_HEIGHT;
 		const action = this.state.actions[ index ];
 		if ( !action ) {
 			return 0;
@@ -188,7 +188,7 @@ class FullscreenActionDisplay extends Component {
 		const value = wordWrap( String( action.value ) );
 		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
 		lines += noLines * TEXT_LINE_HEIGHT;
-		debug( `Element at position ${index} is estimated to have ${lines} lines.` );
+		debug( `Element at position ${index} is estimated to have ${noLines} lines.` );
 		return lines;
 	}
 
@@ -733,6 +733,7 @@ class FullscreenActionDisplay extends Component {
 										length={this.state.filtered.length}
 										type="variable"
 										pageSize={50}
+										minSize={10}
 										itemSizeGetter={this.itemSizeGetter}
 									/>
 								</div> :
