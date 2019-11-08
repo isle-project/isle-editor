@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +10,7 @@ import saveAs from 'utils/file-saver';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
+import replace from '@stdlib/string/replace';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -34,6 +34,7 @@ import { svgString2Image, getSVGString } from 'utils/svg';
 // VARIABLES //
 
 const fill = scaleOrdinal( schemeCategory10 );
+const RE_NUMBERS = /[+-]?[\d.]+e?[+-]?\d*/g;
 
 
 // FUNCTIONS //
@@ -90,6 +91,7 @@ const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 		let text = texts[ i ];
 		if ( isString( text ) ) {
 			text = removePunctuation( text );
+			text = replace( text, RE_NUMBERS, ' ' );
 			let newTokens = tokenize( text );
 			tokens = tokens.concat( newTokens );
 		}
