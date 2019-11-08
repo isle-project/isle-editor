@@ -182,6 +182,9 @@ class FullscreenActionDisplay extends Component {
 	itemSizeGetter = ( index ) => {
 		let lines = 2 * LINE_HEIGHT;
 		const action = this.state.actions[ index ];
+		if ( !action ) {
+			return 0;
+		}
 		const value = wordWrap( String( action.value ) );
 		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
 		lines += noLines * TEXT_LINE_HEIGHT;
