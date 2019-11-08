@@ -40,6 +40,7 @@ const debug = logger( 'isle:number-question' );
 * @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
 * @property {number} max - maximum allowed input value
 * @property {number} min - minimum allowed input value
+* @property {number} defaultValue - pre-selected value of number input
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
@@ -60,7 +61,7 @@ class NumberQuestion extends Component {
 
 		// Initialize state variables...
 		this.state = {
-			value: void 0,
+			value: props.defaultValue,
 			submitted: false,
 			...props
 		};
@@ -266,6 +267,7 @@ NumberQuestion.defaultProps = {
 	digits: 3,
 	max: PINF,
 	min: NINF,
+	defaultValue: 0,
 	provideFeedback: true,
 	disableSubmitNotification: false,
 	chat: false,
@@ -286,6 +288,7 @@ NumberQuestion.propTypes = {
 	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
+	defaultValue: PropTypes.number,
 	provideFeedback: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
