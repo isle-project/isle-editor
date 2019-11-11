@@ -618,7 +618,12 @@ class Sketchpad extends Component {
 		debug( 'Retrieved data from previous session...' );
 		if ( isObject( data ) ) {
 			this.elements = data.elements;
-			this.recordingEndPositions = data.recordingEndPositions;
+			if ( data.nUndos ) {
+				this.nUndos = data.nUndos;
+			}
+			if ( data.recordingEndPositions ) {
+				this.recordingEndPositions = data.recordingEndPositions;
+			}
 			for ( let i = 0; i < data.state.insertedPages.length; i++ ) {
 				// Insert empty pages at the correct locations:
 				const { page } = data.state.insertedPages[ i ];
@@ -2015,6 +2020,7 @@ class Sketchpad extends Component {
 		const data = {
 			elements: this.elements,
 			recordingEndPositions: this.recordingEndPositions,
+			nUndos: this.nUndos,
 			state: state
 		};
 		session.store.setItem( this.id, data, clbk );
