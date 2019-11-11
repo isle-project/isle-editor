@@ -239,9 +239,11 @@ class Tokenizer {
 	}
 
 	_inDisplayEquation( char ) {
+		const prevChar = this._buffer.charAt( this.pos-1 );
+		const nextChar = this._buffer.charAt( this.pos+1 );
 		if (
-			( char === '$' && this._buffer.charAt( this.pos-1 ) === '$' ) ||
-			( this._eqnChar === '\\' && char === ']' && this._buffer.charAt( this.pos-1 ) === '\\' )
+			( char === '$' && prevChar === '$' ) ||
+			( this._eqnChar === '\\' && char === ']' && prevChar === '\\' )
 		) {
 			const eqn = this._current.substring( 1, this._current.length-1 );
 			const str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
@@ -252,6 +254,11 @@ class Tokenizer {
 			this._state = IN_BASE;
 		} else {
 			this._current += char;
+		}
+		if ( nextChar === '<' && RE_ALPHACHAR.test( this._buffer.charAt( this.pos+2 ) ) ) {
+			debug( 'IN_DISPLAY_EQUATION -> IN_BASE' );
+			this._current = this._eqnChar + this._current;
+			this._state = IN_BASE;
 		}
 	}
 
