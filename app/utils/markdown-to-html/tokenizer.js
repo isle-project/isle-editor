@@ -29,6 +29,7 @@ const IN_JSX_OTHER = 12;
 const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
 const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
+const RE_ALPHACHAR = /[A-Z]/i;
 const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
 const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
@@ -211,9 +212,11 @@ class Tokenizer {
 	}
 
 	_inEquation( char ) {
+		const prevChar = this._buffer.charAt( this.pos-1 );
+		const nextChar = this._buffer.charAt( this.pos+1 );
 		if (
 			( this._eqnChar === '$' && char === '$' ) ||
-			( this._eqnChar === '\\' && char === ')' && this._buffer.charAt( this.pos-1 ) === '\\' )
+			( this._eqnChar === '\\' && char === ')' && prevChar === '\\' )
 		) {
 			let eqn = removeFirst( this._current );
 			if ( this._eqnChar === '\\' ) {
@@ -225,8 +228,13 @@ class Tokenizer {
 			debug( 'IN_EQUATION -> IN_BASE' );
 			this._current = '';
 			this._state = IN_BASE;
-		} else {
+		}
+		else {
 			this._current += char;
+		}
+		if ( nextChar === '<' && RE_ALPHACHAR.test( this._buffer.charAt( this.pos+2 ) ) ) {
+			debug( 'IN_EQUATION -> IN_BASE' );
+			this._state = IN_BASE;
 		}
 	}
 
