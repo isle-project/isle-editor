@@ -1696,8 +1696,9 @@ class Sketchpad extends Component {
 	checkDeletion = ( event ) => {
 		const { x, y } = this.mousePosition( event );
 		const elems = this.elements[ this.state.currentPage ];
+		const nUndos = this.nUndos[ this.state.currentPage ];
 		let found = null;
-		for ( let i = 0; i < elems.length; i++ ) {
+		for ( let i = 0; i < elems.length - nUndos; i++ ) {
 			const elem = elems[ i ];
 			if ( elem.type === 'curve' ) {
 				const points = elem.points;
@@ -1781,8 +1782,8 @@ class Sketchpad extends Component {
 			debug( `Delete elements ${deleteStart} to ${deleteEnd}` );
 			const deleted = elems.splice( deleteStart, deleteEnd - deleteStart + 1 );
 			elems.splice( elems.length - nUndos, 0, ...deleted );
-			this.onlyRedrawElements();
 			this.nUndos[ this.state.currentPage ] = nUndos + deleted.length;
+			this.onlyRedrawElements();
 		}
 	}
 
