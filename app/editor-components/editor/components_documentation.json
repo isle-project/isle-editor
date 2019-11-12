@@ -3373,6 +3373,12 @@
         "default": null
       },
       {
+        "name": "defaultValue",
+        "type": "number",
+        "description": "pre-selected value of number input",
+        "default": 0
+      },
+      {
         "name": "provideFeedback",
         "type": "boolean",
         "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
@@ -5680,6 +5686,12 @@
   },
   "TextEditor": {
     "props": [
+      {
+        "name": "allowSubmissions",
+        "type": "boolean",
+        "description": "controls whether students may submit their reports to the server",
+        "default": true
+      },
       {
         "name": "defaultValue",
         "type": "string",

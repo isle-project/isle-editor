@@ -27,6 +27,7 @@ A number question component.
 * __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.. Default: `3`.
 * __max__ | `number`: maximum allowed input value. Default: `null`.
 * __min__ | `number`: minimum allowed input value. Default: `null`.
+* __defaultValue__ | `number`: pre-selected value of number input. Default: `0`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
