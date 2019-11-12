@@ -37,7 +37,7 @@ const ErrorMessage = ( props ) => {
 	msg = msg.replace( '&gt;', '>' );
 	return ( <Card className="error-message">
 		<Card.Body>
-			<h3>Encountered an error:</h3>
+			<h3>Encountered an Error...</h3>
 			<pre>
 				<Ansi>{msg}</Ansi>
 			</pre>
