@@ -12,6 +12,7 @@ import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
+import isRelativePath from '@stdlib/assert/is-relative-path';
 import exists from '@stdlib/fs/exists';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
@@ -154,7 +155,20 @@ class Editor extends Component {
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
 
-		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, url, type, ext, p ) => {
+		this.changeToRemote = this.editor.addCommand( 'change-to-remote', ( _, resURL, entry, p ) => {
+			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+			const id = { major: 1, minor: 1 };
+			const fix = {
+				title: 'Change to remote',
+				identifier: id,
+				range,
+				text: entry.origin
+			};
+			console.log( fix );
+			this.editor.executeEdits( 'my-source', [ fix ] );
+		});
+
+		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
@@ -166,11 +180,27 @@ class Editor extends Component {
 				mkdirSync( join( isleDir, 'video' ) );
 				mkdirSync( join( isleDir, 'include' ) );
 			}
-			const name = basename( url );
+			const manifestPath = join( isleDir, 'manifest.json' );
+			let manifest = readJSON.sync( manifestPath );
+			if ( manifest instanceof Error ) {
+				manifest = {
+					resources: {}
+				};
+			}
+			const { href, pathname, search } = url.parse( resURL );
+			const name = decodeURIComponent( basename( pathname ) );
 			const destFilePath = join( resDir, name );
+			if ( !manifest.resources ) {
+				manifest.resources = {};
+			}
+			manifest.resources[ name ] = {
+				lastAccessed: new Date().toLocaleString(),
+				origin: resURL
+			};
+			writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
 			const file = createWriteStream( destFilePath );
-			const get = startsWith( url, 'https' ) ? https.get : http.get;
-			get( url, ( response ) => {
+			const get = startsWith( resURL, 'https' ) ? https.get : http.get;
+			get( href, ( response ) => {
 				response.pipe( file );
 				file.on( 'finish', ( err ) => {
 					if ( err ) {
@@ -182,7 +212,7 @@ class Editor extends Component {
 						title: 'Copy to local',
 						identifier: id,
 						range,
-						text: './' + relative( destDir, destFilePath )
+						text: './' + relative( destDir, destFilePath ) + ( search || '' )
 					};
 					this.editor.executeEdits( 'my-source', [ fix ] );
 					file.close();
@@ -413,14 +443,34 @@ class Editor extends Component {
 					const imgURL = matches[ 1 ];
 					const ext = extname( url.parse( imgURL ).pathname );
 					if ( contains( IMAGE_EXTENSIONS, ext ) ) {
-						actions.push({
-							command: {
-								id: this.copyToLocal,
-								title: 'Copy image to local location',
-								arguments: [ imgURL, 'img', ext, range ]
-							},
-							title: 'Copy image to local location'
-						});
+						if ( isURI( imgURL ) ) {
+							actions.push({
+								command: {
+									id: this.copyToLocal,
+									title: 'Copy image to local location',
+									arguments: [ imgURL, 'img', ext, range ]
+								},
+								title: 'Copy image to local location'
+							});
+						}
+						else if ( isRelativePath( imgURL ) ) {
+							const destDir = dirname( this.props.filePath );
+							const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
+							const isleDir = join( destDir, `${fileName}-resources` );
+							const manifestPath = join( isleDir, 'manifest.json' );
+							const manifest = readJSON.sync( manifestPath );
+							const entry = manifest.resources[ basename( imgURL ) ];
+							if ( entry ) {
+								actions.push({
+									command: {
+										id: this.changeToRemote,
+										title: 'Replace local resource by remote file',
+										arguments: [ imgURL, entry, range ]
+									},
+									title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+								});
+							}
+						}
 					}
 				}
 			}
@@ -441,7 +491,23 @@ class Editor extends Component {
 							title: 'Download included lesson and all associated resources'
 						});
 					}
-					else {
+					else if ( isRelativePath( lessonURL ) ) {
+						const destDir = dirname( this.props.filePath );
+						const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
+						const isleDir = join( destDir, `${fileName}-resources` );
+						const manifestPath = join( isleDir, 'manifest.json' );
+						const manifest = readJSON.sync( manifestPath );
+						const entry = manifest.resources[ basename( lessonURL ) ];
+						if ( entry ) {
+							actions.push({
+								command: {
+									id: this.changeToRemote,
+									title: 'Replace local resource by remote file',
+									arguments: [ lessonURL, entry, range ]
+								},
+								title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+							});
+						}
 						actions.push({
 							command: {
 								id: this.openISLEFile,

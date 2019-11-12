@@ -67,6 +67,10 @@ function matchPreamble( str, preamble ) {
 
 async function isleFileIncludes( code, preamble, filePath ) {
 	let out = {};
+	out[ 'preamble' ] = preamble;
+	if ( !filePath ) {
+		return out;
+	}
 	let match = RE_INCLUDES.exec( code );
 	const manifestPath = join( dirname( filePath ), `${basename( filePath, '.isle' )}-resources`, 'manifest.json' );
 	let manifest = readJSON.sync( manifestPath );
@@ -114,7 +118,6 @@ async function isleFileIncludes( code, preamble, filePath ) {
 
 		out[ asyncMatches[ i ] ] = str;
 	}
-	out[ 'preamble' ] = preamble;
 	writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
 	return out;
 }
