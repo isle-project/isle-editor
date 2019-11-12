@@ -228,6 +228,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			this.windowResize = window.addEventListener( 'resize', this.handleResize );
 		}
+		this.beforeUnload = window.addEventListener( 'beforeunload', this.saveInBrowser );
 		let init;
 		if ( this.props.pdf ) {
 			init = this.initializePDF();
@@ -585,6 +586,9 @@ class Sketchpad extends Component {
 		}
 		if ( this.hashChange ) {
 			window.removeEventListener( 'hashchange', this.handleHashChange );
+		}
+		if ( this.beforeUnload ) {
+			window.removeEventListener( 'beforeunload', this.saveInBrowser );
 		}
 		const opts = {
 			passive: false
@@ -1523,8 +1527,10 @@ class Sketchpad extends Component {
 			debug( `Creating page ${idx+1}` );
 			this.renderBackground( idx ).then( () => {
 				const elems = this.elements[ idx ];
-				debug( `Rendering ${elems.length} elements...` );
-				for ( let i = 0; i < elems.length; i++ ) {
+				const nUndos = this.nUndos[ idx ];
+				const len = elems.length - nUndos;
+				debug( `Rendering ${elems.length} elements on page ${idx}...` );
+				for ( let i = 0; i < len; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
 				const data = this.canvas.toDataURL();
