@@ -206,6 +206,7 @@
     "react-table": "6.10.3",
     "react-transition-group": "^4.2.2",
     "react-viewer": "^3.0.0",
+    "react-virtualized": "^9.19.1",
     "recordrtc": "^5.5.7",
     "redux": "4.0.4",
     "redux-thunk": "^2.3.0",
