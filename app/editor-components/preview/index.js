@@ -14,6 +14,7 @@ import objectKeys from '@stdlib/utils/keys';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import repeat from '@stdlib/string/repeat';
+import replace from '@stdlib/string/replace';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from 'babel-plugin-transform-react-jsx';
 import Provider from 'components/provider';
@@ -201,7 +202,12 @@ class Preview extends Component {
 		code = code.replace( /<!--([\S\s]*)-->/g, replacer );
 
 		// Replace Markdown by HTML...
-		code = markdownToHTML( code, this.props.filePath, preamble.type !== 'presentation' );
+		try {
+			code = markdownToHTML( code, this.props.filePath, preamble.type !== 'presentation' );
+		} catch ( err ) {
+			err.message = replace( err.message, '\n', '\n | ' );
+			return this.props.encounteredError( err );
+		}
 
 		if ( preamble.type === 'presentation' ) {
 			debug( 'Should render a presentation...' );

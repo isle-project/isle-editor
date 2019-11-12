@@ -661,6 +661,9 @@ class Tokenizer {
 				break;
 			}
 			if ( this.pos === str.length - 1 ) {
+				if ( this._state === IN_BETWEEN_TAGS ) {
+					throw new Error( `Make sure <${this._openingTagName}> tag is properly closed:\n\n${this._current}${this.betweenStr || ''}` );
+				}
 				debug( 'Remainder of input string: '+this._current );
 				this.tokens.push( this._current );
 			}

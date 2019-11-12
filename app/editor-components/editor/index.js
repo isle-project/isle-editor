@@ -47,6 +47,8 @@ const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
+const NUM_WRAPPER_LINES = 9;
+const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	minimap: {
@@ -306,12 +308,16 @@ class Editor extends Component {
 		if ( this.props.lintErrors.length !== prevProps.lintErrors.length ) {
 			const errs = this.props.lintErrors.map( e => {
 				let bare = e.message.replace( RE_ANSI, '' );
+				bare = bare.replace( RE_STATUSBAR, '\n' );
+				bare = bare.replace( '</Lesson>', '' );
 				bare = bare.replace( RE_EMPTY_SPANS, '' );
 				bare = bare.replace( RE_FRAGMENT, '' );
+				bare = bare.replace( '&lt;', '<' );
+				bare = bare.replace( '&gt;', '>' );
 				return {
-					startLineNumber: e.line - 1,
+					startLineNumber: e.line - NUM_WRAPPER_LINES,
 					startColumn: 1,
-					endLineNumber: e.line - 1,
+					endLineNumber: e.line - NUM_WRAPPER_LINES,
 					endColumn: e.column,
 					message: bare,
 					severity: e.severity
