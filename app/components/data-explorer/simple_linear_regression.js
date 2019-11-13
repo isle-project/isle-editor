@@ -11,10 +11,15 @@ import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
+import incrsumabs2 from '@stdlib/stats/incr/sumabs2';
+import tCDF from '@stdlib/stats/base/dists/t/cdf';
+import abs from '@stdlib/math/base/special/abs';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import mean from 'utils/statistic/mean';
 import { DATA_EXPLORER_LINEAR_REGRESSION } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
+import by from './by.js';
 
 
 // VARIABLES //
@@ -56,6 +61,7 @@ class SimpleLinearRegression extends Component {
 		let output;
 		COUNTER += 1;
 		if ( group ) {
+			const xmeans = by( x, this.props.data[ group ], mean );
 			const res = by2( x, y, this.props.data[ group ], calculateCoefficients );
 			output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
@@ -67,6 +73,23 @@ class SimpleLinearRegression extends Component {
 					</p>
 					{objectValues( mapValues( res, ( elem, key ) => {
 						const [ yint, slope ] = elem;
+						const resAcc = incrsumabs2();
+						const x2Acc = incrsumabs2();
+						const x2mmAcc = incrsumabs2();
+						const cdf = tCDF.factory( y.length - 2 );
+						for ( let i = 0; i < y.length; i++ ) {
+							const pred = yint + slope * x[ i ];
+							resAcc( pred - y[ i ] );
+							x2Acc( x[ i ] );
+							x2mmAcc( x[ i ] - xmeans[ key ] );
+						}
+						const sigma2 = resAcc() / ( y.length - 2 );
+						const slopeVar = sigma2 / x2mmAcc();
+						const slopeSE = sqrt( slopeVar );
+						const interceptVar = ( (1/y.length) * sigma2 * x2Acc() ) / x2mmAcc();
+						const interceptSE = sqrt( interceptVar );
+						const tSlope = slope / slopeSE;
+						const tIntercept = yint / interceptSE;
 						return (
 							<div>
 								<label>{key}:</label>
@@ -75,14 +98,23 @@ class SimpleLinearRegression extends Component {
 										<tr>
 											<th>Variable</th>
 											<th>Coefficient</th>
-										</tr>
-										<tr>
-											<td>{xval}</td>
-											<td>{slope.toFixed( 4 )}</td>
+											<th>Std. Error</th>
+											<th>t</th>
+											<th>p-value</th>
 										</tr>
 										<tr>
 											<td>Intercept</td>
 											<td>{yint.toFixed( 4 )}</td>
+											<td>{interceptSE.toFixed( 4 )}</td>
+											<td>{tIntercept.toFixed( 4 )}</td>
+											<td>{2.0 * (1.0-cdf( abs( tIntercept ) ) ).toFixed( 4 )}</td>
+										</tr>
+										<tr>
+											<td>{xval}</td>
+											<td>{slope.toFixed( 4 )}</td>
+											<td>{slopeSE.toFixed( 4 )}</td>
+											<td>{tSlope.toFixed( 4 )}</td>
+											<td>{2.0 * (1.0-cdf( abs( tSlope ) ) ).toFixed( 4 )}</td>
 										</tr>
 									</tbody>
 								</Table>
@@ -121,6 +153,24 @@ class SimpleLinearRegression extends Component {
 		}
 		else {
 			const [ yint, slope ] = calculateCoefficients( x, y );
+			const resAcc = incrsumabs2();
+			const x2Acc = incrsumabs2();
+			const x2mmAcc = incrsumabs2();
+			const xmean = mean( x );
+			const cdf = tCDF.factory( y.length - 2 );
+			for ( let i = 0; i < y.length; i++ ) {
+				const pred = yint + slope * x[ i ];
+				resAcc( pred - y[ i ] );
+				x2Acc( x[ i ] );
+				x2mmAcc( x[ i ] - xmean );
+			}
+			const sigma2 = resAcc() / ( y.length - 2 );
+			const slopeVar = sigma2 / x2mmAcc();
+			const slopeSE = sqrt( slopeVar );
+			const interceptVar = ( (1/y.length) * sigma2 * x2Acc() ) / x2mmAcc();
+			const interceptSE = sqrt( interceptVar );
+			const tSlope = slope / slopeSE;
+			const tIntercept = yint / interceptSE;
 			output = {
 				variable: `Regression of ${yval} on ${xval}`,
 				type: 'Simple Linear Regression',
@@ -131,14 +181,23 @@ class SimpleLinearRegression extends Component {
 							<tr>
 								<th>Variable</th>
 								<th>Coefficient</th>
-							</tr>
-							<tr>
-								<td>{xval}</td>
-								<td>{slope.toFixed( 3 )}</td>
+								<th>Std. Error</th>
+								<th>t</th>
+								<th>p-value</th>
 							</tr>
 							<tr>
 								<td>Intercept</td>
 								<td>{yint.toFixed( 3 )}</td>
+								<td>{interceptSE.toFixed( 4 )}</td>
+								<td>{tIntercept.toFixed( 4 )}</td>
+								<td>{2.0 * (1.0-cdf( abs( tIntercept ) ) ).toFixed( 4 )}</td>
+							</tr>
+							<tr>
+								<td>{xval}</td>
+								<td>{slope.toFixed( 3 )}</td>
+								<td>{slopeSE.toFixed( 4 )}</td>
+								<td>{tSlope.toFixed( 4 )}</td>
+								<td>{2.0 * (1.0-cdf( abs( tSlope ) ) ).toFixed( 4 )}</td>
 							</tr>
 						</tbody>
 					</Table>
