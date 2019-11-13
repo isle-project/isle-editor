@@ -40,6 +40,8 @@
 
 .label-number-rows {
 	font-size: 16px;
+	display: block;
+	text-align: center;
 }
 
 .title-button-h4 {
