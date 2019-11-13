@@ -91,8 +91,7 @@ class TextEditor extends Component {
 		this.id = props.id || uid( props );
 		let value;
 		if ( props.autoSave ) {
-			value = JSON.parse( localStorage.getItem( this.id ) );
-			// localStorage.setItem( 'state', JSON.stringify(window.view.state.doc.toJSON()))
+			value = localStorage.getItem( this.id );
 		}
 		if ( !value ) {
 			value = md.render( props.defaultValue );
@@ -134,7 +133,7 @@ class TextEditor extends Component {
 						));
 					}
 					const table = schema.nodes.table.createAndFill( void 0, rows);
-					dispatch(state.tr.replaceSelectionWith(table));
+					dispatch( state.tr.replaceSelectionWith( table ) );
 				};
 				return false;
 			}
@@ -307,8 +306,26 @@ class TextEditor extends Component {
 		return null;
 	}
 
-	handleAutosave = () => {
-		// TODO: Re-implement autosaving
+	componentDidMount() {
+		if ( this.props.autoSave ) {
+			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
+		}
+		this.beforeUnload = window.addEventListener( 'beforeunload', this.saveInBrowser );
+	}
+
+	componentWillUnmount() {
+		if ( this.saveInterval ) {
+			clearInterval( this.saveInterval );
+		}
+		if ( this.beforeUnload ) {
+			window.removeEventListener( 'beforeunload', this.saveInBrowser );
+		}
+	}
+
+	saveInBrowser = () => {
+		console.log( 'Saving document state to local storage...' );
+		console.log( this.editorState.doc.toJSON() );
+		localStorage.setItem( this.id, JSON.stringify( this.editorState.doc.toJSON() ) );
 	}
 
 	recordedText = ( text ) => {
@@ -685,18 +702,22 @@ class TextEditor extends Component {
 // PROPERTIES //
 
 TextEditor.propTypes= {
+	autoSave: PropTypes.bool,
 	allowSubmissions: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	groupMode: PropTypes.bool,
+	intervalTime: PropTypes.number,
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
 	style: PropTypes.object
 };
 
 TextEditor.defaultProps = {
+	autoSave: true,
 	allowSubmissions: true,
 	defaultValue: DEFAULT_VALUE,
 	groupMode: false,
+	intervalTime: 10000,
 	voiceTimeout: 5000,
 	language: 'en-US',
 	style: {}

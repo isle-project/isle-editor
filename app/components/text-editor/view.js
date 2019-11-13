@@ -1,11 +1,12 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import { DOMParser } from 'prosemirror-model';
+import { DOMParser, Node } from 'prosemirror-model';
 import PropTypes from 'prop-types';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
+import isJSON from '@stdlib/assert/is-json';
 import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
@@ -35,9 +36,12 @@ const parser = ( content ) => {
 class ProseMirror extends Component {
 	constructor( props ) {
 		super( props );
+		const doc = isJSON( props.defaultValue ) ?
+		Node.fromJSON( schema, JSON.parse( props.defaultValue ) ) :
+			parser( props.defaultValue );
 		this.state = {
 			editorState: EditorState.create({
-				doc: parser( props.defaultValue ),
+				doc,
 				schema,
 				plugins
 			})
@@ -46,9 +50,12 @@ class ProseMirror extends Component {
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.defaultValue !== prevProps.defaultValue ) {
+			const doc = isJSON( this.props.defaultValue ) ?
+				Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
+				parser( this.props.defaultValue );
 			this.setState({
 				editorState: EditorState.create({
-					doc: parser( this.props.defaultValue ),
+					doc,
 					schema,
 					plugins
 				})
