@@ -24,6 +24,7 @@
 	"LearnContinuousDistribution": "components/learn/continuous-distribution",
 	"LearnDiscreteDistribution": "components/learn/discrete-distribution",
 	"LearnExponentialDistribution": "components/learn/distribution-exponential",
+	"LearnFDistribution": "components/learn/distribution-f",
 	"LearnGammaDistribution": "components/learn/distribution-gamma",
 	"LearnGeometricDistribution": "components/learn/distribution-geometric",
 	"LearnHypergeometricDistribution": "components/learn/distribution-hypergeometric",

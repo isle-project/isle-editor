@@ -71,6 +71,7 @@ const SCOPE = {
 	LearnBinomialDistribution: Loadable( () => import( 'components/learn/distribution-binomial' ) ),
 	LearnChisquareDistribution: Loadable( () => import( 'components/learn/distribution-chisquare' ) ),
 	LearnExponentialDistribution: Loadable( () => import( 'components/learn/distribution-exponential' ) ),
+	LearnFDistribution: Loadable( () => import( 'components/learn/distribution-f' ) ),
 	LearnGammaDistribution: Loadable( () => import( 'components/learn/distribution-gamma' ) ),
 	LearnGeometricDistribution: Loadable( () => import( 'components/learn/distribution-geometric' ) ),
 	LearnHypergeometricDistribution: Loadable( () => import( 'components/learn/distribution-hypergeometric' ) ),
