@@ -324,8 +324,9 @@ class TextEditor extends Component {
 
 	saveInBrowser = () => {
 		console.log( 'Saving document state to local storage...' );
-		console.log( this.editorState.doc.toJSON() );
-		localStorage.setItem( this.id, JSON.stringify( this.editorState.doc.toJSON() ) );
+		if ( this.editorState ) {
+			localStorage.setItem( this.id, JSON.stringify( this.editorState.doc.toJSON() ) );
+		}
 	}
 
 	recordedText = ( text ) => {
