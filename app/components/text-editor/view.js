@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import { DOMParser, Node } from 'prosemirror-model';
+import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
 import PropTypes from 'prop-types';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
@@ -25,9 +25,9 @@ const StatusBar = ( props ) => {
 };
 
 const parser = ( content ) => {
-	let domNode = document.createElement( 'div' );
+	const domNode = document.createElement( 'div' );
 	domNode.innerHTML = content;
-	return DOMParser.fromSchema( schema ).parse( domNode );
+	return ProseMirrorParser.fromSchema( schema ).parse( domNode );
 };
 
 
