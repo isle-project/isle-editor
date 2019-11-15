@@ -65,13 +65,6 @@
 		"version": "1.7.2"
 	},
 	{
-		"name": "victory",
-		"alias": "victory",
-		"var": "Victory",
-		"path": "victory.min.js",
-		"version": "32.3.6"
-	},
-	{
 		"name": "react-player",
 		"alias": "react-player",
 		"var": "ReactPlayer",
