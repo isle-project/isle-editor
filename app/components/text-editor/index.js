@@ -307,7 +307,7 @@ class TextEditor extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoSave ) {
+		if ( this.props.autoSave && !this.props.groupMode ) {
 			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
 		}
 		this.beforeUnload = window.addEventListener( 'beforeunload', this.saveInBrowser );

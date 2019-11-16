@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import { collab, receiveTransaction, sendableSteps, getVersion } from 'prosemirror-collab';
@@ -63,7 +63,7 @@ const StatusBar = ( props ) => {
 
 // MAIN //
 
-class ProseMirror extends Component {
+class ProseMirrorCollaborative extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -109,8 +109,8 @@ class ProseMirror extends Component {
 	}
 
 	componentWillUnmount() {
-		if ( this.editorView ) {
-			this.editorView.destroy();
+		if ( this.view ) {
+			this.view.destroy();
 		}
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
@@ -348,7 +348,7 @@ class ProseMirror extends Component {
 	};
 
 	render() {
-		return ( <Fragment>
+		return ( <div>
 			<MenuBar
 				menu={this.props.menu}
 				state={this.dispatchState ? this.dispatchState.edit : null}
@@ -368,14 +368,14 @@ class ProseMirror extends Component {
 				nUsers={this.nUsers}
 				docname={this.props.id}
 			/>
-		</Fragment> );
+		</div> );
 	}
 }
 
 
 // PROPERTIES //
 
-ProseMirror.propTypes = {
+ProseMirrorCollaborative.propTypes = {
 	fullscreen: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
 	showColorPicker: PropTypes.bool.isRequired,
@@ -385,7 +385,7 @@ ProseMirror.propTypes = {
 	onMount: PropTypes.func
 };
 
-ProseMirror.defaultProps = {
+ProseMirrorCollaborative.defaultProps = {
 	onColorChoice() {},
 	onEditorState() {},
 	onMount() {}
@@ -394,4 +394,4 @@ ProseMirror.defaultProps = {
 
 // EXPORTS //
 
-export default ProseMirror;
+export default ProseMirrorCollaborative;
