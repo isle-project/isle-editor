@@ -27,12 +27,7 @@ class Provider extends Component {
 }
 
 
-// TYPES //
-
-Provider.childContextTypes = {
-	session: PropTypes.object,
-	currentRole: PropTypes.string
-};
+// PROPERTIES //
 
 Provider.propTypes = {
 	currentRole: PropTypes.string.isRequired,
