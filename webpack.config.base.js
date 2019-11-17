@@ -25,6 +25,7 @@ const EXTERNALS = [
 	'compute-stdev',
 	'csv-parse',
 	'csv-stringify',
+	'd3',
 	'd3-cloud',
 	'detect-csv',
 	'eslint', // needs to be external for CLI Engine to work for linting
@@ -55,7 +56,7 @@ const EXTERNALS = [
 	'react-select',
 	'react-slick',
 	'react-table',
-	'react-transition-group',
+	'react-virtualized',
 	'recordrtc',
 	'spectacle',
 	'stemmer',
@@ -129,8 +130,7 @@ export default {
 	resolve: {
 		alias: {
 			'victory': resolve( './node_modules/victory/dist/victory.min.js' ),
-			'form-data': resolve( './node_modules/form-data/lib/form_data.js' ),
-			'react-transition-group/TransitionGroup': resolve( './node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js' ) // ensure slide transitions work in Spectacle presentations
+			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
 		},
 		modules: [
 			resolve( './app' ),
