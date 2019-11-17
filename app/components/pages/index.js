@@ -29,6 +29,7 @@ const uid = generateUID( 'pages' );
 * @property {string} size - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {number} activePage - active page
+* @property {boolean} disabled - controls whether the navigation bar is active or not
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onSelect - Function invoked when active change is changed. Receives the new active page index as a sole parameter
@@ -143,6 +144,7 @@ class Pages extends Component {
 			for ( let i = 1; i <= nChildren; i++) {
 				items.push(
 					<Pagination.Item
+						disabled={this.props.disabled}
 						key={i}
 						active={i === this.state.activePage}
 						onClick={papply( this.jumpTo, i )}
@@ -165,13 +167,14 @@ class Pages extends Component {
 						continue;
 					}
 					if ( absdiff( i, this.state.activePage ) === cutoff ) {
-						items.push( <Pagination.Ellipsis key={i} /> );
+						items.push( <Pagination.Ellipsis disabled={this.props.disabled} key={i} /> );
 						continue;
 					}
 				}
 				items.push(
 					<Pagination.Item
 						key={i}
+						disabled={this.props.disabled}
 						active={i === this.state.activePage}
 						onClick={papply( this.jumpTo, i )}
 					>
@@ -192,9 +195,9 @@ class Pages extends Component {
 					size={this.props.size}
 					items={this.props.children.length || 1}
 				>
-					<Pagination.Prev disabled={this.state.activePage === 1} key="prev" onClick={this.prevPage} />
+					<Pagination.Prev disabled={this.props.disabled || ( this.state.activePage === 1 )} key="prev" onClick={this.prevPage} />
 					{items}
-					<Pagination.Next disabled={this.state.activePage === this.props.children.length} key="next" onClick={this.nextPage} />
+					<Pagination.Next disabled={this.props.disabled || ( this.state.activePage === this.props.children.length )} key="next" onClick={this.nextPage} />
 				</Pagination>
 				<div className="page-children-wrapper"
 					ref={( div ) => {
@@ -224,6 +227,7 @@ class Pages extends Component {
 
 Pages.propTypes = {
 	activePage: PropTypes.number,
+	disabled: PropTypes.bool,
 	title: PropTypes.string,
 	size: PropTypes.oneOf([
 		'default',
@@ -243,6 +247,7 @@ Pages.propTypes = {
 
 Pages.defaultProps = {
 	activePage: 1,
+	disabled: false,
 	title: '',
 	size: 'default',
 	height: null,
