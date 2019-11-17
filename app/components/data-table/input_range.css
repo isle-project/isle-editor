@@ -1,3 +1,11 @@
+.input-range-wrapper {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	margin-top: 4px;
+}
+
 .input-range__slider {
 	appearance: none;
 	background: #3f51b5;
@@ -41,20 +49,12 @@
 	font-size: 0.6rem;
 	transform: translateZ(0);
 	white-space: nowrap;
+	opacity: 0.75;
 }
 
 .input-range__label--min,
 .input-range__label--max {
-	bottom: -1.4rem;
-	position: absolute;
-}
-
-.input-range__label--min {
-	left: 0;
-}
-
-.input-range__label--max {
-	right: 0;
+	display: none;
 }
 
 .input-range__label--value {

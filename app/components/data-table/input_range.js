@@ -31,12 +31,7 @@ class FilterInputRange extends Component {
 
 	render() {
 		const { currentValue } = this.state;
-		return ( <div style={{
-			paddingLeft: '4px',
-			paddingRight: '4px',
-			paddingTop: '8px',
-			paddingBottom: '4px'
-		}}>
+		return ( <div className="input-range-wrapper" >
 			<InputRange
 				allowSameValues
 				maxValue={this.props.maxValue}
