@@ -72,6 +72,9 @@ async function isleFileIncludes( code, preamble, filePath ) {
 		return out;
 	}
 	let match = RE_INCLUDES.exec( code );
+	if ( !match ) {
+		return out;
+	}
 	const manifestPath = join( dirname( filePath ), `${basename( filePath, '.isle' )}-resources`, 'manifest.json' );
 	let manifest = readJSON.sync( manifestPath );
 	if ( manifest instanceof Error ) {
