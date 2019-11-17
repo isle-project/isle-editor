@@ -5,6 +5,8 @@ import logger from 'debug';
 import CirclePicker from 'react-color/lib/Circle.js';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownMenu from 'react-bootstrap/DropdownMenu';
+import DropdownToggle from 'react-bootstrap/DropdownToggle';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import Tooltip from 'components/tooltip';
 import icons from './config/icons';
@@ -36,7 +38,7 @@ const Button = ( props ) => {
 		);
 	}
 	return (
-		<Tooltip key={`${props.key}-tooltip`} tooltip={props.title} placement="bottom" >
+		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={props.title} placement="bottom" >
 			<button onMouseDown={props.onMouseDown}
 				style={{
 					active: props.active,
@@ -59,6 +61,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 	const createGroupButtons = ( item, itemKey ) => (
 		<Button
 			key={itemKey}
+			itemKey={itemKey}
 			type="button"
 			active={item.active && state ? item.active( state ) : false}
 			disabled={item.enable && state ? !item.enable( state ) : false}
@@ -70,11 +73,13 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 	);
 	const createDropdownButtons = ( item, itemKey ) => (
 		<DropdownItem
+			key={`dropdown-item-${itemKey}`}
 			onMouseDown={onMenuMouseDown(item)}
 		>{item.content}</DropdownItem>
 	);
 	const createFontButtons = ( item, itemKey ) => (
 		<DropdownItem
+			key={`font-buttons-${itemKey}`}
 			style={{
 				paddingLeft: 6,
 				paddingRight: 6,
@@ -105,15 +110,15 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			<Dropdown
 				style={{ display: 'inline-block', marginLeft: 4 }}
 			>
-				<Dropdown.Toggle
+				<DropdownToggle
 					size="sm" variant="outline-secondary"
 					disabled={!state || !isTextStyleMarkCommandEnabled( state, 'fontSize' )}
 				>
 					{state ? findActiveFontSize( state ) : '12'}
-				</Dropdown.Toggle>
-				<Dropdown.Menu style={{ minWidth: '24px' }}>
+				</DropdownToggle>
+				<DropdownMenu style={{ minWidth: '24px' }}>
 					{menu.fontSizes.map( createFontButtons )}
-				</Dropdown.Menu>
+				</DropdownMenu>
 			</Dropdown>
 			{menu.wraps.map( createGroupButtons )}
 			{ fullscreen ?
