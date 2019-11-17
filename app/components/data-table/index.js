@@ -324,6 +324,7 @@ function createColumns( props, state ) {
 * @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
 * @property {Function} onColumnDelete - function invoked with the name of a column when the respective delete button for a column is clicked
 * @property {Function} onEdit - function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)
+* @property {Function} onTutorialCompletion - function invoked when user has completed the data table tutorial
 */
 class DataTable extends Component {
 	constructor( props ) {
@@ -681,7 +682,7 @@ class DataTable extends Component {
 								</h4>
 							</Button>
 						</OverlayTrigger>
-						<TutorialButton id={this.id} />
+						<TutorialButton id={this.id} session={this.context} onTutorialCompletion={this.props.onTutorialCompletion} />
 					</div> : null}
 					{ dataInfo.info.length === 0 ?
 						<h4 className="title-nobutton-h4">

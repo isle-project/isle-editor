@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -54,6 +55,7 @@ class Tutorial extends Component {
 						const type = tour.type;
 						if ( type === EVENTS.TOUR_END ) {
 							this.setState({ running: false });
+							this.props.onTutorialCompletion();
 						}
 					}}
 				/>
@@ -61,6 +63,13 @@ class Tutorial extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+Tutorial.propTypes = {
+	onTutorialCompletion: PropTypes.func.isRequired
+};
 
 
 // EXPORTS //
