@@ -61,6 +61,17 @@ class Gate extends Component {
 		}
 	}
 
+	componentDidUpdate() {
+		if ( this.props.check ) {
+			const validCheck = this.props.check( this.context );
+			if ( validCheck !== this.state.validCheck ) {
+				return this.setState({
+					validCheck
+				});
+			}
+		}
+	}
+
 	componentWillUnmount() {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
