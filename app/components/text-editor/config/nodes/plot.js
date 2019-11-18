@@ -3,6 +3,7 @@
 const plotSpec = {
 	attrs: {
 		src: {},
+		plotId: {},
 		alt: { default: null },
 		title: { default: null },
 		meta: { default: null },
