@@ -26,8 +26,7 @@
 
 // MODULES //
 
-import ParagraphNodeSpec from './paragraph.js';
-import { getParagraphNodeAttrs, toParagraphDOM } from './paragraph.js';
+import ParagraphNodeSpec, { getParagraphNodeAttrs, toParagraphDOM } from './paragraph.js';
 
 
 // VARIABLES //
