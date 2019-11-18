@@ -25,7 +25,7 @@ const plotSpec = {
 		if ( node.attrs.width ) {
 			style += `width: ${node.attrs.width};`;
 		}
-		return [ 'span', { class: 'img-container' }, [ 'img', {
+		return [ 'span', { class: 'img-container', 'data-plot-id': node.attrs.plotID }, [ 'img', {
 				src: node.attrs.src,
 				style,
 				alt: node.attrs.alt,
@@ -41,11 +41,12 @@ const plotSpec = {
 		tag: 'img[src][data-plot-id]',
 		getAttrs: dom => {
 			const src = dom.getAttribute( 'src' );
+			const plotID = dom.getAttribute( 'data-plot-id' );
 			const title = dom.getAttribute( 'title' );
 			const alt = dom.getAttribute( 'alt' );
 			const width = dom.getAttribute( 'width' ) || '550px';
 			const meta = dom.getAttribute( 'data-plot-meta' );
-			return { src, alt, title, meta, width };
+			return { src, alt, title, meta, width, plotID };
 		}
 	}]
 };
