@@ -5,6 +5,7 @@ import { listItem, bulletList, orderedList } from 'prosemirror-schema-list';
 import { tableNodes } from 'prosemirror-tables';
 import paragraphSpec from './paragraph.js';
 import headingSpec from './heading.js';
+import footnoteSpec from './footnote.js';
 import plotSpec from './plot.js';
 
 
@@ -26,17 +27,6 @@ const listNodes = {
 		content: 'paragraph block*',
 		group: 'block'
 	}
-};
-
-const footnoteSpec = {
-	group: 'inline',
-	content: 'inline*',
-	inline: true,
-	atom: true,
-	toDOM: () => ['footnote', 0],
-	parseDOM: [{
-		tag: 'footnote'
-	}]
 };
 
 
