@@ -20,6 +20,7 @@ import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
+import TeX from 'components/tex';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
@@ -83,11 +84,11 @@ const summaryTable = ( x, intercept, result ) => {
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<th>Predictor</th>
-					<th>Coefficient</th>
-					<th>Std. Error</th>
-					<th>t</th>
-					<th>p-value</th>
+					<Tooltip placement="right" tooltip="Name of predictor" ><th>Predictor</th></Tooltip>
+					<Tooltip placement="right" tooltip="Change in log odds associated with unit-increase in respective predictor"><th>Coefficient</th></Tooltip>
+					<Tooltip placement="left" tooltip="Standard deviation of coefficient estimate" ><th>Std. Error</th></Tooltip>
+					<Tooltip placement="left" tooltip={<span>Test statistic for hypothesis that coefficient is zero <TeX displayMode raw="t = \tfrac{\text{Coefficient}}{\text{Std. Error}}" /></span>} ><th>t</th></Tooltip>
+					<Tooltip placement="left" tooltip={<span>p-value for hypothesis that coefficient is zero <TeX displayMode raw="2 \Phi( |t| )" /></span>} ><th>p-value</th></Tooltip>
 				</tr>
 			</thead>
 			<tbody>
