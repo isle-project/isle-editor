@@ -29,7 +29,7 @@ const plotSpec = {
 	},
 	parseDOM: [{
 		priority: 51,
-		tag: 'img[src][data-plot-id]',
+		tag: 'img[data-plot-id]',
 		getAttrs: dom => {
 			const src = dom.getAttribute( 'src' );
 			const plotID = dom.getAttribute( 'data-plot-id' );
