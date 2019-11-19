@@ -54,7 +54,6 @@ class NavigationModal extends Component {
 			onHide={this.props.onHide}
 			show={this.props.show}
 			id="sketch-goto-modal"
-			container={this.props.container}
 			dialogClassName={dialogClassName}
 		>
 			<Modal.Header closeButton>

@@ -54,7 +54,6 @@ class SaveModal extends Component {
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
-			container={this.props.container}
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>

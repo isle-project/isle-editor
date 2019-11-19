@@ -77,7 +77,6 @@ class FeedbackModal extends Component {
 		return ( <Modal
 			onHide={this.props.onHide}
 			show={this.props.show}
-			container={this.props.container}
 			id="sketch-feedback-modal"
 			dialogClassName="modal-100w"
 		>
