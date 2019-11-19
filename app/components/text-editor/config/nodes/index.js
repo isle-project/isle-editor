@@ -35,9 +35,9 @@ const listNodes = {
 export default {
 	plot: plotSpec,
 	footnote: footnoteSpec,
+	paragraph: paragraphSpec,
 	...nodes,
 	...listNodes,
-	paragraph: paragraphSpec,
 	heading: headingSpec,
 	...tableNodes({
 		tableGroup: 'block',
