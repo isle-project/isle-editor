@@ -135,21 +135,24 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 			trace.jitter = 0.5;
 		}
 	}
-	return {
+	const config = {
 		data: traces,
 		layout: {
 			title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
 			xaxis: {
 				type: orientation === 'vertical' ? 'category' : null,
-				showticklabels: group.length > 0 || orientation === 'horizontal'
+				showticklabels: ( group.length > 0 || orientation === 'horizontal' )
 			},
 			yaxis: {
 				type: orientation === 'horizontal' ? 'category' : null,
-				showticklabels: group.length > 0 || orientation === 'vertical'
-			},
-			boxmode: group.length === 2 ? 'group' : null
+				showticklabels: ( group.length > 0 || orientation === 'vertical' )
+			}
 		}
 	};
+	if ( group.length === 2 ) {
+		config.boxmode = 'group';
+	}
+	return config;
 }
 
 
@@ -177,7 +180,6 @@ class Boxplot extends Component {
 			overlayPoints: this.state.overlayPoints
 		});
 		let { variable } = this.state;
-		group = group.map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
