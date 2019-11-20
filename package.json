@@ -232,7 +232,7 @@
     "concurrently": "^5.0.0",
     "d3": "5.14.1",
     "doctrine": "^3.0.0",
-    "electron": "7.1.1",
+    "electron": "7.1.2",
     "electron-builder": "^22.1.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
