@@ -41,7 +41,6 @@ class ResetModal extends Component {
 // PROPERTIES //
 
 ResetModal.propTypes = {
-	container: PropTypes.object.isRequired,
 	onHide: PropTypes.func,
 	onSubmit: PropTypes.func,
 	show: PropTypes.bool.isRequired

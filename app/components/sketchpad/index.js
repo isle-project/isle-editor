@@ -2074,7 +2074,6 @@ class Sketchpad extends Component {
 		return (
 			<Modal
 				show={this.state.isExporting}
-				container={this}
 			>
 				<Modal.Header>
 					<Modal.Title>Generating PDF...</Modal.Title>
@@ -2091,7 +2090,6 @@ class Sketchpad extends Component {
 			<Modal
 				show={this.state.showUploadModal}
 				onHide={this.closeResponseModal}
-				container={this}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Server Response</Modal.Title>
@@ -2705,7 +2703,6 @@ class Sketchpad extends Component {
 					}} />
 					{this.renderUploadModal()}
 					<NavigationModal
-						container={this}
 						show={this.state.showNavigationModal}
 						onSelect={this.gotoPage}
 						noPages={this.state.noPages}
@@ -2713,7 +2710,6 @@ class Sketchpad extends Component {
 					/>
 					{this.renderProgressModal()}
 					<ResetModal
-						container={this}
 						show={this.state.showResetModal}
 						onSubmit={this.clearAll}
 						onHide={() => {
@@ -2721,7 +2717,6 @@ class Sketchpad extends Component {
 						}}
 					/>
 					<SaveModal
-						container={this}
 						show={this.state.showSaveModal}
 						saveAsPDF={this.saveAsPDF}
 						saveAsPNG={this.saveAsPNG}
@@ -2731,7 +2726,6 @@ class Sketchpad extends Component {
 						id={this.id}
 					/>
 					{ this.state.showFeedbackModal ? <FeedbackModal
-						container={this}
 						session={this.context}
 						show={this.state.showFeedbackModal}
 						onHide={() => {
