@@ -86,7 +86,6 @@ class SaveModal extends Component {
 // PROPERTIES //
 
 SaveModal.propTypes = {
-	container: PropTypes.object.isRequired,
 	id: PropTypes.string.isRequired,
 	onHide: PropTypes.func,
 	pdf: PropTypes.string,
