@@ -275,8 +275,10 @@ class DataExplorer extends Component {
 				break;
 				case DATA_EXPLORER_CAT_TRANSFORMER: {
 					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
-					const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
-					state = this.transformVariable( name, values, state );
+					if ( state.data[ firstVar ]) {
+						const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
+						state = this.transformVariable( name, values, state );
+					}
 				}
 				break;
 				case DATA_EXPLORER_DELETE_VARIABLE:
@@ -419,17 +421,17 @@ class DataExplorer extends Component {
 	}
 
 	transformVariable = ( name, values, varState ) => {
-		let newData;
 		let newquantitative;
 		let newCategorical;
 		let groupVars;
+		let newData;
 		if ( !varState ) {
 			newData = copy( this.state.data, 1 );
 			newquantitative = this.state.quantitative.slice();
 			newCategorical = this.state.categorical.slice();
 			groupVars = this.state.groupVars.slice();
 		} else {
-			newData = varState.data;
+			newData = copy( varState.data, 1 );
 			newquantitative = varState.quantitative.slice();
 			newCategorical = varState.categorical.slice();
 			groupVars = varState.groupVars.slice();
@@ -456,7 +458,6 @@ class DataExplorer extends Component {
 			groupVars = newCategorical.slice();
 		}
 		const newVarState = {
-			...varState,
 			data: newData,
 			categorical: newCategorical,
 			quantitative: newquantitative,
@@ -559,9 +560,8 @@ class DataExplorer extends Component {
 		let newQuantitative = state.quantitative.filter( x => x !== variable );
 		let newCategorical = state.categorical.filter( x => x !== variable );
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
-		let filters = state.filters.filter( x => x.id !== variable );
+		let filters = ( state.filters || [] ).filter( x => x.id !== variable );
 		return {
-			...varState,
 			data: newData,
 			quantitative: newQuantitative,
 			categorical: newCategorical,
