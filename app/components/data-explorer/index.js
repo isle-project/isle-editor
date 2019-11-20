@@ -456,6 +456,7 @@ class DataExplorer extends Component {
 			groupVars = newCategorical.slice();
 		}
 		const newVarState = {
+			...varState,
 			data: newData,
 			categorical: newCategorical,
 			quantitative: newquantitative,
@@ -560,6 +561,7 @@ class DataExplorer extends Component {
 		let newGroupVars = state.groupVars.filter( x => x !== variable );
 		let filters = state.filters.filter( x => x.id !== variable );
 		return {
+			...varState,
 			data: newData,
 			quantitative: newQuantitative,
 			categorical: newCategorical,
