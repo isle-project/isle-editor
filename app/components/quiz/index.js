@@ -563,7 +563,6 @@ class Quiz extends Component {
 				</Card>
 				<FinishModal
 					show={this.state.showFinishModal}
-					container={this.quizBody}
 					onSubmit={this.handleFinishClick}
 					onHide={this.toggleFinishModal}
 				/>

@@ -96,7 +96,6 @@ class NavigationModal extends Component {
 // PROPERTIES //
 
 NavigationModal.propTypes = {
-	container: PropTypes.object.isRequired,
 	noPages: PropTypes.number.isRequired,
 	onHide: PropTypes.func,
 	onSelect: PropTypes.func,

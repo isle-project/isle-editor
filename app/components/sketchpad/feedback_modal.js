@@ -110,7 +110,6 @@ class FeedbackModal extends Component {
 
 FeedbackModal.propTypes = {
 	id: PropTypes.string.isRequired,
-	container: PropTypes.object.isRequired,
 	noPages: PropTypes.number.isRequired,
 	toOriginalPage: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
 	gotoPage: PropTypes.func.isRequired,
