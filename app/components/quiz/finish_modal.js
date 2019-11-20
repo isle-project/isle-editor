@@ -42,7 +42,6 @@ class FinishModal extends Component {
 // PROPERTIES //
 
 FinishModal.propTypes = {
-	container: PropTypes.object.isRequired,
 	onHide: PropTypes.func,
 	onSubmit: PropTypes.func,
 	show: PropTypes.bool.isRequired
