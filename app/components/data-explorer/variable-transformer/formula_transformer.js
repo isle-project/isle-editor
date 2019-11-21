@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
@@ -33,46 +33,32 @@ const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 
 // FUNCTIONS //
 
-class CustomMenu extends Component {
-	constructor( props, context ) {
-		super( props, context );
-
-		this.state = {
-			value: ''
-		};
-	}
-
-	handleChange = ( e ) => {
-		this.setState({ value: e.target.value.toLowerCase().trim() });
-	}
-
-	render() {
-		const {
-			children,
-			style,
-			className,
-			'aria-labelledby': labeledBy
-		} = this.props;
-		const { value } = this.state;
+const CustomMenu = React.forwardRef(
+	({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+		const [value, setValue] = useState( '' );
 		return (
-		<div style={style} className={className} aria-labelledby={labeledBy}>
+			<div
+				ref={ref}
+				style={style}
+				className={className}
+				aria-labelledby={labeledBy}
+			>
 			<FormControl
 				className="mx-3 my-2 w-auto"
 				placeholder="Type to filter..."
-				onChange={this.handleChange}
+				onChange={e => setValue(e.target.value)}
 				value={value}
 			/>
-			<ul className="list-unstyled">
-			{React.Children.toArray( children )
-				.filter( ( child, idx ) => {
-					return child.props.children.toLowerCase().startsWith( value );
-				})
-			}
-			</ul>
-		</div>
+				<ul className="list-unstyled">
+					{React.Children.toArray(children).filter(
+						child =>
+						!value || child.props.children.toLowerCase().startsWith(value),
+					)}
+				</ul>
+			</div>
 		);
-	}
-}
+	},
+);
 
 
 // MAIN //
@@ -214,7 +200,7 @@ class FormulaTransformer extends Component {
 							<Card.Body>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
 									<Dropdown className="mr-2">
-										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
 											Quantitative
 										</Dropdown.Toggle>
 										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
@@ -222,7 +208,7 @@ class FormulaTransformer extends Component {
 										</Dropdown.Menu>
 									</Dropdown>
 									<Dropdown className="mr-2">
-										<Dropdown.Toggle variant="light" as={Button} id="dropdown-custom-components">
+										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
 											Categorical
 										</Dropdown.Toggle>
 										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
