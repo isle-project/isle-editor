@@ -52,22 +52,25 @@ const main = inputRules({
 		),
 
 		// * bullet list
-		wrappingInputRule(/^\s*([-+*])\s$/, schema.nodes.bullet_list),
+		wrappingInputRule( /^\s*([-+*])\s$/, schema.nodes.bullet_list ),
 
 		// ``` code block
-		textblockTypeInputRule(/^```$/, schema.nodes.code_block),
+		textblockTypeInputRule( /^```$/, schema.nodes.code_block ),
+
+		// ` inline code
+		markInputRule( /(?:^|[^`])`([^`]+)`$/, schema.marks.code ),
 
 		// strong
-		markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, schema.marks.strong ),
+		markInputRule( /(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, schema.marks.strong ),
 
 		// emphasis
 		markInputRule( /(?:^|[^*_])(?:\*|_)([^*_]+)(?:\*|_)$/, schema.marks.em ),
 
 		// underline
-		markInputRule(/(?:\+\+)([^+]+)(?:\+\+)$/, schema.marks.underline ),
+		markInputRule( /(?:\+\+)([^+]+)(?:\+\+)$/, schema.marks.underline ),
 
 		// strikethrough
-		markInputRule(/(?:~~)([^~]+)(?:~~)$/, schema.marks.strikethrough ),
+		markInputRule( /(?:~~)([^~]+)(?:~~)$/, schema.marks.strikethrough ),
 
 		// # heading
 		textblockTypeInputRule(
