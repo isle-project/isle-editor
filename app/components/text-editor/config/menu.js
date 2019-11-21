@@ -275,6 +275,15 @@ const menu = {
 			}
 		},
 		{
+			title: 'Insert code block',
+			content: 'Insert code block',
+			enable: canInsert( schema.nodes.code_block ),
+			run: ( state, dispatch ) => {
+				const footnote = schema.nodes.code_block.create();
+				dispatch( state.tr.replaceSelectionWith( footnote ) );
+			}
+		},
+		{
 			title: 'Insert link',
 			content: 'Insert link',
 			active: markActive( schema.marks.link ),
