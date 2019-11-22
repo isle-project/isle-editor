@@ -1,6 +1,17 @@
 // MODULES //
 
 import isNull from '@stdlib/assert/is-null';
+import replace from '@stdlib/string/replace';
+
+
+// FUNCTIONS //
+
+function escapeDots( str ) {
+	if ( !str ) {
+		return str;
+	}
+	return replace( str, '.', '[dot]' );
+}
 
 
 // MAIN //
@@ -18,14 +29,14 @@ function recodeCategorical( firstVar, secondVar, nameMappings, data, castNumeric
 		if ( isNull( secondVar ) ) {
 			for ( let i = 0; i < firstValues.length; i++ ) {
 				const val = firstValues[ i ];
-				const newLabel = Number( nameMappings[ val ] );
+				const newLabel = Number( nameMappings[ escapeDots( val ) ] );
 				newVar.push( newLabel );
 			}
 		} else {
 			const secondValues = data[ secondVar ];
 			for ( let i = 0; i < firstValues.length; i++ ) {
-				const oldFirst = firstValues[ i ];
-				const oldSecond = secondValues[ i ];
+				const oldFirst = escapeDots( firstValues[ i ] );
+				const oldSecond = escapeDots( secondValues[ i ] );
 				const newLabel = nameMappings[ oldFirst + '-' + oldSecond ];
 				newVar.push( Number( newLabel ) );
 			}
@@ -35,7 +46,7 @@ function recodeCategorical( firstVar, secondVar, nameMappings, data, castNumeric
 	if ( isNull( secondVar ) ) {
 		for ( let i = 0; i < firstValues.length; i++ ) {
 			const val = firstValues[ i ];
-			const newLabel = nameMappings[ val ];
+			const newLabel = nameMappings[ escapeDots( val ) ];
 			if ( newLabel === 'null' ) {
 				newLabel = null;
 			}
@@ -44,8 +55,8 @@ function recodeCategorical( firstVar, secondVar, nameMappings, data, castNumeric
 	} else {
 		const secondValues = data[ secondVar ];
 		for ( let i = 0; i < firstValues.length; i++ ) {
-			const oldFirst = firstValues[ i ];
-			const oldSecond = secondValues[ i ];
+			const oldFirst = escapeDots( firstValues[ i ] );
+			const oldSecond = escapeDots( secondValues[ i ] );
 			const newLabel = nameMappings[ oldFirst + '-' + oldSecond ];
 			newVar.push( newLabel );
 		}

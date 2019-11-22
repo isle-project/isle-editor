@@ -16,6 +16,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
+import replace from '@stdlib/string/replace';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -31,6 +32,13 @@ const debug = logger( 'isle:data-explorer:variable-transformer' );
 
 
 // FUNCTIONS //
+
+function escapeDots( str ) {
+	if ( !str ) {
+		return str;
+	}
+	return replace( str, '.', '[dot]' );
+}
 
 function checkNumericLabels( nameMappings ) {
 	const keys = objectKeys( nameMappings );
@@ -56,7 +64,7 @@ class CategoricalTransformer extends Component {
 		const keys = firstVar.categories || objectKeys( firstFreqs );
 		const nameMappings = {};
 		for ( let i = 0; i < keys.length; i++ ) {
-			nameMappings[ keys[ i ] ] = keys[ i ];
+			nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
 		}
 		this.state = {
 			generatedName: '',
@@ -78,7 +86,7 @@ class CategoricalTransformer extends Component {
 			firstFreqs = countBy( firstValues, identity );
 			const keys = variable.categories || objectKeys( firstFreqs );
 			for ( let i = 0; i < keys.length; i++ ) {
-				nameMappings[ keys[ i ] ] = keys[ i ];
+				nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
 			}
 		} else {
 			const firstVar = variable;
@@ -90,7 +98,7 @@ class CategoricalTransformer extends Component {
 			for ( let i = 0; i < firstKeys.length; i++ ) {
 				for ( let j = 0; j < secondKeys.length; j++ ) {
 					const label = firstKeys[ i ] + '-' + secondKeys[ j ];
-					nameMappings[ label ] = label;
+					nameMappings[ escapeDots( label ) ] = label;
 				}
 			}
 		}
@@ -110,7 +118,7 @@ class CategoricalTransformer extends Component {
 			const keys = firstVar.categories || objectKeys( this.state.firstFreqs );
 			const nameMappings = {};
 			for ( let i = 0; i < keys.length; i++ ) {
-				nameMappings[ keys[ i ] ] = keys[ i ];
+				nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
 			}
 			return this.setState({
 				secondVar,
@@ -127,7 +135,7 @@ class CategoricalTransformer extends Component {
 		for ( let i = 0; i < firstKeys.length; i++ ) {
 			for ( let j = 0; j < secondKeys.length; j++ ) {
 				const label = firstKeys[ i ] + '-' + secondKeys[ j ];
-				nameMappings[ label ] = label;
+				nameMappings[ escapeDots( label ) ] = label;
 			}
 		}
 		const onlyNumbers = checkNumericLabels( nameMappings );
@@ -152,7 +160,7 @@ class CategoricalTransformer extends Component {
 	changeFreqFactory = ( oldLabel ) => {
 		return ( event ) => {
 			const nameMappings = copy( this.state.nameMappings );
-			nameMappings[ oldLabel ] = event.target.value;
+			nameMappings[ escapeDots( oldLabel ) ] = event.target.value;
 			const onlyNumbers = checkNumericLabels( nameMappings );
 			this.setState({
 				nameMappings,
@@ -164,7 +172,7 @@ class CategoricalTransformer extends Component {
 	changeContigencyFactory = ( rowLabel, colLabel ) => {
 		return ( event ) => {
 			const nameMappings = copy( this.state.nameMappings );
-			nameMappings[ colLabel + '-' + rowLabel ] = event.target.value;
+			nameMappings[ escapeDots( colLabel ) + '-' + escapeDots( rowLabel ) ] = event.target.value;
 			this.setState({
 				nameMappings
 			});

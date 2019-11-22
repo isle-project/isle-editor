@@ -1545,7 +1545,7 @@ class Session {
 			data
 		};
 		if ( !this._offline ) {
-			PRIVATE_VARS['addedActionTypes'].push( data.type );
+			PRIVATE_VARS[ 'addedActionTypes' ].push( data.type );
 			const body = JSON.stringify( obj );
 			debug( 'Storing session element: '+body );
 			fetch( this.server+'/store_session_element', {
@@ -1564,6 +1564,7 @@ class Session {
 					clbk( null, body );
 				})
 				.catch( err => {
+					debug( `Encountered an error: ${err.message}.` );
 					clbk( err );
 				});
 		}
