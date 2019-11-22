@@ -7,6 +7,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import Loadable from 'components/loadable';
 import VoiceInput from 'components/input/voice';
 import Button from 'react-bootstrap/Button';
+import ResponseVisualizer from 'components/response-visualizer';
 import logger from 'debug';
 import { DOMSerializer } from 'prosemirror-model';
 import repeat from '@stdlib/string/repeat';
@@ -476,7 +477,7 @@ class TextEditor extends Component {
 			session.log({
 				id: this.id,
 				type: EDITOR_SUBMIT,
-				value: this.state.value
+				value: tmp.innerText
 			});
 		});
 	}
@@ -638,6 +639,14 @@ class TextEditor extends Component {
 						/>
 					}
 				</div>
+				{ this.id ? <ResponseVisualizer
+					id={this.id}
+					data={{
+						type: 'text'
+					}}
+					info={EDITOR_SUBMIT}
+					style={{ padding: 5 }}
+				/> : null }
 				{ this.props.peerReview ? <UserPairer
 					id={this.id+'_pairer'}
 					onAssignmentStudent={this.handlePeerAssignment}
