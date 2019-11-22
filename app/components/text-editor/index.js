@@ -109,7 +109,8 @@ class TextEditor extends Component {
 			originalDefaultValue: props.defaultValue,
 			peer: null,
 			submittedToPeer: false,
-			submittedPeerComments: false
+			submittedPeerComments: false,
+			docId: 0
 		};
 
 		this.menu = copy( menu, 2 );
@@ -341,12 +342,17 @@ class TextEditor extends Component {
 		const files = evt.target.files;
 		const reader = new FileReader();
 		reader.onload = () => {
+			debug( 'Successfully read file...' );
 			const html = reader.result;
 			const matches = RE_BODY.exec( html );
 			const value = matches[ 1 ];
 			this.setState({
-				value
+				value,
+				docId: this.state.docId + 1
 			});
+		};
+		reader.onerror = () => {
+			debug( 'Encountered an error...' );
 		};
 		reader.readAsText( files[ 0 ] );
 	}
@@ -628,6 +634,7 @@ class TextEditor extends Component {
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
+							docId={this.state.docId}
 						/>
 					}
 				</div>

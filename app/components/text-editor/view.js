@@ -49,7 +49,10 @@ class ProseMirror extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		if ( this.props.defaultValue !== prevProps.defaultValue ) {
+		if (
+			this.props.defaultValue !== prevProps.defaultValue ||
+			this.props.docId !== prevProps.docId
+		) {
 			const doc = isJSON( this.props.defaultValue ) ?
 				Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
 				parser( this.props.defaultValue );
@@ -143,6 +146,7 @@ class ProseMirror extends Component {
 
 ProseMirror.propTypes = {
 	defaultValue: PropTypes.string.isRequired,
+	docId: PropTypes.number.isRequired,
 	fullscreen: PropTypes.bool.isRequired,
 	showColorPicker: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
