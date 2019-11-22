@@ -639,7 +639,7 @@ class TextEditor extends Component {
 						/>
 					}
 				</div>
-				{ this.id ? <ResponseVisualizer
+				{ this.props.allowSubmissions ? <ResponseVisualizer
 					id={this.id}
 					data={{
 						type: 'text'
