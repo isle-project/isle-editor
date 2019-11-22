@@ -12,6 +12,7 @@ import { DOMSerializer } from 'prosemirror-model';
 import repeat from '@stdlib/string/repeat';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
+import replace from '@stdlib/string/replace';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
@@ -208,7 +209,8 @@ class TextEditor extends Component {
 							const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 							const tmp = document.createElement( 'div' );
 							tmp.appendChild( domNode );
-							const doc = generatePDF( tmp.innerHTML, config, 16, this.editorDiv.clientWidth );
+							const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
+							const doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
 							this.togglePDFModal( () => {
 								pdfMake.createPdf( doc ).download( title );
 							});
@@ -395,8 +397,9 @@ class TextEditor extends Component {
 		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( this.editorState.doc.content );
 		let tmp = document.createElement( 'div' );
 		tmp.appendChild( domNode );
+		const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
 		const title = document.title || 'provisoric';
-		const html = createHTML( title, tmp.innerHTML );
+		const html = createHTML( title, innerHTML );
 
 		// Create the config so that the function can run:
 		const config = {
@@ -407,7 +410,7 @@ class TextEditor extends Component {
 			},
 			pageOrientation: 'portrait'
 		};
-		const doc = generatePDF( tmp.innerHTML, config, 16, this.editorDiv.clientWidth );
+		const doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
 		const pdfDocGenerator = pdfMake.createPdf( doc );
 		pdfDocGenerator.getBase64( ( pdf ) => {
 			if ( this.props.sendSubmissionEmails ) {
