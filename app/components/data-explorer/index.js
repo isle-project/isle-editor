@@ -261,23 +261,28 @@ class DataExplorer extends Component {
 		for ( let i = actions.length - 1; i >= 0; i-- ) {
 			const action = actions[ i ];
 			switch ( action.type ) {
-				case DATA_EXPLORER_VARIABLE_TRANSFORMER: {
-					const values = valuesFromFormula( action.value.code, state.data );
-					state = this.transformVariable( action.value.name, values, state );
-				}
+				case DATA_EXPLORER_VARIABLE_TRANSFORMER:
+					if ( !hasProp( this.props.data, action.value.name ) ) {
+						const values = valuesFromFormula( action.value.code, state.data );
+						state = this.transformVariable( action.value.name, values, state );
+					}
 				break;
 				case DATA_EXPLORER_BIN_TRANSFORMER: {
 					const { name, variable, breaks, catNames } = action.value;
-					const rawData = state.data[ variable ];
-					const values = retrieveBinnedValues( rawData, catNames, breaks );
-					state = this.transformVariable( name, values, state );
+					if ( !hasProp( this.props.data, name ) ) {
+						const rawData = state.data[ variable ];
+						const values = retrieveBinnedValues( rawData, catNames, breaks );
+						state = this.transformVariable( name, values, state );
+					}
 				}
 				break;
 				case DATA_EXPLORER_CAT_TRANSFORMER: {
 					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
-					if ( state.data[ firstVar ]) {
-						const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
-						state = this.transformVariable( name, values, state );
+					if ( !hasProp( this.props.data, name ) ) {
+						if ( state.data[ firstVar ]) {
+							const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
+							state = this.transformVariable( name, values, state );
+						}
 					}
 				}
 				break;
