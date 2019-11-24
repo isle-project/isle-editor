@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import logger from 'debug';
 import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
 import PropTypes from 'prop-types';
 import { EditorView } from 'prosemirror-view';
@@ -13,6 +14,11 @@ import schema from './config/schema';
 import FootnoteView from './views/footnote';
 import PlotDragView from './views/plot_drag';
 import countWords from './count_words.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:text-editor' );
 
 
 // FUNCTIONS //
