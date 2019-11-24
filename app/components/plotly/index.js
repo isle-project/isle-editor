@@ -10,6 +10,8 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
 import yaml from 'js-yaml';
+import omitBy from '@stdlib/utils/omit-by';
+import isNull from '@stdlib/assert/is-null';
 import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import deepEqual from '@stdlib/assert/deep-equal';
@@ -177,9 +179,17 @@ class Wrapper extends Component {
 		const opts = { format: 'png', height: 425, width: 675 };
 		Plotly.toImage( this.figure, opts )
 			.then( ( data ) => {
-				const value = !this.props.meta ?
-					`<img src="${data}" style="display: block; margin: 0 auto;" />` :
-					`<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${yaml.safeDump(this.props.meta)}"></img>`;
+				let value;
+				if ( !this.props.meta ) {
+					value = `<img src="${data}" style="display: block; margin: 0 auto;" />`;
+				} else {
+					let meta = this.props.meta;
+					meta = omitBy( meta, ( _, value ) => {
+						return isNull( value );
+					});
+					meta = yaml.safeDump( meta );
+					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
+				}
 				this.plotData = value;
 			});
 	}
