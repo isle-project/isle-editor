@@ -6,6 +6,7 @@ import { tableNodes } from 'prosemirror-tables';
 import paragraphSpec from './paragraph.js';
 import headingSpec from './heading.js';
 import footnoteSpec from './footnote.js';
+import plotContainerSpec from './plot_container.js';
 import plotSpec from './plot.js';
 
 
@@ -34,6 +35,7 @@ const listNodes = {
 
 export default {
 	plot: plotSpec,
+	plotContainer: plotContainerSpec,
 	footnote: footnoteSpec,
 	paragraph: paragraphSpec,
 	...nodes,
