@@ -53,6 +53,7 @@ class ProseMirror extends Component {
 			this.props.defaultValue !== prevProps.defaultValue ||
 			this.props.docId !== prevProps.docId
 		) {
+			debug( 'Re-creating editor state...' );
 			const doc = isJSON( this.props.defaultValue ) ?
 				Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
 				parser( this.props.defaultValue );
@@ -106,7 +107,7 @@ class ProseMirror extends Component {
 	}
 
 	dispatchTransaction = ( tx ) => {
-		const editorState = this.state.editorState.apply( tx );
+		let editorState = this.state.editorState.apply( tx );
 		if ( this.editorView !== null ) {
 			this.editorView.updateState( editorState );
 		}
