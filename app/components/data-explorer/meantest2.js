@@ -32,43 +32,37 @@ class MeanTest2 extends Component {
 	constructor( props ) {
 		super( props );
 
+		const xvar = props.quantitative[ 0 ];
 		this.state = {
-			var1: props.quantitative[ 0 ],
+			xvar,
 			grouping: null,
-			var2: null,
+			yvar: null,
 			diff: 0,
 			direction: 'two-sided',
 			alpha: 0.05,
-			type: 'Z Test'
+			type: 'T Test',
+			xstdev: null,
+			ystdev: null,
+			xvalues: props.data[ xvar ],
+			yvalues: null,
+			firstCategory: null,
+			secondCategory: null
 		};
 	}
 
 	calculateTwoSampleZTest = () => {
-		const { var1, grouping, var2, diff, direction, alpha, type } = this.state;
-		const { data, showDecision } = this.props;
-		let secondCategory;
-		let firstCategory;
+		const { xvar, grouping, yvar, diff, direction, alpha, type, xstdev, ystdev, firstCategory, secondCategory } = this.state;
+		const { showDecision } = this.props;
+		const x = this.state.xvalues;
+		const y = this.state.yvalues;
 		let value;
-		let x;
-		let y;
+
+		console.log( type );
 
 		if ( grouping ) {
-			let categories = data[ grouping ];
-			firstCategory = categories[ 0 ];
-			for ( let i = 1; i < categories.length; i++ ) {
-				if ( categories[ i ] !== firstCategory ) {
-					secondCategory = categories[ i ];
-					break;
-				}
-			}
-			const splitted = bifurcateBy( data[ var1 ], function splitter( x, idx ) {
-				return categories[ idx ] === firstCategory;
-			});
-			x = splitted[ 0 ];
-			y = splitted[ 1 ];
 			let result;
 			if ( type === 'Z Test' ) {
-				result = ztest2( x, y, stdev( x ), stdev( y ), {
+				result = ztest2( x, y, xstdev, ystdev, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
@@ -92,7 +86,7 @@ class MeanTest2 extends Component {
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Hypothesis test for {var1} between {grouping}:</span>
+				<span className="title" >Hypothesis test for {xvar} between {grouping}:</span>
 				<TeX
 					displayMode
 					raw={`H_0: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
@@ -107,18 +101,16 @@ class MeanTest2 extends Component {
 					{printout}
 				</pre>
 			</div>;
-		} else if ( var2 ) {
-			x = data[ var1 ];
-			y = data[ var2 ];
+		} else if ( yvar ) {
 			let result;
 			if ( type === 'Z Test' ) {
-				result = ztest2( x, y, stdev( x ), stdev( y ), {
+				result = ztest2( x, y, xstdev, ystdev, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
 			} else {
-				result = ztest2( x, y, {
+				result = ttest2( x, y, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
@@ -136,16 +128,16 @@ class MeanTest2 extends Component {
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Hypothesis test for {var1} against {var2}:</label>
+				<label>Hypothesis test for {xvar} against {yvar}:</label>
 				<TeX
 					displayMode
-					raw={`H_0: \\mu_{${var1}} - \\mu_{${var2}} = ${diff}`}
+					raw={`H_0: \\mu_{${xvar}} - \\mu_{${yvar}} = ${diff}`}
 					tag=""
 				/>
 				<span>vs.</span>
 				<TeX
 					displayMode
-					raw={`\\; H_1: \\mu_{${var1}} - \\mu_{${var2}} ${arrow} ${diff}`}
+					raw={`\\; H_1: \\mu_{${xvar}} - \\mu_{${yvar}} ${arrow} ${diff}`}
 					tag=""
 				/>
 				<pre>
@@ -155,7 +147,7 @@ class MeanTest2 extends Component {
 		} else {
 			this.props.session.addNotification({
 				title: 'Action required',
-				message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
+				message: `Please select either a grouping variable or a second variable to compare ${xvar} against.`,
 				level: 'warning',
 				position: 'tr'
 			});
@@ -167,7 +159,7 @@ class MeanTest2 extends Component {
 				value: value
 			};
 			this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST, {
-				var1, grouping, var2, diff, direction, alpha
+				xvar, grouping, yvar, diff, direction, alpha
 			});
 			this.props.onCreated( output );
 		}
@@ -179,8 +171,8 @@ class MeanTest2 extends Component {
 		return ( <Fragment>
 			<SelectInput
 				legend="Type of Test:"
-				defaultValue="Z Test"
-				options={[ 'Z Test', 'T Test' ]}
+				defaultValue={this.state.type}
+				options={[ 'T Test', 'Z Test' ]}
 				onChange={( value ) => {
 					this.setState({
 						type: value
@@ -189,12 +181,51 @@ class MeanTest2 extends Component {
 			/>
 			<SelectInput
 				legend="Variable:"
-				defaultValue={this.state.var1}
+				defaultValue={this.state.xvar}
 				options={quantitative}
-				onChange={( value ) => {
-					this.setState({
-						var1: value
-					});
+				onChange={( xvar ) => {
+					if ( this.state.grouping ) {
+						const categories = data[ this.state.grouping ];
+						let firstCategory = categories[ 0 ];
+						let secondCategory;
+						for ( let i = 1; i < categories.length; i++ ) {
+							if ( categories[ i ] !== firstCategory ) {
+								secondCategory = categories[ i ];
+								break;
+							}
+						}
+						const splitted = bifurcateBy( data[ this.state.xvar ], function splitter( x, idx ) {
+							return categories[ idx ] === firstCategory;
+						});
+						const xvalues = splitted[ 0 ];
+						const yvalues = splitted[ 1 ];
+						this.setState({
+							yvar: null,
+							xvalues,
+							yvalues,
+							firstCategory,
+							secondCategory,
+							xstdev: stdev( xvalues ),
+							ystdev: stdev( yvalues )
+						});
+					}
+					else if ( this.state.yvar ) {
+						const x = data[ xvar ];
+						const y = data[ this.state.yvar ];
+						this.setState({
+							xvalues: x,
+							yvalues: y,
+							xvar,
+							grouping: null,
+							xstdev: stdev( x ),
+							ystdev: stdev( y )
+						});
+					}
+					else {
+						this.setState({
+							xvar
+						});
+					}
 				}}
 			/>
 			<Row>
@@ -204,10 +235,36 @@ class MeanTest2 extends Component {
 						options={binary}
 						defaultValue={this.state.grouping}
 						clearable
-						onChange={( value ) => {
+						onChange={( grouping ) => {
+							if ( !grouping ) {
+								return this.setState({
+									yvar: null,
+									grouping
+								});
+							}
+							const categories = data[ grouping ];
+							let firstCategory = categories[ 0 ];
+							let secondCategory;
+							for ( let i = 1; i < categories.length; i++ ) {
+								if ( categories[ i ] !== firstCategory ) {
+									secondCategory = categories[ i ];
+									break;
+								}
+							}
+							const splitted = bifurcateBy( data[ this.state.xvar ], function splitter( x, idx ) {
+								return categories[ idx ] === firstCategory;
+							});
+							const xvalues = splitted[ 0 ];
+							const yvalues = splitted[ 1 ];
 							this.setState({
-								grouping: value,
-								var2: null
+								grouping,
+								yvar: null,
+								xvalues,
+								yvalues,
+								firstCategory,
+								secondCategory,
+								xstdev: stdev( xvalues ),
+								ystdev: stdev( yvalues )
 							});
 						}}
 					/>
@@ -219,27 +276,89 @@ class MeanTest2 extends Component {
 					<SelectInput
 						legend="Second Variable:"
 						options={quantitative}
-						defaultValue={this.state.var2}
+						defaultValue={this.state.yvar}
 						clearable
-						onChange={( value ) => {
+						onChange={( yvar ) => {
+							if ( !yvar ) {
+								return this.setState({
+									yvar,
+									grouping: null
+								});
+							}
+							const x = data[ this.state.xvar ];
+							const y = data[ yvar ];
 							this.setState({
-								var2: value,
-								grouping: null
+								xvalues: x,
+								yvalues: y,
+								yvar,
+								grouping: null,
+								xstdev: stdev( x ),
+								ystdev: stdev( y )
 							});
 						}}
 					/>
 				</Col>
 			</Row>
-			<NumberInput
-				legend="Difference under H0"
-				defaultValue={this.state.diff}
-				step="any"
-				onChange={( value ) => {
-					this.setState({
-						diff: value
-					});
-				}}
-			/>
+			{ this.state.type === 'Z Test' ?
+				<Row>
+					<Col>
+						<NumberInput
+							legend="1st Standard Deviation"
+							defaultValue={this.state.xstdev || 1}
+							step="any"
+							min={0}
+							onChange={( value ) => {
+								this.setState({
+									xstdev: value
+								});
+							}}
+						/>
+					</Col>
+					<Col>
+						<NumberInput
+							legend="2nd Standard Deviation"
+							defaultValue={this.state.ystdev || 1}
+							step="any"
+							min={0}
+							onChange={( value ) => {
+								this.setState({
+									ystdev: value
+								});
+							}}
+							tooltipPlacement="top"
+						/>
+					</Col>
+				</Row>: null
+			}
+			<Row>
+				<Col>
+					<NumberInput
+						legend="Difference under H0"
+						defaultValue={this.state.diff}
+						step="any"
+						onChange={( value ) => {
+							this.setState({
+								diff: value
+							});
+						}}
+					/>
+				</Col>
+				<Col>
+					<NumberInput
+						legend={<span>Significance level <TeX raw="\alpha" /></span>}
+						defaultValue={this.state.alpha}
+						min={0.0}
+						max={1.0}
+						step="any"
+						onChange={( value ) => {
+							this.setState({
+								alpha: value
+							});
+						}}
+						tooltipPlacement="bottom"
+					/>
+				</Col>
+			</Row>
 			<SelectInput
 				legend="Direction:"
 				defaultValue={this.state.direction}
@@ -249,18 +368,7 @@ class MeanTest2 extends Component {
 						direction: value
 					});
 				}}
-			/>
-			<NumberInput
-				legend={<span>Significance level <TeX raw="\alpha" /></span>}
-				defaultValue={this.state.alpha}
-				min={0.0}
-				max={1.0}
-				step="any"
-				onChange={( value ) => {
-					this.setState({
-						alpha: value
-					});
-				}}
+				menuPlacement="top"
 			/>
 		</Fragment> );
 	}
