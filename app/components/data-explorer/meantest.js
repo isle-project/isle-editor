@@ -189,7 +189,7 @@ class MeanTest extends Component {
 					menuPlacement="top"
 				/>
 			</Fragment>
-		)
+		);
 	}
 
 	render() {
