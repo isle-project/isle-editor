@@ -13,6 +13,8 @@ import Form from 'react-bootstrap/Form';
 import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
 import Popover from 'react-bootstrap/Popover';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import SessionContext from 'session/context.js';
 import './login.css';
 
@@ -192,8 +194,9 @@ class Login extends Component {
 					placement="right"
 					containerPadding={20}
 				>
-					<Popover id="popover-contained" title="Not valid">
-						{this.state.invalidInputMessage}
+					<Popover id="popover-contained">
+						<PopoverTitle>Not valid</PopoverTitle>
+						<PopoverContent>{this.state.invalidInputMessage}</PopoverContent>
 					</Popover>
 				</Overlay>
 			</Modal>

@@ -13,6 +13,8 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 
@@ -234,8 +236,9 @@ class Signup extends Component {
 						placement="right"
 						containerPadding={20}
 					>
-						<Popover id="popover-contained" title="Input fields are not valid">
-							Please make sure that all input values are valid before submitting.
+						<Popover id="popover-contained" >
+							<PopoverTitle>Input fields are not valid</PopoverTitle>
+							<PopoverContent>Please make sure that all input values are valid before submitting.</PopoverContent>
 						</Popover>
 					</Overlay>
 				</Modal.Body>

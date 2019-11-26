@@ -7,6 +7,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Popover from 'react-bootstrap/Popover';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
@@ -113,12 +115,15 @@ class Chat extends Component {
 
 	renderMembers() {
 		const { chat } = this.props;
-		const userlistPopover = <Popover id="userlistPopover" title={`Members of ${chat.name} chat:`}>
-			<ListGroup>
-				{chat.members.map( ( member, idx ) => {
-					return <ListGroupItem style={{ padding: '3px 3px' }} key={idx}>{member.name}</ListGroupItem>;
-				})}
-			</ListGroup>
+		const userlistPopover = <Popover id="userlistPopover" >
+			<PopoverTitle>Members of ${chat.name} chat:</PopoverTitle>
+			<PopoverContent>
+				<ListGroup>
+					{chat.members.map( ( member, idx ) => {
+						return <ListGroupItem style={{ padding: '3px 3px' }} key={idx}>{member.name}</ListGroupItem>;
+					})}
+				</ListGroup>
+			</PopoverContent>
 		</Popover>;
 		return ( <OverlayTrigger trigger={[ 'hover', 'focus' ]} placement="bottom" overlay={userlistPopover}>
 			<div

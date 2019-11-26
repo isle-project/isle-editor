@@ -11,6 +11,8 @@ import Pressure from 'pressure';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -2370,13 +2372,16 @@ class Sketchpad extends Component {
 			.map( user => {
 				return { value: user.name, label: user.name };
 			});
-		const popover = <Popover id="popover-positioned-right" title="Remote control by...">
-			<Select isClearable inline options={users} onChange={( newValue ) => {
-				this.setState({
-					receiveFrom: newValue
-				});
-			}} />
-			<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
+		const popover = <Popover id="popover-positioned-right" >
+			<PopoverTitle>Remote control by...</PopoverTitle>
+			<PopoverContent>
+				<Select isClearable inline options={users} onChange={( newValue ) => {
+					this.setState({
+						receiveFrom: newValue
+					});
+				}} />
+				<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
+			</PopoverContent>
 		</Popover>;
 		return (
 			<Fragment>
