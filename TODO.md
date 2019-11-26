@@ -18,6 +18,8 @@ Fall
 * Add save reminders in data explorer 
 * Log actions in instructor bar
 * Consider adding vertical gridlines to plots
+* QQPlot and model diagnostics for models
+* Toolbox tutorial + PDF
 
 Summer 2019
 ===========
