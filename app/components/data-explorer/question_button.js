@@ -4,14 +4,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 
 // MAIN //
 
 const QuestionButton = ( props ) => {
-	const popover = <Popover id="popover-positioned-right" title={props.title}>
-		{props.content}
+	const popover = <Popover id="popover-positioned-right">
+		<PopoverTitle>{props.title}</PopoverTitle>
+		<PopoverContent>{props.content}</PopoverContent>
 	</Popover>;
 
 	return (
