@@ -81,6 +81,7 @@ import Histogram, { generateHistogramConfig } from 'components/data-explorer/his
 import Map, { generateMapConfig } from 'components/data-explorer/map';
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
+import QQPlot, { generateQQPlotConfig } from 'components/data-explorer/qqplot';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
 import Violinplot, { generateViolinplotConfig } from 'components/data-explorer/violinplot';
 import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
@@ -376,6 +377,9 @@ class DataExplorer extends Component {
 			break;
 		case 'DATA_EXPLORER_SHARE_PIECHART':
 			config = generatePiechartConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE_QQPLOT':
+			config = generateQQPlotConfig({ data: this.state.data, ...value });
 			break;
 		case 'DATA_EXPLORER_SHARE_SCATTERPLOT':
 			config = generateScatterplotConfig({ data: this.state.data, ...value });
@@ -990,6 +994,13 @@ class DataExplorer extends Component {
 				case 'Pie Chart':
 					content = <Piechart
 						{...categoricalProps}
+						logAction={this.logAction}
+						session={this.context}
+					/>;
+					break;
+				case 'QQ Plot':
+					content = <QQPlot
+						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
