@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'uniq';
 import MLR from 'ml-regression-multivariate-linear';
@@ -18,6 +18,8 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
+import Plotly from 'components/plotly';
+import { generateQQPlotConfig } from './qqplot.js';
 import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import mean from 'utils/statistic/mean';
@@ -135,9 +137,10 @@ class MultipleLinearRegression extends Component {
 		for ( let i = 0; i < resid.length; i++ ) {
 			rss += pow( resid[ i ], 2 );
 		}
-		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, {
+		const action = {
 			y, x, intercept
-		});
+		};
+		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, action );
 		const p = predictors.length;
 		const rSquared = mss / ( mss + rss );
 		const adjRSquared = 1 - ( 1 - rSquared ) * ( n - 1 ) / ( n - p - 1 );
@@ -151,7 +154,7 @@ class MultipleLinearRegression extends Component {
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
 				<p>F-statistic: {fScore.toFixed( 3 )} (df: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
-				<Tooltip tooltip="Predictions and residuals will be attached to data table">
+				<Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {
 						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
 						const yhat = result.predict( matrix ).map( v => v[ 0 ] );
@@ -171,6 +174,45 @@ class MultipleLinearRegression extends Component {
 						this.props.onGenerate( newQuantitative, newData );
 					}}>Use this model to predict for currently selected data</Button>
 				</Tooltip>
+				<Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
+					const qqPlot = {
+						variable: 'QQ Plot of Residuals',
+						type: 'Chart',
+						value: <Plotly
+							draggable
+							editable fit
+							{...generateQQPlotConfig( resid, 'residuals' )}
+							meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
+						/>
+					};
+					const residualPlot = {
+						variable: 'Residuals vs. Fitted',
+						type: 'Chart',
+						value: <Plotly
+							draggable editable fit
+							data={[
+								{
+									x: yhat,
+									y: resid,
+									mode: 'markers'
+								}
+							]}
+							layout={{
+								xaxis: {
+									title: 'Fitted Values'
+								},
+								yaxis: {
+									title: 'Residuals'
+								},
+								title: 'Residuals vs. Fitted'
+							}}
+							meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
+						/>
+					};
+					this.props.onCreated([ qqPlot, residualPlot ]);
+				}} >
+					Model Diagnostics
+				</Button>
 			</div>
 		};
 		this.props.onCreated( output );

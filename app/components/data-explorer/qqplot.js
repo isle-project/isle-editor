@@ -31,11 +31,10 @@ function ascending( a, b ) {
 	return a - b;
 }
 
-export function generateQQPlotConfig({ data, variable }) {
+export function generateQQPlotConfig( y, variable ) {
 	let annotations;
 	let traces;
 
-	const y = data[ variable ];
 	const len = y.length;
 	const yq = y.sort( ascending );
 
@@ -93,7 +92,7 @@ class QQPlot extends Component {
 	}
 
 	generateQQPlot( variable ) {
-		const config = generateQQPlotConfig({ data: this.props.data, variable });
+		const config = generateQQPlotConfig( this.props.data[ variable ], variable );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, plotId
