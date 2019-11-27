@@ -296,6 +296,7 @@ class SummaryStatistics extends Component {
 								});
 							}}
 							styles={customStyles}
+							menuPortalTarget={document.body}
 						/>
 					</FormGroup>
 					<SelectInput

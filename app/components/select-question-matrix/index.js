@@ -156,6 +156,7 @@ class SelectQuestionMatrix extends Component {
 				options={options}
 				onChange={this.handleChangeFactory( label )}
 				menuPlacement="top"
+				menuPortalTarget={document.body}
 			/>
 		);
 	}

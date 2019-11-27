@@ -246,6 +246,7 @@ class SelectInput extends Input {
 							isClearable={clearable}
 							isDisabled={this.props.disabled}
 							menuPlacement={this.props.menuPlacement}
+							menuPortalTarget={document.body}
 						/>
 					</FormGroup>
 				</Form>
