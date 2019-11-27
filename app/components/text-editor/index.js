@@ -243,11 +243,6 @@ class TextEditor extends Component {
 		}
 		this.menu.addons = this.menu.addons.concat([
 			{
-				title: 'Open tutorials',
-				run: this.toggleGuides,
-				content: icons.guides
-			},
-			{
 				title: 'Toggle fullscreen',
 				run: () => {
 					if ( !/fullscreen/.test( this.editorWrapper.className ) ) {
@@ -273,10 +268,15 @@ class TextEditor extends Component {
 					mode="microphone"
 					language={this.props.language}
 					timeout={this.props.voiceTimeout}
-					width={30}
-					height={30}
+					width={26}
+					height={26}
 					onFinalText={this.recordedText}
 				/>
+			},
+			{
+				title: 'Open tutorials',
+				run: this.toggleGuides,
+				content: icons.guides
 			}
 		]);
 		if ( this.props.groupMode ) {
@@ -327,7 +327,7 @@ class TextEditor extends Component {
 	}
 
 	saveInBrowser = () => {
-		console.log( 'Saving document state to local storage...' );
+		debug( 'Saving document state to local storage...' );
 		if ( this.editorState ) {
 			localStorage.setItem( this.id, JSON.stringify( this.editorState.doc.toJSON() ) );
 		}
