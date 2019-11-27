@@ -410,20 +410,28 @@ class DataExplorer extends Component {
 		}
 	}
 
+	onFilters = ( newFilters ) => {
+		this.setState({
+			filters: newFilters
+		}, () => {
+			this.onFilterCreate();
+		});
+	}
+
 	/**
 	* Adds the supplied element to the array of outputs.
 	*/
-	addToOutputs = ( element ) => {
+	addToOutputs = ( val ) => {
 		const newOutput = this.state.output.slice();
-		const onFilters = ( newFilters ) => {
-			this.setState({
-				filters: newFilters
-			}, () => {
-				this.onFilterCreate();
-			});
-		};
-		element = createOutputElement( element, newOutput.length, this.clearOutput, this.state.subsetFilters, onFilters );
-		newOutput.push( element );
+		if ( isArray( val ) ) {
+			for ( let i = 0; i < val.length; i++ ) {
+				const element = createOutputElement( val[ i ], newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters );
+				newOutput.push( element );
+			}
+		} else {
+			const element = createOutputElement( val, newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters );
+			newOutput.push( element );
+		}
 		this.setState({
 			output: newOutput
 		});
