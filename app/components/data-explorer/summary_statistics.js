@@ -59,7 +59,8 @@ const customStyles = {
 			display: 'block',
 			padding: '8px 10px'
 		};
-	}
+	},
+	menuPortal: base => ({ ...base, zIndex: 1010 })
 };
 
 
