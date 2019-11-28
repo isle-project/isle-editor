@@ -42,7 +42,7 @@ export function generateQQPlotConfig( y, variable ) {
 	const slope = ( qnorm( 0.75, 0, 1 ) - lowerQuartile ) / ( quantile( yq, 0.75 ) - quantile( yq, 0.25 ) );
 	const intercept = lowerQuartile - slope * yq[ 24 ];
 
-	const normalQuantiles = new Array( len );
+	const normalQuantiles = new Array( 99 );
 	for ( let i = 0; i < normalQuantiles.length; i++ ) {
 		normalQuantiles[ i ] = qnorm( (i+1)/100, 0.0, 1.0 );
 	}
@@ -63,17 +63,16 @@ export function generateQQPlotConfig( y, variable ) {
 			mode: 'markers'
 		}
 	];
-
 	const layout = {
 		annotations,
 		title: `Normal QQ Plot of ${variable}`,
 		xaxis: {
 			title: 'Theoretical Quantiles',
-			range: [ normalQuantiles[ 0 ], normalQuantiles[ normalQuantiles.length-1 ] ]
+			range: [ normalQuantiles[ 0 ] - 0.3, normalQuantiles[ normalQuantiles.length-1 ] + 0.3 ]
 		},
 		yaxis: {
 			title: 'Sample Quantiles',
-			range: [ ymin, ymax ]
+			range: [ ymin - 1, ymax + 1 ]
 		},
 		showlegend: false
 	};
