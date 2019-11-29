@@ -59,7 +59,6 @@ function quantiles( arr, num ) {
 
 	// Get the quantiles...
 	for ( let i = 1; i < num; i++ ) {
-
 		// Calculate the vector index marking the quantile:
 		const id = ( len * i / num ) - 1;
 
