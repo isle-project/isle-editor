@@ -37,15 +37,15 @@ export function generateQQPlotConfig( y, variable ) {
 
 	const len = y.length;
 	const yq = y.sort( ascending );
-
 	const lowerQuartile = qnorm( 0.25, 0, 1 );
 	const slope = ( qnorm( 0.75, 0, 1 ) - lowerQuartile ) / ( quantile( yq, 0.75 ) - quantile( yq, 0.25 ) );
-	const intercept = lowerQuartile - slope * yq[ 24 ];
+	const intercept = lowerQuartile - slope * quantile( yq, 0.25 );
 
-	const normalQuantiles = new Array( 99 );
-	for ( let i = 0; i < normalQuantiles.length; i++ ) {
-		normalQuantiles[ i ] = qnorm( (i+1)/100, 0.0, 1.0 );
+	const normalQuantiles = new Array( len );
+	for ( let i = 0; i < len - 1; i++ ) {
+		normalQuantiles[ i ] = qnorm( (i+1)/len, 0.0, 1.0 );
 	}
+	normalQuantiles[ len-1 ] = qnorm( (len-1)/len, 0.0, 1.0 );
 	const linePoints = new Array( 2 );
 	const ymin = yq[ 0 ];
 	const ymax = yq[ yq.length-1 ];

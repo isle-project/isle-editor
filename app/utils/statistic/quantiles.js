@@ -1,4 +1,4 @@
-/*
+/**
 * Adapted from MIT-licensed code.
 *
 * Copyright (c) 2014. Athan Reines.
@@ -8,6 +8,7 @@
 
 // MODULES //
 
+import isArray from '@stdlib/assert/is-array';
 import isInteger from '@stdlib/assert/is-integer';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
@@ -38,7 +39,7 @@ function ascending( a, b ) {
 * @returns {Array} quantiles
 */
 function quantiles( arr, num ) {
-	if ( !Array.isArray( arr ) ) {
+	if ( !isArray( arr ) ) {
 		throw new TypeError( 'invalid input argument. First argument must be an array.' );
 	}
 	if ( !isInteger( num ) || num <= 0 ) {
