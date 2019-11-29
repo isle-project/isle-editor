@@ -36,6 +36,7 @@ import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
 import SummaryStatistics from 'components/data-explorer/summary_statistics';
 import VariableTransformer from 'components/data-explorer/variable-transformer';
+import ToolboxTutorialButton from 'components/data-explorer/toolbox-tutorial-button';
 import TextEditor from 'components/text-editor';
 import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';
@@ -130,6 +131,7 @@ const uid = generateUID( 'data-explorer' );
 * @property {Array<Object>} tabs - array of objects and keys indicating any custom tabs to add
 * @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
 * @property {boolean} transformer - boolean indicating whether one wants to display a variable transformer
+* @property {Function} onTutorialCompletion - function invoked when user has completed the data explorer tutorial
 * @property {Object} style - CSS inline styles for main container
 */
 class DataExplorer extends Component {
@@ -839,7 +841,7 @@ class DataExplorer extends Component {
 
 		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
-				<Nav.Item>
+				<Nav.Item className="nav-statistics" >
 					<Nav.Link eventKey="1">Statistics</Nav.Link>
 				</Nav.Item> : null
 			}
@@ -847,6 +849,7 @@ class DataExplorer extends Component {
 				<NavDropdown
 					eventKey="2"
 					title="Tables"
+					className="nav-tables"
 				>
 					{ this.props.tables.map(
 						( e, i ) => <DropdownItem key={i} eventKey={`2.${i+1}`}>{e}</DropdownItem>
@@ -857,6 +860,7 @@ class DataExplorer extends Component {
 				<NavDropdown
 					eventKey="3"
 					title="Plots"
+					className="nav-plots"
 				>
 					{ this.props.plots.map( ( e, i ) => {
 						const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>;
@@ -877,6 +881,7 @@ class DataExplorer extends Component {
 				<NavDropdown
 					eventKey="4"
 					title="Tests"
+					className="nav-tests"
 				>
 					{ this.props.tests.map( ( e, i ) => {
 						const item = <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>;
@@ -897,6 +902,7 @@ class DataExplorer extends Component {
 				<NavDropdown
 					eventKey="5"
 					title="Models"
+					className="nav-models"
 				>
 					{this.props.models.map( ( e, i ) => {
 						const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem>;
@@ -914,7 +920,7 @@ class DataExplorer extends Component {
 				</NavDropdown> : null
 			}
 			{ this.props.transformer ?
-				<Nav.Item>
+				<Nav.Item className="nav-transform" >
 					<Nav.Link eventKey="6">Transform</Nav.Link>
 				</Nav.Item> : null
 			}
@@ -1352,7 +1358,10 @@ class DataExplorer extends Component {
 							}) : null }
 						</Nav>
 						{ this.props.groupMode ? <ChatButton style={{ position: 'absolute', right: '135px' }} for={this.id} tooltipPlacement="bottom" /> : null }
-						<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }} onClick={this.toggleToolbox} >{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
+						<Button
+							variant="secondary" size="sm" className="hide-toolbox-button"
+							onClick={this.toggleToolbox}
+						>{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
 					</Navbar>
 					<Card.Body>
 						{ hasQuestions ?<Pages
@@ -1503,11 +1512,13 @@ class DataExplorer extends Component {
 				<ReactDraggable cancel=".input" enableUserSelectHack={false} >
 					<Card
 						border="secondary"
+						id={`${this.id}-toolbox`}
 						className="data-explorer-toolbox"
 						style={{ display: this.state.showToolbox ? 'inline' : 'none' }}
 					>
 						<Card.Header style={{ height: '55px' }}>
 							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
+							<ToolboxTutorialButton onTutorialCompletion={this.props.onTutorialCompletion} id={`${this.id}-toolbox`} />
 							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
 						</Card.Header>
 						<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
@@ -1594,6 +1605,7 @@ DataExplorer.defaultProps = {
 	groupMode: false,
 	histogramDensities: true,
 	showTestDecisions: true,
+	onTutorialCompletion() {},
 	style: {}
 };
 
@@ -1618,7 +1630,8 @@ DataExplorer.propTypes = {
 	tables: PropTypes.array,
 	tabs: PropTypes.array,
 	tests: PropTypes.array,
-	transformer: PropTypes.bool
+	transformer: PropTypes.bool,
+	onTutorialCompletion: PropTypes.func
 };
 
 DataExplorer.contextType = SessionContext;

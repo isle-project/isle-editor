@@ -22,7 +22,7 @@ const QuestionButton = ( props ) => {
 			<Button
 				size="sm"
 				variant="outline-secondary"
-				style={{ float: 'right', padding: '0rem .4rem' }}
+				className="question-button"
 			>
 				<div className="fa fa-question" />
 			</Button>

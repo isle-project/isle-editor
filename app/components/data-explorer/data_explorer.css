@@ -79,3 +79,13 @@
 .data-explorer-output-panel pre {
 	position: relative;
 }
+
+.hide-toolbox-button {
+	position: absolute;
+	right: 20px;
+}
+
+.question-button {
+	float: right;
+	padding: 0rem 0.4rem;
+}
