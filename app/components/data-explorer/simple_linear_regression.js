@@ -16,6 +16,8 @@ import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import mean from 'utils/statistic/mean';
+import Plotly from 'components/plotly';
+import { generateQQPlotConfig } from './qqplot.js';
 import { DATA_EXPLORER_LINEAR_REGRESSION } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by2 from './by2.js';
@@ -148,6 +150,55 @@ class SimpleLinearRegression extends Component {
 							this.props.onGenerate( newQuantitative, newData );
 						}}>Use this model to predict for currently selected data</Button>
 					</Tooltip>
+					<Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
+						const x = this.props.data[ xval ];
+						const y = this.props.data[ yval ];
+						const yhat = new Float64Array( y.length );
+						const resid = new Float64Array( y.length );
+						const groups = this.props.data[ group ];
+						for ( let i = 0; i < yhat.length; i++ ) {
+							const [ yint, slope ] = res[ groups[ i ] ];
+							yhat[ i ] = yint + slope * x[ i ];
+							resid[ i ] = yhat[ i ] - y[ i ];
+						}
+						const qqPlot = {
+							variable: 'QQ Plot of Residuals',
+							type: 'Chart',
+							value: <Plotly
+								draggable
+								editable fit
+								{...generateQQPlotConfig( resid, 'residuals' )}
+								meta={{ type: 'qqplot of regression residuals', x, y }}
+							/>
+						};
+						const residualPlot = {
+							variable: 'Residuals vs. Fitted',
+							type: 'Chart',
+							value: <Plotly
+								draggable editable fit
+								data={[
+									{
+										x: yhat,
+										y: resid,
+										mode: 'markers'
+									}
+								]}
+								layout={{
+									xaxis: {
+										title: 'Fitted Values'
+									},
+									yaxis: {
+										title: 'Residuals'
+									},
+									title: 'Residuals vs. Fitted'
+								}}
+								meta={{ type: 'regression residuals vs. fitted', x, y }}
+							/>
+						};
+						this.props.onCreated([ qqPlot, residualPlot ]);
+					}} >
+						Model Diagnostics
+					</Button>
 					</div>
 			};
 		}
@@ -226,6 +277,53 @@ class SimpleLinearRegression extends Component {
 							this.props.onGenerate( newQuantitative, newData );
 						}}>Use this model to predict for currently selected data</Button>
 					</Tooltip>
+					<Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
+						const x = this.props.data[ xval ];
+						const y = this.props.data[ yval ];
+						const yhat = new Array( y.length );
+						const resid = new Array( y.length );
+						for ( let i = 0; i < yhat.length; i++ ) {
+							yhat[ i ] = yint + slope * x[ i ];
+							resid[ i ] = yhat[ i ] - y[ i ];
+						}
+						const qqPlot = {
+							variable: 'QQ Plot of Residuals',
+							type: 'Chart',
+							value: <Plotly
+								draggable
+								editable fit
+								{...generateQQPlotConfig( resid, 'residuals' )}
+								meta={{ type: 'qqplot of regression residuals', x, y }}
+							/>
+						};
+						const residualPlot = {
+							variable: 'Residuals vs. Fitted',
+							type: 'Chart',
+							value: <Plotly
+								draggable editable fit
+								data={[
+									{
+										x: yhat,
+										y: resid,
+										mode: 'markers'
+									}
+								]}
+								layout={{
+									xaxis: {
+										title: 'Fitted Values'
+									},
+									yaxis: {
+										title: 'Residuals'
+									},
+									title: 'Residuals vs. Fitted'
+								}}
+								meta={{ type: 'regression residuals vs. fitted', x, y }}
+							/>
+						};
+						this.props.onCreated([ qqPlot, residualPlot ]);
+					}} >
+						Model Diagnostics
+					</Button>
 				</div>
 			};
 		}
