@@ -25,9 +25,15 @@ class Tutorial extends Component {
 		});
 	}
 
-	startTour = () => {
+	toggleTour = () => {
 		this.setState({
 			running: !this.state.running
+		}, () => {
+			if ( this.state.running ) {
+				this.props.onTutorialStart();
+			} else {
+				this.props.onTutorialCompletion();
+			}
 		});
 	}
 
@@ -35,12 +41,12 @@ class Tutorial extends Component {
 		return (
 			<Fragment>
 				<OverlayTrigger
-					placement="right"
+					placement="left"
 					overlay={<Tooltip>{this.state.running ? 'Close Tutorial' : 'Show Tutorial' }</Tooltip>}
 				>
 					<Button
 						variant="secondary" size="sm"
-						onClick={this.startTour}
+						onClick={this.toggleTour}
 						style={{
 							marginRight: 110,
 							float: 'right'
@@ -61,6 +67,11 @@ class Tutorial extends Component {
 							this.props.onTutorialCompletion();
 						}
 					}}
+					styles={{
+						options: {
+							zIndex: 1010
+						}
+					}}
 				/>
 			</Fragment>
 		);
@@ -71,7 +82,8 @@ class Tutorial extends Component {
 // PROPERTIES //
 
 Tutorial.propTypes = {
-	onTutorialCompletion: PropTypes.func.isRequired
+	onTutorialCompletion: PropTypes.func.isRequired,
+	onTutorialStart: PropTypes.func.isRequired
 };
 
 

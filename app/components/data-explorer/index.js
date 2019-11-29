@@ -170,6 +170,7 @@ class DataExplorer extends Component {
 			ready,
 			showStudentPlots: false,
 			showToolbox: false,
+			disableToolbarDragging: false,
 			openedNav: props.opened || ( isArray( props.questions ) && props.questions.length > 0 ? 'questions' : 'data' ),
 			studentPlots: [],
 			subsetFilters: null,
@@ -1509,16 +1510,30 @@ class DataExplorer extends Component {
 		return (
 			<Fragment>
 				{mainContainer}
-				<ReactDraggable cancel=".input" enableUserSelectHack={false} >
+				<ReactDraggable cancel=".input" enableUserSelectHack={false} disabled={this.state.disableToolbarDragging} >
 					<Card
 						border="secondary"
 						id={`${this.id}-toolbox`}
 						className="data-explorer-toolbox"
 						style={{ display: this.state.showToolbox ? 'inline' : 'none' }}
 					>
-						<Card.Header style={{ height: '55px' }}>
-							<Card.Title as="h3" style={{ position: 'absolute', left: '20px' }}>Toolbox</Card.Title>
-							<ToolboxTutorialButton onTutorialCompletion={this.props.onTutorialCompletion} id={`${this.id}-toolbox`} />
+						<Card.Header className="data-explorer-toolbox-header" >
+							<Card.Title as="h3" unselectable="on" className="data-explorer-toolbox-title" >Toolbox</Card.Title>
+							<ToolboxTutorialButton
+								onTutorialStart={() => {
+									this.setState({
+										disableToolbarDragging: true
+									});
+									this.props.onTutorialStart();
+								}}
+								onTutorialCompletion={() => {
+									this.setState({
+										disableToolbarDragging: false
+									});
+									this.props.onTutorialCompletion();
+								}}
+								id={`${this.id}-toolbox`}
+							/>
 							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
 						</Card.Header>
 						<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
@@ -1606,6 +1621,7 @@ DataExplorer.defaultProps = {
 	histogramDensities: true,
 	showTestDecisions: true,
 	onTutorialCompletion() {},
+	onTutorialStart() {},
 	style: {}
 };
 
@@ -1631,7 +1647,8 @@ DataExplorer.propTypes = {
 	tabs: PropTypes.array,
 	tests: PropTypes.array,
 	transformer: PropTypes.bool,
-	onTutorialCompletion: PropTypes.func
+	onTutorialCompletion: PropTypes.func,
+	onTutorialStart: PropTypes.func
 };
 
 DataExplorer.contextType = SessionContext;
