@@ -161,7 +161,7 @@ function createColumns( props, state ) {
 			props.dataInfo.variables[ key ];
 		const out = {
 			id: key,
-			accessor: ( d ) => d[ key ],
+			accessor: ( d ) => isNull( d[ key ] ) ? 'NA' : d[ key ],
 			minWidth: isOriginal ? 125 : 150
 		};
 		if ( isOriginal ) {
