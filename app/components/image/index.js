@@ -16,6 +16,7 @@ import './image.css';
 * Component to display an image.
 *
 * @property {string} src - image source location
+* @property {string} className - class name
 * @property {string} body - base64 encoded data of image
 * @property {number} height - image height (in px)
 * @property {number} width - image width (in px)
@@ -97,7 +98,7 @@ class Image extends Component {
 		return (
 			<Fragment>
 				<img
-					className="isle-image"
+					className={`isle-image ${this.props.className}`}
 					alt={this.props.alt}
 					src={this.props.src}
 					width={this.props.width}
@@ -131,6 +132,7 @@ class Image extends Component {
 
 Image.propTypes = {
 	body: PropTypes.string,
+	className: PropTypes.string,
 	height: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -148,6 +150,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
 	body: null,
+	className: '',
 	id: null,
 	width: null,
 	onShare: null,
