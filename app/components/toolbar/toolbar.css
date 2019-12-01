@@ -28,6 +28,22 @@
 	border: none;
 	background: none;
 	color: #2e4468;
+	cursor: pointer;
+}
+
+.help-buttons {
+	font-size: 24px;
+	position: fixed;
+	top: 16px;
+	right: 16px;
+}
+
+.help-close-button {
+	margin-left: 12px;
+	border: none;
+	background: none;
+	color: #2e4468;
+	cursor: pointer;
 }
 
 .toolbar-hide-button:hover {

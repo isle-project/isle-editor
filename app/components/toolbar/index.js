@@ -11,6 +11,7 @@ import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
+import HelpPage from './help.js';
 import './toolbar.css';
 
 
@@ -28,6 +29,7 @@ class Toolbar extends Component {
 		const state = {
 			calculator: false,
 			queue: false,
+			help: false,
 			queueSize: 0,
 			elements: [],
 			showToolbar: true
@@ -82,6 +84,12 @@ class Toolbar extends Component {
 	toggleQueue = () => {
 		this.setState({
 			queue: !this.state.queue
+		});
+	}
+
+	toggleHelp = () => {
+		this.setState({
+			help: !this.state.help
 		});
 	}
 
@@ -140,6 +148,15 @@ class Toolbar extends Component {
 								<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
 							</Tooltip>
 						</Button> : null }
+						<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
+							<Button
+								variant="light"
+								onClick={this.toggleHelp}
+								onKeyPress={this.toggleHelp}
+							>
+								<span className="fa fa-lg fa-book toolbar-icon" />
+							</Button>
+						</Tooltip>
 				</ButtonGroup>
 				<Calculator show={this.state.calculator} onHide={this.toggleCalculator} />
 				<Queue
@@ -180,6 +197,7 @@ class Toolbar extends Component {
 						</div>
 					</ReactDraggable> : null;
 				})}
+				{this.state.help ? <HelpPage session={this.context} onClose={this.toggleHelp} /> : null }
 				<KeyControls
 					actions={{
 						'F2': this.toggleCalculator

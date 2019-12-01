@@ -12,7 +12,7 @@ const RE_WIDTH = /width: (.+)px/g;
 
 // FUNCTIONS //
 
-function makeSTYLES( config, customFontSize = 12, poster = false ) {
+function makeSTYLES( customFontSize = 12, poster = false ) {
 	// the 16 (html font) is x + 4 --> 12 font
 	const pdfSize = customFontSize - 4;
 	return (
@@ -72,19 +72,19 @@ function generatePDF( html, config, standardFontSize, editorWidth ) {
 	html = replace( html, RE_WIDTH, widthReplacer );
 	const nodes = htmlToPdfMake( html, {
 		defaultStyles: {
-			'img': ''
+			img: ''
 		}
 	});
 
 	const isPosterBool = isPoster( config );
 	const doc = {
-		'styles': makeSTYLES( config, standardFontSize, isPosterBool ),
-		'pageSize': config.pageSize,
-		'pageOrientation': config.pageOrientation,
-		'defaultStyle': {
+		styles: makeSTYLES( standardFontSize, isPosterBool ),
+		pageSize: config.pageSize,
+		pageOrientation: config.pageOrientation,
+		defaultStyle: {
 			fontSize: standardFontSize - 4
 		},
-		'pageMargins': [40, 60, 40, 60] // left top right bottom
+		pageMargins: [ 40, 60, 40, 60 ] // left top right bottom
 	};
 	doc.content = nodes;
 	return doc;
