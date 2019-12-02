@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Gate from 'components/gate';
@@ -95,7 +95,7 @@ class Revealer extends Component {
 
 	render() {
 		const header = <h3 className="center" >{this.props.message}</h3>;
-		return (<div>
+		return (<Fragment>
 			<Gate owner >
 				<Button
 					className="centered"
@@ -108,7 +108,7 @@ class Revealer extends Component {
 				</Button>
 			</Gate>
 				{this.state.showChildren ? this.props.children : header}
-		</div> );
+		</Fragment> );
 	}
 }
 
