@@ -287,13 +287,13 @@ class TextEditor extends Component {
 			});
 		}
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
-			this.menu.addons.reset = {
+			this.menu.addons.push({
 				title: 'Reset to default value',
 				run: () => {
 					this.toggleResetModal();
 				},
 				content: icons.reset
-			};
+			});
 		}
 		loadFonts();
 	}
@@ -612,7 +612,7 @@ class TextEditor extends Component {
 	resetEditor = () => {
 		localStorage.removeItem( this.id );
 		this.setState({
-			value: this.props.defaultValue
+			value: md.render( this.props.defaultValue )
 		});
 		this.context.addNotification({
 			title: 'Reset',
