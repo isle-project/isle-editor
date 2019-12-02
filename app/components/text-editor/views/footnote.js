@@ -48,14 +48,14 @@ class FootnoteView {
 	}
 
 	selectNode() {
-		this.dom.classList.add('ProseMirror-selectednode');
+		this.dom.classList.add( 'ProseMirror-selectednode' );
 		if ( !this.innerView ) {
 			this.open();
 		}
 	}
 
 	deselectNode() {
-		this.dom.classList.remove('ProseMirror-selectednode');
+		this.dom.classList.remove( 'ProseMirror-selectednode' );
 		if ( this.innerView ) {
 			this.close();
 		}
@@ -76,13 +76,13 @@ class FootnoteView {
 				})]
 			}),
 			// This is the magic part:
-			dispatchTransaction: this.dispatchInner.bind(this),
+			dispatchTransaction: this.dispatchInner,
 			handleDOMEvents: {
 				mousedown: () => {
 					// Kludge to prevent issues due to the fact that the whole
 					// footnote is node-selected (and thus DOM-selected) when
 					// the parent editor is focused.
-					if (this.outerView.hasFocus()) {
+					if ( this.outerView.hasFocus() ) {
 						this.innerView.focus();
 					}
 				}
@@ -96,11 +96,11 @@ class FootnoteView {
 		this.dom.textContent = '';
 	}
 
-	dispatchInner(tr) {
+	dispatchInner = ( tr ) => {
 		let { state, transactions } = this.innerView.state.applyTransaction( tr );
 		this.innerView.updateState( state );
 
-		if ( !tr.getMeta('fromOutside') ) {
+		if ( !tr.getMeta( 'fromOutside' ) ) {
 			let outerTr = this.outerView.state.tr;
 			let offsetMap = StepMap.offset( this.getPos() + 1 );
 			for ( let i = 0; i < transactions.length; i++ ) {
@@ -116,7 +116,7 @@ class FootnoteView {
 	}
 
 	update( node ) {
-		if ( !node.sameMarkup(this.node) ) {
+		if ( !node.sameMarkup( this.node ) ) {
 			return false;
 		}
 		this.node = node;
