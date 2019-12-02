@@ -314,12 +314,28 @@ class TextEditor extends Component {
 		if ( this.props.autoSave && !this.props.groupMode ) {
 			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
 		}
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( action && action.id === this.id ) {
+				if ( action.type === EDITOR_PEER_REPORT ) {
+					localStorage.setItem( this.id+'_peer_report', action.value );
+					this.addPeerReportNotification( action.value );
+				}
+				else if ( action.type === EDITOR_PEER_COMMENTS ) {
+					localStorage.setItem( this.id+'_peer_comments', action.value );
+					this.addPeerComments( action.value );
+				}
+			}
+		});
 		this.beforeUnload = window.addEventListener( 'beforeunload', this.saveInBrowser );
 	}
 
 	componentWillUnmount() {
 		if ( this.saveInterval ) {
 			clearInterval( this.saveInterval );
+		}
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
 		}
 		if ( this.beforeUnload ) {
 			window.removeEventListener( 'beforeunload', this.saveInBrowser );
@@ -503,7 +519,9 @@ class TextEditor extends Component {
 					}
 					localStorage.removeItem( this.id+'_peer_report' );
 					session.removeNotification( this.peerReportNotification );
-					this.setEditorValue( report );
+					this.setState({
+						value: report
+					});
 				}}>Open Report</Button>
 			</div>
 		});
@@ -530,7 +548,9 @@ class TextEditor extends Component {
 					}
 					localStorage.removeItem( this.id+'_peer_comments' );
 					session.removeNotification( this.peerCommentsNotification );
-					this.setEditorValue( comments );
+					this.setState({
+						value: comments
+					});
 				}}>Open Comments</Button>
 			</div>
 		});
@@ -660,7 +680,7 @@ class TextEditor extends Component {
 						this.context.log({
 							id: this.id,
 							type: EDITOR_PEER_REPORT,
-							value: md,
+							value: JSON.stringify( this.editorState.doc.toJSON() ),
 							noSave: true
 						}, this.state.peer.to.email );
 						this.setState({
@@ -673,7 +693,7 @@ class TextEditor extends Component {
 						this.context.log({
 							id: this.id,
 							type: EDITOR_PEER_COMMENTS,
-							value: md,
+							value: JSON.stringify( this.editorState.doc.toJSON() ),
 							noSave: true
 						}, this.state.peer.from.email );
 						this.setState({
