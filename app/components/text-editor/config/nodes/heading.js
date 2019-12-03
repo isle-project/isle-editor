@@ -44,9 +44,9 @@ const TAG_NAME_TO_LEVEL = {
 // FUNCTIONS //
 
 function toDOM( node ) {
-	const dom = toParagraphDOM(node);
+	const dom = toParagraphDOM( node );
 	const level = node.attrs.level || 1;
-	dom[0] = `h${level}`;
+	dom[ 0 ] = `h${level}`;
 	return dom;
 }
 
