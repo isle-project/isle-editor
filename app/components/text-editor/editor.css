@@ -44,7 +44,7 @@
 	font-variant-ligatures: none;
 	background: white;
 	overflow: auto;
-	counter-reset: prosemirror-footnote;
+	counter-reset: prosemirror-footnote prosemirror-figure prosemirror-table;
 	padding: 4px 8px 4px 14px;
 	line-height: 1.2;
 	outline: none;
@@ -482,6 +482,30 @@ footnote::after {
 	content: " ";
 	height: 0;
 	width: 0;
+}
+
+.ProseMirror .figure-caption {
+	max-width: 600px;
+	margin: 5px auto;
+	font-size: 12pt;
+}
+
+.ProseMirror .figure-caption::before {
+	content: "Figure " counter(prosemirror-figure) ". ";
+	counter-increment: prosemirror-figure;
+	font-size: 12pt;
+}
+
+.ProseMirror .table-caption {
+	max-width: 900px;
+	margin: 5px auto;
+	font-size: 12pt;
+}
+
+.ProseMirror .table-caption::before {
+	content: "Table " counter(prosemirror-table) ". ";
+	counter-increment: prosemirror-table;
+	font-size: 12pt;
 }
 
 .comment {
