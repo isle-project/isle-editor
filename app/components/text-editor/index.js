@@ -747,6 +747,12 @@ TextEditor.propTypes= {
 	defaultValue: PropTypes.string,
 	groupMode: PropTypes.bool,
 	intervalTime: PropTypes.number,
+	peerReview: PropTypes.shape({
+		submitButtonLabel: PropTypes.string,
+		reviewButtonLabel: PropTypes.string,
+		finalButtonLabel: PropTypes.string,
+		filterOwners: PropTypes.bool
+	}),
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
 	style: PropTypes.object
@@ -758,6 +764,7 @@ TextEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
 	groupMode: false,
 	intervalTime: 10000,
+	peerReview: null,
 	voiceTimeout: 5000,
 	language: 'en-US',
 	style: {}
