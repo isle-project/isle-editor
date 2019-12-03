@@ -22,9 +22,7 @@
 
 // MAIN //
 
-// :: MarkSpec A link. Has `href` and `title` attributes. `title`
-// defaults to the empty string. Rendered and parsed as an `<a>`
-// element.
+// :: MarkSpec A link. Has `href` and `title` attributes. `title` defaults to the empty string. Rendered and parsed as an `<a>` element.
 const link = {
 	attrs: {
 		href: {},

@@ -8,14 +8,12 @@ import ParagraphNodeSpec, { getParagraphNodeAttrs, toParagraphDOM } from './para
 function toDOM( node ) {
 	const dom = toParagraphDOM( node );
 	dom[ 0 ] = 'legend';
-	console.log( dom );
 	dom[ 1 ].class = 'figure-caption';
 	return dom;
 }
 
 function getAttrs( dom ) {
 	const attrs = getParagraphNodeAttrs( dom );
-	console.log( attrs );
 	return attrs;
 }
 
