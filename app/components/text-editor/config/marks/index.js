@@ -1,6 +1,9 @@
 // MODULES //
 
-import { marks } from 'prosemirror-schema-basic';
+import link from './link.js';
+import em from './em.js';
+import strong from './strong.js';
+import code from './code.js';
 import subscript from './subscript.js';
 import textColor from './text_color.js';
 import fontSize from './font_size.js';
@@ -12,7 +15,10 @@ import underline from './underline.js';
 // MAIN //
 
 const main = {
-	...marks,
+	link,
+	em,
+	strong,
+	code,
 	subscript,
 	superscript,
 	underline,

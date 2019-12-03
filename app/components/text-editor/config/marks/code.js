@@ -22,21 +22,19 @@
 
 // MAIN //
 
-const codeBlockSpec = {
-	content: 'text*',
-	marks: '',
-	group: 'block',
-	code: true,
-	defining: true,
-	parseDOM: [
-		{ tag: 'pre', preserveWhitespace: 'full' }
-	],
-	toDOM() {
-		return [ 'pre', [ 'code', 0 ] ];
+// :: MarkSpec Code font mark. Represented as a `<code>` element.
+const code = {
+	code: {
+		parseDOM: [
+			{ tag: 'code' }
+		],
+		toDOM() {
+			return [ 'code', 0 ];
+		}
 	}
 };
 
 
 // EXPORTS //
 
-export default codeBlockSpec;
+export default code;

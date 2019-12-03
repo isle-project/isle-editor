@@ -22,21 +22,35 @@
 
 // MAIN //
 
-const codeBlockSpec = {
-	content: 'text*',
-	marks: '',
-	group: 'block',
-	code: true,
-	defining: true,
+// :: MarkSpec A link. Has `href` and `title` attributes. `title`
+// defaults to the empty string. Rendered and parsed as an `<a>`
+// element.
+const link = {
+	attrs: {
+		href: {},
+		title: {
+			default: null
+		}
+	},
+	inclusive: false,
 	parseDOM: [
-		{ tag: 'pre', preserveWhitespace: 'full' }
+		{
+			tag: 'a[href]',
+			getAttrs( dom ) {
+				return {
+					href: dom.getAttribute( 'href' ),
+					title: dom.getAttribute( 'title' )
+				};
+			}
+		}
 	],
-	toDOM() {
-		return [ 'pre', [ 'code', 0 ] ];
+	toDOM( node ) {
+		const { href, title } = node.attrs;
+		return [ 'a', { href, title }, 0 ];
 	}
 };
 
 
 // EXPORTS //
 
-export default codeBlockSpec;
+export default link;

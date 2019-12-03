@@ -22,21 +22,20 @@
 
 // MAIN //
 
-const codeBlockSpec = {
-	content: 'text*',
-	marks: '',
-	group: 'block',
-	code: true,
-	defining: true,
+// :: MarkSpec An emphasis mark. Rendered as an `<em>` element.
+// Has parse rules that also match `<i>` and `font-style: italic`.
+const em = {
 	parseDOM: [
-		{ tag: 'pre', preserveWhitespace: 'full' }
+		{ tag: 'i' },
+		{ tag: 'em' },
+		{ style: 'font-style=italic' }
 	],
 	toDOM() {
-		return [ 'pre', [ 'code', 0 ] ];
+		return [ 'em', 0 ];
 	}
 };
 
 
 // EXPORTS //
 
-export default codeBlockSpec;
+export default em;
