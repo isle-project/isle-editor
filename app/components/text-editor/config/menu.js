@@ -275,6 +275,24 @@ const menu = {
 			}
 		},
 		{
+			title: 'Insert figure caption',
+			content: 'Insert figure caption',
+			enable: canInsert( schema.nodes.figureCaption ),
+			run: ( state, dispatch ) => {
+				const figureCaption = schema.nodes.figureCaption.create();
+				dispatch( state.tr.replaceSelectionWith( figureCaption ) );
+			}
+		},
+		{
+			title: 'Insert table caption',
+			content: 'Insert table caption',
+			enable: canInsert( schema.nodes.tableCaption ),
+			run: ( state, dispatch ) => {
+				const tableCaption = schema.nodes.tableCaption.create();
+				dispatch( state.tr.replaceSelectionWith( tableCaption ) );
+			}
+		},
+		{
 			title: 'Insert code block',
 			content: 'Insert code block',
 			enable: canInsert( schema.nodes.code_block ),
