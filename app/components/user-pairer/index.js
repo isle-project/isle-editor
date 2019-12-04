@@ -67,17 +67,24 @@ class UserPairer extends Component {
 				if ( action.id === this.props.id ) {
 					if ( action.type === 'USERS_ASSIGNED' ) {
 						this.props.onAssignmentOwner( JSON.parse( action.value ) );
+						this.setState({
+							showAssignments: true
+						});
 					}
 					else if ( action.type === 'ASSIGNMENT_CLEARED' ) {
 						this.props.onClearOwner();
+						this.setState({
+							showAssignments: false
+						});
 					}
 					else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
 						this.props.onAssignmentStudent( JSON.parse( action.value ) );
+						this.forceUpdate();
 					}
 					else if ( action.type === 'REMOVE_ASSIGNMENT' ) {
 						this.props.onClearStudent( action.value );
+						this.forceUpdate();
 					}
-					this.forceUpdate();
 				}
 			}
 		});
