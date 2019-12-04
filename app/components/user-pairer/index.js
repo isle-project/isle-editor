@@ -10,7 +10,6 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
@@ -30,20 +29,10 @@ class UserPairer extends Component {
 	constructor( props ) {
 		super( props );
 
-		let assignments = localStorage.getItem( props.id );
-		if ( assignments ) {
-			assignments = JSON.parse( assignments );
-		} else {
-			assignments = {};
-		}
-		let individual = localStorage.getItem( this.props.id+'_individual' );
-		if ( individual ) {
-			props.onAssignmentStudent( JSON.parse( individual ) );
-		}
 		this.state = {
-			showAssignments: !isEmptyObject( assignments ),
+			showAssignments: false,
 			showAssignmentModal: false,
-			assignments,
+			assignments: {},
 			message: props.id ? null : {
 				variant: 'danger',
 				value: 'Component expects an ID to work.'
@@ -57,30 +46,38 @@ class UserPairer extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if (
 				type === 'received_users' ||
-				type === 'user_joined' ||
 				type === 'user_left' ||
 				type === 'retrieved_cohorts'
 			) {
 				this.forceUpdate();
 			}
+			else if ( type === 'user_joined' ) {
+				const email = action.email;
+				if ( this.state.assignments[ email ] ) {
+					session.log( {
+						id: this.props.id,
+						type: INDIVIDUAL_ASSIGNED,
+						value: JSON.stringify( this.state.assignments[ email ] ),
+						noSave: true
+					}, email );
+				}
+				this.forceUpdate();
+			}
 			else if ( type === 'member_action' ) {
 				if ( action.id === this.props.id ) {
 					if ( action.type === 'USERS_ASSIGNED' ) {
-						localStorage.setItem( this.props.id, action.value );
 						this.props.onAssignmentOwner( JSON.parse( action.value ) );
 					}
 					else if ( action.type === 'ASSIGNMENT_CLEARED' ) {
-						localStorage.removeItem( this.props.id );
 						this.props.onClearOwner();
 					}
 					else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
-						localStorage.setItem( this.props.id+'_individual', action.value );
 						this.props.onAssignmentStudent( JSON.parse( action.value ) );
 					}
 					else if ( action.type === 'REMOVE_ASSIGNMENT' ) {
-						localStorage.removeItem( this.props.id+'_individual' );
 						this.props.onClearStudent( action.value );
 					}
+					this.forceUpdate();
 				}
 			}
 		});
@@ -180,7 +177,6 @@ class UserPairer extends Component {
 			showAssignments: true
 		}, () => {
 			const stringified = JSON.stringify( this.state.assignments );
-			localStorage.setItem( this.props.id, stringified );
 			const logAction = {
 				id: this.props.id,
 				type: USERS_ASSIGNED,
@@ -229,7 +225,6 @@ class UserPairer extends Component {
 				assignments: {},
 				message: null
 			});
-			localStorage.removeItem( this.props.id );
 		}
 	}
 
