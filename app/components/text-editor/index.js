@@ -111,6 +111,7 @@ class TextEditor extends Component {
 			peer: null,
 			submittedToPeer: false,
 			submittedPeerComments: false,
+			displayPeerReport: false,
 			docId: 0
 		};
 
@@ -520,7 +521,8 @@ class TextEditor extends Component {
 					localStorage.removeItem( this.id+'_peer_report' );
 					session.removeNotification( this.peerReportNotification );
 					this.setState({
-						value: report
+						value: report,
+						displayPeerReport: true
 					});
 				}}>Open Report</Button>
 			</div>
@@ -549,7 +551,8 @@ class TextEditor extends Component {
 					localStorage.removeItem( this.id+'_peer_comments' );
 					session.removeNotification( this.peerCommentsNotification );
 					this.setState({
-						value: comments
+						value: comments,
+						displayPeerReport: false
 					});
 				}}>Open Comments</Button>
 			</div>
@@ -571,18 +574,19 @@ class TextEditor extends Component {
 			const newState = {};
 			newState.submittedToPeer = localStorage.getItem( this.id+'submitted_to_peer' ) || false;
 			newState.submittedPeerComments = localStorage.getItem( this.id+'submitted_comments' ) || false;
-			this.setState( newState );
-		}
-		this.setState({
-			peer: assignment
-		}, () => {
-			this.context.addNotification({
-				title: 'Pairing established',
-				message: 'You have been successfully paired with other students!',
-				level: 'success',
-				position: 'tr'
+			newState.peer = assignment;
+			this.setState( newState, () => {
+				this.context.addNotification({
+					title: 'Pairing established',
+					message: 'You have been successfully paired with other students!',
+					level: 'success',
+					position: 'tr'
+				});
+
+				// Set color of editor background to signal own report:
+				this.editorDiv.firstChild.style.background = 'rgba(154, 208, 248, 0.2)';
 			});
-		});
+		}
 	}
 
 	handlePeerCleanup = () => {
@@ -595,11 +599,15 @@ class TextEditor extends Component {
 		}
 		localStorage.removeItem( this.id+'submitted_to_peer' );
 		localStorage.removeItem( this.id+'submitted_comments' );
+		localStorage.removeItem( this.id+'_peer_report' );
+		localStorage.removeItem( this.id+'_peer_comments' );
 		this.setState({
 			peer: null,
 			submittedToPeer: false,
-			submittedPeerComments: false
+			submittedPeerComments: false,
+			displayPeerReport: false
 		}, () => {
+			this.editorDiv.firstChild.style.background = '#fff';
 			this.context.addNotification({
 				title: 'Pairing ended',
 				message: 'The peer review pairings were ended.',
@@ -647,6 +655,15 @@ class TextEditor extends Component {
 							menu={this.menu}
 							onMount={( div ) => {
 								this.editorDiv = div;
+								if ( this.state.peer ) {
+									if ( this.state.displayPeerReport ) {
+										// Set color of editor background to signal that report belongs to someone else:
+										this.editorDiv.firstChild.style.background = 'rgba(146, 217, 183, 0.2)';
+									} else {
+										// Set color of editor background to signal own report:
+										this.editorDiv.firstChild.style.background = 'rgba(154, 208, 248, 0.2)';
+									}
+								}
 							}}
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
