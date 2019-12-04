@@ -691,7 +691,7 @@ class TextEditor extends Component {
 					filterOwners={this.props.peerReview.filterOwners}
 				/> : null }
 				{ this.props.peerReview ? <PeerSubmitModal
-					show={this.state.showSubmitModal && this.state.peer}
+					show={this.state.showSubmitModal}
 					onHide={this.toggleSubmitModal}
 					onSubmitToReviewer={() => {
 						this.context.log({
@@ -733,7 +733,7 @@ class TextEditor extends Component {
 					onSubmit={this.resetEditor}
 				/>
 				<SubmitModal
-					show={this.state.showSubmitModal && !this.state.peer}
+					show={this.state.showSubmitModal && !this.props.peerReview}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
 				/>
