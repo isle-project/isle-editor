@@ -724,8 +724,8 @@ class TextEditor extends Component {
 					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
 					finalButtonLabel={this.props.peerReview.finalButtonLabel}
 					disabledSubmitButton={this.state.submittedToPeer}
-					disabledReviewButton={!this.state.submittedToPeer || this.state.submittedPeerComments}
-					disabledFinalButton={!this.state.submittedPeerComments}
+					disabledReviewButton={!this.state.submittedToPeer || this.state.submittedPeerComments || !this.state.displayPeerReport}
+					disabledFinalButton={!this.state.submittedPeerComments || this.state.displayPeerReport}
 				/> : null }
 				<ResetModal
 					show={this.state.showResetModal}
