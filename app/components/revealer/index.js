@@ -29,7 +29,8 @@ class Revealer extends Component {
 		this.id = props.id || uid();
 
 		this.state = {
-			showChildren: props.show
+			showChildren: props.show,
+			selectedCohort: null
 		};
 	}
 
@@ -37,16 +38,25 @@ class Revealer extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'member_action' ) {
+				if ( type === 'retrieved_cohorts' ) {
+					this.forceUpdate();
+				}
+				else if ( type === 'member_action' ) {
 					if ( action.id === this.id ) {
-						if ( action.type === 'REVEAL_CONTENT' ) {
-							this.setState({
-								showChildren: true
-							});
-						} else if ( action.type === 'HIDE_CONTENT' ) {
-							this.setState({
-								showChildren: false
-							});
+						const cohortName = action.value;
+						if (
+							!cohortName ||
+							( session.cohort && session.cohort === cohortName )
+						) {
+							if ( action.type === 'REVEAL_CONTENT' ) {
+								this.setState({
+									showChildren: true
+								});
+							} else if ( action.type === 'HIDE_CONTENT' ) {
+								this.setState({
+									showChildren: false
+								});
+							}
 						}
 					}
 				} else if ( type === 'user_joined' ) {
@@ -56,7 +66,7 @@ class Revealer extends Component {
 						session.log({
 							id: this.id,
 							type: REVEAL_CONTENT,
-							value: this.state.showChildren,
+							value: this.state.selectedCohort,
 							noSave: true
 						}, 'members' );
 					}
@@ -81,19 +91,32 @@ class Revealer extends Component {
 				session.log({
 					id: this.id,
 					type: REVEAL_CONTENT,
-					value: this.state.showChildren
+					value: this.state.selectedCohort
 				}, 'members' );
 			} else {
 				session.log({
 					id: this.id,
 					type: HIDE_CONTENT,
-					value: this.state.showChildren
+					value: this.state.selectedCohort
 				}, 'members' );
 			}
 		});
 	}
 
+	handleCohortChange = ( event ) => {
+		console.log( 'Handle cohort change...' );
+		const value = event.target.value;
+		this.setState({
+			selectedCohort: value === 'all' ? null : value
+		});
+	}
+
+	stopPropagation = ( event ) => {
+		event.stopPropagation();
+	}
+
 	render() {
+		const cohorts = this.context.cohorts || [];
 		const header = <h3 className="center" >{this.props.message}</h3>;
 		return (<Fragment>
 			<Gate owner >
@@ -104,7 +127,24 @@ class Revealer extends Component {
 						marginBottom: '10px'
 					}}
 				>
-					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}  users
+					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}
+					<select
+						style={{ width: '150px', background: '#2e4468', marginLeft: '10px', padding: '2px', color: 'white' }}
+						onChange={this.handleCohortChange}
+						onBlur={this.handleCohortChange}
+						onClick={this.stopPropagation}
+						value={this.state.selectedCohort || 'all'}
+					>
+						<option value="all">All students</option>
+						{cohorts.map( ( v, key ) => {
+							return (
+								<option
+									key={key}
+									value={v.title}
+								>{v.title}</option>
+							);
+						})}
+					</select>
 				</Button>
 			</Gate>
 				{this.state.showChildren ? this.props.children : header}
