@@ -39,6 +39,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 * __onColumnNameChange__ | `function`: undefined. Default: `onColumnNameChange() {}`.
 * __onClickRemove__ | `function`: A function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`). Default: `onEdit() {}`.
+* __onTutorialCompletion__ | `function`: function invoked when user has completed the data table tutorial. Default: `onTutorialCompletion() {}`.
 * __filters__ | `array`: undefined. Default: `[]`.
 * __onFilteredChange__ | `function`: undefined. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.

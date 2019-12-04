@@ -672,6 +672,17 @@
         "type": "boolean",
         "description": "boolean indicating whether one wants to display a variable transformer",
         "default": true
+      },
+      {
+        "name": "onTutorialCompletion",
+        "type": "function",
+        "description": "function invoked when user has completed the data explorer tutorial",
+        "default": "onTutorialCompletion() {}"
+      },
+      {
+        "name": "onTutorialStart",
+        "type": "function",
+        "default": "onTutorialStart() {}"
       }
     ],
     "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
@@ -753,6 +764,12 @@
         "type": "function",
         "description": "function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)",
         "default": "onEdit() {}"
+      },
+      {
+        "name": "onTutorialCompletion",
+        "type": "function",
+        "description": "function invoked when user has completed the data table tutorial",
+        "default": "onTutorialCompletion() {}"
       },
       {
         "name": "filters",
@@ -1290,6 +1307,12 @@
         "type": "string",
         "description": "base64 encoded data of image",
         "default": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": ""
       },
       {
         "name": "height",
@@ -2359,6 +2382,39 @@
       }
     ],
     "description": "A learning component for calculating probabilities of a exponential distribution."
+  },
+  "LearnFDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of an F distribution."
   },
   "LearnGammaDistribution": {
     "props": [
@@ -3551,6 +3607,12 @@
         "type": "number",
         "description": "active page",
         "default": 1
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the navigation bar is active or not",
+        "default": false
       },
       {
         "name": "title",
@@ -5687,6 +5749,12 @@
   "TextEditor": {
     "props": [
       {
+        "name": "autoSave",
+        "type": "boolean",
+        "description": "controls whether the editor should save the current text to the local storage of the browser at a given time interval",
+        "default": true
+      },
+      {
         "name": "allowSubmissions",
         "type": "boolean",
         "description": "controls whether students may submit their reports to the server",
@@ -5703,6 +5771,18 @@
         "type": "boolean",
         "description": "controls whether to enable collaborative text editing",
         "default": false
+      },
+      {
+        "name": "intervalTime",
+        "type": "number",
+        "description": "time between auto saves",
+        "default": 10000
+      },
+      {
+        "name": "peerReview",
+        "type": "{submitButtonLabel,reviewButtonLabel,finalButtonLabel,filterOwners}",
+        "description": "if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
+        "default": null
       },
       {
         "name": "voiceTimeout",
