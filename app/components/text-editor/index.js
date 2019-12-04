@@ -723,7 +723,7 @@ class TextEditor extends Component {
 					submitButtonLabel={this.props.peerReview.submitButtonLabel}
 					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
 					finalButtonLabel={this.props.peerReview.finalButtonLabel}
-					disabledSubmitButton={this.state.submittedToPeer}
+					disabledSubmitButton={!this.state.peer || this.state.submittedToPeer}
 					disabledReviewButton={!this.state.submittedToPeer || this.state.submittedPeerComments || !this.state.displayPeerReport}
 					disabledFinalButton={!this.state.submittedPeerComments || this.state.displayPeerReport}
 				/> : null }
