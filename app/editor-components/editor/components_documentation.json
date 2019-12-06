@@ -2909,6 +2909,16 @@
     ],
     "description": "A component showing a question and a five-point scale for students to answer."
   },
+  "Link": {
+    "props": [
+      {
+        "name": "href",
+        "type": "string (required)",
+        "description": "URL of website to link to"
+      }
+    ],
+    "description": "A link component."
+  },
   "MatchListQuestion": {
     "props": [
       {
