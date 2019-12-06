@@ -75,6 +75,7 @@
 	"KeyControls": "components/key-controls",
 	"LessonSubmit": "components/lesson-submit",
 	"LikertScale": "components/likert-scale",
+	"Link": "components/link",
 	"MatchListQuestion": "components/match-list-question",
 	"Metrics": "components/metrics/db",
 	"MetricsContingencyTable": "components/metrics/contingency-table",
