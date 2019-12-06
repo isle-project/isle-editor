@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ContextMenu, MenuItem } from 'react-contextmenu';
 import logger from 'debug';
+import { OPEN_LINK } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -34,11 +35,23 @@ class LinkContextMenu extends Component {
 	openInTab = () => {
 		const url = this.props.url;
 		window.open( url, '_blank' );
+		const session = this.props.session;
+		session.log({
+			id: url,
+			type: OPEN_LINK,
+			value: 'tab'
+		});
 	}
 
 	openInWindow = () => {
 		const url = this.props.url;
 		window.open( url, '_blank', 'location=no,scrollbars=yes,status=yes' );
+		const session = this.props.session;
+		session.log({
+			id: url,
+			type: OPEN_LINK,
+			value: 'window'
+		});
 	}
 
 	render() {
