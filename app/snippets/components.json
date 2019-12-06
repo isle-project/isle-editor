@@ -93,7 +93,11 @@
 	},
 	{
 		"name": "IFrame",
-		"value": "<IFrame src={${1:http://www.wikipedia.org}} />\n"
+		"value": "<IFrame src=\"${1:http://www.wikipedia.org}\" />\n"
+	},
+	{
+		"name": "Image",
+		"value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
 	},
 	{
 		"name": "Joyride",
@@ -110,6 +114,10 @@
 	{
 		"name": "LikertScale",
 		"value": "<LikertScale question=\"${1:}\" />\n"
+	},
+	{
+		"name": "Link",
+		"value": "<Link href=\"${1:}\">${2:}</Link>"
 	},
 	{
 		"name": "MatchListQuestion",
