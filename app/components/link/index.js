@@ -72,7 +72,7 @@ class Link extends Component {
 // PROPERTIES //
 
 Link.propTypes = {
-	href: PropTypes.string.isRequired
+	href: PropTypes.string.isRequired // eslint-disable-line react/no-unused-prop-types
 };
 
 Link.contextType = SessionContext;
