@@ -1530,10 +1530,12 @@ class Sketchpad extends Component {
 			this.renderBackground( idx ).then( () => {
 				const elems = this.elements[ idx ];
 				const nUndos = this.nUndos[ idx ];
-				const len = elems.length - nUndos;
-				debug( `Rendering ${elems.length} elements on page ${idx}...` );
-				for ( let i = 0; i < len; i++ ) {
-					this.drawElement( elems[ i ] );
+				if ( elems && elems.length > 0 ) {
+					const len = elems.length - nUndos;
+					debug( `Rendering ${elems.length} elements on page ${idx}...` );
+					for ( let i = 0; i < len; i++ ) {
+						this.drawElement( elems[ i ] );
+					}
 				}
 				const data = this.canvas.toDataURL();
 				docDefinition.content.push({
