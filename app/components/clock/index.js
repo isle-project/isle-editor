@@ -36,13 +36,17 @@ class Clock extends Component {
 	}
 
 	updateTime = () => {
-		if (this.props.duration) this.updateDuration();
-		else this.updateDate();
+		if ( this.props.duration ) {
+			this.updateDuration();
+		}
+		else {
+			this.updateDate();
+		}
 	}
 
 	updateDuration = () => {
 		const date = new Date().getTime() - this.state.startTime;
-		const currentTime = new Date(date).toLocaleTimeString([], {
+		const currentTime = new Date( date ).toLocaleTimeString([], {
 			hour: '2-digit',
 			minute: '2-digit',
 			second: '2-digit'
@@ -54,10 +58,7 @@ class Clock extends Component {
 	}
 
 	updateDate = () => {
-		const currentTime = new Date().toLocaleTimeString([], {
-			hour: '2-digit',
-			minute: '2-digit'
-		});
+		let currentTime;
 		if ( this.props.format ) {
 			switch ( this.props.format ) {
 				case 'HH:MM':
@@ -81,6 +82,11 @@ class Clock extends Component {
 				});
 			break;
 			}
+		} else {
+			currentTime = new Date().toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit'
+			});
 		}
 		if ( this.state.time !== currentTime ) {
 			this.setState({
@@ -90,7 +96,7 @@ class Clock extends Component {
 	}
 
 	render() {
-		let styles = {
+		const styles = {
 			fontSize: 12,
 			fontFamily: 'monospace',
 			...this.props.style

@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dimensions from 'components/dimensions';
 import DataTable from 'components/data-table';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
@@ -56,11 +55,12 @@ class RTable extends Component {
 
 			jsonCode = jsonCode +
 				prependCode +
-				code.replace( /\n\s*([ A-Z0-9._()]+)\n*$/i, '\n toJSON($1)' );
+				code.replace( /\n\s*([ A-Z0-9._():=]+)\n*$/i, '\n toJSON($1)' );
 
 			session.executeRCode({
 				code: jsonCode,
 				onResult: ( err, res, body ) => {
+					console.log( body );
 					this.setState({
 						data: JSON.parse( body ),
 						waiting: false
@@ -72,22 +72,17 @@ class RTable extends Component {
 
 	render() {
 		const props = this.props;
-		const margin = ( props.containerWidth * ( 1.0 - this.props.width ) ) / 2.0;
-		const tableWidth = props.containerWidth - margin * 2.0;
 		return (
-			<div className="rtable" style={{
-			}}>
+			<div className="rtable" >
 				<Spinner running={this.state.waiting} width={256} height={128} />
 				{ this.state.data && !this.state.waiting ?
 					<div
 						style={{
-							marginLeft: margin,
-							marginRight: margin,
 							marginTop: '10px',
 							marginBottom: '10px'
 						}}
 					>
-						<DataTable data={this.state.data} width={tableWidth} />
+						<DataTable data={this.state.data} width="50%" />
 					</div> :
 					<span />
 				}
@@ -121,4 +116,4 @@ RTable.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Dimensions( RTable );
+export default RTable;

@@ -140,7 +140,7 @@ class Seal extends Component {
 	}
 
 	getStyle() {
-		let style = Object.assign( {}, this.props.style );
+		const style = this.props.style;
 		if ( this.props.removable ) {
 			if ( this.state.exit ) {
 				style.pointerEvents = 'none';
@@ -187,8 +187,8 @@ class Seal extends Component {
 	}
 
 	render() {
-		let style = this.getStyle();
-		let innerStyle = this.getInnerStyle();
+		const style = this.getStyle();
+		const innerStyle = this.getInnerStyle();
 		let className = 'seal-container';
 		if ( this.state.exit ) {
 			className += ' seal-exit';

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Gate from 'components/gate';
@@ -11,6 +12,7 @@ import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:revealer' );
 const uid = generateUID( 'revealer' );
 
 
@@ -104,7 +106,7 @@ class Revealer extends Component {
 	}
 
 	handleCohortChange = ( event ) => {
-		console.log( 'Handle cohort change...' );
+		debug( 'Handle cohort change...' );
 		const value = event.target.value;
 		this.setState({
 			selectedCohort: value === 'all' ? null : value

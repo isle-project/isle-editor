@@ -128,7 +128,7 @@ class SurveyGenerator extends Component {
 	}
 
 	getAnswers = ( text ) => {
-		let answers = text.split( '\n' );
+		const answers = text.split( '\n' );
 		let disabled = true;
 		if (
 			this.state.question.length > 3 && answers.length > 1

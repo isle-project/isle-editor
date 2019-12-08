@@ -83,16 +83,16 @@ class StickyNote extends Component {
 		}
 	}
 
-	minimize = (evt) => {
-		evt.stopPropagation();
+	minimize = ( event ) => {
+		event.stopPropagation();
 		this.setState({
 			minimized: true
 		});
 	}
 
-	// if a transform is set, this functions sets the scale manually
+	// If a transform is set, this functions sets the scale manually:
 	checkTransforms() {
-		let style = Object.assign({}, this.props.style);
+		const style = this.props.style;
 		if ( style.transform ) {
 			if ( this.state.minimized === true ) {
 				style.transform += ' scale(0.15)';
@@ -129,24 +129,23 @@ class StickyNote extends Component {
 				break;
 			}
 		}
-
 		return style;
 	}
 
 	showContent() {
 		return (
 			<div className="sticky-note-content">
-			<div className="sticky-note-title">
-				{this.props.title}
+				<div className="sticky-note-title">
+					{this.props.title}
+				</div>
+				<div className="sticky-note-date">
+					{this.props.date}
+				</div>
+				<div className="sticky-note-body">
+					{this.props.body}
+				</div>
+				{this.props.stain ? <div className="sticky-note-stain" /> : null }
 			</div>
-			<div className="sticky-note-date">
-				{this.props.date}
-			</div>
-			<div className="sticky-note-body">
-				{this.props.body}
-			</div>
-			{this.props.stain ? <div className="sticky-note-stain" /> : null }
-		</div>
 		);
 	}
 
@@ -313,7 +312,7 @@ class StickyNote extends Component {
 	}
 
 	render() {
-		let style = this.checkTransforms();
+		const style = this.checkTransforms();
 		let className = 'sticky-note';
 		if ( this.state.exit === true ) {
 			className += ' sticky-note-exit';
