@@ -60,7 +60,6 @@ class RTable extends Component {
 			session.executeRCode({
 				code: jsonCode,
 				onResult: ( err, res, body ) => {
-					console.log( body );
 					this.setState({
 						data: JSON.parse( body ),
 						waiting: false
@@ -82,7 +81,7 @@ class RTable extends Component {
 							marginBottom: '10px'
 						}}
 					>
-						<DataTable data={this.state.data} width="50%" />
+						<DataTable data={this.state.data} width={`${props.width * 100}%`} />
 					</div> :
 					<span />
 				}
