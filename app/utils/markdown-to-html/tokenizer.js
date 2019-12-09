@@ -40,19 +40,27 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
-const defaultRender = md.renderer.rules.link_open || function onRender( tokens, idx, options, env, renderer ) {
-	return renderer.renderToken( tokens, idx, options );
-};
-md.renderer.rules.link_open = function onLink( tokens, idx, options, env, renderer ) {
+md.renderer.rules.link_open = function onLinkOpen( tokens, idx, options, env, renderer ) {
 	// If you are sure other plugins can't add `target` - drop check below
 	const aIndex = tokens[ idx ].attrIndex( 'target' );
+	tokens[ idx ].tag = 'Link';
 	if ( aIndex < 0 ) {
 		tokens[ idx ].attrPush( [ 'target', '_blank' ] ); // add new attribute...
 	} else {
 		tokens[ idx ].attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
 	}
 	// Pass token to default renderer:
-	return defaultRender( tokens, idx, options, env, renderer );
+	return renderer.renderToken( tokens, idx, options );
+};
+md.renderer.rules.link_close = function onLinkClose( tokens, idx, options, env, renderer ) {
+	tokens[ idx ].tag = 'Link';
+	return renderer.renderToken( tokens, idx, options );
+};
+md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer ) {
+	const token = tokens[ idx ];
+	token.attrs[ token.attrIndex('alt') ][ 1 ] = renderer.renderInlineAsText( token.children, options, env );
+	token.tag = 'Image';
+	return renderer.renderToken( tokens, idx, options );
 };
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_LINE_BEGINNING = /(\n+)\s*/g;
