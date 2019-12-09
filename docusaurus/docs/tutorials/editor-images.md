@@ -20,13 +20,13 @@ which renders to
 
 (hover over the image to see the title provided).
 
-Alternatively, images can be included with HTML `<img>` tags. Since Markdown [does not currently](https://daringfireball.net/projects/markdown/syntax#img) support specifying image dimensions, you can use HTML `<img>` syntax to include an image and change the dimension. For example, to specify dimensions for the picture of Paul the octopus:
+Alternatively, images can be included with custom `<Image>` tags. Since Markdown [does not currently](https://daringfireball.net/projects/markdown/syntax#img) support specifying image dimensions, you can use HTML `<Image>` syntax to include an image and change the dimension. For example, to specify dimensions for the picture of Paul the octopus:
 
-    <img src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
+    <Image src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
 
 which becomes
 
-<img src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
+<Image src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
 
 ### Uploading Images to Course Files
 
