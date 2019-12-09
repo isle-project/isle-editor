@@ -174,7 +174,7 @@
     "prosemirror-schema-list": "^1.1.2",
     "prosemirror-tables": "^1.0.0",
     "prosemirror-utils": "^0.9.6",
-    "prosemirror-view": "^1.13.4",
+    "prosemirror-view": "^1.13.5",
     "raw-loader": "^4.0.0",
     "react": "16.10.1",
     "react-bootstrap": "1.0.0-beta.16",
