@@ -427,7 +427,8 @@ mark {
 	margin-right: auto;
 }
 
-.Lesson > img {
+.Lesson > img,
+.Lesson > p > img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
