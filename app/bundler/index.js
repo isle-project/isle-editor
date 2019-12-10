@@ -1,6 +1,5 @@
 // MODULES //
 
-import cp from 'child_process';
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { copy } from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
@@ -19,9 +18,7 @@ import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
-import endsWith from '@stdlib/string/ends-with';
 import max from '@stdlib/math/base/special/max';
-import papplyRight from '@stdlib/utils/papply-right';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
