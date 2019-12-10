@@ -79,6 +79,7 @@ import Barchart, { generateBarchartConfig } from 'components/data-explorer/barch
 import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot';
 import Heatmap, { generateHeatmapConfig } from 'components/data-explorer/heatmap';
 import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
+import Lineplot, { generateLineplotConfig } from 'components/data-explorer/lineplot';
 import Map, { generateMapConfig } from 'components/data-explorer/map';
 import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
@@ -371,6 +372,9 @@ class DataExplorer extends Component {
 			break;
 		case 'DATA_EXPLORER_SHARE_HISTOGRAM':
 			config = generateHistogramConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE_LINEPLOT':
+			config = generateLineplotConfig({ data: this.state.data, ...value });
 			break;
 		case 'DATA_EXPLORER_SHARE_MAP':
 			config = generateMapConfig({ data: this.state.data, ...value });
@@ -867,7 +871,7 @@ class DataExplorer extends Component {
 						const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>;
 						if (
 							e === 'Histogram' && this.props.plots[ i-1 ] === 'Mosaic Plot' ||
-							e === 'Scatterplot' && this.props.plots[ i-1 ] === 'Box Plot'
+							e === 'Line Plot' && this.props.plots[ i-1 ] === 'Box Plot'
 						) {
 							return ( <Fragment>
 								<NavDropdown.Divider key={`${i}-div`} />
@@ -997,6 +1001,13 @@ class DataExplorer extends Component {
 						session={this.context}
 						showDensityOption={this.props.histogramDensities}
 						onSelected={this.onHistogramSelection}
+					/>;
+					break;
+				case 'Line Plot':
+					content = <Lineplot
+						{...quantitativeProps}
+						logAction={this.logAction}
+						session={this.context}
 					/>;
 					break;
 				case 'Mosaic Plot':
@@ -1582,6 +1593,7 @@ DataExplorer.defaultProps = {
 		'Mosaic Plot',
 		'Histogram',
 		'Box Plot',
+		'Line Plot',
 		'Scatterplot',
 		'Heat Map',
 		'Contour Chart'
