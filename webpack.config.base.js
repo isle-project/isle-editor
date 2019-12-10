@@ -62,8 +62,8 @@ const EXTERNALS = [
 	'stemmer',
 	'svgo',
 	'terser',
+	'terser-webpack-plugin',
 	'typo-js',
-	'uglify-es',
 	'uniq',
 	'venn.js',
 	'webpack'
