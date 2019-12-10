@@ -48,13 +48,11 @@ class LessonContextMenu extends Component {
 	}
 
 	componentDidMount() {
-		this.selectionListener = document.addEventListener( 'selectionchange', this.handleSelectionChange );
+		document.addEventListener( 'selectionchange', this.handleSelectionChange );
 	}
 
 	componentWillUnmount() {
-		if ( this.selectionListener ) {
-			document.removeEventListener( 'selectionchange', this.handleSelectionChange );
-		}
+		document.removeEventListener( 'selectionchange', this.handleSelectionChange );
 	}
 
 	handleSelectionChange = ( event ) => {

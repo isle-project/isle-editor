@@ -228,9 +228,9 @@ class Sketchpad extends Component {
 		this.ctx.scale( DPR, DPR );
 
 		if ( this.props.fullscreen ) {
-			this.windowResize = window.addEventListener( 'resize', this.handleResize );
+			window.addEventListener( 'resize', this.handleResize );
 		}
-		this.beforeUnload = window.addEventListener( 'beforeunload', this.saveInBrowser );
+		window.addEventListener( 'beforeunload', this.saveInBrowser );
 		let init;
 		if ( this.props.pdf ) {
 			init = this.initializePDF();
@@ -546,7 +546,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			document.body.addEventListener( 'gesturestart', preventGesture );
 		}
-		this.hashChange = window.addEventListener( 'hashchange', this.handleHashChange );
+		window.addEventListener( 'hashchange', this.handleHashChange );
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -583,15 +583,9 @@ class Sketchpad extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
-		if ( this.windowResize ) {
-			window.removeEventListener( 'resize', this.handleResize );
-		}
-		if ( this.hashChange ) {
-			window.removeEventListener( 'hashchange', this.handleHashChange );
-		}
-		if ( this.beforeUnload ) {
-			window.removeEventListener( 'beforeunload', this.saveInBrowser );
-		}
+		window.removeEventListener( 'resize', this.handleResize );
+		window.removeEventListener( 'hashchange', this.handleHashChange );
+		window.removeEventListener( 'beforeunload', this.saveInBrowser );
 		const opts = {
 			passive: false
 		};

@@ -49,19 +49,19 @@ class InstructorView extends Component {
 		this.removeResizeListener();
 	}
 
-	addResizeListener = () => {
-		this.windowResize = window.addEventListener( 'resize', () => {
-			debug( 'Process a `window.resize` event...' );
-			this.setState({
-				rightPos: -max( window.innerWidth * 0.45, 400 )
-			});
+	windowResize = () => {
+		debug( 'Process a `window.resize` event...' );
+		this.setState({
+			rightPos: -max( window.innerWidth * 0.45, 400 )
 		});
 	}
 
+	addResizeListener = () => {
+		window.addEventListener( 'resize', this.windowResize );
+	}
+
 	removeResizeListener = () => {
-		if ( this.windowResize ) {
-			window.removeEventListener( 'resize', this.windowResize );
-		}
+		window.removeEventListener( 'resize', this.windowResize );
 	}
 
 	toggleBar = () => {

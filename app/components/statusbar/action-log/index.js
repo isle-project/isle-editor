@@ -16,6 +16,7 @@ import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
+import CheckboxInput from 'components/input/checkbox';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import ActionList from './list.js';
@@ -36,6 +37,7 @@ class ActionLog extends Component {
 		super( props );
 		this.state = {
 			anonymized: true,
+			onlyStudents: false,
 			filters: <span className="title">Filters:</span>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
@@ -223,6 +225,44 @@ class ActionLog extends Component {
 		});
 	}
 
+	prepareActionsForExport( hash ) {
+		let actions;
+		const len = this.state.actions.length;
+		if ( this.state.anonymized ) {
+			if ( this.state.onlyStudents ) {
+				actions = [];
+				for ( let i = 0; i < len; i++ ) {
+					if ( !this.state.actions[ i ].owner ) {
+						const action = copy( this.state.actions[ i ] );
+						action.name = hash.name[ action.name ];
+						action.email = hash.email[ action.email ];
+						actions.push( action );
+					}
+				}
+			} else {
+				actions = new Array( len );
+				for ( let i = 0; i < len; i++ ) {
+					const action = copy( this.state.actions[ i ] );
+					action.name = hash.name[ action.name ];
+					action.email = hash.email[ action.email ];
+					actions[ i ] = action;
+				}
+			}
+		}
+		else if ( this.state.onlyStudents ) {
+			actions = [];
+			for ( let i = 0; i < len; i++ ) {
+				if ( !this.state.actions[ i ].owner ) {
+					actions.push( this.state.actions[ i ] );
+				}
+			}
+		}
+		else {
+			actions = this.state.actions;
+		}
+		return actions;
+	}
+
 	saveJSON = () => {
 		const session = this.context;
 		session.getFakeUsers( ( err, hash ) => {
@@ -234,17 +274,7 @@ class ActionLog extends Component {
 					position: 'tl'
 				});
 			}
-			let actions;
-			if ( this.state.anonymized ) {
-				actions = new Array( this.state.actions.length );
-				for ( let i = 0; i < actions.length; i++ ) {
-					actions[ i ] = copy( this.state.actions[ i ] );
-					actions[ i ].name = hash.name[ actions[ i ].name ];
-					actions[ i ].email = hash.email[ actions[ i ].email ];
-				}
-			} else {
-				actions = this.state.actions;
-			}
+			const actions = this.prepareActionsForExport( hash );
 			const blob = new Blob([ JSON.stringify( actions ) ], {
 				type: 'application/json'
 			});
@@ -264,17 +294,7 @@ class ActionLog extends Component {
 					position: 'tl'
 				});
 			}
-			let actions;
-			if ( this.state.anonymized ) {
-				actions = new Array( this.state.actions.length );
-				for ( let i = 0; i < actions.length; i++ ) {
-					actions[ i ] = copy( this.state.actions[ i ] );
-					actions[ i ].name = hash.name[ actions[ i ].name ];
-					actions[ i ].email = hash.email[ actions[ i ].email ];
-				}
-			} else {
-				actions = this.state.actions;
-			}
+			const actions = this.prepareActionsForExport( hash );
 			stringify( actions, {
 				header: true
 			}, ( err, output ) => {
@@ -348,6 +368,12 @@ class ActionLog extends Component {
 							}}
 						>Anonymized</ToggleButton>
 					</ToggleButtonGroup>
+					<CheckboxInput
+						legend="Only student data"
+						defaultValue={this.state.onlyStudents}
+						onChange={() => this.setState({ onlyStudents: !this.state.onlyStudents })}
+						style={{ marginRight: '5px', marginTop: '0px', marginBottom: '0px' }}
+					/>
 					<ButtonGroup size="sm">
 						<Button variant="primary" onClick={this.saveJSON} >Save JSON</Button>
 						<Button variant="primary" onClick={this.saveCSV} >Save CSV</Button>
