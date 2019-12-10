@@ -6,6 +6,7 @@ import { copy } from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
@@ -377,7 +378,6 @@ function writeIndexFile({
 				},
 				{
 					test: /\.worker\.js$/,
-					exclude: /node_modules/,
 					use: {
 						loader: 'worker-loader'
 					}
@@ -392,7 +392,48 @@ function writeIndexFile({
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
 		},
 		optimization: {
-			minimizer: [ new OptimizeCSSAssetsPlugin({}) ],
+			minimize: minify,
+			minimizer: [
+				new OptimizeCSSAssetsPlugin({}),
+				new TerserPlugin({
+					extractComments: true,
+					cache: true,
+					parallel: true,
+					terserOptions: {
+						warnings: true,
+						compress: {
+							arrows: false,
+							booleans: false,
+							collapse_vars: false,
+							comparisons: false,
+							computed_props: false,
+							hoist_funs: false,
+							hoist_props: false,
+							hoist_vars: false,
+							if_return: false,
+							inline: false,
+							join_vars: false,
+							keep_infinity: false,
+							loops: false,
+							negate_iife: false,
+							properties: false,
+							reduce_funcs: false,
+							reduce_vars: false,
+							sequences: false,
+							side_effects: false,
+							switches: false,
+							top_retain: false,
+							toplevel: false,
+							typeofs: false,
+							unused: false,
+							conditionals: true,
+							dead_code: true,
+							evaluate: true
+						},
+						mangle: true
+					}
+				})
+			],
 			splitChunks: {
 				cacheGroups: {
 					code: {
@@ -518,37 +559,8 @@ function writeIndexFile({
 			const statsJSON = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
-		const assets = Object.keys( stats.compilation.assets );
 		unlinkSync( indexPath );
-		if ( !minify ) {
-			return clbk( err, meta );
-		}
-		let done = 0;
-		debug( 'Minifying bundle...' );
-		let numJSFiles = 0;
-		for ( let i = 0; i < assets.length; i++ ) {
-			const name = assets[ i ];
-			if ( endsWith( name, '.js' ) ) {
-				numJSFiles += 1;
-				const child = cp.fork( resolve( basePath, './app/bundler/minify.js' ) );
-				const bundlePath = join( appDir, name );
-				const code = readFileSync( bundlePath ).toString();
-				child.on( 'message', papplyRight( onMessage, name, bundlePath ));
-				child.send( code );
-			}
-		}
-		function onMessage( minified, sendHandle, name, bundlePath ) {
-			if ( minified.error ) {
-				debug( 'Encountered an error during minification: ' + minified.error );
-				throw minified.error;
-			}
-			const minifiedPath = join( appDir, name );
-			writeFileSync( minifiedPath, minified.code );
-			done += 1;
-			if ( done === numJSFiles ) {
-				return clbk( err, meta );
-			}
-		}
+		return clbk( err, meta );
 	});
 }
 
