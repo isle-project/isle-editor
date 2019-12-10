@@ -55,10 +55,13 @@ class ExportLesson extends Component {
 	}
 
 	handleFileInputClick = () => {
-		const outputPath = dialog.showOpenDialogSync({
+		dialog.showOpenDialog({
 			properties: [ 'openDirectory' ]
-		})[ 0 ];
-		this.setState({ outputPath, finished: false, alreadyExists: false });
+		})
+			.then( ({ filePaths }) => {
+				this.setState({ outputPath: filePaths[ 0 ], finished: false, alreadyExists: false });
+			})
+			.catch( err => console.error( err ) ); // eslint-disable-line no-console
 	}
 
 	handleInputChange = ( event ) => {
