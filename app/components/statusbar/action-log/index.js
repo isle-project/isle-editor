@@ -16,7 +16,6 @@ import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
-import CheckboxInput from 'components/input/checkbox';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import ActionList from './list.js';
@@ -37,7 +36,7 @@ class ActionLog extends Component {
 		super( props );
 		this.state = {
 			anonymized: true,
-			onlyStudents: false,
+			includes: [ 'guests', 'owners', 'students' ],
 			filters: <span className="title">Filters:</span>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
@@ -229,38 +228,41 @@ class ActionLog extends Component {
 		let actions;
 		const len = this.state.actions.length;
 		if ( this.state.anonymized ) {
-			if ( this.state.onlyStudents ) {
-				actions = [];
-				for ( let i = 0; i < len; i++ ) {
-					if ( !this.state.actions[ i ].owner ) {
-						const action = copy( this.state.actions[ i ] );
-						action.name = hash.name[ action.name ];
-						action.email = hash.email[ action.email ];
-						actions.push( action );
-					}
-				}
-			} else {
-				actions = new Array( len );
-				for ( let i = 0; i < len; i++ ) {
-					const action = copy( this.state.actions[ i ] );
-					action.name = hash.name[ action.name ];
-					action.email = hash.email[ action.email ];
-					actions[ i ] = action;
-				}
-			}
-		}
-		else if ( this.state.onlyStudents ) {
-			actions = [];
+			actions = new Array( len );
 			for ( let i = 0; i < len; i++ ) {
-				if ( !this.state.actions[ i ].owner ) {
-					actions.push( this.state.actions[ i ] );
-				}
+				const action = copy( this.state.actions[ i ] );
+				action.name = hash.name[ action.name ];
+				action.email = hash.email[ action.email ];
+				actions[ i ] = action;
 			}
 		}
 		else {
 			actions = this.state.actions;
 		}
-		return actions;
+		const out = [];
+		const includeOwners = contains( this.state.includes, 'owners' );
+		const includeStudents = contains( this.state.includes, 'students' );
+		const includeGuests = contains( this.state.includes, 'guests' );
+		for ( let i = 0; i < actions.length; i++ ) {
+			const val = actions[ i ];
+			if ( val.owner ) {
+				// Case: Owner
+				if ( includeOwners ) {
+					out.push( val );
+				}
+			}
+			else if ( val.email === val.name ) {
+				// Case: Guest
+				if ( includeGuests ) {
+					out.push( val );
+				}
+			}
+			else if ( includeStudents ) {
+				// Case: Student
+				out.push( val );
+			}
+		}
+		return out;
 	}
 
 	saveJSON = () => {
@@ -348,6 +350,7 @@ class ActionLog extends Component {
 						type="radio"
 						size="small"
 						value={this.state.anonymized}
+						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							size="sm"
@@ -368,12 +371,42 @@ class ActionLog extends Component {
 							}}
 						>Anonymized</ToggleButton>
 					</ToggleButtonGroup>
-					<CheckboxInput
-						legend="Only student data"
-						defaultValue={this.state.onlyStudents}
-						onChange={() => this.setState({ onlyStudents: !this.state.onlyStudents })}
-						style={{ marginRight: '5px', marginTop: '0px', marginBottom: '0px' }}
-					/>
+					<ToggleButtonGroup
+						type="checkbox"
+						onChange={( includes ) => {
+							this.setState({ includes });
+						}}
+						value={this.state.includes}
+						style={{ marginRight: '5px' }}
+					>
+						<ToggleButton
+							size="sm"
+							variant="light"
+							value="owners"
+							style={{
+								fontSize: '12px',
+								color: contains( this.state.includes, 'owners' ) ? 'black' : '#A9A9A9'
+							}}
+						>Owners</ToggleButton>
+						<ToggleButton
+							size="sm"
+							variant="light"
+							value="students"
+							style={{
+								fontSize: '12px',
+								color: contains( this.state.includes, 'students' ) ? 'black' : '#A9A9A9'
+							}}
+						>Students</ToggleButton>
+						<ToggleButton
+							size="sm"
+							variant="light"
+							value="guests"
+							style={{
+								fontSize: '12px',
+								color: contains( this.state.includes, 'guests' ) ? 'black' : '#A9A9A9'
+							}}
+						>Guests</ToggleButton>
+					</ToggleButtonGroup>
 					<ButtonGroup size="sm">
 						<Button variant="primary" onClick={this.saveJSON} >Save JSON</Button>
 						<Button variant="primary" onClick={this.saveCSV} >Save CSV</Button>
