@@ -135,12 +135,14 @@ export function open({ browserWindow }) {
 	if ( filePath ) {
 		opts.defaultPath = filePath;
 	}
-	dialog.showOpenDialog( browserWindow, opts ).then( ({ canceled, filePaths }) => {
-		if ( canceled || filePaths === void 0 ) {
-			return;
-		}
-		openFile( filePaths[ 0 ], browserWindow );
-	});
+	dialog.showOpenDialog( browserWindow, opts )
+		.then( ({ canceled, filePaths }) => {
+			if ( canceled || filePaths === void 0 ) {
+				return;
+			}
+			openFile( filePaths[ 0 ], browserWindow );
+		})
+		.catch( err => console.error( err ) ); // eslint-disable-line no-console
 }
 
 export function reload( browserWindow ) {
