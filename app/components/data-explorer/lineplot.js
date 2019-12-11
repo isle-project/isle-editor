@@ -16,7 +16,7 @@ import by from './by.js';
 
 // VARIABLES //
 
-const DESCRIPTION = '';
+const DESCRIPTION = 'A line plot can be used to display one quantitative variable or the relationship between two quantitative variables as a number line. If no variable is supplied for the x-axis, the values of the y-axis variable are displayed according to their indices in the data table.';
 
 
 // FUNCTIONS //
