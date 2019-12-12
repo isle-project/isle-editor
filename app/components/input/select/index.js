@@ -56,7 +56,7 @@ const customStyles = {
 			padding: '8px 10px'
 		};
 	},
-	menuPortal: base => ({ ...base, zIndex: 1010 })
+	menuPortal: base => ({ ...base, zIndex: 1060 })
 };
 
 
