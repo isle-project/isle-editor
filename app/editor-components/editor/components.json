@@ -54,6 +54,7 @@
 		"LearnContinuousDistribution",
 		"LearnDiscreteDistribution",
 		"LearnExponentialDistribution",
+		"LearnFDistribution",
 		"LearnGammaDistribution",
 		"LearnGeometricDistribution",
 		"LearnHypergeometricDistribution",
@@ -82,10 +83,17 @@
 	],
 	"PROGRAMMATIC": [
 		"Expire",
+		"Metrics",
+		"RealTimeMetrics",
 		"Revealer",
 		"Runner",
 		"Timer",
 		"Unveil"
+	],
+	"SERVICES": [
+		"News",
+		"Weather",
+		"Wikipedia"
 	],
 	"QUESTION": [
 		"FreeTextQuestion",
@@ -95,10 +103,11 @@
 		"OrderQuestion",
 		"RangeQuestion",
 		"SelectQuestion",
+		"SelectQuestionMatrix",
 		"Quiz",
 		"QuestionForm",
 		"HypothesisTestingQuestion",
-		"SelectQuestionMatrix"
+		"LikertScale"
 	],
 	"SURVEY": [
 		"FreeTextSurvey",

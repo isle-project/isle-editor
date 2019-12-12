@@ -45,6 +45,9 @@ function groupIndicator( v ) {
 	if ( contains( COMPONENTS.PROGRAMMATIC, v.name ) ) {
 		return 'programmatic';
 	}
+	if ( contains( COMPONENTS.SERVICES, v.name ) ) {
+		return 'services';
+	}
 	if ( contains( COMPONENTS.SURVEY, v.name ) ) {
 		return 'surveys';
 	}
@@ -124,7 +127,9 @@ class EditorContextMenu extends Component {
 		return (
 			<Fragment>
 				<ContextMenu id="editor-context-menu" >
-					{snippets.main.map( this.renderMenuItem )}
+					<SubMenu title="Main">
+						{snippets.main.map( this.renderMenuItem )}
+					</SubMenu>
 					<SubMenu title="Display">
 						{snippets.displayComponents.map( this.renderMenuItem )}
 					</SubMenu>
@@ -151,6 +156,9 @@ class EditorContextMenu extends Component {
 					</SubMenu>
 					<SubMenu title="General">
 						{snippets.general.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Services">
+						{snippets.services.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Presentation">
 						{snippets.presentation.map( this.renderMenuItem )}
