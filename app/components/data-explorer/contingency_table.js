@@ -187,7 +187,7 @@ class ContingencyTable extends Component {
 	}
 
 	render() {
-		const { variables, defaultRowVar, defaultColVar, groupingVariables } = this.props;
+		const { variables, groupingVariables } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
