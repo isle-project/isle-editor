@@ -29,6 +29,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from '../histogram.js';
+import DraggableModalDialog from './draggable_modal_dialog.js';
 import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
 import './bin_transformer.css';
@@ -436,9 +437,11 @@ class BinTransformer extends Component {
 	render() {
 		return (
 			<Modal
-				dialogClassName='modal-75w input'
+				dialogAs={DraggableModalDialog}
+				dialogClassName='modal-60w input'
 				onHide={this.props.onHide}
 				show={this.props.show}
+				backdrop={false}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Create new variable by binning a quantitative variable into categories</Modal.Title>

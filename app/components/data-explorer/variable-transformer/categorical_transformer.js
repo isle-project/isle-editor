@@ -22,8 +22,9 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
-import './categorical_transformer.css';
+import DraggableModalDialog from './draggable_modal_dialog.js';
 import recodeCategorical from './recode_categorical';
+import './categorical_transformer.css';
 
 
 // VARIABLES //
@@ -279,9 +280,11 @@ class CategoricalTransformer extends Component {
 	render() {
 		return (
 			<Modal
-				dialogClassName='modal-75w input'
+				dialogAs={DraggableModalDialog}
+				dialogClassName='modal-60w input'
 				onHide={this.props.onHide}
 				show={this.props.show}
+				backdrop={false}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Create new variable by renaming or combining categories</Modal.Title>

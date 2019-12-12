@@ -20,6 +20,7 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import DraggableModalDialog from './draggable_modal_dialog.js';
 import valuesFromFormula from './values_from_formula.js';
 import FUNCTION_KEYS from './function_keys.json';
 import './formula_transformer.css';
@@ -157,9 +158,11 @@ class FormulaTransformer extends Component {
 		});
 		return (
 			<Modal
+				dialogAs={DraggableModalDialog}
+				dialogClassName='modal-60w input'
 				show={this.props.show}
 				onHide={this.props.onHide}
-				dialogClassName='modal-75w input'
+				backdrop={false}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Create a new variable as a function of existing variables</Modal.Title>
