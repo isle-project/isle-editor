@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -19,7 +20,8 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'A contigency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
+const debug = logger( 'isle:data-explorer:contingency-table' );
+const DESCRIPTION = 'A contingency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
 
 
 // FUNCTIONS //
@@ -140,8 +142,21 @@ class ContingencyTable extends Component {
 			rowVar: props.defaultRowVar || props.variables[ 0 ],
 			colVar: props.defaultColVar || props.variables[ 1 ],
 			group: null, // eslint-disable-line react/no-unused-state
-			nDecimalPlaces: 3
+			nDecimalPlaces: 3,
+			variables: props.variables
 		};
+	}
+
+	static getDerivedStateFromProps( props, state ) {
+		if ( props.variables.length !== state.variables.length ) {
+			debug( 'Available variables have changed...' );
+			return {
+				rowVar: props.defaultRowVar || props.variables[ 0 ],
+				colVar: props.defaultColVar || props.variables[ 1 ],
+				variables: props.variables
+			};
+		}
+		return null;
 	}
 
 	generateContingencyTable() {
@@ -182,7 +197,7 @@ class ContingencyTable extends Component {
 				<Card.Body>
 					<SelectInput
 						legend="Row Variable:"
-						defaultValue={defaultRowVar || variables[ 0 ]}
+						defaultValue={this.state.rowVar}
 						options={variables}
 						onChange={( value )=>{
 							this.setState({
@@ -192,7 +207,7 @@ class ContingencyTable extends Component {
 					/>
 					<SelectInput
 						legend="Column Variable:"
-						defaultValue={defaultColVar || variables[ 1 ]}
+						defaultValue={this.state.colVar}
 						options={variables}
 						onChange={( value )=>{
 							this.setState({
