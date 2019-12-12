@@ -9,6 +9,7 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
+import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -143,14 +144,20 @@ class Pages extends Component {
 		if ( nChildren <= 6 ) {
 			for ( let i = 1; i <= nChildren; i++) {
 				items.push(
-					<Pagination.Item
-						disabled={this.props.disabled}
-						key={i}
-						active={i === this.state.activePage}
-						onClick={papply( this.jumpTo, i )}
+					<Tooltip
+						placement="top" key={`${i}-tooltip`}
+						tooltip={`Jump to ${i}-th page`}
+						show={!this.props.disabled}
 					>
-						{i}
-					</Pagination.Item>
+						<Pagination.Item
+							disabled={this.props.disabled}
+							key={i}
+							active={i === this.state.activePage}
+							onClick={papply( this.jumpTo, i )}
+						>
+							{i}
+						</Pagination.Item>
+					</Tooltip>
 				);
 			}
 		} else {
@@ -172,14 +179,20 @@ class Pages extends Component {
 					}
 				}
 				items.push(
-					<Pagination.Item
-						key={i}
-						disabled={this.props.disabled}
-						active={i === this.state.activePage}
-						onClick={papply( this.jumpTo, i )}
+					<Tooltip
+						placement="top" key={`${i}-tooltip`}
+						tooltip={`Jump to ${i}-th page`}
+						show={!this.props.disabled}
 					>
-						{i}
-					</Pagination.Item>
+						<Pagination.Item
+							key={i}
+							disabled={this.props.disabled}
+							active={i === this.state.activePage}
+							onClick={papply( this.jumpTo, i )}
+						>
+							{i}
+						</Pagination.Item>
+					</Tooltip>
 				);
 			}
 		}
@@ -195,9 +208,27 @@ class Pages extends Component {
 					size={this.props.size}
 					items={this.props.children.length || 1}
 				>
-					<Pagination.Prev disabled={this.props.disabled || ( this.state.activePage === 1 )} key="prev" onClick={this.prevPage} />
+					<Tooltip
+						placement="top" tooltip="Go to previous page"
+						show={!this.props.disabled && ( this.state.activePage !== 1 )}
+					>
+						<Pagination.Prev
+							disabled={this.props.disabled || ( this.state.activePage === 1 )}
+							key="prev"
+							onClick={this.prevPage}
+						/>
+					</Tooltip>
 					{items}
-					<Pagination.Next disabled={this.props.disabled || ( this.state.activePage === this.props.children.length )} key="next" onClick={this.nextPage} />
+					<Tooltip
+						placement="top" tooltip="Go to next page"
+						show={!this.props.disabled && ( this.state.activePage !== this.props.children.length )}
+					>
+						<Pagination.Next
+							disabled={this.props.disabled || ( this.state.activePage === this.props.children.length )}
+							key="next"
+							onClick={this.nextPage}
+						/>
+					</Tooltip>
 				</Pagination>
 				<div className="page-children-wrapper"
 					ref={( div ) => {

@@ -19,6 +19,12 @@
 	font-weight: 600;
 }
 
+.page-link {
+	padding: 0.75rem 1rem;
+	background-color: #fff;
+	border: 1.25px solid #dee2e6;
+}
+
 .page-children-wrapper {
 	overflow-y: scroll;
 	padding: 5px;
