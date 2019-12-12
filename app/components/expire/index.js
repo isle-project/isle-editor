@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -83,7 +83,7 @@ class Expire extends Component {
 	*/
 	render() {
 		return this.state.visible ?
-			<div>{this.props.children}</div> :
+			<Fragment>{this.props.children}</Fragment> :
 			<span />;
 	}
 }
