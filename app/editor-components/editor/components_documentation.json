@@ -597,6 +597,7 @@
           "Mosaic Plot",
           "Histogram",
           "Box Plot",
+          "Line Plot",
           "Scatterplot",
           "Heat Map",
           "Contour Chart"
@@ -1316,8 +1317,9 @@
       },
       {
         "name": "height",
-        "type": "(number|string) (required)",
-        "description": "image height (in px)"
+        "type": "(number|string)",
+        "description": "image height (in px)",
+        "default": null
       },
       {
         "name": "width",

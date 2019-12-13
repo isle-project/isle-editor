@@ -75,6 +75,7 @@ We will include the explorer with the following code:
   'Mosaic Plot',
   'Histogram',
   'Box Plot',
+  'Line Plot',
   'Scatterplot',
   'Heat Map',
   'Contour Chart'
