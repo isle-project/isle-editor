@@ -16,7 +16,9 @@ class Search extends Component {
 		super();
 
 		this.state = {
-			search: ''
+			search: '',
+			caseSensitive: false,
+			exact: false
 		};
 	}
 
@@ -28,17 +30,21 @@ class Search extends Component {
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
-			this.handleSubmit( event );
+			this.handleSubmit();
 		}
 	}
 
-	handleSubmit = ( event ) => {
+	handleSubmit = () => {
 		// Need to get it back to the parent
-		this.props.onClick( this.state.search );
+		this.props.onClick( this.state.search, this.state.caseSensitive, this.state.exact );
 	}
 
 	handleReset = () => {
-		this.props.onClick( '' );
+		this.setState({
+			search: ''
+		}, () => {
+			this.props.onClick( '' );
+		});
 	}
 
 	render() {
@@ -51,21 +57,32 @@ class Search extends Component {
 							placeholder="Enter text..."
 							onChange={this.handleSearch}
 							onKeyPress={this.handleKeyPress}
+							value={this.state.search}
 						/>
 						<Button
 							onClick={this.handleSubmit}
 						>
 							Search
 						</Button>
+						<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
+							Reset
+						</Button>
 					</InputGroup>
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
-					<Checkbox size="small" inline onChange={this.props.onExact} legend="Whole Word" style={{ fontSize: '0.9rem' }} />
-					<Checkbox size="small" inline legend="Case-sensitive" style={{ fontSize: '0.9rem' }} />
+					<Checkbox
+						size="small" inline
+						legend="Whole Word"
+						style={{ fontSize: '0.9rem' }}
+						onChange={( value ) => this.setState({ exact: value }, this.handleSubmit )}
+					/>
+					<Checkbox
+						size="small" inline
+						legend="Case-sensitive"
+						style={{ fontSize: '0.9rem' }}
+						onChange={( value ) => this.setState({ caseSensitive: value }, this.handleSubmit )}
+					/>
 				</FormGroup>
-				<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
-					Reset Search
-				</Button>
 			</Fragment>
 		);
 	}
@@ -75,13 +92,11 @@ class Search extends Component {
 // PROPERTIES //
 
 Search.propTypes = {
-	onClick: PropTypes.func,
-	onExact: PropTypes.func
+	onClick: PropTypes.func
 };
 
 Search.defaultProps = {
-	onClick() {},
-	onExact() {}
+	onClick() {}
 };
 
 

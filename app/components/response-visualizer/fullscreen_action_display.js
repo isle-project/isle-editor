@@ -102,6 +102,24 @@ const tabulateValues = ( actions, levels ) => {
 	return counts;
 };
 
+const generateFactorLabel = ( value, levels ) => {
+	if ( isArray( value ) ) {
+		let str = '';
+		value.forEach( ( v, idx ) => {
+			if ( v ) {
+				if ( str ) {
+					str += ', ';
+				}
+				str += levels[ idx ];
+			}
+		});
+		value = str || 'None';
+	} else if ( !isString( value ) ) {
+		value = levels[ value ] || 'None';
+	}
+	return value;
+};
+
 
 // MAIN //
 
@@ -112,7 +130,6 @@ class FullscreenActionDisplay extends Component {
 		this.state = {
 			filtered: props.actions.slice( 0 ),
 			searchwords: [],
-			exact: false,
 			actions: props.actions.slice( 0 ),
 			showModal: false,
 			modalContent: {},
@@ -136,7 +153,7 @@ class FullscreenActionDisplay extends Component {
 		return null;
 	}
 
-	searchFilter = ( value ) => {
+	searchFilter = ( value, caseSensitive, exact ) => {
 		if ( isStrictEqual( value, '' ) ) {
 			this.setState({
 				filtered: this.props.actions,
@@ -145,25 +162,34 @@ class FullscreenActionDisplay extends Component {
 			});
 		} else {
 			const newFilter = [];
-			if ( !this.state.exact ) {
+			if ( !exact ) {
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					const action = this.props.actions[ i ];
-					const actionVal = lowercase( String( action.value ) );
-					const comparisonValue = lowercase( String( value ) );
+					const flags = caseSensitive ? '' : 'i';
+					const expr = new RegExp( value, flags );
+					let actionValue;
+					if ( this.props.data.type === 'factor' ) {
+						actionValue = generateFactorLabel( action.value, this.props.data.levels );
+					}
 					if (
-						contains( actionVal, comparisonValue ) ||
-						contains( action.email, comparisonValue ) ||
-						contains( action.name, comparisonValue )
+						String( actionValue ).search( expr ) !== -1 ||
+						String( action.email ).search( expr ) !== -1 ||
+						String( action.name ).search( expr ) !== -1
 					) {
 						newFilter.push( this.props.actions[ i ] );
 					}
 				}
 			} else {
-				const expr = new RegExp( '(?:^|[^\\w])' + value + '(?:$|[^\\w])', 'i' );
+				const flags = caseSensitive ? '' : 'i';
+				const expr = new RegExp( '(?:^|[^\\w])' + value + '(?:$|[^\\w])', flags );
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					const action = this.props.actions[ i ];
+					let actionValue;
+					if ( this.props.data.type === 'factor' ) {
+						actionValue = generateFactorLabel( action.value, this.props.data.levels );
+					}
 					if (
-						expr.test( action.value ) ||
+						expr.test( actionValue ) ||
 						expr.test( action.email ) ||
 						expr.test( action.name )
 					) {
@@ -190,14 +216,6 @@ class FullscreenActionDisplay extends Component {
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${noLines} lines.` );
 		return lines;
-	}
-
-	handleBox = ( event ) => {
-		this.setState({
-			exact: !this.state.exact
-		}, () => {
-			this.searchFilter( this.state.searchwords[ 0 ] );
-		});
 	}
 
 	showModalFactory = ( elem ) => {
@@ -504,20 +522,7 @@ class FullscreenActionDisplay extends Component {
 		const { data } = this.props;
 		let value = elem.value;
 		if ( data.type === 'factor' ) {
-			if ( isArray( value ) ) {
-				let str = '';
-				value.forEach( ( v, idx ) => {
-					if ( v ) {
-						if ( str ) {
-							str += ', ';
-						}
-						str += this.props.data.levels[ idx ];
-					}
-				});
-				value = str || 'None';
-			} else if ( !isString( value ) ) {
-				value = this.props.data.levels[ value ] || 'None';
-			}
+			value = generateFactorLabel( value, data.levels );
 		}
 		else if ( data.type === 'matches' ) {
 			let str = '';
@@ -755,7 +760,6 @@ class FullscreenActionDisplay extends Component {
 					</h4>
 					<Search
 						onClick={this.searchFilter}
-						onExact={this.handleBox}
 					/>
 					<Button variant="secondary" onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 					<Button onClick={this.props.toggleActions}>Close</Button>
