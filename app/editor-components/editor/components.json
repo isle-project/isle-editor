@@ -9,7 +9,6 @@
 		"DraggableGrid",
 		"Grid",
 		"IFrame",
-		"Image",
 		"Modal",
 		"Nav justified",
 		"Navbar",
@@ -17,8 +16,11 @@
 		"Pages",
 		"Panel",
 		"Polaroid",
+		"RandomVideo",
 		"Seal",
 		"ScrollingText",
+		"ShapedForm",
+		"ShapedImage",
 		"Slider",
 		"StickyNote",
 		"Switch",
@@ -76,19 +78,26 @@
 		"DataTable",
 		"FeedbackButtons",
 		"Gate",
+		"Image",
+		"Link",
 		"TextEditor",
 		"Sketchpad",
 		"TeX",
-		"LessonSubmit"
+		"LessonSubmit",
+		"VideoLecture",
+		"VideoPlayer"
 	],
 	"PROGRAMMATIC": [
 		"Expire",
+		"Generator",
 		"Metrics",
 		"RealTimeMetrics",
+		"Reaction",
 		"Revealer",
 		"Runner",
 		"Timer",
-		"Unveil"
+		"Unveil",
+		"UserPairer"
 	],
 	"SERVICES": [
 		"News",

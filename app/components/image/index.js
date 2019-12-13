@@ -136,7 +136,7 @@ Image.propTypes = {
 	height: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
-	]).isRequired,
+	]),
 	width: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -152,6 +152,7 @@ Image.defaultProps = {
 	body: null,
 	className: '',
 	id: null,
+	height: null,
 	width: null,
 	onShare: null,
 	showModal: true,

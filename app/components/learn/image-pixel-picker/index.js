@@ -8,6 +8,7 @@ import landscape from '@stdlib/datasets/img-french-alpine-landscape';
 import boats from '@stdlib/datasets/img-nagasaki-boats';
 import airplane from '@stdlib/datasets/img-airplane-from-above';
 import abs from '@stdlib/math/base/special/abs';
+import Panel from 'components/panel';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 
@@ -109,7 +110,7 @@ class ImagePixelPicker extends Component {
 
 	render() {
 		return (
-			<div>
+			<Panel>
 				<div>
 					<SelectInput
 						options={[ 'Landscape', 'Boats', 'Airplane' ]}
@@ -150,7 +151,7 @@ class ImagePixelPicker extends Component {
 						</Col>
 					</Row>
 				</Container>
-			</div>
+			</Panel>
 		);
 	}
 }

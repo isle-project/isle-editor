@@ -88,6 +88,10 @@
 		"value": "<Gate banner={${1:null}} ${2:user} ${3:owner} >\n\t${4:}\n</Gate>\n"
 	},
 	{
+		"name": "Generator",
+		"value": "<Generator onGenerate={() => {\n\t${1:}\n}} ${2:} />\n"
+	},
+	{
 		"name": "Container",
 		"value": "<Container>\n\t<Row>\n\t\t<Col md={12}></Col>\n\t</Row>\n</Container>\n"
 	},
@@ -216,6 +220,14 @@
 		"value": "<RangeQuestion\n\tquestion=\"${1:Enter question}\"\n\tsolution={[${2:0},${3:1}]}\n/>\n"
 	},
 	{
+		"name": "RandomVideo",
+		"value": "<RandomVideo videos={[\n\t${1:}\n]} />\n"
+	},
+	{
+		"name": "Reaction",
+		"value": "<Reaction actionID=\"${1:}\" show={{${2:\n\t\n}}} />\n"
+	},
+	{
 		"name": "RealTimeMetrics",
 		"value": "<RealTimeMetrics\n\tfor=\"${1:ID}\"\n\tonDatum={( datum ) => {\n\t\t${2:}\n\t}}\n\tonData={( data ) => {\n\t\t${3:}\n\t}}\n/>\n"
 	},
@@ -270,6 +282,14 @@
 	{
 		"name": "SelectQuestionMatrix",
 		"value": "<SelectQuestionMatrix\n\t rows={[${1:'Row label'}]} cols={[${2:'Column label'}]} options={{ '0:0': [${3:'Option'}] }} />"
+	},
+	{
+		"name": "ShapedForm",
+		"value": "<ShapedForm ${1:} />\n"
+	},
+	{
+		"name": "ShapedImage",
+		"value": "<ShapedImage ${1:} />\n"
 	},
 	{
 		"name": "HypothesisTestingQuestion",
@@ -530,6 +550,10 @@
 	{
 		"name": "Collapse",
 		"value": "<Collapse>\n\t${1:}\n</Collapse>\n"
+	},
+	{
+		"name": "UserPairer",
+		"value": "<UserPairer ${1:} />\n"
 	},
 	{
 		"name": "VictoryBar",
