@@ -102,20 +102,57 @@ const tabulateValues = ( actions, levels ) => {
 	return counts;
 };
 
-const generateFactorLabel = ( value, levels ) => {
-	if ( isArray( value ) ) {
-		let str = '';
-		value.forEach( ( v, idx ) => {
-			if ( v ) {
-				if ( str ) {
-					str += ', ';
+const generateValueLabel = ({ value, type, levels, rows, cols }) => {
+	if ( type === 'factor' ) {
+		if ( isArray( value ) ) {
+			let str = '';
+			value.forEach( ( v, idx ) => {
+				if ( v ) {
+					if ( str ) {
+						str += ', ';
+					}
+					str += levels[ idx ];
 				}
-				str += levels[ idx ];
+			});
+			value = str || 'None';
+		} else if ( !isString( value ) ) {
+			value = levels[ value ] || 'None';
+		}
+	}
+	else if ( type === 'matches' ) {
+		let str = '';
+		if ( isArray( value ) ) {
+			for ( let i = 0; i < value.length; i++ ) {
+				str += value[ i ].a + ' - '+value[ i ].b+'; ';
 			}
-		});
+		}
 		value = str || 'None';
-	} else if ( !isString( value ) ) {
-		value = levels[ value ] || 'None';
+	}
+	else if ( type === 'matrix' ) {
+		let str = '';
+		for ( let i = 0; i < rows.length; i++ ) {
+			for ( let j = 0; j < cols.length; j++ ) {
+				if ( value[ i ][ j ] ) {
+					str += rows[ i ] + ' - '+cols[ j ]+'; ';
+				}
+			}
+		}
+		value = str || 'None';
+	}
+	else if ( type === 'tensor' ) {
+		let str = '';
+		for ( let i = 0; i < rows.length; i++ ) {
+			for ( let j = 0; j < cols.length; j++ ) {
+				const rv = rows[ i ];
+				const cv = cols[ j ];
+				str += isString( rv ) && !isEmptyString( rv ) ? rv : i;
+				str += '-';
+				str += isString( cv ) && !isEmptyString( cv ) ? cv : j;
+				str += ': ';
+				str += value[ i+':'+j ] + '; ';
+			}
+		}
+		value = str || 'None';
 	}
 	return value;
 };
@@ -167,15 +204,15 @@ class FullscreenActionDisplay extends Component {
 					const action = this.props.actions[ i ];
 					const flags = caseSensitive ? '' : 'i';
 					const expr = new RegExp( value, flags );
-					let actionValue;
-					if ( this.props.data.type === 'factor' ) {
-						actionValue = generateFactorLabel( action.value, this.props.data.levels );
-					}
+					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
 					if (
+						this.props.showExtended &&
 						String( actionValue ).search( expr ) !== -1 ||
 						String( action.email ).search( expr ) !== -1 ||
 						String( action.name ).search( expr ) !== -1
 					) {
+						newFilter.push( this.props.actions[ i ] );
+					} else if ( String( actionValue ).search( expr ) !== -1 ) {
 						newFilter.push( this.props.actions[ i ] );
 					}
 				}
@@ -184,15 +221,15 @@ class FullscreenActionDisplay extends Component {
 				const expr = new RegExp( '(?:^|[^\\w])' + value + '(?:$|[^\\w])', flags );
 				for ( let i = 0; i < this.props.actions.length; i++ ) {
 					const action = this.props.actions[ i ];
-					let actionValue;
-					if ( this.props.data.type === 'factor' ) {
-						actionValue = generateFactorLabel( action.value, this.props.data.levels );
-					}
+					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
 					if (
+						this.props.showExtended &&
 						expr.test( actionValue ) ||
 						expr.test( action.email ) ||
 						expr.test( action.name )
 					) {
+						newFilter.push( action );
+					} else if ( expr.test( actionValue ) ) {
 						newFilter.push( action );
 					}
 				}
@@ -519,46 +556,7 @@ class FullscreenActionDisplay extends Component {
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
-		const { data } = this.props;
-		let value = elem.value;
-		if ( data.type === 'factor' ) {
-			value = generateFactorLabel( value, data.levels );
-		}
-		else if ( data.type === 'matches' ) {
-			let str = '';
-			if ( isArray( value ) ) {
-				for ( let i = 0; i < value.length; i++ ) {
-					str += value[ i ].a + ' - '+value[ i ].b+'; ';
-				}
-			}
-			value = str || 'None';
-		}
-		else if ( data.type === 'matrix' ) {
-			let str = '';
-			for ( let i = 0; i < data.rows.length; i++ ) {
-				for ( let j = 0; j < data.cols.length; j++ ) {
-					if ( value[ i ][ j ] ) {
-						str += data.rows[ i ] + ' - '+data.cols[ j ]+'; ';
-					}
-				}
-			}
-			value = str || 'None';
-		}
-		else if ( data.type === 'tensor' ) {
-			let str = '';
-			for ( let i = 0; i < data.rows.length; i++ ) {
-				for ( let j = 0; j < data.cols.length; j++ ) {
-					const rv = data.rows[ i ];
-					const cv = data.cols[ j ];
-					str += isString( rv ) && !isEmptyString( rv ) ? rv : i;
-					str += '-';
-					str += isString( cv ) && !isEmptyString( cv ) ? cv : j;
-					str += ': ';
-					str += value[ i+':'+j ] + '; ';
-				}
-			}
-			value = str || 'None';
-		}
+		const value = generateValueLabel({ value: elem.value, ...this.props.data });
 		const higlighter = isString( value ) ? <Highlighter
 			className="response-visualizer-text"
 			searchWords={this.state.searchwords}
