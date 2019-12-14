@@ -207,9 +207,11 @@ class FullscreenActionDisplay extends Component {
 					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
 					if (
 						this.props.showExtended &&
-						String( actionValue ).search( expr ) !== -1 ||
-						String( action.email ).search( expr ) !== -1 ||
-						String( action.name ).search( expr ) !== -1
+						(
+							String( actionValue ).search( expr ) !== -1 ||
+							String( action.email ).search( expr ) !== -1 ||
+							String( action.name ).search( expr ) !== -1
+						)
 					) {
 						newFilter.push( this.props.actions[ i ] );
 					} else if ( String( actionValue ).search( expr ) !== -1 ) {
@@ -224,9 +226,11 @@ class FullscreenActionDisplay extends Component {
 					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
 					if (
 						this.props.showExtended &&
-						expr.test( actionValue ) ||
-						expr.test( action.email ) ||
-						expr.test( action.name )
+						(
+							expr.test( actionValue ) ||
+							expr.test( action.email ) ||
+							expr.test( action.name )
+						)
 					) {
 						newFilter.push( action );
 					} else if ( expr.test( actionValue ) ) {
@@ -758,6 +762,7 @@ class FullscreenActionDisplay extends Component {
 					</h4>
 					<Search
 						onClick={this.searchFilter}
+						extended={this.props.showExtended}
 					/>
 					<Button variant="secondary" onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
 					<Button onClick={this.props.toggleActions}>Close</Button>

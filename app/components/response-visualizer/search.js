@@ -22,6 +22,12 @@ class Search extends Component {
 		};
 	}
 
+	componentDidUpdate( prevProps ) {
+		if ( this.props.extended !== prevProps.extended ) {
+			this.handleSubmit();
+		}
+	}
+
 	handleSearch = ( event ) => {
 		this.setState({
 			search: event.target.value
@@ -92,10 +98,12 @@ class Search extends Component {
 // PROPERTIES //
 
 Search.propTypes = {
+	extended: PropTypes.string,
 	onClick: PropTypes.func
 };
 
 Search.defaultProps = {
+	extended: false,
 	onClick() {}
 };
 
