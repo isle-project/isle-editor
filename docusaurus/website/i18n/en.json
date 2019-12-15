@@ -374,10 +374,12 @@
       "Question Components": "Question Components",
       "Survey Components": "Survey Components",
       "R Components": "R Components",
+      "Online Services": "Online Services",
       "Input Components": "Input Components",
       "Display Components": "Display Components",
       "Plot Components": "Plot Components",
       "General Components": "General Components",
+      "Programmatic Components": "Programmatic Components",
       "Presentation Components": "Presentation Components",
       "Learning Components": "Learning Components"
     }

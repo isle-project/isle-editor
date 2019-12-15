@@ -25,10 +25,14 @@
       "data-table",
       "feedback",
       "gate",
-      "markdown-editor",
+      "image",
+      "link",
+      "text-editor",
       "sketchpad",
       "tex",
-      "lesson-submit"
+      "lesson-submit",
+      "video-lecture",
+      "video-player"
     ],
     "Question Components": [
       "free-text-question",
@@ -56,6 +60,11 @@
       "r/r-shell",
       "r/r-table"
     ],
+    "Online Services": [
+      "news",
+      "weather",
+      "wikipedia"
+    ],
     "Input Components": [
       "input/checkbox-input",
       "input/number-input",
@@ -82,8 +91,11 @@
       "pages",
       "panel",
       "polaroid",
+      "random-video",
       "seal",
       "scrolling-text",
+      "shaped-form",
+      "shaped-image",
       "slider",
       "sticky-note",
       "switch",
@@ -111,20 +123,25 @@
       "js-shell",
       "likert-scale",
       "multi-cards",
-      "news",
       "playground",
       "preload",
       "queue",
-      "metrics",
-      "real-time-metrics",
       "recorder",
       "timed-button",
       "sortable-tree",
-      "video-lecture",
-      "video-player",
-      "weather",
-      "wikipedia",
       "collapse"
+    ],
+    "Programmatic": [
+      "expire",
+      "generator",
+      "metrics",
+      "real-time-metrics",
+      "reaction",
+      "revealer",
+      "runner",
+      "timer",
+      "unveil",
+      "user-pairer"
     ],
     "Presentation Components": [
       "slide",
