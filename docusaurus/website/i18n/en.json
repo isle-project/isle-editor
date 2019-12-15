@@ -120,10 +120,6 @@
         "title": "Likert Scale",
         "sidebar_label": "Likert Scale"
       },
-      "markdown-editor": {
-        "title": "Markdown Editor",
-        "sidebar_label": "Markdown Editor"
-      },
       "match-list-question": {
         "title": "Match List Question",
         "sidebar_label": "Match List Question"
@@ -284,6 +280,10 @@
         "title": "LaTeX Equations",
         "sidebar_label": "LaTeX Equations"
       },
+      "text-editor": {
+        "title": "Text Editor",
+        "sidebar_label": "Text Editor"
+      },
       "text": {
         "title": "Text",
         "sidebar_label": "Text"
@@ -379,7 +379,7 @@
       "Display Components": "Display Components",
       "Plot Components": "Plot Components",
       "General Components": "General Components",
-      "Programmatic Components": "Programmatic Components",
+      "Programmatic": "Programmatic",
       "Presentation Components": "Presentation Components",
       "Learning Components": "Learning Components"
     }
