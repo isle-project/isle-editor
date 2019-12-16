@@ -191,7 +191,7 @@
     "react-highlight-words": "^0.16.0",
     "react-innertext": "^1.1.5",
     "react-input-range": "^1.2.1",
-    "react-joyride": "2.1.1",
+    "react-joyride": "2.2.0",
     "react-json-tree": "^0.11.2",
     "react-notification-system": "^0.3.0",
     "react-plotly.js": "^2.3.0",
@@ -221,7 +221,7 @@
     "uuid": "^3.3.3",
     "v8-compile-cache": "^2.1.0",
     "venn.js": "0.2.20",
-    "webpack": "4.41.2",
+    "webpack": "4.41.3",
     "worker-loader": "^2.0.0"
   },
   "devDependencies": {
