@@ -221,7 +221,7 @@
     "uuid": "^3.3.3",
     "v8-compile-cache": "^2.1.0",
     "venn.js": "0.2.20",
-    "webpack": "4.41.3",
+    "webpack": "4.41.4",
     "worker-loader": "^2.0.0"
   },
   "devDependencies": {
