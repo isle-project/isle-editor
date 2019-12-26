@@ -185,9 +185,14 @@ class LessonContextMenu extends Component {
 				menuItems.push( <MenuItem key={3} onClick={this.highlightText}>
 					Highlight
 				</MenuItem> );
-				menuItems.push( <MenuItem key={4} onClick={this.removeHighlight}>
-					Remove Highlight
-				</MenuItem> );
+				if ( sel && sel.focusNode ) {
+					const elem = sel.focusNode.parentElement;
+					if ( elem && elem.style.backgroundColor === 'yellow' ) {
+						menuItems.push( <MenuItem key={4} onClick={this.removeHighlight}>
+							Remove Highlight
+						</MenuItem> );
+					}
+				}
 			}
 		}
 		if ( inTextField ) {
