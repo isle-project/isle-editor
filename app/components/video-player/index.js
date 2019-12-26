@@ -15,7 +15,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 // VARIABLES //
 
 const uid = generateUID( 'video-player' );
-const OMITTED_PROPS = [ 'center', 'voiceID' ];
+const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID' ];
 
 
 // MAIN //
