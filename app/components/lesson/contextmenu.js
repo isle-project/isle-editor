@@ -129,6 +129,24 @@ class LessonContextMenu extends Component {
 		navigator.clipboard.writeText( this.state.lastText );
 	}
 
+	copyFromClipboard = () => {
+		navigator.clipboard.readText().then( ( text ) => {
+			if ( !text ) {
+				return this.props.session.addNotification({
+					title: 'Clipboard is empty',
+					message: 'Failed to insert text. The clipboard is currently empty.',
+					level: 'error',
+					position: 'tr'
+				});
+			}
+			const lastActive = this.state.lastActive;
+			if ( lastActive ) {
+				lastActive.focus();
+			}
+			document.execCommand( 'insertText', false, text );
+		});
+	}
+
 	textToSpeech = () => {
 		const str = this.state.lastText;
 		debug( 'Read aloud: '+str );
@@ -149,32 +167,42 @@ class LessonContextMenu extends Component {
 	render() {
 		const menuItems = [];
 		const sel = window.getSelection();
+		const el = document.activeElement;
+		const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 );
 		if ( !sel.isCollapsed || sel.type === 'Range' ) {
 			if ( this.state.editable ) {
-				menuItems.push( <MenuItem key={-1} onClick={this.cutSelection}>
+				menuItems.push( <MenuItem key={0} onClick={this.cutSelection}>
 					Cut
 				</MenuItem> );
 			}
-			menuItems.push( <MenuItem key={0} onClick={this.copyToClipboard}>
+			menuItems.push( <MenuItem key={1} onClick={this.copyToClipboard}>
 				Copy
 			</MenuItem> );
-			menuItems.push( <MenuItem key={1} onClick={this.textToSpeech}>
+			menuItems.push( <MenuItem key={2} onClick={this.textToSpeech}>
 				Read aloud
 			</MenuItem> );
-			menuItems.push( <MenuItem key={2} onClick={this.highlightText}>
-				Highlight
-			</MenuItem> );
-			menuItems.push( <MenuItem key={3} onClick={this.removeHighlight}>
-				Remove Highlight
-			</MenuItem> );
+			if ( !inTextField ) {
+				menuItems.push( <MenuItem key={3} onClick={this.highlightText}>
+					Highlight
+				</MenuItem> );
+				menuItems.push( <MenuItem key={4} onClick={this.removeHighlight}>
+					Remove Highlight
+				</MenuItem> );
+			}
 		}
-		menuItems.push(
-			<MenuItem key={4} onClick={( event ) => {
-				this.props.addNote({ left: event.pageX, top: event.pageY });
-			}}>
-				Add Note
-			</MenuItem>
-		);
+		if ( inTextField ) {
+			menuItems.push( <MenuItem key={5} onClick={this.copyFromClipboard}>
+				Paste
+			</MenuItem> );
+		} else {
+			menuItems.push(
+				<MenuItem key={6} onClick={( event ) => {
+					this.props.addNote({ left: event.pageX, top: event.pageY });
+				}}>
+					Add Note
+				</MenuItem>
+			);
+		}
 		return ( <ContextMenu
 			id="lessonWindow"
 			onShow={() => {
