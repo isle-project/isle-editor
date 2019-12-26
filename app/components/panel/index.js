@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import omit from '@stdlib/utils/omit';
 import Card from 'react-bootstrap/Card';
 import './panel.css';
 
@@ -17,7 +18,7 @@ import './panel.css';
 */
 class Wrapper extends Component {
 	render() {
-		return ( <Card {...this.props} className={`panel ${this.props.className}`} >
+		return ( <Card {...omit( this.props, [ 'bodyStyle' ] )} className={`panel ${this.props.className}`} >
 			{ this.props.header ? <Card.Header as="h3">
 				{this.props.header}
 			</Card.Header> : null }
