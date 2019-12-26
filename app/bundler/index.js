@@ -107,7 +107,8 @@ import obsToVar from 'utils/obs-to-var';
 `;
 
 const getComponents = ( arr ) => {
-	const requireStatements = arr.map( elem => `import ${elem} from '${REQUIRES[ elem ]}';` );
+	const requireStatements = arr.map( elem => `const ${elem} = Loadable( () => import( /* webpackChunkName: "${elem}" */ '${REQUIRES[ elem ]}' ) );` );
+	requireStatements.unshift( 'import Loadable from \'components/loadable\'; ' );
 	return requireStatements.join( '\n' );
 };
 
