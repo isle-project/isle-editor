@@ -103,6 +103,7 @@ class Editor extends Component {
 		this.monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
 			noSemanticValidation: true,
 			noSyntaxValidation: true,
+			noSuggestionDiagnostics: true,
 			lib: [ 'es6' ]
 		});
 		this.monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
