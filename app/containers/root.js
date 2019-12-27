@@ -3,7 +3,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
 const Editor = lazy( () => import( 'containers/editor' ) );
 const Documentation = lazy( () => import( 'containers/documentation.js' ) );
 const Settings = lazy( () => import( 'containers/settings' ) );
@@ -46,4 +45,4 @@ class Root extends Component {
 
 // EXPORTS //
 
-export default hot( module )( Root );
+export default Root;

@@ -56,6 +56,12 @@ const config = {
 				}
 			},
 			{
+				test: /\.ttf$/,
+				use: [
+					'file-loader'
+				]
+			},
+			{
 				test: /\.css$/,
 				use: [
 					'style-loader',
