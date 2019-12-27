@@ -181,7 +181,7 @@ class LessonContextMenu extends Component {
 			menuItems.push( <MenuItem key={2} onClick={this.textToSpeech}>
 				Read aloud
 			</MenuItem> );
-			if ( !inTextField ) {
+			if ( !inTextField && !el.isContentEditable ) {
 				menuItems.push( <MenuItem key={3} onClick={this.highlightText}>
 					Highlight
 				</MenuItem> );
@@ -199,7 +199,7 @@ class LessonContextMenu extends Component {
 			menuItems.push( <MenuItem key={5} onClick={this.copyFromClipboard}>
 				Paste
 			</MenuItem> );
-		} else {
+		} else if ( !el.isContentEditable ) {
 			menuItems.push(
 				<MenuItem key={6} onClick={( event ) => {
 					this.props.addNote({ left: event.pageX, top: event.pageY });
