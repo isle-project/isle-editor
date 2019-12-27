@@ -75,6 +75,23 @@ const MONACO_OPTIONS = {
 		arrowSize: 15
 	}
 };
+const mapErrors = e => {
+	let bare = e.message.replace( RE_ANSI, '' );
+	bare = bare.replace( RE_STATUSBAR, '\n' );
+	bare = bare.replace( '</Lesson>', '' );
+	bare = bare.replace( RE_EMPTY_SPANS, '' );
+	bare = bare.replace( RE_FRAGMENT, '' );
+	bare = bare.replace( '&lt;', '<' );
+	bare = bare.replace( '&gt;', '>' );
+	return {
+		startLineNumber: e.line - NUM_WRAPPER_LINES,
+		startColumn: 1,
+		endLineNumber: e.line - NUM_WRAPPER_LINES,
+		endColumn: e.column,
+		message: bare,
+		severity: e.severity
+	};
+};
 
 
 // MAIN //
@@ -165,7 +182,6 @@ class Editor extends Component {
 				range,
 				text: entry.origin
 			};
-			console.log( fix );
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
 
@@ -235,7 +251,6 @@ class Editor extends Component {
 					include: {}
 				};
 			}
-			console.log( manifest );
 			const includeName = basename( url );
 			const includePath = join( isleDir, 'include' );
 			const outPath = join( includePath, `${includeName}.isle` );
@@ -303,6 +318,10 @@ class Editor extends Component {
 				path: lessonURL
 			});
 		});
+
+		const errs = this.props.lintErrors.map( mapErrors );
+		const model = this.editor.getModel();
+		this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 	}
 
 	shouldComponentUpdate( prevProps, prevState ) {
@@ -337,23 +356,7 @@ class Editor extends Component {
 			this.monaco.editor.setModelMarkers( model, 'spelling', errs );
 		}
 		if ( this.props.lintErrors.length !== prevProps.lintErrors.length ) {
-			const errs = this.props.lintErrors.map( e => {
-				let bare = e.message.replace( RE_ANSI, '' );
-				bare = bare.replace( RE_STATUSBAR, '\n' );
-				bare = bare.replace( '</Lesson>', '' );
-				bare = bare.replace( RE_EMPTY_SPANS, '' );
-				bare = bare.replace( RE_FRAGMENT, '' );
-				bare = bare.replace( '&lt;', '<' );
-				bare = bare.replace( '&gt;', '>' );
-				return {
-					startLineNumber: e.line - NUM_WRAPPER_LINES,
-					startColumn: 1,
-					endLineNumber: e.line - NUM_WRAPPER_LINES,
-					endColumn: e.column,
-					message: bare,
-					severity: e.severity
-				};
-			});
+			const errs = this.props.lintErrors.map( mapErrors );
 			const model = this.editor.getModel();
 			this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 		}
