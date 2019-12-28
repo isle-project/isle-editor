@@ -35,7 +35,7 @@ import './popup.css';
 
 // VARIABLES //
 
-const uuid = generateUID( 'create-popup' );
+const uid = generateUID( 'create-popup' );
 
 
 // EXPORTS //
@@ -43,12 +43,12 @@ const uuid = generateUID( 'create-popup' );
 let modalsCount = 0;
 let popUpsCount = 0;
 
-const Z_INDEX_BASE = 9999;
-const MODAL_MASK_ID = 'pop-up-modal-mask-' + uuid();
+const Z_INDEX_BASE = 500;
+const MODAL_MASK_ID = 'pop-up-modal-mask-' + uid();
 
 function showModalMask() {
 	const root = document.body || document.documentElement;
-	let element = document.getElementById(MODAL_MASK_ID);
+	let element = document.getElementById( MODAL_MASK_ID );
 	if ( !element ) {
 		element = document.createElement('div');
 		element.id = MODAL_MASK_ID;
@@ -67,7 +67,6 @@ function showModalMask() {
 		(zz, el) => Math.max(zz, Number(el.style.zIndex)),
 		0
 	);
-
 	style.zIndex = zIndex - 1;
 }
 
@@ -81,7 +80,8 @@ function hideModalMask() {
 function getRootElement(
 	id,
 	forceCreation,
-	popUpParams
+	popUpParams,
+	fullscreenOffset
 ) {
 	const root =
 		(popUpParams && popUpParams.container) ||
@@ -105,6 +105,9 @@ function getRootElement(
 	if (!(popUpParams && popUpParams.container)) {
 		style.zIndex = Z_INDEX_BASE + popUpsCount * 3 + modalZIndexOffset;
 	}
+	if ( fullscreenOffset ) {
+		style.zIndex += fullscreenOffset;
+	}
 
 	// Populates the default ARIA attributes here.
 	// http://accessibility.athena-ict.com/aria/examples/dialog.shtml
@@ -123,7 +126,13 @@ function renderPopUp(
 	viewProps,
 	popUpParams
 ) {
-	const rootNode = getRootElement(rootId, true, popUpParams);
+	let fullscreenOffset = 0;
+	const wrapper = document.getElementsByClassName( 'editorview-wrapper fullscreen' );
+	global.DOM = wrapper;
+	if ( wrapper[ 0 ] ) {
+		fullscreenOffset += 1000;
+	}
+	const rootNode = getRootElement( rootId, true, popUpParams, fullscreenOffset );
 	if (rootNode) {
 		const component = (
 			<PopUp
@@ -135,8 +144,7 @@ function renderPopUp(
 		);
 		ReactDOM.render(component, rootNode);
 	}
-
-	if (modalsCount > 0) {
+	if ( modalsCount > 0 ) {
 		showModalMask();
 	} else {
 		hideModalMask();
@@ -161,7 +169,7 @@ export default function createPopUp(
 	viewProps,
 	popUpParams
 ) {
-	const rootId = uuid();
+	const rootId = uid();
 	let handle = null;
 	let currentViewProps = viewProps;
 
