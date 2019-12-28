@@ -32,7 +32,7 @@
 	position: fixed;
 	top: 0;
 	width: 100vw;
-	z-index: 5000;
+	z-index: 1006;
 }
 
 .pop-up-element {

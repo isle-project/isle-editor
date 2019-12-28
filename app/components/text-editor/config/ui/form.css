@@ -32,6 +32,7 @@
 	margin: 0;
 	padding: 20px;
 	z-index: 1006;
+	min-width: 400px;
 }
 
 .editor-form legend {

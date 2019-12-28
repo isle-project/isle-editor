@@ -509,6 +509,14 @@ mark {
 	background-color: var(--tertiarylight);
 }
 
+.Lesson .dropdown-item.disabled,
+.Lesson .dropdown-item:disabled,
+.Presentation .dropdown-item.disabled,
+.Presentation .dropdown-item:disabled {
+	color: #6c757d;
+	background-color: transparent;
+}
+
 .Lesson a,
 .Presentation a {
 	color: #007bff;

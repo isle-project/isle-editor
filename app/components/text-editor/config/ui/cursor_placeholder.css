@@ -1,5 +1,5 @@
 /*
-* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/czi-tooltip-surface.css
+* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/czi-cursor-placeholder.css
 *
 * MIT License
 *
@@ -24,39 +24,48 @@
 * SOFTWARE.
 */
 
-.editor-tooltip-surface.editor-animation-fade-in {
-	display: contents;
+.editor-cursor-placeholder {
+	display: inline-block;
+	position: relative;
+	vertical-align: text-bottom;
 }
 
-.editor-tooltip-view {
-	background-color: #393939;
-	border-radius: 5px;
-	box-sizing: border-box;
-	color: #fff;
-	font-family: Helvetica;
-	font-size: 13px;
-	margin: 20px 0 0 0;
-	min-width: 100px;
-	padding: 6px 8px;
-	pointer-events: none;
-	text-align: center;
-	user-select: none;
-}
-
-.editor-tooltip-view.editor-animation-fade-in {
-	animation-duration: 250ms;
-	animation-delay: 150ms;
-}
-
-.editor-tooltip-view::after {
-	background-color: #393939;
+.editor-cursor-placeholder::after {
+	background-color: rgba(152, 204, 253, 0.8);
+	bottom: 0;
 	content: '';
-	height: 8px;
-	left: var(--editor-pop-up-anchor-offset-left);
-	margin-left: -6px;
+	height: 1.2em;
+	left: -1px;
 	position: absolute;
-	top: 16px;
-	transform: rotate(45deg);
-	width: 8px;
-	z-index: -1;
+	width: 3px;
+	animation-name: editor_cursor_blink;
+	-webkit-animation-name: editor_cursor_blink;
+	animation-duration: 0.5s;
+	-webkit-animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-direction: alternate;
+	-webkit-animation-direction: alternate;
+}
+
+@keyframes editor_cursor_blink {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes editor_cursor_blink {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
 }
