@@ -71,12 +71,22 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			{item.content}
 		</Button>
 	);
-	const createDropdownButtons = ( item, itemKey ) => (
-		<DropdownItem
-			key={`dropdown-item-${itemKey}`}
-			onMouseDown={onMenuMouseDown(item)}
-		>{item.content}</DropdownItem>
-	);
+	const createDropdownButtons = ( item, itemKey ) => {
+		if ( item.enable && state ? !item.enable( state ) : false ) {
+			return (
+				<DropdownItem
+					key={`dropdown-item-${itemKey}`}
+					disabled
+				>{item.content}</DropdownItem>
+			);
+		}
+		return (
+			<DropdownItem
+				key={`dropdown-item-${itemKey}`}
+				onMouseDown={onMenuMouseDown(item)}
+			>{item.content}</DropdownItem>
+		);
+	};
 	const createFontButtons = ( item, itemKey ) => (
 		<DropdownItem
 			key={`font-buttons-${itemKey}`}
