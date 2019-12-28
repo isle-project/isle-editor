@@ -1,0 +1,112 @@
+/*
+* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/czi-custom-button.css
+*
+* MIT License
+*
+* Copyright (c) 2019 Chan Zuckerberg Initiative
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+.editor-custom-buttons {
+	margin: 0 8px;
+	white-space: nowrap;
+}
+
+.editor-custom-button {
+	background-clip: padding-box;
+	background-color: #fff;
+	border-radius: 5px;
+	border: solid 1px #ccc;
+	box-sizing: border-box;
+	color: #666;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Helvetica;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 1.2em;
+	overflow: hidden;
+	padding: 6px 12px;
+	position: relative;
+	text-overflow: ellipsis;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.editor-custom-button.use-icon {
+	border-color: transparent;
+	padding: 0;
+}
+
+.editor-custom-button:focus,
+.editor-custom-button:hover {
+	background-color: #f0f0f0;
+	border-color: #555;
+	outline: none;
+}
+
+.editor-custom-button.active {
+
+	/*
+	* Use text-stroke to strengthen teh text, do not use "bold" because it will
+	* cause layout reflow.
+	* Firefox & Edge specifically only support the -webkit-text-stroke property.
+	* https://caniuse.com/#feat=text-stroke
+	*/
+	-webkit-text-stroke-color: #000;
+	-webkit-text-stroke-width: 0.5px;
+	border-color: #666;
+	color: #000;
+}
+
+.editor-custom-button.pressed {
+	background-color: #e0e0e0;
+}
+
+.editor-custom-button.disabled,
+.editor-custom-button.disabled:hover {
+	-webkit-text-stroke-width: 0;
+	background: #ffffff;
+	border-color: #ccc;
+	color: #dedede;
+	cursor: unset;
+	pointer-events: none;
+}
+
+.editor-custom-buttons .editor-custom-button {
+	border-radius: 0;
+	margin-left: 0;
+}
+
+.editor-custom-buttons > .editor-custom-button:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.editor-custom-buttons > .editor-custom-button:last-child {
+	border-radius: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.editor-custom-buttons > .editor-custom-button:only-child {
+	border-radius: 5px;
+}

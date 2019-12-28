@@ -1,0 +1,90 @@
+/*
+* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/czi-form.css
+*
+* MIT License
+*
+* Copyright (c) 2019 Chan Zuckerberg Initiative
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+.editor-form {
+	background: #fff;
+	border: none;
+	font-family: Helvetica;
+	font-size: 13px;
+	margin: 0;
+	padding: 20px;
+	z-index: 1006;
+}
+
+.editor-form legend {
+	border: none;
+	margin: 0 0 20px 0;
+	padding: 0;
+	font-size: 16px;
+	user-select: none;
+}
+
+.editor-form hr {
+	background: #fff;
+	border: solid 1px #ccc;
+	border-width: 1px 0 0 0;
+	height: 1px;
+	margin: 20px 0;
+}
+
+.editor-form fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.editor-form input[type="text"] {
+	border-width: 0 0 2px 0;
+	border: solid 1px #5882eb;
+	box-sizing: border-box;
+	display: block;
+	font-family: Helvetica;
+	font-size: 13px;
+	margin: 0 0 8px 0;
+	outline: none;
+	padding: 12px 0;
+	text-indent: 12px;
+	width: 100%;
+}
+
+.editor-form em {
+	color: rgba(0, 0, 0, 0.46);
+	display: block;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0 0 8px 0;
+	user-select: none;
+}
+
+.editor-form-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.editor-form-buttons .editor-custom-button {
+	margin: 0 5px;
+}
