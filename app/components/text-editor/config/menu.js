@@ -16,6 +16,7 @@ import textAlignment from './text_alignment.js';
 import applyMark from './apply_mark.js';
 import FONT_SIZES from './font_sizes.json';
 import isTextStyleMarkCommandEnabled from './is_text_style_mark_command_enabled.js';
+import LinkSetURLCommand from './link_set_url_command.js';
 
 
 // FUNCTIONS //
@@ -150,7 +151,8 @@ const menu = {
 			enable: isEnabled,
 			active: markActive( schema.marks.superscript ),
 			run: toggleMark( schema.marks.superscript)
-		}
+		},
+		new LinkSetURLCommand()
 	],
 	blocks: [
 		{
@@ -299,24 +301,6 @@ const menu = {
 			run: ( state, dispatch ) => {
 				const footnote = schema.nodes.code_block.create();
 				dispatch( state.tr.replaceSelectionWith( footnote ) );
-			}
-		},
-		{
-			title: 'Insert link',
-			content: 'Insert link',
-			active: markActive( schema.marks.link ),
-			enable: ( state ) => !state.selection.empty,
-			run( state, dispatch ) {
-				if ( markActive( schema.marks.link )( state ) ) {
-					toggleMark( schema.marks.link )( state, dispatch );
-					return true;
-				}
-				const href = promptForURL();
-				if ( !href ) {
-					return false;
-				}
-				toggleMark( schema.marks.link, { href })( state, dispatch );
-				return false;
 			}
 		}
 	],

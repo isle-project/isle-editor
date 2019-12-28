@@ -22,6 +22,7 @@ const icons = {
 	fullscreen: <i className="prosemirror-icon fas fa-expand"></i>,
 	guides: <i className="prosemirror-icon fa fa-question-circle"></i>,
 	insert: <i className="prosemirror-icon fa fa-plus-square"></i>,
+	link: <i className="prosemirror-icon fa fa-link"></i>,
 	open: <i className="prosemirror-icon fa fa-folder-open"></i>,
 	ordered_list: <i className="prosemirror-icon fas fa-list-ol"></i>,
 	paragraph: <i className="prosemirror-icon fas fa-paragraph"></i>,
