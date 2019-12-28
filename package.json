@@ -209,6 +209,7 @@
     "redux": "4.0.4",
     "redux-thunk": "^2.3.0",
     "semver": "^5.7.1",
+    "smooth-scroll-into-view-if-needed": "^1.1.23",
     "source-map-support": "^0.5.13",
     "spectacle": "5.7.1",
     "stemmer": "^1.0.3",
