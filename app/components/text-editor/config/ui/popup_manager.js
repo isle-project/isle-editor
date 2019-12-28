@@ -172,7 +172,7 @@ class PopUpManager {
 				bodyStyle.position = 'absolute';
 				bodyStyle.left = `${x}px`;
 				bodyStyle.top = `${y}px`;
-				bodyStyle.setProperty('--czi-pop-up-anchor-offset-left', `${ax}px`);
+				bodyStyle.setProperty('--editor-pop-up-anchor-offset-left', `${ax}px`);
 				bodyRect.x = x;
 				bodyRect.y = y;
 			}

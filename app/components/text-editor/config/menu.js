@@ -17,6 +17,8 @@ import applyMark from './apply_mark.js';
 import FONT_SIZES from './font_sizes.json';
 import isTextStyleMarkCommandEnabled from './is_text_style_mark_command_enabled.js';
 import LinkSetURLCommand from './link_set_url_command.js';
+import ImageFromURLCommand from './image_from_url_command.js';
+import ImageUploadCommand from './image_upload_command.js';
 
 
 // FUNCTIONS //
@@ -40,14 +42,6 @@ const blockActive = ( type, attrs = {} ) => ( state ) => {
 		return node.hasMarkup( type, attrs );
 	}
 	return to <= $from.end() && $from.parent.hasMarkup( type, attrs );
-};
-
-const promptForURL = () => {
-	let url = window && window.prompt( 'Enter the URL', 'https://' );
-	if ( url && !/^https?:\/\//i.test(url) ) {
-		url = 'http://' + url;
-	}
-	return url;
 };
 
 const setFontSize = ( tr, schema, pt ) => {
@@ -250,23 +244,8 @@ const menu = {
 		}
 	],
 	insert: [
-		{
-			title: 'Insert image',
-			content: 'Insert image',
-			enable: canInsert( schema.nodes.image ),
-			run: ( state, dispatch ) => {
-				const src = promptForURL();
-				if (!src) {
-					return false;
-				}
-				const img = schema.nodes.image.createAndFill({ src });
-				if ( img ) {
-					dispatch( state.tr.replaceSelectionWith( img ) );
-					return true;
-				}
-				return false;
-			}
-		},
+		new ImageFromURLCommand(),
+		new ImageUploadCommand(),
 		{
 			title: 'Insert footnote',
 			content: 'Insert footnote',

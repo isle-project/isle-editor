@@ -40,6 +40,31 @@ import './form.css';
 const uid = generateUID( 'image-upload-editor' );
 
 
+// FUNCTIONS //
+
+function uploadImage(file) {
+	return new Promise((resolve, reject) => {
+		const { FileReader } = window;
+		if (FileReader) {
+			const reader = new FileReader();
+			reader.onload = event => {
+				// base64 encoded url.
+				const src = event.target.result;
+				resolve({
+					src, height: 0, width: 0, id: ''
+				});
+			};
+			reader.onerror = () => {
+				reject(new Error('FileReader failed'));
+			};
+			reader.readAsDataURL(file);
+		} else {
+			reject(new Error('FileReader is not available'));
+		}
+	});
+}
+
+
 // MAIN //
 
 class ImageUploadEditor extends React.PureComponent {
@@ -87,11 +112,6 @@ class ImageUploadEditor extends React.PureComponent {
 
 	_upload = async (file) => {
 		try {
-			const runtime = this.props.runtime || {};
-			const { canUploadImage, uploadImage } = runtime;
-			if (!canUploadImage || !uploadImage || !canUploadImage()) {
-				throw new Error('feature is not available');
-			}
 			this.setState({ pending: true, error: null });
 			const image = await uploadImage(file);
 			this._onSuccess( image );
@@ -106,12 +126,14 @@ class ImageUploadEditor extends React.PureComponent {
 
 	render() {
 		const { id, error, pending } = this.state;
-		const className = cx('editor-image-upload-editor', {pending, error});
+		const className = cx('editor-image-upload-editor', {
+			pending, error
+		});
 		let label = 'Choose an image file...';
 
-		if (pending) {
+		if ( pending ) {
 			label = <Spinner animation="border" role="status" />;
-		} else if (error) {
+		} else if ( error ) {
 			label = 'Something went wrong, please try again';
 		}
 		return (
