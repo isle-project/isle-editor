@@ -211,18 +211,13 @@ class LinkTooltipView {
 						result.from.pos,
 						result.to.pos + 1
 					);
-
-					// Overwrite doc to prevent prosemirror-state from flagging changed doc (due to object being copied?)
-					tr.doc = linkSelection.$from.doc;
 					tr = tr.setSelection( linkSelection );
 					const attrs = href ? { href } : null;
 					tr = applyMark(tr, schema, markType, attrs);
 				}
 			}
 		}
-		// Overwrite doc to prevent prosemirror-state from flagging changed doc (due to object being copied?)
-		tr.doc = initialSelection.$from.doc;
-		tr = tr.setSelection( initialSelection );
+		tr.setSelection( initialSelection.map( tr.doc, tr.mapping ) );
 		dispatch( tr );
 		view.focus();
 	};
