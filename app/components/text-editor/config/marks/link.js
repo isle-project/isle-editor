@@ -26,6 +26,9 @@
 const link = {
 	attrs: {
 		href: {},
+		target: {
+			default: 'blank'
+		},
 		title: {
 			default: null
 		}
@@ -35,16 +38,19 @@ const link = {
 		{
 			tag: 'a[href]',
 			getAttrs( dom ) {
+				const href = dom.getAttribute('href');
+				const target = href && href.indexOf('#') === 0 ? '' : 'blank';
 				return {
 					href: dom.getAttribute( 'href' ),
-					title: dom.getAttribute( 'title' )
+					title: dom.getAttribute( 'title' ),
+					target
 				};
 			}
 		}
 	],
 	toDOM( node ) {
-		const { href, title } = node.attrs;
-		return [ 'a', { href, title }, 0 ];
+		const { href, title, target } = node.attrs;
+		return [ 'a', { href, title, target }, 0 ];
 	}
 };
 
