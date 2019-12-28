@@ -8,6 +8,7 @@ import 'prosemirror-gapcursor/style/gapcursor.css';
 import 'prosemirror-tables/style/tables.css';
 import LinkTooltipPlugin from './link_tooltip_plugin.js';
 import SelectionPlaceholderPlugin from './selection_placeholder_plugin.js';
+import CursorPlaceholderPlugin from './cursor_placeholder_plugin.js';
 import ImageUploadPlaceholderPlugin from './image_upload_placeholder_plugin.js';
 import TableCellMenuPlugin from './table_cell_menu_plugin.js';
 import keys from './keys.js';
@@ -20,6 +21,7 @@ export default [
 	new ImageUploadPlaceholderPlugin(),
 	new LinkTooltipPlugin(),
 	new SelectionPlaceholderPlugin(),
+	new CursorPlaceholderPlugin(),
 	rules,
 	keys,
 	dropCursor(),
