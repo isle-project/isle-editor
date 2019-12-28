@@ -1,4 +1,3 @@
-
 /*
 * Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/findActiveMark.js
 *
