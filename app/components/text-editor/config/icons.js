@@ -19,6 +19,7 @@ const icons = {
 	color: <i className="prosemirror-icon fas fa-palette"></i>,
 	editTable: <i className="prosemirror-icon fas fa-table"></i>,
 	em: <i className="prosemirror-icon fas fa-italic"></i>,
+	error: <i className="prosemirror-icon fas fa-bug"></i>,
 	fullscreen: <i className="prosemirror-icon fas fa-expand"></i>,
 	guides: <i className="prosemirror-icon fa fa-question-circle"></i>,
 	insert: <i className="prosemirror-icon fa fa-plus-square"></i>,
