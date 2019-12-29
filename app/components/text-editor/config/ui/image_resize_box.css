@@ -1,0 +1,183 @@
+/*
+* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/czi-image-resize-box.css
+*
+* MIT License
+*
+* Copyright (c) 2019 Chan Zuckerberg Initiative
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+.editor-image-resize-box {
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	left: 0;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	box-shadow: 0 0 1px 1px rgba(152, 204, 253, 0.8);
+}
+
+.editor-image-resize-box-image {
+	background-color: #fff;
+	height: 100%;
+	left: 0;
+	opacity: 0.2;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.editor-image-resize-box.left {
+	bottom: auto;
+	left: auto;
+	right: 0;
+	top: 0;
+}
+
+.editor-image-resize-box.top_left {
+	bottom: 0;
+	left: auto;
+	right: 0;
+	top: auto;
+}
+
+.editor-image-resize-box.top {
+	bottom: 0;
+	left: 0;
+	right: auto;
+	top: auto;
+}
+
+.editor-image-resize-box.top_right {
+	bottom: 0;
+	left: 0;
+	right: auto;
+	top: auto;
+}
+
+.editor-image-resize-box.right {
+	bottom: auto;
+	left: 0;
+	right: auto;
+	top: 0;
+}
+
+.editor-image-resize-box.bottom_right {
+	bottom: auto;
+	left: 0;
+	right: auto;
+	top: 0;
+}
+
+.editor-image-resize-box.bottom {
+	bottom: auto;
+	left: 0;
+	right: auto;
+	top: 0;
+}
+
+.editor-image-resize-box.bottom_left {
+	bottom: auto;
+	left: auto;
+	right: 0;
+	top: 0;
+}
+
+.editor-image-resize-box-control {
+	height: 20px;
+	position: absolute;
+	width: 20px;
+	z-index: 2;
+}
+
+.editor-image-resize-box-control.top_left {
+	cursor: nw-resize;
+	left: -10px;
+	top: -10px;
+}
+
+.editor-image-resize-box-control.top {
+	cursor: n-resize;
+	left: 50%;
+	margin-left: -10px;
+	top: -10px;
+}
+
+.editor-image-resize-box-control.top_right {
+	cursor: ne-resize;
+	right: -10px;
+	top: -10px;
+}
+
+.editor-image-resize-box-control.right {
+	cursor: e-resize;
+	margin-top: -10px;
+	right: -10px;
+	top: 50%;
+}
+
+.editor-image-resize-box-control.bottom_right {
+	cursor: se-resize;
+	bottom: -10px;
+	right: -10px;
+}
+
+.editor-image-resize-box-control.bottom {
+	cursor: s-resize;
+	bottom: -10px;
+	left: 50%;
+	margin-left: -10px;
+}
+
+.editor-image-resize-box-control.bottom_left {
+	cursor: sw-resize;
+	bottom: -10px;
+	left: -10px;
+}
+
+.editor-image-resize-box-control.left {
+	cursor: w-resize;
+	left: -10px;
+	margin-top: -10px;
+	top: 50%;
+}
+
+.editor-image-resize-box-control::after {
+	background-color: rgba(152, 204, 253, 0.8);
+	border: solid 1px #fff;
+	box-sizing: border-box;
+	content: '';
+	height: 10px;
+	left: 5px;
+	position: absolute;
+	top: 5px;
+	width: 10px;
+}
+
+.editor-image-resize-box-control::before {
+	bottom: -10px;
+	content: '';
+	left: -10px;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
