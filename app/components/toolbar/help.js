@@ -35,7 +35,6 @@ function loadFonts() {
 function getDataUrl( img ) {
 	const canvas = document.createElement( 'canvas' );
 	const ctx = canvas.getContext( '2d' );
-	console.log( img.width );
 	canvas.width = img.width * 3;
 	canvas.height = img.height * 3;
 	ctx.drawImage( img, 0, 0, img.width * 3, img.height * 3 );
@@ -57,7 +56,6 @@ class HelpPage extends Component {
 		for ( let i = 0; i < imgs.length; i++ ) {
 			imgs[ i ].src = getDataUrl( imgs[ i ] );
 		}
-		console.log( imgs );
 		const html = this.tabs.innerHTML;
 		const doc = {
 			content: htmlToPdfMake( html ),

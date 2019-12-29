@@ -79,7 +79,6 @@ function getAttrs( dom ) {
 			}
 		}
 	}
-	console.log( dom.getAttribute( 'src' ) );
 	return {
 		align,
 		alt: dom.getAttribute('alt') || null,

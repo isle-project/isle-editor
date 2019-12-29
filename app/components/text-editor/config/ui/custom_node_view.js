@@ -75,15 +75,15 @@ function onMutation(mutations, observer) {
 // Workaround to get in-selection views selected.
 // See https://discuss.prosemirror.net/t/copy-selection-issue-with-the-image-node/1673/2;
 function onSelection(entries, observer) {
-	if (!window.getSelection) {
-		console.warn('window.getSelection() is not supported');
+	if ( !window.getSelection ) {
+		console.warn('window.getSelection() is not supported'); // eslint-disable-line no-console
 		observer.disconnect();
 		return;
 	}
 
 	const selection = window.getSelection();
-	if (!selection.containsNode) {
-		console.warn('selection.containsNode() is not supported');
+	if ( !selection.containsNode ) {
+		console.warn('selection.containsNode() is not supported'); // eslint-disable-line no-console
 		observer.disconnect();
 		return;
 	}

@@ -189,10 +189,6 @@ class ImageViewBody extends React.PureComponent {
 		this.setState({ originalSize });
 	};
 
-	_onKeyDown = (e) => {
-		console.log(e.keyCode);
-	};
-
 	_onResizeEnd = (width, height) => {
 		const { getPos, node, editorView } = this.props;
 		const pos = getPos();
@@ -361,11 +357,8 @@ class ImageViewBody extends React.PureComponent {
 					data-active={active ? 'true' : void 0}
 					data-original-src={String(attrs.src)}
 					id={this._id}
-					onKeyDown={this._onKeyDown}
 					ref={this._onBodyRef}
 					title={errorTitle}
-					role="button"
-					tabIndex={-1}
 				>
 					<span className="editor-image-view-body-img-clip" style={clipStyle}>
 						<span style={imageStyle}>

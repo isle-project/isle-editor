@@ -95,8 +95,8 @@ class UICommand {
 			.then(inputs => {
 				this.executeWithUserInput(state, dispatch, view, inputs);
 			})
-			.catch(error => {
-				console.error(error);
+			.catch( error => {
+				console.error( error ); // eslint-disable-line no-console
 			});
 		return false;
 	};

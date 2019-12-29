@@ -35,21 +35,18 @@ const EMPTY_SELECTION_VALUE = Object.freeze({
 // FUNCTIONS //
 
 function resolveSelectionValue(el) {
-	if (!window.getSelection) {
-		console.warn('window.getSelection() is not supported');
+	if ( !window.getSelection ) {
+		console.warn( 'window.getSelection() is not supported' ); // eslint-disable-line no-console
 		return EMPTY_SELECTION_VALUE;
 	}
-
 	const selection = window.getSelection();
-	if (!selection.containsNode) {
-		console.warn('selection.containsNode() is not supported');
+	if ( !selection.containsNode ) {
+		console.warn( 'selection.containsNode() is not supported' ); // eslint-disable-line no-console
 		return EMPTY_SELECTION_VALUE;
 	}
-
 	if (!selection.rangeCount) {
 		return EMPTY_SELECTION_VALUE;
 	}
-
 	const range = selection.getRangeAt(0);
 	if (!range) {
 		return EMPTY_SELECTION_VALUE;
@@ -91,8 +88,8 @@ export default class SelectionObserver {
 	}
 
 	observe(el) {
-		if (!window.getSelection) {
-			console.warn('window.getSelection() is not supported');
+		if ( !window.getSelection ) {
+			console.warn( 'window.getSelection() is not supported' ); // eslint-disable-line no-console
 			return;
 		}
 
@@ -100,12 +97,10 @@ export default class SelectionObserver {
 			// Already observed.
 			return;
 		}
-
 		const obj = {
 			target: el,
 			selection: resolveSelectionValue(el)
 		};
-
 		el.addEventListener('click', this._check, false);
 		el.addEventListener('selectionchange', this._check, false);
 		this._observables.push(obj);
@@ -118,7 +113,7 @@ export default class SelectionObserver {
 	_onClick = () => {
 		const callback = this._callback;
 		this._observables = this._observables.map(obj => {
-			const {target} = obj;
+			const { target } = obj;
 			return {
 				target,
 				selection: resolveSelectionValue(target)
@@ -127,7 +122,7 @@ export default class SelectionObserver {
 		if ( callback ) {
 			return callback( this.takeRecords(), this );
 		}
-	};
+	}
 
 	_check = () => {
 		let changed = false;
@@ -153,5 +148,5 @@ export default class SelectionObserver {
 		if ( changed && callback ) {
 			return callback( this.takeRecords(), this );
 		}
-	};
+	}
 }

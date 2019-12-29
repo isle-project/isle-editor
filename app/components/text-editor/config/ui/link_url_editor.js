@@ -91,7 +91,7 @@ class LinkURLEditor extends React.PureComponent {
 					<fieldset>
 						<legend>Add a Link</legend>
 						<input
-							autoFocus={true}
+							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 							onChange={this._onURLChange}
 							onKeyDown={this._onKeyDown}
 							placeholder="Paste a URL"

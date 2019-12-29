@@ -96,11 +96,10 @@ function specFinder( spec ) {
 }
 
 function findSelectionPlaceholder( state ) {
-	if (!singletonInstance) {
+	if ( !singletonInstance ) {
 		return null;
 	}
-	if (!state.plugins.includes(singletonInstance)) {
-		console.warn('SelectionPlaceholderPlugin is not installed');
+	if ( !state.plugins.includes( singletonInstance ) ) {
 		return null;
 	}
 	const decos = singletonInstance.getState(state);

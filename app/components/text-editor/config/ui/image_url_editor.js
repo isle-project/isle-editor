@@ -100,7 +100,7 @@ class ImageURLEditor extends React.PureComponent {
 						<legend>Insert Image</legend>
 						<div className="editor-image-url-editor-src-input-row">
 							<input
-								autoFocus={true}
+								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 								className="editor-image-url-editor-src-input"
 								onChange={this._onSrcChange}
 								placeholder="Paste URL of Image..."

@@ -117,14 +117,16 @@ export function uploadImageFiles(
 				const imageNode = imageType.create(imageInfo);
 				trNext = trNext.replaceWith(pos, pos, imageNode);
 			} else {
-				// Upload was cancelled.
+				// Upload was cancelled:
 				imageFiles.length = 0;
 			}
 			if (imageFiles.length) {
 				uploadNext();
 			} else {
-				// Remove the placeholder.
-				trNext = trNext.setMeta(placeholderPlugin, {remove: {id}});
+				// Remove the placeholder:
+				trNext = trNext.setMeta( placeholderPlugin, {
+					remove: { id }
+				});
 			}
 			view.dispatch(trNext);
 		};
@@ -141,10 +143,10 @@ export function uploadImageFiles(
 
 	let { tr } = state;
 
-	// Replace the selection with a placeholder
+	// Replace the selection with a placeholder:
 	let from = 0;
 
-	// Adjust the cursor to the dropped position.
+	// Adjust the cursor to the dropped position...
 	if (coords) {
 		const dropPos = view.posAtCoords({
 			left: coords.x,
@@ -185,9 +187,10 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 					return DecorationSet.empty;
 				},
 				apply(tr, set) {
-					// Adjust decoration positions to changes made by the transaction
+					// Adjust decoration positions to changes made by the transaction:
 					set = set.map(tr.mapping, tr.doc);
-					// See if the transaction adds or removes any placeholders
+
+					// See if the transaction adds or removes any placeholders:
 					const action = tr.getMeta(this);
 					if (action && action.add) {
 						const el = document.createElement('div');
