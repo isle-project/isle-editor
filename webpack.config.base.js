@@ -130,7 +130,8 @@ export default {
 	resolve: {
 		alias: {
 			'victory': resolve( './node_modules/victory/dist/victory.min.js' ),
-			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
+			'form-data': resolve( './node_modules/form-data/lib/form_data.js' ),
+			'semver': resolve( './node_modules/make-dir/node_modules/semver/semver.js' )
 		},
 		modules: [
 			resolve( './app' ),
