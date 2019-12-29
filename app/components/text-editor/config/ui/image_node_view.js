@@ -79,7 +79,7 @@ function getMaxResizeWidth(el) {
 		node.offsetParent.offsetWidth &&
 		node.offsetParent.offsetWidth > 0
 	) {
-		const {offsetParent} = node;
+		const { offsetParent } = node;
 		const style = el.ownerDocument.defaultView.getComputedStyle(offsetParent);
 		let width = offsetParent.clientWidth - IMAGE_MARGIN * 2;
 		if (style.boxSizing === 'border-box') {
@@ -150,14 +150,13 @@ class ImageViewBody extends React.PureComponent {
 
 	_renderInlineEditor() {
 		const el = document.getElementById(this._id);
-		if (!el || el.getAttribute('data-active') !== 'true') {
+		if ( !el || el.getAttribute('data-active') !== 'true' ) {
 			if ( this._inlineEditor ) {
 				this._inlineEditor.close();
 			}
 			return;
 		}
-
-		const {node} = this.props;
+		const { node } = this.props;
 		const editorProps = {
 			value: node.attrs,
 			onSelect: this._onChange
@@ -178,12 +177,11 @@ class ImageViewBody extends React.PureComponent {
 	}
 
 	_resolveOriginalSize = async () => {
-		if (!this._mounted) {
+		if ( !this._mounted ) {
 			// unmounted;
 			return;
 		}
-
-		this.setState({originalSize: DEFAULT_ORIGINAL_SIZE});
+		this.setState({ originalSize: DEFAULT_ORIGINAL_SIZE });
 		const src = this.props.node.attrs.src;
 		const url = resolveURL(this.props.editorView.runtime, src);
 		const originalSize = await resolveImage(url);
@@ -200,7 +198,7 @@ class ImageViewBody extends React.PureComponent {
 			originalSize.width = MIN_SIZE;
 			originalSize.height = MIN_SIZE;
 		}
-		this.setState({originalSize});
+		this.setState({ originalSize });
 	};
 
 	_onKeyDown = (e) => {
@@ -208,7 +206,7 @@ class ImageViewBody extends React.PureComponent {
 	};
 
 	_onResizeEnd = (width, height) => {
-		const {getPos, node, editorView} = this.props;
+		const { getPos, node, editorView } = this.props;
 		const pos = getPos();
 		const attrs = {
 			...node.attrs,
@@ -220,7 +218,7 @@ class ImageViewBody extends React.PureComponent {
 		let tr = editorView.state.tr;
 		const { selection } = editorView.state;
 		tr = tr.setNodeMarkup(pos, null, attrs);
-		tr = tr.setSelection(selection);
+		tr = tr.setSelection( selection.map( tr.doc, tr.mapping ) );
 		editorView.dispatch(tr);
 	};
 
@@ -228,9 +226,8 @@ class ImageViewBody extends React.PureComponent {
 		if (!this._mounted) {
 			return;
 		}
-
 		const align = value ? value.align : null;
-		const {getPos, node, editorView} = this.props;
+		const { getPos, node, editorView } = this.props;
 		const pos = getPos();
 		const attrs = {
 			...node.attrs,
@@ -238,9 +235,9 @@ class ImageViewBody extends React.PureComponent {
 		};
 
 		let tr = editorView.state.tr;
-		const {selection} = editorView.state;
+		const { selection } = editorView.state;
 		tr = tr.setNodeMarkup(pos, null, attrs);
-		tr = tr.setSelection(selection);
+		tr = tr.setSelection( selection.map( tr.doc, tr.mapping ) );
 		editorView.dispatch(tr);
 	};
 
@@ -291,8 +288,7 @@ class ImageViewBody extends React.PureComponent {
 		const aspectRatio = loading ? 1 : originalSize.width / originalSize.height;
 		const error = !loading && !originalSize.complete;
 
-		let {width, height} = attrs;
-
+		let { width, height } = attrs;
 		if (loading) {
 			width = width || IMAGE_PLACEHOLDER_SIZE;
 			height = height || IMAGE_PLACEHOLDER_SIZE;
@@ -342,8 +338,8 @@ class ImageViewBody extends React.PureComponent {
 			position: 'relative'
 		};
 		const clipStyle = {};
-		if (crop) {
-			const cropped = {...crop};
+		if ( crop ) {
+			const cropped = { ...crop };
 			if (scale !== 1) {
 				scale = maxSize.width / cropped.width;
 				cropped.width *= scale;
