@@ -133,7 +133,7 @@ export default class SelectionObserver {
 		let changed = false;
 		const callback = this._callback;
 		this._observables = this._observables.map(obj => {
-			const {target, selection} = obj;
+			const { target, selection } = obj;
 			const $selection = resolveSelectionValue(target);
 			if (selection === $selection) {
 				return obj;

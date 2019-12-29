@@ -1,31 +1,50 @@
+// MODULES //
+
+import { getImageAttrs } from './image.js';
+
+
 // MAIN //
 
 const plotContainerSpec = {
 	attrs: {
 		src: {},
 		plotID: { default: null },
+		align: { default: null },
 		alt: { default: null },
+		crop: { default: null },
 		title: { default: null },
 		meta: { default: null },
-		width: { default: '550px' }
+		width: { default: '550px' },
+		height: { default: null },
+		rotate: { default: null }
 	},
 	inline: false,
 	group: 'block',
 	draggable: true,
 	toDOM: node => {
-		let style = 'display: block; margin: 0 auto;';
-		if ( node.attrs.width ) {
-			style += `width: ${node.attrs.width};`;
-		}
-		return [ 'span', { class: 'img-container', 'data-plot-id': node.attrs.plotID }, [ 'img', {
-				src: node.attrs.src,
-				style,
-				alt: node.attrs.alt,
-				title: node.attrs.title
-			} ], [ 'pre',
+		return [ 'span',
 			{
-				class: 'img-tooltip'
-			}, node.attrs.meta ]
+				class: 'img-container',
+				'data-plot-id': node.attrs.plotID
+			},
+			[ 'img',
+				{
+					src: node.attrs.src,
+					align: node.attrs.align,
+					alt: node.attrs.alt,
+					crop: node.attrs.crop,
+					title: node.attrs.title,
+					width: node.attrs.width,
+					height: node.attrs.height,
+					rotate: node.attrs.rotate
+				}
+			],
+			[ 'pre',
+				{
+					class: 'img-tooltip'
+				},
+				node.attrs.meta
+			]
 		];
 	},
 	parseDOM: [{
@@ -34,13 +53,10 @@ const plotContainerSpec = {
 		getAttrs: dom => {
 			const plotID = dom.getAttribute( 'data-plot-id' );
 			const img = dom.firstChild;
-			const src = img.getAttribute( 'src' );
-			const title = img.getAttribute( 'title' );
-			const alt = img.getAttribute( 'alt' );
-			const width = img.getAttribute( 'width' ) || '550px';
+			const attrs = getImageAttrs( img );
 			const pre = dom.lastChild;
 			const meta = pre.innerText;
-			return { src, alt, title, meta, width, plotID };
+			return { ...attrs, meta, plotID };
 		}
 	}]
 };

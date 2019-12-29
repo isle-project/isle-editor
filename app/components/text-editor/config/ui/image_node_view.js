@@ -27,7 +27,7 @@
 // MODULES //
 
 import cx from 'classnames';
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import generateUID from 'utils/uid/incremental';
 import CustomNodeView from './custom_node_view.js';
@@ -353,39 +353,47 @@ class ImageViewBody extends React.PureComponent {
 			imageStyle.top = cropped.top + 'px';
 		}
 
-		if (rotate) {
+		if ( rotate ) {
 			clipStyle.transform = `rotate(${rotate}rad)`;
+		}
+
+		let tooltip = null;
+		if ( attrs.meta ) {
+			tooltip = <pre className="img-tooltip">{attrs.meta}</pre>;
 		}
 		const errorView = error ? Icons.error : null;
 		const errorTitle = error ? `Unable to load image from ${attrs.src || ''}` : void 0;
 		return (
-			<span
-				className={className}
-				data-active={active ? 'true' : void 0}
-				data-original-src={String(attrs.src)}
-				id={this._id}
-				onKeyDown={this._onKeyDown}
-				ref={this._onBodyRef}
-				title={errorTitle}
-				role="button"
-				tabIndex={-1}
-			>
-				<span className="editor-image-view-body-img-clip" style={clipStyle}>
-					<span style={imageStyle}>
-						<img
-							alt=""
-							className="editor-image-view-body-img"
-							data-align={align}
-							height={height}
-							id={`${this._id}-img`}
-							src={src}
-							width={width}
-						/>
-						{errorView}
+			<Fragment>
+				{tooltip}
+				<span
+					className={className}
+					data-active={active ? 'true' : void 0}
+					data-original-src={String(attrs.src)}
+					id={this._id}
+					onKeyDown={this._onKeyDown}
+					ref={this._onBodyRef}
+					title={errorTitle}
+					role="button"
+					tabIndex={-1}
+				>
+					<span className="editor-image-view-body-img-clip" style={clipStyle}>
+						<span style={imageStyle}>
+							<img
+								alt=""
+								className="editor-image-view-body-img"
+								data-align={align}
+								height={height}
+								id={`${this._id}-img`}
+								src={src}
+								width={width}
+							/>
+							{errorView}
+						</span>
 					</span>
+					{resizeBox}
 				</span>
-				{resizeBox}
-			</span>
+			</Fragment>
 		);
 	}
 }
@@ -395,7 +403,7 @@ class ImageViewBody extends React.PureComponent {
 
 class ImageNodeView extends CustomNodeView {
 	createDOMElement() {
-		const el = document.createElement('span');
+		const el = document.createElement( 'span' );
 		el.className = 'editor-image-view';
 		this._updateDOM(el);
 		return el;

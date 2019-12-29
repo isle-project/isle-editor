@@ -21,6 +21,7 @@
 	position: relative;
 }
 
-.img-container:hover .img-tooltip {
+.img-container:hover .img-tooltip,
+.editor-image-view:hover .img-tooltip {
 	display: initial;
 }

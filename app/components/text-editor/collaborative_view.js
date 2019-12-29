@@ -13,7 +13,7 @@ import MenuBar from './menubar.js';
 import schema from './config/schema';
 import { commentPlugin, commentUI } from './config/comments.js';
 import FootnoteView from './views/footnote.js';
-import PlotDragView from './views/plot_drag.js';
+import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
 
 
@@ -183,7 +183,8 @@ class ProseMirrorCollaborative extends Component {
 					state: this.dispatchState.edit,
 					nodeViews: {
 						footnote: ( node, view, getPos ) => { return new FootnoteView( node, view, getPos ); },
-						plot: ( node, view, getPos ) => { return new PlotDragView( node, view, getPos ); }
+						image: ( node, view, getPos ) => { return new ImageNodeView( node, view, getPos ); },
+						plot: ( node, view, getPos ) => { return new ImageNodeView( node, view, getPos ); }
 					},
 					dispatchTransaction: this.dispatchTransaction
 				}));

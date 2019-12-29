@@ -32,7 +32,7 @@ const EMPTY_CSS_VALUE = new Set(['0%', '0pt', '0px']);
 
 // FUNCTIONS
 
-function getAttrs( dom ) {
+export function getImageAttrs( dom ) {
 	const { cssFloat, display, marginTop, marginLeft } = dom.style;
 	let { width, height } = dom.style;
 	let align = dom.getAttribute( 'data-align' ) || dom.getAttribute( 'align' );
@@ -45,8 +45,8 @@ function getAttrs( dom ) {
 	} else if (!cssFloat && display === 'block') {
 		align = 'block';
 	}
-	width = width || dom.getAttribute('width');
-	height = height || dom.getAttribute('height');
+	width = width || dom.getAttribute( 'width' );
+	height = height || dom.getAttribute( 'height' );
 
 	let crop = null;
 	let rotate = null;
@@ -107,9 +107,9 @@ const ImageNodeSpec = {
 	group: 'inline',
 	draggable: true,
 	parseDOM: [{
-		tag: 'img[src]', getAttrs
+		tag: 'img[src]', getImageAttrs
 	}],
-	toDOM(node) {
+	toDOM( node ) {
 		return [ 'img', node.attrs ];
 	}
 };
