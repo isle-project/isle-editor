@@ -9,11 +9,12 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder } from 'recordrtc';
+import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } from 'recordrtc';
 import VoiceControl from 'components/voice-control';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import './ebml.js';
 import './recorder.css';
 
 
@@ -240,35 +241,36 @@ class Recorder extends Component {
 		if ( id ) {
 			filename = id+'_'+filename;
 		}
-		const blob = this.recorder.getBlob();
-		const file = new File([ blob ], filename, {
-			type: mimeType
-		});
-		const formData = new FormData();
-		formData.append( 'file', file );
-		session.uploadFile({
-			formData,
-			callback: ( err, res ) => {
-				if ( err ) {
-					return this.handleError( err.message );
+		getSeekableBlob( this.recorder.getBlob(), ( seekableBlob ) => {
+			const file = new File([ seekableBlob ], filename, {
+				type: mimeType
+			});
+			const formData = new FormData();
+			formData.append( 'file', file );
+			session.uploadFile({
+				formData,
+				callback: ( err, res ) => {
+					if ( err ) {
+						return this.handleError( err.message );
+					}
+					const session = this.context;
+					const filename = res.filename;
+					const link = session.server + '/' + filename;
+					session.addNotification({
+						title: 'Recording uploaded',
+						message: 'Your recording has been successfully uploaded and may be accessed at:',
+						level: 'success',
+						position: 'tl',
+						autoDismiss: 0,
+						children: <span>
+							<a href={link} target="_blank" >Open Link</a>
+						</span>
+					});
+					this.setState({
+						uploaded: true
+					});
 				}
-				const session = this.context;
-				const filename = res.filename;
-				const link = session.server + '/' + filename;
-				session.addNotification({
-					title: 'Recording uploaded',
-					message: 'Your recording has been successfully uploaded and may be accessed at:',
-					level: 'success',
-					position: 'tl',
-					autoDismiss: 0,
-					children: <span>
-						<a href={link} target="_blank" >Open Link</a>
-					</span>
-				});
-				this.setState({
-					uploaded: true
-				});
-			}
+			});
 		});
 	}
 
@@ -306,9 +308,10 @@ class Recorder extends Component {
 			finished: true
 		});
 		this.recorder.stopRecording( () => {
-			const blob = this.recorder.getBlob();
-			this.player.src = URL.createObjectURL( blob );
-			this.player.muted = false;
+			getSeekableBlob( this.recorder.getBlob(), ( seekableBlob ) => {
+				this.player.src = URL.createObjectURL( seekableBlob );
+				this.player.muted = false;
+			});
 		});
 	}
 
