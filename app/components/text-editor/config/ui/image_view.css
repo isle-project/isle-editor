@@ -69,6 +69,12 @@
 	position: relative;
 }
 
+.editor-image-view-error {
+	font-size: 20px;
+	z-index: 10;
+	position: absolute;
+}
+
 .editor-image-view-body.loading::before {
 	animation: editor_animation_blink normal 800ms infinite ease-in-out;
 	background-color: #cdcdcd;

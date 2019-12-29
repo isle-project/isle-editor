@@ -304,7 +304,7 @@ class ImageViewBody extends React.PureComponent {
 		}
 
 		let scale = 1;
-		if (width > maxSize.width && (!crop || crop.width > maxSize.width)) {
+		if ( width > maxSize.width && ( !crop || crop.width > maxSize.width ) ) {
 			// Scale image to fit its containing space.
 			// If the image is not cropped.
 			width = maxSize.width;
@@ -361,7 +361,9 @@ class ImageViewBody extends React.PureComponent {
 		if ( attrs.meta ) {
 			tooltip = <pre className="img-tooltip">{attrs.meta}</pre>;
 		}
-		const errorView = error ? Icons.error : null;
+		const errorView = error ?
+			<span className="editor-image-view-error" >{Icons.error} </span> :
+			null;
 		const errorTitle = error ? `Unable to load image from ${attrs.src || ''}` : void 0;
 		return (
 			<Fragment>
@@ -379,6 +381,7 @@ class ImageViewBody extends React.PureComponent {
 				>
 					<span className="editor-image-view-body-img-clip" style={clipStyle}>
 						<span style={imageStyle}>
+							{errorView}
 							<img
 								alt=""
 								className="editor-image-view-body-img"
@@ -388,7 +391,6 @@ class ImageViewBody extends React.PureComponent {
 								src={src}
 								width={width}
 							/>
-							{errorView}
 						</span>
 					</span>
 					{resizeBox}
