@@ -108,7 +108,7 @@ class Recorder extends Component {
 		}
 
 		this.state = {
-			recording: false,
+			recording: props.autostart,
 			finished: false,
 			uploaded: false,
 			hidden: false,
@@ -119,9 +119,6 @@ class Recorder extends Component {
 	componentDidMount() {
 		if ( this.props.autostart ) {
 			this.startRecording();
-			this.setState({
-				recording: true
-			});
 		}
 	}
 

@@ -57,8 +57,6 @@ class MeanTest2 extends Component {
 		const y = this.state.yvalues;
 		let value;
 
-		console.log( type );
-
 		if ( grouping ) {
 			let result;
 			if ( type === 'Z Test' ) {

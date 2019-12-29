@@ -100,10 +100,11 @@ class ResponseVisualizers extends Component {
 			});
 			means[ ids[ i ] ] = acc;
 		}
+
+		// eslint-disable-next-line react/no-did-mount-set-state
 		this.setState({
 			means
 		});
-
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'member_action' && contains( ids, value.id ) ) {
 				const newMeans = copy( this.state.means );

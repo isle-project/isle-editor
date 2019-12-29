@@ -42,6 +42,21 @@ let rCode = [];
 
 // FUNCTIONS //
 
+const getLastAction = ( val, id ) => {
+	if ( isObject( val ) ) {
+		let actions = val[ id ];
+		if ( isArray( actions ) ) {
+			actions = actions.filter( action => {
+				return action.type === 'RSHELL_EVALUATION';
+			});
+			if ( actions.length > 0 ) {
+				return actions[ 0 ].value;
+			}
+		}
+	}
+	return null;
+};
+
 const insertImages = ( imgs ) => {
 	const ret = [];
 	for ( let i = 0; i < imgs.length; i++ ) {
@@ -302,7 +317,7 @@ class RShell extends React.Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === 'retrieved_current_user_actions' ) {
-					let lastAction = this.getLastAction( val, this.id );
+					let lastAction = getLastAction( val, this.id );
 					if ( isString( lastAction ) ) {
 						this.setState({
 							lastSolution: lastAction,
@@ -315,8 +330,9 @@ class RShell extends React.Component {
 				}
 			});
 			const actions = session.currentUserActions;
-			const value = this.getLastAction( actions, this.id );
+			const value = getLastAction( actions, this.id );
 			if ( isString( value ) ) {
+				// eslint-disable-next-line react/no-did-mount-set-state
 				this.setState({
 					lastSolution: value,
 					solutionOpen: false
@@ -385,21 +401,6 @@ class RShell extends React.Component {
 
 	hideHelp = () => {
 		this.setState({ help: '' });
-	}
-
-	getLastAction = ( val, id ) => {
-		if ( isObject( val ) ) {
-			let actions = val[ id ];
-			if ( isArray( actions ) ) {
-				actions = actions.filter( action => {
-					return action.type === 'RSHELL_EVALUATION';
-				});
-				if ( actions.length > 0 ) {
-					return actions[ 0 ].value;
-				}
-			}
-		}
-		return null;
 	}
 
 	renderHelpModal() {

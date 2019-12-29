@@ -81,6 +81,8 @@ class Preview extends Component {
 			await this.loadRequires( preamble, filePath );
 		}
 		const includes = await isleFileIncludes( this.props.code, preamble, filePath );
+
+		// eslint-disable-next-line react/no-did-mount-set-state
 		this.setState({
 			includes
 		});
