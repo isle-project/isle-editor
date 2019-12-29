@@ -1,7 +1,6 @@
 // MODULES //
 
 import { BrowserWindow, net } from 'electron';
-import semver from 'semver';
 import os from 'os';
 import * as actions from './../actions';
 import { version as currentVersion } from './../../../package.json';
@@ -45,7 +44,7 @@ export default {
 					response.on( 'end', () => {
 						const json = JSON.parse( body );
 						const newVersion = json.version;
-						const updateAvailable = semver.gt( newVersion, currentVersion );
+						const updateAvailable = newVersion !== currentVersion;
 						const win = new BrowserWindow({
 							modal: true,
 							resizable: false,
