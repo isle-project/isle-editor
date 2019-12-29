@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loadable from './loadable.js';
+import './loadable.css';
 
 
 // FUNCTIONS //
