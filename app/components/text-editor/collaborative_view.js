@@ -182,9 +182,9 @@ class ProseMirrorCollaborative extends Component {
 				this.setView( new EditorView( this.editorDiv, {
 					state: this.dispatchState.edit,
 					nodeViews: {
-						footnote: ( node, view, getPos ) => { return new FootnoteView( node, view, getPos ); },
-						image: ( node, view, getPos ) => { return new ImageNodeView( node, view, getPos ); },
-						plot: ( node, view, getPos ) => { return new ImageNodeView( node, view, getPos ); }
+						footnote: ( node, view, getPos, decorations ) => { return new FootnoteView( node, view, getPos, decorations ); },
+						image: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); },
+						plot: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); }
 					},
 					dispatchTransaction: this.dispatchTransaction
 				}));

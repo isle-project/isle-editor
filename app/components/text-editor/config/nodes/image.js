@@ -32,7 +32,7 @@ const EMPTY_CSS_VALUE = new Set(['0%', '0pt', '0px']);
 
 // FUNCTIONS //
 
-export function getImageAttrs( dom ) {
+function getAttrs( dom ) {
 	const { cssFloat, display, marginTop, marginLeft } = dom.style;
 	let { width, height } = dom.style;
 	let align = dom.getAttribute( 'data-align' ) || dom.getAttribute( 'align' );
@@ -71,14 +71,15 @@ export function getImageAttrs( dom ) {
 				top: parseInt(marginTop, 10) || 0
 			};
 		}
-		if (ps.transform) {
+		if ( ps.transform ) {
 			// example: `rotate(1.57rad) translateZ(0px)`;
-			const mm = ps.transform.match(CSS_ROTATE_PATTERN);
+			const mm = ps.transform.match( CSS_ROTATE_PATTERN );
 			if (mm && mm[1]) {
 				rotate = parseFloat(mm[1]) || null;
 			}
 		}
 	}
+	console.log( dom.getAttribute( 'src' ) );
 	return {
 		align,
 		alt: dom.getAttribute('alt') || null,
@@ -96,18 +97,18 @@ const ImageNodeSpec = {
 	inline: true,
 	attrs: {
 		align: { default: null },
-		alt: { default: '' },
+		alt: { default: 'An inserted image' },
 		crop: { default: null },
 		height: { default: null },
 		rotate: { default: null },
 		src: { default: null },
-		title: { default: '' },
+		title: { default: 'None' },
 		width: { default: null }
 	},
 	group: 'inline',
 	draggable: true,
 	parseDOM: [{
-		tag: 'img[src]', getImageAttrs
+		tag: 'img[src]', getAttrs
 	}],
 	toDOM( node ) {
 		return [ 'img', node.attrs ];
@@ -116,6 +117,8 @@ const ImageNodeSpec = {
 
 
 // EXPORTS //
+
+export const getImageAttrs = getAttrs;
 
 export default ImageNodeSpec;
 

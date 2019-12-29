@@ -67,7 +67,7 @@ const DEFAULT_ORIGINAL_SIZE = {
 // FUNCTIONS //
 
 // Get the maxWidth that the image could be resized to.
-function getMaxResizeWidth(el) {
+function getMaxResizeWidth( el ) {
 	// Ideally, the image should not be wider than its containing element.
 	let node = el.parentElement;
 	while (node && !node.offsetParent) {
@@ -91,17 +91,6 @@ function getMaxResizeWidth(el) {
 	}
 	// Let the image resize freely.
 	return MAX_SIZE;
-}
-
-function resolveURL(runtime, src) {
-	if (!runtime) {
-		return src;
-	}
-	const { canProxyImageSrc, getProxyImageSrc } = runtime;
-	if (src && canProxyImageSrc && getProxyImageSrc && canProxyImageSrc(src)) {
-		return getProxyImageSrc(src);
-	}
-	return src;
 }
 
 class ImageViewBody extends React.PureComponent {
@@ -183,18 +172,17 @@ class ImageViewBody extends React.PureComponent {
 		}
 		this.setState({ originalSize: DEFAULT_ORIGINAL_SIZE });
 		const src = this.props.node.attrs.src;
-		const url = resolveURL(this.props.editorView.runtime, src);
+		const url = src;
 		const originalSize = await resolveImage(url);
-		if (!this._mounted) {
+		if ( !this._mounted ) {
 			// unmounted;
 			return;
 		}
-		if (this.props.node.attrs.src !== src) {
+		if ( this.props.node.attrs.src !== src ) {
 			// src had changed.
 			return;
 		}
-
-		if (!originalSize.complete) {
+		if ( !originalSize.complete ) {
 			originalSize.width = MIN_SIZE;
 			originalSize.height = MIN_SIZE;
 		}
