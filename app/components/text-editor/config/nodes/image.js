@@ -30,19 +30,19 @@ const CSS_ROTATE_PATTERN = /rotate\(([0-9.]+)rad\)/i;
 const EMPTY_CSS_VALUE = new Set(['0%', '0pt', '0px']);
 
 
-// FUNCTIONS
+// FUNCTIONS //
 
 export function getImageAttrs( dom ) {
 	const { cssFloat, display, marginTop, marginLeft } = dom.style;
 	let { width, height } = dom.style;
 	let align = dom.getAttribute( 'data-align' ) || dom.getAttribute( 'align' );
-	if (align) {
+	if ( align ) {
 		align = /(left|right|center)/.test(align) ? align : null;
-	} else if (cssFloat === 'left' && !display) {
+	} else if ( cssFloat === 'left' && !display ) {
 		align = 'left';
-	} else if (cssFloat === 'right' && !display) {
+	} else if ( cssFloat === 'right' && !display ) {
 		align = 'right';
-	} else if (!cssFloat && display === 'block') {
+	} else if ( !cssFloat && display === 'block' ) {
 		align = 'block';
 	}
 	width = width || dom.getAttribute( 'width' );

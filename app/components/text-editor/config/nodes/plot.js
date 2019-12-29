@@ -10,11 +10,11 @@ const plotSpec = {
 		src: {},
 		plotID: { default: null },
 		align: { default: null },
-		alt: { default: null },
+		alt: { default: '' },
 		crop: { default: null },
-		title: { default: null },
+		title: { default: '' },
 		meta: { default: null },
-		width: { default: '550px' },
+		width: { default: null },
 		height: { default: null },
 		rotate: { default: null }
 	},
@@ -51,7 +51,15 @@ const plotSpec = {
 		priority: 51,
 		tag: 'img[data-plot-id]',
 		getAttrs: dom => {
+			const align = dom.getAttribute( 'align' );
+			const width = dom.getAttribute( 'width' );
 			const attrs = getImageAttrs( dom );
+			if ( !align ) {
+				attrs.align = 'center';
+			}
+			if ( !width ) {
+				attrs.width = 550;
+			}
 			const plotID = dom.getAttribute( 'data-plot-id' );
 			const meta = dom.getAttribute( 'data-plot-meta' );
 			return { ...attrs, meta, plotID };
