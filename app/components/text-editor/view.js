@@ -12,6 +12,7 @@ import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
 import FootnoteView from './views/footnote';
+import ImageNodeView from './config/ui/image_node_view.js';
 import PlotDragView from './views/plot_drag';
 import countWords from './count_words.js';
 
@@ -90,6 +91,7 @@ class ProseMirror extends Component {
 				dispatchTransaction: this.dispatchTransaction,
 				nodeViews: {
 					footnote: ( node, view, getPos ) => { return new FootnoteView( node, view, getPos ); },
+					image: ( node, view, getPos ) => { return new ImageNodeView( node, view, getPos ); },
 					plot: ( node, view, getPos ) => { return new PlotDragView( node, view, getPos ); },
 					plotContainer: ( node, view, getPos ) => { return new PlotDragView( node, view, getPos ); }
 				}
