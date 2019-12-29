@@ -231,7 +231,7 @@
     "babel-polyfill": "^6.26.0",
     "codecov": "^3.5.0",
     "concurrently": "^5.0.0",
-    "d3": "5.14.2",
+    "d3": "5.15.0",
     "doctrine": "^3.0.0",
     "electron": "7.1.7",
     "electron-builder": "^22.1.0",
