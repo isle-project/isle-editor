@@ -208,7 +208,7 @@
     "recordrtc": "^5.5.7",
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
-    "smooth-scroll-into-view-if-needed": "^1.1.23",
+    "smooth-scroll-into-view-if-needed": "^1.1.25",
     "source-map-support": "^0.5.13",
     "spectacle": "5.7.2",
     "stemmer": "^1.0.3",
