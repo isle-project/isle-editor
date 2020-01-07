@@ -588,7 +588,7 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-					__html: md.render( dataInfo.info.join( '\n' ) )
+					__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
 				}}>
 				</Modal.Body>
 			</Modal>;
