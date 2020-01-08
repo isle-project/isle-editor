@@ -172,7 +172,7 @@ function createColumns( props, state ) {
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
-								width: `${key.length}ch`
+								width: `${key.length+1}ch`
 							}}
 							defaultValue={key}
 							onBlur={( e ) => {
