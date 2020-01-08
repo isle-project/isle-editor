@@ -1,6 +1,6 @@
 // VARIABLES //
 
-const RE_NUMBER = /[+-]?[\d.]+e?[+-]?\d*/;
+const RE_NUMBER = /^[+-]?[\d.]+e?[+-]?\d*$/;
 
 
 // MAIN //
