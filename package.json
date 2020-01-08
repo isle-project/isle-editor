@@ -233,7 +233,7 @@
     "codecov": "^3.5.0",
     "concurrently": "^5.0.0",
     "doctrine": "^3.0.0",
-    "electron": "7.1.7",
+    "electron": "7.1.8",
     "electron-builder": "^22.1.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
