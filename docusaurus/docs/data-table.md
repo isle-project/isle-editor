@@ -32,6 +32,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
   'showOnStartup': false
 }`.
 * __deletable__ | `boolean`: controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function. Default: `false`.
+* __undeletableVars__ | `array<string>`: array of variable names of columns which may not be deleted. Default: `[]`.
 * __filterable__ | `boolean`: controls whether columns are filterable. Default: `true`.
 * __editable__ | `array`: array of names for columns that shall be editable. Default: `[]`.
 * __onColumnDrag__ | `function`: undefined. Default: `onColumnDrag() {}`.

@@ -48,7 +48,8 @@ We will include the explorer with the following code:
 * __dataInfo__ | `object`: object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions. Default: `{
   'info': '',
   'name': '',
-  'variables': null
+  'variables': null,
+  'showOnStartup': false
 }`.
 * __editor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `true`.
 * __editorProps__ | `object`: object to be passed to `TextEditor` indicating properties to be used. Default: `none`.

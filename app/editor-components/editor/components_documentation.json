@@ -525,7 +525,8 @@
         "default": {
           "info": "",
           "name": "",
-          "variables": null
+          "variables": null,
+          "showOnStartup": false
         }
       },
       {
@@ -725,6 +726,12 @@
         "type": "boolean",
         "description": "controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function",
         "default": false
+      },
+      {
+        "name": "undeletableVars",
+        "type": "array<string>",
+        "description": "array of variable names of columns which may not be deleted",
+        "default": []
       },
       {
         "name": "filterable",
