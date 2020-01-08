@@ -156,17 +156,17 @@ function createColumns( props, state ) {
 	debug( 'Create columns...' );
 	const columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
 		let header = key;
-		const isOriginal = props.dataInfo &&
+		const hasDescription = props.dataInfo &&
 			props.dataInfo.variables &&
 			props.dataInfo.variables[ key ];
 		const out = {
 			id: key,
 			accessor: ( d ) => isNull( d[ key ] ) ? 'NA' : d[ key ],
-			minWidth: isOriginal ? 125 : 150
+			minWidth: hasDescription ? 125 : 150
 		};
-		if ( isOriginal ) {
+		if ( hasDescription ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
-		} else if ( props.deletable ) {
+		} else if ( props.deletable && !contains( props.undeletableVars, key ) ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
 					<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
 					<span>
@@ -317,6 +317,7 @@ function createColumns( props, state ) {
 * @property {Object} dataInfo - object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup
 * @property {Array} editable - array of names for columns that shall be editable
 * @property {boolean} deletable - controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function
+* @property {Array<string>} undeletableVars - array of variable names of columns which may not be deleted
 * @property {boolean} filterable - controls whether columns are filterable
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
 * @property {boolean} showIdColumn - controls whether to show an ID column
@@ -760,6 +761,7 @@ DataTable.defaultProps = {
 		'showOnStartup': false
 	},
 	deletable: false,
+	undeletableVars: [],
 	filterable: true,
 	editable: [],
 	onColumnDrag() {},
@@ -783,6 +785,7 @@ DataTable.propTypes = {
 	]).isRequired,
 	dataInfo: PropTypes.object,
 	deletable: PropTypes.bool,
+	undeletableVars: PropTypes.arrayOf( PropTypes.string ),
 	filterable: PropTypes.bool,
 	editable: PropTypes.array,
 	onColumnDrag: PropTypes.func,

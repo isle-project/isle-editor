@@ -1394,6 +1394,7 @@ class DataExplorer extends Component {
 								<DataTable
 									data={this.state.data}
 									dataInfo={this.props.dataInfo}
+									undeletableVars={objectKeys( this.props.data )}
 									filters={this.state.filters}
 									onFilteredChange={( filtered ) => {
 										debug( 'Filters have changed...' );
@@ -1568,7 +1569,8 @@ DataExplorer.defaultProps = {
 	dataInfo: {
 		'info': '',
 		'name': '',
-		'variables': null
+		'variables': null,
+		'showOnStartup': false
 	},
 	dataTable: true,
 	tabs: [],
