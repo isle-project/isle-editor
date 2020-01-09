@@ -966,6 +966,7 @@ class DataExplorer extends Component {
 				case 'Bar Chart':
 					content = <Barchart
 						{...categoricalProps}
+						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.onBarchartSelection}
