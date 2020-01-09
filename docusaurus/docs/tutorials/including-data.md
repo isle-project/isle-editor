@@ -219,7 +219,3 @@ Then our `<DataExplorer/>` tag could look as follows:
 ### Editor
 
 In the editor, students can write up their data analysis, using basic Markdown for text formatting, and dragging and dropping output images and tables directly into the report. By default, the editor is visible; to hide the editor, set `editor={false}` in the `<DataExplorer/>` tag (as in the examples above). By default, the name of the editor tab is **Report**, but you can change this if you wish using the `editorTitle` option.
-
-### Distributions
-
-The **Distributions** tab provides widgets for a few common distributions that allow students to see the shape of the distribution for different parameter values, and which may be used to calculate probabilities. Currently, the available options are Normal, Uniform, and Exponential. To provide only a subset, use the `distributions` option. For example, to hide the Distributions tab we would set `distributions={[]}` in the `<DataExplorer/>` tag.
