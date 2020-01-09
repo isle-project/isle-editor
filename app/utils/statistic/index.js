@@ -11,6 +11,7 @@ import median from './median.js';
 import mean from './mean.js';
 import min from './min.js';
 import max from './max.js';
+import sum from './sum.js';
 
 
 // MAIN //
@@ -49,6 +50,9 @@ function statistic( statName ) {
 		break;
 	case 'Range':
 		fun = range;
+		break;
+	case 'Sum':
+		fun = sum;
 		break;
 	case 'Standard Deviation':
 		fun = stdev;
