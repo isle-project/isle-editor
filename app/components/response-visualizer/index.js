@@ -92,7 +92,7 @@ class ResponseVisualizer extends Component {
 		};
 
 		if ( props.info && props.id && !props.noSessionRegistration ) {
-			// Register response visualizer in session:
+			debug( `Register response visualizer for ${props.id} in session:` );
 			context.responseVisualizers[ props.id ] = {
 				type: props.info,
 				ref: this
