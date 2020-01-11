@@ -35,7 +35,8 @@ const GRAPHICS_REGEX = /graphics/;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
-
+let initializedProgress = false;
+let hasLoaded = false;
 let updateTime = new Date().getTime();
 let addedScore = 0;
 
@@ -205,11 +206,20 @@ class Session {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
 			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
+			window.addEventListener( 'load', this.onLoadListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
 
 			// Log session data to database in regular interval:
 			setInterval( this.logSession, 5*60000 );
 		}
+	}
+
+	onLoadListener = () => {
+		if ( !this.anonymous && !isEmptyObject( this.currentUserActions ) ) {
+			// Set initial progress after response visualizers have registered themselves:
+			this.setProgress();
+		}
+		hasLoaded = true;
 	}
 
 	beforeUnloadListener = () => {
@@ -267,6 +277,7 @@ class Session {
 	* @returns {void}
 	*/
 	logSession = () => {
+		debug( 'Logging current session object to database...' );
 		if ( !this.anonymous && this.live ) {
 			this.updateDatabase();
 		}
@@ -1027,7 +1038,9 @@ class Session {
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;
-					this.setProgress();
+					if ( !initializedProgress && hasLoaded ) {
+						this.setProgress();
+					}
 					this.update( 'retrieved_current_user_actions', this.currentUserActions );
 				});
 			}
@@ -1333,7 +1346,7 @@ class Session {
 			if ( this.user && this.user.picture ) {
 				this.user.picture = this.server + '/avatar/' + this.user.picture;
 			}
-			PRIVATE_VARS['score'] = user.score;
+			PRIVATE_VARS[ 'score' ] = user.score;
 			this.anonymous = false;
 			this.socketConnect();
 			if ( !userRights ) {
@@ -1388,7 +1401,7 @@ class Session {
 			this.unfinished = ids.slice();
 		}
 		if ( !id ) {
-			// Set initial progress when loading the page...
+			debug( 'Set initial progress when loading the page...' );
 			let progress = 0;
 			for ( let i = ids.length - 1; i >= 0; i-- ) {
 				const key = ids[ i ];
@@ -1410,6 +1423,7 @@ class Session {
 			}
 			PRIVATE_VARS[ 'progress' ] = progress;
 			this.update( 'self_initial_progress', progress );
+			initializedProgress = true;
 		}
 		else {
 			// Received a new action, check whether we need to increment progress...
@@ -1447,14 +1461,14 @@ class Session {
 			const pts = POINTS[ action.type ] || 1;
 			if ( !arr ) {
 				addedScore += pts;
-				PRIVATE_VARS['score'] = this.get( 'score' ) + pts;
+				PRIVATE_VARS[ 'score' ] = this.get( 'score' ) + pts;
 				this.update( 'self_updated_score', pts );
 			}
 			else {
 				const types = arr.map( x => x.type );
 				if ( !contains( types, action.type ) ) {
 					addedScore += pts;
-					PRIVATE_VARS['score'] = this.get( 'score' ) + pts;
+					PRIVATE_VARS[ 'score' ] = this.get( 'score' ) + pts;
 					this.update( 'self_updated_score', pts );
 				}
 			}
@@ -1491,14 +1505,15 @@ class Session {
 		let timeDiff = now - updateTime;
 		updateTime = now;
 
+		debug( 'Updates session object in database...' );
 		const currentSession = {
 			elapsed: timeDiff,
 			addedScore: addedScore,
-			addedChatMessages: this.get('addedChatMessages'),
+			addedChatMessages: this.get( 'addedChatMessages' ),
 			vars: this.vars,
 			lessonID: this.lessonID,
-			progress: this.get('progress'),
-			addedActionTypes: countBy( this.get('addedActionTypes'), identity)
+			progress: this.get( 'progress' ),
+			addedActionTypes: countBy( this.get( 'addedActionTypes' ), identity )
 		};
 		addedScore = 0;
 		PRIVATE_VARS[ 'addedChatMessages' ] = 0;
@@ -1507,7 +1522,7 @@ class Session {
 		if ( !this._offline && !this.anonymous ) {
 			fetch( this.server+'/update_user_session', {
 				method: 'POST',
-				body: JSON.stringify(currentSession),
+				body: JSON.stringify( currentSession ),
 				headers: {
 					'Authorization': 'JWT ' + this.user.token,
 					'Content-Type': 'application/json'
