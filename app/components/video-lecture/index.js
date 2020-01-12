@@ -11,7 +11,6 @@ import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
-import Reaction from 'components/reaction';
 import SessionContext from 'session/context.js';
 import './video_lecture.css';
 
@@ -97,7 +96,7 @@ class VideoLecture extends Component {
 
 	renderStep( page ) {
 		const elem = this.props.steps[ page ];
-		const isReaction = elem.type === Reaction;
+		const isReaction = elem.props.actionID && elem.props.show;
 		if ( isReaction ) {
 			return ( <div>
 				{ this.state.active === page ? elem : null}
