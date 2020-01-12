@@ -1,3 +1,8 @@
+.quiz {
+	max-width: 1200px;
+	margin: 0px auto;
+}
+
 .quiz-right-answer {
 	background: #3c763d;
 	color: white;
