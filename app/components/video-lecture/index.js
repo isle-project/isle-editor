@@ -7,15 +7,8 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import FreeTextQuestion from 'components/free-text-question';
-import MultipleChoiceQuestion from 'components/multiple-choice-question';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
-import MatchListQuestion from 'components/match-list-question';
-import NumberQuestion from 'components/number-question';
-import OrderQuestion from 'components/order-question';
-import RangeQuestion from 'components/range-question';
-import SelectQuestion from 'components/select-question';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
 import Reaction from 'components/reaction';
@@ -31,15 +24,8 @@ const debug = logger( 'isle:video-lecture' );
 // FUNCTIONS //
 
 const isQuestion = ( elem ) => {
-	return (
-		elem.type === FreeTextQuestion ||
-		elem.type === MultipleChoiceQuestion ||
-		elem.type === MatchListQuestion ||
-		elem.type === NumberQuestion ||
-		elem.type === OrderQuestion ||
-		elem.type === RangeQuestion ||
-		elem.type === SelectQuestion
-	);
+	// Use duck-typing by checking whether a `question` property exists:
+	return elem && elem.props && elem.props.question;
 };
 
 const waitStatuses = ( steps ) => {
