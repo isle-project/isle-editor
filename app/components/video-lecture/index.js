@@ -96,7 +96,7 @@ class VideoLecture extends Component {
 
 	renderStep( page ) {
 		const elem = this.props.steps[ page ];
-		const isReaction = elem.props.actionID && elem.props.show;
+		const isReaction = elem.props && elem.props.actionID && elem.props.show;
 		if ( isReaction ) {
 			return ( <div>
 				{ this.state.active === page ? elem : null}
