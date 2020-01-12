@@ -208,9 +208,6 @@ class Session {
 			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
 			window.addEventListener( 'load', this.onLoadListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
-
-			// Log session data to database in regular interval:
-			setInterval( this.logSession, 5*60000 );
 		}
 	}
 
@@ -218,13 +215,15 @@ class Session {
 		if ( !this.anonymous && !isEmptyObject( this.currentUserActions ) ) {
 			// Set initial progress after response visualizers have registered themselves:
 			this.setProgress();
+
+			// Log session data to database in regular interval:
+			setInterval( this.logSession, 5*60000 );
 		}
 		hasLoaded = true;
 	}
 
 	beforeUnloadListener = () => {
 		debug( 'Page is either closed or refreshed...' );
-		this.logSession();
 		this.reset();
 	}
 
@@ -1440,6 +1439,7 @@ class Session {
 							PRIVATE_VARS[ 'progress' ] = this.get( 'progress' ) + 1.0 / ids.length;
 							this.update( 'self_updated_progress', this.get( 'progress' ) );
 							this.unfinished = this.unfinished.filter( x => x !== id );
+							this.logSession();
 						}
 					}
 				}
