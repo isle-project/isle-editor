@@ -207,14 +207,12 @@ class Quiz extends Component {
 	handleSubmission = ( val ) => {
 		const elem = this.state.questions[ this.state.current ];
 		const answers = this.state.answers.slice();
-
 		let answer;
 		let solution;
 		if ( elem.props ) {
 			if (
-				elem.component === 'MultipleChoiceQuestion' ||
-				elem.type === MultipleChoiceQuestion ||
-				( elem.type && elem.type.name === 'MultipleChoiceQuestion' )
+				// Case: 'MultipleChoiceQuestion'
+				isArray( elem.props.answers ) && ( elem.props.solution !== void 0 )
 			) {
 				answer = elem.props.answers[ val ].content;
 				const correct = elem.props.solution;
@@ -229,9 +227,8 @@ class Quiz extends Component {
 				}
 			}
 			else if (
-				elem.component === 'MatchListQuestion' ||
-				elem.type === MatchListQuestion ||
-				( elem.type && elem.type.name === 'MatchListQuestion' )
+				// Case: 'MatchListQuestion'
+				isArray( elem.props.elements )
 			) {
 				debug( 'Create answer and solution string for <MatchListQuestion />' );
 				answer = '';
@@ -249,9 +246,8 @@ class Quiz extends Component {
 				}
 			}
 			else if (
-				elem.component === 'OrderQuestion' ||
-				elem.type === OrderQuestion ||
-				( elem.type && elem.type.name === 'OrderQuestion' )
+				// Case: 'OrderQuestion'
+				isArray( elem.props.options )
 			) {
 				answer = '';
 				solution = '';
@@ -263,6 +259,7 @@ class Quiz extends Component {
 				}
 			}
 			else {
+				// Case: Other question types...
 				answer = val;
 				solution = elem.props.solution;
 				if ( isArray( solution ) ) {

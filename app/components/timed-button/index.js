@@ -109,13 +109,14 @@ class TimedButton extends Component {
 			marginLeft: percentage
 		};
 		return (
-			<div className={`timed-button-container ${this.props.className}`} >
+			<div className="timed-button-container" >
 				{ !this.props.disabled ? <div style={style} className="timed-button-remaining">
 					<div className="timed-button-bar">
 						<div style={barStyle} className="timed-button-bar-overlay" />
 					</div>
 				</div> : null }
 				<Button
+					className={this.props.className}
 					href={this.props.href}
 					size={this.props.size}
 					block={this.props.block}

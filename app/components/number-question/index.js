@@ -102,18 +102,9 @@ class NumberQuestion extends Component {
 		}
 	}
 
-	sendSubmitNotification = () => {
+	sendSubmitNotification = ( correct ) => {
 		const session = this.context;
-		const { digits, solution } = this.props;
-		if ( !isUndefinedOrNull( solution ) ) {
-			const val = parseFloat( this.state.value );
-			let correct;
-			if ( digits === null ) {
-				correct = val === solution;
-			} else {
-				correct = roundn( val, -digits ) === roundn( solution, -digits );
-			}
-			this.props.onSubmit( this.state.value, correct );
+		if ( !isUndefinedOrNull( this.props.solution ) ) {
 			if ( this.props.provideFeedback ) {
 				session.addNotification({
 					title: 'Answer submitted.',
@@ -132,7 +123,6 @@ class NumberQuestion extends Component {
 				});
 			}
 		} else {
-			this.props.onSubmit( this.state.value );
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
@@ -155,6 +145,17 @@ class NumberQuestion extends Component {
 				position: 'tr'
 			});
 		}
+		const { digits, solution } = this.props;
+		let correct;
+		if ( !isUndefinedOrNull( solution ) ) {
+			const val = parseFloat( this.state.value );
+			if ( digits === null ) {
+				correct = val === solution;
+			} else {
+				correct = roundn( val, -digits ) === roundn( solution, -digits );
+			}
+		}
+		this.props.onSubmit( val, correct );
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
