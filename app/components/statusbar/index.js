@@ -353,7 +353,7 @@ class StatusBar extends Component {
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		const duration = <Fragment>
 			<img className="statusbar-profile" alt="User Profile Pic" src={session.user.picture} onClick={preventPropagation} />
-			<Tooltip placement="bottom" tooltip="Time spent in lesson (in min)">
+			<Tooltip placement="bottom" tooltip="Time spent in current session (in min)">
 				<div className="progress-time" onClick={preventPropagation}>
 					DUR: {this.state.duration} MIN
 				</div>
