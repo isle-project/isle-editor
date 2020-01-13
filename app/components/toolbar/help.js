@@ -10,8 +10,8 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Text from 'components/text';
-import DataExplorerHelp from './data_explorer_help.js';
-import STATUSBAR_HELP from './statusbar_help.js';
+import DataExplorerHelp from './help/data_explorer.js';
+import STATUSBAR_HELP from './help/statusbar.js';
 
 
 // VARIABLES //
@@ -69,7 +69,7 @@ class HelpPage extends Component {
 		const session = this.props.session;
 		return (
 			<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1005 }}>
-				<Tab.Container id="left-tabs-example" defaultActiveKey="first">
+				<Tab.Container id="left-tabs-example" defaultActiveKey="zeroth">
 					<h3>Documentation</h3>
 					<div className="help-buttons" >
 						<Button variant="outline-secondary" size="sm" onClick={this.handlePDFDownload} >Download PDF</Button>
@@ -90,6 +90,9 @@ class HelpPage extends Component {
 						}
 					</Nav>
 					<Tab.Content ref={( div ) => { this.tabs = div; }} style={{ overflowY: 'scroll', height: '80vh' }}>
+						<Tab.Pane eventKey="zeroth">
+							<h4 style={{ textAlign: 'center', marginTop: '50%' }}>Click on an item in the menu to learn more about...</h4>
+						</Tab.Pane>
 						<Tab.Pane eventKey="first">
 							<DataExplorerHelp />
 						</Tab.Pane>
