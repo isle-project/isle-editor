@@ -46,7 +46,8 @@ const PRIVATE_VARS = {
 	elapsed: 0,
 	feedbacks: 0,
 	addedChatMessages: 0,
-	addedActionTypes: []
+	addedActionTypes: [],
+	active: true
 };
 
 
@@ -609,6 +610,15 @@ class Session {
 	}
 
 	/**
+	* Checks whether the lesson is active.
+	*
+	* @returns {boolean} boolean indicating whether lesson is active
+	*/
+	isActive = () => {
+		return PRIVATE_VARS[ 'active' ];
+	}
+
+	/**
 	* Joins the specified chat in case of an existing socket connection.
 	*
 	* @param {string} name - chat room name
@@ -695,7 +705,7 @@ class Session {
 	* @param {string} msg - chat message
 	*/
 	sendChatMessage( name, msg ) {
-		PRIVATE_VARS['addedChatMessages'] += 1;
+		PRIVATE_VARS[ 'addedChatMessages' ] += 1;
 		if ( this.socket ) {
 			const msgObj = {
 				time: new Date().getTime(),
@@ -1275,7 +1285,9 @@ class Session {
 			.then( ( body ) => {
 				this.lessonID = body.lessonID;
 				this.namespaceID = body.namespaceID;
+				PRIVATE_VARS[ 'active' ] = body.active;
 				debug( '[2] Retrieve user rights for said lesson and its namespace' );
+				this.update( 'received_lesson_info', body );
 				this.getUserRights();
 			})
 			.catch( ( err ) => {

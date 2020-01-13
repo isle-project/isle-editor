@@ -1,0 +1,15 @@
+.forbidden-wrapper {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 400px;
+	height: 200px;
+}
+
+.forbidden-header {
+	font-family: Courier New, Courier, monospace;
+}

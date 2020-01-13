@@ -10,6 +10,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import LessonContextMenu from './contextmenu.js';
+import Forbidden from './forbidden.js';
 import 'css/lesson.css';
 
 
@@ -23,6 +24,7 @@ class Lesson extends Component {
 		super( props );
 
 		this.state = {
+			visible: true,
 			notes: []
 		};
 	}
@@ -35,6 +37,14 @@ class Lesson extends Component {
 				if ( isObjectArray( currentUserActions[ 'lesson' ] ) ) {
 					this.restoreNotes( currentUserActions );
 				}
+			}
+			else if (
+				type === 'received_lesson_info' ||
+				type === 'RECEIVED_USER_RIGHTS'
+			) {
+				this.setState({
+					visible: session.isActive() || session.isOwner()
+				});
 			}
 		});
 	}
@@ -113,6 +123,9 @@ class Lesson extends Component {
 	}
 
 	render() {
+		if ( !this.state.visible ) {
+			return <Forbidden />;
+		}
 		return (
 			<Fragment>
 				<ContextMenuTrigger
