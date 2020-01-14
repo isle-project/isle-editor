@@ -39,7 +39,7 @@ const MODES = [
 // FUNCTIONS //
 
 
-export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder }) {
+export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, mode, stackBars, relative, totalPercent, xOrder }) {
 	let traces;
 	let transforms;
 	if ( xOrder ) {
@@ -58,7 +58,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	const nObs = data[ variable ].length;
 	if ( !group ) {
 		let freqs;
-		if ( yvar ) {
+		if ( mode === MODES[ 1 ] ) {
 			freqs = by( data[ yvar ], data[ variable ], statistic( summary ) );
 		} else {
 			freqs = countBy( data[ variable ], identity );
@@ -91,7 +91,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		}
 	} else {
 		let freqs;
-		if ( yvar ) {
+		if ( mode === MODES[ 1 ] ) {
 			freqs = by2( data[ variable ], data[ yvar ], data[ group ], ( labels, vals ) => {
 				return by( vals, labels, statistic( summary ) );
 			});
