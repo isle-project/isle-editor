@@ -74,7 +74,7 @@ class Session {
 		debug( 'Should create session...' );
 
 		// Address where ISLE server is running:
-		this.server = config.server;
+		this.server = window.location.origin;
 
 		// Set whether the session tries to communicate with the server
 		this._offline = offline || false;
@@ -313,10 +313,22 @@ class Session {
 					}
 				} else {
 					this.live = false;
+
+					// Override server property with value from preamble:
+					if ( this.config.server ) {
+						this.server = this.config.server;
+					}
 				}
 				this.update();
 			})
-			.catch( err => debug( 'Encountered an error: '+err.message ) );
+			.catch( err => {
+				debug( 'Encountered an error: '+err.message );
+
+				// Override server property with value from preamble:
+				if ( this.config.server ) {
+					this.server = this.config.server;
+				}
+			});
 	}
 
 	/**
