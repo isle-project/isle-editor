@@ -7,6 +7,8 @@ import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import sample from '@stdlib/random/sample';
+import isArray from '@stdlib/assert/is-array';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -294,29 +296,32 @@ class StatusBar extends Component {
 	jumpToUnfinished = ( event ) => {
 		event.stopPropagation();
 		const session = this.context;
-		const first = session.unfinished[ 0 ];
-		if ( first ) {
-			const elem = document.getElementById( first );
-			if ( isHidden( elem ) ) {
-				const clone = elem.cloneNode( true );
-				const newDiv = document.createElement( 'div' );
-				newDiv.id = 'unfinished-container';
-				clone.id = 'unfinished-elem';
-				clone.classList.add( 'focus-glow' );
-				newDiv.append( clone );
-				document.body.appendChild( newDiv );
-				setTimeout( () => {
-					const element = document.getElementById( 'unfinished-container' );
-					if ( element ) {
-						element.parentNode.removeChild( element );
-					}
-				}, 4000 );
-			} else {
-				elem.classList.add( 'focus-glow' );
-				elem.scrollIntoView();
-				setTimeout( () => {
-					elem.classList.remove( 'focus-glow' );
-				}, 4000 );
+		const unfinished = session.unfinished;
+		if ( isArray( unfinished ) ) {
+			const first = unfinished[ 0 ];
+			if ( first ) {
+				const elem = document.getElementById( first );
+				if ( isHidden( elem ) ) {
+					const clone = elem.cloneNode( true );
+					const newDiv = document.createElement( 'div' );
+					newDiv.id = 'unfinished-container';
+					clone.id = 'unfinished-elem';
+					clone.classList.add( 'focus-glow' );
+					newDiv.append( clone );
+					document.body.appendChild( newDiv );
+					setTimeout( () => {
+						const element = document.getElementById( 'unfinished-container' );
+						if ( element ) {
+							element.parentNode.removeChild( element );
+						}
+					}, 4000 );
+				} else {
+					elem.classList.add( 'focus-glow' );
+					elem.scrollIntoView();
+					setTimeout( () => {
+						elem.classList.remove( 'focus-glow' );
+					}, 4000 );
+				}
 			}
 		}
 	}
@@ -461,20 +466,22 @@ class StatusBar extends Component {
 						>
 							<Gate user>
 								{duration}
-								<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to preview unfinished' : 'Completed!'} >
-									<div className="outer-statusbar-progress-bar">
-										<ProgressBar
-											label={`COMPLETION RATE: ${this.state.progress}%`}
-											variant="success"
-											now={this.state.progress} style={{
-												height: 16,
-												animation: 'anim-fade-in 0.7s',
-												border: 'solid 1px darkgrey'
-											}}
-											onClick={this.jumpToUnfinished}
-										/>
-									</div>
-								</Tooltip>
+								{ !isEmptyObject( session.responseVisualizers ) ?
+									<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to preview unfinished' : 'Completed!'} >
+										<div className="outer-statusbar-progress-bar">
+											<ProgressBar
+												label={`COMPLETION RATE: ${this.state.progress}%`}
+												variant="success"
+												now={this.state.progress} style={{
+													animation: 'anim-fade-in 0.7s',
+													border: 'solid 1px darkgrey'
+												}}
+												onClick={this.jumpToUnfinished}
+											/>
+										</div>
+									</Tooltip> :
+									<div className="outer-statusbar-progress-bar"></div>
+								}
 								<Score />
 							</Gate>
 						</div>

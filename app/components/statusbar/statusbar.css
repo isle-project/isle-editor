@@ -35,6 +35,7 @@
 	margin-left: 3px;
 	margin-right: 3px;
 	width: calc(100% - 126px);
+	height: 16px;
 }
 
 #Lesson .statusbar-progress .progress-bar {
