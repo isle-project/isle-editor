@@ -3,10 +3,9 @@ title: "Sample Project - NYC"
 author: Ciaran Evans
 date: 02/08/2019
 require:
-    nyc: 'https://isle.heinz.cmu.edu/Demo_nyc_data.json' 
+    nyc: 'https://isle.heinz.cmu.edu/Demo_nyc_data.json'
     nycInfo: 'https://isle.heinz.cmu.edu/Demo_nyc_info.json'
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Project: NYC Housing Data
@@ -15,7 +14,7 @@ server: https://isle.heinz.cmu.edu
 
 For this project, you will use Exploratory Data Analysis, Probability, and Hypothesis Tests to investigate research questions/scenarios.   Our goal is to use summary measures, graphs, and hypothesis tests to tell a story about evidence we might have or might not have for research hypotheses or ideas that we have.
 
-## Content 
+## Content
 
 Your project should include **three** research scenarios; it will be far easier to put them together in a report if you have an overall theme or story you're interested in exploring. Your report should be similar to the following structure:
 
@@ -25,7 +24,7 @@ Your project should include **three** research scenarios; it will be far easier 
     At some point, you need to do the following for each of the variables you're uisng.  You could do it here in the Data Description section where you describe your individual variables; you could do it in the Research Scenario section.  Whichever makes sense for the story you're trying to tell.  But make sure to include the following:
 
 
-    *  For each categorical variable, use frequency tables to describe the probability distribution in your sample.  What are the most probable/least probable values?  
+    *  For each categorical variable, use frequency tables to describe the probability distribution in your sample.  What are the most probable/least probable values?
     *  For each continuous variable, describe the shape, center, and spread of your distribution.
 
 
@@ -34,7 +33,7 @@ Your project should include **three** research scenarios; it will be far easier 
 
 
     *  Generate EDA (numerical summary measures and graphs) to characterize your observations; look for evidence for/against your idea.  Thoughtfully describe what you see.
-    *  Use a hypothesis test to provide evidence whether or not your sample data support your idea.  Include the corresponding $p$-value.  If your test is a two-sided test, include a (1-$\alpha)100\%$ confidence interval.  
+    *  Use a hypothesis test to provide evidence whether or not your sample data support your idea.  Include the corresponding $p$-value.  If your test is a two-sided test, include a (1-$\alpha)100\%$ confidence interval.
     *  What conclusions can you make?  State in context.
 
 

@@ -6,7 +6,6 @@ require:
     heartdisease: "./heartdisease.json"
 state:
     showModal: true
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

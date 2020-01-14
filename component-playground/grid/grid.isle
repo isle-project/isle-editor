@@ -3,14 +3,13 @@ title: "Grid"
 author: Francis R. Kovacs
 date: Jan 4th, 2018
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Grid
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -27,13 +26,13 @@ server: https://isle.heinz.cmu.edu
                     step={1}
                 />
             </Col>
-            <Col sm={6} md={3}>Second 
+            <Col sm={6} md={3}>Second
                 <TextInput
                     legend="Second Column"
                     defaultValue="value"
                 />
             </Col>
-                
+
             <Col sm={6} md={3}>Third
             <Text>
                 Text for the third column</Text>

@@ -152,8 +152,7 @@ In the ISLE editor, re-create the text pictured below. To show the solution, cli
     author: Ciaran
     date: 17/07/2019
     state:
-    server: https://isle.heinz.cmu.edu
-    ---
+        ---
 
     # Intro to the ISLE Editor
 

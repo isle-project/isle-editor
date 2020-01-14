@@ -3,14 +3,13 @@ title: "Slider Input"
 author: Francis R. Kovacs
 date: Dec 31st, 2017
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Slider Input
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -29,7 +28,7 @@ server: https://isle.heinz.cmu.edu
 
 `}
     scope={{
-        SliderInput 
+        SliderInput
     }}
 />
 

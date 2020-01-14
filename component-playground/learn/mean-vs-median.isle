@@ -4,7 +4,6 @@ author: Francis R. Kovacs
 date: May 27th, 2018
 require:
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Mean vs. Median

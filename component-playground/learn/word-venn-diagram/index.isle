@@ -1,31 +1,30 @@
 ---
 title: "Word Venn Diagram"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: May 27th, 2018
 require:
     data: "./tdm_sparse.json"
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Word Venn Diagram
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
     <LearnWordVennDiagram
-        tdm={data.tdm} 
+        tdm={data.tdm}
         vocabulary={data.vocabulary}
         nTexts={118}
         height={250}
         width={350}
     />
-    
+
 `}
     scope={{
         LearnWordVennDiagram

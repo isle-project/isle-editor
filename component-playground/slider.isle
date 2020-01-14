@@ -3,7 +3,6 @@ title: "Slider"
 author: The ISLE Authors
 date: April 1st, 2019
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 
@@ -16,7 +15,7 @@ removeStatusBar: true
 <Slider
     adaptiveHeight
     interval = { 6000 }
-    title="Questions to explore:" 
+    title="Questions to explore:"
 >
     <p>Try generating new samples of the Normal data.</p>
     <p>How do the normal qq plots change as you vary the df parameter for the t-distributed data?</p>

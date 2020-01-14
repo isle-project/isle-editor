@@ -3,7 +3,6 @@ title: "Dashboard"
 author: The ISLE Authors
 date: April 1st, 2019
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

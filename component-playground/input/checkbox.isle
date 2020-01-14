@@ -1,16 +1,15 @@
 ---
 title: "Checkbox Input"
-author: Francis R. Kovacs 
+author: Francis R. Kovacs
 date: Jan 1st, 2018
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Checkbox Input
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -23,7 +22,7 @@ server: https://isle.heinz.cmu.edu
             onChange={ function(value) {
                     alert( value ? "true" : "false" );
             } }
-    /> 
+    />
 `}
     scope={{
         CheckboxInput

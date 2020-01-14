@@ -10,7 +10,6 @@ require:
     color: "https://isle.heinz.cmu.edu/Demo_color.json"
     major: "https://isle.heinz.cmu.edu/Demo_major.json"
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Lab 1 - Introduction to ISLE
@@ -189,22 +188,22 @@ First, welcome to ISLE and 36-200! Throughout the semester we will use this envi
                         <td>393</td>
                         <td>15.4%</td>
                     </tr>
-                </table>   
+                </table>
             </Panel>
             <Panel header="Bar Chart of Chosen Major" variant="success" style={{ fontSize: 16 }}>
-                <Plotly 
+                <Plotly
                     data={[{
                         x: major.map( x => x[ 0 ] ),
                         y: major.map( x => x[ 1 ] ),
                         type: 'bar'
-                    }]} 
-                    layout={{ width: '100%' }} 
-                />   
+                    }]}
+                    layout={{ width: '100%' }}
+                />
             </Panel>
         </Col>
         <Col md={6}>
             <Panel header="Pie Chart of Favorite Color" variant="success" style={{ fontSize: 16 }}>
-                <Plotly 
+                <Plotly
                     data={[{
                         values: color.map( x => x[ 1 ]),
                         labels: color.map( x => x[ 0 ]),
@@ -233,15 +232,15 @@ you see.  What interesting features do you see?</label>
     <FreeTextQuestion
         id="freetext_course"
         question="For the 'Course variable'"
-    /> 
+    />
     <FreeTextQuestion
         id="freetext_color"
         question="For the 'Favorite Color'"
-    />  
+    />
     <FreeTextQuestion
         id="freetext_major"
         question="For the 'Chosen Major'"
-    />   
+    />
 </Slider>
 
 <h2>Questions</h2>
@@ -276,7 +275,7 @@ you see.  What interesting features do you see?</label>
 <h3>Question 1</h3>
 
 <MultipleChoiceSurvey user id="meal_survey" question="What is your favorite meal of the day?" answers={["Breakfast","Brunch","Lunch","Dinner"]}/>
- 
+
 <h3>Question 2</h3>
 
 <MultipleChoiceSurvey user id="sleep_survey" question="How much sleep did you get last night?" answers={["< 4 hrs","4-5 hrs","6-7 hrs","8-9 hrs","10-11 hrs","> 11 hrs"]}/>

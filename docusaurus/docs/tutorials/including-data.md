@@ -20,7 +20,6 @@ The code shown here is
         airlines: "./airlines.json"
         airline_info: "./airline_info.json"
     state:
-    server: https://isle.heinz.cmu.edu
     ---
 
     <DataTable
@@ -78,7 +77,6 @@ If we save these as JSON files and import them into the editor in the same way w
     author: Ciaran
     date: 17/07/2019
     state:
-    server: https://isle.heinz.cmu.edu
     ---
 
 
@@ -139,7 +137,7 @@ The code to generate the data explorer illustrated here is
         airlines: "./airlines.json"
         airline_info: "./airline_info.json"
     state:
-    server: https://isle.heinz.cmu.edu
+    https://isle.heinz.cmu.edu
     ---
 
     <DataExplorer

@@ -3,7 +3,6 @@ title: "Match List Question"
 author: The ISLE Authors
 date: May 17th, 2019
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

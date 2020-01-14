@@ -3,7 +3,6 @@ title: "R Plot"
 author: Philipp Burckhardt
 date: Dec 27th, 2017
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

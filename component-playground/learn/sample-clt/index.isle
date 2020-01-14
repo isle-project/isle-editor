@@ -5,7 +5,6 @@ date: May 27th, 2018
 require:
     integrity: './college.json'
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Sample Central Limit Theorem

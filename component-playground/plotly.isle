@@ -3,14 +3,13 @@ title: "Plotly"
 author: Francis R. Kovacs
 date: Jan 4th, 2018
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Plotly
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'

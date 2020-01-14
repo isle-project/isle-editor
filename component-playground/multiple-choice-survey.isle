@@ -3,7 +3,6 @@ title: "Multiple Choice Survey"
 author: Philipp Burckhardt
 date: Oct 7th, 2018
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

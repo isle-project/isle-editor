@@ -3,14 +3,13 @@ title: "Density Plot"
 author: Francis R. Kovacs
 date: Jan 1st, 2018
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Density Plot
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
@@ -26,7 +25,7 @@ server: https://isle.heinz.cmu.edu
 
 `}
     scope={{
-        DensityPlot 
+        DensityPlot
     }}
 />
 

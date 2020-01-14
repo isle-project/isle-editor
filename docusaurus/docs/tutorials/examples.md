@@ -20,8 +20,7 @@ At Carnegie Mellon University, we have used ISLE in introductory statistics labs
         dataFile:
         dataInfoFile:
     state:
-    server: https://isle.heinz.cmu.edu
-    ---
+        ---
 
     # Project Title
 
@@ -66,8 +65,7 @@ ISLE can also be used to to create data analysis projects for students. The [NYC
         dataFile:
         dataInfoFile:
     state:
-    server: https://isle.heinz.cmu.edu
-    ---
+        ---
 
     # Project Title
 
@@ -125,8 +123,7 @@ An ISLE [video lecture](https://isle.heinz.cmu.edu/Demo/sample_video_lecture/) i
     author: Your Name
     date: 
     state:
-    server: https://isle.heinz.cmu.edu
-    ---
+        ---
 
     <VideoLecture 
         steps={[
@@ -151,8 +148,7 @@ Finally, ISLE can be used for homework assignments that involve writing and data
         dataFile: 
         dataInfoFile: 
     state:
-    server: https://isle.heinz.cmu.edu
-    ---
+        ---
 
     ## Instructions
 

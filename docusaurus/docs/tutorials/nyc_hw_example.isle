@@ -3,10 +3,9 @@ title: "NYC Homework"
 author: Ciaran Evans
 date: 02/08/2019
 require:
-    nyc: 'https://isle.heinz.cmu.edu/Demo_nyc_data.json' 
+    nyc: 'https://isle.heinz.cmu.edu/Demo_nyc_data.json'
     nycInfo: 'https://isle.heinz.cmu.edu/Demo_nyc_info.json'
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 ## Homework: NYC Housing Data
@@ -24,13 +23,13 @@ Please take a look at the description of the data set and its variables to famil
         editorTitle="Answers"
         questions={<Text raw={`
         1. In your own words, describe the New York City housing data set (what a row in the data represents, how many observations and variables, the source of the data, a summary of the information the variables contain, and any potential data issues).
-        
+
         2. Using just the data description and variable descriptions, come up with a research question that you can answer using the NYC housing data. What is your motivation for investigating this question? What is your initial hypothesis?
-        
+
         3. For your research question in 2., explain how you would answer this question with the data. What variables would you use? What statistics would you calculate? What figures/tables would you make? How would you use those statistics/figures/tables to draw a conclusion about your research question? *(Don't perform the analysis here, just describe what you would do).*
-        
+
         4. Carry out the analysis you described in 3. and report your results. Include any statistics you calculate and any figures/tables you make.
-        
+
         5. What do you conclude about your research question from (b)? Do you have any evidence for/against your initial hypothesis?
         `} />}
 />

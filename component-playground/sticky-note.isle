@@ -3,7 +3,6 @@ title: "Sticky Note"
 author: The ISLE Authors
 date: April 4th, 2019
 state:
-server: https://isle.heinz.cmu.edu
 removeStatusBar: true
 ---
 

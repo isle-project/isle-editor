@@ -3,20 +3,19 @@ title: "Text"
 author: Francis R. Kovacs
 date: Jan 2nd, 2018
 state:
-server: https://isle.heinz.cmu.edu
 ---
 
 # Text
 
 <br />
 
-<Playground 
+<Playground
     style={{
         marginLeft: 0,
         width: '1200px'
     }}
     code={`
-        <Text>*Markdown* formatted text comes here...</Text>    
+        <Text>*Markdown* formatted text comes here...</Text>
 `}
     scope={{
         Text
@@ -37,7 +36,7 @@ or
 
 ## Header Level 2
 `## Header Level 2`
-Header level 2 may alternatively be written with three dashes (-) under the header text in a manner identical to Header Level 1. The text for the alternative measure causes a preamble error in this version of isle, so it will not be included. 
+Header level 2 may alternatively be written with three dashes (-) under the header text in a manner identical to Header Level 1. The text for the alternative measure causes a preamble error in this version of isle, so it will not be included.
 
 ### Header Level 3
 `### Header Level 3`
@@ -55,7 +54,7 @@ Header level 2 may alternatively be written with three dashes (-) under the head
 
 #### *Emphasis*
 
-Emphasis may be accomplished with asterisks or underscores. 
+Emphasis may be accomplished with asterisks or underscores.
 
 *The Detroit Lions will go 16-0.*
 `\*The Detroit Lions will go 16-0.\*`
@@ -75,19 +74,19 @@ __The Detroit Lions will go 16-0.__
 
 #### *Strikethrough*
 
-Strikethrough may be accomplished by buffering text iwth two tildes (~). 
+Strikethrough may be accomplished by buffering text iwth two tildes (~).
 
 ~~The Detroit Lions will go 16-0.~~
 `\~\~The Detroit Lions will go 16-0.\~\~`
 
-Note that emphsais, strong emphasis and strikethrough may be used in conjunction with one another. This principle does not extent to the specific delimiters, one may not start the declaration of an emphasis statement with an asterik and end with an underscore. 
+Note that emphsais, strong emphasis and strikethrough may be used in conjunction with one another. This principle does not extent to the specific delimiters, one may not start the declaration of an emphasis statement with an asterik and end with an underscore.
 
 ### *Lists*
 
 #### First-Ordered Sorted Lists
 
-First ordered sorted lists may be accomplished using a simple numbering and a newline. 
-1. First item 
+First ordered sorted lists may be accomplished using a simple numbering and a newline.
+1. First item
 2. Second item
 `1. First item \n
 2. Second item`
@@ -95,15 +94,15 @@ Note that the `\n` denotes a newline.
 
 #### First-Ordered Unsorted Lists
 
-First ordered unsorted lists may be accomplished using either an asterik, plus or minus and a newline. 
+First ordered unsorted lists may be accomplished using either an asterik, plus or minus and a newline.
 
-* First item 
+* First item
 * Second item
 `* First item \n
 * Second item`
 Note that the `\n` denotes a newline.
 
-To create a sublist, simply add two spaces. 
+To create a sublist, simply add two spaces.
 
 ### *Links*
 
