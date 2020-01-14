@@ -161,7 +161,7 @@
     "murmurhash3js": "^3.0.1",
     "node-libs-browser": "^2.2.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "pdfjs-dist": "^2.1.266",
+    "pdfjs-dist": "^2.3.200",
     "pressure": "^2.1.2",
     "profanities": "^2.10.2",
     "prop-types": "^15.5.10",

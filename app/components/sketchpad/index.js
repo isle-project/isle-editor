@@ -1959,7 +1959,7 @@ class Sketchpad extends Component {
 	}
 
 	initializePDF = () => {
-		debug( 'Initialize PDF document...' );
+		debug( `Initialize PDF document at ${this.props.pdf}...` );
 		return new Promise( ( resolve, reject ) => {
 			const loadingTask = pdfjs.getDocument({
 				url: this.props.pdf,
@@ -1970,14 +1970,15 @@ class Sketchpad extends Component {
 					debug( 'Retrieved PDF document... ' );
 					this.processPDF( pdf, ( err ) => {
 						if ( err ) {
+							debug( `Encountered an error: ${err.message}` );
 							reject( err );
 						} else {
 							resolve();
 						}
 					});
 				})
-				.catch(function onError( err ) {
-					debug( err );
+				.catch( function onError( err ) {
+					debug( `Encountered an error: ${err.message}` );
 				});
 		});
 	}
