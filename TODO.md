@@ -19,7 +19,6 @@ Fall
 * Log actions in instructor bar
 * Consider adding vertical gridlines to plots
 * QQPlot and model diagnostics for models
-* Toolbox tutorial + PDF
 
 Summer 2019
 ===========
@@ -34,7 +33,6 @@ LONG-TERM
 * Data Explorer
    - remove any R dependencies for mosaic
    - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
-   - We have been deliberately loose with respect to terminology: z-test vs. t-test
    - Show wether we display both relative and absolute frequencies in tables?
 * Surveys
     - Handle ordered categories
