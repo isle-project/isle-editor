@@ -157,7 +157,7 @@ class NumberQuestion extends Component {
 		}
 		this.props.onSubmit( val, correct );
 		if ( !this.props.disableSubmitNotification ) {
-			this.sendSubmitNotification();
+			this.sendSubmitNotification( correct );
 		}
 		this.setState({
 			submitted: true
