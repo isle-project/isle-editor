@@ -27,6 +27,7 @@ import Loadable from 'components/loadable';
 import { ipcRenderer } from 'electron';
 import MonacoEditor from 'react-monaco-editor';
 import SpellChecker from 'utils/spell-checker';
+import today from 'utils/today';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
@@ -42,6 +43,7 @@ const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
+const RE_DATE = /date: ([^\n]+)/;
 const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
@@ -181,6 +183,18 @@ class Editor extends Component {
 				identifier: id,
 				range,
 				text: entry.origin
+			};
+			this.editor.executeEdits( 'my-source', [ fix ] );
+		});
+
+		this.changeToCurrentDate = this.editor.addCommand( 'change-to-current-date', ( _, p ) => {
+			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+			const id = { major: 1, minor: 1 };
+			const fix = {
+				title: 'Change to current date',
+				identifier: id,
+				range,
+				text: `date: ${today()}`
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
@@ -415,6 +429,18 @@ class Editor extends Component {
 		const selection = this.editor.getSelection();
 		const model = this.editor.getModel();
 		if ( model ) {
+			const line = model.getLineContent( selection.startLineNumber );
+			if ( startsWith( line, 'date: ' ) ) {
+				const { range } = model.findNextMatch( RE_DATE, 0, true, true, null, false );
+				actions.push({
+					command: {
+						id: this.changeToCurrentDate,
+						title: 'Change to current date',
+						arguments: [ range ]
+					},
+					title: 'Change to current date'
+				});
+			}
 			const selectedText = model.getValueInRange( selection );
 			if ( isURI( selectedText ) ) {
 				const ext = extname( url.parse( selectedText ).pathname );
