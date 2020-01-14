@@ -56,8 +56,8 @@
 	},
 	{
 		"name": "server",
-		"value": "server: ${1:https://isle.heinz.cmu.edu}",
-		"description": "ISLE server address"
+		"value": "server: ${1:https://isle.stat.cmu.edu}",
+		"description": "ISLE server address (only used when hosting lesson not on ISLE server but somewhere else)"
 	},
 	{
 		"name": "state",

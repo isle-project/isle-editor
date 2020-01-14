@@ -8,7 +8,7 @@
 {{TODO: Add snippet}}
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/{{TODO: component}})
+[Open interactive preview](https://isle.stat.cmu.edu/components/{{TODO: component}})
 
 #### Options:
 

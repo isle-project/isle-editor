@@ -92,7 +92,6 @@ The ISLE Sketchpad can be used to display PDF [lecture slides](https://isle.hein
     author: Your Name
     date: 
     state:
-    server: https://isle.heinz.cmu.edu/
     ---
 
     <Sketchpad
