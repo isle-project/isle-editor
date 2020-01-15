@@ -1786,7 +1786,7 @@ class Session {
 		if ( !hasOwnProp( mailOptions, 'to' ) ) {
 			mailOptions.to = to;
 		}
-		fetch( this.config.server + '/send_mail', {
+		fetch( this.server + '/send_mail', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -1821,6 +1821,9 @@ class Session {
 			config.onRemove = () => {
 				window.removeEventListener( 'beforeunload', beforeUnload );
 			};
+		}
+		if ( !config.position ) {
+			config.position = 'tc';
 		}
 		if ( global.notificationSystemISLE ) {
 			return global.notificationSystemISLE.addNotification( config );
