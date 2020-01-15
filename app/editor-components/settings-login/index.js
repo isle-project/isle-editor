@@ -9,6 +9,7 @@ import FormText from 'react-bootstrap/FormText';
 import Card from 'react-bootstrap/Card';
 import FormLabel from 'react-bootstrap/FormLabel';
 import startsWith from '@stdlib/string/starts-with';
+import trim from '@stdlib/string/trim';
 
 
 // MAIN //
@@ -45,7 +46,7 @@ class SettingsLogin extends Component {
 	connectToServer = () => {
 		let form = {
 			password: this.state.password,
-			email: this.state.email
+			email: trim( this.state.email )
 		};
 		fetch( this.state.server+'/login', {
 			method: 'POST',
