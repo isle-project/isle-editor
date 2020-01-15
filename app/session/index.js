@@ -83,7 +83,7 @@ class Session {
 		this.listeners = [];
 
 		// Address in local storage for user information:
-		this.userVal = 'ISLE_USER_' + config.server;
+		this.userVal = 'ISLE_USER_' + this.server;
 
 		// Boolean indicating whether user is logged in or not:
 		this.anonymous = true;
