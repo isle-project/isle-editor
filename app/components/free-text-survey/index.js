@@ -79,8 +79,7 @@ class FreeTextSurvey extends Component {
 			session.addNotification({
 				title: 'Action required',
 				message: `Your answer contains an offensive word: ${val}. Please remove.`,
-				level: 'warning',
-				position: 'tr'
+				level: 'warning'
 			});
 		} else {
 			session.log({
@@ -95,8 +94,7 @@ class FreeTextSurvey extends Component {
 			session.addNotification({
 				title: 'Submitted',
 				message: 'Your answer has been submitted.',
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 			this.props.onSubmit( this.state.value );
 		}

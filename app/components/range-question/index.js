@@ -146,8 +146,7 @@ class RangeQuestion extends Component {
 				session.addNotification({
 					title: 'Answer submitted.',
 					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
-					level: correct ? 'success' : 'error',
-					position: 'tr'
+					level: correct ? 'success' : 'error'
 				});
 			} else {
 				session.addNotification({
@@ -156,7 +155,6 @@ class RangeQuestion extends Component {
 						'You have successfully re-submitted your answer.' :
 						'Your answer has been submitted.',
 					level: 'info',
-					position: 'tr'
 				});
 			}
 		} else {
@@ -168,8 +166,7 @@ class RangeQuestion extends Component {
 				message: this.state.submitted ?
 					'You have successfully re-submitted your answer.' :
 					'Your answer has been submitted.',
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		}
 		this.setState({

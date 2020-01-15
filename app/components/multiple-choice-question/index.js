@@ -200,8 +200,7 @@ class MultipleChoiceQuestion extends Component {
 		session.addNotification({
 			title: 'Answer submitted.',
 			message: msg,
-			level,
-			position: 'tr'
+			level
 		});
 	}
 

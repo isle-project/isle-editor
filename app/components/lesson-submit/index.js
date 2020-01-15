@@ -27,7 +27,7 @@ const debug = logger( 'isle:lesson-submit' );
 function createMessage( session, message ) {
 	let msg = message || '';
 	return {
-		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed ${session.lessonName} of course ${session.namespaceName}. ${msg}`,
+		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed lesson "${session.lessonName}" of course "${session.namespaceName}". ${msg}`,
 		subject: `${session.lessonName} successfully completed!`
 	};
 }

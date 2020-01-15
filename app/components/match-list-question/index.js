@@ -116,15 +116,13 @@ class MatchListQuestion extends Component {
 			session.addNotification({
 				title: 'Answer re-submitted.',
 				message: this.props.resubmissionMsg,
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		} else {
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: this.props.submissionMsg,
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		}
 	}

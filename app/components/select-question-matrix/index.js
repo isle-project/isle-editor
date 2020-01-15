@@ -103,15 +103,13 @@ class SelectQuestionMatrix extends Component {
 				session.addNotification({
 					title: 'Correct',
 					message: this.props.successMsg,
-					level: 'success',
-					position: 'tr'
+					level: 'success'
 				});
 			} else {
 				session.addNotification({
 					title: 'Incorrect',
 					message: this.props.failureMsg,
-					level: 'error',
-					position: 'tr'
+					level: 'error'
 				});
 			}
 		} else {
@@ -120,8 +118,7 @@ class SelectQuestionMatrix extends Component {
 				message: this.state.submitted ?
 					'You have successfully re-submitted your answer.' :
 					'Your answer has been submitted.',
-				level: 'info',
-				position: 'tr'
+				level: 'info'
 			});
 		}
 		session.log({

@@ -108,16 +108,14 @@ class MultipleChoiceMatrix extends Component {
 			session.addNotification({
 				title: 'Answer re-submitted.',
 				message: 'You have successfully re-submitted your answer.',
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		} else {
 			let msg = 'You have successfully submitted your answer. You can change your answer and re-submit if you want to.';
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: msg,
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		}
 	}

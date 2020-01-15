@@ -133,8 +133,7 @@ class FreeTextQuestion extends Component {
 			session.addNotification({
 				title: 'Answer re-submitted.',
 				message: this.props.resubmissionMsg,
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		} else {
 			let submissionMsg = this.props.submissionMsg;
@@ -146,8 +145,7 @@ class FreeTextQuestion extends Component {
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: submissionMsg,
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		}
 	}
@@ -174,8 +172,7 @@ class FreeTextQuestion extends Component {
 			return session.addNotification({
 				title: 'Not allowed',
 				message: 'Solution becomes available after answer is submitted and all hints have been required.',
-				level: 'warning',
-				position: 'tr'
+				level: 'warning'
 			});
 		}
 		if ( this.state.solutionDisplayed ) {

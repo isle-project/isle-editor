@@ -87,23 +87,20 @@ class OrderQuestion extends Component {
 				session.addNotification({
 					title: 'Correct',
 					message: this.props.successMsg,
-					level: 'success',
-					position: 'tr'
+					level: 'success'
 				});
 			} else {
 				session.addNotification({
 					title: 'Incorrect',
 					message: this.props.failureMsg,
-					level: 'error',
-					position: 'tr'
+					level: 'error'
 				});
 			}
 		} else {
 			session.addNotification({
 				title: 'Submitted',
 				message: 'You have successfully submitted your answer',
-				level: 'info',
-				position: 'tr'
+				level: 'info'
 			});
 		}
 	}

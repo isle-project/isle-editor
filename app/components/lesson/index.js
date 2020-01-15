@@ -14,6 +14,17 @@ import Forbidden from './forbidden.js';
 import 'css/lesson.css';
 
 
+// VARIABLES //
+
+const NOTIFICATION_STYLE = {
+	Containers: {
+		tc: {
+			margin: '30px auto 0px auto'
+		}
+	}
+};
+
+
 // MAIN //
 
 /**
@@ -154,6 +165,7 @@ class Lesson extends Component {
 						global.notificationSystemISLE = div;
 					}}
 					allowHTML={true}
+					style={NOTIFICATION_STYLE}
 				/>
 			</Fragment>
 		);

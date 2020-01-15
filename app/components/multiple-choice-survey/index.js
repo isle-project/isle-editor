@@ -74,8 +74,7 @@ class MultipleChoiceSurvey extends Component {
 		session.addNotification({
 			title: 'Submitted',
 			message: 'Your answer has been submitted.',
-			level: 'success',
-			position: 'tr'
+			level: 'success'
 		});
 		this.props.onSubmit( this.state.active );
 	}

@@ -45,8 +45,7 @@ class LikertScale extends Component {
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: 'Your answer was successfully stored',
-				level: 'success',
-				position: 'tr'
+				level: 'success'
 			});
 		}
 		this.setState({
