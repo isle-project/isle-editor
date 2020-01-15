@@ -1297,7 +1297,7 @@ class Session {
 			.then( ( body ) => {
 				this.lessonID = body.lessonID;
 				this.namespaceID = body.namespaceID;
-				PRIVATE_VARS[ 'active' ] = body.active;
+				PRIVATE_VARS[ 'active' ] = ( body.active === void 0 ) ? true : false;
 				debug( '[2] Retrieve user rights for said lesson and its namespace' );
 				this.update( 'received_lesson_info', body );
 				this.getUserRights();
