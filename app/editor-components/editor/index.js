@@ -44,6 +44,7 @@ const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_DATE = /date: ([^\n]+)/;
+const RE_AUTHOR = /author: ([^\n]+)/;
 const RE_EMPTY_SPANS = /<span \/>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
@@ -136,33 +137,45 @@ class Editor extends Component {
 		}
 		this.checkRequires( this.newRequires, this.props.preamble );
 
-		this._codeActionProvider = this.monaco.languages.registerCodeActionProvider( 'javascript', {
-			provideCodeActions: this.provideCodeActions
-		});
-
-		this._attributeProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ ' ', '\n' ],
-			provideCompletionItems: provideAttributeFactory( this.monaco )
-		});
-		this._snippetProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '<' ],
-			provideCompletionItems: provideSnippetFactory( this.monaco )
-		});
-		this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '\n', ' ', '\t' ],
-			provideCompletionItems: providePreambleFactory( this.monaco )
-		});
-		this._preambleHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
-			provideHover: providePreambleHoverFactory( this.monaco )
-		});
-		this._snippetHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
-			provideHover: provideSnippetHoverFactory( this.monaco )
-		});
-		this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
-			triggerCharacters: [ '(' ],
-			provideCompletionItems: provideRequireFactory( this.monaco )
-		});
-
+		if ( !this._codeActionProvider ) {
+			this._codeActionProvider = this.monaco.languages.registerCodeActionProvider( 'javascript', {
+				provideCodeActions: this.provideCodeActions
+			});
+		}
+		if ( !this._attributeProvider ) {
+			this._attributeProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+				triggerCharacters: [ ' ', '\n' ],
+				provideCompletionItems: provideAttributeFactory( this.monaco )
+			});
+		}
+		if ( !this._snippetProvider ) {
+			this._snippetProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+				triggerCharacters: [ '<' ],
+				provideCompletionItems: provideSnippetFactory( this.monaco )
+			});
+		}
+		if ( !this._preambleProvider ) {
+			this._preambleProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+				triggerCharacters: [ '\n', ' ', '\t' ],
+				provideCompletionItems: providePreambleFactory( this.monaco )
+			});
+		}
+		if ( !this._preambleHoverProvider ) {
+			this._preambleHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
+				provideHover: providePreambleHoverFactory( this.monaco )
+			});
+		}
+		if ( !this._snippetHoverProvider ) {
+			this._snippetHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
+				provideHover: provideSnippetHoverFactory( this.monaco )
+			});
+		}
+		if ( !this._requireProvider ) {
+			this._requireProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
+				triggerCharacters: [ '(' ],
+				provideCompletionItems: provideRequireFactory( this.monaco )
+			});
+		}
 		this.editTextCommand = this.editor.addCommand( 'fix-spelling', ( _, text, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const id = { major: 1, minor: 1 };
@@ -195,6 +208,18 @@ class Editor extends Component {
 				identifier: id,
 				range,
 				text: `date: ${today()}`
+			};
+			this.editor.executeEdits( 'my-source', [ fix ] );
+		});
+
+		this.addAuthor = this.editor.addCommand( 'add-author', ( _, otherAuthors, p ) => {
+			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
+			const id = { major: 1, minor: 1 };
+			const fix = {
+				title: 'Add to authors',
+				identifier: id,
+				range,
+				text: `author: ${this.props.author}, ${otherAuthors}`
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
@@ -439,6 +464,17 @@ class Editor extends Component {
 						arguments: [ range ]
 					},
 					title: 'Change to current date'
+				});
+			}
+			else if ( startsWith( line, 'author: ' ) ) {
+				const { matches, range } = model.findNextMatch( RE_AUTHOR, 0, true, true, null, true );
+				actions.push({
+					command: {
+						id: this.addAuthor,
+						title: 'Add myself to author list (as specified in preamble template)',
+						arguments: [ matches[ 1 ], range ]
+					},
+					title: 'Add myself to author list (as specified in preamble template)'
 				});
 			}
 			const selectedText = model.getValueInRange( selection );
@@ -809,6 +845,7 @@ Editor.propTypes = {
 	fontSize: PropTypes.number,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
+	author: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
 	spellingErrors: PropTypes.array.isRequired,

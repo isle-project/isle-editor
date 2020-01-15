@@ -25,6 +25,9 @@ if ( !md ) {
 		md = replace( md, '<today>', today() );
 	}
 }
+const RE_AUTHOR = /author: ([^\n]+)/;
+const authorMatch = preambleTemplate.match( RE_AUTHOR );
+
 const initialState = {
 	markdown: md,
 	preamble: config.get( 'mostRecentPreamble' ) || {},
@@ -38,7 +41,8 @@ const initialState = {
 	namespaceName: null,
 	error: null,
 	fontSize: config.get( 'fontSize' ) || 14,
-	preambleTemplate: preambleTemplate
+	preambleTemplate: preambleTemplate,
+	author: authorMatch ? authorMatch[ 1 ] : ''
 };
 
 

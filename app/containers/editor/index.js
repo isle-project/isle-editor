@@ -186,6 +186,7 @@ class App extends Component {
 							name="monaco_editor"
 							fontSize={this.props.fontSize}
 							preamble={this.props.preamble}
+							author={this.props.author}
 							splitPos={this.state.splitPos}
 							lintErrors={this.props.lintErrors}
 							spellingErrors={this.props.spellingErrors}
@@ -240,6 +241,7 @@ App.defaultProps = {
 };
 
 App.propTypes = {
+	author: PropTypes.string.isRequired,
 	changeMode: PropTypes.func.isRequired,
 	changeView: PropTypes.func.isRequired,
 	convertMarkdown: PropTypes.func.isRequired,
