@@ -273,6 +273,9 @@ class StatusBar extends Component {
 
 	toggleProgress = () => {
 		const session = this.context;
+
+		// Initialize progress if not already set:
+		session.setProgress();
 		if ( this.state.isProgressLeaving || session.isOwner() ) {
 			return;
 		}

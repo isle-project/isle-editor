@@ -36,7 +36,6 @@ const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
 let initializedProgress = false;
-let hasLoaded = false;
 let updateTime = new Date().getTime();
 let addedScore = 0;
 
@@ -207,20 +206,16 @@ class Session {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
 			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
-			window.addEventListener( 'load', this.onLoadListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
 		}
 	}
 
-	onLoadListener = () => {
+	onLessonMount = () => {
+		debug( 'Lesson has mounted...' );
 		if ( !this.anonymous && !isEmptyObject( this.currentUserActions ) ) {
-			// Set initial progress after response visualizers have registered themselves:
-			this.setProgress();
-
 			// Log session data to database in regular interval:
 			setInterval( this.logSession, 5*60000 );
 		}
-		hasLoaded = true;
 	}
 
 	beforeUnloadListener = () => {
@@ -1059,9 +1054,6 @@ class Session {
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;
-					if ( !initializedProgress && hasLoaded ) {
-						this.setProgress();
-					}
 					this.update( 'retrieved_current_user_actions', this.currentUserActions );
 				});
 			}
@@ -1409,7 +1401,7 @@ class Session {
 	/**
 	* Sets the user's progress for the lesson.
 	*
-	* @param {string} id - action id
+	* @param {string} [id] - action id
 	*/
 	setProgress( id ) {
 		if (
@@ -1423,8 +1415,8 @@ class Session {
 		if ( !this.unfinished ) {
 			this.unfinished = ids.slice();
 		}
-		if ( !id ) {
-			debug( 'Set initial progress when loading the page...' );
+		if ( !initializedProgress ) {
+			debug( 'Set initial progress...' );
 			let progress = 0;
 			for ( let i = ids.length - 1; i >= 0; i-- ) {
 				const key = ids[ i ];
@@ -1446,9 +1438,10 @@ class Session {
 			}
 			PRIVATE_VARS[ 'progress' ] = progress;
 			this.update( 'self_initial_progress', progress );
+			this.logSession();
 			initializedProgress = true;
 		}
-		else {
+		if ( id ) {
 			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];

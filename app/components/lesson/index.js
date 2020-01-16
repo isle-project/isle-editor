@@ -42,6 +42,7 @@ class Lesson extends Component {
 
 	componentDidMount() {
 		const session = this.context;
+		session.onLessonMount();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === 'retrieved_current_user_actions' ) {
 				const currentUserActions = value;
