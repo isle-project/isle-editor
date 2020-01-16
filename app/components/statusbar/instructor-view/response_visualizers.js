@@ -186,6 +186,13 @@ class ResponseVisualizers extends Component {
 		const { means } = this.state;
 		const ids = keys( visualizers );
 		ids.sort( ( a, b ) => {
+			if ( means[ a ] && means[ b ] ) {
+				const meanA = means[ a ]();
+				const meanB = means[ b ]();
+				if ( meanA && meanB ) {
+					return meanA - meanB;
+				}
+			}
 			const na = visualizers[ a ].ref.state.nInfo;
 			const nb = visualizers[ b ].ref.state.nInfo;
 			return nb - na;
