@@ -73,7 +73,13 @@ class UploadLesson extends Component {
 				this.setState({
 					namespaces: body.namespaces
 				}, () => {
-					if ( this.state.namespaces.length > 0 ) {
+					if (
+						this.state.namespaces.length > 0 &&
+						(
+							!this.props.namespaceName ||
+							this.state.namespaces.filter( x => x.title === this.props.namespaceName ).length === 0
+						)
+					) {
 						this.props.changeNamespace( this.state.namespaces[ 0 ].title );
 					}
 				});
