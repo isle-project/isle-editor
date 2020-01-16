@@ -617,12 +617,14 @@ class Sketchpad extends Component {
 	retrieveData = ( data ) => {
 		debug( 'Retrieved data from previous session...' );
 		if ( isObject( data ) ) {
-			this.elements = data.elements;
-			if ( data.nUndos ) {
-				this.nUndos = data.nUndos;
+			for ( let i = 0; i < data.elements.length; i++ ) {
+				this.elements[ i ] = data.elements[ i ];
 			}
-			if ( data.recordingEndPositions ) {
-				this.recordingEndPositions = data.recordingEndPositions;
+			for ( let i = 0; i < data.nUndos.length; i++ ) {
+				this.nUndos[ i ] = data.nUndos[ i ];
+			}
+			for ( let i = 0; i < data.recordingEndPositions.length; i++ ) {
+				this.recordingEndPositions[ i ] = data.recordingEndPositions[ i ];
 			}
 			for ( let i = 0; i < data.state.insertedPages.length; i++ ) {
 				// Insert empty pages at the correct locations:
