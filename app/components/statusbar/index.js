@@ -294,6 +294,7 @@ class StatusBar extends Component {
 	}
 
 	jumpToUnfinished = ( event ) => {
+		debug( 'Jump to next unfinished question...' );
 		event.stopPropagation();
 		const session = this.context;
 		const unfinished = session.unfinished;
@@ -467,7 +468,11 @@ class StatusBar extends Component {
 							<Gate user>
 								{duration}
 								{ !isEmptyObject( session.responseVisualizers ) ?
-									<Tooltip placement="bottom" tooltip={!finishedLesson ? 'Click to preview unfinished' : 'Completed!'} >
+									<Tooltip
+										placement="bottom"
+										tooltip={!finishedLesson ? 'Click to preview unfinished' : 'Completed!'}
+										show={isArray( session.unfinished )}
+									>
 										<div className="outer-statusbar-progress-bar">
 											<ProgressBar
 												label={`COMPLETION RATE: ${this.state.progress}%`}
