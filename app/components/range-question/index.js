@@ -154,7 +154,7 @@ class RangeQuestion extends Component {
 					message: this.state.submitted ?
 						'You have successfully re-submitted your answer.' :
 						'Your answer has been submitted.',
-					level: 'info',
+					level: 'info'
 				});
 			}
 		} else {
