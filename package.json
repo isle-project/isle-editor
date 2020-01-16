@@ -140,7 +140,7 @@
     "element-resize-event": "^3.0.1",
     "eslint": "^6.7.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react": "^7.18.0",
     "file-loader": "^5.0.2",
     "form-data": "^3.0.0",
     "highlight.js": "^9.15.9",
