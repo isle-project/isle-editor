@@ -4083,7 +4083,7 @@
       {
         "name": "duration",
         "type": "number",
-        "description": "duration of the quiz; once time is up, the summary page will be displayed",
+        "description": "duration of the quiz (in minutes); once time is up, the summary page will be displayed",
         "default": null
       },
       {

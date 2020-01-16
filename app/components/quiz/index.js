@@ -60,7 +60,7 @@ function isHTMLConfig( elem ) {
 * @property {boolean} showFinishButton - controls whether to display button to finish quiz and jump directly to results page
 * @property {string} finishLabel - label of button to finish quiz
 * @property {boolean} active - controls whether the timer for the quiz is active
-* @property {number} duration - duration of the quiz; once time is up, the summary page will be displayed
+* @property {number} duration - duration of the quiz (in minutes); once time is up, the summary page will be displayed
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
 * @property {Function} onSubmit - callback invoked when user submits an answer
 */

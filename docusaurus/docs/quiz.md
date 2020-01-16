@@ -34,7 +34,7 @@ A quiz component displaying a sequence of question components.
 * __count__ | `number`: number of questions to include in the quiz. Default: `none`.
 * __questions__ | `array (required)`: array of questions from which questions will be randomly selected. Default: `none`.
 * __active__ | `boolean`: controls whether the timer for the quiz is active. Default: `true`.
-* __duration__ | `number`: duration of the quiz; once time is up, the summary page will be displayed. Default: `none`.
+* __duration__ | `number`: duration of the quiz (in minutes); once time is up, the summary page will be displayed. Default: `none`.
 * __skippable__ | `boolean`: controls whether questions in  the quiz are skippable. Default: `true`.
 * __footerNodes__ | `array`: array of nodes to be displayed in the footer of each question. Default: `[]`.
 * __nextLabel__ | `string`: label of button to advance to next question. Default: `'Next Question'`.
