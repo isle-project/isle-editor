@@ -222,10 +222,10 @@ class Sketchpad extends Component {
 		const session = this.context;
 
 		// Scale the magnifying glass:
-		this.zoomCtx.scale( DPR, DPR );
+		this.zoomCtx.setTransform( DPR, 0, 0, DPR, 0, 0 );
 
 		// Scale all drawing operations by the DPR:
-		this.ctx.scale( DPR, DPR );
+		this.ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
 
 		if ( this.props.fullscreen ) {
 			window.addEventListener( 'resize', this.handleResize );
@@ -739,7 +739,7 @@ class Sketchpad extends Component {
 			}
 
 			// Scale all drawing operations by the DPR:
-			this.ctx.scale( DPR, DPR );
+			this.ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
 
 			// Render PDF page into canvas context
 			const renderContext = {
@@ -768,7 +768,7 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			if ( !this.props.pdf ) {
 				// Scale all drawing operations by the DPR when no background is present:
-				ctx.scale( DPR, DPR );
+				ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
 			}
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
