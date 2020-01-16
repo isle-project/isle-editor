@@ -79,7 +79,7 @@ const config = smp.wrap({
 		stats: 'errors-only',
 		inline: true,
 		lazy: false,
-		hot: true,
+		hot: false,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		contentBase: path.join( __dirname, 'dist' ),
 		watchOptions: {

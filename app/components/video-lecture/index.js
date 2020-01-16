@@ -236,7 +236,7 @@ class VideoLecture extends Component {
 							onClick={this.toggleInstructorView}
 							block
 						>
-							{this.state.showInstructorView ? 'Close Instructor View' : 'Open Instructor View' }
+							{ this.state.showInstructorView ? 'Close Instructor View' : 'Open Instructor View' }
 						</Button>
 					</Gate> : null }
 				</div>
