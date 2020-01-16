@@ -69,6 +69,8 @@ class Quiz extends Component {
 		debug( 'Instantiating quiz component...' );
 		super( props );
 
+		this.id = props.id || uid( props );
+
 		const questions = props.questions;
 		if ( !props.questions ) {
 			questions = [];
@@ -96,7 +98,6 @@ class Quiz extends Component {
 			selectedConfidence: null,
 			showInstructorView: false,
 			showFinishModal: false,
-			id: props.id || uid( props ),
 			questions: [],
 			questionIDs: []
 		};
