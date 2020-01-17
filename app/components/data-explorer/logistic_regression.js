@@ -10,7 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';

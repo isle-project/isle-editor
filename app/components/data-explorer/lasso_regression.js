@@ -10,7 +10,7 @@ import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import TeX from 'components/tex';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';

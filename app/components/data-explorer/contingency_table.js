@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CheckboxInput from 'components/input/checkbox';
@@ -64,12 +64,14 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 		}
 	}
 	let table = <Table bordered size="sm">
-		<tbody >
+		<thead>
 			<tr>
 				<th>{rowVar} \ {colVar}</th>
 				{colKeys.map( (e, i) => <th key={i}>{e}</th> )}
 				<th>Row Totals</th>
 			</tr>
+		</thead>
+		<tbody>
 			{rowKeys.map( ( r, i ) => ( <tr key={i} >
 				<th>{r}</th>
 				{colKeys.map( ( c, j ) => {
@@ -84,6 +86,8 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 					( rowFreqs[ r ]/nobs ).toFixed( nDecimalPlaces )
 				}</td>
 			</tr> ) )}
+		</tbody>
+		<tbody>
 			<tr>
 				<th>Column Totals</th>
 				{columnTotals}

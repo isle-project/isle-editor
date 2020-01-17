@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 
 

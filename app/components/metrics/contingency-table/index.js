@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import objectKeys from '@stdlib/utils/keys';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import Panel from 'components/panel';
 import Gate from 'components/gate';
 import RealTimeMetrics from 'components/metrics/realtime';

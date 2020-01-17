@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
@@ -96,7 +96,7 @@ class SimpleLinearRegression extends Component {
 							<div>
 								<label>{key}:</label>
 								<Table bordered size="sm" >
-									<tbody>
+									<thead>
 										<tr>
 											<th>Variable</th>
 											<th>Coefficient</th>
@@ -104,6 +104,8 @@ class SimpleLinearRegression extends Component {
 											<th>t</th>
 											<th>p-value</th>
 										</tr>
+									</thead>
+									<tbody>
 										<tr>
 											<td>Intercept</td>
 											<td>{yint.toFixed( 4 )}</td>
@@ -228,7 +230,7 @@ class SimpleLinearRegression extends Component {
 				value: <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>Regression of {yval} on {xval} (model id: slm{COUNTER})</label>
 					<Table bordered size="sm" >
-						<tbody>
+						<thead>
 							<tr>
 								<th>Variable</th>
 								<th>Coefficient</th>
@@ -236,6 +238,8 @@ class SimpleLinearRegression extends Component {
 								<th>t</th>
 								<th>p-value</th>
 							</tr>
+						</thead>
+						<tbody>
 							<tr>
 								<td>Intercept</td>
 								<td>{yint.toFixed( 3 )}</td>

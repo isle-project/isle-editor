@@ -21,7 +21,7 @@ import floor from '@stdlib/math/base/special/floor';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Alert from 'react-bootstrap/Alert';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';

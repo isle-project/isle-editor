@@ -11,7 +11,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -208,13 +208,15 @@ class CategoricalTransformer extends Component {
 		const keys = variable.categories || objectKeys( varFreqs );
 		return (
 			<Table bordered style={{ margin: 8 }} >
-				<tbody>
+				<thead>
 					<tr>
 						<th>Old:</th>
 						{keys.map( ( val, idx ) => {
 							return <th key={`${variable}-${idx}-old`}>{val}</th>;
 						})}
 					</tr>
+				</thead>
+				<tbody>
 					<tr>
 						<th>New:</th>
 						{keys.map( ( val, idx ) => {

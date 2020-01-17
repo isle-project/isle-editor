@@ -13,7 +13,7 @@ import round from '@stdlib/math/base/special/round';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import fCDF from '@stdlib/stats/base/dists/f/cdf';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';

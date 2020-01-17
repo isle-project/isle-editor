@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
@@ -49,7 +49,7 @@ const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<th>Variable</th>
+					<th className="not-sortable" >{variable}</th>
 					<th>Category</th>
 					<th>{ relative ? 'Relative Frequency' : 'Count' }</th>
 				</tr>
@@ -58,11 +58,13 @@ const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 				{freqs.map( ( elem, id ) => {
 					nTotal += elem.count;
 					return ( <tr key={id}>
-						<th>{ id === 0 ? variable : null }</th>
+						<td></td>
 						<td>{elem.category}</td>
 						<td>{relative ? elem.count.toFixed( nDecimalPlaces ) : elem.count}</td>
 					</tr> );
 				})}
+			</tbody>
+			<tbody>
 				<tr key="total">
 					<th>Total</th>
 					<td></td>

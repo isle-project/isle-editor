@@ -156,6 +156,7 @@ const SCOPE = {
 	Sunburst: Loadable( () => import( 'components/d3/sunburst' ) ),
 	SurveyGenerator: Loadable( () => import( 'components/survey-generator' ) ),
 	Switch: Loadable( () => import( 'components/switch' ) ),
+	Table: Loadable( () => import( 'components/table' ) ),
 
 	TeX,
 	TextArea: Loadable( () => import( 'components/input/text-area' ) ),
@@ -239,7 +240,7 @@ const SCOPE = {
 	Notes: Loadable( () => import( 'components/spectacle/notes' ) ),
 	Quote: Loadable( () => import( 'components/spectacle/quote' ) ),
 	Slide: Loadable( () => import( 'components/spectacle/slide' ) ),
-	Table: Loadable( () => import( 'components/spectacle/table' ) ),
+	STable: Loadable( () => import( 'components/spectacle/table' ) ),
 	TableRow: Loadable( () => import( 'components/spectacle/table-row' ) ),
 	TableHeaderItem: Loadable( () => import( 'components/spectacle/table-header-item' ) ),
 	TableItem: Loadable( () => import( 'components/spectacle/table-item' ) ),

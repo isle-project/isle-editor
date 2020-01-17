@@ -6,7 +6,7 @@ import kmeans from 'ml-kmeans';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import incrspace from '@stdlib/math/utils/incrspace';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
@@ -33,10 +33,6 @@ const summaryTable = ( variables, centroids ) => {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th>Size</th>
-					{centroids.map( ( x, i ) => <th key={i} >{x.size}</th>)}
-				</tr>
 				{variables.map( ( name, idx ) => {
 					return (
 						<tr key={idx} >
@@ -45,6 +41,12 @@ const summaryTable = ( variables, centroids ) => {
 						</tr>
 					);
 				})}
+			</tbody>
+			<tbody>
+				<tr>
+					<th>Size</th>
+					{centroids.map( ( x, i ) => <th key={i} >{x.size}</th>)}
+				</tr>
 			</tbody>
 		</Table>
 	);

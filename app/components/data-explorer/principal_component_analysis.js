@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { PCA } from 'ml-pca';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import incrspace from '@stdlib/math/utils/incrspace';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';

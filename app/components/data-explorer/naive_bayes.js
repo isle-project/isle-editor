@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import uniq from 'uniq';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
+import Table from 'components/table';
 import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
