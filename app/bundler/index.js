@@ -19,6 +19,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import max from '@stdlib/math/base/special/max';
+import objectKeys from '@stdlib/utils/keys';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
@@ -107,7 +108,13 @@ import obsToVar from 'utils/obs-to-var';
 `;
 
 const getComponents = ( arr ) => {
-	const requireStatements = arr.map( elem => `const ${elem} = Loadable( () => import( /* webpackChunkName: "${elem}" */ '${REQUIRES[ elem ]}' ) );` );
+	const requireStatements = arr.map( elem => {
+		const pkg = REQUIRES[ elem ];
+		if ( !pkg.async ) {
+			return `import ${elem} from '${pkg.path}';`;
+		}
+		return `const ${elem} = Loadable( () => import( /* webpackChunkName: "${elem}" */ '${pkg.path}' ) );`;
+	});
 	requireStatements.unshift( 'import Loadable from \'components/loadable\'; ' );
 	return requireStatements.join( '\n' );
 };
@@ -209,7 +216,7 @@ render(
  */
 const getComponentList = ( code ) => {
 	const ret = [];
-	const availableComponents = Object.keys( REQUIRES );
+	const availableComponents = objectKeys( REQUIRES );
 
 	let needVictoryTheme = false;
 	for ( let i = 0; i < availableComponents.length; i++ ) {
