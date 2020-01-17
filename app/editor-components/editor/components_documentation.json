@@ -5551,7 +5551,7 @@
     "props": [],
     "description": "Spectacle table row component."
   },
-  "Table": {
+  "STable": {
     "props": [],
     "description": "Spectacle table component."
   },
@@ -5706,6 +5706,52 @@
       }
     ],
     "description": "The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one."
+  },
+  "Table": {
+    "props": [
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "description": "adds borders on all sides of the table and cells",
+        "default": false
+      },
+      {
+        "name": "borderless",
+        "type": "boolean",
+        "description": "removes all borders on the table and cells, including table header",
+        "default": false
+      },
+      {
+        "name": "hover",
+        "type": "boolean",
+        "description": "enable a hover state on table rows within a <tbody>",
+        "default": false
+      },
+      {
+        "name": "responsive",
+        "type": "(string|boolean)",
+        "description": "responsive tables allow tables to be scrolled horizontally with ease. Across every breakpoint, use responsive for horizontally scrolling tables. Responsive tables are wrapped automatically in a div. Use responsive=\"sm\", responsive=\"md\", responsive=\"lg\", or responsive=\"xl\" as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally",
+        "default": null
+      },
+      {
+        "name": "size",
+        "description": "make tables more compact by cutting cell padding in half by setting size as `sm`",
+        "default": null
+      },
+      {
+        "name": "striped",
+        "type": "boolean",
+        "description": "adds zebra-striping to any table row within the <tbody>",
+        "default": false
+      },
+      {
+        "name": "variant",
+        "type": "string",
+        "description": "invert the colors of the table — with light text on dark backgrounds by setting variant as dark",
+        "default": null
+      }
+    ],
+    "description": "A basic bootstrap table."
   },
   "TeX": {
     "props": [
