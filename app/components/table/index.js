@@ -120,7 +120,7 @@ function setupClickableTH( table, th, i ) {
 		} else {
 			newSortedDirection = type.defaultSortDirection;
 		}
-		const ths = this.parentNode.querySelectorAll( 'th:not(.not-sortable)' );
+		const ths = this.parentNode.querySelectorAll( 'th' );
 		for ( let _i = 0, _len = ths.length; _i < _len; _i++ ) {
 			th = ths[_i];
 			th.setAttribute( 'data-sorted', 'false' );
@@ -252,11 +252,14 @@ class Table extends Component {
 			return;
 		}
 		table.setAttribute( 'data-sortable-initialized', 'true' );
-		const ths = table.querySelectorAll( 'th:not(.not-sortable)' );
+		const ths = table.querySelectorAll( 'th' );
 		let _i;
 		for ( let i = _i = 0, _len = ths.length; _i < _len; i = ++_i ) {
 			const th = ths[i];
-			if ( th.getAttribute( 'data-sortable' ) !== 'false' ) {
+			if (
+				th.getAttribute( 'data-sortable' ) !== 'false' &&
+				!th.className.includes( 'not-sortable' )
+			) {
 				setupClickableTH( table, th, i );
 			}
 		}
