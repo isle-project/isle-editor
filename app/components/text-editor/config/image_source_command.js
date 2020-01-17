@@ -129,7 +129,7 @@ class ImageSourceCommand extends UICommand {
 		return false;
 	}
 
-	__isEnabled = (state, view) => {
+	__isEnabled = ( state, view ) => {
 		const tr = state;
 		const { selection } = tr;
 		if ( selection instanceof TextSelection ) {

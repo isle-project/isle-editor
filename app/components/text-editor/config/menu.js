@@ -30,6 +30,15 @@ const isEnabled = ( state ) => {
 	);
 };
 
+const isEmptySelectionForInsertion = ( state ) => {
+	const tr = state;
+	const { selection } = tr;
+	if ( selection instanceof TextSelection ) {
+		return selection.from === selection.to;
+	}
+	return false;
+};
+
 const markActive = ( type ) => ( state ) => {
 	const { from, $from, to, empty } = state.selection;
 	return empty ? !!type.isInSet( state.storedMarks || $from.marks() ) :
@@ -258,7 +267,7 @@ const menu = {
 		{
 			title: 'Insert figure caption',
 			content: 'Insert figure caption',
-			enable: canInsert( schema.nodes.figureCaption ),
+			enable: isEmptySelectionForInsertion,
 			run: ( state, dispatch ) => {
 				const figureCaption = schema.nodes.figureCaption.create();
 				dispatch( state.tr.replaceSelectionWith( figureCaption ) );
@@ -267,7 +276,7 @@ const menu = {
 		{
 			title: 'Insert table caption',
 			content: 'Insert table caption',
-			enable: canInsert( schema.nodes.tableCaption ),
+			enable: isEmptySelectionForInsertion,
 			run: ( state, dispatch ) => {
 				const tableCaption = schema.nodes.tableCaption.create();
 				dispatch( state.tr.replaceSelectionWith( tableCaption ) );

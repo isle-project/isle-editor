@@ -45,7 +45,7 @@
 	background: white;
 	overflow: auto;
 	counter-reset: prosemirror-footnote prosemirror-figure prosemirror-table;
-	padding: 4px 8px 4px 14px;
+	padding: 4px 15px 4px 15px;
 	line-height: 1.2;
 	outline: none;
 }
