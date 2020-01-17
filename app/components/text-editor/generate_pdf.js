@@ -8,6 +8,7 @@ import max from '@stdlib/math/base/special/max';
 // VARIABLES //
 
 const RE_WIDTH = /width: (.+)px/g;
+const RE_IMG_TOOLTIP = /<pre class="img-tooltip">[\s\S]*?<\/pre>/g;
 
 
 // FUNCTIONS //
@@ -70,12 +71,12 @@ function generatePDF( html, config, standardFontSize, editorWidth ) {
 		return `width: ${width}px`;
 	};
 	html = replace( html, RE_WIDTH, widthReplacer );
+	html = replace( html, RE_IMG_TOOLTIP, '' );
 	const nodes = htmlToPdfMake( html, {
 		defaultStyles: {
 			img: ''
 		}
 	});
-
 	const isPosterBool = isPoster( config );
 	const doc = {
 		styles: makeSTYLES( standardFontSize, isPosterBool ),
