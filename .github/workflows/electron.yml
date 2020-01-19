@@ -1,6 +1,9 @@
 name: Electron
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   build_on_mac:
