@@ -128,7 +128,6 @@ for ( let i = 0; i < files.length; i++ ) {
 		if ( isFunction( defaults[ key ] ) ) {
 			defaults[ key ] = defaults[ key ].toString();
 		}
-		console.log( tagName );
 		DOCS[ tagName ].props.push({
 			name: key,
 			type: types[ key ],
@@ -162,8 +161,6 @@ for ( let i = 0; i < files.length; i++ ) {
 	}
 	debug( '\n\n' );
 }
-
-console.log( DOCS );
 
 console.log( 'Write `component_documentation.json` file...' );
 fs.writeFileSync( './app/editor-components/editor/components_documentation.json', JSON.stringify( DOCS, null, 2 ) );
