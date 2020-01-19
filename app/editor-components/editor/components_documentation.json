@@ -1,5 +1,6432 @@
 {
+  "Accordion": {
+    "props": [
+      {
+        "name": "active",
+        "type": "number",
+        "description": "index of slider to be opened at the beginning",
+        "default": 0
+      },
+      {
+        "name": "headers",
+        "type": "array<string>",
+        "description": "array of header names",
+        "default": null
+      },
+      {
+        "name": "headerStyle",
+        "type": "object",
+        "description": "one may also assign a style to the header bars",
+        "default": null
+      },
+      {
+        "name": "headerClassName",
+        "type": "string",
+        "description": "this overrules the given className of the headers",
+        "default": null
+      }
+    ],
+    "description": "An accordion component controlling vertical sliders."
+  },
+  "Animated": {
+    "props": [
+      {
+        "name": "in",
+        "type": "object",
+        "description": "the style which is applied at the beginning",
+        "default": {}
+      },
+      {
+        "name": "over",
+        "type": "object",
+        "description": "mouseOver style",
+        "default": {}
+      },
+      {
+        "name": "out",
+        "type": "object",
+        "description": "mouseOut style",
+        "default": {}
+      },
+      {
+        "name": "preset",
+        "type": "string",
+        "description": "name of the preset",
+        "default": ""
+      }
+    ],
+    "description": "An ISLE component that allows to apply animation on components and child elements."
+  },
+  "Background": {
+    "props": [
+      {
+        "name": "images",
+        "type": "array<string>",
+        "description": "list of image URLs to be displayed",
+        "default": []
+      },
+      {
+        "name": "time",
+        "type": "number",
+        "description": "duration each background image is displayed (in seconds)",
+        "default": 3
+      },
+      {
+        "name": "in",
+        "type": "string",
+        "description": "entrance effect name (either `fade-in`, `slide-left-in`, and `flip-hor-bottom-in`)",
+        "default": "fade-in"
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "description": "exit effect name (either `fade-out`, `slide-right-out`, and `flip-hor-bottom-out`)",
+        "default": "fade-out"
+      },
+      {
+        "name": "parent",
+        "type": "boolean",
+        "description": "sets the parent divs backgroundColor to transparent, overflow to hidden",
+        "default": false
+      },
+      {
+        "name": "inTime",
+        "type": "number",
+        "description": "length of the enter effect (in seconds)",
+        "default": 1
+      },
+      {
+        "name": "outTime",
+        "type": "number",
+        "description": "length of the exit effect (in seconds)",
+        "default": 1
+      }
+    ],
+    "description": "A dynamic background component that changes a background image at a specified interval."
+  },
+  "BeaconTooltip": {
+    "props": [
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "description": "title to be displayed at the top of the tooltip",
+        "default": null
+      },
+      {
+        "name": "content",
+        "type": "(string|node)",
+        "description": "tooltip content",
+        "default": "`content` comes here..."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "description": "if set to `click`, tooltip is toggled when clicking on beacon; if set to `hover`, the tooltip is activated via hovering",
+        "default": "click"
+      },
+      {
+        "name": "placement",
+        "type": "string",
+        "description": "placement of the tooltip relative to `target` (either `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, or `center`)",
+        "default": "left"
+      },
+      {
+        "name": "target",
+        "type": "string",
+        "description": "class or ID selector for element to attach tooltip to",
+        "default": ""
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "distance between the tooltip and `target` in pixels",
+        "default": 15
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked upon state change of the tooltip. Receives two arguments: the `action` (`open` or `close`) and the passed `props`",
+        "default": "onChange() {}"
+      }
+    ],
+    "description": "Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
+  },
+  "Bibliography": {
+    "props": [],
+    "description": "Bibliography component which prints all references used in the lesson."
+  },
+  "Calculator": {
+    "props": [
+      {
+        "name": "expandable",
+        "type": "boolean",
+        "description": "controls whether calculator is expandable",
+        "default": true
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "controls whether calculator is shown",
+        "default": true
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onHide",
+        "type": "function",
+        "description": "callback invoked when the close button is clicked",
+        "default": null
+      }
+    ],
+    "description": "A calculator with a base and expanded (scientific) mode."
+  },
   "undefined": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Citation": {
+    "props": [
+      {
+        "name": "citeKey",
+        "type": "string (required)"
+      }
+    ],
+    "description": "Citation component."
+  },
+  "Clock": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "duration",
+        "type": "boolean",
+        "description": "if set the duration of the session is display (not the actual time)",
+        "default": false
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "description": "time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)",
+        "default": ""
+      }
+    ],
+    "description": "Clock component displaying the current time."
+  },
+  "Collapse": {
+    "props": [
+      {
+        "name": "header",
+        "type": "string",
+        "description": "header string",
+        "default": "Header"
+      },
+      {
+        "name": "headerStyle",
+        "type": "object",
+        "description": "one may also assign a style to the header bar",
+        "default": null
+      },
+      {
+        "name": "headerClassName",
+        "type": "string",
+        "description": "this overrules the given className of the header",
+        "default": null
+      },
+      {
+        "name": "defaultVisible",
+        "type": "boolean",
+        "description": "if set, the body is visible right from the start",
+        "default": false
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "description": "controls whether slider is visible; turns it into a controlled component where state needs to be handled externally",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when header is clicked",
+        "default": "onClick() {}"
+      }
+    ],
+    "description": "An ISLE component that allows to slideDown and slideUp - JQuery style."
+  },
+  "ColorPicker": {
+    "props": [
+      {
+        "name": "color",
+        "type": "(string|object)",
+        "description": "`string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one",
+        "default": "#fff"
+      },
+      {
+        "name": "disableAlpha",
+        "type": "boolean",
+        "description": "controls whether to remove alpha slider and options",
+        "default": false
+      },
+      {
+        "name": "presetColors",
+        "type": "array<string>",
+        "description": "HeX `strings` specifying the default colors at the bottom of the colorpicker",
+        "default": [
+          "#D0021B",
+          "#F5A623",
+          "#F8E71C",
+          "#8B572A",
+          "#7ED321",
+          "#417505",
+          "#BD10E0",
+          "#9013FE",
+          "#4A90E2",
+          "#50E3C2",
+          "#B8E986",
+          "#000000",
+          "#4A4A4A",
+          "#9B9B9B",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width of the colorpicker (in px)",
+        "default": 200
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time color is changed",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onChangeComplete",
+        "type": "function",
+        "description": "callback invoked once a color change is complete",
+        "default": "onChangeComplete() {}"
+      }
+    ],
+    "description": "A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker."
+  },
+  "Container": {
+    "props": [
+      {
+        "name": "fluid",
+        "type": "boolean",
+        "description": "turn any fixed-width container layout into a full-width layout",
+        "default": true
+      }
+    ],
+    "description": "Container wrapper."
+  },
+  "DensityPlot": {
+    "props": [
+      {
+        "name": "bandwidth",
+        "type": "number",
+        "description": "smoothing parameter for the kernel density estimator",
+        "default": 4
+      },
+      {
+        "name": "histogram",
+        "type": "boolean",
+        "description": "show a histogram alongside the density plot",
+        "default": true
+      },
+      {
+        "name": "nBins",
+        "type": "number",
+        "description": "number of bins for the overlaid histogram.",
+        "default": 8
+      },
+      {
+        "name": "vline",
+        "type": "object",
+        "description": "if supplied, will display a vertical line at the supplied `value` with a given `label`"
+      },
+      {
+        "name": "xlab",
+        "type": "string",
+        "description": "x-axis label",
+        "default": "value"
+      },
+      {
+        "name": "xmax",
+        "type": "number",
+        "description": "maximum value displayed on the x-axis",
+        "default": 1
+      },
+      {
+        "name": "xmin",
+        "type": "number",
+        "description": "minimum value displayed on the x-axis",
+        "default": 0
+      },
+      {
+        "name": "ymax",
+        "type": "number",
+        "description": "maximum value displayed on the y-axis",
+        "default": 0.15
+      }
+    ],
+    "description": "A d3-based density plot component."
+  },
+  "NetworkPlot": {
+    "props": [
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width of the plot (in px)",
+        "default": 900
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "height of the plot (in px)",
+        "default": 600
+      }
+    ],
+    "description": "A d3-based network plot."
+  },
+  "Sunburst": {
+    "props": [
+      {
+        "name": "categories",
+        "type": "array (required)"
+      },
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "data object"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width of the plot (in px)",
+        "default": 750
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "height of the plot (in px)",
+        "default": 600
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "breadcrumbs",
+        "type": "{w,h,s,t}",
+        "default": {
+          "w": 250,
+          "h": 50,
+          "s": 5,
+          "t": 15
+        }
+      }
+    ],
+    "description": "Adapted from: https://bl.ocks.org/kerryrodden/766f8f6d31f645c39f488a0befa1e3c8\n\nCopyright 2013 Google Inc. All Rights Reserved.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport * as d3 from 'd3';\nimport logger from 'debug';\nimport sqrt from '@stdlib/math/base/special/sqrt';\nimport min from '@stdlib/math/base/special/min';\nimport PI from '@stdlib/constants/math/float64-pi';\nimport { CAT20 as COLORS } from 'constants/colors';\nimport randomstring from 'utils/randomstring/alphanumeric';\nimport './style.css';\n\n\n// VARIABLES //\n\nconst debug = logger( 'isle:sunburst' );\n\n// FUNCTIONS //\n\nfunction createColorMapping( categories ) {\nconst out = {};\nfor ( let i = 0; i < categories.length; i++ ) {\nout[ categories[i] ] = COLORS[ i % 20 ];\n}\nreturn out;\n}\n\n\n// MAIN //\n\n/**\nA d3-based sunburst plot for displaying pathways."
+  },
+  "Dashboard": {
+    "props": [
+      {
+        "name": "autoStart",
+        "type": "boolean",
+        "description": "if set to `true`, the `onGenerate` function is executed at startup with the default input values",
+        "default": true
+      },
+      {
+        "name": "autoUpdate",
+        "type": "boolean",
+        "description": "controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes",
+        "default": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "description": "dashboard description",
+        "default": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the dashboard shall be disabled",
+        "default": false
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "description": "button label",
+        "default": "Generate"
+      },
+      {
+        "name": "maxWidth",
+        "type": "number",
+        "description": "maximum width of dashboard",
+        "default": 600
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onGenerate",
+        "type": "function",
+        "description": "function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard",
+        "default": "onGenerate() {}"
+      },
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "description": "card title",
+        "default": ""
+      }
+    ],
+    "description": "A dashboard for combining the handling of multiple child input fields."
+  },
+  "DataExplorer": {
+    "props": [
+      {
+        "name": "categorical",
+        "type": "array",
+        "description": "array of strings indicating the name of each categorical variable",
+        "default": []
+      },
+      {
+        "name": "quantitative",
+        "type": "array",
+        "description": "array of strings indicating the name of each quantitative variable",
+        "default": []
+      },
+      {
+        "name": "data",
+        "type": "object",
+        "description": "data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`",
+        "default": {}
+      },
+      {
+        "name": "dataInfo",
+        "type": "object",
+        "description": "object containing the keys \\'name\\', whose value is a string, \\'info\\', whose value is an array of strings in which each element in the array is a new line and \\'variables\\', an object with keys as variable names and values as variable descriptions",
+        "default": {
+          "info": "",
+          "name": "",
+          "variables": null,
+          "showOnStartup": false
+        }
+      },
+      {
+        "name": "editor",
+        "type": "boolean",
+        "description": "boolean indicating whether to show the editor to the user",
+        "default": true
+      },
+      {
+        "name": "editorProps",
+        "type": "object",
+        "description": "object to be passed to `TextEditor` indicating properties to be used",
+        "default": null
+      },
+      {
+        "name": "editorTitle",
+        "type": "string",
+        "description": "string indicating the title of the explorer to be displayed",
+        "default": "Report"
+      },
+      {
+        "name": "dataTable",
+        "type": "boolean",
+        "description": "boolean value indicating whether to hide the data table from view",
+        "default": true
+      },
+      {
+        "name": "groupMode",
+        "type": "boolean",
+        "description": "controls whether to sync editor changes across users",
+        "default": false
+      },
+      {
+        "name": "histogramDensities",
+        "type": "boolean",
+        "description": "boolean value indicating whether to display histogram densities",
+        "default": true
+      },
+      {
+        "name": "models",
+        "type": "array",
+        "description": "array of strings indicating models that may be fit on the data",
+        "default": [
+          "Simple Linear Regression",
+          "Multiple Linear Regression",
+          "LASSO",
+          "Decision Tree",
+          "Random Forest",
+          "Logistic Regression",
+          "Naive Bayes",
+          "PCA",
+          "Hierarchical Clustering",
+          "kmeans"
+        ]
+      },
+      {
+        "name": "opened",
+        "type": "string",
+        "description": "page opened at startup",
+        "default": null
+      },
+      {
+        "name": "plots",
+        "type": "array",
+        "description": "array of strings indicating which plots to show to the user",
+        "default": [
+          "Bar Chart",
+          "Pie Chart",
+          "Mosaic Plot",
+          "Histogram",
+          "Box Plot",
+          "Line Plot",
+          "Scatterplot",
+          "Heat Map",
+          "Contour Chart"
+        ]
+      },
+      {
+        "name": "questions",
+        "type": "array",
+        "description": "array of nodes indicating surrounding text and question components to be displayed in a tabbed window",
+        "default": []
+      },
+      {
+        "name": "showTestDecisions",
+        "type": "boolean",
+        "description": "boolean indicating whether to show the decisions made for each test based on the calculated p-values",
+        "default": true
+      },
+      {
+        "name": "statistics",
+        "type": "array",
+        "description": "array of strings indicating which summary statistics may be calculated",
+        "default": [
+          "Mean",
+          "Median",
+          "Min",
+          "Max",
+          "Range",
+          "Interquartile Range",
+          "Standard Deviation",
+          "Variance",
+          "Correlation",
+          "Skewness",
+          "Excess Kurtosis"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles for main container",
+        "default": {}
+      },
+      {
+        "name": "tables",
+        "type": "array",
+        "description": "array of strings indicating which tables may be created from the data",
+        "default": [
+          "Frequency Table",
+          "Contingency Table"
+        ]
+      },
+      {
+        "name": "tabs",
+        "type": "array",
+        "description": "array of objects and keys indicating any custom tabs to add",
+        "default": []
+      },
+      {
+        "name": "tests",
+        "type": "array",
+        "description": "array of strings indicating which hypothesis tests to include",
+        "default": [
+          "One-Sample Mean Test",
+          "Two-Sample Mean Test",
+          "One-Way ANOVA",
+          "One-Sample Proportion Test",
+          "Two-Sample Proportion Test",
+          "Correlation Test",
+          "Chi-squared Independence Test"
+        ]
+      },
+      {
+        "name": "transformer",
+        "type": "boolean",
+        "description": "boolean indicating whether one wants to display a variable transformer",
+        "default": true
+      },
+      {
+        "name": "onTutorialCompletion",
+        "type": "function",
+        "description": "function invoked when user has completed the data explorer tutorial",
+        "default": "onTutorialCompletion() {}"
+      },
+      {
+        "name": "onTutorialStart",
+        "type": "function",
+        "default": "onTutorialStart() {}"
+      }
+    ],
+    "description": "This component is used by students to briefly summarize data as it is presented and perform various statistical tests."
+  },
+  "DataSampler": {
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)"
+      },
+      {
+        "name": "sampleSize",
+        "type": "number",
+        "default": 50
+      }
+    ],
+    "description": "Component to sample observations from a dataset and pass it to child components."
+  },
+  "DataTable": {
+    "props": [
+      {
+        "name": "data",
+        "type": "(array|object) (required)",
+        "description": "A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column"
+      },
+      {
+        "name": "dataInfo",
+        "type": "object",
+        "description": "object with `info` string array describing the data set, the `name` of the dataset, an `object` of `variables` with keys corresponding to variable names and values to variable descriptions, an a `showOnStartup` boolean controlling whether to display the info modal on startup",
+        "default": {
+          "info": [],
+          "name": "",
+          "variables": null,
+          "showOnStartup": false
+        }
+      },
+      {
+        "name": "deletable",
+        "type": "boolean",
+        "description": "controls whether columns for which no `info` exist have a button which when clicked calls the `onColumnDelete` callback function",
+        "default": false
+      },
+      {
+        "name": "undeletableVars",
+        "type": "array<string>",
+        "description": "array of variable names of columns which may not be deleted",
+        "default": []
+      },
+      {
+        "name": "filterable",
+        "type": "boolean",
+        "description": "controls whether columns are filterable",
+        "default": true
+      },
+      {
+        "name": "editable",
+        "type": "array",
+        "description": "array of names for columns that shall be editable",
+        "default": []
+      },
+      {
+        "name": "onColumnDrag",
+        "type": "function",
+        "default": "onColumnDrag() {}"
+      },
+      {
+        "name": "onColumnDelete",
+        "type": "function",
+        "description": "function invoked with the name of a column when the respective delete button for a column is clicked",
+        "default": "onColumnDelete() {}"
+      },
+      {
+        "name": "onColumnNameChange",
+        "type": "function",
+        "default": "onColumnNameChange() {}"
+      },
+      {
+        "name": "onClickRemove",
+        "type": "function",
+        "description": "A function specifying an action to take for rows removed from the data (defaults to an empty function)",
+        "default": "onClickRemove() {}"
+      },
+      {
+        "name": "onEdit",
+        "type": "function",
+        "description": "function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)",
+        "default": "onEdit() {}"
+      },
+      {
+        "name": "onTutorialCompletion",
+        "type": "function",
+        "description": "function invoked when user has completed the data table tutorial",
+        "default": "onTutorialCompletion() {}"
+      },
+      {
+        "name": "filters",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "onFilteredChange",
+        "type": "function",
+        "default": "onFilteredChange() {}"
+      },
+      {
+        "name": "showRemove",
+        "type": "boolean",
+        "description": "indicates whether to display checkboxes for rows to be removed",
+        "default": false
+      },
+      {
+        "name": "showIdColumn",
+        "type": "boolean",
+        "description": "controls whether to show an ID column",
+        "default": true
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "An object allowing for custom css styling. Defaults to an empty object",
+        "default": {}
+      }
+    ],
+    "description": "A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/)."
+  },
+  "DateDisplay": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "DraggableGrid": {
+    "props": [
+      {
+        "name": "isDraggable",
+        "type": "boolean",
+        "description": "controls whether grid elements are draggable",
+        "default": false
+      },
+      {
+        "name": "isResizable",
+        "type": "boolean",
+        "description": "controls whether grid elements are resizable",
+        "default": false
+      },
+      {
+        "name": "rowHeight",
+        "type": "number",
+        "description": "height of a single row (in px)",
+        "default": 60
+      }
+    ],
+    "description": "A responsive draggable grid layout."
+  },
+  "DraggableList": {
+    "props": [
+      {
+        "name": "data",
+        "type": "array (required)",
+        "description": "array of objects with `id` and `text` keys"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked with newly ordered data array on each change",
+        "default": "onChange(){}"
+      },
+      {
+        "name": "onInit",
+        "type": "function",
+        "description": "callback function invoked after mounting of component",
+        "default": "onInit(){}"
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "description": "controls whether data elements should be shuffled in initial display",
+        "default": false
+      }
+    ],
+    "description": "A list of draggable elements that can be re-ordered by the students."
+  },
+  "EngagementMeter": {
+    "props": [],
+    "description": "An ISLE component that displays an engagement meter with which the students can indicate how well they are following the class."
+  },
+  "EnlargeableGrid": {
+    "props": [
+      {
+        "name": "enlargeable",
+        "type": "boolean",
+        "description": "controls whether items can be enlarged",
+        "default": true
+      },
+      {
+        "name": "enlargedHeight",
+        "type": "number",
+        "description": "height of item after enlarging it",
+        "default": 18
+      },
+      {
+        "name": "isDraggable",
+        "type": "boolean",
+        "description": "controls whether the grid elements are draggable",
+        "default": false
+      },
+      {
+        "name": "isResizable",
+        "type": "boolean",
+        "description": "controls whether the grid elements are resizable",
+        "default": false
+      },
+      {
+        "name": "itemHeight",
+        "type": "number",
+        "description": "height of items (in px)",
+        "default": 9
+      }
+    ],
+    "description": "An enlargeable grid."
+  },
+  "Expire": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the counter should be active",
+        "default": false
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "number of milliseconds before component disappears",
+        "default": 1000
+      }
+    ],
+    "description": "The expire component will cause all of its children to become invisible after a specified amount of time."
+  },
+  "FeedbackButtons": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "confusedMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for confused button",
+        "default": "This is not clear to me."
+      },
+      {
+        "name": "feedbackMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for detailed feedback button",
+        "default": "I have feedback."
+      },
+      {
+        "name": "understoodMsg",
+        "type": "string",
+        "description": "message to be displayed in tooltip for understood button",
+        "default": "Makes sense."
+      },
+      {
+        "name": "customFeedback",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "description": "buttons are displayed vertically if set to `true`",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Buttons to collect user feedback."
+  },
+  "FlippableCard": {
+    "props": [
+      {
+        "name": "button",
+        "type": "string",
+        "description": "button label",
+        "default": null
+      },
+      {
+        "name": "cardStyles",
+        "type": "{container,front,back}",
+        "description": "allows to override the given styles",
+        "default": {
+          "container": {},
+          "front": {},
+          "back": {}
+        }
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether the card may be dragged around",
+        "default": false
+      },
+      {
+        "name": "flipSpeedBackToFront",
+        "type": "number",
+        "description": "the speed by which the card turns from background to foreground, in seconds",
+        "default": 1
+      },
+      {
+        "name": "flipSpeedFrontToBack",
+        "type": "number",
+        "description": "{number} the speed by which the card turns from foreground to background, in seconds",
+        "default": 1
+      },
+      {
+        "name": "isFlipped",
+        "type": "boolean",
+        "description": "initial flip state of the card",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked once the card is flipped; receives the current flipped status as its sole argument",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "oneTime",
+        "type": "boolean",
+        "description": "indicates whether the flip process may be executed just once",
+        "default": false
+      },
+      {
+        "name": "perspective",
+        "type": "number",
+        "description": "CSS property value to give 3d-positioned element a perspective",
+        "default": 1000
+      },
+      {
+        "name": "value",
+        "type": "boolean"
+      },
+      {
+        "name": "defaultValue",
+        "type": "boolean",
+        "default": false
+      }
+    ],
+    "description": "An ISLE component that allows two render two-sides."
+  },
+  "FreeTextQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "the question displayed at the top of the free text question component",
+        "default": ""
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "top"
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "solution",
+        "type": "string",
+        "description": "a model answer to the problem",
+        "default": ""
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "description": "number of rows of the text field for students to type their answers",
+        "default": 5
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether to enable group chat should for the question",
+        "default": false
+      },
+      {
+        "name": "resizable",
+        "type": "boolean",
+        "description": "controls whether the text area should be resizable",
+        "default": false
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "placeholder text displayed before user has entered any text",
+        "default": "Enter your answer here..."
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "submissionMsg",
+        "type": "string",
+        "description": "notification displayed when the learner first submits his answer",
+        "default": ""
+      },
+      {
+        "name": "resubmissionMsg",
+        "type": "string",
+        "description": "notification displayed for all submissions after the first one",
+        "default": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
+        "name": "maxlength",
+        "type": "number",
+        "description": "maximum allowed number of characters",
+        "default": 2500
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time the text area value changes; receives the current text as its sole argument",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when user submits an answer; receives the submitted text as its sole argument",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component for questions where answers by students should be supplied in the form of free text."
+  },
+  "FreeTextSurvey": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "description": "the question to ask the students",
+        "default": ""
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "controls whether student answers are anonymized",
+        "default": false
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "description": "number of text rows in the input field",
+        "default": 4
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function called when an answer is submitted",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time."
+  },
+  "Gate": {
+    "props": [
+      {
+        "name": "user",
+        "type": "boolean",
+        "description": "when set the gated content is displayed to subscribed users",
+        "default": false
+      },
+      {
+        "name": "notUser",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to subscribed users",
+        "default": false
+      },
+      {
+        "name": "enrolled",
+        "type": "boolean",
+        "description": "when set the gated content is displayed to the students enrolled in the course",
+        "default": false
+      },
+      {
+        "name": "notEnrolled",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to the students enrolled in the course",
+        "default": false
+      },
+      {
+        "name": "owner",
+        "type": "boolean",
+        "description": "when set the gated content is displayed to the owner of the course (usually the instructor)",
+        "default": false
+      },
+      {
+        "name": "notOwner",
+        "type": "boolean",
+        "description": "when set the gated content is **not** displayed to the owner of the course (usually the instructor)",
+        "default": false
+      },
+      {
+        "name": "banner",
+        "type": "node",
+        "description": "a message which is visible to the visitors lacking the gate privilege",
+        "default": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "if a gate is disabled, the banner will be displayed no matter what",
+        "default": false
+      },
+      {
+        "name": "check",
+        "type": "function",
+        "description": "callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive",
+        "default": null
+      }
+    ],
+    "description": "An ISLE component that allows to display its children only to reserved audiences."
+  },
+  "Generator": {
+    "props": [
+      {
+        "name": "buttonLabel",
+        "type": "string",
+        "default": "Generate"
+      },
+      {
+        "name": "onGenerate",
+        "type": "function (required)"
+      }
+    ],
+    "description": "A component for generating other components (e.g., automatically generated questions)."
+  },
+  "IFrame": {
+    "props": [
+      {
+        "name": "src",
+        "type": "string (required)",
+        "description": "source URL"
+      },
+      {
+        "name": "fullscreen",
+        "type": "boolean",
+        "description": "controls whether to display the iFrame in fullscreen mode",
+        "default": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "iFrame title",
+        "default": "An iFrame"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "iFrame width (in px)",
+        "default": 900
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "iFrame height (in px)",
+        "default": 600
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "An iFrame component."
+  },
+  "Image": {
+    "props": [
+      {
+        "name": "body",
+        "type": "string",
+        "description": "base64 encoded data of image",
+        "default": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": ""
+      },
+      {
+        "name": "height",
+        "type": "(number|string)",
+        "description": "image height (in px)",
+        "default": null
+      },
+      {
+        "name": "width",
+        "type": "(number|string)",
+        "description": "image width (in px)",
+        "default": null
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "description": "component identifier",
+        "default": null
+      },
+      {
+        "name": "onShare",
+        "type": "function",
+        "description": "callback invoked with the image if the \"share\" button is clicked",
+        "default": null
+      },
+      {
+        "name": "showModal",
+        "type": "boolean",
+        "description": "controls whether to display fullscreen modal view",
+        "default": true
+      },
+      {
+        "name": "src",
+        "type": "string (required)",
+        "description": "image source location"
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "description": "image description",
+        "default": ""
+      }
+    ],
+    "description": "Component to display an image."
+  },
+  "CheckboxInput": {
+    "props": [
+      {
+        "name": "bind",
+        "type": "string",
+        "description": "name of global variable for the checkbox value to be assigned to",
+        "default": ""
+      },
+      {
+        "name": "defaultValue",
+        "type": "boolean",
+        "description": "A boolean value indicating the default value of the checkbox",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "indicates whether the input is active or not",
+        "default": false
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "indicates whether the checkbox is displayed inline",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "text displayed next to the checkbox",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "Input": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "NumberInput": {
+    "props": [
+      {
+        "name": "bind",
+        "type": "string",
+        "description": "name of global variable for the number to be assigned to",
+        "default": ""
+      },
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "description": "value indicating the default value of the input at startup",
+        "default": 0
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "boolean indicating whether the input is active or not",
+        "default": false
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "indicates whether the input is displayed inline",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "string indicating the text displayed next to the number input",
+        "default": null
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "number indicating the maximum value that may be inserted",
+        "default": null
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "number indicating the smallest possible value that may be inserted",
+        "default": null
+      },
+      {
+        "name": "numbersOnly",
+        "type": "boolean",
+        "description": "controls whether only numbers are accepted",
+        "default": true
+      },
+      {
+        "name": "onBlur",
+        "type": "function",
+        "description": "callback function to be invoked when using a blur method",
+        "default": "onBlur() {}"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function to be invoked when number input is changed",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onKeyDown",
+        "type": "function",
+        "description": "callback function to be invoked when any key is pressed down",
+        "default": "onKeyDown() {}"
+      },
+      {
+        "name": "onKeyPress",
+        "type": "function",
+        "description": "callback function to be invoked when any key is entered",
+        "default": "onKeyPress() {}"
+      },
+      {
+        "name": "onKeyUp",
+        "type": "function",
+        "description": "callback function to be invoked when key is released",
+        "default": "onKeyUp() {}"
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "number indicating the incremental changes when using the increment arrows",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "inputStyle",
+        "type": "object",
+        "description": "CSS inline styles for input element",
+        "default": {}
+      },
+      {
+        "name": "value",
+        "type": "number",
+        "description": "number value (for controlled component)",
+        "default": null
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "right"
+      }
+    ],
+    "description": "A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "ProportionsInput": {
+    "props": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the input field is deactivated",
+        "default": false
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "proportions input height (in px)",
+        "default": 200
+      },
+      {
+        "name": "innerRadius",
+        "type": "number",
+        "description": "inner radius of proportions pie chart (in px)",
+        "default": 75
+      },
+      {
+        "name": "legends",
+        "type": "array",
+        "description": "group labels",
+        "default": null
+      },
+      {
+        "name": "margin",
+        "type": "string",
+        "description": "proportion input margin (in px)"
+      },
+      {
+        "name": "nElements",
+        "type": "number",
+        "description": "number of elements",
+        "default": 6
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function to be invoked when a choice is made",
+        "default": "onChange(){}"
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "description": "displayed precision of proportion values",
+        "default": 1
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "description": "the step of the arrows seen when hovering the cursor above the input box",
+        "default": 0.1
+      }
+    ],
+    "description": "A proportions input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "SelectInput": {
+    "props": [
+      {
+        "name": "bind",
+        "type": "string",
+        "description": "name of global variable for the number to be assigned to",
+        "default": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "description": "boolean value indicating whether one may clear choice(s) made"
+      },
+      {
+        "name": "defaultValue",
+        "type": "(number|string|array|object)",
+        "description": "default value of the input at startup",
+        "default": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the input is active or not",
+        "default": false
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "indicates whether the input is displayed inline",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "text displayed next to the input",
+        "default": ""
+      },
+      {
+        "name": "menuPlacement",
+        "type": "string",
+        "description": "placement of the menu in relation to the control (either `auto`, `top`, or `bottom`)",
+        "default": "auto"
+      },
+      {
+        "name": "multi",
+        "type": "boolean",
+        "description": "controls whether one may select multiple answers",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function to be invoked when a choice is made",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "options",
+        "type": "array",
+        "description": "array of indicating the choices available the user",
+        "default": []
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "value to be displayed before an initial choice is made",
+        "default": "Select..."
+      },
+      {
+        "name": "tooltip",
+        "type": "string",
+        "description": "text displayed when hovering over legend",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "SliderInput": {
+    "props": [
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "description": "The starting value of the slider",
+        "default": 10
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out",
+        "default": false
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "controls whether to place the slider inline with text or outside",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "caption of the input",
+        "default": null
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "The maximum value of the slider",
+        "default": 100
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "The minimum value of the slider",
+        "default": 0
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked with the new value when the slider value changes",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "description": "rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001",
+        "default": 10
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the slider",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "numberInputStyle",
+        "type": "object",
+        "description": "CSS inline styles for number input component",
+        "default": {}
+      },
+      {
+        "name": "rangeInputStyle",
+        "type": "object",
+        "description": "CSS inline style for range input component",
+        "default": {}
+      }
+    ],
+    "description": "A slider input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "TextArea": {
+    "props": [
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "description": "default value of the text area",
+        "default": ""
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "description": "text value (for controlled component)",
+        "default": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the text area shall be disabled",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "legend text",
+        "default": ""
+      },
+      {
+        "name": "onBlur",
+        "type": "function",
+        "description": "callback function invoked when the text area loses focus",
+        "default": "onBlur() {}"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function invoked with the new text when the area text changes",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "placeholder text",
+        "default": "Enter text"
+      },
+      {
+        "name": "resizable",
+        "type": "boolean",
+        "description": "controls whether the text area shall be resizable",
+        "default": false
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "description": "number of rows",
+        "default": 5
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute."
+  },
+  "TextInput": {
+    "props": [
+      {
+        "name": "bind",
+        "type": "string",
+        "description": "name of global variable for the number to be assigned to",
+        "default": null
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "description": "A value indicating the default value of the input at start",
+        "default": ""
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "A string indicating the text displayed next to the number input",
+        "default": ""
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "Indicates whether the input is displayed inline",
+        "default": false
+      },
+      {
+        "name": "onBlur",
+        "type": "function",
+        "description": "callback function invoked when the text area loses focus",
+        "default": "onBlur() {}"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "A function to be called when a text value is changed",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onKeyDown",
+        "type": "function",
+        "description": "callback function to be invoked when any key is pressed down",
+        "default": "onKeyDown() {}"
+      },
+      {
+        "name": "onKeyPress",
+        "type": "function",
+        "description": "callback function to be invoked when any key is entered",
+        "default": "onKeyPress() {}"
+      },
+      {
+        "name": "onKeyUp",
+        "type": "function",
+        "description": "callback function to be invoked when key is released",
+        "default": "onKeyUp() {}"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "A string indicating the value to be displayed before an initial choice is made",
+        "default": "Enter text"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "A number indicating the width of the input in pixels",
+        "default": 80
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute."
+  },
+  "VoiceInput": {
+    "props": [
+      {
+        "name": "autorecord",
+        "type": "boolean",
+        "description": "controls whether to automatically start recording",
+        "default": false
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "description": "default text value",
+        "default": ""
+      },
+      {
+        "name": "grammars",
+        "type": "array",
+        "description": "speech grammar list (unsupported)",
+        "default": []
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "language identifier",
+        "default": "en-US"
+      },
+      {
+        "name": "legend",
+        "type": "(string|node)",
+        "description": "legend displayed in front of input field",
+        "default": ""
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "description": "set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands",
+        "default": "full"
+      },
+      {
+        "name": "maxAlternatives",
+        "type": "number",
+        "description": "maximum number of alternatives provided per speech recognition result",
+        "default": 1
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback function invoked when text input value is updated",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when clicking on the microphone button",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "onFinalText",
+        "type": "function",
+        "description": "callback function invoked once final text is received",
+        "default": "onFinalText() {}"
+      },
+      {
+        "name": "onRecordingStart",
+        "type": "function",
+        "description": "callback function invoked when recording is started",
+        "default": "onRecordingStart() {}"
+      },
+      {
+        "name": "onRecordingStop",
+        "type": "function",
+        "description": "callback function invoked once recording is stopped",
+        "default": "onRecordingStop() {}"
+      },
+      {
+        "name": "onSegment",
+        "type": "function",
+        "description": "callback function invoked with text segments",
+        "default": "onSegment() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function when submitting text input value by hitting \"Enter\"",
+        "default": "onSubmit() {}"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "text input placeholder",
+        "default": "Enter text"
+      },
+      {
+        "name": "remote",
+        "type": "object",
+        "description": "object with `start`, `stop`, and `toggle` and associated hotkeys",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "timeout",
+        "type": "number",
+        "description": "number of milliseconds after which to timeout the recording",
+        "default": null
+      },
+      {
+        "name": "stopTooltip",
+        "type": "string",
+        "description": "tooltip message desplayed while recording",
+        "default": "Click to stop recording"
+      },
+      {
+        "name": "startTooltip",
+        "type": "string",
+        "description": "tooltip message desplayed while not recording",
+        "default": "Click to start recording"
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "left"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "voice input width (in px)",
+        "default": 500
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "voice input height (in px)",
+        "default": 36
+      }
+    ],
+    "description": "A voice input component."
+  },
+  "Joyride": {
+    "props": [
+      {
+        "name": "run",
+        "type": "boolean",
+        "description": "controls whether the guide is active",
+        "default": false
+      },
+      {
+        "name": "scrollToSteps",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "steps",
+        "type": "array (required)",
+        "description": "array of step `objects`"
+      }
+    ],
+    "description": "Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walkthroughs and guided tours."
+  },
+  "JSShell": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "JavaScript code to be evaluated",
+        "default": ""
+      },
+      {
+        "name": "solution",
+        "type": "string",
+        "description": "for programming questions, code `string` representing the official solution for the problem",
+        "default": ""
+      },
+      {
+        "name": "hints",
+        "type": "array",
+        "description": "for programming questions, an array of hints providing guidance on how to approach the problem",
+        "default": []
+      },
+      {
+        "name": "precompute",
+        "type": "boolean",
+        "description": "controls whether the default code should be executed once the component has mounted",
+        "default": false
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether group chat functionality should be enabled",
+        "default": false
+      },
+      {
+        "name": "check",
+        "type": "string",
+        "description": "appended JavaScript code to check the `code` to be evaluated",
+        "default": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether to disable all user inputs and make the code block static",
+        "default": false
+      },
+      {
+        "name": "lines",
+        "type": "number",
+        "description": "number of lines to display",
+        "default": 5
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked whenever the text field input changes",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onEvaluate",
+        "type": "function",
+        "description": "callback invoked whenever the `Evaluate` button is clicked",
+        "default": "onEvaluate() {}"
+      },
+      {
+        "name": "vars",
+        "type": "object",
+        "description": "scope object with variables that should be made available to evaluated `code`",
+        "default": null
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      }
+    ],
+    "description": "An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc."
+  },
+  "KeyControls": {
+    "props": [
+      {
+        "name": "actions",
+        "type": "object<function>",
+        "description": "object mapping key codes to events",
+        "default": {}
+      },
+      {
+        "name": "container",
+        "type": "(object|element)",
+        "description": "DOM node for which to attach event listeners",
+        "default": null
+      }
+    ],
+    "description": "Keyboard controls."
+  },
+  "LearnContinuousCLT": {
+    "props": [
+      {
+        "name": "distributions",
+        "type": "array<string>",
+        "default": [
+          "uniform",
+          "exponential",
+          "normal"
+        ]
+      },
+      {
+        "name": "hideFormulas",
+        "type": "boolean",
+        "default": false
+      }
+    ],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution."
+  },
+  "LearnDiscreteCLT": {
+    "props": [
+      {
+        "name": "showPopStdev",
+        "type": "boolean",
+        "default": true
+      }
+    ],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution."
+  },
+  "LearnSampleCLT": {
+    "props": [
+      {
+        "name": "data",
+        "type": "array (required)"
+      },
+      {
+        "name": "populationProbabilities",
+        "type": "boolean",
+        "default": null
+      },
+      {
+        "name": "variables",
+        "type": "array (required)"
+      }
+    ],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set."
+  },
+  "LearnConditionalProbability": {
+    "props": [
+      {
+        "name": "A",
+        "type": "string (required)"
+      },
+      {
+        "name": "B",
+        "type": "string (required)"
+      }
+    ],
+    "description": "A learning component illustrating conditional probability for two dependent binary variables."
+  },
+  "LearnConfidenceCoverageBinomial": {
+    "props": [
+      {
+        "name": "intro",
+        "type": "(node|string)",
+        "description": "overrides default (interactive) intro text",
+        "default": null
+      },
+      {
+        "name": "quartileNotation",
+        "type": "boolean",
+        "description": "controls whether to use quartile notation in intro text",
+        "default": true
+      },
+      {
+        "name": "sampleStats",
+        "type": "boolean",
+        "description": "controls whether one should be able to switch between using the sample proportion or the known population success probability when calculating the standard error",
+        "default": true
+      }
+    ],
+    "description": "A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution."
+  },
+  "LearnConfidenceCoverageNormal": {
+    "props": [
+      {
+        "name": "intro",
+        "type": "(node|string)",
+        "description": "overrides default (interactive) intro text",
+        "default": null
+      },
+      {
+        "name": "quartileNotation",
+        "type": "boolean",
+        "description": "controls whether to use `alpha/2` as the subscript for the critical value or just `critical`",
+        "default": true
+      },
+      {
+        "name": "sampleStats",
+        "type": "boolean",
+        "description": "controls whether one should be able to switch between using the sample standard deviation or the known population standard deviation when calculating the standard error",
+        "default": true
+      }
+    ],
+    "description": "A learning component illustrating coverage of confidence intervals for the mean of a normal distribution."
+  },
+  "LearnContinuousDistribution": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "LearnCrossValidation": {
+    "props": [],
+    "description": "A visualization explaining cross-validation."
+  },
+  "LearnDiceThrowing": {
+    "props": [],
+    "description": "A learning component illustrating the law of large numbers using dice throwing."
+  },
+  "LearnDiscreteDistribution": {
+    "props": [
+      {
+        "name": "numValues",
+        "type": "number",
+        "description": "initial number of distinct values",
+        "default": 4
+      }
+    ],
+    "description": "A learning component for visualizing any discrete distribution and evaluating its CDF."
+  },
+  "LearnBetaDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a beta distribution."
+  },
+  "LearnBinomialDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a binomial distribution."
+  },
+  "LearnChisquareDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "maxDF",
+        "type": "number",
+        "default": 50
+      },
+      {
+        "name": "minDF",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a chi-squared distribution."
+  },
+  "LearnExponentialDistribution": {
+    "props": [
+      {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "maxRate",
+        "type": "number",
+        "default": 10
+      },
+      {
+        "name": "minRate",
+        "type": "number",
+        "default": 0.001
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a exponential distribution."
+  },
+  "LearnFDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of an F distribution."
+  },
+  "LearnGammaDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "scaleParameterization",
+        "type": "boolean",
+        "description": "controls whether to use the parameterization involving a shape and scale parameter instead of shape and rate",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "symbols",
+        "type": "boolean",
+        "description": "whether to display greek symbols for parameters",
+        "default": true
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a gamma distribution."
+  },
+  "LearnGeometricDistribution": {
+    "props": [
+      {
+        "name": "countTrials",
+        "type": "boolean",
+        "description": "set to true if instead of counting the number of failures until the first success, a random variable from a geometric distribution should be defined as the number of trials until the first success",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a geometric distribution."
+  },
+  "LearnHypergeometricDistribution": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a hypergeometric distribution."
+  },
+  "LearnNegativeBinomialDistribution": {
+    "props": [
+      {
+        "name": "countTrials",
+        "type": "boolean",
+        "description": "set to true if instead of counting the number of failures until the r-th success, a random variable from a negative binomial distribution should be defined as the number of trials until the r-th success",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a negative binomial distribution."
+  },
+  "LearnNormalDistribution": {
+    "props": [
+      {
+        "name": "domain",
+        "type": "object",
+        "description": "object of `x` and `y` arrays with the starting and end points for the respective axis",
+        "default": null
+      },
+      {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
+      {
+        "name": "minStDev",
+        "type": "number",
+        "description": "minimum standard deviation",
+        "default": 1
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "tabs",
+        "type": "array<string>",
+        "description": "which tabs to display (either `smaller`, `greater`, or `range`)",
+        "default": [
+          "smaller",
+          "greater",
+          "range"
+        ]
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a normal distribution."
+  },
+  "LearnPoissonDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a Poisson distribution."
+  },
+  "LearnTDistribution": {
+    "props": [
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a Student's t distribution."
+  },
+  "LearnUniformDistribution": {
+    "props": [
+      {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF plots",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "step size of the scroll input",
+        "default": 0.01
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component for calculating probabilities of a uniform distribution."
+  },
+  "LearnMeanTest": {
+    "props": [
+      {
+        "name": "types",
+        "type": "array<string>",
+        "description": "the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose",
+        "default": [
+          "One-Sample",
+          "Two-Sample"
+        ]
+      },
+      {
+        "name": "tests",
+        "type": "array<string>",
+        "default": [
+          "Z-Test",
+          "T-Test"
+        ]
+      },
+      {
+        "name": "nullHypothesisAsValue",
+        "type": "boolean",
+        "description": "always display the null hypothesis as a single value",
+        "default": false
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component on hypothesis tests for a population mean."
+  },
+  "LearnProportionTest": {
+    "props": [
+      {
+        "name": "types",
+        "type": "array<string>",
+        "description": "the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose",
+        "default": [
+          "One-Sample",
+          "Two-Sample"
+        ]
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A learning component on hypothesis tests for a population proportion."
+  },
+  "LearnImagePixelPicker": {
+    "props": [],
+    "description": "A pixel color picker explaining RGB colors using example images."
+  },
+  "LearnMeanVSMedian": {
+    "props": [
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": false
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "description": "title of the panel in which the mean and the median will be generated",
+        "default": "Measures of Location: Mean vs. Median"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "description": "component identifier",
+        "default": "mean_vs_median"
+      },
+      {
+        "name": "intro",
+        "type": "node",
+        "description": "any introductory material that may be needed",
+        "default": null
+      },
+      {
+        "name": "seed",
+        "type": "number",
+        "description": "seed to initialize pseudorandom number generator",
+        "default": null
+      },
+      {
+        "name": "showStatistics",
+        "type": "boolean",
+        "description": "controls whether to display student and group performance statistics",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
+  },
+  "LearnNetworks": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "LearnSOTU": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "array<(node|element)>",
+        "default": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "LearnStandardize": {
+    "props": [
+      {
+        "name": "showProbabilities",
+        "type": "boolean",
+        "description": "controls whether to display the probabilities",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "object",
+        "description": "step size of the scroll input",
+        "default": "any"
+      }
+    ],
+    "description": "Learning component explaining the process of standardizing data."
+  },
+  "LearnStatisticalModels": {
+    "props": [
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "LearnVennDiagramBuilder": {
+    "props": [
+      {
+        "name": "nobs",
+        "type": "number",
+        "description": "total number of observations",
+        "default": null
+      },
+      {
+        "name": "three",
+        "type": "boolean",
+        "description": "controls whether to display three circles",
+        "default": false
+      }
+    ],
+    "description": "A venn diagram builder."
+  },
+  "LearnWordVennDiagram": {
+    "props": [
+      {
+        "name": "height",
+        "type": "number",
+        "description": "height of the Venn diagram in pixels",
+        "default": 350
+      },
+      {
+        "name": "nTexts",
+        "type": "number (required)",
+        "description": "number of sources from which text was gathered"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback for what is to be done when \"Draw Venn Diagram\" is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "tdm",
+        "type": "array (required)",
+        "description": "`array` that is to represent a [term document matrix](https://en.wikipedia.org/wiki/Document-term_matrix)"
+      },
+      {
+        "name": "vocabulary",
+        "type": "array (required)",
+        "description": "`array` in the order of the `tdm` array passed so that the indices may be matches to their words"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width of the Venn diagram in pixels",
+        "default": 600
+      }
+    ],
+    "description": "A venn diagram visualizing co-occurrence of words in documents of a supplied term-document matrix."
+  },
+  "LessonSubmit": {
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "description": "label of submit button",
+        "default": "Finish lesson"
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "description": "message for confirmation email",
+        "default": ""
+      },
+      {
+        "name": "requireLogin",
+        "type": "boolean",
+        "description": "= controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)",
+        "default": true
+      },
+      {
+        "name": "sendConfirmationEmail",
+        "type": "boolean",
+        "description": "controls whether to send confirmation email upon lesson submission",
+        "default": true
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback invoked when clicking on the submission button",
+        "default": "onClick() {}"
+      }
+    ],
+    "description": "A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address."
+  },
+  "LikertScale": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "question to be printed",
+        "default": ""
+      },
+      {
+        "name": "options",
+        "type": "array",
+        "description": "an array of five elements holding the labels for the different scale levels",
+        "default": [
+          "Strongly disagree",
+          "Disagree",
+          "Neither agree nor disagree",
+          "Agree",
+          "Strongly agree"
+        ]
+      },
+      {
+        "name": "noMultipleResponses",
+        "type": "boolean",
+        "description": "disallow multiple submissions from a single student",
+        "default": false
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      }
+    ],
+    "description": "A component showing a question and a five-point scale for students to answer."
+  },
+  "Link": {
+    "props": [
+      {
+        "name": "href",
+        "type": "string (required)",
+        "description": "URL of website to link to"
+      }
+    ],
+    "description": "A link component."
+  },
+  "MatchListQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question to be displayed at the top of the match list question component",
+        "default": ""
+      },
+      {
+        "name": "elements",
+        "type": "array<{a,b}>",
+        "description": "an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties",
+        "default": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether the solution should be accessible after learners submit their answers",
+        "default": true
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "colorScale",
+        "type": "array",
+        "description": "if set, the supplied colors are used for the tiles",
+        "default": null
+      },
+      {
+        "name": "shuffle",
+        "type": "string",
+        "description": "specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched",
+        "default": "both"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "submissionMsg",
+        "type": "string",
+        "description": "notification displayed when the learner first submits his answer",
+        "default": "You have successfully submitted your answer."
+      },
+      {
+        "name": "resubmissionMsg",
+        "type": "string",
+        "description": "notification displayed for all submissions after the first one",
+        "default": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when students submits an answer",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way."
+  },
+  "MetricsContingencyTable": {
+    "props": [
+      {
+        "name": "row",
+        "type": "string (required)"
+      },
+      {
+        "name": "rowValues",
+        "type": "array (required)"
+      },
+      {
+        "name": "rowAccessor",
+        "type": "function",
+        "default": "d => d.value"
+      },
+      {
+        "name": "col",
+        "type": "string (required)"
+      },
+      {
+        "name": "colAccessor",
+        "type": "function",
+        "default": "d => d.value"
+      },
+      {
+        "name": "colValues",
+        "type": "array (required)"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "Metrics": {
+    "props": [
+      {
+        "name": "for",
+        "type": "string (required)",
+        "description": "ID of component whose actions should be retrieved"
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "interval at which to call the database; if falsy, retrievals have to be manually triggered by clicking on the displayed button",
+        "default": null
+      },
+      {
+        "name": "onData",
+        "type": "function",
+        "description": "callback function called with an array of all actions",
+        "default": "onData() {}"
+      }
+    ],
+    "description": "Component allowing retrieval of member actions corresponding to a specified component ID from the database."
+  },
+  "RealTimeMetrics": {
+    "props": [
+      {
+        "name": "for",
+        "type": "array (required)",
+        "description": "ID of component whose actions should trigger callback(s)"
+      },
+      {
+        "name": "onData",
+        "type": "function",
+        "description": "callback function called with an array of all actions when a new member action arrives",
+        "default": "onData() {}"
+      },
+      {
+        "name": "onDatum",
+        "type": "function",
+        "description": "callback function invoked with every individual incoming member action",
+        "default": "onDatum() {}"
+      },
+      {
+        "name": "returnFullObject",
+        "type": "boolean",
+        "description": "controls whether to invoke the supplied callback(s) with the full action object or only its value",
+        "default": false
+      }
+    ],
+    "description": "Invisible component listening to incoming member actions and invoking a given callback."
+  },
+  "MultiCards": {
+    "props": [
+      {
+        "name": "animation",
+        "type": "object",
+        "description": "if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)",
+        "default": {}
+      },
+      {
+        "name": "cardStyles",
+        "type": "{container,front,back}",
+        "description": "allows to override the given styles. Handles objects with  `container`, `front` and `back` keys",
+        "default": {
+          "container": {},
+          "front": {},
+          "back": {}
+        }
+      },
+      {
+        "name": "game",
+        "type": "string",
+        "description": "multi-card games. Can be either `memory` or `bingo`.",
+        "default": null
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "voice recognition language identifier",
+        "default": "en-US"
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "a function that receives the matrix of the flippable cards",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "oneTime",
+        "type": "boolean",
+        "description": "indicates whether the flip process may be executed just once",
+        "default": false
+      },
+      {
+        "name": "values",
+        "type": "array<object>",
+        "description": "the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component",
+        "default": []
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory)."
+  },
+  "MultipleChoiceMatrix": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "array (required)",
+        "description": "an array of questions"
+      },
+      {
+        "name": "answers",
+        "type": "array (required)",
+        "description": "an array of answers"
+      },
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "description": "title to be displayed on top of the question matrix",
+        "default": null
+      },
+      {
+        "name": "solution",
+        "type": "array<array>",
+        "description": "boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked",
+        "default": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "question type (`radio` corresponds to \"Select one\", `checkbox` to \"Select all that apply\")",
+        "default": "radio"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when user clicks the \"Submit\" button; invoked with the two-dimensional boolean array of the active status for each answer option",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component that renders a matrix of multiple choice questions with the same answers."
+  },
+  "MultipleChoiceQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "the question displayed at the top of the multiple choice component",
+        "default": ""
+      },
+      {
+        "name": "solution",
+        "type": "(number|array)",
+        "description": "number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers",
+        "default": null
+      },
+      {
+        "name": "answers",
+        "type": "array (required)",
+        "description": "an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect"
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the question is disabled",
+        "default": false
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "string",
+        "description": "either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
+        "default": "incremental"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "displaySolution",
+        "type": "boolean",
+        "description": "controls whether the solution is displayed upfront",
+        "default": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type \"Choose all that apply\")",
+        "default": "onChange(){}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked after an answer is submitted",
+        "default": "onSubmit(){}"
+      }
+    ],
+    "description": "An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked."
+  },
+  "MultipleChoiceSurvey": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "description": "string indicating the question to ask the students",
+        "default": ""
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "controls whether student answers are anonymized",
+        "default": false
+      },
+      {
+        "name": "answers",
+        "type": "array",
+        "description": "array indicating answer choices for the students",
+        "default": []
+      },
+      {
+        "name": "multipleAnswers",
+        "type": "boolean",
+        "description": "indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times",
+        "default": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "panel title",
+        "default": "Survey"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "function to be called when an answer is submitted",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A survey component in which the instructor may collect multiple-choice survey data from students in real-time."
+  },
+  "News": {
+    "props": [
+      {
+        "name": "invisible",
+        "type": "boolean",
+        "description": "indicates whether to show the input fields or rely solely on voice control to be triggered",
+        "default": false
+      },
+      {
+        "name": "key",
+        "type": "string",
+        "description": "authentication key for the News API",
+        "default": "2987fd19bd374249979c4e38e40ef8b8"
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "language identifier",
+        "default": "en-US"
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "onArticles",
+        "type": "function",
+        "description": "callback function invoked with an array of article objects once they are received",
+        "default": "onArticles() {}"
+      }
+    ],
+    "description": "The **News** component scans the public **News API** (consisting of 71 international  newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice."
+  },
+  "NumberQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "number question",
+        "default": ""
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "solution",
+        "type": "number",
+        "description": "a numeric answer to the problem",
+        "default": null
+      },
+      {
+        "name": "digits",
+        "type": "number",
+        "description": "number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.",
+        "default": 3
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "maximum allowed input value",
+        "default": null
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "minimum allowed input value",
+        "default": null
+      },
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "description": "pre-selected value of number input",
+        "default": 0
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A number question component."
+  },
+  "NumberSurvey": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "description": "the question to be displayed",
+        "default": ""
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether the same user (or session if anonymous) may submit multiple answers)",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "Allows for the students to submit data anonymously. Note that if this option is set to \"true\", then the instructors will be unable to see the ID of the submitting student",
+        "default": false
+      },
+      {
+        "name": "step",
+        "type": "(number|string)",
+        "description": "A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`",
+        "default": "any"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function invoked once students submits an answer",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A survey component in which the instructor may collect numeric survey data from students in real-time."
+  },
+  "OrderQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "question for which the student has to bring the available `options` into the correct order",
+        "default": ""
+      },
+      {
+        "name": "options",
+        "type": "array (required)",
+        "description": "an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order"
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "controls whether to show a notification displaying whether the submitted answer is correct or not",
+        "default": true
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "description": "message to be displayed when student submits a wrong answer",
+        "default": "Not quite, try again!"
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "description": "message to be displayed when student submits the correct answer",
+        "default": "That's the correct ordering!"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "An order question component that asks student to bring a collection of elements into the correct order."
+  },
+  "Pages": {
+    "props": [
+      {
+        "name": "activePage",
+        "type": "number",
+        "description": "active page",
+        "default": 1
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the navigation bar is active or not",
+        "default": false
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "displayed title of the pages container",
+        "default": ""
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)",
+        "default": "default"
+      },
+      {
+        "name": "height",
+        "type": "(number|string)",
+        "description": "the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added",
+        "default": null
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSelect",
+        "type": "function",
+        "description": "Function invoked when active change is changed. Receives the new active page index as a sole parameter",
+        "default": "onSelect() {}"
+      }
+    ],
+    "description": "An ISLE pagination component that allows the user to step through a sequence of pages."
+  },
+  "Panel": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "CSS class name",
+        "default": ""
+      },
+      {
+        "name": "header",
+        "type": "(string|node)",
+        "description": "panel heading (h3)",
+        "default": null
+      },
+      {
+        "name": "bodyStyle",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Card component."
+  },
+  "Playground": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "code to be displayed in the playground box. This code will be editable by the user in the brower or lesson",
+        "default": ""
+      },
+      {
+        "name": "scope",
+        "type": "object",
+        "description": "scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display",
+        "default": {}
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Playground component to experiment with ISLE components."
+  },
+  "Plotly": {
+    "props": [
+      {
+        "name": "data",
+        "type": "array (required)",
+        "description": "data array"
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether the plot should be draggable",
+        "default": false
+      },
+      {
+        "name": "editable",
+        "type": "boolean",
+        "description": "controls whether labels of the created plot are editable",
+        "default": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "description": "component identifier",
+        "default": null
+      },
+      {
+        "name": "layout",
+        "type": "object",
+        "description": "Plotly layout object",
+        "default": {}
+      },
+      {
+        "name": "config",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "legendButtons",
+        "type": "boolean",
+        "description": "controls whether to display buttons for changing the legend",
+        "default": true
+      },
+      {
+        "name": "meta",
+        "type": "object",
+        "description": "plot meta-information",
+        "default": null
+      },
+      {
+        "name": "revision",
+        "type": "number",
+        "description": "when provided, causes the plot to update when the revision value is incremented",
+        "default": null
+      },
+      {
+        "name": "onAfterPlot",
+        "type": "function",
+        "description": "callback function invoked each time a chart is plotted",
+        "default": "onAfterPlot() {}"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when any element is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "onLegendClick",
+        "type": "function",
+        "description": "callback function invoked when legend item is clicked",
+        "default": "onLegendClick() {}"
+      },
+      {
+        "name": "onLegendDoubleClick",
+        "type": "function",
+        "description": "callback function invoked when legend item is double-clicked",
+        "default": "onLegendDoubleClick() {}"
+      },
+      {
+        "name": "onRelayout",
+        "type": "function",
+        "description": "callback function invoked when plotly_relayout is triggered",
+        "default": "onRelayout() {}"
+      },
+      {
+        "name": "onSelected",
+        "type": "function",
+        "description": "callback function invoked when elements are selected",
+        "default": "onSelected() {}"
+      },
+      {
+        "name": "onShare",
+        "type": "function",
+        "description": "callback function invoked when clicking on the \"Share\" button",
+        "default": null
+      },
+      {
+        "name": "removeButtons",
+        "type": "boolean",
+        "description": "controls whether to remove all buttons",
+        "default": false
+      },
+      {
+        "name": "toggleFullscreen",
+        "type": "boolean",
+        "description": "controls whether to display the plot in fullscreen mode",
+        "default": true
+      }
+    ],
+    "description": "Plotly visualization."
+  },
+  "Polaroid": {
+    "props": [
+      {
+        "name": "image",
+        "type": "string",
+        "description": "image URL",
+        "default": null
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "indicates whether the image is removable when clicking on the pin",
+        "default": false
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether one can drag the polaroid around the screen",
+        "default": false
+      },
+      {
+        "name": "showPin",
+        "type": "boolean",
+        "description": "shows a pin",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when image is clicked (receives the id of the Polaroid as parameter)",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      }
+    ],
+    "description": "A component displaying an image in the style of a polaroid."
+  },
+  "Preload": {
+    "props": [
+      {
+        "name": "image",
+        "type": "(string|array)",
+        "description": "the image or the array of images that should be preloaded",
+        "default": null
+      }
+    ],
+    "description": "Preload resources to avoid stuttering loading times."
+  },
+  "ProportionsSurvey": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "contols whether one wishes to allow students to answer the survey multiple times",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "contols whether student answers are anonymized",
+        "default": false
+      },
+      {
+        "name": "colors",
+        "type": "array",
+        "description": "array of colors for the pie chart components. If not defined, a custom color scale will be used",
+        "default": [
+          "tomato",
+          "orange",
+          "gold",
+          "darkcyan",
+          "salmon",
+          "lightgreen",
+          "gainsboro",
+          "lightpurple",
+          "darkkhaki",
+          "darkseagreen"
+        ]
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the survey is deactivated",
+        "default": false
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "group display heading",
+        "default": "group results"
+      },
+      {
+        "name": "groupHeight",
+        "type": "number",
+        "description": "proportions input height for group display (in px)",
+        "default": 100
+      },
+      {
+        "name": "groupInnerRadius",
+        "type": "number",
+        "description": "inner radius of proportions pie chart for group display (in px)",
+        "default": 40
+      },
+      {
+        "name": "legends",
+        "type": "array",
+        "description": "legend labels that describe the options to be weighed",
+        "default": null
+      },
+      {
+        "name": "margin",
+        "type": "string",
+        "description": "proportion input margin (in px)",
+        "default": "40px"
+      },
+      {
+        "name": "nElements",
+        "type": "number",
+        "description": "number of elements that shall be weighed",
+        "default": 6
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function invoked once students submits an answer",
+        "default": "onSubmit() {}"
+      },
+      {
+        "name": "personalHeight",
+        "type": "number",
+        "description": "proportions input height for individual student (in px)",
+        "default": 200
+      },
+      {
+        "name": "personalInnerRadius",
+        "type": "number",
+        "description": "inner radius of proportions pie chart for individual student (in px)",
+        "default": 60
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "description": "displayed precision of proportion values",
+        "default": 2
+      },
+      {
+        "name": "question",
+        "type": "string",
+        "description": "the question to be displayed",
+        "default": ""
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "description": "the step of the arrows seen when hovering the cursor above the input box",
+        "default": 0.25
+      }
+    ],
+    "description": "Component that allows a group of people to vote on the weights and importance of given options."
+  },
+  "QuestionForm": {
+    "props": [
+      {
+        "name": "buttonLabel",
+        "type": "string",
+        "description": "label of the submit button",
+        "default": "Submit"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when the submit button is clicked",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A form component combining different question components together with a single submission button."
+  },
+  "Queue": {
+    "props": [
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "onHide",
+        "type": "function",
+        "default": null
+      },
+      {
+        "name": "onQueueSize",
+        "type": "function",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      },
+      {
+        "name": "onNewQuestion",
+        "type": "function",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "Quiz": {
+    "props": [
+      {
+        "name": "confidence",
+        "type": "boolean",
+        "description": "whether to display a Likert scale asking for the confidence of the user's answer",
+        "default": false
+      },
+      {
+        "name": "forceConfidence",
+        "type": "boolean",
+        "description": "controls whether a user has to supply a confidence level before moving to the next question",
+        "default": false
+      },
+      {
+        "name": "count",
+        "type": "number",
+        "description": "number of questions to include in the quiz",
+        "default": null
+      },
+      {
+        "name": "questions",
+        "type": "array (required)",
+        "description": "array of questions from which questions will be randomly selected"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the timer for the quiz is active",
+        "default": true
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "duration of the quiz (in minutes); once time is up, the summary page will be displayed",
+        "default": null
+      },
+      {
+        "name": "skippable",
+        "type": "boolean",
+        "description": "controls whether questions in  the quiz are skippable",
+        "default": true
+      },
+      {
+        "name": "footerNodes",
+        "type": "array",
+        "description": "array of nodes to be displayed in the footer of each question",
+        "default": []
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "description": "label of button to advance to next question",
+        "default": "Next Question"
+      },
+      {
+        "name": "showFinishButton",
+        "type": "boolean",
+        "description": "controls whether to display button to finish quiz and jump directly to results page",
+        "default": false
+      },
+      {
+        "name": "finishLabel",
+        "type": "string",
+        "description": "label of button to finish quiz",
+        "default": "Finish Quiz"
+      },
+      {
+        "name": "onFinished",
+        "type": "function",
+        "description": "callback invoked when the quiz is finished and the results page is displayed",
+        "default": "onFinished() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when user submits an answer",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A quiz component displaying a sequence of question components."
+  },
+  "RHelp": {
+    "props": [
+      {
+        "name": "func",
+        "type": "string",
+        "description": "name of the `R function` for which to open the documentation. If not supplied, the content of the `RHelp` tag is assumed to be equal to the name of the function",
+        "default": ""
+      },
+      {
+        "name": "library",
+        "type": "string",
+        "description": "name of the R package in which the function resides",
+        "default": "base"
+      },
+      {
+        "name": "visible",
+        "type": "boolean",
+        "description": "controls whether the help modal window should be opened at startup",
+        "default": false
+      }
+    ],
+    "description": "Make words pull up R documentation in a modal window when clicked."
+  },
+  "ROutput": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "R code used to evaluate",
+        "default": ""
+      },
+      {
+        "name": "libraries",
+        "type": "array",
+        "description": "R libraries that should be loaded automatically when the input `code` is executed",
+        "default": []
+      },
+      {
+        "name": "prependCode",
+        "type": "(string|array)",
+        "description": "R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating",
+        "default": ""
+      }
+    ],
+    "description": "Component for rendering R output inside an ISLE lesson."
+  },
+  "RPlot": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "R code to generate the plot",
+        "default": ""
+      },
+      {
+        "name": "width",
+        "type": "(number|string)",
+        "description": "width of the plot (in px)",
+        "default": 600
+      },
+      {
+        "name": "height",
+        "type": "(number|string)",
+        "description": "height of the plot (in px)",
+        "default": 350
+      },
+      {
+        "name": "fileType",
+        "type": "string",
+        "description": "file type of the plot (`png` or `svg`)",
+        "default": "png"
+      },
+      {
+        "name": "libraries",
+        "type": "array",
+        "description": "R libraries that should be loaded automatically when the input `code` is executed",
+        "default": []
+      },
+      {
+        "name": "prependCode",
+        "type": "(string|array)",
+        "description": "`string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating",
+        "default": ""
+      },
+      {
+        "name": "onDone",
+        "type": "function",
+        "description": "callback invoked with `err`, `img` and `body` arguments once a plot is created",
+        "default": "onDone() {}"
+      }
+    ],
+    "description": "Component for rendering an R plot inside an ISLE lesson."
+  },
+  "RShell": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "R code to be evaluated",
+        "default": ""
+      },
+      {
+        "name": "solution",
+        "type": "string",
+        "description": "for programming questions, R code `string` representing the official solution for the problem",
+        "default": ""
+      },
+      {
+        "name": "hints",
+        "type": "array",
+        "description": "for programming questions, an array of hints providing guidance on how to approach the problem",
+        "default": []
+      },
+      {
+        "name": "addPreceding",
+        "type": "boolean",
+        "description": "if set to true, the shell will evaluate all the code from the current component and all previous ones occurring in the lesson",
+        "default": false
+      },
+      {
+        "name": "libraries",
+        "type": "array",
+        "description": "R libraries that should be loaded automatically when the input `code` is executed",
+        "default": []
+      },
+      {
+        "name": "precompute",
+        "type": "boolean",
+        "description": "controls whether the default code should be executed once the component has mounted",
+        "default": false
+      },
+      {
+        "name": "prependCode",
+        "type": "(string|array)",
+        "description": "R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating",
+        "default": ""
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether group chat functionality should be enabled",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether to disable all user inputs and make the code block static",
+        "default": false
+      },
+      {
+        "name": "lines",
+        "type": "number",
+        "description": "number of lines to display",
+        "default": 5
+      },
+      {
+        "name": "resettable",
+        "type": "boolean",
+        "description": "controls whether to display a reset button for restoring the default code input",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked whenever the text field input changes",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onEvaluate",
+        "type": "function",
+        "description": "callback invoked whenever the `Evaluate` button is clicked",
+        "default": "onEvaluate(){}"
+      },
+      {
+        "name": "onResult",
+        "type": "function",
+        "description": "callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function",
+        "default": "onResult() {}"
+      }
+    ],
+    "description": "An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/)."
+  },
+  "RTable": {
+    "props": [
+      {
+        "name": "code",
+        "type": "string",
+        "description": "R code returning a data.frame containing the data to be displayed in the table",
+        "default": ""
+      },
+      {
+        "name": "libraries",
+        "type": "array",
+        "description": "R libraries that should be loaded automatically when the input `code` is executed",
+        "default": []
+      },
+      {
+        "name": "prependCode",
+        "type": "(string|array)",
+        "description": "R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating",
+        "default": ""
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width (between 0 and 1)",
+        "default": 0.5
+      }
+    ],
+    "description": "Component for rendering a R data frame or matrix in a tabular display."
+  },
+  "RandomVideo": {
+    "props": [
+      {
+        "name": "videos",
+        "type": "array<string>",
+        "description": "video URLs",
+        "default": []
+      }
+    ],
+    "description": "Displays a random video from a list of videos."
+  },
+  "RangeQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "displayed question",
+        "default": ""
+      },
+      {
+        "name": "solution",
+        "type": "array<number>",
+        "description": "two-element array containing the endpoints of the correct range",
+        "default": null
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|element)>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "digits",
+        "type": "number",
+        "description": "number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality",
+        "default": 3
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "maximum input value",
+        "default": null
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "minimum input value",
+        "default": null
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether one can submit multiple answers",
+        "default": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChangeLower",
+        "type": "function",
+        "description": "callback triggered after the lower bound is changed by the user",
+        "default": "onChangeLower() {}"
+      },
+      {
+        "name": "onChangeUpper",
+        "type": "function",
+        "description": "callback triggered after the upper bound is changed by the user",
+        "default": "onChangeUpper() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A range question component that asks students to supply a lower and upper end point."
+  },
+  "Reaction": {
+    "props": [
+      {
+        "name": "actionID",
+        "type": "string (required)",
+        "description": "ID of component to watch"
+      },
+      {
+        "name": "show",
+        "type": "(object|function)",
+        "description": "hash table of components to display given the different responses or function that returns a component to display (sole argument of function is the latest result)",
+        "default": {}
+      }
+    ],
+    "description": "Shows different components depending on user actions."
+  },
+  "Recorder": {
+    "props": [
+      {
+        "name": "audio",
+        "type": "boolean",
+        "description": "indicates whether audio should be recorded",
+        "default": false
+      },
+      {
+        "name": "camera",
+        "type": "boolean",
+        "description": "indicates whether webcam should be recorded",
+        "default": false
+      },
+      {
+        "name": "screen",
+        "type": "boolean",
+        "description": "indicates whether the screen should be captured",
+        "default": false
+      },
+      {
+        "name": "autostart",
+        "type": "boolean",
+        "description": "indicates whether recording should start immediately",
+        "default": false
+      },
+      {
+        "name": "downloadable",
+        "type": "boolean",
+        "description": "indicates whether users should be able to download the recording",
+        "default": false
+      },
+      {
+        "name": "uploadable",
+        "type": "boolean",
+        "description": "indicates whether users should be able to upload the recording to the server",
+        "default": false
+      },
+      {
+        "name": "bitsPerSecond",
+        "type": "number",
+        "description": "bits per second",
+        "default": 128000
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      }
+    ],
+    "description": "An ISLE component for recording audio, screen and video."
+  },
+  "Revealer": {
+    "props": [
+      {
+        "name": "message",
+        "type": "string",
+        "description": "message to be displayed when content is hidden",
+        "default": "Content hidden by instructor"
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "controls whether to initially display child elements",
+        "default": false
+      }
+    ],
+    "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all users."
+  },
+  "Runner": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the runner should be active. Upon activation, the `onEvaluate` function is called in the given interval (or once)",
+        "default": true
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once",
+        "default": null
+      },
+      {
+        "name": "onEvaluate",
+        "type": "function",
+        "description": "function to be invoked",
+        "default": "onEvaluate() {}"
+      }
+    ],
+    "description": "The runner component will execute a supplied function either once or at a given interval."
+  },
+  "ScrollingText": {
+    "props": [
+      {
+        "name": "list",
+        "type": "array<string>",
+        "description": "list of image URLs to be displayed",
+        "default": []
+      },
+      {
+        "name": "loop",
+        "type": "boolean",
+        "description": "indicates whether the process shall be displayed infinitely",
+        "default": false
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)",
+        "default": "right"
+      },
+      {
+        "name": "still",
+        "type": "number",
+        "description": "the time the text remains still (in seconds)",
+        "default": 3
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "the interval between the calls (in seconds)",
+        "default": 15
+      },
+      {
+        "name": "inTime",
+        "type": "number",
+        "description": "time of the entrance effect (in seconds)",
+        "default": 0.6
+      },
+      {
+        "name": "outTime",
+        "type": "number",
+        "description": "time of the exit effect (in seconds)",
+        "default": 1
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "style definition of the text",
+        "default": {}
+      }
+    ],
+    "description": "A dynamic background component that changes a background image at a specified interval."
+  },
+  "Seal": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether seal is active or greyed out",
+        "default": true
+      },
+      {
+        "name": "onActivate",
+        "type": "function",
+        "default": "onActivate() {}"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when the note is clicked",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "scale",
+        "type": "number",
+        "description": "the size of the object, default = 1",
+        "default": null
+      },
+      {
+        "name": "innerStyle",
+        "type": "object",
+        "description": "the style for the inner circle",
+        "default": null
+      },
+      {
+        "name": "lower",
+        "type": "string",
+        "description": "the lower text",
+        "default": "The lower text"
+      },
+      {
+        "name": "lowerArc",
+        "type": "number",
+        "description": "the arc for the lower text",
+        "default": 150
+      },
+      {
+        "name": "noOrnaments",
+        "type": "boolean",
+        "description": "prevents rendering of the ornaments",
+        "default": false
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "controls whether the note is removed when clicked",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style for the element",
+        "default": {}
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "seal title",
+        "default": "Enter a title"
+      },
+      {
+        "name": "upper",
+        "type": "string",
+        "description": "the upper text",
+        "default": "The upper text"
+      },
+      {
+        "name": "upperArc",
+        "type": "number",
+        "description": "the arc for the upper text",
+        "default": 150
+      }
+    ],
+    "description": "An approval seal."
+  },
+  "SelectQuestionMatrix": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "default": ""
+      },
+      {
+        "name": "rows",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "cols",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "options",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "solution",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "hints",
+        "type": "array",
+        "default": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "default": "bottom"
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "default": "Not quite, try again!"
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "default": "That's the correct answer!"
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A question with an answer consisting of multiple select boxes."
+  },
+  "SelectQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "question for which the student has to select one of the available answer options",
+        "default": ""
+      },
+      {
+        "name": "options",
+        "type": "array (required)",
+        "description": "available answer options from which the student can select"
+      },
+      {
+        "name": "solution",
+        "type": "number (required)",
+        "description": "index of solution element in `options`"
+      },
+      {
+        "name": "preselected",
+        "type": "number",
+        "description": "index of preselected answer option",
+        "default": 0
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "controls whether the component is rendered inline or not",
+        "default": false
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "default": true
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "description": "message to be displayed when student selects a wrong answer",
+        "default": "Not quite, try again!"
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "description": "message to be displayed when student selects the correct answer",
+        "default": "That's the correct answer!"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after the submit action",
+        "default": "onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A select question component."
+  },
+  "ShapedForm": {
+    "props": [
+      {
+        "name": "margin",
+        "type": "number",
+        "description": "the margin in regards to the floating text, in pixels. Default: 10",
+        "default": 10
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when image is clicked",
+        "default": null
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "description": "the background image url",
+        "default": null
+      },
+      {
+        "name": "svg",
+        "type": "string",
+        "description": "the svg background image url",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style of the object, it can hold any css including animations",
+        "default": {}
+      }
+    ],
+    "description": "A component that allows the display of shapes, triggered by images with alpha channel."
+  },
+  "ShapedImage": {
+    "props": [
+      {
+        "name": "alt",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "background",
+        "type": "boolean",
+        "description": "if set the component can hold and display child elements",
+        "default": false
+      },
+      {
+        "name": "margin",
+        "type": "number",
+        "description": "the margin in regards to the floating text, in pixels. Default: 10",
+        "default": 10
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "event handler invoked when image is clicked",
+        "default": null
+      },
+      {
+        "name": "src",
+        "type": "string",
+        "description": "the image url",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "the style of the object, it can hold any css including animations",
+        "default": {}
+      },
+      {
+        "name": "threshold",
+        "type": "number",
+        "description": "alpha threshold, number between 0 and 1",
+        "default": 1
+      }
+    ],
+    "description": "A component that allows the display of shapes, triggered by images with alpha channel."
+  },
+  "Sketchpad": {
+    "props": [
+      {
+        "name": "autoSave",
+        "type": "boolean",
+        "description": "controls whether the editor should save the current text to the local storage of the browser at a given time interval",
+        "default": true
+      },
+      {
+        "name": "feedbackButtons",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons on each slide",
+        "default": false
+      },
+      {
+        "name": "intervalTime",
+        "type": "number",
+        "description": "time between auto saves",
+        "default": 10000
+      },
+      {
+        "name": "hideInputButtons",
+        "type": "boolean",
+        "description": "controls whether to hide drawing and text input buttons",
+        "default": false
+      },
+      {
+        "name": "hideNavigationButtons",
+        "type": "boolean",
+        "description": "controls whether to hide buttons for navigating between pages",
+        "default": false
+      },
+      {
+        "name": "hideRecordingButtons",
+        "type": "boolean",
+        "description": "controls whether to hide the recording buttons",
+        "default": false
+      },
+      {
+        "name": "hideSaveButtons",
+        "type": "boolean",
+        "description": "controls whether to hide the save buttons",
+        "default": false
+      },
+      {
+        "name": "hideTransmitButtons",
+        "type": "boolean",
+        "description": "controls whether to hide buttons for transmitting user actions",
+        "default": false
+      },
+      {
+        "name": "brushSize",
+        "type": "number",
+        "description": "size of the brush to paint with",
+        "default": 4
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "description": "color of the brush and texts",
+        "default": "#444444"
+      },
+      {
+        "name": "canvasWidth",
+        "type": "number",
+        "description": "width of the canvas element (in px)",
+        "default": 1200
+      },
+      {
+        "name": "canvasHeight",
+        "type": "number",
+        "description": "height of the canvas element (in px)",
+        "default": 700
+      },
+      {
+        "name": "fullscreen",
+        "type": "boolean",
+        "description": "controls whether to automatically resize the canvas to the width and height of the browser window",
+        "default": false
+      },
+      {
+        "name": "fill",
+        "type": "string",
+        "description": "if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow",
+        "default": "vertical"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "whether to make the component read-only and forbid drawing on the sketchpad",
+        "default": false
+      },
+      {
+        "name": "fontFamily",
+        "type": "string",
+        "description": "font family",
+        "default": "Arial"
+      },
+      {
+        "name": "fontSize",
+        "type": "number",
+        "description": "font size",
+        "default": 24
+      },
+      {
+        "name": "nodes",
+        "type": "object",
+        "description": "components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components",
+        "default": {}
+      },
+      {
+        "name": "noPages",
+        "type": "number",
+        "description": "initial number of pages",
+        "default": 1
+      },
+      {
+        "name": "pdf",
+        "type": "string",
+        "description": "Link to PDF file for baked-in page backgrounds",
+        "default": null
+      },
+      {
+        "name": "showTutorial",
+        "type": "boolean",
+        "description": "show a tutorial for the sketchpad",
+        "default": false
+      },
+      {
+        "name": "transmitOwner",
+        "type": "boolean",
+        "description": "whether owner actions should be transmitted to other users in real-time",
+        "default": true
+      },
+      {
+        "name": "groupMode",
+        "type": "boolean",
+        "description": "controls whether all user's actions are transmitted to everyone else",
+        "default": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked whenever a new line element is drawn",
+        "default": "onChange() {}"
+      }
+    ],
+    "description": "A drawing sketchpad for note taking on lecture slides or empty pages."
+  },
+  "Slider": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "title for the slideshow / carousel to be displayed at its top",
+        "default": ""
+      },
+      {
+        "name": "dots",
+        "type": "boolean",
+        "description": "display dots at the bottom for quickly navigating to any slide",
+        "default": true
+      },
+      {
+        "name": "fade",
+        "type": "boolean",
+        "description": "controls whether fading is used for transitioning between the slides",
+        "default": false
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether users can drag the slides to navigate between them",
+        "default": true
+      },
+      {
+        "name": "goto",
+        "type": "number",
+        "description": "If property is changed, the component jumps to the slide with the selected index",
+        "default": 0
+      },
+      {
+        "name": "infinite",
+        "type": "boolean",
+        "description": "controls whether the slideshow wraps around it's contents",
+        "default": false
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "sets a time interval for an automatic slide change",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback invoked when clicking on the next/previous buttons",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "swipe",
+        "type": "boolean",
+        "description": "enables drag/swipe behavior",
+        "default": false
+      }
+    ],
+    "description": "A component which displays its children in a slideshow or carousel."
+  },
+  "SortableTree": {
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "header title",
+        "default": null
+      }
+    ],
+    "description": "A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component."
+  },
+  "Appear": {
+    "props": [
+      {
+        "name": "easing",
+        "type": "string",
+        "description": "type of easing to use for an animation. Supported are: \"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\", \"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expIn\", \"expOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\"",
+        "default": "quadInOut"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "description": "integer starting at 1 for the presentation order of the appear tags. If a slide contains ordered and unordered appear tags, unordered ones appear first",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "duration of appearance animation in milliseconds",
+        "default": 300
+      },
+      {
+        "name": "startValue",
+        "type": "object",
+        "description": "style object for the starting, inactive state of the appear tag",
+        "default": {
+          "opacity": 0
+        }
+      },
+      {
+        "name": "endValue",
+        "type": "object",
+        "description": "style object for the ending, active state of the appear tag",
+        "default": {
+          "opacity": 1
+        }
+      }
+    ],
+    "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
+  },
+  "BlockQuote": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A styled blockquote. Should be used in conjunction with the Spectacle `Cite` and `Quote` tags."
+  },
+  "Cite": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Component wrapping the citation source. Should be used in conjunction with the Spectacle `BlockQuote` and `Quote` tags."
+  },
+  "CodePane": {
+    "props": [
+      {
+        "name": "lang",
+        "type": "string",
+        "description": "Prism compatible language name",
+        "default": null
+      },
+      {
+        "name": "source",
+        "type": "string",
+        "description": "code to be shown",
+        "default": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "theme",
+        "type": "string",
+        "description": "`light`, `dark`, or `external` theme for the source editor's syntax highlighting",
+        "default": "dark"
+      }
+    ],
+    "description": "Component displaying a styled, highlighted code preview."
+  },
+  "CodeSlide": {
+    "props": [
+      {
+        "name": "lang",
+        "type": "string (required)",
+        "description": "language identifier"
+      },
+      {
+        "name": "code",
+        "type": "string (required)",
+        "description": "program code"
+      },
+      {
+        "name": "ranges",
+        "type": "array<{loc,title,note}> (required)",
+        "description": "array of objects with `loc` (for line of code), `title`, and `note` properties"
+      },
+      {
+        "name": "showLineNumbers",
+        "type": "boolean",
+        "description": "controls whether to display line numbers",
+        "default": true
+      }
+    ],
+    "description": "Adapted from spectacle-code-slide@0.5.2 (MIT Licensed) https://github.com/jamiebuilds/spectacle-code-slide\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport logger from 'debug';\nimport { Slide } from 'spectacle';\nimport hljs from 'highlight.js';\nimport clamp from '@stdlib/math/base/special/clamp';\nimport lpad from '@stdlib/string/left-pad';\nimport CodeSlideTitle from './code_slide_title.js';\nimport CodeSlideNote from './code_slide_note.js';\nimport CodeSlideImage from './code_slide_image.js';\nimport calculateScrollCenter from './calculate_scroll_center.js';\nimport scrollToElement from './scroll_to_element.js';\nimport 'highlight.js/styles/googlecode.css';\n\n\n// FUNCTIONS //\n\nfunction calculateOpacity(index, loc) {\nreturn ( loc[0] <= index && loc[1] > index ) ? 1 : 0.2;\n}\n\nfunction getLineNumber(index) {\nreturn '<span class=\"token comment\">' + lpad( String( index + 1 ), 3 ) + '.</span> ';\n}\n\n\n// VARIABLES //\n\nconst debug = logger( 'isle:spectacle:code-slide' );\nconst defaultBgColor = '#122b45';\nconst defaultColor = 'white';\nconst style = {\nposition: 'relative',\ntextAlign: 'center',\noverflow: 'hidden',\ncolor: defaultColor,\nheight: '646px',\nmargin: 0,\nfontSize: '1.1em',\npadding: '40% 0',\nwhiteSpace: 'pre-wrap',\nwordBreak: 'break-word'\n};\n\n\n// MAIN //\n\n/**\nA slide displaying code in an step-by-step manner."
+  },
+  "Code": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Component displaying inline text in a monospace font."
+  },
+  "Deck": {
+    "props": [
+      {
+        "name": "autoplay",
+        "type": "boolean",
+        "description": "automatically advance slides",
+        "default": false
+      },
+      {
+        "name": "autoplayDuration",
+        "type": "number",
+        "description": "global autoplay duration (in milliseconds)",
+        "default": 7000
+      },
+      {
+        "name": "autoplayLoop",
+        "type": "boolean",
+        "description": "keep slides in loop",
+        "default": true
+      },
+      {
+        "name": "autoplayOnStart",
+        "type": "boolean",
+        "description": "start presentation with autoplay on/not paused",
+        "default": true
+      },
+      {
+        "name": "controls",
+        "type": "boolean",
+        "description": "show control arrows when not in fullscreen",
+        "default": true
+      },
+      {
+        "name": "contentHeight",
+        "type": "number",
+        "description": "baseline content area height",
+        "default": 700
+      },
+      {
+        "name": "contentWidth",
+        "type": "number",
+        "description": "baseline content area width",
+        "default": 1000
+      },
+      {
+        "name": "disableKeyboardControls",
+        "type": "boolean",
+        "description": "toggle keyboard control",
+        "default": false
+      },
+      {
+        "name": "pageControls",
+        "type": "boolean",
+        "description": "controls whether page-up and page-down can be used to switch between slides",
+        "default": true
+      },
+      {
+        "name": "progress",
+        "type": "string",
+        "description": "progress indicator (accepts `pacman`, `bar`, `number` or `none`)",
+        "default": "pacman"
+      },
+      {
+        "name": "showFullscreenControl",
+        "type": "boolean",
+        "description": "show the fullscreen control button in bottom right of the screen",
+        "default": true
+      },
+      {
+        "name": "transition",
+        "type": "array",
+        "description": "global slide transitions (accepts `slide`, `zoom`, `fade` or `spin`, which can be combined)",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "global transition duration (in milliseconds)",
+        "default": 500
+      }
+    ],
+    "description": "Spectacle slide deck. Wraps `<Slide>` tags."
+  },
+  "Fill": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "The fill tag takes up all the space available to it. Fill tags next to each other form an equidistant grid."
+  },
+  "Fit": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Component taking up as much space as its bounds provide, but not more."
+  },
+  "Heading": {
+    "props": [],
+    "description": "Spectacle slide headings."
+  },
+  "SImage": {
+    "props": [],
+    "description": "Spectacle slide image."
+  },
+  "Spectacle": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Layout": {
+    "props": [],
+    "description": "Component wrapping `Fit` and `Fill` tags to provide a row."
+  },
+  "ListItem": {
+    "props": [],
+    "description": "Spectacle list item component."
+  },
+  "List": {
+    "props": [],
+    "description": "Spectacle list component."
+  },
+  "Notes": {
+    "props": [],
+    "description": "Spectacle presentation slide notes."
+  },
+  "Quote": {
+    "props": [],
+    "description": "Component wrapping a quote. Should be used in conjunction with the Spectacle `BlockQuote` and `Cite` tags."
+  },
+  "Slide": {
+    "props": [
+      {
+        "name": "align",
+        "type": "string",
+        "description": "Space delimited value for positioning interior content. The first value can be flex-start (left), center (middle), or flex-end (bottom). The second value can be flex-start (top) , center (middle), or flex-end (bottom)",
+        "default": "center center"
+      },
+      {
+        "name": "transition",
+        "type": "array",
+        "description": "slide transition. Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",
+        "default": null
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "slide transition duration in milliseconds",
+        "default": null
+      },
+      {
+        "name": "notes",
+        "type": "string",
+        "description": "presenter mode notes",
+        "default": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "slide duration displayed in presenter mode",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "Spectacle presentation slide."
+  },
+  "TableBody": {
+    "props": [],
+    "description": "Spectacle table body component."
+  },
+  "TableHeaderItem": {
+    "props": [],
+    "description": "Spectacle table header item component."
+  },
+  "TableHeader": {
+    "props": [],
+    "description": "Spectacle table header component."
+  },
+  "TableItem": {
+    "props": [],
+    "description": "Spectacle table item component."
+  },
+  "TableRow": {
+    "props": [],
+    "description": "Spectacle table row component."
+  },
+  "STable": {
+    "props": [],
+    "description": "Spectacle table component."
+  },
+  "SText": {
+    "props": [],
+    "description": "Spectacle text component."
+  },
+  "StatusBar": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "StickyNote": {
+    "props": [
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "description": "note title",
+        "default": "Enter a title"
+      },
+      {
+        "name": "body",
+        "type": "(string|node)",
+        "description": "text of the note",
+        "default": "Body of the note"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "description": "available options: red, green, blue, pink, orange",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "description": "a date displayed for the note",
+        "default": ""
+      },
+      {
+        "name": "draggable",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "editable",
+        "type": "boolean",
+        "description": "controls whether the component is editable",
+        "default": false
+      },
+      {
+        "name": "minimizable",
+        "type": "boolean",
+        "description": "controls whether the component is minimizable",
+        "default": false
+      },
+      {
+        "name": "minimized",
+        "type": "boolean",
+        "description": "if set, the component is minimized at the start",
+        "default": false
+      },
+      {
+        "name": "stain",
+        "type": "boolean",
+        "description": "controls whether to show a coffee stain",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback function invoked when the note is clicked",
+        "default": "function noop() {\n\t// Empty function...\n}"
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": "controls whether the note is removed when clicked",
+        "default": false
+      }
+    ],
+    "description": "A sticky note rendering some text."
+  },
+  "SurveyGenerator": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string (required)"
+      },
+      {
+        "name": "owner",
+        "type": "boolean",
+        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
+        "default": true
+      },
+      {
+        "name": "user",
+        "type": "boolean",
+        "description": "controls whether users can see the survey generator; the default should not be changed for most use-cases",
+        "default": false
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
+        "default": false
+      }
+    ],
+    "description": "Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface."
+  },
+  "Switch": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the switch is active or not",
+        "default": true
+      },
+      {
+        "name": "tooltip",
+        "type": "string",
+        "description": "tooltip displayed when hovering over the switch element",
+        "default": "Click to cycle through available options."
+      },
+      {
+        "name": "tooltipPos",
+        "type": "string",
+        "description": "placement of the tooltip (either `top`, `left`, `right`, or `bottom`)",
+        "default": "top"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name for the enclosing span element",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child",
+        "default": "onChange() {}"
+      }
+    ],
+    "description": "The Switch component allows the display of one element out of a list of several elements. Users can cycle through the different children of the Switch tag by clicking on the currently displayed one."
+  },
+  "Table": {
+    "props": [
+      {
+        "name": "bordered",
+        "type": "boolean",
+        "description": "adds borders on all sides of the table and cells",
+        "default": false
+      },
+      {
+        "name": "borderless",
+        "type": "boolean",
+        "description": "removes all borders on the table and cells, including table header",
+        "default": false
+      },
+      {
+        "name": "hover",
+        "type": "boolean",
+        "description": "enable a hover state on table rows within a <tbody>",
+        "default": false
+      },
+      {
+        "name": "responsive",
+        "type": "(string|boolean)",
+        "description": "responsive tables allow tables to be scrolled horizontally with ease. Across every breakpoint, use responsive for horizontally scrolling tables. Responsive tables are wrapped automatically in a div. Use responsive=\"sm\", responsive=\"md\", responsive=\"lg\", or responsive=\"xl\" as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally",
+        "default": null
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "make tables more compact by cutting cell padding in half by setting size as `sm`",
+        "default": null
+      },
+      {
+        "name": "striped",
+        "type": "boolean",
+        "description": "adds zebra-striping to any table row within the <tbody>",
+        "default": false
+      },
+      {
+        "name": "variant",
+        "type": "string",
+        "description": "invert the colors of the table — with light text on dark backgrounds by setting variant as dark",
+        "default": null
+      }
+    ],
+    "description": "A basic bootstrap table."
+  },
+  "TeX": {
+    "props": [
+      {
+        "name": "raw",
+        "type": "(string|number) (required)",
+        "description": "The literal LaTeX `string` to render. Also accepts `numbers`"
+      },
+      {
+        "name": "displayMode",
+        "type": "boolean",
+        "description": "`boolean` indicating whether to display the equation inline or in display mode",
+        "default": false
+      },
+      {
+        "name": "numbered",
+        "type": "boolean",
+        "description": "controls whether to display an equation number for display mode equations",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "`object` with CSS key-value pairs to be applied to the equation container",
+        "default": {}
+      },
+      {
+        "name": "tag",
+        "type": "string",
+        "description": "Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson",
+        "default": null
+      },
+      {
+        "name": "elems",
+        "type": "object",
+        "description": "`object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported",
+        "default": {}
+      },
+      {
+        "name": "popoverPlacement",
+        "type": "string",
+        "description": "popover position for the specified `elems`",
+        "default": "top"
+      },
+      {
+        "name": "onPopover",
+        "type": "function",
+        "description": "callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument",
+        "default": "onPopover() {}"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback `function` invoked whenever a user clicks on the equation",
+        "default": "onClick() {}"
+      }
+    ],
+    "description": "`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering."
+  },
+  "TextEditor": {
+    "props": [
+      {
+        "name": "autoSave",
+        "type": "boolean",
+        "description": "controls whether the editor should save the current text to the local storage of the browser at a given time interval",
+        "default": true
+      },
+      {
+        "name": "allowSubmissions",
+        "type": "boolean",
+        "description": "controls whether students may submit their reports to the server",
+        "default": true
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "description": "default text of the editor",
+        "default": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "name": "groupMode",
+        "type": "boolean",
+        "description": "controls whether to enable collaborative text editing",
+        "default": false
+      },
+      {
+        "name": "intervalTime",
+        "type": "number",
+        "description": "time between auto saves",
+        "default": 10000
+      },
+      {
+        "name": "peerReview",
+        "type": "{submitButtonLabel,reviewButtonLabel,finalButtonLabel,filterOwners}",
+        "description": "if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
+        "default": null
+      },
+      {
+        "name": "voiceTimeout",
+        "type": "number",
+        "description": "time in milliseconds after a chunk of recorded voice input is inserted",
+        "default": 5000
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "language identifier",
+        "default": "en-US"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A text editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server."
+  },
+  "Text": {
+    "props": [
+      {
+        "name": "raw",
+        "type": "string",
+        "description": "text to be rendered",
+        "default": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class names",
+        "default": ""
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "controls whether to render the Markdown as inline text",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      }
+    ],
+    "description": "Text component, which allows rendering of raw text as Markdown and enables voice control."
+  },
+  "TimedButton": {
+    "props": [
+      {
+        "name": "block",
+        "type": "boolean",
+        "description": "display bottom in full width",
+        "default": false
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "the time (in seconds) it takes until the button gets reactivated",
+        "default": 3
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "if disabled the button will be inactive, but the countdown starts",
+        "default": false
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "description": "callback invoked when clicking the button",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "button size (passed to the react-bootstrap button component)",
+        "default": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "button type (passed to the react-bootstrap button component)",
+        "default": null
+      },
+      {
+        "name": "variant",
+        "type": "string",
+        "description": "button variant (passed to the react-bootstrap button component)",
+        "default": null
+      },
+      {
+        "name": "autoActivate",
+        "type": "boolean",
+        "description": "controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`",
+        "default": true
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A button component that becomes deactivated for a specified duration upon clicking."
+  },
+  "Timer": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes",
+        "default": null
+      },
+      {
+        "name": "active",
+        "type": "boolean (required)",
+        "description": "flag that can be toggled to start or pause the timer"
+      },
+      {
+        "name": "duration",
+        "type": "number (required)",
+        "description": "duration in seconds for the timer"
+      },
+      {
+        "name": "invisible",
+        "type": "boolean",
+        "description": "controls whether the timer should be hidden",
+        "default": false
+      },
+      {
+        "name": "legend",
+        "type": "string",
+        "description": "text displayed in front of the timer",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onTimeUp",
+        "type": "function",
+        "description": "callback invoked when the timer runs out",
+        "default": "onTimeUp() {}"
+      }
+    ],
+    "description": "Formats time in the format `minutes:seconds`."
+  },
+  "Toolbar": {
+    "props": [
+      {
+        "name": "elements",
+        "type": "array",
+        "description": "array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys",
+        "default": []
+      }
+    ],
+    "description": "Toolbar of widgets for students to use during the course of a lesson."
+  },
+  "Tooltip": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "default": "tooltip"
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "controls whether the tooltip shall be displayed",
+        "default": true
+      },
+      {
+        "name": "tooltip",
+        "type": "(string|node)",
+        "description": "tooltip content",
+        "default": null
+      },
+      {
+        "name": "placement",
+        "type": "string",
+        "description": "direction of the tooltip",
+        "default": "right"
+      }
+    ],
+    "description": "A tooltip overlay."
+  },
+  "Typewriter": {
+    "props": [
+      {
+        "name": "deviation",
+        "type": "number",
+        "description": "allows you to specify the randomness",
+        "default": 30
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "initial delay before typewriter starts (in milliseconds)",
+        "default": null
+      },
+      {
+        "name": "hold",
+        "type": "number",
+        "description": "if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array",
+        "default": 2000
+      },
+      {
+        "name": "interval",
+        "type": "number",
+        "description": "the interval of the typewriter (in milliseconds)",
+        "default": 100
+      },
+      {
+        "name": "random",
+        "type": "boolean",
+        "description": "if random is set, the keystrokes will be performed with a certain, \"humane\" randomness",
+        "default": false
+      },
+      {
+        "name": "sound",
+        "type": "boolean",
+        "description": "the typed keystroke will be also heard",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "description": "the full text to be displayed",
+        "default": ""
+      }
+    ],
+    "description": "An ISLE component that allows you to create a typewriter effect."
+  },
+  "Unveil": {
+    "props": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "controls whether the counter should be active",
+        "default": false
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "number of milliseconds before component appears",
+        "default": 1000
+      }
+    ],
+    "description": "The appear component will cause all of its children to become visible after a specified amount of time."
+  },
+  "VictoryAnimation": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryArea": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryAxis": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryBar": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryBoxPlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryBrushContainer": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryCandlestick": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryChart": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryCursorContainer": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryErrorBar": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryGroup": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryLabel": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryLegend": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryLine": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryPie": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryPolarAxis": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryScatter": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryStack": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryTheme": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryTooltip": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryVoronoiContainer": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryVoronoi": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VictoryWrapper": {
+    "props": [
+      {
+        "name": "height",
+        "type": "number",
+        "default": null
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "default": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "VictoryZoomContainer": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "VideoLecture": {
+    "props": [
+      {
+        "name": "controls",
+        "type": "boolean",
+        "description": "indicates whether to display control elements of the video players",
+        "default": true
+      },
+      {
+        "name": "instructorView",
+        "type": "boolean",
+        "description": "controls whether to include instructor view",
+        "default": true
+      },
+      {
+        "name": "steps",
+        "type": "array (required)",
+        "description": "array of video URLs and components to be displayed in-between"
+      }
+    ],
+    "description": "A video lecture component that displays videos interspersed with interactive elements."
+  },
+  "VideoPlayer": {
+    "props": [
+      {
+        "name": "url",
+        "type": "string",
+        "description": "URL of the video",
+        "default": ""
+      },
+      {
+        "name": "controls",
+        "type": "boolean",
+        "description": "indicates whether to display control elements of the video player",
+        "default": false
+      },
+      {
+        "name": "playing",
+        "type": "boolean",
+        "description": "indicates whether to automatically start playing the video",
+        "default": false
+      },
+      {
+        "name": "volume",
+        "type": "number",
+        "description": "volume of the player",
+        "default": 0.8
+      },
+      {
+        "name": "center",
+        "type": "boolean",
+        "description": "controls whether to center the video player",
+        "default": true
+      },
+      {
+        "name": "height",
+        "type": "(string|number)",
+        "description": "height of the player",
+        "default": 360
+      },
+      {
+        "name": "width",
+        "type": "(string|number)",
+        "description": "width of the player",
+        "default": 640
+      },
+      {
+        "name": "loop",
+        "type": "boolean",
+        "description": "controls whether to start the video anew after it was played",
+        "default": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "startTime",
+        "type": "number",
+        "description": "number of seconds at which to start the video, or fraction if value is between 0 and 1",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onEnded",
+        "type": "function",
+        "description": "callback invoked once the video ends",
+        "default": "onEnded() {}"
+      },
+      {
+        "name": "onPause",
+        "type": "function",
+        "description": "callback invoked once the video pauses",
+        "default": "onPause() {}"
+      },
+      {
+        "name": "onPlay",
+        "type": "function",
+        "description": "callback invoked once the video starts or resumes playing after pausing",
+        "default": "onPlay() {}"
+      }
+    ],
+    "description": "A component for playing media files and content from YouTube, SoundCloud, and Vimeo."
+  },
+  "VoiceControl": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "unique identifier",
+        "default": null
+      },
+      {
+        "name": "commands",
+        "type": "array (required)",
+        "description": "array of voice commands"
+      },
+      {
+        "name": "hide",
+        "type": "boolean",
+        "description": "controls whether to hide control elements for toggling on/off voice control and display a list of available commands",
+        "default": false
+      },
+      {
+        "name": "reference",
+        "type": "object (required)",
+        "description": "reference object"
+      }
+    ],
+    "description": "Component to register a reference with the speech control interface."
+  },
+  "Weather": {
+    "props": [
+      {
+        "name": "key",
+        "type": "string",
+        "description": "APIXU key",
+        "default": "<number>"
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "language identifier",
+        "default": "en-US"
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "description": "location name",
+        "default": null
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A component for displaying the current weather at a designated location."
+  },
+  "Wikipedia": {
+    "props": [
+      {
+        "name": "invisible",
+        "type": "boolean",
+        "description": "controls whether to display a text input field to search for Wikipedia articles",
+        "default": false
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "description": "language identifier",
+        "default": "en-US"
+      }
+    ],
+    "description": "The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem."
+  },
+  "WordCloud": {
     "props": [
       {
         "name": "data",

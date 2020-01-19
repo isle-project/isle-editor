@@ -9,14 +9,15 @@ const fs = require( 'fs' );
 const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
-const objectKeys = require( '@stdlib/utils/keys' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
 const noop = require( '@stdlib/utils/noop' );
 const isFunction = require( '@stdlib/assert/is-function' );
-const invert = require( '@stdlib/utils/object-inverse' );
-const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
+const invertBy = require( '@stdlib/utils/object-inverse-by' );
+const REQUIRES = invertBy( require( './../app/bundler/requires.json' ), ( key, value ) => {
+	return value.path;
+});
 const PropTypes = require( './prop_types.js' );
 
 
@@ -115,7 +116,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch[ 1 ]);
 		types = extractTypes( ...SCOPE_VALUES );
 	}
-	const keys = objectKeys( types );
+	const keys = Object.keys( types );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		if ( key === 'children' ) {
@@ -127,6 +128,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		if ( isFunction( defaults[ key ] ) ) {
 			defaults[ key ] = defaults[ key ].toString();
 		}
+		console.log( tagName );
 		DOCS[ tagName ].props.push({
 			name: key,
 			type: types[ key ],
@@ -160,6 +162,8 @@ for ( let i = 0; i < files.length; i++ ) {
 	}
 	debug( '\n\n' );
 }
+
+console.log( DOCS );
 
 console.log( 'Write `component_documentation.json` file...' );
 fs.writeFileSync( './app/editor-components/editor/components_documentation.json', JSON.stringify( DOCS, null, 2 ) );
