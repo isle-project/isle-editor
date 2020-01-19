@@ -273,6 +273,9 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },
+  "optionalDependencies": {
+    "fsevents": "1.2.9"
+  },
   "devEngines": {
     "node": "9.x || 10.x || 11.x || 12.x"
   },
@@ -296,7 +299,6 @@
       "app/bundler/minify.js",
       "node_modules/**/*",
       "!node_modules/@stdlib/**/*",
-      "!node_modules/@stdlib/stdlib/**/*",
       "!node_modules/.cache/**/*",
       "!node_modules/@icons/**/*",
       "!node_modules/@babel/plugin-proposal-export-default-from/**/*",
