@@ -1,6 +1,6 @@
 name: Package
 
-on: [tag]
+on: [tags]
 
 jobs:
   package_on_mac:
