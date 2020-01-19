@@ -28,7 +28,6 @@ const extraResources = [
 	'app/bundler/index.html',
 	'app/bundler/minify.js',
 	'node_modules/**/*',
-	'!node_modules/@stdlib/**/*',
 	'!node_modules/.cache/**/*',
 	'!node_modules/@icons/**/*'
 ];
