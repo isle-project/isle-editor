@@ -9,7 +9,6 @@
 #### Tests
 
 [![Actions Status](https://github.com/isle-project/isle-editor/workflows/Electron/badge.svg)](https://github.com/isle-project/isle-editor/actions)
-[![Build Status](https://travis-ci.com/isle-project/isle-editor.svg?branch=master)](https://travis-ci.com/isle-project/isle-editor)
 [![codecov](https://codecov.io/gh/isle-project/isle-editor/branch/master/graph/badge.svg)](https://codecov.io/gh/isle-project/isle-editor) [![Greenkeeper badge](https://badges.greenkeeper.io/isle-project/isle-editor.svg)](https://greenkeeper.io/)
 
 ## Introduction
