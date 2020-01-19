@@ -1,4 +1,4 @@
-/**
+/*
 * Sorting functionality adapted from MIT-licensed code:
 *
 * Copyright (C) 2013 Adam Schwartz, http://adamschwartz.co
