@@ -1,0 +1,45 @@
+name: Package
+
+on: [tag]
+
+jobs:
+  package_on_mac:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install and package
+      run: |
+        npm ci
+        npm run package-ci
+      env:
+        CI: true
+  package_on_win:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install and package
+      continue-on-error: true
+      run: |
+        npm ci
+        npm run package-ci
+      env:
+        CI: true
+  package_on_ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: npm install and package
+      run: |
+        npm ci
+        npm run package-ci
+      env:
+        CI: true
