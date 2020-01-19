@@ -3,6 +3,8 @@ name: Electron
 on:
   push:
     branches:
+      - master
+      - '**'
 
 jobs:
   build_on_mac:
