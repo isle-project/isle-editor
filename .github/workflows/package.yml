@@ -1,6 +1,8 @@
 name: Package
 
-on: [tags]
+on:
+  push:
+    tags: v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   package_on_mac:
