@@ -288,7 +288,7 @@
     "productName": "isle-editor",
     "copyright": "Copyright © 2016-2019 ${author}",
     "asar": true,
-    "npmRebuild" : false,
+    "npmRebuild": false,
     "extraResources": [
       "app/css/*",
       "app/constants/*",
