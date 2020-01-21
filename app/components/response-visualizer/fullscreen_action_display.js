@@ -18,6 +18,7 @@ import objectKeys from '@stdlib/utils/keys';
 import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
 import floor from '@stdlib/math/base/special/floor';
+import max from '@stdlib/math/base/special/max';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Alert from 'react-bootstrap/Alert';
@@ -365,11 +366,24 @@ class FullscreenActionDisplay extends Component {
 
 	renderBarchart() {
 		const actions = this.getActions();
-		const levels = this.props.data.levels.map( ( x, i ) => {
+		let maxLength = 0;
+		let levels = this.props.data.levels.map( ( x, i ) => {
 			let out = isString( x ) ? x : innerText( x );
-			return out || `Choice ${i+1}`;
+			if ( !out ) {
+				out = `Choice ${i+1}`;
+			}
+			if ( out.length > maxLength ) {
+				maxLength = out.length;
+			}
+			return out;
 		});
-		const counts = tabulateValues( actions, levels );
+		let leftMargin = max( 250, maxLength * 7.5 );
+		let counts = tabulateValues( actions, levels );
+		if ( levels.length > 7 ) {
+			// Drop empty labels in case of many levels for readability of plot:
+			levels = levels.filter( ( _, idx ) => counts[ idx ] > 0 );
+			counts = counts.filter( val => val > 0 );
+		}
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
@@ -392,7 +406,7 @@ class FullscreenActionDisplay extends Component {
 							categoryarray: levels
 						},
 						margin: {
-							l: 250
+							l: leftMargin
 						}
 					}}
 				/>
