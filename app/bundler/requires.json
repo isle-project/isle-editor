@@ -261,7 +261,7 @@
 	},
 	"FreeTextQuestion": {
 		"path": "components/free-text-question",
-		"async": true
+		"async": false
 	},
 	"FreeTextSurvey": {
 		"path": "components/free-text-survey",
@@ -309,7 +309,7 @@
 	},
 	"MatchListQuestion": {
 		"path": "components/match-list-question",
-		"async": true
+		"async": false
 	},
 	"Metrics": {
 		"path": "components/metrics/db",
@@ -333,7 +333,7 @@
 	},
 	"MultipleChoiceQuestion": {
 		"path": "components/multiple-choice-question",
-		"async": true
+		"async": false
 	},
 	"MultipleChoiceSurvey": {
 		"path": "components/multiple-choice-survey",
@@ -369,7 +369,7 @@
 	},
 	"NumberQuestion": {
 		"path": "components/number-question",
-		"async": true
+		"async": false
 	},
 	"NumberSurvey": {
 		"path": "components/number-survey",
@@ -377,11 +377,11 @@
 	},
 	"OrderQuestion": {
 		"path": "components/order-question",
-		"async": true
+		"async": false
 	},
 	"Pages": {
 		"path": "components/pages",
-		"async": true
+		"async": false
 	},
 	"TextEditor": {
 		"path": "components/text-editor",
@@ -425,7 +425,7 @@
 	},
 	"RangeQuestion": {
 		"path": "components/range-question",
-		"async": true
+		"async": false
 	},
 	"Reaction": {
 		"path": "components/reaction",
@@ -489,11 +489,11 @@
 	},
 	"SelectQuestion": {
 		"path": "components/select-question",
-		"async": true
+		"async": false
 	},
 	"SelectQuestionMatrix": {
 		"path": "components/select-question-matrix",
-		"async": true
+		"async": false
 	},
 	"ShapedForm": {
 		"path": "components/shaped-form",
@@ -509,7 +509,7 @@
 	},
 	"Slider": {
 		"path": "components/slider",
-		"async": true
+		"async": false
 	},
 	"SliderInput": {
 		"path": "components/input/slider",
@@ -633,7 +633,7 @@
 	},
 	"QuestionForm": {
 		"path": "components/question-form",
-		"async": true
+		"async": false
 	},
 	"Quiz": {
 		"path": "components/quiz",
@@ -681,7 +681,7 @@
 	},
 	"Switch": {
 		"path": "components/switch",
-		"async": true
+		"async": false
 	},
 	"Tab": {
 		"path": "react-bootstrap/Tab",
