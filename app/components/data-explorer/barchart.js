@@ -56,6 +56,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		}];
 	}
 	const nObs = data[ variable ].length;
+	const allCats = new Set();
 	if ( !group ) {
 		let freqs;
 		if ( mode === MODES[ 1 ] ) {
@@ -64,6 +65,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			freqs = countBy( data[ variable ], identity );
 		}
 		const categories = variable.categories || objectKeys( freqs );
+		categories.forEach( allCats.add, allCats );
+
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
@@ -108,6 +111,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				const key = keys[ i ];
 				const val = freqs[ key ];
 				const categories = variable.categories || objectKeys( val );
+				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ] / catCounts[ categories[ i ] ];
@@ -142,6 +146,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				const key = keys[ i ];
 				const val = freqs[ key ];
 				const categories = variable.categories || objectKeys( val );
+				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ];
@@ -177,7 +182,10 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		layout: {
 			barmode: stackBars ? 'stack' : null,
 			xaxis: {
-				title: variable
+				title: variable,
+				tickmode: 'array',
+				tickvals: Array.from( allCats ),
+				ticktext: Array.from( allCats )
 			},
 			yaxis: {
 				title: totalPercent ? 'Percentage' : 'Count'
