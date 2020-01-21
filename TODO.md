@@ -30,6 +30,7 @@ Spring 2020
 
 * Automatic email reminders for uncompleted labs
 * Allow expressions in number question input fields
+* Add option to toggle between counts or densities in histogram of data explorer
 
 LONG-TERM
 ===
