@@ -631,7 +631,11 @@ class TextEditor extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className="editorview-wrapper" ref={( div ) => { this.editorWrapper = div; }} style={this.props.style} >
+				<div
+					id={this.id} className="editorview-wrapper"
+					ref={( div ) => { this.editorWrapper = div; }}
+					style={this.props.style}
+				>
 					{ this.props.groupMode ?
 						<ProseMirrorCollaborativeView
 							defaultValue={this.state.value}
