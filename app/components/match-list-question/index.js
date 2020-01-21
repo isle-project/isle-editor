@@ -188,7 +188,7 @@ class MatchListQuestion extends Component {
 		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
 		const unfinished = answers.length !== elements.length;
 		return (
-			<div className="match-list-question-container" style={this.props.style} >
+			<div id={this.id} className="match-list-question-container" style={this.props.style} >
 				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
 				<i style={{ fontSize: '0.8rem' }}>Match the elements from the left-hand side with those on the right-hand side by clicking on them.</i>
 				<div className="match-list-question-lists">

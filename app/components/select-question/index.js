@@ -119,9 +119,19 @@ class SelectQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const isValid = this.state.answerState === 'success';
 		const isInvalid = this.state.answerState === 'danger';
+		const responseVisualizer = <ResponseVisualizer
+			id={this.id}
+			info="SELECT_QUESTION_SUBMISSION"
+			data={{
+				type: 'factor',
+				levels: this.props.options,
+				question: this.props.question
+			}}
+		/>;
 		if ( this.props.inline ) {
 			return (
 				<span
+					id={this.id}
 					style={{
 						...this.props.style
 					}}
@@ -146,11 +156,12 @@ class SelectQuestion extends Component {
 							<i className="fa fa-check-square"></i>
 						</Button>
 					</InputGroup>
+					{responseVisualizer}
 				</span>
 			);
 		}
 		return (
-			<Card className="select-question" style={this.props.style} body >
+			<Card id={this.id} className="select-question" style={this.props.style} body >
 				<Form>
 					<FormGroup controlId="formControlsSelect">
 						{ this.props.question ?
@@ -185,15 +196,7 @@ class SelectQuestion extends Component {
 						this.props.chat ? <ChatButton for={this.id} /> : null
 					}
 				</div>
-				<ResponseVisualizer
-					id={this.id}
-					info="SELECT_QUESTION_SUBMISSION"
-					data={{
-						type: 'factor',
-						levels: this.props.options,
-						question: this.props.question
-					}}
-				/>
+				{responseVisualizer}
 				{ this.props.feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
 				/> : null }

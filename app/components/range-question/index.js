@@ -208,7 +208,7 @@ class RangeQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const solutionPresent = this.props.solution !== null;
 		return (
-			<Card className="range-question" style={this.props.style} >
+			<Card id={this.id} className="range-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
 					{ this.props.question ? <label>{this.props.question}</label> : null }
 					<div className="range-question-input-wrapper" >
