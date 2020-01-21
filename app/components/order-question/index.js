@@ -12,6 +12,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import permute from 'utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './order-question.css';
 
@@ -28,7 +29,7 @@ const debug = logger( 'isle:order-question' );
 * An order question component that asks student to bring a collection of elements into the correct order.
 *
 * @property {string} question - question for which the student has to bring the available `options` into the correct order
-* @property {Array} options - an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order
+* @property {Array} options - an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order)
 * @property {boolean} provideFeedback - controls whether to show a notification displaying whether the submitted answer is correct or not
 * @property {Array} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
@@ -51,8 +52,30 @@ class OrderQuestion extends Component {
 		this.state = {
 			cards: null,
 			correct: false,
-			submitted: false
+			submitted: false,
+			options: props.options.map( ( val, idx ) => {
+				return {
+					id: idx,
+					text: val
+				};
+			}),
+			permutations: permute( props.options )
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.options.length !== prevState.options.length ) {
+			return {
+				options: nextProps.options.map( ( val, idx ) => {
+					return {
+						id: idx,
+						text: val
+					};
+				}),
+				permutations: permute( nextProps.options )
+			};
+		}
+		return null;
 	}
 
 	handleChange = ( cards ) => {
@@ -117,7 +140,7 @@ class OrderQuestion extends Component {
 		session.log({
 			id: this.id,
 			type: ORDER_QUESTION_SUBMISSION,
-			value: this.state.cards
+			value: this.state.cards.map( x => x.text ).join( ' -> ' )
 		});
 	}
 
@@ -127,7 +150,7 @@ class OrderQuestion extends Component {
 			<Card id={this.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
-					<DraggableList shuffle data={this.props.options} onChange={this.handleChange} />
+					<DraggableList shuffle data={this.state.options} onChange={this.handleChange} />
 					<div className="order-question-toolbar">
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -144,7 +167,8 @@ class OrderQuestion extends Component {
 					<ResponseVisualizer
 						id={this.id}
 						data={{
-							type: 'text',
+							type: 'factor',
+							levels: this.state.permutations.map( x => x.join( ' -> ' ) ),
 							question: this.props.question
 						}}
 						info="ORDER_QUESTION_SUBMISSION"
