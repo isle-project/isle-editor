@@ -143,16 +143,17 @@ class Pages extends Component {
 		const items = [];
 		if ( nChildren <= 6 ) {
 			for ( let i = 1; i <= nChildren; i++) {
+				const isActive = i === this.state.activePage;
 				items.push(
 					<Tooltip
 						placement="top" key={`${i}-tooltip`}
 						tooltip={`Jump to ${i}-th page`}
-						show={!this.props.disabled}
+						show={!this.props.disabled && !isActive}
 					>
 						<Pagination.Item
 							disabled={this.props.disabled}
 							key={i}
-							active={i === this.state.activePage}
+							active={isActive}
 							onClick={papply( this.jumpTo, i )}
 						>
 							{i}
@@ -178,16 +179,17 @@ class Pages extends Component {
 						continue;
 					}
 				}
+				const isActive = i === this.state.activePage;
 				items.push(
 					<Tooltip
 						placement="top" key={`${i}-tooltip`}
 						tooltip={`Jump to ${i}-th page`}
-						show={!this.props.disabled}
+						show={!this.props.disabled && !isActive}
 					>
 						<Pagination.Item
 							key={i}
 							disabled={this.props.disabled}
-							active={i === this.state.activePage}
+							active={isActive}
 							onClick={papply( this.jumpTo, i )}
 						>
 							{i}
