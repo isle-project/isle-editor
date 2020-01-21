@@ -26,7 +26,7 @@ const config = smp.wrap({
 	devtool: 'eval',
 
 	entry: [
-		...(process.env.PLAIN_HMR ? [] : ['react-hot-loader/patch']), // eslint-disable-line no-process-env
+		...(process.env.PLAIN_HMR ? [] : [ 'react-hot-loader/patch' ]), // eslint-disable-line no-process-env
 		`webpack-dev-server/client?http://localhost:${port}/`,
 		'webpack/hot/only-dev-server',
 		path.join( __dirname, './app/index.js' )

@@ -1,5 +1,6 @@
 // MODULES //
 
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { createHashHistory } from 'history';
 import Root from 'containers/root';
@@ -22,4 +23,4 @@ const App = () => <Root store={store} history={history} />;
 
 // EXPORTS //
 
-export default App;
+export default hot( App );
