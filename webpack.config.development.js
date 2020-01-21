@@ -26,6 +26,7 @@ const config = smp.wrap({
 	devtool: 'eval',
 
 	entry: [
+		...(process.env.PLAIN_HMR ? [] : ['react-hot-loader/patch']), // eslint-disable-line no-process-env
 		`webpack-dev-server/client?http://localhost:${port}/`,
 		'webpack/hot/only-dev-server',
 		path.join( __dirname, './app/index.js' )
@@ -64,6 +65,7 @@ const config = smp.wrap({
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: true
 		}),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.LoaderOptionsPlugin({
 			debug: true
 		})
@@ -79,7 +81,7 @@ const config = smp.wrap({
 		stats: 'errors-only',
 		inline: true,
 		lazy: false,
-		hot: false,
+		hot: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		contentBase: path.join( __dirname, 'dist' ),
 		watchOptions: {
