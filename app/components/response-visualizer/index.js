@@ -498,7 +498,7 @@ ResponseVisualizer.propTypes = {
 	buttonStyle: PropTypes.object,
 	data: PropTypes.shape({
 		type: PropTypes.oneOf([
-			'factor', 'text', 'number', 'matches', 'matrix', 'range'
+			'factor', 'text', 'number', 'matches', 'matrix', 'range', 'tensor'
 		]),
 		levels: PropTypes.array
 	}),
