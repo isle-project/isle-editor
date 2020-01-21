@@ -25,6 +25,12 @@ Summer 2019
 
 * Close hints when moving to another question
 
+Spring 2020
+===========
+
+* Automatic email reminders for uncompleted labs
+* Allow expressions in number question input fields
+
 LONG-TERM
 ===
 * Mobile. `isle-app`. Mobile responsiveness
