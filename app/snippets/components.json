@@ -161,7 +161,7 @@
 	},
 	{
 		"name": "OrderQuestion",
-		"value": "<OrderQuestion\n\tquestion=\"${1:Enter question}\"\n\toptions={[\n\t\t{ id: 0, text: \"${2:First}\" },\n\t\t{ id: 1, text: \"${3:Second}\" },\n\t\t{ id: 2, text: \"${4:Third}\" }\n\t]}\n/>\n"
+		"value": "<OrderQuestion\n\tquestion=\"${1:Enter question}\"\n\toptions={[\"${2:First}\",\"${3:Second}\",\"${4:Third}\"]}\n/>\n"
 	},
 	{
 		"name": "Pages",
