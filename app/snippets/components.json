@@ -277,7 +277,7 @@
 	},
 	{
 		"name": "SelectQuestion",
-		"value": "<SelectQuestion\n\tquestion=\"${1:}\"\n\tsolution=\"${2:}\"\n\toptions={[\n\t\t${3:}\n\t]}\n/>\n"
+		"value": "<SelectQuestion\n\tquestion=\"${1:}\"\n\tsolution={${2:}}\n\toptions={[\n\t\t${3:}\n\t]}\n/>\n"
 	},
 	{
 		"name": "SelectQuestionMatrix",
