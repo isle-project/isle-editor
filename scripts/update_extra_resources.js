@@ -29,6 +29,7 @@ const extraResources = [
 	'app/bundler/minify.js',
 	'node_modules/**/*',
 	'!node_modules/@stdlib/stdlib/dist/*',
+	'!node_modules/spectacle/docs/*',
 	'!node_modules/.cache/**/*',
 	'!node_modules/@icons/**/*'
 ];
