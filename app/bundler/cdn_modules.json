@@ -51,6 +51,13 @@
 		"path": "markdown-it.min.js"
 	},
 	{
+		"name": "victory",
+		"alias": "victory",
+		"var": "Victory",
+		"path": "victory.min.js",
+		"version": "34.0.0"
+	},
+	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
