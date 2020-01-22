@@ -3548,7 +3548,7 @@
       {
         "name": "options",
         "type": "array (required)",
-        "description": "an array of objects with `id` and `text` keys which the student has to bring into the correct ordering, which is assumed to be the supplied order"
+        "description": "an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order)"
       },
       {
         "name": "provideFeedback",
