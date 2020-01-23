@@ -1566,6 +1566,7 @@ class Sketchpad extends Component {
 					this.setState({
 						isExporting: false
 					});
+					this.redraw();
 				});
 			});
 		});
