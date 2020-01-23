@@ -1512,23 +1512,13 @@ class Sketchpad extends Component {
 
 	preparePDF = ( clbk = noop ) => {
 		debug( 'Assembling PDF document object...' );
-		const SLIDES = [];
 		const docDefinition = {
 			content: [],
 			pageSize: {
 				width: this.canvas.width, // peek at first page and assume it's consistent over all pages
 				height: this.canvas.height
 			},
-			pageMargins: [ 0, 0, 0, 0 ],
-			background: ( currentPage, pageSize ) => {
-				return SLIDES[ currentPage ];
-			},
-			styles: {
-				'html-span': {
-					'opacity': 0,
-					'background': 'yellow'
-				}
-			}
+			pageMargins: [ 0, 0, 0, 0 ]
 		};
 		let idx = 0;
 		const iter = () => {
@@ -1544,7 +1534,7 @@ class Sketchpad extends Component {
 					}
 				}
 				const data = this.canvas.toDataURL();
-				SLIDES.push({
+				docDefinition.content.push({
 					image: data,
 					width: this.canvas.width
 				});
