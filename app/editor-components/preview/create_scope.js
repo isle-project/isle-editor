@@ -119,6 +119,7 @@ const SCOPE = {
 	Playground: Loadable( () => import( 'components/playground' ) ),
 	Plotly: Loadable( () => import( 'components/plotly' ) ),
 	Polaroid: Loadable( () => import( 'components/polaroid' ) ),
+	QRCode: Loadable( () => import( 'components/qrcode' ) ),
 	StickyNote: Loadable( () => import( 'components/sticky-note' ) ),
 	Preload: Loadable( () => import( 'components/preload' ) ),
 	ProportionsInput,

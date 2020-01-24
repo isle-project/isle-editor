@@ -415,6 +415,10 @@
 		"path": "components/proportions-survey",
 		"async": true
 	},
+	"QRCode": {
+		"path": "components/qrcode",
+		"async": true
+	},
 	"Queue": {
 		"path": "components/queue",
 		"async": true

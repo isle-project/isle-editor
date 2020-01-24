@@ -179,6 +179,7 @@
     "prosemirror-tables": "^1.0.0",
     "prosemirror-utils": "^0.9.6",
     "prosemirror-view": "^1.13.5",
+    "qrcode": "^1.4.4",
     "raw-loader": "^4.0.0",
     "react": "16.12.0",
     "react-bootstrap": "1.0.0-beta.16",
