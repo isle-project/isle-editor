@@ -208,6 +208,10 @@
 		"value": "<Queue\n\tid=\"${1:ID comes here...}\"\n/>\n"
 	},
 	{
+		"name": "QRCode",
+		"value": "<QRCode />"
+	},
+	{
 		"name": "Metrics",
 		"value": "<Metrics\n\tfor=\"${1:ID}\"\n\tinterval={false}\n\tonData={( data ) => {\n\t\t${3:}\n\t}}\n/>\n"
 	},

@@ -4002,6 +4002,34 @@
     ],
     "description": "Component that allows a group of people to vote on the weights and importance of given options."
   },
+  "QRCode": {
+    "props": [
+      {
+        "name": "text",
+        "type": "string",
+        "description": "text to encode in QR code",
+        "default": null
+      },
+      {
+        "name": "scale",
+        "type": "number",
+        "description": "number of pixels per modules (black dots)",
+        "default": 8
+      },
+      {
+        "name": "center",
+        "type": "boolean",
+        "description": "boolean controlling whether to center the QR code",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      }
+    ],
+    "description": "QR Code."
+  },
   "QuestionForm": {
     "props": [
       {
