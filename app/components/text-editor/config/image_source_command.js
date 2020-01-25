@@ -90,7 +90,7 @@ class ImageSourceCommand extends UICommand {
 			return Promise.resolve( void 0 );
 		}
 		if ( dispatch ) {
-			dispatch( showCursorPlaceholder(state) );
+			dispatch( showCursorPlaceholder( state ) );
 		}
 		return new Promise(resolve => {
 			const props = { runtime: view ? view.runtime : null };
@@ -112,7 +112,7 @@ class ImageSourceCommand extends UICommand {
 		view,
 		inputs
 	) => {
-		if (dispatch) {
+		if ( dispatch ) {
 			const { selection, schema } = state;
 			let { tr } = state;
 			tr = view ? hideCursorPlaceholder(view.state) : tr;

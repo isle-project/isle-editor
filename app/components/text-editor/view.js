@@ -13,6 +13,7 @@ import MenuBar from './menubar.js';
 import schema from './config/schema';
 import FootnoteView from './views/footnote';
 import ImageNodeView from './config/ui/image_node_view.js';
+import { toggleCursorParking } from './config/cursor_parking';
 import countWords from './count_words.js';
 
 
@@ -93,6 +94,16 @@ class ProseMirror extends Component {
 					image: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); },
 					plot: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); },
 					plotContainer: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); }
+				},
+				handleDOMEvents: {
+					'dragenter': ( view ) => {
+						debug( 'Handle drag enter event...' );
+						toggleCursorParking( view );
+					},
+					'drop': ( view ) => {
+						debug( 'Handle drop event...' );
+						toggleCursorParking( view );
+					}
 				}
 			});
 		}

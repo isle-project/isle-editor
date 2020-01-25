@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import { collab, receiveTransaction, sendableSteps, getVersion } from 'prosemirror-collab';
@@ -13,6 +13,7 @@ import MenuBar from './menubar.js';
 import schema from './config/schema';
 import { commentPlugin, commentUI } from './config/comments.js';
 import FootnoteView from './views/footnote.js';
+import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
 
@@ -186,7 +187,17 @@ class ProseMirrorCollaborative extends Component {
 						image: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); },
 						plot: ( node, view, getPos, decorations ) => { return new ImageNodeView( node, view, getPos, decorations ); }
 					},
-					dispatchTransaction: this.dispatchTransaction
+					dispatchTransaction: this.dispatchTransaction,
+					handleDOMEvents: {
+						'dragenter': ( view ) => {
+							debug( 'Handle drag enter event...' );
+							toggleCursorParking( view );
+						},
+						'drop': ( view ) => {
+							debug( 'Handle drop event...' );
+							toggleCursorParking( view );
+						}
+					}
 				}));
 			}
 		} else {
@@ -349,7 +360,7 @@ class ProseMirrorCollaborative extends Component {
 	};
 
 	render() {
-		return ( <div>
+		return ( <Fragment>
 			<MenuBar
 				menu={this.props.menu}
 				state={this.dispatchState ? this.dispatchState.edit : null}
@@ -369,7 +380,7 @@ class ProseMirrorCollaborative extends Component {
 				nUsers={this.nUsers}
 				docname={this.props.id}
 			/>
-		</div> );
+		</Fragment> );
 	}
 }
 

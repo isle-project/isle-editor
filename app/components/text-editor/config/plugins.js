@@ -11,6 +11,7 @@ import SelectionPlaceholderPlugin from './selection_placeholder_plugin.js';
 import CursorPlaceholderPlugin from './cursor_placeholder_plugin.js';
 import ImageUploadPlaceholderPlugin from './image_upload_placeholder_plugin.js';
 import TableCellMenuPlugin from './table_cell_menu_plugin.js';
+import cursorParking from './cursor_parking.js';
 import keys from './keys.js';
 import rules from './rules.js';
 
@@ -29,7 +30,8 @@ export default [
 	history(),
 	columnResizing({}),
 	new TableCellMenuPlugin(),
-	tableEditing()
+	tableEditing(),
+	cursorParking()
 ];
 
 // Commands for tables:
