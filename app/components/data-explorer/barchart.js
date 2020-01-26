@@ -330,55 +330,67 @@ class Barchart extends Component {
 							});
 						}}
 					/>
-					{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
-						legend="Display Percentages"
-						defaultValue={this.state.totalPercent}
-						onChange={( value )=>{
-							this.setState({
-								totalPercent: value
-							});
-						}}
-						disabled={this.state.stackBars && this.state.relative}
-						style={{
-							opacity: this.state.stackBars && this.state.relative ? 0.2 : 1
-						}}
-					/> : null }
-					<CheckboxInput
-						legend="Horizontal Alignment"
-						defaultValue={this.state.horiz}
-						onChange={( value )=>{
-							this.setState({
-								horiz: value
-							});
-						}}
-					/>
-					<CheckboxInput
-						legend="Stack bars"
-						defaultValue={this.state.stackBars}
-						onChange={( value )=>{
-							this.setState({
-								stackBars: value
-							});
-						}}
-						disabled={!this.state.groupVar}
-						style={{
-							opacity: this.state.groupVar ? 1.0 : 0.2
-						}}
+					<Row>
+						<Col>
+							{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
+								legend="Display Percentages"
+								defaultValue={this.state.totalPercent}
+								onChange={( value )=>{
+									this.setState({
+										totalPercent: value
+									});
+								}}
+								disabled={this.state.stackBars && this.state.relative}
+								style={{
+									opacity: this.state.stackBars && this.state.relative ? 0.2 : 1
+								}}
+							/> : null }
+						</Col>
+						<Col>
+							<CheckboxInput
+								legend="Horizontal Alignment"
+								defaultValue={this.state.horiz}
+								onChange={( value )=>{
+									this.setState({
+										horiz: value
+									});
+								}}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<CheckboxInput
+								legend="Stack bars"
+								defaultValue={this.state.stackBars}
+								onChange={( value )=>{
+									this.setState({
+										stackBars: value
+									});
+								}}
+								disabled={!this.state.groupVar}
+								style={{
+									opacity: this.state.groupVar ? 1.0 : 0.2
+								}}
 
-					/>
-					<CheckboxInput
-						legend="Relative frequencies for each bar"
-						defaultValue={this.state.relative}
-						onChange={( value )=>{
-							this.setState({
-								relative: value
-							});
-						}}
-						disabled={(!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent)}
-						style={{
-							opacity: (!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent) ? 0.2 : 1
-						}}
-					/>
+							/>
+						</Col>
+						<Col>
+							<CheckboxInput
+								legend="Relative frequencies for each bar"
+								defaultValue={this.state.relative}
+								onChange={( value )=>{
+									this.setState({
+										relative: value
+									});
+								}}
+								disabled={(!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent)}
+								style={{
+									opacity: (!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent) ? 0.2 : 1
+								}}
+							/>
+						</Col>
+					</Row>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
 				</Card.Body>
 			</Card>
