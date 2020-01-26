@@ -192,7 +192,20 @@
     "props": [
       {
         "name": "citeKey",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "item reference"
+      },
+      {
+        "name": "parens",
+        "type": "boolean",
+        "description": "controls whether to display citation in parentheses",
+        "default": false
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "description": "label for citation (e.g., page or range of pages)",
+        "default": ""
       }
     ],
     "description": "Citation component."
