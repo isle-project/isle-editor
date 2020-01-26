@@ -10,22 +10,22 @@ import './loadable.css';
 
 const Loading = ( props ) => {
 	if ( props.error ) {
-		return ( <div>
+		return ( <span>
 			Encountered an error...
 			<button onClick={props.retry}>Retry</button>
-		</div> );
+		</span> );
 	}
-	const spinner = <div className="sk-cube-grid">
-		<div className="sk-cube sk-cube1"></div>
-		<div className="sk-cube sk-cube2"></div>
-		<div className="sk-cube sk-cube3"></div>
-		<div className="sk-cube sk-cube4"></div>
-		<div className="sk-cube sk-cube5"></div>
-		<div className="sk-cube sk-cube6"></div>
-		<div className="sk-cube sk-cube7"></div>
-		<div className="sk-cube sk-cube8"></div>
-		<div className="sk-cube sk-cube9"></div>
-	</div>;
+	const spinner = <span className="sk-cube-grid">
+		<span className="sk-cube sk-cube1"></span>
+		<span className="sk-cube sk-cube2"></span>
+		<span className="sk-cube sk-cube3"></span>
+		<span className="sk-cube sk-cube4"></span>
+		<span className="sk-cube sk-cube5"></span>
+		<span className="sk-cube sk-cube6"></span>
+		<span className="sk-cube sk-cube7"></span>
+		<span className="sk-cube sk-cube8"></span>
+		<span className="sk-cube sk-cube9"></span>
+	</span>;
 	return spinner;
 };
 
