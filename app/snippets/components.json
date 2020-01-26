@@ -516,12 +516,20 @@
 		"value": "<Appear active={true} delay={${1:1000}}>\n\t${2:}\n</Appear>\n"
 	},
 	{
+		"name": "Bibliography",
+		"value": "<Bibliography />"
+	},
+	{
 		"name": "BlockQuote",
 		"value": "<BlockQuote>\n\t<Quote>${1:}</Quote>\n\t<Cite>${2:}</Cite>\n</BlockQuote>\n"
 	},
 	{
 		"name": "Code",
 		"value": "<Code>${1:}</Code>\n"
+	},
+	{
+		"name": "Citation",
+		"value": "<Citation citeKey=\"${1:Enter key}\" />"
 	},
 	{
 		"name": "Cite",
