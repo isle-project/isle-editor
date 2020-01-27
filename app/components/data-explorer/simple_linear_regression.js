@@ -282,14 +282,14 @@ class SimpleLinearRegression extends Component {
 						<tbody>
 							<tr>
 								<td>Intercept</td>
-								<td>{yint.toFixed( 3 )}</td>
+								<td>{yint.toFixed( 4 )}</td>
 								<td>{interceptSE.toFixed( 4 )}</td>
 								<td>{tIntercept.toFixed( 4 )}</td>
 								<td>{2.0 * (1.0-cdf( abs( tIntercept ) ) ).toFixed( 4 )}</td>
 							</tr>
 							<tr>
 								<td>{xval}</td>
-								<td>{slope.toFixed( 3 )}</td>
+								<td>{slope.toFixed( 4 )}</td>
 								<td>{slopeSE.toFixed( 4 )}</td>
 								<td>{tSlope.toFixed( 4 )}</td>
 								<td>{2.0 * (1.0-cdf( abs( tSlope ) ) ).toFixed( 4 )}</td>
