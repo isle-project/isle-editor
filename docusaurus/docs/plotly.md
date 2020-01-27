@@ -32,6 +32,7 @@ Plotly visualization.
 * __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
 * __meta__ | `object`: plot meta-information. Default: `none`.
 * __revision__ | `number`: when provided, causes the plot to update when the revision value is incremented. Default: `none`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onAfterPlot__ | `function`: callback function invoked each time a chart is plotted. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: callback function invoked when any element is clicked. Default: `onClick() {}`.
 * __onLegendClick__ | `function`: callback function invoked when legend item is clicked. Default: `onLegendClick() {}`.

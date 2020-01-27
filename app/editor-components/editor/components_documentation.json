@@ -1375,6 +1375,12 @@
         "type": "string",
         "description": "image description",
         "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "Component to display an image."
@@ -3789,6 +3795,12 @@
         "type": "number",
         "description": "when provided, causes the plot to update when the revision value is incremented",
         "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onAfterPlot",
