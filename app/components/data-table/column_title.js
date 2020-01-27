@@ -33,22 +33,24 @@ class ColumnTitle extends Component {
 					show={this.state.showTooltip}
 					target={this.title}
 				>
-					{({ placement, scheduleUpdate, arrowProps, ...props }) => (
-						<div
-							{...props}
-							style={{
-								backgroundColor: 'rgba(10, 10, 10,0.9)',
-								padding: '2px 10px',
-								color: 'white',
-								borderRadius: 3,
-								maxWidth: '300px',
-								marginBottom: '10px',
-								...props.style
-							}}
-						>
-							{this.props.tooltip}
-						</div>
-					)}
+					{({ placement, scheduleUpdate, arrowProps, outOfBoundaries, show, ...props }) => {
+						return (
+							<div
+								{...props}
+								style={{
+									backgroundColor: 'rgba(10, 10, 10,0.9)',
+									padding: '2px 10px',
+									color: 'white',
+									borderRadius: 3,
+									maxWidth: '300px',
+									marginBottom: '10px',
+									...props.style
+								}}
+							>
+								{this.props.tooltip}
+							</div>
+						);
+					}}
 				</Overlay>
 				<span
 					ref={( title ) => { this.title = title; }}
