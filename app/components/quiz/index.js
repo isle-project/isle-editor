@@ -71,7 +71,7 @@ class Quiz extends Component {
 
 		this.id = props.id || uid( props );
 
-		const questions = props.questions;
+		let questions = props.questions;
 		if ( !props.questions ) {
 			questions = [];
 		}
@@ -200,6 +200,7 @@ class Quiz extends Component {
 	}
 
 	markSelected = () => {
+		debug( 'Mark answer as selected...' );
 		this.setState({
 			answerSelected: true
 		});
@@ -448,7 +449,7 @@ class Quiz extends Component {
 		if ( this.state.finished ) {
 			showButton = false;
 		} else {
-			showButton = this.state.answered || this.props.skippable;
+			showButton = this.state.answered || this.state.answerSelected || this.props.skippable;
 		}
 		if ( this.state.showInstructorView ) {
 			return ( <Card className="quiz">
@@ -549,7 +550,7 @@ class Quiz extends Component {
 										className="quiz-button"
 										variant="primary"
 										onClick={this.handleNextClick}
-										disabled={this.props.forceConfidence && this.state.answerSelected && !this.state.selectedConfidence}
+										disabled={this.props.forceConfidence && !this.state.selectedConfidence}
 									>
 										{this.props.nextLabel}
 									</Button> :
