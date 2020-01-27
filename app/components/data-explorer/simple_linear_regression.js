@@ -4,9 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Table from 'components/table';
+import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isnan from '@stdlib/assert/is-nan';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
 import objectValues from '@stdlib/utils/values';
@@ -49,6 +53,10 @@ function calculateCoefficients( x, y ) {
 	return [ yint, slope ];
 }
 
+function isMissing( x ) {
+	return !isNumber( x ) && !isnan( x ) && !isString( x );
+}
+
 
 // MAIN //
 
@@ -57,14 +65,46 @@ class SimpleLinearRegression extends Component {
 		super( props );
 	}
 
-	fitRegression( yval, xval, group ) {
-		const x = this.props.data[ xval ];
-		const y = this.props.data[ yval ];
+	fitRegression( yval, xval, group, omitMissing ) {
+		let x = this.props.data[ xval ];
+		let y = this.props.data[ yval ];
+		let groups = this.props.data[ group ];
+		if ( omitMissing ) {
+			const xvals = [];
+			const yvals = [];
+			const groupvals = [];
+			if ( groups ) {
+				for ( let i = 0; i < x.length; i++ ) {
+					if (
+						!isMissing( groups[ i ] ) &&
+						!isMissing( x[ i ] ) &&
+						!isMissing( y[ i ] )
+					) {
+						xvals.push( x[ i ] );
+						yvals.push( y[ i ] );
+						groupvals.push( groups[ i ] );
+					}
+				}
+			} else {
+				for ( let i = 0; i < x.length; i++ ) {
+					if (
+						!isMissing( x[ i ] ) &&
+						!isMissing( y[ i ] )
+					) {
+						xvals.push( x[ i ] );
+						yvals.push( y[ i ] );
+					}
+				}
+			}
+			x = xvals;
+			y = yvals;
+			groups = groupvals;
+		}
 		let output;
 		COUNTER += 1;
 		if ( group ) {
-			const xmeans = by( x, this.props.data[ group ], mean );
-			const res = by2( x, y, this.props.data[ group ], calculateCoefficients );
+			const xmeans = by( x, groups, mean );
+			const res = by2( x, y, groups, calculateCoefficients );
 			output = {
 				variable: `Regression of ${yval} on ${xval} by ${group}`,
 				type: 'Simple Linear Regression',
@@ -360,6 +400,10 @@ class SimpleLinearRegression extends Component {
 					options={categorical}
 					clearable={true}
 					menuPlacement="top"
+				/>
+				<CheckboxInput
+					legend="Omit missing values"
+					defaultValue={false}
 				/>
 			</Dashboard>
 		);
