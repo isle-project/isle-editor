@@ -66,6 +66,7 @@ Plotly.setPlotConfig({
 * @property {boolean} removeButtons - controls whether to remove all buttons
 * @property {Object} meta - plot meta-information
 * @property {number} revision - when provided, causes the plot to update when the revision value is incremented
+* @property {Object} style - CSS inline styles
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onClick - callback function invoked when any element is clicked
 * @property {Function} onRelayout - callback function invoked when plotly_relayout is triggered
@@ -259,7 +260,8 @@ class Wrapper extends Component {
 				style={{
 					width: this.props.layout.width ? this.props.layout.width : '100%',
 					height: this.props.layout.height ? this.props.layout.height : '100%',
-					zIndex: 1
+					zIndex: 1,
+					...this.props.style
 				}}
 				revision={this.props.revision}
 			/>
@@ -302,6 +304,7 @@ Wrapper.defaultProps = {
 	legendButtons: true,
 	meta: null,
 	revision: null,
+	style: {},
 	onAfterPlot() {},
 	onClick() {},
 	onLegendClick() {},
@@ -323,6 +326,7 @@ Wrapper.propTypes = {
 	legendButtons: PropTypes.bool,
 	meta: PropTypes.object,
 	revision: PropTypes.number,
+	style: PropTypes.object,
 	onAfterPlot: PropTypes.func,
 	onClick: PropTypes.func,
 	onLegendClick: PropTypes.func,

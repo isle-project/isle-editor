@@ -23,6 +23,7 @@ import './image.css';
 * @property {string} id - component identifier
 * @property {boolean} showModal - controls whether to display fullscreen modal view
 * @property {string} alt - image description
+* @property {Object} style - CSS inline styles
 * @property {Function} onShare - callback invoked with the image if the "share" button is clicked
 */
 class Image extends Component {
@@ -120,6 +121,7 @@ class Image extends Component {
 						ev.dataTransfer.setData( 'text/html', plotData.value );
 						ev.dataTransfer.setData( 'text/plain', plotData.key );
 					}}
+					style={this.props.style}
 				/>
 				{this.renderModal()}
 			</Fragment>
@@ -145,7 +147,8 @@ Image.propTypes = {
 	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
 	src: PropTypes.string.isRequired,
-	alt: PropTypes.string
+	alt: PropTypes.string,
+	style: PropTypes.object
 };
 
 Image.defaultProps = {
@@ -156,7 +159,8 @@ Image.defaultProps = {
 	width: null,
 	onShare: null,
 	showModal: true,
-	alt: ''
+	alt: '',
+	style: {}
 };
 
 
