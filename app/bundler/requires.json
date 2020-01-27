@@ -41,7 +41,7 @@
 	},
 	"CheckboxInput": {
 		"path": "components/input/checkbox",
-		"async": true
+		"async": false
 	},
 	"Citation": {
 		"path": "components/citation",
@@ -277,7 +277,7 @@
 	},
 	"Input": {
 		"path": "components/input",
-		"async": true
+		"async": false
 	},
 	"IFrame": {
 		"path": "components/iframe",
@@ -365,7 +365,7 @@
 	},
 	"NumberInput": {
 		"path": "components/input/number",
-		"async": true
+		"async": false
 	},
 	"NumberQuestion": {
 		"path": "components/number-question",
@@ -409,7 +409,7 @@
 	},
 	"ProportionsInput": {
 		"path": "components/input/proportions",
-		"async": true
+		"async": false
 	},
 	"ProportionsSurvey": {
 		"path": "components/proportions-survey",
@@ -489,7 +489,7 @@
 	},
 	"SelectInput": {
 		"path": "components/input/select",
-		"async": true
+		"async": false
 	},
 	"SelectQuestion": {
 		"path": "components/select-question",
@@ -517,7 +517,7 @@
 	},
 	"SliderInput": {
 		"path": "components/input/slider",
-		"async": true
+		"async": false
 	},
 	"StatusBar": {
 		"path": "components/statusbar",
@@ -561,7 +561,7 @@
 	},
 	"VoiceInput": {
 		"path": "components/input/voice",
-		"async": true
+		"async": false
 	},
 	"VoiceControl": {
 		"path": "components/voice-control",
@@ -709,7 +709,7 @@
 	},
 	"TextInput": {
 		"path": "components/input/text",
-		"async": true
+		"async": false
 	},
 	"Timer": {
 		"path": "components/timer",
