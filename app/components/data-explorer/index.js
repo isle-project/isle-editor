@@ -852,7 +852,6 @@ class DataExplorer extends Component {
 			}
 			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
 				<NavDropdown
-					eventKey="2"
 					title="Tables"
 					className="nav-tables"
 				>
@@ -863,7 +862,6 @@ class DataExplorer extends Component {
 			}
 			{ this.props.plots.length > 0 ?
 				<NavDropdown
-					eventKey="3"
 					title="Plots"
 					className="nav-plots"
 				>
@@ -873,7 +871,7 @@ class DataExplorer extends Component {
 							e === 'Histogram' && this.props.plots[ i-1 ] === 'Mosaic Plot' ||
 							e === 'Line Plot' && this.props.plots[ i-1 ] === 'Box Plot'
 						) {
-							return ( <Fragment>
+							return ( <Fragment key={i} >
 								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
@@ -884,7 +882,6 @@ class DataExplorer extends Component {
 			}
 			{ this.props.tests.length > 0 ?
 				<NavDropdown
-					eventKey="4"
 					title="Tests"
 					className="nav-tests"
 				>
@@ -894,7 +891,7 @@ class DataExplorer extends Component {
 							e === 'One-Sample Proportion Test' && this.props.tests[ i-1 ] === 'One-Way ANOVA' ||
 							e === 'Correlation Test' && this.props.tests[ i-1 ] === 'Two-Sample Proportion Test'
 						) {
-							return ( <Fragment>
+							return ( <Fragment key={i} >
 								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
@@ -905,7 +902,6 @@ class DataExplorer extends Component {
 			}
 			{ this.props.models.length > 0 ?
 				<NavDropdown
-					eventKey="5"
 					title="Models"
 					className="nav-models"
 				>
@@ -915,7 +911,7 @@ class DataExplorer extends Component {
 							e === 'Decision Tree' && this.props.models[ i-1 ] === 'LASSO' ||
 							e === 'PCA' && this.props.models[ i-1 ] === 'Naive Bayes'
 						) {
-							return ( <Fragment>
+							return ( <Fragment key={i} >
 								<NavDropdown.Divider key={`${i}-div`} />
 								{item}
 							</Fragment> );
