@@ -186,7 +186,7 @@
     "react-color": "^2.18.0",
     "react-contextmenu": "^2.13.0",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dates": "21.7.0",
+    "react-dates": "21.7.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
     "react-dnd-touch-backend": "^10.0.2",
