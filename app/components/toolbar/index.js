@@ -101,6 +101,7 @@ class Toolbar extends Component {
 			<Tooltip key={key} tooltip={`${this.state[ elem.name ] ? 'Close' : 'Open'} ${elem.name}`} placement="right" >
 				<Button
 					variant="light"
+					className="toolbar-button"
 					onClick={toggleElement}
 					onKeyPress={toggleElement}
 					style={{
@@ -124,6 +125,7 @@ class Toolbar extends Component {
 					<Tooltip tooltip={`${this.state.calculator ? 'Close' : 'Open'} calculator (F2)`} placement="right" >
 						<Button
 							variant="light"
+							className="toolbar-button"
 							onClick={this.toggleCalculator}
 							onKeyPress={this.toggleCalculator}
 							style={{
@@ -136,6 +138,7 @@ class Toolbar extends Component {
 					{( session.hasOwner || isElectron ) ?
 						<Button
 							variant="light"
+							className="toolbar-button"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
 							style={{
 								display: !this.state.hideQueue ? 'inherit' : 'none'
@@ -151,6 +154,7 @@ class Toolbar extends Component {
 						<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
 							<Button
 								variant="light"
+								className="toolbar-button"
 								onClick={this.toggleHelp}
 								onKeyPress={this.toggleHelp}
 							>

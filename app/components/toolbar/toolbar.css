@@ -4,13 +4,18 @@
 	left: 0px;
 	z-index: 1003;
 	box-shadow: 0 0 5px darkslategray;
-}
-
-.toolbar-icon {
 	opacity: 0.6;
 }
 
-.toolbar-icon:hover {
+.toolbar-buttongroup:hover {
+	opacity: 1;
+}
+
+.toolbar-button .toolbar-icon {
+	opacity: 0.6;
+}
+
+.toolbar-button:hover .toolbar-icon {
 	opacity: 1;
 }
 
