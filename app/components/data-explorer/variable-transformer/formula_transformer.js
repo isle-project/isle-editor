@@ -163,6 +163,7 @@ class FormulaTransformer extends Component {
 				show={this.props.show}
 				onHide={this.props.onHide}
 				backdrop={false}
+				bsPrefix="draggable-modal"
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Create a new variable as a function of existing variables</Modal.Title>

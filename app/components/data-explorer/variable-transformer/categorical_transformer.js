@@ -287,6 +287,7 @@ class CategoricalTransformer extends Component {
 				onHide={this.props.onHide}
 				show={this.props.show}
 				backdrop={false}
+				bsPrefix="draggable-modal"
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>Create new variable by renaming or combining categories</Modal.Title>
