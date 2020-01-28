@@ -17,15 +17,15 @@ import './_datepicker.css';
 *
 * @property {string} size - button size
 * @property {Object} style - CSS inline styles
-* @property {Function} onChange - callback invoked when the data selection is changed; calledwith the current period (object with `from` and `to` properties)
+* @property {Function} onChange - callback invoked when the data selection is changed; called with the current period (object with `from` and `to` properties)
 */
 class RangePicker extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
 			period: {
-				from: moment( 0 ).subtract( 60, 'minutes' ),
-				to: moment()
+				from: moment( this.props.origin ).startOf( 'day' ),
+				to: moment().endOf( 'day' )
 			},
 			active: 5
 		};
@@ -80,7 +80,7 @@ class RangePicker extends Component {
 			return ret;
 		case 'all_time':
 			ret = () => {
-				const from = moment( 0 ).startOf( 'day' );
+				const from = moment( this.props.origin ).startOf( 'day' );
 				const to = moment().endOf( 'day' );
 				this.updatePeriod( from, to, 5 );
 			};
@@ -153,17 +153,24 @@ class RangePicker extends Component {
 					startDate={this.state.period.from}
 					endDate={this.state.period.to}
 					onDatesChange={({ startDate, endDate }) => {
+						if ( startDate === endDate ) {
+							startDate = startDate.startOf( 'day' );
+							endDate = endDate.endOf( 'day' );
+						}
 						const newPeriod = {
 							from: startDate,
 							to: endDate
 						};
 						this.setState({
 							period: newPeriod
+						}, () => {
+							this.props.onChange( this.state.period );
 						});
 					}}
 					focusedInput={this.state.focusedInput}
 					onFocusChange={focusedInput => this.setState({ focusedInput })}
 					isOutsideRange={() => false}
+					minimumNights={0}
 				/>
 			</ButtonToolbar>
 		);
@@ -182,12 +189,14 @@ RangePicker.propTypes = {
 			'lg'
 		]
 	),
+	origin: PropTypes.number,
 	onChange: PropTypes.func,
 	style: PropTypes.object
 };
 
 RangePicker.defaultProps = {
 	size: 'small',
+	origin: 0,
 	onChange() {},
 	style: {}
 };
