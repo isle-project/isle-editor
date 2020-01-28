@@ -8,8 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isNull from '@stdlib/assert/is-null';
 import isnan from '@stdlib/assert/is-nan';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
@@ -54,7 +53,7 @@ function calculateCoefficients( x, y ) {
 }
 
 function isMissing( x ) {
-	return !isNumber( x ) && !isnan( x ) && !isString( x );
+	return isNull( x ) || isnan( x );
 }
 
 
