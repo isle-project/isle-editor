@@ -8,7 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
-import isNull from '@stdlib/assert/is-null';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
@@ -53,7 +53,7 @@ function calculateCoefficients( x, y ) {
 }
 
 function isMissing( x ) {
-	return isNull( x ) || isnan( x );
+	return isnan( x ) || isUndefinedOrNull( x );
 }
 
 
