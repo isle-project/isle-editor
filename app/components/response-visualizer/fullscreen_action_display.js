@@ -742,6 +742,7 @@ class FullscreenActionDisplay extends Component {
 					cohorts={this.context.cohorts}
 					selectedCohort={this.props.selectedCohort}
 					onCohortChange={this.props.onCohortChange}
+					actions={this.props.actions}
 				/>
 				<Modal.Body style={{ minHeight: 0.75 * window.innerHeight, padding: 0 }} >
 					<Row>

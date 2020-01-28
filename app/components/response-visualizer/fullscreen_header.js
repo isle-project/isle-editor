@@ -27,6 +27,13 @@ const FullscreenHeader = ( props ) => {
 			})}
 		</select> );
 	}
+	let origin;
+	const nActions = props.actions.length;
+	if ( nActions > 0 ) {
+		origin = props.actions[ nActions-1 ].absoluteTime;
+	} else {
+		origin = 0;
+	}
 	return (
 		<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
 			<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{props.actionLabel} for {props.componentID}</h4>
@@ -35,6 +42,7 @@ const FullscreenHeader = ( props ) => {
 				style={{ float: 'left' }}
 				size="sm"
 				onChange={props.onPeriodChange}
+				origin={origin}
 			/>
 		</Modal.Header>
 	);

@@ -2,24 +2,24 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import moment from 'moment';
+import stringify from 'csv-stringify';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import stringify from 'csv-stringify';
-import moment from 'moment';
-import logger from 'debug';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import ActionList from './list.js';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import createFilters from './create_filters';
 
 
@@ -318,9 +318,18 @@ class ActionLog extends Component {
 	}
 
 	render() {
+		const session = this.context;
+		const socketActions = session.socketActions;
+		const nActions = socketActions.length;
+		let origin;
+		if ( nActions > 0 ) {
+			origin = socketActions[ nActions-1 ].absoluteTime;
+		} else {
+			origin = 0;
+		}
 		return (
 			<Card.Body>
-				<RangePicker size="sm" onChange={( newPeriod ) => {
+				<RangePicker size="sm" origin={origin} onChange={( newPeriod ) => {
 					this.setState({
 						period: newPeriod
 					});
