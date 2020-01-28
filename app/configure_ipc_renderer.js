@@ -21,7 +21,7 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'file-loaded', ( e, { file, fileName, filePath }) => {
 		debug( 'Loaded file: '+ filePath );
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
-		store.dispatch( actions.convertMarkdown( file ) );
+		store.dispatch( actions.convertMarkdown( file, true ) );
 
 		let preambleText = file.match( /^---([\S\s]*?)---/ );
 		if ( preambleText ) {

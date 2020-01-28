@@ -58,7 +58,10 @@ class Header extends Component {
 					id="header-lower-bar"
 					className="unselectable"
 				>
-					<span style={{ paddingLeft: 5 }} >{this.props.fileName || 'Untitled Document'}</span>
+					<span style={{ paddingLeft: 5 }} >
+						{this.props.fileName || 'Untitled Document'}
+						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
+					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
 						<DropdownButton
 							title={this.props.mode}
@@ -103,6 +106,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
 	fileName: PropTypes.string,
+	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,

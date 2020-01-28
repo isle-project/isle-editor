@@ -154,7 +154,8 @@ class App extends Component {
 			changeView,
 			changeMode,
 			currentRole,
-			currentMode
+			currentMode,
+			unsaved
 		} = this.props;
 		return (
 			<div>
@@ -165,6 +166,7 @@ class App extends Component {
 						role={currentRole}
 						onSelectMode={changeMode}
 						mode={currentMode}
+						unsaved={unsaved}
 					/> :
 					null
 				}
@@ -260,7 +262,8 @@ App.propTypes = {
 	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	saveSpellingErrors: PropTypes.func.isRequired,
-	updatePreamble: PropTypes.func.isRequired
+	updatePreamble: PropTypes.func.isRequired,
+	unsaved: PropTypes.bool.isRequired
 };
 
 

@@ -42,7 +42,8 @@ const initialState = {
 	error: null,
 	fontSize: config.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
-	author: authorMatch ? authorMatch[ 1 ] : ''
+	author: authorMatch ? authorMatch[ 1 ] : '',
+	unsaved: false
 };
 
 
@@ -54,7 +55,8 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			fileName: action.payload.fileName,
-			filePath: action.payload.filePath
+			filePath: action.payload.filePath,
+			unsaved: false
 		};
 	case types.ENCOUNTERED_ERROR:
 		return Object.assign({}, state, {
@@ -68,7 +70,8 @@ export default function markdown( state = initialState, action ) {
 		return Object.assign({}, state, {
 			markdown: action.payload.markdown,
 			html: action.payload.html,
-			error: null
+			error: null,
+			unsaved: !action.payload.loading
 		});
 	case types.PREAMBLE_CHANGED:
 		return Object.assign({}, state, {
