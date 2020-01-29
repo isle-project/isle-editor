@@ -12,21 +12,21 @@ Markdown syntax can be used to embed images in ISLE lessons, which takes the gen
 
 To embed an image in an ISLE lesson, the image must be hosted online (since ISLE users will not have access to your local files). So for example, to include a picture of Paul the octopus from the 2010 World Cup, we could do
 
-    ![Paul the octopus](https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg "Paul the octopus")
+    ![Paul the octopus](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG "Paul the octopus")
     
 which renders to
 
-![Paul](https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg "Paul the octopus")
+![Paul](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG "Paul the octopus")
 
 (hover over the image to see the title provided).
 
 Alternatively, images can be included with custom `<Image>` tags. Since Markdown [does not currently](https://daringfireball.net/projects/markdown/syntax#img) support specifying image dimensions, you can use HTML `<Image>` syntax to include an image and change the dimension. For example, to specify dimensions for the picture of Paul the octopus:
 
-    <Image src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
+    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG" width="200" height="200" />
 
 which becomes
 
-<Image src="https://cdn1.spiegel.de/images/image-110422-860_poster_16x9-ltgh-110422.jpg" width="200" height="200" />
+<Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG" width="200" height="200" />
 
 ### Uploading Images to Course Files
 

@@ -27,16 +27,14 @@ At the top of an ISLE file is a [YAML](https://en.wikipedia.org/wiki/YAML) pream
 Before you upload your first lesson, you need to link your local ISLE editor with your online ISLE account. 
 
 1. In the top right of the ISLE editor, click **Settings**
-2. Under **Server Address**, enter the url for the ISLE server on which you have an account. Unless you have specifically set up a different server, this will be `https://isle.heinz.cmu.edu`
+2. Under **Server Address**, enter the url for the ISLE server on which you have an account. Unless you have specifically set up a different server, this will be `https://isle.stat.cmu.edu`
 3. Under **Email** enter the email you used to create your ISLE account.
 4. Under **Password**, enter the password you use for your ISLE account.
 5. Click **Connect**.
 
 ![Connecting](assets/gifs/connecting_to_isle.gif)
 
-### Servers
-
-You've now linked your editor to the server to which you will upload ISLE lessons. The `server` field of the preamble, on the other hand, specifies the ISLE server that runs user interactions with your ISLE lesson. Generally, these two servers will be the same, and currently you should use `https://isle.heinz.cmu.edu` unless you have specifically set up a different server.
+You've now linked your editor to the server to which you will upload ISLE lessons.
 
 ## Exporting/Uploading the Lesson
 

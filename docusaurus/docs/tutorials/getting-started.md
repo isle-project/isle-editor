@@ -6,11 +6,11 @@ sidebar_label: Setting Up
 
 ## Creating an ISLE Account
 
-If you do not have an ISLE account, the first step is to create one so that you can make a course, add students, and upload lessons. To create an account, go to <https://isle.heinz.cmu.edu/dashboard/> and click **Sign up**. Then enter your name, email address, and desired password, and click **Sign up**.
+If you do not have an ISLE account, the first step is to create one so that you can make a course, add students, and upload lessons. To create an account, go to <https://isle.stat.cmu.edu/dashboard/> and click **Sign up**. Then enter your name, email address, and desired password, and click **Sign up**.
 
 ## Logging In
 
-Once you have an account, you can log in at <https://isle.heinz.cmu.edu/dashboard/>. Logging in will take you to your ISLE dashboard; the first time you log in, your dashboard will be empty except for your user profile and will look something like this:
+Once you have an account, you can log in at <https://isle.stat.cmu.edu/dashboard/>. Logging in will take you to your ISLE dashboard; the first time you log in, your dashboard will be empty except for your user profile and will look something like this:
 
 ![Initial Dashboard](assets/images/initial_dashboard.png)
 

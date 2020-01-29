@@ -8,7 +8,7 @@ ISLE can be used for many different types of lessons. Here we cover a few exampl
 
 ## Labs
 
-At Carnegie Mellon University, we have used ISLE in introductory statistics labs for several years. [Lab 1](https://isle.heinz.cmu.edu/Demo/lab01/) in 36-200 covers the basics of variables types and some plots. You can find the source ISLE file for this lab at <https://isle.heinz.cmu.edu/Demo_lab01.isle>.
+At Carnegie Mellon University, we have used ISLE in introductory statistics labs for several years. [Lab 1](https://isle.stat.cmu.edu/demo-course/lab01/) in 36-200 covers the basics of variables types and some plots. You can find the source ISLE file for this lab at <https://isle.stat.cmu.edu/demo-course/lab01/index.isle>.
 
 ### Sample Template
 

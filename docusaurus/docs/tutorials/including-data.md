@@ -79,7 +79,6 @@ If we save these as JSON files and import them into the editor in the same way w
     state:
     ---
 
-
     <DataTable
         data={{
             "Age": [3, 4, 3, 6],
@@ -137,7 +136,6 @@ The code to generate the data explorer illustrated here is
         airlines: "./airlines.json"
         airline_info: "./airline_info.json"
     state:
-    https://isle.heinz.cmu.edu
     ---
 
     <DataExplorer
