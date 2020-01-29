@@ -12,6 +12,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isArray from '@stdlib/assert/is-array';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
@@ -231,33 +232,37 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		if ( lineBy ) {
 			const groups = data[ lineBy ].slice();
 			unique( groups );
-			const xgrouped = group( x, data[ lineBy ]);
-			const ygrouped = group( y, data[ lineBy ]);
+			const xgrouped = {};
+			const ygrouped = {};
+			for ( let i = 0; i < groups.length; i++ ) {
+				xgrouped[ groups[ i ] ] = [];
+				ygrouped[ groups[ i ] ] = [];
+			}
+			for ( let i = 0; i < data[ lineBy ].length; i++ ) {
+				const group = data[ lineBy ][ i ];
+				if ( !isUndefinedOrNull( group ) ) {
+					if (
+						isNumber( x[ i ] ) && isNumber( y[ i ] ) &&
+						!isnan( x[ i ] ) && !isnan( y[ i ] )
+					) {
+						xgrouped[ group ].push( x[ i ] );
+						ygrouped[ group ].push( y[ i ] );
+					}
+				}
+			}
 			let colorOffset = 0;
 			if ( color && color !== lineBy ) {
 				colorOffset += nColors;
 			}
 			for ( let i = 0; i < groups.length; i++ ) {
-				let xvals = xgrouped[ groups[ i ] ];
-				let yvals = ygrouped[ groups[ i ] ];
-				let xc = [];
-				let yc = [];
-				for ( let j = 0; j < xvals.length; j++ ) {
-					let x = xvals[ j ];
-					let y = yvals[ j ];
-					if (
-						isNumber( x ) && isNumber( y ) &&
-						!isnan( x ) && !isnan( y )
-					) {
-						xc.push( x );
-						yc.push( y );
-					}
-				}
-				xvals = xc;
-				yvals = yc;
+				const xvals = xgrouped[ groups[ i ] ];
+				const yvals = ygrouped[ groups[ i ] ];
 				let predictedLinear;
 				let predictedSmooth;
 				let values;
+				if ( xvals.length === 0 || yvals.length === 0 ) {
+					continue;
+				}
 				if ( contains( regressionMethod, 'linear' ) ) {
 					values = linspace( min( xvals ), max( xvals ), 100 );
 					const coefs = calculateCoefficients( xvals, yvals );
