@@ -87,7 +87,7 @@ class Image extends Component {
 							</Button> : null
 						}
 						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={this.closeModal}><Button variant="secondary">Copy Link</Button></CopyToClipboard>
-						<Button variant="secondary" href={this.props.src} download="plot.png" >Save Plot</Button>
+						<Button variant="secondary" href={this.props.src} download="image.png" >Save Image</Button>
 						<Button variant="secondary" onClick={this.closeModal}>Close</Button>
 					</Modal.Footer>
 				</Modal>
