@@ -3,6 +3,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import HappyPack from 'happypack';
+import TerserPlugin from 'terser-webpack-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
@@ -27,10 +28,55 @@ const config = {
 		index: './app/index'
 	},
 
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				extractComments: 'all',
+				cache: true,
+				parallel: true,
+				terserOptions: {
+					warnings: false,
+					compress: {
+						arrows: false,
+						booleans: false,
+						collapse_vars: false,
+						comparisons: false,
+						computed_props: false,
+						hoist_funs: false,
+						hoist_props: false,
+						hoist_vars: false,
+						if_return: false,
+						inline: false,
+						join_vars: false,
+						keep_infinity: false,
+						loops: false,
+						negate_iife: false,
+						properties: false,
+						reduce_funcs: false,
+						reduce_vars: false,
+						sequences: false,
+						side_effects: false,
+						switches: false,
+						top_retain: false,
+						toplevel: false,
+						typeofs: false,
+						unused: false,
+						conditionals: true,
+						dead_code: true,
+						evaluate: true
+					},
+					mangle: true
+				}
+			})
+		]
+	},
+
 	output: {
 		...baseConfig.output,
 		publicPath: '../dist/',
-		filename: 'renderer.prod.js'
+		filename: 'renderer.prod.js',
+		chunkFilename: '[name].bundle.js',
 	},
 
 	module: {

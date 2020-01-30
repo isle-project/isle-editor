@@ -31,9 +31,10 @@ import CDN_MODULES from './cdn_modules.json';
 
 const debug = logger( 'bundler' );
 const EXTERNALS = {};
+const AVAILABLE_COMPONENTS = objectKeys( REQUIRES );
 for ( let i = 0; i < CDN_MODULES.length; i++ ) {
 	const p = CDN_MODULES[ i ];
-	EXTERNALS[p.name] = p.var || p.name;
+	EXTERNALS[ p.name ] = p.var || p.name;
 }
 
 
@@ -216,14 +217,12 @@ render(
  */
 const getComponentList = ( code ) => {
 	const ret = [];
-	const availableComponents = objectKeys( REQUIRES );
-
 	let needVictoryTheme = false;
-	for ( let i = 0; i < availableComponents.length; i++ ) {
-		const regexp = new RegExp( `<${availableComponents[ i ]}[^>]*>`, 'g' );
+	for ( let i = 0; i < AVAILABLE_COMPONENTS.length; i++ ) {
+		const regexp = new RegExp( `<${AVAILABLE_COMPONENTS[ i ]}[^>]*>`, 'g' );
 		if ( regexp.test( code ) === true ) {
-			ret.push( availableComponents[ i ] );
-			if ( startsWith( availableComponents[ i ], 'Victory' ) ) {
+			ret.push( AVAILABLE_COMPONENTS[ i ] );
+			if ( startsWith( AVAILABLE_COMPONENTS[ i ], 'Victory' ) ) {
 				needVictoryTheme = true;
 			}
 		}
@@ -402,7 +401,7 @@ function writeIndexFile({
 			minimizer: [
 				new OptimizeCSSAssetsPlugin({}),
 				new TerserPlugin({
-					extractComments: true,
+					extractComments: 'all',
 					cache: true,
 					parallel: true,
 					terserOptions: {
