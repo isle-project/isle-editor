@@ -32,12 +32,12 @@ const operator = ( name, precedence, associativity, numParams, method ) => {
 	};
 };
 const OPERATORS = {
-	'+': operator('+', 1, 'left', 2, ( a, b ) => { return a + b; }),
-	'-': operator('-', 1, 'left', 2, ( a, b ) => { return a - b; }),
-	'*': operator('*', 2, 'left', 2, ( a, b ) => { return a * b; }),
-	'/': operator('/', 2, 'left', 2, ( a, b ) => { return a / b; }),
-	'^': operator('^', 3, 'right', 2, pow ),
-	'!': operator('!', 4, 'right', 1, factorial )
+	'+': operator( '+', 1, 'left', 2, ( a, b ) => { return a + b; }),
+	'-': operator( '-', 1, 'left', 2, ( a, b ) => { return a - b; }),
+	'*': operator( '*', 2, 'left', 2, ( a, b ) => { return a * b; }),
+	'/': operator( '/', 2, 'left', 2, ( a, b ) => { return a / b; }),
+	'^': operator( '^', 3, 'right', 2, pow ),
+	'!': operator( '!', 4, 'right', 1, factorial )
 };
 const FUNCTIONS = {
 	'sqrt': { params: 1, method: sqrt },
@@ -53,16 +53,30 @@ const FUNCTIONS = {
 	'choose': { params: 2, method: choose },
 	'log': { params: 2, method: log }
 };
+const FUNCTION_NAMES = keys( FUNCTIONS );
+const OPERATOR_NAMES = keys( OPERATORS );
 
 
 // FUNCTIONS //
 
 function isOperator( token ) {
-	return keys( OPERATORS ).indexOf( token ) !== -1;
+	return OPERATOR_NAMES.indexOf( token ) !== -1;
 }
 
 function isFunction( token ) {
-	return keys( FUNCTIONS ).indexOf( token ) !== -1;
+	return FUNCTION_NAMES.indexOf( token ) !== -1;
+}
+
+function checkPrecedence( o1, o2 ) {
+	if ( !isOperator( o1 ) || !isOperator( o2 ) ) {
+		return false;
+	}
+	o1 = OPERATORS[ o1 ];
+	o2 = OPERATORS[ o2 ];
+	return (
+		( o1.associativity === 'left' && o1.precedence <= o2.precedence ) ||
+		( o1.associativity === 'right' && o1.precedence < o2.precedence )
+	);
 }
 
 function toRPN( arr ) {
@@ -82,9 +96,7 @@ function toRPN( arr ) {
 			let o2 = s.first();
 			while (
 				isFunction( o2 ) ||
-				( isOperator( o1 ) &&
-				( o1.associativity === 'left' && o1.precedence <= o2.precedence ) ||
-				( o1.associativity === 'right' && o1.precedence < o2.precedence ) )
+				checkPrecedence( o1, o2 )
 			) {
 				output.push( o2 );
 				s.pop();
