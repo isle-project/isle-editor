@@ -20,6 +20,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-plain-object';
 import startsWith from '@stdlib/string/starts-with';
 import endsWith from '@stdlib/string/ends-with';
+import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import readJSON from '@stdlib/fs/read-json';
@@ -480,7 +481,7 @@ class Editor extends Component {
 			const selectedText = model.getValueInRange( selection );
 			if ( isURI( selectedText ) ) {
 				const ext = extname( url.parse( selectedText ).pathname );
-				if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+				if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
 					actions.push({
 						command: {
 							id: this.copyToLocal,
@@ -508,7 +509,7 @@ class Editor extends Component {
 				if ( matches ) {
 					const imgURL = matches[ 1 ];
 					const ext = extname( url.parse( imgURL ).pathname );
-					if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
 						if ( isURI( imgURL ) ) {
 							actions.push({
 								command: {
@@ -771,7 +772,7 @@ class Editor extends Component {
 				}
 				else {
 					const ext = extname( url.parse( text ).pathname );
-					if ( contains( IMAGE_EXTENSIONS, ext ) ) {
+					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
 						text = `<Image src="${text}" alt="Enter description" width="50%" height="auto" />`;
 					}
 				}
