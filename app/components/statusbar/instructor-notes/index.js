@@ -22,10 +22,10 @@ class InstructorNotes extends Component {
 		debug( 'Rendering instructor notes...' );
 		return (
 			<TextEditor
+				id="instructor-notes"
 				className="instructor-notes"
 				groupMode
 				allowSubmissions={false}
-				id="instructor-notes"
 				toolbarConfig={[
 					'bold',
 					'italic',

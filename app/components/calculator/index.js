@@ -2,25 +2,25 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import noop from '@stdlib/utils/noop';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import FormControl from 'react-bootstrap/FormControl';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import ReactDraggable from 'components/draggable';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 import { CALCULATOR_SOLVE } from 'constants/actions.js';
-import FormControl from 'react-bootstrap/FormControl';
 import SessionContext from 'session/context.js';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
+import replace from '@stdlib/string/replace';
+import noop from '@stdlib/utils/noop';
 import PI from '@stdlib/constants/math/float64-pi';
 import E from '@stdlib/constants/math/float64-e';
-import replace from '@stdlib/string/replace';
-import evaluate from './shunting_yard';
-import logger from 'debug';
+import evaluate from './shunting_yard.js';
 import './calculator.css';
 
 

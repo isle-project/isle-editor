@@ -1,7 +1,9 @@
 // MODULES //
 
 import React, { Component, Fragment, lazy, Suspense } from 'react';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import round from '@stdlib/math/base/special/round';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
@@ -9,7 +11,6 @@ import min from '@stdlib/math/base/special/min';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import logger from 'debug';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
@@ -18,7 +19,6 @@ import Chat from 'components/statusbar/chat';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
-import ProgressBar from 'react-bootstrap/ProgressBar';
 import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
