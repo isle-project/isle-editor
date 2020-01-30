@@ -60,7 +60,8 @@ class HelpPage extends Component {
 		for ( let i = 0; i < imgs.length; i++ ) {
 			imgs[ i ].src = getDataUrl( imgs[ i ] );
 		}
-		const html = this.tabs.innerHTML;
+		let html = this.tabs.innerHTML;
+		html = html.replace( '<h4 style="text-align: center; margin-top: 50%;">Click on an item in the menu to learn more about...</h4>', '' );
 		const doc = {
 			content: htmlToPdfMake( html ),
 			pageMargins: [ 40, 60, 40, 60 ] // left top right bottom
@@ -71,6 +72,7 @@ class HelpPage extends Component {
 
 	render() {
 		const session = this.props.session;
+		const hasStatusBar = !session.config.hideStatusBar && !session.config.removeStatusBar;
 		return (
 			<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1005 }}>
 				<Tab.Container id="left-tabs-example" defaultActiveKey="zeroth">
@@ -109,18 +111,18 @@ class HelpPage extends Component {
 						<Tab.Pane eventKey="zeroth">
 							<h4 style={{ textAlign: 'center', marginTop: '50%' }}>Click on an item in the menu to learn more about...</h4>
 						</Tab.Pane>
-						<Tab.Pane eventKey="first">
+						{ this.hasDataTable ? <Tab.Pane eventKey="first">
 							<DataTableHelp />
-						</Tab.Pane>
-						<Tab.Pane eventKey="second">
+						</Tab.Pane> : null }
+						{ this.hasDataExplorer ? <Tab.Pane eventKey="second">
 							<DataExplorerHelp />
-						</Tab.Pane>
-						<Tab.Pane eventKey="third">
+						</Tab.Pane> : null }
+						{ hasStatusBar ? <Tab.Pane eventKey="third">
 							<Text raw={STATUSBAR_HELP} />
-						</Tab.Pane>
-						<Tab.Pane eventKey="fourth">
+						</Tab.Pane> : null }
+						{ this.hasQuestions ? <Tab.Pane eventKey="fourth">
 							<QuestionsHelp />
-						</Tab.Pane>
+						</Tab.Pane> : null }
 					</Tab.Content>
 				</Tab.Container>
 			</Card>
