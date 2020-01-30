@@ -11,7 +11,9 @@ import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Text from 'components/text';
 import DataExplorerHelp from './help/data_explorer.js';
+import DataTableHelp from './help/data_table.js';
 import STATUSBAR_HELP from './help/statusbar.js';
+import QuestionsHelp from './help/questions.js';
 
 
 // VARIABLES //
@@ -48,6 +50,8 @@ class HelpPage extends Component {
 	constructor( props ) {
 		super( props );
 		loadFonts();
+		this.hasQuestions = document.getElementsByClassName( 'submit-button' ).length > 0;
+		this.hasDataTable = document.getElementsByClassName( 'data-table-wrapper' ).length > 0;
 		this.hasDataExplorer = document.getElementsByClassName( 'data-explorer' ).length > 0;
 	}
 
@@ -76,15 +80,27 @@ class HelpPage extends Component {
 						<button className="help-close-button fa fa-times" onClick={this.props.onClose} />
 					</div>
 					<Nav variant="pills" style={{ background: '#f8f9fa', padding: 6 }} >
+						{ this.hasDataTable ?
+							<Nav.Item>
+								<Nav.Link eventKey="first">Data Table</Nav.Link>
+							</Nav.Item> :
+							null
+						}
 						{ this.hasDataExplorer ?
 							<Nav.Item>
-								<Nav.Link eventKey="first">Data Explorers</Nav.Link>
+								<Nav.Link eventKey="second">Data Explorer</Nav.Link>
 							</Nav.Item> :
 							null
 						}
 						{ !session.config.hideStatusBar && !session.config.removeStatusBar ?
 							<Nav.Item>
-								<Nav.Link eventKey="second">Status Bar</Nav.Link>
+								<Nav.Link eventKey="third">Status Bar</Nav.Link>
+							</Nav.Item> :
+							null
+						}
+						{ this.hasQuestions ?
+							<Nav.Item>
+								<Nav.Link eventKey="fourth">Questions</Nav.Link>
 							</Nav.Item> :
 							null
 						}
@@ -94,10 +110,16 @@ class HelpPage extends Component {
 							<h4 style={{ textAlign: 'center', marginTop: '50%' }}>Click on an item in the menu to learn more about...</h4>
 						</Tab.Pane>
 						<Tab.Pane eventKey="first">
-							<DataExplorerHelp />
+							<DataTableHelp />
 						</Tab.Pane>
 						<Tab.Pane eventKey="second">
+							<DataExplorerHelp />
+						</Tab.Pane>
+						<Tab.Pane eventKey="third">
 							<Text raw={STATUSBAR_HELP} />
+						</Tab.Pane>
+						<Tab.Pane eventKey="fourth">
+							<QuestionsHelp />
 						</Tab.Pane>
 					</Tab.Content>
 				</Tab.Container>
