@@ -76,7 +76,7 @@ const config = {
 		...baseConfig.output,
 		publicPath: '../dist/',
 		filename: 'renderer.prod.js',
-		chunkFilename: '[name].bundle.js',
+		chunkFilename: '[name].bundle.js'
 	},
 
 	module: {
