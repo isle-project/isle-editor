@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import './header.css';
 
@@ -59,7 +60,21 @@ class Header extends Component {
 					className="unselectable"
 				>
 					<span style={{ paddingLeft: 5 }} >
-						{this.props.fileName || 'Untitled Document'}
+						<OverlayTrigger
+							placement="right"
+							overlay={<div
+								style={{
+									backgroundColor: 'rgba(50, 50, 50, 0.85)',
+									padding: '2px 10px',
+									color: 'white',
+									borderRadius: 3
+								}}
+							>
+								{this.props.filePath}
+							</div>}
+						>
+							<span style={{ paddingRight: 5 }}>{this.props.fileName || 'Untitled Document'}</span>
+						</OverlayTrigger>
 						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
 					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
@@ -101,11 +116,13 @@ class Header extends Component {
 // PROPERTIES //
 
 Header.defaultProps = {
-	fileName: ''
+	fileName: '',
+	filePath: 'Please save file...'
 };
 
 Header.propTypes = {
 	fileName: PropTypes.string,
+	filePath: PropTypes.string,
 	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
