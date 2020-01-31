@@ -98,6 +98,7 @@ const mapErrors = e => {
 		severity: e.severity
 	};
 };
+let overlayInstallWidget = null;
 
 
 // MAIN //
@@ -228,6 +229,10 @@ class Editor extends Component {
 		});
 
 		this.installDependencies = this.editor.addCommand( 'install-dependencies', ( _, requires, p ) => {
+			if ( overlayInstallWidget ) {
+				this.editor.removeOverlayWidget( overlayInstallWidget );
+				overlayInstallWidget = null;
+			}
 			const keys = objectKeys( requires );
 			const deps = [];
 			for ( let i = 0; i < keys.length; i++ ) {
@@ -242,7 +247,7 @@ class Editor extends Component {
 				}
 			}
 			const self = this;
-			const overlayWidget = {
+			overlayInstallWidget = {
 				domNode: null,
 				pre: null,
 				getId() {
@@ -264,7 +269,7 @@ class Editor extends Component {
 						button.style.background = 'none';
 						button.style.cursor = 'pointer';
 						button.addEventListener( 'click', () => {
-							self.editor.removeOverlayWidget( overlayWidget );
+							self.editor.removeOverlayWidget( overlayInstallWidget );
 						});
 						this.domNode.appendChild( button );
 
@@ -280,25 +285,46 @@ class Editor extends Component {
 					return null;
 				}
 			};
-			this.editor.addOverlayWidget( overlayWidget );
-			const npm = spawn( 'npm', [ 'install', deps, '-no-audit' ], {
+			this.editor.addOverlayWidget( overlayInstallWidget );
+			const destDir = dirname( this.props.filePath );
+			const fileName = basename( this.props.filePath, '.isle' );
+			const isleDir = join( destDir, `${fileName}-resources` );
+			if ( !exists.sync( isleDir ) ) {
+				mkdirSync( isleDir );
+				mkdirSync( join( isleDir, 'img' ) );
+				mkdirSync( join( isleDir, 'video' ) );
+				mkdirSync( join( isleDir, 'include' ) );
+				const manifestPath = join( isleDir, 'manifest.json' );
+				const manifest = {
+					resources: {}
+				};
+				writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
+			}
+			const pkgJSON = join( isleDir, 'package.json' );
+			if ( !exists.sync( pkgJSON ) ) {
+				writeFileSync( pkgJSON, JSON.stringify({
+					name: fileName
+				}, null, 2 ) );
+			}
+			const npm = spawn( 'npm', [ 'install', deps, '--no-audit', '--no-save' ], {
 				env: {
 					...process.env, // eslint-disable-line no-process-env
 					'npm_config_loglevel': 'error'
-				}
+				},
+				cwd: isleDir
 			});
 			npm.stdout.on( 'data', ( data ) => {
 				const str = data.toString();
 				if ( !contains( str, 'looking for funding' ) ) {
-					overlayWidget.pre.innerHTML += str;
+					overlayInstallWidget.pre.innerHTML += str;
 				}
 			});
 			npm.stderr.on( 'data', ( data ) => {
-				overlayWidget.pre.innerHTML += data;
+				overlayInstallWidget.pre.innerHTML += data;
 			});
 			npm.on( 'close', ( code ) => {
 				setTimeout( () => {
-					this.editor.removeOverlayWidget( overlayWidget );
+					this.editor.removeOverlayWidget( overlayInstallWidget );
 				}, 15000 );
 			});
 		});
