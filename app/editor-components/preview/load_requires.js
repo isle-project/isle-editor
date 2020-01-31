@@ -16,6 +16,7 @@ import obsToVar from 'utils/obs-to-var';
 // VARIABLES //
 
 const debug = logger( 'isle-editor:preview' );
+const RE_SEMVER = /(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
 
 
 // MAIN //
@@ -65,6 +66,10 @@ async function loadRequires( libs, filePath ) {
 					}
 					else {
 						debug( `Load '${lib}' library...` );
+						const match = lib.match( RE_SEMVER );
+						if ( match ) {
+							lib = lib.substring( 0, match.index-1 );
+						}
 						eval( `global[ '${key}' ] = require( '${lib}' );` );
 					}
 				}

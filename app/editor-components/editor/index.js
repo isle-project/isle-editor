@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, mkdirSync, createWriteStream, writeFileSync } from 'fs';
+import { spawn } from 'child_process';
 import https from 'https';
 import http from 'http';
 import url from 'url';
@@ -13,6 +14,7 @@ import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
 import isRelativePath from '@stdlib/assert/is-relative-path';
+import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import exists from '@stdlib/fs/exists';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
@@ -223,6 +225,82 @@ class Editor extends Component {
 				text: `author: ${this.props.author}, ${otherAuthors}`
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
+		});
+
+		this.installDependencies = this.editor.addCommand( 'install-dependencies', ( _, requires, p ) => {
+			const keys = objectKeys( requires );
+			const deps = [];
+			for ( let i = 0; i < keys.length; i++ ) {
+				const lib = requires[ keys[ i ] ];
+				if (
+					!isAbsolutePath( lib ) &&
+					!/\.(\/|\\)/.test( lib ) &&
+					!isURI( lib ) &&
+					!contains( lib, '@stdlib' )
+				) {
+					deps.push( lib );
+				}
+			}
+			const self = this;
+			const overlayWidget = {
+				domNode: null,
+				pre: null,
+				getId() {
+					return 'my.overlay.widget';
+				},
+				getDomNode() {
+					if ( !this.domNode ) {
+						this.domNode = document.createElement( 'div' );
+						this.domNode.style.right = '20px';
+						this.domNode.style.top = '12px';
+						this.domNode.style.width = '400px';
+
+						const button = document.createElement( 'button' );
+						button.innerHTML = 'X';
+						button.style.position = 'absolute';
+						button.style.right = '5px';
+						button.style.top = '5px';
+						button.style.border = '0';
+						button.style.background = 'none';
+						button.style.cursor = 'pointer';
+						button.addEventListener( 'click', () => {
+							self.editor.removeOverlayWidget( overlayWidget );
+						});
+						this.domNode.appendChild( button );
+
+						this.pre = document.createElement( 'pre' );
+						this.pre.innerHTML = `Installing ${deps.join( ', ')}... <br />`;
+						this.pre.style.background = 'lightgrey';
+						this.pre.style.whiteSpace = 'pre-wrap';
+						this.domNode.appendChild( this.pre );
+					}
+					return this.domNode;
+				},
+				getPosition() {
+					return null;
+				}
+			};
+			this.editor.addOverlayWidget( overlayWidget );
+			const npm = spawn( 'npm', [ 'install', deps, '-no-audit' ], {
+				env: {
+					...process.env, // eslint-disable-line no-process-env
+					'npm_config_loglevel': 'error'
+				}
+			});
+			npm.stdout.on( 'data', ( data ) => {
+				const str = data.toString();
+				if ( !contains( str, 'looking for funding' ) ) {
+					overlayWidget.pre.innerHTML += str;
+				}
+			});
+			npm.stderr.on( 'data', ( data ) => {
+				overlayWidget.pre.innerHTML += data;
+			});
+			npm.on( 'close', ( code ) => {
+				setTimeout( () => {
+					this.editor.removeOverlayWidget( overlayWidget );
+				}, 15000 );
+			});
 		});
 
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
@@ -476,6 +554,16 @@ class Editor extends Component {
 						arguments: [ matches[ 1 ], range ]
 					},
 					title: 'Add myself to author list (as specified in preamble template)'
+				});
+			}
+			else if ( startsWith( line, 'require:' ) ) {
+				actions.push({
+					command: {
+						id: this.installDependencies,
+						title: 'Install dependencies',
+						arguments: [ this.props.preamble.require, range ]
+					},
+					title: 'Install dependencies'
 				});
 			}
 			const selectedText = model.getValueInRange( selection );
