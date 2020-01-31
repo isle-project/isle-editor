@@ -1,6 +1,6 @@
 // MODULES //
 
-import { dirname, join, extname } from 'path';
+import { basename, dirname, join, extname } from 'path';
 import { json, csv } from 'd3';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -28,6 +28,8 @@ async function loadRequires( libs, filePath ) {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
 	let dir = dirname( filePath );
+	const fileName = basename( filePath, '.isle' );
+	const isleDir = join( dir, `${fileName}-resources` );
 	const asyncOps = [];
 	const asyncKeys = [];
 	const asyncExtensions = [];
@@ -74,7 +76,7 @@ async function loadRequires( libs, filePath ) {
 						}
 						eval( `const str = require.resolve( '${lib}', {
 							paths: [
-								'${filePath}',
+								'${isleDir}',
 								'${IS_PACKAGED ? process.resourcesPath : '.'}'
 							]
 						}); global[ '${key}' ] = require( str );` );
