@@ -162,6 +162,7 @@ class App extends Component {
 				{ !hideToolbar ?
 					<Header
 						fileName={fileName}
+						filePath={filePath}
 						onSelectRole={changeView}
 						role={currentRole}
 						onSelectMode={changeMode}
