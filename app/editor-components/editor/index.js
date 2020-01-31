@@ -306,10 +306,20 @@ class Editor extends Component {
 					name: fileName
 				}, null, 2 ) );
 			}
-			const npm = spawn( 'npm', [ 'install', deps, '--no-audit', '--no-save' ], {
+			let npmPath;
+			let PATH = process.env.PATH; // eslint-disable-line no-process-env
+			if ( IS_PACKAGED ) {
+				npmPath = join( process.resourcesPath, 'node_modules', '.bin', 'npm' );
+				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
+				PATH = PATH.concat( ':', bin );
+				PATH = PATH.concat( ':', '/usr/local/bin' );
+			} else {
+				npmPath = 'npm';
+			}
+			const npm = spawn( npmPath, [ 'install', deps, '--no-audit', '--no-save' ], {
 				env: {
-					...process.env, // eslint-disable-line no-process-env
-					'npm_config_loglevel': 'error'
+					'npm_config_loglevel': 'error',
+					'PATH': PATH
 				},
 				cwd: isleDir
 			});
