@@ -70,7 +70,7 @@ class Header extends Component {
 									borderRadius: 3
 								}}
 							>
-								{this.props.filePath}
+								{this.props.filePath || 'Please save file...'}
 							</div>}
 						>
 							<span style={{ paddingRight: 5 }}>{this.props.fileName || 'Untitled Document'}</span>
