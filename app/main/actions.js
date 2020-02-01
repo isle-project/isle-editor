@@ -28,6 +28,11 @@ app.on( 'certificate-error', ( event, webContents, url, error, certificate, call
 	callback( false );
 });
 
+ipcMain.on( 'open-file', ( e, { path }) => {
+	e.preventDefault();
+	createWindow( path );
+});
+
 ipcMain.on( 'save-file', ( e, { data, filePath }) => {
 	fs.writeFile( filePath, data, 'utf-8', ( err ) => {
 		if ( err ) {

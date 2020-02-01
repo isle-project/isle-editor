@@ -17,9 +17,7 @@ import { version as currentVersion } from './package.json';
 
 const config = new Store( 'ISLE' );
 
-let isReady = false;
 let pathToOpen;
-
 if ( process.argv[ 1 ] ) {
 	pathToOpen = process.argv[ 1 ];
 }
@@ -41,10 +39,8 @@ autoUpdater.currentVersion = currentVersion;
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
 	createWindow( pathToOpen, ( mainWindow ) => {
-		isReady = true;
-
 		function sendStatusToWindow( text ) {
-			mainWindow.webContents.send('message', text );
+			mainWindow.webContents.send( 'message', text );
 		}
 
 		if ( process.env.NODE_ENV === 'production' ) {
@@ -55,15 +51,15 @@ function onReady() {
 			});
 
 			autoUpdater.on( 'update-available', ( info ) => {
-				sendStatusToWindow('Update available.');
+				sendStatusToWindow( 'Update available.' );
 			});
 
 			autoUpdater.on( 'update-not-available', ( info ) => {
-				sendStatusToWindow('Update not available.');
+				sendStatusToWindow( 'Update not available.' );
 			});
 
 			autoUpdater.on( 'error', ( err ) => {
-				sendStatusToWindow('Error in auto-updater. ' + err);
+				sendStatusToWindow( 'Error in auto-updater. ' + err );
 			});
 
 			autoUpdater.on( 'download-progress', ( progressObj ) => {
@@ -136,15 +132,6 @@ function addRecentFilesMenu() {
 * This method will be called when Electron has finished initialization and is ready to create browser windows.
 */
 app.on( 'ready', onReady );
-
-app.on( 'open-file', ( e, path ) => {
-	e.preventDefault();
-	if ( isReady ) {
-		createWindow( path );
-	} else {
-		pathToOpen = path;
-	}
-});
 
 // Quit when all windows are closed.
 app.on( 'window-all-closed', () => {

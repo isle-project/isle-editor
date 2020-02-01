@@ -37,13 +37,13 @@ function createWindow( filePath, callback ) {
 	} else if ( process.env.NODE_ENV === 'production' ) {
 		indexPath = path.resolve( __dirname, 'app', 'app.html' );
 	}
-
 	mainWindow.showUrl( indexPath, () => {
 		debug( 'Open file: ' + filePath );
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
+				console.log( err );
 				if ( err ) {
-					return debug( `Encountered an error: ${err.message}` );
+					return console.error( `Encountered an error: ${err.message}` ); // eslint-disable-line no-console
 				}
 				mainWindow.webContents.send( 'file-loaded', {
 					file,
