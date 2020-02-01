@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
-import { copyFileSync, mkdirSync, createWriteStream, writeFileSync } from 'fs';
+import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
 import { spawn } from 'child_process';
 import https from 'https';
 import http from 'http';
@@ -29,6 +29,7 @@ import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/loadable';
 import { ipcRenderer } from 'electron';
 import MonacoEditor from 'react-monaco-editor';
+import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
 import VIDEO_EXTENSIONS from './video_extensions.json';
@@ -289,23 +290,7 @@ class Editor extends Component {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
-			if ( !exists.sync( isleDir ) ) {
-				mkdirSync( isleDir );
-				mkdirSync( join( isleDir, 'img' ) );
-				mkdirSync( join( isleDir, 'video' ) );
-				mkdirSync( join( isleDir, 'include' ) );
-				const manifestPath = join( isleDir, 'manifest.json' );
-				const manifest = {
-					resources: {}
-				};
-				writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
-			}
-			const pkgJSON = join( isleDir, 'package.json' );
-			if ( !exists.sync( pkgJSON ) ) {
-				writeFileSync( pkgJSON, JSON.stringify({
-					name: fileName
-				}, null, 2 ) );
-			}
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			if ( deps.length === 0 ) {
 				overlayInstallWidget.pre.innerHTML = 'No packages to install.';
 				return;
@@ -349,12 +334,7 @@ class Editor extends Component {
 			const isleDir = join( destDir, `${fileName}-resources` );
 			let subdir = type;
 			const resDir = join( isleDir, subdir );
-			if ( !exists.sync( isleDir ) ) {
-				mkdirSync( isleDir );
-				mkdirSync( join( isleDir, 'img' ) );
-				mkdirSync( join( isleDir, 'video' ) );
-				mkdirSync( join( isleDir, 'include' ) );
-			}
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const manifestPath = join( isleDir, 'manifest.json' );
 			let manifest = readJSON.sync( manifestPath );
 			if ( manifest instanceof Error ) {
@@ -413,21 +393,14 @@ class Editor extends Component {
 			const includePath = join( isleDir, 'include' );
 			const outPath = join( includePath, `${includeName}.isle` );
 			const localPath = './' + relative( destDir, outPath );
-			manifest.include[ localPath ] = {
+			manifest.include[ includeName ] = {
 				lastAccessed: new Date().toLocaleString(),
 				origin: url
 			};
-			if ( !exists.sync( isleDir ) ) {
-				mkdirSync( isleDir );
-				mkdirSync( join( isleDir, 'img' ) );
-				mkdirSync( join( isleDir, 'video' ) );
-				mkdirSync( includePath );
-			}
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const includeResources = join( includePath, `${includeName}-resources` );
 			if ( !exists.sync( includeResources ) ) {
-				mkdirSync( includeResources );
-				mkdirSync( join( includeResources, 'img' ) );
-				mkdirSync( join( includeResources, 'video' ) );
+				createResourcesDirectoryIfNeeded( includeResources, includeName );
 			}
 			writeFileSync( manifestPath, JSON.stringify( manifest, null, 2 ) );
 			if ( !endsWith( url, '.isle' ) ) {
@@ -704,7 +677,8 @@ class Editor extends Component {
 						const isleDir = join( destDir, `${fileName}-resources` );
 						const manifestPath = join( isleDir, 'manifest.json' );
 						const manifest = readJSON.sync( manifestPath );
-						const entry = manifest.include[ basename( lessonURL ) ];
+						const includeName = basename( lessonURL, extname( lessonURL ) );
+						const entry = manifest.include[ includeName ];
 						if ( entry ) {
 							actions.push({
 								command: {
@@ -828,12 +802,7 @@ class Editor extends Component {
 			const { name, path } = file;
 			const isleDir = join( destDir, `${fileName}-resources` );
 			const imgDir = join( isleDir, 'img' );
-			if ( !exists.sync( isleDir ) ) {
-				mkdirSync( isleDir );
-				mkdirSync( imgDir );
-				mkdirSync( join( isleDir, 'video' ) );
-				mkdirSync( join( isleDir, 'include' ) );
-			}
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( imgDir, name );
 			copyFileSync( path, destPath );
 			const src = './' + relative( destDir, destPath );
@@ -861,13 +830,7 @@ class Editor extends Component {
 			const { name, path } = file;
 			const isleDir = join( destDir, `${fileName}-resources` );
 			const videoDir = join( isleDir, 'video' );
-			if ( !exists.sync( isleDir ) ) {
-				mkdirSync( isleDir );
-				mkdirSync( isleDir );
-				mkdirSync( videoDir );
-				mkdirSync( join( isleDir, 'img' ) );
-				mkdirSync( join( isleDir, 'include' ) );
-			}
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( videoDir, name );
 			copyFileSync( path, destPath );
 			const src = './' + relative( destDir, destPath );
