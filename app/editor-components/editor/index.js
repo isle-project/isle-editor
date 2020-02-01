@@ -305,6 +305,10 @@ class Editor extends Component {
 				}
 			};
 			this.editor.addOverlayWidget( overlayInstallWidget );
+			if ( !this.props.filePath ) {
+				overlayInstallWidget.pre.innerHTML = 'Please save file before installing packages.';
+				return;
+			}
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
