@@ -11,6 +11,7 @@ import merge from '@stdlib/utils/merge';
 import endsWith from '@stdlib/string/ends-with';
 import readJSON from '@stdlib/fs/read-json';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 
 
 // VARIABLES //
@@ -75,7 +76,11 @@ async function isleFileIncludes( code, preamble, filePath ) {
 	if ( !match ) {
 		return out;
 	}
-	const manifestPath = join( dirname( filePath ), `${basename( filePath, '.isle' )}-resources`, 'manifest.json' );
+	const destDir = dirname( filePath );
+	const fileName = basename( filePath, '.isle' );
+	const isleDir = join( destDir, `${fileName}-resources` );
+	createResourcesDirectoryIfNeeded( isleDir, fileName );
+	const manifestPath = join( isleDir, 'manifest.json' );
 	let manifest = readJSON.sync( manifestPath );
 	if ( manifest instanceof Error ) {
 		manifest = {};
@@ -100,7 +105,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 			str = readFileSync( resolve( dirname( filePath ), path ), 'utf8' );
 			matchPreamble( str, preamble );
 			out[ match[ 0 ] ] = str;
-			manifest.include[ match[ 0 ] ] = {
+			manifest.include[ basename( match[ 0 ] ) ] = {
 				lastAccessed: new Date().toLocaleString()
 			};
 		}
@@ -109,8 +114,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 	const res = await Promise.all( asyncOps );
 	for ( let i = 0; i < res.length; i++ ) {
 		let str = res[ i ];
-
-		manifest.include[ asyncDirs[ i ] ] = {
+		manifest.include[ basename( asyncDirs[ i ] ) ] = {
 			lastAccessed: new Date().toLocaleString()
 		};
 		matchPreamble( str, preamble );
