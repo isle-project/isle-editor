@@ -96,3 +96,7 @@
 .codicon-lightbulb::before {
 	font-size: 1.6em;
 }
+
+.preamble_content {
+	background: rgba(0, 0, 0, 0.03);
+}
