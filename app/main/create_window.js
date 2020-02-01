@@ -41,7 +41,6 @@ function createWindow( filePath, callback ) {
 		debug( 'Open file: ' + filePath );
 		if ( filePath ) {
 			fs.readFile( filePath, 'utf-8', ( err, file ) => {
-				console.log( err );
 				if ( err ) {
 					return console.error( `Encountered an error: ${err.message}` ); // eslint-disable-line no-console
 				}

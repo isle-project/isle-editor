@@ -16,13 +16,16 @@ import { version as currentVersion } from './package.json';
 // VARIABLES //
 
 const config = new Store( 'ISLE' );
+const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
+const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 
 let pathToOpen;
-if ( process.argv[ 1 ] ) {
-	pathToOpen = process.argv[ 1 ];
+const len = IS_PACKAGED ? 1 : 2;
+if ( process.argv[ len ] ) {
+	pathToOpen = process.argv[ len ];
 }
-else if ( config.has( 'mostRecentPath' ) ) {
-	pathToOpen = config.get( 'mostRecentPath' );
+else if ( config.has( 'mostRecentFilePath' ) ) {
+	pathToOpen = config.get( 'mostRecentFilePath' );
 }
 
 const recentFiles = config.get( 'recentFiles' ) || [];
