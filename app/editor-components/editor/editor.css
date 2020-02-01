@@ -92,3 +92,7 @@
 .monaco-scrollable-element > .visible {
 	background: lightgray !important;
 }
+
+.codicon-lightbulb::before {
+	font-size: 1.6em;
+}

@@ -344,7 +344,6 @@ li.ProseMirror-selectednode::after {
 }
 
 .ProseMirror blockquote {
-	font-size: 22px;
 	padding: 10px 20px;
 	margin: 0px 0px 20px;
 	border-left: 5px solid lightgray;
