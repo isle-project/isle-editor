@@ -10,6 +10,7 @@ import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
+import Terminal from 'editor-components/terminal';
 import Loadable from 'components/loadable';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors, saveSpellingErrors } from 'actions';
 import SpellChecker from 'utils/spell-checker';
@@ -42,6 +43,7 @@ class App extends Component {
 
 		this.state = {
 			splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
+			horizontalSplit: 0,
 			innerWidth: window.innerWidth
 		};
 	}
@@ -82,6 +84,12 @@ class App extends Component {
 			this.debouncedChange = debounce( handleChange, this.props.renderInterval );
 			this.debouncedChange( value );
 		}
+	}
+
+	handleHorizontalSplit = ( size ) => {
+		this.setState({
+			horizontalSplit: size
+		});
 	}
 
 	handleSplitChange = ( size ) => {
@@ -172,54 +180,65 @@ class App extends Component {
 					null
 				}
 				<SplitPane
-					className="splitpane"
-					split="vertical"
-					primary="second"
-					size={this.state.splitPos * this.state.innerWidth}
-					onChange={this.handleSplitChange}
-					maxSize={-300}
-					minSize={300}
+					split="horizontal"
+					style={{ marginTop: 88 }}
+					onChange={this.handleHorizontalSplit}
+					minSize={0}
 				>
-					<SplitPanel style={{ overflow: 'none' }} >
-						<Editor
-							ref={( elem ) => { this.editor = elem; }}
-							value={markdown}
-							onChange={this.onChange}
-							filePath={filePath}
-							name="monaco_editor"
-							fontSize={this.props.fontSize}
-							preamble={this.props.preamble}
-							author={this.props.author}
-							splitPos={this.state.splitPos}
-							lintErrors={this.props.lintErrors}
-							spellingErrors={this.props.spellingErrors}
-							hideToolbar={hideToolbar}
-						/>
-					</SplitPanel>
-					<SplitPanel
-						ref={( elem ) => { this.preview = elem; }}
-						style={{
-							transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
-						}}
+					<Terminal
+						height={this.state.horizontalSplit}
+						filePath={filePath}
+					/>
+					<SplitPane
+						className="splitpane"
+						split="vertical"
+						primary="second"
+						size={this.state.splitPos * this.state.innerWidth}
+						onChange={this.handleSplitChange}
+						maxSize={-300}
+						minSize={300}
 					>
-						{ error ?
-							<ErrorMessage msg={error.message} code={markdown} /> :
-							<ErrorBoundary code={markdown} preamble={this.props.preamble} >
-								<Preview
-									code={markdown}
-									filePath={filePath}
-									preamble={this.props.preamble}
-									currentRole={currentRole}
-									currentMode={currentMode}
-									onCode={this.lintCode}
-									encounteredError={this.props.encounteredError}
-									preambleText={this.props.preambleText}
-									updatePreamble={this.props.updatePreamble}
-									hideToolbar={hideToolbar}
-								/>
-							</ErrorBoundary>
-						}
-					</SplitPanel>
+						<SplitPanel style={{ overflow: 'none' }} >
+							<Editor
+								ref={( elem ) => { this.editor = elem; }}
+								value={markdown}
+								onChange={this.onChange}
+								filePath={filePath}
+								name="monaco_editor"
+								fontSize={this.props.fontSize}
+								preamble={this.props.preamble}
+								author={this.props.author}
+								splitPos={this.state.splitPos}
+								lintErrors={this.props.lintErrors}
+								spellingErrors={this.props.spellingErrors}
+								hideToolbar={hideToolbar}
+							/>
+						</SplitPanel>
+						<SplitPanel
+							ref={( elem ) => { this.preview = elem; }}
+							style={{
+								transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
+							}}
+						>
+							{ error ?
+								<ErrorMessage msg={error.message} code={markdown} /> :
+								<ErrorBoundary code={markdown} preamble={this.props.preamble} >
+									<Preview
+										code={markdown}
+										filePath={filePath}
+										preamble={this.props.preamble}
+										currentRole={currentRole}
+										currentMode={currentMode}
+										onCode={this.lintCode}
+										encounteredError={this.props.encounteredError}
+										preambleText={this.props.preambleText}
+										updatePreamble={this.props.updatePreamble}
+										hideToolbar={hideToolbar}
+									/>
+								</ErrorBoundary>
+							}
+						</SplitPanel>
+					</SplitPane>
 				</SplitPane>
 				{
 					( () => {

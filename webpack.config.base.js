@@ -39,6 +39,7 @@ const EXTERNALS = [
 	'mini-css-extract-plugin',
 	'ml-pca',
 	'murmurhash3js',
+	'node-pty',
 	'pdfjs-dist',
 	'profanities',
 	'pressure',
