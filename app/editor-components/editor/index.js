@@ -306,6 +306,10 @@ class Editor extends Component {
 					name: fileName
 				}, null, 2 ) );
 			}
+			if ( deps.length === 0 ) {
+				overlayInstallWidget.pre.innerHTML = 'No packages to install.';
+				return;
+			}
 			let npmPath;
 			let PATH = process.env.PATH; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
@@ -432,6 +436,17 @@ class Editor extends Component {
 			text( url ).then( res => {
 				const files = res.match( RE_RELATIVE_FILE );
 				let done = 0;
+				if ( !files ) {
+					writeFileSync( outPath, res );
+					const fix = {
+						title: 'Copy to local',
+						identifier: id,
+						range,
+						text: localPath
+					};
+					this.editor.executeEdits( 'my-source', [ fix ] );
+					return;
+				}
 				files.forEach( ( match ) => {
 					// Replace path:
 					res = replace( res, match, join( includePath, match ) );
@@ -467,12 +482,13 @@ class Editor extends Component {
 			});
 		});
 
-		this.openISLEFile = this.editor.addCommand( 'open-file', ( _, lessonURL, p ) => {
+		this.openISLEFile = this.editor.addCommand( 'open-file', ( _, lessonPath, p ) => {
+			debug( `Opening ${lessonPath} in new window...` );
+			const destDir = dirname( this.props.filePath );
 			ipcRenderer.send( 'open-file', {
-				path: lessonURL
+				path: join( destDir, lessonPath )
 			});
 		});
-
 		const errs = this.props.lintErrors.map( mapErrors );
 		const model = this.editor.getModel();
 		this.monaco.editor.setModelMarkers( model, 'eslint', errs );
@@ -665,7 +681,7 @@ class Editor extends Component {
 					}
 				}
 			}
-			else if ( startsWith( selectedText, '<!-- #include "' ) ) {
+			else if ( startsWith( selectedText, '<!-- #include "' ) || startsWith( line, '<!-- #include "' ) ) {
 				const model = this.editor.getModel();
 				const { matches, range } = model.findNextMatch( RE_INCLUDE, 0, true, false, null, true );
 				range.startColumn += 15; // handles leading src=" <!-- #include "
@@ -688,7 +704,7 @@ class Editor extends Component {
 						const isleDir = join( destDir, `${fileName}-resources` );
 						const manifestPath = join( isleDir, 'manifest.json' );
 						const manifest = readJSON.sync( manifestPath );
-						const entry = manifest.resources[ basename( lessonURL ) ];
+						const entry = manifest.include[ basename( lessonURL ) ];
 						if ( entry ) {
 							actions.push({
 								command: {
