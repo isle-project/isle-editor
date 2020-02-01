@@ -21,13 +21,15 @@ if ( !exists.sync( filePath ) ) {
 let preambleText;
 let preamble;
 let fileName;
-let md;
+let md = config.get( 'mostRecentFileData' );
 const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
 if ( filePath ) {
-	md = readFileSync( filePath, 'utf-8' );
+	if ( !md ) {
+		md = readFileSync( filePath, 'utf-8' );
+	}
 	preamble = config.get( 'mostRecentPreamble' );
 	preambleText = config.get( 'mostRecentPreambleText' );
-	fileName = basename( filePath, extname( filePath ) );
+	fileName = basename( filePath );
 }
 else {
 	md = template;

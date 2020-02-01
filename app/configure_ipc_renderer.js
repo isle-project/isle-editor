@@ -57,8 +57,9 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'prepare-reload', () => {
 		debug( 'Prepare reload...' );
 		const state = store.getState().markdown;
-		const { filePath, preamble, preambleText } = state;
+		const { markdown, filePath, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
+		config.set( 'mostRecentFileData', markdown );
 		config.set( 'mostRecentPreamble', preamble );
 		config.set( 'mostRecentPreambleText', preambleText );
 	});
@@ -91,6 +92,7 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'clear-cache', () => {
 		config.set( 'mostRecentFilePath', null );
+		config.set( 'mostRecentFileData', null );
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
 		config.set( 'recentFiles', [] );
@@ -98,6 +100,7 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'close-editor', () => {
 		console.log( 'Closing the editor...' ); // eslint-disable-line no-console
+		config.set( 'mostRecentFileData', null );
 	});
 
 	window.document.addEventListener( 'dragover', ( e ) => {
