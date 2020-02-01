@@ -1,7 +1,7 @@
 // MODULES //
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'; // eslint-disable-line no-unused-vars
+import React, { Fragment, Component } from 'react';
+import PropTypes from 'prop-types';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
 import SessionContext from 'session/context.js';
@@ -20,7 +20,9 @@ function generateAuthorString( author ) {
 // MAIN //
 
 /**
-* Bibliography component which prints all references used in the lesson.
+* Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble).
+*
+* @prop {string} title - heading to be displayed in front of references
 */
 class Bibliography extends Component {
 	render() {
@@ -70,9 +72,14 @@ class Bibliography extends Component {
 			}
 			out.push( li );
 		}
-		return ( <ol>
-			{out}
-		</ol> );
+		return (
+			<Fragment>
+				{this.props.title ? <h2>{this.props.title}</h2> : null}
+				<ol>
+					{out}
+				</ol>
+			</Fragment>
+		);
 	}
 }
 
@@ -80,9 +87,11 @@ class Bibliography extends Component {
 // PROPERTIES //
 
 Bibliography.propTypes = {
+	title: PropTypes.string
 };
 
 Bibliography.defaultProps = {
+	title: 'References'
 };
 
 Bibliography.contextType = SessionContext;
