@@ -48,9 +48,6 @@ function configureIpcRenderer( store ) {
 			fileList.unshift( filePath );
 		}
 		config.set( 'recentFiles', fileList );
-
-		config.set( 'mostRecentFileName', fileName );
-		config.set( 'mostRecentFileData', file );
 	});
 
 	ipcRenderer.on( 'hide-toolbar', () => {
@@ -60,10 +57,8 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'prepare-reload', () => {
 		debug( 'Prepare reload...' );
 		const state = store.getState().markdown;
-		const { markdown, filePath, fileName, preamble, preambleText } = state;
+		const { filePath, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
-		config.set( 'mostRecentFileName', fileName );
-		config.set( 'mostRecentFileData', markdown );
 		config.set( 'mostRecentPreamble', preamble );
 		config.set( 'mostRecentPreambleText', preambleText );
 	});
@@ -96,15 +91,13 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'clear-cache', () => {
 		config.set( 'mostRecentFilePath', null );
-		config.set( 'mostRecentFileName', null );
-		config.set( 'mostRecentFileData', '' );
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
 		config.set( 'recentFiles', [] );
 	});
 
 	ipcRenderer.on( 'close-editor', () => {
-		config.set( 'mostRecentFileData', null );
+		console.log( 'Closing the editor...' ); // eslint-disable-line no-console
 	});
 
 	window.document.addEventListener( 'dragover', ( e ) => {

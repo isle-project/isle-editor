@@ -1,41 +1,50 @@
 // MODULES //
 
 import { readFileSync } from 'fs';
+import { basename, extname } from 'path';
 import replace from '@stdlib/string/replace';
+import exists from '@stdlib/fs/exists';
 import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
 import template from 'constants/template.js';
-import preamble from 'constants/preamble.js';
+import PREAMBLE from 'constants/preamble.js';
 import today from 'utils/today';
 
 
 // VARIABLES //
 
 const config = new Store( 'ISLE' );
-const filePath = config.get( 'mostRecentFilePath' );
-let md = config.get( 'mostRecentFileData' );
-const preambleTemplate = config.get( 'preambleTemplate' ) || preamble;
-if ( !md ) {
-	if ( filePath ) {
-		md = readFileSync( filePath, 'utf-8' );
-	}
-	else {
-		md = template;
-		md = replace( md, '<preamble>', preambleTemplate );
-		md = replace( md, '<today>', today() );
-	}
+let filePath = config.get( 'mostRecentFilePath' );
+if ( !exists.sync( filePath ) ) {
+	filePath = null;
+}
+let preambleText;
+let preamble;
+let fileName;
+let md;
+const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
+if ( filePath ) {
+	md = readFileSync( filePath, 'utf-8' );
+	preamble = config.get( 'mostRecentPreamble' );
+	preambleText = config.get( 'mostRecentPreambleText' );
+	fileName = basename( filePath, extname( filePath ) );
+}
+else {
+	md = template;
+	md = replace( md, '<preamble>', preambleTemplate );
+	md = replace( md, '<today>', today() );
 }
 const RE_AUTHOR = /author: ([^\n]+)/;
 const authorMatch = preambleTemplate.match( RE_AUTHOR );
 
 const initialState = {
 	markdown: md,
-	preamble: config.get( 'mostRecentPreamble' ) || {},
-	preambleText: config.get( 'mostRecentPreambleText' ) || '',
+	preamble: preamble || {},
+	preambleText: preambleText || '',
 	isScrolling: true,
 	hideToolbar: false,
 	filePath,
-	fileName: config.get( 'mostRecentFileName' ),
+	fileName,
 	currentRole: 'user',
 	currentMode: 'offline',
 	namespaceName: null,
