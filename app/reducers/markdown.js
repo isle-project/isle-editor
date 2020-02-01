@@ -2,6 +2,7 @@
 
 import { readFileSync } from 'fs';
 import { basename } from 'path';
+import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import exists from '@stdlib/fs/exists';
 import * as types from 'constants/editor_actions.js';
@@ -14,6 +15,7 @@ import today from 'utils/today';
 // VARIABLES //
 
 const config = new Store( 'ISLE' );
+const debug = logger( 'isle-editor:reducers' );
 let filePath = config.get( 'mostRecentFilePath' );
 if ( !exists.sync( filePath ) ) {
 	filePath = null;
@@ -25,6 +27,7 @@ let md = config.get( 'mostRecentFileData' );
 const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
 if ( filePath ) {
 	if ( !md ) {
+		debug( `Reading file at ${filePath}` );
 		md = readFileSync( filePath, 'utf-8' );
 	}
 	preamble = config.get( 'mostRecentPreamble' );

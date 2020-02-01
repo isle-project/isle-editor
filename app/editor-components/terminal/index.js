@@ -3,10 +3,16 @@
 import React, { Component } from 'react';
 import os from 'os';
 import { dirname } from 'path';
+import logger from 'debug';
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 const pty = require( 'node-pty' );
 import './terminal.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle-editor:terminal' );
 
 
 // MAIN //
@@ -46,6 +52,7 @@ class TerminalWrapper extends Component {
 		} else {
 			dir = os.homedir();
 		}
+		debug( `Open ${dir} directory in shell...` );
 		this.ptyProcess = pty.spawn( shell, [], {
 			name: 'xterm-color',
 			cols: 80,
