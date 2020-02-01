@@ -13,6 +13,7 @@ import logger from 'debug';
 
 const debug = logger( 'isle-editor' );
 const config = new Store( 'ISLE' );
+const RE_PREAMBLE = /^---([\S\s]*?)---/;
 
 
 // MAIN //
@@ -23,7 +24,7 @@ function configureIpcRenderer( store ) {
 		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
 		store.dispatch( actions.convertMarkdown( file, true ) );
 
-		let preambleText = file.match( /^---([\S\s]*?)---/ );
+		let preambleText = file.match( RE_PREAMBLE );
 		if ( preambleText ) {
 			// Extract the capture group:
 			preambleText = preambleText[ 1 ];

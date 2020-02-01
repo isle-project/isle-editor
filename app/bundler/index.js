@@ -36,6 +36,7 @@ for ( let i = 0; i < CDN_MODULES.length; i++ ) {
 	const p = CDN_MODULES[ i ];
 	EXTERNALS[ p.name ] = p.var || p.name;
 }
+const RE_PREAMBLE = /^---([\S\s]*?)---/;
 
 
 // FUNCTIONS //
@@ -309,7 +310,7 @@ function writeIndexFile({
 	writeStats
 }, clbk ) {
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
-	let yamlStr = content.match( /^---([\S\s]*?)---/ )[ 1 ];
+	let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
 	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
 	const meta = yaml.load( yamlStr );
 	if ( isArray( meta.author ) ) {
@@ -485,7 +486,7 @@ function writeIndexFile({
 	};
 
 	// Remove YAML preamble...
-	content = content.replace( /^---([\S\s]*?)---/, '' );
+	content = content.replace( RE_PREAMBLE, '' );
 
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content );
