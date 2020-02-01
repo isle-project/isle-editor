@@ -1,7 +1,7 @@
 // MODULES //
 
 import { readFileSync } from 'fs';
-import { basename, extname } from 'path';
+import { basename } from 'path';
 import replace from '@stdlib/string/replace';
 import exists from '@stdlib/fs/exists';
 import * as types from 'constants/editor_actions.js';
