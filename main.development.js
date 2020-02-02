@@ -21,7 +21,7 @@ const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 
 let pathToOpen;
 const len = IS_PACKAGED ? 1 : 2;
-if ( process.argv[ len ] ) {
+if ( process.env.NODE_ENV === 'production' && process.argv[ len ] ) {
 	pathToOpen = process.argv[ len ];
 }
 else if ( config.has( 'mostRecentFilePath' ) ) {
