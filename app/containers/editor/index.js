@@ -187,7 +187,9 @@ class App extends Component {
 				>
 					<Terminal
 						height={this.state.horizontalSplit}
+						width={this.state.innerWidth}
 						filePath={filePath}
+						fontSize={this.props.fontSize}
 					/>
 					<SplitPane
 						className="splitpane"
