@@ -28,7 +28,9 @@ function createWindow( filePath, callback ) {
 		x: mainWindowState.x,
 		y: mainWindowState.y,
 		width: mainWindowState.width,
-		height: mainWindowState.height
+		height: mainWindowState.height,
+		minWidth: 400,
+		minHeight: 300
 	});
 
 	let indexPath;
