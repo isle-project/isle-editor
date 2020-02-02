@@ -778,10 +778,12 @@ class Editor extends Component {
 	}
 
 	updateDimensions = () => {
+		debug( 'Window was resized...' );
 		this.editor.layout({
 			width: window.innerWidth * ( 1.0 - this.props.splitPos ),
 			height: window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )
 		});
+		this.forceUpdate(); // Ensure Monaco editor is resized...
 	}
 
 	handleChange = ( newValue ) => {
