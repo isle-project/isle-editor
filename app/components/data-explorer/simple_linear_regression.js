@@ -348,7 +348,8 @@ class SimpleLinearRegression extends Component {
 									{
 										x: yhat,
 										y: resid,
-										mode: 'markers'
+										mode: 'markers',
+										type: yhat.length > 2000 ? 'scattergl' : 'scatter'
 									}
 								]}
 								layout={{

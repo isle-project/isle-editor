@@ -60,6 +60,7 @@ export function generateQQPlotConfig( y, variable ) {
 		{
 			y: yq,
 			x: normalQuantiles,
+			type: yq.length > 2000 ? 'scattergl' : 'scatter',
 			mode: 'markers'
 		}
 	];
