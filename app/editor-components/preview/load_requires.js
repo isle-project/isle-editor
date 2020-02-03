@@ -1,7 +1,8 @@
 // MODULES //
 
-import { basename, dirname, join, extname } from 'path';
+import { basename, dirname, join, extname, resolve } from 'path';
 import { json, csv } from 'd3';
+import resolveFrom from 'resolve-from';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
@@ -19,6 +20,7 @@ const debug = logger( 'isle-editor:preview' );
 const RE_SEMVER = /(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const BASE_PATH = IS_PACKAGED ? process.resourcesPath : resolve( '.' );
 
 
 // MAIN //
@@ -74,12 +76,13 @@ async function loadRequires( libs, filePath ) {
 						if ( match ) {
 							lib = lib.substring( 0, match.index-1 );
 						}
-						eval( `const str = require.resolve( '${lib}', {
-							paths: [
-								'${isleDir}',
-								'${IS_PACKAGED ? process.resourcesPath : '.'}'
-							]
-						}); global[ '${key}' ] = require( str );` );
+						let str = resolveFrom.silent( isleDir, lib );
+						if ( !str ) {
+							str = resolveFrom.silent( BASE_PATH, lib );
+						}
+
+						// Use `eval` to bypass Webpack and use Electron runtime module resolution:
+						eval( `global[ '${key}' ] = require( '${str}' );` );
 					}
 				}
 			}

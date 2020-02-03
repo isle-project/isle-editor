@@ -218,6 +218,7 @@
     "recordrtc": "^5.5.7",
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
+    "resolve-from": "^5.0.0",
     "smooth-scroll-into-view-if-needed": "^1.1.27",
     "source-map-support": "^0.5.13",
     "spectacle": "5.8.0",

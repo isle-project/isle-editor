@@ -324,9 +324,18 @@ function writeIndexFile({
 	generateISLE( appDir, content );
 
 	debug( `Resolve packages relative to ${basePath}...` );
+	let fileDir;
+	let isleDir;
+	let fileName;
+	if ( filePath ) {
+		fileDir = dirname( filePath );
+		fileName = basename( filePath, extname( filePath ) );
+		isleDir = join( fileDir, `${fileName}-resources` );
+	}
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
-		resolve( basePath, './app/' )
+		resolve( basePath, './app/' ),
+		resolve( join( isleDir, 'node_modules' ) )
 	];
 	const config = {
 		context: resolve( basePath ),
@@ -521,8 +530,8 @@ function writeIndexFile({
 	if ( meta.css ) {
 		// Append custom CSS file to `custom.css` file:
 		let fpath = meta.css;
-		if ( !isAbsolutePath( meta.css ) ) {
-			fpath = join( dirname( filePath ), meta.css );
+		if ( filePath && !isAbsolutePath( meta.css ) ) {
+			fpath = join( fileDir, meta.css );
 		}
 		const css = readFileSync( fpath ).toString();
 		appendFileSync( join( appDir, 'css', 'custom.css' ), css );
@@ -533,12 +542,8 @@ function writeIndexFile({
 
 	// Copy asset directories:
 	if ( filePath ) {
-		const dir = dirname( filePath );
-		const fileName = basename( filePath, extname( filePath ) );
-		const isleDir = `${fileName}-resources`;
-
-		copy( join( dir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) ).catch( debug );
-		copy( join( dir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) ).catch( debug );
+		copy( join( fileDir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) ).catch( debug );
+		copy( join( fileDir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) ).catch( debug );
 	}
 
 	let imgPath = join( basePath, 'app', 'img' );
