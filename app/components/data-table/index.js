@@ -322,6 +322,8 @@ function createColumns( props, state ) {
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
 * @property {boolean} showIdColumn - controls whether to show an ID column
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
+* @property {Function} getTrProps - callback function executed for each row to customize its styling (passed table state, row info,
+column, and the table instance)
 * @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
 * @property {Function} onColumnDelete - function invoked with the name of a column when the respective delete button for a column is clicked
 * @property {Function} onEdit - function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)
@@ -741,6 +743,19 @@ class DataTable extends Component {
 								}
 							};
 						}}
+						getTrProps={( state, rowInfo, column, table ) => {
+							let out;
+							if ( this.props.getTrProps ) {
+								out = this.props.getTrProps( state, rowInfo, column, table );
+							} else {
+								out = {};
+							}
+							if ( !out.style ) {
+								out.style = {};
+							}
+							out.style.width = 'max-content';
+							return out;
+						}}
 					/>
 					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
 				</div>
@@ -764,6 +779,7 @@ DataTable.defaultProps = {
 	undeletableVars: [],
 	filterable: true,
 	editable: [],
+	getTrProps: void 0,
 	onColumnDrag() {},
 	onColumnDelete() {},
 	onColumnNameChange() {},
@@ -788,6 +804,7 @@ DataTable.propTypes = {
 	undeletableVars: PropTypes.arrayOf( PropTypes.string ),
 	filterable: PropTypes.bool,
 	editable: PropTypes.array,
+	getTrProps: PropTypes.func,
 	onColumnDrag: PropTypes.func,
 	onColumnDelete: PropTypes.func,
 	onColumnNameChange: PropTypes.func,
