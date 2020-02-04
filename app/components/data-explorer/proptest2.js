@@ -38,8 +38,13 @@ class PropTest2 extends Component {
 
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			categories = props.data[ props.categorical[ 0 ] ].slice();
-			unique( categories );
+			const vals = props.data[ props.categorical[ 0 ] ];
+			if ( vals ) {
+				categories = vals.slice();
+				unique( categories );
+			} else {
+				categories = [];
+			}
 		} else {
 			categories = [];
 		}

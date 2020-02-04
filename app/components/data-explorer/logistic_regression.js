@@ -133,8 +133,11 @@ class LogisticRegression extends Component {
 			if ( y.categories ) {
 				categories = y.categories;
 			} else {
-				categories = props.data[ y ].slice();
-				uniq( categories );
+				const values = props.data[ y ];
+				if ( values ) {
+					categories = values.slice();
+					uniq( categories );
+				}
 			}
 			success = categories[ categories.length-1 ];
 		} else {

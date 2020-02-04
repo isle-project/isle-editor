@@ -32,8 +32,11 @@ class PropTest extends Component {
 
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			categories = props.data[ props.categorical[ 0 ] ].slice();
-			unique( categories );
+			const vals = props.data[ props.categorical[ 0 ] ];
+			if ( vals ) {
+				categories = vals.slice();
+				unique( categories );
+			}
 		} else {
 			categories = [];
 		}
@@ -105,8 +108,12 @@ class PropTest extends Component {
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 					onChange={( val ) => {
-						let categories = this.props.data[ val ].slice();
-						unique( categories );
+						const vals = this.props.data[ val ];
+						let categories;
+						if ( vals ) {
+							categories = vals.slice();
+							unique( categories );
+						}
 						this.setState({
 							categories
 						});
