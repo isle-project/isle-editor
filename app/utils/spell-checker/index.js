@@ -110,7 +110,7 @@ function SpellChecker( text, options ) {
 		};
 		xhrDIC.send( null );
 	}
-	if ( SpellChecker.typo ) {
+	if ( SpellChecker.typo && text ) {
 		const errs = [];
 		let word = '';
 		let line = 1;

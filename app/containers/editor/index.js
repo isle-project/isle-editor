@@ -118,7 +118,9 @@ class App extends Component {
 				try {
 					const newPreamble = yaml.load( preamble );
 					if ( !isObject( newPreamble ) ) {
-						return this.props.encounteredError( new Error( 'Make sure the preamble is valid YAML code.' ) );
+						const err = new Error( 'Make sure the preamble is valid YAML code and not empty.' );
+						err.name = 'PreambleMissing';
+						return this.props.encounteredError( err );
 					}
 					this.props.updatePreamble({
 						preamble: newPreamble,
@@ -129,6 +131,10 @@ class App extends Component {
 					this.props.encounteredError( err );
 				}
 			}
+		} else {
+			const err = new Error( 'File is missing a preamble.' );
+			err.name = 'PreambleMissing';
+			this.props.encounteredError( err );
 		}
 	}
 
@@ -149,6 +155,16 @@ class App extends Component {
 			if ( errs.length !== this.props.lintErrors.length ) {
 				this.props.saveLintErrors( errs );
 			}
+		}
+	}
+
+	resetError = () => {
+		if (
+			this.props.error &&
+			this.props.error.name !== 'YAMLException' &&
+			this.props.error.name !== 'PreambleMissing'
+		) {
+			this.props.resetError();
 		}
 	}
 
@@ -225,7 +241,7 @@ class App extends Component {
 							{ error ?
 								<ErrorMessage
 									msg={error.message} code={markdown}
-									resetError={this.props.resetError}
+									resetError={this.resetError}
 								/> :
 								<ErrorBoundary code={markdown} preamble={this.props.preamble} >
 									<Preview
@@ -239,7 +255,7 @@ class App extends Component {
 										preambleText={this.props.preambleText}
 										updatePreamble={this.props.updatePreamble}
 										hideToolbar={hideToolbar}
-										resetError={this.props.resetError}
+										resetError={this.resetError}
 									/>
 								</ErrorBoundary>
 							}
