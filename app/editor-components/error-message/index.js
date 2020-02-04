@@ -5,6 +5,7 @@ import Ansi from 'ansi-to-react';
 import repeat from '@stdlib/string/repeat';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Tooltip from 'components/tooltip';
 
 
 // VARIABLES //
@@ -42,11 +43,13 @@ const ErrorMessage = ( props ) => {
 			<pre>
 				<Ansi>{msg}</Ansi>
 			</pre>
-			<Button size="sm" variant="light-outline" onClick={() => {
-				props.resetError();
-			}} style={{ position: 'absolute', top: 22, right: 22 }}>
-				<i className="fas fa-redo"></i>
-			</Button>
+			<Tooltip tooltip="Retry">
+				<Button size="sm" variant="light-outline" onClick={() => {
+					props.resetError();
+				}} style={{ position: 'absolute', top: 22, right: 22 }}>
+					<i className="fas fa-redo"></i>
+				</Button>
+			</Tooltip>
 		</Card.Body>
 	</Card> );
 };
