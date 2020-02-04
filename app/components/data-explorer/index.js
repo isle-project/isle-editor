@@ -1602,7 +1602,8 @@ DataExplorer.defaultProps = {
 		'Line Plot',
 		'Scatterplot',
 		'Heat Map',
-		'Contour Chart'
+		'Contour Chart',
+		'QQ Plot'
 	],
 	tables: [
 		'Frequency Table',
@@ -1615,7 +1616,8 @@ DataExplorer.defaultProps = {
 		'One-Sample Proportion Test',
 		'Two-Sample Proportion Test',
 		'Correlation Test',
-		'Chi-squared Independence Test'
+		'Chi-squared Independence Test',
+		'Kruskal-Wallis Test'
 	],
 	models: [
 		'Simple Linear Regression',
