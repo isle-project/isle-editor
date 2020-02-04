@@ -12,7 +12,7 @@ import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Terminal from 'editor-components/terminal';
 import Loadable from 'components/loadable';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, saveLintErrors, saveSpellingErrors } from 'actions';
+import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
 import SpellChecker from 'utils/spell-checker';
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -223,7 +223,10 @@ class App extends Component {
 							}}
 						>
 							{ error ?
-								<ErrorMessage msg={error.message} code={markdown} /> :
+								<ErrorMessage
+									msg={error.message} code={markdown}
+									resetError={this.props.resetError}
+								/> :
 								<ErrorBoundary code={markdown} preamble={this.props.preamble} >
 									<Preview
 										code={markdown}
@@ -272,6 +275,7 @@ App.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	encounteredError: PropTypes.func.isRequired,
+	resetError: PropTypes.func.isRequired,
 	error: PropTypes.object,
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
@@ -296,6 +300,7 @@ export default connect( mapStateToProps, {
 	saveLintErrors,
 	saveSpellingErrors,
 	encounteredError,
+	resetError,
 	changeView,
 	changeMode,
 	toggleScrolling,

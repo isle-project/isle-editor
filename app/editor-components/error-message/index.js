@@ -3,6 +3,7 @@
 import React from 'react';
 import Ansi from 'ansi-to-react';
 import repeat from '@stdlib/string/repeat';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
@@ -41,6 +42,11 @@ const ErrorMessage = ( props ) => {
 			<pre>
 				<Ansi>{msg}</Ansi>
 			</pre>
+			<Button size="sm" variant="light-outline" onClick={() => {
+				props.resetError();
+			}} style={{ position: 'absolute', top: 22, right: 22 }}>
+				<i className="fas fa-redo"></i>
+			</Button>
 		</Card.Body>
 	</Card> );
 };
