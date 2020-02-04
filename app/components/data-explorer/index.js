@@ -6,6 +6,7 @@ import React, { Component, Fragment, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import ReactDraggable from 'react-draggable';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
@@ -198,7 +199,9 @@ class DataExplorer extends Component {
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		const newState = {};
-		if ( nextProps.data !== prevState.unaltered.data ) {
+		if (
+			nextProps.data !== prevState.unaltered.data
+		) {
 			newState.data = nextProps.data;
 		}
 		if ( nextProps.data ) {
@@ -252,6 +255,7 @@ class DataExplorer extends Component {
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
+		debug( 'Component did update...' );
 		if ( this.state.output !== prevState.output && this.outputPanel ) {
 			this.outputPanel.scrollToBottom();
 		}
@@ -823,6 +827,9 @@ class DataExplorer extends Component {
 					<DataTable data={this.state.data} id={this.id + '_table'} />
 				</Card.Body>
 			</Card> );
+		}
+		if ( isEmptyObject( this.state.data ) ) {
+			return <Alert variant="danger">Data set is empty.</Alert>;
 		}
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = '1';
