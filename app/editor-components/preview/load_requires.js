@@ -47,9 +47,12 @@ async function loadRequires( libs, filePath ) {
 					}
 				}
 				const ext = extname( lib );
-				if ( isURI( lib) ) {
+				if ( isURI( lib ) ) {
 					debug( 'Load file from online location...' );
 					asyncExtensions.push( ext );
+					if ( global[ key ] ) {
+						continue;
+					}
 					if ( ext === '.json' ) {
 						asyncOps.push( json( lib ) );
 						asyncKeys.push( key );

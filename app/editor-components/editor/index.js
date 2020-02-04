@@ -37,6 +37,7 @@ import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
+import loadRequires from '../preview/load_requires.js';
 import './editor.css';
 
 
@@ -350,6 +351,50 @@ class Editor extends Component {
 			});
 		});
 
+		this.updateRemoteResources = this.editor.addCommand( 'update-resources', async ( _, requires, p ) => {
+			let keys = objectKeys( requires );
+			for ( let i = 0; i < keys.length; i++ ) {
+				global[ keys[ i ] ] = void 0;
+			}
+			const err = await loadRequires( requires, this.props.filePath );
+			const overlayWidget = {
+				domNode: null,
+				pre: null,
+				getId() {
+					return 'success.widget';
+				},
+				getDomNode() {
+					if ( !this.domNode ) {
+						this.domNode = document.createElement( 'div' );
+						this.domNode.style.right = '20px';
+						this.domNode.style.top = '12px';
+						this.domNode.style.width = '400px';
+
+						this.pre = document.createElement( 'pre' );
+						this.pre.innerHTML = '';
+						this.pre.style.whiteSpace = 'pre-wrap';
+						this.pre.style.color = 'white';
+						this.domNode.appendChild( this.pre );
+					}
+					return this.domNode;
+				},
+				getPosition() {
+					return null;
+				}
+			};
+			this.editor.addOverlayWidget( overlayWidget );
+			if ( !err ) {
+				overlayWidget.pre.innerHTML = 'Finished updating remote resources.';
+				overlayWidget.pre.style.background = 'green';
+			} else {
+				overlayWidget.pre.innerHTML = 'Encountered an error '+err.message;
+				overlayWidget.pre.style.background = 'red';
+			}
+			setTimeout( () => {
+				this.editor.removeOverlayWidget( overlayWidget );
+			}, 5000 );
+		});
+
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
@@ -626,6 +671,14 @@ class Editor extends Component {
 					},
 					title: 'Install dependencies'
 				});
+				actions.push({
+					command: {
+						id: this.updateRemoteResources,
+						title: 'Update remote resources',
+						arguments: [ this.props.preamble.require, range ]
+					},
+					title: 'Update remote resources'
+				});
 			}
 			const selectedText = model.getValueInRange( selection );
 			if ( isURI( selectedText ) ) {
@@ -889,7 +942,7 @@ class Editor extends Component {
 		coords = [0, 0],
 		placeCursor= false
 	) => {
-		const range = new this.monaco.Range(coords[0], coords[1], coords[0], coords[1]);
+		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
 		if ( placeCursor ) {
 			const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
 			this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [ selection ] );

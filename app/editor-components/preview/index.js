@@ -296,6 +296,7 @@ Preview.propTypes = {
 	code: PropTypes.string,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
+	encounteredError: PropTypes.func.isRequired,
 	onCode: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
