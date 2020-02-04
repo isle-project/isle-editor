@@ -239,6 +239,7 @@ class App extends Component {
 										preambleText={this.props.preambleText}
 										updatePreamble={this.props.updatePreamble}
 										hideToolbar={hideToolbar}
+										resetError={this.props.resetError}
 									/>
 								</ErrorBoundary>
 							}

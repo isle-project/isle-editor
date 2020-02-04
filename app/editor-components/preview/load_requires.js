@@ -56,12 +56,12 @@ async function loadRequires( libs, filePath ) {
 					if ( ext === '.json' ) {
 						asyncOps.push( json( lib ) );
 						asyncKeys.push( key );
-						global[ key ] = {};
+						global[ key ] = null;
 					}
 					else if ( ext === '.csv' ) {
 						asyncOps.push( csv( lib ) );
 						asyncKeys.push( key );
-						global[ key ] = {};
+						global[ key ] = null;
 					}
 				} else {
 					debug( 'Load file from disk...' );

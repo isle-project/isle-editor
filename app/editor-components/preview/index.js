@@ -76,6 +76,7 @@ class Preview extends Component {
 
 	async componentDidMount() {
 		debug( 'Preview did mount.' );
+		this._isMounted = true;
 		const { preamble, filePath } = this.props;
 		if ( isObject( preamble ) ) {
 			await this.loadRequires( preamble, filePath );
@@ -134,12 +135,16 @@ class Preview extends Component {
 
 	componentWillUnmount() {
 		debug( 'Preview will unmount...' );
+		this._isMounted = false;
 	}
 
 	async loadRequires( preamble, filePath ) {
 		const { encounteredError } = this.props;
 		try {
 			const err = await loadRequires( preamble.require, filePath || '' );
+			if ( !err && !this._isMounted ) {
+				return this.props.resetError();
+			}
 			this.setState({
 				isLoading: false
 			}, () => {
@@ -149,33 +154,19 @@ class Preview extends Component {
 				debug( 'Finished loading all `requires`...' );
 			});
 		} catch ( err ) {
-			this.setState({
-				isLoading: false
-			}, () => {
-				encounteredError( err );
-			});
+			if ( this._isMounted ) {
+				this.setState({
+					isLoading: false
+				}, () => {
+					encounteredError( err );
+				});
+			}
 		}
 	}
 
 	handlePreambleChange = async ( newPreamble ) => {
 		debug( 'Handle preamble change...' );
-		try {
-			const err = await this.loadRequires( newPreamble, this.props.filePath || '' );
-			this.setState({
-				isLoading: false
-			}, () => {
-				if ( err ) {
-					this.props.encounteredError( err );
-				}
-				debug( 'Finished loading all `requires`...' );
-			});
-		} catch ( err ) {
-			this.setState({
-				isLoading: false
-			}, () => {
-				this.props.encounteredError( err );
-			});
-		}
+		await this.loadRequires( newPreamble, this.props.filePath || '' );
 		try {
 			applyStyles( newPreamble, this.props.filePath || '' );
 		} catch ( err ) {
@@ -297,6 +288,7 @@ Preview.propTypes = {
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
 	encounteredError: PropTypes.func.isRequired,
+	resetError: PropTypes.func.isRequired,
 	onCode: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
