@@ -38,6 +38,7 @@ A quiz component displaying a sequence of question components.
 * __skippable__ | `boolean`: controls whether questions in  the quiz are skippable. Default: `true`.
 * __footerNodes__ | `array`: array of nodes to be displayed in the footer of each question. Default: `[]`.
 * __nextLabel__ | `string`: label of button to advance to next question. Default: `'Next Question'`.
+* __provideFeedback__ | `boolean`: controls whether to show students feedback on correctness of their answers after quiz completion. Default: `true`.
 * __showFinishButton__ | `boolean`: controls whether to display button to finish quiz and jump directly to results page. Default: `false`.
 * __finishLabel__ | `string`: label of button to finish quiz. Default: `'Finish Quiz'`.
 * __onFinished__ | `function`: callback invoked when the quiz is finished and the results page is displayed. Default: `onFinished() {}`.

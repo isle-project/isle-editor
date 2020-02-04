@@ -152,8 +152,15 @@
     "description": "Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed."
   },
   "Bibliography": {
-    "props": [],
-    "description": "Bibliography component which prints all references used in the lesson."
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "heading to be displayed in front of references",
+        "default": "References"
+      }
+    ],
+    "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."
   },
   "Calculator": {
     "props": [
@@ -614,7 +621,8 @@
           "Line Plot",
           "Scatterplot",
           "Heat Map",
-          "Contour Chart"
+          "Contour Chart",
+          "QQ Plot"
         ]
       },
       {
@@ -679,7 +687,8 @@
           "One-Sample Proportion Test",
           "Two-Sample Proportion Test",
           "Correlation Test",
-          "Chi-squared Independence Test"
+          "Chi-squared Independence Test",
+          "Kruskal-Wallis Test"
         ]
       },
       {
@@ -757,6 +766,11 @@
         "type": "array",
         "description": "array of names for columns that shall be editable",
         "default": []
+      },
+      {
+        "name": "getTrProps",
+        "type": "function",
+        "description": "callback function executed for each row to customize its styling (passed table state, row info,\ncolumn, and the table instance)"
       },
       {
         "name": "onColumnDrag",
@@ -4156,6 +4170,12 @@
         "type": "string",
         "description": "label of button to advance to next question",
         "default": "Next Question"
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "controls whether to show students feedback on correctness of their answers after quiz completion",
+        "default": true
       },
       {
         "name": "showFinishButton",

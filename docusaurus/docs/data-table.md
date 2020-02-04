@@ -35,6 +35,8 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 * __undeletableVars__ | `array<string>`: array of variable names of columns which may not be deleted. Default: `[]`.
 * __filterable__ | `boolean`: controls whether columns are filterable. Default: `true`.
 * __editable__ | `array`: array of names for columns that shall be editable. Default: `[]`.
+* __getTrProps__ | `function`: callback function executed for each row to customize its styling (passed table state, row info,
+column, and the table instance). Default: `none`.
 * __onColumnDrag__ | `function`: undefined. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: function invoked with the name of a column when the respective delete button for a column is clicked. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: undefined. Default: `onColumnNameChange() {}`.

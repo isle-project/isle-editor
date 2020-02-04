@@ -59,6 +59,7 @@ function isHTMLConfig( elem ) {
 * @property {string} nextLabel - label of button to advance to next question
 * @property {boolean} showFinishButton - controls whether to display button to finish quiz and jump directly to results page
 * @property {string} finishLabel - label of button to finish quiz
+* @property {boolean} provideFeedback - controls whether to show students feedback on correctness of their answers after quiz completion
 * @property {boolean} active - controls whether the timer for the quiz is active
 * @property {number} duration - duration of the quiz (in minutes); once time is up, the summary page will be displayed
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
@@ -284,6 +285,9 @@ class Quiz extends Component {
 
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
+		if ( !this.props.provideFeedback ) {
+			return <h3>You have finished the quiz.</h3>;
+		}
 		const answers = this.state.answers.slice();
 		for ( let i = 0; i < answers.length; i++ ) {
 			if ( answers[ i ] ) {
@@ -583,6 +587,7 @@ Quiz.propTypes = {
 	skippable: PropTypes.bool,
 	footerNodes: PropTypes.array,
 	nextLabel: PropTypes.string,
+	provideFeedback: PropTypes.bool,
 	showFinishButton: PropTypes.bool,
 	finishLabel: PropTypes.string,
 	onFinished: PropTypes.func,
@@ -598,6 +603,7 @@ Quiz.defaultProps = {
 	skippable: true,
 	footerNodes: [],
 	nextLabel: 'Next Question',
+	provideFeedback: true,
 	showFinishButton: false,
 	finishLabel: 'Finish Quiz',
 	onFinished() {},

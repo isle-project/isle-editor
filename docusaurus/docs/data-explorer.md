@@ -79,7 +79,8 @@ We will include the explorer with the following code:
   'Line Plot',
   'Scatterplot',
   'Heat Map',
-  'Contour Chart'
+  'Contour Chart',
+  'QQ Plot'
 ]`.
 * __questions__ | `array`: array of nodes indicating surrounding text and question components to be displayed in a tabbed window. Default: `[]`.
 * __showTestDecisions__ | `boolean`: boolean indicating whether to show the decisions made for each test based on the calculated p-values. Default: `true`.
@@ -109,7 +110,8 @@ We will include the explorer with the following code:
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test'
+  'Chi-squared Independence Test',
+  'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `true`.
 * __onTutorialCompletion__ | `function`: function invoked when user has completed the data explorer tutorial. Default: `onTutorialCompletion() {}`.
