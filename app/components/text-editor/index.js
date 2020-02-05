@@ -208,24 +208,35 @@ class TextEditor extends Component {
 					this.togglePDFModal();
 					this.exportPDF = ( config ) => {
 						const title = document.title || 'provisoric';
+						let doc;
 						try {
 							const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 							const tmp = document.createElement( 'div' );
 							tmp.appendChild( domNode );
 							const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
-							const doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
-							this.togglePDFModal( () => {
-								pdfMake.createPdf( doc ).download( title );
-							});
+							doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
 						} catch ( err ) {
 							const session = this.context;
 							session.addNotification({
-								title: 'Encountered an error while generating PDF',
-								message: `${err.message}. Please check the syntax of your Markdown content to make sure that it is correct.`,
+								title: 'Encountered an error while serializing HTML',
+								message: `${err.message}. Please check the syntax of your report.`,
 								level: 'error',
 								position: 'tr'
 							});
 						}
+						this.togglePDFModal( () => {
+							try {
+								pdfMake.createPdf( doc ).download( title );
+							} catch ( err ) {
+								const session = this.context;
+								session.addNotification({
+									title: 'Encountered an error while generating PDF',
+									message: `${err}. Please check the syntax of your report.`,
+									level: 'error',
+									position: 'tr'
+								});
+							}
+						});
 					};
 					return false;
 				}
