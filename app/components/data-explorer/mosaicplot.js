@@ -77,12 +77,17 @@ class MosaicPlot extends Component {
 		}
 		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
 		const plotId = randomstring( 6 );
+		const action = {
+			vars, showColors, plotId
+		};
 		const output ={
 			variable: 'Mosaic Plot',
 			type: 'Chart',
 			value: <RPlot
 				code={code}
 				id={plotId}
+				draggable
+				meta={action}
 				libraries={[ 'MASS' ]}
 				onDone={this.props.onPlotDone}
 				width="90%"
@@ -100,9 +105,7 @@ class MosaicPlot extends Component {
 				}}
 			/>
 		};
-		this.props.logAction( DATA_EXPLORER_MOSAIC, {
-			vars, showColors, plotId
-		});
+		this.props.logAction( DATA_EXPLORER_MOSAIC, action );
 		this.props.onCreated( output );
 	}
 
