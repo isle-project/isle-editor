@@ -10,7 +10,7 @@ import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
-import Terminal from 'editor-components/terminal';
+import TerminalGrid from 'editor-components/terminal-grid';
 import Loadable from 'components/loadable';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
 import SpellChecker from 'utils/spell-checker';
@@ -92,7 +92,7 @@ class App extends Component {
 		});
 	}
 
-	handleSplitChange = ( size ) => {
+	handleVerticalSplit = ( size ) => {
 		size /= this.state.innerWidth;
 		if ( this.debouncedSplitUpdate ) {
 			this.debouncedSplitUpdate( size );
@@ -201,7 +201,7 @@ class App extends Component {
 					onChange={this.handleHorizontalSplit}
 					minSize={0}
 				>
-					<Terminal
+					<TerminalGrid
 						height={this.state.horizontalSplit}
 						width={this.state.innerWidth}
 						filePath={filePath}
@@ -212,7 +212,7 @@ class App extends Component {
 						split="vertical"
 						primary="second"
 						size={this.state.splitPos * this.state.innerWidth}
-						onChange={this.handleSplitChange}
+						onChange={this.handleVerticalSplit}
 						maxSize={-300}
 						minSize={300}
 					>

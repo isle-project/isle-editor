@@ -19,20 +19,6 @@ import './terminal.css';
 const debug = logger( 'isle-editor:terminal' );
 
 
-// FUNCTIONS //
-
-function calculateColumns( width, fontSize ) {
-	return width / ( 0.79 * fontSize );
-}
-
-function calculateRows( height, fontSize ) {
-	if ( height < 17 ) {
-		height = 17;
-	}
-	return height / ( 1.1 * fontSize );
-}
-
-
 // MAIN //
 
 class TerminalWrapper extends Component {
@@ -80,6 +66,12 @@ class TerminalWrapper extends Component {
 		this.xterm.onData( ( data ) => {
 			this.ptyProcess.write( data );
 		});
+		this.xterm.onResize(({ cols, rows }) => {
+			this.ptyProcess.resize(
+				cols,
+				rows
+			);
+		});
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -92,10 +84,6 @@ class TerminalWrapper extends Component {
 			this.props.fontSize !== prevProps.fontSize
 		) {
 			this.fitAddon.fit();
-			this.ptyProcess.resize(
-				calculateColumns( this.props.width, this.props.fontSize ),
-				calculateRows( this.props.height, this.props.fontSize )
-			);
 		}
 		if ( this.props.height !== prevProps.height ) {
 			this.fitAddon.fit();
@@ -116,8 +104,8 @@ class TerminalWrapper extends Component {
 		debug( `Open ${dir} directory in shell...` );
 		this.ptyProcess = pty.spawn( shell, [], {
 			name: 'xterm-color',
-			cols: calculateColumns( this.props.width, this.props.fontSize ),
-			rows: calculateRows( this.props.height, this.props.fontSize ),
+			cols: this.xterm.cols,
+			rows: this.xterm.rows,
 			cwd: dir,
 			env: process.env // eslint-disable-line no-process-env
 		});
@@ -155,7 +143,12 @@ class TerminalWrapper extends Component {
 TerminalWrapper.propTypes = {
 	fontSize: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
-	width: PropTypes.number.isRequired
+	width: PropTypes.number.isRequired,
+	filePath: PropTypes.string
+};
+
+TerminalWrapper.defaultProps = {
+	filePath: null
 };
 
 
