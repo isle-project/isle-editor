@@ -554,7 +554,7 @@ class Editor extends Component {
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||
-			this.props.hideToolbar !== prevProps.hideToolbar ||
+			this.props.height !== prevProps.height ||
 			this.state.showComponentConfigurator !== prevState.showComponentConfigurator ||
 			this.state.selectedComponent !== prevState.selectedComponent ||
 			this.state.sourceFiles !== prevState.sourceFiles
@@ -836,7 +836,7 @@ class Editor extends Component {
 		debug( 'Window was resized...' );
 		this.editor.layout({
 			width: window.innerWidth * ( 1.0 - this.props.splitPos ),
-			height: window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )
+			height: this.props.height
 		});
 		this.forceUpdate(); // Ensure Monaco editor is resized...
 	}
@@ -1003,7 +1003,7 @@ class Editor extends Component {
 				<ContextMenuTrigger id="editor-context-menu" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
 					<div {...dragProvider.props}>
 						<MonacoEditor
-							height={window.innerHeight - ( this.props.hideToolbar ? 2 : 90 )}
+							height={this.props.height}
 							width={window.innerWidth * ( 1.0 - this.props.splitPos )}
 							language="javascript"
 							value={this.props.value}
@@ -1047,7 +1047,7 @@ Editor.propTypes = {
 	lintErrors: PropTypes.array.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,
-	hideToolbar: PropTypes.bool.isRequired
+	height: PropTypes.number.isRequired
 };
 
 

@@ -87,9 +87,17 @@ class App extends Component {
 	}
 
 	handleHorizontalSplit = ( size ) => {
-		this.setState({
-			horizontalSplit: size
-		});
+		const handleChange = ( size ) => {
+			this.setState({
+				horizontalSplit: size
+			});
+		};
+		if ( this.debouncedHorizonalSplit ) {
+			this.debouncedHorizonalSplit( size );
+		} else {
+			this.debouncedHorizonalSplit = debounce( handleChange, 250 );
+			this.debouncedHorizonalSplit( size );
+		}
 	}
 
 	handleVerticalSplit = ( size ) => {
@@ -197,7 +205,7 @@ class App extends Component {
 				}
 				<SplitPane
 					split="horizontal"
-					style={{ marginTop: 88 }}
+					style={{ marginTop: 88, background: '#fffff8' }}
 					onChange={this.handleHorizontalSplit}
 					minSize={0}
 				>
@@ -229,7 +237,7 @@ class App extends Component {
 								splitPos={this.state.splitPos}
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}
-								hideToolbar={hideToolbar}
+								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
 							/>
 						</SplitPanel>
 						<SplitPanel
@@ -254,7 +262,7 @@ class App extends Component {
 										encounteredError={this.props.encounteredError}
 										preambleText={this.props.preambleText}
 										updatePreamble={this.props.updatePreamble}
-										hideToolbar={hideToolbar}
+										unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
 										resetError={this.resetError}
 									/>
 								</ErrorBoundary>

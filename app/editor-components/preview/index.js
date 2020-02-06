@@ -95,7 +95,7 @@ class Preview extends Component {
 			this.props.preambleText !== nextProps.preambleText ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
-			this.props.hideToolbar !== nextProps.hideToolbar ||
+			this.props.unavailableHeight !== nextProps.unavailableHeight ||
 			this.state.isLoading !== nextState.isLoading ||
 			this.state.includes !== nextState.includes
 		) {
@@ -233,8 +233,9 @@ class Preview extends Component {
 			className="${preamble.type === 'presentation' ? 'Presentation' : 'Lesson'}"
 			style={{
 				overflowY: 'scroll',
-				height: 'calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)',
-				minHeight: 'calc(100vh - ${this.props.hideToolbar ? 2 : 90}px)'
+				height: 'calc(100vh - ${this.props.unavailableHeight}px)',
+				minHeight: 'calc(100vh - ${this.props.unavailableHeight}px)',
+				zIndex: 2
 			}}
 		>
 			${code}
@@ -279,8 +280,7 @@ class Preview extends Component {
 
 Preview.defaultProps = {
 	code: '',
-	onCode() {},
-	hideToolbar: {}
+	onCode() {}
 };
 
 Preview.propTypes = {
@@ -292,7 +292,7 @@ Preview.propTypes = {
 	onCode: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
-	hideToolbar: PropTypes.bool
+	unavailableHeight: PropTypes.number.isRequired
 };
 
 
