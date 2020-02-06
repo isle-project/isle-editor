@@ -53,15 +53,15 @@ export function generateQQPlotConfig( y, variable ) {
 	linePoints[ 1 ] = intercept + slope * ymax;
 	traces = [
 		{
-			y: [ ymin, ymax ],
-			x: linePoints,
-			mode: 'lines'
-		},
-		{
 			y: yq,
 			x: normalQuantiles,
 			type: yq.length > 2000 ? 'scattergl' : 'scatter',
 			mode: 'markers'
+		},
+		{
+			y: [ ymin, ymax ],
+			x: linePoints,
+			mode: 'lines'
 		}
 	];
 	const layout = {
