@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -36,6 +36,7 @@ class ExportLesson extends Component {
 		this.state = {
 			outputPath: '',
 			outputDir,
+			error: null,
 			finished: false,
 			spinning: false,
 			minify: false,
@@ -61,7 +62,11 @@ class ExportLesson extends Component {
 			.then( ({ filePaths }) => {
 				this.setState({ outputPath: filePaths[ 0 ], finished: false, alreadyExists: false });
 			})
-			.catch( err => console.error( err ) ); // eslint-disable-line no-console
+			.catch( error => {
+				this.setState({
+					error
+				});
+			});
 	}
 
 	handleInputChange = ( event ) => {
@@ -94,11 +99,15 @@ class ExportLesson extends Component {
 				outputDir,
 				minify,
 				writeStats
-			}, ( err ) => {
-				this.setState({
+			}, ( error ) => {
+				const newState = {
 					finished: true,
 					spinning: false
-				});
+				};
+				if ( error ) {
+					newState.error = error;
+				}
+				this.setState( newState );
 			});
 		}
 	}
@@ -114,20 +123,34 @@ class ExportLesson extends Component {
 	}
 
 	renderFinished = () => {
-		if ( !this.state.finished ) {
-			return <Spinner width={128} height={64} running={this.state.spinning} />;
-		}
-		return ( <Card bg="success" text="white">
-			<Card.Header as="h5">
+		let card;
+		if ( this.state.finished ) {
+			card = this.state.error ? <Card bg="danger" text="white" >
+				<Card.Header as="h5">
+					Error encountered
+				</Card.Header>
+				<Card.Body>
+					<p>{this.state.error.message}</p>
+				</Card.Body>
+			</Card> :
+			<Card bg="success" text="white">
+				<Card.Header as="h5">
 					App successfully exported!
-			</Card.Header>
-			<Card.Body>
-				<ButtonGroup style={{ position: 'relative', margin: 'auto' }} >
-					<Button variant="primary" onClick={this.openFolder}>Open containing folder</Button>
-					<Button variant="secondary" onClick={this.openLesson}>Open lesson in Browser</Button>
-				</ButtonGroup>
-			</Card.Body>
-		</Card> );
+				</Card.Header>
+				<Card.Body>
+					<ButtonGroup style={{ position: 'relative', margin: 'auto' }} >
+						<Button variant="primary" onClick={this.openFolder}>Open containing folder</Button>
+						<Button variant="secondary" onClick={this.openLesson}>Open lesson in Browser</Button>
+					</ButtonGroup>
+				</Card.Body>
+			</Card>;
+		} else {
+			card = null;
+		}
+		return ( <Fragment>
+			<Spinner width={128} height={64} running={this.state.spinning} />
+			{card}
+		</Fragment> );
 	}
 
 	renderAlreadyExists = () => {
@@ -207,7 +230,7 @@ class ExportLesson extends Component {
 						style={{
 							marginTop: '15px'
 						}}
-						disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || this.state.finished}
+						disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || ( this.state.finished && !this.state.error )}
 					> Generate lesson </Button>
 					<br />
 					{this.renderFinished()}

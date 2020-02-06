@@ -1,7 +1,7 @@
 // MODULES //
 
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
-import { copy } from 'fs-extra';
+import { copy, removeSync } from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
 import yaml from 'js-yaml';
 import webpack from 'webpack';
@@ -557,21 +557,29 @@ function writeIndexFile({
 	};
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
+		unlinkSync( indexPath );
 		if ( err ) {
 			debug( 'Encountered an error during bundling: ' + err );
-			throw err;
+			removeSync( appDir );
+			return clbk( err );
 		}
 		console.dir( stats ); // eslint-disable-line no-console
-		if ( stats.errors ) {
-			stats.errors.forEach( debug );
+		if ( stats.compilation && stats.compilation.errors ) {
+			let errMsg = '';
+			stats.compilation.errors.forEach( v => {
+				errMsg += v;
+				errMsg += '\n';
+			});
+			err = new Error( errMsg );
+			removeSync( appDir );
+			return clbk( err );
 		}
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
 			const statsJSON = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
-		unlinkSync( indexPath );
-		return clbk( err, meta );
+		return clbk( null, meta );
 	});
 }
 

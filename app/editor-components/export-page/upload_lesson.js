@@ -247,7 +247,11 @@ class UploadLesson extends Component {
 		};
 		bundler( settings, ( error ) => {
 			if ( error ) {
-				return this.setState({ error });
+				return this.setState({
+					error,
+					spinning: false,
+					dirname: randomstring( 16, 65, 90 )
+				});
 			}
 			debug( 'Lesson successfully bundled...' );
 			this.zipLesson( settings.outputPath, settings.outputDir, () => {
