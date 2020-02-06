@@ -14,7 +14,7 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.';
+const DESCRIPTION = 'A QQ (quantile-quantile) plot allows one to compare the distribution of a sample to a reference distribution (usually a normal distribution). Deviations from the plotted 45 degree reference line on the plot indicate how much the sample deviates from the reference distribution.';
 
 
 // FUNCTIONS //
