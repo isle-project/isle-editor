@@ -9,6 +9,7 @@ import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { SearchAddon } from 'xterm-addon-search';
+import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
 import IS_WINDOWS from '@stdlib/assert/is-windows';
 const pty = require( 'node-pty' );
 import './terminal.css';
@@ -37,7 +38,7 @@ class TerminalWrapper extends Component {
 			cursorStyle: 'block',
 			windowsMode: IS_WINDOWS,
 			theme: {
-				background: 'gainsboro',
+				background: '#fffff8',
 				foreground: 'darkslategrey',
 				black: '#000000',
 				blue: '#0a2fc4',
@@ -122,16 +123,25 @@ class TerminalWrapper extends Component {
 					opacity: this.props.height < 17 ? 0.0 : 1.0
 				}}
 			>
-				<div
-					className="terminal"
-					style={{
-						height: this.props.height,
-						width: '100%'
-					}}
-					ref={( div ) => {
-						this.terminal = div;
-					}}
-				></div>
+				<ContextMenuTrigger id={`${this.props.id}-trigger`} >
+					<div
+						className="terminal"
+						style={{
+							height: this.props.height,
+							width: '100%'
+						}}
+						ref={( div ) => {
+							this.terminal = div;
+						}}
+					></div>
+				</ContextMenuTrigger>
+				<ContextMenu id={`${this.props.id}-trigger`} >
+					<MenuItem onClick={() => {
+						this.props.onDelete( this.props.id );
+					}} >
+						Kill Terminal
+					</MenuItem>
+				</ContextMenu>
 			</div>
 		);
 	}
@@ -144,11 +154,13 @@ TerminalWrapper.propTypes = {
 	fontSize: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 	width: PropTypes.number.isRequired,
-	filePath: PropTypes.string
+	filePath: PropTypes.string,
+	onDelete: PropTypes.func
 };
 
 TerminalWrapper.defaultProps = {
-	filePath: null
+	filePath: null,
+	onDelete() {}
 };
 
 

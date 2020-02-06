@@ -35,6 +35,18 @@ class TerminalGrid extends Component {
 		});
 	}
 
+	killTerminal = ( id ) => {
+		const idx = Number( id.substring( id.indexOf( '-' ) + 1 ) );
+
+		const splitPoints = this.state.splitPoints.slice();
+		const nTerminals = this.state.nTerminals - 1;
+		splitPoints.splice( idx, 1 );
+		this.setState({
+			nTerminals,
+			splitPoints
+		});
+	}
+
 	handleVerticalSplitFactory = ( idx ) => {
 		return ( size ) => {
 			const splitPoints = this.state.splitPoints.slice();
@@ -86,11 +98,13 @@ class TerminalGrid extends Component {
 		const widths = this.calculateTermWidths();
 		for ( let i = 0; i < this.state.nTerminals; i++ ) {
 			out[ i ] = <Terminal
-				key={`terminal-${i}`}
+				id={`terminal-${i}`}
+				key={i}
 				height={this.props.height}
 				width={widths[ i ]}
 				filePath={this.props.filePath}
 				fontSize={this.props.fontSize}
+				onDelete={this.killTerminal}
 			/>;
 		}
 		return this.renderPanes( out, 0 );
@@ -110,9 +124,12 @@ class TerminalGrid extends Component {
 	}
 
 	render() {
+		if ( this.props.height <= 18 ) {
+			return null;
+		}
 		return (
 			<Fragment>
-				{ this.props.height > 18 ? this.renderHeader() : null }
+				{this.renderHeader()}
 				{this.renderTerminals()}
 			</Fragment>
 		);
