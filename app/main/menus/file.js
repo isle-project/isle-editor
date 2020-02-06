@@ -10,6 +10,23 @@ export default {
 		}
 	},
 	{
+		label: 'New From Template',
+		submenu: [
+			{
+				label: 'Data Explorer'
+			},
+			{
+				label: 'Lab'
+			},
+			{
+				label: 'Lecture Slides'
+			},
+			{
+				label: 'Video Lecture'
+			}
+		]
+	},
+	{
 		label: 'Open File',
 		accelerator: 'CmdOrCtrl+O',
 		click: ( menuItem, browserWindow ) => {
@@ -35,6 +52,17 @@ export default {
 	},
 	{
 		type: 'separator'
+	},
+	{
+		label: 'Create Template...',
+		submenu: [
+			{
+				label: 'From File Including Preamble'
+			},
+			{
+				label: 'From File Excluding Preamble'
+			}
+		]
 	},
 	{
 		label: 'Open Recent',
