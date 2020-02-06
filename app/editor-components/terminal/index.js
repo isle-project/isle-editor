@@ -51,6 +51,7 @@ class TerminalWrapper extends Component {
 				brightRed: '#fd6f6b',
 				brightWhite: '#ffffff',
 				brightYellow: '#fffa72',
+				cursor: '#ca5800',
 				cyan: '#20c5c6',
 				green: '#169e19',
 				magenta: '#c839c5',
@@ -137,10 +138,22 @@ class TerminalWrapper extends Component {
 				</ContextMenuTrigger>
 				<ContextMenu id={`${this.props.id}-trigger`} >
 					<MenuItem onClick={() => {
+						if ( this.xterm ) {
+							this.xterm.clear();
+						}
+					}} >
+						Clear Terminal
+					</MenuItem>
+					<MenuItem onClick={() => {
+						this.props.onSplit( this.props.id );
+					}} >
+						Split Terminal
+					</MenuItem>
+					{ !this.props.id.endsWith( '-0' ) ? <MenuItem onClick={() => {
 						this.props.onDelete( this.props.id );
 					}} >
 						Kill Terminal
-					</MenuItem>
+					</MenuItem> : null }
 				</ContextMenu>
 			</div>
 		);
@@ -155,12 +168,14 @@ TerminalWrapper.propTypes = {
 	height: PropTypes.number.isRequired,
 	width: PropTypes.number.isRequired,
 	filePath: PropTypes.string,
-	onDelete: PropTypes.func
+	onDelete: PropTypes.func,
+	onSplit: PropTypes.func
 };
 
 TerminalWrapper.defaultProps = {
 	filePath: null,
-	onDelete() {}
+	onDelete() {},
+	onSplit() {}
 };
 
 

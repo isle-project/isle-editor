@@ -1,10 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Terminal from 'editor-components/terminal';
-import Tooltip from 'components/tooltip';
 import SplitPane from 'react-split-pane';
 import './terminal_grid.css';
 
@@ -21,14 +18,16 @@ class TerminalGrid extends Component {
 		};
 	}
 
-	addTerminal = () => {
+	addTerminal = ( id ) => {
+		const idx = Number( id.substring( id.indexOf( '-' ) + 1 ) );
+
 		const splitPoints = this.state.splitPoints.slice();
 		const nTerminals = this.state.nTerminals + 1;
 		let width = this.props.width;
-		for ( let i = 0; i < splitPoints.length; i++ ) {
+		for ( let i = splitPoints.length - 1; i >= idx; i-- ) {
 			width -= splitPoints[ i ];
 		}
-		splitPoints.push( 0.5 * width );
+		splitPoints.splice( idx, 0, 0.5 * width );
 		this.setState({
 			nTerminals,
 			splitPoints
@@ -105,22 +104,10 @@ class TerminalGrid extends Component {
 				filePath={this.props.filePath}
 				fontSize={this.props.fontSize}
 				onDelete={this.killTerminal}
+				onSplit={this.addTerminal}
 			/>;
 		}
 		return this.renderPanes( out, 0 );
-	}
-
-	renderHeader() {
-		return ( <div className="terminal-grid-header" >
-			<span>Terminals</span>
-			<ButtonGroup style={{ marginLeft: 12 }} >
-				<Tooltip tooltip="Split terminal">
-					<Button variant="secondary-outline" onClick={this.addTerminal}>
-						<i className="fas fa-columns"></i>
-					</Button>
-				</Tooltip>
-			</ButtonGroup>
-		</div> );
 	}
 
 	render() {
@@ -129,7 +116,9 @@ class TerminalGrid extends Component {
 		}
 		return (
 			<Fragment>
-				{this.renderHeader()}
+				<div className="terminal-grid-header" >
+					<span>Terminals</span>
+				</div>
 				{this.renderTerminals()}
 			</Fragment>
 		);
