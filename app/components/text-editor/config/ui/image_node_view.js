@@ -189,7 +189,7 @@ class ImageViewBody extends React.PureComponent {
 		this.setState({ originalSize });
 	};
 
-	_onResizeEnd = (width, height) => {
+	_onResizeEnd = ( width, height ) => {
 		const { getPos, node, editorView } = this.props;
 		const pos = getPos();
 		const attrs = {
@@ -201,9 +201,9 @@ class ImageViewBody extends React.PureComponent {
 		};
 		let tr = editorView.state.tr;
 		const { selection } = editorView.state;
-		tr = tr.setNodeMarkup(pos, null, attrs);
+		tr = tr.setNodeMarkup( pos, null, attrs );
 		tr = tr.setSelection( selection.map( tr.doc, tr.mapping ) );
-		editorView.dispatch(tr);
+		editorView.dispatch( tr );
 	};
 
 	_onChange = (value) => {
@@ -255,8 +255,7 @@ class ImageViewBody extends React.PureComponent {
 				complete: !!this._body
 			}
 		});
-	};
-
+	}
 
 	render() {
 		const { originalSize, maxSize } = this.state;
@@ -295,7 +294,7 @@ class ImageViewBody extends React.PureComponent {
 			height = width / aspectRatio;
 			scale = maxSize.width / width;
 		}
-		const className = cx('editor-image-view-body', {
+		const className = cx( 'editor-image-view-body', {
 			active,
 			error,
 			focused,
@@ -324,7 +323,7 @@ class ImageViewBody extends React.PureComponent {
 		const clipStyle = {};
 		if ( crop ) {
 			const cropped = { ...crop };
-			if (scale !== 1) {
+			if ( scale !== 1 ) {
 				scale = maxSize.width / cropped.width;
 				cropped.width *= scale;
 				cropped.height *= scale;
@@ -349,6 +348,15 @@ class ImageViewBody extends React.PureComponent {
 			<span className="editor-image-view-error" >{Icons.error} </span> :
 			null;
 		const errorTitle = error ? `Unable to load image from ${attrs.src || ''}` : void 0;
+		const img = <img
+			alt=""
+			className="editor-image-view-body-img"
+			data-align={align}
+			height={height}
+			id={`${this._id}-img`}
+			src={src}
+			width={width}
+		/>;
 		return (
 			<Fragment>
 				{tooltip}
@@ -361,17 +369,9 @@ class ImageViewBody extends React.PureComponent {
 					title={errorTitle}
 				>
 					<span className="editor-image-view-body-img-clip" style={clipStyle}>
-						<span style={imageStyle}>
+						<span style={imageStyle} >
 							{errorView}
-							<img
-								alt=""
-								className="editor-image-view-body-img"
-								data-align={align}
-								height={height}
-								id={`${this._id}-img`}
-								src={src}
-								width={width}
-							/>
+							{img}
 						</span>
 					</span>
 					{resizeBox}
@@ -388,6 +388,11 @@ class ImageNodeView extends CustomNodeView {
 	createDOMElement() {
 		const el = document.createElement( 'span' );
 		el.className = 'editor-image-view';
+		el.addEventListener( 'dragstart', ( e ) => {
+			var img = document.createElement( 'img' );
+			img.src = this.props.node.attrs.src;
+			e.dataTransfer.setDragImage( img, 0, 0 );
+		}, false );
 		this._updateDOM(el);
 		return el;
 	}
