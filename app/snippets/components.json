@@ -241,7 +241,7 @@
 	},
 	{
 		"name": "Revealer",
-		"value": "<Revealer id=\"${1:Enter ID}\">\n\t${2:Component to Display}\n</Revealer>\n"
+		"value": "<Revealer>\n\t${1:Component to Display}\n</Revealer>\n"
 	},
 	{
 		"name": "RHelp",
