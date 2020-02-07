@@ -138,3 +138,14 @@ export const toggleCursorParking = async ( view, pos ) => {
 		})
 	);
 };
+
+export const resetCursorParking = ( view ) => {
+	view.dispatch(
+		view.state.tr.setMeta( pluginKey, {
+			inCursorParking: false,
+			storedMarks: null,
+			bookmarkToRestore: null,
+			pos: null
+		})
+	);
+};

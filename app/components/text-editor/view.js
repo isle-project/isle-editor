@@ -13,7 +13,8 @@ import MenuBar from './menubar.js';
 import schema from './config/schema';
 import FootnoteView from './views/footnote';
 import ImageNodeView from './config/ui/image_node_view.js';
-import { toggleCursorParking } from './config/cursor_parking';
+import { toggleCursorParking, resetCursorParking } from './config/cursor_parking';
+import { uploadImageFiles } from './config/image_upload_placeholder_plugin.js';
 import countWords from './count_words.js';
 
 
@@ -111,7 +112,17 @@ class ProseMirror extends Component {
 							top: coords.y
 						});
 						const pos = dropPos ? dropPos.pos : null;
-						toggleCursorParking( view, pos );
+						const { dataTransfer } = event;
+						if ( dataTransfer && dataTransfer.files && dataTransfer.files.length > 0 ) {
+							const { files } = dataTransfer;
+							const filesList = Array.from( files );
+							if ( uploadImageFiles( view, filesList, coords ) ) {
+								event.preventDefault();
+								resetCursorParking( view );
+							}
+						} else {
+							toggleCursorParking( view, pos );
+						}
 					}
 				}
 			});
