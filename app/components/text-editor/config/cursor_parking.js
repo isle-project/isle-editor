@@ -4,7 +4,7 @@
 
 // MODULES //
 
-import { Plugin, PluginKey } from 'prosemirror-state';
+import { Plugin, PluginKey, TextSelection } from 'prosemirror-state';
 
 
 // VARIABLES //
@@ -22,7 +22,8 @@ export default () =>
 				return {
 					inCursorParking: false,
 					storedMarks: null,
-					bookmarkToRestore: null
+					bookmarkToRestore: null,
+					pos: null
 				};
 			},
 			apply( tr, prevState ) {
@@ -31,12 +32,14 @@ export default () =>
 					if ( meta.inCursorParking ) {
 						return {
 							inCursorParking: true,
+							pos: meta.pos,
 							storedMarks: tr.storedMarks,
 							bookmarkToRestore: tr.selection.getBookmark()
 						};
 					}
 					return {
 						inCursorParking: false,
+						pos: meta.pos,
 						storedMarks: null,
 						bookmarkToRestore: null
 					};
@@ -48,6 +51,7 @@ export default () =>
 				) {
 					return {
 						inCursorParking: true,
+						pos: null,
 						storedMarks: prevState.storedMarks,
 						bookmarkToRestore: prevState.bookmarkToRestore.map( tr.mapping )
 					};
@@ -92,8 +96,9 @@ export default () =>
 					) {
 						const {
 							dispatch,
-							state: { tr }
+							state
 						} = view;
+						let tr = state.tr;
 						if ( prevInputState.bookmarkToRestore ) {
 							tr.setSelection( prevInputState.bookmarkToRestore.resolve( tr.doc ) );
 						}
@@ -101,7 +106,12 @@ export default () =>
 							tr.setStoredMarks( prevInputState.storedMarks );
 						}
 						view.focus();
-						dispatch( tr );
+						if ( inputState.pos ) {
+							const from = inputState.pos;
+							tr = tr.setSelection( TextSelection.create( tr.doc, from, from ) );
+						} else {
+							dispatch( tr );
+						}
 						reinitializeCursorParkingContent();
 					}
 				},
@@ -113,16 +123,18 @@ export default () =>
 	});
 
 // If you just need a quick toggle
-export const toggleCursorParking = async ( view ) => {
+export const toggleCursorParking = async ( view, pos ) => {
 	view.dispatch(
 		view.state.tr.setMeta( pluginKey, {
-			inCursorParking: true
+			inCursorParking: true,
+			pos: pos
 		})
 	);
 	await new Promise( resolve => setTimeout( resolve, 0 ) );
 	view.dispatch(
 		view.state.tr.setMeta( pluginKey, {
-			inCursorParking: false
+			inCursorParking: false,
+			pos: pos
 		})
 	);
 };

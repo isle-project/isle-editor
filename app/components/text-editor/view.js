@@ -100,9 +100,18 @@ class ProseMirror extends Component {
 						debug( 'Handle drag enter event...' );
 						toggleCursorParking( view );
 					},
-					'drop': ( view ) => {
+					'drop': ( view, event ) => {
 						debug( 'Handle drop event...' );
-						toggleCursorParking( view );
+						const coords = {
+							x: event.clientX,
+							y: event.clientY
+						};
+						const dropPos = view.posAtCoords({
+							left: coords.x,
+							top: coords.y
+						});
+						const pos = dropPos ? dropPos.pos : null;
+						toggleCursorParking( view, pos );
 					}
 				}
 			});
