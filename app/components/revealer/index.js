@@ -28,12 +28,23 @@ class Revealer extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.id = props.id || uid();
+		this.id = props.id || uid( props );
 
 		this.state = {
 			showChildren: props.show,
-			selectedCohort: null
+			selectedCohort: null,
+			showProp: props.show
 		};
+	}
+
+	static getDerivedStateFromProps( props, state ) {
+		if ( props.show !== state.showProp ) {
+			return {
+				showChildren: props.show,
+				showProp: props.show
+			};
+		}
+		return null;
 	}
 
 	componentDidMount() {

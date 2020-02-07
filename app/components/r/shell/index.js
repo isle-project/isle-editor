@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
@@ -163,7 +163,7 @@ const showResetButton = ( clickHandler ) => {
 * @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
 * @property {Function} onResult - callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function
 */
-class RShell extends React.Component {
+class RShell extends Component {
 	constructor( props ) {
 		super( props );
 
