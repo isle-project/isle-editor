@@ -124,8 +124,8 @@ class PopUpManager {
 		}
 		const { body, close } = detailsWithModalToDismiss;
 		const pointer = fromXY(e.clientX, e.clientY, 1);
-		const bodyRect = body ? fromHTMlElement(body) : null;
-		if (!bodyRect || !isIntersected(pointer, bodyRect)) {
+		const bodyRect = body ? fromHTMlElement( body ) : null;
+		if ( !bodyRect || !isIntersected( pointer, bodyRect ) ) {
 			close();
 		}
 	};
@@ -142,11 +142,11 @@ class PopUpManager {
 			const details = bridge.getDetails();
 			bridgeToDetails.set(bridge, details);
 			const { anchor, body } = details;
-			if (body instanceof HTMLElement) {
-				details.bodyRect = fromHTMlElement(body);
+			if ( body instanceof HTMLElement ) {
+				details.bodyRect = fromHTMlElement( body );
 			}
-			if (anchor instanceof HTMLElement) {
-				details.anchorRect = fromHTMlElement(anchor);
+			if ( anchor instanceof HTMLElement ) {
+				details.anchorRect = fromHTMlElement( anchor );
 			}
 		}
 
@@ -167,7 +167,7 @@ class PopUpManager {
 					anchorRect.x - x + anchorRect.w / 2,
 					bodyRect.w - anchorRect.w / 2
 				) : 0;
-				this._positions.set(bridge, positionKey);
+				this._positions.set( bridge, positionKey );
 				const bodyStyle = body.style;
 				bodyStyle.position = 'absolute';
 				bodyStyle.left = `${x}px`;

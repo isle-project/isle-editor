@@ -9,7 +9,7 @@ import { Plugin, PluginKey } from 'prosemirror-state';
 
 // VARIABLES //
 
-export const pluginKey = new PluginKey( 'cursor-parking');
+export const pluginKey = new PluginKey( 'cursor-parking' );
 
 
 // EXPORTS //
@@ -25,10 +25,10 @@ export default () =>
 					bookmarkToRestore: null
 				};
 			},
-			apply(tr, prevState) {
-				const meta = tr.getMeta(this);
-				if (meta) {
-					if (meta.inCursorParking) {
+			apply( tr, prevState ) {
+				const meta = tr.getMeta( this );
+				if ( meta ) {
+					if ( meta.inCursorParking ) {
 						return {
 							inCursorParking: true,
 							storedMarks: tr.storedMarks,
@@ -49,7 +49,7 @@ export default () =>
 					return {
 						inCursorParking: true,
 						storedMarks: prevState.storedMarks,
-						bookmarkToRestore: prevState.bookmarkToRestore.map(tr.mapping)
+						bookmarkToRestore: prevState.bookmarkToRestore.map( tr.mapping )
 					};
 				}
 				return prevState;
@@ -66,36 +66,42 @@ export default () =>
 
 			const selectCursorParkingContent = () => {
 				const range = document.createRange();
-				range.selectNodeContents(cursorParking.firstChild);
+				range.selectNodeContents( cursorParking.firstChild );
 				const sel = window.getSelection();
 				sel.removeAllRanges();
-				sel.addRange(range);
+				sel.addRange( range );
 			};
 			const reinitializeCursorParkingContent = () => {
 				cursorParking.innerHTML = '<div><br/></div>';
 			};
 			reinitializeCursorParkingContent();
-			document.body.appendChild(cursorParking);
+			document.body.appendChild( cursorParking );
 			return {
-				update(view, prevState) {
-					const prevInputState = pluginKey.getState(prevState);
-					const inputState = pluginKey.getState(view.state);
-					if (!prevInputState.inCursorParking && inputState.inCursorParking) {
+				update( view, prevState ) {
+					const prevInputState = pluginKey.getState( prevState );
+					const inputState = pluginKey.getState( view.state );
+					if (
+						!prevInputState.inCursorParking &&
+						inputState.inCursorParking
+					) {
 						selectCursorParkingContent();
 					}
-					if (prevInputState.inCursorParking && !inputState.inCursorParking) {
+					if (
+						prevInputState.inCursorParking &&
+						!inputState.inCursorParking
+					) {
 						const {
 							dispatch,
 							state: { tr }
 						} = view;
-						if (prevInputState.bookmarkToRestore) {
-							tr.setSelection(prevInputState.bookmarkToRestore.resolve(tr.doc));
+						if ( prevInputState.bookmarkToRestore ) {
+							tr.setSelection( prevInputState.bookmarkToRestore.resolve( tr.doc ) );
 						}
-						if (prevInputState.storedMarks) {
-							tr.setStoredMarks(prevInputState.storedMarks);
+						if ( prevInputState.storedMarks ) {
+							tr.setStoredMarks( prevInputState.storedMarks );
 						}
 						view.focus();
-						dispatch(tr);
+						dispatch( tr );
 						reinitializeCursorParkingContent();
 					}
 				},
@@ -109,13 +115,13 @@ export default () =>
 // If you just need a quick toggle
 export const toggleCursorParking = async view => {
 	view.dispatch(
-		view.state.tr.setMeta(pluginKey, {
+		view.state.tr.setMeta( pluginKey, {
 			inCursorParking: true
 		})
 	);
-	await new Promise(resolve => setTimeout(resolve, 0));
+	await new Promise( resolve => setTimeout( resolve, 0 ) );
 	view.dispatch(
-		view.state.tr.setMeta(pluginKey, {
+		view.state.tr.setMeta( pluginKey, {
 			inCursorParking: false
 		})
 	);

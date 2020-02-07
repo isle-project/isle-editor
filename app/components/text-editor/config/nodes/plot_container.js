@@ -18,8 +18,8 @@ const plotContainerSpec = {
 		height: { default: null },
 		rotate: { default: null }
 	},
-	inline: false,
-	group: 'block',
+	inline: true,
+	group: 'inline',
 	draggable: true,
 	toDOM: node => {
 		return [ 'span',

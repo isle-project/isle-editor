@@ -138,7 +138,7 @@ class ImageViewBody extends React.PureComponent {
 	}
 
 	_renderInlineEditor() {
-		const el = document.getElementById(this._id);
+		const el = document.getElementById( this._id );
 		if ( !el || el.getAttribute('data-active') !== 'true' ) {
 			if ( this._inlineEditor ) {
 				this._inlineEditor.close();
@@ -150,8 +150,8 @@ class ImageViewBody extends React.PureComponent {
 			value: node.attrs,
 			onSelect: this._onChange
 		};
-		if (this._inlineEditor) {
-			this._inlineEditor.update(editorProps);
+		if ( this._inlineEditor ) {
+			this._inlineEditor.update( editorProps );
 		} else {
 			this._inlineEditor = createPopUp(ImageInlineEditor, editorProps, {
 				anchor: el,
@@ -206,8 +206,8 @@ class ImageViewBody extends React.PureComponent {
 		editorView.dispatch( tr );
 	};
 
-	_onChange = (value) => {
-		if (!this._mounted) {
+	_onChange = ( value ) => {
+		if ( !this._mounted ) {
 			return;
 		}
 		const align = value ? value.align : null;
