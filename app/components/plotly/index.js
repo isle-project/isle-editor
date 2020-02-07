@@ -86,7 +86,8 @@ class Wrapper extends Component {
 			fullscreen: false,
 			oldLayout: copy( layout ),
 			layout,
-			oldPropLayout: layout
+			oldPropLayout: layout,
+			finishedDrawing: false
 		};
 		this.plotData = null;
 
@@ -148,7 +149,6 @@ class Wrapper extends Component {
 	}
 
 	handleUpdate = () => {
-		this.drawPlot();
 		if ( this.props.id ) {
 			const session = this.context;
 			const changes = calculateChanges( this.figure.layout, this.state.oldLayout );
@@ -163,17 +163,21 @@ class Wrapper extends Component {
 		this.setState({
 			oldLayout: copy( this.figure.layout ),
 			layout: this.figure.layout
-		});
+		}, this.drawPlot );
 	}
 
 	onUpdate = ( figure ) => {
-		this.figure = figure;
-		if ( this.debouncedChange ) {
-			this.debouncedChange();
-		} else {
-			this.debouncedChange = debounce( this.handleUpdate, 2000 );
-			this.debouncedChange();
-		}
+		this.setState({
+			finishedDrawing: false
+		}, () => {
+			this.figure = figure;
+			if ( this.debouncedChange ) {
+				this.debouncedChange();
+			} else {
+				this.debouncedChange = debounce( this.handleUpdate, 1000 );
+				this.debouncedChange();
+			}
+		});
 	}
 
 	drawPlot = () => {
@@ -192,6 +196,9 @@ class Wrapper extends Component {
 					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
 				}
 				this.plotData = value;
+				this.setState({
+					finishedDrawing: true
+				});
 			});
 	}
 
@@ -235,9 +242,14 @@ class Wrapper extends Component {
 		if ( this.props.draggable && !this.state.fullscreen ) {
 			draggableBar = <div
 				className="plotly-draggable-bar"
-				draggable={true}
+				draggable={this.state.finishedDrawing}
 				onDragStart={( ev ) => {
 					ev.dataTransfer.setData( 'text/html', this.plotData );
+				}}
+				style={{
+					opacity: this.state.finishedDrawing ?
+						0.6 :
+						0.2
 				}}
 			>Drag Plot</div>;
 		}

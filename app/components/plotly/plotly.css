@@ -6,12 +6,14 @@
 	width: 130px;
 	height: 26px;
 	background-color: rgba(200, 200, 200, 0.5);
-	opacity: 0.6;
 	color: black;
 	letter-spacing: 4px;
 	text-align: center;
 	cursor: move;
 	padding: 0.1rem 0.3rem;
+	-webkit-transition: opacity 300ms linear;
+	-ms-transition: opacity 300ms linear;
+	transition: opacity 300ms linear;
 }
 
 .plotly-draggable-bar:hover {
