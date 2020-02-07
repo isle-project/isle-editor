@@ -327,16 +327,16 @@ function writeIndexFile({
 	let fileDir;
 	let isleDir;
 	let fileName;
+	const modulePaths = [
+		resolve( basePath, './node_modules' ),
+		resolve( basePath, './app/' )
+	];
 	if ( filePath ) {
 		fileDir = dirname( filePath );
 		fileName = basename( filePath, extname( filePath ) );
 		isleDir = join( fileDir, `${fileName}-resources` );
+		modulePaths.push( resolve( join( isleDir, 'node_modules' ) ) );
 	}
-	const modulePaths = [
-		resolve( basePath, './node_modules' ),
-		resolve( basePath, './app/' ),
-		resolve( join( isleDir, 'node_modules' ) )
-	];
 	const config = {
 		context: resolve( basePath ),
 		resolve: {
@@ -564,7 +564,11 @@ function writeIndexFile({
 			return clbk( err );
 		}
 		console.dir( stats ); // eslint-disable-line no-console
-		if ( stats.compilation && stats.compilation.errors ) {
+		if (
+			stats.compilation &&
+			stats.compilation.errors &&
+			stats.compilation.errors.length > 0
+		) {
 			let errMsg = '';
 			stats.compilation.errors.forEach( v => {
 				errMsg += v;
