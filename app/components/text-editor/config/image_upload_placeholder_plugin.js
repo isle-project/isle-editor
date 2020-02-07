@@ -147,21 +147,19 @@ export function uploadImageFiles(
 	let from = 0;
 
 	// Adjust the cursor to the dropped position...
-	if (coords) {
+	if ( coords ) {
 		const dropPos = view.posAtCoords({
 			left: coords.x,
 			top: coords.y
 		});
-
-		if (!dropPos) {
+		if ( !dropPos ) {
 			return false;
 		}
-
 		from = dropPos.pos;
-		tr = tr.setSelection(TextSelection.create(tr.doc, from, from));
+		tr = tr.setSelection( TextSelection.create( tr.doc, from, from ) );
 	} else {
 		from = tr.selection.to;
-		tr = tr.setSelection(TextSelection.create(tr.doc, from, from));
+		tr = tr.setSelection( TextSelection.create( tr.doc, from, from ) );
 	}
 	const meta = {
 		add: {
@@ -170,8 +168,8 @@ export function uploadImageFiles(
 		}
 	};
 
-	tr = tr.setMeta(placeholderPlugin, meta);
-	view.dispatch(tr);
+	tr = tr.setMeta( placeholderPlugin, meta );
+	view.dispatch( tr );
 	return true;
 }
 
@@ -192,7 +190,7 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 
 					// See if the transaction adds or removes any placeholders:
 					const action = tr.getMeta(this);
-					if (action && action.add) {
+					if ( action && action.add ) {
 						const el = document.createElement('div');
 						el.title = TITLE;
 						el.className = 'editor-image-upload-placeholder';
@@ -211,8 +209,8 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 				}
 			},
 			props: {
-				decorations(state) {
-					return this.getState(state);
+				decorations( state ) {
+					return this.getState( state );
 				}
 			}
 		});

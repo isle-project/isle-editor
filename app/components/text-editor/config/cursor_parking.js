@@ -59,7 +59,7 @@ export default () =>
 			const cursorParking = document.createElement( 'cursor-parking' );
 			cursorParking.setAttribute(
 				'style',
-				'width:1px;height:1px;top:-9999px;left:-9999px;position:absolute'
+				'width:0px;height:0px;position:fixed;top:50%,left:50%;'
 			);
 			cursorParking.setAttribute( 'tabIndex', '-1' );
 			cursorParking.setAttribute( 'contenteditable', 'true' );
@@ -113,7 +113,7 @@ export default () =>
 	});
 
 // If you just need a quick toggle
-export const toggleCursorParking = async view => {
+export const toggleCursorParking = async ( view ) => {
 	view.dispatch(
 		view.state.tr.setMeta( pluginKey, {
 			inCursorParking: true

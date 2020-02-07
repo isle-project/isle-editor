@@ -122,7 +122,7 @@ export function showCursorPlaceholder(state) {
 	return tr;
 }
 
-export function hideCursorPlaceholder(state) {
+export function hideCursorPlaceholder( state ) {
 	const plugin = singletonInstance;
 	let { tr } = state;
 	if (!plugin) {
@@ -130,7 +130,7 @@ export function hideCursorPlaceholder(state) {
 	}
 
 	const pos = findCursorPlaceholderPos(state);
-	if (pos !== null) {
+	if ( pos !== null ) {
 		tr = tr.setMeta(plugin, {
 			remove: {}
 		});
