@@ -41,13 +41,13 @@ const TABLE_HEADER = 'table_header';
 
 function findActionableCellFromSelection( selection ) {
 	const { $anchorCell } = selection;
-	const start = $anchorCell.start(-1);
-	const table = $anchorCell.node(-1);
-	const tableMap = TableMap.get(table);
+	const start = $anchorCell.start( -1 );
+	const table = $anchorCell.node( -1 );
+	const tableMap = TableMap.get( table );
 	let topRightRect;
 	let posFound = null;
 	let nodeFound = null;
-	selection.forEachCell((cell, cellPos) => {
+	selection.forEachCell(( cell, cellPos ) => {
 		const cellRect = tableMap.findCell(cellPos - start);
 		if (
 			!topRightRect ||
@@ -71,27 +71,22 @@ export default function findActionableCell( state ) {
 	const { doc, selection, schema } = state;
 	const tdType = schema.nodes[ TABLE_CELL ];
 	const thType = schema.nodes[ TABLE_HEADER ];
-	if (!tdType && !thType) {
+	if ( !tdType && !thType ) {
 		return null;
 	}
 	let userSelection = selection;
-	if (userSelection instanceof TextSelection) {
-		const { from, to } = selection;
-		if (from !== to) {
-			return null;
-		}
+	if ( userSelection instanceof TextSelection ) {
 		const result =
-			(tdType && findParentNodeOfType(tdType)(selection)) ||
-			(thType && findParentNodeOfType(thType)(selection));
+			( tdType && findParentNodeOfType( tdType )( selection ) ) ||
+			( thType && findParentNodeOfType( thType )( selection ) );
 
-		if (!result) {
+		if ( !result ) {
 			return null;
 		}
-
 		userSelection = CellSelection.create( doc, result.pos );
 	}
 	if ( userSelection instanceof CellSelection ) {
-		return findActionableCellFromSelection(userSelection);
+		return findActionableCellFromSelection( userSelection );
 	}
 	return null;
 }

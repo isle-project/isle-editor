@@ -50,9 +50,9 @@ class TableCellTooltipView {
 
 	update( view, lastState ) {
 		const { state, readOnly } = view;
-		const result = findActionableCell(state);
+		const result = findActionableCell( state );
 
-		if (!result || readOnly) {
+		if ( !result || readOnly ) {
 			this.destroy();
 			return;
 		}
