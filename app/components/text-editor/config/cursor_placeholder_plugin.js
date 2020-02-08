@@ -107,12 +107,12 @@ export function showCursorPlaceholder(state) {
 		return tr;
 	}
 	const pos = findCursorPlaceholderPos(state);
-	if (pos === null) {
-		if (!tr.selection.empty) {
+	if ( pos === null ) {
+		if ( !tr.selection.empty ) {
 			// Replace the selection with a placeholder.
 			tr = tr.deleteSelection();
 		}
-		tr = tr.setMeta(plugin, {
+		tr = tr.setMeta( plugin, {
 			add: {
 				pos: tr.selection.from
 			}
