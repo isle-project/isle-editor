@@ -22,6 +22,7 @@
       "except": ["first-nested"],
       "ignore": ["after-comment"]
     } ],
-    "selector-max-empty-lines": 1
+    "selector-max-empty-lines": 1,
+    "value-keyword-case": null
   }
 }
