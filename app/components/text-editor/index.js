@@ -629,7 +629,8 @@ class TextEditor extends Component {
 	resetEditor = () => {
 		localStorage.removeItem( this.id );
 		this.setState({
-			value: md.render( this.props.defaultValue )
+			value: md.render( this.props.defaultValue ),
+			docId: this.state.docId + 1
 		});
 		this.context.addNotification({
 			title: 'Reset',
