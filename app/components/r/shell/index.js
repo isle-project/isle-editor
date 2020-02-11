@@ -60,7 +60,7 @@ const getLastAction = ( val, id ) => {
 const insertImages = ( imgs ) => {
 	const ret = [];
 	for ( let i = 0; i < imgs.length; i++ ) {
-		ret[ i ] = ( <Image key={i} src={imgs[ i ]} title="R Plot" /> );
+		ret[ i ] = ( <Image width="60%" height="auto" key={i} src={imgs[ i ]} title="R Plot" /> );
 	}
 	return ret;
 };
