@@ -151,7 +151,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		}
 	};
 	if ( group.length === 2 ) {
-		config.boxmode = 'group';
+		config.layout.boxmode = 'group';
 	}
 	return config;
 }
