@@ -24,7 +24,7 @@ import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import generateUID from 'utils/uid';
-import { QUESTION_CONFIDENCE } from 'constants/actions.js';
+import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
 import './quiz.css';
 
@@ -169,9 +169,17 @@ class Quiz extends Component {
 		debug( 'Display next question...' );
 		const elem = this.state.questions[ this.state.current ];
 
+		const session = this.context;
+		if ( !this.state.answered ) {
+			session.log({
+				id: elem.props.id,
+				type: QUESTION_SKIPPED,
+				value: true
+			});
+		}
+
 		// Save chosen confidence level:
 		if ( elem.props && elem.props.id && this.state.selectedConfidence ) {
-			const session = this.context;
 			session.log({
 				id: elem.props.id+'_confidence',
 				type: QUESTION_CONFIDENCE,
@@ -554,7 +562,7 @@ class Quiz extends Component {
 										className="quiz-button"
 										variant="primary"
 										onClick={this.handleNextClick}
-										disabled={this.props.forceConfidence && !this.state.selectedConfidence}
+										disabled={this.props.forceConfidence && !this.state.selectedConfidence && this.state.answerSelected}
 									>
 										{this.props.nextLabel}
 									</Button> :
