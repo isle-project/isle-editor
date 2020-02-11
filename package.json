@@ -232,7 +232,7 @@
     "uuid": "^3.4.0",
     "v8-compile-cache": "^2.1.0",
     "venn.js": "0.2.20",
-    "webpack": "4.41.5",
+    "webpack": "4.41.6",
     "worker-loader": "^2.0.0",
     "xterm": "^4.3.0",
     "xterm-addon-fit": "^0.3.0"
