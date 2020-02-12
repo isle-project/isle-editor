@@ -22,7 +22,7 @@ const plotSpec = {
 	group: 'inline',
 	draggable: true,
 	toDOM: node => {
-		return [ 'span',
+		return [ 'div',
 			{
 				class: 'img-container',
 				'data-plot-id': node.attrs.plotID

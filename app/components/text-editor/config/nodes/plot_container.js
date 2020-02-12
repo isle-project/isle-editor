@@ -22,7 +22,7 @@ const plotContainerSpec = {
 	group: 'inline',
 	draggable: true,
 	toDOM: node => {
-		return [ 'span',
+		return [ 'div',
 			{
 				class: 'img-container',
 				'data-plot-id': node.attrs.plotID
@@ -49,7 +49,7 @@ const plotContainerSpec = {
 	},
 	parseDOM: [{
 		priority: 51,
-		tag: 'span[data-plot-id]',
+		tag: 'div[data-plot-id]',
 		getAttrs: dom => {
 			const plotID = dom.getAttribute( 'data-plot-id' );
 			const img = dom.firstChild;
