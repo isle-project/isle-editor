@@ -7,7 +7,7 @@ import replace from '@stdlib/string/replace';
 import exists from '@stdlib/fs/exists';
 import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
-import template from 'constants/template.js';
+import template from 'constants/templates/main.js';
 import PREAMBLE from 'constants/preamble.js';
 import today from 'utils/today';
 
