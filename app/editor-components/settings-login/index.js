@@ -109,7 +109,7 @@ class SettingsLogin extends Component {
 									isInvalid={invalidServer}
 								/>
 								<FormText>
-									The ISLE server address, e.g. <code>https://isle.heinz.cmu.edu</code>.
+									The ISLE server address, e.g. <code>https://isle.stat.cmu.edu</code>.
 								</FormText>
 								<FormControl.Feedback type="invalid" >
 									The server address must start with <code>http://</code> or <code>https://</code>.
@@ -126,7 +126,7 @@ class SettingsLogin extends Component {
 									onKeyPress={this.handleKeyPress}
 								/>
 								<FormText>
-									Connect with your ISLE user account. If you do not have one yet, sign up at the ISLE dashboard, e.g. at <a href="https://isle.heinz.cmu.edu">https://isle.heinz.cmu.edu</a>.
+									Connect with your ISLE user account. If you do not have one yet, sign up at the ISLE dashboard, e.g. at <a href="https://isle.stat.cmu.edu">https://isle.stat.cmu.edu</a>.
 								</FormText>
 							</FormGroup>
 							<FormGroup>
