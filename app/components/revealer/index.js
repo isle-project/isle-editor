@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import isNull from '@stdlib/assert/is-null';
 import Gate from 'components/gate';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
@@ -57,15 +58,18 @@ class Revealer extends Component {
 				else if ( type === 'member_action' ) {
 					if ( action.id === this.id ) {
 						const cohortName = action.value;
+						debug( `Received action for cohort ${cohortName}: ` );
 						if (
 							!cohortName ||
 							( session.cohort && session.cohort === cohortName )
 						) {
-							if ( action.type === 'REVEAL_CONTENT' ) {
+							if ( action.type === REVEAL_CONTENT ) {
+								debug( 'Reveal content...' );
 								this.setState({
 									showChildren: true
 								});
-							} else if ( action.type === 'HIDE_CONTENT' ) {
+							} else if ( action.type === HIDE_CONTENT ) {
+								debug( 'Hide content...' );
 								this.setState({
 									showChildren: false
 								});
@@ -117,11 +121,16 @@ class Revealer extends Component {
 	}
 
 	handleCohortChange = ( event ) => {
-		debug( 'Handle cohort change...' );
 		const value = event.target.value;
-		this.setState({
-			selectedCohort: value === 'all' ? null : value
-		});
+		if (
+			value !== this.state.selectedCohort ||
+			( value === 'all' && isNull( this.state.selectedCohort ) )
+		) {
+			debug( 'Handle cohort change: '+value );
+			this.setState({
+				selectedCohort: value === 'all' ? null : value
+			});
+		}
 	}
 
 	stopPropagation = ( event ) => {
