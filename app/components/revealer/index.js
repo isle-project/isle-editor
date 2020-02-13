@@ -76,6 +76,19 @@ class Revealer extends Component {
 								});
 							}
 						}
+						if ( this.state.selectedCohort === cohortName ) {
+							if ( action.type === REVEAL_CONTENT ) {
+								debug( 'Reveal content...' );
+								this.setState({
+									showChildren: true
+								});
+							} else if ( action.type === HIDE_CONTENT ) {
+								debug( 'Hide content...' );
+								this.setState({
+									showChildren: false
+								});
+							}
+						}
 					}
 				} else if ( type === 'user_joined' ) {
 					// When new users join, make sure they can see the component when it was already revealed:
