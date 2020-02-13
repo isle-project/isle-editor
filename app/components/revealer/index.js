@@ -49,6 +49,7 @@ class Revealer extends Component {
 	}
 
 	componentDidMount() {
+		debug( 'Component did mount...' );
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
@@ -93,6 +94,7 @@ class Revealer extends Component {
 	}
 
 	componentWillUnmount() {
+		debug( 'Component will unmount...' );
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
