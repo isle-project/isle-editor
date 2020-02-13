@@ -79,7 +79,7 @@ class Revealer extends Component {
 					}
 				} else if ( type === 'user_joined' ) {
 					// When new users join, make sure they can see the component when it was already revealed:
-					if ( this.state.showChildren ) {
+					if ( this.state.showChildren && !this.props.show ) {
 						const session = this.context;
 						session.log({
 							id: this.id,
