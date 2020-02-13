@@ -10,3 +10,14 @@
 	overflow: hidden;
 	outline: 0;
 }
+
+.modal-dialog.react-draggable .h4 {
+	font-family: Open Sans Condensed;
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+.modal-dialog.react-draggable .modal-body {
+	overflow-y: auto;
+	max-height: calc(100vh - 150px);
+}
