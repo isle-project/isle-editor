@@ -91,7 +91,7 @@ class Revealer extends Component {
 						}
 					}
 				} else if ( type === 'user_joined' && session.user.email !== action.email ) {
-					// When new users join, make sure the current state is propagated to them:
+					debug( `Update revealer state for ${action.email}` );
 					const session = this.context;
 					if ( this.state.showChildren ) {
 						session.log({
