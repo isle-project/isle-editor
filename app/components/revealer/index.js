@@ -91,7 +91,7 @@ class Revealer extends Component {
 						}
 					}
 				} else if ( type === 'user_joined' && session.user.email !== action.email ) {
-					// When new users join, make sure the current state is propagated:
+					// When new users join, make sure the current state is propagated to them:
 					const session = this.context;
 					if ( this.state.showChildren ) {
 						session.log({
@@ -99,14 +99,14 @@ class Revealer extends Component {
 							type: REVEAL_CONTENT,
 							value: this.state.selectedCohort,
 							noSave: true
-						}, 'members' );
+						}, action.email );
 					} else {
 						session.log({
 							id: this.id,
 							type: HIDE_CONTENT,
 							value: this.state.selectedCohort,
 							noSave: true
-						}, 'members' );
+						}, action.email );
 					}
 				}
 			});
