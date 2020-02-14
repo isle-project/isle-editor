@@ -90,13 +90,20 @@ class Revealer extends Component {
 							}
 						}
 					}
-				} else if ( type === 'user_joined' ) {
-					// When new users join, make sure they can see the component when it was already revealed:
-					if ( this.state.showChildren && !this.props.show ) {
-						const session = this.context;
+				} else if ( type === 'user_joined' && session.user.email !== action.email ) {
+					// When new users join, make sure the current state is propagated:
+					const session = this.context;
+					if ( this.state.showChildren ) {
 						session.log({
 							id: this.id,
 							type: REVEAL_CONTENT,
+							value: this.state.selectedCohort,
+							noSave: true
+						}, 'members' );
+					} else {
+						session.log({
+							id: this.id,
+							type: HIDE_CONTENT,
 							value: this.state.selectedCohort,
 							noSave: true
 						}, 'members' );
