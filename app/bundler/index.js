@@ -97,6 +97,14 @@ const prepareAsyncRequires = ( libs ) => {
 };
 
 const getMainImports = () => `
+// POLYFILLS //
+
+import 'raf/polyfill';
+import 'whatwg-fetch';
+
+
+// MODULES //
+
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
@@ -172,7 +180,7 @@ class LessonWrapper extends Component {
 					loader.style.animation = 'anim-fade-out 1.7s forwards';
 				}, ${max( loaderTimeout - 3000, 0 )});
 				setTimeout(function onRemove() {
-					loader.remove();
+					loader.parentElement.removeChild( loader );
 					document.body.style['overflow-y'] = 'auto';
 				}, ${loaderTimeout} );
 			}
@@ -361,7 +369,10 @@ function writeIndexFile({
 			rules: [
 				{
 					test: /\.js?$/,
-					exclude: /node_modules/,
+					exclude: [
+						/node_modules\/(?!debug|@iktakahiro\/markdown-it-katex)/,
+						/fonts\.js$/
+					],
 					loader: 'babel-loader',
 					query: {
 						plugins: [
@@ -376,11 +387,31 @@ function writeIndexFile({
 							}]
 						],
 						presets: [
-							resolve( basePath, './node_modules/@babel/preset-env' ),
+							[ resolve( basePath, './node_modules/@babel/preset-env' ), {
+								targets: {
+									ie: '11'
+								},
+								useBuiltIns: 'usage',
+								corejs: 2
+							}],
 							resolve( basePath, './node_modules/@babel/preset-react' )
 						],
 						babelrc: false,
-						cacheDirectory: true
+						cacheDirectory: true,
+						overrides: [{
+							test: [
+								'./node_modules/debug/**/*.js',
+								'./node_modules/@iktakahiro/markdown-it-katex/**/*.js'
+							],
+							presets: [
+								[ resolve( basePath, './node_modules/@babel/preset-env' ), {
+									modules: 'commonjs',
+									targets: {
+										ie: '11'
+									}
+								}]
+							]
+						}]
 					}
 				},
 				{

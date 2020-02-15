@@ -116,7 +116,7 @@ export default () =>
 					}
 				},
 				destroy() {
-					cursorParking.remove();
+					cursorParking.parentNode.removeChild( cursorParking );
 				}
 			};
 		}
