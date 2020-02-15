@@ -184,7 +184,7 @@ class JSShell extends Component {
 		} else {
 			const node = ReactDom.findDOMNode( this );
 			// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
-			let slide = node.closest( '.spectacle-content' );
+			let slide = node.closest ? node.closest( '.spectacle-content' ) : null;
 			if ( slide ) {
 				let computedStyle = window.getComputedStyle( slide );
 				let transform = computedStyle.getPropertyValue( 'transform' );
