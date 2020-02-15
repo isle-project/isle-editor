@@ -30,8 +30,8 @@ import POINTS from 'constants/points.js';
 
 const debug = logger( 'isle:session' );
 const PATH_REGEXP = /^\/([^/]*)\/([^/]*)\//i;
-const STDOUT_REGEX = /stdout/;
-const GRAPHICS_REGEX = /graphics/;
+const STDOUT_REGEX = /\/ocpu\/tmp\/[^/]+\/stdout/;
+const GRAPHICS_REGEX = /\/ocpu\/tmp\/[^/]+\/graphics\/[^\n]*/g;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
@@ -380,18 +380,17 @@ class Session {
 			response.text().then( body => {
 				debug( 'Received body:\n '+body );
 				debug( 'Response status: '+response.status );
-				const arr = body.split( '\n' );
 				const plots = [];
 				if ( response.status !== 400 ) {
-					arr.forEach( elem => {
-						if ( GRAPHICS_REGEX.test( elem ) === true ) {
-							const imgURL = OPEN_CPU + elem + '/svg';
-							plots.push( imgURL );
-						}
-						if ( STDOUT_REGEX.test( elem ) === true ) {
-							getElem( elem );
-						}
-					});
+					const stdout = body.match( STDOUT_REGEX );
+					if ( stdout && stdout[ 0 ] ) {
+						getElem( stdout[ 0 ] );
+					}
+					const matches = body.matchAll( GRAPHICS_REGEX );
+					for ( const match of matches ) {
+						const imgURL = OPEN_CPU + match[ 0 ] + '/svg';
+						plots.push( imgURL );
+					}
 					if ( isFunction( onPlots ) ) {
 						onPlots( plots );
 					}
