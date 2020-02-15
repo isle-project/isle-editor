@@ -1,5 +1,5 @@
 .ReactTable {
-	max-height: 65vh;
+	height: 65vh;
 	background: white;
 	border: 1px solid  rgba(92, 92, 92, 0.6);
 	border-radius: 6px;
