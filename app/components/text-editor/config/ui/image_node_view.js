@@ -156,7 +156,7 @@ class ImageViewBody extends React.PureComponent {
 			this._inlineEditor = createPopUp(ImageInlineEditor, editorProps, {
 				anchor: el,
 				autoDismiss: false,
-				container: el.closest(`.${FRAMESET_BODY_CLASSNAME}`),
+				container: el.closest ? el.closest(`.${FRAMESET_BODY_CLASSNAME}`) : null,
 				position: atAnchorBottomCenter,
 				onClose: () => {
 					this._inlineEditor = null;
