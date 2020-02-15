@@ -91,7 +91,7 @@ export default {
 				join( __dirname, 'main.development.js' ),
 				join( __dirname, 'app' )
 			],
-			exclude: /\.fonts\.js$/
+			exclude: /fonts\.js$/
 		},
 		{
 			test: /\.worker\.js$/,
