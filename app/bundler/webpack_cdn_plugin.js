@@ -91,7 +91,7 @@ class WebpackCdnPlugin {
 			compiler.hooks.afterPlugins.tap('WebpackCdnPlugin', compiler => {
 			compiler.hooks.thisCompilation.tap('WebpackCdnPlugin', () => {
 				compiler.hooks.compilation.tap('HtmlWebpackPluginHooks', compilation => {
-				compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync('WebpackCdnPlugin', this.alterAssetTags.bind(this));
+					compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync('WebpackCdnPlugin', this.alterAssetTags.bind(this));
 				});
 			});
 			});
