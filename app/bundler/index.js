@@ -401,7 +401,7 @@ function writeIndexFile({
 						overrides: [{
 							test: [
 								resolve( basePath, './node_modules/debug/**/*.js' ),
-								resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' ),
+								resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' )
 							],
 							presets: [
 								[ resolve( basePath, './node_modules/@babel/preset-env' ), {
