@@ -368,7 +368,7 @@ function writeIndexFile({
 		module: {
 			rules: [
 				{
-					test: /\.js?$/,
+					test: /\.js$/,
 					exclude: [
 						/node_modules\/(?!debug|@iktakahiro\/markdown-it-katex)/,
 						/fonts\.js$/
@@ -400,8 +400,8 @@ function writeIndexFile({
 						cacheDirectory: true,
 						overrides: [{
 							test: [
-								'./node_modules/debug/**/*.js',
-								'./node_modules/@iktakahiro/markdown-it-katex/**/*.js'
+								resolve( basePath, './node_modules/debug/**/*.js' ),
+								resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' ),
 							],
 							presets: [
 								[ resolve( basePath, './node_modules/@babel/preset-env' ), {
@@ -412,6 +412,20 @@ function writeIndexFile({
 								}]
 							]
 						}]
+					}
+				},
+				{
+					test: /(sum-series|is-typed-array|node_modules\/ml-)[\s\S]+?\.js$/,
+					loader: 'babel-loader',
+					query: {
+						presets: [
+							[ resolve( basePath, './node_modules/@babel/preset-env' ), {
+								modules: 'commonjs',
+								targets: {
+									ie: '11'
+								}
+							}]
+						]
 					}
 				},
 				{
