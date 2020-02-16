@@ -65,64 +65,85 @@ const initialState = {
 
 export default function markdown( state = initialState, action ) {
 	switch ( action.type ) {
+	case types.CREATED_FROM_TEMPLATE: {
+		let md = action.payload.template;
+		md = replace( md, '<preamble>', preambleTemplate );
+		md = replace( md, '<today>', today() );
+		return {
+			...state,
+			markdown: md,
+			unsaved: false
+		};
+	}
 	case types.FILE_LOADED:
 		return {
 			...state,
 			fileName: action.payload.fileName,
 			filePath: action.payload.filePath,
+			markdown: action.payload.file,
 			unsaved: false
 		};
 	case types.ENCOUNTERED_ERROR:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			error: action.payload.error
-		});
+		};
 	case types.RESET_ERROR:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			error: null
-		});
+		};
 	case types.MARKDOWN_CHANGED:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			markdown: action.payload.markdown,
-			html: action.payload.html,
 			error: null,
-			unsaved: !action.payload.loading
-		});
+			unsaved: true
+		};
 	case types.PREAMBLE_CHANGED:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			preamble: action.payload.preamble,
 			preambleText: action.payload.preambleText,
 			error: null
-		});
+		};
 	case types.ROLE_CHANGED:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			currentRole: action.payload.role
-		});
+		};
 	case types.MODE_CHANGED:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			currentMode: action.payload.mode
-		});
+		};
 	case types.SERVER_NAMESPACE_CHANGED:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			namespaceName: action.payload.namespaceName
-		});
+		};
 	case types.TOGGLE_SCROLLING:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			isScrolling: !state.isScrolling
-		});
+		};
 	case types.TOGGLE_TOOLBAR:
-		return Object.assign({}, state, {
+		return {
+			...state,
 			hideToolbar: !state.hideToolbar
-		});
+		};
 	case types.FONT_SIZE_CHANGED:
 		config.set( 'fontSize', action.payload.fontSize );
-		return Object.assign({}, state, {
+		return {
+			...state,
 			fontSize: action.payload.fontSize
-		});
+		};
 	case types.PREAMBLE_TEMPLATE_CHANGED:
 		config.set( 'preambleTemplate', action.payload.preambleTemplate );
-		return Object.assign({}, state, {
+		return {
+			...state,
 			preambleTemplate: action.payload.preambleTemplate
-		});
+		};
 	default:
 		return state;
 	}

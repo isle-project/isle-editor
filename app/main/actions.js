@@ -30,7 +30,7 @@ app.on( 'certificate-error', ( event, webContents, url, error, certificate, call
 
 ipcMain.on( 'open-file', ( e, { path }) => {
 	e.preventDefault();
-	createWindow( path );
+	createWindow({ filePath: path });
 });
 
 ipcMain.on( 'save-file', ( e, { data, filePath }) => {
@@ -113,7 +113,7 @@ export function openFile( filePath, browserWindow ) {
 			if ( err ) {
 				return err;
 			}
-			createWindow( filePath );
+			createWindow({ filePath });
 		});
 		return;
 	}
@@ -168,6 +168,11 @@ export function saveAs({ browserWindow }) {
 export function newFile({ browserWindow }) {
 	browserWindow.webContents.send( 'clear-cache' );
 	createWindow();
+}
+
+export function newFromTemplate({ browserWindow, name }) {
+	browserWindow.webContents.send( 'clear-cache' );
+	createWindow({ fromTemplate: name });
 }
 
 export function closeApp({ browserWindow }) {

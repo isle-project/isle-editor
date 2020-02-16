@@ -5,13 +5,11 @@ import * as types from 'constants/editor_actions.js';
 
 // MAIN //
 
-function updateMarkdown( markdown = '', loading = false ) {
+function updateMarkdown( markdown = '' ) {
 	return {
 		type: types.MARKDOWN_CHANGED,
 		payload: {
-			html: '',
-			markdown,
-			loading
+			markdown
 		}
 	};
 }
@@ -19,16 +17,26 @@ function updateMarkdown( markdown = '', loading = false ) {
 
 // EXPORTS //
 
-export function convertMarkdown( markdown, loading ) {
-	return updateMarkdown( markdown, loading );
+export function convertMarkdown( markdown ) {
+	return updateMarkdown( markdown );
 }
 
-export function fileLoaded({ fileName, filePath }) {
+export function fileLoaded({ fileName, filePath, file }) {
 	return {
 		type: types.FILE_LOADED,
 		payload: {
 			fileName,
-			filePath
+			filePath,
+			file
+		}
+	};
+}
+
+export function createdFromTemplate({ template }) {
+	return {
+		type: types.CREATED_FROM_TEMPLATE,
+		payload: {
+			template
 		}
 	};
 }

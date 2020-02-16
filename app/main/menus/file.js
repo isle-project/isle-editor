@@ -1,4 +1,9 @@
+// MODULES //
+
 import * as actions from './../actions';
+
+
+// EXPORTS //
 
 export default {
 	label: 'File',
@@ -13,16 +18,31 @@ export default {
 		label: 'New From Template',
 		submenu: [
 			{
-				label: 'Data Explorer'
+				label: 'Data Explorer',
+				click: ( menuItem, browserWindow ) => {
+					actions.newFromTemplate({
+						browserWindow,
+						name: 'data-explorer'
+					});
+				}
 			},
 			{
-				label: 'Lab'
+				label: 'Lecture Slides',
+				click: ( menuItem, browserWindow ) => {
+					actions.newFromTemplate({
+						browserWindow,
+						name: 'lecture-slides'
+					});
+				}
 			},
 			{
-				label: 'Lecture Slides'
-			},
-			{
-				label: 'Video Lecture'
+				label: 'Video Lecture',
+				click: ( menuItem, browserWindow ) => {
+					actions.newFromTemplate({
+						browserWindow,
+						name: 'video-lecture'
+					});
+				}
 			}
 		]
 	},
@@ -57,10 +77,10 @@ export default {
 		label: 'Create Template...',
 		submenu: [
 			{
-				label: 'From File Including Preamble'
+				label: 'From this File with Preamble'
 			},
 			{
-				label: 'From File Excluding Preamble'
+				label: 'From this File without Preamble'
 			}
 		]
 	},

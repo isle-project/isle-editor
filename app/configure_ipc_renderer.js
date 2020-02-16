@@ -7,6 +7,9 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import logger from 'debug';
+import videoLectureTemplate from 'constants/templates/video_lecture.js';
+import lectureSlidesTemplate from 'constants/templates/lecture_slides.js';
+import dataExplorerTemplate from 'constants/templates/data_explorer.js';
 
 
 // VARIABLES //
@@ -21,8 +24,7 @@ const RE_PREAMBLE = /^---([\S\s]*?)---/;
 function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'file-loaded', ( e, { file, fileName, filePath }) => {
 		debug( 'Loaded file: '+ filePath );
-		store.dispatch( actions.fileLoaded({ fileName, filePath }) );
-		store.dispatch( actions.convertMarkdown( file, true ) );
+		store.dispatch( actions.fileLoaded({ fileName, filePath, file }) );
 
 		let preambleText = file.match( RE_PREAMBLE );
 		if ( preambleText ) {
@@ -49,6 +51,22 @@ function configureIpcRenderer( store ) {
 			fileList.unshift( filePath );
 		}
 		config.set( 'recentFiles', fileList );
+	});
+
+	ipcRenderer.on( 'created-from-template', ( e, { name }) => {
+		let template;
+		switch ( name ) {
+			case 'video-lecture':
+				template = videoLectureTemplate;
+			break;
+			case 'lecture-slides':
+				template = lectureSlidesTemplate;
+			break;
+			case 'data-explorer':
+				template = dataExplorerTemplate;
+			break;
+		}
+		store.dispatch( actions.createdFromTemplate({ template }) );
 	});
 
 	ipcRenderer.on( 'hide-toolbar', () => {
