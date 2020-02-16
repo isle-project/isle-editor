@@ -15,7 +15,7 @@ const debug = logger( 'isle-editor' );
 
 // MAIN //
 
-function createWindow({ filePath, callback, fromTemplate }) {
+function createWindow({ filePath, callback, fromTemplate } = {}) {
 	/* eslint-disable no-process-env */
 
 	const mainWindowState = windowStateKeeper({
