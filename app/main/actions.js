@@ -175,6 +175,18 @@ export function newFromTemplate({ browserWindow, name }) {
 	createWindow({ fromTemplate: name });
 }
 
+export function createTemplate({ browserWindow, includePreamble }) {
+	browserWindow.webContents.send( 'create-template-prompt', {
+		includePreamble
+	});
+}
+
+export function showDialog({ browserWindow, message }) {
+	browserWindow.webContents.send( 'show-dialog', {
+		message
+	});
+}
+
 export function closeApp({ browserWindow }) {
 	debug( 'Should close browser window...' ); // eslint-disable-line no-console
 	browserWindow.webContents.send( 'close-editor' );

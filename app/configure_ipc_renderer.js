@@ -3,6 +3,8 @@
 import * as actions from 'actions';
 import { ipcRenderer } from 'electron';
 import Store from 'electron-store';
+import vex from 'vex-js';
+import vexDialog from 'vex-dialog';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
@@ -13,11 +15,15 @@ import LECTURE_SLIDES_TEMPLATE from 'constants/templates/lecture_slides.js';
 import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
 import PREAMBLE from 'constants/preamble.js';
 import mergePrambles from 'utils/merge-preambles';
+import 'vex-js/dist/css/vex.css';
+import 'vex-js/dist/css/vex-theme-plain.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor' );
+vex.registerPlugin( vexDialog );
+vex.defaultOptions.className = 'vex-theme-plain';
 const config = new Store( 'ISLE' );
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
 
@@ -78,6 +84,10 @@ function configureIpcRenderer( store ) {
 					}
 				};
 			break;
+			default:
+				template = config.get( 'templates.'+name );
+				preambleAdditions = {};
+			break;
 		}
 		const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
 		import( 'js-yaml' ).then( yaml => {
@@ -86,6 +96,26 @@ function configureIpcRenderer( store ) {
 			const preambleText = trim( yaml.safeDump( preamble ) );
 			store.dispatch( actions.createdFromTemplate({ template, preamble, preambleText }) );
 		});
+	});
+
+	ipcRenderer.on( 'create-template-prompt', ( e, { browserWindow, includePreamble }) => {
+		vex.dialog.prompt({
+			message: `Create a lesson template from the current file ${includePreamble ? 'with the preamble' : 'without the preamble'}:`,
+			placeholder: 'Enter template name',
+			callback( value ) {
+				const state = store.getState().markdown;
+				let text = state.markdown;
+				if ( !includePreamble ) {
+					text = replace( text, RE_PREAMBLE, '<preamble>' );
+				}
+				config.set( `templates.${value}`, text );
+				vex.dialog.alert( 'Template successfully created!' );
+			}
+		});
+	});
+
+	ipcRenderer.on( 'show-dialog', ( e, { message }) => {
+		vex.dialog.alert({ unsafeMessage: message });
 	});
 
 	ipcRenderer.on( 'hide-toolbar', () => {

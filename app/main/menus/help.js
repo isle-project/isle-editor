@@ -30,7 +30,7 @@ export default {
 		},
 		{
 			label: 'Check for updates...',
-			click: () => {
+			click: ( _, browserWindow ) => {
 				const request = net.request({
 					method: 'GET',
 					url: 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json'
@@ -45,16 +45,6 @@ export default {
 						const json = JSON.parse( body );
 						const newVersion = json.version;
 						const updateAvailable = newVersion !== currentVersion;
-						const win = new BrowserWindow({
-							modal: true,
-							resizable: false,
-							center: true,
-							title: 'ISLE Editor',
-							height: 200,
-							width: 300
-						});
-						win.setMenuBarVisibility( false ); // account for Linux bug, see: https://github.com/electron/electron/issues/15901#issuecomment-473773527
-						win.removeMenu();
 						const msg = updateAvailable ?
 							`A new version (${newVersion}) is available for <a href="https://isledocs.com/docs/overview/install" target="_blank" >download</a>.` :
 							'There is currently no update available...';
@@ -64,7 +54,7 @@ export default {
 								`<p>${msg}</p>`,
 							'</body>'
 						].join( '' );
-						win.loadURL( 'data:text/html;charset=utf-8,' + encodeURI( html ) );
+						actions.showDialog({ browserWindow, message: html });
 					});
 				});
 				request.end();
@@ -73,17 +63,7 @@ export default {
 		{
 			label: 'About',
 			accelerator: '',
-			click: () => {
-				const win = new BrowserWindow({
-					modal: true,
-					resizable: false,
-					center: true,
-					title: 'ISLE Editor',
-					height: 300,
-					width: 300
-				});
-				win.setMenuBarVisibility( false ); // account for Linux bug, see: https://github.com/electron/electron/issues/15901#issuecomment-473773527
-				win.removeMenu();
+			click: ( _, browserWindow ) => {
 				const html = [
 					'<body>',
 						'<h1 style="font-family: Open Sans; color: rgb(46,68,104);">ISLE Editor</h1>',
@@ -91,7 +71,7 @@ export default {
 						`<p><b>Operating System:</b> ${os.type()} ${os.arch()} ${os.release()}</p>`,
 					'</body>'
 				].join( '' );
-				win.loadURL( 'data:text/html;charset=utf-8,' + encodeURI( html ) );
+				actions.showDialog({ browserWindow, message: html });
 			}
 		}
 	]

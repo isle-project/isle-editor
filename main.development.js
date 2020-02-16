@@ -5,6 +5,7 @@
 import { app, Menu, MenuItem } from 'electron';
 import { basename } from 'path';
 import Store from 'electron-store';
+import objectKeys from '@stdlib/utils/keys';
 import * as actions from './app/main/actions.js';
 import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
@@ -77,13 +78,13 @@ function onReady() {
 				autoUpdater.on( 'update-downloaded', ( info ) => {
 					sendStatusToWindow( 'Update downloaded' );
 				});
-
 				autoUpdater.checkForUpdatesAndNotify();
 			}
 		}
 	});
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 	addRecentFilesMenu();
+	addCustomTemplates();
 }
 
 function openRecentFactory( path ) {
@@ -127,6 +128,59 @@ function addRecentFilesMenu() {
 			label: 'Clear recently opened',
 			click: onClearRecent
 		}));
+		Menu.setApplicationMenu( currentMenu );
+	}
+}
+
+function addCustomTemplates() {
+	const currentMenu = Menu.getApplicationMenu();
+	let customTemplates = null;
+	let fileMenu = null;
+
+	for ( let i = 0; i < currentMenu.items.length; i++ ) {
+		const item = currentMenu.items[ i ];
+		if ( item.label === 'File' ) {
+			fileMenu = currentMenu.items[ i ];
+		}
+	}
+	if ( fileMenu ) {
+		for ( let i = 0; i < fileMenu.submenu.items.length; i++ ) {
+			const item = fileMenu.submenu.items[ i ];
+			if ( item.label === 'New From Template' ) {
+				customTemplates = fileMenu.submenu.items[ i ];
+			}
+		}
+	}
+	if ( customTemplates ) {
+		customTemplates.submenu.append( new MenuItem({
+			type: 'separator'
+		}) );
+		const templates = config.get( 'templates' ) || {};
+		const keys = objectKeys( templates );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const name = keys[ i ];
+			const item = new MenuItem({
+				label: name,
+				click: ( _, browserWindow ) => {
+					actions.newFromTemplate({
+						browserWindow,
+						name
+					});
+				}
+			});
+			customTemplates.submenu.append( item );
+		}
+
+		/*
+		const onClearRecent = () => {
+			customTemplates.submenu.clear();
+			config.set( 'recentFiles', [] );
+		};
+		customTemplates.submenu.append( new MenuItem({
+			label: 'Clear recently opened',
+			click: onClearRecent
+		}));
+		*/
 		Menu.setApplicationMenu( currentMenu );
 	}
 }

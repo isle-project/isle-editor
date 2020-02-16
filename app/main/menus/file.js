@@ -77,10 +77,16 @@ export default {
 		label: 'Create Template...',
 		submenu: [
 			{
-				label: 'From this File with Preamble'
+				label: 'From this File with Preamble',
+				click: ( menuItem, browserWindow ) => {
+					actions.createTemplate({ browserWindow, includePreamble: true });
+				}
 			},
 			{
-				label: 'From this File without Preamble'
+				label: 'From this File without Preamble',
+				click: ( menuItem, browserWindow ) => {
+					actions.createTemplate({ browserWindow, includePreamble: false });
+				}
 			}
 		]
 	},
