@@ -6,10 +6,13 @@ import Store from 'electron-store';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
+import trim from '@stdlib/string/trim';
 import logger from 'debug';
-import videoLectureTemplate from 'constants/templates/video_lecture.js';
-import lectureSlidesTemplate from 'constants/templates/lecture_slides.js';
-import dataExplorerTemplate from 'constants/templates/data_explorer.js';
+import VIDEO_LECTURE_TEMPLATE from 'constants/templates/video_lecture.js';
+import LECTURE_SLIDES_TEMPLATE from 'constants/templates/lecture_slides.js';
+import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
+import PREAMBLE from 'constants/preamble.js';
+import mergePrambles from 'utils/merge-preambles';
 
 
 // VARIABLES //
@@ -55,18 +58,34 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'created-from-template', ( e, { name }) => {
 		let template;
+		let preambleAdditions;
 		switch ( name ) {
 			case 'video-lecture':
-				template = videoLectureTemplate;
+				template = VIDEO_LECTURE_TEMPLATE;
 			break;
 			case 'lecture-slides':
-				template = lectureSlidesTemplate;
+				template = LECTURE_SLIDES_TEMPLATE;
+				preambleAdditions = {
+					fixedView: true
+				};
 			break;
 			case 'data-explorer':
-				template = dataExplorerTemplate;
+				template = DATA_EXPLORER_TEMPLATE;
+				preambleAdditions = {
+					require: {
+						dataFile: '',
+						dataInfoFile: ''
+					}
+				};
 			break;
 		}
-		store.dispatch( actions.createdFromTemplate({ template }) );
+		const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
+		import( 'js-yaml' ).then( yaml => {
+			let preamble = yaml.load( preambleTemplate );
+			preamble = mergePrambles( preamble, preambleAdditions );
+			const preambleText = trim( yaml.safeDump( preamble ) );
+			store.dispatch( actions.createdFromTemplate({ template, preamble, preambleText }) );
+		});
 	});
 
 	ipcRenderer.on( 'hide-toolbar', () => {

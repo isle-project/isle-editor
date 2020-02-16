@@ -3,9 +3,6 @@
 
 const dataExplorer = `---
 <preamble>
-require:
-    dataFile:
-    dataInfoFile:
 ---
 
 # Title

@@ -67,11 +67,13 @@ export default function markdown( state = initialState, action ) {
 	switch ( action.type ) {
 	case types.CREATED_FROM_TEMPLATE: {
 		let md = action.payload.template;
-		md = replace( md, '<preamble>', preambleTemplate );
+		md = replace( md, '<preamble>', action.payload.preambleText );
 		md = replace( md, '<today>', today() );
 		return {
 			...state,
 			markdown: md,
+			preamble: action.payload.preamble,
+			preambleText: action.payload.preambleText,
 			unsaved: false
 		};
 	}

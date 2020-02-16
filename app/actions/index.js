@@ -32,11 +32,13 @@ export function fileLoaded({ fileName, filePath, file }) {
 	};
 }
 
-export function createdFromTemplate({ template }) {
+export function createdFromTemplate({ template, preamble, preambleText }) {
 	return {
 		type: types.CREATED_FROM_TEMPLATE,
 		payload: {
-			template
+			template,
+			preamble,
+			preambleText
 		}
 	};
 }

@@ -3,15 +3,13 @@
 import { basename, dirname, resolve, join } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { text } from 'd3';
-import uniq from 'uniq';
-import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isURI from '@stdlib/assert/is-uri';
 import replace from '@stdlib/string/replace';
-import merge from '@stdlib/utils/merge';
 import endsWith from '@stdlib/string/ends-with';
 import readJSON from '@stdlib/fs/read-json';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
+import mergePreambles from 'utils/merge-preambles';
 
 
 // VARIABLES //
@@ -22,35 +20,9 @@ let yaml;
 import( 'js-yaml' ).then( ( jsYAML ) => {
 	yaml = jsYAML.default;
 });
-const mergePreambles = merge.factory({
-	'override': mergeStrategy,
-	'copy': false,
-	'extend': true
-});
 
 
 // FUNCTIONS //
-
-function mergeStrategy( a, b, key ) {
-	if ( key === 'author' ) {
-		if ( isString( a ) ) {
-			a = [ a ];
-		}
-		if ( isString( b ) ) {
-			b = [ b ];
-		}
-		return uniq( a.concat( b ) );
-	}
-	if ( key === 'toolbar' ) {
-		return uniq( a.concat( b ), ( a, b ) => {
-			if ( a.name === b.name ) {
-				return 0;
-			}
-			return 1;
-		});
-	}
-	return a;
-}
 
 function matchPreamble( str, preamble ) {
 	let childPreamble = str.match( /^(?:\s*)---([\S\s]*?)---/ );

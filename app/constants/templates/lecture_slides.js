@@ -3,7 +3,6 @@
 
 const lectureSlides = `---
 <preamble>
-fixedView: true
 ---
 
 <Sketchpad
