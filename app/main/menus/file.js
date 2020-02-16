@@ -16,35 +16,7 @@ export default {
 	},
 	{
 		label: 'New From Template',
-		submenu: [
-			{
-				label: 'Data Explorer',
-				click: ( menuItem, browserWindow ) => {
-					actions.newFromTemplate({
-						browserWindow,
-						name: 'data-explorer'
-					});
-				}
-			},
-			{
-				label: 'Lecture Slides',
-				click: ( menuItem, browserWindow ) => {
-					actions.newFromTemplate({
-						browserWindow,
-						name: 'lecture-slides'
-					});
-				}
-			},
-			{
-				label: 'Video Lecture',
-				click: ( menuItem, browserWindow ) => {
-					actions.newFromTemplate({
-						browserWindow,
-						name: 'video-lecture'
-					});
-				}
-			}
-		]
+		submenu: []
 	},
 	{
 		label: 'Open File',

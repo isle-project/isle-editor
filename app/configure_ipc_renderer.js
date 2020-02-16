@@ -98,19 +98,61 @@ function configureIpcRenderer( store ) {
 		});
 	});
 
-	ipcRenderer.on( 'create-template-prompt', ( e, { browserWindow, includePreamble }) => {
+	ipcRenderer.on( 'create-template-prompt', ( e, { includePreamble }) => {
 		vex.dialog.prompt({
 			message: `Create a lesson template from the current file ${includePreamble ? 'with the preamble' : 'without the preamble'}:`,
 			placeholder: 'Enter template name',
 			callback( value ) {
-				const state = store.getState().markdown;
-				let text = state.markdown;
-				if ( !includePreamble ) {
-					text = replace( text, RE_PREAMBLE, '<preamble>' );
+				if ( value ) {
+					const state = store.getState().markdown;
+					let text = state.markdown;
+					if ( !includePreamble ) {
+						text = replace( text, RE_PREAMBLE, '<preamble>' );
+					}
+					config.set( `templates.${value}`, text );
+					vex.dialog.alert( 'Template successfully created!' );
+					ipcRenderer.send( 'redraw-templates-menu' );
 				}
-				config.set( `templates.${value}`, text );
-				vex.dialog.alert( 'Template successfully created!' );
 			}
+		});
+	});
+
+	ipcRenderer.on( 'open-template-dialog', ( e, { name } ) => {
+		vex.dialog.open({
+			message: 'Please confirm that you want to create a new file with the chosen template',
+			buttons: [
+				{
+					type: 'text',
+					text: 'Insert',
+					className: '',
+					click() {
+						ipcRenderer.send( 'create-from-user-template', {
+							name
+						});
+					}
+				},
+				{
+					type: 'text',
+					text: 'Cancel',
+					className: ''
+				},
+				{
+					type: 'text',
+					text: 'Delete',
+					className: '',
+					click() {
+						vex.dialog.confirm({
+							message: 'Are you sure you want to delete the `'+name+'` template?',
+							callback( value ) {
+								if ( value ) {
+									config.delete( 'templates.'+name );
+									ipcRenderer.send( 'redraw-templates-menu' );
+								}
+							}
+						});
+					}
+				}
+			]
 		});
 	});
 

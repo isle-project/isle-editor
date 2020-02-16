@@ -7,6 +7,7 @@ import logger from 'debug';
 import Store from 'electron-store';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
+import addCustomTemplates from './add_custom_templates.js';
 import { exec } from 'child_process';
 
 
@@ -71,6 +72,14 @@ ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
 			});
 		}
 	});
+});
+
+ipcMain.on( 'create-from-user-template', ( e, { name }) => {
+	createWindow({ fromTemplate: name });
+});
+
+ipcMain.on( 'redraw-templates-menu', () => {
+	addCustomTemplates();
 });
 
 

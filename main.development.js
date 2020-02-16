@@ -2,16 +2,15 @@
 
 // MODULES //
 
-import { app, Menu, MenuItem } from 'electron';
-import { basename } from 'path';
+import { app, Menu } from 'electron';
 import Store from 'electron-store';
-import objectKeys from '@stdlib/utils/keys';
-import * as actions from './app/main/actions.js';
 import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
 import { autoUpdater } from 'electron-updater';
 import { version as currentVersion } from './package.json';
+import addRecentFilesMenu from './app/main/add_recent_files_menu.js';
+import addCustomTemplates from './app/main/add_custom_templates.js';
 
 
 // VARIABLES //
@@ -28,9 +27,6 @@ if ( process.env.NODE_ENV === 'production' && process.argv[ len ] ) {
 else if ( config.has( 'mostRecentFilePath' ) ) {
 	pathToOpen = config.get( 'mostRecentFilePath' );
 }
-
-const recentFiles = config.get( 'recentFiles' ) || [];
-
 autoUpdater.allowPrerelease = true;
 autoUpdater.currentVersion = currentVersion;
 
@@ -85,104 +81,6 @@ function onReady() {
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 	addRecentFilesMenu();
 	addCustomTemplates();
-}
-
-function openRecentFactory( path ) {
-	return ( menuItem, browserWindow ) => {
-		actions.openFile( path, browserWindow );
-	};
-}
-
-function addRecentFilesMenu() {
-	const currentMenu = Menu.getApplicationMenu();
-	let fileMenu = null;
-	let recents = null;
-	for ( let i = 0; i < currentMenu.items.length; i++ ) {
-		const item = currentMenu.items[ i ];
-		if ( item.label === 'File' ) {
-			fileMenu = currentMenu.items[ i ];
-		}
-	}
-	if ( fileMenu ) {
-		for ( let i = 0; i < fileMenu.submenu.items.length; i++ ) {
-			const item = fileMenu.submenu.items[ i ];
-			if ( item.label === 'Open Recent' ) {
-				recents = fileMenu.submenu.items[ i ];
-			}
-		}
-	}
-	if ( recents ) {
-		for ( let i = 0; i < recentFiles.length; i++ ) {
-			const path = recentFiles[ i ];
-			const item = new MenuItem({
-				label: basename( path ),
-				click: openRecentFactory( path )
-			});
-			recents.submenu.append( item );
-		}
-		const onClearRecent = () => {
-			recents.submenu.clear();
-			config.set( 'recentFiles', [] );
-		};
-		recents.submenu.append( new MenuItem({
-			label: 'Clear recently opened',
-			click: onClearRecent
-		}));
-		Menu.setApplicationMenu( currentMenu );
-	}
-}
-
-function addCustomTemplates() {
-	const currentMenu = Menu.getApplicationMenu();
-	let customTemplates = null;
-	let fileMenu = null;
-
-	for ( let i = 0; i < currentMenu.items.length; i++ ) {
-		const item = currentMenu.items[ i ];
-		if ( item.label === 'File' ) {
-			fileMenu = currentMenu.items[ i ];
-		}
-	}
-	if ( fileMenu ) {
-		for ( let i = 0; i < fileMenu.submenu.items.length; i++ ) {
-			const item = fileMenu.submenu.items[ i ];
-			if ( item.label === 'New From Template' ) {
-				customTemplates = fileMenu.submenu.items[ i ];
-			}
-		}
-	}
-	if ( customTemplates ) {
-		customTemplates.submenu.append( new MenuItem({
-			type: 'separator'
-		}) );
-		const templates = config.get( 'templates' ) || {};
-		const keys = objectKeys( templates );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const name = keys[ i ];
-			const item = new MenuItem({
-				label: name,
-				click: ( _, browserWindow ) => {
-					actions.newFromTemplate({
-						browserWindow,
-						name
-					});
-				}
-			});
-			customTemplates.submenu.append( item );
-		}
-
-		/*
-		const onClearRecent = () => {
-			customTemplates.submenu.clear();
-			config.set( 'recentFiles', [] );
-		};
-		customTemplates.submenu.append( new MenuItem({
-			label: 'Clear recently opened',
-			click: onClearRecent
-		}));
-		*/
-		Menu.setApplicationMenu( currentMenu );
-	}
 }
 
 
