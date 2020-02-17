@@ -62,7 +62,7 @@ class Header extends Component {
 					<span style={{ paddingLeft: 5 }} >
 						<OverlayTrigger
 							placement="right"
-							overlay={<div
+							overlay={() => ( <div
 								style={{
 									backgroundColor: 'rgba(50, 50, 50, 0.85)',
 									padding: '2px 10px',
@@ -71,7 +71,7 @@ class Header extends Component {
 								}}
 							>
 								{this.props.filePath || 'Please save file...'}
-							</div>}
+							</div> )}
 						>
 							<span style={{ paddingRight: 5 }}>{this.props.fileName || 'Untitled Document'}</span>
 						</OverlayTrigger>
