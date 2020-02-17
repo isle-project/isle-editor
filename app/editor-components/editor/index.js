@@ -976,6 +976,47 @@ class Editor extends Component {
 			this.insertTextAtPos( text, [ target.position.lineNumber, target.position.column ], true );
 		}
 		if ( e.dataTransfer.files ) {
+			if ( !this.props.filePath ) {
+				const self = this;
+				const overlaySaveWidget = {
+					domNode: null,
+					pre: null,
+					getId() {
+						return 'overlay.save.widget';
+					},
+					getDomNode() {
+						if ( !this.domNode ) {
+							this.domNode = document.createElement( 'div' );
+							this.domNode.style.right = '20px';
+							this.domNode.style.top = '12px';
+							this.domNode.style.width = '400px';
+
+							const button = document.createElement( 'button' );
+							button.innerHTML = 'X';
+							button.style.position = 'absolute';
+							button.style.right = '5px';
+							button.style.top = '5px';
+							button.style.border = '0';
+							button.style.background = 'none';
+							button.style.cursor = 'pointer';
+							button.addEventListener( 'click', () => {
+								self.editor.removeOverlayWidget( overlaySaveWidget );
+							});
+							this.domNode.appendChild( button );
+							this.pre = document.createElement( 'pre' );
+							this.pre.innerHTML = 'You must save the file before you can insert content such as images via drag & drop.';
+							this.pre.style.background = 'lightgrey';
+							this.pre.style.whiteSpace = 'pre-wrap';
+							this.domNode.appendChild( this.pre );
+						}
+						return this.domNode;
+					},
+					getPosition() {
+						return null;
+					}
+				};
+				this.editor.addOverlayWidget( overlaySaveWidget );
+			}
 			for ( let i = 0; i < e.dataTransfer.files.length; i++) {
 				const file = e.dataTransfer.files[ i ];
 				if ( startsWith( file.type, 'image' ) ) {
