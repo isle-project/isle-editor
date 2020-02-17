@@ -142,9 +142,14 @@ function configureIpcRenderer( store ) {
 					className: 'vex-dialog-button-danger',
 					click() {
 						vex.dialog.confirm({
-							message: 'Are you sure you want to delete the `'+name+'` template?',
+							unsafeMessage: '<p>Are you sure you want to delete the <b>'+name+'</b> template?</p>',
+							buttons: [
+								{ ...vex.dialog.buttons.YES, className: 'vex-dialog-button-danger' },
+								vex.dialog.buttons.NO
+							],
 							callback( value ) {
 								if ( value ) {
+									vex.dialog.alert( 'Template successfully deleted.' );
 									config.delete( 'templates.'+name );
 									ipcRenderer.send( 'redraw-templates-menu' );
 								}
