@@ -4,6 +4,7 @@
 
 import { app, Menu } from 'electron';
 import Store from 'electron-store';
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
@@ -38,6 +39,7 @@ autoUpdater.currentVersion = currentVersion;
 */
 function onReady() {
 	console.log( 'Application is ready...' ); // eslint-disable-line no-console
+
 	createWindow({
 		filePath: pathToOpen,
 		callback: ( mainWindow ) => {
@@ -81,6 +83,10 @@ function onReady() {
 	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
 	addRecentFilesMenu();
 	addCustomTemplates();
+
+	installExtension( REACT_DEVELOPER_TOOLS )
+		.then((name) => console.log(`Added Extension:  ${name}`)) // eslint-disable-line no-console
+		.catch((err) => console.log('An error occurred: ', err)); // eslint-disable-line no-console
 }
 
 
