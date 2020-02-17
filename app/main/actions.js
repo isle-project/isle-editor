@@ -7,6 +7,7 @@ import logger from 'debug';
 import Store from 'electron-store';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
+import window from './window_manager.js';
 import addCustomTemplates from './add_custom_templates.js';
 import { exec } from 'child_process';
 
@@ -80,6 +81,11 @@ ipcMain.on( 'create-from-user-template', ( e, { name }) => {
 
 ipcMain.on( 'redraw-templates-menu', () => {
 	addCustomTemplates();
+});
+
+ipcMain.on( 'close-window', ( e, { windowID }) => {
+	const { windows } = window;
+	windows[ windowID ].close();
 });
 
 
@@ -193,6 +199,12 @@ export function createTemplate({ browserWindow, includePreamble }) {
 export function showDialog({ browserWindow, message }) {
 	browserWindow.webContents.send( 'show-dialog', {
 		message
+	});
+}
+
+export function startClosingApp({ browserWindow }) {
+	browserWindow.webContents.send( 'confirm-close-when-unsaved', {
+		windowID: browserWindow.id
 	});
 }
 

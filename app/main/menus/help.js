@@ -1,6 +1,6 @@
 // MODULES //
 
-import { BrowserWindow, net } from 'electron';
+import { net } from 'electron';
 import os from 'os';
 import * as actions from './../actions';
 import { version as currentVersion } from './../../../package.json';

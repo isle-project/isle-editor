@@ -73,7 +73,7 @@ export default {
 		label: 'Quit',
 		accelerator: 'CmdOrCtrl+Q',
 		click: ( menuItem, browserWindow ) => {
-			actions.closeApp({ browserWindow });
+			actions.startClosingApp({ browserWindow });
 		}
 	} ]
 };

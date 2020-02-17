@@ -123,8 +123,8 @@ function configureIpcRenderer( store ) {
 			buttons: [
 				{
 					type: 'text',
-					text: 'Insert',
-					className: '',
+					text: 'Confirm',
+					className: 'vex-dialog-button-primary',
 					click() {
 						ipcRenderer.send( 'create-from-user-template', {
 							name
@@ -134,12 +134,12 @@ function configureIpcRenderer( store ) {
 				{
 					type: 'text',
 					text: 'Cancel',
-					className: ''
+					className: 'vex-dialog-button-secondary'
 				},
 				{
 					type: 'text',
 					text: 'Delete',
-					className: '',
+					className: 'vex-dialog-button-danger',
 					click() {
 						vex.dialog.confirm({
 							message: 'Are you sure you want to delete the `'+name+'` template?',
@@ -206,6 +206,52 @@ function configureIpcRenderer( store ) {
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
 		config.set( 'recentFiles', [] );
+	});
+
+	ipcRenderer.on( 'confirm-close-when-unsaved', ( e, { windowID }) => {
+		const state = store.getState();
+		const unsaved = state.markdown.unsaved;
+		if ( unsaved ) {
+			vex.dialog.open({
+				message: 'Do you want to save the changes made to the current file?',
+				buttons: [
+					{
+						type: 'text',
+						text: 'Save',
+						className: 'vex-dialog-button-primary',
+						click() {
+							const filePath = state.markdown.filePath;
+							const data = state.markdown.markdown;
+							if ( !filePath ) {
+								ipcRenderer.send( 'save-file-as', {
+									data
+								});
+								return;
+							}
+							ipcRenderer.send( 'save-file', {
+								data,
+								filePath
+							});
+						}
+					},
+					{
+						type: 'text',
+						text: 'Cancel',
+						className: 'vex-dialog-button-secondary'
+					},
+					{
+						type: 'text',
+						text: 'Don\' save',
+						className: 'vex-dialog-button-secondary',
+						click() {
+							ipcRenderer.send( 'close-window', { windowID });
+						}
+					}
+				]
+			});
+		} else {
+			ipcRenderer.send( 'close-window', { windowID });
+		}
 	});
 
 	ipcRenderer.on( 'close-editor', () => {
