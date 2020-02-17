@@ -2,11 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import ReactPlayer from 'react-player';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/voice-control';
+import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -43,6 +45,7 @@ class Video extends Component {
 		super( props );
 		this.id = props.id || uid( props );
 		this.state = {
+			encounteredError: null,
 			progress: {}
 		};
 	}
@@ -84,6 +87,12 @@ class Video extends Component {
 		this.props.onEnded();
 	}
 
+	handleError = ( event ) => {
+		this.setState({
+			encounteredError: 'Video could not be loaded.'
+		});
+	}
+
 	handleProgress = ( progress ) => {
 		this.setState({
 			progress: progress
@@ -103,6 +112,23 @@ class Video extends Component {
 	stopPlayer = () => {
 		const player = this.player.getInternalPlayer();
 		player.stopVideo();
+	}
+
+	renderError() {
+		if ( !this.state.encounteredError ) {
+			return null;
+		}
+		const button = <Tooltip tooltip="Retry">
+			<Button size="sm" variant="light-outline" onClick={() => {
+				this.setState({ encounteredError: null });
+			}} style={{ position: 'absolute', top: 5, right: 5 }}>
+				<i className="fas fa-redo"></i>
+			</Button>
+		</Tooltip>;
+		return ( <div style={{ position: 'relative' }}>
+			<pre>{this.state.encounteredError}</pre>
+			{button}
+		</div> );
 	}
 
 	render() {
@@ -137,17 +163,21 @@ class Video extends Component {
 			className="video"
 		>
 			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-			<ReactPlayer
-				onPlay={this.handlePlay}
-				onPause={this.handlePause}
-				onEnded={this.handleEnded}
-				onProgress={this.handleProgress}
-				onReady={this.handleStartTime}
-				progressInterval={1000}
-				ref={( div ) => { this.player = div; }}
-				config={config}
-				{...props}
-			/>
+			{ this.state.encounteredError ?
+				this.renderError() :
+				<ReactPlayer
+					onPlay={this.handlePlay}
+					onPause={this.handlePause}
+					onEnded={this.handleEnded}
+					onProgress={this.handleProgress}
+					onReady={this.handleStartTime}
+					onError={this.handleError}
+					progressInterval={1000}
+					ref={( div ) => { this.player = div; }}
+					config={config}
+					{...props}
+				/>
+			}
 		</div>;
 		return out;
 	}
