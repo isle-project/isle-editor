@@ -77,8 +77,8 @@ const config = smp.wrap({
 		port,
 		publicPath,
 		compress: true,
-		noInfo: true,
 		stats: 'errors-only',
+
 		inline: true,
 		lazy: false,
 		hot: true,
@@ -92,6 +92,10 @@ const config = smp.wrap({
 		historyApiFallback: {
 			verbose: true,
 			disableDotRule: false
+		},
+		overlay: {
+			warnings: false,
+			errors: true
 		},
 		before() {
 			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env

@@ -135,6 +135,10 @@ const config = {
 		})
 	],
 
+	stats: {
+		warnings: false
+	},
+
 	target: 'electron-renderer'
 };
 
