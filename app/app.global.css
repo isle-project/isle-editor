@@ -71,3 +71,26 @@ h6 {
 .Resizer .disabled:hover {
 	border-color: transparent;
 }
+
+.vex-dialog-button-danger {
+	background: #ca5800;
+	color: #fff;
+}
+
+.splitpane {
+	height: auto !important;
+}
+
+.Lesson {
+	overflow: hidden;
+}
+
+.common_x97hsk.overflowScroll_eywtei {
+	height: 100% !important;
+}
+
+.welcome-screen {
+	background: white;
+	height: 100%;
+	width: 100%;
+}
