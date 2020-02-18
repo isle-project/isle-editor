@@ -26,6 +26,7 @@ import TeX from 'components/tex';
 /**
 * A learning component for calculating probabilities of a binomial distribution.
 *
+* @property {boolean} hideCDF - controls whether to hide the CDF display
 * @property {number} step - step size of the scroll input
 * @property {Object} style - CSS inline styles
 */
@@ -186,13 +187,13 @@ class BinomialProps extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
+															fill: val => ( val.datum.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
 												</VictoryChart>
 											</Col>
-											<Col md={6} >
+											{ !this.props.hideCDF ? <Col md={6} >
 												<VictoryChart theme={VictoryTheme.material} >
 													<VictoryAxis dependentAxis />
 													<VictoryAxis
@@ -228,7 +229,7 @@ class BinomialProps extends Component {
 														}}
 													/>
 												</VictoryChart>
-											</Col>
+											</Col> : null }
 										</Row>
 									</Panel>
 								</Col>
@@ -258,13 +259,13 @@ class BinomialProps extends Component {
 														data={this.state.data}
 														style={{
 															data: {
-																fill: data => ( data.x <= x0 ) ? 'tomato' : 'steelblue'
+																fill: val => ( val.datum.x <= x0 ) ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
 												</VictoryChart>
 											</Col>
-											<Col md={6} >
+											{ !this.props.hideCDF ? <Col md={6} >
 												<VictoryChart theme={VictoryTheme.material} >
 													<VictoryAxis dependentAxis />
 													<VictoryAxis
@@ -300,7 +301,7 @@ class BinomialProps extends Component {
 														}}
 													/>
 												</VictoryChart>
-											</Col>
+											</Col> : null }
 										</Row>
 									</Panel>
 								</Col>
@@ -330,13 +331,13 @@ class BinomialProps extends Component {
 														data={this.state.data}
 														style={{
 															data: {
-																fill: data => ( data.x > this.state.x0 ) ? 'tomato' : 'steelblue'
+																fill: val => ( val.datum.x > this.state.x0 ) ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
 												</VictoryChart>
 											</Col>
-											<Col md={6} >
+											{ !this.props.hideCDF ? <Col md={6} >
 												<VictoryChart theme={VictoryTheme.material} >
 													<VictoryAxis dependentAxis />
 													<VictoryAxis
@@ -372,7 +373,7 @@ class BinomialProps extends Component {
 														}}
 													/>
 												</VictoryChart>
-											</Col>
+											</Col> : null }
 										</Row>
 									</Panel>
 								</Col>
@@ -405,13 +406,13 @@ class BinomialProps extends Component {
 														data={this.state.data}
 														style={{
 															data: {
-																fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
+																fill: val => ( this.state.x0 <= val.datum.x && val.datum.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
 												</VictoryChart>
 											</Col>
-											<Col md={6} >
+											{ !this.props.hideCDF ? <Col md={6} >
 												<VictoryChart theme={VictoryTheme.material} >
 													<VictoryAxis dependentAxis />
 													<VictoryAxis
@@ -429,7 +430,7 @@ class BinomialProps extends Component {
 														}}
 													/>
 												</VictoryChart>
-											</Col>
+											</Col> : null }
 										</Row>
 									</Panel>
 								</Col>
@@ -449,6 +450,7 @@ class BinomialProps extends Component {
 // PROPERTIES //
 
 BinomialProps.propTypes = {
+	hideCDF: PropTypes.bool,
 	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -457,6 +459,7 @@ BinomialProps.propTypes = {
 };
 
 BinomialProps.defaultProps = {
+	hideCDF: PropTypes.bool,
 	step: 0.01,
 	style: {}
 };
