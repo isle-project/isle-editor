@@ -85,7 +85,9 @@ ipcMain.on( 'redraw-templates-menu', () => {
 
 ipcMain.on( 'close-window', ( e, { windowID }) => {
 	const { windows } = window;
-	windows[ windowID ].close();
+	const win = windows[ windowID ];
+	win.unref();
+	win.destroy();
 });
 
 

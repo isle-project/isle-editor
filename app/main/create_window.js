@@ -31,6 +31,12 @@ function createWindow({ filePath, callback, fromTemplate } = {}) {
 		minWidth: 400,
 		minHeight: 300
 	});
+	mainWindow.on( 'close', ( event ) => {
+		event.preventDefault();
+		mainWindow.webContents.send( 'confirm-close-when-unsaved', {
+			windowID: mainWindow.id
+		});
+	});
 
 	let indexPath;
 	if ( process.env.NODE_ENV === 'development' ) {

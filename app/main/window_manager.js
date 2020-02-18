@@ -48,7 +48,6 @@ function _loadUrl( httpOrFileUrl, callback ) {
 function createWindow( options ) {
 	const window = _createWindow( options );
 	window.unref = _unref.bind( window );
-	window.once( 'close', window.unref );
 	window._loadUrl = _loadUrl.bind( window );
 
 	window.showUrl = ( httpOrFileUrl, callback ) => {
