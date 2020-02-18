@@ -23,6 +23,7 @@ import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
+import { TOGGLE_BLACKSCREEN } from 'constants/actions';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -134,7 +135,22 @@ class StatusBar extends Component {
 					this.progressTimeout = null;
 				}, 4000 );
 			}
-			this.forceUpdate();
+			else if ( type === 'LOGGED_IN' || type === 'LOGGED_OUT' || type === 'SERVER_IS_LIVE' ) {
+				this.forceUpdate();
+			}
+			else if ( type === 'member_action' && data.type === TOGGLE_BLACKSCREEN ) {
+				if ( data.value ) {
+					const blackscreen = document.createElement( 'div' );
+					blackscreen.setAttribute( 'id', 'blackscreen' );
+					const lesson = document.getElementById( 'Lesson' );
+					lesson.appendChild( blackscreen );
+				} else {
+					const blackscreen = document.getElementById( 'blackscreen' );
+					if ( blackscreen ) {
+						blackscreen.parentElement.removeChild( blackscreen );
+					}
+				}
+			}
 		});
 		window.addEventListener( 'resize', this.getStatusbarInfo );
 
@@ -177,6 +193,32 @@ class StatusBar extends Component {
 		this.setState({
 			showStatusBar: !this.state.showStatusBar
 		});
+	}
+
+	toggleBlackScreen = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
+		let blackscreen = document.getElementById( 'blackscreen' );
+		const session = this.context;
+		if ( !blackscreen ) {
+			blackscreen = document.createElement( 'div' );
+			blackscreen.setAttribute( 'id', 'blackscreen' );
+			const lesson = document.getElementById( 'Lesson' );
+			lesson.appendChild( blackscreen );
+			session.log({
+				id: 'statusbar',
+				type: TOGGLE_BLACKSCREEN,
+				value: true
+			}, 'members' );
+		} else {
+			blackscreen.parentElement.removeChild( blackscreen );
+			session.log({
+				id: 'statusbar',
+				type: TOGGLE_BLACKSCREEN,
+				value: false
+			}, 'members' );
+		}
 	}
 
 	toggleBar = () => {
@@ -359,6 +401,7 @@ class StatusBar extends Component {
 				evt.stopPropagation();
 			}
 		};
+		const isOwner = session.isOwner();
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		const duration = <Fragment>
 			<img className="statusbar-profile" alt="User Profile Pic" src={session.user.picture} onClick={preventPropagation} />
@@ -410,7 +453,7 @@ class StatusBar extends Component {
 								/>
 								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
 							</div>
-							{( session.hasOwner || isElectron ) ?
+							{( isOwner || isElectron ) ?
 								<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
@@ -419,6 +462,15 @@ class StatusBar extends Component {
 										<span className="fa fa-xs fa-eye-slash statusbar-icon" />
 									</span>
 								</Tooltip> : null }
+							{( isOwner || isElectron ) ?
+							<Tooltip placement="bottom" tooltip="Black out screen for everyone" >
+								<span role="button" tabIndex={0}
+									onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
+									className="statusbar-blackscreen-mode"
+								>
+									<span className="fa fa-xs fa-stop statusbar-icon" />
+								</span>
+							</Tooltip> : null }
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>

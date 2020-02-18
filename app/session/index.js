@@ -314,7 +314,7 @@ class Session {
 						this.server = this.config.server;
 					}
 				}
-				this.update();
+				this.update( 'SERVER_IS_LIVE' );
 			})
 			.catch( err => {
 				debug( 'Encountered an error: '+err.message );
@@ -1224,7 +1224,6 @@ class Session {
 					id
 				}) );
 				if ( message === 'ok' ) {
-					this.update( 'LOGGED_IN' );
 					this.handleLogin({ token, id });
 				}
 				clbk( null, response, body );
@@ -1366,7 +1365,7 @@ class Session {
 			if ( !userRights ) {
 				this.getUserRights();
 			}
-			this.update();
+			this.update( 'LOGGED_IN' );
 		})
 		.catch( ( err ) => {
 			debug( 'Encountered an error: '+err.message );

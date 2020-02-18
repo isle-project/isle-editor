@@ -6,7 +6,7 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-	z-index: 1003;
+	z-index: 1004;
 	opacity: 0.78;
 	cursor: pointer;
 	transition: opacity 0.4s ease-in-out;
@@ -160,7 +160,7 @@
 	z-index: 2;
 }
 
-#Lesson .statusbar-calculator {
+#Lesson .statusbar-presentation-mode {
 	left: 28px;
 	bottom: 3px;
 	position: absolute;
@@ -169,13 +169,25 @@
 	height: 18px;
 }
 
-#Lesson .statusbar-presentation-mode {
-	left: 28px;
+#Lesson .statusbar-blackscreen-mode {
+	left: 46px;
 	bottom: 3px;
 	position: absolute;
 	z-index: 2;
 	width: 18px;
 	height: 18px;
+}
+
+#Lesson #blackscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1003;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+	opacity: 0.95;
+	animation: anim-fade-in 2s;
 }
 
 #Lesson .statusbar-queue {
