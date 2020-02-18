@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -299,7 +300,7 @@ class PoissonDistribution extends Component {
 								<Col md={4} >
 									<Panel>
 										{this.renderInputs( 'greater' )}
-										<TeX raw={`'P(X > ${roundn( x0, -4 )}) = ${roundn( 1-ppois( x0, rate ), -4 )}`} />
+										<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-ppois( x0, rate ), -4 )}`} />
 									</Panel>
 								</Col>
 								<Col md={8} >
@@ -374,7 +375,10 @@ class PoissonDistribution extends Component {
 								<Col md={4} >
 									<Panel>
 										{this.renderInputs( 'range' )}
-										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( ppois( x1, rate ) - ppois( x0 - 1, rate ), -4 )}`} />
+										{ x1 >= x0 ?
+											<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( ppois( x1, rate ) - ppois( x0 - 1, rate ), -4 )}`} /> :
+											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+										}
 									</Panel>
 								</Col>
 								<Col md={8} >
