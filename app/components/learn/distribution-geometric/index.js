@@ -172,7 +172,7 @@ class GeometricDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
+															fill: val => ( val.datum.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -249,7 +249,7 @@ class GeometricDistribution extends Component {
 														data={this.state.data}
 														style={{
 															data: {
-																fill: data => data.x <= x0 ? 'tomato' : 'steelblue'
+																fill: val => val.datum.x <= x0 ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
@@ -325,7 +325,7 @@ class GeometricDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => data.x > x0 ? 'tomato' : 'steelblue'
+															fill: val => val.datum.x > x0 ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -400,7 +400,7 @@ class GeometricDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( x0 <= data.x && data.x <= x1 ) ? 'tomato' : 'steelblue'
+															fill: val => ( x0 <= val.datum.x && val.datum.x <= x1 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>

@@ -215,7 +215,7 @@ class DiscreteDistribution extends Component {
 										data={this.state.data}
 										style={{
 											data: {
-												fill: data => ( data.x <= this.state.x ) ? 'tomato' : 'steelblue'
+												fill: val => ( val.datum.x <= this.state.x ) ? 'tomato' : 'steelblue'
 											}
 										}}
 									/>
@@ -290,7 +290,7 @@ class DiscreteDistribution extends Component {
 										data={this.state.data}
 										style={{
 											data: {
-												fill: data => ( data.x < this.state.x ) ? 'tomato' : 'steelblue'
+												fill: val => ( val.datum.x < this.state.x ) ? 'tomato' : 'steelblue'
 											}
 										}}
 									/>
@@ -365,7 +365,7 @@ class DiscreteDistribution extends Component {
 										data={this.state.data}
 										style={{
 											data: {
-												fill: data => ( data.x > this.state.x ) ? 'tomato' : 'steelblue'
+												fill: val => ( val.datum.x > this.state.x ) ? 'tomato' : 'steelblue'
 											}
 										}}
 									/>
@@ -451,7 +451,7 @@ class DiscreteDistribution extends Component {
 										data={this.state.data}
 										style={{
 											data: {
-												fill: data => ( this.state.lower <= data.x && data.x <= this.state.upper ) ? 'tomato' : 'steelblue'
+												fill: val => ( this.state.lower <= val.datum.x && val.datum.x <= this.state.upper ) ? 'tomato' : 'steelblue'
 											}
 										}}
 									/>

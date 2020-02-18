@@ -167,7 +167,7 @@ class PoissonDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( data.x === x0 ) ? 'tomato' : 'steelblue'
+															fill: val => ( val.datum.x === x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -244,7 +244,7 @@ class PoissonDistribution extends Component {
 														data={this.state.data}
 														style={{
 															data: {
-																fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
+																fill: val => ( val.datum.x <= this.state.x0 ) ? 'tomato' : 'steelblue'
 															}
 														}}
 													/>
@@ -320,7 +320,7 @@ class PoissonDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
+															fill: val => ( val.datum.x >= this.state.x0 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
@@ -395,7 +395,7 @@ class PoissonDistribution extends Component {
 													data={this.state.data}
 													style={{
 														data: {
-															fill: data => ( this.state.x0 <= data.x && data.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
+															fill: val => ( this.state.x0 <= val.datum.x && val.datum.x <= this.state.x1 ) ? 'tomato' : 'steelblue'
 														}
 													}}
 												/>
