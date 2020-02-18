@@ -107,7 +107,7 @@ function configureIpcRenderer( store ) {
 					const state = store.getState().markdown;
 					let text = state.markdown;
 					if ( !includePreamble ) {
-						text = replace( text, RE_PREAMBLE, '<preamble>' );
+						text = replace( text, RE_PREAMBLE, '---\n<preamble>\n---' );
 					}
 					config.set( `templates.${value}`, text );
 					vex.dialog.alert( 'Template successfully created!' );
