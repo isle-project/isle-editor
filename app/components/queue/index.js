@@ -17,6 +17,7 @@ import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
+import { RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import 'react-table/react-table.css';
 import './queue.css';
 
@@ -50,7 +51,7 @@ class Queue extends Component {
 		if ( session ) {
 			debug( 'We have a session, subscribe the component...' );
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'RECEIVED_USER_RIGHTS' ) {
+				if ( type === RECEIVED_USER_RIGHTS ) {
 					// We need to check whether the user is an owner:
 					this.checkAuthorization();
 				} else if ( type === 'user_joined' && this.state.isOwner ) {

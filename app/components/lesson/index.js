@@ -9,6 +9,7 @@ import StickyNote from 'components/sticky-note';
 import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
+import { RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
 import 'css/lesson.css';
@@ -52,7 +53,7 @@ class Lesson extends Component {
 			}
 			else if (
 				type === 'received_lesson_info' ||
-				type === 'RECEIVED_USER_RIGHTS'
+				type === RECEIVED_USER_RIGHTS
 			) {
 				this.setState({
 					visible: session.isActive() || session.isOwner()

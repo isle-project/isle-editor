@@ -1,0 +1,4 @@
+export const LOGGED_IN = 'LOGGED_IN';
+export const LOGGED_OUT = 'LOGGED_OUT';
+export const RECEIVED_USER_RIGHTS = 'RECEIVED_USER_RIGHTS';
+export const SERVER_IS_LIVE = 'SERVER_IS_LIVE';

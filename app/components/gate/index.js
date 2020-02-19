@@ -2,6 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from 'constants/events.js';
+import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import SessionContext from 'session/context.js';
 import RoleContext from 'session/role_context.js';
 
@@ -38,10 +40,10 @@ class Gate extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if (
-					type === 'RECEIVED_USER_RIGHTS' ||
-					type === 'LOGGED_IN' ||
-					type === 'LOGGED_OUT' ||
-					type === 'TOGGLE_PRESENTATION_MODE'
+					type === RECEIVED_USER_RIGHTS ||
+					type === LOGGED_IN ||
+					type === LOGGED_OUT ||
+					type === TOGGLE_PRESENTATION_MODE
 				) {
 					this.checkAuthorization();
 				}

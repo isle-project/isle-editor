@@ -7,6 +7,7 @@ import endsWith from '@stdlib/string/ends-with';
 import Timer from 'components/timer';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
+import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
@@ -59,7 +60,7 @@ class CustomDeck extends Component {
 		});
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+			if ( type === TOGGLE_PRESENTATION_MODE ) {
 				this.setState({
 					showFullscreenControl: !value
 				});

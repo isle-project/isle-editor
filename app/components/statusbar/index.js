@@ -23,7 +23,8 @@ import isElectron from 'utils/is-electron';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
-import { TOGGLE_BLACKSCREEN } from 'constants/actions';
+import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
+import { SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN } from 'constants/events.js';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -135,7 +136,7 @@ class StatusBar extends Component {
 					this.progressTimeout = null;
 				}, 4000 );
 			}
-			else if ( type === 'LOGGED_IN' || type === 'LOGGED_OUT' || type === 'SERVER_IS_LIVE' ) {
+			else if ( type === LOGGED_IN || type === LOGGED_OUT || type === SERVER_IS_LIVE ) {
 				this.forceUpdate();
 			}
 			else if ( type === 'member_action' && data.type === TOGGLE_BLACKSCREEN ) {

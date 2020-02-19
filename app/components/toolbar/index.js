@@ -11,6 +11,7 @@ import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
+import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import HelpPage from './help.js';
 import './toolbar.css';
 
@@ -61,7 +62,7 @@ class Toolbar extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'TOGGLE_PRESENTATION_MODE' ) {
+			if ( type === TOGGLE_PRESENTATION_MODE ) {
 				this.setState({
 					showToolbar: !value
 				});

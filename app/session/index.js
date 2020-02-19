@@ -21,7 +21,8 @@ import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
-import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT } from 'constants/actions.js';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
+import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS, SERVER_IS_LIVE } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -314,7 +315,7 @@ class Session {
 						this.server = this.config.server;
 					}
 				}
-				this.update( 'SERVER_IS_LIVE' );
+				this.update( SERVER_IS_LIVE );
 			})
 			.catch( err => {
 				debug( 'Encountered an error: '+err.message );
@@ -572,7 +573,7 @@ class Session {
 					this.getCurrentUserActions();
 				}
 				// Send message to subscribed components:
-				this.update( 'RECEIVED_USER_RIGHTS', userRights );
+				this.update( RECEIVED_USER_RIGHTS, userRights );
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
@@ -1149,7 +1150,7 @@ class Session {
 			level: 'success',
 			position: 'tl'
 		});
-		this.update( 'LOGGED_OUT' );
+		this.update( LOGGED_OUT );
 	}
 
 	/**
@@ -1365,7 +1366,7 @@ class Session {
 			if ( !userRights ) {
 				this.getUserRights();
 			}
-			this.update( 'LOGGED_IN' );
+			this.update( LOGGED_IN );
 		})
 		.catch( ( err ) => {
 			debug( 'Encountered an error: '+err.message );
@@ -1492,7 +1493,7 @@ class Session {
 
 	togglePresentationView() {
 		this.presentationMode = !this.presentationMode;
-		this.update( 'TOGGLE_PRESENTATION_MODE', this.presentationMode );
+		this.update( TOGGLE_PRESENTATION_MODE, this.presentationMode );
 
 		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements. Hit F7 to leave the it.';
 		let title = 'Started presentation mode';
