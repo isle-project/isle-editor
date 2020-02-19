@@ -9,6 +9,7 @@ import Gate from 'components/gate';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
+import { USER_JOINED } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -92,7 +93,7 @@ class Revealer extends Component {
 					}
 				}
 				else if (
-					type === 'user_joined' &&
+					type === USER_JOINED &&
 					session.user.email !== action.email &&
 					( session.isOwner() || action.owner )
 				) {

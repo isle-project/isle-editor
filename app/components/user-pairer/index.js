@@ -14,6 +14,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
+import { USER_JOINED } from 'constants/events.js';
 import './user_pairer.css';
 
 
@@ -51,7 +52,7 @@ class UserPairer extends Component {
 			) {
 				this.forceUpdate();
 			}
-			else if ( type === 'user_joined' ) {
+			else if ( type === USER_JOINED ) {
 				const email = action.email;
 				if ( this.state.assignments[ email ] ) {
 					session.log( {

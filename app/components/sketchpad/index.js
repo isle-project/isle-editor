@@ -53,6 +53,7 @@ import {
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from 'constants/actions.js';
+import { USER_JOINED } from 'constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
@@ -253,7 +254,7 @@ class Sketchpad extends Component {
 		});
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'user_joined' ) {
+				if ( type === USER_JOINED ) {
 					debug( `User "${action.email}" joined...` );
 					const insertAction = {
 						id: this.id,

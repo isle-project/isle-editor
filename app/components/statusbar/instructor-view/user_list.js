@@ -12,6 +12,7 @@ import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
+import { USER_JOINED } from 'constants/events.js';
 import './user_list.css';
 
 
@@ -57,7 +58,7 @@ class UserList extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if (
 				type === 'received_users' ||
-				type === 'user_joined' ||
+				type === USER_JOINED ||
 				type === 'user_left' ||
 				type === 'selected_cohort'
 			) {

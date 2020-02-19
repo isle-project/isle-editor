@@ -22,7 +22,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS, SERVER_IS_LIVE } from 'constants/events.js';
+import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS, SERVER_IS_LIVE, USER_JOINED } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -847,7 +847,7 @@ class Session {
 					position: 'tl'
 				});
 			}
-			this.update( 'user_joined', data );
+			this.update( USER_JOINED, data );
 		});
 
 		socket.on( 'user_leaves', ( data ) => {

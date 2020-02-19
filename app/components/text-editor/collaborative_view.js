@@ -16,6 +16,7 @@ import FootnoteView from './views/footnote.js';
 import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
+import { USER_JOINED } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -75,7 +76,7 @@ class ProseMirrorCollaborative extends Component {
 		const session = this.props.session;
 		const docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'user_joined' ) {
+			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {
 					// Load the document from the server and start up:
 					this.props.session.joinCollaborativeEditing( this.props.id );
