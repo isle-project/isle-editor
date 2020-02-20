@@ -88,7 +88,7 @@ class Queue extends Component {
 					}
 				}
 				if ( action && action.id === this.id ) {
-					if ( action.type === 'ENTER_QUEUE' ) {
+					if ( action.type === ENTER_QUEUE ) {
 						debug( 'Someone is entering the queue' );
 						const newSize = this.state.queueSize + 1;
 						if ( this.state.isOwner ) {
@@ -112,7 +112,7 @@ class Queue extends Component {
 							});
 						}
 					}
-					else if ( action.type === 'LEFT_QUEUE' ) {
+					else if ( action.type === LEFT_QUEUE ) {
 						debug( 'Someone has been removed from the queue' );
 						const val = Number( action.value );
 						const newSize = this.state.queueSize - 1;
