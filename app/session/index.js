@@ -22,7 +22,13 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS, SERVER_IS_LIVE, USER_JOINED } from 'constants/events.js';
+import { CHAT_MESSAGE, COLLABORATIVE_EDITING_EVENTS, DISCONNECTED_FROM_SERVER, JOINED_COLLABORATIVE_EDITING,
+	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION,
+	MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT, OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS,
+	RECEIVED_CHAT_HISTORY, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
+	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
+	SELF_HAS_LEFT_CHAT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -702,7 +708,7 @@ class Session {
 			m.unread = false;
 			return m;
 		});
-		this.update( 'mark_messages' );
+		this.update( MARK_MESSAGES );
 	}
 
 	/**
@@ -729,7 +735,7 @@ class Session {
 				lessonName: this.lessonName,
 				chatroom: name
 			});
-			this.update( 'own_chat_message', name );
+			this.update( OWN_CHAT_MESSAGE, name );
 		}
 	}
 
@@ -766,7 +772,7 @@ class Session {
 				this.chats.splice( i, 1 );
 			}
 		}
-		this.update( 'removed_chat', name );
+		this.update( REMOVED_CHAT, name );
 	}
 
 	/**
@@ -827,7 +833,7 @@ class Session {
 					break;
 				}
 			}
-			this.update( 'received_users' );
+			this.update( RECEIVED_USERS );
 		});
 
 		socket.on( 'user_joins', ( data ) => {
@@ -862,7 +868,7 @@ class Session {
 					return user;
 				});
 				const isUser = data.email === this.user.email;
-				this.update( 'user_left', data.email );
+				this.update( USER_LEFT, data.email );
 				if ( this.config.joinNotifications && !isUser ) {
 					this.addNotification({
 						title: 'User has left',
@@ -888,7 +894,7 @@ class Session {
 				chat.messages = messages;
 				chat.members = members;
 			}
-			this.update( 'chat_history', chat );
+			this.update( RECEIVED_CHAT_HISTORY, chat );
 		});
 
 		socket.on( 'member_has_joined_chat', ({ name, member }) => {
@@ -897,12 +903,12 @@ class Session {
 			name = this.stripChatName( name );
 			if ( chat ) {
 				chat.members.push( member );
-				this.update( 'member_has_joined_chat', chat );
+				this.update( MEMBER_HAS_JOINED_CHAT, chat );
 			} else if ( member.email === this.user.email ) {
 				chat = { name: name, messages: [], members: []};
 				this.chats.push( chat );
 				this.socket.emit( 'join_chat', name );
-				this.update( 'self_has_joined_chat', chat );
+				this.update( SELF_HAS_JOINED_CHAT, chat );
 			}
 		});
 
@@ -913,27 +919,27 @@ class Session {
 			if ( this.user.email === member.email ) {
 				debug( 'I have left the chat...' );
 				this.removeChat( name );
-				this.update( 'self_has_left_chat', name );
+				this.update( SELF_HAS_LEFT_CHAT, name );
 			} else {
 				debug( 'Somebody else has left the chat' );
-				this.update( 'member_has_left_chat', name );
+				this.update( MEMBER_HAS_LEFT_CHAT, name );
 			}
 		});
 
 		socket.on( 'joined_collaborative_editing', ( id, data ) => {
-			this.update( 'joined_collaborative_editing', { id, data });
+			this.update( JOINED_COLLABORATIVE_EDITING, { id, data });
 		});
 
 		socket.on( 'sent_collaborative_editing_events', ( id, data ) => {
-			this.update( 'sent_collaborative_editing_events', { id, data });
+			this.update( SENT_COLLABORATIVE_EDITING_EVENTS, { id, data });
 		});
 
 		socket.on( 'polled_collaborative_editing_events', ( id, data ) => {
-			this.update( 'polled_collaborative_editing_events', { id, data });
+			this.update( POLLED_COLLABORATIVE_EDITING_EVENTS, { id, data });
 		});
 
 		socket.on( 'collaborative_editing_events', ( id, data ) => {
-			this.update( 'collaborative_editing_events', { id, data });
+			this.update( COLLABORATIVE_EDITING_EVENTS, { id, data });
 		});
 
 		socket.on( 'chat_message', ( data ) => {
@@ -942,7 +948,7 @@ class Session {
 				data.msg.unread = true;
 				chat.messages.push( data.msg );
 			}
-			this.update( 'chat_message', data.chatroom );
+			this.update( CHAT_MESSAGE, data.chatroom );
 		});
 
 		socket.on( 'memberAction', this.saveAction );
@@ -953,7 +959,7 @@ class Session {
 			debug( 'I am disconnected from the server...' );
 			this.live = false;
 			this.startPingServer();
-			this.update();
+			this.update( DISCONNECTED_FROM_SERVER );
 		});
 
 		this.socket = socket;
@@ -1000,7 +1006,7 @@ class Session {
 				response.json().then( json => {
 					debug( `Received ${json.actions.length} actions for lesson ${this.lessonName} (id: ${this.lessonID})...` );
 					this.socketActions = json.actions;
-					this.update( 'retrieved_user_actions', json.actions );
+					this.update( RETRIEVED_USER_ACTIONS, json.actions );
 					debug( '[4] Retrieve cohort information...' );
 					this.getCohorts();
 				});
@@ -1026,7 +1032,7 @@ class Session {
 						cohort.members = pluck( cohort.members, 'email' );
 					});
 					this.cohorts = cohorts.sort( titleCompare );
-					this.update( 'retrieved_cohorts', this.cohorts );
+					this.update( RETRIEVED_COHORTS, this.cohorts );
 				});
 			}
 		})
@@ -1054,7 +1060,7 @@ class Session {
 			if ( response.status === 200 ) {
 				response.json().then( body => {
 					this.currentUserActions = body.actions;
-					this.update( 'retrieved_current_user_actions', this.currentUserActions );
+					this.update( RETRIEVED_CURRENT_USER_ACTIONS, this.currentUserActions );
 				});
 			}
 		})
@@ -1075,15 +1081,15 @@ class Session {
 			this.socketActions = newArray;
 			debug( 'Number of actions: ' + this.socketActions.length );
 		}
-		if ( action.type === 'FOCUS_ELEMENT' ) {
+		if ( action.type === FOCUS_ELEMENT ) {
 			debug( `Received focus for element with ID ${action.id} by ${action.email}` );
 			this.userFocuses[ action.email ] = action.id;
 		}
-		else if ( action.type === 'LOSE_FOCUS_ELEMENT' ) {
+		else if ( action.type === LOSE_FOCUS_ELEMENT ) {
 			debug( `Remove focus for user ${action.email}` );
 			delete this.userFocuses[ action.email ];
 		}
-		this.update( 'member_action', action );
+		this.update( MEMBER_ACTION, action );
 	}
 
 	/**
@@ -1290,7 +1296,7 @@ class Session {
 				this.namespaceID = body.namespaceID;
 				PRIVATE_VARS[ 'active' ] = ( body.active === void 0 ) ? true : body.active;
 				debug( '[2] Retrieve user rights for said lesson and its namespace' );
-				this.update( 'received_lesson_info', body );
+				this.update( RECEIVED_LESSON_INFO, body );
 				this.getUserRights();
 			})
 			.catch( ( err ) => {
@@ -1436,7 +1442,7 @@ class Session {
 				}
 			}
 			PRIVATE_VARS[ 'progress' ] = progress;
-			this.update( 'self_initial_progress', progress );
+			this.update( SELF_INITIAL_PROGRESS, progress );
 			this.logSession();
 			initializedProgress = true;
 		}
@@ -1453,7 +1459,7 @@ class Session {
 						}
 						else if ( j === actions.length - 1 ) {
 							PRIVATE_VARS[ 'progress' ] = this.get( 'progress' ) + 1.0 / ids.length;
-							this.update( 'self_updated_progress', this.get( 'progress' ) );
+							this.update( SELF_UPDATED_PROGRESS, this.get( 'progress' ) );
 							this.unfinished = this.unfinished.filter( x => x !== id );
 							this.logSession();
 						}
@@ -1478,14 +1484,14 @@ class Session {
 			if ( !arr ) {
 				addedScore += pts;
 				PRIVATE_VARS[ 'score' ] = this.get( 'score' ) + pts;
-				this.update( 'self_updated_score', pts );
+				this.update( SELF_UPDATED_SCORE, pts );
 			}
 			else {
 				const types = arr.map( x => x.type );
 				if ( !contains( types, action.type ) ) {
 					addedScore += pts;
 					PRIVATE_VARS[ 'score' ] = this.get( 'score' ) + pts;
-					this.update( 'self_updated_score', pts );
+					this.update( SELF_UPDATED_SCORE, pts );
 				}
 			}
 		}

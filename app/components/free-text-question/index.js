@@ -24,6 +24,7 @@ import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
@@ -105,7 +106,7 @@ class FreeTextQuestion extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
+			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				this.setToLastAction();
 			}
 		});
@@ -199,7 +200,7 @@ class FreeTextQuestion extends Component {
 			let actions = val[ id ];
 			if ( isArray( actions ) ) {
 				actions = actions.filter( action => {
-					return action.type === 'FREE_TEXT_QUESTION_SUBMIT_ANSWER';
+					return action.type === FREE_TEXT_QUESTION_SUBMIT_ANSWER;
 				});
 				if ( actions.length > 0 ) {
 					return actions[ 0 ].value;

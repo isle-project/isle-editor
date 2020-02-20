@@ -17,6 +17,7 @@ import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
+import { CHAT_MESSAGE, MARK_MESSAGES, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT } from 'constants/events.js';
 import renderTime from './render_time.js';
 import './chat.css';
 
@@ -43,15 +44,15 @@ class Chat extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if (
-				type === 'chat_message' ||
-				type === 'member_has_joined_chat' ||
-				type === 'member_has_left_chat'
+				type === CHAT_MESSAGE ||
+				type === MEMBER_HAS_JOINED_CHAT ||
+				type === MEMBER_HAS_LEFT_CHAT
 			) {
 				this.setState({
 					hasNews: true
 				});
 			}
-			else if ( type === 'mark_messages' ) {
+			else if ( type === MARK_MESSAGES ) {
 				this.setState({
 					hasNews: false
 				});

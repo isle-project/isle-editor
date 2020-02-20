@@ -24,7 +24,8 @@ import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
-import { SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN } from 'constants/events.js';
+import { MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
+	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN } from 'constants/events.js';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -106,20 +107,20 @@ class StatusBar extends Component {
 				}
 			}, 3000);
 
-			if ( type === 'self_initial_progress' ) {
+			if ( type === SELF_INITIAL_PROGRESS ) {
 				this.setState({
 					progress: round( Number( data ) * 100 )
 				});
 			}
 			else if (
-				type === 'self_updated_progress' ||
-				type === 'self_updated_score'
+				type === SELF_UPDATED_PROGRESS ||
+				type === SELF_UPDATED_SCORE
 			) {
 				const newState = {
 					showProgressBar: true,
 					isProgressLeaving: true
 				};
-				if ( type === 'self_updated_progress' ) {
+				if ( type === SELF_UPDATED_PROGRESS ) {
 					newState.progress = round( Number( data ) * 100 );
 				}
 				this.setState( newState );
@@ -139,7 +140,7 @@ class StatusBar extends Component {
 			else if ( type === LOGGED_IN || type === LOGGED_OUT || type === SERVER_IS_LIVE ) {
 				this.forceUpdate();
 			}
-			else if ( type === 'member_action' && data.type === TOGGLE_BLACKSCREEN ) {
+			else if ( type === MEMBER_ACTION && data.type === TOGGLE_BLACKSCREEN ) {
 				if ( data.value ) {
 					const blackscreen = document.createElement( 'div' );
 					blackscreen.setAttribute( 'id', 'blackscreen' );

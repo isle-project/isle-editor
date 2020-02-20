@@ -6,7 +6,8 @@ import logger from 'debug';
 import Alert from 'react-bootstrap/Alert';
 import SessionContext from 'session/context.js';
 import isObject from '@stdlib/assert/is-object';
-import { isFunction } from 'util';
+import isFunction from '@stdlib/assert/is-function';
+import MEMBER_ACTION from 'constants/events.js';
 
 
 // VARIABLES //
@@ -30,7 +31,7 @@ class Reaction extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === 'member_action' && action.id === this.props.actionID ) {
+			if ( type === MEMBER_ACTION && action.id === this.props.actionID ) {
 				this.forceUpdate();
 			}
 		});

@@ -19,6 +19,7 @@ import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
 import generateUID from 'utils/uid';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION, FOCUS_ELEMENT } from 'constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
@@ -109,11 +110,11 @@ class MultipleChoiceQuestion extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
-				if ( type === 'retrieved_current_user_actions' ) {
+				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 					let actions = val[ this.id ];
 					if ( isArray( actions ) ) {
 						actions = actions.filter( action => {
-							return action.type === 'MULTIPLE_CHOICE_SUBMISSION';
+							return action.type === MULTIPLE_CHOICE_SUBMISSION;
 						});
 						if ( actions.length > 0 ) {
 							const lastAction = actions[ 0 ].value;
@@ -470,7 +471,7 @@ class MultipleChoiceQuestion extends Component {
 								levels: this.props.answers.map( x => x.content ),
 								question: this.props.question
 							}}
-							info="MULTIPLE_CHOICE_SUBMISSION"
+							info={MULTIPLE_CHOICE_SUBMISSION}
 						/>
 						{ this.props.feedback ? <FeedbackButtons
 							id={this.id+'_feedback'}

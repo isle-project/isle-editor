@@ -55,7 +55,9 @@ import formatFilters from './format_filters.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
-import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER, DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
+	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import './data_explorer.css';
 const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
 
@@ -244,7 +246,7 @@ class DataExplorer extends Component {
 				});
 		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
+			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				const currentUserActions = value;
 				const actions = currentUserActions[ this.id ];
 				if ( this.props.data && isObjectArray( actions ) ) {

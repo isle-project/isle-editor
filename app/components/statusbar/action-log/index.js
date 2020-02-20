@@ -19,6 +19,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
+import { LOGGED_OUT, MEMBER_ACTION, RETRIEVED_USER_ACTIONS, SELECTED_COHORT } from 'constants/events.js';
 import ActionList from './list.js';
 import createFilters from './create_filters';
 
@@ -55,16 +56,16 @@ class ActionLog extends Component {
 			});
 		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'logout' ) {
+			if ( type === LOGGED_OUT ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					filters: <span className="title">Filters:</span>
 				});
 			}
 			else if (
-				type === 'selected_cohort' ||
-				type === 'member_action' ||
-				type === 'retrieved_user_actions'
+				type === SELECTED_COHORT ||
+				type === MEMBER_ACTION ||
+				type === RETRIEVED_USER_ACTIONS
 			) {
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					actions: this.buildActionsArray()

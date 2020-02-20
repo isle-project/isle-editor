@@ -16,7 +16,8 @@ import FootnoteView from './views/footnote.js';
 import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
-import { USER_JOINED } from 'constants/events.js';
+import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
+	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -82,21 +83,21 @@ class ProseMirrorCollaborative extends Component {
 					this.props.session.joinCollaborativeEditing( this.props.id );
 				}
 			}
-			if ( type === 'joined_collaborative_editing' && action.id === docID ) {
+			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === docID ) {
 				debug( 'Joined collaborative editing...' );
 				this.handleStart( action.data );
 			}
-			else if ( type === 'polled_collaborative_editing_events' && action.id === docID ) {
+			else if ( type === POLLED_COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
 				if ( this.dispatchState.comm === 'polling' ) {
 					this.handlePollResponse( action.data );
 				}
-			} else if ( type === 'sent_collaborative_editing_events' && action.id === docID ) {
+			} else if ( type === SENT_COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
 				debug( 'Received response after sending collaborative editing events...' );
 				if ( this.dispatchState.comm === 'send' ) {
 					this.handleSendResponse( action.data );
 				}
 			}
-			else if ( type === 'collaborative_editing_events' && action.id === docID ) {
+			else if ( type === COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
 				debug( 'Received info that other user updated the document '+JSON.stringify( action.data )+'[comm='+this.dispatchState.comm+']' );
 				if ( this.dispatchState.comm === 'listening' ) {
 					this.dispatch({ type: 'polling' });

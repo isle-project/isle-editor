@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import indexOf from '@stdlib/utils/index-of';
 import SessionContext from 'session/context.js';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -36,8 +37,8 @@ class RealTimeMetrics extends Component {
 		if ( session ) {
 			debug( 'Listening for all actions with id: '+this.props.for );
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'member_action' ) {
-					if ( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' ) {
+				if ( type === MEMBER_ACTION ) {
+					if ( action.type === FOCUS_ELEMENT || action.type === LOSE_FOCUS_ELEMENT ) {
 						return null;
 					}
 					const idx = indexOf( this.props.for, action.id );

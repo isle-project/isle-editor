@@ -12,7 +12,8 @@ import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
-import { USER_JOINED } from 'constants/events.js';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
+	SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import './user_list.css';
 
 
@@ -57,17 +58,17 @@ class UserList extends Component {
 		const session = this.props.session;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if (
-				type === 'received_users' ||
+				type === RECEIVED_USERS ||
 				type === USER_JOINED ||
-				type === 'user_left' ||
-				type === 'selected_cohort'
+				type === USER_LEFT ||
+				type === SELECTED_COHORT
 			) {
 				debug( 'Should render the user list...' );
 				this.forceUpdate();
 			}
 			else if (
-				type === 'member_action' &&
-				( action.type === 'FOCUS_ELEMENT' || action.type === 'LOSE_FOCUS_ELEMENT' )
+				type === MEMBER_ACTION &&
+				( action.type === FOCUS_ELEMENT || action.type === LOSE_FOCUS_ELEMENT )
 			) {
 				if ( action.email === this.state.selected ) {
 					this.highlightElement( action.email );

@@ -25,6 +25,7 @@ import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';
 import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from 'constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import 'codemirror/mode/r/r.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -47,7 +48,7 @@ const getLastAction = ( val, id ) => {
 		let actions = val[ id ];
 		if ( isArray( actions ) ) {
 			actions = actions.filter( action => {
-				return action.type === 'RSHELL_EVALUATION';
+				return action.type === RSHELL_EVALUATION;
 			});
 			if ( actions.length > 0 ) {
 				return actions[ 0 ].value;
@@ -316,7 +317,7 @@ class RShell extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
-				if ( type === 'retrieved_current_user_actions' ) {
+				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 					let lastAction = getLastAction( val, this.id );
 					if ( isString( lastAction ) ) {
 						this.setState({
@@ -512,7 +513,7 @@ class RShell extends Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
 				</div>
-				<ResponseVisualizer id={this.id} info="RSHELL_EVALUATION" />
+				<ResponseVisualizer id={this.id} info={RSHELL_EVALUATION} />
 				{this.renderHelpModal()}
 			</div>
 		);

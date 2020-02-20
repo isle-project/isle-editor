@@ -18,6 +18,7 @@ import NumberSurvey from 'components/number-survey';
 import FreeTextSurvey from 'components/free-text-survey';
 import SessionContext from 'session/context.js';
 import { STOP_SURVEY, START_SURVEY } from 'constants/actions.js';
+import { MEMBER_ACTION } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -53,7 +54,7 @@ class SurveyGenerator extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			debug( 'Received member action...' );
-			if ( type === 'member_action' ) {
+			if ( type === MEMBER_ACTION ) {
 				if ( action.type === START_SURVEY ) {
 					debug( 'Should start the survey...' );
 					if ( this.id === action.id ) {

@@ -8,13 +8,13 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
-import Gate from 'components/gate';
 import shuffle from '@stdlib/random/shuffle';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
-import { USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, RECEIVED_USERS, RETRIEVED_COHORTS, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import './user_pairer.css';
 
 
@@ -46,9 +46,9 @@ class UserPairer extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if (
-				type === 'received_users' ||
-				type === 'user_left' ||
-				type === 'retrieved_cohorts'
+				type === RECEIVED_USERS ||
+				type === USER_LEFT ||
+				type === RETRIEVED_COHORTS
 			) {
 				this.forceUpdate();
 			}
@@ -64,25 +64,25 @@ class UserPairer extends Component {
 				}
 				this.forceUpdate();
 			}
-			else if ( type === 'member_action' ) {
+			else if ( type === MEMBER_ACTION ) {
 				if ( action.id === this.props.id ) {
-					if ( action.type === 'USERS_ASSIGNED' ) {
+					if ( action.type === USERS_ASSIGNED ) {
 						this.props.onAssignmentOwner( JSON.parse( action.value ) );
 						this.setState({
 							showAssignments: true
 						});
 					}
-					else if ( action.type === 'ASSIGNMENT_CLEARED' ) {
+					else if ( action.type === ASSIGNMENT_CLEARED ) {
 						this.props.onClearOwner();
 						this.setState({
 							showAssignments: false
 						});
 					}
-					else if ( action.type === 'INDIVIDUAL_ASSIGNED' ) {
+					else if ( action.type === INDIVIDUAL_ASSIGNED ) {
 						this.props.onAssignmentStudent( JSON.parse( action.value ) );
 						this.forceUpdate();
 					}
-					else if ( action.type === 'REMOVE_ASSIGNMENT' ) {
+					else if ( action.type === REMOVE_ASSIGNMENT ) {
 						this.props.onClearStudent( action.value );
 						this.forceUpdate();
 					}

@@ -9,6 +9,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import { SHARE_ENGAGEMENT } from 'constants/actions.js';
+import { MEMBER_ACTION } from 'constants/events.js';
 import './score.css';
 
 
@@ -38,7 +39,7 @@ class EngagementMeter extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'member_action' ) {
+				if ( type === MEMBER_ACTION ) {
 					if ( action.id === this.id ) {
 						if ( action.type === SHARE_ENGAGEMENT ) {
 							const mean = this.meanAcc( action.value );

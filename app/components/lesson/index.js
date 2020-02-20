@@ -9,7 +9,7 @@ import StickyNote from 'components/sticky-note';
 import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
-import { RECEIVED_USER_RIGHTS } from 'constants/events.js';
+import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
 import 'css/lesson.css';
@@ -45,14 +45,14 @@ class Lesson extends Component {
 		const session = this.context;
 		session.onLessonMount();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'retrieved_current_user_actions' ) {
+			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				const currentUserActions = value;
 				if ( isObjectArray( currentUserActions[ 'lesson' ] ) ) {
 					this.restoreNotes( currentUserActions );
 				}
 			}
 			else if (
-				type === 'received_lesson_info' ||
+				type === RECEIVED_LESSON_INFO ||
 				type === RECEIVED_USER_RIGHTS
 			) {
 				this.setState({

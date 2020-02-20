@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
+import { CHAT_HISTORY, CHAT_MESSAGE, OWN_CHAT_MESSAGE, REMOVED_CHAT,
+	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -40,7 +42,7 @@ class ChatButton extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
-				( type === 'self_has_joined_chat' || type === 'chat_history' ) &&
+				( type === SELF_HAS_JOINED_CHAT || type === CHAT_HISTORY ) &&
 				value.name === this.props.for
 			) {
 				this.setState({
@@ -50,22 +52,22 @@ class ChatButton extends Component {
 			}
 			else if ( value === this.props.for ) {
 				const chat = session.getChat( this.props.for );
-				if ( !chat || type === 'self_has_left_chat' ) {
+				if ( !chat || type === SELF_HAS_LEFT_CHAT ) {
 					this.setState({
 						opened: false
 					});
 				}
-				else if ( type === 'chat_message' ) {
+				else if ( type === CHAT_MESSAGE ) {
 					this.setState({
 						nMessages: this.state.nMessages + 1
 					});
 				}
-				else if ( type === 'own_chat_message' ) {
+				else if ( type === OWN_CHAT_MESSAGE ) {
 					this.setState({
 						nMessages: this.state.nMessages + 1
 					});
 				}
-				else if ( type === 'removed_chat' ) {
+				else if ( type === REMOVED_CHAT ) {
 					this.setState({
 						opened: false
 					});

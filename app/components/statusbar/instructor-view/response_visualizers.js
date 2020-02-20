@@ -14,6 +14,7 @@ import contains from '@stdlib/assert/contains';
 import round from '@stdlib/math/base/special/round';
 import incrmean from '@stdlib/stats/incr/mean';
 import formatTime from 'utils/format-time';
+import { MEMBER_ACTION, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -106,7 +107,7 @@ class ResponseVisualizers extends Component {
 			means
 		});
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === 'member_action' && contains( ids, value.id ) ) {
+			if ( type === MEMBER_ACTION && contains( ids, value.id ) ) {
 				const newMeans = copy( this.state.means );
 				newMeans[ value.id ]( value.time );
 				this.setState({
@@ -114,8 +115,8 @@ class ResponseVisualizers extends Component {
 				});
 			}
 			else if (
-				type === 'updated_visualizer' ||
-				type === 'selected_cohort'
+				type === UPDATED_VISUALIZER ||
+				type === SELECTED_COHORT
 			) {
 				this.forceUpdate();
 			}

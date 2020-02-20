@@ -53,7 +53,7 @@ import {
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from 'constants/actions.js';
-import { USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
@@ -285,7 +285,7 @@ class Sketchpad extends Component {
 						this.redraw();
 					});
 				}
-				else if ( type === 'member_action' ) {
+				else if ( type === MEMBER_ACTION ) {
 					if ( action.id !== this.id ) {
 						return;
 					}

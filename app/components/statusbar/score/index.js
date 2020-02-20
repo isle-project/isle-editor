@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import { SELF_UPDATED_SCORE } from 'constants/events.js';
 import './score.css';
 
 
@@ -30,7 +31,7 @@ class Score extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, data ) => {
-				if ( type === 'self_updated_score' ) {
+				if ( type === SELF_UPDATED_SCORE ) {
 					this.addScore( data );
 				}
 			});

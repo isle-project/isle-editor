@@ -9,7 +9,7 @@ import Gate from 'components/gate';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
-import { USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, RETRIEVED_COHORTS, USER_JOINED } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -54,10 +54,10 @@ class Revealer extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'retrieved_cohorts' ) {
+				if ( type === RETRIEVED_COHORTS ) {
 					this.forceUpdate();
 				}
-				else if ( type === 'member_action' ) {
+				else if ( type === MEMBER_ACTION ) {
 					if ( action.id === this.id ) {
 						const cohortName = action.value;
 						debug( `Received action for cohort ${cohortName}: ` );

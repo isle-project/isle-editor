@@ -15,6 +15,7 @@ import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
+import { SELECTED_COHORT } from 'constants/events.js';
 import './instructor_view.css';
 
 
@@ -108,7 +109,7 @@ class InstructorView extends Component {
 		this.setState({
 			selectedCohort: cohort
 		}, () =>{
-			session.update( 'selected_cohort', this.state.selectedCohort );
+			session.update( SELECTED_COHORT, this.state.selectedCohort );
 		});
 	}
 
