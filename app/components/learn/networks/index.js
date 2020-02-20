@@ -1,15 +1,17 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import randu from '@stdlib/random/base/randu';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import incrspace from '@stdlib/math/utils/incrspace';
+import randu from '@stdlib/random/base/randu';
 import Dashboard from 'components/dashboard';
 import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import Panel from 'components/panel';
 import NetworkPlot from 'components/d3/network-plot';
+import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 
 
@@ -19,11 +21,14 @@ class Networks extends Component {
 	constructor( props ) {
 		super( props );
 
+		const numNodes = 10;
 		this.state = {
 			network: {
 				links: [],
 				nodes: []
-			}
+			},
+			numNodes,
+			tally: new Array( (0.5 * numNodes * ( numNodes-1 )) + 1 ).fill( 0 )
 		};
 	}
 
@@ -42,11 +47,38 @@ class Networks extends Component {
 				}
 			}
 		}
-		this.setState({
+		const newState = {
 			network: {
 				links, nodes
 			}
-		});
+		};
+		let tally;
+		let numNodes = this.state.numNodes;
+		if ( m !== numNodes ) {
+			numNodes = m;
+			tally= new Array( ( 0.5 * m * ( m-1 ) ) + 1 ).fill( 0 );
+		} else {
+			tally = this.state.tally;
+		}
+		tally[ links.length ] += 1;
+		newState.numNodes = numNodes;
+		newState.tally = tally;
+		this.setState( newState );
+	}
+
+	renderTallyPlot() {
+		return ( <Plotly removeButtons
+			layout={{
+				title: 'Number of edges per generated network',
+				height: 250
+			}}
+			data={[
+			{
+				x: incrspace( 0, this.state.tally.length, 1 ),
+				y: this.state.tally,
+				type: 'bar'
+			}
+		]} /> );
 	}
 
 	render() {
@@ -81,6 +113,7 @@ class Networks extends Component {
 								height={350}
 								data={this.state.network}
 							/>
+							{this.renderTallyPlot()}
 						</Panel>
 						<FeedbackButtons
 							id="networks"
