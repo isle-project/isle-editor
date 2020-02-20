@@ -17,7 +17,7 @@ import ChatButton from 'components/chat-button';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
-import { RECEIVED_USER_RIGHTS, USER_JOINED } from 'constants/events.js';
+import { RECEIVED_USER_RIGHTS, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import 'react-table/react-table.css';
 import './queue.css';
 
@@ -62,7 +62,7 @@ class Queue extends Component {
 						noSave: true
 					}, 'members' );
 				}
-				else if ( type === 'user_left' && this.state.isOwner ) {
+				else if ( type === USER_LEFT && this.state.isOwner ) {
 					let pos = -1;
 					for ( let i = 0; i < this.state.arr.length; i++ ) {
 						const val = this.state.arr[ i ];

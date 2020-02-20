@@ -3,6 +3,7 @@
 import copy from '@stdlib/utils/copy';
 import logger from 'debug';
 import isObjectLike from '@stdlib/assert/is-object-like';
+import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION, USER_FEEDBACK_FORM } from 'constants/actions.js';
 
 
 // VARIABLES //
@@ -13,7 +14,7 @@ const debug = logger( 'isle:response-visualizer' );
 // MAIN //
 
 function extractValue( action ) {
-	if ( action.type === 'USER_FEEDBACK_FORM' ) {
+	if ( action.type === USER_FEEDBACK_FORM ) {
 		action = copy( action );
 		debug( 'Received a feedback action...' );
 		let json;
@@ -37,8 +38,8 @@ function extractValue( action ) {
 		}
 	}
 	else if (
-		action.type === 'MULTIPLE_CHOICE_MATRIX_SUBMISSION' ||
-		action.type === 'MATCH_LIST_SUBMISSION'
+		action.type === MULTIPLE_CHOICE_MATRIX_SUBMISSION ||
+		action.type === MATCH_LIST_SUBMISSION
 	) {
 		if ( !isObjectLike( action.value ) ) {
 			action.value = JSON.parse( action.value );

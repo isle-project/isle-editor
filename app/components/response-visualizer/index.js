@@ -18,6 +18,8 @@ import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
+	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 import './response_visualizer.css';
@@ -105,10 +107,10 @@ class ResponseVisualizer extends Component {
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === 'retrieved_user_actions' ) {
+				if ( type === RETRIEVED_USER_ACTIONS ) {
 					this.addSessionActions();
 				}
-				else if ( type === 'selected_cohort' ) {
+				else if ( type === SELECTED_COHORT ) {
 					if ( isObject( action ) ) {
 						this.setState({
 							selectedCohort: action
@@ -121,12 +123,12 @@ class ResponseVisualizer extends Component {
 					}
 				}
 				else if (
-					type === 'member_action' &&
+					type === MEMBER_ACTION &&
 					action.id === this.props.id
 				) {
 					if (
-						action.type === 'FOCUS_ELEMENT' ||
-						action.type === 'LOSE_FOCUS_ELEMENT'
+						action.type === FOCUS_ELEMENT ||
+						action.type === LOSE_FOCUS_ELEMENT
 					) {
 						this.forceUpdate();
 					} else if (
@@ -294,7 +296,7 @@ class ResponseVisualizer extends Component {
 			}
 		}
 		this.setState( newState, () => {
-			session.update( 'updated_visualizer', this.props.id );
+			session.update( UPDATED_VISUALIZER, this.props.id );
 		});
 	}
 
