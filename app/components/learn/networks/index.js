@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,6 +18,11 @@ import TeX from 'components/tex';
 
 // MAIN //
 
+/**
+* Generate networks from a Erdős–Rényi model.
+*
+* @property {bool} showEdgeChart - controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)
+*/
 class Networks extends Component {
 	constructor( props ) {
 		super( props );
@@ -67,6 +73,9 @@ class Networks extends Component {
 	}
 
 	renderTallyPlot() {
+		if ( !this.props.showEdgeChart ) {
+			return null;
+		}
 		return ( <Plotly removeButtons
 			layout={{
 				title: 'Number of edges per generated network',
@@ -124,6 +133,16 @@ class Networks extends Component {
 		);
 	}
 }
+
+// PROPERTIES //
+
+Networks.defaultProps = {
+	showEdgeChart: false
+};
+
+Networks.propTypes = {
+	showEdgeChart: PropTypes.bool
+};
 
 
 // EXPORTS //
