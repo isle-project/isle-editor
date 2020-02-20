@@ -28,6 +28,15 @@ const SUPPLIED_TEMPLATES = [{
 	}
 },
 {
+	label: 'Presentation',
+	click: ( menuItem, browserWindow ) => {
+		actions.newFromTemplate({
+			browserWindow,
+			name: 'presentation'
+		});
+	}
+},
+{
 	label: 'Video Lecture',
 	click: ( menuItem, browserWindow ) => {
 		actions.newFromTemplate({

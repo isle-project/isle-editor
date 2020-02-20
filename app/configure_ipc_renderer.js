@@ -13,6 +13,7 @@ import logger from 'debug';
 import VIDEO_LECTURE_TEMPLATE from 'constants/templates/video_lecture.js';
 import LECTURE_SLIDES_TEMPLATE from 'constants/templates/lecture_slides.js';
 import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
+import PRESENTATION_TEMPLATE from 'constants/templates/presentation.js';
 import PREAMBLE from 'constants/preamble.js';
 import mergePrambles from 'utils/merge-preambles';
 import 'vex-js/dist/css/vex.css';
@@ -68,6 +69,13 @@ function configureIpcRenderer( store ) {
 		switch ( name ) {
 			case 'video-lecture':
 				template = VIDEO_LECTURE_TEMPLATE;
+				preambleAdditions = {};
+			break;
+			case 'presentation':
+				template = PRESENTATION_TEMPLATE;
+				preambleAdditions = {
+					type: 'presentation'
+				};
 			break;
 			case 'lecture-slides':
 				template = LECTURE_SLIDES_TEMPLATE;
