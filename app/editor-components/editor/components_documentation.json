@@ -2351,6 +2351,12 @@
   "LearnBinomialDistribution": {
     "props": [
       {
+        "name": "hideCDF",
+        "type": "boolean",
+        "description": "controls whether to hide the CDF display",
+        "default": "boolean"
+      },
+      {
         "name": "step",
         "type": "(number|string)",
         "description": "step size of the scroll input",
@@ -2780,8 +2786,15 @@
     "description": "An interactive game testing student's ability in detecting the median and mean of a given distribution."
   },
   "LearnNetworks": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "showEdgeChart",
+        "type": "boolean",
+        "description": "controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)",
+        "default": false
+      }
+    ],
+    "description": "Generate networks from a Erdős–Rényi model."
   },
   "LearnSOTU": {
     "props": [
@@ -4271,6 +4284,12 @@
         "default": 350
       },
       {
+        "name": "draggable",
+        "type": "boolean",
+        "description": "controls whether the plot should be draggable",
+        "default": false
+      },
+      {
         "name": "fileType",
         "type": "string",
         "description": "file type of the plot (`png` or `svg`)",
@@ -4287,6 +4306,12 @@
         "type": "(string|array)",
         "description": "`string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating",
         "default": ""
+      },
+      {
+        "name": "meta",
+        "type": "object",
+        "description": "plot meta-information",
+        "default": null
       },
       {
         "name": "onDone",
