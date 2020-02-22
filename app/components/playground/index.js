@@ -8,13 +8,15 @@ import {
 	LiveError,
 	LivePreview
 } from 'react-live';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
 import SessionContext from 'session/context.js';
+import theme from './theme.js';
 import './codemirror.css';
-import './syntax.css';
 import './playground.css';
 
 
@@ -77,10 +79,36 @@ class Playground extends Component {
 		return (
 			<div className="component-documentation" style={this.props.style}>
 				<div className="playground-editable unselectable">EDITABLE SOURCE</div>
-				<LiveProvider code={this.props.code} scope={scope} >
-					<LiveEditor onChange={this.props.onChange} />
-					<LiveError />
-					<LivePreview />
+				<LiveProvider code={this.props.code} scope={scope} theme={theme} >
+					<Row>
+						<Col>
+							<LiveEditor
+								onChange={this.props.onChange}
+								style={{
+									fontSize: '1.25em',
+									background: '#42374a',
+									fontFamily: '\'Source Code Pro\', monospace',
+									height: '100%'
+								}}
+							/>
+						</Col>
+						<Col>
+							<LiveError
+								style={{
+									padding: '10px',
+									fontSize: '1.1em',
+									color: 'white',
+									background: '#F2777A'
+								}}
+							/>
+							<LivePreview
+								style={{
+									overflowY: 'auto',
+									overflowX: 'hidden'
+								}}
+							/>
+						</Col>
+					</Row>
 				</LiveProvider>
 			</div>
 		);
