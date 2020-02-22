@@ -102,6 +102,7 @@ class Playground extends Component {
 								}}
 							/>
 							<LivePreview
+								className="Lesson"
 								style={{
 									overflowY: 'auto',
 									overflowX: 'hidden'

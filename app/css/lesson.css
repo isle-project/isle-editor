@@ -228,7 +228,6 @@ mark {
 	margin-right: auto;
 	padding: 20px 15px 5px 15px;
 	width: 100%;
-	min-height: 100vh;
 	height: 100%;
 	display: block;
 }
