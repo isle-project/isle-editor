@@ -7,15 +7,15 @@ import markdownit from 'markdown-it';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Modal from 'react-bootstrap/Modal';
 import Checkbox from 'components/input/checkbox';
+import Playground from 'components/playground';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import contains from '@stdlib/assert/contains';
+import { SCOPE } from 'editor-components/preview/create_scope.js';
 import COMPONENT_DOCS from './components_documentation.json';
 import './component_configurator.css';
 
@@ -110,12 +110,7 @@ class ComponentConfigurator extends Component {
 		this.props.onHide();
 	}
 
-	/*
-	* Event handler invoked when text area value changes. Updates `value` and invokes
-	* `onChange` callback with the new text as its first argument
-	*/
-	handleChange = ( event ) => {
-		const newValue = event.target.value;
+	handleChange = ( newValue ) => {
 		this.setState({
 			value: newValue
 		});
@@ -138,18 +133,19 @@ class ComponentConfigurator extends Component {
 		let RE_FULL_KEY;
 		const selfClosing = contains( this.props.component.value, '/>' );
 		if ( selfClosing ) {
-			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '\n?(\\s*)'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp( '\\s*'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '\n?(\\s*)'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
 			let { value } = this.state;
 			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
+				debug( `Insert ${key} attribute...` );
 				const indentedAttrs = RE_INDENTED_ATTRS.test( value );
 				if ( selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
-					value += `${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n/>`;
+					value += `\n${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n/>`;
 				} else {
 					const idx = value.indexOf( '>' );
 					const rest = value.substring( idx+1 );
@@ -157,11 +153,12 @@ class ComponentConfigurator extends Component {
 					if ( value[ value.length-1 ] === ' ' ) {
 						value = removeLast( value );
 					}
-					value += `${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n>`;
+					value += `\n${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n>`;
 					value = value + rest;
 				}
 			} else {
-				value = replace( value, RE_FULL_KEY, ' ' );
+				debug( `Remove ${key} attribute...` );
+				value = replace( value, RE_FULL_KEY, '$1' );
 			}
 			this.setState({
 				value
@@ -254,16 +251,12 @@ class ComponentConfigurator extends Component {
 				<Modal.Body>
 					{componentDescription}
 					{this.renderPropertyControls()}
-					<FormGroup style={{ marginTop: '10px' }}>
-						<Card.Subtitle className="mb-2 text-muted" >Code:</Card.Subtitle>
-						<FormControl
-							as="textarea"
-							rows={5}
-							value={this.state.value}
-							onChange={this.handleChange}
-							style={{ resize: 'none' }}
-						/>
-					</FormGroup>
+					<Playground code={this.state.value} scope={SCOPE}
+						onChange={this.handleChange} style={{
+							marginTop: '12px',
+							maxWidth: '100vw'
+						}}
+					/>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button

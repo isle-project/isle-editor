@@ -3761,6 +3761,11 @@
         "default": {}
       },
       {
+        "name": "onChange",
+        "type": "function",
+        "default": "onChange() {}"
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4114,17 +4119,17 @@
       {
         "name": "onHide",
         "type": "function",
-        "default": null
+        "default": "onHide() {}"
       },
       {
         "name": "onQueueSize",
         "type": "function",
-        "default": "function noop() {\n\t// Empty function...\n}"
+        "default": "onQueueSize() {}"
       },
       {
         "name": "onNewQuestion",
         "type": "function",
-        "default": "function noop() {\n\t// Empty function...\n}"
+        "default": "onNewQuestion() {}"
       }
     ],
     "description": "Description is missing."
@@ -5720,7 +5725,7 @@
         "name": "stain",
         "type": "boolean",
         "description": "controls whether to show a coffee stain",
-        "default": null
+        "default": false
       },
       {
         "name": "onClick",

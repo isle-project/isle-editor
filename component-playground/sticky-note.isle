@@ -33,7 +33,7 @@ removeStatusBar: true
 * __editable__ | `boolean`: controls whether the component is editable. Default: `false`.
 * __minimizable__ | `boolean`: controls whether the component is minimizable. Default: `false`.
 * __minimized__ | `boolean`: if set, the component is minimized at the start. Default: `false`.
-* __stain__ | `boolean`: controls whether to show a coffee stain. Default: `none`.
+* __stain__ | `boolean`: controls whether to show a coffee stain. Default: `false`.
 * __onClick__ | `function`: callback function invoked when the note is clicked. Default: `function noop() {
 	// Empty function...
 }`.
