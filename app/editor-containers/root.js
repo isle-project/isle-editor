@@ -3,10 +3,10 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
-const Editor = lazy( () => import( 'containers/editor' ) );
-const Documentation = lazy( () => import( 'containers/documentation.js' ) );
-const Settings = lazy( () => import( 'containers/settings' ) );
-const Export = lazy( () => import( 'containers/export.js' ) );
+const Editor = lazy( () => import( 'editor-containers/editor' ) );
+const Documentation = lazy( () => import( 'editor-containers/documentation.js' ) );
+const Settings = lazy( () => import( 'editor-containers/settings' ) );
+const Export = lazy( () => import( 'editor-containers/export.js' ) );
 
 
 // VARIABLES //

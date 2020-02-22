@@ -3,7 +3,7 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { createHashHistory } from 'history';
-import Root from 'containers/root';
+import Root from 'editor-containers/root';
 import configureStore from 'store/configure_store.js';
 import configureIpcRenderer from './configure_ipc_renderer.js';
 import './app.global.css';
