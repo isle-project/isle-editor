@@ -76,7 +76,7 @@ function arrayBufferToBase64(buffer) {
 // MAIN //
 
 class Session {
-	constructor( config, offline ) {
+	constructor( config = {}, offline ) {
 		debug( 'Should create session...' );
 
 		// Address where ISLE server is running:

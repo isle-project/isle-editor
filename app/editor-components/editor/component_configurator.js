@@ -10,6 +10,7 @@ import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import Checkbox from 'components/input/checkbox';
 import Playground from 'components/playground';
+import Provider from 'components/provider';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
@@ -17,6 +18,7 @@ import removeLast from '@stdlib/string/remove-last';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import COMPONENT_DOCS from './components_documentation.json';
+import Session from 'session';
 import './component_configurator.css';
 
 
@@ -92,6 +94,7 @@ class ComponentConfigurator extends Component {
 			name: name,
 			value: removePlaceholderMarkup( value )
 		};
+		this.session = new Session( {}, props.currentMode === 'offline' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -207,7 +210,7 @@ class ComponentConfigurator extends Component {
 		}
 		return (
 			<Fragment>
-				<Card.Subtitle style={{ fontSize: '12px' }}className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
+				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
 				<div style={{ height: '300px', overflowY: 'scroll' }}>
 					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 						<thead>
@@ -248,15 +251,18 @@ class ComponentConfigurator extends Component {
 				<Modal.Header closeButton>
 					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body style={{ height: '80vh', overflowY: 'auto' }}>
 					{componentDescription}
 					{this.renderPropertyControls()}
-					<Playground code={this.state.value} scope={SCOPE}
-						onChange={this.handleChange} style={{
-							marginTop: '12px',
-							maxWidth: '100vw'
-						}}
-					/>
+					<Provider session={this.session} currentRole={this.props.currentRole} >
+						<Playground code={this.state.value} scope={SCOPE}
+							onChange={this.handleChange} style={{
+								marginTop: '12px',
+								maxWidth: '100vw',
+								height: 'calc(80vh - 300px)'
+							}}
+						/>
+					</Provider>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
@@ -280,6 +286,8 @@ class ComponentConfigurator extends Component {
 // PROPERTIES //
 
 ComponentConfigurator.propTypes = {
+	currentRole: PropTypes.string.isRequired,
+	currentMode: PropTypes.string.isRequired,
 	component: PropTypes.object,
 	onHide: PropTypes.func,
 	onInsert: PropTypes.func,

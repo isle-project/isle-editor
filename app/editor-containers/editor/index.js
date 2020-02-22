@@ -234,6 +234,8 @@ class App extends Component {
 								fontSize={this.props.fontSize}
 								preamble={this.props.preamble}
 								author={this.props.author}
+								currentRole={currentRole}
+								currentMode={currentMode}
 								splitPos={this.state.splitPos}
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}

@@ -1062,6 +1062,8 @@ class Editor extends Component {
 					onHide={this.toggleComponentConfigurator}
 					onInsert={this.handleComponentInsertion}
 					component={this.state.selectedComponent}
+					currentMode={this.props.currentMode}
+					currentRole={this.props.currentRole}
 				/> : null }
 			</div>
 		);
@@ -1079,6 +1081,8 @@ Editor.defaultProps = {
 };
 
 Editor.propTypes = {
+	currentMode: PropTypes.string.isRequired,
+	currentRole: PropTypes.string.isRequired,
 	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
 	onChange: PropTypes.func,
