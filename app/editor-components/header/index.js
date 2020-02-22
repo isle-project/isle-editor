@@ -68,7 +68,6 @@ class Header extends Component {
 									backgroundColor: 'rgba(50, 50, 50, 0.85)',
 									padding: '2px 10px',
 									color: 'white',
-									width: 150,
 									borderRadius: 3,
 									...props.style
 								}}
