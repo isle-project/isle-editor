@@ -6,6 +6,7 @@ import Draggable from 'react-draggable';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import copy from '@stdlib/utils/copy';
 import Loadable from 'components/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
@@ -26,12 +27,6 @@ import factor from 'utils/factor-variable';
 // VARIABLES //
 
 export const SCOPE = {
-	React,
-	Component,
-	render,
-	factor,
-	Draggable,
-
 	Accordion: Loadable( () => import( /* webpackChunkName: "Accordion" */ 'components/accordion' ) ),
 	Animated: Loadable( () => import( /* webpackChunkName: "Animated" */ 'components/animated' ) ),
 	Background: Loadable( () => import( /* webpackChunkName: "Background" */ 'components/background' ) ),
@@ -256,8 +251,14 @@ export const SCOPE = {
 // MAIN //
 
 const createScope = ( session ) => {
-	SCOPE.session = session;
-	return SCOPE;
+	const scope = copy( SCOPE, 1 );
+	scope.session = session;
+	scope.React = React;
+	scope.Component = Component;
+	scope.render = render;
+	scope.factor = factor;
+	scope.Draggable = Draggable;
+	return scope;
 };
 
 
