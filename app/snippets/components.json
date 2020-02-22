@@ -137,7 +137,7 @@
 	},
 	{
 		"name": "MultipleChoiceSurvey",
-		"value": "<MultipleChoiceSurvey\n\tanonymous\n\tquestion=\"${1:Enter question\"\"\n\tanswers={[ '${2:First}', '${3:Second}' ]}/>\n/>\n"
+		"value": "<MultipleChoiceSurvey\n\tanonymous\n\tquestion=\"${1:Enter question}\"\n\tanswers={[ '${2:First}', '${3:Second}' ]}\n/>\n"
 	},
 	{
 		"name": "Nav justified",
