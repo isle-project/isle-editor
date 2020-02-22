@@ -25,7 +25,7 @@ import factor from 'utils/factor-variable';
 
 // VARIABLES //
 
-const SCOPE = {
+export const SCOPE = {
 	React,
 	Component,
 	render,
