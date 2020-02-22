@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 import {
 	LiveProvider,
@@ -10,7 +11,7 @@ import {
 } from 'react-live';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PropTypes from 'prop-types';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
@@ -25,14 +26,20 @@ import './playground.css';
 /**
 * Playground component to experiment with ISLE components.
 *
-* @property {string} code - code to be displayed in the playground box. This code will be editable by the user in the brower or lesson
+* @property {number} value - code value (for controlled component)
+* @property {number} defaultValue - value indicating the default code
 * @property {Object} scope - scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display
+* @property {Function} onChange - callback invoked with new code once code in editor changes
 * @property {Object} style - CSS inline styles
- */
+*/
 class Playground extends Component {
 	constructor( props, context ) {
 		super( props );
 
+		this.state = {
+			value: props.value || props.defaultValue,
+			prevProps: props
+		};
 		const wrappedScope = {};
 		for ( let key in props.scope ) {
 			if ( hasOwnProp( props.scope, key ) ) {
@@ -52,13 +59,21 @@ class Playground extends Component {
 		this.wrappedScope = wrappedScope;
 	}
 
-	componentDidMount() {
-		this.forceUpdate();
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		const newState = {};
+		const { prevProps } = prevState;
+		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
+			newState.value = nextProps.defaultValue;
+		}
+		if ( !isEmptyObject( newState ) ) {
+			newState.prevProps = nextProps;
+			return newState;
+		}
+		return null;
 	}
 
 	componentDidUpdate() {
 		const node = ReactDom.findDOMNode( this );
-		// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
 		let slide = node.closest ? node.closest( '.spectacle-content' ) : null;
 		if ( slide ) {
 			let computedStyle = window.getComputedStyle( slide );
@@ -71,19 +86,32 @@ class Playground extends Component {
 		}
 	}
 
+	handleChange = ( value ) => {
+		this.props.onChange( value );
+		if ( !this.props.code ) {
+			this.setState({
+				value
+			});
+		}
+	}
+
 	render() {
 		const scope = {
 			React,
 			...this.wrappedScope
 		};
+		let { value } = this.state;
+		if ( this.props.value ) {
+			value = this.props.value;
+		}
 		return (
-			<div className="component-documentation" style={this.props.style}>
+			<div className="component-documentation" style={this.props.style} >
 				<div className="playground-editable unselectable">EDITABLE SOURCE</div>
-				<LiveProvider code={this.props.code} scope={scope} theme={theme} >
+				<LiveProvider code={value} scope={scope} theme={theme} >
 					<Row>
 						<Col>
 							<LiveEditor
-								onChange={this.props.onChange}
+								onChange={this.handleChange}
 								style={{
 									fontSize: '1.25em',
 									background: '#42374a',
@@ -117,23 +145,22 @@ class Playground extends Component {
 }
 
 
-// DEFAULT PROPS //
-
-Playground.defaultProps = {
-	code: '',
-	scope: {},
-	onChange() {},
-	style: {}
-};
-
-
 // PROPERTIES //
 
 Playground.propTypes = {
-	code: PropTypes.string,
+	defaultValue: PropTypes.string,
+	value: PropTypes.string,
 	scope: PropTypes.object,
 	onChange: PropTypes.func,
 	style: PropTypes.object
+};
+
+Playground.defaultProps = {
+	defaultValue: '',
+	value: null,
+	scope: {},
+	onChange() {},
+	style: {}
 };
 
 Playground.contextType = SessionContext;

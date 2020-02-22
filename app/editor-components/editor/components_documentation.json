@@ -3749,10 +3749,16 @@
   "Playground": {
     "props": [
       {
-        "name": "code",
+        "name": "defaultValue",
         "type": "string",
-        "description": "code to be displayed in the playground box. This code will be editable by the user in the brower or lesson",
+        "description": "value indicating the default code",
         "default": ""
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "description": "code value (for controlled component)",
+        "default": null
       },
       {
         "name": "scope",
@@ -3763,6 +3769,7 @@
       {
         "name": "onChange",
         "type": "function",
+        "description": "callback invoked with new code once code in editor changes",
         "default": "onChange() {}"
       },
       {
@@ -4747,14 +4754,14 @@
       {
         "name": "scale",
         "type": "number",
-        "description": "the size of the object, default = 1",
+        "description": "object size (if not explicitly set, the seal is not rescaled)",
         "default": null
       },
       {
         "name": "innerStyle",
         "type": "object",
         "description": "the style for the inner circle",
-        "default": null
+        "default": {}
       },
       {
         "name": "lower",
@@ -4784,7 +4791,7 @@
         "name": "style",
         "type": "object",
         "description": "the style for the element",
-        "default": {}
+        "default": null
       },
       {
         "name": "title",

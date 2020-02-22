@@ -255,7 +255,7 @@ class ComponentConfigurator extends Component {
 					{componentDescription}
 					{this.renderPropertyControls()}
 					<Provider session={this.session} currentRole={this.props.currentRole} >
-						<Playground code={this.state.value} scope={SCOPE}
+						<Playground value={this.state.value} scope={SCOPE}
 							onChange={this.handleChange} style={{
 								marginTop: '12px',
 								maxWidth: '100vw',

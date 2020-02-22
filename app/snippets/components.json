@@ -173,7 +173,7 @@
 	},
 	{
 		"name": "Playground",
-		"value": "<Playground\n\tcode={`${1:}`}\n\tscope={{\n\t\t${2:}\n\t}}\n/>\n"
+		"value": "<Playground\n\tdefaultCode={`${1:}`}\n\tscope={{\n\t\t${2:}\n\t}}\n/>\n"
 	},
 	{
 		"name": "Plotly",
