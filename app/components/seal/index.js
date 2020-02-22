@@ -30,7 +30,7 @@ const DIFF = 4;
 * An approval seal.
 *
 * @property {boolean} active - controls whether seal is active or greyed out
-* @property {number} scale - the size of the object, default = 1
+* @property {number} scale - object size (if not explicitly set, the seal is not rescaled)
 * @property {string} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
@@ -45,10 +45,6 @@ const DIFF = 4;
 class Seal extends Component {
 	constructor( props ) {
 		super( props );
-		this.ref = React.createRef();
-		this.lowerRef = React.createRef();
-		this.upperRef = React.createRef();
-
 		this.state = {
 			exit: false
 		};
@@ -140,7 +136,7 @@ class Seal extends Component {
 	}
 
 	getStyle() {
-		const style = this.props.style;
+		const style = this.props.style || {};
 		if ( this.props.removable ) {
 			if ( this.state.exit ) {
 				style.pointerEvents = 'none';
@@ -148,13 +144,17 @@ class Seal extends Component {
 				style.cursor = 'pointer';
 			}
 		}
-		if ( this.props.active === false ) {
+		if ( !this.props.active ) {
 			style.webkitFilter = 'grayscale(100%)';
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
 			if ( this.props.scale ) {
-				if ( style.transform) style.transform += 'scale(' + this.props.scale + ')';
-				else style.transform = 'scale(' + this.props.scale + ')';
+				if ( style.transform ) {
+					style.transform += 'scale(' + this.props.scale + ')';
+				}
+				else {
+					style.transform = 'scale(' + this.props.scale + ')';
+				}
 			}
 		}
 		else {
@@ -162,17 +162,13 @@ class Seal extends Component {
 			style.filter = 'grayscale(0%)';
 			style.webkitFilter = 'grayscale(0%)';
 			if ( this.props.scale ) {
-				if (style.transform) style.transform += 'scale(' + this.props.scale + ')';
-				else style.transform = 'scale(' + this.props.scale + ')';
+				if ( style.transform ) {
+					style.transform += 'scale(' + this.props.scale + ')';
+				}
+				else {
+					style.transform = 'scale(' + this.props.scale + ')';
+				}
 			}
-		}
-		return style;
-	}
-
-	getInnerStyle() {
-		let style = null;
-		if ( this.props.innerStyle ) {
-			style = Object.assign({}, this.props.innerStyle);
 		}
 		return style;
 	}
@@ -188,7 +184,7 @@ class Seal extends Component {
 
 	render() {
 		const style = this.getStyle();
-		const innerStyle = this.getInnerStyle();
+		const innerStyle = this.props.innerStyle;
 		let className = 'seal-container';
 		if ( this.state.exit ) {
 			className += ' seal-exit';
@@ -196,8 +192,10 @@ class Seal extends Component {
 		return (
 			<div
 				role="button" tabIndex={0}
-				onClick={this.triggerClick} onKeyPress={this.triggerClick}
-				ref={this.ref} style={style} className={className}
+				onClick={this.triggerClick}
+				onKeyPress={this.triggerClick}
+				style={style}
+				className={className}
 			>
 				<div className="seal-outer-border" />
 				<div className="seal-fine-border" />
@@ -207,8 +205,8 @@ class Seal extends Component {
 				<div className="seal-wrapper">
 					<div className="seal-title">{ this.props.title}</div>
 				</div>
-				<div ref={this.lowerRef} className="seal-lower-line">{ this.getLowerLine() }</div>
-				<div ref={this.upperRef} className="seal-upper">{ this.getUpperLine() }</div>
+				<div className="seal-lower-line">{this.getLowerLine()}</div>
+				<div className="seal-upper">{this.getUpperLine()}</div>
 			</div>
 		);
 	}
@@ -241,8 +239,8 @@ Seal.defaultProps = {
 	lower: 'The lower text',
 	lowerArc: 150,
 	removable: false,
-	style: {},
-	innerStyle: null,
+	style: null,
+	innerStyle: {},
 	upper: 'The upper text',
 	upperArc: 150,
 	title: 'Enter a title',
