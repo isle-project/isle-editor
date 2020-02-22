@@ -10,7 +10,6 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import ReactDraggable from 'react-draggable';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
-import noop from '@stdlib/utils/noop';
 import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
@@ -396,9 +395,9 @@ class Queue extends Component {
 Queue.defaultProps = {
 	draggable: true,
 	show: true,
-	onHide: null,
-	onQueueSize: noop,
-	onNewQuestion: noop
+	onHide() {},
+	onQueueSize() {},
+	onNewQuestion() {}
 };
 
 Queue.propTypes = {
