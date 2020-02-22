@@ -2,7 +2,12 @@
 
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import ComponentPlayground from 'component-playground';
+import {
+	LiveProvider,
+	LiveEditor,
+	LiveError,
+	LivePreview
+} from 'react-live';
 import PropTypes from 'prop-types';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
@@ -72,7 +77,11 @@ class Playground extends Component {
 		return (
 			<div className="component-documentation" style={this.props.style}>
 				<div className="playground-editable unselectable">EDITABLE SOURCE</div>
-				<ComponentPlayground codeText={this.props.code} scope={scope} />
+				<LiveProvider code={this.props.code} scope={scope} >
+					<LiveEditor onChange={this.props.onChange} />
+					<LiveError />
+					<LivePreview />
+				</LiveProvider>
 			</div>
 		);
 	}
@@ -84,6 +93,7 @@ class Playground extends Component {
 Playground.defaultProps = {
 	code: '',
 	scope: {},
+	onChange() {},
 	style: {}
 };
 
@@ -93,6 +103,7 @@ Playground.defaultProps = {
 Playground.propTypes = {
 	code: PropTypes.string,
 	scope: PropTypes.object,
+	onChange: PropTypes.func,
 	style: PropTypes.object
 };
 
