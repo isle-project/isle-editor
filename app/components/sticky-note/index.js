@@ -393,7 +393,7 @@ StickyNote.defaultProps = {
 	minimizable: false,
 	minimized: false,
 	style: {},
-	stain: null,
+	stain: false,
 	onClick: noop,
 	removable: false
 };
