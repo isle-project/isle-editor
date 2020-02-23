@@ -30,8 +30,12 @@ class Provider extends Component {
 // PROPERTIES //
 
 Provider.propTypes = {
-	currentRole: PropTypes.string.isRequired,
+	currentRole: PropTypes.string,
 	session: PropTypes.object.isRequired
+};
+
+Provider.defaultProps = {
+	currentRole: 'user'
 };
 
 

@@ -269,7 +269,7 @@ class Preview extends Component {
 
 	render() {
 		debug( 'Rendering preview...' );
-		return ( <Provider session={this.session} currentRole={this.props.currentRole}>
+		return ( <Provider session={this.session} currentRole={this.props.currentRole} >
 			{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
 		</Provider> );
 	}
