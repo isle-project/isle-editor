@@ -90,7 +90,7 @@ class AnimationHelp extends Component {
 		};
 		const fcn = () => this.passCommand( item.command );
 		return (
-			<div onMouseOver={fcn} onFocus={fcn} style={{ width: '100%' }}>
+			<div key={`command${ndx}`} onMouseOver={fcn} onFocus={fcn} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
 				<div style={style} className="cube"></div>
 				<div className="codeBlock"><code>animation: {item.command}</code></div>
@@ -216,8 +216,8 @@ class AnimationHelp extends Component {
 
 	render() {
 		return (
-			<ReactDraggable>
-				<div className="animation-helper" cancel=".animation-help" >
+			<ReactDraggable cancel=".animation-help" >
+				<div className="animation-helper" >
 					<button onClick={this.props.onHide} className="exit">x</button>
 					<h1>Animation Help</h1>
 					<hr />

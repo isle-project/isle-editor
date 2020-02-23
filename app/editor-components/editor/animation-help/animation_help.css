@@ -54,7 +54,7 @@
 
 .animation-helper .exit {
 	position: absolute;
-	right: 4px;
+	right: 8px;
 	top: 4px;
 	width: 20px;
 	height: 20px;
@@ -69,7 +69,6 @@
 }
 
 .animation-help h4 {
-	cursor: pointer;
 	color: orange;
 	transition: 0.2s;
 	margin-top: 20px;
