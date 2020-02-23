@@ -14,7 +14,7 @@ export const theme = {
 			style: { color: '#f677e1' }
 		},
 		{
-			types: ['attr-name', 'string', 'char', 'builtin', 'insterted'],
+			types: ['attr-name', 'string', 'char', 'builtin', 'inserted'],
 			style: {
 				color: 'hsl(75, 70%, 70%)'
 			}

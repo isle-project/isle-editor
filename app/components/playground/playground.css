@@ -2,6 +2,8 @@
 	margin: 0 auto;
 	max-width: 1200px;
 	background: lightgray;
+	height: 400px;
+	position: relative;
 }
 
 .playground-editable {
@@ -12,4 +14,20 @@
 	letter-spacing: 5px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+}
+
+.playground-live-editor {
+	position: absolute;
+	height: calc(100% - 33px);
+	max-height: calc(100% - 33px);
+	background: #42374a;
+	caret-color: white;
+	overflow-y: auto;
+	top: 33px;
+	left: 0;
+	width: 50%;
+}
+
+.playground-live-editor textarea:focus {
+	outline: none;
 }

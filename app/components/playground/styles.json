@@ -1,0 +1,22 @@
+{
+	"liveError": {
+		"position": "absolute",
+		"padding": "10px",
+		"fontSize": "1.1em",
+		"color": "white",
+		"background": "#F2777A",
+		"zIndex": "9999",
+		"top": 33,
+		"right": 0,
+		"width": "50%"
+	},
+	"livePreview": {
+		"position": "absolute",
+		"overflowY": "auto",
+		"overflowX": "hidden",
+		"top": 33,
+		"right": 0,
+		"width": "50%",
+		"height": "calc(100% - 33px)"
+	}
+}

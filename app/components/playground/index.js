@@ -9,15 +9,13 @@ import {
 	LiveError,
 	LivePreview
 } from 'react-live';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
 import SessionContext from 'session/context.js';
+import styles from './styles.json';
 import theme from './theme.js';
-import './codemirror.css';
 import './playground.css';
 
 
@@ -108,36 +106,22 @@ class Playground extends Component {
 			<div className="component-documentation" style={this.props.style} >
 				<div className="playground-editable unselectable">EDITABLE SOURCE</div>
 				<LiveProvider code={value} scope={scope} theme={theme} >
-					<Row>
-						<Col>
-							<LiveEditor
-								onChange={this.handleChange}
-								style={{
-									fontSize: '1.25em',
-									background: '#42374a',
-									fontFamily: '\'Source Code Pro\', monospace',
-									height: '100%'
-								}}
-							/>
-						</Col>
-						<Col>
-							<LiveError
-								style={{
-									padding: '10px',
-									fontSize: '1.1em',
-									color: 'white',
-									background: '#F2777A'
-								}}
-							/>
-							<LivePreview
-								className="Lesson"
-								style={{
-									overflowY: 'auto',
-									overflowX: 'hidden'
-								}}
-							/>
-						</Col>
-					</Row>
+					<div className="playground-live-editor" >
+						<LiveEditor
+							onChange={this.handleChange}
+							style={{
+								fontSize: '1.25em',
+								fontFamily: '\'Source Code Pro\', monospace'
+							}}
+						/>
+					</div>
+					<LivePreview
+						className="Lesson"
+						style={styles.livePreview}
+					/>
+					<LiveError
+						style={styles.liveError}
+					/>
 				</LiveProvider>
 			</div>
 		);
