@@ -15,6 +15,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
+import rtrim from '@stdlib/string/right-trim';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import COMPONENT_DOCS from './components_documentation.json';
@@ -26,8 +27,10 @@ import './component_configurator.css';
 
 const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
-const RE_INDENTED_ATTRS = /\t[a-z]+=/i;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
+const RE_NEW_LINES = /\n{2,99}/g;
+const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
+const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -95,6 +98,9 @@ class ComponentConfigurator extends Component {
 			value: removePlaceholderMarkup( value )
 		};
 		this.session = new Session( {}, props.currentMode === 'offline' );
+
+		const doc = COMPONENT_DOCS[ this.props.component.name ] || {};
+		this.description = md.render( doc.description || 'Component description is missing.' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -136,19 +142,18 @@ class ComponentConfigurator extends Component {
 		let RE_FULL_KEY;
 		const selfClosing = contains( this.props.component.value, '/>' );
 		if ( selfClosing ) {
-			RE_FULL_KEY = new RegExp( '\n?(\\s*)'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \t]*'+key+'=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp( '\n?(\\s*)'+key+'=[\\s\\S]*?( |\t|\r?\n)(?=[a-z]+=|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \t]*'+key+'=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
 			let { value } = this.state;
 			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
 				debug( `Insert ${key} attribute...` );
-				const indentedAttrs = RE_INDENTED_ATTRS.test( value );
 				if ( selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
-					value += `\n${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n/>`;
+					value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
 				} else {
 					const idx = value.indexOf( '>' );
 					const rest = value.substring( idx+1 );
@@ -156,12 +161,15 @@ class ComponentConfigurator extends Component {
 					if ( value[ value.length-1 ] === ' ' ) {
 						value = removeLast( value );
 					}
-					value += `\n${indentedAttrs ? '\t' : ' '}${key}=${replacement}\n>`;
+					value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
 					value = value + rest;
 				}
 			} else {
 				debug( `Remove ${key} attribute...` );
-				value = replace( value, RE_FULL_KEY, '$1' );
+				value = replace( value, RE_FULL_KEY, '\n$1' );
+				value = replace( value, RE_NEW_LINES, '\n' );
+				value = replace( value, SPACES_AFTER_NEW_LINE, '\n  ' );
+				value = replace( value, SPACES_BEFORE_CLOSING_TAG, '$1' );
 			}
 			this.setState({
 				value
@@ -232,10 +240,8 @@ class ComponentConfigurator extends Component {
 
 	render() {
 		debug( 'Rendering component configurator modal...' );
-		const doc = COMPONENT_DOCS[ this.props.component.name ] || {};
-		const description = doc.description || 'Component description is missing.';
 		const innerHTML = {
-			'__html': md.render( description )
+			'__html': this.description
 		};
 		/* eslint-disable react/no-danger */
 		const componentDescription = <div>
