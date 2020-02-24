@@ -110,6 +110,19 @@ const debug = logger( 'isle:data-explorer' );
 const uid = generateUID( 'data-explorer' );
 
 
+// FUNCTIONS //
+
+function checkVariables( data, variables ) {
+	const keys = objectKeys( data );
+	for ( let i = 0; i < variables.length; i++ ) {
+		if ( !contains( keys, variables[ i ] ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
 // MAIN //
 
 /**
@@ -158,17 +171,20 @@ class DataExplorer extends Component {
 			groupVars = [];
 		}
 		let ready = false;
+		let validVariables = false;
 		if (
 			isObject( data ) &&
 			( quantitative.length > 0 || categorical.length > 0 )
 		) {
 			ready = true;
+			validVariables = checkVariables( data, quantitative.concat( categorical ) );
 		}
 		this.id = props.id || uid( props );
 		this.state = {
 			data: data,
 			quantitative: quantitative,
 			categorical: categorical,
+			validVariables,
 			output: [],
 			groupVars,
 			ready,
@@ -213,6 +229,10 @@ class DataExplorer extends Component {
 			if ( nextProps.categorical !== prevState.unaltered.categorical ) {
 				newState.categorical = nextProps.categorical;
 			}
+			newState.validVariables = checkVariables(
+				nextProps.data,
+				nextProps.quantitative.concat( nextProps.categorical )
+			);
 		}
 		if ( !isEmptyObject( newState ) ) {
 			newState.unaltered = {
@@ -832,6 +852,9 @@ class DataExplorer extends Component {
 		}
 		if ( isEmptyObject( this.state.data ) ) {
 			return <Alert variant="danger">Data set is empty.</Alert>;
+		}
+		if ( !this.state.validVariables ) {
+			return <Alert variant="danger">The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.</Alert>;
 		}
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = '1';
