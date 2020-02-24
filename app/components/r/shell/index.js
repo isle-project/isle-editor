@@ -474,7 +474,7 @@ class RShell extends Component {
 						marginBottom: '-12px'
 					}}
 				/>
-				<ButtonToolbar style={{ float: 'right' }}>
+				{ !this.props.disabled ? <ButtonToolbar style={{ float: 'right' }}>
 					{ nHints > 0 ?
 						<HintButton
 							disabled={this.props.disabled}
@@ -486,7 +486,7 @@ class RShell extends Component {
 						/> :
 						null
 					}
-					{ ( this.props.solution && !this.props.disabled ) ?
+					{ this.props.solution ?
 						showSolutionButton(
 							this.state.exhaustedHints,
 							this.handleSolutionClick,
@@ -508,7 +508,7 @@ class RShell extends Component {
 							</span> :
 							null
 					}
-				</ButtonToolbar>
+				</ButtonToolbar> : null }
 				<div id="output">
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots ) }
