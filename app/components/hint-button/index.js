@@ -30,7 +30,8 @@ const displayHint = ( id, hints ) => {
 			id="popover-positioned-top"
 			title="Hints"
 			style={{
-				minWidth: '400px'
+				minWidth: '400px',
+				padding: '3px'
 			}}
 		>
 			{ hints
