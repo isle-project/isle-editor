@@ -5,9 +5,6 @@ import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import round from '@stdlib/math/base/special/round';
-import ceil from '@stdlib/math/base/special/ceil';
-import max from '@stdlib/math/base/special/max';
-import min from '@stdlib/math/base/special/min';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -15,7 +12,7 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
 import VoiceInput from 'components/input/voice';
-import Chat from 'components/statusbar/chat';
+import Chats from 'components/statusbar/chats';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
@@ -60,15 +57,10 @@ function preventPropagation( event ) {
 class StatusBar extends Component {
 	constructor( props, context ) {
 		super( props );
-		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
-		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
-
 		this.state = {
 			visibleSignup: false,
 			visibleLogin: false,
 			visibleLogout: false,
-			statusbarWidth,
-			side,
 			recordedText: null,
 			showStatusBar: !context.config.hideStatusBar,
 			showProgressBar: false,
@@ -137,7 +129,9 @@ class StatusBar extends Component {
 					this.progressTimeout = null;
 				}, 4000 );
 			}
-			else if ( type === LOGGED_IN || type === LOGGED_OUT || type === SERVER_IS_LIVE ) {
+			else if (
+				type === LOGGED_IN || type === LOGGED_OUT || type === SERVER_IS_LIVE
+			) {
 				this.forceUpdate();
 			}
 			else if ( type === MEMBER_ACTION && data.type === TOGGLE_BLACKSCREEN ) {
@@ -154,8 +148,6 @@ class StatusBar extends Component {
 				}
 			}
 		});
-		window.addEventListener( 'resize', this.getStatusbarInfo );
-
 		this.renderTextInterval = setInterval( this.renderRecordedText, 1000 );
 	}
 
@@ -164,7 +156,6 @@ class StatusBar extends Component {
 		if ( this.renderTextInterval ) {
 			clearInterval( this.renderTextInterval );
 		}
-		window.removeEventListener( 'resize', this.getStatusbarInfo );
 	}
 
 	closeSignup = () => {
@@ -274,15 +265,6 @@ class StatusBar extends Component {
 		this.closeLogout();
 	}
 
-	getStatusbarInfo = () => {
-		const statusbarWidth = max( 0.34 * window.innerWidth, 300 );
-		const side = ( window.innerWidth - statusbarWidth ) / 2.0;
-		this.setState({
-			statusbarWidth,
-			side
-		});
-	}
-
 	handleBarClick = ( event ) => {
 		this.toggleBar();
 	}
@@ -374,27 +356,6 @@ class StatusBar extends Component {
 		}
 	}
 
-	getChatPosition( idx ) {
-		const session = this.context;
-		const margin = 10;
-		const nChatsPerSide = ceil( session.chats.length / 2 );
-		const maxWidth = this.state.side * 0.6;
-		const width = min( ( this.state.side - margin - margin*nChatsPerSide ) / nChatsPerSide, maxWidth );
-		let left = margin + ( idx * ( width + margin ) );
-		if ( idx > ( nChatsPerSide-1 ) ) {
-			left += this.state.statusbarWidth;
-			if ( nChatsPerSide === 1 && idx === 1 ) {
-				left += width + margin;
-			}
-		}
-		const pos = {
-			left,
-			width
-		};
-		debug( 'New chat position: ' + JSON.stringify( pos ) );
-		return pos;
-	}
-
 	render() {
 		const session = this.context;
 		const finishedLesson = this.state.progress === 100;
@@ -417,10 +378,7 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<div>
-					{session.chats.map( ( chat, idx ) => {
-						const pos = this.getChatPosition( idx );
-						return <Chat chat={chat} idx={idx} key={idx} left={pos.left} width={pos.width} />;
-					})}
+					<Chats />
 					<div
 						className="statusbar unselectable"
 						role="button" tabIndex={0}

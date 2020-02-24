@@ -783,7 +783,6 @@ class Session {
 	*/
 	leaveChat( name ) {
 		this.removeChat( name );
-		this.update();
 		if ( this.socket ) {
 			this.socket.emit( 'leave_chat', name );
 		}
@@ -913,6 +912,7 @@ class Session {
 		});
 
 		socket.on( 'member_has_left_chat', ({ name, member }) => {
+			debug( `Member ${member.name} has left chat ${name}` );
 			const chat = this.getChat( name );
 			name = this.stripChatName( name );
 			chat.members = chat.members.filter( m => m.email !== member.email );

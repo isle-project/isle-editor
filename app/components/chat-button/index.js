@@ -43,7 +43,7 @@ class ChatButton extends Component {
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
 				( type === SELF_HAS_JOINED_CHAT || type === CHAT_HISTORY ) &&
-				value.name === this.props.for
+				( value && value.name === this.props.for )
 			) {
 				this.setState({
 					opened: true,
