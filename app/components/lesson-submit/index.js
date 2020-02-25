@@ -14,6 +14,7 @@ import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import SessionContext from 'session/context.js';
+import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import { LESSON_SUBMIT } from 'constants/actions.js';
 
 
@@ -70,8 +71,14 @@ class LessonSubmit extends Component {
 
 	componentDidMount() {
 		const session = this.context;
-		this.unsubsribe = session.subscribe( () => {
-			this.forceUpdate();
+		this.unsubsribe = session.subscribe( ( type ) => {
+			if (
+				type === RECEIVED_USER_RIGHTS ||
+				type === LOGGED_IN ||
+				type === LOGGED_OUT
+			) {
+				this.forceUpdate();
+			}
 		});
 	}
 
