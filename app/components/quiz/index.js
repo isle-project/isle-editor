@@ -2,6 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import pdfMake from 'pdfmake/build/pdfmake';
+import innerText from 'react-innertext';
 import FormGroup from 'react-bootstrap/FormGroup';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +13,8 @@ import logger from 'debug';
 import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import incrspace from '@stdlib/math/utils/incrspace';
 import Timer from 'components/timer';
 import FreeTextQuestion from 'components/free-text-question';
@@ -33,6 +37,40 @@ import './quiz.css';
 
 const debug = logger( 'isle:quiz' );
 const uid = generateUID( 'quiz' );
+const DOC_STYLES = {
+	header: {
+		fontSize: 24,
+		bold: true,
+		margin: [0, 0, 0, 10]
+	},
+	author: {
+		fontSize: 16,
+		italics: true,
+		margin: [0, 0, 0, 10],
+		alignment: 'center'
+	},
+	date: {
+		fontSize: 16,
+		italics: true,
+		alignment: 'right',
+		margin: [0, 15, 0, 15]
+	},
+	subheader: {
+		fontSize: 18,
+		bold: true,
+		margin: [0, 30, 0, 10]
+	},
+	question: {
+		fontSize: 15,
+		margin: [0, 10, 0, 0],
+		italics: true
+	},
+	boldTitle: {
+		fontSize: 14,
+		margin: [0, 5, 0, 5],
+		bold: true
+	}
+};
 
 
 // FUNCTIONS //
@@ -42,6 +80,17 @@ function isHTMLConfig( elem ) {
 		isObject( elem ) &&
 		elem.component
 	);
+}
+
+function loadFonts() {
+	import( /* webpackChunkName: "fonts" */ '../../constants/fonts.js' )
+		.then( fonts => {
+			debug( 'Successfully loaded fonts...' );
+			pdfMake.vfs = fonts.default;
+		})
+		.catch( err => {
+			debug( 'Encountered an error while loading fonts: '+err.message );
+		});
 }
 
 
@@ -102,6 +151,7 @@ class Quiz extends Component {
 			questions: [],
 			questionIDs: []
 		};
+		loadFonts();
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -291,18 +341,84 @@ class Quiz extends Component {
 		});
 	}
 
+	downloadResponsesFactory( answers ) {
+		return () => {
+			const doc = {
+				content: [
+					{
+						text: `Answers for ${this.id}`,
+						style: 'header',
+						alignment: 'center'
+					}
+				],
+				styles: DOC_STYLES
+			};
+			const session = this.context;
+			if ( !isEmptyObject( session.user ) ) {
+				doc.content.push({
+					text: `by ${session.user.name} (${session.user.email})`,
+					style: 'author'
+				});
+			}
+			const date = new Date();
+			doc.content.push({
+				text: `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`,
+				style: 'date'
+			});
+			for ( let i = 0; i < answers.length; i++ ) {
+				let { question, answer, solution, confidence } = answers[ i ];
+				question = isString( question ) ? question : innerText( question );
+				answer = isString( answer ) ? answer : innerText( answer );
+				solution = isString( solution ) ? solution : innerText( solution );
+				doc.content.push({
+					text: question,
+					style: 'question'
+				});
+				doc.content.push({
+					text: 'Answer:',
+					style: 'boldTitle'
+				});
+				doc.content.push({
+					text: answer,
+					style: {
+						color: answer === solution ? '#3c763d' : '#d9534f',
+						margin: [0, 0, 0, 10]
+					}
+				});
+				if ( confidence ) {
+					doc.content.push({
+						text: 'Your confidence:',
+						style: 'boldTitle'
+					});
+					doc.content.push({
+						text: confidence
+					});
+				}
+				doc.content.push({
+					text: 'Solution:',
+					style: 'boldTitle'
+				});
+				doc.content.push({
+					text: isString( solution ) ? solution : innerText( solution )
+				});
+			}
+			pdfMake.createPdf( doc ).download( 'responses.pdf' );
+		};
+	}
+
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
 		if ( !this.props.provideFeedback ) {
 			return <h3>You have finished the quiz.</h3>;
 		}
-		const answers = this.state.answers.slice();
+		let answers = this.state.answers.slice();
 		for ( let i = 0; i < answers.length; i++ ) {
 			if ( answers[ i ] ) {
 				answers[ i ].confidence = this.state.confidences[ i ];
 			}
 		}
 		answers.sort( ( a, b ) => a.counter > b.counter );
+		answers = answers.filter( x => isObject( x ) );
 		return ( <div>
 			<p>{ this.props.duration ? 'Your time is up. ' : 'You have finished the quiz. ' } Here is a summary of your answers:</p>
 			<table className="table table-bordered" >
@@ -346,6 +462,7 @@ class Quiz extends Component {
 					})}
 				</tbody>
 			</table>
+			<Button onClick={this.downloadResponsesFactory( answers )} >Download PDF</Button>
 		</div> );
 	}
 
