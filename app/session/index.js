@@ -16,6 +16,7 @@ import countBy from '@stdlib/utils/count-by';
 import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
+import clamp from '@stdlib/math/base/special/clamp';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
@@ -1441,7 +1442,7 @@ class Session {
 					}
 				}
 			}
-			PRIVATE_VARS[ 'progress' ] = progress;
+			PRIVATE_VARS[ 'progress' ] = clamp( progress, 0, 1 );
 			this.update( SELF_INITIAL_PROGRESS, progress );
 			this.logSession();
 			initializedProgress = true;
@@ -1458,7 +1459,7 @@ class Session {
 							break;
 						}
 						else if ( j === actions.length - 1 ) {
-							PRIVATE_VARS[ 'progress' ] = this.get( 'progress' ) + 1.0 / ids.length;
+							PRIVATE_VARS[ 'progress' ] = clamp( this.get( 'progress' ) + 1.0 / ids.length, 0, 1 );
 							this.update( SELF_UPDATED_PROGRESS, this.get( 'progress' ) );
 							this.unfinished = this.unfinished.filter( x => x !== id );
 							this.logSession();
