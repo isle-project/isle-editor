@@ -431,6 +431,7 @@ class StatusBar extends Component {
 									<span className="fa fa-xs fa-stop statusbar-icon" />
 								</span>
 							</Tooltip> : null }
+							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
 							<div className="statusbar-presence" style={{
 								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
 							}}>
