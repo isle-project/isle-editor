@@ -113,6 +113,9 @@ const uid = generateUID( 'data-explorer' );
 // FUNCTIONS //
 
 function checkVariables( data, variables ) {
+	if ( variables.length === 0 ) {
+		return true;
+	}
 	const keys = objectKeys( data );
 	for ( let i = 0; i < variables.length; i++ ) {
 		if ( !contains( keys, variables[ i ] ) ) {
@@ -171,7 +174,7 @@ class DataExplorer extends Component {
 			groupVars = [];
 		}
 		let ready = false;
-		let validVariables = false;
+		let validVariables = true;
 		if (
 			isObject( data ) &&
 			( quantitative.length > 0 || categorical.length > 0 )
