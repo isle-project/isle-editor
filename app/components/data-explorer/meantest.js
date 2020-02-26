@@ -32,6 +32,9 @@ const DESCRIPTION = 'A test for the mean of a quantitative variable.';
 function extractValues( data, variable ) {
 	const x = data[ variable ];
 	const arr = [];
+	if ( !x ) {
+		return arr;
+	}
 	for ( let i = 0; i < x.length; i++ ) {
 		if ( isNumber( x[ i ] ) && !isnan( x[ i ] ) ) {
 			arr.push( x[ i ] );
