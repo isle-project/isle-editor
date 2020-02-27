@@ -164,7 +164,7 @@ class LessonSubmit extends Component {
 				}
 			}
 		}
-		pdfMake.createPdf( doc ).download( 'test.pdf' );
+		pdfMake.createPdf( doc ).download( 'responses.pdf' );
 	}
 
 	closeUserModal = () => {
