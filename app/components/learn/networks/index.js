@@ -14,6 +14,7 @@ import Panel from 'components/panel';
 import NetworkPlot from 'components/d3/network-plot';
 import Plotly from 'components/plotly';
 import TeX from 'components/tex';
+import calculateTransitivity from './calculate_transitivity.js';
 
 
 // MAIN //
@@ -34,6 +35,8 @@ class Networks extends Component {
 				nodes: []
 			},
 			numNodes,
+			edgeProb: 0.5,
+			transitivities: [],
 			tally: new Array( (0.5 * numNodes * ( numNodes-1 )) + 1 ).fill( 0 )
 		};
 	}
@@ -59,16 +62,23 @@ class Networks extends Component {
 			}
 		};
 		let tally;
+		let transitivities;
 		let numNodes = this.state.numNodes;
-		if ( m !== numNodes ) {
+		let edgeProb = this.state.edgeProb;
+		if ( m !== numNodes || p !== edgeProb ) {
 			numNodes = m;
-			tally= new Array( ( 0.5 * m * ( m-1 ) ) + 1 ).fill( 0 );
+			transitivities = [];
+			tally = new Array( ( 0.5 * m * ( m-1 ) ) + 1 ).fill( 0 );
 		} else {
 			tally = this.state.tally;
+			transitivities = this.state.transitivities.slice();
 		}
+		transitivities.push( calculateTransitivity( nodes, links ) );
 		tally[ links.length ] += 1;
 		newState.numNodes = numNodes;
+		newState.edgeProb = p;
 		newState.tally = tally;
+		newState.transitivities = transitivities;
 		this.setState( newState );
 	}
 
@@ -90,6 +100,25 @@ class Networks extends Component {
 		]} /> );
 	}
 
+	renderTransitivities() {
+		if ( !this.props.showTransitivities ) {
+			return null;
+		}
+		const data = [
+			{
+				x: this.state.transitivities,
+				type: 'histogram'
+			}
+		];
+		return ( <Plotly removeButtons
+			layout={{
+				title: 'Global Clustering Coefficient',
+				height: 250
+			}}
+			data={data}
+		/> );
+	}
+
 	render() {
 		return (
 			<Container style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -104,7 +133,7 @@ class Networks extends Component {
 								defaultValue={10}
 								step={1}
 								min={0}
-								max={25}
+								max={this.props.maxNumNodes}
 							/>
 							<NumberInput
 								legend="p (probability of an edge between two nodes)"
@@ -123,6 +152,7 @@ class Networks extends Component {
 								data={this.state.network}
 							/>
 							{this.renderTallyPlot()}
+							{this.renderTransitivities()}
 						</Panel>
 						<FeedbackButtons
 							id="networks"
@@ -137,11 +167,15 @@ class Networks extends Component {
 // PROPERTIES //
 
 Networks.defaultProps = {
-	showEdgeChart: false
+	maxNumNodes: 30,
+	showEdgeChart: false,
+	showTransitivities: false
 };
 
 Networks.propTypes = {
-	showEdgeChart: PropTypes.bool
+	maxNumNodes: PropTypes.number,
+	showEdgeChart: PropTypes.bool,
+	showTransitivities: PropTypes.bool
 };
 
 
