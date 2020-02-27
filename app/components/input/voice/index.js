@@ -53,8 +53,8 @@ function getSpeechRecognition() {
 * @property {string} placeholder - text input placeholder
 * @property {Object} remote - object with `start`, `stop`, and `toggle` and associated hotkeys
 * @property {Function} timeout - number of milliseconds after which to timeout the recording
-* @property {Function} stopTooltip - tooltip message desplayed while recording
-* @property {Function} startTooltip - tooltip message desplayed while not recording
+* @property {Function} stopTooltip - tooltip message displayed while recording
+* @property {Function} startTooltip - tooltip message displayed while not recording
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {number} width - voice input width (in px)
 * @property {number} height - voice input height (in px)
