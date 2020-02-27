@@ -5,13 +5,11 @@ import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import round from '@stdlib/math/base/special/round';
-import sample from '@stdlib/random/sample';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
-import VoiceInput from 'components/input/voice';
 import Chats from 'components/statusbar/chats';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
@@ -22,7 +20,8 @@ import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
 import { MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN } from 'constants/events.js';
+	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
+import VoiceControl from './voice-control/index.js';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -61,7 +60,6 @@ class StatusBar extends Component {
 			visibleSignup: false,
 			visibleLogin: false,
 			visibleLogout: false,
-			recordedText: null,
 			showStatusBar: !context.config.hideStatusBar,
 			showProgressBar: false,
 			isProgressLeaving: false,
@@ -130,7 +128,8 @@ class StatusBar extends Component {
 				}, 4000 );
 			}
 			else if (
-				type === LOGGED_IN || type === LOGGED_OUT || type === SERVER_IS_LIVE
+				type === LOGGED_IN || type === LOGGED_OUT ||
+				type === SERVER_IS_LIVE || type === RECEIVED_USER_RIGHTS
 			) {
 				this.forceUpdate();
 			}
@@ -273,30 +272,6 @@ class StatusBar extends Component {
 		this.toggleBar();
 	}
 
-	handleVoiceInput = ( text ) => {
-		debug( 'Received voice input: ' + text );
-		this.setState({
-			recordedText: text
-		});
-		setTimeout(() => {
-			this.setState({ recordedText: null });
-		}, 3000 );
-		const session = this.context;
-		session.speechInterface.check( text );
-	}
-
-	handleVoiceInputChange = ( event ) => {
-		event.stopPropagation();
-	}
-
-	renderRecordedText = () => {
-		if ( this.state.recordedText ) {
-			this.displayedText.innerHTML = sample( this.state.recordedText, {
-				'size': 1
-			});
-		}
-	}
-
 	toggleProgress = () => {
 		const session = this.context;
 
@@ -393,26 +368,7 @@ class StatusBar extends Component {
 					>
 						<div className="statusbar-left"></div>
 						<div className="statusbar-middle">
-							<div
-								className="statusbar-voice"
-								style={{
-									display: !session.config.hideVoiceControl ? 'inherit' : 'none'
-								}}
-							>
-								<VoiceInput
-									id="statusbar-voice"
-									onClick={this.handleVoiceInputChange}
-									mode="microphone" width={18} height={18}
-									stopTooltip="Disable voice control (F9)"
-									startTooltip="Enable voice control (F9)"
-									onFinalText={this.handleVoiceInput}
-									maxAlternatives={5}
-									remote={{
-										toggle: 120 // F9
-									}}
-								/>
-								<span ref={( span ) => { this.displayedText = span; }} className="statusbar-voice-text" ></span>
-							</div>
+							<VoiceControl session={this.context} />
 							{( isOwner || isElectron ) ?
 								<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
 									<span role="button" tabIndex={0}
