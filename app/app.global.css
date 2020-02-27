@@ -77,6 +77,11 @@ h6 {
 	color: #fff;
 }
 
+.vex-bottom-left-button {
+	margin-top: 25px !important;
+	float: left !important;
+}
+
 .splitpane {
 	height: auto !important;
 }
