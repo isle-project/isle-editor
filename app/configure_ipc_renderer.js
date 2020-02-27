@@ -146,8 +146,8 @@ function configureIpcRenderer( store ) {
 				},
 				{
 					type: 'text',
-					text: 'Delete',
-					className: 'vex-dialog-button-danger',
+					text: 'Delete Template',
+					className: 'vex-bottom-left-button vex-dialog-button-danger',
 					click() {
 						vex.dialog.confirm({
 							unsafeMessage: '<p>Are you sure you want to delete the <b>'+name+'</b> template?</p>',
@@ -254,7 +254,7 @@ function configureIpcRenderer( store ) {
 					},
 					{
 						type: 'text',
-						text: 'Don\' save',
+						text: 'Don\'t save',
 						className: 'vex-dialog-button-secondary',
 						click() {
 							ipcRenderer.send( 'close-window', { windowID });
