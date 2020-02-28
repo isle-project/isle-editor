@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an active spinner 1`] = `
+<canvas
+  style={
+    Object {
+      "display": "block",
+      "height": 64,
+      "margin": "auto",
+      "width": 128,
+    }
+  }
+/>
+`;
+
+exports[`renders an inactive spinner 1`] = `
+<canvas
+  style={
+    Object {
+      "display": "none",
+      "height": 64,
+      "margin": "auto",
+      "width": 128,
+    }
+  }
+/>
+`;

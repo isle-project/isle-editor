@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a tooltip 1`] = `
+<div
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+/>
+`;
+
+exports[`renders a tooltip with custom placement 1`] = `
+<div
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+/>
+`;
+
+exports[`renders an inactive tooltip 1`] = `<div />`;
