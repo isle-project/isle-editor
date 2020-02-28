@@ -299,8 +299,14 @@ class TextEditor extends Component {
 			});
 		}
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
+			let tooltip;
+			if ( this.props.resetModal && this.props.resetModal.tooltip ) {
+				tooltip = this.props.resetModal.tooltip;
+			} else {
+				tooltip = 'Reset to default value';
+			}
 			this.menu.addons.push({
-				title: 'Reset to default value',
+				title: tooltip,
 				run: () => {
 					this.toggleResetModal();
 				},
@@ -745,6 +751,7 @@ class TextEditor extends Component {
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
 					onSubmit={this.resetEditor}
+					{...this.props.resetModal}
 				/>
 				<SubmitModal
 					show={this.state.showSubmitModal && !this.props.peerReview}
@@ -784,6 +791,12 @@ TextEditor.propTypes= {
 		finalButtonLabel: PropTypes.string,
 		filterOwners: PropTypes.bool
 	}),
+	resetModal: PropTypes.shape({
+		title: PropTypes.string,
+		body: PropTypes.string,
+		buttonLabel: PropTypes.string,
+		tooltip: PropTypes.string
+	}),
 	voiceTimeout: PropTypes.number,
 	language: PropTypes.string,
 	style: PropTypes.object
@@ -798,6 +811,7 @@ TextEditor.defaultProps = {
 	peerReview: null,
 	voiceTimeout: 5000,
 	language: 'en-US',
+	resetModal: null,
 	style: {}
 };
 

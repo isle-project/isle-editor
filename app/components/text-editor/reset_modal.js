@@ -25,13 +25,13 @@ class ResetModal extends Component {
 			size="small"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Reset Report</Modal.Title>
+				<Modal.Title>{this.props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Are you sure you want to reset the editor contents to their default value? This action is irreversible and all your work will be lost unless you saved the Markdown source file.
+				{this.props.body}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="danger" onClick={this.handleClick} block>Reset</Button>
+				<Button variant="danger" onClick={this.handleClick} block>{this.props.buttonLabel}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
@@ -41,12 +41,18 @@ class ResetModal extends Component {
 // PROPERTIES //
 
 ResetModal.propTypes = {
+	show: PropTypes.bool.isRequired,
+	title: PropTypes.string,
+	body: PropTypes.string,
+	buttonLabel: PropTypes.string,
 	onHide: PropTypes.func,
-	onSubmit: PropTypes.func,
-	show: PropTypes.bool.isRequired
+	onSubmit: PropTypes.func
 };
 
 ResetModal.defaultProps = {
+	title: 'Reset Report',
+	body: 'Are you sure you want to reset the editor contents to their default value? This action is irreversible and all your work will be lost unless you saved the Markdown source file.',
+	buttonLabel: 'Reset',
 	onHide() {},
 	onSubmit() {}
 };
