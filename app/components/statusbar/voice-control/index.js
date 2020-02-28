@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 import TextEditor from 'components/text-editor';
 import VoiceInput from 'components/input/voice';
 import Tooltip from 'components/tooltip';
-import { P } from 'pdfmake/build/pdfmake';
 
 
 // VARIABLES //
