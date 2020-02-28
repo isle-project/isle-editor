@@ -59,6 +59,7 @@ jobs:
       env:
         CI: true
   coverage:
+    runs-on: ubuntu-latest
     steps:
     - name: Calculate Test Coverage
       run: |
