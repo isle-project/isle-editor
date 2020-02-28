@@ -58,3 +58,13 @@ jobs:
         npm run build
       env:
         CI: true
+  coverage:
+    steps:
+    - name: Calculate Test Coverage
+      run: |
+        npm run coverage
+    - name: Upload Test Coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+
