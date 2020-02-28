@@ -373,18 +373,18 @@ class StatusBar extends Component {
 								<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
-										className="statusbar-presentation-mode"
+										className="statusbar-presentation-mode statusbar-icon"
 									>
-										<span className="fa fa-xs fa-eye-slash statusbar-icon" />
+										<span className="fa fa-xs fa-eye-slash" />
 									</span>
 								</Tooltip> : null }
 							{( isOwner || isElectron ) ?
 							<Tooltip placement="bottom" tooltip="Black out screen for everyone" >
 								<span role="button" tabIndex={0}
 									onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
-									className="statusbar-blackscreen-mode"
+									className="statusbar-blackscreen-mode statusbar-icon"
 								>
-									<span className="fa fa-xs fa-stop statusbar-icon" />
+									<span className="fa fa-xs fa-stop" />
 								</span>
 							</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }

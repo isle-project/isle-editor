@@ -3,29 +3,18 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import pdfMake from 'pdfmake/build/pdfmake';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import TextEditor from 'components/text-editor';
 import VoiceInput from 'components/input/voice';
+import Tooltip from 'components/tooltip';
+import { P } from 'pdfmake/build/pdfmake';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:statusbar:voice-control' );
-
-
-// FUNCTIONS //
-
-function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ '../../../constants/fonts.js' )
-		.then( fonts => {
-			debug( 'Successfully loaded fonts...' );
-			pdfMake.vfs = fonts.default;
-		})
-		.catch( err => {
-			debug( 'Encountered an error while loading fonts: '+err.message );
-		});
-}
 
 
 // MAIN //
@@ -36,12 +25,9 @@ class VoiceControl extends Component {
 
 		this.state = {
 			recordedText: null,
-			transcript: []
+			transcript: [],
+			showTranscriptEditor: false
 		};
-	}
-
-	componentDidMount() {
-		loadFonts();
 	}
 
 	handleFinalVoiceInput = ( text ) => {
@@ -69,80 +55,19 @@ class VoiceControl extends Component {
 
 	stopRecording = () => {
 		this.setState({ recordedText: null }, this.renderRecordedText );
-		const session = this.props.session;
-		session.addNotification({
-			title: 'Recording Ended',
-			message: 'Your voice is not recorded anymore.',
-			level: 'success',
-			position: 'tr',
-			autoDismiss: 0,
-			children: <div style={{ marginBottom: '40px' }}>
-				<Button
-					variant="success"
-					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
-					onClick={this.createTranscript}
-				>Download PDF of Transcript</Button>
-			</div>
+	}
+
+	toggleTranscriptEditor = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
+		this.setState({
+			showTranscriptEditor: !this.state.showTranscriptEditor
 		});
 	}
 
 	handleVoiceInputChange = ( event ) => {
 		event.stopPropagation();
-	}
-
-	createTranscript = () => {
-		const session = this.props.session;
-		const doc = {
-			content: [
-				{
-					text: `Transcript for ISLE lesson ${session.namespaceName+'/'+session.lessonName}`,
-					style: 'header',
-					alignment: 'center'
-				}
-			],
-			styles: {
-				header: {
-					fontSize: 24,
-					bold: true,
-					margin: [0, 0, 0, 10]
-				},
-				author: {
-					fontSize: 16,
-					italics: true,
-					margin: [0, 0, 0, 10],
-					alignment: 'center'
-				},
-				date: {
-					fontSize: 16,
-					italics: true,
-					alignment: 'right',
-					margin: [0, 15, 0, 15]
-				},
-				subheader: {
-					fontSize: 18,
-					bold: true,
-					margin: [0, 30, 0, 10]
-				}
-			}
-		};
-		if ( !isEmptyObject( session.user ) ) {
-			doc.content.push({
-				text: `by ${session.user.name} (${session.user.email})`,
-				style: 'author'
-			});
-		}
-		const date = new Date();
-		doc.content.push({
-			text: `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`,
-			style: 'date'
-		});
-
-		for ( let i = 0; i < this.state.transcript.length; i++ ) {
-			doc.content.push({
-				text: this.state.transcript[ i ]
-			});
-		}
-		pdfMake.createPdf( doc ).download( 'transcript.pdf' );
 	}
 
 	renderRecordedText = () => {
@@ -155,6 +80,17 @@ class VoiceControl extends Component {
 
 	render() {
 		const session = this.props.session;
+		let transcriptText = '';
+		if ( this.state.showTranscriptEditor ) {
+			const date = new Date();
+			transcriptText += `# Transcript for ISLE lesson ${session.namespaceName+'/'+session.lessonName}`;
+			if ( !isEmptyObject( session.user ) ) {
+				transcriptText += `\n## by ${session.user.name} (${session.user.email})`;
+			}
+			transcriptText += `\n### ${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
+			transcriptText += '\n\n\n';
+			transcriptText += this.state.transcript.join( '\n' );
+		}
 		return (
 			<Fragment>
 				<div
@@ -178,10 +114,47 @@ class VoiceControl extends Component {
 						}}
 					/>
 				</div>
+				{ this.state.transcript.length > 0 ? <Tooltip placement="bottom" tooltip="Open transcript" >
+					<span role="button" tabIndex={0}
+						onClick={this.toggleTranscriptEditor} onKeyPress={this.toggleTranscriptEditor}
+						className="statusbar-transcript-editor statusbar-icon"
+					>
+						<span className="fa fa-xs fa-closed-captioning" />
+					</span>
+				</Tooltip> : null }
 				<span
 					ref={( span ) => { this.displayedText = span; }}
 					className="statusbar-voice-text"
 				></span>
+				{ this.state.showTranscriptEditor ? <Modal
+					show={this.state.showTranscriptEditor}
+					onHide={this.toggleTranscriptEditor}
+					dialogClassName="modal-100w"
+				>
+					<Modal.Header closeButton >
+						<Modal.Title as="h3">
+							Transcript
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body style={{
+						height: window.innerHeight * 0.8
+					}}>
+						<TextEditor
+							id="voice-transcript"
+							defaultValue={transcriptText}
+							allowSubmissions={false}
+							resetModal={{
+								title: 'Load latest transcript',
+								body: 'Clicking this button will discard the current file and load the latest transcript.',
+								buttonLabel: 'Confirm',
+								tooltip: 'Load latest transcript'
+							}}
+						/>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.toggleTranscriptEditor}>Close</Button>
+					</Modal.Footer>
+				</Modal> : null }
 			</Fragment>
 		);
 	}

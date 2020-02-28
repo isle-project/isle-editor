@@ -34,6 +34,10 @@
 
 #Lesson .statusbar-icon {
 	opacity: 0.6;
+	position: absolute;
+	z-index: 2;
+	width: 18px;
+	height: 18px;
 }
 
 #Lesson .statusbar-icon:hover {
@@ -171,21 +175,18 @@
 }
 
 #Lesson .statusbar-presentation-mode {
-	left: 28px;
+	left: 46px;
 	bottom: 3px;
-	position: absolute;
-	z-index: 2;
-	width: 18px;
-	height: 18px;
 }
 
 #Lesson .statusbar-blackscreen-mode {
-	left: 46px;
+	left: 64px;
 	bottom: 3px;
-	position: absolute;
-	z-index: 2;
-	width: 18px;
-	height: 18px;
+}
+
+#Lesson .statusbar-transcript-editor {
+	left: 28px;
+	bottom: 3px;
 }
 
 #Lesson #blackscreen {
@@ -198,26 +199,6 @@
 	background-color: #000;
 	opacity: 0.95;
 	animation: anim-fade-in 2s;
-}
-
-#Lesson .statusbar-queue {
-	left: 46px;
-	bottom: 3px;
-	position: absolute;
-	z-index: 2;
-	width: 32px;
-	height: 18px;
-}
-
-#Lesson .statusbar-queue-counter {
-	color: red;
-	font-size: 18px;
-	font-family: Open Sans Condensed;
-	font-weight: 700;
-	z-index: 2;
-	position: absolute;
-	right: 4px;
-	top: -7px;
 }
 
 #Lesson .statusbar-voice-text {

@@ -149,7 +149,7 @@ class Toolbar extends Component {
 								<span className="fa fa-lg fa-question-circle toolbar-icon" />
 							</Tooltip>
 							<Tooltip placement="right" tooltip="# of open questions" >
-								<span className="statusbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
+								<span className="toolbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
 							</Tooltip>
 						</Button> : null }
 						<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
