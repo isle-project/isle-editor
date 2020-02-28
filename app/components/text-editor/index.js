@@ -175,18 +175,6 @@ class TextEditor extends Component {
 		});
 		this.menu.addons = [
 			{
-				title: 'Open HTML',
-				run: ( state, dispatch ) => {
-					const input = document.createElement( 'input' );
-					input.type = 'file';
-					input.accept = '.html';
-					input.addEventListener( 'change', this.handleFileSelect, false );
-					input.click();
-					return false;
-				},
-				content: icons.open
-			},
-			{
 				title: 'Save HTML',
 				content: icons.save,
 				run: ( state, dispatch ) => {
@@ -242,6 +230,20 @@ class TextEditor extends Component {
 				}
 			}
 		];
+		if ( this.props.canLoadHTML ) {
+			this.menu.addons.unshift({
+				title: 'Open HTML',
+				run: ( state, dispatch ) => {
+					const input = document.createElement( 'input' );
+					input.type = 'file';
+					input.accept = '.html';
+					input.addEventListener( 'change', this.handleFileSelect, false );
+					input.click();
+					return false;
+				},
+				content: icons.open
+			});
+		}
 		if ( this.props.allowSubmissions ) {
 			this.menu.addons.push({
 				title: 'Submit',
@@ -300,17 +302,24 @@ class TextEditor extends Component {
 		}
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
 			let tooltip;
-			if ( this.props.resetModal && this.props.resetModal.tooltip ) {
-				tooltip = this.props.resetModal.tooltip;
+			let icon;
+			const resetModal = this.props.resetModal;
+			if ( resetModal && resetModal.tooltip ) {
+				tooltip = resetModal.tooltip;
 			} else {
 				tooltip = 'Reset to default value';
+			}
+			if ( resetModal && resetModal.icon ) {
+				icon = resetModal.icon;
+			} else {
+				icon = icons.reset;
 			}
 			this.menu.addons.push({
 				title: tooltip,
 				run: () => {
 					this.toggleResetModal();
 				},
-				content: icons.reset
+				content: icon
 			});
 		}
 		loadFonts();
@@ -638,9 +647,22 @@ class TextEditor extends Component {
 			value: md.render( this.props.defaultValue ),
 			docId: this.state.docId + 1
 		});
+		let title;
+		let message;
+		const resetModal = this.props.resetModal;
+		if ( resetModal && resetModal.notificationTitle ) {
+			title = resetModal.notificationTitle;
+		} else {
+			title = 'Reset';
+		}
+		if ( resetModal && resetModal.notification ) {
+			message = resetModal.notification;
+		} else {
+			message = 'Your report has been successfully deleted and the editor reset to its default value';
+		}
 		this.context.addNotification({
-			title: 'Reset',
-			message: 'Your report has been successfully deleted and the editor reset to its default value',
+			title,
+			message,
 			level: 'success',
 			position: 'tr'
 		});
@@ -782,6 +804,7 @@ class TextEditor extends Component {
 TextEditor.propTypes= {
 	autoSave: PropTypes.bool,
 	allowSubmissions: PropTypes.bool,
+	canLoadHTML: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	groupMode: PropTypes.bool,
 	intervalTime: PropTypes.number,
@@ -795,6 +818,8 @@ TextEditor.propTypes= {
 		title: PropTypes.string,
 		body: PropTypes.string,
 		buttonLabel: PropTypes.string,
+		notificationTitle: PropTypes.string,
+		notification: PropTypes.string,
 		tooltip: PropTypes.string
 	}),
 	voiceTimeout: PropTypes.number,
@@ -805,6 +830,7 @@ TextEditor.propTypes= {
 TextEditor.defaultProps = {
 	autoSave: true,
 	allowSubmissions: true,
+	canLoadHTML: true,
 	defaultValue: DEFAULT_VALUE,
 	groupMode: false,
 	intervalTime: 10000,

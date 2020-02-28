@@ -147,8 +147,12 @@ class VoiceControl extends Component {
 								title: 'Load latest transcript',
 								body: 'Clicking this button will discard the current file and load the latest transcript.',
 								buttonLabel: 'Confirm',
-								tooltip: 'Load latest transcript'
+								tooltip: 'Load latest transcript',
+								notificationTitle: 'Transcript loaded',
+								notification: 'The current file has been successfully discarded and the latest transcript loaded into the editor.',
+								icon: <i className="prosemirror-icon fa fa-closed-captioning"></i>
 							}}
+							canLoadHTML={false}
 						/>
 					</Modal.Body>
 					<Modal.Footer>
