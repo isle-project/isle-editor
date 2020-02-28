@@ -140,7 +140,7 @@ class VoiceControl extends Component {
 						height: window.innerHeight * 0.8
 					}}>
 						<TextEditor
-							id="voice-transcript"
+							id={`${session.namespaceName}-${session.lessonName}-transcript`}
 							defaultValue={transcriptText}
 							allowSubmissions={false}
 							resetModal={{
