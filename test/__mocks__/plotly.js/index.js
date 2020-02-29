@@ -1,6 +1,7 @@
 // MODULES //
 
-const noop = require( '@stdlib/utils/noop' );
+import React from 'react';
+import noop from '@stdlib/utils/noop';
 
 
 // MAIN //
@@ -14,4 +15,4 @@ Plotly.setPlotConfig = noop;
 
 // EXPORTS //
 
-module.exports = Plotly;
+export default Plotly;

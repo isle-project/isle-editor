@@ -1,6 +1,6 @@
 // MODULES //
 
-const noop = require( '@stdlib/utils/noop' );
+import noop from '@stdlib/utils/noop';
 
 
 // MAIN //
@@ -11,4 +11,4 @@ QRCode.toCanvas = noop;
 
 // EXPORTS //
 
-module.exports = QRCode;
+export default QRCode;

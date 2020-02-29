@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a slider for child elements (dragging disabled) 1`] = `
+<div
+  className="card"
+  size="large"
+  style={
+    Object {
+      "marginBottom": "20px",
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "marginTop": "20px",
+      "maxWidth": "1200px",
+      "paddingBottom": "20px",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="card-body"
+  >
+    <div
+      beforeChange={[Function]}
+      className="centered"
+      dots={true}
+      draggable={false}
+      fade={false}
+      goto={0}
+      infinite={false}
+      interval={null}
+      nextArrow={
+        <NextArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      onClick={[Function]}
+      prevArrow={
+        <PreviousArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      slidesToScroll={1}
+      slidesToShow={1}
+      speed={1000}
+      style={Object {}}
+      swipe={false}
+      title=""
+    >
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a slider for child elements (with title) 1`] = `
+<div
+  className="card"
+  size="large"
+  style={
+    Object {
+      "marginBottom": "20px",
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "marginTop": "20px",
+      "maxWidth": "1200px",
+      "paddingBottom": "20px",
+      "width": "100%",
+    }
+  }
+>
+  <h3
+    className="card-header"
+  >
+    Questions
+    <span
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      1
+       / 
+      3
+    </span>
+  </h3>
+  <div
+    className="card-body"
+  >
+    <div
+      beforeChange={[Function]}
+      className="centered"
+      dots={true}
+      draggable={true}
+      fade={false}
+      goto={0}
+      infinite={false}
+      interval={null}
+      nextArrow={
+        <NextArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      onClick={[Function]}
+      prevArrow={
+        <PreviousArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      slidesToScroll={1}
+      slidesToShow={1}
+      speed={1000}
+      style={Object {}}
+      swipe={false}
+      title="Questions"
+    >
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a slider for child elements (without dots for navigation) 1`] = `
+<div
+  className="card"
+  size="large"
+  style={
+    Object {
+      "marginBottom": "20px",
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "marginTop": "20px",
+      "maxWidth": "1200px",
+      "paddingBottom": "20px",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="card-body"
+  >
+    <div
+      beforeChange={[Function]}
+      className="centered"
+      dots={false}
+      draggable={true}
+      fade={false}
+      goto={0}
+      infinite={false}
+      interval={null}
+      nextArrow={
+        <NextArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      onClick={[Function]}
+      prevArrow={
+        <PreviousArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      slidesToScroll={1}
+      slidesToShow={1}
+      speed={1000}
+      style={Object {}}
+      swipe={false}
+      title=""
+    >
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a slider for child elements 1`] = `
+<div
+  className="card"
+  size="large"
+  style={
+    Object {
+      "marginBottom": "20px",
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "marginTop": "20px",
+      "maxWidth": "1200px",
+      "paddingBottom": "20px",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="card-body"
+  >
+    <div
+      beforeChange={[Function]}
+      className="centered"
+      dots={true}
+      draggable={true}
+      fade={false}
+      goto={0}
+      infinite={false}
+      interval={null}
+      nextArrow={
+        <NextArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      onClick={[Function]}
+      prevArrow={
+        <PreviousArrow
+          className=""
+          onClick={[Function]}
+        />
+      }
+      slidesToScroll={1}
+      slidesToShow={1}
+      speed={1000}
+      style={Object {}}
+      swipe={false}
+      title=""
+    >
+      0
+    </div>
+  </div>
+</div>
+`;

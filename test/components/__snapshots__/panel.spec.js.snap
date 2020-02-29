@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a panel 1`] = `
+<div
+  className="panel  card"
+  header={null}
+  style={Object {}}
+>
+  <div
+    className="card-body"
+    style={Object {}}
+  >
+    <p>
+      Lorem ipsum...
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders a panel with a heading 1`] = `
+<div
+  className="panel  card"
+  header="Title"
+  style={Object {}}
+>
+  <h3
+    className="card-header"
+  >
+    Title
+  </h3>
+  <div
+    className="card-body"
+    style={Object {}}
+  >
+    <p>
+      Lorem ipsum...
+    </p>
+  </div>
+</div>
+`;

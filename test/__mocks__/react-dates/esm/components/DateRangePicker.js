@@ -1,3 +1,8 @@
+// MODULES //
+
+import React from 'react';
+
+
 // MAIN //
 
 function DateRangePicker( props ) {
@@ -7,4 +12,4 @@ function DateRangePicker( props ) {
 
 // EXPORTS //
 
-module.exports = DateRangePicker;
+export default DateRangePicker;
