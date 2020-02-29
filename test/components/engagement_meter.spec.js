@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Provider from 'components/provider';
 import Session from 'session';
-import LessonSubmit from 'components/lesson-submit';
+import EngagementMeter from 'components/engagement-meter';
 
 
 // VARIABLES //
@@ -14,11 +14,11 @@ const session = new Session( {}, true );
 
 // TESTS //
 
-it( 'renders a lesson submit button', () => {
-	const button = renderer.create(
+it( 'renders an engagement meter', () => {
+	const meter = renderer.create(
 		<Provider session={session}>
-			<LessonSubmit />
+			<EngagementMeter />
 		</Provider>
 	).toJSON();
-	expect( button ).toMatchSnapshot();
+	expect( meter ).toMatchSnapshot();
 });
