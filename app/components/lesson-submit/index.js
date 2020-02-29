@@ -51,7 +51,7 @@ function loadFonts() {
 * A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
 *
 * @property {string} label - label of submit button
-* @property {boolean} requireLogin = controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
+* @property {boolean} requireLogin - controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
 * @property {string} message - message for confirmation email
 * @property {Object} style - CSS inline styles

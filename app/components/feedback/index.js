@@ -248,7 +248,6 @@ class FeedbackButtons extends Component {
 // PROPERTIES //
 
 FeedbackButtons.propTypes = {
-	id: PropTypes.string.isRequired,
 	confusedMsg: PropTypes.string,
 	feedbackMsg: PropTypes.string,
 	understoodMsg: PropTypes.string,
