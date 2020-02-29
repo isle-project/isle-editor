@@ -63,6 +63,7 @@ jobs:
     steps:
     - name: Calculate Test Coverage
       run: |
+        npm ci
         npm run coverage
     - name: Upload Test Coverage
       uses: codecov/codecov-action@v1
