@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders feedback buttons (horizontal format) 1`] = `
+<div
+  className="feedback-buttons"
+  id="feedback-2"
+>
+  <div
+    className="btn-group"
+    role="group"
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+  </div>
+  <div
+    id="response"
+  />
+</div>
+`;
+
+exports[`renders feedback buttons (vertical format) 1`] = `
+<div
+  className="feedback-buttons"
+  id="feedback-3"
+>
+  <div
+    className="btn-group-vertical"
+    role="group"
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+  </div>
+  <div
+    id="response"
+  />
+</div>
+`;
+
+exports[`renders feedback buttons with custom messages 1`] = `
+<div
+  className="feedback-buttons"
+  id="feedback-5"
+>
+  <div
+    className="btn-group"
+    role="group"
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+  </div>
+  <div
+    id="response"
+  />
+</div>
+`;
+
+exports[`renders feedback buttons without option to supply custom feedback 1`] = `
+<div
+  className="feedback-buttons"
+  id="feedback-4"
+>
+  <div
+    className="btn-group"
+    role="group"
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+    <button
+      className="feedback-button btn btn-light btn-small"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        className="feedback-icon"
+      />
+    </button>
+  </div>
+  <div
+    id="response"
+  />
+</div>
+`;

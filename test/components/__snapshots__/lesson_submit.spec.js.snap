@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a lesson submit button 1`] = `
+<div
+  className="bg-light"
+  style={
+    Object {
+      "fontFamily": "Arial",
+      "margin": "0 auto 0px",
+      "maxWidth": 400,
+      "padding": "20px",
+    }
+  }
+>
+  <button
+    className="btn btn-primary btn-block btn-large"
+    disabled={true}
+    onClick={[Function]}
+    type="button"
+  >
+    Finish lesson
+  </button>
+</div>
+`;
