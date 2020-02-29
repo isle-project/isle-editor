@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a QRCode 1`] = `
+<canvas
+  className="qrcode-canvas "
+  style={Object {}}
+/>
+`;
+
+exports[`renders a QRCode with a custom scale 1`] = `
+<canvas
+  className="qrcode-canvas "
+  style={Object {}}
+/>
+`;
+
+exports[`renders a QRCode with custom text 1`] = `
+<canvas
+  className="qrcode-canvas "
+  style={Object {}}
+/>
+`;
+
+exports[`renders a centered QRCode 1`] = `
+<canvas
+  className="qrcode-canvas center"
+  style={Object {}}
+/>
+`;
