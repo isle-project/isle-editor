@@ -12,10 +12,9 @@ import './polaroid.css';
 /**
 * A component displaying an image in the style of a polaroid.
 *
-* @property {Array} image - the image which is displayed in the polaroid frame
+* @property {string} image - the URL of the image to be displayed in the polaroid frame
 * @property {boolean} draggable - controls whether one can drag the polaroid around the screen
 * @property {boolean} removable - indicates whether the image is removable when clicking on the pin
-* @property {string} image - image URL
 * @property {Function} onClick - event handler invoked when image is clicked (receives the id of the Polaroid as parameter)
 * @property {boolean} showPin - shows a pin
 * @property {Object} style - CSS inline styles

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 * Clock component displaying the current time.
 *
 * @property {Object} style - CSS inline styles
-* @property {boolean} duration - if set the duration of the session is display (not the actual time)
+* @property {boolean} duration - if set, the duration of the session is displayed (not the actual time)
 * @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)
 */
 class Clock extends Component {
