@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a draggable polaroid image 1`] = `
+<div
+  className="polaroid react-draggable"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyPress={[Function]}
+  onMouseDown={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "touchAction": "none",
+      "transform": "translate(0px,0px)",
+    }
+  }
+  tabIndex={0}
+  transform={null}
+>
+  <div
+    className="polaroid-wrapper"
+  >
+    <div
+      className="polaroid-image"
+      style={
+        Object {
+          "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
+          "backgroundPosition": "center",
+          "backgroundSize": "auto 100%",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`renders a polaroid image 1`] = `
+<div
+  className="polaroid"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyPress={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  role="button"
+  style={Object {}}
+  tabIndex={0}
+>
+  <div
+    className="polaroid-wrapper"
+  >
+    <div
+      className="polaroid-image"
+      style={
+        Object {
+          "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
+          "backgroundPosition": "center",
+          "backgroundSize": "auto 100%",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`renders a polaroid image with a pin 1`] = `
+<div
+  className="polaroid"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyPress={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  role="button"
+  style={Object {}}
+  tabIndex={0}
+>
+  <div
+    className="polaroid-wrapper"
+  >
+    <div
+      className="polaroid-image"
+      style={
+        Object {
+          "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
+          "backgroundPosition": "center",
+          "backgroundSize": "auto 100%",
+        }
+      }
+    />
+    <div
+      className="polaroid-pin"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders a removable polaroid image 1`] = `
+<div
+  className="polaroid"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyPress={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  role="button"
+  style={Object {}}
+  tabIndex={0}
+>
+  <div
+    className="polaroid-wrapper"
+  >
+    <div
+      className="polaroid-image"
+      style={
+        Object {
+          "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
+          "backgroundPosition": "center",
+          "backgroundSize": "auto 100%",
+        }
+      }
+    />
+    <button
+      className="pin-image-map"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
