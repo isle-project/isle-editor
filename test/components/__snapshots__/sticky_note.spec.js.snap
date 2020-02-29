@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a colored sticky note 1`] = `
+<div
+  className="sticky-note-outer"
+  style={
+    Object {
+      "filter": "hue-rotate(320deg) saturate(70%)",
+      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
+    }
+  }
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      />
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title"
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-date"
+        >
+          
+        </div>
+        <div
+          className="sticky-note-body"
+        >
+          Text body of note
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a minimizable sticky note 1`] = `
+<div
+  className="sticky-note-outer"
+  style={Object {}}
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      >
+        <div
+          className="sticky-note-minimizable"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          –
+        </div>
+      </div>
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title"
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-date"
+        >
+          
+        </div>
+        <div
+          className="sticky-note-body"
+        >
+          Text body of note
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a sticky note 1`] = `
+<div
+  className="sticky-note-outer"
+  style={Object {}}
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      />
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title"
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-date"
+        >
+          
+        </div>
+        <div
+          className="sticky-note-body"
+        >
+          Text body of note
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a sticky note with a date 1`] = `
+<div
+  className="sticky-note-outer"
+  style={
+    Object {
+      "filter": "hue-rotate(320deg) saturate(70%)",
+      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
+    }
+  }
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      />
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title"
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-date"
+        >
+          01/20/2020
+        </div>
+        <div
+          className="sticky-note-body"
+        >
+          Text body of note
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a sticky note with a stain 1`] = `
+<div
+  className="sticky-note-outer"
+  style={
+    Object {
+      "filter": "hue-rotate(320deg) saturate(70%)",
+      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
+    }
+  }
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      />
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title"
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-date"
+        >
+          
+        </div>
+        <div
+          className="sticky-note-body"
+        >
+          Text body of note
+        </div>
+        <div
+          className="sticky-note-stain"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an editable sticky note 1`] = `
+<div
+  className="sticky-note-outer"
+  style={Object {}}
+>
+  <div
+    className="sticky-note"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <div
+      className="sticky-note-wrapper"
+    >
+      <div
+        className="sticky-note-controls"
+      />
+      <div
+        className="sticky-note-content"
+      >
+        <div
+          className="sticky-note-title editable"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          My note
+        </div>
+        <div
+          className="sticky-note-body editable"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Text body of note
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

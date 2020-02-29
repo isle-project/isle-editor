@@ -1,0 +1,555 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a basic calculator 1`] = `
+<div
+  className="outer-calc react-draggable"
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "touchAction": "none",
+      "transform": "translate(0px,0px)",
+    }
+  }
+  transform={null}
+>
+  <div
+    className="panel  card"
+    header={
+      <span>
+        Calculator
+      </span>
+    }
+    id="calc-panel"
+    role="button"
+    style={Object {}}
+    tabIndex={0}
+  >
+    <h3
+      className="card-header"
+    >
+      <span>
+        Calculator
+      </span>
+    </h3>
+    <div
+      className="card-body"
+      style={Object {}}
+    >
+      <div
+        className="desaturated container"
+      >
+        <input
+          autoFocus={true}
+          className="form-control"
+          id="calc-text-area"
+          onChange={[Function]}
+          onKeyPress={[Function]}
+          type="text"
+          value="0"
+        />
+        <p>
+          Answer = 
+          0
+        </p>
+        <div
+          className="row"
+        >
+          <div
+            className="col"
+          >
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                (
+              </button>
+              <button
+                className="input-button-small btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                )
+              </button>
+              <button
+                className="input-button-small btn btn-warning"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Copy
+              </button>
+              <button
+                className="input-button-small btn btn-warning"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Expand
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                7
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                8
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                9
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                ÷
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                4
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                5
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                6
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                ×
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                1
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                2
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                3
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                -
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Ans
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                0
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                .
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                +
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                CE
+              </button>
+              <button
+                className="input-button-small btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                AC
+              </button>
+              <button
+                className="half-button btn btn-success"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                =
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an expandable calculator 1`] = `
+<div
+  className="outer-calc react-draggable"
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "touchAction": "none",
+      "transform": "translate(0px,0px)",
+    }
+  }
+  transform={null}
+>
+  <div
+    className="panel  card"
+    header={
+      <span>
+        Calculator
+      </span>
+    }
+    id="calc-panel"
+    role="button"
+    style={Object {}}
+    tabIndex={0}
+  >
+    <h3
+      className="card-header"
+    >
+      <span>
+        Calculator
+      </span>
+    </h3>
+    <div
+      className="card-body"
+      style={Object {}}
+    >
+      <div
+        className="desaturated container"
+      >
+        <input
+          autoFocus={true}
+          className="form-control"
+          id="calc-text-area"
+          onChange={[Function]}
+          onKeyPress={[Function]}
+          type="text"
+          value="0"
+        />
+        <p>
+          Answer = 
+          0
+        </p>
+        <div
+          className="row"
+        >
+          <div
+            className="col"
+          >
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                (
+              </button>
+              <button
+                className="input-button-small btn btn-light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                )
+              </button>
+              <button
+                className="input-button-small btn btn-warning"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Copy
+              </button>
+              <button
+                className="input-button-small btn btn-warning"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Expand
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                7
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                8
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                9
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                ÷
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                4
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                5
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                6
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                ×
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                1
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                2
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                3
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                -
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Ans
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                0
+              </button>
+              <button
+                className="input-button-small btn btn-dark"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                .
+              </button>
+              <button
+                className="input-button-small btn btn-info"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                +
+              </button>
+            </div>
+            <div
+              className="row"
+            >
+              <button
+                className="input-button-small btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                CE
+              </button>
+              <button
+                className="input-button-small btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                AC
+              </button>
+              <button
+                className="half-button btn btn-success"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                =
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an inactive calculator 1`] = `null`;
