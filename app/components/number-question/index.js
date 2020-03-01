@@ -46,7 +46,7 @@ const debug = logger( 'isle:number-question' );
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
-* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
 */
 class NumberQuestion extends Component {
 	/**

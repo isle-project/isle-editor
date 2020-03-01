@@ -41,7 +41,14 @@ class VoiceControl extends Component {
 			this.setState({ recordedText: null }, this.renderRecordedText );
 		}, 3000 );
 		const session = this.props.session;
-		session.speechInterface.check( text );
+		session.speechInterface.check( text, {
+			onStart: () => {
+				this.voiceInput.stop();
+			},
+			onEnd: () => {
+				this.voiceInput.start();
+			}
+		});
 	}
 
 	handleVoiceInput = ( text ) => {
@@ -52,7 +59,7 @@ class VoiceControl extends Component {
 		}, this.renderRecordedText );
 	}
 
-	stopRecording = () => {
+	handleStopRecording = () => {
 		this.setState({ recordedText: null }, this.renderRecordedText );
 	}
 
@@ -101,12 +108,15 @@ class VoiceControl extends Component {
 					<VoiceInput
 						id="statusbar-voice"
 						onClick={this.handleVoiceInputChange}
+						ref={( input ) => {
+							this.voiceInput = input;
+						}}
 						mode="microphone" width={18} height={18}
 						stopTooltip="Disable voice recording / control (F9)"
 						startTooltip="Enable voice recording / control (F9)"
 						onSegment={this.handleVoiceInput}
 						onFinalText={this.handleFinalVoiceInput}
-						onRecordingStop={this.stopRecording}
+						onRecordingStop={this.handleStopRecording}
 						maxAlternatives={5}
 						remote={{
 							toggle: 120 // F9

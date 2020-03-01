@@ -128,6 +128,12 @@ class FreeTextQuestion extends Component {
 		this.props.onChange( newValue );
 	};
 
+	appendText = ( text ) => {
+		this.setState({
+			value: this.state.value + ' ' + text
+		});
+	}
+
 	sendSubmitNotification = () => {
 		const session = this.context;
 		if ( this.state.submitted ) {

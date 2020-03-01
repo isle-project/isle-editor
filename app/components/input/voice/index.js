@@ -227,7 +227,6 @@ class VoiceInput extends Input {
 		});
 	}
 
-
 	stop = () => {
 		debug( 'Set `isRecording` to false...' );
 		this.setState({

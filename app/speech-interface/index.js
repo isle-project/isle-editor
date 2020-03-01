@@ -6,6 +6,7 @@ import reFromString from '@stdlib/utils/regexp-from-string';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
+import noop from '@stdlib/utils/noop';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import logger from 'debug';
 import camelcase from 'utils/camelcase';
@@ -244,7 +245,7 @@ class SpeechInterface {
 		window.speechSynthesis.speak( ssu );
 	}
 
-	setActive = ( name ) => {
+	setActive = ( name, onEnd ) => {
 		let found = false;
 		debug( 'Trying to set component with the following ID as active: '+name );
 		if ( name ) {
@@ -260,21 +261,24 @@ class SpeechInterface {
 				}
 			}
 		}
-		let resp;
-		if ( !found ) {
-			resp = 'Sorry, I couldn\'t find a component with the identifier ' + name;
-		} else {
-			resp = 'Component selected.';
+		if ( onEnd ) {
+			let resp;
+			if ( !found ) {
+				resp = 'Sorry, I couldn\'t find a component with the identifier ' + name;
+			} else {
+				resp = 'Component selected.';
+			}
+			const ssu = new SpeechSynthesisUtterance( resp );
+			ssu.lang = 'en-US';
+			ssu.onend = onEnd;
+			window.speechSynthesis.speak( ssu );
 		}
-		const ssu = new SpeechSynthesisUtterance( resp );
-		ssu.lang = 'en-US';
-		window.speechSynthesis.speak( ssu );
 	}
 
 	/**
 	* Checks whether the text contains a valid name.
 	*/
-	check( arr ) {
+	check( arr, { onStart = noop, onEnd = noop }) {
 		for ( let i = 0; i < arr.length; i++ ) {
 			const text = arr[ i ];
 			debug( 'Checking text: `'+ text + '`' );
@@ -287,8 +291,9 @@ class SpeechInterface {
 				debug( 'Received a selection command: '+text );
 				const match = text.match( RE_SELECT );
 				if ( match ) {
+					onStart();
 					const name = match[ 1 ];
-					return this.setActive( name );
+					return this.setActive( name, onEnd );
 				}
 			}
 			if ( this.active ) {

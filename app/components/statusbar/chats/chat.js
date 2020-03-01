@@ -12,6 +12,7 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
+import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
@@ -19,6 +20,7 @@ import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import { CHAT_MESSAGE, MARK_MESSAGES, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT } from 'constants/events.js';
 import renderTime from './render_time.js';
+import VOICE_COMMANDS from './voice_commands.json';
 import './chat.css';
 
 
@@ -90,6 +92,12 @@ class Chat extends Component {
 		});
 	}
 
+	insertText = ( text ) => {
+		this.setState({
+			value: this.state.value + ' ' + text
+		});
+	}
+
 	closeChat = () => {
 		const session = this.context;
 		session.leaveChat( this.props.chat.name );
@@ -117,7 +125,7 @@ class Chat extends Component {
 	renderMembers() {
 		const { chat } = this.props;
 		const userlistPopover = <Popover id="userlistPopover" >
-			<PopoverTitle>Members of ${chat.name} chat:</PopoverTitle>
+			<PopoverTitle>Members of {chat.name} chat:</PopoverTitle>
 			<PopoverContent>
 				<ListGroup>
 					{chat.members.map( ( member, idx ) => {
@@ -170,6 +178,9 @@ class Chat extends Component {
 					style={{ marginTop: '4px', marginBottom: '4px' }}
 					onClick={this.state.value === '' ? noop : this.sendMessage}
 				>Send Message</Button>
+				<VoiceControl id={this.props.chat.name} reference={this}
+					commands={VOICE_COMMANDS}
+				/>
 			</div>
 		);
 	}
