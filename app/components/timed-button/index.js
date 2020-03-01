@@ -26,7 +26,7 @@ const debug = logger( 'isle:timed-button' );
 * @property {string} type - button type (passed to the react-bootstrap button component)
 * @property {string} variant - button variant (passed to the react-bootstrap button component)
 * @property {Object} style - CSS inline styles
-* @property {boolean} autoActivate - controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`
+* @property {boolean} autoActivate - controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback passed to the `onClick` event handler is invoked with `true`
 */
 class TimedButton extends Component {
 	constructor( props ) {

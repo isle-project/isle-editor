@@ -51,7 +51,7 @@ MultinomialFit.prototype.score = require( './score.js' );
 *
 * ## Notes
 *
-* -   Assigns prior and conditional probabilities (cprob) of BayesFit instance.
+* -   Assigns prior and conditional probabilities of BayesFit instance.
 *
 * @param {Matrix} x - design matrix
 * @param {Array} y - vector of class memberships

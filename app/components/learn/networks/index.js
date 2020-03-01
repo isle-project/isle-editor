@@ -1,3 +1,5 @@
+/* eslint-disable spellcheck/spell-checker */
+
 // MODULES //
 
 import React, { Component } from 'react';
@@ -20,9 +22,9 @@ import calculateTransitivity from './calculate_transitivity.js';
 // MAIN //
 
 /**
-* Generate networks from a Erdős–Rényi model.
+* Generate networks from a Erdős-Rényi model.
 *
-* @property {bool} showEdgeChart - controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)
+* @property {boolean} showEdgeChart - controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)
 */
 class Networks extends Component {
 	constructor( props ) {

@@ -4,7 +4,7 @@ title: Color Picker
 sidebar_label: Color Picker
 ---
 
-A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker.
+A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker.
 
 ## Example
 
@@ -47,6 +47,6 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
   '#9B9B9B',
   '#FFFFFF'
 ]`.
-* __width__ | `number`: width of the colorpicker (in px). Default: `200`.
+* __width__ | `number`: width of the color picker (in px). Default: `200`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.

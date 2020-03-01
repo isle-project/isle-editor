@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 
 /*
-* Name list from 1990 census, thanks to github:treyhunner/names
+* Name list from 1990 census, thanks to https://github.com/treyhunner/names.
 */
 export const firstMale = [
 	'James',

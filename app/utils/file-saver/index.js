@@ -95,7 +95,7 @@ function saveFactory( view ) {
 		if ( !noAutoBOM ) {
 			blob = autoBOM(blob);
 		}
-		// First try a.download, then web filesystem, then object URLs
+		// First try a download, then web filesystem, then object URLs:
 		const self = this;
 		const type = blob.type;
 		const force = type === forceSavableType;
@@ -103,10 +103,10 @@ function saveFactory( view ) {
 		function dispatchAll() {
 			dispatch( self, 'writestart progress write writeend'.split(' ') );
 		}
-		// on any filesys errors revert to saving with object URLs
+		// On any filesystem errors, revert to saving with object URLs:
 		function fsError() {
 			if ((isChromeIOS || (force && isSafari)) && view.FileReader) {
-				// Safari doesn't allow downloading of blob urls
+				// Safari doesn't allow downloading of blob URLs:
 				const reader = new FileReader();
 				reader.onloadend = function onLoadEnd() {
 					let url = isChromeIOS ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');

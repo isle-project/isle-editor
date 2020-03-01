@@ -72,7 +72,7 @@ function getAttrs( dom ) {
 			};
 		}
 		if ( ps.transform ) {
-			// example: `rotate(1.57rad) translateZ(0px)`;
+			// Example: `rotate(1.57rad) translateZ(0px)`;
 			const mm = ps.transform.match( CSS_ROTATE_PATTERN );
 			if (mm && mm[1]) {
 				rotate = parseFloat(mm[1]) || null;

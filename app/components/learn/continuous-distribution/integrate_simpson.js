@@ -36,8 +36,7 @@ const debug = logger( 'integrate-simpson' );
 
 // MAIN //
 
-// This algorithm adapted from pseudocode in:
-// http://www.math.utk.edu/~ccollins/refs/Handouts/rich.pdf
+// This algorithm is adapted from the pseudo-code in: http://www.math.utk.edu/~ccollins/refs/Handouts/rich.pdf
 function adsimp( f, a, b, fa, fm, fb, V0, tol, maxdepth, depth, state ) { // eslint-disable-line max-params
 	if ( state.nanEncountered ) {
 		return NaN;

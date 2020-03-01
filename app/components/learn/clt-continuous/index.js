@@ -133,7 +133,7 @@ function fixAtTwo( elem ) {
 	return elem.toFixed( 2 );
 }
 
-// Function to ensure tha all data is rounded to 3 decimal places
+// Function to ensure that all data is rounded to 3 decimal places
 function makeVisibleData(arr, display = 100) {
 	const dispStr = arr.map( fixAtTwo )
 		.slice(0, display)

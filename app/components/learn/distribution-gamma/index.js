@@ -44,7 +44,7 @@ const AREA_STYLE = {
 * @property {Array} tabs - which tabs to display (either `smaller`, `greater`, or `range`)
 * @property {number} step - step size of the scroll input
 * @property {boolean} scaleParameterization - controls whether to use the parameterization involving a shape and scale parameter instead of shape and rate
-* @property {boolean} symbols - whether to display greek symbols for parameters
+* @property {boolean} symbols - whether to display Greek symbols for parameters
 * @property {Object} style - CSS inline styles
 */
 class GammaProbs extends Component {

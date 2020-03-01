@@ -1,8 +1,7 @@
 // MODULES //
 
 /*
-	Disable no-new-func warning as evaluating code in an editor
-	is one of the few valid use-cases of this otherwise dangerous function:
+	Disable no-new-func warning as evaluating code in an editor is one of the few valid use-cases of this otherwise dangerous function:
 */
 /* eslint no-new-func: 0 */
 

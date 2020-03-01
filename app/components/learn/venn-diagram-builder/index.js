@@ -22,7 +22,7 @@ import './venn_diagram_builder.css';
 // MAIN //
 
 /**
-* A venn diagram builder.
+* A Venn diagram builder.
 *
 * @property {number} nobs - total number of observations
 * @property {boolean} three - controls whether to display three circles

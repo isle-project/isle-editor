@@ -86,7 +86,7 @@
       {
         "name": "parent",
         "type": "boolean",
-        "description": "sets the parent divs backgroundColor to transparent, overflow to hidden",
+        "description": "sets the parent div's backgroundColor to transparent, overflow to hidden",
         "default": false
       },
       {
@@ -228,7 +228,7 @@
       {
         "name": "duration",
         "type": "boolean",
-        "description": "if set the duration of the session is display (not the actual time)",
+        "description": "if set, the duration of the session is displayed (not the actual time)",
         "default": false
       },
       {
@@ -320,7 +320,7 @@
       {
         "name": "width",
         "type": "number",
-        "description": "width of the colorpicker (in px)",
+        "description": "width of the color picker (in px)",
         "default": 200
       },
       {
@@ -336,7 +336,7 @@
         "default": "onChangeComplete() {}"
       }
     ],
-    "description": "A wrapper for the [react-color](https://casesandberg.github.io/react-color/) colorpicker."
+    "description": "A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker."
   },
   "Container": {
     "props": [
@@ -950,10 +950,6 @@
   },
   "FeedbackButtons": {
     "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
       {
         "name": "confusedMsg",
         "type": "string",
@@ -1714,7 +1710,7 @@
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit greyed-out",
+        "description": "controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit grayed-out",
         "default": false
       },
       {
@@ -2035,13 +2031,13 @@
       {
         "name": "stopTooltip",
         "type": "string",
-        "description": "tooltip message desplayed while recording",
+        "description": "tooltip message displayed while recording",
         "default": "Click to stop recording"
       },
       {
         "name": "startTooltip",
         "type": "string",
-        "description": "tooltip message desplayed while not recording",
+        "description": "tooltip message displayed while not recording",
         "default": "Click to start recording"
       },
       {
@@ -2487,7 +2483,7 @@
       {
         "name": "symbols",
         "type": "boolean",
-        "description": "whether to display greek symbols for parameters",
+        "description": "whether to display Greek symbols for parameters",
         "default": true
       },
       {
@@ -2788,13 +2784,23 @@
   "LearnNetworks": {
     "props": [
       {
+        "name": "maxNumNodes",
+        "type": "number",
+        "default": 30
+      },
+      {
         "name": "showEdgeChart",
         "type": "boolean",
         "description": "controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)",
         "default": false
+      },
+      {
+        "name": "showTransitivities",
+        "type": "boolean",
+        "default": false
       }
     ],
-    "description": "Generate networks from a Erdős–Rényi model."
+    "description": "Generate networks from a Erdős-Rényi model."
   },
   "LearnSOTU": {
     "props": [
@@ -2848,7 +2854,7 @@
         "default": false
       }
     ],
-    "description": "A venn diagram builder."
+    "description": "A Venn diagram builder."
   },
   "LearnWordVennDiagram": {
     "props": [
@@ -2905,7 +2911,7 @@
       {
         "name": "requireLogin",
         "type": "boolean",
-        "description": "= controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)",
+        "description": "controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)",
         "default": true
       },
       {
@@ -3532,7 +3538,7 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
         "default": "onSubmit() {}"
       }
     ],
@@ -3868,7 +3874,7 @@
       {
         "name": "onRelayout",
         "type": "function",
-        "description": "callback function invoked when plotly_relayout is triggered",
+        "description": "callback function invoked when Plotly_relayout is triggered",
         "default": "onRelayout() {}"
       },
       {
@@ -3903,7 +3909,7 @@
       {
         "name": "image",
         "type": "string",
-        "description": "image URL",
+        "description": "the URL of the image to be displayed in the polaroid frame",
         "default": null
       },
       {
@@ -3959,13 +3965,13 @@
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
-        "description": "contols whether one wishes to allow students to answer the survey multiple times",
+        "description": "controls whether one wishes to allow students to answer the survey multiple times",
         "default": false
       },
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "contols whether student answers are anonymized",
+        "description": "controls whether student answers are anonymized",
         "default": false
       },
       {
@@ -4737,7 +4743,7 @@
       {
         "name": "active",
         "type": "boolean",
-        "description": "controls whether seal is active or greyed out",
+        "description": "controls whether seal is active or grayed out",
         "default": true
       },
       {
@@ -4976,7 +4982,7 @@
       {
         "name": "onSubmit",
         "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
         "default": "onSubmit() {}"
       }
     ],
@@ -5937,6 +5943,11 @@
         "default": true
       },
       {
+        "name": "canLoadHTML",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "defaultValue",
         "type": "string",
         "description": "default text of the editor",
@@ -5958,6 +5969,11 @@
         "name": "peerReview",
         "type": "{submitButtonLabel,reviewButtonLabel,finalButtonLabel,filterOwners}",
         "description": "if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
+        "default": null
+      },
+      {
+        "name": "resetModal",
+        "type": "{title,body,buttonLabel,notificationTitle,notification,tooltip}",
         "default": null
       },
       {
@@ -6073,7 +6089,7 @@
       {
         "name": "autoActivate",
         "type": "boolean",
-        "description": "controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback pased to the `onClick` event handler is invoked with `true`",
+        "description": "controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback passed to the `onClick` event handler is invoked with `true`",
         "default": true
       },
       {
@@ -6534,7 +6550,7 @@
         "default": "en-US"
       }
     ],
-    "description": "The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search tem."
+    "description": "The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search term."
   },
   "WordCloud": {
     "props": [

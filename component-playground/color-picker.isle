@@ -50,6 +50,6 @@ removeStatusBar: true
   '#9B9B9B',
   '#FFFFFF'
 ]`.
-* __width__ | `number`: width of the colorpicker (in px). Default: `200`.
+* __width__ | `number`: width of the color picker (in px). Default: `200`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.

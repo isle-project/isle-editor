@@ -16,7 +16,7 @@ A component displaying an image in the style of a polaroid.
 
 ## Options
 
-* __image__ | `string`: image URL. Default: `none`.
+* __image__ | `string`: the URL of the image to be displayed in the polaroid frame. Default: `none`.
 * __removable__ | `boolean`: indicates whether the image is removable when clicking on the pin. Default: `false`.
 * __draggable__ | `boolean`: controls whether one can drag the polaroid around the screen. Default: `false`.
 * __showPin__ | `boolean`: shows a pin. Default: `false`.
