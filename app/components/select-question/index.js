@@ -44,7 +44,7 @@ const uid = generateUID( 'select-question' );
 * @property {string} successMsg - message to be displayed when student selects the correct answer
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the submit action
-* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly anwered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
 class SelectQuestion extends Component {
 	/**

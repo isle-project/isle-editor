@@ -29,7 +29,7 @@ const DIFF = 4;
 /**
 * An approval seal.
 *
-* @property {boolean} active - controls whether seal is active or greyed out
+* @property {boolean} active - controls whether seal is active or grayed out
 * @property {number} scale - object size (if not explicitly set, the seal is not rescaled)
 * @property {string} title - seal title
 * @property {string} lower - the lower text

@@ -90,7 +90,7 @@ function factory( monaco ) {
 									label: 'Journal Article',
 									documentation: 'A reference entry for a journal article',
 									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-									insertText: '${1:key}:\n\ttype: article\n\tauthor: ${2:}\n\ttitle: ${3:}\n\tjournal: ${4:}\n\tyear: ${5:}\n\tnumber: ${6:}\n\tpages: ${7:}\n\tmonth: ${8:}\n\tvolume: ${9:}',
+									insertText: '${1:key}:\n\ttype: article\n\tauthor: ${2:}\n\ttitle: ${3:}\n\tjournal: ${4:}\n\tyear: ${5:}\n\tnumber: ${6:}\n\tpages: ${7:}\n\tmonth: ${8:}\n\tvolume: ${9:}', // eslint-disable-line no-template-curly-in-string
 									kind: monaco.languages.CompletionItemKind.Snippet,
 									sortText: 'aa'
 								},
@@ -98,7 +98,7 @@ function factory( monaco ) {
 									label: 'Book',
 									documentation: 'A reference entry for a book',
 									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-									insertText: '${1:key}:\n\ttype: book\n\tauthor: ${2:}\n\ttitle: ${3:}\n\tpublisher: ${4:}\n\tyear: ${5:}\n\taddress: ${6:}\n\tedition: ${7:}\n\tmonth: ${8:}\n\tisbn: ${9:}',
+									insertText: '${1:key}:\n\ttype: book\n\tauthor: ${2:}\n\ttitle: ${3:}\n\tpublisher: ${4:}\n\tyear: ${5:}\n\taddress: ${6:}\n\tedition: ${7:}\n\tmonth: ${8:}\n\tisbn: ${9:}', // eslint-disable-line no-template-curly-in-string
 									kind: monaco.languages.CompletionItemKind.Snippet,
 									sortText: 'ab'
 								}

@@ -29,8 +29,8 @@ const uid = generateUID( 'proportions-survey' );
 * Component that allows a group of people to vote on the weights and importance of given options.
 *
 * @property {number} question - the question to be displayed
-* @property {boolean} allowMultipleAnswers - contols whether one wishes to allow students to answer the survey multiple times
-* @property {boolean} anonymous - contols whether student answers are anonymized
+* @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
+* @property {boolean} anonymous - controls whether student answers are anonymized
 * @property {boolean} disabled - controls whether the survey is deactivated
 * @property {number} nElements - number of elements that shall be weighed
 * @property {Array} legends - legend labels that describe the options to be weighed

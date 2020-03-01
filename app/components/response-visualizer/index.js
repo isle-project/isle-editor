@@ -37,7 +37,7 @@ const debug = logger( 'isle:response-visualizer' );
 *
 * @private
 * @param {string} str - action type
-* @param {string} substring of action type
+* @returns {string} substring of action type
 */
 const extractSubstr = ( str ) => {
 	return str.substr( str.lastIndexOf( '_', str.lastIndexOf( '_' ) - 1 ) + 1 );

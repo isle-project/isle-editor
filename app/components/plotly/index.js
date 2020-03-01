@@ -69,7 +69,7 @@ Plotly.setPlotConfig({
 * @property {Object} style - CSS inline styles
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onClick - callback function invoked when any element is clicked
-* @property {Function} onRelayout - callback function invoked when plotly_relayout is triggered
+* @property {Function} onRelayout - callback function invoked when relayout is triggered
 * @property {Function} onLegendClick - callback function invoked when legend item is clicked
 * @property {Function} onLegendDoubleClick - callback function invoked when legend item is double-clicked
 * @property {Function} onSelected - callback function invoked when elements are selected
