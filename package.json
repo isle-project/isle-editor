@@ -220,7 +220,7 @@
     "react-sortable-tree": "^2.7.1",
     "react-split-pane": "0.1.89",
     "react-table": "6.11.5",
-    "react-viewer": "^3.1.0",
+    "react-viewer": "^3.2.0",
     "react-virtualized": "^9.19.1",
     "recordrtc": "^5.5.9",
     "redux": "4.0.5",
