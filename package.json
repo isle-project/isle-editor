@@ -256,7 +256,7 @@
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-jest": "^23.8.0",
+    "eslint-plugin-jest": "^23.8.1",
     "eslint-plugin-react-hooks": "^2.5.0",
     "gh-pages": "^2.1.1",
     "happypack": "^5.0.1",
