@@ -83,7 +83,7 @@
 		"name": "react-draggable",
 		"alias": "react-draggable",
 		"var": "ReactDraggable",
-		"path": "dist/react-draggable.min.js",
+		"path": "build/web/react-draggable.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"version": "4.2.0"
 	},
@@ -109,7 +109,7 @@
 		"var": "ReactList",
 		"path": "react-list.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "0.8.13"
+		"version": "0.8.11"
 	},
 	{
 		"name": "react-notification-system",
