@@ -288,8 +288,8 @@ class VoiceInput extends Input {
 	}
 
 	renderTooltip() {
-		let x = getSpeechRecognition();
-		let text = this.tooltipMessage( x );
+		const x = getSpeechRecognition();
+		const text = this.tooltipMessage( x );
 		return (
 			<Tooltip id={`${this.props.id}-voice-input-tooltip`} >
 				{text}
