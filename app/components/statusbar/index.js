@@ -341,8 +341,9 @@ class StatusBar extends Component {
 		};
 		const isOwner = session.isOwner();
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+		const picture = session.user.picture;
 		const duration = <Fragment>
-			<img className="statusbar-profile" alt="User Profile Pic" src={session.user.picture} onClick={preventPropagation} />
+			{picture ? <img className="statusbar-profile" alt="User Profile Pic" src={picture} onClick={preventPropagation} /> : null}
 			<Tooltip placement="bottom" tooltip="Time spent in current session">
 				<div className="progress-time" onClick={preventPropagation}>
 					DUR: {this.state.duration} MIN
