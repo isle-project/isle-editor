@@ -249,7 +249,7 @@
     "codecov": "^3.6.2",
     "concurrently": "^5.1.0",
     "doctrine": "^3.0.0",
-    "electron": "8.0.2",
+    "electron": "8.0.3",
     "electron-builder": "^22.3.2",
     "electron-devtools-installer": "^2.2.4",
     "electron-rebuild": "^1.10.0",
