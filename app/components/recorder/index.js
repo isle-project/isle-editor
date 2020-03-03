@@ -92,6 +92,7 @@ function keepStreamActive(stream) {
 * @property {boolean} uploadable - indicates whether users should be able to upload the recording to the server
 * @property {number} bitsPerSecond - bits per second
 * @property {string} voiceID - voice control identifier
+* @property {Object} style - CSS inline styles
 */
 class Recorder extends Component {
 	constructor( props ) {
@@ -469,8 +470,12 @@ class Recorder extends Component {
 		if ( this.state.hidden ) {
 			return null;
 		}
+		const style = this.props.style;
 		return (
-			<div className={`recorder-container unselectable${editorStyle}`} >
+			<div
+				className={`recorder-container unselectable${editorStyle}`}
+				style={style}
+			>
 				<div
 					className="recorder-rec"
 					style={{ color: recordingColor }}
@@ -531,7 +536,8 @@ Recorder.propTypes = {
 	downloadable: PropTypes.bool,
 	uploadable: PropTypes.bool,
 	bitsPerSecond: PropTypes.number,
-	voiceID: PropTypes.string
+	voiceID: PropTypes.string,
+	style: PropTypes.object
 };
 
 Recorder.defaultProps = {
@@ -542,7 +548,8 @@ Recorder.defaultProps = {
 	downloadable: false,
 	screen: false,
 	uploadable: false,
-	voiceID: null
+	voiceID: null,
+	style: {}
 };
 
 Recorder.contextType = SessionContext;
