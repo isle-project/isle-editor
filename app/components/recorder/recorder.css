@@ -19,10 +19,6 @@
 	color: black;
 }
 
-.recorder-in-editor {
-	position: absolute !important;
-}
-
 .recorder-button-container {
 	position: absolute;
 	border-radius: 50%;
@@ -32,7 +28,7 @@
 	top: 8px;
 	width: 30px;
 	height: 30px;
-	right: 0px;
+	right: 30px;
 }
 
 .recorder-button-container:hover {

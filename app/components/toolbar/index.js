@@ -194,10 +194,15 @@ class Toolbar extends Component {
 					const toggleElement = () => {
 						this.setState({ [x.name]: !this.state[ x.name ] });
 					};
+					const elem = x.component;
 					return this.state[ x.name ] ?
 					<ReactDraggable bounds="#Lesson" cancel=".card-body" key={key} >
 						<div className="toolbar-outer-element" >
-							<div tabIndex={0} role="button">{x.component}</div>
+							<div tabIndex={0} role="button">
+								<elem.type {...elem.props} style={{ position: 'inherit' }} >
+									{elem.props.children}
+								</elem.type>
+							</div>
 							<button className="toolbar-hide-button fa fa-times" onClick={toggleElement} />
 						</div>
 					</ReactDraggable> : null;

@@ -466,14 +466,13 @@ class Recorder extends Component {
 
 	render() {
 		const recordingColor = this.state.recording ? 'red' : 'rgb(100,100,100)';
-		const editorStyle = isElectron ? ' recorder-in-editor' : '';
 		if ( this.state.hidden ) {
 			return null;
 		}
 		const style = this.props.style;
 		return (
 			<div
-				className={`recorder-container unselectable${editorStyle}`}
+				className="recorder-container unselectable"
 				style={style}
 			>
 				<div
