@@ -134,7 +134,7 @@
     "css": "^2.2.3",
     "css-loader": "^3.4.2",
     "css-modules-require-hook": "^4.2.3",
-    "csv-parse": "^4.8.7",
+    "csv-parse": "^4.8.8",
     "csv-stringify": "^5.3.5",
     "d3": "^5.15.0",
     "d3-cloud": "1.2.5",
