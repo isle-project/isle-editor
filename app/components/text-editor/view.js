@@ -13,9 +13,9 @@ import MenuBar from './menubar.js';
 import schema from './config/schema';
 import FootnoteView from './views/footnote';
 import ImageNodeView from './config/ui/image_node_view.js';
-import { toggleCursorParking, resetCursorParking } from './config/cursor_parking';
-import { uploadImageFiles } from './config/image_upload_placeholder_plugin.js';
+import { toggleCursorParking } from './config/cursor_parking';
 import countWords from './count_words.js';
+import handleDrop from './handle_drop.js';
 
 
 // VARIABLES //
@@ -101,29 +101,7 @@ class ProseMirror extends Component {
 						debug( 'Handle drag enter event...' );
 						toggleCursorParking( view );
 					},
-					'drop': ( view, event ) => {
-						debug( 'Handle drop event...' );
-						event.preventDefault();
-						const coords = {
-							x: event.clientX,
-							y: event.clientY
-						};
-						const dropPos = view.posAtCoords({
-							left: coords.x,
-							top: coords.y
-						});
-						const pos = dropPos ? dropPos.pos : null;
-						const { dataTransfer } = event;
-						if ( dataTransfer && dataTransfer.files && dataTransfer.files.length > 0 ) {
-							const { files } = dataTransfer;
-							const filesList = Array.from( files );
-							if ( uploadImageFiles( view, filesList, coords ) ) {
-								resetCursorParking( view );
-							}
-						} else {
-							toggleCursorParking( view, pos );
-						}
-					}
+					'drop': handleDrop
 				}
 			});
 		}

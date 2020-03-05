@@ -16,6 +16,7 @@ import FootnoteView from './views/footnote.js';
 import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
+import handleDrop from './handle_drop.js';
 import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
 	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from 'constants/events.js';
 
@@ -195,10 +196,7 @@ class ProseMirrorCollaborative extends Component {
 							debug( 'Handle drag enter event...' );
 							toggleCursorParking( view );
 						},
-						'drop': ( view ) => {
-							debug( 'Handle drop event...' );
-							toggleCursorParking( view );
-						}
+						'drop': handleDrop
 					}
 				}));
 			}
