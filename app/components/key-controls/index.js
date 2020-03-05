@@ -79,7 +79,7 @@ class KeyControls extends Component {
 		) {
 			event.preventDefault();
 			event.stopPropagation();
-			fn();
+			fn( event );
 		}
 	}
 
@@ -91,7 +91,7 @@ class KeyControls extends Component {
 		if ( !modifier && isFunction( fn ) ) {
 			event.preventDefault();
 			event.stopPropagation();
-			fn();
+			fn( event );
 		}
 	}
 

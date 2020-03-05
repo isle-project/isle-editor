@@ -7,12 +7,12 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import ReactDraggable from 'react-draggable';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
+import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
@@ -178,6 +178,15 @@ class Queue extends Component {
 		});
 	}
 
+	handleEscape = ( event ) => {
+		if (
+			event.target.className &&
+			event.target.className.includes( 'queue-panel' )
+		) {
+			this.props.onHide();
+		}
+	}
+
 	enterQueue = () => {
 		debug( 'Send the signal to enter the queue...' );
 		this.setState({
@@ -248,7 +257,7 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( this.state.isOwner ) {
 				debug( 'User is an owner...' );
-				out = <Panel className="queue-panel" header={this.renderHeader()}>
+				out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
 					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
 					<ReactTable
 						className="queue-table"
@@ -334,16 +343,20 @@ class Queue extends Component {
 					/> }
 				</Panel>;
 				if ( this.props.draggable ) {
-					out = <ReactDraggable bounds="#Lesson" cancel=".queue-table" enableUserSelectHack={false} >
-						<div className="outer-queue">{out}</div>
-					</ReactDraggable>;
+					out = <Draggable
+						bounds="#Lesson" cancel=".queue-table"
+						enableUserSelectHack={false}
+						onEscape={this.handleEscape}
+					>
+						<div className="outer-queue" >{out}</div>
+					</Draggable>;
 				}
 				return out;
 			}
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
-				out = <Panel className="queue-panel" header={this.renderHeader()}>
+				out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
 					<p>Your question: <i>{this.state.questionText}</i></p>
 					<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
 					<p>There are {this.state.queueSize} individual(s) in the queue.</p>
@@ -353,20 +366,22 @@ class Queue extends Component {
 					</Button>
 				</Panel>;
 				if ( this.props.draggable ) {
-					out = <ReactDraggable bounds="#Lesson" enableUserSelectHack={false} >
+					out = <Draggable
+						bounds="#Lesson" enableUserSelectHack={false}
+						onEscape={this.handleEscape}
+					>
 						<div className="outer-queue">{out}</div>
-					</ReactDraggable>;
+					</Draggable>;
 				}
 				return out;
 			}
-			out = <Panel className="queue-panel" header={this.renderHeader()}>
+			out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
 				<p>You can submit a question below and someone will be with you shortly!</p>
 				<FormGroup>
 					<FormLabel>Question</FormLabel>
 					<FormControl type="text" id="queue_form"
 						value={this.state.questionText}
 						onChange={this.handleText}
-						inline={false}
 						width={500}
 					/>
 				</FormGroup>
@@ -379,9 +394,13 @@ class Queue extends Component {
 				<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
 			</Panel>;
 			if ( this.props.draggable ) {
-				out = <ReactDraggable bounds="#Lesson" cancel="#queue_form" enableUserSelectHack={false} >
+				out = <Draggable
+					bounds="#Lesson" cancel="#queue_form"
+					enableUserSelectHack={false}
+					onEscape={this.handleEscape}
+				>
 					<div className="outer-queue">{out}</div>
-				</ReactDraggable>;
+				</Draggable>;
 			}
 			return out;
 		}

@@ -200,6 +200,9 @@ class Chat extends Component {
 					onChange={this.changedText}
 					value={this.state.value}
 					placeholder="Type your message..."
+					ref={div => {
+						this.textarea = div;
+					}}
 					rows={3}
 				/>
 				<Button
@@ -211,6 +214,7 @@ class Chat extends Component {
 					commands={VOICE_COMMANDS}
 				/>
 				<KeyControls
+					container={this.textarea}
 					actions={{
 						'Enter': () => {
 							if ( this.state.value.length > 0 ) {
@@ -237,13 +241,17 @@ class Chat extends Component {
 		const ident = 'chat_' + chat.name;
 		return (
 			<Draggable cancel=".cancel" >
-				<div id={ident} className="chat-outer-div" style={style} >
+				<div
+					id={ident}
+					className="chat-outer-div"
+					style={style}
+					ref={( chat ) => { this.chat = chat; }}
+				>
 					<div
 						className="chat-div"
 						style={{
 							opacity: this.state.opened ? 1.0 : 0.7
 						}}
-						ref={( chat ) => { this.chat = chat; }}
 						onMouseOver={this.onMouseOver}
 						onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut}
@@ -252,18 +260,18 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<Tooltip tooltip="Close" placement="right">
-							<button className="chat-header-button" onClick={this.closeChat}>
+						<Tooltip tooltip="Close (Esc)" placement="right" >
+							<button className="chat-header-button" onClick={this.closeChat} >
 								<i className="fas fa-times"></i>
 							</button>
 						</Tooltip>
-						<Tooltip tooltip="Maximize" placement="left">
+						<Tooltip tooltip="Maximize" placement="bottom" >
 							<button className="chat-header-button" onClick={this.toggleMaximize} >
 								<i className="far fa-window-maximize" ></i>
 							</button>
 						</Tooltip>
-						<Tooltip tooltip="Minimize" placement="left">
-							<button className="chat-header-button" onClick={this.toggleChat}>
+						<Tooltip tooltip="Minimize" placement="left" >
+							<button className="chat-header-button" onClick={this.toggleChat} >
 								<i className="far fa-window-minimize"></i>
 							</button>
 						</Tooltip>

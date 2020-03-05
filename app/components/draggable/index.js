@@ -1,8 +1,9 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
+import KeyControls from 'components/key-controls';
 import './draggable.css';
 
 
@@ -33,13 +34,26 @@ class Draggable extends Component {
 		this.props.onStop( event, data );
 	}
 
+	handleEscape = ( event ) => {
+		this.props.onEscape( event );
+	}
+
 	render() {
-		return ( <ReactDraggable
-			{...this.props}
-			onStop={this.handleStop}
-		>
-			{this.props.children}
-		</ReactDraggable> );
+		return (
+			<Fragment>
+				<ReactDraggable
+					{...this.props}
+					onStop={this.handleStop}
+				>
+					{this.props.children}
+				</ReactDraggable>
+				<KeyControls
+					actions={{
+						'Escape': this.handleEscape
+					}}
+				/>
+			</Fragment>
+		);
 	}
 }
 
@@ -47,11 +61,13 @@ class Draggable extends Component {
 // PROPERTIES //
 
 Draggable.propTypes = {
-	onStop: PropTypes.func
+	onStop: PropTypes.func,
+	onEscape: PropTypes.func
 };
 
 Draggable.defaultProps = {
-	onStop() {}
+	onStop() {},
+	onEscape() {}
 };
 
 

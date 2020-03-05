@@ -9,7 +9,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import ReactDraggable from 'components/draggable';
+import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 import { CALCULATOR_SOLVE } from 'constants/actions.js';
@@ -169,6 +169,12 @@ class Calculator extends Component {
 		}
 	}
 
+	handleEscape = ( event ) => {
+		if ( event.target.id === 'calc-panel' ) {
+			this.props.onHide();
+		}
+	}
+
 	solveEq = () => {
 		let visible = this.state.visible;
 		if ( !visible ) {
@@ -215,7 +221,11 @@ class Calculator extends Component {
 	renderFull = () => {
 		debug( 'Rendering expanded calculator...' );
 		return (
-			<ReactDraggable bounds="#Lesson" cancel="#calc-text-area" >
+			<Draggable
+				bounds="#Lesson"
+				cancel="#calc-text-area"
+				onEscape={this.handleEscape}
+			>
 				<div className="outer-calc" style={this.props.style}>
 					<Panel id="calc-panel-full" tabIndex={0} role="button" header={this.renderHeader()}>
 						<Container className="desaturated" >
@@ -288,7 +298,7 @@ class Calculator extends Component {
 						</Container>
 					</Panel>
 				</div>
-			</ReactDraggable>
+			</Draggable>
 		);
 	}
 
@@ -303,7 +313,12 @@ class Calculator extends Component {
 			return this.renderFull();
 		}
 		return (
-			<ReactDraggable bounds="#Lesson" enableUserSelectHack={false} cancel="#calc-text-area" >
+			<Draggable
+				bounds="#Lesson"
+				enableUserSelectHack={false}
+				cancel="#calc-text-area"
+				onEscape={this.handleEscape}
+			>
 				<div className="outer-calc" style={this.props.style} >
 					<Panel
 						id="calc-panel"
@@ -364,7 +379,7 @@ class Calculator extends Component {
 						</Container>
 					</Panel>
 				</div>
-			</ReactDraggable>
+			</Draggable>
 		);
 	}
 }
