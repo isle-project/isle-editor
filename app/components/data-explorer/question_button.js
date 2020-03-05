@@ -18,7 +18,7 @@ const QuestionButton = ( props ) => {
 	</Popover>;
 
 	return (
-		<OverlayTrigger trigger="hover" placement="left" rootClose overlay={popover}>
+		<OverlayTrigger trigger={['hover', 'focus']} placement="left" rootClose overlay={popover}>
 			<Button
 				size="sm"
 				variant="outline-secondary"
