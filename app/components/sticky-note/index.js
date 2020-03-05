@@ -104,27 +104,27 @@ class StickyNote extends Component {
 		if ( this.props.color ) {
 			switch ( this.props.color ) {
 				case 'blue':
-					style.webkitFilter = 'hue-rotate(166deg)';
+					style.WebkitFilter = 'hue-rotate(166deg)';
 					style.filter = 'hue-rotate(166deg)';
 				break;
 
 				case 'green':
-					style.webkitFilter = 'hue-rotate(88deg) saturate(70%)';
+					style.WebkitFilter = 'hue-rotate(88deg) saturate(70%)';
 					style.filter = 'hue-rotate(88deg) saturate(70%)';
 				break;
 
 				case 'pink':
-					style.webkitFilter = 'hue-rotate(220deg) saturate(70%)';
+					style.WebkitFilter = 'hue-rotate(220deg) saturate(70%)';
 					style.filter = 'hue-rotate(220deg) saturate(70%)';
 				break;
 
 				case 'red':
-					style.webkitFilter = 'hue-rotate(290deg) saturate(70%)';
+					style.WebkitFilter = 'hue-rotate(290deg) saturate(70%)';
 					style.filter = 'hue-rotate(290deg) saturate(70%)';
 				break;
 
 				case 'orange':
-					style.webkitFilter = 'hue-rotate(320deg) saturate(70%)';
+					style.WebkitFilter = 'hue-rotate(320deg) saturate(70%)';
 					style.filter = 'hue-rotate(320deg) saturate(70%)';
 				break;
 			}

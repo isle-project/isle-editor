@@ -145,7 +145,7 @@ class Seal extends Component {
 			}
 		}
 		if ( !this.props.active ) {
-			style.webkitFilter = 'grayscale(100%)';
+			style.WebkitFilter = 'grayscale(100%)';
 			style.filter = 'grayscale(100%)';
 			style.opacity = 0.3;
 			if ( this.props.scale ) {
@@ -160,7 +160,7 @@ class Seal extends Component {
 		else {
 			style.opacity = 1;
 			style.filter = 'grayscale(0%)';
-			style.webkitFilter = 'grayscale(0%)';
+			style.WebkitFilter = 'grayscale(0%)';
 			if ( this.props.scale ) {
 				if ( style.transform ) {
 					style.transform += 'scale(' + this.props.scale + ')';
