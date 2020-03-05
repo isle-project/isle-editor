@@ -46,7 +46,6 @@
 }
 
 .chat-body {
-	height: 196px;
 	overflow-y: scroll;
 	padding-left: 3px;
 	padding-right: 3px;
@@ -61,13 +60,25 @@
 	border-right: solid 1px darkgrey;
 }
 
-.chatmessage {
+.chat-picture {
+	width: 32px;
+	height: 32px;
+	border-radius: 3px;
+}
+
+.chat-message {
 	white-space: pre-wrap;
 	font-size: 13px;
 	font-family: Open Sans;
+	display: flex;
 }
 
-.chatmessage-content {
+.chat-message-right {
+	flex: 1 1 0;
+	padding-left: 8px;
+}
+
+.chat-message-content {
 	word-wrap: break-word;
 }
 
@@ -75,7 +86,7 @@
 	background: linen;
 }
 
-.chatuser {
+.chat-user {
 	color: steelblue;
 	font-weight: 600;
 }
@@ -90,7 +101,7 @@
 	cursor: pointer;
 }
 
-.chattime {
+.chat-time {
 	font-size: 10px;
 }
 

@@ -5,6 +5,7 @@
 import qs from 'querystring';
 import logger from 'debug';
 import localforage from 'localforage';
+import { basename } from 'path';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isFunction from '@stdlib/assert/is-function';
@@ -724,6 +725,7 @@ class Session {
 			const msgObj = {
 				time: new Date().getTime(),
 				user: this.user.name,
+				picture: basename( this.user.picture ),
 				content: msg
 			};
 			const chat = this.getChat( name );

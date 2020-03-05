@@ -15,6 +15,7 @@ import Draggable from 'components/draggable';
 import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
+import KeyControls from 'components/key-controls';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
@@ -37,7 +38,8 @@ class Chat extends Component {
 		this.state = {
 			opened: true,
 			value: '',
-			hasNews: false
+			hasNews: false,
+			maximized: false
 		};
 	}
 
@@ -115,6 +117,16 @@ class Chat extends Component {
 		}
 	}
 
+	toggleMaximize = () => {
+		const newState = {
+			maximized: !this.state.maximized
+		};
+		if ( newState.maximized && !this.state.opened ) {
+			newState.opened = true;
+		}
+		this.setState( newState );
+	}
+
 	toggleChat = () => {
 		this.setState({
 			opened: !this.state.opened,
@@ -150,6 +162,7 @@ class Chat extends Component {
 
 	renderChatBody() {
 		const { chat } = this.props;
+		const session = this.context;
 		return (
 			<div
 				className="chat-body-outer"
@@ -158,20 +171,36 @@ class Chat extends Component {
 				}}
 			>
 				<div
-					className="chat-body"
+					className="chat-body cancel"
 					ref={( chatbody ) => { this.chatbody = chatbody; }}
 					onScroll={this.onScroll}
+					style={{
+						height: this.state.maximized ? '70vh' : '196px'
+					}}
 				>
-					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chatmessage unread' : 'chatmessage'} key={idx}>
-						<span className="chattime">{renderTime( msg.time )}</span> - <span className="chatuser">{msg.user}:&nbsp;</span>
-						<span className="chatmessage-content">{msg.content}</span>
-						<hr style={{ marginTop: 3, marginBottom: 3 }} />
+					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chat-message unread' : 'chat-message'} key={idx} >
+						<img
+							className="chat-picture"
+							src={session.server + '/thumbnail/' + ( msg.picture ? msg.picture : 'anonymous.jpg' )}
+							alt="Profile Pic"
+						/>
+						<div className="chat-message-right" >
+							<span className="chat-user">{msg.user}</span>
+							{' - '}
+							<span className="chat-time">{renderTime( msg.time )}</span>
+							{': '}
+							<br />
+							<span className="chat-message-content">{msg.content}</span>
+						</div>
 					</div>) )}
 				</div>
 				<FormControl
 					as="textarea"
-					className="chat-textarea" rows={2} onChange={this.changedText} value={this.state.value}
+					className="chat-textarea cancel"
+					onChange={this.changedText}
+					value={this.state.value}
 					placeholder="Type your message..."
+					rows={3}
 				/>
 				<Button
 					className="center" size="sm" variant="secondary"
@@ -181,20 +210,34 @@ class Chat extends Component {
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
 				/>
+				<KeyControls
+					actions={{
+						'Enter': () => {
+							if ( this.state.value.length > 0 ) {
+								this.sendMessage();
+							}
+						}
+					}}
+				/>
 			</div>
 		);
 	}
 
 	render() {
-		const { chat, left, width } = this.props;
+		let { chat, left, width } = this.props;
+		const style = {
+			position: isElectron ? 'absolute' : 'fixed',
+			left
+		};
+		if ( this.state.maximized && this.state.opened ) {
+			style.width = '40vw';
+		} else {
+			style.width = width;
+		}
 		const ident = 'chat_' + chat.name;
 		return (
-			<Draggable cancel=".chat-textarea" >
-				<div id={ident} className="chat-outer-div" style={{
-					position: isElectron ? 'absolute' : 'fixed',
-					left: left,
-					width: width
-				}}>
+			<Draggable cancel=".cancel" >
+				<div id={ident} className="chat-outer-div" style={style} >
 					<div
 						className="chat-div"
 						style={{
@@ -209,8 +252,21 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<Tooltip tooltip="Close" placement="right"><button className="chat-header-button" onClick={this.closeChat}>X</button></Tooltip>
-						<Tooltip tooltip="Minimize" placement="left"><button className="chat-header-button" onClick={this.toggleChat}>–</button></Tooltip>
+						<Tooltip tooltip="Close" placement="right">
+							<button className="chat-header-button" onClick={this.closeChat}>
+								<i className="fas fa-times"></i>
+							</button>
+						</Tooltip>
+						<Tooltip tooltip="Maximize" placement="left">
+							<button className="chat-header-button" onClick={this.toggleMaximize} >
+								<i className="far fa-window-maximize" ></i>
+							</button>
+						</Tooltip>
+						<Tooltip tooltip="Minimize" placement="left">
+							<button className="chat-header-button" onClick={this.toggleChat}>
+								<i className="far fa-window-minimize"></i>
+							</button>
+						</Tooltip>
 					</div>
 					{this.renderMembers()}
 					{this.renderChatBody()}
