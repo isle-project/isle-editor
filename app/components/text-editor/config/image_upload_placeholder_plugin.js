@@ -38,7 +38,7 @@ import './ui/image_upload_placeholder.css';
 
 const IMAGE = 'image';
 const uid = generateUID( 'image_upload' );
-const IMAGE_FILE_TYLES = new Set([
+const IMAGE_FILE_TYPES = new Set([
 	'image/jpeg',
 	'image/gif',
 	'image/png',
@@ -59,7 +59,7 @@ function isImageUploadPlaceholderPlugin( plugin ) {
 }
 
 function isImageFileType( file ) {
-	return file && IMAGE_FILE_TYLES.has( file.type );
+	return file && IMAGE_FILE_TYPES.has( file.type );
 }
 
 function findImageUploadPlaceholder(
@@ -78,34 +78,50 @@ function defer(fn) {
 	};
 }
 
+function uploadImage( file ) {
+	return new Promise((resolve, reject) => {
+		const { FileReader } = window;
+		if ( FileReader ) {
+			const reader = new FileReader();
+			reader.onload = event => {
+			// base64 encoded url.
+			const src = event.target.result;
+			resolve({src, height: 0, width: 0, id: ''});
+			};
+			reader.onerror = () => {
+			reject(new Error('FileReader failed'));
+			};
+			reader.readAsDataURL(file);
+		} else {
+			reject(new Error('FileReader is not available'));
+		}
+	});
+}
+
 export function uploadImageFiles(
 	view,
 	files,
 	coords
 ) {
-	const { runtime, state, readOnly, disabled } = view;
+	const { state, readOnly, disabled } = view;
 	const { schema, plugins } = state;
-	if (readOnly || disabled || !runtime || !runtime.canUploadImage) {
+	if ( readOnly || disabled ) {
 		return false;
 	}
-	const imageType = schema.nodes[IMAGE];
-	if (!imageType) {
+	const imageType = schema.nodes[ IMAGE ];
+	if ( !imageType ) {
 		return false;
 	}
-	const { uploadImage, canUploadImage } = runtime;
-	if ( !uploadImage || !canUploadImage ) {
-		return false;
-	}
-	const imageFiles = Array.from(files).filter(isImageFileType);
-	if (!imageFiles.length) {
+	const imageFiles = Array.from( files ).filter( isImageFileType );
+	if ( !imageFiles.length ) {
 		return false;
 	}
 	const placeholderPlugin = plugins.find(isImageUploadPlaceholderPlugin);
-	if (!placeholderPlugin) {
+	if ( !placeholderPlugin ) {
 		return false;
 	}
 
-	// A fresh object to act as the ID for this upload.
+	// A fresh object to act as the ID for this upload:
 	const id = {
 		debugId: uid()
 	};
@@ -134,9 +150,9 @@ export function uploadImageFiles(
 		if ( isNull( ff ) ) {
 			throw new Error( 'unexpected null value' );
 		}
-		uploadImage(ff)
-			.then(done)
-			.catch(done.bind(null, { src: null }));
+		uploadImage( ff )
+			.then( done )
+			.catch( done.bind(null, { src: null }));
 	});
 
 	uploadNext();
@@ -184,14 +200,14 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 				init() {
 					return DecorationSet.empty;
 				},
-				apply(tr, set) {
+				apply( tr, set ) {
 					// Adjust decoration positions to changes made by the transaction:
-					set = set.map(tr.mapping, tr.doc);
+					set = set.map( tr.mapping, tr.doc );
 
 					// See if the transaction adds or removes any placeholders:
-					const action = tr.getMeta(this);
+					const action = tr.getMeta( this );
 					if ( action && action.add ) {
-						const el = document.createElement('div');
+						const el = document.createElement( 'div' );
 						el.title = TITLE;
 						el.className = 'editor-image-upload-placeholder';
 						el.innerHTML = INNER_HTML;
@@ -199,9 +215,8 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 						const deco = Decoration.widget(action.add.pos, el, {
 							id: action.add.id
 						});
-
-						set = set.add(tr.doc, [deco]);
-					} else if (action && action.remove) {
+						set = set.add( tr.doc, [deco] );
+					} else if ( action && action.remove ) {
 						const finder = spec => spec.id === action.remove.id;
 						set = set.remove(set.find(null, null, finder));
 					}

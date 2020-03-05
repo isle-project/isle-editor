@@ -103,6 +103,7 @@ class ProseMirror extends Component {
 					},
 					'drop': ( view, event ) => {
 						debug( 'Handle drop event...' );
+						event.preventDefault();
 						const coords = {
 							x: event.clientX,
 							y: event.clientY
@@ -117,7 +118,6 @@ class ProseMirror extends Component {
 							const { files } = dataTransfer;
 							const filesList = Array.from( files );
 							if ( uploadImageFiles( view, filesList, coords ) ) {
-								event.preventDefault();
 								resetCursorParking( view );
 							}
 						} else {
