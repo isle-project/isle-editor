@@ -5,8 +5,8 @@ exports[`renders a colored sticky note 1`] = `
   className="sticky-note-outer"
   style={
     Object {
+      "WebkitFilter": "hue-rotate(320deg) saturate(70%)",
       "filter": "hue-rotate(320deg) saturate(70%)",
-      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
     }
   }
 >
@@ -146,8 +146,8 @@ exports[`renders a sticky note with a date 1`] = `
   className="sticky-note-outer"
   style={
     Object {
+      "WebkitFilter": "hue-rotate(320deg) saturate(70%)",
       "filter": "hue-rotate(320deg) saturate(70%)",
-      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
     }
   }
 >
@@ -193,8 +193,8 @@ exports[`renders a sticky note with a stain 1`] = `
   className="sticky-note-outer"
   style={
     Object {
+      "WebkitFilter": "hue-rotate(320deg) saturate(70%)",
       "filter": "hue-rotate(320deg) saturate(70%)",
-      "webkitFilter": "hue-rotate(320deg) saturate(70%)",
     }
   }
 >
