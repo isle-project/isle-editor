@@ -71,7 +71,12 @@ class KeyControls extends Component {
 		const keyName = event.key;
 		debug( `Received key press for container: ${keyName}` );
 		const fn = this.props.actions[ keyName ];
-		if ( document.activeElement === this.props.container && isFunction( fn ) ) {
+		const modifier = event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
+		if (
+			document.activeElement === this.props.container &&
+			!modifier &&
+			isFunction( fn )
+		) {
 			event.preventDefault();
 			event.stopPropagation();
 			fn();
@@ -80,9 +85,10 @@ class KeyControls extends Component {
 
 	triggerDocEvent = ( event ) => {
 		const keyName = event.key;
+		const modifier = event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
 		debug( `Received key press for document: ${keyName}` );
 		const fn = this.props.actions[ keyName ];
-		if ( isFunction( fn ) ) {
+		if ( !modifier && isFunction( fn ) ) {
 			event.preventDefault();
 			event.stopPropagation();
 			fn();
