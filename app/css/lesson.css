@@ -441,8 +441,6 @@ mark {
 }
 
 .Lesson > p,
-.Lesson > text,
-.Lesson > label,
 .Lesson > pre {
 	max-width: 1200px;
 	margin-left: auto;
@@ -454,10 +452,6 @@ mark {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.Lesson > label {
-	display: block;
 }
 
 .Lesson hr,

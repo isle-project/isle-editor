@@ -150,7 +150,7 @@ class Tokenizer {
 		this._braceLevel = 0;
 		this._level = 0;
 		this.pos = 0;
-		this.divHash = {};
+		this.placeholderHash = {};
 		this.inBetweenEquation = false;
 	}
 
@@ -231,7 +231,7 @@ class Tokenizer {
 				eqn = removeLast( eqn );
 			}
 			const str = '<TeX raw={String.raw`' + eqn + '`} />';
-			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
+			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			debug( 'IN_EQUATION -> IN_BASE' );
 			this._current = '';
@@ -255,7 +255,7 @@ class Tokenizer {
 		) {
 			const eqn = this._current.substring( 1, this._current.length-1 );
 			const str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
-			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
+			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			debug( 'IN_DISPLAY_EQUATION -> IN_BASE' );
 			this._current = '';
@@ -278,8 +278,8 @@ class Tokenizer {
 			this._state = IN_BASE;
 			this._level -= 1;
 			const replacement = '<Link href="'+url+'" >'+url+'</Link>';
-			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
-			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+			this.placeholderHash[ 'ANGLE_LINK'+this.pos ] = replacement;
+			this.tokens.push( 'ANGLE_LINK'+this.pos );
 			this._current = '';
 		}
 	}
@@ -331,12 +331,15 @@ class Tokenizer {
 		if ( char === '>' && prevChar !== '=' ) {
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
+			const isInline = RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
+			RE_ISLE_INLINE_TAGS.test( this._openingTagName );
 			if ( this._openingTagName === 'a' ) {
 				this._current = replace( this._current, '<a ', '<Link ' );
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
-			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'"/>';
+			this.placeholderHash[ placeholder ] = this._current;
+			this.tokens.push( placeholder );
 			this._current = '';
 			debug( 'IN_CLOSING_TAG -> IN_BASE' );
 			this._state = IN_BASE;
@@ -375,7 +378,7 @@ class Tokenizer {
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				this._level -= 1;
 				if ( this._level === 0 ) {
-					this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+					this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 					this._current = '';
 					debug( 'IN_OPENING_TAG -> IN_BASE' );
@@ -418,7 +421,7 @@ class Tokenizer {
 				this._state = IN_OPENING_TAG;
 			} else {
 				debug( 'IN_JSX_STRING -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 				this._state = IN_BASE;
@@ -508,7 +511,7 @@ class Tokenizer {
 				this._state = IN_OPENING_TAG;
 			} else {
 				debug( 'IN_JSX_OBJECT -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 				this._state = IN_BASE;
@@ -531,7 +534,7 @@ class Tokenizer {
 				this._state = IN_OPENING_TAG;
 			} else {
 				debug( 'IN_JSX_ARRAY -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 				this._state = IN_BASE;
@@ -553,7 +556,7 @@ class Tokenizer {
 				this._state = IN_OPENING_TAG;
 			} else {
 				debug( 'IN_JSX_OTHER -> IN_BASE' );
-				this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 				this._state = IN_BASE;
@@ -581,7 +584,7 @@ class Tokenizer {
 					this._state = IN_OPENING_TAG;
 				} else {
 					debug( 'IN_JSX_EXPRESSION -> IN_BASE' );
-					this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+					this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 					this._current = '';
 					this._state = IN_BASE;
@@ -683,10 +686,10 @@ class Tokenizer {
 		}
 		let out = this.tokens.join( '' );
 		out = this.inline ? md.renderInline( out ) : md.render( out );
-		for ( let key in this.divHash ) {
-			if ( hasOwnProp( this.divHash, key ) ) {
+		for ( let key in this.placeholderHash ) {
+			if ( hasOwnProp( this.placeholderHash, key ) ) {
 				// Treat dollar signs literally and do not confuse them for replacement patterns:
-				const replacement = replace( this.divHash[ key ], '$', '$$$$' );
+				const replacement = replace( this.placeholderHash[ key ], '$', '$$$$' );
 				out = out.replace( key, replacement );
 			}
 		}
