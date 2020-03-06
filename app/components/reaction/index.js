@@ -7,7 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 import SessionContext from 'session/context.js';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
-import MEMBER_ACTION from 'constants/events.js';
+import { MEMBER_ACTION } from 'constants/events.js';
 
 
 // VARIABLES //

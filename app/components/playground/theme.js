@@ -1,4 +1,6 @@
-export const theme = {
+// MAIN //
+
+const CUSTOM_THEME = {
 	plain: {
 		color: '#e7d2ed'
 	},
@@ -70,3 +72,8 @@ export const theme = {
 		}
 	]
 };
+
+
+// EXPORTS //
+
+export default CUSTOM_THEME;

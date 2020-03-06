@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
-import { CHAT_HISTORY, CHAT_MESSAGE, OWN_CHAT_MESSAGE, REMOVED_CHAT,
+import { RECEIVED_CHAT_HISTORY, CHAT_MESSAGE, OWN_CHAT_MESSAGE, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
 
 
@@ -42,7 +42,7 @@ class ChatButton extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
-				( type === SELF_HAS_JOINED_CHAT || type === CHAT_HISTORY ) &&
+				( type === SELF_HAS_JOINED_CHAT || type === RECEIVED_CHAT_HISTORY ) &&
 				( value && value.name === this.props.for )
 			) {
 				this.setState({
