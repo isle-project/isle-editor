@@ -34,6 +34,7 @@ class LinkContextMenu extends Component {
 
 	openInTab = () => {
 		const url = this.props.url;
+		debug( `Open ${url} in new tab` );
 		window.open( url, '_blank' );
 		const session = this.props.session;
 		session.log({
@@ -45,6 +46,7 @@ class LinkContextMenu extends Component {
 
 	openInWindow = () => {
 		const url = this.props.url;
+		debug( `Open ${url} in new window` );
 		window.open( url, '_blank', 'location=no,scrollbars=yes,status=yes' );
 		const session = this.props.session;
 		session.log({
@@ -56,21 +58,21 @@ class LinkContextMenu extends Component {
 
 	render() {
 		const menuItems = [
-			<MenuItem key={0} onClick={this.copyToClipboard}>
+			<MenuItem key={0} onClick={this.copyToClipboard} >
 				Copy link
 			</MenuItem>,
-			<MenuItem key={1} onClick={this.openInTab}>
+			<MenuItem key={1} onClick={this.openInTab} >
 				Open link in new tab
 			</MenuItem>,
-			<MenuItem key={2} onClick={this.openInWindow}>
+			<MenuItem key={2} onClick={this.openInWindow} >
 				Open link in new window
 			</MenuItem>,
-			<MenuItem key={3} onClick={this.textToSpeech}>
+			<MenuItem key={3} onClick={this.textToSpeech} >
 				Read aloud
 			</MenuItem>
 		];
 		return ( <ContextMenu
-			id="link-context-menu"
+			id={`${this.props.url}-context-menu`}
 		>
 			{menuItems}
 		</ContextMenu> );

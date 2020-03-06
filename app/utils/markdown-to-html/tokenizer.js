@@ -276,9 +276,10 @@ class Tokenizer {
 			const url = this._current.substring( this._startTagNamePos+1, this._current.length-1 );
 			debug( 'IN_ANGLE_LINK -> IN_BASE' );
 			this._state = IN_BASE;
-			const replacement = ' <a href="'+url+'">'+url+'</a>';
+			this._level -= 1;
+			const replacement = '<Link href="'+url+'" >'+url+'</Link>';
 			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = replacement;
-			this.tokens.push( replacement );
+			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			this._current = '';
 		}
 	}
@@ -330,6 +331,10 @@ class Tokenizer {
 		if ( char === '>' && prevChar !== '=' ) {
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
+			if ( this._openingTagName === 'a' ) {
+				this._current = replace( this._current, '<a ', '<Link ' );
+				this._current = replace( this._current, '</a>', '</Link>' );
+			}
 			this.divHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			this._current = '';
@@ -352,7 +357,7 @@ class Tokenizer {
 			( char === '.' || char === ':' ) &&
 			isLowercase( this._current[ this._startTagNamePos+1 ] ) // do not confuse tags such as `Nav.Item` with links...
 		) {
-			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
+			debug( 'IN_OPENING_TAG_NAME -> IN_ANGLE_LINK' );
 			this._state = IN_ANGLE_LINK;
 		}
 	}

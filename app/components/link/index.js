@@ -45,12 +45,10 @@ class Link extends Component {
 		return (
 			<Fragment>
 				<ContextMenuTrigger
-					attributes={{
-						className: 'contextmenu-fullscreen'
-					}}
 					holdToDisplay={-1}
 					disableIfShiftIsPressed
-					id="link-context-menu"
+					id={`${this.state.url}-context-menu`}
+					renderTag="span"
 				>
 					<a
 						href={this.state.url}
