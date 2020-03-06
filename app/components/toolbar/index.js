@@ -198,8 +198,11 @@ class Toolbar extends Component {
 					return this.state[ x.name ] ?
 					<ReactDraggable bounds="#Lesson" cancel=".card-body" key={key} >
 						<div className="toolbar-outer-element" >
-							<div tabIndex={0} role="button">
-								<elem.type {...elem.props} style={{ position: 'inherit' }} >
+							<div className="toolbar-inner-element" tabIndex={0} role="button">
+								<elem.type {...elem.props} style={{
+									position: 'inherit',
+									margin: '0px'
+								}} >
 									{elem.props.children}
 								</elem.type>
 							</div>
