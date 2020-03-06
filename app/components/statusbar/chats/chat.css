@@ -68,8 +68,8 @@
 
 .chat-message {
 	white-space: pre-wrap;
-	font-size: 13px;
 	font-family: Open Sans;
+	font-size: 1.1em;
 	display: flex;
 }
 

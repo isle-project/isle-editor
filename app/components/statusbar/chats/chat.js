@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import markdownit from 'markdown-it';
 import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
@@ -28,6 +29,12 @@ import './chat.css';
 // VARIABLES //
 
 const debug = logger( 'isle:statusbar:chat' );
+const md = markdownit({
+	html: false,
+	xhtmlOut: true,
+	breaks: false,
+	typographer: false
+});
 
 
 // MAIN //
@@ -178,21 +185,30 @@ class Chat extends Component {
 						height: this.state.maximized ? '70vh' : '196px'
 					}}
 				>
-					{chat.messages.map( ( msg, idx ) => (<div className={msg.unread ? 'chat-message unread' : 'chat-message'} key={idx} >
-						<img
-							className="chat-picture"
-							src={session.server + '/thumbnail/' + ( msg.picture ? msg.picture : 'anonymous.jpg' )}
-							alt="Profile Pic"
-						/>
-						<div className="chat-message-right" >
-							<span className="chat-user">{msg.user}</span>
-							{' - '}
-							<span className="chat-time">{renderTime( msg.time )}</span>
-							{': '}
-							<br />
-							<span className="chat-message-content">{msg.content}</span>
-						</div>
-					</div>) )}
+					{chat.messages.map( ( msg, idx ) => {
+						const node = {
+							'__html': md.renderInline( msg.content )
+						};
+						/* eslint-disable react/no-danger */
+						return (
+							<div className={msg.unread ? 'chat-message unread' : 'chat-message'} key={idx} >
+								<img
+									className="chat-picture"
+									src={session.server + '/thumbnail/' + ( msg.picture ? msg.picture : 'anonymous.jpg' )}
+									alt="Profile Pic"
+								/>
+								<div className="chat-message-right" >
+									<span className="chat-user">{msg.user}</span>
+									{' - '}
+									<span className="chat-time">{renderTime( msg.time )}</span>
+									{': '}
+									<br />
+									<span className="chat-message-content" dangerouslySetInnerHTML={node} ></span>
+								</div>
+							</div>
+						);
+						/* eslint-enable react/no-danger */
+					})}
 				</div>
 				<FormControl
 					as="textarea"
@@ -256,6 +272,7 @@ class Chat extends Component {
 						onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut}
 						onBlur={this.onMouseOut}
+						tabIndex={0} role="button"
 					>{chat.name}
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
