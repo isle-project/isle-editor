@@ -170,7 +170,10 @@ class Calculator extends Component {
 	}
 
 	handleEscape = ( event ) => {
-		if ( event.target.id === 'calc-panel' ) {
+		if (
+			event.target.id === 'calc-panel' ||
+			event.target.id === 'calc-panel-full'
+		) {
 			this.props.onHide();
 		}
 	}
