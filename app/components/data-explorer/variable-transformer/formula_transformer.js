@@ -111,6 +111,12 @@ class FormulaTransformer extends Component {
 		});
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 && this.state.name.length >= 2 ) {
+			this.handleGenerate();
+		}
+	}
+
 	insertVarFactory = ( name ) => {
 		return () => {
 			let newCode = this.state.code.substring( 0, this.state.selection );
@@ -289,6 +295,7 @@ class FormulaTransformer extends Component {
 								type="text"
 								placeholder="Select name..."
 								onChange={this.handleNameChange}
+								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
 								The new variable will be appended as a new column to the data table.

@@ -1498,7 +1498,7 @@ class DataExplorer extends Component {
 								onHide={this.toggleStudentPlots}
 								dialogClassName="modal-100w"
 							>
-								<Modal.Header closeButton>
+								<Modal.Header closeButton >
 									<Modal.Title>Plots</Modal.Title>
 								</Modal.Header>
 								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
@@ -1560,6 +1560,7 @@ class DataExplorer extends Component {
 						id={`${this.id}-toolbox`}
 						className="data-explorer-toolbox"
 						style={{ display: this.state.showToolbox ? 'inline' : 'none' }}
+						role="button" tabIndex={0}
 					>
 						<Card.Header className="data-explorer-toolbox-header" >
 							<Card.Title as="h3" unselectable="on" className="data-explorer-toolbox-title" >Toolbox</Card.Title>

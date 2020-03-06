@@ -58,6 +58,19 @@ class GroupTransformer extends Component {
 		});
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 ) {
+			let sum = 0.0;
+			for ( let i = 0; i < this.state.groupProbs.length; i++ ) {
+				sum += this.state.groupProbs[ i ];
+			}
+			const hasValidValues = this.state.generatedName.length > 2 && absdiff( sum, 1.0 ) <= 1.5e-8;
+			if ( hasValidValues ) {
+				this.makeNewVar();
+			}
+		}
+	}
+
 	makeNewVar = () => {
 		debug( 'Generating new categorical variable...' );
 		const keys = objectKeys( this.props.data );
@@ -157,6 +170,7 @@ class GroupTransformer extends Component {
 								type="text"
 								placeholder="Select name..."
 								onChange={this.handleGeneratedNameChange}
+								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
 								The new variable will be appended as a new column to the data table.

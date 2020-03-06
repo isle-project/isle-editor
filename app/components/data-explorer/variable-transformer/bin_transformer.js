@@ -373,6 +373,12 @@ class BinTransformer extends Component {
 		this.setState({ snapDigits: val });
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 && this.state.name.length >= 2 ) {
+			this.makeNewVar();
+		}
+	}
+
 	renderBody() {
 		const configHist = this.state.configHist;
 		const select = <SelectInput
@@ -425,6 +431,7 @@ class BinTransformer extends Component {
 						type="text"
 						placeholder="Select name..."
 						onChange={this.handleNameChange}
+						onKeyPress={this.handleKeyPress}
 					/>
 					<FormText>
 						The new variable will be appended as a new column to the data table.

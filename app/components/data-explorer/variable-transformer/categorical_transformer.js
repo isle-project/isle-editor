@@ -148,6 +148,12 @@ class CategoricalTransformer extends Component {
 		});
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 && this.state.generatedName.length >= 2 ) {
+			this.makeNewVar();
+		}
+	}
+
 	renderTable() {
 		if ( this.state.firstVar && this.state.secondVar ) {
 			return this.renderContigencyTable();
@@ -337,6 +343,7 @@ class CategoricalTransformer extends Component {
 								type="text"
 								placeholder="Select name..."
 								onChange={this.handleGeneratedNameChange}
+								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
 								The new variable will be appended as a new column to the data table.
