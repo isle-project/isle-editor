@@ -11,7 +11,7 @@ import './draggable_modal_dialog.css';
 class DraggableModalDialog extends Component {
 	render() {
 		return (
-			<Draggable handle=".modal-header">
+			<Draggable handle=".modal-header" >
 				<ModalDialog {...this.props} />
 			</Draggable>
 		);

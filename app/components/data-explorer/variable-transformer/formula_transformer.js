@@ -164,8 +164,9 @@ class FormulaTransformer extends Component {
 				onHide={this.props.onHide}
 				backdrop={false}
 				bsPrefix="draggable-modal"
+				tabIndex={0} role="button"
 			>
-				<Modal.Header closeButton>
+				<Modal.Header closeButton className="draggable-modal-header" >
 					<Modal.Title>Create a new variable as a function of existing variables</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>

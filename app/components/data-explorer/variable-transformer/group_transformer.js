@@ -131,8 +131,9 @@ class GroupTransformer extends Component {
 				show={this.props.show}
 				backdrop={false}
 				bsPrefix="draggable-modal"
+				tabIndex={0} role="button"
 			>
-				<Modal.Header closeButton>
+				<Modal.Header closeButton className="draggable-modal-header" >
 					<Modal.Title>Create group variables (e.g., for training/test set split or cross-validation)</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>

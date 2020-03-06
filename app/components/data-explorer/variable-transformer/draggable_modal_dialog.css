@@ -11,6 +11,10 @@
 	outline: 0;
 }
 
+.draggable-modal-header {
+	cursor: move;
+}
+
 .modal-dialog.react-draggable .h4 {
 	font-family: Open Sans Condensed;
 	font-size: 1.3em;
