@@ -105,7 +105,7 @@ class TableCellTooltipView {
 			this._popUp.close();
 		}
 		this._popUp = null;
-	};
+	}
 
 	_onOpen = () => {
 		const cellEl = this._cellElement;
@@ -113,7 +113,7 @@ class TableCellTooltipView {
 			return;
 		}
 		this._scrollHandle = bindScrollHandler( cellEl, this._onScroll );
-	};
+	}
 
 	_onClose = () => {
 		this._popUp = null;
@@ -121,7 +121,7 @@ class TableCellTooltipView {
 			this._scrollHandle.dispose();
 		}
 		this._scrollHandle = null;
-	};
+	}
 
 	_onScroll = () => {
 		const popUp = this._popUp;
@@ -129,10 +129,10 @@ class TableCellTooltipView {
 		if ( !popUp || !cellEl ) {
 			return;
 		}
-		if ( !isElementFullyVisible(cellEl) ) {
+		if ( !isElementFullyVisible( cellEl ) ) {
 			popUp.close();
 		}
-	};
+	}
 }
 
 // https://prosemirror.net/examples/tooltip/
