@@ -36,7 +36,7 @@ import './form.css';
 
 // VARIABLES //
 
-const BAD_CHARACTER_PATTER = /\s/;
+const BAD_CHARACTER_PATTERN = /\s/;
 const ENTER_KEYCODE = 13;
 
 
@@ -67,7 +67,7 @@ class LinkURLEditor extends React.PureComponent {
 
 	_apply = () => {
 		const { url } = this.state;
-		if ( url && !BAD_CHARACTER_PATTER.test( url ) ) {
+		if ( url && !BAD_CHARACTER_PATTERN.test( url ) ) {
 			this.props.close( sanitizeURL( url ) );
 		}
 	};
@@ -75,7 +75,7 @@ class LinkURLEditor extends React.PureComponent {
 	render() {
 		const { href } = this.props;
 		const { url } = this.state;
-		const error = url ? BAD_CHARACTER_PATTER.test( url ) : false;
+		const error = url ? BAD_CHARACTER_PATTERN.test( url ) : false;
 
 		let label = 'Apply';
 		let disabled = !!error;

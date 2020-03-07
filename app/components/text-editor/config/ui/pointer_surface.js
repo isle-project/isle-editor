@@ -75,7 +75,7 @@ class PointerSurface extends React.PureComponent {
 		this._pressedTarget = null;
 		this._clicked = false;
 
-		if (e.which === 3 || e.button === 2) {
+		if ( e.which === 3 || e.button === 2 ) {
 			// right click.
 			return;
 		}
@@ -93,7 +93,7 @@ class PointerSurface extends React.PureComponent {
 	_onMouseUp = (e) => {
 		e.preventDefault();
 
-		if (this._clicked || e.type === 'keypress') {
+		if ( this._clicked || e.type === 'keypress' ) {
 			const { onClick, value, disabled } = this.props;
 			if ( !disabled && onClick ) {
 				onClick( value, e );

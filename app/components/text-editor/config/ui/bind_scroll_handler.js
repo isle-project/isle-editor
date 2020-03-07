@@ -47,10 +47,10 @@ export default function bindScrollHandler(
 
 	// Scroll event does not bubble, so we need to look up all the scrollable
 	// elements.
-	while (el) {
-		const overflow = defaultView.getComputedStyle(el).overflow;
+	while ( el ) {
+		const overflow = defaultView.getComputedStyle( el ).overflow;
 		if ((onScroll && overflow === 'auto') || overflow === 'scroll') {
-			el.addEventListener('scroll', onScroll, false);
+			el.addEventListener( 'scroll', onScroll, false );
 			els.push(el);
 		}
 		el = el.parentElement;
@@ -58,10 +58,10 @@ export default function bindScrollHandler(
 
 	return {
 		dispose() {
-			while (onScroll && els.length) {
+			while ( onScroll && els.length ) {
 				el = els.pop();
 				if ( el ) {
-					el.removeEventListener('scroll', onScroll, false);
+					el.removeEventListener( 'scroll', onScroll, false );
 				}
 			}
 			onScroll = null;

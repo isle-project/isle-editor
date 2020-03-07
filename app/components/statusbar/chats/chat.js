@@ -239,9 +239,9 @@ class Chat extends Component {
 						this.editorView = div;
 					}}
 					onKeyDown={( _, event ) => {
+						event.stopPropagation();
 						if ( event.key === 'Enter' && !event.shiftKey ) {
 							event.preventDefault();
-							event.stopPropagation();
 							this.sendMessage();
 						}
 					}}

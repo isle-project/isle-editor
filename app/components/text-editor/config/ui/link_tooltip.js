@@ -55,8 +55,8 @@ class LinkTooltip extends React.PureComponent {
 			}
 			return;
 		}
-		if (href) {
-			window.open(sanitizeURL(href));
+		if ( href ) {
+			window.open( sanitizeURL( href ) );
 		}
 	};
 

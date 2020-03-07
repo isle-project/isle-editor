@@ -117,16 +117,17 @@ export const marks = [
 		active: markActive( schema.marks.em ),
 		run: toggleMark( schema.marks.em )
 	},
+	new LinkSetURLCommand()
+];
+
+export const extraMarks = [
 	{
 		title: 'Underline',
 		content: icons.underline,
 		enable: isEnabled,
 		active: markActive( schema.marks.underline ),
 		run: toggleMark( schema.marks.underline )
-	}
-];
-
-export const extraMarks = [
+	},
 	{
 		title: 'Strikethrough',
 		content: icons.strikethrough,
@@ -154,8 +155,7 @@ export const extraMarks = [
 		enable: isEnabled,
 		active: markActive( schema.marks.superscript ),
 		run: toggleMark( schema.marks.superscript)
-	},
-	new LinkSetURLCommand()
+	}
 ];
 
 export const blocks = [
