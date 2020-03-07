@@ -307,6 +307,7 @@ class StickyNote extends Component {
 				role="button"
 				tabIndex={0}
 				onClick={this.remove} onKeyPress={this.remove}
+				title="Click to remove"
 			>×</div>
 		);
 	}
@@ -333,15 +334,10 @@ class StickyNote extends Component {
 						{this.props.minimizable ? <div
 							onClick={this.minimize} className="sticky-note-minimizable"
 							tabIndex={0} role="button" onKeyPress={this.minimize}
+							title="Click to minimize"
 						>–</div> : null }
 						{ this.props.removable ? this.removeButton() : null }
 					</div>
-					{ this.props.removable ? <div
-						role="button" tabIndex={0}
-						onClick={this.remove} title="Click to remove note"
-						className="sticky-note-pin-image-map"
-						onKeyPress={this.remove}
-					/> : null }
 					{ this.props.editable ? this.showEditableContent() : this.showContent() }
 				</div>
 			</div>
