@@ -13,7 +13,14 @@ import './draggable.css';
 function onDraggableStop( event ) {
 	const prevWindow = document.getElementsByClassName( 'react-draggable-last' );
 	if ( event.path ) {
-		const newWindow = event.path[ 3 ];
+		let newWindow = event.path[ 1 ];
+		for ( let i = 0; i < event.path.length; i++ ) {
+			const elem = event.path[ i ];
+			if ( elem.classList.contains( 'react-draggable-dragged' ) ) {
+				newWindow = elem;
+				break;
+			}
+		}
 		setTimeout( () => {
 			if ( prevWindow ) {
 				for ( let i = 0; i < prevWindow.length; i++) {
@@ -44,10 +51,14 @@ class Draggable extends Component {
 				<ReactDraggable
 					{...this.props}
 					onStop={this.handleStop}
+					ref={( div ) => {
+						this.container = div;
+					}}
 				>
 					{this.props.children}
 				</ReactDraggable>
 				<KeyControls
+					container={this.container}
 					actions={{
 						'Escape': this.handleEscape
 					}}
