@@ -100,130 +100,284 @@ const activeHeadingFactory = ( level ) => {
 };
 
 
+// VARIABLES //
+
+export const marks = [
+	{
+		title: 'Strong',
+		content: icons.strong,
+		enable: isEnabled,
+		active: markActive( schema.marks.strong ),
+		run: toggleMark( schema.marks.strong )
+	},
+	{
+		title: 'Emphasis',
+		content: icons.em,
+		enable: isEnabled,
+		active: markActive( schema.marks.em ),
+		run: toggleMark( schema.marks.em )
+	},
+	{
+		title: 'Underline',
+		content: icons.underline,
+		enable: isEnabled,
+		active: markActive( schema.marks.underline ),
+		run: toggleMark( schema.marks.underline )
+	}
+];
+
+export const extraMarks = [
+	{
+		title: 'Strikethrough',
+		content: icons.strikethrough,
+		enable: isEnabled,
+		active: markActive( schema.marks.strikethrough ),
+		run: toggleMark( schema.marks.strikethrough )
+	},
+	{
+		title: 'Code',
+		content: icons.code,
+		enable: isEnabled,
+		active: markActive( schema.marks.code ),
+		run: toggleMark( schema.marks.code )
+	},
+	{
+		title: 'Subscript',
+		content: icons.subscript,
+		enable: isEnabled,
+		active: markActive( schema.marks.subscript ),
+		run: toggleMark( schema.marks.subscript )
+	},
+	{
+		title: 'Superscript',
+		content: icons.superscript,
+		enable: isEnabled,
+		active: markActive( schema.marks.superscript ),
+		run: toggleMark( schema.marks.superscript)
+	},
+	new LinkSetURLCommand()
+];
+
+export const blocks = [
+	{
+		title: 'Change to paragraph',
+		content: icons.paragraph,
+		active: blockActive( schema.nodes.paragraph ),
+		enable: setBlockType( schema.nodes.paragraph ),
+		run: setBlockType( schema.nodes.paragraph )
+	},
+	{
+		title: 'Change to heading 1',
+		content: 'H1',
+		active: activeHeadingFactory( 1 ),
+		enable: setBlockType( schema.nodes.heading, { level: 1 } ),
+		run: setBlockType( schema.nodes.heading, { level: 1 } )
+	},
+	{
+		title: 'Change to heading 2',
+		content: 'H2',
+		active: activeHeadingFactory( 2 ),
+		enable: setBlockType( schema.nodes.heading, { level: 2 } ),
+		run: setBlockType( schema.nodes.heading, { level: 2 } )
+	}
+];
+
+export const headers = [
+	{
+		title: 'Change to heading 3',
+		content: 'Heading 3',
+		enable: setBlockType( schema.nodes.heading, { level: 3 } ),
+		run: setBlockType( schema.nodes.heading, { level: 3 } )
+	},
+	{
+		title: 'Change to heading 4',
+		content: 'Heading 4',
+		enable: setBlockType( schema.nodes.heading, { level: 4 } ),
+		run: setBlockType( schema.nodes.heading, { level: 4 } )
+	},
+	{
+		title: 'Change to heading 5',
+		content: 'Heading 5',
+		enable: setBlockType( schema.nodes.heading, { level: 5 } ),
+		run: setBlockType( schema.nodes.heading, { level: 5 } )
+	}
+];
+
+export const wraps = [
+	{
+		title: 'Wrap in block quote',
+		content: icons.blockquote,
+		active: blockActive( schema.nodes.blockquote ),
+		enable: wrapIn( schema.nodes.blockquote ),
+		run: wrapIn( schema.nodes.blockquote )
+	},
+	{
+		title: 'Wrap in bullet list',
+		content: icons.bullet_list,
+		active: blockActive( schema.nodes.bullet_list ),
+		enable: wrapInList( schema.nodes.bullet_list ),
+		run: wrapInList( schema.nodes.bullet_list )
+	},
+	{
+		title: 'Wrap in ordered list',
+		content: icons.ordered_list,
+		active: blockActive( schema.nodes.ordered_list ),
+		enable: wrapInList( schema.nodes.ordered_list ),
+		run: wrapInList( schema.nodes.ordered_list )
+	}
+];
+
+export const actions = [
+	{
+		title: 'Lift out of enclosing block',
+		content: 'Lift out of enclosing block',
+		enable: lift,
+		run: lift
+	},
+	{
+		title: 'Join with above block',
+		content: 'Join with above block',
+		enable: joinUp,
+		run: joinUp
+	},
+	{
+		title: 'Join with below block',
+		content: 'Join with below block',
+		enable: joinDown,
+		run: joinDown
+	}
+];
+
+export const insert = [
+	new ImageFromURLCommand(),
+	new ImageUploadCommand(),
+	{
+		title: 'Insert footnote',
+		content: 'Insert footnote',
+		enable: canInsert( schema.nodes.footnote ),
+		run: ( state, dispatch ) => {
+			const footnote = schema.nodes.footnote.create();
+			dispatch( state.tr.replaceSelectionWith( footnote ) );
+		}
+	},
+	{
+		title: 'Insert figure caption',
+		content: 'Insert figure caption',
+		enable: isEmptySelectionForInsertion,
+		run: ( state, dispatch ) => {
+			const figureCaption = schema.nodes.figureCaption.create();
+			dispatch( state.tr.replaceSelectionWith( figureCaption ) );
+		}
+	},
+	{
+		title: 'Insert table caption',
+		content: 'Insert table caption',
+		enable: isEmptySelectionForInsertion,
+		run: ( state, dispatch ) => {
+			const tableCaption = schema.nodes.tableCaption.create();
+			dispatch( state.tr.replaceSelectionWith( tableCaption ) );
+		}
+	},
+	{
+		title: 'Insert code block',
+		content: 'Insert code block',
+		enable: canInsert( schema.nodes.code_block ),
+		run: ( state, dispatch ) => {
+			const footnote = schema.nodes.code_block.create();
+			dispatch( state.tr.replaceSelectionWith( footnote ) );
+		}
+	}
+];
+
+export const history = [
+	{
+		title: 'Undo last change',
+		content: icons.undo,
+		enable: undo,
+		run: undo
+	},
+	{
+		title: 'Redo last undone change',
+		content: icons.redo,
+		enable: redo,
+		run: redo
+	},
+	{
+		title: 'Select parent node',
+		content: icons.selectParent,
+		run: selectParentNode,
+		select: state => selectParentNode( state )
+	}
+];
+
+export const tableEdits = [
+	{
+		title: 'Insert column before',
+		content: 'Insert column before',
+		run: addColumnBefore
+	},
+	{
+		title: 'Insert column after',
+		content: 'Insert column after',
+		run: addColumnAfter
+	},
+	{
+		title: 'Insert row before',
+		content: 'Insert row before',
+		run: addRowBefore
+	},
+	{
+		title: 'Insert row after',
+		content: 'Insert row after',
+		run: addRowAfter
+	},
+	{
+		title: 'Delete column',
+		content: 'Delete column',
+		run: deleteColumn
+	},
+	{
+		title: 'Delete row',
+		content: 'Delete row',
+		run: deleteRow
+	},
+	{
+		title: 'Merge cells',
+		content: 'Merge cells',
+		run: mergeCells
+	},
+	{
+		title: 'Split cells',
+		content: 'Split cells',
+		run: splitCell
+	},
+	{
+		title: 'Toggle header column',
+		content: 'Toggle header column',
+		run: toggleHeaderColumn
+	},
+	{
+		title: 'Toggle header row',
+		content: 'Toggle header row',
+		run: toggleHeaderRow
+	},
+	{
+		title: 'Delete table',
+		content: 'Delete table',
+		run: deleteTable
+	}
+];
+
+
 // MAIN //
 
 const menu = {
-	marks: [
-		{
-			title: 'Strong',
-			content: icons.strong,
-			enable: isEnabled,
-			active: markActive( schema.marks.strong ),
-			run: toggleMark( schema.marks.strong )
-		},
-		{
-			title: 'Emphasis',
-			content: icons.em,
-			enable: isEnabled,
-			active: markActive( schema.marks.em ),
-			run: toggleMark( schema.marks.em )
-		},
-		{
-			title: 'Underline',
-			content: icons.underline,
-			enable: isEnabled,
-			active: markActive( schema.marks.underline ),
-			run: toggleMark( schema.marks.underline )
-		}
-	],
-	extraMarks: [
-		{
-			title: 'Strikethrough',
-			content: icons.strikethrough,
-			enable: isEnabled,
-			active: markActive( schema.marks.strikethrough ),
-			run: toggleMark( schema.marks.strikethrough )
-		},
-		{
-			title: 'Code',
-			content: icons.code,
-			enable: isEnabled,
-			active: markActive( schema.marks.code ),
-			run: toggleMark( schema.marks.code )
-		},
-		{
-			title: 'Subscript',
-			content: icons.subscript,
-			enable: isEnabled,
-			active: markActive( schema.marks.subscript ),
-			run: toggleMark( schema.marks.subscript )
-		},
-		{
-			title: 'Superscript',
-			content: icons.superscript,
-			enable: isEnabled,
-			active: markActive( schema.marks.superscript ),
-			run: toggleMark( schema.marks.superscript)
-		},
-		new LinkSetURLCommand()
-	],
-	blocks: [
-		{
-			title: 'Change to paragraph',
-			content: icons.paragraph,
-			active: blockActive( schema.nodes.paragraph ),
-			enable: setBlockType( schema.nodes.paragraph ),
-			run: setBlockType( schema.nodes.paragraph )
-		},
-		{
-			title: 'Change to heading 1',
-			content: 'H1',
-			active: activeHeadingFactory( 1 ),
-			enable: setBlockType( schema.nodes.heading, { level: 1 } ),
-			run: setBlockType( schema.nodes.heading, { level: 1 } )
-		},
-		{
-			title: 'Change to heading 2',
-			content: 'H2',
-			active: activeHeadingFactory( 2 ),
-			enable: setBlockType( schema.nodes.heading, { level: 2 } ),
-			run: setBlockType( schema.nodes.heading, { level: 2 } )
-		}
-	],
-	headers: [
-		{
-			title: 'Change to heading 3',
-			content: 'Heading 3',
-			enable: setBlockType( schema.nodes.heading, { level: 3 } ),
-			run: setBlockType( schema.nodes.heading, { level: 3 } )
-		},
-		{
-			title: 'Change to heading 4',
-			content: 'Heading 4',
-			enable: setBlockType( schema.nodes.heading, { level: 4 } ),
-			run: setBlockType( schema.nodes.heading, { level: 4 } )
-		},
-		{
-			title: 'Change to heading 5',
-			content: 'Heading 5',
-			enable: setBlockType( schema.nodes.heading, { level: 5 } ),
-			run: setBlockType( schema.nodes.heading, { level: 5 } )
-		}
-	],
+	marks,
+	extraMarks,
+	blocks,
+	headers,
 	alignment: textAlignment,
-	wraps: [
-		{
-			title: 'Wrap in block quote',
-			content: icons.blockquote,
-			active: blockActive( schema.nodes.blockquote ),
-			enable: wrapIn( schema.nodes.blockquote ),
-			run: wrapIn( schema.nodes.blockquote )
-		},
-		{
-			title: 'Wrap in bullet list',
-			content: icons.bullet_list,
-			active: blockActive( schema.nodes.bullet_list ),
-			enable: wrapInList( schema.nodes.bullet_list ),
-			run: wrapInList( schema.nodes.bullet_list )
-		},
-		{
-			title: 'Wrap in ordered list',
-			content: icons.ordered_list,
-			active: blockActive( schema.nodes.ordered_list ),
-			enable: wrapInList( schema.nodes.ordered_list ),
-			run: wrapInList( schema.nodes.ordered_list )
-		}
-	],
+	wraps,
 	fontSizes: FONT_SIZES.map( pt => {
 		return {
 			title: String( pt ),
@@ -232,143 +386,10 @@ const menu = {
 			enable: isFontEnabled
 		};
 	}),
-	actions: [
-		{
-			title: 'Lift out of enclosing block',
-			content: 'Lift out of enclosing block',
-			enable: lift,
-			run: lift
-		},
-		{
-			title: 'Join with above block',
-			content: 'Join with above block',
-			enable: joinUp,
-			run: joinUp
-		},
-		{
-			title: 'Join with below block',
-			content: 'Join with below block',
-			enable: joinDown,
-			run: joinDown
-		}
-	],
-	insert: [
-		new ImageFromURLCommand(),
-		new ImageUploadCommand(),
-		{
-			title: 'Insert footnote',
-			content: 'Insert footnote',
-			enable: canInsert( schema.nodes.footnote ),
-			run: ( state, dispatch ) => {
-				const footnote = schema.nodes.footnote.create();
-				dispatch( state.tr.replaceSelectionWith( footnote ) );
-			}
-		},
-		{
-			title: 'Insert figure caption',
-			content: 'Insert figure caption',
-			enable: isEmptySelectionForInsertion,
-			run: ( state, dispatch ) => {
-				const figureCaption = schema.nodes.figureCaption.create();
-				dispatch( state.tr.replaceSelectionWith( figureCaption ) );
-			}
-		},
-		{
-			title: 'Insert table caption',
-			content: 'Insert table caption',
-			enable: isEmptySelectionForInsertion,
-			run: ( state, dispatch ) => {
-				const tableCaption = schema.nodes.tableCaption.create();
-				dispatch( state.tr.replaceSelectionWith( tableCaption ) );
-			}
-		},
-		{
-			title: 'Insert code block',
-			content: 'Insert code block',
-			enable: canInsert( schema.nodes.code_block ),
-			run: ( state, dispatch ) => {
-				const footnote = schema.nodes.code_block.create();
-				dispatch( state.tr.replaceSelectionWith( footnote ) );
-			}
-		}
-	],
-	history: [
-		{
-			title: 'Undo last change',
-			content: icons.undo,
-			enable: undo,
-			run: undo
-		},
-		{
-			title: 'Redo last undone change',
-			content: icons.redo,
-			enable: redo,
-			run: redo
-		},
-		{
-			title: 'Select parent node',
-			content: icons.selectParent,
-			run: selectParentNode,
-			select: state => selectParentNode( state )
-		}
-	],
-	tableEdits: [
-		{
-			title: 'Insert column before',
-			content: 'Insert column before',
-			run: addColumnBefore
-		},
-		{
-			title: 'Insert column after',
-			content: 'Insert column after',
-			run: addColumnAfter
-		},
-		{
-			title: 'Insert row before',
-			content: 'Insert row before',
-			run: addRowBefore
-		},
-		{
-			title: 'Insert row after',
-			content: 'Insert row after',
-			run: addRowAfter
-		},
-		{
-			title: 'Delete column',
-			content: 'Delete column',
-			run: deleteColumn
-		},
-		{
-			title: 'Delete row',
-			content: 'Delete row',
-			run: deleteRow
-		},
-		{
-			title: 'Merge cells',
-			content: 'Merge cells',
-			run: mergeCells
-		},
-		{
-			title: 'Split cells',
-			content: 'Split cells',
-			run: splitCell
-		},
-		{
-			title: 'Toggle header column',
-			content: 'Toggle header column',
-			run: toggleHeaderColumn
-		},
-		{
-			title: 'Toggle header row',
-			content: 'Toggle header row',
-			run: toggleHeaderRow
-		},
-		{
-			title: 'Delete table',
-			content: 'Delete table',
-			run: deleteTable
-		}
-	]
+	actions,
+	insert,
+	history,
+	tableEdits
 };
 
 
