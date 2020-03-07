@@ -78,6 +78,11 @@
 	padding-left: 8px;
 }
 
+.chat-message-right img {
+	width: 50%;
+	height: auto;
+}
+
 .chat-message-content {
 	word-wrap: break-word;
 }
@@ -102,13 +107,17 @@
 }
 
 .chat-time {
-	font-size: 10px;
+	font-size: 0.8em;
+	color: dimgray;
 }
 
 .chat-textarea {
 	font-size: 13px;
 	line-height: 16px;
 	background-color: #f3f2f3;
+	border-left: solid silver;
+	border-right: solid silver;
+	border-bottom: solid silver;
 }
 
 .chat-textarea:focus {
