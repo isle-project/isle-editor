@@ -99,25 +99,33 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			onMouseDown={onMenuMouseDown(item)}
 		>{item.content}</DropdownItem>
 	);
+	const renderMenuGroupButtons = ( items ) => {
+		if ( items ) {
+			return items.map( createGroupButtons );
+		}
+		return null;
+	};
 	return (
 		<div className="prose-menu-bar">
 			{children}
-			{menu.blocks.map( createGroupButtons )}
-			<DropdownButton
-				title=""
-				variant="outline-secondary"
-				size="sm" style={{ display: 'inline-block', marginRight: 4 }}
-			>
-				{menu.headers.map( createDropdownButtons )}
-			</DropdownButton>
-			<i className="prose-separator">|</i>
-			{menu.marks.map( createGroupButtons )}
-			{fullscreen ? menu.extraMarks.map( createGroupButtons ) : null}
+			{renderMenuGroupButtons( menu.blocks )}
+			{menu.headers ? <Fragment>
+				<DropdownButton
+					title=""
+					variant="outline-secondary"
+					size="sm" style={{ display: 'inline-block', marginRight: 4 }}
+				>
+					{renderMenuGroupButtons( menu.headers )}
+				</DropdownButton>
+				<i className="prose-separator">|</i>
+			</Fragment>: null }
+			{renderMenuGroupButtons( menu.marks )}
+			{fullscreen ? renderMenuGroupButtons( menu.extraMarks ) : null}
 			<div style={{ display: showColorPicker ? 'initial' : 'none', position: 'absolute', top: '50px', left: '100px', zIndex: 2 }}>
 				<CirclePicker width="600px" colors={FONT_COLORS} circleSize={16} onChangeComplete={onColorChoice} />
 			</div>
 			<i className="prose-separator">|</i>
-			<Dropdown
+			{ menu.fontSizes ? <Dropdown
 				style={{ display: 'inline-block', marginLeft: 4 }}
 			>
 				<DropdownToggle
@@ -129,38 +137,44 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				<DropdownMenu style={{ minWidth: '24px' }}>
 					{menu.fontSizes.map( createFontButtons )}
 				</DropdownMenu>
-			</Dropdown>
-			{menu.wraps.map( createGroupButtons )}
-			{ fullscreen ?
+			</Dropdown> : null}
+			{renderMenuGroupButtons( menu.wraps )}
+			{ fullscreen && menu.alignment ?
 				<Fragment>
 					<i className="prose-separator">|</i>
-					{menu.alignment.map( createGroupButtons )}
+					{renderMenuGroupButtons( menu.alignment )}
 				</Fragment> : null
 			}
-			<i className="prose-separator">|</i>
-			<DropdownButton
-				title={icons.insert}
-				variant="outline-secondary"
-				size="sm" style={{ display: 'inline-block' }}
-			>
-				{menu.insert.map( createDropdownButtons )}
-			</DropdownButton>
-			<i className="prose-separator">|</i>
-			<DropdownButton
-				title={icons.table}
-				variant="outline-secondary"
-				size="sm" style={{ display: 'inline-block' }}
-			>
-				{menu.tableEdits.map( createDropdownButtons )}
-			</DropdownButton>
-			{ fullscreen ?
+			{ menu.insert ?
+				<Fragment>
+					<i className="prose-separator">|</i>
+					<DropdownButton
+						title={icons.insert}
+						variant="outline-secondary"
+						size="sm" style={{ display: 'inline-block' }}
+					>
+						{menu.insert.map( createDropdownButtons )}
+					</DropdownButton>
+				</Fragment> : null }
+			{ menu.tableEdits ?
+				<Fragment>
+					<i className="prose-separator">|</i>
+					<DropdownButton
+						title={icons.table}
+						variant="outline-secondary"
+						size="sm" style={{ display: 'inline-block' }}
+					>
+						{menu.tableEdits.map( createDropdownButtons )}
+					</DropdownButton>
+				</Fragment>: null }
+			{ fullscreen && menu.history ?
 				<Fragment>
 					<i className="prose-separator">|</i>
 					{menu.history.map( createGroupButtons )}
 				</Fragment> : null
 			}
-			<i className="prose-separator">|</i>
-			{menu.addons.map( createGroupButtons )}
+			{ menu.addons ? <i className="prose-separator">|</i> : null }
+			{renderMenuGroupButtons( menu.addons )}
 		</div>
 	);
 };

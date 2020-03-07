@@ -37,7 +37,7 @@ import './link_tooltip.css';
 
 class LinkTooltip extends React.PureComponent {
 	_openLink = ( href ) => {
-		if (href && href.indexOf('#') === 0) {
+		if ( href && href.indexOf('#') === 0 ) {
 			const id = href.substr(1);
 			const el = document.getElementById(id);
 			if (el) {
