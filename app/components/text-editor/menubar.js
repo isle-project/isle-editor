@@ -106,7 +106,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 		return null;
 	};
 	return (
-		<div className="prose-menu-bar">
+		<div className="prose-menu-bar cancel" >
 			{children}
 			{renderMenuGroupButtons( menu.blocks )}
 			{menu.headers ? <Fragment>
