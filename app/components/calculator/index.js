@@ -212,7 +212,7 @@ class Calculator extends Component {
 	renderHeader() {
 		return (
 			<span>
-				Calculator
+				<span className="unselectable" >Calculator</span>
 				{ this.props.onHide ?
 					<button className="calc-hide-button fa fa-times" onClick={this.props.onHide} /> :
 					null
