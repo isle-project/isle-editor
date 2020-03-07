@@ -102,7 +102,8 @@ class ProseMirror extends Component {
 						debug( 'Handle drag enter event...' );
 						toggleCursorParking( view );
 					},
-					'drop': handleDrop
+					'drop': handleDrop,
+					'keydown': this.props.onKeyDown
 				}
 			});
 		}
@@ -184,6 +185,7 @@ ProseMirror.propTypes = {
 	showStatusBar: PropTypes.bool,
 	onColorChoice: PropTypes.func,
 	onEditorState: PropTypes.func,
+	onKeyDown: PropTypes.func,
 	onMount: PropTypes.func
 };
 
@@ -191,6 +193,7 @@ ProseMirror.defaultProps = {
 	showStatusBar: true,
 	onColorChoice() {},
 	onEditorState() {},
+	onKeyDown() {},
 	onMount() {}
 };
 

@@ -6,7 +6,6 @@ import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
 import Loadable from 'components/loadable';
 import VoiceInput from 'components/input/voice';
-import Panel from 'components/panel';
 import Button from 'react-bootstrap/Button';
 import ResponseVisualizer from 'components/response-visualizer';
 import logger from 'debug';

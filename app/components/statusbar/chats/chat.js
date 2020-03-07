@@ -15,7 +15,6 @@ import Draggable from 'components/draggable';
 import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
-import KeyControls from 'components/key-controls';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
@@ -239,6 +238,13 @@ class Chat extends Component {
 					ref={( div ) => {
 						this.editorView = div;
 					}}
+					onKeyDown={( _, event ) => {
+						if ( event.key === 'Enter' && !event.shiftKey ) {
+							event.preventDefault();
+							event.stopPropagation();
+							this.sendMessage();
+						}
+					}}
 				/>
 				<Button
 					size="sm" variant="default"
@@ -247,14 +253,6 @@ class Chat extends Component {
 				>Send Message</Button>
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
-				/>
-				<KeyControls
-					container={this.editorView}
-					actions={{
-						'Enter': () => {
-							this.sendMessage();
-						}
-					}}
 				/>
 			</div>
 		);
