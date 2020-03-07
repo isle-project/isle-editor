@@ -43,7 +43,7 @@ const uid = generateUID( 'create-popup' );
 let modalsCount = 0;
 let popUpsCount = 0;
 
-const Z_INDEX_BASE = 500;
+const Z_INDEX_BASE = 1005;
 const MODAL_MASK_ID = 'pop-up-modal-mask-' + uid();
 
 function showModalMask() {

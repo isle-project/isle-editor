@@ -212,14 +212,14 @@ class PopUpManager {
 		const now = Date.now();
 		for (const [bridge, registeredAt] of this._bridges) {
 			const details = bridgeToDetails.get(bridge);
-			if (details) {
+			if ( details ) {
 				const { autoDismiss, anchor, close, modal } = details;
 				if (
 					autoDismiss &&
 					// Modal is handled separately at `onClick`
 					!modal &&
 					now - registeredAt > CLICK_INTERVAL &&
-					!hoveredAnchors.has(anchor)
+					!hoveredAnchors.has( anchor )
 				) {
 					close();
 				}
