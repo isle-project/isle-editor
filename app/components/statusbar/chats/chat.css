@@ -114,10 +114,9 @@
 .chat-textarea {
 	font-size: 13px;
 	line-height: 16px;
-	background-color: #f3f2f3;
-	border-left: solid silver;
-	border-right: solid silver;
-	border-bottom: solid silver;
+	max-height: 150px;
+	overflow-y: auto;
+	background: white;
 }
 
 .chat-textarea:focus {

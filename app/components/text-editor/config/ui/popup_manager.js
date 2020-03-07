@@ -85,7 +85,7 @@ class PopUpManager {
 		}
 	}
 
-	_onScroll = (e) => {
+	_onScroll = () => {
 		if ( this._rafID ) {
 			cancelAnimationFrame( this._rafID );
 		}

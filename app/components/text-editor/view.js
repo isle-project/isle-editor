@@ -1,12 +1,13 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import logger from 'debug';
 import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
-import PropTypes from 'prop-types';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
+import { defaultMarkdownSerializer } from 'prosemirror-markdown';
 import isJSON from '@stdlib/assert/is-json';
 import plugins from './config/plugins';
 import MenuBar from './menubar.js';
@@ -111,14 +112,16 @@ class ProseMirror extends Component {
 	onEditorState = ( editorState ) => {
 		let nChars = 0;
 		let nWords = 0;
-		editorState.doc.forEach( blockNode => {
-			blockNode.forEach( inlineNode => {
-				if ( inlineNode.text ) {
-					nChars += inlineNode.text.length;
-					nWords += countWords( inlineNode.text );
-				}
+		if ( this.props.showStatusBar ) {
+			editorState.doc.forEach( blockNode => {
+				blockNode.forEach( inlineNode => {
+					if ( inlineNode.text ) {
+						nChars += inlineNode.text.length;
+						nWords += countWords( inlineNode.text );
+					}
+				});
 			});
-		});
+		}
 		this.props.onEditorState( editorState );
 		this.setState({ editorState, nWords, nChars });
 	}
@@ -134,7 +137,11 @@ class ProseMirror extends Component {
 				apply( fix.setMeta( 'addToHistory', false ) );
 		}
 		this.onEditorState( editorState );
-	};
+	}
+
+	get markdown() {
+		return defaultMarkdownSerializer.serialize( this.state.editorState.doc );
+	}
 
 	focus() {
 		if ( this.editorView ) {
@@ -153,8 +160,14 @@ class ProseMirror extends Component {
 				showColorPicker={this.props.showColorPicker}
 				onColorChoice={this.props.onColorChoice}
 			/>
-			<div ref={this._createEditorView} />
-			<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} />
+			<div
+				className={this.props.className}
+				ref={this._createEditorView}
+			/>
+			{this.props.showStatusBar ?
+				<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} /> :
+				null
+			}
 		</Fragment> );
 	}
 }
@@ -168,12 +181,14 @@ ProseMirror.propTypes = {
 	fullscreen: PropTypes.bool.isRequired,
 	showColorPicker: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
+	showStatusBar: PropTypes.bool,
 	onColorChoice: PropTypes.func,
 	onEditorState: PropTypes.func,
 	onMount: PropTypes.func
 };
 
 ProseMirror.defaultProps = {
+	showStatusBar: true,
 	onColorChoice() {},
 	onEditorState() {},
 	onMount() {}

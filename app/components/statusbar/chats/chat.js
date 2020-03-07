@@ -4,14 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
-import FormControl from 'react-bootstrap/FormControl';
+import replace from '@stdlib/string/replace';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
-import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
 import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
@@ -21,6 +20,8 @@ import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import { CHAT_MESSAGE, MARK_MESSAGES, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT } from 'constants/events.js';
+import EditorView from 'components/text-editor/view.js';
+import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import renderTime from './render_time.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './chat.css';
@@ -44,9 +45,10 @@ class Chat extends Component {
 		super( props );
 		this.state = {
 			opened: true,
-			value: '',
 			hasNews: false,
-			maximized: false
+			maximized: false,
+			defaultValue: '',
+			docId: 0
 		};
 	}
 
@@ -85,25 +87,34 @@ class Chat extends Component {
 	}
 
 	sendMessage = () => {
+		let text = this.editorView.markdown;
+		if ( text.length === 0 ) {
+			return;
+		}
+		text = replace( text, '\\\n', '\n' );
+		global.text = text;
 		const session = this.context;
-		session.sendChatMessage( this.props.chat.name, this.state.value );
+		session.sendChatMessage( this.props.chat.name, text );
 		scrollTo( this.chatbody, this.chatbody.scrollHeight, 1000 );
 
 		this.setState({
-			value: ''
+			defaultValue: '',
+			docId: this.state.docId + 1
 		});
 	}
 
-	changedText = ( event ) => {
-		this.setState({
-			value: event.target.value,
-			hasNews: false
-		});
+	handleEditorStateChange = () => {
+		if ( this.state.hasNews ) {
+			this.setState({
+				hasNews: false
+			});
+		}
 	}
 
 	insertText = ( text ) => {
+		text = this.editorView.markdown + ' ' + text;
 		this.setState({
-			value: this.state.value + ' ' + text
+			defaultValue: text
 		});
 	}
 
@@ -182,7 +193,7 @@ class Chat extends Component {
 					ref={( chatbody ) => { this.chatbody = chatbody; }}
 					onScroll={this.onScroll}
 					style={{
-						height: this.state.maximized ? '70vh' : '196px'
+						height: this.state.maximized ? 'calc(85vh - 150px)' : '150px'
 					}}
 				>
 					{chat.messages.map( ( msg, idx ) => {
@@ -201,7 +212,6 @@ class Chat extends Component {
 									<span className="chat-user">{msg.user}</span>
 									{' - '}
 									<span className="chat-time">{renderTime( msg.time )}</span>
-									{': '}
 									<br />
 									<span className="chat-message-content" dangerouslySetInnerHTML={node} ></span>
 								</div>
@@ -210,32 +220,39 @@ class Chat extends Component {
 						/* eslint-enable react/no-danger */
 					})}
 				</div>
-				<FormControl
-					as="textarea"
+				<EditorView
 					className="chat-textarea cancel"
-					onChange={this.changedText}
-					value={this.state.value}
-					placeholder="Type your message..."
-					ref={div => {
-						this.textarea = div;
+					onEditorState={this.handleEditorStateChange}
+					showStatusBar={false}
+					showColorPicker={false}
+					defaultValue={this.state.defaultValue}
+					docId={this.state.docId}
+					menu={{
+						marks,
+						wraps,
+						insert: [
+							insert[ 0 ],
+							insert[ 1 ],
+							insert[ 5 ]
+						]
 					}}
-					rows={3}
+					ref={( div ) => {
+						this.editorView = div;
+					}}
 				/>
 				<Button
-					className="center" size="sm" variant="secondary"
-					style={{ marginTop: '4px', marginBottom: '4px' }}
-					onClick={this.state.value === '' ? noop : this.sendMessage}
+					size="sm" variant="default"
+					onClick={this.sendMessage}
+					style={{ float: 'left' }}
 				>Send Message</Button>
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
 				/>
 				<KeyControls
-					container={this.textarea}
+					container={this.editorView}
 					actions={{
 						'Enter': () => {
-							if ( this.state.value.length > 0 ) {
-								this.sendMessage();
-							}
+							this.sendMessage();
 						}
 					}}
 				/>
