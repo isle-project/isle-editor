@@ -203,7 +203,7 @@ class Chat extends Component {
 						return (
 							<div className={msg.unread ? 'chat-message unread' : 'chat-message'} key={idx} >
 								<img
-									className="chat-picture"
+									className="chat-picture unselectable"
 									src={session.server + '/thumbnail/' + ( msg.picture ? msg.picture : 'anonymous.jpg' )}
 									alt="Profile Pic"
 								/>
@@ -271,7 +271,7 @@ class Chat extends Component {
 		}
 		const ident = 'chat_' + chat.name;
 		return (
-			<Draggable cancel=".cancel" >
+			<Draggable cancel=".cancel" onEscape={this.closeChat} >
 				<div
 					id={ident}
 					className="chat-outer-div"
@@ -292,7 +292,7 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<Tooltip tooltip="Close (Esc)" placement="right" >
+						<Tooltip tooltip="Close (Esc)" placement="bottom" >
 							<button className="chat-header-button" onClick={this.closeChat} >
 								<i className="fas fa-times"></i>
 							</button>
