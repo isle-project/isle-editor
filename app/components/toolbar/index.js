@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Calculator from 'components/calculator';
-import ReactDraggable from 'components/draggable';
+import Draggable from 'components/draggable';
 import Queue from 'components/queue';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
@@ -196,7 +196,7 @@ class Toolbar extends Component {
 					};
 					const elem = x.component;
 					return this.state[ x.name ] ?
-					<ReactDraggable bounds="#Lesson" cancel=".card-body" key={key} >
+					<Draggable bounds="#Lesson" cancel=".card-body,.cancel" key={key} >
 						<div className="toolbar-outer-element" >
 							<div className="toolbar-inner-element" tabIndex={0} role="button" >
 								<elem.type {...elem.props} style={{
@@ -208,7 +208,7 @@ class Toolbar extends Component {
 							</div>
 							<button className="toolbar-hide-button fa fa-times" onClick={toggleElement} />
 						</div>
-					</ReactDraggable> : null;
+					</Draggable> : null;
 				})}
 				{this.state.help ? <HelpPage session={this.context} onClose={this.toggleHelp} /> : null }
 				<KeyControls

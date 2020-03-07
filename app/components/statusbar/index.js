@@ -353,8 +353,8 @@ class StatusBar extends Component {
 		/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Fragment>
+				<Chats />
 				<div>
-					<Chats />
 					<div
 						className="statusbar unselectable"
 						role="button" tabIndex={0}

@@ -695,6 +695,7 @@ class TextEditor extends Component {
 						<ProseMirrorEditorView
 							defaultValue={this.state.value}
 							menu={this.menu}
+							className="cancel"
 							onMount={( div ) => {
 								this.editorDiv = div;
 								if ( this.state.peer ) {
