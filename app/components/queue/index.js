@@ -9,6 +9,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
+import max from '@stdlib/math/base/special/max';
 import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
@@ -118,7 +119,7 @@ class Queue extends Component {
 						if ( this.state.spot ) {
 							if ( val < this.state.spot ) {
 								this.setState({
-									spot: this.state.spot - 1
+									spot: max( this.state.spot - 1, 0 )
 								});
 							} else if ( val === this.state.spot ) {
 								this.setState({
