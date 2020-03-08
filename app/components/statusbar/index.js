@@ -228,7 +228,10 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleBroadcast = () => {
+	toggleBroadcast = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
 		this.setState({
 			isBroadcasting: !this.state.isBroadcasting
 		});
@@ -407,7 +410,10 @@ class StatusBar extends Component {
 								</span>
 							</Tooltip> : null }
 							{( isOwner || isElectron ) ?
-							<Tooltip placement="bottom" tooltip="Broadcast video" >
+							<Tooltip
+								placement="bottom"
+								tooltip={this.state.isBroadcasting ? 'Close Video Broadcast' : 'Open Video Broadcast'}
+							>
 								<span role="button" tabIndex={0}
 									onClick={this.toggleBroadcast} onKeyPress={this.toggleBroadcast}
 									className="statusbar-broadcast-video statusbar-icon"

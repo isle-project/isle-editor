@@ -215,9 +215,10 @@
 	padding-left: 10px;
 	right: 0;
 	left: 0;
-	z-index: 2;
+	z-index: 1004;
 	width: 90vw;
 	background: #add8e6;
+	pointer-events: none;
 }
 
 #Lesson .statusbar-username {
