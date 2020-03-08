@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Panel from 'components/panel';
 import Draggable from 'components/draggable';
-import { BROADCAST_ANSWER, BROADCAST_CANDIDATE, BROADCAST_OFFER, MEMBER_ACTION } from 'constants/events.js';
+import { BROADCAST_ANSWER, BROADCAST_CANDIDATE, BROADCAST_ENDED, BROADCAST_OFFER, MEMBER_ACTION } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -38,6 +38,11 @@ class BroadcastWatcher extends Component {
 				}
 				else if ( data.type === BROADCAST_OFFER ) {
 					this.acceptBroadcastOffer( data.email, data.value );
+				}
+				else if ( data.type === BROADCAST_ENDED ) {
+					this.setState({
+						peerConnection: null
+					});
 				}
 			}
 		});
