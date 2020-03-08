@@ -1,6 +1,6 @@
 .broadcast-menu {
 	position: fixed;
-	right: 30px;
+	right: 42px;
 	top: 12px;
 	background: #fff;
 	width: 300px;
@@ -21,7 +21,7 @@
 	height: 300px;
 }
 
-.broadcast-video-stop {
+.broadcast-video-button {
 	position: fixed;
 	top: 0px;
 	right: 0px;

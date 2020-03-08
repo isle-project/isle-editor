@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import Panel from 'components/panel';
 import Draggable from 'components/draggable';
 import { BROADCAST_ANSWER, BROADCAST_CANDIDATE, BROADCAST_ENDED, BROADCAST_OFFER, MEMBER_ACTION } from 'constants/events.js';
@@ -25,7 +26,9 @@ class BroadcastWatcher extends Component {
 		super( props );
 
 		this.state = {
-			peerConnection: null
+			peerConnection: null,
+			isWatching: false,
+			broadcaster: null
 		};
 	}
 
@@ -37,11 +40,12 @@ class BroadcastWatcher extends Component {
 					this.addIceCandidate( data.value );
 				}
 				else if ( data.type === BROADCAST_OFFER ) {
-					this.acceptBroadcastOffer( data.email, data.value );
+					this.acceptBroadcastOffer( data.email, data.value, data.name );
 				}
 				else if ( data.type === BROADCAST_ENDED ) {
 					this.setState({
-						peerConnection: null
+						peerConnection: null,
+						broadcaster: null
 					});
 				}
 			}
@@ -68,12 +72,13 @@ class BroadcastWatcher extends Component {
 			.catch( this.handleError );
 	}
 
-	acceptBroadcastOffer( email, description ) {
+	acceptBroadcastOffer( email, description, broadcaster ) {
 		const session = this.props.session;
 		const peerConnection = new RTCPeerConnection( BROADCAST_CONFIG );
 
 		this.setState({
-			peerConnection
+			peerConnection,
+			broadcaster
 		}, () => {
 			peerConnection
 				.setRemoteDescription( description )
@@ -104,6 +109,17 @@ class BroadcastWatcher extends Component {
 		});
 	}
 
+	handleClick = () => {
+		if ( this.state.isWatching ) {
+			this.videoElement.pause();
+		} else {
+			this.videoElement.play();
+		}
+		this.setState({
+			isWatching: !this.state.isWatching
+		});
+	}
+
 	render() {
 		if ( !this.state.peerConnection ) {
 			return null;
@@ -112,10 +128,24 @@ class BroadcastWatcher extends Component {
 		return (
 			<Draggable>
 				<Panel className="broadcast-video-panel" >
+					{!this.state.isWatching ?
+						<p>A video broadcast by {this.state.broadcaster} is in progress.</p> :
+						null
+					}
+					<Button
+						variant="secondary"
+						className={this.state.isWatching ? 'broadcast-video-button' : ''}
+						onClick={this.handleClick}
+					>
+						{this.state.isWatching ? <i className="fas fa-video-slash"></i> : 'Join Broadcast' }
+					</Button>
 					<video
-						playsInline autoPlay
+						playsInline
 						ref={( video ) => {
 							this.videoElement = video;
+						}}
+						style={{
+							display: this.state.isWatching ? 'inherit' : 'none'
 						}}
 					></video>
 				</Panel>

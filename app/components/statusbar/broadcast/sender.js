@@ -271,9 +271,9 @@ class Broadcast extends Component {
 					></video>
 					<Tooltip tooltip="Stop Broadcasting" >
 						<Button
-							variant="default"
+							variant="secondary"
 							onClick={this.stopStreaming}
-							className="broadcast-video-stop"
+							className="broadcast-video-button"
 						>
 							<i className="fas fa-video-slash"></i>
 						</Button>
