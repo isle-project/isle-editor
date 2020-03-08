@@ -45,7 +45,8 @@ class BroadcastWatcher extends Component {
 				else if ( data.type === BROADCAST_ENDED ) {
 					this.setState({
 						peerConnection: null,
-						broadcaster: null
+						broadcaster: null,
+						isWatching: false
 					});
 				}
 			}

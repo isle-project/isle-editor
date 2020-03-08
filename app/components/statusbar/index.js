@@ -223,7 +223,7 @@ class StatusBar extends Component {
 			this.hidden = false;
 		} else {
 			animatePosition( this.statusbar, 'top', -32, 300 );
-			this.statusbar.style.opacity = 0.7;
+			this.statusbar.style.opacity = 0.85;
 			this.hidden = true;
 		}
 	}
