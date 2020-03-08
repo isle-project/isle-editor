@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import TextEditor from 'components/text-editor';
 import VoiceInput from 'components/input/voice';
 import Tooltip from 'components/tooltip';
+import { MEMBER_ACTION, VOICE_TEXT, VOICE_TEXT_SEGMENT } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -25,8 +26,36 @@ class VoiceControl extends Component {
 		this.state = {
 			recordedText: null,
 			transcript: [],
-			showTranscriptEditor: false
+			showTranscriptEditor: false,
+			isSegment: false
 		};
+	}
+
+	componentDidMount() {
+		const session = this.props.session;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( type === MEMBER_ACTION ) {
+				if ( action.type === VOICE_TEXT ) {
+					this.setState({
+						recordedText: action.value,
+						isSegment: false
+					}, this.renderRecordedText );
+					setTimeout(() => {
+						this.setState({ recordedText: null }, this.renderRecordedText );
+					}, 3000 );
+				}
+				else if ( action.type === VOICE_TEXT_SEGMENT ) {
+					this.setState({
+						recordedText: action.value,
+						isSegment: true
+					}, this.renderRecordedText );
+				}
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	handleFinalVoiceInput = ( text ) => {
@@ -35,12 +64,19 @@ class VoiceControl extends Component {
 		transcript.push( recordedText );
 		this.setState({
 			transcript,
-			recordedText
+			recordedText,
+			isSegment: false
 		}, this.renderRecordedText );
 		setTimeout(() => {
 			this.setState({ recordedText: null }, this.renderRecordedText );
 		}, 3000 );
 		const session = this.props.session;
+		session.log({
+			id: VOICE_TEXT,
+			type: VOICE_TEXT,
+			value: recordedText,
+			noSave: true
+		}, 'members' );
 		session.speechInterface.check( text, {
 			onStart: () => {
 				this.voiceInput.stop();
@@ -55,8 +91,16 @@ class VoiceControl extends Component {
 		debug( 'Received voice input: ' + text );
 		const recordedText = text[ 0 ];
 		this.setState({
-			recordedText
+			recordedText,
+			isSegment: true
 		}, this.renderRecordedText );
+		const session = this.props.session;
+		session.log({
+			id: VOICE_TEXT_SEGMENT,
+			type: VOICE_TEXT_SEGMENT,
+			value: recordedText,
+			noSave: true
+		}, 'members' );
 	}
 
 	handleStopRecording = () => {
@@ -133,6 +177,9 @@ class VoiceControl extends Component {
 				</Tooltip> : null }
 				<span
 					ref={( span ) => { this.displayedText = span; }}
+					style={{
+						color: this.state.isSegment ? 'darkslategray' : 'black'
+					}}
 					className="statusbar-voice-text"
 				></span>
 				{ this.state.showTranscriptEditor ? <Modal
