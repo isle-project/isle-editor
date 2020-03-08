@@ -216,7 +216,8 @@
 	right: 0;
 	left: 0;
 	z-index: 1004;
-	width: 90vw;
+	width: 55vw;
+	min-width: 420px;
 	background: #add8e6;
 	pointer-events: none;
 }

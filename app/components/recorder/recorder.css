@@ -21,7 +21,7 @@
 
 .recorder-button-container {
 	position: absolute;
-	border-radius: 50%;
+	border-radius: 15px;
 	margin-right: 10px;
 	color: rgba(0, 0, 0, 1);
 	border: solid 4px rgb(70, 70, 70);
@@ -45,7 +45,7 @@
 
 .recorder-button {
 	position: absolute;
-	border-radius: 50%;
+	border-radius: 8px;
 	width: 16px;
 	height: 16px;
 	top: 3px;
