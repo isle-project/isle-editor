@@ -16,7 +16,7 @@ import './broadcast.css';
 
 // VARIABLES //
 
-const debug = logger( 'isel:broadcast' );
+const debug = logger( 'isle:broadcast' );
 const BROADCAST_CONFIG = {
 	iceServers: [
 		{
@@ -78,11 +78,15 @@ class Broadcast extends Component {
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.active && !prevProps.active ) {
-			navigator.mediaDevices
-				.getUserMedia({ audio: true, video: true })
-				.then( getDevices )
-				.then( this.gotDevices )
-				.catch( this.handleError );
+			if ( !navigator.mediaDevices ) {
+				this.handleError( new Error( 'Unfortunately, your browser does not support the broadcasting functionality on your operating system' ), false );
+			} else {
+				navigator.mediaDevices
+					.getUserMedia({ audio: false, video: true })
+					.then( getDevices )
+					.then( this.gotDevices )
+					.catch( this.handleError );
+			}
 		}
 		if ( !this.props.active && this.state.hasStream ) {
 			this.stopStreaming();
@@ -93,9 +97,11 @@ class Broadcast extends Component {
 		this.unsubscribe();
 	}
 
-	handleError = ( msg ) => {
+	handleError = ( msg, appendDefaultMsg = true ) => {
 		const session = this.props.session;
-		msg += '\n\nPlease make sure you have no other applications currently using your audio and video device(s).';
+		if ( appendDefaultMsg ) {
+			msg += '\n\nPlease make sure you have no other applications currently using your audio and video device(s).';
+		}
 		session.addNotification({
 			title: 'Encountered Error',
 			message: msg,
