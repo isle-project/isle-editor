@@ -52,10 +52,20 @@ class BroadcastWatcher extends Component {
 		this.unsubscribe();
 	}
 
+	handleError = ( msg ) => {
+		const session = this.props.session;
+		session.addNotification({
+			title: 'Encountered Error',
+			message: msg,
+			level: 'error',
+			position: 'tc'
+		});
+	}
+
 	addIceCandidate( candidate ) {
 		this.state.peerConnection
 			.addIceCandidate( new RTCIceCandidate( candidate ) )
-			.catch( e => console.error( e ) );
+			.catch( this.handleError );
 	}
 
 	acceptBroadcastOffer( email, description ) {
@@ -66,17 +76,18 @@ class BroadcastWatcher extends Component {
 			peerConnection
 		}, () => {
 			peerConnection
-			.setRemoteDescription( description )
-			.then( () => peerConnection.createAnswer() )
-			.then( sdp => peerConnection.setLocalDescription( sdp ) )
-			.then( () => {
-				session.log({
-					id: BROADCAST_ANSWER,
-					type: BROADCAST_ANSWER,
-					value: peerConnection.localDescription,
-					noSave: true
-				}, email );
-			});
+				.setRemoteDescription( description )
+				.then( () => peerConnection.createAnswer() )
+				.then( sdp => peerConnection.setLocalDescription( sdp ) )
+				.then( () => {
+					session.log({
+						id: BROADCAST_ANSWER,
+						type: BROADCAST_ANSWER,
+						value: peerConnection.localDescription,
+						noSave: true
+					}, email );
+				})
+				.catch( this.handleError );
 			peerConnection.ontrack = event => {
 				this.videoElement.srcObject = event.streams[ 0 ];
 			};

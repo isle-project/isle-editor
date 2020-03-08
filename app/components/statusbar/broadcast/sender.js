@@ -33,10 +33,6 @@ function getDevices() {
 	return navigator.mediaDevices.enumerateDevices();
 }
 
-function logError( error ) {
-	console.error( 'Encountered an error', error );
-}
-
 
 // MAIN //
 
@@ -85,7 +81,8 @@ class Broadcast extends Component {
 			navigator.mediaDevices
 				.getUserMedia({ audio: true, video: true })
 				.then( getDevices )
-				.then( this.gotDevices );
+				.then( this.gotDevices )
+				.catch( this.handleError );
 		}
 		if ( !this.props.active && this.state.hasStream ) {
 			this.stopStreaming();
@@ -94,6 +91,18 @@ class Broadcast extends Component {
 
 	componentWillUnmount() {
 		this.unsubscribe();
+	}
+
+	handleError = ( msg ) => {
+		const session = this.props.session;
+		msg += '\n\nPlease make sure you have no other applications currently using your audio and video device(s).';
+		session.addNotification({
+			title: 'Encountered Error',
+			message: msg,
+			level: 'error',
+			position: 'tc'
+		});
+		this.props.onHide();
 	}
 
 	establishPeerConnection = ( user ) => {
@@ -199,7 +208,7 @@ class Broadcast extends Component {
 		return navigator.mediaDevices
 			.getUserMedia( constraints )
 			.then( this.gotStream )
-			.catch( logError );
+			.catch( this.handleError );
 	}
 
 	gotStream = ( stream ) => {
@@ -224,6 +233,13 @@ class Broadcast extends Component {
 		}
 		return (
 			!this.state.hasStream ? <div className="broadcast-menu" >
+				<Button
+					variant="outline-secondary"
+					size="sm" onClick={this.props.onHide}
+					style={{ float: 'right' }}
+				>
+					<span className="fa fa-times" />
+				</Button>
 				<p>Select your microphone and video to broadcast:</p>
 				<Form.Group>
 					<Form.Label>Audio Devices</Form.Label>
@@ -272,11 +288,13 @@ class Broadcast extends Component {
 // PROPERTIES //
 
 Broadcast.defaultProps = {
-	active: false
+	active: false,
+	onHide() {}
 };
 
 Broadcast.propTypes = {
 	active: PropTypes.bool,
+	onHide: PropTypes.func,
 	session: PropTypes.object.isRequired
 };
 

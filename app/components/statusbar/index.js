@@ -370,6 +370,7 @@ class StatusBar extends Component {
 					<BroadcastSender
 						active={this.state.isBroadcasting}
 						session={this.context}
+						onHide={this.toggleBroadcast}
 					/> :
 					<BroadcastWatcher
 						session={this.context}
