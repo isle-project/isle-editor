@@ -541,7 +541,7 @@ Recorder.propTypes = {
 Recorder.defaultProps = {
 	audio: false,
 	autostart: false,
-	bitsPerSecond: 128000,
+	bitsPerSecond: 1280000,
 	camera: false,
 	downloadable: false,
 	screen: false,
