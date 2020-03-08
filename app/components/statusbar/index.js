@@ -11,6 +11,8 @@ import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
 import Chats from 'components/statusbar/chats';
+import BroadcastSender from 'components/statusbar/broadcast/sender.js';
+import BroadcastWatcher from 'components/statusbar/broadcast/watcher.js';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
@@ -64,7 +66,8 @@ class StatusBar extends Component {
 			showProgressBar: false,
 			isProgressLeaving: false,
 			progress: 0,
-			duration: '0'
+			duration: '0',
+			isBroadcasting: false
 		};
 		this.hidden = true;
 	}
@@ -225,6 +228,12 @@ class StatusBar extends Component {
 		}
 	}
 
+	toggleBroadcast = () => {
+		this.setState({
+			isBroadcasting: !this.state.isBroadcasting
+		});
+	}
+
 	onMouseOver = () => {
 		if ( this.hidden ) {
 			this.statusbar.style.opacity = 1.0;
@@ -354,6 +363,15 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<Chats />
+				{ isOwner ?
+					<BroadcastSender
+						active={this.state.isBroadcasting}
+						session={this.context}
+					/> :
+					<BroadcastWatcher
+						session={this.context}
+					/>
+				}
 				<div>
 					<div
 						className="statusbar unselectable"
@@ -386,6 +404,15 @@ class StatusBar extends Component {
 									className="statusbar-blackscreen-mode statusbar-icon"
 								>
 									<span className="fa fa-xs fa-stop" />
+								</span>
+							</Tooltip> : null }
+							{( isOwner || isElectron ) ?
+							<Tooltip placement="bottom" tooltip="Broadcast video" >
+								<span role="button" tabIndex={0}
+									onClick={this.toggleBroadcast} onKeyPress={this.toggleBroadcast}
+									className="statusbar-broadcast-video statusbar-icon"
+								>
+									<span className="fa fa-xs fa-video" />
 								</span>
 							</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
