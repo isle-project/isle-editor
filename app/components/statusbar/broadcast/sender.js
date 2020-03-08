@@ -2,18 +2,21 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Panel from 'components/panel';
 import Draggable from 'components/draggable';
+import Tooltip from 'components/tooltip';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Select from 'react-select';
-import { BROADCAST_ANSWER, BROADCAST_CANDIDATE, BROADCAST_OFFER,
+import { BROADCAST_ANSWER, BROADCAST_CANDIDATE, BROADCAST_ENDED, BROADCAST_OFFER,
 	MEMBER_ACTION, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import './broadcast.css';
 
 
 // VARIABLES //
 
+const debug = logger( 'isel:broadcast' );
 const BROADCAST_CONFIG = {
 	iceServers: [
 		{
@@ -54,7 +57,7 @@ class Broadcast extends Component {
 		const session = this.props.session;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
 			if ( this.stream ) {
-				if ( type === USER_JOINED ) {
+				if ( type === USER_JOINED && this.state.hasStream ) {
 					this.establishPeerConnection( data );
 				}
 				else if ( type === USER_LEFT && PEER_CONNECTIONS[ data.email ] ) {
@@ -84,13 +87,8 @@ class Broadcast extends Component {
 				.then( getDevices )
 				.then( this.gotDevices );
 		}
-		else if ( prevProps.active && this.hasStream ) {
-			this.stream.getTracks().forEach( track => {
-				track.stop();
-			});
-			this.setState({
-				hasStream: false
-			});
+		if ( !this.props.active && this.state.hasStream ) {
+			this.stopStreaming();
 		}
 	}
 
@@ -108,7 +106,6 @@ class Broadcast extends Component {
 		const session = this.props.session;
 		peerConnection.onicecandidate = event => {
 			if ( event.candidate ) {
-				// socket.emit( "candidate", id, event.candidate );
 				session.log({
 					id: BROADCAST_CANDIDATE,
 					type: BROADCAST_CANDIDATE,
@@ -128,7 +125,6 @@ class Broadcast extends Component {
 					value: peerConnection.localDescription,
 					noSave: true
 				}, user.email );
-				// socket.emit( "offer", id, peerConnection.localDescription );
 			});
 	}
 
@@ -173,12 +169,19 @@ class Broadcast extends Component {
 	}
 
 	stopStreaming = () => {
+		debug( 'Stopping the stream...' );
 		this.stream.getTracks().forEach( track => {
 			track.stop();
 		});
 		this.setState({
 			hasStream: false
 		});
+		this.props.session.log({
+			id: BROADCAST_ENDED,
+			type: BROADCAST_ENDED,
+			value: false,
+			noSave: true
+		}, 'members' );
 	}
 
 	getStream = () => {
@@ -200,6 +203,7 @@ class Broadcast extends Component {
 	}
 
 	gotStream = ( stream ) => {
+		debug( 'Received stream...' );
 		this.stream = stream;
 		this.setState({
 			hasStream: true
@@ -249,13 +253,15 @@ class Broadcast extends Component {
 							this.videoElement = video;
 						}}
 					></video>
-					<Button
-						variant="default"
-						onClick={this.stopStreaming}
-						className="broadcast-video-stop"
-					>
-						<i className="fas fa-video-slash"></i>
-					</Button>
+					<Tooltip tooltip="Stop Broadcasting" >
+						<Button
+							variant="default"
+							onClick={this.stopStreaming}
+							className="broadcast-video-stop"
+						>
+							<i className="fas fa-video-slash"></i>
+						</Button>
+					</Tooltip>
 				</Panel>
 			</Draggable>
 		);
