@@ -1571,13 +1571,6 @@ class Session {
 	*/
 	logToDatabase( type, data, clbk ) {
 		debug( `Logging ${type} to database...` );
-		if ( this.anonymous ) {
-			data.email = this.anonymousIdentifier;
-			data.name = this.anonymousIdentifier;
-		} else {
-			data.email = this.user.email;
-			data.name = this.user.name;
-		}
 		const obj = {
 			startTime: this.startTime,
 			userID: this.user.id,
@@ -1685,6 +1678,13 @@ class Session {
 			action.absoluteTime = new Date().getTime();
 			action.time = action.absoluteTime - this.startTime;
 			action.owner = this.isOwner();
+			if ( this.anonymous ) {
+				action.email = this.anonymousIdentifier;
+				action.name = this.anonymousIdentifier;
+			} else {
+				action.email = this.user.email;
+				action.name = this.user.name;
+			}
 			if ( !action.noSave ) {
 				debug( 'Save action...' );
 				this.actions.push( action );
