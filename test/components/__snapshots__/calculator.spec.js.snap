@@ -19,7 +19,11 @@ exports[`renders a basic calculator 1`] = `
     className="panel  card"
     header={
       <span>
-        Calculator
+        <span
+          className="unselectable"
+        >
+          Calculator
+        </span>
       </span>
     }
     id="calc-panel"
@@ -31,7 +35,11 @@ exports[`renders a basic calculator 1`] = `
       className="card-header"
     >
       <span>
-        Calculator
+        <span
+          className="unselectable"
+        >
+          Calculator
+        </span>
       </span>
     </h3>
     <div
@@ -295,7 +303,11 @@ exports[`renders an expandable calculator 1`] = `
     className="panel  card"
     header={
       <span>
-        Calculator
+        <span
+          className="unselectable"
+        >
+          Calculator
+        </span>
       </span>
     }
     id="calc-panel"
@@ -307,7 +319,11 @@ exports[`renders an expandable calculator 1`] = `
       className="card-header"
     >
       <span>
-        Calculator
+        <span
+          className="unselectable"
+        >
+          Calculator
+        </span>
       </span>
     </h3>
     <div

@@ -71,6 +71,7 @@ exports[`renders a minimizable sticky note 1`] = `
           onKeyPress={[Function]}
           role="button"
           tabIndex={0}
+          title="Click to minimize"
         >
           –
         </div>
