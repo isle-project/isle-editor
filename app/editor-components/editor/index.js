@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 // MODULES //
 
 import React, { Component } from 'react';
