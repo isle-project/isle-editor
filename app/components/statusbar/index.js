@@ -503,6 +503,16 @@ class StatusBar extends Component {
 							<InstructorView />
 						</Gate>
 					</Suspense>
+					{!this.state.showStatusBar && ( isOwner || isElectron ) ?
+						<Tooltip placement="bottom" tooltip="Close presentation mode (F7)" >
+							<span className="statusbar-presentation-mode-lone-icon" role="button" tabIndex={0}
+								onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
+							>
+								<span className="fa fa-xs fa-eye-slash" />
+							</span>
+						</Tooltip> :
+						null
+					}
 				</div>
 				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
 				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />

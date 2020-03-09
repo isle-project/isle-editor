@@ -293,3 +293,12 @@
 	left: 50%;
 	width: 100%;
 }
+
+.statusbar-presentation-mode-lone-icon {
+	left: 12px;
+	position: fixed;
+	top: 6px;
+	cursor: pointer;
+	opacity: 0.75;
+	z-index: 2;
+}
