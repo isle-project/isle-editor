@@ -118,7 +118,7 @@ function checkVariables( data, variables ) {
 	}
 	const keys = objectKeys( data );
 	for ( let i = 0; i < variables.length; i++ ) {
-		if ( !contains( keys, variables[ i ] ) ) {
+		if ( !contains( keys, String( variables[ i ] ) ) ) {
 			return false;
 		}
 	}
