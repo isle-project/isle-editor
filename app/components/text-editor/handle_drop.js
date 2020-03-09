@@ -14,7 +14,6 @@ const debug = logger( 'isle:text-editor' );
 
 const handleDrop = ( view, event ) => {
 	debug( 'Handle drop event...' );
-	event.preventDefault();
 	const coords = {
 		x: event.clientX,
 		y: event.clientY
@@ -26,6 +25,7 @@ const handleDrop = ( view, event ) => {
 	const pos = dropPos ? dropPos.pos : null;
 	const { dataTransfer } = event;
 	if ( dataTransfer && dataTransfer.files && dataTransfer.files.length > 0 ) {
+		event.preventDefault();
 		const { files } = dataTransfer;
 		const filesList = Array.from( files );
 		if ( uploadImageFiles( view, filesList, coords ) ) {
