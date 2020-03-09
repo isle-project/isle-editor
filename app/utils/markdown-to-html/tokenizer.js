@@ -111,8 +111,8 @@ function tagName( str, pos ) {
 }
 
 function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, ( match, p1 ) => {
-		return '\n'.repeat( p1.length > 2 ? p1.length : 2 );
+	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
+		return '\n'.repeat( p1.length >= 2 ? p1.length : 1 );
 	});
 }
 
@@ -621,7 +621,7 @@ class Tokenizer {
 	}
 
 	parse( str ) {
-		debug( 'Transform the following string: ' );
+		debug( `Transform the following ${this.inline ? 'inline ' : ''}string: ` );
 		debug( '---' );
 		debug( str );
 		debug( '---' );
