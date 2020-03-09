@@ -4,12 +4,35 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Deck } from 'spectacle';
 import endsWith from '@stdlib/string/ends-with';
+import replace from '@stdlib/string/replace';
+import contains from '@stdlib/assert/contains';
 import Timer from 'components/timer';
+import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/voice-control';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import './deck.css';
+
+
+// VARIABLES //
+
+function togglePresenterMode() {
+	if ( contains( window.location.hash, 'presenter' ) ) {
+		let hash = window.location.hash;
+		hash = replace( hash, 'presenter', '' );
+		window.location.hash = hash;
+	} else {
+		let hash = window.location.hash;
+		if ( contains( hash, '?' ) ) {
+			hash += '&presenter';
+		} else {
+			hash = '?presenter';
+		}
+		window.location.hash = hash;
+	}
+}
 
 
 // MAIN //
@@ -66,6 +89,12 @@ class CustomDeck extends Component {
 				});
 			}
 		});
+		session.addNotification({
+			title: 'Slide Navigation',
+			message: 'Use the left- and right arrow keys or the orange arrow buttons to navigate between slides',
+			level: 'success',
+			position: 'tl'
+		});
 
 		// eslint-disable-next-line react/no-did-mount-set-state
 		this.setState({
@@ -118,6 +147,16 @@ class CustomDeck extends Component {
 				duration={this.state.totalDuration}
 				style={{ top: '40px' }}
 			/> : null}
+			<Tooltip tooltip="Toggle Slide Presenter Mode" placement="right" >
+				<div
+					tabIndex={0} role="button"
+					className="presenter-mode-button"
+					onClick={togglePresenterMode}
+					onKeyPress={togglePresenterMode}
+				>
+					<i className="far fa-clipboard"></i>
+				</div>
+			</Tooltip>
 			<Deck {...this.props} showFullscreenControl={this.state.showFullscreenControl} >{this.props.children}</Deck>
 		</Fragment> );
 	}
