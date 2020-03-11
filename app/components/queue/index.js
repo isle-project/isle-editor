@@ -152,6 +152,9 @@ class Queue extends Component {
 							queueSize
 						});
 					}
+					else {
+						this.forceUpdate();
+					}
 				}
 			});
 		}
