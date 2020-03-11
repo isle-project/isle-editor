@@ -28,6 +28,7 @@ import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import generateUID from 'utils/uid';
+import loadFonts from 'utils/load-fonts';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
 import './quiz.css';
@@ -80,17 +81,6 @@ function isHTMLConfig( elem ) {
 		isObject( elem ) &&
 		elem.component
 	);
-}
-
-function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ '../../constants/fonts.js' )
-		.then( fonts => {
-			debug( 'Successfully loaded fonts...' );
-			pdfMake.vfs = fonts.default;
-		})
-		.catch( err => {
-			debug( 'Encountered an error while loading fonts: '+err.message );
-		});
 }
 
 

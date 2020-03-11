@@ -25,6 +25,7 @@ const TableSelect = Loadable( () => import( './table_select.js' ) );
 const Guides = Loadable( () => import( './guides' ) );
 const PDFModal = Loadable( () => import( './pdf_modal.js' ) );
 import UserPairer from 'components/user-pairer';
+import loadFonts from 'utils/load-fonts';
 import menu from './config/menu';
 import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
@@ -53,20 +54,6 @@ const md = markdownit({
 	typographer: false
 });
 let savedOverflow;
-
-
-// FUNCTIONS //
-
-function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ './../../constants/fonts.js' )
-		.then( fonts => {
-			debug( 'Successfully loaded fonts...' );
-			pdfMake.vfs = fonts.default;
-		})
-		.catch( err => {
-			debug( 'Encountered an error while loading fonts: '+err.message );
-		});
-}
 
 
 // MAIN //

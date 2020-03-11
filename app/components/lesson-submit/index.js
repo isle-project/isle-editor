@@ -14,6 +14,7 @@ import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import SessionContext from 'session/context.js';
+import loadFonts from 'utils/load-fonts';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import { LESSON_SUBMIT } from 'constants/actions.js';
 
@@ -31,17 +32,6 @@ function createMessage( session, message ) {
 		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed lesson "${session.lessonName}" of course "${session.namespaceName}". ${msg}`,
 		subject: `${session.lessonName} successfully completed!`
 	};
-}
-
-function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ '../../constants/fonts.js' )
-		.then( fonts => {
-			debug( 'Successfully loaded fonts...' );
-			pdfMake.vfs = fonts.default;
-		})
-		.catch( err => {
-			debug( 'Encountered an error while loading fonts: '+err.message );
-		});
 }
 
 
@@ -206,6 +196,7 @@ class LessonSubmit extends Component {
 	};
 
 	finalizeSession = () => {
+		debug( 'Finalizing session...' );
 		const session = this.context;
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';

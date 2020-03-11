@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Text from 'components/text';
+import loadFonts from 'utils/load-fonts';
 import DataExplorerHelp from './help/data_explorer.js';
 import DataTableHelp from './help/data_table.js';
 import STATUSBAR_HELP from './help/statusbar.js';
@@ -22,17 +23,6 @@ const debug = logger( 'isle:toolbar:help' );
 
 
 // FUNCTIONS //
-
-function loadFonts() {
-	import( /* webpackChunkName: "fonts" */ './../../constants/fonts.js' )
-		.then( fonts => {
-			debug( 'Successfully loaded fonts...' );
-			pdfMake.vfs = fonts.default;
-		})
-		.catch( err => {
-			debug( 'Encountered an error while loading fonts: '+err.message );
-		});
-}
 
 function getDataUrl( img ) {
 	const canvas = document.createElement( 'canvas' );
@@ -56,6 +46,7 @@ class HelpPage extends Component {
 	}
 
 	handlePDFDownload = () => {
+		debug( 'Preparing PDF for download...' );
 		const imgs = this.tabs.getElementsByTagName( 'img' );
 		for ( let i = 0; i < imgs.length; i++ ) {
 			imgs[ i ].src = getDataUrl( imgs[ i ] );
