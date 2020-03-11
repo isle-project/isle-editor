@@ -1708,7 +1708,8 @@ class Session {
 				.then( res => res.json() )
 				.then( body => {
 					clbk( null, body.files );
-				});
+				})
+				.catch( err => debug( 'Encountered an error: '+err.message ) );
 		}
 	}
 
