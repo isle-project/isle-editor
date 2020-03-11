@@ -46,7 +46,7 @@ state:
 * __onClick__ | `function`: callback function invoked when any element is clicked. Default: `onClick() {}`.
 * __onLegendClick__ | `function`: callback function invoked when legend item is clicked. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: callback function invoked when legend item is double-clicked. Default: `onLegendDoubleClick() {}`.
-* __onRelayout__ | `function`: callback function invoked when Plotly_relayout is triggered. Default: `onRelayout() {}`.
+* __onRelayout__ | `function`: callback function invoked when relayout is triggered. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: callback function invoked when elements are selected. Default: `onSelected() {}`.
 * __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
 * __removeButtons__ | `boolean`: controls whether to remove all buttons. Default: `false`.

@@ -3874,7 +3874,7 @@
       {
         "name": "onRelayout",
         "type": "function",
-        "description": "callback function invoked when Plotly_relayout is triggered",
+        "description": "callback function invoked when relayout is triggered",
         "default": "onRelayout() {}"
       },
       {
@@ -4634,13 +4634,19 @@
         "name": "bitsPerSecond",
         "type": "number",
         "description": "bits per second",
-        "default": 128000
+        "default": 1280000
       },
       {
         "name": "voiceID",
         "type": "string",
         "description": "voice control identifier",
         "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "An ISLE component for recording audio, screen and video."
