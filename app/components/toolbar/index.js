@@ -12,7 +12,7 @@ import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { RECEIVED_USERS , USER_JOINED } from 'constants/events.js';
+import { RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
 import './toolbar.css';
 
