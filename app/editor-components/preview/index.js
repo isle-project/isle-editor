@@ -232,6 +232,7 @@ class Preview extends Component {
 			className="${preamble.type === 'presentation' ? 'Presentation' : 'Lesson'}"
 			style={{
 				overflowY: 'scroll',
+				overflowX: 'auto',
 				height: 'calc(100vh - ${this.props.unavailableHeight}px)',
 				minHeight: 'calc(100vh - ${this.props.unavailableHeight}px)',
 				zIndex: 2
