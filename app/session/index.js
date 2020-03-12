@@ -24,7 +24,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { CHAT_MESSAGE, COLLABORATIVE_EDITING_EVENTS, DISCONNECTED_FROM_SERVER,
+import { CHAT_MESSAGE, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER, DISCONNECTED_FROM_SERVER,
 	FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION,
 	MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT, OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS,
@@ -217,6 +217,8 @@ class Session {
 			document.addEventListener( 'focusout', this.focusOutListener );
 			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
+			window.addEventListener( 'online', this.onlineListener );
+			window.addEventListener( 'offline', this.offlineListener );
 		}
 	}
 
@@ -231,6 +233,21 @@ class Session {
 	beforeUnloadListener = () => {
 		debug( 'Page is either closed or refreshed...' );
 		this.reset();
+	}
+
+	onlineListener = () => {
+		console.log( 'Browser switched to being online...' );
+		this.startPingServer();
+	}
+
+	offlineListener = () => {
+		console.log( 'Browser switched to being offline...' );
+		this.live = false;
+		if ( this.socket ) {
+			this.socket.close();
+			this.socket = null;
+		}
+		this.update( DISCONNECTED_FROM_SERVER );
 	}
 
 	visibilityChangeListener = () => {
@@ -312,6 +329,12 @@ class Session {
 			.then( ( body ) => {
 				if ( body === 'live' ) {
 					this.live = true;
+
+					// Connect via WebSockets to other users...
+					if ( !isEmptyObject( this.user ) ) {
+						this.socketConnect();
+					}
+					this.update( CONNECTED_TO_SERVER );
 					if ( !this.lessonID && !this.namespaceID ) {
 						// [1] Retrieve lesson information:
 						this.getLessonInfo();
@@ -798,15 +821,15 @@ class Session {
 	* @returns {void}
 	*/
 	socketConnect() {
-		debug( 'Connecting via socket to server... ' );
+		debug( 'Connecting via socket to server...' );
 		if ( this.socket ) {
-			// Close existing socket connection:
+			debug( 'Closing existing socket connection...');
 			this.socket.close();
 			this.socket = null;
 		}
 
 		const socket = io.connect( this.server, {
-			transports: [ 'websocket' ]
+			transports: [ 'websocket', 'polling' ]
 		});
 
 		socket.on( 'connect', () => {
@@ -957,11 +980,17 @@ class Session {
 
 		socket.on( 'memberAction', this.saveAction );
 
-		socket.on( 'error', console.error.bind( console ) ); // eslint-disable-line no-console
+		socket.on( 'error', ( err ) => {
+			debug( 'Encountered an error: '+err.message );
+		});
 
 		socket.on( 'disconnect', () => {
-			debug( 'I am disconnected from the server...' );
+			debug( 'Socket is disconnected from the server...' );
 			this.live = false;
+			if ( this.socket ) {
+				this.socket.close();
+				this.socket = null;
+			}
 			this.startPingServer();
 			this.update( DISCONNECTED_FROM_SERVER );
 		});
@@ -1221,7 +1250,7 @@ class Session {
 			if ( response.status === 401 ) {
 				return this.addNotification({
 					title: response.statusText,
-					message: 'Please make sure that you enter the correct password. You can set a new password by clicking on the "Forgot password?" link',
+					message: 'Please make sure that you enter drrect password. You can set a new password by clicking on the "Forgot password?" link',
 					level: 'error',
 					position: 'tl'
 				});
