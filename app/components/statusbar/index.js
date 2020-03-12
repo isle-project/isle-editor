@@ -32,8 +32,8 @@ const InstructorView = lazy( () => import( 'components/statusbar/instructor-view
 // VARIABLES //
 
 const debug = logger( 'isle:statusbar' );
-const LOGGED_IN_COLOR = 'rgb(130, 224, 160)';
-const LOGGED_OUT_COLOR = 'rgb(209, 107, 71)';
+const SERVER_ACTIVE_COLOR = 'rgb(130, 224, 160)';
+const NO_RESPONSE_FROM_SERVER_COLOR = 'rgb(209, 107, 71)';
 
 
 // FUNCTIONS //
@@ -425,7 +425,7 @@ class StatusBar extends Component {
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
 							<Tooltip tooltip={session.live ? 'The connection to server is active' : 'The connection to the server is broken'} >
 								<div className="statusbar-presence" style={{
-									backgroundColor: session.live ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
+									backgroundColor: session.live ? SERVER_ACTIVE_COLOR : NO_RESPONSE_FROM_SERVER_COLOR
 								}}>
 									<div className="statusbar-inner-presence"></div>
 								</div>
