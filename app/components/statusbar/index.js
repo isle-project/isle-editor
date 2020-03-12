@@ -423,11 +423,13 @@ class StatusBar extends Component {
 								</span>
 							</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
-							<div className="statusbar-presence" style={{
-								backgroundColor: session.anonymous ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
-							}}>
-								<div className="statusbar-inner-presence"></div>
-							</div>
+							<Tooltip tooltip={session.live ? 'The connection to server is active' : 'The connection to the server is broken'} >
+								<div className="statusbar-presence" style={{
+									backgroundColor: session.live ? LOGGED_OUT_COLOR : LOGGED_IN_COLOR
+								}}>
+									<div className="statusbar-inner-presence"></div>
+								</div>
+							</Tooltip>
 							<div
 								role="button" tabIndex={0}
 								style={{ cursor: this.context.anonymous ? 'pointer' : 'help' }}
