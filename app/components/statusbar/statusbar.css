@@ -7,7 +7,7 @@
 	right: 0;
 	margin: auto;
 	z-index: 1004;
-	opacity: 0.85;
+	opacity: 0.95;
 	cursor: pointer;
 	transition: opacity 0.4s ease-in-out;
 }
