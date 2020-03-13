@@ -236,12 +236,12 @@ class Session {
 	}
 
 	onlineListener = () => {
-		console.log( 'Browser switched to being online...' );
+		debug( 'Browser switched to being online...' );
 		this.startPingServer();
 	}
 
 	offlineListener = () => {
-		console.log( 'Browser switched to being offline...' );
+		debug( 'Browser switched to being offline...' );
 		this.live = false;
 		if ( this.socket ) {
 			this.socket.close();
@@ -255,9 +255,6 @@ class Session {
 			this.stopPingServer();
 		} else {
 			this.startPingServer();
-			if ( this.socket.disconnected ) {
-				this.socketConnect();
-			}
 		}
 		this.logSession();
 	}
@@ -823,7 +820,12 @@ class Session {
 	socketConnect() {
 		debug( 'Connecting via socket to server...' );
 		if ( this.socket ) {
-			debug( 'Closing existing socket connection...');
+			debug( 'Closing existing socket connection...' );
+			if ( !this.socket.disconnected ) {
+				// Case: Socket connection is still working, no need to create new one...
+				return;
+			}
+			// Case: Close existing connection before creating new socket connection...
 			this.socket.close();
 			this.socket = null;
 		}
