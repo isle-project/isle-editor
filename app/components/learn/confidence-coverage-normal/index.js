@@ -126,25 +126,27 @@ class ConfidenceCoverageNormal extends Component {
 				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
-						fill: ( data ) => (
-							( data.yval - data.err > this.state.mu ) ||
-							( data.yval + data.err < this.state.mu )
+						fill: ( val ) => (
+							( val.datum.yval - val.datum.err > this.state.mu ) ||
+							( val.datum.yval + val.datum.err < this.state.mu )
 						) ? 'darkred' : 'steelblue'
 					}
 				}}
 				x="num"
 				y="yval"
-				labels={( d ) => `Sample mean: ${roundn( d.yval, -3)}`}
+				labels={( val ) => {
+					return `Sample mean: ${roundn( val.datum.yval, -3)}`;
+				}}
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
 				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
-						stroke: ( data ) => {
+						stroke: ( val ) => {
 							return (
-								( data.yval - data.err > this.state.mu ) ||
-								( data.yval + data.err < this.state.mu )
+								( val.datum.yval - val.datum.err > this.state.mu ) ||
+								( val.datum.yval + val.datum.err < this.state.mu )
 							) ? 'darkred' : 'steelblue';
 						}
 					}
@@ -153,7 +155,7 @@ class ConfidenceCoverageNormal extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				labels={( d ) => d.text}
+				labels={( v ) => v.datum.text}
 			/>
 			<VictoryLine
 				data={[

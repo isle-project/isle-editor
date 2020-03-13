@@ -124,24 +124,24 @@ class ConfidenceCoverageBinomial extends Component {
 				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
-						fill: ( data ) => (
-							( data.yval - data.err > this.state.p ) ||
-							( data.yval + data.err < this.state.p )
+						fill: ( v ) => (
+							( v.datum.yval - v.datum.err > this.state.p ) ||
+							( v.datum.yval + v.datum.err < this.state.p )
 						) ? 'darkred' : 'steelblue'
 					}
 				}}
 				x="num"
 				y="yval"
-				labels={( d ) => `Sample proportion ${roundn( d.yval, -3 )}`}
+				labels={( d ) => `Sample proportion ${roundn( d.datum.yval, -3 )}`}
 			/>
 			<VictoryErrorBar
 				animate={{ duration: 500 }}
 				labelComponent={<VictoryTooltip />}
 				style={{
 					data: {
-						stroke: ( data ) => (
-							( data.yval - data.err > this.state.p ) ||
-							( data.yval + data.err < this.state.p )
+						stroke: ( v ) => (
+							( v.datum.yval - v.datum.err > this.state.p ) ||
+							( v.datum.yval + v.datum.err < this.state.p )
 						) ? 'darkred' : 'steelblue'
 					}
 				}}
@@ -149,7 +149,7 @@ class ConfidenceCoverageBinomial extends Component {
 				x="num"
 				y="yval"
 				errorY={( d ) => d.err}
-				labels={( d ) => d.text}
+				labels={( d ) => d.datum.text}
 			/>
 			<VictoryLine
 				data={[
