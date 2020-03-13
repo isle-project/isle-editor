@@ -829,7 +829,7 @@ class Session {
 		}
 
 		const socket = io.connect( this.server, {
-			transports: [ 'websocket', 'polling' ]
+			transports: [ 'websocket' ]
 		});
 
 		socket.on( 'connect', () => {

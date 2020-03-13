@@ -192,7 +192,7 @@ class Queue extends Component {
 	}
 
 	handleKeyPress = ( event ) => {
-		if ( event.charCode === 13 && this.state.questionText > 0 ) {
+		if ( event.charCode === 13 && this.state.questionText.length > 0 ) {
 			this.enterQueue();
 		}
 	}
@@ -392,13 +392,13 @@ class Queue extends Component {
 					<FormControl type="text" id="queue_form"
 						value={this.state.questionText}
 						onChange={this.handleText}
+						onKeyPress={this.handleKeyPress}
 						width={500}
 					/>
 				</FormGroup>
 				<Button
 					disabled={this.state.questionText.length === 0}
 					onClick={this.enterQueue}
-					onKeyPress={this.handleKeyPress}
 				>
 					Submit question
 				</Button>
