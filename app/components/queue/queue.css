@@ -30,9 +30,23 @@
 	border: solid 1px darkgray;
 	border-radius: 0.25rem;
 	cursor: zoom-in;
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
 }
 
 .queue-table-pic:hover {
 	position: fixed;
 	transform: scale(2.5);
+	filter: blur(0px);
+	-webkit-filter: blur(0px);
+}
+
+.queue-table-name {
+	color: transparent;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+}
+
+.queue-table-name:hover {
+	color: inherit;
+	text-shadow: none;
 }
