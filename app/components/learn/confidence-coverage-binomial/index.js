@@ -49,7 +49,7 @@ class ConfidenceCoverageBinomial extends Component {
 			errorBars: [],
 			p: null,
 			nTrapped: null,
-			useSampleProp: false
+			useSampleProp: true
 		};
 	}
 
