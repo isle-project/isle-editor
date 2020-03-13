@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -10,6 +11,7 @@ import indexOf from '@stdlib/utils/index-of';
 import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
+import ChatButton from 'components/chat-button';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
@@ -201,25 +203,35 @@ class UserList extends Component {
 					<ListGroupItem
 						className="user-list-item"
 						key={idx}
-						onClick={this.handleClickFactory( user.email )}
-						style={{
-							background,
-							color
-						}}
 					>
-						<Tooltip placement="right" tooltip="Click to open user actions" >
-							<div role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>
-								<img
-									className="user-thumbnail"
-									alt="User thumbnail"
-									src={src}
-								/>
-							</div>
-						</Tooltip>
-						{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
-						<Tooltip placement="left" tooltip="Element user is interacting with" >
-							<span>{focusedID}</span>
-						</Tooltip>
+						<div style={{ width: '100%' }} >
+							<Tooltip placement="right" tooltip="Click to open user actions" >
+								<span role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>
+									<img
+										className="user-thumbnail"
+										alt="User thumbnail"
+										src={src}
+									/>
+								</span>
+							</Tooltip>
+							{ session.user.email !== user.email ? <ChatButton showTooltip={false} for={`Chat with ${user.email}`} /> : null }
+						</div>
+						<div style={{ width: '100%' }} >
+							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
+							{ focusedID ? <Tooltip placement="left" tooltip="Element user is interacting with" >
+								<Button
+									className="user-list-active-button"
+									variant="outline-secondary"
+									onClick={this.handleClickFactory( user.email )}
+									style={{
+										background,
+										color
+									}}
+								>
+									{focusedID}
+								</Button>
+							</Tooltip> : null }
+						</div>
 					</ListGroupItem>
 				);
 			})}

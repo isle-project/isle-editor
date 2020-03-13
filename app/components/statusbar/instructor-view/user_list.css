@@ -6,11 +6,10 @@
 }
 
 .user-list-item {
-	cursor: pointer;
 	padding: 5px;
 }
 
-.user-list-item:hover {
+.user-list-active-button:hover {
 	background: #d39e00 !important;
 }
 
