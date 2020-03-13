@@ -203,6 +203,9 @@ class UserList extends Component {
 					<ListGroupItem
 						className="user-list-item"
 						key={idx}
+						style={{
+							color
+						}}
 					>
 						<div style={{ width: '100%' }} >
 							<Tooltip placement="right" tooltip="Click to open user actions" >
@@ -224,8 +227,7 @@ class UserList extends Component {
 									variant="outline-secondary"
 									onClick={this.handleClickFactory( user.email )}
 									style={{
-										background,
-										color
+										background
 									}}
 								>
 									{focusedID}
