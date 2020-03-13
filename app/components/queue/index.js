@@ -191,6 +191,12 @@ class Queue extends Component {
 		}
 	}
 
+	handleKeyPress = ( event ) => {
+		if ( event.charCode === 13 && this.state.questionText > 0 ) {
+			this.enterQueue();
+		}
+	}
+
 	enterQueue = () => {
 		debug( 'Send the signal to enter the queue...' );
 		this.setState({
@@ -392,6 +398,7 @@ class Queue extends Component {
 				<Button
 					disabled={this.state.questionText.length === 0}
 					onClick={this.enterQueue}
+					onKeyPress={this.handleKeyPress}
 				>
 					Submit question
 				</Button>

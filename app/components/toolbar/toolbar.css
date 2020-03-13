@@ -27,6 +27,8 @@
 
 .toolbar-inner-element {
 	padding: 8px;
+	min-width: 50px;
+	min-height: 50px;
 }
 
 .toolbar-inner-element .container {
