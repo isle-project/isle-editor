@@ -225,6 +225,7 @@ class UserList extends Component {
 								<Button
 									className="user-list-active-button"
 									variant="outline-secondary"
+									size="sm"
 									onClick={this.handleClickFactory( user.email )}
 									style={{
 										background

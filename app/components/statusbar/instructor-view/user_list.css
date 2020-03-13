@@ -9,6 +9,10 @@
 	padding: 5px;
 }
 
+.user-list-active-button {
+	float: right;
+}
+
 .user-list-active-button:hover {
 	background: #d39e00 !important;
 }
