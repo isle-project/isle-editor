@@ -159,6 +159,7 @@ class Sketchpad extends Component {
 			this.recordingEndPositions[ i ] = 0;
 			this.nUndos[ i ] = 0;
 		}
+		this.hasChangedSinceLastSave = false;
 
 		this.canvas = null;
 		this.ctx = null;
@@ -231,7 +232,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			window.addEventListener( 'resize', this.handleResize );
 		}
-		window.addEventListener( 'beforeunload', this.saveInBrowser );
+		window.addEventListener( 'beforeunload', this.save );
 		let init;
 		if ( this.props.pdf ) {
 			init = this.initializePDF();
@@ -239,7 +240,9 @@ class Sketchpad extends Component {
 			init = Promise.resolve();
 		}
 		init.then( () => {
-			const promise = session.store.getItem( this.id );
+			const promise = session.anonymous ?
+				session.store.getItem( this.id ):
+				session.getSketchpadUserData( this.id );
 			promise
 			.then( this.retrieveData )
 			.catch( ( err ) => {
@@ -263,6 +266,7 @@ class Sketchpad extends Component {
 						noSave: true
 					};
 					if ( session.isOwner() ) {
+						// TODO: Send actions to said user
 						session.log( insertAction, action.email );
 					}
 				}
@@ -532,7 +536,7 @@ class Sketchpad extends Component {
 		}
 
 		if ( this.props.autoSave ) {
-			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
+			this.saveInterval = setInterval( this.save, this.props.intervalTime );
 		}
 
 		// Prevent scrolling when touching the canvas on iOS
@@ -574,7 +578,7 @@ class Sketchpad extends Component {
 	}
 
 	componentWillUnmount() {
-		this.saveInBrowser();
+		this.save();
 		if ( this.recordingInterval ) {
 			clearInterval( this.recordingInterval );
 		}
@@ -586,7 +590,7 @@ class Sketchpad extends Component {
 		}
 		window.removeEventListener( 'resize', this.handleResize );
 		window.removeEventListener( 'hashchange', this.handleHashChange );
-		window.removeEventListener( 'beforeunload', this.saveInBrowser );
+		window.removeEventListener( 'beforeunload', this.save );
 		const opts = {
 			passive: false
 		};
@@ -617,7 +621,9 @@ class Sketchpad extends Component {
 
 	retrieveData = ( data ) => {
 		debug( 'Retrieved data from previous session...' );
+		console.log( data );
 		if ( isObject( data ) ) {
+			console.log( 'UPDATE DATA');
 			for ( let i = 0; i < data.elements.length; i++ ) {
 				this.elements[ i ] = data.elements[ i ];
 			}
@@ -993,6 +999,7 @@ class Sketchpad extends Component {
 				sessionID: session.sessionID
 			})
 		};
+		this.hasChangedSinceLastSave = true;
 		if (
 			session.isOwner() && this.state.transmitOwner
 		) {
@@ -1043,6 +1050,7 @@ class Sketchpad extends Component {
 			value: session.sessionID
 		};
 		if ( !silent ) {
+			this.hasChangedSinceLastSave = true;
 			if (
 				session.isOwner() && this.state.transmitOwner
 			) {
@@ -1101,6 +1109,7 @@ class Sketchpad extends Component {
 				}
 				debug( 'Current number of undos: '+nUndos );
 				this.nUndos[ currentPage ] = nUndos;
+				this.hasChangedSinceLastSave = true;
 				if ( !isNull( end ) ) {
 					debug( `UNDO: Redrawing elements 0 to ${end} out of ${elems.length} elements` );
 					for ( let i = 0; i <= end; i++ ) {
@@ -1133,6 +1142,7 @@ class Sketchpad extends Component {
 					this.drawElement( elems[ i ]);
 				}
 				this.nUndos[ currentPage ] = nUndos;
+				this.hasChangedSinceLastSave = true;
 			}
 		}
 	}
@@ -1213,6 +1223,7 @@ class Sketchpad extends Component {
 				elems.splice( elems.length-nUndos );
 				debug( `Page ${currentPage} now has ${elems.length} elements`);
 				this.nUndos[ currentPage ] = 0;
+				this.hasChangedSinceLastSave = true;
 			}
 			this.draw( event );
 		} else if ( this.state.mode === 'drag' ) {
@@ -1296,6 +1307,7 @@ class Sketchpad extends Component {
 				value: JSON.stringify( line ),
 				noSave: true
 			};
+			this.hasChangedSinceLastSave = true;
 			if (
 				this.state.groupMode ||
 				session.isOwner() && this.state.transmitOwner
@@ -1388,6 +1400,7 @@ class Sketchpad extends Component {
 				}),
 				noSave: true
 			};
+			this.hasChangedSinceLastSave = true;
 			if ( session.isOwner() || this.state.groupMode ) {
 				session.log( action, 'members' );
 			} else {
@@ -1597,6 +1610,7 @@ class Sketchpad extends Component {
 			this.updateURL( this.state.currentPage );
 			this.redraw();
 			if ( !from ) {
+				this.hasChangedSinceLastSave = true;
 				session.log({
 					id: this.id,
 					type: SKETCHPAD_INSERT_PAGE,
@@ -1638,7 +1652,7 @@ class Sketchpad extends Component {
 			const nUndos = this.nUndos[ currentPage ];
 			if ( nUndos > 0 ) {
 				elems.splice( elems.length-nUndos );
-				debug( `Page ${currentPage} now has ${elems.length} elements`);
+				debug( `Page ${currentPage} now has ${elems.length} elements` );
 				this.nUndos[ currentPage ] = 0;
 			}
 			// Prevent future logging when redrawing element:
@@ -1675,6 +1689,7 @@ class Sketchpad extends Component {
 					type: 'text'
 				})
 			};
+			this.hasChangedSinceLastSave = true;
 			if ( session.isOwner() || this.state.groupMode ) {
 				session.log( logAction, 'members' );
 			} else {
@@ -1753,6 +1768,7 @@ class Sketchpad extends Component {
 					sessionID: session.sessionID
 				})
 			};
+			this.hasChangedSinceLastSave = true;
 			if (
 				( session.isOwner() && this.state.transmitOwner ) ||
 				this.state.groupMode
@@ -2023,7 +2039,17 @@ class Sketchpad extends Component {
 			});
 	}
 
-	saveInBrowser = ( clbk = noop ) => {
+	save = () => {
+		const session = this.context;
+		const anonymous = session.anonymous;
+		if ( anonymous ) {
+			this.saveInBrowser();
+		} else {
+			this.saveOnServer();
+		}
+	}
+
+	saveInBrowser = () => {
 		debug( 'Save created elements to local storage...' );
 		const session = this.context;
 		const state = omit( this.state, OMITTED_KEYS );
@@ -2033,7 +2059,24 @@ class Sketchpad extends Component {
 			nUndos: this.nUndos,
 			state: state
 		};
-		session.store.setItem( this.id, data, clbk );
+		return session.store.setItem( this.id, data );
+	}
+
+	saveOnServer = () => {
+		if ( !this.hasChangedSinceLastSave ) {
+			return new Promise();
+		}
+		debug( 'Saving data on server...' );
+		const session = this.context;
+		const state = omit( this.state, OMITTED_KEYS );
+		const data = {
+			elements: this.elements,
+			recordingEndPositions: this.recordingEndPositions,
+			nUndos: this.nUndos,
+			state: state
+		};
+		this.hasChangedSinceLastSave = false;
+		return session.saveSketchpadData( this.id, data );
 	}
 
 	record = () => {
@@ -2057,6 +2100,8 @@ class Sketchpad extends Component {
 		}
 		const recordingEndPos = this.elements[ currentPage ].length;
 		this.recordingEndPositions[ currentPage ] = recordingEndPos;
+
+		// TODO: Log recording actions and save to server
 		this.setState({
 			recording,
 			finishedRecording
@@ -2237,20 +2282,21 @@ class Sketchpad extends Component {
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
 				<TooltipButton tooltip="Download Slides" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
-				<TooltipButton tooltip="Save in browser" onClick={() => {
-					this.saveInBrowser( ( err ) => {
-						if ( err ) {
-							session.addNotification({
-								title: 'Encountered an error',
-								message: err.message,
-								level: 'error',
-								position: 'tr'
-							});
-						}
+				<TooltipButton tooltip={`Save ${session.anonymous ? 'in browser' : 'on server'}`} onClick={() => {
+					const promise = this.save();
+					promise.then( () => {
 						session.addNotification({
 							title: 'Saved',
-							message: 'Notes saved in browser',
+							message: `Notes saved ${session.anonymous ? 'in browser' : 'on server'}`,
 							level: 'success',
+							position: 'tr'
+						});
+					})
+					.catch( ( err ) => {
+						session.addNotification({
+							title: 'Encountered an error',
+							message: err.message,
+							level: 'error',
 							position: 'tr'
 						});
 					});
@@ -2770,7 +2816,7 @@ class Sketchpad extends Component {
 Sketchpad.defaultProps = {
 	autoSave: true,
 	feedbackButtons: false,
-	intervalTime: 10000,
+	intervalTime: 20000,
 	hideInputButtons: false,
 	hideNavigationButtons: false,
 	hideRecordingButtons: false,

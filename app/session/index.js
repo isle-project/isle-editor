@@ -812,6 +812,40 @@ class Session {
 		}
 	}
 
+	saveSketchpadData( id, data ) {
+		return fetch( this.server+'/save_sketchpad_data', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'JWT ' + this.user.token
+			},
+			body: JSON.stringify({
+				namespaceID: this.namespaceID,
+				lessonID: this.lessonID,
+				sketchpadID: id,
+				data: data
+			})
+		})
+		.catch( error => debug( 'Encountered an error: '+error.message ) );
+	}
+
+	getSketchpadUserData( id ) {
+		let url = this.server+'/get_sketchpad_user_data';
+		url += '?'+qs.stringify({
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID,
+			sketchpadID: id
+		});
+		return fetch( url, {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			}
+		})
+		.then( res => {
+			return res.json();
+		});
+	}
+
 	/**
 	* Establishes socket connection with other users.
 	*
@@ -1001,7 +1035,9 @@ class Session {
 	}
 
 	getFakeUsers = ( clbk ) => {
-		fetch( this.server+'/get_fake_users', {
+		let url = this.server+'/get_fake_users?';
+		url += qs.stringify({ namespaceID: this.namespaceID });
+		fetch( url, {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
 			}
