@@ -53,7 +53,7 @@ import {
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from 'constants/actions.js';
-import { MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
+import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
@@ -257,6 +257,16 @@ class Sketchpad extends Component {
 		});
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
+				if ( type === LOGGED_IN || type === LOGGED_OUT ) {
+					const promise = session.anonymous ?
+						session.store.getItem( this.id ):
+						session.getSketchpadUserData( this.id );
+					promise
+						.then( this.retrieveData )
+						.catch( ( err ) => {
+							debug( err );
+						});
+				}
 				if ( type === USER_JOINED ) {
 					debug( `User "${action.email}" joined...` );
 					const insertAction = {
@@ -2043,10 +2053,9 @@ class Sketchpad extends Component {
 		const session = this.context;
 		const anonymous = session.anonymous;
 		if ( anonymous ) {
-			this.saveInBrowser();
-		} else {
-			this.saveOnServer();
+			return this.saveInBrowser();
 		}
+		return this.saveOnServer();
 	}
 
 	saveInBrowser = () => {
@@ -2282,12 +2291,12 @@ class Sketchpad extends Component {
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
 				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
 				<TooltipButton tooltip="Download Slides" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
-				<TooltipButton tooltip={`Save ${session.anonymous ? 'in browser' : 'on server'}`} onClick={() => {
+				<TooltipButton tooltip={`Save ${session.anonymous ? 'in local browser' : 'on server'}`} onClick={() => {
 					const promise = this.save();
 					promise.then( () => {
 						session.addNotification({
 							title: 'Saved',
-							message: `Notes saved ${session.anonymous ? 'in browser' : 'on server'}`,
+							message: `Notes saved ${session.anonymous ? 'in local browser' : 'on server'}`,
 							level: 'success',
 							position: 'tr'
 						});
