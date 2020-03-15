@@ -1288,7 +1288,7 @@ class Session {
 			if ( response.status === 401 ) {
 				return this.addNotification({
 					title: response.statusText,
-					message: 'Please make sure that you enter drrect password. You can set a new password by clicking on the "Forgot password?" link',
+					message: 'Please make sure that you enter the correct password. If you need to reset your password, please click on the "Forgot password?" link',
 					level: 'error',
 					position: 'tl'
 				});
