@@ -2051,7 +2051,9 @@ class Sketchpad extends Component {
 
 	save = () => {
 		if ( !this.hasChangedSinceLastSave ) {
-			return new Promise();
+			return new Promise( ( resolve ) => {
+				resolve();
+			});
 		}
 		const session = this.context;
 
