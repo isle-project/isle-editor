@@ -2050,33 +2050,11 @@ class Sketchpad extends Component {
 	}
 
 	save = () => {
-		const session = this.context;
-		const anonymous = session.anonymous;
-		if ( anonymous ) {
-			return this.saveInBrowser();
-		}
-		return this.saveOnServer();
-	}
-
-	saveInBrowser = () => {
-		debug( 'Save created elements to local storage...' );
-		const session = this.context;
-		const state = omit( this.state, OMITTED_KEYS );
-		const data = {
-			elements: this.elements,
-			recordingEndPositions: this.recordingEndPositions,
-			nUndos: this.nUndos,
-			state: state
-		};
-		return session.store.setItem( this.id, data );
-	}
-
-	saveOnServer = () => {
 		if ( !this.hasChangedSinceLastSave ) {
 			return new Promise();
 		}
-		debug( 'Saving data on server...' );
 		const session = this.context;
+
 		const state = omit( this.state, OMITTED_KEYS );
 		const data = {
 			elements: this.elements,
@@ -2084,7 +2062,14 @@ class Sketchpad extends Component {
 			nUndos: this.nUndos,
 			state: state
 		};
+
 		this.hasChangedSinceLastSave = false;
+		const anonymous = session.anonymous;
+		if ( anonymous ) {
+			debug( 'Save created elements to local storage...' );
+			return session.store.setItem( this.id, data );
+		}
+		debug( 'Saving data on server...' );
 		return session.saveSketchpadData( this.id, data );
 	}
 
