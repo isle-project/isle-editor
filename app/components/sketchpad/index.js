@@ -262,20 +262,7 @@ class Sketchpad extends Component {
 							debug( err );
 						});
 				}
-				if ( type === USER_JOINED ) {
-					debug( `User "${action.email}" joined...` );
-					const insertAction = {
-						id: this.id,
-						type: SKETCHPAD_INIT_PAGES,
-						value: this.state.insertedPages,
-						noSave: true
-					};
-					if ( session.isOwner() ) {
-						// TODO: Send actions to said user
-						session.log( insertAction, action.email );
-					}
-				}
-				else if ( type === TOGGLE_PRESENTATION_MODE ) {
+				if ( type === TOGGLE_PRESENTATION_MODE ) {
 					debug( 'Hide control buttons in presentation mode...' );
 					const newState = {
 						hideInputButtons: session.presentationMode,
@@ -426,30 +413,6 @@ class Sketchpad extends Component {
 							debug( `Should insert page at ${pos}...` );
 							this.insertPage( pos, action.email );
 						}
-					}
-					else if ( type === SKETCHPAD_INIT_PAGES ) {
-						const pagesToInsert = action.value;
-						debug( 'Initialize new pages: '+pagesToInsert.length );
-						const newInsertedPages = this.state.insertedPages;
-						let inserted = 0;
-						for ( let i = 0; i < pagesToInsert.length; i++ ) {
-							const val = pagesToInsert[ i ];
-							const idx = val.page;
-							if ( !isAlreadyInserted( idx, this.state.insertedPages ) ) {
-								this.elements.splice( idx, 0, []);
-								this.backgrounds.splice( idx, 0, null );
-								this.sharedElements.splice( idx, 0, [] );
-								this.nUndos.splice( idx, 0, 0 );
-								newInsertedPages.push( val );
-								inserted += 1;
-							}
-						}
-						this.setState({
-							insertedPages: newInsertedPages,
-							noPages: this.state.noPages + inserted
-						}, () => {
-							this.redraw();
-						});
 					}
 					else if ( type === SKETCHPAD_DELETE_ELEMENT ) {
 						const { drawID, page, user, sessionID } = JSON.parse( action.value );
