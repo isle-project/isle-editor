@@ -45,7 +45,7 @@ import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import Loadable from 'components/loadable';
 import {
-	SKETCHPAD_INIT_PAGES, SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
+	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
 	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENTS,
 	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
@@ -53,7 +53,7 @@ import {
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from 'constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
+import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from 'constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
@@ -388,7 +388,10 @@ class Sketchpad extends Component {
 						}
 						if ( !present ) {
 							elem.shouldLog = false;
-							if ( elem.page === this.state.currentPage ) {
+							if (
+								elem.page === this.state.currentPage &&
+								this.state.showInstructorAnnotations
+							) {
 								if ( elem.type === 'text' ) {
 									this.drawText( elem );
 								} else {
@@ -770,9 +773,11 @@ class Sketchpad extends Component {
 		this.renderBackground( currentPage )
 			.then( () => {
 				let elems = this.sharedElements[ currentPage ];
-				debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
-				for ( let i = 0; i < elems.length; i++ ) {
-					this.drawElement( elems[ i ] );
+				if ( this.state.showInstructorAnnotations ) {
+					debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+					for ( let i = 0; i < elems.length; i++ ) {
+						this.drawElement( elems[ i ] );
+					}
 				}
 				elems = this.elements[ currentPage ];
 				debug( `Rendering ${elems.length} own elements on page ${currentPage}...` );
@@ -795,9 +800,11 @@ class Sketchpad extends Component {
 		}
 		const currentPage = this.state.currentPage;
 		let elems = this.sharedElements[ currentPage ];
-		debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
-		for ( let i = 0; i < elems.length; i++ ) {
-			this.drawElement( elems[ i ] );
+		if ( this.state.showInstructorAnnotations ) {
+			debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+			for ( let i = 0; i < elems.length; i++ ) {
+				this.drawElement( elems[ i ] );
+			}
 		}
 
 		elems = this.elements[ currentPage ];
@@ -823,9 +830,11 @@ class Sketchpad extends Component {
 			}
 			const currentPage = this.state.currentPage;
 			let elems = this.sharedElements[ currentPage ];
-			debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
-			for ( let i = 0; i < elems.length; i++ ) {
-				this.drawElement( elems[ i ] );
+			if ( this.state.showInstructorAnnotations ) {
+				debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+				for ( let i = 0; i < elems.length; i++ ) {
+					this.drawElement( elems[ i ] );
+				}
 			}
 
 			elems = this.elements[ currentPage ];
@@ -870,8 +879,10 @@ class Sketchpad extends Component {
 		}
 		this.renderBackground( idx );
 		let elems = this.sharedElements[ idx ];
-		for ( let i = 0; i < elems.length; i++ ) {
-			this.drawElement( elems[ i ] );
+		if ( this.state.showInstructorAnnotations ) {
+			for ( let i = 0; i < elems.length; i++ ) {
+				this.drawElement( elems[ i ] );
+			}
 		}
 		elems = this.elements[ idx ];
 		const nUndos = this.nUndos[ idx ];
@@ -2056,10 +2067,12 @@ class Sketchpad extends Component {
 			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" size="sm" />
 			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" size="sm" />
 			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" size="sm" />
-			<TooltipButton tooltip="Insert page after current one" onClick={() => {
-				const idx = this.state.currentPage + 1;
-				this.insertPage( idx );
-			}} glyph="plus" size="sm" />
+			<Gate owner >
+				<TooltipButton tooltip="Insert page after current one" onClick={() => {
+					const idx = this.state.currentPage + 1;
+					this.insertPage( idx );
+				}} glyph="plus" size="sm" />
+			</Gate>
 		</ButtonGroup> );
 	}
 
@@ -2299,13 +2312,19 @@ class Sketchpad extends Component {
 						</OverlayTrigger>
 					</ButtonGroup>
 				</Gate>
-				<Gate notUser notOwner >
+				<Gate notOwner >
 					<ButtonGroup size="sm" className="sketch-button-group" >
 						<TooltipButton
 							size="sm"
 							tooltip={`Click to ${ this.state.showInstructorAnnotations ? 'only show own' : 'all'} annotations`}
 							variant={this.state.showInstructorAnnotations ? 'success' : 'light'}
-							onClick={() => this.setState({ showInstructorAnnotations: !this.state.showInstructorAnnotations })}
+							onClick={() => {
+								this.setState({
+									showInstructorAnnotations: !this.state.showInstructorAnnotations
+								}, () => {
+									this.redraw();
+								});
+							}}
 							glyph={this.state.showInstructorAnnotations ? 'fa fa-toggle-on' : 'fa fa-toggle-off'}
 						/>
 					</ButtonGroup>
