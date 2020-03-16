@@ -46,7 +46,7 @@ import InputButtons from './input_buttons.js';
 import Loadable from 'components/loadable';
 import {
 	SKETCHPAD_INIT_PAGES, SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
-	SKETCHPAD_REPLAY, SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
+	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
 	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENTS,
 	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
 	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
@@ -69,9 +69,8 @@ const debug = logger( 'isle:sketchpad' );
 const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal',
-	'hideInputButtons', 'hideNavigationButtons', 'hideRecordingButtons', 'hideSaveButtons', 'hideTransmitButtons'
+	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
-const RECORD_TIME_INCREMENT = 100;
 const RE_DIGITS = /^[0-9]+$/;
 const MIN_SWIPE_X = 45;
 const MIN_SWIPE_Y = 30;
@@ -122,7 +121,6 @@ function setDashedLines( ctx ) {
 * @property {number} intervalTime - time between auto saves
 * @property {boolean} hideInputButtons - controls whether to hide drawing and text input buttons
 * @property {boolean} hideNavigationButtons - controls whether to hide buttons for navigating between pages
-* @property {boolean} hideRecordingButtons - controls whether to hide the recording buttons
 * @property {boolean} hideSaveButtons - controls whether to hide the save buttons
 * @property {boolean} hideTransmitButtons - controls whether to hide buttons for transmitting user actions
 * @property {number} brushSize - size of the brush to paint with
@@ -151,12 +149,12 @@ class Sketchpad extends Component {
 		this.force = 1.0;
 		this.elements = new Array( props.noPages );
 		this.backgrounds = new Array( props.noPages );
-		this.recordingEndPositions = new Array( props.noPages );
+		this.sharedElements = new Array( props.noPages );
 		this.nUndos = new Array( props.noPages );
 		for ( let i = 0; i < props.noPages; i++ ) {
 			this.elements[ i ] = [];
 			this.backgrounds[ i ] = null;
-			this.recordingEndPositions[ i ] = 0;
+			this.sharedElements[ i ] = [];
 			this.nUndos[ i ] = 0;
 		}
 		this.hasChangedSinceLastSave = false;
@@ -175,12 +173,9 @@ class Sketchpad extends Component {
 			groupMode: props.groupMode,
 			hideInputButtons: props.hideInputButtons,
 			hideNavigationButtons: props.hideNavigationButtons,
-			hideRecordingButtons: props.hideRecordingButtons,
 			hideSaveButtons: props.hideSaveButtons,
 			hideTransmitButtons: props.hideTransmitButtons,
-			recording: false,
 			isExporting: false,
-			finishedRecording: false,
 			modalMessage: null,
 			noPages: props.noPages,
 			insertedPages: [],
@@ -285,7 +280,6 @@ class Sketchpad extends Component {
 					const newState = {
 						hideInputButtons: session.presentationMode,
 						hideNavigationButtons: session.presentationMode,
-						hideRecordingButtons: session.presentationMode,
 						hideSaveButtons: session.presentationMode,
 						hideTransmitButtons: session.presentationMode
 					};
@@ -388,11 +382,11 @@ class Sketchpad extends Component {
 					}
 					if (
 						type === SKETCHPAD_DRAW_TEXT ||
-						type === SKETCHPAD_DRAW_CURVE ||
-						type === SKETCHPAD_REPLAY
+						type === SKETCHPAD_DRAW_CURVE
 					) {
 						let elem = JSON.parse( action.value );
 						const elements = this.elements[ elem.page ];
+						const sharedElements = this.sharedElements[ elem.page ];
 						let present = false;
 						if (
 							elem.user === session.user.email ||
@@ -414,7 +408,11 @@ class Sketchpad extends Component {
 									this.drawCurve( elem );
 								}
 							}
-							elements.push( elem );
+							if ( elem.user === session.user.email ) {
+								elements.push( elem );
+							} else {
+								sharedElements.push( elem );
+							}
 							this.props.onChange( elements );
 						}
 					}
@@ -440,7 +438,7 @@ class Sketchpad extends Component {
 							if ( !isAlreadyInserted( idx, this.state.insertedPages ) ) {
 								this.elements.splice( idx, 0, []);
 								this.backgrounds.splice( idx, 0, null );
-								this.recordingEndPositions.splice( idx, 0, 0 );
+								this.sharedElements.splice( idx, 0, [] );
 								this.nUndos.splice( idx, 0, 0 );
 								newInsertedPages.push( val );
 								inserted += 1;
@@ -457,7 +455,9 @@ class Sketchpad extends Component {
 						const { drawID, page, user, sessionID } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID} by user ${user}` );
 						if ( sessionID !== session.sessionID ) {
-							const elems = this.elements[ page ];
+							const elems = ( action.email === session.user.email ) ?
+								this.elements[ page ] :
+								this.sharedElements[ page ];
 							let elemPos;
 							for ( let i = 0; i < elems.length; i++ ) {
 								if (
@@ -478,7 +478,9 @@ class Sketchpad extends Component {
 						const { drawIDs, user, page, dx, dy, sessionID } = JSON.parse( action.value );
 						debug( `Should drag specified elements by dx: ${dx} and dy: ${dy}...` );
 						if ( sessionID !== session.sessionID ) {
-							const elems = this.elements[ page ];
+							const elems = ( action.email === session.user.email ) ?
+								this.elements[ page ] :
+								this.sharedElements[ page ];
 							for ( let i = 0; i < elems.length; i++ ) {
 								const e = elems[ i ];
 								if ( contains( drawIDs, e.drawID ) && e.user === user ) {
@@ -508,7 +510,7 @@ class Sketchpad extends Component {
 								this.clearPage( page );
 							} else {
 								// Only remove all elements from the sending user on the page:
-								const elems = this.elements[ page ];
+								const elems = this.sharedElements[ page ];
 								const newElems = [];
 								for ( let i = 0; i < elems.length; i++ ) {
 									const e = elems[ i ];
@@ -516,7 +518,7 @@ class Sketchpad extends Component {
 										newElems.push( e );
 									}
 								}
-								this.elements[ page ] = newElems;
+								this.sharedElements[ page ] = newElems;
 								this.redraw();
 							}
 						}
@@ -528,7 +530,7 @@ class Sketchpad extends Component {
 						else {
 							const user = action.email;
 							for ( let page = 0; page < this.state.noPages; page++ ) {
-								const elems = this.elements[ page ];
+								const elems = this.sharedElements[ page ];
 								const newElems = [];
 								for ( let i = 0; i < elems.length; i++ ) {
 									const e = elems[ i ];
@@ -536,7 +538,7 @@ class Sketchpad extends Component {
 										newElems.push( e );
 									}
 								}
-								this.elements[ page ] = newElems;
+								this.sharedElements[ page ] = newElems;
 							}
 							this.redraw();
 						}
@@ -568,12 +570,12 @@ class Sketchpad extends Component {
 		if ( prevProps.noPages !== this.props.noPages ) {
 			this.elements = new Array( this.props.noPages );
 			this.backgrounds = new Array( this.props.noPages );
-			this.recordingEndPositions = new Array( this.props.noPages );
+			this.sharedElements = new Array( this.props.noPages );
 			this.nUndos = new Array( this.props.noPages );
 			for ( let i = 0; i < this.props.noPages; i++ ) {
 				this.elements[ i ] = [];
 				this.backgrounds[ i ] = null;
-				this.recordingEndPositions[ i ] = 0;
+				this.sharedElements[ i ] = [];
 				this.nUndos[ i ] = 0;
 			}
 			this.setState({
@@ -589,9 +591,6 @@ class Sketchpad extends Component {
 
 	componentWillUnmount() {
 		this.save();
-		if ( this.recordingInterval ) {
-			clearInterval( this.recordingInterval );
-		}
 		if ( this.saveInterval ) {
 			clearInterval( this.saveInterval );
 		}
@@ -633,15 +632,18 @@ class Sketchpad extends Component {
 		debug( 'Retrieved data from previous session...' );
 		console.log( data );
 		if ( isObject( data ) ) {
-			console.log( 'UPDATE DATA');
 			for ( let i = 0; i < data.elements.length; i++ ) {
 				this.elements[ i ] = data.elements[ i ];
 			}
 			for ( let i = 0; i < data.nUndos.length; i++ ) {
 				this.nUndos[ i ] = data.nUndos[ i ];
 			}
-			for ( let i = 0; i < data.recordingEndPositions.length; i++ ) {
-				this.recordingEndPositions[ i ] = data.recordingEndPositions[ i ];
+			if ( data.sharedElements ) {
+				for ( let i = 0; i < data.sharedElements.length; i++ ) {
+					this.sharedElements[ i ] = data.sharedElements[ i ];
+				}
+			} else {
+				this.sharedElements = new Array( data.elements.length ).fill( [] );
 			}
 			for ( let i = 0; i < data.state.insertedPages.length; i++ ) {
 				// Insert empty pages at the correct locations:
@@ -801,20 +803,24 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 
 		debug( `Redrawing page ${currentPage+1}` );
-		const recordingEndPos = this.recordingEndPositions[ currentPage ];
 		const nUndos = this.nUndos[ currentPage ];
 		this.renderBackground( currentPage )
 			.then( () => {
-				const elems = this.elements[ currentPage ];
-				debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-				for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
+				let elems = this.sharedElements[ currentPage ];
+				debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+				for ( let i = 0; i < elems.length; i++ ) {
+					this.drawElement( elems[ i ] );
+				}
+				elems = this.elements[ currentPage ];
+				debug( `Rendering ${elems.length} own elements on page ${currentPage}...` );
+				for ( let i = 0; i < elems.length - nUndos; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
 				this.pageRendering = false;
 			})
 			.catch( ( err ) => {
 				this.pageRendering = false;
-				debug( 'Encountered an error: '+err.message );
+				debug( 'Encountered error in `redraw`: '+err.message );
 			});
 	}
 
@@ -825,11 +831,16 @@ class Sketchpad extends Component {
 			this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
 		}
 		const currentPage = this.state.currentPage;
-		const elems = this.elements[ currentPage ];
-		debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-		const recordingEndPos = this.recordingEndPositions[ currentPage ];
+		let elems = this.sharedElements[ currentPage ];
+		debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+		for ( let i = 0; i < elems.length; i++ ) {
+			this.drawElement( elems[ i ] );
+		}
+
+		elems = this.elements[ currentPage ];
+		debug( `Rendering ${elems.length} own elements on page ${currentPage}...` );
 		const nUndos = this.nUndos[ currentPage ];
-		for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
+		for ( let i = 0; i < elems.length - nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
 	}
@@ -848,11 +859,16 @@ class Sketchpad extends Component {
 				this.ctx.fillRect( 0, 0, this.canvas.width, this.canvas.height );
 			}
 			const currentPage = this.state.currentPage;
-			const elems = this.elements[ currentPage ];
-			debug( `Rendering ${elems.length} elements on page ${currentPage}...` );
-			const recordingEndPos = this.recordingEndPositions[ currentPage ];
+			let elems = this.sharedElements[ currentPage ];
+			debug( `Rendering ${elems.length} shared elements on page ${currentPage}...` );
+			for ( let i = 0; i < elems.length; i++ ) {
+				this.drawElement( elems[ i ] );
+			}
+
+			elems = this.elements[ currentPage ];
+			debug( `Rendering ${elems.length} own elements on page ${currentPage}...` );
 			const nUndos = this.nUndos[ currentPage ];
-			for ( let i = recordingEndPos; i < elems.length - nUndos; i++ ) {
+			for ( let i = 0; i < elems.length - nUndos; i++ ) {
 				if ( !this.selectedElements || !contains( this.selectedElements, elems[ i ] ) ) {
 					this.drawElement( elems[ i ] );
 				}
@@ -883,51 +899,6 @@ class Sketchpad extends Component {
 		ctx.setLineDash( [] );
 	}
 
-	replay = () => {
-		const currentPage = this.state.currentPage;
-		debug( `Playing recording for page ${currentPage+1}` );
-		const ctx = this.ctx;
-		const canvas = this.canvas;
-		if ( ctx ) {
-			ctx.clearRect( 0, 0, canvas.width, canvas.height );
-		}
-		const endPos = this.recordingEndPositions[ currentPage ];
-		this.renderBackground( currentPage ).then( () => {
-			const elems = this.elements[ currentPage ];
-			debug( `Rendering ${elems.length} elements...` );
-			this.setState({
-				playing: true
-			}, () => {
-				let idx = 0;
-				let iter = () => {
-					this.drawElement( elems[ idx ] );
-					idx += 1;
-					if ( idx < endPos ) {
-						// Save replay actions and transmit to others:
-						const action = {
-							id: this.id,
-							type: SKETCHPAD_REPLAY,
-							value: JSON.stringify( elems[ idx ]),
-							noSave: true
-						};
-						const session = this.context;
-						if ( session.isOwner() && this.state.transmitOwner ) {
-							session.log( action, 'members' );
-						} else {
-							session.log( action, 'owners' );
-						}
-						window.setTimeout( iter, elems[ idx ].time - elems[ idx-1 ].time );
-					} else {
-						this.setState({
-							playing: false
-						});
-					}
-				};
-				window.setTimeout( iter, 0.0 );
-			});
-		});
-	}
-
 	drawPage = ( idx ) => {
 		const ctx = this.ctx;
 		const canvas = this.canvas;
@@ -935,8 +906,13 @@ class Sketchpad extends Component {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
 		this.renderBackground( idx );
-		const elems = this.elements[ idx ];
+		let elems = this.sharedElements[ idx ];
 		for ( let i = 0; i < elems.length; i++ ) {
+			this.drawElement( elems[ i ] );
+		}
+		elems = this.elements[ idx ];
+		const nUndos = this.nUndos[ idx ];
+		for ( let i = 0; i < elems.length - nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
 	}
@@ -969,8 +945,8 @@ class Sketchpad extends Component {
 			debug( 'Clear an inserted page; deleting it completely...' );
 			this.elements.splice( selectedPage, 1 );
 			this.backgrounds.splice( selectedPage, 1 );
-			this.recordingEndPositions.splice( selectedPage, 1 );
 			this.nUndos.splice( selectedPage, 1 );
+			this.sharedElements.splice( selectedPage, 1 );
 			const newInsertedPages = [];
 			for ( let i = 0; i < this.state.insertedPages.length; i++ ) {
 				const val = this.state.insertedPages[ i ];
@@ -992,7 +968,6 @@ class Sketchpad extends Component {
 		}
 		else {
 			this.elements[ selectedPage ] = [];
-			this.recordingEndPositions[ selectedPage ] = 0;
 			this.redraw();
 		}
 	}
@@ -1031,7 +1006,6 @@ class Sketchpad extends Component {
 			this.initializePDF().then( () => {
 				this.redraw();
 				this.setState({
-					finishedRecording: false,
 					insertedPages: []
 				});
 			});
@@ -1039,18 +1013,17 @@ class Sketchpad extends Component {
 			const noPages = this.props.noPages;
 			this.elements = new Array( noPages );
 			this.backgrounds = new Array( noPages );
-			this.recordingEndPositions = new Array( noPages );
+			this.sharedElements = new Array( noPages );
 			this.nUndos = new Array( noPages );
 			for ( let i = 0; i < noPages; i++ ) {
 				this.elements[ i ] = [];
+				this.sharedElements[ i ] = [];
 				this.backgrounds[ i ] = null;
-				this.recordingEndPositions[ i ] = 0;
 				this.nUndos[ i ] = 0;
 			}
 			this.setState({
 				currentPage: 0,
 				noPages: noPages,
-				finishedRecording: false,
 				insertedPages: []
 			});
 		}
@@ -1071,31 +1044,10 @@ class Sketchpad extends Component {
 		}
 	}
 
-	delete = () => {
-		const currentPage = this.state.currentPage;
-		const canvas = this.canvas;
-
-		if ( !isNull( this.backgrounds[ currentPage ] ) ) {
-			this.renderBackground( currentPage );
-		}
-		else {
-			const ctx = this.ctx;
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, canvas.width, canvas.height );
-			}
-		}
-		this.elements[ currentPage ] = [];
-		this.nUndos[ currentPage ] = 0;
-		this.recordingEndPositions[ currentPage ] = 0;
-		this.setState({
-			finishedRecording: false
-		});
-	}
-
 	undo = () => {
 		const currentPage = this.state.currentPage;
 		const elems = this.elements[ currentPage ];
-		const recordingEndPos = this.recordingEndPositions[ currentPage ];
+		const sharedElems = this.sharedElements[ currentPage ];
 		let nUndos = this.nUndos[ currentPage ];
 		const ctx = this.ctx;
 		const canvas = this.canvas;
@@ -1107,12 +1059,12 @@ class Sketchpad extends Component {
 				nUndos += 1;
 				let count = -1;
 				let end = elems.length - 1;
-				for ( let i = end; i >= recordingEndPos; i-- ) {
+				for ( let i = end; i >= 0; i-- ) {
 					count += 1;
 					if ( count === nUndos ) {
 						end = i;
 						break;
-					} else if ( i === recordingEndPos ) {
+					} else if ( i === 0 ) {
 						nUndos = count + 1;
 						end = null;
 					}
@@ -1126,12 +1078,16 @@ class Sketchpad extends Component {
 						this.drawElement( elems[ i ] );
 					}
 				}
+				for ( let i = 0; i < sharedElems.length; i++ ) {
+					this.drawElement( sharedElems[ i ] );
+				}
 			});
 	}
 
 	redo = () => {
 		const currentPage = this.state.currentPage;
 		const elems = this.elements[ currentPage ];
+		const sharedElems = this.sharedElements[ currentPage ];
 		let nUndos = this.nUndos[ currentPage ];
 		if ( nUndos > 0 ) {
 			const idx = min( elems.length - nUndos, 0 );
@@ -1149,9 +1105,12 @@ class Sketchpad extends Component {
 				}
 				debug( `REDO: Redrawing elements ${idx} to ${end} out of ${elems.length} elements` );
 				for ( let i = idx; i <= end; i++ ) {
-					this.drawElement( elems[ i ]);
+					this.drawElement( elems[ i ] );
 				}
 				this.nUndos[ currentPage ] = nUndos;
+				for ( let i = 0; i < sharedElems.length; i++ ) {
+					this.drawElement( sharedElems[ i ] );
+				}
 				this.hasChangedSinceLastSave = true;
 			}
 		}
@@ -1599,7 +1558,7 @@ class Sketchpad extends Component {
 	insertPage = ( idx, from ) => {
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
-		this.recordingEndPositions.splice( idx, 0, 0 );
+		this.sharedElements.splice( idx, 0, 0 );
 		this.nUndos.splice( idx, 0, 0 );
 		const textLayer = document.querySelector( '.textLayer' );
 		while ( textLayer.firstChild ) {
@@ -2000,7 +1959,7 @@ class Sketchpad extends Component {
 					debug( 'Retrieved PDF document... ' );
 					this.processPDF( pdf, ( err ) => {
 						if ( err ) {
-							debug( `Encountered an error: ${err.message}` );
+							debug( `Encountered error in 'processPDF': ${err.message}` );
 							reject( err );
 						} else {
 							resolve();
@@ -2008,7 +1967,7 @@ class Sketchpad extends Component {
 					});
 				})
 				.catch( function onError( err ) {
-					debug( `Encountered an error: ${err.message}` );
+					debug( `Encountered an error in 'initializePDF': ${err.message}` );
 				});
 		});
 	}
@@ -2018,12 +1977,12 @@ class Sketchpad extends Component {
 		const noPages = pdf.numPages;
 		const elems = new Array( noPages );
 		const promises = new Array( noPages );
-		const recordingEndPositions = new Array( noPages );
+		const sharedElements = new Array( noPages );
 		const nUndos = new Array( noPages );
 		for ( let i = 0; i < noPages; i++ ) {
 			elems[ i ] = [];
 			promises[ i ] = pdf.getPage( i + 1 );
-			recordingEndPositions[ i ] = 0;
+			sharedElements[ i ] = [];
 			nUndos[ i ] = 0;
 		}
 		return Promise.all( promises )
@@ -2031,7 +1990,7 @@ class Sketchpad extends Component {
 				debug( 'Retrieved all pages...' );
 				this.backgrounds = values;
 				this.elements = elems;
-				this.recordingEndPositions = recordingEndPositions;
+				this.sharedElements = sharedElements;
 				this.nUndos = nUndos;
 				this.setState({
 					currentPage: 0,
@@ -2060,11 +2019,9 @@ class Sketchpad extends Component {
 		const state = omit( this.state, OMITTED_KEYS );
 		const data = {
 			elements: this.elements,
-			recordingEndPositions: this.recordingEndPositions,
 			nUndos: this.nUndos,
 			state: state
 		};
-
 		this.hasChangedSinceLastSave = false;
 		const anonymous = session.anonymous;
 		if ( anonymous ) {
@@ -2073,35 +2030,6 @@ class Sketchpad extends Component {
 		}
 		debug( 'Saving data on server...' );
 		return session.saveSketchpadData( this.id, data );
-	}
-
-	record = () => {
-		const recording = !this.state.recording;
-		const currentPage = this.state.currentPage;
-		let finishedRecording = false;
-		if ( recording ) {
-			this.delete();
-			this.time = 0;
-			this.recordingInterval = setInterval( () => {
-				this.time += RECORD_TIME_INCREMENT;
-			}, RECORD_TIME_INCREMENT );
-		} else {
-			const ctx = this.ctx;
-			if ( ctx ) {
-				ctx.clearRect( 0, 0, this.state.canvasWidth, this.state.canvasHeight );
-			}
-			this.renderBackground( currentPage );
-			clearInterval( this.recordingInterval );
-			finishedRecording = true;
-		}
-		const recordingEndPos = this.elements[ currentPage ].length;
-		this.recordingEndPositions[ currentPage ] = recordingEndPos;
-
-		// TODO: Log recording actions and save to server
-		this.setState({
-			recording,
-			finishedRecording
-		});
 	}
 
 	closeResponseModal = () => {
@@ -2161,44 +2089,15 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 		return ( <ButtonGroup size="sm" className="sketch-pages" >
 			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
-			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" disabled={this.state.playing} size="sm" />
-			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" disabled={this.state.playing} size="sm" />
-			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" disabled={this.state.playing} size="sm" />
-			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" disabled={this.state.playing} size="sm" />
+			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" size="sm" />
+			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" size="sm" />
+			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" size="sm" />
+			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" size="sm" />
 			<TooltipButton tooltip="Insert page after current one" onClick={() => {
 				const idx = this.state.currentPage + 1;
 				this.insertPage( idx );
-			}} glyph="plus" disabled={this.state.playing} size="sm" />
+			}} glyph="plus" size="sm" />
 		</ButtonGroup> );
-	}
-
-	renderRecordingButtons() {
-		if ( this.state.hideRecordingButtons ) {
-			return null;
-		}
-		const elems = this.elements[ this.state.currentPage ] || [];
-		const deleteIsDisabled = elems.length === 0 ||
-			!this.state.finishedRecording ||
-			this.state.recording ||
-			this.state.playing;
-		return (
-			<ButtonGroup size="sm" className="sketch-button-group">
-				<TooltipButton tooltip={!this.state.recording ? 'Record drawing' : 'Pause recording'} variant="light" size="sm" disabled={this.state.playing} glyph={!this.state.recording ? 'camera' : 'stop'} onClick={this.record} />
-				{ this.recordingEndPositions[ this.state.currentPage ] !== 0 ?
-					<Fragment>
-						<TooltipButton
-							tooltip="Play recording" size="sm"
-							variant={this.state.playing ? 'success' : 'light'} glyph="play" disabled={!this.state.finishedRecording}
-							onClick={this.replay}
-						/>
-						<TooltipButton
-							tooltip="Delete recording" onClick={this.delete}
-							glyph="trash" disabled={deleteIsDisabled} size="sm"
-						/>
-					</Fragment> : null
-				}
-			</ButtonGroup>
-		);
 	}
 
 	renderInputButtons() {
@@ -2255,16 +2154,15 @@ class Sketchpad extends Component {
 					tooltip="Undo"
 					onClick={this.undo}
 					glyph="step-backward"
-					disabled={this.state.playing}
 					size="sm"
 				/>
-				<TooltipButton tooltip="Redo" disabled={this.state.playing} glyph="step-forward" onClick={this.redo} size="sm" />
-				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" disabled={this.state.playing || this.state.recording} size="sm" />
+				<TooltipButton tooltip="Redo" glyph="step-forward" onClick={this.redo} size="sm" />
+				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
 						showResetModal: !this.state.showResetModal
 					});
-				}} glyph="power-off" disabled={this.state.playing || this.state.recording} size="sm" />
+				}} glyph="power-off" size="sm" />
 			</ButtonGroup>
 		);
 	}
@@ -2712,7 +2610,6 @@ class Sketchpad extends Component {
 						{this.renderPagination()}
 						{this.renderInputButtons()}
 						{this.renderRemoveButtons()}
-						{this.renderRecordingButtons()}
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
@@ -2815,7 +2712,6 @@ Sketchpad.defaultProps = {
 	intervalTime: 20000,
 	hideInputButtons: false,
 	hideNavigationButtons: false,
-	hideRecordingButtons: false,
 	hideSaveButtons: false,
 	hideTransmitButtons: false,
 	brushSize: 4,
@@ -2844,7 +2740,6 @@ Sketchpad.propTypes = {
 	intervalTime: PropTypes.number,
 	hideInputButtons: PropTypes.bool,
 	hideNavigationButtons: PropTypes.bool,
-	hideRecordingButtons: PropTypes.bool,
 	hideSaveButtons: PropTypes.bool,
 	hideTransmitButtons: PropTypes.bool,
 	brushSize: PropTypes.number,
