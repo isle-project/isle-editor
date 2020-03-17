@@ -831,19 +831,23 @@ class Session {
 	}
 
 	getSketchpadVisitorData( id ) {
-		const visitorData = this.store.getItem( id );
-		let url = this.server+'/get_sketchpad_shared_data';
-		url += '?'+qs.stringify({
-			namespaceID: this.namespaceID,
-			lessonID: this.lessonID,
-			sketchpadID: id
-		});
-		return fetch( url ).then( res => {
-			const ownerData = res.json();
-			console.log( visitorData );
-			console.log( ownerData );
-			return merge( visitorData, ownerData );
-		});
+		return this.store.getItem( id ).then( ( visitorData ) => {
+				let url = this.server+'/get_sketchpad_shared_data';
+				url += '?'+qs.stringify({
+					lessonID: this.lessonID,
+					sketchpadID: id
+				});
+				return fetch( url )
+					.then( res => {
+						return res.json();
+					})
+					.then( ownerData => {
+						if ( !visitorData ) {
+							return ownerData;
+						}
+						return merge( visitorData, ownerData );
+					});
+			});
 	}
 
 	getSketchpadUserData( id ) {
@@ -1784,11 +1788,7 @@ class Session {
 		if ( this.lessonName && this.namespaceName ) {
 			let url = this.server + '/get_files';
 			url += '?'+qs.stringify({ namespaceName: this.namespaceName, lessonName: this.lessonName, owner: true });
-			fetch( url, {
-				headers: {
-					'Authorization': 'JWT ' + this.user.token
-				}
-			})
+			fetch( url )
 				.then( res => res.json() )
 				.then( body => {
 					clbk( null, body.files );
