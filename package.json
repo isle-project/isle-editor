@@ -149,7 +149,7 @@
     "eslint": "^6.7.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "file-loader": "^5.1.0",
+    "file-loader": "^6.0.0",
     "form-data": "^3.0.0",
     "highlight.js": "^9.18.0",
     "history": "^4.9.0",
