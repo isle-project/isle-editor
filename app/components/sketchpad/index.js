@@ -22,6 +22,7 @@ import Checkbox from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import FeedbackButtons from 'components/feedback';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
@@ -44,6 +45,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
+import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
 import Loadable from 'components/loadable';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
@@ -239,7 +241,7 @@ class Sketchpad extends Component {
 		}
 		init.then( () => {
 			const promise = session.anonymous ?
-				session.store.getItem( this.id ):
+				session.getSketchpadVisitorData( this.id ):
 				session.getSketchpadUserData( this.id );
 			promise
 			.then( this.retrieveData )
@@ -601,15 +603,27 @@ class Sketchpad extends Component {
 		debug( 'Retrieved data from previous session...' );
 		console.log( data );
 		if ( isObject( data ) ) {
-			for ( let i = 0; i < data.elements.length; i++ ) {
-				this.elements[ i ] = data.elements[ i ];
+			if ( isArray( data.elements ) ) {
+				for ( let i = 0; i < data.elements.length; i++ ) {
+					this.elements[ i ] = data.elements[ i ];
+				}
 			}
-			for ( let i = 0; i < data.nUndos.length; i++ ) {
-				this.nUndos[ i ] = data.nUndos[ i ];
+			if ( isArray( data.nUndos ) ) {
+				for ( let i = 0; i < data.nUndos.length; i++ ) {
+					this.nUndos[ i ] = data.nUndos[ i ];
+				}
 			}
-			if ( data.sharedElements ) {
+			if ( isArray( data.sharedElements ) ) {
 				for ( let i = 0; i < data.sharedElements.length; i++ ) {
 					this.sharedElements[ i ] = data.sharedElements[ i ];
+				}
+				const session = this.context;
+				if ( session.anonymous ) {
+					// Case: Harmonization not already done on server for anonymous users
+					harmonizeSketchpadElements(
+						this.elements, this.nUndos,
+						this.state.insertedPages, data.state.insertedPages
+					);
 				}
 			} else {
 				this.sharedElements = new Array( data.elements.length ).fill( [] );
@@ -1484,7 +1498,13 @@ class Sketchpad extends Component {
 		const iter = () => {
 			debug( `Creating page ${idx+1}` );
 			this.renderBackground( idx ).then( () => {
-				const elems = this.elements[ idx ];
+				let elems = this.sharedElements[ idx ];
+				if ( elems && elems.length > 0 ) {
+					for ( let i = 0; i < elems.length; i++ ) {
+						this.drawElement( elems[ i ] );
+					}
+				}
+				elems = this.elements[ idx ];
 				const nUndos = this.nUndos[ idx ];
 				if ( elems && elems.length > 0 ) {
 					const len = elems.length - nUndos;

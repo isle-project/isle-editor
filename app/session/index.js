@@ -17,6 +17,7 @@ import countBy from '@stdlib/utils/count-by';
 import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
+import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
@@ -827,6 +828,22 @@ class Session {
 			})
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
+	}
+
+	getSketchpadVisitorData( id ) {
+		const visitorData = this.store.getItem( id );
+		let url = this.server+'/get_sketchpad_shared_data';
+		url += '?'+qs.stringify({
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID,
+			sketchpadID: id
+		});
+		return fetch( url ).then( res => {
+			const ownerData = res.json();
+			console.log( visitorData );
+			console.log( ownerData );
+			return merge( visitorData, ownerData );
+		});
 	}
 
 	getSketchpadUserData( id ) {
