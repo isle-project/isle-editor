@@ -55,6 +55,7 @@ import {
 } from 'constants/actions.js';
 import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from 'constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
+const DeletePageModal = Loadable( () => import( './delete_page_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
 const SaveModal = Loadable( () => import( './save_modal.js' ) );
@@ -185,6 +186,7 @@ class Sketchpad extends Component {
 			transmitOwner: props.transmitOwner,
 			showInstructorAnnotations: true,
 			receiveFrom: {},
+			showDeletePageModal: false,
 			showResetModal: false,
 			showFeedbackModal: false,
 			showSaveModal: false,
@@ -2133,7 +2135,11 @@ class Sketchpad extends Component {
 					size="sm"
 				/>
 				<TooltipButton tooltip="Redo" glyph="step-forward" onClick={this.redo} size="sm" />
-				<TooltipButton tooltip="Clear current page" onClick={this.clear} glyph="eraser" size="sm" />
+				<TooltipButton tooltip="Clear current page" onClick={() => {
+					this.setState({
+						showDeletePageModal: !this.state.showDeletePageModal
+					});
+				}} glyph="eraser" size="sm" />
 				<TooltipButton tooltip="Reset all pages" onClick={() => {
 					this.setState({
 						showResetModal: !this.state.showResetModal
@@ -2419,28 +2425,34 @@ class Sketchpad extends Component {
 			}
 			// eslint-enable jsx-a11y/no-static-element-interactions
 		}
-		if ( this.props.feedbackButtons && !isNull( page ) ) {
-			divs.push(
-				<Fragment>
-					<FeedbackButtons
-						key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
-						customFeedback={false} vertical style={{ zIndex: 3 }}
-					/>
-					<Gate owner>
-						<Button
-							onClick={() => this.setState({
-								showFeedbackModal: !this.state.showFeedbackModal
-							})}
-							variant="light"
-							style={{ right: '0px', top: '150px', position: 'absolute', zIndex: 3 }}
-						>
-							Show all
-						</Button>
-					</Gate>
-				</Fragment>
-			);
-		}
 		return divs;
+	}
+
+	renderFeedbackButtons() {
+		const page = this.toOriginalPage( this.state.currentPage );
+		if ( !this.props.feedbackButtons || isNull( page ) ) {
+			return null;
+		}
+		return (
+			<Fragment>
+				<FeedbackButtons
+					key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
+					customFeedback={false} vertical
+					style={{ zIndex: 3, position: 'absolute', top: 45, right: 30 }}
+				/>
+				<Gate owner>
+					<Button
+						onClick={() => this.setState({
+							showFeedbackModal: !this.state.showFeedbackModal
+						})}
+						variant="light"
+						style={{ right: 30, top: 195, position: 'absolute', zIndex: 3 }}
+					>
+						Show all
+					</Button>
+				</Gate>
+			</Fragment>
+		);
 	}
 
 	render() {
@@ -2596,6 +2608,7 @@ class Sketchpad extends Component {
 						{this.renderSaveButtons()}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
+					{this.renderFeedbackButtons()}
 					<div className="canvas-wrapper"
 						style={{
 							width: this.state.canvasWidth,
@@ -2641,6 +2654,13 @@ class Sketchpad extends Component {
 						onSubmit={this.clearAll}
 						onHide={() => {
 							this.setState({ showResetModal: false });
+						}}
+					/>
+					<DeletePageModal
+						show={this.state.showDeletePageModal}
+						onSubmit={this.clear}
+						onHide={() => {
+							this.setState({ showDeletePageModal: false });
 						}}
 					/>
 					<SaveModal
