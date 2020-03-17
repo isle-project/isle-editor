@@ -46,7 +46,7 @@ class NavigationModal extends Component {
 			dialogClassName = 'modal-60w';
 		}
 		else {
-			dialogClassName = 'modal-40w';
+			dialogClassName = 'modal-50w';
 		}
 		const perRow = min( ceil( sqrt( this.props.noPages ) ), 13 );
 		const rows = incrspace( 0, ceil( this.props.noPages / perRow ), 1 );
