@@ -2735,7 +2735,7 @@ class Sketchpad extends Component {
 Sketchpad.defaultProps = {
 	autoSave: true,
 	feedbackButtons: false,
-	intervalTime: 20000,
+	intervalTime: 10000,
 	hideInputButtons: false,
 	hideNavigationButtons: false,
 	hideSaveButtons: false,
