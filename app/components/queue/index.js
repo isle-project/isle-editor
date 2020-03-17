@@ -17,7 +17,7 @@ import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
-import { RECEIVED_USER_RIGHTS, USER_JOINED, USER_LEFT } from 'constants/events.js';
+import { USER_JOINED, USER_LEFT } from 'constants/events.js';
 import 'react-table/react-table.css';
 import './queue.css';
 
@@ -41,7 +41,6 @@ class Queue extends Component {
 			inQueue: false, // if a user is already in the queue
 			spot: null,
 			questionText: '',
-			isOwner: false,
 			queueSize: 0
 		};
 	}
@@ -51,10 +50,7 @@ class Queue extends Component {
 		if ( session ) {
 			debug( 'We have a session, subscribe the component...' );
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === RECEIVED_USER_RIGHTS ) {
-					// We need to check whether the user is an owner:
-					this.checkAuthorization();
-				} else if ( type === USER_JOINED && this.state.isOwner ) {
+				if ( type === USER_JOINED && session.isOwner() ) {
 					session.log({
 						id: this.id,
 						type: SEND_QUEUE_SIZE,
@@ -62,7 +58,7 @@ class Queue extends Component {
 						noSave: true
 					}, 'members' );
 				}
-				else if ( type === USER_LEFT && this.state.isOwner ) {
+				else if ( type === USER_LEFT && session.isOwner() ) {
 					let pos = -1;
 					for ( let i = 0; i < this.state.arr.length; i++ ) {
 						const val = this.state.arr[ i ];
@@ -91,7 +87,7 @@ class Queue extends Component {
 					if ( action.type === ENTER_QUEUE ) {
 						debug( 'Someone is entering the queue' );
 						const newSize = this.state.queueSize + 1;
-						if ( this.state.isOwner ) {
+						if ( session.isOwner() ) {
 							this.state.arr.push({
 								name: action.name,
 								email: action.email,
@@ -128,7 +124,7 @@ class Queue extends Component {
 									questionText: ''
 								});
 							}
-						} else if ( this.state.isOwner ) {
+						} else if ( session.isOwner() ) {
 							const newArr = this.state.arr.slice();
 							newArr.splice( val - 1, 1 );
 							this.setState({
@@ -163,16 +159,6 @@ class Queue extends Component {
 	componentWillUnmount() {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
-		}
-	}
-
-	checkAuthorization = () => {
-		const session = this.context;
-		let newState = {
-			isOwner: session.isOwner()
-		};
-		if ( newState.isOwner !== this.state.isOwner ) {
-			this.setState( newState );
 		}
 	}
 
@@ -265,7 +251,7 @@ class Queue extends Component {
 		const session = this.context;
 		let out;
 		if ( this.props.show ) {
-			if ( this.state.isOwner ) {
+			if ( session.isOwner() ) {
 				debug( 'User is an owner...' );
 				out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
 					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
