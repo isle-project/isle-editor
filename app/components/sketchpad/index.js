@@ -19,6 +19,7 @@ import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
 import Checkbox from 'components/input/checkbox';
+import Tooltip from 'components/tooltip';
 import FeedbackButtons from 'components/feedback';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import contains from '@stdlib/assert/contains';
@@ -2438,18 +2439,21 @@ class Sketchpad extends Component {
 				<FeedbackButtons
 					key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
 					customFeedback={false} vertical
-					style={{ zIndex: 3, position: 'absolute', top: 45, right: 30 }}
+					style={{ zIndex: 3, position: 'absolute', top: 35, right: 20 }}
 				/>
 				<Gate owner>
-					<Button
-						onClick={() => this.setState({
-							showFeedbackModal: !this.state.showFeedbackModal
-						})}
-						variant="light"
-						style={{ right: 30, top: 195, position: 'absolute', zIndex: 3 }}
-					>
-						Show all
-					</Button>
+					<Tooltip tooltip="Open slide feedback" placement="left" >
+						<Button
+							onClick={() => this.setState({
+								showFeedbackModal: !this.state.showFeedbackModal
+							})}
+							variant="secondary"
+							size="sm"
+							style={{ right: 20, top: 175, position: 'absolute', zIndex: 3 }}
+						>
+							Show
+						</Button>
+					</Tooltip>
 				</Gate>
 			</Fragment>
 		);
