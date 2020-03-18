@@ -35,7 +35,7 @@ Provider.propTypes = {
 };
 
 Provider.defaultProps = {
-	currentRole: 'user'
+	currentRole: 'anonymous'
 };
 
 
