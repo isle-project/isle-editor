@@ -5108,12 +5108,6 @@
         "default": false
       },
       {
-        "name": "hideRecordingButtons",
-        "type": "boolean",
-        "description": "controls whether to hide the recording buttons",
-        "default": false
-      },
-      {
         "name": "hideSaveButtons",
         "type": "boolean",
         "description": "controls whether to hide the save buttons",

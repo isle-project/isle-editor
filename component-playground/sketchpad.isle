@@ -29,7 +29,6 @@ removeStatusBar: true
 * __intervalTime__ | `number`: time between auto saves. Default: `10000`.
 * __hideInputButtons__ | `boolean`: controls whether to hide drawing and text input buttons. Default: `false`.
 * __hideNavigationButtons__ | `boolean`: controls whether to hide buttons for navigating between pages. Default: `false`.
-* __hideRecordingButtons__ | `boolean`: controls whether to hide the recording buttons. Default: `false`.
 * __hideSaveButtons__ | `boolean`: controls whether to hide the save buttons. Default: `false`.
 * __hideTransmitButtons__ | `boolean`: controls whether to hide buttons for transmitting user actions. Default: `false`.
 * __brushSize__ | `number`: size of the brush to paint with. Default: `4`.
