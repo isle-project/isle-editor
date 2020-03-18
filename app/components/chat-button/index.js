@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
-import { RECEIVED_CHAT_HISTORY, CHAT_MESSAGE, OWN_CHAT_MESSAGE, REMOVED_CHAT,
+import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
 
 
@@ -34,7 +34,8 @@ class ChatButton extends Component {
 
 		this.state = {
 			opened: false,
-			nMessages: 0
+			nMessages: 0,
+			nMembers: 0
 		};
 	}
 
@@ -46,25 +47,25 @@ class ChatButton extends Component {
 				( value && value.name === this.props.for )
 			) {
 				this.setState({
-					opened: true,
-					nMessages: value.messages.length
+					opened: true
 				});
+			}
+			else if ( type === CHAT_STATISTICS && value.name === this.props.for ) {
+				const newState = {
+					nMessages: value.nMessages,
+					nMembers: value.nMembers
+				};
+				if ( value.nMessages > this.state.nMessages ) {
+					newState.showAnimation = true;
+				}
+				this.setState( newState );
+				setTimeout( this.hideAnimation, 4000 );
 			}
 			else if ( value === this.props.for ) {
 				const chat = session.getChat( this.props.for );
 				if ( !chat || type === SELF_HAS_LEFT_CHAT ) {
 					this.setState({
 						opened: false
-					});
-				}
-				else if ( type === CHAT_MESSAGE ) {
-					this.setState({
-						nMessages: this.state.nMessages + 1
-					});
-				}
-				else if ( type === OWN_CHAT_MESSAGE ) {
-					this.setState({
-						nMessages: this.state.nMessages + 1
 					});
 				}
 				else if ( type === REMOVED_CHAT ) {
@@ -79,6 +80,12 @@ class ChatButton extends Component {
 
 	componentWillUnmount() {
 		this.unsubscribe();
+	}
+
+	hideAnimation = () => {
+		this.setState({
+			showAnimation: false
+		});
 	}
 
 	handleClick = () => {
@@ -101,13 +108,21 @@ class ChatButton extends Component {
 	render() {
 		const nMessages = this.state.nMessages;
 		let button = <Button
-			variant="secondary"
+			variant={this.state.nMembers > 0 ? 'success' : 'secondary'}
 			size={this.props.size}
 			onClick={this.handleClick}
 			style={this.props.style}
 		>
 			<span style={{ pointerEvents: 'none' }} >{this.state.opened ? 'Leave Chat' : 'Join Chat' }</span>
-			{ nMessages ? <Badge variant="dark" style={{ marginLeft: '5px', fontSize: '10px', pointerEvents: 'none' }}>{nMessages}</Badge> : null }
+			{ nMessages ? <Badge
+				variant="dark"
+				style={{
+					marginLeft: '5px',
+					fontSize: '10px',
+					pointerEvents: 'none',
+					animation: this.state.showAnimation ? 'ping 0.7s 3' : 'none'
+				}}
+			>{nMessages}</Badge> : null }
 		</Button>;
 		if ( this.props.showTooltip ) {
 			button = <Tooltip
@@ -118,7 +133,7 @@ class ChatButton extends Component {
 			</Tooltip>;
 		}
 		return (
-			<Gate user>
+			<Gate user >
 				{button}
 			</Gate>
 		);

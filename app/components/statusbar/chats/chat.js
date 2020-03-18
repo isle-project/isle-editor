@@ -269,6 +269,7 @@ class Chat extends Component {
 		} else {
 			style.width = width;
 		}
+		style.minWidth = '275px';
 		const ident = 'chat_' + chat.name;
 		return (
 			<Draggable cancel=".cancel" onEscape={this.closeChat} >

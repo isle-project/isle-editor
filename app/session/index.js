@@ -25,8 +25,8 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { CHAT_MESSAGE, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER, DISCONNECTED_FROM_SERVER,
-	FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
+import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
+	DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION,
 	MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT, OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS,
 	RECEIVED_CHAT_HISTORY, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
@@ -1033,6 +1033,11 @@ class Session {
 				chat.messages.push( data.msg );
 			}
 			this.update( CHAT_MESSAGE, data.chatroom );
+		});
+
+		socket.on( 'chat_statistics', ( data ) => {
+			data.name = this.stripChatName( data.name );
+			this.update( CHAT_STATISTICS, data );
 		});
 
 		socket.on( 'memberAction', this.saveAction );
