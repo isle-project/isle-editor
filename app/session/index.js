@@ -831,6 +831,11 @@ class Session {
 	}
 
 	getSketchpadVisitorData( id ) {
+		if ( this._offline ) {
+			return new Promise( ( resolve, reject ) => {
+				resolve( null );
+			});
+		}
 		return this.store.getItem( id ).then( ( visitorData ) => {
 				let url = this.server+'/get_sketchpad_shared_data';
 				url += '?'+qs.stringify({
@@ -851,6 +856,11 @@ class Session {
 	}
 
 	getSketchpadUserData( id ) {
+		if ( this._offline ) {
+			return new Promise( ( resolve, reject ) => {
+				resolve( null );
+			});
+		}
 		let url = this.server+'/get_sketchpad_user_data';
 		url += '?'+qs.stringify({
 			namespaceID: this.namespaceID,
