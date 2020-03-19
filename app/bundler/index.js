@@ -129,7 +129,7 @@ const getComponents = ( arr ) => {
 	return requireStatements.join( '\n' );
 };
 
-const getLessonComponent = ( lessonContent, className, loaderTimeout = 3000 ) => `
+const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500 ) => `
 global.session = new Session( preamble );
 
 class LessonWrapper extends Component {
@@ -177,11 +177,11 @@ class LessonWrapper extends Component {
 			const loader = document.getElementById( 'loading' );
 			if ( loader ) {
 				setTimeout(function onFadeOut() {
-					loader.style.animation = 'anim-fade-out 1.7s forwards';
-				}, ${max( loaderTimeout - 3000, 0 )});
+					loader.style.animation = 'anim-fade-out 0.5s forwards';
+				}, ${max( loaderTimeout - 500, 0 )});
 				setTimeout(function onRemove() {
 					loader.parentElement.removeChild( loader );
-					document.body.style['overflow-y'] = 'auto';
+					document.body.style[ 'overflow-y' ] = 'auto';
 				}, ${loaderTimeout} );
 			}
 		}
@@ -289,8 +289,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += getSessionCode( basePath );
 
 	res += getComponents( components );
-	const loaderTimeout = meta.splashScreenTimeout || 5000;
-	res += getLessonComponent( lessonContent, className, loaderTimeout );
+	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );
 	return res;
 }
 
