@@ -155,7 +155,7 @@ class GeometricDistribution extends Component {
 										min={minValue}
 										onChange={this.handleLowerChange}
 									/> <span>we get</span>
-									<TeX raw={`P(X=${x0})= \\Large \\left( 1 - ${p} \\right)^{${x0}-1} ${p} = ${dgeom( countTrials ? x0 - 1 : x0, p ).toFixed(4)}`} displayMode />
+									<TeX raw={`P(X=${x0})= \\Large \\left( 1 - ${p} \\right)^{${x0}${countTrials ? '-1' : ''}} ${p} = ${dgeom( countTrials ? x0 - 1 : x0, p ).toFixed(4)}`} displayMode />
 								</Panel>
 								</Col>
 								<Col md={7} >
