@@ -148,7 +148,7 @@ class Index extends React.Component {
 		return (
 			<div>
 				<SplashContainer>
-					<Logo img_src={imgUrl('isle_logo_black.png')} />
+					<Logo img_src={imgUrl('isle_logo.png')} />
 					<div className="inner">
 						<ProjectTitle siteConfig={siteConfig} />
 						<PromoSection>

@@ -70,9 +70,10 @@ class Footer extends React.Component {
 					target="_blank"
 					rel="noreferrer noopener"
 					className="fbOpenSource">
+				>
 					<img
 						src={`${this.props.config.baseUrl}img/isle_logo.png`}
-						alt="Facebook Open Source"
+						alt="Integrated Statistics Learning Environment"
 						width="250"
 						height="auto"
 					/>
