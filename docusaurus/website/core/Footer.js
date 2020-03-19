@@ -69,7 +69,7 @@ class Footer extends React.Component {
 					href="http://stat.cmu.edu/isle"
 					target="_blank"
 					rel="noreferrer noopener"
-					className="isle-footer-logo">
+					className="isle-footer-logo"
 				>
 					<img
 						src={`${this.props.config.baseUrl}img/isle_logo.png`}
