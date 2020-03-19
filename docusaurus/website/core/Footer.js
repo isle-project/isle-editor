@@ -69,12 +69,12 @@ class Footer extends React.Component {
 					href="http://stat.cmu.edu/isle"
 					target="_blank"
 					rel="noreferrer noopener"
-					className="fbOpenSource">
+					className="isle-footer-logo">
 				>
 					<img
 						src={`${this.props.config.baseUrl}img/isle_logo.png`}
 						alt="Integrated Statistics Learning Environment"
-						width="250"
+						width="150"
 						height="auto"
 					/>
 				</a>

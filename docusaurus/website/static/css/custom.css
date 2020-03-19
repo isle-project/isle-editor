@@ -23,3 +23,12 @@
 .aa-cursor .algolia-docsearch-suggestion--content {
 	color: #b00;
 }
+
+.isle-footer-logo {
+	display: block;
+	margin: 1em auto;
+	opacity: 0.4;
+	-webkit-transition: opacity 0.15s ease-in-out;
+	transition: opacity 0.15s ease-in-out;
+	width: 170px;
+}
