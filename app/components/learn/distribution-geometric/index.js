@@ -131,7 +131,7 @@ class GeometricDistribution extends Component {
 								<Panel title="Geometric probabilities" >
 									<p>
 										Let <TeX raw="X" /> be the number of
-										{this.props.countTrials ? ' trials ' : 'failures' }
+										{this.props.countTrials ? ' trials ' : ' failures ' }
 										until the first success.
 									</p>
 									<span>For success probability of</span>
