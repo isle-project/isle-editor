@@ -126,9 +126,7 @@ class PoissonDistribution extends Component {
 								<Col md={5} >
 								<Panel title="Poisson probabilities" >
 									<p>
-										Let <TeX raw="X" /> be the number of
-										{this.props.countTrials ? ' trials ' : 'failures' }
-										until the first success.
+										Let <TeX raw="X" /> be the number of occurrences.
 									</p>
 									<span>For rate parameter </span>
 									<NumberInput
