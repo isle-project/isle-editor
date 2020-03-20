@@ -48,43 +48,10 @@ class ResponseVisualizers extends Component {
 		super( props );
 
 		debug( 'Initializing state in constructor...' );
-		const emails = props.session.userList.map( x => x.email );
 		this.state = {
 			selected: null,
-			means: {},
-			selectedCohort: props.selectedCohort,
-			activeCohortMembers: props.selectedCohort ? props.selectedCohort.members.filter( x => {
-				return contains( emails, x );
-			}) : null
+			means: {}
 		};
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		const prevCohort = prevState.selectedCohort;
-		const nextCohort = nextProps.selectedCohort;
-		if (
-			( nextCohort && !prevCohort ) ||
-			( nextCohort && prevCohort && nextCohort.title !== prevCohort.title )
-		) {
-			debug( 'Return derived state...' );
-			const newState = {
-				selectedCohort: nextCohort
-			};
-			if ( nextCohort ) {
-				const emails = nextProps.session.userList.map( x => x.email );
-				newState.activeCohortMembers = nextCohort.members.filter( x => contains( emails, x ) );
-			} else {
-				newState.activeCohortMembers = null;
-			}
-			return newState;
-		}
-		else if ( !nextCohort && prevCohort ) {
-			return {
-				selectedCohort: null,
-				activeCohortMembers: null
-			};
-		}
-		return null;
 	}
 
 	componentDidMount() {
@@ -176,14 +143,16 @@ class ResponseVisualizers extends Component {
 		debug( 'Render response visualizer statistics...' );
 		let completionTooltip;
 		let nUsers;
-		if ( this.props.selectedCohort ) {
-			nUsers = this.state.activeCohortMembers.length;
-			completionTooltip = `Completion rate for students from cohort ${this.props.selectedCohort.title}`;
+		const session = this.props.session;
+		if ( session.selectedCohort ) {
+			console.log( 'RS: '+session.activeCohortMembers.length );
+			nUsers = session.activeCohortMembers.length;
+			completionTooltip = `Completion rate for students from cohort ${session.selectedCohort.title}`;
 		} else {
-			nUsers = this.props.session.userList.length;
+			nUsers = session.userList.length;
 			completionTooltip = 'Completion rate for currently active students from all cohorts';
 		}
-		const visualizers = this.props.session.responseVisualizers;
+		const visualizers = session.responseVisualizers;
 		const { means } = this.state;
 		const ids = keys( visualizers );
 		ids.sort( ( a, b ) => {
@@ -228,8 +197,8 @@ class ResponseVisualizers extends Component {
 				timeBadgeVariant = 'light';
 			}
 			let infoRateLabel;
-			if ( this.props.selectedCohort ) {
-				infoRateLabel = `${nInfo} / ${nUsers} (of ${this.props.selectedCohort.members.length})`;
+			if ( session.selectedCohort ) {
+				infoRateLabel = `${nInfo} / ${nUsers} (of ${session.selectedCohort.members.length})`;
 			} else {
 				infoRateLabel = `${nInfo} / ${nUsers}`;
 			}
@@ -251,10 +220,10 @@ class ResponseVisualizers extends Component {
 							Open
 						</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={`# of actions (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
+					<Tooltip placement="left" tooltip={`# of actions (${session.selectedCohort ? session.selectedCohort.title: 'all cohorts'})`}>
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={`# of students who answered (${this.props.selectedCohort ? this.props.selectedCohort.title: 'all cohorts'})`}>
+					<Tooltip placement="left" tooltip={`# of students who answered (${session.selectedCohort ? session.selectedCohort.title: 'all cohorts'})`}>
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip="Average elapsed time until answer (all cohorts)">
@@ -302,13 +271,8 @@ class ResponseVisualizers extends Component {
 // PROPERTIES //
 
 ResponseVisualizers.propTypes = {
-	selectedCohort: PropTypes.object,
 	onThumbnailClick: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
-};
-
-ResponseVisualizers.defaultProps = {
-	selectedCohort: null
 };
 
 

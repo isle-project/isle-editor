@@ -11,7 +11,6 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
-import isObject from '@stdlib/assert/is-object';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -89,8 +88,7 @@ class ResponseVisualizer extends Component {
 			showExtended: false,
 			showDeleteModal: false,
 			selectedAction: null,
-			period: null,
-			selectedCohort: null
+			period: null
 		};
 
 		if ( props.info && props.id && !props.noSessionRegistration ) {
@@ -107,20 +105,8 @@ class ResponseVisualizer extends Component {
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === RETRIEVED_USER_ACTIONS ) {
+				if ( type === RETRIEVED_USER_ACTIONS || type === SELECTED_COHORT ) {
 					this.addSessionActions();
-				}
-				else if ( type === SELECTED_COHORT ) {
-					if ( isObject( action ) ) {
-						this.setState({
-							selectedCohort: action
-						}, this.addSessionActions );
-					}
-					else {
-						this.setState({
-							selectedCohort: null
-						}, this.addSessionActions );
-					}
 				}
 				else if (
 					type === MEMBER_ACTION &&
@@ -137,8 +123,8 @@ class ResponseVisualizer extends Component {
 						action.type === this.props.danger
 					) {
 						if (
-							this.state.selectedCohort &&
-							!contains( this.state.selectedCohort.members, action.email )
+							session.selectedCohort &&
+							!contains( session.selectedCohort.members, action.email )
 						) {
 							return;
 						}
@@ -194,23 +180,7 @@ class ResponseVisualizer extends Component {
 
 	onCohortChange = ( event ) => {
 		debug( 'Change the selected cohort...' );
-		if (
-			this.state.selectedCohort &&
-			event.target.value === this.state.selectedCohort.title
-		) {
-			return debug( 'Already changed to the requested cohort...' );
-		}
-		const cohorts = this.context.cohorts;
-		let cohort;
-		for ( let i = 0; i < cohorts.length; i++ ) {
-			if ( cohorts[ i ].title === event.target.value ) {
-				cohort = cohorts[ i ];
-				break;
-			}
-		}
-		this.setState({
-			selectedCohort: cohort
-		}, this.addSessionActions );
+		this.context.selectCohort( event.target.value );
 	}
 
 	pushSessionAction = ( action ) => {
@@ -242,8 +212,8 @@ class ResponseVisualizer extends Component {
 	}
 
 	addSessionActions = () => {
-		debug( !this.state.selectedCohort ? 'Add session actions...' : 'Add session actions for cohort '+this.state.selectedCohort.title );
 		const session = this.context;
+		debug( !session.selectedCohort ? 'Add session actions...' : 'Add session actions for cohort '+session.selectedCohort.title );
 		const actions = session.socketActions;
 		const filtered = [];
 		this.emailHash = {};
@@ -255,8 +225,8 @@ class ResponseVisualizer extends Component {
 			) {
 				action = extractValue( action );
 				if (
-					this.state.selectedCohort &&
-					!contains( this.state.selectedCohort.members, action.email )
+					session.selectedCohort &&
+					!contains( session.selectedCohort.members, action.email )
 				) {
 					continue;
 				}
@@ -330,8 +300,8 @@ class ResponseVisualizer extends Component {
 	renderTooltip() {
 		const session = this.context;
 		let nUsers;
-		if ( this.state.selectedCohort ) {
-			nUsers = this.state.selectedCohort.members.length;
+		if ( session.selectedCohort ) {
+			nUsers = session.activeCohortMembers.length;
 		} else {
 			nUsers = session.userList.length;
 		}
@@ -426,7 +396,7 @@ class ResponseVisualizer extends Component {
 			toggleExtended={this.toggleExtended}
 			toggleActions={this.toggleActions}
 			data={this.props.data}
-			selectedCohort={this.state.selectedCohort}
+			selectedCohort={this.context.selectedCohort}
 			onCohortChange={this.onCohortChange}
 			{...optionalProps}
 		/> );
@@ -438,8 +408,8 @@ class ResponseVisualizer extends Component {
 		}
 		const session = this.context;
 		let nUsers;
-		if ( this.state.selectedCohort ) {
-			nUsers = this.state.selectedCohort.members.length;
+		if ( session.selectedCohort ) {
+			nUsers = session.activeCohortMembers.length;
 		} else {
 			nUsers = session.userList.length;
 		}

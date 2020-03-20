@@ -181,8 +181,8 @@ class ActionLog extends Component {
 			for ( let i = 0; i < session.socketActions.length; i++ ) {
 				let action = session.socketActions[ i ];
 				if (
-					this.props.selectedCohort &&
-					!contains( this.props.selectedCohort.members, action.email )
+					session.selectedCohort &&
+					!contains( session.selectedCohort.members, action.email )
 				) {
 					continue;
 				}
@@ -433,13 +433,11 @@ class ActionLog extends Component {
 ActionLog.contextType = SessionContext;
 
 ActionLog.propTypes = {
-	selectedCohort: PropTypes.object,
 	selectedEmail: PropTypes.string,
 	selectedID: PropTypes.string
 };
 
 ActionLog.defaultProps = {
-	selectedCohort: null,
 	selectedEmail: null,
 	selectedID: null
 };

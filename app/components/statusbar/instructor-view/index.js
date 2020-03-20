@@ -13,9 +13,9 @@ import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import { SELECTED_COHORT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
-import { SELECTED_COHORT } from 'constants/events.js';
 import './instructor_view.css';
 
 
@@ -37,17 +37,23 @@ class InstructorView extends Component {
 			hidden: true,
 			rightPos: -max( window.innerWidth * 0.45, 400 ),
 			selectedEmail: null,
-			selectedID: null,
-			selectedCohort: null
+			selectedID: null
 		};
 	}
 
 	componentDidMount() {
 		this.addResizeListener();
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === SELECTED_COHORT ) {
+				this.forceUpdate();
+			}
+		});
 	}
 
 	componentWillUnmount() {
 		this.removeResizeListener();
+		this.unsubscribe();
 	}
 
 	windowResize = () => {
@@ -96,21 +102,9 @@ class InstructorView extends Component {
 	}
 
 	onCohortChange = ( event ) => {
-		const session = this.context;
-		const cohorts = session.cohorts;
-		let cohort;
-		for ( let i = 0; i < cohorts.length; i++ ) {
-			if ( cohorts[ i ].title === event.target.value ) {
-				cohort = cohorts[ i ];
-				break;
-			}
-		}
 		debug( 'Change selected cohort...' );
-		this.setState({
-			selectedCohort: cohort
-		}, () =>{
-			session.update( SELECTED_COHORT, this.state.selectedCohort );
-		});
+		const session = this.context;
+		session.selectCohort( event.target.value );
 	}
 
 	renderCohortSelection() {
@@ -122,7 +116,7 @@ class InstructorView extends Component {
 		const select = ( <select
 			id="instructor-view-cohort-select"
 			onChange={this.onCohortChange} onBlur={this.onCohortChange}
-			value={this.state.selectedCohort ? this.state.selectedCohort.title : 'all'}
+			value={session.selectedCohort ? session.selectedCohort.title : 'all'}
 		>
 			<option value="all">All Cohorts</option>
 			{cohorts.map( ( v, key ) => {
@@ -159,7 +153,7 @@ class InstructorView extends Component {
 			>
 				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title="Responses" >
 					<ResponseVisualizers
-						selectedCohort={this.state.selectedCohort}
+						selectedCohort={session.selectedCohort}
 						session={session}
 						onThumbnailClick={( id ) => {
 							debug( 'Go to actions with id '+id+'...' );
@@ -180,12 +174,10 @@ class InstructorView extends Component {
 								selectedEmail: email
 							});
 						}}
-						selectedCohort={this.state.selectedCohort}
 					/>
 				</Tab>
 				<Tab eventKey="action_log" title="Action Log" >
 					<ActionLog
-						selectedCohort={this.state.selectedCohort}
 						selectedEmail={this.state.selectedEmail}
 						selectedID={this.state.selectedID}
 					/>

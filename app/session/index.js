@@ -31,7 +31,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT, OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS,
 	RECEIVED_CHAT_HISTORY, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
-	SELF_HAS_LEFT_CHAT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
+	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
@@ -149,6 +149,9 @@ class Session {
 		// List of currently logged-in users:
 		this.userList = [];
 		this.userFocuses = {};
+
+		this.selectedCohort = null;
+		this.activeCohortMembers = null;
 
 		// Keep track of whether an owner is present in the session:
 		this.hasOwner = false;
@@ -1144,6 +1147,29 @@ class Session {
 			}
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
+	}
+
+	selectCohort = ( title ) => {
+		if (
+			!this.cohorts ||
+			( this.selectedCohort && title === this.selectedCohort.title )
+		) {
+			return debug( 'No cohorts available or already changed to the requested cohort...' );
+		}
+		const cohorts = this.cohorts;
+		let cohort;
+		let activeCohortMembers;
+		for ( let i = 0; i < cohorts.length; i++ ) {
+			if ( cohorts[ i ].title === title ) {
+				cohort = cohorts[ i ];
+				const emails = this.userList.map( x => x.email );
+				activeCohortMembers = cohort.members.filter( x => contains( emails, x ) );
+				break;
+			}
+		}
+		this.selectedCohort = cohort;
+		this.activeCohortMembers = activeCohortMembers;
+		this.update( SELECTED_COHORT, this.selectedCohort );
 	}
 
 	/**

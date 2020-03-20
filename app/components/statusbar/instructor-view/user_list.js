@@ -157,8 +157,8 @@ class UserList extends Component {
 		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 1.5 }}>
 			{session.userList.filter( user => {
 				if (
-					this.props.selectedCohort &&
-					!contains( this.props.selectedCohort.members, user.email )
+					session.selectedCohort &&
+					!contains( session.selectedCohort.members, user.email )
 				) {
 					return false;
 				}
@@ -267,12 +267,7 @@ class UserList extends Component {
 
 UserList.propTypes = {
 	onThumbnailClick: PropTypes.func.isRequired,
-	session: PropTypes.object.isRequired,
-	selectedCohort: PropTypes.object
-};
-
-UserList.defaultProps = {
-	selectedCohort: null
+	session: PropTypes.object.isRequired
 };
 
 
