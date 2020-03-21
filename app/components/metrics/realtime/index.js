@@ -48,7 +48,7 @@ class RealTimeMetrics extends Component {
 						this.setState({
 							actions
 						}, () => {
-							debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions 	) );
+							debug( 'A new value for the given IDs was submitted: ' + JSON.stringify( this.state.actions ) );
 							this.props.onData( this.state.actions, idx );
 							this.props.onDatum( this.state.actions[ this.state.actions.length-1 ], idx );
 						});
