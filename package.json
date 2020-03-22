@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.49.3",
+  "version": "0.49.4",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -619,7 +619,6 @@
       "!node_modules/@typescript-eslint/typescript-estree/**/*",
       "!node_modules/@typescript-eslint/typescript-estree/node_modules/semver/**/*",
       "!node_modules/tsutils/**/*",
-      "!node_modules/eslint-plugin-react-hooks/**/*",
       "!node_modules/eslint-plugin-spellcheck/**/*",
       "!node_modules/hunspell-spellchecker/**/*",
       "!node_modules/gh-pages/**/*",
@@ -879,7 +878,7 @@
       "!node_modules/jest-jasmine2/node_modules/color-convert/**/*",
       "!node_modules/jest-jasmine2/node_modules/color-name/**/*",
       "!node_modules/jest-jasmine2/node_modules/supports-color/**/*",
-      "!node_modules/co/**/*",
+      "!node_modules/jest-jasmine2/node_modules/has-flag/**/*",
       "!node_modules/is-generator-fn/**/*",
       "!node_modules/jest-each/**/*",
       "!node_modules/jest-each/node_modules/chalk/**/*",
