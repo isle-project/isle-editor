@@ -369,7 +369,7 @@ function writeIndexFile({
 				{
 					test: /\.js$/,
 					exclude: [
-						/node_modules\/(?!debug|@iktakahiro\/markdown-it-katex)/,
+						/node_modules(?:\/|\\)(?!debug|@iktakahiro(?:\/|\\)markdown-it-katex)/,
 						/fonts\.js$/
 					],
 					loader: 'babel-loader',
