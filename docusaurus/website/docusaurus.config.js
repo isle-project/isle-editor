@@ -26,7 +26,8 @@ const siteConfig = {
 			}
 		]
 	],
-	title: 'ISLE Documentation', // Title for your website.
+
+	title: 'ISLE Documentation',
 	tagline: 'Author Lessons for the Integrated Statistics Learning Environment',
 	url: 'https://isledocs.com', // Your website URL
 	baseUrl: '/',
@@ -89,6 +90,7 @@ const siteConfig = {
 			]
 		},
 		navbar: {
+			title: 'ISLE Documentation',
 			logo: {
 				alt: 'ISLE Logo',
 				src: 'img/isle_logo_bare.png'
@@ -113,13 +115,6 @@ const siteConfig = {
 
 	stylesheets: [
 		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap'
-	],
-
-	// Add custom scripts here that would be placed in <script> tags.
-	scripts: [
-		'https://buttons.github.io/buttons.js',
-		'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
-		'/js/code_block_buttons.js'
 	]
 };
 

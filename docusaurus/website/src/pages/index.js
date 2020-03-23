@@ -15,32 +15,29 @@ import styles from './styles.module.css';
 
 const features = [
 	{
-		title: <>What is Flux?</>,
-		imageUrl: 'img/undraw_building_blocks.svg',
+		title: <>ISLE Editor</>,
+		imageUrl: 'img/undraw_editor.svg',
 		description: (
 			<>
-				Flux is the application architecture that Facebook uses for building
-				client-side web applications.
+				Use the ISLE editor to create new ISLE lessons, ranging from interactive lectures to lab activities or homework assignments.
 			</>
-		),
+		)
 	},
 	{
-		title: <>What does it do?</>,
-		imageUrl: 'img/undraw_react.svg',
+		title: <>ISLE Dashboard</>,
+		imageUrl: 'img/undraw_dashboard.svg',
 		description: (
 			<>
-				It complements React's composable view components by utilizing a
-				unidirectional data flow.
+				Use the ISLE dashboard to manage your course, administer lessons, and monitor student progress.
 			</>
-		),
+		)
 	},
 	{
-		title: <>How do I use it?</>,
-		imageUrl: 'img/undraw_programming.svg',
+		title: <>ISLE Server</>,
+		imageUrl: 'img/undraw_server.svg',
 		description: (
 			<>
-				It's more of a pattern rather than a formal framework, and you can start
-				using Flux immediately without a lot of new code.
+				Host an ISLE server instance for user management and data collection or deploy to an existing server.
 			</>
 		),
 	},
@@ -73,6 +70,9 @@ function Home() {
 				</div>
 			</header>
 			<main>
+				<p>Welcome to the documentation of the *interactive statistics learning environment* (ISLE) and the ISLE Editor for authoring interactive lessons for statistics and related disciplines.
+				</p>
+				<p> One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.</p>
 				{features && features.length && (
 					<section className={styles.features}>
 						<div className="container">
@@ -114,9 +114,9 @@ function Home() {
 							<div className="text--center padding-vert--lg">
 								<Link
 									className="button button--primary button--lg"
-									to={useBaseUrl('docs/overview')}
+									to="http://stat.cmu.edu/isle"
 								>
-									Learn more about Flux!
+									Project Website
 								</Link>
 							</div>
 						</div>
