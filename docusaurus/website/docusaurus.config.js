@@ -16,7 +16,7 @@ const siteConfig = {
 				docs: {
 					path: 'docs',
 					sidebarPath: require.resolve( './sidebars.json' ),
-					editUrl: 'https://github.com/facebook/docusaurus/edit/master/website',
+					editUrl: 'https://github.com/isle-project/isle-editor/edit/master/docusaurus/website',
 					showLastUpdateAuthor: true,
 					showLastUpdateTime: true
 				},
