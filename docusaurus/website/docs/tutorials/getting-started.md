@@ -12,7 +12,7 @@ If you do not have an ISLE account, the first step is to create one so that you 
 
 Once you have an account, you can log in at <https://isle.stat.cmu.edu/dashboard/>. Logging in will take you to your ISLE dashboard; the first time you log in, your dashboard will be empty except for your user profile and will look something like this:
 
-![Initial Dashboard](assets/images/initial_dashboard.png)
+![Initial Dashboard](/img/initial_dashboard.png)
 
 If you are already part of a course, you might not see your profile when you log in. To view your profile, click your name in the top right, next to the Log Out button.
 
@@ -26,7 +26,7 @@ As you can see in the image above, when you first make an account you will not h
 4. Click **Get Instructor Access**.
 5. Enter the write-access token and click **Submit**.
 
-![Instructor Access](assets/gifs/instructor_access.gif)
+![Instructor Access](/gifs/instructor_access.gif)
 
 ## Creating a Course
 
@@ -37,7 +37,7 @@ Next, you'll want to make a course.
 3. Enter a **Description** of the course. 
 4. Click **Create**.
 
-![Create Course](assets/gifs/create_course.gif)
+![Create Course](/gifs/create_course.gif)
 
 ## Cohorts for Student Enrollment
 
@@ -56,7 +56,7 @@ To create a cohort:
 
 **Tip**: it can be helpful to make a course or a cohort that students cannot enroll in, to post demo lessons or scratchwork for your own use.
 
-![Create Cohort](assets/gifs/create_cohort.gif)
+![Create Cohort](/gifs/create_cohort.gif)
 
 ## Adding Course Administrators
 
@@ -72,7 +72,7 @@ To add a user as a course administrator/owner:
 
 To remove an owner, click the 'X' next to their email address.
 
-![Add Owner](assets/gifs/add_owner.gif)
+![Add Owner](/gifs/add_owner.gif)
 
 ## Adding Lessons
 
@@ -85,4 +85,4 @@ Once your course is set up, you'll want to add lessons (these could be projects,
 
 To see the lesson now in your course, select your course from the drop-down menu. You may need to refresh the page first.
 
-![Import Lesson](assets/gifs/import_lesson.gif)
+![Import Lesson](/gifs/import_lesson.gif)

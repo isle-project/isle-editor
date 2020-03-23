@@ -8,7 +8,7 @@ sidebar_label: Including Data
 
 The `<DataTable/>` tag in ISLE allows you to include a [Data Table](https://isledocs.com/docs/data-table), which users can then explore. For example, here is a gif of an ISLE file that includes data on airline flights, and the resulting table as displayed to users:
 
-![Data Table](assets/gifs/data_table.gif)
+![Data Table](/gifs/data_table.gif)
 
 The code shown here is
 
@@ -68,7 +68,7 @@ Rather than representing different variables, each element of the data info file
 
 If we save these as JSON files and import them into the editor in the same way we did the airlines data, the resulting data table looks like this:
 
-![Toy Table GIF](assets/gifs/data_table_toy_example.gif)
+![Toy Table GIF](/gifs/data_table_toy_example.gif)
 
 **Alternatively**, because the data and data info are so small in this example, we could directly enter them into the `<DataTable/>` tag without saving them as JSON files. Here is what the ISLE file looks like to produce the Colors data table shown in the gif:
 
@@ -116,7 +116,7 @@ If you are an `R` user, it is pretty straightforward to convert data to JSON usi
 
 While a Data Table allows you to display data that students can interact with, a [Data Explorer](https://isledocs.com/docs/data-explorer) enhances a Data Table by providing additional tools to analyze and write about the data. Here is an example of a data explorer created for the airlines data:
 
-![Data Explorer](assets/gifs/data_explorer.gif)
+![Data Explorer](/gifs/data_explorer.gif)
 
 This example shows each of the possible data explorer features:
 

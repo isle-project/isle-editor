@@ -16,7 +16,7 @@ Let's begin by looking at [Free Text Questions](https://isledocs.com/docs/free-t
 
 This is displayed as
 
-![Free Text](assets/images/free_text_question.png)
+![Free Text](/img/free_text_question.png)
 
 The `question` option in the `<FreeTextQuestion/>` tag is where you specify the question. Students then answer the question in the text box, and click the **Submit** button when done. If desired, you can also provide a *solution* to the question. Once students have submitted their own answer, they can view your solution by clicking **Show Solution**. For some question types, ISLE checks the submitted answers against the provided solution, but this is not done for Free Text Questions. Here's an example of a Free Text Question with a provided solution:
 
@@ -27,7 +27,7 @@ The `question` option in the `<FreeTextQuestion/>` tag is where you specify the 
     
 Clicking **Show Solution** results in the following:
 
-![Free Text Solution](assets/images/free_text_solution.png)
+![Free Text Solution](/img/free_text_solution.png)
 
 ## Common Question Elements
 
@@ -57,11 +57,11 @@ Markdown syntax can be used with the `question` option through an HTML `<Text/>`
         ![histograms](https://isle.heinz.cmu.edu/Demo_histograms.png)`} />}
     />
     
-![Question Text Markdown](assets/images/question_text_markdown.png)
+![Question Text Markdown](/img/question_text_markdown.png)
 
 ### `feedback`
 
-![Feedback](assets/images/feedback_buttons.png)
+![Feedback](/img/feedback_buttons.png)
 
 The three feedback buttons, shown above, allow students to give feedback on individual questions. The left-hand button allows students to note that they are confused on the question; the center button allows students to note that the question makes sense; and the right-hand button allows students to give specific feedback comments in more detail. These feedback buttons are controlled by the `feedback` option, which defaults to true. To turn off feedback for a question, set the `feedback` option to false. For example:
 
@@ -79,7 +79,7 @@ For some questions you may wish to provide hints, which is done with the `hints`
         hints={["What null distribution does each test use?", "How does sample size affect degrees of freedom for the t-distribution?", "What happens when we increase degrees of freedom for a t-distribution?"]}
     />
     
-![Hints](assets/gifs/hints.gif)
+![Hints](/gifs/hints.gif)
 
 Each hint is entered between quotes, with commas separating the hints. The order in which the hints are entered is the order in which they appear when the **Get Hint** or **Next Hint** button is clicked. Note that the hints must be wrapped in `{[ ]}` in the tag.
 
@@ -95,7 +95,7 @@ Each hint is entered between quotes, with commas separating the hints. The order
         solution={1}
     />
 
-![Number Question](assets/images/number_question.png)
+![Number Question](/img/number_question.png)
 
 By default, the **Your answer** box will be 0 until the student enters their own answer. If a solution is provided, once the student submits their response the correct solution will be displayed and the student will receive a message indicating whether their answer is correct. To prevent students from seeing the solution when they submit, you can set the `provideFeedback` option to false:
 
@@ -123,7 +123,7 @@ For checking whether solutions are correct, the `digits` option is also useful. 
         provideFeedback="full"
     />
 
-![Multiple Choice Question](assets/images/multiple_choice_question.png)
+![Multiple Choice Question](/img/multiple_choice_question.png)
 
 There is are a few things to note about the syntax for a multiple choice question. First, the `answers` choices must be provided in a very specific format. Each answer choice is written as `{content:"", explanation:""}` where the `content` is the displayed answer option, and the `explanation` is optional text visible after the question has been submitted to explain why the answer choice is correct or incorrect. The number of answer choices can be varied, but each option must be separated by a comma. Also, note that the list of answer choices is wrapped in `{[ ]}` in the tag.
 
@@ -135,7 +135,7 @@ Feedback on student answers for Multiple Choice Questions can be provided either
 
 Once you have posted your lesson to ISLE and students are submitting answers to questions, you can view the student submissions and any feedback. To see student responses, open the ISLE lesson in your course dashboard, and click the **Answers** button for the question. To see student feedback, click the **Responses** button next to your feedback buttons for the questions (if you have included feedback buttons).
 
-![Answers](assets/gifs/viewing_responses.gif)
+![Answers](/gifs/viewing_responses.gif)
 
 ## Putting Questions Together
 
@@ -143,7 +143,7 @@ Once you have posted your lesson to ISLE and students are submitting answers to 
 
 For reasons of space, you may wish to put a group of related questions into the same space:
 
-![Pages Questions](assets/gifs/pages_questions.gif)
+![Pages Questions](/gifs/pages_questions.gif)
 
 This would allow, for example, a group of questions to reference a single dataset or image without students having to repeatedly scroll up and down. This uses `<Pages>`, a custom tag that allows users to easily move between pages, with content on each page. The ISLE code to make the Pages shown in the gif above is
 
@@ -189,7 +189,7 @@ Everything we want in the Pages is contained within `<Pages> </Pages>`. Each pag
 
 In other cases, you may wish to have several parts to a question that all get submitted together. For example, a question may require both a free text and a numeric input. This can be done by **Question Forms**, which allow two or more questions to share the same **Submit** button:
 
-![Question Form](assets/images/question_form.png)
+![Question Form](/img/question_form.png)
 
 The code for the image shown here is
 

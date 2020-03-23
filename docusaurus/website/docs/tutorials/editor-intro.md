@@ -10,7 +10,7 @@ The ISLE editor is where you will write and export lessons. This tutorial will f
 
 When you open the editor for the first time, you will see an untitled example lesson, showing you some of the features that can be included, such as an R shell, LaTeX equations, widgets, and videos.
 
-![Unitled Lesson](assets/images/untitled_lesson.png)
+![Unitled Lesson](/img/untitled_lesson.png)
 
 If you have previously used the ISLE editor, it will instead open the last document you worked on. To open a new blank document, use **File -> New File**. To open an existing document, use **File -> Open File**. And to save a new ISLE file, use **File -> Save File As**; you will notice that ISLE files have the .isle extension.
 
@@ -32,7 +32,7 @@ Before you upload your first lesson, you need to link your local ISLE editor wit
 4. Under **Password**, enter the password you use for your ISLE account.
 5. Click **Connect**.
 
-![Connecting](assets/gifs/connecting_to_isle.gif)
+![Connecting](/gifs/connecting_to_isle.gif)
 
 You've now linked your editor to the server to which you will upload ISLE lessons.
 
@@ -50,7 +50,7 @@ Don't worry if it takes a little bit for the lesson to upload, and bigger lesson
 
 **Note on saving:** it is possible to upload a lesson without saving the ISLE file. Remember to save your work as well as upload!
 
-![Upload GIF](assets/gifs/upload.gif)
+![Upload GIF](/gifs/upload.gif)
 
 ## Your Turn
 

@@ -10,7 +10,7 @@ sidebar_label: Classroom Use
 
 To see student responses to a question, click the **Answers** button for that question component. This displays all responses and a visualization (such as a bar chart or word cloud) of the answers. 
 
-![See Answers](assets/images/view_student_answers.png)
+![See Answers](/img/view_student_answers.png)
 
 You can change the information displayed in a number of ways:
 
@@ -30,11 +30,11 @@ To see student feedback (if feedback buttons are provided), click **Responses** 
 
 The bar under the **Answers** button displays student progress on that question. The proportion filled with *blue* tracks the proportion of active users who have submitted an answer to that question. The proportion filled with *orange* tracks the number of active users who are currently working on the question.
 
-![Answers Progress](assets/images/answers_progress.png)
+![Answers Progress](/img/answers_progress.png)
 
 Tracking progress on all questions at once can be done with the **Instructor Panel**. To access the instructor panel, click the orange arrow on the right of the screen. 
 
-![Panel](assets/gifs/instructor_panel.gif)
+![Panel](/gifs/instructor_panel.gif)
 
 The instructor panel provides information about the lesson as a whole:
 
@@ -42,7 +42,7 @@ The instructor panel provides information about the lesson as a whole:
 
 * The **Responses** tab allows you to track the progress of students on each question. It shows what fraction of active users have answered each question:
 
-![Responses](assets/images/instructor_panel_responses.png)
+![Responses](/img/instructor_panel_responses.png)
 
 For the **Responses** tab to be useful, you need to add `id` tags to each question, to provide a way to reference the questions. Here is an example of a question with an `id` tag:
 
