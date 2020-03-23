@@ -77,39 +77,16 @@
     ],
     "Display Components": [
       "accordion",
-      "container",
-      "row",
-      "col",
-      "background",
-      "draggable-grid",
-      "grid",
       "iframe",
-      "modal",
-      "nav",
-      "navbar",
-      "nav-item",
       "pages",
-      "panel",
       "polaroid",
-      "random-video",
-      "seal",
       "scrolling-text",
-      "shaped-form",
-      "shaped-image",
       "slider",
-      "sticky-note",
       "switch",
-      "tab",
-      "tabs",
-      "text",
-      "typewriter",
-      "well"
+      "text"
     ],
     "Plot Components": [
       "plotly",
-      "density-plot",
-      "network-plot",
-      "sunburst",
       "word-cloud"
     ],
     "General Components": [
@@ -119,41 +96,20 @@
       "draggable-list",
       "engagement-meter",
       "flippable-card",
-      "joyride",
       "js-shell",
       "likert-scale",
-      "multi-cards",
       "playground",
-      "preload",
-      "queue",
       "recorder",
-      "timed-button",
-      "sortable-tree",
-      "collapse"
+      "sortable-tree"
     ],
     "Programmatic": [
       "expire",
-      "generator",
-      "metrics",
-      "real-time-metrics",
-      "reaction",
       "revealer",
       "runner",
       "timer",
-      "unveil",
-      "user-pairer"
+      "unveil"
     ],
     "Presentation Components": [
-      "slide",
-      "appear",
-      "code-slide",
-      "layout",
-      "fill",
-      "fit",
-      "block-quote",
-      "cite",
-      "quote",
-      "code"
     ],
     "Learning Components": [
       "learning-components"
