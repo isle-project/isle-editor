@@ -39,8 +39,8 @@ const features = [
 			<>
 				Host an ISLE server instance for user management and data collection or deploy to an existing server.
 			</>
-		),
-	},
+		)
+	}
 ];
 
 function Home() {
@@ -92,7 +92,7 @@ function Home() {
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
-									to={useBaseUrl('docs/video-tutorials')}
+									to={useBaseUrl('video_tutorials')}
 								>
 									Open
 								</Link>
@@ -107,7 +107,8 @@ function Home() {
 								/>
 							</div>
 							<h3>Project Website</h3>
-							<div className="text--center padding-vert--lg">
+							<p>Information on the features of ISLE and related research projects informing its development are available on the project website.</p>
+							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
 									to="http://stat.cmu.edu/isle"
@@ -125,7 +126,8 @@ function Home() {
 								/>
 							</div>
 							<h3>FAQ</h3>
-							<div className="text--center padding-vert--lg">
+							<p>Answers to common questions on how to leverage ISLE for your class are collected in our FAQ.</p>
+							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
 									to="http://stat.cmu.edu/isle/faq.html"
