@@ -62,7 +62,7 @@ function Home() {
 								'button button--secondary button--lg',
 								styles.getStarted,
 							)}
-							to={useBaseUrl('docs/overview')}
+							to={useBaseUrl('docs/overview/intro')}
 						>
 							Get Started
 						</Link>
@@ -70,10 +70,72 @@ function Home() {
 				</div>
 			</header>
 			<main>
-				<p>Welcome to the documentation of the *interactive statistics learning environment* (ISLE) and the ISLE Editor for authoring interactive lessons for statistics and related disciplines.
-				</p>
-				<p> One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.</p>
-				{features && features.length && (
+				<div className="container">
+					<div className="row">
+						<div className="col col--8 col--offset-2 padding-vert--lg">
+							<p>Welcome to the documentation of the <i>interactive statistics learning environment (ISLE)</i> and the ISLE Editor for authoring interactive lessons for statistics and related disciplines. One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.</p>
+						</div>
+					</div>
+				</div>
+				<div className="container">
+					<div className="row">
+						<div className="col col--4 padding-vert--lg">
+							<div className="text--center">
+								<img
+									className={styles.featureImage}
+									src={useBaseUrl('img/undraw_youtube_tutorial.svg')}
+									alt="Video Tutorials"
+								/>
+							</div>
+							<h3>Video Tutorials</h3>
+							<p>A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.</p>
+							<div className="text--center">
+								<Link
+									className="button button--primary button--lg"
+									to={useBaseUrl('docs/video-tutorials')}
+								>
+									Open
+								</Link>
+							</div>
+						</div>
+						<div className="col col--4 padding-vert--lg">
+							<div className="text--center">
+								<img
+									className={styles.featureImage}
+									src={useBaseUrl('img/undraw_features_overview.svg')}
+									alt="Video Tutorials"
+								/>
+							</div>
+							<h3>Project Website</h3>
+							<div className="text--center padding-vert--lg">
+								<Link
+									className="button button--primary button--lg"
+									to="http://stat.cmu.edu/isle"
+								>
+									Open
+								</Link>
+							</div>
+						</div>
+						<div className="col col--4 padding-vert--lg">
+							<div className="text--center">
+								<img
+									className={styles.featureImage}
+									src={useBaseUrl('img/undraw_faq.svg')}
+									alt="Video Tutorials"
+								/>
+							</div>
+							<h3>FAQ</h3>
+							<div className="text--center padding-vert--lg">
+								<Link
+									className="button button--primary button--lg"
+									to="http://stat.cmu.edu/isle/faq.html"
+								>
+									Open
+								</Link>
+							</div>
+						</div>
+					</div>
+					{features && features.length && (
 					<section className={styles.features}>
 						<div className="container">
 							<div className="row">
@@ -99,28 +161,6 @@ function Home() {
 						</div>
 					</section>
 				)}
-				<div className="container">
-					<div className="row">
-						<div className="col col--6 col--offset-3 padding-vert--lg">
-							<h2>Introduction Video</h2>
-							<iframe
-								width="100%"
-								height="315"
-								src="https://www.youtube.com/embed/nYkdrAPrdcw"
-								frameborder="0"
-								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen
-							/>
-							<div className="text--center padding-vert--lg">
-								<Link
-									className="button button--primary button--lg"
-									to="http://stat.cmu.edu/isle"
-								>
-									Project Website
-								</Link>
-							</div>
-						</div>
-					</div>
 				</div>
 			</main>
 		</Layout>
