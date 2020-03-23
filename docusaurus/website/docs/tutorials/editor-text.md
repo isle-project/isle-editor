@@ -114,3 +114,58 @@ A comprehensive cheat sheet on HTML tags can be found [here](https://digital.com
 ## Your Turn
 
 In the ISLE editor, re-create the text pictured below. To show the solution, click the **Show solution** button below the image.
+
+![ISLE Text Example](/img/isle_text_example.png)
+
+<pre id="solution_text" style={{
+    display: 'none', 
+    wordBreak: 'normal',
+    wordWrap: 'normal',
+    whiteSpace: 'pre-wrap',
+    color: 'rgb(191, 199, 213)',
+    backgroundColor: 'rgb(41, 45, 62)',
+    padding: 12
+}} >
+{`(Here's the solution - your preamble probably looks different)
+
+---
+title: "Tutorial example"
+author: Ciaran
+date: 17/07/2019
+state:
+---
+
+# Intro to the ISLE Editor
+
+The ISLE editor allows users to write and and export instructional content.
+
+## Entering Text 
+
+**Text** in ISLE is entered using Markdown and HTML syntax. You can learn more about Markdown at the [Markdown home page](https://daringfireball.net/projects/markdown/). 
+
+## LaTeX Equations
+
+*Inline* and *display mode* LaTeX equations can be included, like <TeX raw="E(X) = \int \limits_{-\infty}^\infty x f(x) dx" /> and <TeX raw="V(X) = E(X^2) - E(X)^2" displayMode={true}/>
+
+
+## Sample Types of ISLE Lessons
+
+* Labs
+* Homeworks
+* Projects
+* Lecture Notes
+`}</pre>
+
+export const SolutionButton = ( props ) => ( <div>
+    <button className="solution_button" onClick={() => {
+        const x = document.getElementById( "solution_text" );
+        if ( x.style.display === "none" ) {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }} > Show solution </button>
+</div> );
+
+<SolutionButton />
+
