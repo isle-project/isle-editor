@@ -99,8 +99,15 @@ const siteConfig = {
 				{ to: 'docs/overview/intro', label: 'Docs' },
 				{ to: 'help', label: 'Help' },
 				{ to: 'blog', label: 'Blog' },
-				{ href: 'https://github.com/isle-project', label: 'GitHub' },
-				{ href: 'https://discourse.isledocs.com', label: 'Forum' }
+				{
+					href: 'https://github.com/isle-project',
+					label: 'GitHub'
+				},
+				{
+					href: 'https://discourse.isledocs.com',
+					label: 'Forum',
+					target: '_self'
+				}
 			]
 		},
 		image: 'img/docusaurus.png',
