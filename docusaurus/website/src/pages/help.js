@@ -26,7 +26,7 @@ function Support() {
 						<p>This project is maintained by a dedicated group of people.</p>
 
 						<h2>Browse Docs</h2>
-						<p>Learn more using the <a href={useBaseUrl('docs/overview/intro')}>documentation on this site</a> or by following the <a href={useBaseUrl('docs/video-tutorials')}>
+						<p>Learn more using the <a href={useBaseUrl('docs/overview/intro')}>documentation on this site</a> or by following the <a href={useBaseUrl('video_tutorials')}>
 						tutorials</a>.</p>
 
 						<h2>Join the community</h2>
