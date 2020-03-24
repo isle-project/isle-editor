@@ -40,7 +40,7 @@ which becomes
 4. Click **Upload file**; select the file you wish to upload.
 5. To see the uploaded file and get the url, click **Open** next to the file name.
 
-![Add Owner](assets/gifs/upload_file.gif)
+![Add Owner](/gifs/upload_file.gif)
 
 Now you can use the url of the uploaded image to embed the image in your ISLE lesson. For example, we can include the plot above by
 
