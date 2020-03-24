@@ -85,6 +85,7 @@ class SelectQuestionMatrix extends Component {
 		const session = this.context;
 		let correct = true;
 		const labels = keys( this.props.solution );
+		this.submittedAnswers = copy( this.state.answers );
 		for ( let i = 0; i < labels.length; i++ ) {
 			const key = labels[ i ];
 			const sol = this.props.solution[ key ];
@@ -98,7 +99,7 @@ class SelectQuestionMatrix extends Component {
 				correct = false;
 			}
 		}
-		if ( this.props.provideFeedback ) {
+		if ( this.props.provideFeedback !== 'none' ) {
 			if ( correct ) {
 				session.addNotification({
 					title: 'Correct',
@@ -143,11 +144,14 @@ class SelectQuestionMatrix extends Component {
 		options = options.map( ( e, i ) => {
 			return { 'label': e, 'value': i };
 		});
+		let valueColor;
+		if ( this.props.provideFeedback === 'individual' && this.state.submitted ) {
+			valueColor = this.submittedAnswers[ label ] === this.props.solution[ label ] ? 'green' : 'red';
+		}
 		return (
 			<Select
 				name="form-field-name"
 				className="select-field"
-				value={this.state.value}
 				isDisabled={this.state.submitted && this.state.answerState === 'success'}
 				isSearchable={false}
 				options={options}
@@ -155,7 +159,14 @@ class SelectQuestionMatrix extends Component {
 				menuPlacement="top"
 				menuPortalTarget={document.body}
 				styles={{
-					menuPortal: base => ({ ...base, zIndex: 1010 })
+					menuPortal: base => ({
+						...base,
+						zIndex: 1010
+					}),
+					singleValue: ( base ) => ({
+						...base,
+						color: valueColor
+					})
 				}}
 			/>
 		);
@@ -255,7 +266,7 @@ SelectQuestionMatrix.defaultProps = {
 	hints: [],
 	hintPlacement: 'bottom',
 	feedback: true,
-	provideFeedback: true,
+	provideFeedback: 'individual',
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
 	chat: false,
@@ -275,7 +286,7 @@ SelectQuestionMatrix.propTypes = {
 	hints: PropTypes.array,
 	hintPlacement: PropTypes.string,
 	feedback: PropTypes.bool,
-	provideFeedback: PropTypes.bool,
+	provideFeedback: PropTypes.oneOf([ 'none', 'overall', 'individual' ]),
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	chat: PropTypes.bool,
