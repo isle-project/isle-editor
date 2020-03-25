@@ -89,6 +89,7 @@ class VideoChatButton extends Component {
 				{button}
 				{this.state.opened ? <VideoChat
 					roomName={this.props.for}
+					roomSubject={this.props.subject || this.props.for}
 					onHide={this.toggleVideoChat}
 				/> : null}
 			</Gate>
@@ -101,6 +102,7 @@ class VideoChatButton extends Component {
 
 VideoChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
+	subject: PropTypes.string,
 	showTooltip: PropTypes.bool,
 	size: PropTypes.string,
 	tooltipPlacement: PropTypes.oneOf([ 'left', 'top', 'right', 'bottom' ]),
@@ -108,6 +110,7 @@ VideoChatButton.propTypes = {
 };
 
 VideoChatButton.defaultProps = {
+	subject: null,
 	showTooltip: true,
 	size: 'sm',
 	tooltipPlacement: 'top',

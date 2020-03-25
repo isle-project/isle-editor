@@ -219,7 +219,7 @@ class UserList extends Component {
 								</span>
 							</Tooltip>
 							{ session.user.email !== user.email ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
-							{ session.user.email !== user.email ? <VideoChatButton showTooltip={false} for={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
+							{ session.user.email !== user.email ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
 						<div style={{ width: '100%' }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
