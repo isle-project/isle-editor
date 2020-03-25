@@ -63,14 +63,12 @@ class VideoChat extends Component {
 			if ( !INTERFACE_CONFIG.SETTINGS_SECTIONS.includes( 'moderator' ) ) {
 				INTERFACE_CONFIG.SETTINGS_SECTIONS.push( 'moderator' );
 			}
-		} else {
-			// Case: User is not an owner
-			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'raisehand' ) ) {
-				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'raisehand' );
-			}
 			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'sharedvideo' ) ) {
 				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'sharedvideo' );
 			}
+		} else if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'raisehand' ) ) {
+			// Case: User is not an owner
+			INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'raisehand' );
 		}
 		const options = {
 			roomName: this.props.roomName,
