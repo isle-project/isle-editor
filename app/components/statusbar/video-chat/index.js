@@ -29,7 +29,8 @@ const INTERFACE_CONFIG = {
 	],
 	SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator' ],
 	MOBILE_APP_PROMO: true,
-	HIDE_KICK_BUTTON_FOR_GUESTS: true
+	HIDE_KICK_BUTTON_FOR_GUESTS: true,
+	SHOW_CHROME_EXTENSION_BANNER: false
 };
 
 
