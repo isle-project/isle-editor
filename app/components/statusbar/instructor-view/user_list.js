@@ -12,6 +12,7 @@ import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
 import ChatButton from 'components/chat-button';
+import VideoChatButton from 'components/video-chat-button';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
@@ -217,7 +218,8 @@ class UserList extends Component {
 									/>
 								</span>
 							</Tooltip>
-							{ session.user.email !== user.email ? <ChatButton showTooltip={false} for={`Chat with ${user.email}`} /> : null }
+							{ session.user.email !== user.email ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
+							{ session.user.email !== user.email ? <VideoChatButton showTooltip={false} for={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
 						<div style={{ width: '100%' }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}

@@ -10,7 +10,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
-import VideoChat from 'components/statusbar/video-chat';
+import VideoChat from 'components/video-chat';
 import Chats from 'components/statusbar/chats';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
@@ -366,8 +366,8 @@ class StatusBar extends Component {
 			<Fragment>
 				<Chats />
 				{ this.state.openedVideoChat ? <VideoChat
-					session={this.context}
 					onHide={this.toggleVideoChat}
+					roomName={session.namespaceName + '/' + session.lessonName}
 				/> : null }
 				<div>
 					<div

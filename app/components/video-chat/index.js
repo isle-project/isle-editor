@@ -8,6 +8,7 @@ import max from '@stdlib/math/base/special/max';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import { DOMAIN } from 'constants/jitsi.js';
+import SessionContext from 'session/context.js';
 import './video_chat.css';
 
 
@@ -20,6 +21,7 @@ const INTERFACE_CONFIG = {
 	SHOW_WATERMARK_FOR_GUESTS: false,
 	INVITATION_POWERED_BY: false,
 	DEFAULT_REMOTE_DISPLAY_NAME: 'Anonymous',
+	DISPLAY_WELCOME_PAGE_CONTENT: false,
 	TOOLBAR_BUTTONS: [
 		'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
 		'fodeviceselection', 'profile', 'info', 'recording',
@@ -46,9 +48,9 @@ class VideoChat extends Component {
 	}
 
 	componentDidMount() {
-		const session = this.props.session;
+		const session = this.context;
 		const options = {
-			roomName: session.namespaceName + '/' + session.lessonName,
+			roomName: this.props.roomName,
 			width: max( 0.3 * window.innerWidth, 400 ),
 			height: max( 0.3 * window.innerHeight, 400 ),
 			parentNode: this.videoChatContainer,
@@ -106,6 +108,12 @@ class VideoChat extends Component {
 		</Draggable>);
 	}
 }
+
+
+// PROPERTIES //
+
+
+VideoChat.contextType = SessionContext;
 
 
 // EXPORTS //
