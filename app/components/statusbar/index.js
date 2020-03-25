@@ -10,9 +10,8 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
+import VideoChat from 'components/statusbar/video-chat';
 import Chats from 'components/statusbar/chats';
-import BroadcastSender from 'components/statusbar/broadcast/sender.js';
-import BroadcastWatcher from 'components/statusbar/broadcast/watcher.js';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
@@ -66,8 +65,7 @@ class StatusBar extends Component {
 			showProgressBar: false,
 			isProgressLeaving: false,
 			progress: 0,
-			duration: '0',
-			isBroadcasting: false
+			duration: '0'
 		};
 		this.hidden = true;
 	}
@@ -229,12 +227,12 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleBroadcast = ( event ) => {
+	toggleVideoChat = ( event ) => {
 		if ( event ) {
 			event.stopPropagation();
 		}
 		this.setState({
-			isBroadcasting: !this.state.isBroadcasting
+			openedVideoChat: !this.state.openedVideoChat
 		});
 	}
 
@@ -367,16 +365,10 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<Chats />
-				{ isOwner ?
-					<BroadcastSender
-						active={this.state.isBroadcasting}
-						session={this.context}
-						onHide={this.toggleBroadcast}
-					/> :
-					<BroadcastWatcher
-						session={this.context}
-					/>
-				}
+				{ this.state.openedVideoChat ? <VideoChat
+					session={this.context}
+					onHide={this.toggleVideoChat}
+				/> : null }
 				<div>
 					<div
 						className="statusbar unselectable"
@@ -411,18 +403,17 @@ class StatusBar extends Component {
 									<span className="fa fa-xs fa-stop" />
 								</span>
 							</Tooltip> : null }
-							{( isOwner || isElectron ) ?
 							<Tooltip
 								placement="bottom"
-								tooltip={this.state.isBroadcasting ? 'Close Video Broadcast' : 'Open Video Broadcast'}
+								tooltip={this.state.openedVideoChat ? 'Close Video Chat' : 'Open Video Chat'}
 							>
 								<span role="button" tabIndex={0}
-									onClick={this.toggleBroadcast} onKeyPress={this.toggleBroadcast}
+									onClick={this.toggleVideoChat} onKeyPress={this.toggleVideoChat}
 									className="statusbar-broadcast-video statusbar-icon"
 								>
 									<span className="fa fa-xs fa-video" />
 								</span>
-							</Tooltip> : null }
+							</Tooltip>
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
 							<Tooltip placement="bottom" tooltip={session.live ? 'The connection to the ISLE server is active' : 'The connection to the ISLE server is broken'} >
 								<div className="statusbar-presence" style={{
