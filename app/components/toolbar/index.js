@@ -8,6 +8,8 @@ import Calculator from 'components/calculator';
 import Draggable from 'components/draggable';
 import Queue from 'components/queue';
 import Tooltip from 'components/tooltip';
+import Sketchpad from 'components/sketchpad';
+import Panel from 'components/panel';
 import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
@@ -32,6 +34,7 @@ class Toolbar extends Component {
 			calculator: false,
 			queue: false,
 			help: false,
+			sketchpad: false,
 			queueSize: 0,
 			elements: [],
 			showToolbar: true
@@ -89,6 +92,12 @@ class Toolbar extends Component {
 	toggleQueue = () => {
 		this.setState({
 			queue: !this.state.queue
+		});
+	}
+
+	toggleSketchpad = () => {
+		this.setState({
+			sketchpad: !this.state.sketchpad
 		});
 	}
 
@@ -155,18 +164,45 @@ class Toolbar extends Component {
 							<Tooltip placement="right" tooltip="# of open questions" >
 								<span className="toolbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
 							</Tooltip>
-						</Button> : null }
-						<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
-							<Button
-								variant="light"
-								className="toolbar-button"
-								onClick={this.toggleHelp}
-								onKeyPress={this.toggleHelp}
-							>
-								<span className="fa fa-lg fa-book toolbar-icon" />
-							</Button>
-						</Tooltip>
+						</Button> : null
+					}
+					<Tooltip tooltip={`${this.state.sketchpad ? 'Close' : 'Open'} sketchpad`} placement="right" >
+						<Button
+							variant="light"
+							className="toolbar-button"
+							onClick={this.toggleSketchpad}
+							onKeyPress={this.toggleSketchpad}
+						>
+							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
+						</Button>
+					</Tooltip>
+					<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
+						<Button
+							variant="light"
+							className="toolbar-button"
+							onClick={this.toggleHelp}
+							onKeyPress={this.toggleHelp}
+						>
+							<span className="fa fa-lg fa-book toolbar-icon" />
+						</Button>
+					</Tooltip>
 				</ButtonGroup>
+				{this.state.sketchpad ?
+					<Draggable>
+						<Panel
+							title="Sketchpad"
+							style={{ width: 'fit-content', maxWidth: 'fit-content', position: 'fixed', zIndex: 1004 }}
+							header={<span>
+								<span className="unselectable" >Sketchpad</span>
+								<button className="calc-hide-button fa fa-times" onClick={this.toggleSketchpad} />
+							</span>}
+						>
+							<Sketchpad
+								id={`${session.namespaceName}-${session.lessonName}-toolbar-sketchpad`}
+							/>
+						</Panel>
+					</Draggable>: null
+				}
 				<Calculator show={this.state.calculator} onHide={this.toggleCalculator} />
 				<Queue
 					id="main_queue"
