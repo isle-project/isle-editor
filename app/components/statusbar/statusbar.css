@@ -160,7 +160,7 @@
 	bottom: -1px;
 	height: auto;
 	position: absolute;
-	right: 20px;
+	right: 0px;
 	font-size: 12px;
 	font-family: Open Sans Condensed;
 	font-weight: 700;
@@ -168,29 +168,40 @@
 }
 
 #Lesson .statusbar-voice {
-	left: 10px;
+	left: 0px;
 	bottom: 5px;
 	position: absolute;
 	z-index: 2;
 }
 
 #Lesson .statusbar-presentation-mode {
-	left: 46px;
+	left: 36px;
 	bottom: 3px;
 }
 
 #Lesson .statusbar-blackscreen-mode {
-	left: 64px;
+	left: 56px;
 	bottom: 3px;
 }
 
-#Lesson .statusbar-broadcast-video {
-	left: 82px;
-	bottom: 3px;
+#Lesson .statusbar-video-chat {
+	right: 60px;
+	bottom: 0px;
+	font-size: 12px;
+	box-shadow: none;
+	padding: 0;
+}
+
+#Lesson .statusbar-text-chat {
+	right: 42px;
+	bottom: 0px;
+	font-size: 12px;
+	box-shadow: none;
+	padding: 0;
 }
 
 #Lesson .statusbar-transcript-editor {
-	left: 28px;
+	left: 18px;
 	bottom: 3px;
 }
 

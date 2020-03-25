@@ -10,12 +10,13 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
-import VideoChat from 'components/video-chat';
 import Chats from 'components/statusbar/chats';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
 import isElectron from 'utils/is-electron';
+import VideoChatButton from 'components/video-chat-button';
+import ChatButton from 'components/chat-button';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
@@ -227,15 +228,6 @@ class StatusBar extends Component {
 		}
 	}
 
-	toggleVideoChat = ( event ) => {
-		if ( event ) {
-			event.stopPropagation();
-		}
-		this.setState({
-			openedVideoChat: !this.state.openedVideoChat
-		});
-	}
-
 	onMouseOver = () => {
 		if ( this.hidden ) {
 			this.statusbar.style.opacity = 1.0;
@@ -361,14 +353,11 @@ class StatusBar extends Component {
 				</div>
 			</Tooltip>
 		</Fragment>;
+		const roomName = session.namespaceName + '/' + session.lessonName;
 		/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Fragment>
 				<Chats />
-				{ this.state.openedVideoChat ? <VideoChat
-					onHide={this.toggleVideoChat}
-					roomName={session.namespaceName + '/' + session.lessonName}
-				/> : null }
 				<div>
 					<div
 						className="statusbar unselectable"
@@ -403,17 +392,6 @@ class StatusBar extends Component {
 									<span className="fa fa-xs fa-stop" />
 								</span>
 							</Tooltip> : null }
-							<Tooltip
-								placement="bottom"
-								tooltip={this.state.openedVideoChat ? 'Close Video Chat' : 'Open Video Chat'}
-							>
-								<span role="button" tabIndex={0}
-									onClick={this.toggleVideoChat} onKeyPress={this.toggleVideoChat}
-									className="statusbar-broadcast-video statusbar-icon"
-								>
-									<span className="fa fa-xs fa-video" />
-								</span>
-							</Tooltip>
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
 							<Tooltip placement="bottom" tooltip={session.live ? 'The connection to the ISLE server is active' : 'The connection to the ISLE server is broken'} >
 								<div className="statusbar-presence" style={{
@@ -432,6 +410,24 @@ class StatusBar extends Component {
 							>
 								{ session.anonymous ? 'Anonymous' : session.user.name }
 							</div>
+							<VideoChatButton
+								for={roomName}
+								buttonVariant="link"
+								buttonLabel={<i className="fa fa-xs fa-video"></i>}
+								tooltipPlacement="bottom"
+								tooltip="Video Chat"
+								className="statusbar-icon statusbar-video-chat"
+								onClick={preventPropagation}
+							/>
+							<ChatButton
+								for={roomName}
+								buttonVariant="link"
+								buttonLabel={<i className="fas fa-comments"></i>}
+								tooltipPlacement="bottom"
+								tooltip="Text Chat"
+								className="statusbar-icon statusbar-text-chat"
+								onClick={preventPropagation}
+							/>
 							{ session.anonymous ?
 								<div>
 									<Button

@@ -3,6 +3,8 @@
 	width: fit-content;
 	position: fixed;
 	z-index: 1004;
+	top: 10px;
+	left: 10px;
 }
 
 .video-chat-button {

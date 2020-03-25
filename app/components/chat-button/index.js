@@ -88,7 +88,8 @@ class ChatButton extends Component {
 		});
 	}
 
-	handleClick = () => {
+	handleClick = ( event ) => {
+		this.props.onClick( event );
 		debug( 'Handle click to join chat...' );
 		const session = this.context;
 		let opened = this.state.opened;
@@ -107,13 +108,28 @@ class ChatButton extends Component {
 
 	render() {
 		const nMessages = this.state.nMessages;
+		let label;
+		let variant;
+		if ( this.props.buttonLabel ) {
+			label = this.props.buttonLabel;
+		} else {
+			label = this.state.opened ? 'Leave Chat' : 'Join Chat';
+		}
+		if ( this.props.buttonVariant ) {
+			variant = this.props.buttonVariant;
+		} else {
+			variant = this.state.nMembers > 0 ? 'success' : 'secondary';
+		}
 		let button = <Button
-			variant={this.state.nMembers > 0 ? 'success' : 'secondary'}
+			className={this.props.className}
+			variant={variant}
 			size={this.props.size}
 			onClick={this.handleClick}
 			style={this.props.style}
 		>
-			<span style={{ pointerEvents: 'none' }} >{this.state.opened ? 'Leave Chat' : 'Join Chat' }</span>
+			<span style={{ pointerEvents: 'none' }} >
+				{label}
+			</span>
 			{ nMessages ? <Badge
 				variant="dark"
 				style={{
@@ -124,9 +140,15 @@ class ChatButton extends Component {
 				}}
 			>{nMessages}</Badge> : null }
 		</Button>;
+		let tooltip;
+		if ( this.props.tooltip ) {
+			tooltip = this.props.tooltip;
+		} else {
+			tooltip = `${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`;
+		}
 		if ( this.props.showTooltip ) {
 			button = <Tooltip
-				tooltip={`${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`}
+				tooltip={tooltip}
 				placement={this.props.tooltipPlacement}
 			>
 				{button}
@@ -145,16 +167,26 @@ class ChatButton extends Component {
 
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
+	buttonLabel: PropTypes.node,
 	showTooltip: PropTypes.bool,
+	tooltip: PropTypes.string,
 	size: PropTypes.string,
+	buttonVariant: PropTypes.string,
 	tooltipPlacement: PropTypes.oneOf([ 'left', 'top', 'right', 'bottom' ]),
+	onClick: PropTypes.func,
+	className: PropTypes.string,
 	style: PropTypes.object
 };
 
 ChatButton.defaultProps = {
+	buttonLabel: null,
 	showTooltip: true,
+	tooltip: null,
 	size: 'sm',
+	buttonVariant: null,
 	tooltipPlacement: 'top',
+	onClick() {},
+	className: '',
 	style: {}
 };
 

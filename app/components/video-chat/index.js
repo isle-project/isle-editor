@@ -98,20 +98,20 @@ class VideoChat extends Component {
 		});
 	}
 
-	handleClose = () => {
+	handleClose = ( event ) => {
 		if ( this.context.isOwner() ) {
 			this.api.executeCommand( 'hangup' );
 		}
 		this.props.onHide();
 	}
 
-	handleCompress = () => {
+	handleCompress = ( event ) => {
 		this.setState({
 			minimized: !this.state.minimized
 		});
 	}
 
-	stopScreensharing = () => {
+	stopScreensharing = ( event ) => {
 		this.api.executeCommand( 'toggleShareScreen' );
 	}
 
