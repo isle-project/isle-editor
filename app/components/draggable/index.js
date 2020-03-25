@@ -16,7 +16,7 @@ function onDraggableStop( event ) {
 		let newWindow = event.path[ 1 ];
 		for ( let i = 0; i < event.path.length; i++ ) {
 			const elem = event.path[ i ];
-			if ( elem.classList.contains( 'react-draggable-dragged' ) ) {
+			if ( elem.classList && elem.classList.contains( 'react-draggable-dragged' ) ) {
 				newWindow = elem;
 				break;
 			}
