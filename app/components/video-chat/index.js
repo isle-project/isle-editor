@@ -24,12 +24,11 @@ const INTERFACE_CONFIG = {
 	DISPLAY_WELCOME_PAGE_CONTENT: false,
 	TOOLBAR_BUTTONS: [
 		'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-		'fodeviceselection', 'profile', 'info', 'recording',
-		'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-		'videoquality', 'filmstrip', 'invite', 'shortcuts',
-		'tileview', 'download', 'help', 'mute-everyone'
+		'fodeviceselection', 'profile', 'settings',
+		'videoquality', 'filmstrip', 'shortcuts',
+		'tileview', 'download', 'help'
 	],
-	SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator' ],
+	SETTINGS_SECTIONS: [ 'devices', 'language' ],
 	MOBILE_APP_PROMO: true,
 	HIDE_KICK_BUTTON_FOR_GUESTS: true,
 	SHOW_CHROME_EXTENSION_BANNER: false
@@ -43,12 +42,36 @@ class VideoChat extends Component {
 		super( props );
 
 		this.state = {
-			minimized: false
+			minimized: false,
+			screensharing: false
 		};
 	}
 
 	componentDidMount() {
 		const session = this.context;
+		const isOwner = session.isOwner();
+		if ( isOwner ) {
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'mute-everyone' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'mute-everyone' );
+			}
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'recording' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'recording' );
+			}
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'livestreaming' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'livestreaming' );
+			}
+			if ( !INTERFACE_CONFIG.SETTINGS_SECTIONS.includes( 'moderator' ) ) {
+				INTERFACE_CONFIG.SETTINGS_SECTIONS.push( 'moderator' );
+			}
+		} else {
+			// Case: User is not an owner
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'raisehand' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'raisehand' );
+			}
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'sharedvideo' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'sharedvideo' );
+			}
+		}
 		const options = {
 			roomName: this.props.roomName,
 			width: max( 0.3 * window.innerWidth, 400 ),
@@ -62,10 +85,19 @@ class VideoChat extends Component {
 				startVideoMuted: !session.isOwner(),
 				startAudioMuted: !session.isOwner()
 			},
-			interfaceConfigOverwrite: INTERFACE_CONFIG
+			interfaceConfigOverwrite: INTERFACE_CONFIG,
+			noSSL: false
 		};
-		const api = new JitsiMeetExternalAPI( DOMAIN, options );
-		api.executeCommand( 'displayName', session.user.name );
+		this.api = new JitsiMeetExternalAPI( DOMAIN, options );
+		this.api.executeCommand( 'displayName', session.user.name );
+		this.api.executeCommand( 'subject', this.props.roomSubject );
+
+		this.api.addEventListener( 'screenSharingStatusChanged', ( status ) => {
+			this.setState({
+				screensharing: status.on,
+				minimized: status.on
+			});
+		});
 	}
 
 	handleCompress = () => {
@@ -74,9 +106,13 @@ class VideoChat extends Component {
 		});
 	}
 
+	stopScreensharing = () => {
+		this.api.executeCommand( 'toggleShareScreen' );
+	}
+
 	render() {
 		return ( <Draggable>
-			<Panel className="broadcast-video-panel" >
+			<Panel className="video-chat-panel" >
 				<div
 					ref={( div ) => {
 						this.videoChatContainer = div;
@@ -85,12 +121,16 @@ class VideoChat extends Component {
 						display: this.state.minimized ? 'none' : 'inherit'
 					}}
 				></div>
-				{this.state.minimized ? <h3 style={{ marginTop: 22 }}>Video active</h3> : null}
+				{this.state.minimized ? <h3 style={{ marginTop: 22 }}>
+					{this.state.screensharing ? <span>
+						Sharing screen <Button onClick={this.stopScreensharing} variant="secondary" size="sm">Stop sharing</Button>
+					</span> : 'Video active'}
+				</h3> : null}
 				<Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'} >
 					<Button
 						size="sm"
 						onClick={this.handleCompress}
-						className="broadcast-minimized-button"
+						className="video-chat-minimized-button"
 					>
 						<i className={this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'} ></i>
 					</Button>
@@ -99,7 +139,7 @@ class VideoChat extends Component {
 					<Button
 						size="sm"
 						onClick={this.props.onHide}
-						className="broadcast-video-button"
+						className="video-chat-button"
 					>
 						<i className="fas fa-video-slash"></i>
 					</Button>
