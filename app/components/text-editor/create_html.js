@@ -145,7 +145,7 @@ const createHTML = ( title, body ) => `<!doctype html>
 				opacity: 1;
 			}
 		</style>
-		<script src="https://use.fontawesome.com/1ef7eff9d5.js"></script>
+		<script src="https://kit.fontawesome.com/3a7c01b4b9.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 	${body}
