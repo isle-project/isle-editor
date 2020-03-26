@@ -1,1 +1,1 @@
-export const DOMAIN = 'meet.jit.si';
+export const DOMAIN = 'meet.kymetis.com';
