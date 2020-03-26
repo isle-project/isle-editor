@@ -1286,14 +1286,22 @@ class Sketchpad extends Component {
 					const elem = elems[ i ];
 					elem.selected = false;
 					const points = elem.points;
-					for ( let j = 0, l = points.length; j < l; j += 2 ) {
-						const x = points[ j ] * this.canvas.width;
-						const y = points[ j+1 ] * this.canvas.height;
-						if ( this.ctx.isPointInPath( x, y ) ) {
-							elem.selected = true;
-							selected.push( elem );
-							break;
+					if ( points ) {
+						for ( let j = 0, l = points.length; j < l; j += 2 ) {
+							const x = points[ j ] * this.canvas.width;
+							const y = points[ j+1 ] * this.canvas.height;
+							if ( this.ctx.isPointInPath( x, y ) ) {
+								elem.selected = true;
+								selected.push( elem );
+								break;
+							}
 						}
+					} else if (
+						elem.x && elem.y &&
+						this.ctx.isPointInPath( elem.x * this.canvas.width, elem.y * this.canvas.height )
+					) {
+						elem.selected = true;
+						selected.push( elem );
 					}
 				}
 				if ( selected.length > 0 ) {
