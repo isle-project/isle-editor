@@ -191,7 +191,7 @@ class Toolbar extends Component {
 					<Draggable>
 						<Panel
 							title="Sketchpad"
-							style={{ width: 'fit-content', maxWidth: 'fit-content', position: 'fixed', zIndex: 1004 }}
+							style={{ maxWidth: 'none', position: 'fixed', zIndex: 1004 }}
 							header={<span>
 								<span className="unselectable" >Sketchpad</span>
 								<button className="calc-hide-button fa fa-times" onClick={this.toggleSketchpad} />
