@@ -172,6 +172,7 @@ class Sketchpad extends Component {
 			color: props.color,
 			brushSize: props.brushSize,
 			currentPage: loc ? loc - 1 : 0,
+			fill: props.fill,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
@@ -708,7 +709,7 @@ class Sketchpad extends Component {
 		if ( page ) {
 			debug( `Found background for page ${pageNumber}...` );
 			let ratio;
-			if ( this.props.fill === 'vertical' ) {
+			if ( this.state.fill === 'vertical' ) {
 				ratio = this.state.canvasHeight / page.getViewport({ scale: 1.0 }).height;
 			} else {
 				ratio = this.state.canvasWidth / page.getViewport({ scale: 1.0 }).width;
@@ -718,7 +719,7 @@ class Sketchpad extends Component {
 			while ( textLayer.firstChild ) {
 				textLayer.removeChild( textLayer.firstChild );
 			}
-			if ( this.props.fill === 'vertical' ) {
+			if ( this.state.fill === 'vertical' ) {
 				this.canvas.height = viewport.height * DPR;
 				this.canvas.width = viewport.width * DPR;
 				this.canvas.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
@@ -734,10 +735,14 @@ class Sketchpad extends Component {
 			} else {
 				this.canvas.height = viewport.height * DPR;
 				this.canvas.width = ( viewport.width - 15 ) * DPR; // account for vertical scrollbar
+				this.canvas.style.left = '0px';
+				this.canvas.style.border = 'none';
 				this.canvas.style.height = `${viewport.height}px`;
 				this.canvas.style.width = `${viewport.width - 15}px`;
 				textLayer.style.width = `${viewport.width-15}px`;
 				textLayer.style.height = `${viewport.height}px`;
+				this.leftMargin = 0;
+				textLayer.style.left = '0px';
 			}
 
 			// Scale all drawing operations by the DPR:
@@ -2328,6 +2333,25 @@ class Sketchpad extends Component {
 				<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
 			</PopoverContent>
 		</Popover>;
+		let toggleFillButton;
+		if ( this.props.pdf ) {
+			toggleFillButton = <TooltipButton
+				size="sm"
+				tooltip={this.state.fill === 'vertical' ? 'Click to fill entire sketchpad width with page' : 'Click to fit page on the sketchpad'}
+				onClick={() => {
+					let fill;
+					if ( this.state.fill === 'vertical' ) {
+						fill = 'horizontal';
+					} else {
+						fill = 'vertical';
+					}
+					this.setState({
+						fill
+					}, this.redraw );
+				}}
+				glyph={this.state.fill === 'vertical' ? 'fas fa-grip-lines' : 'fas fa-grip-lines-vertical'}
+			/>;
+		}
 		return (
 			<Fragment>
 				<Gate owner>
@@ -2338,6 +2362,7 @@ class Sketchpad extends Component {
 								<div className="fa fa-eye" />
 							</Button>
 						</OverlayTrigger>
+						{toggleFillButton}
 					</ButtonGroup>
 				</Gate>
 				<Gate notOwner >
@@ -2355,6 +2380,7 @@ class Sketchpad extends Component {
 							}}
 							glyph={this.state.showInstructorAnnotations ? 'fa fa-toggle-on' : 'fa fa-toggle-off'}
 						/>
+						{toggleFillButton}
 					</ButtonGroup>
 				</Gate>
 			</Fragment>
