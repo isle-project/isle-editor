@@ -353,7 +353,7 @@ class StatusBar extends Component {
 				</div>
 			</Tooltip>
 		</Fragment>;
-		const roomName = session.namespaceName + '/' + session.lessonName;
+		const roomName = session.namespaceName + '-' + session.lessonName;
 		/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Fragment>
