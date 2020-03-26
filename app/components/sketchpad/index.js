@@ -29,6 +29,7 @@ import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
+import sqrt from '@stdlib/math/base/special/sqrt';
 import noop from '@stdlib/utils/noop';
 import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
@@ -151,6 +152,7 @@ class Sketchpad extends Component {
 		super( props );
 
 		this.force = 1.0;
+		this.scaleRatio = 1.0;
 		this.elements = new Array( props.noPages );
 		this.backgrounds = new Array( props.noPages );
 		this.sharedElements = new Array( props.noPages );
@@ -709,10 +711,11 @@ class Sketchpad extends Component {
 		if ( page ) {
 			debug( `Found background for page ${pageNumber}...` );
 			let ratio;
+			const vp1 = page.getViewport({ scale: 1.0 });
 			if ( this.state.fill === 'vertical' ) {
-				ratio = this.state.canvasHeight / page.getViewport({ scale: 1.0 }).height;
+				ratio = this.state.canvasHeight / vp1.height;
 			} else {
-				ratio = this.state.canvasWidth / page.getViewport({ scale: 1.0 }).width;
+				ratio = this.state.canvasWidth / vp1.width;
 			}
 			const viewport = page.getViewport({ scale: ratio });
 			const textLayer = this.textLayer;
@@ -744,6 +747,9 @@ class Sketchpad extends Component {
 				this.leftMargin = 0;
 				textLayer.style.left = '0px';
 			}
+
+			const diagonalRes = sqrt( this.canvas.width * this.canvas.width + this.canvas.height * this.canvas.height );
+			this.scaleRatio = diagonalRes / ( DPR * 1768 );
 
 			// Scale all drawing operations by the DPR:
 			this.ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
@@ -1123,7 +1129,7 @@ class Sketchpad extends Component {
 	drawLine = ({ startX, startY, endX, endY, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
-			ctx.lineWidth = lineWidth * ( this.canvas.width / ( DPR * this.state.canvasWidth ) );
+			ctx.lineWidth = lineWidth * this.scaleRatio;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
 			ctx.shadowBlur = ctx.lineWidth * 1.5;
@@ -1139,7 +1145,7 @@ class Sketchpad extends Component {
 	drawCurve = ({ points, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
-			ctx.lineWidth = lineWidth * ( this.canvas.width / ( DPR * this.state.canvasWidth ) );
+			ctx.lineWidth = lineWidth * this.scaleRatio;
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
 			if ( !selected ) {
