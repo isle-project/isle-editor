@@ -908,7 +908,7 @@ class Sketchpad extends Component {
 		}
 	}
 
-	mousePosition = ( evt, adjust = true ) => {
+	mousePosition = ( evt ) => {
 		let clientX = evt.clientX;
 		let clientY = evt.clientY;
 
@@ -916,12 +916,6 @@ class Sketchpad extends Component {
 		if ( evt.touches && evt.touches.length > 0 ) {
 			clientX = evt.touches[ 0 ].clientX;
 			clientY = evt.touches[ 0 ].clientY;
-		}
-		if ( adjust === false ) {
-			return {
-				x: clientX,
-				y: clientY
-			};
 		}
 		// Return position inside of the canvas element:
 		const rect = this.canvas.getBoundingClientRect();
@@ -1590,13 +1584,12 @@ class Sketchpad extends Component {
 
 	handleEnter = ( event ) => {
 		debug( 'Check if user hit ENTER...' );
-		const rect = this.canvas.getBoundingClientRect();
-		const x = parseInt( this.textInput.style.left, 10 ) - rect.left;
-		const y = parseInt( this.textInput.style.top, 10 ) - rect.top;
+		const x = parseInt( this.textInput.style.left, 10 );
+		const y = parseInt( this.textInput.style.top, 10 ) - ( this.state.fontSize * 1.2 );
 		if ( event.keyCode === 13 ) {
 			const value = this.textInput.value;
 			this.textInput.value = '';
-			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + this.state.fontSize ) + 'px';
+			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + ( this.state.fontSize * 1.2 ) ) + 'px';
 			const session = this.context;
 			const username = session.user.email || session.anonymousIdentifier;
 			const currentPage = this.state.currentPage;
@@ -1667,7 +1660,7 @@ class Sketchpad extends Component {
 	handleClick = ( event ) => {
 		debug( 'Handle click event...' );
 		if ( this.state.mode === 'text' ) {
-			const { x, y } = this.mousePosition( event, false );
+			const { x, y } = this.mousePosition( event );
 			const input = this.textInput;
 			input.style.left = x + 'px';
 			input.style.top = y + 'px';
