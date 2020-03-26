@@ -45,6 +45,7 @@
 	left: 50%;
 	top: 50%;
 	pointer-events: none;
+	width: fit-content;
 }
 
 .sketch-delete-button {

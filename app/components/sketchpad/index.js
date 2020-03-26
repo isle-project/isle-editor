@@ -1584,7 +1584,7 @@ class Sketchpad extends Component {
 
 	handleEnter = ( event ) => {
 		debug( 'Check if user hit ENTER...' );
-		const x = parseInt( this.textInput.style.left, 10 );
+		const x = parseInt( this.textInput.style.left, 10 ) - this.leftMargin;
 		const y = parseInt( this.textInput.style.top, 10 ) - ( this.state.fontSize * 1.2 );
 		if ( event.keyCode === 13 ) {
 			const value = this.textInput.value;
@@ -1662,7 +1662,7 @@ class Sketchpad extends Component {
 		if ( this.state.mode === 'text' ) {
 			const { x, y } = this.mousePosition( event );
 			const input = this.textInput;
-			input.style.left = x + 'px';
+			input.style.left = String( x + this.leftMargin ) + 'px';
 			input.style.top = y + 'px';
 			const width = max( this.state.canvasWidth - x, 60 );
 			debug( `Resize to width ${width}...` );
