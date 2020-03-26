@@ -39,7 +39,7 @@
 }
 
 .sketch-text-input {
-	position: fixed;
+	position: absolute;
 	background: transparent;
 	border: none;
 	left: 50%;
