@@ -1123,10 +1123,10 @@ class Sketchpad extends Component {
 	drawLine = ({ startX, startY, endX, endY, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
-			ctx.lineWidth = lineWidth;
+			ctx.lineWidth = lineWidth * ( this.canvas.width / ( DPR * this.state.canvasWidth ) );
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
-			ctx.shadowBlur = 0;
+			ctx.shadowBlur = ctx.lineWidth * 1.5;
 			ctx.strokeStyle = selected ? 'orange' : color;
 			ctx.beginPath();
 			ctx.moveTo( startX, startY );
@@ -1139,12 +1139,12 @@ class Sketchpad extends Component {
 	drawCurve = ({ points, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
 		if ( ctx ) {
-			ctx.lineWidth = lineWidth;
+			ctx.lineWidth = lineWidth * ( this.canvas.width / ( DPR * this.state.canvasWidth ) );
 			ctx.lineCap = 'round';
 			ctx.lineJoin = 'round';
 			if ( !selected ) {
 				ctx.shadowColor = 'rgba(128, 128, 128, 0.2)';
-				ctx.shadowBlur = lineWidth * 2.0;
+				ctx.shadowBlur = ctx.lineWidth * 2.0;
 				ctx.strokeStyle = color;
 				ctx.beginPath();
 				curve( ctx, points, this.canvas.width / DPR, this.canvas.height / DPR );
