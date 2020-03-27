@@ -342,7 +342,7 @@ class StatusBar extends Component {
 				evt.stopPropagation();
 			}
 		};
-		const isOwner = session.isOwner();
+		const isOwner = session.isOwner() || isElectron;
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		const picture = session.user.picture;
 		const duration = <Fragment>
@@ -374,7 +374,7 @@ class StatusBar extends Component {
 						<div className="statusbar-left"></div>
 						<div className="statusbar-middle">
 							<VoiceControl session={this.context} />
-							{( isOwner || isElectron ) ?
+							{isOwner ?
 								<Tooltip placement="bottom" tooltip="Enter presentation mode (F7)" >
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
@@ -383,15 +383,15 @@ class StatusBar extends Component {
 										<span className="fa fa-xs fa-eye-slash" />
 									</span>
 								</Tooltip> : null }
-							{( isOwner || isElectron ) ?
-							<Tooltip placement="bottom" tooltip="Black out screen for everyone" >
-								<span role="button" tabIndex={0}
-									onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
-									className="statusbar-blackscreen-mode statusbar-icon"
-								>
-									<span className="fa fa-xs fa-stop" />
-								</span>
-							</Tooltip> : null }
+							{isOwner ?
+								<Tooltip placement="bottom" tooltip="Black out screen for everyone" >
+									<span role="button" tabIndex={0}
+										onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
+										className="statusbar-blackscreen-mode statusbar-icon"
+									>
+										<span className="fa fa-xs fa-stop" />
+									</span>
+								</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
 							<Tooltip placement="bottom" tooltip={session.live ? 'The connection to the ISLE server is active' : 'The connection to the ISLE server is broken'} >
 								<div className="statusbar-presence" style={{
