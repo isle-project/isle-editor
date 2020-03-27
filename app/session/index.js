@@ -173,8 +173,8 @@ class Session {
 		// YAML configuration object:
 		this.config = config;
 
-		// Jitsi web token:
-		this.jitsiToken = null;
+		// Jitsi web token + server address:
+		this.jitsi = null;
 
 		// IDs in the database:
 		this.lessonID = null;
@@ -559,10 +559,10 @@ class Session {
 		.then( res => res.json() )
 		.then( json => {
 			this.update( RECEIVED_JITSI_TOKEN );
-			this.jitsiToken = json.token;
+			this.jitsi = json;
 		})
 		.catch( err => {
-			this.jitsiToken = null;
+			this.jitsi = null;
 			debug( 'Encountered an error '+err.message );
 		});
 	}
@@ -1526,7 +1526,7 @@ class Session {
 			if ( !userRights ) {
 				this.getUserRights();
 			}
-			if ( !this.jitsiToken ) {
+			if ( !this.jitsi ) {
 				this.getJitsiToken();
 			}
 			this.update( LOGGED_IN );

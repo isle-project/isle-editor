@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
-import { DOMAIN } from 'constants/jitsi.js';
 import SessionContext from 'session/context.js';
 import './video_chat.css';
 
@@ -84,9 +83,9 @@ class VideoChat extends Component {
 			},
 			interfaceConfigOverwrite: INTERFACE_CONFIG,
 			noSSL: false,
-			jwt: session.jitsiToken
+			jwt: session.jitsi.token
 		};
-		this.api = new JitsiMeetExternalAPI( DOMAIN, options );
+		this.api = new JitsiMeetExternalAPI( session.jitsi.server, options );
 		this.api.executeCommand( 'displayName', session.user.name );
 		this.api.executeCommand( 'subject', this.props.roomSubject );
 		this.api.executeCommand( 'avatarUrl', session.user.picture );

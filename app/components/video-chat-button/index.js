@@ -56,7 +56,7 @@ class VideoChatButton extends Component {
 
 	render() {
 		const session = this.context;
-		if ( !session.jitsiToken ) {
+		if ( !session.jitsi ) {
 			return null;
 		}
 		let label;
