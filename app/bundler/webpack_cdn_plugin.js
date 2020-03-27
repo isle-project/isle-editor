@@ -15,6 +15,7 @@
 
 import path, { resolve } from 'path';
 import logger from 'debug';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import readJSON from '@stdlib/fs/read-json';
 import isArray from '@stdlib/assert/is-array';
 
@@ -69,7 +70,7 @@ class WebpackCdnPlugin {
 		const getArgs = [ this.url, this.prefix, this.prod, output.publicPath ];
 
 		compiler.hooks.compilation.tap( 'WebpackCdnPlugin', ( compilation ) => {
-			compilation.hooks.htmlWebpackPluginBeforeHtmlGeneration.tapAsync('WebpackCdnPlugin', ( data, callback ) => {
+			HtmlWebpackPlugin.getHooks( compilation ).beforeAssetTagGeneration.tapAsync( 'WebpackCdnPlugin', ( data, callback ) => {
 				const moduleId = data.plugin.options.cdnModule;
 				if ( moduleId !== false ) {
 					let modules = this.modules[moduleId || Reflect.ownKeys(this.modules)[0]];
@@ -91,7 +92,7 @@ class WebpackCdnPlugin {
 			compiler.hooks.afterPlugins.tap('WebpackCdnPlugin', compiler => {
 			compiler.hooks.thisCompilation.tap('WebpackCdnPlugin', () => {
 				compiler.hooks.compilation.tap('HtmlWebpackPluginHooks', compilation => {
-					compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync('WebpackCdnPlugin', this.alterAssetTags.bind(this));
+					HtmlWebpackPlugin.getHooks( compilation ).alterAssetTags.tapAsync('WebpackCdnPlugin', this.alterAssetTags.bind(this));
 				});
 			});
 			});
