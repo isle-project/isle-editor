@@ -27,9 +27,9 @@ import SpeechInterface from 'speech-interface';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
 	DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
-	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION,
-	MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT, OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS,
-	RECEIVED_CHAT_HISTORY, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
+	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
+	OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS, RECEIVED_CHAT_HISTORY,
+	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT } from 'constants/events.js';
@@ -172,6 +172,9 @@ class Session {
 
 		// YAML configuration object:
 		this.config = config;
+
+		// Jitsi web token:
+		this.jitsiToken = null;
 
 		// IDs in the database:
 		this.lessonID = null;
@@ -544,6 +547,24 @@ class Session {
 				});
 			})
 			.catch( error => clbk( error ) );
+	}
+
+	getJitsiToken = () => {
+		let url = this.server+'/get_jitsi_token';
+		fetch( url, {
+			headers: {
+				'Authorization': 'JWT ' + this.user.token
+			}
+		})
+		.then( res => res.json() )
+		.then( json => {
+			this.update( RECEIVED_JITSI_TOKEN );
+			this.jitsiToken = json.token;
+		})
+		.catch( err => {
+			this.jitsiToken = null;
+			debug( 'Encountered an error '+err.message );
+		});
 	}
 
 	/**
@@ -1504,6 +1525,9 @@ class Session {
 			this.socketConnect();
 			if ( !userRights ) {
 				this.getUserRights();
+			}
+			if ( !this.jitsiToken ) {
+				this.getJitsiToken();
 			}
 			this.update( LOGGED_IN );
 		})

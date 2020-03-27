@@ -83,7 +83,8 @@ class VideoChat extends Component {
 				startWithAudioMuted: !isOwner
 			},
 			interfaceConfigOverwrite: INTERFACE_CONFIG,
-			noSSL: false
+			noSSL: false,
+			jwt: session.jitsiToken
 		};
 		this.api = new JitsiMeetExternalAPI( DOMAIN, options );
 		this.api.executeCommand( 'displayName', session.user.name );
