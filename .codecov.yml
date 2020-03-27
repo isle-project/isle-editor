@@ -47,6 +47,9 @@ coverage:
         # Target coverage percentage for a commit (if "auto", must increase from parent commit):
         target: auto
 
+        # Allow the coverage to drop by 2%:
+        threshold: 2;
+
         # Post an "error" commit status if a report is not uploaded for a given commit:
         if_no_uploads: error
 
