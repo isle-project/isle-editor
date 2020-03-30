@@ -93,7 +93,7 @@ class Collapse extends Component {
 
 	render() {
 		return (
-			<div className="vertical-slider">
+			<div className="vertical-slider" style={this.props.style} >
 				{ this.renderHeader() }
 				<VSBody className={this.state.className}>
 					{this.props.children}
@@ -112,6 +112,7 @@ Collapse.propTypes = {
 	headerClassName: PropTypes.string,
 	defaultVisible: PropTypes.bool,
 	visible: PropTypes.bool,
+	style: PropTypes.object,
 	onClick: PropTypes.func
 };
 
@@ -121,6 +122,7 @@ Collapse.defaultProps = {
 	headerStyle: null,
 	defaultVisible: false,
 	visible: null,
+	style: {},
 	onClick() {}
 };
 
