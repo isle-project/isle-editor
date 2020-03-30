@@ -209,10 +209,9 @@ class Queue extends Component {
 	}
 
 	renderChatButton = ( row ) => {
-		const chatID = 'Queue_'+row.original.name+'_'+row.original.spot;
-		return ( <Tooltip placement="left" tooltip="Start chat with student" >
-			<ChatButton showTooltip={false} for={chatID} />
-		</Tooltip> );
+		const session = this.context;
+		const chatID = row.original.name+'-'+session.user.name;
+		return <ChatButton tooltip="Start chat with student" for={chatID} />;
 	}
 
 	renderButtonRemovable = ( cellInfo ) => {
