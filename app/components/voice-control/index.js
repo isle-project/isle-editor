@@ -58,28 +58,27 @@ class VoiceControl extends Component {
 
 		this.state = {
 			active: false,
-			show: context.voiceRecordingStatus
+			show: context ? context.voiceRecordingStatus : false
 		};
 	}
 
 	componentDidMount() {
-		if ( this.props.id ) {
-			const session = this.context;
+		const session = this.context;
+		if ( session ) {
 			session.speechInterface.register({
 				name: this.props.id,
 				reference: this.props.reference,
 				commands: this.props.commands,
 				control: this
 			});
+			this.unsubscribe = session.subscribe( ( type, value ) => {
+				if ( type === VOICE_RECORDING_STATUS ) {
+					this.setState({
+						show: value
+					});
+				}
+			});
 		}
-		const session = this.context;
-		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === VOICE_RECORDING_STATUS ) {
-				this.setState({
-					show: value
-				});
-			}
-		});
 	}
 
 	setInactive = () => {
