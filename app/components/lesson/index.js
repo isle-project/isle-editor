@@ -22,6 +22,13 @@ const NOTIFICATION_STYLE = {
 		tc: {
 			margin: '30px auto 0px auto'
 		}
+	},
+	NotificationItem: { // Override the notification item
+		info: {
+			border: 'solid 8px #007bff',
+			borderRadius: 6,
+			padding: 20
+		}
 	}
 };
 
