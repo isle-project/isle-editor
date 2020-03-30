@@ -1,0 +1,52 @@
+.engagement-meter-panel {
+	position: fixed;
+	bottom: 30%;
+	width: 250px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 100;
+}
+
+.engagement-table {
+	font-family: Open Sans Condensed;
+}
+
+.engagement-table-pic {
+	width: 32px;
+	height: 32px;
+	transition: transform 0.2s;
+	border: solid 1px darkgray;
+	border-radius: 0.25rem;
+	cursor: zoom-in;
+}
+
+.engagement-table-pic:hover {
+	position: fixed;
+	transform: scale(2.5);
+}
+
+.score-bottom {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	width: 200px;
+	height: 40px;
+	overflow: hidden;
+	transform-origin: bottom center;
+	transform: scale(0.72); /* Equal to scaleX(2) scaleY(0.5) */
+	transition: all 0.4s ease-in-out;
+	background: rgb(232, 232, 232);
+}
+
+.score-setter {
+	position: absolute;
+	top: -10px;
+	left: 94px;
+	background: orange;
+	width: 12px;
+	height: 50px;
+	z-index: 100;
+	cursor: grab;
+}
