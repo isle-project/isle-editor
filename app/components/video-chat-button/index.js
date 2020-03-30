@@ -99,14 +99,14 @@ class VideoChatButton extends Component {
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Gate user >
-				<div onClick={this.props.onClick} >
+				<span onClick={this.props.onClick} >
 					{button}
 					{this.state.opened ? <VideoChat
 						roomName={this.props.for}
 						roomSubject={this.props.subject || this.props.for}
 						onHide={this.toggleVideoChat}
 					/> : null}
-				</div>
+				</span>
 			</Gate>
 		);
 	}
