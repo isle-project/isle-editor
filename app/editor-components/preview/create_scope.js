@@ -135,7 +135,6 @@ export const SCOPE = {
 	RTable: Loadable( () => import( /* webpackChunkName: "RTable" */ 'components/r/table' ) ),
 	ROutput: Loadable( () => import( /* webpackChunkName: "ROutput" */ 'components/r/output' ) ),
 	Runner: Loadable( () => import( /* webpackChunkName: "Runner" */ 'components/runner' ) ),
-	EngagementMeter: Loadable( () => import( /* webpackChunkName: "EngagementMeter" */ 'components/engagement-meter' ) ),
 	Seal: Loadable( () => import( /* webpackChunkName: "Seal" */ 'components/seal' ) ),
 	ScrollingText: Loadable( () => import( /* webpackChunkName: "ScrollingText" */ 'components/scrolling-text' ) ),
 	SelectInput,

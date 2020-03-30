@@ -475,10 +475,6 @@
 		"path": "components/runner",
 		"async": true
 	},
-	"EngagementMeter": {
-		"path": "components/engagement-meter",
-		"async": true
-	},
 	"ScrollingText": {
 		"path": "components/scrolling-text",
 		"async": true
