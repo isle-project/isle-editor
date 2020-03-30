@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import incrmmean from '@stdlib/stats/incr/mmean';
 import incrmrange from '@stdlib/stats/incr/mrange';
@@ -28,7 +29,8 @@ class EngagementMeter extends Component {
 		this.state = {
 			mean: null,
 			range: null,
-			responses: []
+			responses: [],
+			showResponses: false
 		};
 		this.id = props.id || 'engagement-meter';
 		this.meanAcc = incrmmean( 6 );
@@ -83,6 +85,12 @@ class EngagementMeter extends Component {
 		}
 	}
 
+	toggleResponses = () => {
+		this.setState({
+			showResponses: !this.state.showResponses
+		});
+	}
+
 	render() {
 		return (
 			<Gate owner>
@@ -111,15 +119,22 @@ class EngagementMeter extends Component {
 						{this.state.range ?
 							<p>range: {roundn( this.state.range, -2 )}</p> : null
 						}
-						<ResponsesTable
-							responses={this.state.responses}
-							session={this.props.session}
-							renderValue={( row ) => {
-								return row.value;
-							}}
-						/>
+						<Button
+							variant="link"
+							onClick={this.toggleResponses}
+						>
+							<small>Toggle Details</small>
+						</Button>
 					</Panel>
 				</Draggable>
+				{this.state.showResponses ? <ResponsesTable
+					responses={this.state.responses}
+					session={this.props.session}
+					onHide={this.toggleResponses}
+					renderValue={( row ) => {
+						return row.value;
+					}}
+				/> : null}
 			</Gate>
 		);
 	}

@@ -29,7 +29,8 @@ class EngagementBinary extends Component {
 		this.state = {
 			nLeft: 0,
 			nRight: 0,
-			responses: []
+			responses: [],
+			showResponses: false
 		};
 	}
 
@@ -127,6 +128,12 @@ class EngagementBinary extends Component {
 		}
 	}
 
+	toggleResponses = () => {
+		this.setState({
+			showResponses: !this.state.showResponses
+		});
+	}
+
 	render() {
 		let leftButton;
 		let rightButton;
@@ -166,18 +173,25 @@ class EngagementBinary extends Component {
 								</tr>
 							</tbody>
 						</Table>
-						<ResponsesTable
-							responses={this.state.responses}
-							session={this.props.session}
-							renderValue={( row ) => {
-								return ( row.value === -1 ?
-									<i className={leftButton}></i> :
-									<i className={rightButton}></i>
-								);
-							}}
-						/>
+						<Button
+							variant="link"
+							onClick={this.toggleResponses}
+						>
+							<small>Toggle Details</small>
+						</Button>
 					</Panel>
 				</Draggable>
+				{this.state.showResponses ? <ResponsesTable
+					responses={this.state.responses}
+					session={this.props.session}
+					onHide={this.toggleResponses}
+					renderValue={( row ) => {
+						return ( row.value === -1 ?
+							<i className={leftButton}></i> :
+							<i className={rightButton}></i>
+						);
+					}}
+				/> : null}
 			</Gate>
 		);
 	}

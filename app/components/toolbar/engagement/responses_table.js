@@ -2,16 +2,22 @@
 
 import React from 'react';
 import ReactTable from 'react-table';
-import Collapse from 'components/collapse';
 import Tooltip from 'components/tooltip';
+import Panel from 'components/panel';
+import Draggable from 'components/draggable';
 import ChatButton from 'components/chat-button';
 
 
 // MAIN //
 
 const ResponsesTable = ( props ) => {
-	return (
-		<Collapse header={<small>Toggle Details</small>}>
+	const responsesPanel = <Draggable>
+		<Panel className="engagement-meter-panel" header={<span>
+			<span className="unselectable" >Poll Responses</span>
+			<Tooltip tooltip="Close" >
+				<button className="panel-hide-button fa fa-times" onClick={props.onHide} />
+			</Tooltip>
+		</span>} style={{ width: 400 }} >
 			<ReactTable
 				className="engagement-table"
 				showPageSizeOptions={false}
@@ -72,8 +78,9 @@ const ResponsesTable = ( props ) => {
 				]}
 				pageSize={8}
 			/>
-		</Collapse>
-	);
+		</Panel>
+	</Draggable>;
+	return responsesPanel;
 };
 
 
