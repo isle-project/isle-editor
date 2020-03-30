@@ -97,7 +97,7 @@ class EngagementMeter extends Component {
 						}
 					</span>} className="engagement-meter-panel" >
 						<div className="score-bottom" >
-							{this.state.mean && this.state.range ?
+							{this.state.mean ?
 								<Fragment>
 									<ProgressBar style={{ marginTop: 23 }}>
 										<ProgressBar animated variant="success" now={this.state.mean} />

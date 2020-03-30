@@ -22,7 +22,6 @@ class ScoreSetter extends Component {
 
 	onControlledDrag = ( e, position ) => {
 		const { x, y } = position;
-		console.log( x );
 		this.setState({
 			controlledPosition: { x, y }
 		});
