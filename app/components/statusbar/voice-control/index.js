@@ -103,8 +103,17 @@ class VoiceControl extends Component {
 		}, 'members' );
 	}
 
+	handleStartRecording = () => {
+		const session = this.props.session;
+		session.setVoiceRecordingStatus( true );
+	}
+
 	handleStopRecording = () => {
-		this.setState({ recordedText: null }, this.renderRecordedText );
+		this.setState({
+			recordedText: null
+		}, this.renderRecordedText );
+		const session = this.props.session;
+		session.setVoiceRecordingStatus( false );
 	}
 
 	toggleTranscriptEditor = ( event ) => {
@@ -160,6 +169,7 @@ class VoiceControl extends Component {
 						startTooltip="Enable voice recording / control (F9)"
 						onSegment={this.handleVoiceInput}
 						onFinalText={this.handleFinalVoiceInput}
+						onRecordingStart={this.handleStartRecording}
 						onRecordingStop={this.handleStopRecording}
 						maxAlternatives={5}
 						remote={{

@@ -7,6 +7,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';
+import { VOICE_RECORDING_STATUS } from 'constants/events.js';
 
 
 // FUNCTIONS //
@@ -52,11 +53,12 @@ const createTooltip = ( commands ) => {
 * @property {boolean} hide - controls whether to hide control elements for toggling on/off voice control and display a list of available commands
 */
 class VoiceControl extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
 		this.state = {
-			active: false
+			active: false,
+			show: context.voiceRecordingStatus
 		};
 	}
 
@@ -70,6 +72,14 @@ class VoiceControl extends Component {
 				control: this
 			});
 		}
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, value ) => {
+			if ( type === VOICE_RECORDING_STATUS ) {
+				this.setState({
+					show: value
+				});
+			}
+		});
 	}
 
 	setInactive = () => {
@@ -94,7 +104,7 @@ class VoiceControl extends Component {
 	}
 
 	render() {
-		if ( !this.props.id || this.props.hide ) {
+		if ( !this.props.id || this.props.hide || !this.state.show ) {
 			return null;
 		}
 		const variant = this.state.active ? 'success' : 'default';

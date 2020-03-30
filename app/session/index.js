@@ -32,7 +32,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT } from 'constants/events.js';
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, VOICE_RECORDING_STATUS } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -175,6 +175,9 @@ class Session {
 
 		// Jitsi web token + server address:
 		this.jitsi = null;
+
+		// Whether voice control is active or not:
+		this.VoiceRecordingStatus = false;
 
 		// IDs in the database:
 		this.lessonID = null;
@@ -1957,6 +1960,11 @@ class Session {
 		return this.config.rshell && this.config.rshell.server ?
 			this.config.rshell.server :
 			OPEN_CPU_DEFAULT_SERVER;
+	}
+
+	setVoiceRecordingStatus( value ) {
+		this.voiceRecordingStatus = value;
+		this.update( VOICE_RECORDING_STATUS, value );
 	}
 
 	/**
