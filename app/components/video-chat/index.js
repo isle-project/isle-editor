@@ -77,10 +77,6 @@ class VideoChat extends Component {
 			userInfo: {
 				email: session.user.email
 			},
-			configOverwrite: {
-				startWithVideoMuted: !isOwner,
-				startWithAudioMuted: !isOwner
-			},
 			interfaceConfigOverwrite: INTERFACE_CONFIG,
 			noSSL: false,
 			jwt: session.jitsi.token
