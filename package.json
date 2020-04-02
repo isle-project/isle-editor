@@ -136,7 +136,7 @@
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^4.8.8",
     "csv-stringify": "^5.3.5",
-    "d3": "^5.15.0",
+    "d3": "^5.15.1",
     "d3-cloud": "1.2.5",
     "debug": "^4.1.1",
     "detect-csv": "^1.1.0",
