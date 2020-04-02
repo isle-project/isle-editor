@@ -59,6 +59,9 @@ class VideoChat extends Component {
 			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'livestreaming' ) ) {
 				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'livestreaming' );
 			}
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'info' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'info' );
+			}
 			if ( !INTERFACE_CONFIG.SETTINGS_SECTIONS.includes( 'moderator' ) ) {
 				INTERFACE_CONFIG.SETTINGS_SECTIONS.push( 'moderator' );
 			}
