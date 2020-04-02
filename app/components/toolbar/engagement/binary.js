@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button';
 import Draggable from 'components/draggable';
 import Gate from 'components/gate';
 import Panel from 'components/panel';
-import Tooltip from 'components/tooltip';
 import ResponsesTable from './responses_table.js';
 import { SHARE_ENGAGEMENT } from 'constants/actions.js';
 import { MEMBER_ACTION } from 'constants/events.js';
