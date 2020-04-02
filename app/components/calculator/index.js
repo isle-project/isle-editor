@@ -209,18 +209,6 @@ class Calculator extends Component {
 		this.textInput.focus();
 	}
 
-	renderHeader() {
-		return (
-			<span>
-				<span className="unselectable" >Calculator</span>
-				{ this.props.onHide ?
-					<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} /> :
-					null
-				}
-			</span>
-		);
-	}
-
 	renderFull = () => {
 		debug( 'Rendering expanded calculator...' );
 		return (
@@ -230,7 +218,7 @@ class Calculator extends Component {
 				onEscape={this.handleEscape}
 			>
 				<div className="outer-calc" style={this.props.style}>
-					<Panel id="calc-panel-full" tabIndex={0} role="button" header={this.renderHeader()}>
+					<Panel id="calc-panel-full" tabIndex={0} role="button" header="Calculator" onHide={this.props.onHide} minimizable >
 						<Container className="desaturated" >
 							<FormControl
 								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
@@ -326,7 +314,9 @@ class Calculator extends Component {
 					<Panel
 						id="calc-panel"
 						tabIndex={0} role="button"
-						header={this.renderHeader()}
+						header="Calculator"
+						onHide={this.props.onHide}
+						minimizable
 					>
 						<Container className="desaturated" >
 							<FormControl

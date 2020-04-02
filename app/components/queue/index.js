@@ -231,18 +231,6 @@ class Queue extends Component {
 		);
 	}
 
-	renderHeader() {
-		return (
-			<span>
-				Question Queue
-				{ this.props.onHide ?
-					<button className="queue-hide-button fa fa-times" onClick={this.props.onHide} /> :
-					null
-				}
-			</span>
-		);
-	}
-
 	/*
 	* React component render method.
 	*/
@@ -252,7 +240,7 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( session.isOwner() ) {
 				debug( 'User is an owner...' );
-				out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
+				out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
 					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
 					<ReactTable
 						className="queue-table"
@@ -351,7 +339,7 @@ class Queue extends Component {
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
-				out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
+				out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
 					<p>Your question: <i>{this.state.questionText}</i></p>
 					<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
 					<p>There are {this.state.queueSize} individual(s) in the queue.</p>
@@ -370,7 +358,7 @@ class Queue extends Component {
 				}
 				return out;
 			}
-			out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.renderHeader()}>
+			out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
 				<p>You can submit a question below and someone will be with you shortly!</p>
 				<FormGroup>
 					<FormLabel>Question</FormLabel>

@@ -307,10 +307,7 @@ class Toolbar extends Component {
 						<Panel
 							title="Sketchpad"
 							style={{ maxWidth: 'none', position: 'fixed', zIndex: 1004 }}
-							header={<span>
-								<span className="unselectable" >Sketchpad</span>
-								<button className="panel-hide-button fa fa-times" onClick={this.toggleSketchpad} />
-							</span>}
+							header="Sketchpad" onHide={this.toggleSketchpad} minimizable
 						>
 							<Sketchpad
 								id={`${session.namespaceName}-${session.lessonName}-toolbar-sketchpad`}

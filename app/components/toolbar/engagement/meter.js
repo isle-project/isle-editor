@@ -10,7 +10,6 @@ import roundn from '@stdlib/math/base/special/roundn';
 import Draggable from 'components/draggable';
 import Gate from 'components/gate';
 import Panel from 'components/panel';
-import Tooltip from 'components/tooltip';
 import ResponsesTable from './responses_table.js';
 import { SHARE_ENGAGEMENT } from 'constants/actions.js';
 import { MEMBER_ACTION } from 'constants/events.js';
@@ -95,15 +94,9 @@ class EngagementMeter extends Component {
 		return (
 			<Gate owner>
 				<Draggable>
-					<Panel header={<span>
-						<span className="unselectable" >Poll</span>
-						{ this.props.onHide ?
-							<Tooltip tooltip="Finish poll" >
-								<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} />
-							</Tooltip> :
-							null
-						}
-					</span>} className="engagement-meter-panel" >
+					<Panel header="Poll" hideTooltip="Finish poll" onHide={this.props.onHide}
+						className="engagement-meter-panel" minimizable
+					>
 						<div className="score-bottom" >
 							{this.state.mean ?
 								<Fragment>

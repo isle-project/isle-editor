@@ -12,12 +12,9 @@ import ChatButton from 'components/chat-button';
 
 const ResponsesTable = ( props ) => {
 	const responsesPanel = <Draggable>
-		<Panel className="engagement-meter-panel" header={<span>
-			<span className="unselectable" >Poll Responses</span>
-			<Tooltip tooltip="Close" >
-				<button className="panel-hide-button fa fa-times" onClick={props.onHide} />
-			</Tooltip>
-		</span>} style={{ width: 400 }} >
+		<Panel className="engagement-meter-panel" header="Poll Responses" onHide={props.onHide}
+			minimizable style={{ width: 400 }}
+		>
 			<ReactTable
 				className="engagement-table"
 				showPageSizeOptions={false}

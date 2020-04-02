@@ -150,15 +150,9 @@ class EngagementBinary extends Component {
 		return (
 			<Gate owner>
 				<Draggable>
-					<Panel header={<span>
-						<span className="unselectable" >Poll</span>
-						{ this.props.onHide ?
-							<Tooltip tooltip="Finish poll" >
-								<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} />
-							</Tooltip>:
-							null
-						}
-					</span>} className="engagement-meter-panel" >
+					<Panel header="Poll" hideTooltip="Finish poll" onHide={this.props.onHide}
+						className="engagement-meter-panel" minimizable
+					>
 						<Table bordered size="sm">
 							<thead>
 								<tr>
