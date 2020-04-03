@@ -17,16 +17,10 @@ exports[`renders a basic calculator 1`] = `
 >
   <div
     className="panel  card"
-    header={
-      <span>
-        <span
-          className="unselectable"
-        >
-          Calculator
-        </span>
-      </span>
-    }
+    header="Calculator"
+    hideTooltip="Close"
     id="calc-panel"
+    minimizable={true}
     role="button"
     style={Object {}}
     tabIndex={0}
@@ -34,17 +28,27 @@ exports[`renders a basic calculator 1`] = `
     <h3
       className="card-header"
     >
-      <span>
-        <span
-          className="unselectable"
-        >
-          Calculator
-        </span>
+      <span
+        className="unselectable"
+      >
+        Calculator
       </span>
+      <button
+        className="panel-hide-button fas fa-window-minimize"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      />
     </h3>
     <div
       className="card-body"
-      style={Object {}}
+      style={
+        Object {
+          "display": null,
+        }
+      }
     >
       <div
         className="desaturated container"
@@ -301,16 +305,10 @@ exports[`renders an expandable calculator 1`] = `
 >
   <div
     className="panel  card"
-    header={
-      <span>
-        <span
-          className="unselectable"
-        >
-          Calculator
-        </span>
-      </span>
-    }
+    header="Calculator"
+    hideTooltip="Close"
     id="calc-panel"
+    minimizable={true}
     role="button"
     style={Object {}}
     tabIndex={0}
@@ -318,17 +316,27 @@ exports[`renders an expandable calculator 1`] = `
     <h3
       className="card-header"
     >
-      <span>
-        <span
-          className="unselectable"
-        >
-          Calculator
-        </span>
+      <span
+        className="unselectable"
+      >
+        Calculator
       </span>
+      <button
+        className="panel-hide-button fas fa-window-minimize"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      />
     </h3>
     <div
       className="card-body"
-      style={Object {}}
+      style={
+        Object {
+          "display": null,
+        }
+      }
     >
       <div
         className="desaturated container"

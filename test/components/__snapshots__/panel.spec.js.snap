@@ -4,11 +4,17 @@ exports[`renders a panel 1`] = `
 <div
   className="panel  card"
   header={null}
+  hideTooltip="Close"
+  minimizable={false}
   style={Object {}}
 >
   <div
     className="card-body"
-    style={Object {}}
+    style={
+      Object {
+        "display": null,
+      }
+    }
   >
     <p>
       Lorem ipsum...
@@ -21,16 +27,26 @@ exports[`renders a panel with a heading 1`] = `
 <div
   className="panel  card"
   header="Title"
+  hideTooltip="Close"
+  minimizable={false}
   style={Object {}}
 >
   <h3
     className="card-header"
   >
-    Title
+    <span
+      className="unselectable"
+    >
+      Title
+    </span>
   </h3>
   <div
     className="card-body"
-    style={Object {}}
+    style={
+      Object {
+        "display": null,
+      }
+    }
   >
     <p>
       Lorem ipsum...
