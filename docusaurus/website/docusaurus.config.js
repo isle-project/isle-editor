@@ -64,6 +64,9 @@ const siteConfig = {
 						},
 						{
 							to: 'docs/overview/components', label: 'Components'
+						},
+						{
+							to: 'docs/server/installation', label: 'Server'
 						}
 					]
 				},
