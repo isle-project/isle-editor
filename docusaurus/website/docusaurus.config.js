@@ -42,6 +42,12 @@ const siteConfig = {
 	favicon: 'img/favicon.png',
 
 	themeConfig: {
+		announcementBar: {
+			id: 'updated_docs', // Any value that will identify this message
+			content: 'Watch out for updated documentation in the coming weeks',
+			backgroundColor: '#fafbfc', // Defaults to `#fff`
+			textColor: '#091E42' // Defaults to `#000`
+		},
 		footer: {
 			logo: {
 				alt: 'ISLE Logo',
@@ -95,6 +101,7 @@ const siteConfig = {
 				alt: 'ISLE Logo',
 				src: 'img/isle_logo_bare.png'
 			},
+			hideOnScroll: true,
 			links: [
 				{ to: 'docs/overview/intro', label: 'Docs' },
 				{ to: 'help', label: 'Help' },

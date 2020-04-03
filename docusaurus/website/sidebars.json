@@ -20,99 +20,107 @@
       "tutorials/course-management",
       "tutorials/classroom-use"
     ],
-    "Main Components": [
-      "data-explorer",
-      "data-table",
-      "feedback",
-      "gate",
-      "image",
-      "link",
-      "text-editor",
-      "sketchpad",
-      "tex",
-      "lesson-submit",
-      "video-lecture",
-      "video-player"
+    "Components": [
+      {
+        "Main Components": [
+          "data-explorer",
+          "data-table",
+          "feedback",
+          "gate",
+          "image",
+          "link",
+          "text-editor",
+          "sketchpad",
+          "tex",
+          "lesson-submit",
+          "video-lecture",
+          "video-player"
+        ],
+        "Question Components": [
+          "free-text-question",
+          "match-list-question",
+          "multiple-choice-question",
+          "number-question",
+          "order-question",
+          "question-form",
+          "quiz",
+          "range-question",
+          "select-question",
+          "select-question-matrix"
+        ],
+        "Survey Components": [
+          "free-text-survey",
+          "multiple-choice-survey",
+          "number-survey",
+          "proportions-survey",
+          "survey-generator"
+        ],
+        "R Components": [
+          "r/r-help",
+          "r/r-output",
+          "r/r-plot",
+          "r/r-shell",
+          "r/r-table"
+        ],
+        "Online Services": [
+          "news",
+          "weather",
+          "wikipedia"
+        ],
+        "Input Components": [
+          "input/checkbox-input",
+          "input/number-input",
+          "input/proportions-input",
+          "input/select-input",
+          "input/slider-input",
+          "input/text-area",
+          "input/text-input",
+          "input/voice-input"
+        ],
+        "Display Components": [
+          "accordion",
+          "iframe",
+          "pages",
+          "polaroid",
+          "scrolling-text",
+          "slider",
+          "switch",
+          "text"
+        ],
+        "Plot Components": [
+          "plotly",
+          "word-cloud"
+        ],
+        "General Components": [
+          "beacon-tooltip",
+          "clock",
+          "color-picker",
+          "draggable-list",
+          "engagement-meter",
+          "flippable-card",
+          "js-shell",
+          "likert-scale",
+          "playground",
+          "recorder",
+          "sortable-tree"
+        ],
+        "Programmatic": [
+          "expire",
+          "revealer",
+          "runner",
+          "timer",
+          "unveil"
+        ],
+        "Presentation Components": [
+        ],
+        "Learning Components": [
+          "learning-components"
+        ]
+      }
     ],
-    "Question Components": [
-      "free-text-question",
-      "match-list-question",
-      "multiple-choice-question",
-      "number-question",
-      "order-question",
-      "question-form",
-      "quiz",
-      "range-question",
-      "select-question",
-      "select-question-matrix"
-    ],
-    "Survey Components": [
-      "free-text-survey",
-      "multiple-choice-survey",
-      "number-survey",
-      "proportions-survey",
-      "survey-generator"
-    ],
-    "R Components": [
-      "r/r-help",
-      "r/r-output",
-      "r/r-plot",
-      "r/r-shell",
-      "r/r-table"
-    ],
-    "Online Services": [
-      "news",
-      "weather",
-      "wikipedia"
-    ],
-    "Input Components": [
-      "input/checkbox-input",
-      "input/number-input",
-      "input/proportions-input",
-      "input/select-input",
-      "input/slider-input",
-      "input/text-area",
-      "input/text-input",
-      "input/voice-input"
-    ],
-    "Display Components": [
-      "accordion",
-      "iframe",
-      "pages",
-      "polaroid",
-      "scrolling-text",
-      "slider",
-      "switch",
-      "text"
-    ],
-    "Plot Components": [
-      "plotly",
-      "word-cloud"
-    ],
-    "General Components": [
-      "beacon-tooltip",
-      "clock",
-      "color-picker",
-      "draggable-list",
-      "engagement-meter",
-      "flippable-card",
-      "js-shell",
-      "likert-scale",
-      "playground",
-      "recorder",
-      "sortable-tree"
-    ],
-    "Programmatic": [
-      "expire",
-      "revealer",
-      "runner",
-      "timer",
-      "unveil"
-    ],
-    "Presentation Components": [
-    ],
-    "Learning Components": [
-      "learning-components"
+    "Server": [
+      "server/installation",
+      "server/jitsi"
     ]
   }
 }
