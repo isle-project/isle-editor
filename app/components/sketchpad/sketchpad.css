@@ -5,6 +5,7 @@
 	border-bottom: 1px solid transparent;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
+	touch-action: manipulation;
 }
 
 .canvas-wrapper {
