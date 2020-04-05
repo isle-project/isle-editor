@@ -122,8 +122,7 @@
 		"FreeTextSurvey",
 		"MultipleChoiceSurvey",
 		"NumberSurvey",
-		"ProportionsSurvey",
-		"SurveyGenerator"
+		"ProportionsSurvey"
 	],
 	"R": [
 		"RHelp",

@@ -5755,33 +5755,6 @@
     ],
     "description": "A sticky note rendering some text."
   },
-  "SurveyGenerator": {
-    "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
-      {
-        "name": "owner",
-        "type": "boolean",
-        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
-        "default": true
-      },
-      {
-        "name": "user",
-        "type": "boolean",
-        "description": "controls whether users can see the survey generator; the default should not be changed for most use-cases",
-        "default": false
-      },
-      {
-        "name": "anonymous",
-        "type": "boolean",
-        "description": "controls whether owners can see the survey generator; the default should not be changed for most use-cases",
-        "default": false
-      }
-    ],
-    "description": "Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface."
-  },
   "Switch": {
     "props": [
       {

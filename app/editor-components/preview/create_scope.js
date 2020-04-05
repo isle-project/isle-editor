@@ -150,7 +150,6 @@ export const SCOPE = {
 	TextEditor: Loadable( () => import( /* webpackChunkName: "TextEditor" */ 'components/text-editor' ) ),
 	Toolbar: Loadable( () => import( /* webpackChunkName: "Toolbar" */ 'components/toolbar' ) ),
 	Sunburst: Loadable( () => import( /* webpackChunkName: "Sunburst" */ 'components/d3/sunburst' ) ),
-	SurveyGenerator: Loadable( () => import( /* webpackChunkName: "SurveyGenerator" */'components/survey-generator' ) ),
 	Switch: Loadable( () => import( /* webpackChunkName: "Switch" */ 'components/switch' ) ),
 	Table: Loadable( () => import( /* webpackChunkName: "Table" */ 'components/table' ) ),
 
