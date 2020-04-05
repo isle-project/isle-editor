@@ -527,10 +527,6 @@
 		"path": "components/d3/sunburst",
 		"async": true
 	},
-	"SurveyGenerator": {
-		"path": "components/survey-generator",
-		"async": true
-	},
 	"Table": {
 		"path": "components/table",
 		"async": true

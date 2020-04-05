@@ -312,10 +312,6 @@
 		"value": "<StickyNote title=\"${1:Enter title}\" body=\"${2:Enter body}\" />\n"
 	},
 	{
-		"name": "SurveyGenerator",
-		"value": "<SurveyGenerator />\n"
-	},
-	{
 		"name": "Switch",
 		"value": "<Switch>\n  ${1:}\n</Switch>\n"
 	},
