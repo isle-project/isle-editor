@@ -80,3 +80,7 @@
 	right: 4px;
 	top: -7px;
 }
+
+.toolbar-engagement-buttons {
+	z-index: 1003;
+}

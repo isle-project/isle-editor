@@ -213,6 +213,22 @@ class Toolbar extends Component {
 						<span className="fa fa-lg fa-thumbs-up toolbar-icon" />
 					</Button>
 				</Tooltip>
+				<Tooltip tooltip="Survey" placement="bottom" >
+					<Button
+						variant="light"
+						className="toolbar-button"
+						onClick={() => {
+							const action = {
+								id: 'engagement',
+								type: ENGAGEMENT_SURVEY_START,
+								value: 'survey'
+							};
+							session.log( action, 'members' );
+						}}
+					>
+						<span className="fa fa-lg fa-poll toolbar-icon" />
+					</Button>
+				</Tooltip>
 			</ButtonGroup>
 		);
 	}
