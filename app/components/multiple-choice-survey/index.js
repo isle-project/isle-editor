@@ -8,11 +8,11 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
 import generateUID from 'utils/uid';
+import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
@@ -119,22 +119,20 @@ class MultipleChoiceSurvey extends Component {
 		if ( isEmptyArray( this.state.data ) ) {
 			return <h3>No responses yet</h3>;
 		}
-		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-			<VictoryAxis
-				tickLabelComponent={
-					<VictoryLabel angle={45} />
-				}
-			/>
-			<VictoryAxis dependentAxis />
-			<VictoryBar
-				categories={{
-					x: this.props.answers
+		return (
+			<Plotly
+				data={[{
+					x: this.state.data.map( val => val.x ),
+					y: this.state.data.map( val => val.y ),
+					type: 'bar'
+				}]}
+				layout={{
+					width: 400,
+					height: 300
 				}}
-				data={this.state.data}
-				x="x"
-				y="y"
+				removeButtons
 			/>
-		</VictoryChart> );
+		);
 	}
 
 	renderAnswerOptionsSingle = ( key, id ) => {
@@ -179,7 +177,7 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	render() {
-		const { answers, id, title, multipleAnswers, question } = this.props;
+		const { answers, id, multipleAnswers, question } = this.props;
 		let disabled;
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
@@ -189,9 +187,6 @@ class MultipleChoiceSurvey extends Component {
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Card id={this.id} style={this.props.style} >
-					<Card.Header as="h3">
-						{title}
-					</Card.Header>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>
@@ -247,7 +242,6 @@ MultipleChoiceSurvey.defaultProps = {
 	anonymous: false,
 	answers: [],
 	multipleAnswers: false,
-	title: 'Survey',
 	style: {},
 	onSubmit() {}
 };
@@ -259,7 +253,6 @@ MultipleChoiceSurvey.propTypes = {
 	anonymous: PropTypes.bool,
 	answers: PropTypes.array,
 	multipleAnswers: PropTypes.bool,
-	title: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

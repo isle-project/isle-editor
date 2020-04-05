@@ -8,22 +8,15 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { VictoryAxis, VictoryArea, VictoryChart } from 'victory';
 import logger from 'debug';
 import generateUID from 'utils/uid';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import inmap from '@stdlib/utils/inmap';
-import abs from '@stdlib/math/base/special/abs';
-import pow from '@stdlib/math/base/special/pow';
-import round from '@stdlib/math/base/special/round';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
-import iqr from 'utils/statistic/iqr';
-import min from 'utils/statistic/min';
-import max from 'utils/statistic/max';
 import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
+import Plotly from 'components/plotly';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
@@ -35,33 +28,6 @@ import './number-survey.css';
 
 const debug = logger( 'isle:number-survey' );
 const uid = generateUID( 'number-survey' );
-
-
-// FUNCTIONS //
-
-function bidx( bmin, h, v ) {
-	return round( abs( bmin - v ) / h );
-}
-
-function getBins( data ) {
-	const h = 2 * iqr( data ) * pow( data.length, -1/3 );
-	const bmax = max( data );
-	const bmin = min( data );
-	const nBins = round( ( bmax - bmin ) / h ) + 1;
-	const out = new Array( nBins );
-	inmap( out, x => {
-		return { 'y': 0, 'y0': 0 };
-	});
-	for ( let i = 0; i < data.length; i++ ) {
-		let idx = bidx( bmin, h, data[ i ]);
-		out[ idx ][ 'y' ] += 1;
-	}
-	for ( let i = 0; i < nBins; i++ ) {
-		let bc = bmin + ( h*i );
-		out[ i ][ 'x' ] = bc;
-	}
-	return out;
-}
 
 
 // MAIN //
@@ -122,19 +88,17 @@ class NumberSurvey extends Component {
 		if ( isEmptyArray( data ) ) {
 			return <h3>No responses yet</h3>;
 		}
-		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-			<VictoryArea
-				data={data.length > 2 ? getBins( data ) : []}
-				interpolation="step"
-			/>
-			<VictoryAxis
-				label="Answer"
-			/>
-			<VictoryAxis
-				dependentAxis
-				label="Count"
-			/>
-		</VictoryChart> );
+		return ( <Plotly
+			data={[{
+				x: this.state.data,
+				type: 'histogram'
+			}]}
+			layout={{
+				width: 400,
+				height: 300
+			}}
+			removeButtons
+		/> );
 	}
 
 	render() {
@@ -143,9 +107,6 @@ class NumberSurvey extends Component {
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Card id={this.id} style={this.props.style} >
-					<Card.Header as="h3">
-						Survey
-					</Card.Header>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>

@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import profanities from 'profanities';
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
+import Plotly from 'components/plotly';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
@@ -139,19 +139,20 @@ class FreeTextSurvey extends Component {
 				<h3>No responses yet</h3>
 			);
 		}
-		return ( <VictoryChart width={350} height={200} domainPadding={20} domain={{ y: [ 0, 20 ]}} >
-			<VictoryAxis
-				tickLabelComponent={
-					<VictoryLabel angle={90} />
-				}
+		return (
+			<Plotly
+				data={[{
+					x: this.state.data.map( val => val.x ),
+					y: this.state.data.map( val => val.y ),
+					type: 'bar'
+				}]}
+				layout={{
+					width: 400,
+					height: 300
+				}}
+				removeButtons
 			/>
-			<VictoryAxis dependentAxis />
-			<VictoryBar
-				data={this.state.data}
-				x="x"
-				y="y"
-			/>
-		</VictoryChart> );
+		);
 	}
 
 	render() {
@@ -160,9 +161,6 @@ class FreeTextSurvey extends Component {
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
 				<Card id={this.id} style={this.props.style} >
-					<Card.Header as="h3">
-						Survey
-					</Card.Header>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>
