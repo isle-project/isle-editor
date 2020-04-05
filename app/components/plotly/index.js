@@ -62,8 +62,8 @@ Plotly.setPlotConfig({
 * @property {string} id - component identifier
 * @property {Object} layout - Plotly layout object
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
-* @property {boolean} toggleFullscreen - controls whether to display the plot in fullscreen mode
-* @property {boolean} removeButtons - controls whether to remove all buttons
+* @property {boolean} toggleFullscreen - controls whether to allow displaying the plot in fullscreen mode
+* @property {boolean} removeButtons - controls whether to remove all buttons (aside from fullscreen button if enabled)
 * @property {Object} meta - plot meta-information
 * @property {number} revision - when provided, causes the plot to update when the revision value is incremented
 * @property {Object} style - CSS inline styles
@@ -84,7 +84,7 @@ class Wrapper extends Component {
 
 		this.state = {
 			fullscreen: false,
-			oldLayout: copy( layout ),
+			oldLayout: copy( layout, 1 ),
 			layout,
 			oldPropLayout: layout,
 			finishedDrawing: false
@@ -111,7 +111,7 @@ class Wrapper extends Component {
 				click: props.onShare
 			});
 		}
-		if ( props.toggleFullscreen && !props.removeButtons ) {
+		if ( props.toggleFullscreen ) {
 			buttonsToAdd.push({
 				name: 'Toggle FullScreen',
 				icon: PlotlyIcons[ 'fullscreen' ],
@@ -134,7 +134,7 @@ class Wrapper extends Component {
 		const newState = {};
 		if ( !deepEqual( nextProps.layout, prevState.oldPropLayout ) ) {
 			newState.oldPropLayout = nextProps.layout;
-			newState.oldLayout = copy( prevState.layout );
+			newState.oldLayout = copy( prevState.layout, 1 );
 			newState.layout = nextProps.layout;
 		}
 		if ( !isEmptyObject( newState ) ) {
@@ -161,7 +161,7 @@ class Wrapper extends Component {
 			}
 		}
 		this.setState({
-			oldLayout: copy( this.figure.layout ),
+			oldLayout: copy( this.figure.layout, 1 ),
 			layout: this.figure.layout
 		}, this.drawPlot );
 	}
@@ -203,8 +203,18 @@ class Wrapper extends Component {
 	}
 
 	toggleFullscreen = () => {
+		const newLayout = copy( this.state.layout, 1 );
+		if ( !this.state.fullscreen ) {
+			newLayout.width = null;
+			newLayout.height = null;
+		} else {
+			newLayout.width = this.props.layout.width;
+			newLayout.height = this.props.layout.height;
+		}
 		this.setState({
-			fullscreen: !this.state.fullscreen
+			fullscreen: !this.state.fullscreen,
+			layout: newLayout,
+			oldLayout: this.state.layout
 		});
 	}
 
@@ -239,7 +249,8 @@ class Wrapper extends Component {
 
 	render() {
 		let draggableBar;
-		if ( this.props.draggable && !this.state.fullscreen ) {
+		const fullscreen = this.state.fullscreen;
+		if ( this.props.draggable && !fullscreen ) {
 			draggableBar = <div
 				className="plotly-draggable-bar"
 				draggable={this.state.finishedDrawing}
@@ -270,18 +281,18 @@ class Wrapper extends Component {
 				onLegendClick={this.props.onLegendClick}
 				onLegendDoubleClick={this.props.onLegendDoubleClick}
 				style={{
-					width: this.props.layout.width ? this.props.layout.width : '100%',
-					height: this.props.layout.height ? this.props.layout.height : '100%',
+					width: this.state.layout.width ? this.props.layout.width : '100%',
+					height: this.state.layout.height ? this.props.layout.height : '100%',
 					zIndex: 1,
 					...this.props.style
 				}}
 				revision={this.props.revision}
 			/>
 		</Fragment>;
-		if ( this.state.fullscreen ) {
+		if ( fullscreen ) {
 			return (
 				<Modal
-					show={this.state.fullscreen}
+					show={fullscreen}
 					onHide={this.toggleFullscreen}
 					dialogClassName="modal-100w"
 				>
