@@ -225,7 +225,6 @@ class Session {
 		if ( !isElectron ) {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
-			document.addEventListener( 'beforeunload', this.beforeUnloadListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
 			window.addEventListener( 'online', this.onlineListener );
 			window.addEventListener( 'offline', this.offlineListener );
@@ -238,11 +237,6 @@ class Session {
 			// Log session data to database in regular interval:
 			setInterval( this.logSession, 5*60000 );
 		}
-	}
-
-	beforeUnloadListener = () => {
-		debug( 'Page is either closed or refreshed...' );
-		this.reset();
 	}
 
 	onlineListener = () => {
@@ -919,12 +913,11 @@ class Session {
 	socketConnect() {
 		debug( 'Connecting via socket to server...' );
 		if ( this.socket ) {
-			debug( 'Closing existing socket connection...' );
 			if ( !this.socket.disconnected ) {
-				// Case: Socket connection is still working, no need to create new one...
+				debug( 'Socket connection is still working, no need to create new one...' );
 				return;
 			}
-			// Case: Close existing connection before creating new socket connection...
+			debug( 'Close existing connection before creating new socket connection...' );
 			this.socket.close();
 			this.socket = null;
 		}
