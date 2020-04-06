@@ -23,7 +23,7 @@ const INTERFACE_CONFIG = {
 	DISPLAY_WELCOME_PAGE_CONTENT: false,
 	TOOLBAR_BUTTONS: [
 		'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-		'fodeviceselection', 'profile', 'settings',
+		'fodeviceselection', 'info', 'profile', 'settings',
 		'videoquality', 'filmstrip', 'shortcuts',
 		'tileview', 'download', 'help'
 	],
@@ -59,8 +59,8 @@ class VideoChat extends Component {
 			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'livestreaming' ) ) {
 				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'livestreaming' );
 			}
-			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'info' ) ) {
-				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'info' );
+			if ( !INTERFACE_CONFIG.TOOLBAR_BUTTONS.includes( 'invite' ) ) {
+				INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'invite' );
 			}
 			if ( !INTERFACE_CONFIG.SETTINGS_SECTIONS.includes( 'moderator' ) ) {
 				INTERFACE_CONFIG.SETTINGS_SECTIONS.push( 'moderator' );
