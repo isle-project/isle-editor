@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import logger from 'debug';
+import Badge from 'react-bootstrap/Badge';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import isArray from '@stdlib/assert/is-array';
@@ -13,7 +14,7 @@ import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
-import { SELECTED_COHORT } from 'constants/events.js';
+import { RECEIVED_USERS, SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
 import './instructor_view.css';
@@ -45,7 +46,12 @@ class InstructorView extends Component {
 		this.addResizeListener();
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === SELECTED_COHORT ) {
+			if (
+				type === RECEIVED_USERS ||
+				type === USER_JOINED ||
+				type === USER_LEFT ||
+				type === SELECTED_COHORT
+			) {
 				this.forceUpdate();
 			}
 		});
@@ -164,7 +170,7 @@ class InstructorView extends Component {
 						}}
 					/>
 				</Tab> : null }
-				<Tab eventKey="active_users" title="Active Users" >
+					<Tab eventKey="active_users" title={<span>Active Users<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
 					<UserList
 						session={session}
 						onThumbnailClick={( email ) => {
