@@ -554,7 +554,7 @@ class Session {
 
 	getJitsiToken = () => {
 		let url = this.server+'/get_jitsi_token';
-		url += qs.stringify({ namespaceID: this.namespaceID });
+		url += qs.stringify({ namespaceName: this.namespaceName });
 		fetch( url, {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
