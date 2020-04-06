@@ -7,7 +7,7 @@ import Tooltip from 'components/tooltip';
 import VideoChat from 'components/video-chat';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
-import { RECEIVED_JITSI_TOKEN, VIDEO_CHAT_INVITATION } from 'constants/events.js';
+import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_INVITATION } from 'constants/events.js';
 
 
 // MAIN //
@@ -38,7 +38,7 @@ class VideoChatButton extends Component {
 					opened: true
 				});
 			}
-			else if ( type === RECEIVED_JITSI_TOKEN ) {
+			else if ( type === RECEIVED_JITSI_TOKEN || type === RECEIVED_USER_RIGHTS ) {
 				this.forceUpdate();
 			}
 		});
@@ -56,9 +56,6 @@ class VideoChatButton extends Component {
 
 	render() {
 		const session = this.context;
-		if ( !session.jitsi ) {
-			return null;
-		}
 		let label;
 		if ( this.props.buttonLabel ) {
 			label = this.props.buttonLabel;
@@ -70,6 +67,17 @@ class VideoChatButton extends Component {
 			variant = this.props.buttonVariant;
 		} else {
 			variant = this.state.opened ? 'success' : 'secondary';
+		}
+		if ( !session.jitsi ) {
+			return ( <Button
+				disabled
+				variant={variant}
+				size={this.props.size}
+				className={this.props.className}
+				style={this.props.style}
+			>
+				{label}
+			</Button> );
 		}
 		let tooltip;
 		if ( this.props.tooltip ) {

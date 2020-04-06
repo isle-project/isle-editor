@@ -563,8 +563,8 @@ class Session {
 		})
 		.then( res => res.json() )
 		.then( json => {
-			this.update( RECEIVED_JITSI_TOKEN );
 			this.jitsi = json;
+			this.update( RECEIVED_JITSI_TOKEN );
 		})
 		.catch( err => {
 			this.jitsi = null;
