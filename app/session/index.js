@@ -554,7 +554,7 @@ class Session {
 
 	getJitsiToken = () => {
 		let url = this.server+'/get_jitsi_token';
-		url += qs.stringify({ namespaceName: this.namespaceName });
+		url += qs.stringify({ namespaceID: this.namespaceID });
 		fetch( url, {
 			headers: {
 				'Authorization': 'JWT ' + this.user.token
@@ -632,6 +632,11 @@ class Session {
 				}
 				// Send message to subscribed components:
 				this.update( RECEIVED_USER_RIGHTS, userRights );
+
+				// Retrieve Jitsi token for video chat:
+				if ( !this.jitsi ) {
+					this.getJitsiToken();
+				}
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
@@ -1529,9 +1534,6 @@ class Session {
 			this.socketConnect();
 			if ( !userRights ) {
 				this.getUserRights();
-			}
-			if ( !this.jitsi ) {
-				this.getJitsiToken();
 			}
 			this.update( LOGGED_IN );
 		})
