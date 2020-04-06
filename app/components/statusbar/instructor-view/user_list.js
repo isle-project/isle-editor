@@ -200,6 +200,9 @@ class UserList extends Component {
 				}
 				const src = session.server + '/thumbnail/' + user.picture;
 				const handleClick = this.thumbnailClickFactory( user.email );
+				const showInteractionButtons =
+					session.user.email !== user.email &&
+					!user.inactive;
 				return (
 					<ListGroupItem
 						className="user-list-item"
@@ -218,10 +221,10 @@ class UserList extends Component {
 									/>
 								</span>
 							</Tooltip>
-							{ session.user.email !== user.email ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
-							{ session.user.email !== user.email ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
+							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
+							{ showInteractionButtons ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
-						<div style={{ width: '100%' }} >
+						<div style={{ width: '100%', color: user.inactive ? 'darkgray' : 'black' }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
 							{ focusedID ? <Tooltip placement="left" tooltip="Element user is interacting with" >
 								<Button
