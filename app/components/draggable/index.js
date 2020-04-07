@@ -68,8 +68,17 @@ class Draggable extends Component {
 					ref={( div ) => {
 						this.container = div;
 					}}
+					default={{
+						x: 50,
+						y: 30,
+						...this.props.default
+					}}
 					enableResizing={this.props.resizable ? ENABLE_RESIZING : false}
 					enableUserSelectHack={false}
+					style={{
+						position: 'fixed',
+						...this.props.style
+					}}
 				>
 					{this.props.children}
 				</Rnd>
