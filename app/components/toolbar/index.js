@@ -15,6 +15,7 @@ import Panel from 'components/panel';
 import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
+import pixelsToNumber from 'utils/pixels-to-number';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
@@ -42,7 +43,9 @@ class Toolbar extends Component {
 			engagementInProgress: false,
 			queueSize: 0,
 			elements: [],
-			showToolbar: true
+			showToolbar: true,
+			sketchpadHeight: window.innerHeight * 0.6,
+			sketchpadWidth: window.innerWidth * 0.75
 		};
 		this.state = state;
 	}
@@ -319,14 +322,26 @@ class Toolbar extends Component {
 				</ButtonGroup>
 				<Engagement session={this.context} onHide={this.toggleEngagement} />
 				{this.state.sketchpad ?
-					<Draggable>
+					<Draggable resizable onResize={( event, direction, ref ) => {
+						this.setState({
+							sketchpadWidth: pixelsToNumber( ref.style.width ) - 50,
+							sketchpadHeight: pixelsToNumber( ref.style.height ) - 150
+						});
+					}} default={{
+						width: this.state.sketchpadWidth + 50,
+						height: this.state.sketchpadHeight + 150
+					}} minWidth={510} minHeight={300} >
 						<Panel
 							title="Sketchpad"
-							style={{ maxWidth: 'none', position: 'fixed', zIndex: 1004 }}
+							style={{ maxWidth: 'none' }}
 							header="Sketchpad" onHide={this.toggleSketchpad} minimizable
+							ref={( div ) => {
+								this.sketchpad = div;
+							}}
 						>
 							<Sketchpad
 								id={`${session.namespaceName}-${session.lessonName}-toolbar-sketchpad`}
+								canvasWidth={this.state.sketchpadWidth} canvasHeight={this.state.sketchpadHeight}
 							/>
 						</Panel>
 					</Draggable>: null
