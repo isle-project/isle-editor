@@ -53,7 +53,14 @@ class Wrapper extends Component {
 	}
 
 	render() {
-		return ( <Card {...omit( this.props, [ 'bodyStyle', 'onHide' ] )} className={`panel ${this.props.className}`} >
+		return ( <Card
+			{...omit( this.props, [ 'bodyStyle', 'onHide' ] )}
+			className={`panel ${this.props.className}`}
+			style={{
+				height: this.state.minimized ? '53px' : void 0,
+				...this.props.style
+			}}
+		>
 			{this.renderHeader()}
 			<Card.Body style={{
 				...this.props.bodyStyle,

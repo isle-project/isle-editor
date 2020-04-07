@@ -7,6 +7,10 @@
 	max-width: 1200px;
 }
 
+.panel .card-body {
+	overflow: auto;
+}
+
 .panel-hide-button {
 	float: right;
 	border: none;
