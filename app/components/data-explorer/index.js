@@ -5,7 +5,6 @@
 import React, { Component, Fragment, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import ReactDraggable from 'react-draggable';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
@@ -32,6 +31,7 @@ import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
 import incrspace from '@stdlib/math/utils/incrspace';
 import generateUID from 'utils/uid';
+import Draggable from 'components/draggable';
 import SelectInput from 'components/input/select';
 import ContingencyTable from 'components/data-explorer/contingency_table';
 import FrequencyTable from 'components/data-explorer/frequency_table';
@@ -1554,7 +1554,7 @@ class DataExplorer extends Component {
 		return (
 			<Fragment>
 				{mainContainer}
-				<ReactDraggable cancel=".input" enableUserSelectHack={false} disabled={this.state.disableToolbarDragging} >
+				<Draggable cancel=".input" disabled={this.state.disableToolbarDragging} >
 					<Card
 						border="secondary"
 						id={`${this.id}-toolbox`}
@@ -1588,7 +1588,7 @@ class DataExplorer extends Component {
 							</Tab.Container>
 						</Card.Body>
 					</Card>
-				</ReactDraggable>
+				</Draggable>
 			</Fragment>
 		);
 	}
