@@ -561,6 +561,12 @@ class Sketchpad extends Component {
 		if ( prevProps.pdf !== this.props.pdf ) {
 			this.initializePDF();
 		}
+		if (
+			this.props.canvasWidth !== prevProps.canvasWidth ||
+			this.props.canvasHeight !== prevProps.canvasHeight
+		) {
+			this.redraw();
+		}
 	}
 
 	componentWillUnmount() {
@@ -604,7 +610,6 @@ class Sketchpad extends Component {
 
 	retrieveData = ( data ) => {
 		debug( 'Retrieved data from previous session...' );
-		console.log( data );
 		if ( isObject( data ) ) {
 			if ( isArray( data.elements ) ) {
 				for ( let i = 0; i < data.elements.length; i++ ) {
@@ -2096,6 +2101,17 @@ class Sketchpad extends Component {
 			return null;
 		}
 		const currentPage = this.state.currentPage;
+		if ( this.state.canvasWidth < 600 ) {
+			return ( <ButtonGroup size="sm" className="sketch-pages" >
+				<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
+				<Gate owner >
+					<TooltipButton tooltip="Insert page after current one" onClick={() => {
+						const idx = this.state.currentPage + 1;
+						this.insertPage( idx );
+					}} glyph="plus" size="sm" />
+				</Gate>
+			</ButtonGroup> );
+		}
 		return ( <ButtonGroup size="sm" className="sketch-pages" >
 			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
 			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" size="sm" />
@@ -2156,7 +2172,7 @@ class Sketchpad extends Component {
 	}
 
 	renderRemoveButtons() {
-		if ( this.state.hideInputButtons ) {
+		if ( this.state.hideInputButtons || this.state.canvasWidth < 900 ) {
 			return null;
 		}
 		return (
@@ -2183,7 +2199,7 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
-		if ( this.state.hideSaveButtons ) {
+		if ( this.state.hideSaveButtons || this.state.canvasWidth < 775 ) {
 			return null;
 		}
 		const session = this.context;
@@ -2319,7 +2335,7 @@ class Sketchpad extends Component {
 	}
 
 	renderTransmitButtons() {
-		if ( this.state.hideTransmitButtons ) {
+		if ( this.state.hideTransmitButtons || this.state.canvasWidth < 650 ) {
 			return null;
 		}
 		const session = this.context;
