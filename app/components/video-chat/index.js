@@ -74,8 +74,8 @@ class VideoChat extends Component {
 		}
 		const options = {
 			roomName: this.props.roomName,
-			width: max( 0.3 * window.innerWidth, 400 ),
-			height: max( 0.3 * window.innerHeight, 400 ),
+			width: '100%',
+			height: '100%',
 			parentNode: this.videoChatContainer,
 			userInfo: {
 				email: session.user.email
@@ -93,6 +93,15 @@ class VideoChat extends Component {
 			this.setState({
 				screensharing: status.on,
 				minimized: status.on
+			}, () => {
+				if ( this.state.minimized ) {
+					this.rnd.updateSize({ width: 160, height: 100 });
+				} else {
+					this.rnd.updateSize({
+						width: max( 0.3 * window.innerWidth, 400 ),
+						height: max( 0.3 * window.innerHeight, 400 )
+					});
+				}
 			});
 		});
 	}
@@ -107,6 +116,15 @@ class VideoChat extends Component {
 	handleCompress = ( event ) => {
 		this.setState({
 			minimized: !this.state.minimized
+		}, () => {
+			if ( this.state.minimized ) {
+				this.rnd.updateSize({ width: 160, height: 100 });
+			} else {
+				this.rnd.updateSize({
+					width: max( 0.3 * window.innerWidth, 400 ),
+					height: max( 0.3 * window.innerHeight, 400 )
+				});
+			}
 		});
 	}
 
@@ -115,41 +133,63 @@ class VideoChat extends Component {
 	}
 
 	render() {
-		return ( <Draggable>
-			<Panel className="video-chat-panel" >
-				<div
-					ref={( div ) => {
-						this.videoChatContainer = div;
-					}}
-					style={{
-						display: this.state.minimized ? 'none' : 'inherit'
-					}}
-				></div>
-				{this.state.minimized ? <h3 style={{ marginTop: 22 }}>
-					{this.state.screensharing ? <span>
-						Sharing screen <Button onClick={this.stopScreensharing} variant="secondary" size="sm">Stop sharing</Button>
-					</span> : 'Video active'}
-				</h3> : null}
-				<Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'} >
-					<Button
-						size="sm"
-						onClick={this.handleCompress}
-						className="video-chat-minimized-button"
-					>
-						<i className={this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'} ></i>
-					</Button>
-				</Tooltip>
-				<Tooltip tooltip="Leave video" >
-					<Button
-						size="sm"
-						onClick={this.handleClose}
-						className="video-chat-button"
-					>
-						<i className="fas fa-video-slash"></i>
-					</Button>
-				</Tooltip>
-			</Panel>
-		</Draggable>);
+		let style;
+		let containerStyle;
+		if ( this.state.minimized ) {
+			containerStyle = {
+				display: 'none'
+			};
+		} else {
+			style = {
+				height: '100%',
+				width: '100%'
+			};
+			containerStyle = {
+				height: '100%',
+				width: '100%'
+			};
+		}
+		const panel = <Panel className="video-chat-panel" style={style} >
+			<div
+				ref={( div ) => {
+					this.videoChatContainer = div;
+				}}
+				style={containerStyle}
+			></div>
+			{this.state.minimized ? <h3 style={{ marginTop: 22 }}>
+				{this.state.screensharing ? <span>
+					Sharing screen <Button onClick={this.stopScreensharing} variant="secondary" size="sm">Stop sharing</Button>
+				</span> : 'Video active'}
+			</h3> : null}
+			<Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'} >
+				<Button
+					size="sm"
+					onClick={this.handleCompress}
+					className="video-chat-minimized-button"
+				>
+					<i className={this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'} ></i>
+				</Button>
+			</Tooltip>
+			<Tooltip tooltip="Leave video" >
+				<Button
+					size="sm"
+					onClick={this.handleClose}
+					className="video-chat-button"
+				>
+					<i className="fas fa-video-slash"></i>
+				</Button>
+			</Tooltip>
+		</Panel>;
+		return (
+			<Draggable default={{
+				width: max( 0.3 * window.innerWidth, 400 ),
+				height: max( 0.3 * window.innerHeight, 400 )
+			}} ref={( div ) => { this.rnd = div; }} minWidth={160} minHeight={100}
+				resizable={!this.state.minimized} lockAspectRatio
+			>
+				{panel}
+			</Draggable>
+		);
 	}
 }
 

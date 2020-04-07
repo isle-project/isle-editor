@@ -7,6 +7,10 @@
 	max-width: 1200px;
 }
 
+.react-draggable .panel {
+	margin: 0;
+}
+
 .panel .card-body {
 	overflow: auto;
 }
