@@ -2,9 +2,23 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ReactDraggable from 'react-draggable';
+import { Rnd } from 'react-rnd';
 import KeyControls from 'components/key-controls';
 import './draggable.css';
+
+
+// VARIABLES //
+
+const ENABLE_RESIZING = {
+	bottom: true,
+	bottomLeft: true,
+	bottomRight: true,
+	left: true,
+	right: true,
+	top: true,
+	topLeft: true,
+	topRight: true
+};
 
 
 // FUNCTIONS //
@@ -48,15 +62,17 @@ class Draggable extends Component {
 	render() {
 		return (
 			<Fragment>
-				<ReactDraggable
+				<Rnd
 					{...this.props}
-					onStop={this.handleStop}
+					onDragStop={this.handleStop}
 					ref={( div ) => {
 						this.container = div;
 					}}
+					enableResizing={this.props.resizable ? ENABLE_RESIZING : false}
+					enableUserSelectHack={false}
 				>
 					{this.props.children}
-				</ReactDraggable>
+				</Rnd>
 				<KeyControls
 					container={this.container}
 					actions={{
@@ -72,11 +88,13 @@ class Draggable extends Component {
 // PROPERTIES //
 
 Draggable.propTypes = {
+	resizable: PropTypes.bool,
 	onStop: PropTypes.func,
 	onEscape: PropTypes.func
 };
 
 Draggable.defaultProps = {
+	resizable: false,
 	onStop() {},
 	onEscape() {}
 };

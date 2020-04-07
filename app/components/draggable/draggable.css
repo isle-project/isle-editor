@@ -1,3 +1,8 @@
+.react-draggable {
+	position: fixed;
+	z-index: 1004;
+}
+
 .react-draggable-last {
 	z-index: 1006 !important;
 }
