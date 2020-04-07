@@ -1,24 +1,6 @@
 // MODULES //
 
-import replace from '@stdlib/string/replace';
-import endsWith from '@stdlib/string/ends-with';
-
-
-// FUNCTIONS //
-
-/**
-* Casts a pixel string to a number.
-*
-* @private
-* @param {(string|number)} x - input value
-* @param {number} cast number (in px)
-*/
-function castToNumber( x ) {
-	if ( endsWith( x, 'px' ) ) {
-		x = parseFloat( replace( x, 'px', '' ) );
-	}
-	return x;
-}
+import pixelsToNumber from 'utils/pixels-to-number';
 
 
 // MAIN //
@@ -35,11 +17,11 @@ function animatePosition( element, prop, to, duration ) {
 	if ( duration <= 0 ) {
 		return;
 	}
-	const current = castToNumber( element.style[ prop ] );
+	const current = pixelsToNumber( element.style[ prop ] );
 	const difference = to - current;
 	const perTick = difference / duration * 10.0;
 	setTimeout( function onTimeout() {
-		const newVal = castToNumber( element.style[ prop ] ) + perTick;
+		const newVal = pixelsToNumber( element.style[ prop ] ) + perTick;
 		element.style[ prop ] = `${newVal}px`;
 		if ( element.style[ prop ] === to ) {
 			return;
