@@ -59,6 +59,10 @@ class Draggable extends Component {
 		this.props.onEscape( event );
 	}
 
+	updateSize = ({ width, height }) => {
+		this.container.updateSize({ width, height });
+	}
+
 	render() {
 		return (
 			<Fragment>
