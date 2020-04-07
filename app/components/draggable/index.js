@@ -73,8 +73,8 @@ class Draggable extends Component {
 						this.container = div;
 					}}
 					default={{
-						x: 50,
-						y: 30,
+						x: window.pageXOffset + 50,
+						y: window.pageYOffset + 30,
 						...this.props.default
 					}}
 					enableResizing={this.props.resizable ? ENABLE_RESIZING : false}
