@@ -240,7 +240,9 @@ class Queue extends Component {
 		if ( this.props.show ) {
 			if ( session.isOwner() ) {
 				debug( 'User is an owner...' );
-				out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
+				out = <Panel className="queue-panel" tabIndex={0} role="button"
+					header="Queue" onHide={this.props.onHide} minimizable
+				>
 					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
 					<ReactTable
 						className="queue-table"
@@ -328,10 +330,10 @@ class Queue extends Component {
 				if ( this.props.draggable ) {
 					out = <Draggable
 						bounds="#Lesson" cancel=".queue-table"
-						enableUserSelectHack={false}
-						onEscape={this.handleEscape}
+						onEscape={this.handleEscape} resizable
+						minWidth={300} minHeight={150}
 					>
-						<div className="outer-queue" >{out}</div>
+						{out}
 					</Draggable>;
 				}
 				return out;
@@ -339,7 +341,8 @@ class Queue extends Component {
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
-				out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
+				out = <Panel className="queue-panel" tabIndex={0} role="button"
+					header="Queue" onHide={this.props.onHide} minimizable >
 					<p>Your question: <i>{this.state.questionText}</i></p>
 					<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
 					<p>There are {this.state.queueSize} individual(s) in the queue.</p>
@@ -350,10 +353,11 @@ class Queue extends Component {
 				</Panel>;
 				if ( this.props.draggable ) {
 					out = <Draggable
-						bounds="#Lesson" enableUserSelectHack={false}
-						onEscape={this.handleEscape}
+						bounds="#Lesson"
+						onEscape={this.handleEscape} resizable
+						minWidth={300} minHeight={150}
 					>
-						<div className="outer-queue">{out}</div>
+						{out}
 					</Draggable>;
 				}
 				return out;
@@ -380,10 +384,11 @@ class Queue extends Component {
 			if ( this.props.draggable ) {
 				out = <Draggable
 					bounds="#Lesson" cancel="#queue_form"
-					enableUserSelectHack={false}
 					onEscape={this.handleEscape}
+					resizable
+					minWidth={300} minHeight={150}
 				>
-					<div className="outer-queue">{out}</div>
+					{out}
 				</Draggable>;
 			}
 			return out;
