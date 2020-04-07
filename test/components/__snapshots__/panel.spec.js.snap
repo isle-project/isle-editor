@@ -6,7 +6,11 @@ exports[`renders a panel 1`] = `
   header={null}
   hideTooltip="Close"
   minimizable={false}
-  style={Object {}}
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
 >
   <div
     className="card-body"
@@ -29,7 +33,11 @@ exports[`renders a panel with a heading 1`] = `
   header="Title"
   hideTooltip="Close"
   minimizable={false}
-  style={Object {}}
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
 >
   <h3
     className="card-header"

@@ -2,15 +2,32 @@
 
 exports[`renders a basic calculator 1`] = `
 <div
-  className="outer-calc react-draggable"
+  className="react-draggable"
+  onEscape={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
+  onStop={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  resizable={false}
   style={
     Object {
+      "boxSizing": "border-box",
+      "cursor": "move",
+      "display": "inline-block",
+      "flexShrink": 0,
+      "height": "auto",
+      "left": 0,
+      "maxHeight": 9007199254740991,
+      "maxWidth": 9007199254740991,
+      "minHeight": undefined,
+      "minWidth": undefined,
+      "position": "fixed",
+      "top": 0,
       "touchAction": "none",
-      "transform": "translate(0px,0px)",
+      "transform": "translate(30px,30px)",
+      "userSelect": "auto",
+      "width": "auto",
     }
   }
   transform={null}
@@ -22,7 +39,11 @@ exports[`renders a basic calculator 1`] = `
     id="calc-panel"
     minimizable={true}
     role="button"
-    style={Object {}}
+    style={
+      Object {
+        "height": undefined,
+      }
+    }
     tabIndex={0}
   >
     <h3
@@ -290,15 +311,32 @@ exports[`renders a basic calculator 1`] = `
 
 exports[`renders an expandable calculator 1`] = `
 <div
-  className="outer-calc react-draggable"
+  className="react-draggable"
+  onEscape={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
+  onStop={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  resizable={false}
   style={
     Object {
+      "boxSizing": "border-box",
+      "cursor": "move",
+      "display": "inline-block",
+      "flexShrink": 0,
+      "height": "auto",
+      "left": 0,
+      "maxHeight": 9007199254740991,
+      "maxWidth": 9007199254740991,
+      "minHeight": undefined,
+      "minWidth": undefined,
+      "position": "fixed",
+      "top": 0,
       "touchAction": "none",
-      "transform": "translate(0px,0px)",
+      "transform": "translate(30px,30px)",
+      "userSelect": "auto",
+      "width": "auto",
     }
   }
   transform={null}
@@ -310,7 +348,11 @@ exports[`renders an expandable calculator 1`] = `
     id="calc-panel"
     minimizable={true}
     role="button"
-    style={Object {}}
+    style={
+      Object {
+        "height": undefined,
+      }
+    }
     tabIndex={0}
   >
     <h3
