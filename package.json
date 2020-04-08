@@ -299,9 +299,6 @@
   "devEngines": {
     "node": "9.x || 10.x || 11.x || 12.x"
   },
-  "greenkeeper": {
-    "ignore": []
-  },
   "build": {
     "appId": "isle.editor",
     "productName": "isle-editor",
