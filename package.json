@@ -132,7 +132,7 @@
     "compute-stdev": "^1.0.0",
     "cross-env": "^7.0.2",
     "css": "^2.2.3",
-    "css-loader": "^3.5.0",
+    "css-loader": "^3.5.1",
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^4.8.8",
     "csv-stringify": "^5.3.5",
