@@ -158,7 +158,6 @@
     "html-webpack-plugin": "4.0.4",
     "is-extendable": "^1.0.1",
     "is-touch-device": "^1.0.1",
-    "lib-jitsi-meet-dist": "^2.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.flow": "^3.5.0",
     "markdown-it": "^10.0.0",

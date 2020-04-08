@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import JitsiMeetExternalAPI from 'lib-jitsi-meet-dist/dist/external_api.min.js';
 import Tooltip from 'components/tooltip';
 import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
@@ -84,7 +83,7 @@ class VideoChat extends Component {
 			noSSL: false,
 			jwt: session.jitsi.token
 		};
-		this.api = new JitsiMeetExternalAPI( session.jitsi.server, options );
+		this.api = new window.JitsiMeetExternalAPI( session.jitsi.server, options );
 		this.api.executeCommand( 'displayName', session.user.name );
 		this.api.executeCommand( 'subject', this.props.roomSubject );
 		this.api.executeCommand( 'avatarUrl', session.user.picture );
@@ -128,7 +127,7 @@ class VideoChat extends Component {
 		});
 	}
 
-	stopScreensharing = ( event ) => {
+	stopScreenSharing = ( event ) => {
 		this.api.executeCommand( 'toggleShareScreen' );
 	}
 
@@ -158,7 +157,7 @@ class VideoChat extends Component {
 			></div>
 			{this.state.minimized ? <h3 style={{ marginTop: 22 }}>
 				{this.state.screensharing ? <span>
-					Sharing screen <Button onClick={this.stopScreensharing} variant="secondary" size="sm">Stop sharing</Button>
+					Sharing screen <Button onClick={this.stopScreenSharing} variant="secondary" size="sm">Stop sharing</Button>
 				</span> : 'Video active'}
 			</h3> : null}
 			<Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'} >
