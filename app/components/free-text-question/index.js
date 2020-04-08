@@ -261,19 +261,24 @@ class FreeTextQuestion extends Component {
 					{ this.props.question ? <div className="title">{this.props.question}</div> : null }
 					<FormGroup>
 						<label>{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
-						<FormControl
-							as="textarea"
-							placeholder={this.props.placeholder}
-							onChange={this.handleChange}
-							style={{
-								resize: this.props.resizable ? 'both' : 'none'
-							}}
-							maxLength={this.props.maxlength}
-							rows={this.props.rows}
-							value={this.state.value}
-							disabled={this.state.solutionDisplayed}
-						/>
-					</FormGroup>
+						{!this.state.solutionDisplayed ?
+							<FormControl
+								as="textarea"
+								placeholder={this.props.placeholder}
+								onChange={this.handleChange}
+								style={{
+									resize: this.props.resizable ? 'both' : 'none'
+								}}
+								maxLength={this.props.maxlength}
+								rows={this.props.rows}
+								value={this.state.value}
+								disabled={this.state.solutionDisplayed}
+							/> :
+							<div className="free-text-question-solution-wrapper">
+								{this.state.value}
+							</div>
+						}
+						</FormGroup>
 					<ResponseVisualizer
 						buttonLabel="Answers" id={this.id}
 						info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
@@ -380,7 +385,10 @@ FreeTextQuestion.propTypes = {
 	hints: PropTypes.arrayOf( PropTypes.string ),
 	hintPlacement: PropTypes.string,
 	feedback: PropTypes.bool,
-	solution: PropTypes.string,
+	solution: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	rows: PropTypes.number,
 	chat: PropTypes.bool,
 	resizable: PropTypes.bool,
