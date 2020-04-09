@@ -344,7 +344,7 @@ class Toolbar extends Component {
 								canvasWidth={this.state.sketchpadWidth} canvasHeight={this.state.sketchpadHeight}
 							/>
 						</Panel>
-					</Draggable>: null
+					</Draggable> : null
 				}
 				<Calculator show={this.state.calculator} onHide={this.toggleCalculator} />
 				<Queue
