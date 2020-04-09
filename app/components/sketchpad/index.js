@@ -27,6 +27,7 @@ import contains from '@stdlib/assert/contains';
 import isObject from '@stdlib/assert/is-object';
 import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
+import abs from '@stdlib/math/base/special/abs';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import sqrt from '@stdlib/math/base/special/sqrt';
@@ -77,9 +78,8 @@ const OMITTED_KEYS = [
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
 const RE_DIGITS = /^[0-9]+$/;
-const MIN_SWIPE_X = 45;
+const MIN_SWIPE_X = 60;
 const MIN_SWIPE_Y = 30;
-const MAX_SWIPE_Y = 60;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
 
@@ -1212,15 +1212,9 @@ class Sketchpad extends Component {
 	drawEnd = ( event ) => {
 		event.stopPropagation();
 		if (
-			(
-				this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
-				this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
-			) &&
-			(
-				this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
-				this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
-				this.swipeEndX > 0
-			)
+			abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
+			abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
+			this.swipeEndX > 0
 		) {
 			if ( this.swipeEndX > this.swipeStartX ) {
 				this.previousPage();
@@ -2251,15 +2245,9 @@ class Sketchpad extends Component {
 		// Mouse is not clicked anymore...
 		event.stopPropagation();
 		if (
-			(
-				this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
-				this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
-			) &&
-			(
-				this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
-				this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
-				this.swipeEndX > 0
-			)
+			abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
+			abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
+			this.swipeEndX > 0
 		) {
 			if ( this.swipeEndX > this.swipeStartX ) {
 				this.previousPage();
@@ -2580,15 +2568,9 @@ class Sketchpad extends Component {
 			const onTouchEnd = ( event ) => {
 				event.stopPropagation();
 				if (
-					(
-						this.swipeEndX - MIN_SWIPE_X > this.swipeStartX ||
-						this.swipeEndX + MIN_SWIPE_X < this.swipeStartX
-					) &&
-					(
-						this.swipeEndY < this.swipeStartY + MAX_SWIPE_Y &&
-						this.swipeStartY > this.swipeEndY - MAX_SWIPE_Y &&
-						this.swipeEndX > 0
-					)
+					abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
+					abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
+					this.swipeEndX > 0
 				) {
 					if ( this.swipeEndX > this.swipeStartX ) {
 						this.previousPage();
