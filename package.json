@@ -277,7 +277,7 @@
     "plotly.js": "^1.53.0",
     "react-draggable": "^4.0.2",
     "react-list": "^0.8.13",
-    "react-monaco-editor": "0.35.0",
+    "react-monaco-editor": "0.36.0",
     "react-player": "^1.15.3",
     "react-test-renderer": "16.13.1",
     "redux-devtools": "3.5.0",
