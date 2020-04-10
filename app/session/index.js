@@ -855,7 +855,14 @@ class Session {
 				data: data
 			})
 		})
-		.catch( error => debug( 'Encountered an error: '+error.message ) );
+		.catch( error => {
+			this.addNotification({
+				title: 'Error encountered',
+				message: error.message,
+				level: 'error',
+				position: 'tl'
+			});
+		});
 	}
 
 	getSketchpadVisitorData( id ) {
