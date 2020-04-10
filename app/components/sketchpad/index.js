@@ -709,6 +709,9 @@ class Sketchpad extends Component {
 	}
 
 	renderBackground = ( pageNumber ) => {
+		if ( this.renderingTask ) {
+			this.renderingTask.cancel();
+		}
 		const canvas = this.canvas;
 		const ctx = this.ctx;
 
@@ -773,11 +776,14 @@ class Sketchpad extends Component {
 					textDivs: []
 				});
 			});
-			return page.render( renderContext )
-			.promise
+			this.renderingTask = page.render( renderContext );
+			return this.renderingTask.promise
 			.then( () => {
 				this.backgroundData = this.ctx.getImageData( 0, 0, this.canvas.width, this.canvas.height );
 				debug( `Background rendered for page ${pageNumber}` );
+			})
+			.catch( ( err ) => {
+				debug( 'Encountered error in `renderBackground`: '+err.message );
 			});
 		}
 
@@ -795,10 +801,6 @@ class Sketchpad extends Component {
 	}
 
 	redraw = () => {
-		if ( this.pageRendering ) {
-			return debug( 'Early return because of active render task...' );
-		}
-		this.pageRendering = true;
 		const currentPage = this.state.currentPage;
 
 		debug( `Redrawing page ${currentPage+1}` );
@@ -817,11 +819,10 @@ class Sketchpad extends Component {
 				for ( let i = 0; i < elems.length - nUndos; i++ ) {
 					this.drawElement( elems[ i ] );
 				}
-				this.pageRendering = false;
+				this.renderingTask = null;
 			})
 			.catch( ( err ) => {
-				this.pageRendering = false;
-				debug( 'Encountered error in `redraw`: '+err.message );
+				this.renderingTask = null;
 			});
 	}
 
@@ -1840,7 +1841,7 @@ class Sketchpad extends Component {
 		if ( RE_DIGITS.test( pageNo ) ) {
 			return Number( pageNo );
 		}
-		return null;
+		return 0;
 	}
 
 	updateURL = ( pageNo ) => {
@@ -1948,7 +1949,7 @@ class Sketchpad extends Component {
 			});
 			loadingTask.promise
 				.then( this.processPDF )
-				.catch(function onError( err ) {
+				.catch( function onError( err ) {
 					debug( err );
 				});
 		};
