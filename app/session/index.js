@@ -32,7 +32,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, VOICE_RECORDING_STATUS } from 'constants/events.js';
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, USER_PROGRESS, VOICE_RECORDING_STATUS } from 'constants/events.js';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -149,6 +149,7 @@ class Session {
 		// List of currently logged-in users:
 		this.userList = [];
 		this.userFocuses = {};
+		this.userProgress = {};
 
 		this.selectedCohort = null;
 		this.activeCohortMembers = null;
@@ -963,6 +964,12 @@ class Session {
 			this.update( RECEIVED_USERS );
 		});
 
+		socket.on( 'progress', ( data ) => {
+			debug( `Receiving progress ${data.progress} from user ${data.email}` );
+			this.userProgress[ data.email ] = data.progress;
+			this.update( USER_PROGRESS );
+		});
+
 		socket.on( 'user_joins', ( data ) => {
 			debug( 'A user has joined and should be added to the user list: ' + data );
 			data = JSON.parse( data );
@@ -1607,6 +1614,7 @@ class Session {
 			}
 			PRIVATE_VARS[ 'progress' ] = clamp( progress, 0, 1 );
 			this.update( SELF_INITIAL_PROGRESS, progress );
+			this.socket.emit( 'progress', progress );
 			this.logSession();
 			initializedProgress = true;
 		}
@@ -1622,9 +1630,11 @@ class Session {
 							break;
 						}
 						else if ( j === actions.length - 1 ) {
-							PRIVATE_VARS[ 'progress' ] = clamp( this.get( 'progress' ) + 1.0 / ids.length, 0, 1 );
-							this.update( SELF_UPDATED_PROGRESS, this.get( 'progress' ) );
+							const progress = clamp( this.get( 'progress' ) + 1.0 / ids.length, 0, 1 );
+							PRIVATE_VARS[ 'progress' ] = progress;
+							this.update( SELF_UPDATED_PROGRESS, progress );
 							this.unfinished = this.unfinished.filter( x => x !== id );
+							this.socket.emit( 'progress', progress );
 							this.logSession();
 						}
 					}

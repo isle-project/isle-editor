@@ -16,7 +16,7 @@ import VideoChatButton from 'components/video-chat-button';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
-	SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
+	SELECTED_COHORT, USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
 import './user_list.css';
 
 
@@ -64,7 +64,8 @@ class UserList extends Component {
 				type === RECEIVED_USERS ||
 				type === USER_JOINED ||
 				type === USER_LEFT ||
-				type === SELECTED_COHORT
+				type === SELECTED_COHORT ||
+				type === USER_PROGRESS
 			) {
 				debug( 'Should render the user list...' );
 				this.forceUpdate();
@@ -153,6 +154,7 @@ class UserList extends Component {
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
+		const userProgress = session.userProgress;
 		const ID_COUNTS = {};
 		let ID_COUNT_SUM = 0;
 		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 1.5 }}>
@@ -221,6 +223,7 @@ class UserList extends Component {
 									/>
 								</span>
 							</Tooltip>
+							<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
 							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
 							{ showInteractionButtons ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
