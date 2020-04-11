@@ -23,7 +23,8 @@ import ConfirmModal from './confirm_modal.js';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
 import { DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
-import VoiceControl from './voice-control/index.js';
+import VoiceControl from './voice-control';
+import GroupManager from './group-manager';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -62,6 +63,7 @@ class StatusBar extends Component {
 			visibleSignup: false,
 			visibleLogin: false,
 			visibleLogout: false,
+			showGroupManager: false,
 			showStatusBar: !context.config.hideStatusBar,
 			showProgressBar: false,
 			isProgressLeaving: false,
@@ -187,6 +189,15 @@ class StatusBar extends Component {
 		debug( 'Toggle visibility of statusbar...' );
 		this.setState({
 			showStatusBar: !this.state.showStatusBar
+		});
+	}
+
+	toggleGroupManager = ( event ) => {
+		if ( event ) {
+			event.stopPropagation();
+		}
+		this.setState({
+			showGroupManager: !this.state.showGroupManager
 		});
 	}
 
@@ -358,6 +369,7 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<Chats />
+				<GroupManager active={this.state.showGroupManager} onHide={this.toggleGroupManager} />
 				<div>
 					<div
 						className="statusbar unselectable"
@@ -390,6 +402,15 @@ class StatusBar extends Component {
 										className="statusbar-blackscreen-mode statusbar-icon"
 									>
 										<span className="fa fa-xs fa-stop" />
+									</span>
+								</Tooltip> : null }
+							{isOwner ?
+								<Tooltip placement="bottom" tooltip="Group Manager" >
+									<span role="button" tabIndex={0}
+										onClick={this.toggleGroupManager} onKeyPress={this.toggleGroupManager}
+										className="statusbar-group-manager statusbar-icon"
+									>
+										<span className="fa fa-xs fa-user-friends" />
 									</span>
 								</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }

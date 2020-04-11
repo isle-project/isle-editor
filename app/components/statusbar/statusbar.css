@@ -184,6 +184,11 @@
 	bottom: 3px;
 }
 
+#Lesson .statusbar-group-manager {
+	left: 72px;
+	bottom: 3px;
+}
+
 #Lesson .statusbar-video-chat {
 	right: 60px;
 	bottom: 0px;
