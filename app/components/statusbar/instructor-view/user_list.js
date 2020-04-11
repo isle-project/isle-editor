@@ -209,9 +209,6 @@ class UserList extends Component {
 					<ListGroupItem
 						className="user-list-item"
 						key={idx}
-						style={{
-							color
-						}}
 					>
 						<div style={{ width: '100%' }} >
 							<Tooltip placement="right" tooltip="Click to open user actions" >
@@ -223,11 +220,13 @@ class UserList extends Component {
 									/>
 								</span>
 							</Tooltip>
-							<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
+							<Tooltip placement="bottom" tooltip="Lesson Progress">
+								<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
+							</Tooltip>
 							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
 							{ showInteractionButtons ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
-						<div style={{ width: '100%', color: user.inactive ? 'darkgray' : 'black' }} >
+						<div style={{ width: '100%', color }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
 							{ focusedID ? <Tooltip placement="left" tooltip="Element user is interacting with" >
 								<Button
