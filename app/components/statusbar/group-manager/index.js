@@ -10,6 +10,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import ceil from '@stdlib/math/base/special/ceil';
 import floor from '@stdlib/math/base/special/floor';
 import sample from '@stdlib/random/sample';
+import shuffle from '@stdlib/random/shuffle';
 import Panel from 'components/panel';
 import Collapse from 'components/collapse';
 import Draggable from 'components/draggable';
@@ -24,7 +25,7 @@ import names from './names.json';
 // VARIABLES //
 
 const debug = logger( 'isle:group-manager' );
-const USERS = new Array( 20 );
+const USERS = require( './../../../../test/mocks/user_list.js' );
 
 
 // FUNCTIONS //
@@ -41,14 +42,39 @@ function extractQuestions( session ) {
 	return questions;
 }
 
-function createGroups( nGroups, users ) {
+function randomGroupAssignment( nGroups, users ) {
+	users = shuffle( users );
+	const out = {};
+	const nUsersPerGroup = floor( users.length / nGroups );
+	for ( let i = 0; i < nGroups; i++ ) {
+		out[ i ] = users.slice( nUsersPerGroup*i, nUsersPerGroup*(i+1) );
+	}
+	for ( let i = nUsersPerGroup * nGroups; i < users.length; i++ ) {
+		const groupIndex = i % nGroups;
+		out[ groupIndex ].push( users[ i ] );
+	}
+	return out;
+}
+
+function createGroups({ nGroups, users, mode }) {
 	const groupNames = sample( names, {
 		size: nGroups,
 		replace: false
 	});
+	let groupUsers;
+	switch ( mode ) {
+		case 'random':
+			groupUsers = randomGroupAssignment( nGroups, users );
+		break;
+		case 'progress':
+		break;
+		case 'answers':
+		break;
+	}
+	console.log( groupUsers );
 	const groups = [];
 	for ( let i = 0; i < groupNames.length; i++ ) {
-		groups[ i ] = new Group( groupNames[ i ], USERS );
+		groups[ i ] = new Group( groupNames[ i ], groupUsers[ i ] );
 	}
 	return groups;
 }
@@ -212,7 +238,11 @@ class GroupManager extends Component {
 			{this.renderModeOptions()}
 			<hr />
 			<Button onClick={() => {
-				const groups = createGroups( this.state.nGroups, USERS );
+				const groups = createGroups({
+					nGroups: this.state.nGroups,
+					users: USERS,
+					mode: this.state.activeMode
+				});
 				this.setState({
 					running: true,
 					groups
