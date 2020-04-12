@@ -720,6 +720,15 @@ class Session {
 	}
 
 	/**
+	* Closes the given chat for all members.
+	*
+	* @param {string} name - chat name
+	*/
+	closeChatForAll( name ) {
+		this.socket.emit( 'close_chat', name );
+	}
+
+	/**
 	* Joins collaborative editing of document.
 	*
 	* @param {string} name - document identifier
@@ -1102,6 +1111,10 @@ class Session {
 
 		socket.on( 'chat_invitation', ( data ) => {
 			this.joinChat( data );
+		});
+
+		socket.on( 'closed_chat', ( name ) => {
+			this.removeChat( name );
 		});
 
 		socket.on( 'chat_statistics', ( data ) => {
