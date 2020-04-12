@@ -21,7 +21,7 @@ import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
 import ConfirmModal from './confirm_modal.js';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
-import { DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
+import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import VoiceControl from './voice-control';
 import GroupManager from './group-manager';
@@ -151,6 +151,8 @@ class StatusBar extends Component {
 						blackscreen.parentElement.removeChild( blackscreen );
 					}
 				}
+			} else if ( type === CREATED_GROUPS && !this.state.showGroupManager ) {
+				this.toggleGroupManager();
 			}
 		});
 		this.renderTextInterval = setInterval( this.renderRecordedText, 1000 );

@@ -31,12 +31,12 @@ import './group_manager.css';
 
 const debug = logger( 'isle:group-manager' );
 const customSelectStyles = {
-	multiValue: ( provided, state ) => ({
+	multiValue: ( provided ) => ({
 		...provided,
 		boxShadow: '0 0 2px black',
 		marginRight: '4px'
 	}),
-	control: ( provided, state ) => ({
+	control: ( provided ) => ({
 		...provided,
 		borderRadius: '0 0 4px 4px'
 	})
@@ -128,6 +128,7 @@ class GroupManager extends Component {
 		this.state= {
 			activeMode: 'random',
 			matching: 'similar',
+			groups: null,
 			running: false,
 			nGroups: 1,
 			notAssigned: []
@@ -140,7 +141,10 @@ class GroupManager extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, data ) => {
 				if ( type === CREATED_GROUPS ) {
-					console.log( 'SHOULD CREATE GROUPS' );
+					this.setState({
+						running: true,
+						groups: data
+					});
 				}
 				else if ( type === DELETED_GROUPS ) {
 					this.setState({
