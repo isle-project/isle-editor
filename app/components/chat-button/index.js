@@ -89,19 +89,19 @@ class ChatButton extends Component {
 	}
 
 	handleClick = ( event ) => {
-		this.props.onClick( event );
 		debug( 'Handle click to join chat...' );
 		const session = this.context;
 		let opened = this.state.opened;
 		this.setState({
 			opened: !opened
 		}, () => {
+			this.props.onClick( event, opened );
 			if ( !opened ) {
 				debug( `Should join chat for component with id '${this.props.for}'...` );
-				session.joinChat( this.props.for );
+				session.joinChat({ name: this.props.for });
 			} else {
 				debug( `Should leave chat for component with id '${this.props.for}'...` );
-				session.leaveChat( this.props.for );
+				session.leaveChat({ name: this.props.for });
 			}
 		});
 	}

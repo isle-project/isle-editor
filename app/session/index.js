@@ -687,9 +687,11 @@ class Session {
 	/**
 	* Joins the specified chat in case of an existing socket connection.
 	*
-	* @param {string} name - chat room name
+	* @param {Object} config - chat information
+	* @param {string} config.name - chat room name
+	* @param {boolean} [config.canLeave=true] - whether invited user can leave chat
 	*/
-	joinChat( name ) {
+	joinChat({ name, canLeave = true }) {
 		if ( this.socket ) {
 			let found = false;
 			for ( let i = 0; i < this.chats.length; i++ ) {
@@ -698,11 +700,23 @@ class Session {
 				}
 			}
 			if ( !found ) {
-				this.chats.push({ name: name, messages: [], members: []});
+				this.chats.push({
+					name, messages: [], members: [], canLeave
+				});
 				this.update();
 				this.socket.emit( 'join_chat', name );
 			}
 		}
+	}
+
+	/**
+	* Invites a user to a chat with the supplied information.
+	*
+	* @param {Object} data - chat information object with at least a `name`
+	* @param {string} email - email of user to invite
+	*/
+	inviteToChat( data, email ) {
+		this.socket.emit( 'chat_invitation', data, email );
 	}
 
 	/**
@@ -1084,6 +1098,10 @@ class Session {
 				chat.messages.push( data.msg );
 			}
 			this.update( CHAT_MESSAGE, data.chatroom );
+		});
+
+		socket.on( 'chat_invitation', ( data ) => {
+			this.joinChat( data );
 		});
 
 		socket.on( 'chat_statistics', ( data ) => {

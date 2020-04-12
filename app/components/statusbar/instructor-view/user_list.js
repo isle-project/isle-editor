@@ -151,6 +151,18 @@ class UserList extends Component {
 		});
 	}
 
+	chatInviteFactory = ( chatName, email ) => {
+		const session = this.context;
+		return ( event, opened ) => {
+			if ( opened ) {
+				session.inviteToChat({
+					name: chatName,
+					closable: false
+				}, email );
+			}
+		};
+	}
+
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
@@ -223,7 +235,7 @@ class UserList extends Component {
 							<Tooltip placement="bottom" tooltip="Lesson Progress">
 								<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
 							</Tooltip>
-							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} /> : null }
+							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} chatInviteFactory={this.chatInviteFactory( `Chat with ${user.name}`, user.email )} /> : null }
 							{ showInteractionButtons ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
 						</div>
 						<div style={{ width: '100%', color }} >

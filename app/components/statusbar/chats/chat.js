@@ -11,6 +11,7 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
+import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
 import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
@@ -272,7 +273,7 @@ class Chat extends Component {
 		style.minWidth = '275px';
 		const ident = 'chat_' + chat.name;
 		return (
-			<Draggable cancel=".cancel" onEscape={this.closeChat} >
+			<Draggable cancel=".cancel" onEscape={this.props.chat.canLeave ? this.closeChat : noop} >
 				<div
 					id={ident}
 					className="chat-outer-div"
@@ -293,11 +294,11 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						<Tooltip tooltip="Close (Esc)" placement="bottom" >
+						{ chat.canLeave ? <Tooltip tooltip="Close (Esc)" placement="bottom" >
 							<button className="chat-header-button" onClick={this.closeChat} >
 								<i className="fas fa-times"></i>
 							</button>
-						</Tooltip>
+						</Tooltip> : null }
 						<Tooltip tooltip="Maximize" placement="bottom" >
 							<button className="chat-header-button" onClick={this.toggleMaximize} >
 								<i className="far fa-window-maximize" ></i>
