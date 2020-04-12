@@ -1,0 +1,16 @@
+.group-manager-profile-pic {
+	width: 32px;
+	height: 32px;
+	float: left;
+}
+
+.group-manager-header {
+	background: gainsboro;
+	border-radius: 4px 4px 0 0;
+	border-left: solid 1px darkgray;
+	border-right: solid 1px darkgray;
+	border-top: solid 1px darkgray;
+	padding: 4px 2px 4px 8px;
+	margin-bottom: 0;
+	margin-top: 8px;
+}

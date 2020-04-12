@@ -3,6 +3,8 @@
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import innerText from 'react-innertext';
+import CreatableSelect from 'react-select/creatable';
+import { components } from 'react-select';
 import Button from 'react-bootstrap/Button';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import objectKeys from '@stdlib/utils/keys';
@@ -12,7 +14,8 @@ import floor from '@stdlib/math/base/special/floor';
 import sample from '@stdlib/random/sample';
 import shuffle from '@stdlib/random/shuffle';
 import Panel from 'components/panel';
-import Collapse from 'components/collapse';
+import ChatButton from 'components/chat-button';
+import VideoChatButton from 'components/video-chat-button';
 import Draggable from 'components/draggable';
 import Tooltip from 'components/tooltip';
 import NumberInput from 'components/input/number';
@@ -20,12 +23,40 @@ import SelectInput from 'components/input/select';
 import SessionContext from 'session/context.js';
 import Group from './group.js';
 import names from './names.json';
+import './group_manager.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:group-manager' );
 const USERS = require( './../../../../test/mocks/user_list.js' );
+
+const customSelectStyles = {
+	multiValue: ( provided, state ) => ({
+		...provided,
+		boxShadow: '0 0 2px black',
+		marginRight: '4px'
+	}),
+	control: ( provided, state ) => ({
+		...provided,
+		borderRadius: '0 0 4px 4px'
+	})
+};
+const customSelectComponents = {
+	MultiValueLabel: props => {
+		return (
+			<Tooltip
+				tooltip={props.data.value.email}
+				placement="bottom"
+			>
+				<span>
+					<img className="group-manager-profile-pic" alt="User Profile" src={props.data.value.picture} />
+					<components.MultiValueLabel {...props} />
+				</span>
+			</Tooltip>
+		);
+	}
+};
 
 
 // FUNCTIONS //
@@ -71,7 +102,6 @@ function createGroups({ nGroups, users, mode }) {
 		case 'answers':
 		break;
 	}
-	console.log( groupUsers );
 	const groups = [];
 	for ( let i = 0; i < groupNames.length; i++ ) {
 		groups[ i ] = new Group( groupNames[ i ], groupUsers[ i ] );
@@ -90,7 +120,8 @@ class GroupManager extends Component {
 			activeMode: 'random',
 			matching: 'similar',
 			running: false,
-			nGroups: 1
+			nGroups: 1,
+			notAssigned: []
 		};
 	}
 
@@ -146,15 +177,48 @@ class GroupManager extends Component {
 	}
 
 	renderGroups() {
+		const session = this.context;
 		const out = [];
 		for ( let i = 0; i < this.state.groups.length; i++ ) {
-			const { name } = this.state.groups[ i ];
-			out[ i ] = <Collapse
-				headerStyle={{ background: 'lightgray', padding: 5 }}
-				header={name} key={i}
+			const { name, members } = this.state.groups[ i ];
+			const options = members.map( x => {
+				const picture = session.server + '/thumbnail/' + x.picture;
+				return { 'value': { email: x.email, picture }, 'label': x.name };
+			});
+			out[ i ] = <div
+				key={i}
 			>
-
-			</Collapse>;
+				<h3 className="group-manager-header" >
+					{name}
+					<VideoChatButton showTooltip={false} for={name} subject={name} style={{ float: 'right', marginTop: -2, marginLeft: 5 }} />
+					<ChatButton showTooltip={false} for={name} style={{ float: 'right', marginTop: -2 }} />
+				</h3>
+				<CreatableSelect
+					components={customSelectComponents}
+					isMulti
+					isClearable={false}
+					defaultValue={options}
+					options={this.state.notAssigned}
+					styles={customSelectStyles}
+					menuPlacement={i === this.state.groups.length - 1 ? 'top' : 'bottom'}
+					onChange={( _, action ) => {
+						if ( action.action === 'remove-value' ) {
+							const notAssigned = this.state.notAssigned.slice();
+							notAssigned.push( action.removedValue );
+							this.setState({
+								notAssigned
+							});
+						} else if ( action.action === 'select-option' ) {
+							const notAssigned = this.state.notAssigned.filter( x => {
+								return x.value.email !== action.option.value.email;
+							});
+							this.setState({
+								notAssigned
+							});
+						}
+					}}
+				/>
+			</div>;
 		}
 		return out;
 	}
