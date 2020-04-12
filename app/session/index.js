@@ -1122,6 +1122,7 @@ class Session {
 		});
 
 		socket.on( 'closed_chat', ( name ) => {
+			debug( 'Should close chat with name '+name );
 			this.removeChat( name );
 		});
 

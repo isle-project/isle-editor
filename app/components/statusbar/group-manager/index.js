@@ -23,6 +23,7 @@ import SelectInput from 'components/input/select';
 import SessionContext from 'session/context.js';
 import Group from './group.js';
 import names from './names.json';
+import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
 import './group_manager.css';
 
 
@@ -58,6 +59,16 @@ const customSelectComponents = {
 
 
 // FUNCTIONS //
+
+function countStudents( userList ) {
+	let out = 0;
+	for ( let i = 0; i < userList.length; i++ ) {
+		if ( !userList[ i ].owner ) {
+			out += 1;
+		}
+	}
+	return out;
+}
 
 function extractQuestions( session ) {
 	const questions = [];
@@ -128,7 +139,14 @@ class GroupManager extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, data ) => {
-
+				if ( type === CREATED_GROUPS ) {
+					console.log( 'SHOULD CREATE GROUPS' );
+				}
+				else if ( type === DELETED_GROUPS ) {
+					this.setState({
+						running: false
+					});
+				}
 			});
 		}
 	}
@@ -142,7 +160,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		const groups = createGroups({
 			nGroups: this.state.nGroups,
-			users: session.userList,
+			users: session.userList.filter( x => !x.owner ),
 			mode: this.state.activeMode
 		});
 		session.createGroups( groups );
@@ -154,6 +172,9 @@ class GroupManager extends Component {
 
 	handleGroupDeletion = () => {
 		const session = this.context;
+		for ( let i = 0; i < this.state.groups.length; i++ ) {
+			session.closeChatForAll( this.state.groups[ i ].name );
+		}
 		session.deleteGroups();
 		this.setState({ running: false });
 	}
@@ -243,7 +264,7 @@ class GroupManager extends Component {
 
 	renderBody() {
 		const session = this.context;
-		const nUsers = session.userList.length;
+		const nUsers = countStudents( session.userList );
 		const nUsersPerGroup = floor( nUsers / this.state.nGroups );
 		let groupSizes = `(group sizes: ${nUsersPerGroup}`;
 		if ( nUsers % this.state.nGroups !== 0 ) {
