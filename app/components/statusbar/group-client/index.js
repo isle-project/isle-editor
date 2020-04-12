@@ -48,7 +48,7 @@ class GroupClient extends Component {
 				});
 			}
 			else if ( type === DELETED_GROUPS ) {
-				this.closeChatForAll( this.state.group.name );
+				session.closeChatForAll( this.state.group.name );
 				this.setState({
 					group: null
 				});
