@@ -26,7 +26,7 @@ import io from 'socket.io-client';
 import SpeechInterface from 'speech-interface';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
-	DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
+	CREATED_GROUPS, DELETED_GROUPS, DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
 	OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS, RECEIVED_CHAT_HISTORY,
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
@@ -865,6 +865,14 @@ class Session {
 		}
 	}
 
+	createGroups( groups ) {
+		this.socket.emit( 'create_groups', groups );
+	}
+
+	deleteGroups() {
+		this.socket.emit( 'delete_groups' );
+	}
+
 	saveSketchpadData( id, data ) {
 		return fetch( this.server+'/save_sketchpad_data', {
 			method: 'POST',
@@ -1120,6 +1128,14 @@ class Session {
 		socket.on( 'chat_statistics', ( data ) => {
 			data.name = this.stripChatName( data.name );
 			this.update( CHAT_STATISTICS, data );
+		});
+
+		socket.on( 'created_groups', ( data ) => {
+			this.update( CREATED_GROUPS, data );
+		});
+
+		socket.on( 'deleted_groups', () => {
+			this.update( DELETED_GROUPS );
 		});
 
 		socket.on( 'memberAction', this.saveAction );

@@ -25,6 +25,7 @@ import { DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UP
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import VoiceControl from './voice-control';
 import GroupManager from './group-manager';
+import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
 const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
@@ -369,7 +370,7 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<Chats />
-				<GroupManager active={this.state.showGroupManager} onHide={this.toggleGroupManager} />
+				{isOwner ? <GroupManager active={this.state.showGroupManager} onHide={this.toggleGroupManager} /> : <GroupClient />}
 				<div>
 					<div
 						className="statusbar unselectable"

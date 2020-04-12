@@ -111,7 +111,7 @@ function createGroups({ nGroups, users, mode }) {
 // MAIN //
 
 class GroupManager extends Component {
-	constructor( props, context ) {
+	constructor( props ) {
 		super( props );
 
 		this.state= {
@@ -136,6 +136,26 @@ class GroupManager extends Component {
 	componentWillUnmount() {
 		debug( 'Component will unmount...' );
 		this.unsubscribe();
+	}
+
+	handleGroupCreation = () => {
+		const session = this.context;
+		const groups = createGroups({
+			nGroups: this.state.nGroups,
+			users: session.userList,
+			mode: this.state.activeMode
+		});
+		session.createGroups( groups );
+		this.setState({
+			running: true,
+			groups
+		});
+	}
+
+	handleGroupDeletion = () => {
+		const session = this.context;
+		session.deleteGroups();
+		this.setState({ running: false });
 	}
 
 	renderModeOptions() {
@@ -235,9 +255,7 @@ class GroupManager extends Component {
 			return ( <Fragment>
 				{this.renderGroups()}
 				<hr />
-				<Button onClick={() => {
-					this.setState({ running: false });
-				}} >
+				<Button onClick={this.handleGroupDeletion} >
 					Close Groups
 				</Button>
 			</Fragment> );
@@ -300,17 +318,7 @@ class GroupManager extends Component {
 			<br />
 			{this.renderModeOptions()}
 			<hr />
-			<Button onClick={() => {
-				const groups = createGroups({
-					nGroups: this.state.nGroups,
-					users: session.userList,
-					mode: this.state.activeMode
-				});
-				this.setState({
-					running: true,
-					groups
-				});
-			}}>Create Groups</Button>
+			<Button onClick={this.handleGroupCreation}>Create Groups</Button>
 		</Fragment> );
 	}
 

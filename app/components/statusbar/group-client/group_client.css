@@ -1,0 +1,14 @@
+.group-client-user-picture {
+	float: left;
+	margin-right: 6px;
+}
+
+.group-client-list-item {
+	padding: 0 4px 0 0;
+	align-items: center;
+	display: flex;
+}
+
+.group-name {
+	font-variant: all-petite-caps;
+}
