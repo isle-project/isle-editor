@@ -101,7 +101,7 @@ class ChatButton extends Component {
 				session.joinChat({ name: this.props.for });
 			} else {
 				debug( `Should leave chat for component with id '${this.props.for}'...` );
-				session.leaveChat({ name: this.props.for });
+				session.leaveChat( this.props.for );
 			}
 		});
 	}
