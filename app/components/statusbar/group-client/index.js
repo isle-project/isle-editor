@@ -48,7 +48,6 @@ class GroupClient extends Component {
 				});
 			}
 			else if ( type === DELETED_GROUPS ) {
-				session.closeChatForAll( this.state.group.name );
 				this.setState({
 					group: null
 				});
@@ -94,11 +93,7 @@ class GroupClient extends Component {
 					<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
 					<span className="group-name">Group {this.state.group.name}</span>
 				</span>}
-				style={{
-					position: 'fixed',
-					top: 8,
-					left: 8
-				}}
+				className="group-client-panel"
 			>
 				{this.renderMembers()}
 				<VideoChatButton for={this.state.group.name} />

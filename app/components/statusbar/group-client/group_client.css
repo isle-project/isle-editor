@@ -12,3 +12,10 @@
 .group-name {
 	font-variant: all-petite-caps;
 }
+
+.group-client-panel {
+	position: fixed;
+	z-index: 1001;
+	top: 8;
+	left: 8;
+}
