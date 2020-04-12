@@ -29,8 +29,6 @@ import './group_manager.css';
 // VARIABLES //
 
 const debug = logger( 'isle:group-manager' );
-const USERS = require( './../../../../test/mocks/user_list.js' );
-
 const customSelectStyles = {
 	multiValue: ( provided, state ) => ({
 		...provided,
@@ -225,7 +223,7 @@ class GroupManager extends Component {
 
 	renderBody() {
 		const session = this.context;
-		const nUsers = USERS.length || session.userList.length;
+		const nUsers = session.userList.length;
 		const nUsersPerGroup = floor( nUsers / this.state.nGroups );
 		let groupSizes = `(group sizes: ${nUsersPerGroup}`;
 		if ( nUsers % this.state.nGroups !== 0 ) {
@@ -236,6 +234,7 @@ class GroupManager extends Component {
 		if ( this.state.running ) {
 			return ( <Fragment>
 				{this.renderGroups()}
+				<hr />
 				<Button onClick={() => {
 					this.setState({ running: false });
 				}} >
@@ -304,7 +303,7 @@ class GroupManager extends Component {
 			<Button onClick={() => {
 				const groups = createGroups({
 					nGroups: this.state.nGroups,
-					users: USERS,
+					users: session.userList,
 					mode: this.state.activeMode
 				});
 				this.setState({
