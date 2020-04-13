@@ -6,6 +6,8 @@ import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
 import Loadable from 'components/loadable';
 import VoiceInput from 'components/input/voice';
+import Gate from 'components/gate';
+import SelectInput from 'components/input/select';
 import Button from 'react-bootstrap/Button';
 import ResponseVisualizer from 'components/response-visualizer';
 import logger from 'debug';
@@ -38,6 +40,7 @@ import applyMark from './config/apply_mark.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constants/actions.js';
+import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
 import './editor.css';
 
 
@@ -100,7 +103,9 @@ class TextEditor extends Component {
 			submittedToPeer: false,
 			submittedPeerComments: false,
 			displayPeerReport: false,
-			docId: 0
+			docId: 0,
+			group: null,
+			allGroups: null
 		};
 
 		this.menu = copy( menu, 2 );
@@ -331,6 +336,19 @@ class TextEditor extends Component {
 		}
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( type === CREATED_GROUPS ) {
+				const allGroups = session.allGroups.map( x => x.name );
+				this.setState({
+					group: session.group ? session.group.name : allGroups[ 0 ],
+					allGroups
+				});
+			}
+			else if ( type === DELETED_GROUPS ) {
+				this.setState({
+					group: null,
+					allGroups: null
+				});
+			}
 			if ( action && action.id === this.id ) {
 				if ( action.type === EDITOR_PEER_REPORT ) {
 					localStorage.setItem( this.id+'_peer_report', action.value );
@@ -658,11 +676,23 @@ class TextEditor extends Component {
 
 	render() {
 		const session = this.context;
-		if ( this.props.groupMode && !session.group ) {
+		if ( this.props.groupMode && !this.state.group ) {
 			return <h3 style={this.props.style} >Activity will become available once you are part of a group</h3>;
 		}
 		return (
 			<Fragment>
+				{ this.props.groupMode ? <Gate owner >
+					<SelectInput
+						legend="Select group"
+						options={this.state.allGroups}
+						value={this.state.group}
+						onChange={( group ) => {
+							this.setState({
+								group
+							});
+						}}
+					/>
+				</Gate> : null }
 				<div
 					id={this.id} className="editorview-wrapper"
 					ref={( div ) => { this.editorWrapper = div; }}
@@ -679,7 +709,7 @@ class TextEditor extends Component {
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}
-							id={this.id}
+							id={this.state.group + '-' + this.id}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
