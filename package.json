@@ -243,7 +243,7 @@
     "webpack": "4.42.1",
     "whatwg-fetch": "^3.0.0",
     "worker-loader": "^2.0.0",
-    "xterm": "^4.3.0",
+    "xterm": "^4.5.0",
     "xterm-addon-fit": "^0.3.0"
   },
   "devDependencies": {
