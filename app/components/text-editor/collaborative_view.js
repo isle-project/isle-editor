@@ -76,7 +76,7 @@ class ProseMirrorCollaborative extends Component {
 
 	componentDidMount() {
 		const session = this.props.session;
-		const docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
+		const docID = `${session.namespaceName}-${session.lessonName}-${session.group.name}-${this.props.id}`;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {
@@ -183,6 +183,7 @@ class ProseMirrorCollaborative extends Component {
 			if ( this.view ) {
 				this.view.updateState( this.dispatchState.edit );
 			} else {
+				debug( 'Create editor view...' );
 				this.setView( new EditorView( this.editorDiv, {
 					state: this.dispatchState.edit,
 					nodeViews: {

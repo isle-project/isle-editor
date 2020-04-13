@@ -41,7 +41,6 @@ import ToolboxTutorialButton from 'components/data-explorer/toolbox-tutorial-but
 import TextEditor from 'components/text-editor';
 import GridLayout from './grid_layout.js';
 import Pages from 'components/pages';
-import ChatButton from 'components/chat-button';
 import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
@@ -138,7 +137,7 @@ function checkVariables( data, variables ) {
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
 * @property {Object} editorProps - object to be passed to `TextEditor` indicating properties to be used
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
-* @property {boolean} groupMode - controls whether to sync editor changes across users
+* @property {boolean} groupMode - controls whether to sync editor changes across users in a group
 * @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
@@ -1401,7 +1400,6 @@ class DataExplorer extends Component {
 								);
 							}) : null }
 						</Nav>
-						{ this.props.groupMode ? <ChatButton style={{ position: 'absolute', right: '135px' }} for={this.id} tooltipPlacement="bottom" /> : null }
 						<Button
 							variant="secondary" size="sm" className="hide-toolbox-button"
 							onClick={this.toggleToolbox}

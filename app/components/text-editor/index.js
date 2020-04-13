@@ -65,7 +65,8 @@ let savedOverflow;
 * @property {string} defaultValue - default text of the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
-* @property {boolean} groupMode - controls whether to enable collaborative text editing
+* @property {boolean} groupMode - controls whether to enable text editing for groups
+* @property {boolean} collaborativeMode - controls whether to enable collaborative text editing
 * @property {Object} peerReview - if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
@@ -656,6 +657,10 @@ class TextEditor extends Component {
 	}
 
 	render() {
+		const session = this.context;
+		if ( this.props.groupMode && !session.group ) {
+			return <h3 style={this.props.style} >Activity will become available once you are part of a group</h3>;
+		}
 		return (
 			<Fragment>
 				<div
@@ -670,7 +675,7 @@ class TextEditor extends Component {
 							onMount={( div ) => {
 								this.editorDiv = div;
 							}}
-							session={this.context}
+							session={session}
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}

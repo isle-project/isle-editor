@@ -732,7 +732,7 @@ class Session {
 	* @param {string} name - chat name
 	*/
 	closeChatForAll( name ) {
-		console.log( 'Closing chat '+name+' for all users...' );
+		debug( 'Closing chat '+name+' for all users...' );
 		this.socket.emit( 'close_chat', name );
 	}
 
@@ -742,7 +742,7 @@ class Session {
 	* @param {string} name - document identifier
 	*/
 	joinCollaborativeEditing( name ) {
-		name = `${this.namespaceName}-${this.lessonName}-${name}`;
+		name = `${this.namespaceName}-${this.lessonName}-${this.group.name}-${name}`;
 		if ( this.socket ) {
 			this.socket.emit( 'join_collaborative_editing', name );
 		}
