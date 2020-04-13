@@ -263,7 +263,7 @@ class GroupManager extends Component {
 				key={i}
 			>
 				<h3 className="group-manager-header" >
-					{name}
+					<span className="group-manager-header-name">Group {name}</span>
 					<VideoChatButton showTooltip={false} for={name} subject={name} style={{ float: 'right', marginTop: -2, marginLeft: 5 }} />
 					<ChatButton showTooltip={false} for={name} style={{ float: 'right', marginTop: -2 }} />
 				</h3>
