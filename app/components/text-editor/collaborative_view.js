@@ -76,7 +76,7 @@ class ProseMirrorCollaborative extends Component {
 
 	componentDidMount() {
 		const session = this.props.session;
-		const docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
+		this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {
@@ -84,21 +84,21 @@ class ProseMirrorCollaborative extends Component {
 					this.props.session.joinCollaborativeEditing( this.props.id );
 				}
 			}
-			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === docID ) {
+			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === this.docID ) {
 				debug( 'Joined collaborative editing...' );
 				this.handleStart( action.data );
 			}
-			else if ( type === POLLED_COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
+			else if ( type === POLLED_COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
 				if ( this.dispatchState.comm === 'polling' ) {
 					this.handlePollResponse( action.data );
 				}
-			} else if ( type === SENT_COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
+			} else if ( type === SENT_COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
 				debug( 'Received response after sending collaborative editing events...' );
 				if ( this.dispatchState.comm === 'send' ) {
 					this.handleSendResponse( action.data );
 				}
 			}
-			else if ( type === COLLABORATIVE_EDITING_EVENTS && action.id === docID ) {
+			else if ( type === COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
 				debug( 'Received info that other user updated the document '+JSON.stringify( action.data )+'[comm='+this.dispatchState.comm+']' );
 				if ( this.dispatchState.comm === 'listening' ) {
 					this.dispatch({ type: 'polling' });
@@ -109,6 +109,13 @@ class ProseMirrorCollaborative extends Component {
 		if ( !this.dispatchState ) {
 			// Load the document from the server and start up:
 			this.props.session.joinCollaborativeEditing( this.props.id );
+		}
+	}
+
+	componentDidUpdate( prevProps ) {
+		const session = this.props.session;
+		if ( this.props.id !== prevProps.id ) {
+			this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 		}
 	}
 
