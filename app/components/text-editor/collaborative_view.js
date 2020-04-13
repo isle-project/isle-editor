@@ -76,7 +76,7 @@ class ProseMirrorCollaborative extends Component {
 
 	componentDidMount() {
 		const session = this.props.session;
-		const docID = `${session.namespaceName}-${session.lessonName}-${session.group.name}-${this.props.id}`;
+		const docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {

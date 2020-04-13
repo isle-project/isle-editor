@@ -742,7 +742,7 @@ class Session {
 	* @param {string} name - document identifier
 	*/
 	joinCollaborativeEditing( name ) {
-		name = `${this.namespaceName}-${this.lessonName}-${this.group.name}-${name}`;
+		name = `${this.namespaceName}-${this.lessonName}-${name}`;
 		if ( this.socket ) {
 			this.socket.emit( 'join_collaborative_editing', name );
 		}
