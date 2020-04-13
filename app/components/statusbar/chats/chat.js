@@ -299,7 +299,7 @@ class Chat extends Component {
 								<i className="fas fa-times"></i>
 							</button>
 						</Tooltip> : null }
-						<Tooltip tooltip="Enlarge" placement="bottom" >
+						<Tooltip tooltip={this.state.maximized ? 'Shrink' : 'Enlarge'} placement="bottom" >
 							<button className="chat-header-button" onClick={this.toggleMaximize} >
 								<i className="far fa-window-maximize" ></i>
 							</button>
