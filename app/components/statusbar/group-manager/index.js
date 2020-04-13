@@ -96,7 +96,44 @@ function randomGroupAssignment( nGroups, users ) {
 	return out;
 }
 
-function createGroups({ nGroups, users, mode }) {
+function progressGroupAssignment( nGroups, users, progress, matching ) {
+	const out = {};
+	const nUsersPerGroup = floor( users.length / nGroups );
+	users = users.sort( ( a, b ) => {
+		return progress[ a.email ] - progress[ b.email ];
+	});
+	if ( matching === 'similar' ) {
+		const breakpoint = users.length % nGroups;
+		for ( let i = 0, j = 0; i < nGroups; i++ ) {
+			let start = nUsersPerGroup * i + j;
+			if ( i < breakpoint ) {
+				j += 1;
+			}
+			let end = nUsersPerGroup * ( i + 1 ) + j;
+			out[ i ] = users.slice( start, end );
+		}
+	}
+	else {
+		// Case: `matching` is set to `dissimilar`
+		for ( let i = 0; i < nGroups; i++ ) {
+			out[ i ] = [];
+		}
+		let i = 0;
+		let small = false;
+		while ( users.length > 0 ) {
+			out[ i ].push( small ? users.shift() : users.pop() );
+			if ( i < nGroups - 1 ) {
+				i += 1;
+			} else {
+				i = 0;
+				small = !small;
+			}
+		}
+	}
+	return out;
+}
+
+function createGroups({ nGroups, users, mode, progress, matching }) {
 	const groupNames = sample( names, {
 		size: nGroups,
 		replace: false
@@ -107,8 +144,10 @@ function createGroups({ nGroups, users, mode }) {
 			groupUsers = randomGroupAssignment( nGroups, users );
 		break;
 		case 'progress':
+			groupUsers = progressGroupAssignment( nGroups, users, progress, matching );
 		break;
 		case 'answers':
+			groupUsers = randomGroupAssignment( nGroups, users );
 		break;
 	}
 	const groups = [];
@@ -165,7 +204,9 @@ class GroupManager extends Component {
 		const groups = createGroups({
 			nGroups: this.state.nGroups,
 			users: session.userList.filter( x => !x.owner ),
-			mode: this.state.activeMode
+			mode: this.state.activeMode,
+			progress: session.userProgress,
+			matching: this.state.matching
 		});
 		session.createGroups( groups );
 		this.setState({
