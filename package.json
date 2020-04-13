@@ -294,7 +294,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "xterm-addon-search": "^0.6.0",
-    "xterm-addon-web-links": "^0.2.1"
+    "xterm-addon-web-links": "^0.3.0"
   },
   "devEngines": {
     "node": "9.x || 10.x || 11.x || 12.x"
