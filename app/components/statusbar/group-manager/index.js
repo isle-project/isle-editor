@@ -167,7 +167,6 @@ class GroupManager extends Component {
 		this.state= {
 			activeMode: 'random',
 			matching: 'similar',
-			groups: null,
 			running: false,
 			nGroups: 1,
 			notAssigned: []
@@ -178,11 +177,10 @@ class GroupManager extends Component {
 		debug( 'Component did mount...' );
 		const session = this.context;
 		if ( session ) {
-			this.unsubscribe = session.subscribe( ( type, data ) => {
+			this.unsubscribe = session.subscribe( ( type ) => {
 				if ( type === CREATED_GROUPS ) {
 					this.setState({
-						running: true,
-						groups: data
+						running: true
 					});
 				}
 				else if ( type === DELETED_GROUPS ) {
@@ -209,19 +207,11 @@ class GroupManager extends Component {
 			matching: this.state.matching
 		});
 		session.createGroups( groups );
-		this.setState({
-			running: true,
-			groups
-		});
 	}
 
 	handleGroupDeletion = () => {
 		const session = this.context;
-		for ( let i = 0; i < this.state.groups.length; i++ ) {
-			session.closeChatForAll( this.state.groups[ i ].name );
-		}
 		session.deleteGroups();
-		this.setState({ running: false });
 	}
 
 	renderModeOptions() {
@@ -263,8 +253,8 @@ class GroupManager extends Component {
 	renderGroups() {
 		const session = this.context;
 		const out = [];
-		for ( let i = 0; i < this.state.groups.length; i++ ) {
-			const { name, members } = this.state.groups[ i ];
+		for ( let i = 0; i < session.allGroups.length; i++ ) {
+			const { name, members } = session.allGroups[ i ];
 			const options = members.map( x => {
 				const picture = session.server + '/thumbnail/' + x.picture;
 				return { 'value': { email: x.email, picture }, 'label': x.name };
@@ -284,7 +274,7 @@ class GroupManager extends Component {
 					defaultValue={options}
 					options={this.state.notAssigned}
 					styles={customSelectStyles}
-					menuPlacement={i === this.state.groups.length - 1 ? 'top' : 'bottom'}
+					menuPlacement={i === session.allGroups.length - 1 ? 'top' : 'bottom'}
 					onChange={( _, action ) => {
 						if ( action.action === 'remove-value' ) {
 							const notAssigned = this.state.notAssigned.slice();

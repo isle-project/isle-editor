@@ -155,6 +155,9 @@ class Session {
 		// Assigned user group:
 		this.group = null;
 
+		// Available user groups:
+		this.allGroups = [];
+
 		this.selectedCohort = null;
 		this.activeCohortMembers = null;
 
@@ -729,6 +732,7 @@ class Session {
 	* @param {string} name - chat name
 	*/
 	closeChatForAll( name ) {
+		console.log( 'Closing chat '+name+' for all users...' );
 		this.socket.emit( 'close_chat', name );
 	}
 
@@ -874,6 +878,9 @@ class Session {
 	}
 
 	deleteGroups() {
+		for ( let i = 0; i < this.allGroups.length; i++ ) {
+			this.closeChatForAll( this.allGroups[ i ].name );
+		}
 		this.socket.emit( 'delete_groups' );
 	}
 
@@ -1135,9 +1142,16 @@ class Session {
 			this.update( CHAT_STATISTICS, data );
 		});
 
-		socket.on( 'created_groups', ( data ) => {
-			this.group = retrieveUserGroup( data, this.user );
+		socket.on( 'created_groups', ( groups ) => {
+			this.allGroups = groups;
+			this.group = retrieveUserGroup( groups, this.user );
 			this.update( CREATED_GROUPS, this.group );
+			if ( this.group && !this.isOwner() ) {
+				this.joinChat({
+					name: this.group.name,
+					canLeave: false
+				});
+			}
 		});
 
 		socket.on( 'deleted_groups', () => {

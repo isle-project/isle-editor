@@ -21,14 +21,7 @@ class GroupClient extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
-			if ( type === CREATED_GROUPS ) {
-				session.joinChat({
-					name: data.name,
-					canLeave: false
-				});
-				this.forceUpdate();
-			}
-			else if ( type === DELETED_GROUPS ) {
+			if ( type === CREATED_GROUPS || type === DELETED_GROUPS ) {
 				this.forceUpdate();
 			}
 		});
