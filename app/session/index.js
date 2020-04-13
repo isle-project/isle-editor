@@ -1156,6 +1156,7 @@ class Session {
 
 		socket.on( 'deleted_groups', () => {
 			this.group = null;
+			this.allGroups = [];
 			this.update( DELETED_GROUPS );
 		});
 

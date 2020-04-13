@@ -167,7 +167,6 @@ class GroupManager extends Component {
 		this.state= {
 			activeMode: 'random',
 			matching: 'similar',
-			running: false,
 			nGroups: 1,
 			notAssigned: []
 		};
@@ -178,15 +177,8 @@ class GroupManager extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type ) => {
-				if ( type === CREATED_GROUPS ) {
-					this.setState({
-						running: true
-					});
-				}
-				else if ( type === DELETED_GROUPS ) {
-					this.setState({
-						running: false
-					});
+				if ( type === CREATED_GROUPS || type === DELETED_GROUPS ) {
+					this.forceUpdate();
 				}
 			});
 		}
@@ -307,7 +299,7 @@ class GroupManager extends Component {
 		} else {
 			groupSizes += ')';
 		}
-		if ( this.state.running ) {
+		if ( session.allGroups.length > 0 ) {
 			return ( <Fragment>
 				{this.renderGroups()}
 				<hr />
