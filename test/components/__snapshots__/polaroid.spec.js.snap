@@ -12,11 +12,9 @@ exports[`renders a draggable polaroid image 1`] = `
   onMouseOver={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   role="button"
   style={
     Object {
-      "touchAction": "none",
       "transform": "translate(0px,0px)",
     }
   }
