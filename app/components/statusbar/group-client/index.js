@@ -4,53 +4,32 @@ import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Panel from 'components/panel';
+import Draggable from 'components/draggable';
 import VideoChatButton from 'components/video-chat-button';
 import SessionContext from 'session/context.js';
 import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
 import './group_client.css';
 
 
-// FUNCTIONS //
-
-function retrieveUserGroup( groups, user ) {
-	for ( let i = 0; i < groups.length; i++ ) {
-		const group = groups[ i ];
-		for ( let j = 0; j < group.members.length; j++ ) {
-			if ( group.members[ j ].email === user.email ) {
-				return group;
-			}
-		}
-	}
-}
-
 // MAIN //
 
 class GroupClient extends Component {
 	constructor( props ) {
 		super( props );
-
-		this.state = {
-			group: null
-		};
 	}
 
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
 			if ( type === CREATED_GROUPS ) {
-				const group = retrieveUserGroup( data, session.user );
 				session.joinChat({
-					name: group.name,
+					name: data.name,
 					canLeave: false
 				});
-				this.setState({
-					group
-				});
+				this.forceUpdate();
 			}
 			else if ( type === DELETED_GROUPS ) {
-				this.setState({
-					group: null
-				});
+				this.forceUpdate();
 			}
 		});
 	}
@@ -61,7 +40,7 @@ class GroupClient extends Component {
 
 	renderMembers() {
 		const session = this.context;
-		const members = this.state.group.members;
+		const members = session.group.members;
 		const size = 40;
 		return (
 			<ListGroup>
@@ -83,21 +62,24 @@ class GroupClient extends Component {
 	}
 
 	render() {
-		if ( !this.state.group) {
+		const session = this.context;
+		if ( !session.group) {
 			return null;
 		}
 		return (
-			<Panel
-				minimizable
-				header={<span>
-					<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
-					<span className="group-name">Group {this.state.group.name}</span>
-				</span>}
-				className="group-client-panel"
-			>
-				{this.renderMembers()}
-				<VideoChatButton for={this.state.group.name} />
-			</Panel>
+			<Draggable>
+				<Panel
+					minimizable
+					header={<span>
+						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
+						<span className="group-name">Group {session.group.name}</span>
+					</span>}
+					className="group-client-panel"
+				>
+					{this.renderMembers()}
+					<VideoChatButton for={session.group.name} />
+				</Panel>
+			</Draggable>
 		);
 	}
 }

@@ -33,6 +33,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, USER_PROGRESS, VOICE_RECORDING_STATUS } from 'constants/events.js';
+import retrieveUserGroup from 'utils/retrieve-user-group';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
 
@@ -150,6 +151,9 @@ class Session {
 		this.userList = [];
 		this.userFocuses = {};
 		this.userProgress = {};
+
+		// Assigned user group:
+		this.group = null;
 
 		this.selectedCohort = null;
 		this.activeCohortMembers = null;
@@ -1132,10 +1136,12 @@ class Session {
 		});
 
 		socket.on( 'created_groups', ( data ) => {
-			this.update( CREATED_GROUPS, data );
+			this.group = retrieveUserGroup( data, this.user );
+			this.update( CREATED_GROUPS, this.group );
 		});
 
 		socket.on( 'deleted_groups', () => {
+			this.group = null;
 			this.update( DELETED_GROUPS );
 		});
 
