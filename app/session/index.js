@@ -811,8 +811,10 @@ class Session {
 				content: msg
 			};
 			const chat = this.getChat( name );
-			chat.messages.push( msgObj );
-			this.markChatMessagesAsRead( name );
+			if ( chat ) {
+				chat.messages.push( msgObj );
+				this.markChatMessagesAsRead( name );
+			}
 			debug( 'Should emit message to room '+name+': ' + JSON.stringify( msgObj ) );
 			this.socket.emit( 'chat_message', {
 				msg: msgObj,

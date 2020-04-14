@@ -92,7 +92,6 @@ class Chat extends Component {
 			return;
 		}
 		text = replace( text, '\\\n', '\n' );
-		global.text = text;
 		const session = this.context;
 		session.sendChatMessage( this.props.chat.name, text );
 		scrollTo( this.chatbody, this.chatbody.scrollHeight, 1000 );

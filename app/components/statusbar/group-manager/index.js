@@ -13,6 +13,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import floor from '@stdlib/math/base/special/floor';
 import sample from '@stdlib/random/sample';
 import shuffle from '@stdlib/random/shuffle';
+import replace from '@stdlib/string/replace';
 import Panel from 'components/panel';
 import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
@@ -20,6 +21,8 @@ import Draggable from 'components/draggable';
 import Tooltip from 'components/tooltip';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
+import EditorView from 'components/text-editor/view.js';
+import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import SessionContext from 'session/context.js';
 import Group from './group.js';
 import names from './names.json';
@@ -63,7 +66,7 @@ const customSelectComponents = {
 function countStudents( userList ) {
 	let out = 0;
 	for ( let i = 0; i < userList.length; i++ ) {
-		if ( !userList[ i ].owner ) {
+		if ( !userList[ i ].owner && !userList[ i ].exitTime ) {
 			out += 1;
 		}
 	}
@@ -168,7 +171,9 @@ class GroupManager extends Component {
 			activeMode: 'random',
 			matching: 'similar',
 			nGroups: 1,
-			notAssigned: []
+			notAssigned: [],
+			message: '',
+			docId: 0
 		};
 	}
 
@@ -204,6 +209,23 @@ class GroupManager extends Component {
 	handleGroupDeletion = () => {
 		const session = this.context;
 		session.deleteGroups();
+	}
+
+	sendMessageToAll = () => {
+		let text = this.editorView.markdown;
+		if ( text.length === 0 ) {
+			return;
+		}
+		text = replace( text, '\\\n', '\n' );
+		const session = this.context;
+		for ( let i = 0; i < session.allGroups.length; i++ ) {
+			const { name } = session.allGroups[ i ];
+			session.sendChatMessage( name, text );
+		}
+		this.setState({
+			message: '',
+			docId: this.state.docId + 1
+		});
 	}
 
 	renderModeOptions() {
@@ -302,8 +324,37 @@ class GroupManager extends Component {
 		if ( session.allGroups.length > 0 ) {
 			return ( <Fragment>
 				{this.renderGroups()}
-				<hr />
-				<Button onClick={this.handleGroupDeletion} >
+				<div className="group-manager-editor-wrapper" >
+					<EditorView
+						className="group-manager-textarea cancel"
+						showStatusBar={false}
+						defaultValue={this.state.message}
+						showColorPicker={false}
+						menu={{
+							marks,
+							wraps,
+							insert: [
+								insert[ 0 ],
+								insert[ 1 ],
+								insert[ 5 ]
+							]
+						}}
+						ref={( div ) => {
+							this.editorView = div;
+						}}
+						onKeyDown={( _, event ) => {
+							event.stopPropagation();
+							if ( event.key === 'Enter' && !event.shiftKey ) {
+								event.preventDefault();
+								this.sendMessageToAll();
+							}
+						}}
+					/>
+				</div>
+				<Button onClick={this.sendMessageToAll} >
+					Broadcast message to all
+				</Button>
+				<Button onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
 					Close Groups
 				</Button>
 			</Fragment> );
@@ -366,7 +417,7 @@ class GroupManager extends Component {
 			<br />
 			{this.renderModeOptions()}
 			<hr />
-			<Button onClick={this.handleGroupCreation}>Create Groups</Button>
+			<Button disabled={nUsers === 0} onClick={this.handleGroupCreation}>Create Groups</Button>
 		</Fragment> );
 	}
 
@@ -379,7 +430,9 @@ class GroupManager extends Component {
 				<Panel minimizable header={<span>
 					<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
 					Group Manager
-				</span>} onHide={this.props.onHide} style={{ width: 600 }}>
+				</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{
+					maxHeight: '75vh'
+				}}>
 					{this.renderBody()}
 				</Panel>
 			</Draggable>

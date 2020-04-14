@@ -18,3 +18,9 @@
 .group-manager-header-name {
 	font-variant: petite-caps;
 }
+
+.group-manager-editor-wrapper {
+	margin-top: 6px;
+	margin-bottom: 6px;
+	border: 2px solid darkgray;
+}
