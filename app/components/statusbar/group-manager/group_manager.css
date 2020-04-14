@@ -28,7 +28,7 @@
 .group-manager-textarea {
 	font-size: 13px;
 	line-height: 16px;
-	max-height: 150px;
-	overflow-y: auto;
+	max-height: 125px;
+	overflow-y: auto !important;
 	background: white;
 }
