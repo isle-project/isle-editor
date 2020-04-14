@@ -24,3 +24,11 @@
 	margin-bottom: 6px;
 	border: 2px solid darkgray;
 }
+
+.group-manager-textarea {
+	font-size: 13px;
+	line-height: 16px;
+	max-height: 150px;
+	overflow-y: auto;
+	background: white;
+}
