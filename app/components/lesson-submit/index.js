@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import round from '@stdlib/math/base/special/round';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'components/signup';
 import Login from 'components/login';
@@ -104,6 +105,12 @@ class LessonSubmit extends Component {
 					alignment: 'right',
 					margin: [0, 15, 0, 15]
 				},
+				elapsed: {
+					fontSize: 16,
+					italics: true,
+					alignment: 'right',
+					margin: [0, 15, 0, 15]
+				},
 				subheader: {
 					fontSize: 18,
 					bold: true,
@@ -126,6 +133,10 @@ class LessonSubmit extends Component {
 		doc.content.push({
 			text: `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`,
 			style: 'date'
+		});
+		doc.content.push({
+			text: `elapsed: ${round( session.duration / 60000 )}min`,
+			style: 'elapsed'
 		});
 		if ( session.currentUserActions ) {
 			const ids = objectKeys( session.responseVisualizers );
