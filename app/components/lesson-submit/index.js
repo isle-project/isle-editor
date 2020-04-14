@@ -198,6 +198,12 @@ class LessonSubmit extends Component {
 	finalizeSession = () => {
 		debug( 'Finalizing session...' );
 		const session = this.context;
+		const elems = document.getElementsByClassName( 'submit-button' );
+		for ( let i = 0; i < elems.length; i++ ) {
+			if ( elems[ i ].innerText === 'Submit' ) {
+				elems[ i ].click();
+			}
+		}
 		session.finalize();
 		let notificationMesage = 'Lesson successfully completed.';
 		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
