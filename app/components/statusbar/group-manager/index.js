@@ -19,6 +19,7 @@ import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
 import Draggable from 'components/draggable';
 import Tooltip from 'components/tooltip';
+import Timer from 'components/timer';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import EditorView from 'components/text-editor/view.js';
@@ -26,7 +27,8 @@ import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import SessionContext from 'session/context.js';
 import Group from './group.js';
 import names from './names.json';
-import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from 'constants/events.js';
+import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_manager.css';
 
 
@@ -171,6 +173,7 @@ class GroupManager extends Component {
 			activeMode: 'random',
 			matching: 'similar',
 			nGroups: 1,
+			isClosing: false,
 			notAssigned: [],
 			message: '',
 			docId: 0
@@ -181,9 +184,28 @@ class GroupManager extends Component {
 		debug( 'Component did mount...' );
 		const session = this.context;
 		if ( session ) {
-			this.unsubscribe = session.subscribe( ( type ) => {
-				if ( type === CREATED_GROUPS || type === DELETED_GROUPS ) {
+			this.unsubscribe = session.subscribe( ( type, data ) => {
+				if ( type === CREATED_GROUPS ) {
 					this.forceUpdate();
+				}
+				else if ( type === DELETED_GROUPS ) {
+					session.removeNotification( this.closeNotification );
+					this.setState({
+						isClosing: false
+					});
+				} else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
+					this.closeNotification = session.addNotification({
+						title: 'Groups will close soon.',
+						message: 'You have initiated closing the group mode. Please wait while students finish their work.',
+						level: 'info',
+						position: 'tr',
+						dismissible: 'none',
+						autoDismiss: 0,
+						children: <Timer style={{ position: 'relative' }} duration={60} active />
+					});
+					this.setState({
+						isClosing: true
+					});
 				}
 			});
 		}
@@ -208,7 +230,12 @@ class GroupManager extends Component {
 
 	handleGroupDeletion = () => {
 		const session = this.context;
-		session.deleteGroups();
+		session.log({
+			id: 'group-manager',
+			type: GROUP_MODE_END,
+			value: true
+		}, 'members' );
+		setTimeout( session.deleteGroups, 60000 );
 	}
 
 	sendMessageToAll = () => {
@@ -354,7 +381,7 @@ class GroupManager extends Component {
 				<Button onClick={this.sendMessageToAll} >
 					Broadcast message to all
 				</Button>
-				<Button onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
+				<Button disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
 					Close Groups
 				</Button>
 			</Fragment> );

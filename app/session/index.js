@@ -879,7 +879,7 @@ class Session {
 		this.socket.emit( 'create_groups', groups );
 	}
 
-	deleteGroups() {
+	deleteGroups = () => {
 		for ( let i = 0; i < this.allGroups.length; i++ ) {
 			this.closeChatForAll( this.allGroups[ i ].name );
 		}

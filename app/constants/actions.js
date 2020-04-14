@@ -142,3 +142,4 @@ export const REMOVE_ASSIGNMENT = 'REMOVE_ASSIGNMENT';
 export const VIDEO_PLAY = 'VIDEO_PLAY';
 export const VIDEO_PAUSE = 'VIDEO_PAUSE';
 export const VIDEO_END = 'VIDEO_END';
+export const GROUP_MODE_END = 'GROUP_MODE_END';

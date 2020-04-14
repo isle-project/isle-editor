@@ -6,8 +6,10 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Panel from 'components/panel';
 import Draggable from 'components/draggable';
 import VideoChatButton from 'components/video-chat-button';
+import Timer from 'components/timer';
 import SessionContext from 'session/context.js';
-import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from 'constants/events.js';
+import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_client.css';
 
 
@@ -21,8 +23,23 @@ class GroupClient extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, data ) => {
-			if ( type === CREATED_GROUPS || type === DELETED_GROUPS ) {
+			if ( type === CREATED_GROUPS ) {
 				this.forceUpdate();
+			}
+			else if ( type === DELETED_GROUPS ) {
+				session.removeNotification( this.closeNotification );
+				this.forceUpdate();
+			}
+			else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
+				this.closeNotification = session.addNotification({
+					title: 'Groups will close soon.',
+					message: 'The instructor has closed the group mode. Please finish your work in the remaining time.',
+					level: 'info',
+					position: 'tr',
+					dismissible: 'none',
+					autoDismiss: 0,
+					children: <Timer style={{ position: 'relative' }} duration={60} active />
+				});
 			}
 		});
 	}
