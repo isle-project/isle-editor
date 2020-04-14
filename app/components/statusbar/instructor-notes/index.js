@@ -24,7 +24,7 @@ class InstructorNotes extends Component {
 			<TextEditor
 				id="instructor-notes"
 				className="instructor-notes"
-				groupMode
+				mode="collaborative"
 				allowSubmissions={false}
 				toolbarConfig={[
 					'bold',

@@ -1474,7 +1474,7 @@ class DataExplorer extends Component {
 						</div>
 						{ this.props.editor ?
 						<TextEditor {...this.props.editorProps}
-							groupMode={this.props.groupMode}
+							mode={this.props.groupMode ? 'group' : 'individual'}
 							id={this.id + '_editor'}
 							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
 							submitButton /> : null

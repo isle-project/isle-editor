@@ -68,8 +68,7 @@ let savedOverflow;
 * @property {string} defaultValue - default text of the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
-* @property {boolean} groupMode - controls whether to enable text editing for groups
-* @property {boolean} collaborativeMode - controls whether to enable collaborative text editing
+* @property {string} mode - controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`)
 * @property {Object} peerReview - if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
@@ -286,7 +285,7 @@ class TextEditor extends Component {
 				content: icons.guides
 			}
 		]);
-		if ( this.props.groupMode ) {
+		if ( this.props.mode === 'group' || this.props.mode === 'collaborative' ) {
 			this.menu.addons.push({
 				title: 'Add an annotation',
 				content: icons.annotation,
@@ -331,7 +330,7 @@ class TextEditor extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoSave && !this.props.groupMode ) {
+		if ( this.props.autoSave && this.props.mode === 'individual' ) {
 			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
 		}
 		const session = this.context;
@@ -676,12 +675,12 @@ class TextEditor extends Component {
 
 	render() {
 		const session = this.context;
-		if ( this.props.groupMode && !this.state.group ) {
+		if ( this.props.mode === 'group' && !this.state.group ) {
 			return <h3 style={this.props.style} >Activity will become available once you are part of a group</h3>;
 		}
 		return (
 			<Fragment>
-				{ this.props.groupMode ? <Gate owner >
+				{ this.props.mode === 'group' ? <Gate owner >
 					<SelectInput
 						legend="Select group"
 						options={this.state.allGroups}
@@ -698,7 +697,7 @@ class TextEditor extends Component {
 					ref={( div ) => { this.editorWrapper = div; }}
 					style={this.props.style}
 				>
-					{ this.props.groupMode ?
+					{ this.props.mode === 'group' || this.props.mode === 'collaborative' ?
 						<ProseMirrorCollaborativeView
 							defaultValue={this.state.value}
 							menu={this.menu}
@@ -709,7 +708,7 @@ class TextEditor extends Component {
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}
-							id={this.state.group + '-' + this.id}
+							id={this.props.mode === 'group' ? this.state.group + '-' + this.id : this.id}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
@@ -833,7 +832,9 @@ TextEditor.propTypes= {
 	allowSubmissions: PropTypes.bool,
 	canLoadHTML: PropTypes.bool,
 	defaultValue: PropTypes.string,
-	groupMode: PropTypes.bool,
+	mode: PropTypes.oneOf([
+		'group', 'collaborative', 'individual'
+	]),
 	intervalTime: PropTypes.number,
 	peerReview: PropTypes.shape({
 		submitButtonLabel: PropTypes.string,
@@ -859,7 +860,7 @@ TextEditor.defaultProps = {
 	allowSubmissions: true,
 	canLoadHTML: true,
 	defaultValue: DEFAULT_VALUE,
-	groupMode: false,
+	mode: 'individual',
 	intervalTime: 10000,
 	peerReview: null,
 	voiceTimeout: 5000,
