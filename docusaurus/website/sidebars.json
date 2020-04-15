@@ -52,8 +52,7 @@
           "free-text-survey",
           "multiple-choice-survey",
           "number-survey",
-          "proportions-survey",
-          "survey-generator"
+          "proportions-survey"
         ],
         "R Components": [
           "r/r-help",
