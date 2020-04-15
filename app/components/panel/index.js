@@ -50,7 +50,6 @@ class Wrapper extends Component {
 				className={`panel-hide-button ${this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
 				onClick={this.toggleMinimize}
 			/></Tooltip> : null }
-			{this.props.footer ? <Card.Footer>{this.props.footer}</Card.Footer> : null}
 		</Card.Header> );
 	}
 
@@ -70,6 +69,7 @@ class Wrapper extends Component {
 			}} >
 				{this.props.children}
 			</Card.Body>
+			{this.props.footer ? <Card.Footer>{this.props.footer}</Card.Footer> : null}
 		</Card> );
 	}
 }
