@@ -8,7 +8,7 @@ You may either download prebuilt binaries of the ISLE editor or built it yoursel
 
 ## Binaries
 
-Current version: _v0.49.4_.
+Current version: _v0.50.1_.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
@@ -98,7 +98,7 @@ $ npm run test -- -t "name-of-spec"
 [jest]: https://jestjs.io
 [node-js]: https://nodejs.org/en/
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.49.4/isle-editor-0.49.4.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.49.4/isle-editor-0.49.4-x86_64.AppImage
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.49.4/isle-editor-0.49.4-amd64.deb
-[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.49.4/isle-editor-Setup-0.49.4.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.50.1/isle-editor-0.50.1.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.50.1/isle-editor-0.50.1-x86_64.AppImage
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.50.1/isle-editor-0.50.1-amd64.deb
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.50.1/isle-editor-Setup-0.50.1.exe
