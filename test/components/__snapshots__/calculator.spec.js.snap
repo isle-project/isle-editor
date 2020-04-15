@@ -34,6 +34,8 @@ exports[`renders a basic calculator 1`] = `
 >
   <div
     className="panel  card"
+    footer={null}
+    footerStyle={Object {}}
     header="Calculator"
     hideTooltip="Close"
     id="calc-panel"
@@ -343,6 +345,8 @@ exports[`renders an expandable calculator 1`] = `
 >
   <div
     className="panel  card"
+    footer={null}
+    footerStyle={Object {}}
     header="Calculator"
     hideTooltip="Close"
     id="calc-panel"
