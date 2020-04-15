@@ -14,7 +14,8 @@ import './panel.css';
 * Card component.
 *
 * @property {string} className - CSS class name
-* @property {string} header - panel heading (h3)
+* @property {(string|node)} header - panel heading (h3)
+* @property {(string|node)} footer - panel footer
 * @property {boolean} minimizable - whether the panel can be minimized
 * @property {Function} onHide - callback invoked when the close button is clicked
 * @property {Object} style - CSS inline styles
@@ -49,6 +50,7 @@ class Wrapper extends Component {
 				className={`panel-hide-button ${this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
 				onClick={this.toggleMinimize}
 			/></Tooltip> : null }
+			{this.props.footer ? <Card.Footer>{this.props.footer}</Card.Footer> : null}
 		</Card.Header> );
 	}
 
@@ -81,6 +83,10 @@ Wrapper.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	footer: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	minimizable: PropTypes.bool,
 	hideTooltip: PropTypes.string,
 	bodyStyle: PropTypes.object,
@@ -91,6 +97,7 @@ Wrapper.propTypes = {
 Wrapper.defaultProps = {
 	className: '',
 	header: null,
+	footer: null,
 	minimizable: false,
 	hideTooltip: 'Close',
 	bodyStyle: {},
