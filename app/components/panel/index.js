@@ -69,7 +69,12 @@ class Wrapper extends Component {
 			}} >
 				{this.props.children}
 			</Card.Body>
-			{this.props.footer ? <Card.Footer>{this.props.footer}</Card.Footer> : null}
+			{this.props.footer ? <Card.Footer
+				style={{
+					...this.props.footerStyle,
+					display: this.state.minimized ? 'none' : null
+				}}
+			>{this.props.footer}</Card.Footer> : null}
 		</Card> );
 	}
 }
@@ -90,6 +95,7 @@ Wrapper.propTypes = {
 	minimizable: PropTypes.bool,
 	hideTooltip: PropTypes.string,
 	bodyStyle: PropTypes.object,
+	footerStyle: PropTypes.object,
 	style: PropTypes.object,
 	onHide: PropTypes.func
 };
@@ -101,6 +107,7 @@ Wrapper.defaultProps = {
 	minimizable: false,
 	hideTooltip: 'Close',
 	bodyStyle: {},
+	footerStyle: {},
 	style: {},
 	onHide: null
 };
