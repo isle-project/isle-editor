@@ -55,14 +55,17 @@ class SettingsLogin extends Component {
 			},
 			body: JSON.stringify( form )
 		})
-		.then( res => res.json() )
+		.then( res => {
+			return res.text();
+		})
 		.then( body => {
 			try {
-				if ( body.type === 'incorrect_password' || body.type === 'no_user' ) {
+				if ( body === 'Password is not correct.' || body === 'No user with the given email address found.' ) {
 					return this.setState({
-						encounteredError: new Error( body.message )
+						encounteredError: new Error( body )
 					});
 				}
+				body = JSON.parse( body );
 				localStorage.setItem( 'token', body.token );
 				this.forceUpdate();
 			} catch ( error ) {
