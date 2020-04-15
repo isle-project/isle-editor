@@ -150,6 +150,7 @@ class VideoChat extends Component {
 		}
 		const panel = <Panel className="video-chat-panel" style={style} >
 			<div
+				className="video-chat-iframe"
 				ref={( div ) => {
 					this.videoChatContainer = div;
 				}}
@@ -185,6 +186,7 @@ class VideoChat extends Component {
 				height: max( 0.3 * window.innerHeight, 400 )
 			}} ref={( div ) => { this.rnd = div; }} minWidth={160} minHeight={100}
 				resizable={!this.state.minimized} lockAspectRatio
+				cancel=".video-chat-iframe"
 			>
 				{panel}
 			</Draggable>
