@@ -597,9 +597,8 @@ mark {
 	width: 60%;
 	max-width: 900px;
 	margin: 50px auto;
-	font-style: italic;
 	color: var(--primaryhalf);
-	padding: 1.2em 30px 1.2em 75px;
+	padding: 1.2em 50px 1.2em 75px;
 	border-left: 8px solid var(--primaryhalf);
 	line-height: 1.5;
 	position: relative;
@@ -617,7 +616,13 @@ mark {
 }
 
 .Lesson > blockquote::after {
-	content: '';
+	font-family: Arial;
+	content: "\201D";
+	color: var(--primaryhalf);
+	font-size: 4em;
+	position: absolute;
+	right: 20px;
+	bottom: -10px;
 }
 
 .Lesson > .alert {
