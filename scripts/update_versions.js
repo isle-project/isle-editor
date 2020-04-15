@@ -20,7 +20,7 @@ const readme = fs.readFileSync( readmePath, 'utf8' );
 let out = readme.replace( RE_VERSION, pkg.version );
 fs.writeFileSync( readmePath, out );
 
-const installGuidePath = path.join( __dirname, '..', 'docusaurus', 'docs', 'overview', 'install.md' );
+const installGuidePath = path.join( __dirname, '..', 'docusaurus', 'website', 'docs', 'overview', 'install.md' );
 const installGuide = fs.readFileSync( installGuidePath, 'utf8' );
 out = installGuide.replace( RE_VERSION, pkg.version );
 
