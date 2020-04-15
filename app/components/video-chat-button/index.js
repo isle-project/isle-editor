@@ -2,12 +2,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
-import VideoChat from 'components/video-chat';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_INVITATION } from 'constants/events.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:video-chat-button' );
 
 
 // MAIN //
@@ -49,8 +54,22 @@ class VideoChatButton extends Component {
 	}
 
 	toggleVideoChat = ( event ) => {
+		const opened = !this.state.opened;
+		this.props.onClick( event, opened );
 		this.setState({
-			opened: !this.state.opened
+			opened
+		}, () => {
+			const session = this.context;
+			if ( !opened ) {
+				debug( `Should join chat for component with id '${this.props.for}'...` );
+				session.joinVideoChat({
+					name: this.props.for,
+					subject: this.props.subject || this.props.for
+				});
+			} else {
+				debug( `Should leave chat for component with id '${this.props.for}'...` );
+				session.leaveVideoChat( this.props.for );
+			}
 		});
 	}
 
@@ -107,14 +126,7 @@ class VideoChatButton extends Component {
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
 			<Gate user >
-				<span onClick={this.props.onClick} >
-					{button}
-					{this.state.opened ? <VideoChat
-						roomName={this.props.for}
-						roomSubject={this.props.subject || this.props.for}
-						onHide={this.toggleVideoChat}
-					/> : null}
-				</span>
+				{button}
 			</Gate>
 		);
 	}

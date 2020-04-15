@@ -32,7 +32,8 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, USER_PROGRESS, VOICE_RECORDING_STATUS } from 'constants/events.js';
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_JOINED, USER_LEFT, USER_PROGRESS,
+	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from 'constants/events.js';
 import retrieveUserGroup from 'utils/retrieve-user-group';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
@@ -166,6 +167,7 @@ class Session {
 
 		// Array of open chats:
 		this.chats = [];
+		this.videoChats = [];
 
 		// State variables of the given lesson:
 		this.state = config.state;
@@ -710,9 +712,24 @@ class Session {
 				this.chats.push({
 					name, messages: [], members: [], canLeave
 				});
-				this.update();
 				this.socket.emit( 'join_chat', name );
 			}
+		}
+	}
+
+	joinVideoChat({ name, subject }) {
+		let found = false;
+		for ( let i = 0; i < this.videoChats.length; i++ ) {
+			if ( this.videoChats[ i ].name === name ) {
+				found = true;
+			}
+		}
+		if ( !found ) {
+			this.videoChats.push({
+				name,
+				subject
+			});
+			this.update( VIDEO_CHAT_STARTED, name );
 		}
 	}
 
@@ -873,6 +890,15 @@ class Session {
 		if ( this.socket ) {
 			this.socket.emit( 'leave_chat', name );
 		}
+	}
+
+	leaveVideoChat( name ) {
+		for ( let i = this.videoChats.length - 1; i >= 0; i-- ) {
+			if ( this.videoChats[ i ].name === name ) {
+				this.videoChats.splice( i, 1 );
+			}
+		}
+		this.update( VIDEO_CHAT_ENDED, name );
 	}
 
 	createGroups( groups ) {
@@ -1423,6 +1449,7 @@ class Session {
 	*/
 	reset() {
 		this.chats = [];
+		this.videoChats = [];
 		this.actions = [];
 		this.socketActions = [];
 		this.currentUserActions = null;

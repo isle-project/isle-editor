@@ -1,3 +1,6 @@
+.video-chat-panel {
+	position: fixed;
+}
 
 .video-chat-button {
 	position: absolute;
