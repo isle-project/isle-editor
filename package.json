@@ -272,7 +272,7 @@
     "moment": "2.24.0",
     "monaco-editor": "0.20.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
-    "null-loader": "^3.0.0",
+    "null-loader": "^4.0.0",
     "pdfmake": "^0.1.65",
     "plotly.js": "^1.53.0",
     "react-draggable": "^4.3.1",
