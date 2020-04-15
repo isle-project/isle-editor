@@ -28,10 +28,10 @@ class VideoChats extends Component {
 
 	render() {
 		const session = this.context;
-		return session.videoChats.map( ( chat, idx ) => {
+		return session.videoChats.map( ( chat ) => {
 			return (
 				<VideoChat
-					key={idx}
+					key={chat.name}
 					roomName={chat.name}
 					roomSubject={chat.subject || chat.name}
 				/>

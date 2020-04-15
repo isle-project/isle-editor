@@ -893,6 +893,7 @@ class Session {
 	}
 
 	leaveVideoChat( name ) {
+		debug( `Closing video chat with name ${name}` );
 		for ( let i = this.videoChats.length - 1; i >= 0; i-- ) {
 			if ( this.videoChats[ i ].name === name ) {
 				this.videoChats.splice( i, 1 );
