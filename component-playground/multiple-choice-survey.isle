@@ -38,6 +38,5 @@ removeStatusBar: true
 * __anonymous__ | `boolean`: controls whether student answers are anonymized. Default: `false`.
 * __answers__ | `array`: array indicating answer choices for the students. Default: `[]`.
 * __multipleAnswers__ | `boolean`: indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times. Default: `false`.
-* __title__ | `string`: panel title. Default: `'Survey'`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: function to be called when an answer is submitted. Default: `onSubmit() {}`.

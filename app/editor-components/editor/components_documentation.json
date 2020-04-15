@@ -273,6 +273,11 @@
         "default": null
       },
       {
+        "name": "style",
+        "type": "object",
+        "default": {}
+      },
+      {
         "name": "onClick",
         "type": "function",
         "description": "event handler invoked when header is clicked",
@@ -576,7 +581,7 @@
       {
         "name": "groupMode",
         "type": "boolean",
-        "description": "controls whether to sync editor changes across users",
+        "description": "controls whether to sync editor changes across users in a group",
         "default": false
       },
       {
@@ -892,10 +897,6 @@
     ],
     "description": "A list of draggable elements that can be re-ordered by the students."
   },
-  "EngagementMeter": {
-    "props": [],
-    "description": "An ISLE component that displays an engagement meter with which the students can indicate how well they are following the class."
-  },
   "EnlargeableGrid": {
     "props": [
       {
@@ -1088,7 +1089,7 @@
       },
       {
         "name": "solution",
-        "type": "string",
+        "type": "(string|node)",
         "description": "a model answer to the problem",
         "default": ""
       },
@@ -3394,12 +3395,6 @@
         "default": false
       },
       {
-        "name": "title",
-        "type": "string",
-        "description": "panel title",
-        "default": "Survey"
-      },
-      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -3739,6 +3734,17 @@
         "default": null
       },
       {
+        "name": "minimizable",
+        "type": "boolean",
+        "description": "whether the panel can be minimized",
+        "default": false
+      },
+      {
+        "name": "hideTooltip",
+        "type": "string",
+        "default": "Close"
+      },
+      {
         "name": "bodyStyle",
         "type": "object",
         "default": {}
@@ -3748,6 +3754,12 @@
         "type": "object",
         "description": "CSS inline styles",
         "default": {}
+      },
+      {
+        "name": "onHide",
+        "type": "function",
+        "description": "callback invoked when the close button is clicked",
+        "default": null
       }
     ],
     "description": "Card component."
@@ -3892,13 +3904,13 @@
       {
         "name": "removeButtons",
         "type": "boolean",
-        "description": "controls whether to remove all buttons",
+        "description": "controls whether to remove all buttons (aside from fullscreen button if enabled)",
         "default": false
       },
       {
         "name": "toggleFullscreen",
         "type": "boolean",
-        "description": "controls whether to display the plot in fullscreen mode",
+        "description": "controls whether to allow displaying the plot in fullscreen mode",
         "default": true
       }
     ],
@@ -4870,8 +4882,8 @@
       },
       {
         "name": "provideFeedback",
-        "type": "boolean",
-        "default": true
+        "type": "string",
+        "default": "individual"
       },
       {
         "name": "failureMsg",
@@ -5927,10 +5939,10 @@
         "default": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
       },
       {
-        "name": "groupMode",
-        "type": "boolean",
-        "description": "controls whether to enable collaborative text editing",
-        "default": false
+        "name": "mode",
+        "type": "string",
+        "description": "controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`)",
+        "default": "individual"
       },
       {
         "name": "intervalTime",
