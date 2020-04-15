@@ -378,12 +378,6 @@ class GroupManager extends Component {
 						}}
 					/>
 				</div>
-				<Button onClick={this.sendMessageToAll} >
-					Broadcast message to all
-				</Button>
-				<Button disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
-					Close Groups
-				</Button>
 			</Fragment> );
 		}
 		return ( <Fragment>
@@ -443,9 +437,23 @@ class GroupManager extends Component {
 			</div>
 			<br />
 			{this.renderModeOptions()}
-			<hr />
-			<Button disabled={nUsers === 0} onClick={this.handleGroupCreation}>Create Groups</Button>
 		</Fragment> );
+	}
+
+	renderFooter() {
+		const session = this.context;
+		const nUsers = countStudents( session.userList );
+		if ( session.allGroups.length > 0 ) {
+			return ( <Fragment>
+				<Button onClick={this.sendMessageToAll} >
+					Broadcast message to all
+				</Button>
+				<Button disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
+					Close Groups
+				</Button>
+			</Fragment> );
+		}
+		return <Button disabled={nUsers === 0} onClick={this.handleGroupCreation}>Create Groups</Button>;
 	}
 
 	render() {
@@ -459,7 +467,7 @@ class GroupManager extends Component {
 					Group Manager
 				</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{
 					maxHeight: '75vh'
-				}}>
+				}} footer={this.renderFooter()}>
 					{this.renderBody()}
 				</Panel>
 			</Draggable>
