@@ -95,6 +95,16 @@
 		"description": "Hide the progressbar, which shows a user's score, time spent, and avatar image (e.g., when using ISLE for a one-time lesson outside of a course)"
 	},
 	{
+		"name": "hideTextChat",
+		"value": "hideTextChat: ${1:true}",
+		"description": "Hide the text chat button in the statusbar"
+	},
+	{
+		"name": "hideVideoChat",
+		"value": "hideVideoChat: ${1:true}",
+		"description": "Hide the video chat button in the statusbar"
+	},
+	{
 		"name": "hideVoiceControl",
 		"value": "hideVoiceControl: ${1:true}",
 		"description": "Hide the icon in the statusbar to toggle on and off voice control"

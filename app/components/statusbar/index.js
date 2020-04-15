@@ -436,7 +436,7 @@ class StatusBar extends Component {
 							>
 								{ session.anonymous ? 'Anonymous' : session.user.name }
 							</div>
-							<VideoChatButton
+							{ !session.config.hideVideoChat ? <VideoChatButton
 								for={roomName}
 								buttonVariant="link"
 								buttonLabel={<i className="fa fa-xs fa-video"></i>}
@@ -444,8 +444,8 @@ class StatusBar extends Component {
 								tooltip="Video Chat"
 								className="statusbar-icon statusbar-video-chat"
 								onClick={preventPropagation}
-							/>
-							<ChatButton
+							/> : null }
+							{ !session.config.hideTextChat ? <ChatButton
 								for={roomName}
 								buttonVariant="link"
 								buttonLabel={<i className="fas fa-comments"></i>}
@@ -453,7 +453,7 @@ class StatusBar extends Component {
 								tooltip="Text Chat"
 								className="statusbar-icon statusbar-text-chat"
 								onClick={preventPropagation}
-							/>
+							/> : null }
 							{ session.anonymous ?
 								<div>
 									<Button
