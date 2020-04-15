@@ -10,7 +10,6 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Signup from 'components/signup';
 import Login from 'components/login';
 import Gate from 'components/gate';
-import Chats from 'components/statusbar/chats';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
 import Seal from 'components/seal';
@@ -19,6 +18,8 @@ import VideoChatButton from 'components/video-chat-button';
 import ChatButton from 'components/chat-button';
 import animatePosition from 'utils/animate-position';
 import SessionContext from 'session/context.js';
+import VideoChats from './video-chats';
+import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
 import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
@@ -372,6 +373,7 @@ class StatusBar extends Component {
 		return (
 			<Fragment>
 				<Chats />
+				<VideoChats />
 				{isOwner ? <GroupManager active={this.state.showGroupManager} onHide={this.toggleGroupManager} /> : <GroupClient />}
 				<div>
 					<div

@@ -60,7 +60,7 @@ class VideoChatButton extends Component {
 			opened
 		}, () => {
 			const session = this.context;
-			if ( !opened ) {
+			if ( opened ) {
 				debug( `Should join chat for component with id '${this.props.for}'...` );
 				session.joinVideoChat({
 					name: this.props.for,

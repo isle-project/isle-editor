@@ -106,10 +106,11 @@ class VideoChat extends Component {
 	}
 
 	handleClose = ( event ) => {
-		if ( this.context.isOwner() ) {
+		const session = this.context;
+		if ( session.isOwner() ) {
 			this.api.executeCommand( 'hangup' );
 		}
-		this.props.onHide();
+		session.leaveVideoChat( this.props.roomName );
 	}
 
 	handleCompress = ( event ) => {
