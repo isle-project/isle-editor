@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
-import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_INVITATION } from 'constants/events.js';
+import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from 'constants/events.js';
 
 
 // VARIABLES //
@@ -38,9 +38,14 @@ class VideoChatButton extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === VIDEO_CHAT_INVITATION ) {
+			if ( type === VIDEO_CHAT_STARTED && value === this.props.for ) {
 				this.setState({
 					opened: true
+				});
+			}
+			else if ( type === VIDEO_CHAT_ENDED && value === this.props.for ) {
+				this.setState({
+					opened: false
 				});
 			}
 			else if ( type === RECEIVED_JITSI_TOKEN || type === RECEIVED_USER_RIGHTS ) {
