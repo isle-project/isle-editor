@@ -200,6 +200,12 @@ class App extends Component {
 						onSelectMode={changeMode}
 						mode={currentMode}
 						unsaved={unsaved}
+						onPreview={() => {
+							const splitPos = this.state.splitPos === 1 ? localStorage.getItem( 'splitPos' ) : 1;
+							this.setState({
+								splitPos
+							});
+						}}
 					/> :
 					null
 				}

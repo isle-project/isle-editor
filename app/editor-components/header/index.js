@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
@@ -80,33 +82,38 @@ class Header extends Component {
 						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
 					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
-						<DropdownButton
-							title={this.props.mode}
-							id="bg-mode-dropdown"
-							size="sm"
-							variant="warning"
-							onSelect={this.handleModeSelection}
-						>
-							<DropdownItem eventKey="1">offline</DropdownItem>
-							<DropdownItem eventKey="2">online</DropdownItem>
-						</DropdownButton>
-						<DropdownButton
-							title={this.props.role}
-							id="bg-user-dropdown"
-							size="sm"
-							variant="success"
-							onSelect={this.handleRoleSelection}
-						>
-							<DropdownItem eventKey="1">anonymous</DropdownItem>
-							<DropdownItem eventKey="2">user</DropdownItem>
-							<DropdownItem eventKey="3">enrolled</DropdownItem>
-							<DropdownItem eventKey="4">owner</DropdownItem>
-						</DropdownButton>
-						<span style={{
-							paddingTop: 4,
-							paddingLeft: 25,
-							paddingRight: 5
-						}}>Preview</span>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">Switch between offline and online mode</Tooltip>}>
+							<DropdownButton
+								title={this.props.mode}
+								id="bg-mode-dropdown"
+								size="sm"
+								variant="warning"
+								onSelect={this.handleModeSelection}
+							>
+								<DropdownItem eventKey="1">offline</DropdownItem>
+								<DropdownItem eventKey="2">online</DropdownItem>
+							</DropdownButton>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">Preview lesson as user with selected role</Tooltip>}>
+							<DropdownButton
+								title={this.props.role}
+								id="bg-user-dropdown"
+								size="sm"
+								variant="success"
+								onSelect={this.handleRoleSelection}
+							>
+								<DropdownItem eventKey="1">anonymous</DropdownItem>
+								<DropdownItem eventKey="2">user</DropdownItem>
+								<DropdownItem eventKey="3">enrolled</DropdownItem>
+								<DropdownItem eventKey="4">owner</DropdownItem>
+							</DropdownButton>
+						</OverlayTrigger>
+						<OverlayTrigger placement="bottom" overlay={<Tooltip id="preview-tooltip">Click to toggle fullscreen preview of lesson</Tooltip>}>
+							<Button variant="secondary" onClick={this.props.onPreview} style={{
+								paddingTop: 4,
+								marginLeft: 25
+							}}>Preview</Button>
+						</OverlayTrigger>
 					</ButtonGroup>
 				</div>
 			</div>
@@ -127,6 +134,7 @@ Header.propTypes = {
 	filePath: PropTypes.string,
 	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
+	onPreview: PropTypes.func.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
 	role: PropTypes.string.isRequired
