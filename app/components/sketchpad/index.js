@@ -132,6 +132,7 @@ function setDashedLines( ctx ) {
 * @property {string} color - color of the brush and texts
 * @property {number} canvasWidth - width of the canvas element (in px)
 * @property {number} canvasHeight - height of the canvas element (in px)
+* @property {boolean} dynamicallyHideButtons - controls whether to start hiding buttons when toolbar width is not sufficient (otherwise a new line will be started)
 * @property {boolean} fullscreen - controls whether to automatically resize the canvas to the width and height of the browser window
 * @property {string} fill - if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow
 * @property {boolean} disabled - whether to make the component read-only and forbid drawing on the sketchpad
@@ -2096,7 +2097,7 @@ class Sketchpad extends Component {
 			return null;
 		}
 		const currentPage = this.state.currentPage;
-		if ( this.state.canvasWidth < 600 ) {
+		if ( this.props.dynamicallyHideButtons && this.state.canvasWidth < 600 ) {
 			return ( <ButtonGroup size="sm" className="sketch-pages" >
 				<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
 				<Gate owner >
@@ -2167,7 +2168,10 @@ class Sketchpad extends Component {
 	}
 
 	renderRemoveButtons() {
-		if ( this.state.hideInputButtons || this.state.canvasWidth < 900 ) {
+		if (
+			this.state.hideInputButtons ||
+			( this.props.dynamicallyHideButtons && this.state.canvasWidth < 900 )
+		) {
 			return null;
 		}
 		return (
@@ -2194,7 +2198,10 @@ class Sketchpad extends Component {
 	}
 
 	renderSaveButtons() {
-		if ( this.state.hideSaveButtons || this.state.canvasWidth < 775 ) {
+		if (
+			this.state.hideSaveButtons ||
+			( this.props.dynamicallyHideButtons && this.state.canvasWidth < 775 )
+		) {
 			return null;
 		}
 		const session = this.context;
@@ -2785,6 +2792,7 @@ Sketchpad.defaultProps = {
 	noPages: 1,
 	pdf: null,
 	showTutorial: false,
+	dynamicallyHideButtons: false,
 	transmitOwner: true,
 	groupMode: false,
 	voiceID: null,
@@ -2813,6 +2821,7 @@ Sketchpad.propTypes = {
 	noPages: PropTypes.number,
 	pdf: PropTypes.string,
 	showTutorial: PropTypes.bool,
+	dynamicallyHideButtons: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	groupMode: PropTypes.bool,
 	voiceID: PropTypes.string,
