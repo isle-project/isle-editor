@@ -30,7 +30,10 @@ class Link extends Component {
 			const newState = {
 				href: nextProps.href
 			};
-			if ( !startsWith( nextProps.href, 'http' ) ) {
+			if (
+				!startsWith( nextProps.href, 'http' ) &&
+				!startsWith( nextProps.href, 'mailto' )
+			) {
 				newState.url = 'http://'+nextProps.href;
 			}
 			else {
