@@ -4,6 +4,7 @@
 
 import qs from 'querystring';
 import logger from 'debug';
+import axios from 'axios';
 import localforage from 'localforage';
 import { basename } from 'path';
 import contains from '@stdlib/assert/contains';
@@ -333,41 +334,37 @@ class Session {
 	*/
 	pingServer = () => {
 		debug( `Should ping the server at ${this.server}...` );
-		fetch( this.server + '/ping' )
-			.then( ( response ) => {
-				return response.text();
-			})
-			.then( ( body ) => {
-				if ( body === 'live' ) {
-					this.live = true;
+		axios.get( this.server + '/ping' ).then( ( res ) => {
+			if ( res.data === 'live' ) {
+				this.live = true;
 
-					// Connect via WebSockets to other users...
-					if ( !isEmptyObject( this.user ) ) {
-						this.socketConnect();
-					}
-					this.update( CONNECTED_TO_SERVER );
-					if ( !this.lessonID && !this.namespaceID ) {
-						// [1] Retrieve lesson information:
-						this.getLessonInfo();
-					}
-				} else {
-					this.live = false;
-
-					// Override server property with value from preamble:
-					if ( this.config.server ) {
-						this.server = this.config.server;
-					}
+				// Connect via WebSockets to other users...
+				if ( !isEmptyObject( this.user ) ) {
+					this.socketConnect();
 				}
-				this.update( SERVER_IS_LIVE );
-			})
-			.catch( err => {
-				debug( 'Encountered an error: '+err.message );
+				this.update( CONNECTED_TO_SERVER );
+				if ( !this.lessonID && !this.namespaceID ) {
+					// [1] Retrieve lesson information:
+					this.getLessonInfo();
+				}
+			} else {
+				this.live = false;
 
 				// Override server property with value from preamble:
 				if ( this.config.server ) {
 					this.server = this.config.server;
 				}
-			});
+			}
+			this.update( SERVER_IS_LIVE );
+		})
+		.catch( err => {
+			debug( 'Encountered an error: '+err.message );
+
+			// Override server property with value from preamble:
+			if ( this.config.server ) {
+				this.server = this.config.server;
+			}
+		});
 	}
 
 	/**
@@ -406,42 +403,36 @@ class Session {
 		debug( `Post request at ${OPEN_CPU + OPEN_CPU_IDENTITY} for code "${code}"` );
 
 		const getElem = ( elem ) => {
-			fetch( OPEN_CPU + elem )
+			axios.get( OPEN_CPU + elem )
 				.then( res => {
-					res.text().then( body => {
-						onResult( null, res, body );
-					});
+					onResult( null, res, res.data );
 				})
 				.catch( err => onResult( err ) );
 		};
 		const formData = new FormData();
 		formData.append( 'x', code );
-		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			method: 'POST',
-			body: formData
-		})
+		axios.post( OPEN_CPU + OPEN_CPU_IDENTITY, formData )
 		.then( response => {
-			response.text().then( body => {
-				debug( 'Received body:\n '+body );
-				debug( 'Response status: '+response.status );
-				const plots = [];
-				if ( response.status !== 400 ) {
-					const stdout = body.match( STDOUT_REGEX );
-					if ( stdout && stdout[ 0 ] ) {
-						getElem( stdout[ 0 ] );
-					}
-					const matches = body.matchAll( GRAPHICS_REGEX );
-					for ( const match of matches ) {
-						const imgURL = OPEN_CPU + match[ 0 ] + '/svg';
-						plots.push( imgURL );
-					}
-					if ( isFunction( onPlots ) ) {
-						onPlots( plots );
-					}
-				} else {
-					onError( body.replace( ERR_REGEX, '' ) );
+			const body = response.data;
+			debug( 'Received body:\n '+body );
+			debug( 'Response status: '+response.status );
+			const plots = [];
+			if ( response.status !== 400 ) {
+				const stdout = body.match( STDOUT_REGEX );
+				if ( stdout && stdout[ 0 ] ) {
+					getElem( stdout[ 0 ] );
 				}
-			});
+				const matches = body.matchAll( GRAPHICS_REGEX );
+				for ( const match of matches ) {
+					const imgURL = OPEN_CPU + match[ 0 ] + '/svg';
+					plots.push( imgURL );
+				}
+				if ( isFunction( onPlots ) ) {
+					onPlots( plots );
+				}
+			} else {
+				onError( body.replace( ERR_REGEX, '' ) );
+			}
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
@@ -456,31 +447,19 @@ class Session {
 	getRHelpPage = ( helpCommand, clbk ) => {
 		const OPEN_CPU = this.getOpenCPUServer();
 		const fetchElem = ( elem ) => {
-			fetch( OPEN_CPU + elem )
-				.then( res => res.text() )
-				.then( helpPath => {
-					const [ , lib, topic ] = helpPath.match( HELP_PATH_REGEX );
-					fetch( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html` ).then( res => {
-						res.text().then( body => {
-							clbk( null, res, body );
-						})
-						.catch( err => clbk( err ) );
-					});
-				});
+			axios.get( OPEN_CPU + elem ).then( res => {
+				const [ , lib, topic ] = res.data.match( HELP_PATH_REGEX );
+				axios.get( `https://public.opencpu.org/ocpu/library/${lib}/man/${topic}/html` ).then( res => {
+					clbk( null, res, res.data );
+				})
+				.catch( err => clbk( err ) );
+			});
 		};
 		const formData = new FormData();
 		formData.append( 'x', 'y = ' + helpCommand + '; y[1]' );
-		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			method: 'POST',
-			body: formData
-		})
-		.then( response => {
-			if ( response.status !== 400 ) {
-				return response.text();
-			}
-		})
-		.then( body => {
-			const arr = body.split( '\n' );
+		axios.post( OPEN_CPU + OPEN_CPU_IDENTITY, formData )
+		.then( res => {
+			const arr = res.data.split( '\n' );
 			arr.forEach( elem => {
 				if ( STDOUT_REGEX.test( elem ) === true ) {
 					fetchElem( elem );
@@ -500,13 +479,11 @@ class Session {
 	*/
 	getRHelp = ( library, functionName, clbk ) => {
 		const OPEN_CPU = this.getOpenCPUServer();
-		fetch( OPEN_CPU + `/ocpu/library/${library}/man/${functionName}/html` )
+		axios.get( OPEN_CPU + `/ocpu/library/${library}/man/${functionName}/html` )
 			.then( res => {
-				res.text().then( body => {
-					clbk( null, res, body );
-				})
-				.catch( err => clbk( err ) );
-			});
+				clbk( null, res, res.data );
+			})
+			.catch( err => clbk( err ) );
 	}
 
 	/**
