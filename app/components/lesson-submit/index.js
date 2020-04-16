@@ -149,6 +149,8 @@ class LessonSubmit extends Component {
 				if ( visualizer ) {
 					const { type } = visualizer;
 					const question = visualizer.ref.props.data.question;
+					const dataType = visualizer.ref.props.data.type;
+
 					doc.content.push({
 						text: isString( question ) ? question : innerText( question ),
 						style: 'question'
@@ -158,9 +160,16 @@ class LessonSubmit extends Component {
 						actions = actions.filter( x => x.type === type );
 						actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
 						const lastAction = actions[ actions.length-1 ];
-						doc.content.push({
-							text: lastAction.value
-						});
+						if ( dataType === 'image' ) {
+							doc.content.push({
+								image: lastAction.value,
+								width: 500
+							});
+						} else {
+							doc.content.push({
+								text: lastAction.value
+							});
+						}
 					}
 				}
 			}
