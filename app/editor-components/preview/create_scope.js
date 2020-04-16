@@ -49,6 +49,7 @@ export const SCOPE = {
 	EnlargeableGrid,
 	Expire: Loadable( () => import( /* webpackChunkName: "Expire" */ 'components/expire' ) ),
 	FeedbackButtons: Loadable( () => import( /* webpackChunkName: "Feedback" */ 'components/feedback' ) ),
+	ImageQuestion: Loadable( () => import( /* webpackChunkName: "ImageQuestion" */ 'components/image-question' ) ),
 	FlippableCard: Loadable( () => import( /* webpackChunkName: "FlippableCard" */ 'components/flippable-card' ) ),
 	FreeTextSurvey: Loadable( () => import( /* webpackChunkName: "FreeTextSurvey" */ 'components/free-text-survey' ) ),
 	FreeTextQuestion: Loadable( () => import( /* webpackChunkName: "FreeTextQuestion" */ 'components/free-text-question' ) ),

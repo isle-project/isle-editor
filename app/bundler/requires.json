@@ -255,6 +255,10 @@
 		"path": "components/feedback",
 		"async": true
 	},
+	"ImageQuestion": {
+		"path": "components/image-question",
+		"async": false
+	},
 	"FlippableCard": {
 		"path": "components/flippable-card",
 		"async": true

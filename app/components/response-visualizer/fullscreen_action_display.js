@@ -680,6 +680,9 @@ class FullscreenActionDisplay extends Component {
 			return <Alert variant="warning" >No data available (yet) to be visualized</Alert>;
 		}
 		switch ( this.props.data.type ) {
+			case 'image':
+				plot = null;
+				break;
 			case 'text':
 			default:
 				plot = this.renderWordCloud();
