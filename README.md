@@ -64,16 +64,6 @@ To install development dependencies,
 $ npm install
 ```
 
-#### Development
-
-To live-edit the ISLE Editor,
-
-``` bash
-$ npm run dev
-```
-
-Editing source files will result in changes appearing directly without reloading.
-
 #### Build
 
 To build and package the [Electron][electron] application,
@@ -87,6 +77,16 @@ The bundled version can be started with
 ``` bash
 $ npm start
 ```
+
+#### Development
+
+To live-edit the ISLE Editor,
+
+``` bash
+$ npm run dev
+```
+
+Editing source files will result in changes appearing directly without reloading.
 
 #### Package
 
