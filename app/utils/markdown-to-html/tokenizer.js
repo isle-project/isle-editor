@@ -42,12 +42,13 @@ const md = markdownit({
 });
 md.renderer.rules.link_open = function onLinkOpen( tokens, idx, options, env, renderer ) {
 	// If you are sure other plugins can't add `target` - drop check below
-	const aIndex = tokens[ idx ].attrIndex( 'target' );
-	tokens[ idx ].tag = 'Link';
+	const token = tokens[ idx ];
+	const aIndex = token.attrIndex( 'target' );
+	token.tag = 'Link';
 	if ( aIndex < 0 ) {
-		tokens[ idx ].attrPush( [ 'target', '_blank' ] ); // add new attribute...
+		token.attrPush( [ 'target', '_blank' ] ); // add new attribute...
 	} else {
-		tokens[ idx ].attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
+		token.attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
 	}
 	// Pass token to default renderer:
 	return renderer.renderToken( tokens, idx, options );
