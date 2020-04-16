@@ -78,7 +78,7 @@ const OMITTED_KEYS = [
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
 const RE_DIGITS = /^[0-9]+$/;
-const MIN_SWIPE_X = 60;
+const MIN_SWIPE_X = 50;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
