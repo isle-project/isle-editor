@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.50.1",
+  "version": "0.51.0",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -1044,7 +1044,7 @@
       "!node_modules/monaco-editor/**/*",
       "!node_modules/monaco-editor-webpack-plugin/**/*",
       "!node_modules/null-loader/**/*",
-      "!node_modules/null-loader/node_modules/schema-utils/**/*",
+      "!node_modules/null-loader/node_modules/loader-utils/**/*",
       "!node_modules/pdfmake/**/*",
       "!node_modules/pdfmake/node_modules/iconv-lite/**/*",
       "!node_modules/linebreak/**/*",
@@ -1900,6 +1900,7 @@
       "!node_modules/portfinder/**/*",
       "!node_modules/portfinder/node_modules/debug/**/*",
       "!node_modules/webpack-dev-server/node_modules/schema-utils/**/*",
+      "!node_modules/ajv-errors/**/*",
       "!node_modules/selfsigned/**/*",
       "!node_modules/node-forge/**/*",
       "!node_modules/webpack-dev-server/node_modules/semver/**/*",

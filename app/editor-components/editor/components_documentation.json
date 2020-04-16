@@ -192,8 +192,63 @@
     "description": "A calculator with a base and expanded (scientific) mode."
   },
   "undefined": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "for",
+        "type": "string (required)",
+        "description": "chat room identifier"
+      },
+      {
+        "name": "subject",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "buttonLabel",
+        "type": "node",
+        "default": null
+      },
+      {
+        "name": "showTooltip",
+        "type": "boolean",
+        "description": "controls whether to show tooltip",
+        "default": true
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "button size",
+        "default": "sm"
+      },
+      {
+        "name": "buttonVariant",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "description": "position of button tooltip",
+        "default": "top"
+      },
+      {
+        "name": "onClick",
+        "type": "function",
+        "default": "onClick() {}"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      }
+    ],
+    "description": "A button for joining and leaving video chats."
   },
   "Citation": {
     "props": [
@@ -1331,6 +1386,58 @@
       }
     ],
     "description": "An iFrame component."
+  },
+  "ImageQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "string",
+        "description": "question for which the student has to bring the available `options` into the correct order",
+        "default": ""
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "default": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<string>",
+        "description": "hints providing guidance on how to answer the question",
+        "default": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "default": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "default": false
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
+        "default": "onSubmit() {}"
+      }
+    ],
+    "description": "A question that asks the user to upload an image."
   },
   "Image": {
     "props": [
@@ -3734,6 +3841,12 @@
         "default": null
       },
       {
+        "name": "footer",
+        "type": "(string|node)",
+        "description": "panel footer",
+        "default": null
+      },
+      {
         "name": "minimizable",
         "type": "boolean",
         "description": "whether the panel can be minimized",
@@ -3746,6 +3859,11 @@
       },
       {
         "name": "bodyStyle",
+        "type": "object",
+        "default": {}
+      },
+      {
+        "name": "footerStyle",
         "type": "object",
         "default": {}
       },
@@ -5207,6 +5325,12 @@
         "name": "showTutorial",
         "type": "boolean",
         "description": "show a tutorial for the sketchpad",
+        "default": false
+      },
+      {
+        "name": "dynamicallyHideButtons",
+        "type": "boolean",
+        "description": "controls whether to start hiding buttons when toolbar width is not sufficient (otherwise a new line will be started)",
         "default": false
       },
       {
