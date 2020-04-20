@@ -266,7 +266,7 @@
     "happypack": "^5.0.1",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^25.4.0",
-    "jest-cli": "^25.3.0",
+    "jest-cli": "^25.4.0",
     "js-yaml": "^3.13.0",
     "katex": "^0.11.1",
     "localforage": "^1.7.2",
