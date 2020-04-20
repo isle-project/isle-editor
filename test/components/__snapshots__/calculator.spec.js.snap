@@ -8,7 +8,6 @@ exports[`renders a basic calculator 1`] = `
   onMouseUp={[Function]}
   onStop={[Function]}
   onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   resizable={false}
   style={
     Object {
@@ -24,7 +23,6 @@ exports[`renders a basic calculator 1`] = `
       "minWidth": undefined,
       "position": "fixed",
       "top": 0,
-      "touchAction": "none",
       "transform": "translate(30px,30px)",
       "userSelect": "auto",
       "width": "auto",
@@ -319,7 +317,6 @@ exports[`renders an expandable calculator 1`] = `
   onMouseUp={[Function]}
   onStop={[Function]}
   onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   resizable={false}
   style={
     Object {
@@ -335,7 +332,6 @@ exports[`renders an expandable calculator 1`] = `
       "minWidth": undefined,
       "position": "fixed",
       "top": 0,
-      "touchAction": "none",
       "transform": "translate(30px,30px)",
       "userSelect": "auto",
       "width": "auto",
