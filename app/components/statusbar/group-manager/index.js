@@ -27,6 +27,7 @@ import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import SessionContext from 'session/context.js';
 import retrieveUserGroup from 'utils/retrieve-user-group';
 import Group from './group.js';
+import ConfirmModal from './../confirm_modal.js';
 import names from './names.json';
 import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
@@ -175,6 +176,7 @@ class GroupManager extends Component {
 			matching: 'similar',
 			nGroups: 1,
 			isClosing: false,
+			showCloseModal: false,
 			notAssigned: [],
 			toRemove: [],
 			toAdd: [],
@@ -286,6 +288,9 @@ class GroupManager extends Component {
 			value: true
 		}, 'members' );
 		setTimeout( session.deleteGroups, 60000 );
+		this.setState({
+			showCloseModal: false
+		});
 	}
 
 	sendMessageToAll = () => {
@@ -302,6 +307,12 @@ class GroupManager extends Component {
 		this.setState({
 			message: '',
 			docId: this.state.docId + 1
+		});
+	}
+
+	toggleCloseConfirm = () => {
+		this.setState({
+			showCloseModal: !this.state.showCloseModal
 		});
 	}
 
@@ -505,7 +516,7 @@ class GroupManager extends Component {
 				<Button onClick={this.sendMessageToAll} >
 					Broadcast message to all
 				</Button>
-				<Button variant="danger" disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
+				<Button variant="danger" disabled={this.state.isClosing} onClick={this.toggleCloseConfirm} style={{ float: 'right' }} >
 					Close Groups
 				</Button>
 				{ this.state.toAdd.length > 0 || this.state.toRemove.length > 0 ? <Button onClick={this.updateGroups} style={{ float: 'right', marginRight: 6 }} >
@@ -521,16 +532,25 @@ class GroupManager extends Component {
 			return null;
 		}
 		return (
-			<Draggable cancel=".card-body" >
-				<Panel minimizable header={<span>
-					<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
-					Group Manager
-				</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{
-					maxHeight: '75vh'
-				}} footer={this.renderFooter()}>
-					{this.renderBody()}
-				</Panel>
-			</Draggable>
+			<Fragment>
+				<Draggable cancel=".card-body" >
+					<Panel minimizable header={<span>
+						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
+						Group Manager
+					</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{
+						maxHeight: '75vh'
+					}} footer={this.renderFooter()}>
+						{this.renderBody()}
+					</Panel>
+				</Draggable>
+				<ConfirmModal
+					show={this.state.showCloseModal}
+					close={this.toggleCloseConfirm}
+					title="Close Groups"
+					message="Do you really want to close the groups?"
+					onConfirm={this.handleGroupDeletion}
+				/>
+			</Fragment>
 		);
 	}
 }
