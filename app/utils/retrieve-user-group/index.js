@@ -9,6 +9,7 @@ function retrieveUserGroup( groups, user ) {
 			}
 		}
 	}
+	return null;
 }
 
 

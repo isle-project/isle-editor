@@ -25,6 +25,7 @@ import SelectInput from 'components/input/select';
 import EditorView from 'components/text-editor/view.js';
 import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import SessionContext from 'session/context.js';
+import retrieveUserGroup from 'utils/retrieve-user-group';
 import Group from './group.js';
 import names from './names.json';
 import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
@@ -175,6 +176,8 @@ class GroupManager extends Component {
 			nGroups: 1,
 			isClosing: false,
 			notAssigned: [],
+			toRemove: [],
+			toAdd: [],
 			message: '',
 			docId: 0
 		};
@@ -189,13 +192,16 @@ class GroupManager extends Component {
 					this.forceUpdate();
 				}
 				else if ( type === USER_JOINED && session.allGroups.length > 0 ) {
-					const notAssigned = this.state.notAssigned.slice();
-					const picture = session.server + '/thumbnail/' + data.picture;
-					const value = { 'value': { email: data.email, picture }, 'label': data.name };
-					notAssigned.push( value );
-					this.setState({
-						notAssigned
-					});
+					const group = retrieveUserGroup( session.allGroups, data );
+					if ( !group ) {
+						const notAssigned = this.state.notAssigned.slice();
+						const picture = session.server + '/thumbnail/' + data.picture;
+						const value = { 'value': { email: data.email, picture }, 'label': data.name };
+						notAssigned.push( value );
+						this.setState({
+							notAssigned
+						});
+					}
 				}
 				else if ( type === DELETED_GROUPS ) {
 					session.removeNotification( this.closeNotification );
@@ -236,6 +242,40 @@ class GroupManager extends Component {
 			matching: this.state.matching
 		});
 		session.createGroups( groups );
+	}
+
+	updateGroups = () => {
+		const session = this.context;
+		const groups = session.allGroups;
+		for ( let i = 0; i < this.state.toRemove.length; i++ ) {
+			const { email, group } = this.state.toRemove[ i ].value;
+			for ( let j = 0; j < groups.length; j++ ) {
+				if ( groups[ j ].name === group ) {
+					groups[ j ].members = groups[ j ].members.filter( x => x.email !== email );
+					break;
+				}
+			}
+		}
+		for ( let i = 0; i < this.state.toAdd.length; i++ ) {
+			const user = this.state.toAdd[ i ].value;
+			for ( let j = 0; j < groups.length; j++ ) {
+				const group = groups[ j ];
+				if (
+					group.name === user.group &&
+					group.members.filter( x => x.email === user.email ).length === 0
+				) {
+					const found = session.userList.filter( x => x.email === user.email );
+					group.members.push( found[ 0 ] );
+					break;
+				}
+			}
+		}
+		session.deleteGroups();
+		session.createGroups( groups );
+		this.setState({
+			toAdd: [],
+			toRemove: []
+		});
 	}
 
 	handleGroupDeletion = () => {
@@ -308,7 +348,7 @@ class GroupManager extends Component {
 			const { name, members } = session.allGroups[ i ];
 			const options = members.map( x => {
 				const picture = session.server + '/thumbnail/' + x.picture;
-				return { 'value': { email: x.email, picture }, 'label': x.name };
+				return { 'value': { email: x.email, picture, group: name }, 'label': x.name };
 			});
 			out[ i ] = <div
 				key={i}
@@ -325,20 +365,27 @@ class GroupManager extends Component {
 					defaultValue={options}
 					options={this.state.notAssigned}
 					styles={customSelectStyles}
-					menuPlacement={i === session.allGroups.length - 1 ? 'top' : 'bottom'}
+					menuPlacement="bottom"
 					onChange={( _, action ) => {
 						if ( action.action === 'remove-value' ) {
 							const notAssigned = this.state.notAssigned.slice();
 							notAssigned.push( action.removedValue );
+							const toRemove = this.state.toRemove.slice();
+							toRemove.push( action.removedValue );
 							this.setState({
-								notAssigned
+								notAssigned,
+								toRemove
 							});
 						} else if ( action.action === 'select-option' ) {
+							const toAdd = this.state.toAdd.slice();
+							action.option.value.group = name;
+							toAdd.push( action.option );
 							const notAssigned = this.state.notAssigned.filter( x => {
 								return x.value.email !== action.option.value.email;
 							});
 							this.setState({
-								notAssigned
+								notAssigned,
+								toAdd
 							});
 						}
 					}}
@@ -458,9 +505,12 @@ class GroupManager extends Component {
 				<Button onClick={this.sendMessageToAll} >
 					Broadcast message to all
 				</Button>
-				<Button disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
+				<Button variant="danger" disabled={this.state.isClosing} onClick={this.handleGroupDeletion} style={{ float: 'right' }} >
 					Close Groups
 				</Button>
+				{ this.state.toAdd.length > 0 || this.state.toRemove.length > 0 ? <Button onClick={this.updateGroups} style={{ float: 'right', marginRight: 6 }} >
+					Update Groups
+				</Button> : null }
 			</Fragment> );
 		}
 		return <Button disabled={nUsers === 0} onClick={this.handleGroupCreation}>Create Groups</Button>;
