@@ -35,6 +35,11 @@ function VideoTutorials() {
 						<iframe title="Using the Sketchpad" width="100%" height="350px" src="https://www.youtube.com/embed/R8a5iO46lDU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullscreen></iframe>
 					</div>
 				</div>
+				<div>
+					<div className="col col--6 padding-vert--lg">
+						<iframe title="Revealer and Blackout" width="560" height="315" src="https://www.youtube.com/embed/eXmpIfWjoEU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullscreen></iframe>
+					</div>
+				</div>
 			</div>
 		</Layout>
 	);
