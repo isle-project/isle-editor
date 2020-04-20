@@ -27,7 +27,7 @@ import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import SessionContext from 'session/context.js';
 import Group from './group.js';
 import names from './names.json';
-import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from 'constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_manager.css';
 
@@ -188,12 +188,22 @@ class GroupManager extends Component {
 				if ( type === CREATED_GROUPS ) {
 					this.forceUpdate();
 				}
+				else if ( type === USER_JOINED && session.allGroups.length > 0 ) {
+					const notAssigned = this.state.notAssigned.slice();
+					const picture = session.server + '/thumbnail/' + data.picture;
+					const value = { 'value': { email: data.email, picture }, 'label': data.name };
+					notAssigned.push( value );
+					this.setState({
+						notAssigned
+					});
+				}
 				else if ( type === DELETED_GROUPS ) {
 					session.removeNotification( this.closeNotification );
 					this.setState({
 						isClosing: false
 					});
-				} else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
+				}
+				else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
 					this.closeNotification = session.addNotification({
 						title: 'Groups will close soon.',
 						message: 'You have initiated closing the group mode. Please wait while students finish their work.',
