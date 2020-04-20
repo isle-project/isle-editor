@@ -5,6 +5,7 @@ import logger from 'debug';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
+import Panel from 'components/panel';
 import Gate from 'components/gate';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
@@ -170,14 +171,18 @@ class Revealer extends Component {
 		const header = <h3 className="center" >{this.props.message}</h3>;
 		return (<Fragment>
 			<Gate owner >
-				<Button
-					className="centered"
-					onClick={this.toggleContent}
+				<Panel
+					className="center"
 					style={{
-						marginBottom: '10px'
+						marginBottom: '10px',
+						width: 'fit-content'
 					}}
 				>
-					Click to {this.state.showChildren ? 'hide' : 'reveal'} <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}
+					<Button
+						onClick={this.toggleContent}
+						style={{ marginRight: 10 }}
+					>{this.state.showChildren ? 'Hide' : 'Reveal'}</Button>
+					contents of <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}
 					<select
 						style={{ width: '150px', background: '#2e4468', marginLeft: '10px', padding: '2px', color: 'white' }}
 						onChange={this.handleCohortChange}
@@ -195,7 +200,7 @@ class Revealer extends Component {
 							);
 						})}
 					</select>
-				</Button>
+				</Panel>
 			</Gate>
 				{this.state.showChildren ? this.props.children : header}
 		</Fragment> );
