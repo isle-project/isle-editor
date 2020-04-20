@@ -78,7 +78,8 @@ const OMITTED_KEYS = [
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
 const RE_DIGITS = /^[0-9]+$/;
-const MIN_SWIPE_X = 50;
+const MIN_SWIPE_X = 45;
+const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
@@ -1215,8 +1216,7 @@ class Sketchpad extends Component {
 		event.stopPropagation();
 		if (
 			abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
-			abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
-			this.swipeEndX > 0
+			abs( this.swipeEndY - this.swipeStartY ) < MAX_SWIPE_Y
 		) {
 			if ( this.swipeEndX > this.swipeStartX ) {
 				this.previousPage();
@@ -2254,8 +2254,7 @@ class Sketchpad extends Component {
 		event.stopPropagation();
 		if (
 			abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
-			abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
-			this.swipeEndX > 0
+			abs( this.swipeEndY - this.swipeStartY ) < MAX_SWIPE_Y
 		) {
 			if ( this.swipeEndX > this.swipeStartX ) {
 				this.previousPage();
@@ -2577,8 +2576,7 @@ class Sketchpad extends Component {
 				event.stopPropagation();
 				if (
 					abs( this.swipeEndX - this.swipeStartX ) > MIN_SWIPE_X &&
-					abs( this.swipeEndY - this.swipeStartY ) < MIN_SWIPE_Y &&
-					this.swipeEndX > 0
+					abs( this.swipeEndY - this.swipeStartY ) < MAX_SWIPE_Y
 				) {
 					if ( this.swipeEndX > this.swipeStartX ) {
 						this.previousPage();
