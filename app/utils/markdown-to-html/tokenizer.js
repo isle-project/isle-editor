@@ -474,9 +474,9 @@ class Tokenizer {
 					tagLevel -= 1;
 					if ( tagLevel === 0 ) {
 						debug( 'Outer tag match found...' );
-						const tokenizer = new Tokenizer();
 						current += innerJSXStartTag + '>';
 						i += innerJSXStartTag.length + 1;
+						const tokenizer = new Tokenizer();
 						this._current += tokenizer.parse( current );
 						current = '';
 						innerJSXStartTag = null;
@@ -576,7 +576,13 @@ class Tokenizer {
 		if ( this._braceLevel === 0 ) {
 			this._JSX_ATTRIBUTE_END = this._current.length;
 			const inner = this._current.substring( this._JSX_ATTRIBUTE_START, this._JSX_ATTRIBUTE_END-1 );
-			const tokenizer = new Tokenizer();
+			const tag = tagName( inner, 1 );
+			const isInner = RE_HTML_INNER_TAGS.test( tag ) ||
+			RE_HTML_INLINE_TAGS.test( tag ) ||
+			RE_ISLE_INLINE_TAGS.test( tag );
+			const tokenizer = new Tokenizer({
+				inline: isInner
+			});
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
 				replacement + char;
