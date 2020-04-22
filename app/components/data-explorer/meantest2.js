@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -21,6 +22,7 @@ import getBinaryVars from './get_binary_vars.js';
 
 // VARIABLES //
 
+const debug = logger( 'isle:data-explorer:meantest2' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
 const DESCRIPTION = 'A test for equality of means across two groups.';
@@ -183,6 +185,7 @@ class MeanTest2 extends Component {
 				options={quantitative}
 				onChange={( xvar ) => {
 					if ( this.state.grouping ) {
+						debug( 'Updating the variable when supplying groups...' );
 						const categories = data[ this.state.grouping ];
 						let firstCategory = categories[ 0 ];
 						let secondCategory;
@@ -192,12 +195,13 @@ class MeanTest2 extends Component {
 								break;
 							}
 						}
-						const splitted = bifurcateBy( data[ this.state.xvar ], function splitter( x, idx ) {
+						const splitted = bifurcateBy( data[ xvar ], function splitter( x, idx ) {
 							return categories[ idx ] === firstCategory;
 						});
 						const xvalues = splitted[ 0 ];
 						const yvalues = splitted[ 1 ];
 						this.setState({
+							xvar,
 							yvar: null,
 							xvalues,
 							yvalues,
@@ -208,6 +212,7 @@ class MeanTest2 extends Component {
 						});
 					}
 					else if ( this.state.yvar ) {
+						debug( 'Updating the first variable when supplying two variables...' );
 						const x = data[ xvar ];
 						const y = data[ this.state.yvar ];
 						this.setState({
@@ -390,7 +395,7 @@ class MeanTest2 extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 MeanTest2.defaultProps = {
 	categorical: null,
@@ -398,9 +403,6 @@ MeanTest2.defaultProps = {
 	session: {},
 	showDecision: true
 };
-
-
-// PROPERTIES //
 
 MeanTest2.propTypes = {
 	categorical: PropTypes.array,
