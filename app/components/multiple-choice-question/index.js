@@ -176,7 +176,8 @@ class MultipleChoiceQuestion extends Component {
 		}
 		let msg;
 		let level = 'success';
-		if ( this.props.provideFeedback === 'incremental' ) {
+		const hasSolution = !isNull( this.props.solution );
+		if ( this.props.provideFeedback === 'incremental' && hasSolution ) {
 			if ( isCorrect ) {
 				msg = 'Hooray, your answer is correct!';
 			} else {
@@ -184,7 +185,7 @@ class MultipleChoiceQuestion extends Component {
 				level = 'error';
 			}
 		}
-		if ( this.props.provideFeedback === 'full' ) {
+		if ( this.props.provideFeedback === 'full' && hasSolution ) {
 			if ( isCorrect ) {
 				msg = 'Hooray, your answer is correct!';
 			} else {
@@ -195,7 +196,7 @@ class MultipleChoiceQuestion extends Component {
 				level = 'error';
 			}
 		}
-		if ( this.props.provideFeedback === 'none' ) {
+		else {
 			msg = 'You have successfully submitted your answer. You may change your answer and re-submit if you want to.';
 		}
 		session.addNotification({
@@ -207,8 +208,9 @@ class MultipleChoiceQuestion extends Component {
 
 	submitQuestion = () => {
 		const sol = this.props.solution;
+		const noSolution = isNull( sol );
 		const session = this.context;
-		let newCorrect = this.props.provideFeedback === 'incremental' ?
+		let newCorrect = ( this.props.provideFeedback === 'incremental' && !noSolution ) ?
 			this.state.correct.slice() :
 			new Array( this.props.answers.length );
 		session.log({
@@ -240,7 +242,7 @@ class MultipleChoiceQuestion extends Component {
 		else {
 			for ( let i = 0; i < newCorrect.length; i++ ) {
 				if ( this.state.active === i ) {
-					if ( i === sol ) {
+					if ( i === sol || noSolution ) {
 						newCorrect[ i ] = true;
 					} else {
 						newCorrect[ i ] = false;
@@ -268,6 +270,9 @@ class MultipleChoiceQuestion extends Component {
 		}
 		if ( !allowMultipleAnswers && !isNumber( this.state.active ) ) {
 			return true;
+		}
+		if ( isNull( this.props.solution ) ) {
+			return false;
 		}
 		switch ( this.props.provideFeedback ) {
 			case 'full':
@@ -303,7 +308,7 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	renderAnswerOptionsMultiple = ( key, id ) => {
-		if ( this.props.provideFeedback === 'none' ) {
+		if ( this.props.provideFeedback === 'none' || isNull( this.props.solution ) ) {
 			return (
 				<AnswerOption
 					key={key.content}
@@ -352,7 +357,7 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	renderAnswerOptionsSingle = ( key, id ) => {
-		if ( this.props.provideFeedback === 'none' ) {
+		if ( this.props.provideFeedback === 'none' || isNull( this.props.solution ) ) {
 			return ( <AnswerOption
 				key={id}
 				answerContent={key.content}
