@@ -49,6 +49,14 @@ function onDraggableStop( event ) {
 
 // MAIN //
 
+/**
+* A component for making a child component draggable and optionally resizable.
+*
+* @property {boolean} resizable - whether resize handlers should be attached to the edges of the child element
+* @property {Function} onStop - event handler called when dragging is stopped
+* @property {Function} onEscape - event handler called when the escape key is pressed
+* @property {Object} style - CSS inline styles
+*/
 class Draggable extends Component {
 	handleStop = ( event, data ) => {
 		onDraggableStop( event );
@@ -103,13 +111,15 @@ class Draggable extends Component {
 Draggable.propTypes = {
 	resizable: PropTypes.bool,
 	onStop: PropTypes.func,
-	onEscape: PropTypes.func
+	onEscape: PropTypes.func,
+	style: PropTypes.object
 };
 
 Draggable.defaultProps = {
 	resizable: false,
 	onStop() {},
-	onEscape() {}
+	onEscape() {},
+	style: {}
 };
 
 
