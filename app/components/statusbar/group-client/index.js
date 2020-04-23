@@ -78,7 +78,7 @@ class GroupClient extends Component {
 			return null;
 		}
 		return (
-			<Draggable default={{ x: 0.9 * window.innerWidth }} >
+			<Draggable default={{ x: window.innerWidth - 280 }} >
 				<Panel
 					minimizable
 					header={<span>
