@@ -1,6 +1,7 @@
 // MODULES /
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Panel from 'components/panel';
@@ -77,7 +78,7 @@ class GroupClient extends Component {
 			return null;
 		}
 		return (
-			<Draggable>
+			<Draggable default={{ x: 0.9 * window.innerWidth }} >
 				<Panel
 					minimizable
 					header={<span>
@@ -87,7 +88,7 @@ class GroupClient extends Component {
 					className="group-client-panel"
 				>
 					{this.renderMembers()}
-					<VideoChatButton for={session.group.name} />
+					{this.props.video ? <VideoChatButton for={session.group.name} /> : null}
 				</Panel>
 			</Draggable>
 		);
@@ -98,6 +99,14 @@ class GroupClient extends Component {
 // PROPERTIES //
 
 GroupClient.contextType = SessionContext;
+
+GroupClient.propTypes = {
+	video: PropTypes.bool
+};
+
+GroupClient.defaultProps = {
+	video: false
+};
 
 
 // EXPORTS //

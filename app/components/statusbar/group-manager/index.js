@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import logger from 'debug';
 import innerText from 'react-innertext';
 import CreatableSelect from 'react-select/creatable';
@@ -366,7 +367,7 @@ class GroupManager extends Component {
 			>
 				<h3 className="group-manager-header" >
 					<span className="group-manager-header-name">Group {name}</span>
-					<VideoChatButton showTooltip={false} for={name} subject={name} style={{ float: 'right', marginTop: -2, marginLeft: 5 }} />
+					{this.props.video ? <VideoChatButton showTooltip={false} for={name} subject={name} style={{ float: 'right', marginTop: -2, marginLeft: 5 }} /> : null}
 					<ChatButton showTooltip={false} for={name} style={{ float: 'right', marginTop: -2 }} />
 				</h3>
 				<CreatableSelect
@@ -402,6 +403,11 @@ class GroupManager extends Component {
 					}}
 				/>
 			</div>;
+		}
+		if ( this.state.notAssigned.length > 0 ) {
+			out.push( <span className="group-manager-not-assigned-warning" >
+				There are currently {this.state.notAssigned.length} users not assigned to any group.
+			</span> );
 		}
 		return out;
 	}
@@ -452,7 +458,7 @@ class GroupManager extends Component {
 			<NumberInput
 				legend="Number of Groups"
 				value={this.state.nGroups}
-				min={1} max={floor( ceil( nUsers / 2 ), 99 )}
+				min={1} max={floor( ceil( nUsers / 2 + 1e-9 ), 99 )}
 				onChange={( nGroups ) => {
 					this.setState({
 						nGroups
@@ -533,7 +539,7 @@ class GroupManager extends Component {
 		}
 		return (
 			<Fragment>
-				<Draggable cancel=".card-body" >
+				<Draggable cancel=".card-body" default={{ x: 0.4 * window.innerWidth }} >
 					<Panel minimizable header={<span>
 						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
 						Group Manager
@@ -559,6 +565,14 @@ class GroupManager extends Component {
 // TYPES //
 
 GroupManager.contextType = SessionContext;
+
+GroupManager.propTypes = {
+	video: PropTypes.bool
+};
+
+GroupManager.defaultProps = {
+	video: false
+};
 
 
 // EXPORTS //

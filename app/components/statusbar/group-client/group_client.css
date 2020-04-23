@@ -14,9 +14,6 @@
 }
 
 .group-client-panel {
-	position: fixed;
-	z-index: 1001;
-	top: 8px;
-	left: 8px;
 	width: max-content;
+	z-index: 1001;
 }
