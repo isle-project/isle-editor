@@ -191,10 +191,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, data ) => {
-				if ( type === CREATED_GROUPS ) {
-					this.forceUpdate();
-				}
-				else if ( type === USER_JOINED && session.allGroups.length > 0 ) {
+				if ( type === USER_JOINED && session.allGroups.length > 0 ) {
 					const group = retrieveUserGroup( session.allGroups, data );
 					if ( !group ) {
 						const notAssigned = this.state.notAssigned.slice();
@@ -225,6 +222,9 @@ class GroupManager extends Component {
 					this.setState({
 						isClosing: true
 					});
+				}
+				else if ( type === CREATED_GROUPS || type === USER_JOINED ) {
+					this.forceUpdate();
 				}
 			});
 		}
