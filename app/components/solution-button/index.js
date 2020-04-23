@@ -29,7 +29,8 @@ class SolutionButton extends Component {
 			<Tooltip
 				id="tooltip"
 			>
-				Solution becomes available after answer is submitted and all hints have been required.
+				Solution becomes available after answer is submitted
+				{this.props.hasHints ? 'and all hints have been requested.' : '.'}
 			</Tooltip>
 		);
 		return ( !this.props.disabled ?
@@ -70,7 +71,12 @@ class SolutionButton extends Component {
 
 SolutionButton.propTypes = {
 	disabled: PropTypes.bool.isRequired,
+	hasHints: PropTypes.bool,
 	onClick: PropTypes.func.isRequired
+};
+
+SolutionButton.defaultProps = {
+	hasHints: true
 };
 
 

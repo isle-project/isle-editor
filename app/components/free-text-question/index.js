@@ -176,19 +176,6 @@ class FreeTextQuestion extends Component {
 
 	handleSolutionClick = () => {
 		const session = this.context;
-		if ( !this.state.submitted || !this.state.exhaustedHints ) {
-			let msg = 'Solution becomes available after answer is submitted';
-			if ( this.props.hints.length > 0 ) {
-				msg += ' and all hints have been required.';
-			} else {
-				msg += '.';
-			}
-			return session.addNotification({
-				title: 'Not allowed',
-				message: msg,
-				level: 'warning'
-			});
-		}
 		if ( this.state.solutionDisplayed ) {
 			this.setState({
 				solutionDisplayed: false,
@@ -256,8 +243,9 @@ class FreeTextQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		const solutionButton = <SolutionButton
-			disabled={!this.props.instantSolution || !this.state.submitted || !this.state.exhaustedHints}
+			disabled={!this.props.instantSolution && (!this.state.submitted || !this.state.exhaustedHints)}
 			onClick={this.handleSolutionClick}
+			hasHints={this.props.hints.length > 0}
 		/>;
 		return (
 			<Card id={this.id} className="free-text-question" style={this.props.style} >
@@ -281,7 +269,9 @@ class FreeTextQuestion extends Component {
 								value={this.state.value}
 								disabled={this.state.solutionDisplayed}
 							/> :
-							<div className="free-text-question-solution-wrapper">
+							<div className="free-text-question-solution-wrapper" style={{
+								height: `calc(${this.props.rows*1.5}rem + 14px)`
+							}}>
 								{this.state.value}
 							</div>
 						}
