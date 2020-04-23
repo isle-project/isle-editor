@@ -177,9 +177,15 @@ class FreeTextQuestion extends Component {
 	handleSolutionClick = () => {
 		const session = this.context;
 		if ( !this.state.submitted || !this.state.exhaustedHints ) {
+			let msg = 'Solution becomes available after answer is submitted';
+			if ( this.props.hints.length > 0 ) {
+				msg += ' and all hints have been required.';
+			} else {
+				msg += '.';
+			}
 			return session.addNotification({
 				title: 'Not allowed',
-				message: 'Solution becomes available after answer is submitted and all hints have been required.',
+				message: msg,
 				level: 'warning'
 			});
 		}
