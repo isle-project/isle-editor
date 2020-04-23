@@ -191,7 +191,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, data ) => {
-				if ( type === USER_JOINED && session.allGroups.length > 0 ) {
+				if ( type === USER_JOINED && session.allGroups.length > 0 && !data.owner ) {
 					const group = retrieveUserGroup( session.allGroups, data );
 					if ( !group ) {
 						const notAssigned = this.state.notAssigned.slice();
