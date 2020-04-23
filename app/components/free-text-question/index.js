@@ -45,6 +45,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {string} solution - a model answer to the problem
+* @property {boolean} instantSolution - whether one can toggle the display of the model answer immediately
 * @property {number} rows - number of rows of the text field for students to type their answers
 * @property {boolean} chat - controls whether to enable group chat should for the question
 * @property {boolean} resizable - controls whether the text area should be resizable
@@ -249,7 +250,7 @@ class FreeTextQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		const solutionButton = <SolutionButton
-			disabled={!this.state.submitted || !this.state.exhaustedHints}
+			disabled={!this.props.instantSolution || !this.state.submitted || !this.state.exhaustedHints}
 			onClick={this.handleSolutionClick}
 		/>;
 		return (
@@ -362,6 +363,7 @@ FreeTextQuestion.defaultProps = {
 	hintPlacement: 'top',
 	feedback: true,
 	solution: '',
+	instantSolution: false,
 	rows: 5,
 	chat: false,
 	placeholder: 'Enter your answer here...',
@@ -389,6 +391,7 @@ FreeTextQuestion.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	instantSolution: PropTypes.bool,
 	rows: PropTypes.number,
 	chat: PropTypes.bool,
 	resizable: PropTypes.bool,
