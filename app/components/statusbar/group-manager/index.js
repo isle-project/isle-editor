@@ -30,7 +30,7 @@ import retrieveUserGroup from 'utils/retrieve-user-group';
 import Group from './group.js';
 import ConfirmModal from './../confirm_modal.js';
 import names from './names.json';
-import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED } from 'constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_manager.css';
 
@@ -225,6 +225,12 @@ class GroupManager extends Component {
 				}
 				else if ( type === CREATED_GROUPS || type === USER_JOINED ) {
 					this.forceUpdate();
+				}
+				else if ( type === USER_LEFT ) {
+					const notAssigned = this.state.notAssigned.filter( x => {
+						return x.value.email !== data;
+					});
+					this.setState({ notAssigned });
 				}
 			});
 		}
