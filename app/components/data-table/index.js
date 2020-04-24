@@ -24,8 +24,7 @@ import Alert from 'react-bootstrap/Alert';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'components/overlay-trigger';
+import Tooltip from 'components/tooltip';
 import markdownit from 'markdown-it';
 import isTypedArray from '@stdlib/assert/is-typed-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -170,7 +169,7 @@ function createColumns( props, state ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable && !contains( props.undeletableVars, key ) ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-					<OverlayTrigger placement="left" overlay={<Tooltip>Rename variable</Tooltip>} >
+					<Tooltip placement="left" tooltip="Rename variable" >
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
@@ -194,13 +193,13 @@ function createColumns( props, state ) {
 							}}
 						/>
 					</span>
-				</OverlayTrigger>
-				<OverlayTrigger placement="left" overlay={<Tooltip>Remove variable</Tooltip>} >
+				</Tooltip>
+				<Tooltip placement="left" tooltip="Remove variable" >
 					<button className="fa fa-times delete-button" onClick={( evt ) => {
 						evt.stopPropagation();
 						props.onColumnDelete( key );
 					}} />
-				</OverlayTrigger>
+				</Tooltip>
 			</div>;
 		}
 		out.Header = header;
@@ -270,10 +269,7 @@ function createColumns( props, state ) {
 										onChange( uniqueValues.filter( x => x !== props.children ) );
 									};
 									return (
-										<OverlayTrigger
-											overlay={<Tooltip id="invert_selection">Select all others</Tooltip>}
-											placement="bottom"
-										>
+										<Tooltip tooltip="Select all others" placement="bottom" >
 											<span
 												role="button" tabIndex={0}
 												onClick={invertSelection}
@@ -287,7 +283,7 @@ function createColumns( props, state ) {
 											>
 												<components.MultiValueLabel {...props} />
 											</span>
-										</OverlayTrigger>
+										</Tooltip>
 									);
 								}
 							}}
@@ -708,16 +704,16 @@ class DataTable extends Component {
 			resizable: false,
 			width: 30
 		});
-		const saveButton = <OverlayTrigger placement="bottom" overlay={<Tooltip>Download data</Tooltip>} >
+		const saveButton = <Tooltip placement="bottom" tooltip="Download data" >
 			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} >
 				<i className="fas fa-download"></i>
 			</Button>
-		</OverlayTrigger>;
+		</Tooltip>;
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
 					<div className='data-table-header-wrapper'>
-						<OverlayTrigger placement="bottom" overlay={<Tooltip>Open dataset description</Tooltip>} >
+						<Tooltip placement="bottom" tooltip="Open dataset description" show={dataInfo.info.length > 0} >
 							<Button
 								variant="light"
 								disabled={dataInfo.info.length === 0}
@@ -731,20 +727,21 @@ class DataTable extends Component {
 									{dataInfo.name ? dataInfo.name : 'Data'}
 								</h4>
 							</Button>
-						</OverlayTrigger>
+						</Tooltip>
 						{saveButton}
 						<TutorialButton id={this.id} session={this.context} onTutorialCompletion={this.props.onTutorialCompletion} />
 					</div>
 					<ButtonToolbar className="data-table-header-toolbar">
-						{ dataInfo.variables ? <OverlayTrigger placement="right" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
+						{ dataInfo.variables ? <Tooltip placement="right" tooltip="Open variable descriptions" ><Button
 							onClick={this.showDescriptions}
 							variant="light"
 							size="xsmall"
 							className="variable-descriptions-button"
 						>
 							Variable Descriptions
-						</Button></OverlayTrigger> : null }
-						{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ? <OverlayTrigger placement="left" overlay={<Tooltip>Reset filters and sorting</Tooltip>} >
+						</Button></Tooltip> : null }
+						{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
+						<Tooltip placement="left" tooltip="Reset filters and sorting" >
 							<Button
 								onClick={this.reset}
 								variant="light"
@@ -753,7 +750,7 @@ class DataTable extends Component {
 							>
 								Reset Table Display
 							</Button>
-						</OverlayTrigger> : null }
+						</Tooltip> : null }
 					</ButtonToolbar>
 					<ReactTable
 						id={this.id}
@@ -817,8 +814,14 @@ class DataTable extends Component {
 							Download the current dataset in either the CSV or JSON file formats.
 						</Modal.Body>
 						<Modal.Footer>
-							<Button onClick={this.saveCSV} >Save CSV</Button>
-							<Button onClick={this.saveJSON} >Save JSON</Button>
+							<Button onClick={() => {
+								this.saveCSV();
+								this.toggleSaveModal();
+							}} >Save CSV</Button>
+							<Button onClick={() => {
+								this.saveJSON();
+								this.toggleSaveModal();
+							}} >Save JSON</Button>
 						</Modal.Footer>
 					</Modal> : null }
 			</Fragment>
