@@ -141,7 +141,7 @@
     "d3-cloud": "1.2.5",
     "debug": "^4.1.1",
     "detect-csv": "^1.1.0",
-    "dompurify": "^2.0.9",
+    "dompurify": "^2.0.10",
     "electron-prompt": "^1.5.1",
     "electron-store": "^5.1.1",
     "electron-updater": "^4.3.0",
