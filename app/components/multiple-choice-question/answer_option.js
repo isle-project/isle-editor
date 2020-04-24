@@ -66,7 +66,7 @@ AnswerOption.propTypes = {
 };
 
 AnswerOption.defaultProps = {
-	correct: false
+	correct: null
 };
 
 
