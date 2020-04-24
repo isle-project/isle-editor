@@ -804,8 +804,9 @@ class Session {
 	*
 	* @param {string} name - chat room name
 	* @param {string} msg - chat message
+	* @param {boolean} anonymous - whether the message should be send anonymously to all other users (aside from owners)
 	*/
-	sendChatMessage( name, msg ) {
+	sendChatMessage( name, msg, anonymous ) {
 		PRIVATE_VARS[ 'addedChatMessages' ] += 1;
 		if ( this.socket ) {
 			const msgObj = {
@@ -814,6 +815,9 @@ class Session {
 				picture: basename( this.user.picture ),
 				content: msg
 			};
+			if ( anonymous ) {
+				msgObj.anonymous = true;
+			}
 			const chat = this.getChat( name );
 			if ( chat ) {
 				chat.messages.push( msgObj );

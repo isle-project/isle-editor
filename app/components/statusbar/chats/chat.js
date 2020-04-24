@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
@@ -15,6 +15,7 @@ import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
 import VoiceControl from 'components/voice-control';
 import Tooltip from 'components/tooltip';
+import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
@@ -86,20 +87,24 @@ class Chat extends Component {
 		}
 	}
 
-	sendMessage = () => {
+	sendMessage = ( event, anonymously = false ) => {
 		let text = this.editorView.markdown;
 		if ( text.length === 0 ) {
 			return;
 		}
 		text = replace( text, '\\\n', '\n' );
 		const session = this.context;
-		session.sendChatMessage( this.props.chat.name, text );
+		session.sendChatMessage( this.props.chat.name, text, anonymously );
 		scrollTo( this.chatbody, this.chatbody.scrollHeight, 1000 );
 
 		this.setState({
 			defaultValue: '',
 			docId: this.state.docId + 1
 		});
+	}
+
+	sendAnonymousChatMessage = ( event ) => {
+		this.sendMessage( event, true );
 	}
 
 	handleEditorStateChange = () => {
@@ -204,11 +209,21 @@ class Chat extends Component {
 							<div className={msg.unread ? 'chat-message unread' : 'chat-message'} key={idx} >
 								<img
 									className="chat-picture unselectable"
-									src={session.server + '/thumbnail/' + ( msg.picture ? msg.picture : 'anonymous.jpg' )}
+									src={session.server + '/thumbnail/' + ( msg.picture && !msg.anonymous ? msg.picture : 'anonymous.jpg' )}
 									alt="Profile Pic"
 								/>
 								<div className="chat-message-right" >
-									<span className="chat-user">{msg.user}</span>
+									<span className="chat-user">
+										{!msg.anonymous ? msg.user :
+										<Fragment>
+											<span style={{ marginRight: 4 }}>Anonymous</span>
+											<Gate owner>
+												<Tooltip tooltip={msg.user} placement="right" >
+													<i className="fas fa-user-secret"></i>
+												</Tooltip>
+											</Gate>
+										</Fragment>}
+									</span>
 									{' - '}
 									<span className="chat-time">{renderTime( msg.time )}</span>
 									<br />
@@ -251,6 +266,11 @@ class Chat extends Component {
 					onClick={this.sendMessage}
 					style={{ float: 'left' }}
 				>Send Message</Button>
+				<Button
+					size="sm" variant="default"
+					onClick={this.sendAnonymousChatMessage}
+					style={{ float: 'left', marginLeft: '4px' }}
+				>Send Anonymously</Button>
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
 				/>
