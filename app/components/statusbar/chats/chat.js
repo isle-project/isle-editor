@@ -266,11 +266,11 @@ class Chat extends Component {
 					onClick={this.sendMessage}
 					style={{ float: 'left' }}
 				>Send Message</Button>
-				<Button
+				{this.props.chat.anonymousSubmissions ? <Button
 					size="sm" variant="default"
 					onClick={this.sendAnonymousChatMessage}
 					style={{ float: 'left', marginLeft: '4px' }}
-				>Send Anonymously</Button>
+				>Send Anonymously</Button> : null}
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
 				/>

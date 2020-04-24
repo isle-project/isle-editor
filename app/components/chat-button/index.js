@@ -98,7 +98,7 @@ class ChatButton extends Component {
 			const session = this.context;
 			if ( opened ) {
 				debug( `Should join chat for component with id '${this.props.for}'...` );
-				session.joinChat({ name: this.props.for });
+				session.joinChat({ name: this.props.for, anonymousSubmissions: this.props.anonymousSubmissions });
 			} else {
 				debug( `Should leave chat for component with id '${this.props.for}'...` );
 				session.leaveChat( this.props.for );
@@ -167,6 +167,7 @@ class ChatButton extends Component {
 
 ChatButton.propTypes = {
 	for: PropTypes.string.isRequired,
+	anonymousSubmissions: PropTypes.bool,
 	buttonLabel: PropTypes.node,
 	showTooltip: PropTypes.bool,
 	tooltip: PropTypes.string,
@@ -179,6 +180,7 @@ ChatButton.propTypes = {
 };
 
 ChatButton.defaultProps = {
+	anonymousSubmissions: false,
 	buttonLabel: null,
 	showTooltip: true,
 	tooltip: null,

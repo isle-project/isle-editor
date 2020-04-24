@@ -448,6 +448,7 @@ class StatusBar extends Component {
 							{ !session.config.hideTextChat ? <ChatButton
 								for={roomName}
 								buttonVariant="link"
+								anonymousSubmissions
 								buttonLabel={<i className="fas fa-comments"></i>}
 								tooltipPlacement="bottom"
 								tooltip="Text Chat"

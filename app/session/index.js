@@ -676,8 +676,9 @@ class Session {
 	* @param {Object} config - chat information
 	* @param {string} config.name - chat room name
 	* @param {boolean} [config.canLeave=true] - whether invited user can leave chat
+	* @param {boolean} [config.anonymousSubmissions=false] - whether users can post anonymously to the chat
 	*/
-	joinChat({ name, canLeave = true }) {
+	joinChat({ name, canLeave = true, anonymousSubmissions = false }) {
 		if ( this.socket ) {
 			let found = false;
 			for ( let i = 0; i < this.chats.length; i++ ) {
@@ -687,7 +688,7 @@ class Session {
 			}
 			if ( !found ) {
 				this.chats.push({
-					name, messages: [], members: [], canLeave
+					name, messages: [], members: [], canLeave, anonymousSubmissions
 				});
 				this.socket.emit( 'join_chat', name );
 			}
