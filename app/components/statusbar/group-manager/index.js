@@ -223,7 +223,20 @@ class GroupManager extends Component {
 						isClosing: true
 					});
 				}
-				else if ( type === CREATED_GROUPS || type === USER_JOINED ) {
+				else if ( type === CREATED_GROUPS ) {
+					const notAssigned = this.state.notAssigned.filter( x => {
+						for ( let i = 0; i < session.allGroups.length; i++ ) {
+							const { members } = session.allGroups[ i ];
+							for ( let j = 0; j < members.length; j++ ) {
+								if ( members[ j ].email === x.value.email ) {
+									return false;
+								}
+							}
+						}
+						return true;
+					});
+					this.setState({ notAssigned });
+				} else if ( type === USER_JOINED ) {
 					this.forceUpdate();
 				}
 				else if ( type === USER_LEFT ) {
