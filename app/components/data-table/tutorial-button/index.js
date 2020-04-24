@@ -35,7 +35,7 @@ class Tutorial extends Component {
 		return (
 			<Fragment>
 				<OverlayTrigger
-					placement="left"
+					placement="bottom"
 					overlay={<Tooltip>{this.state.running ? 'Close Tutorial' : 'Show Tutorial' }</Tooltip>}
 				>
 					<Button

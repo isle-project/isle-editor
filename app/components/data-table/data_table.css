@@ -9,7 +9,15 @@
 	background: rgba(0, 0, 0, 0.045);
 	box-shadow: none;
 	border-color: #0000004d;
-	width: calc(100% - 44px);
+	width: calc(100% - 88px);
+}
+
+.save-button {
+	background: rgba(0, 0, 0, 0.045);
+	box-shadow: none;
+	border-color: #0000004d;
+	color: var(--quartary);
+	font-size: 19px;
 }
 
 .delete-button {
@@ -46,19 +54,12 @@
 
 .title-button-h4 {
 	text-align: center;
-	cursor: pointer;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-size: 21px;
 	letter-spacing: 2.5px;
 }
 
-.title-nobutton-h4 {
-	text-align: center;
-	margin-top: 0px;
-	font-size: 21px;
-	letter-spacing: 2.5px;
-}
 
 .variable-descriptions-button {
 	background: rgba(0, 0, 0, 0.045);
@@ -74,7 +75,7 @@
 	float: right;
 }
 
-.data_button_wrapper {
+.data-table-header-wrapper {
 	padding-bottom: 10px;
 }
 

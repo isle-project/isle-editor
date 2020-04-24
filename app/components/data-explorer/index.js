@@ -1420,7 +1420,7 @@ class DataExplorer extends Component {
 								display: this.state.openedNav !== 'data' ? 'none' : null
 							}}
 						>
-								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '70px' }}>Clear Data</Button> : null }
+								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '80px', zIndex: 2 }}>Clear Data</Button> : null }
 								<DataTable
 									data={this.state.data}
 									dataInfo={this.props.dataInfo}

@@ -19,6 +19,7 @@ import logger from 'debug';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import unique from 'uniq';
+import stringify from 'csv-stringify';
 import Alert from 'react-bootstrap/Alert';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
@@ -42,6 +43,7 @@ import objectKeys from '@stdlib/utils/keys';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import generateUID from 'utils/uid';
+import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import SelectInput from 'components/input/select';
@@ -346,7 +348,8 @@ class DataTable extends Component {
 				name: dataInfo.name || '',
 				variables: dataInfo.variables || null,
 				showOnStartup: dataInfo.showOnStartup || null
-			}
+			},
+			showSaveModal: false
 		};
 	}
 
@@ -552,6 +555,42 @@ class DataTable extends Component {
 		});
 	}
 
+	toggleSaveModal = () => {
+		this.setState({
+			showSaveModal: !this.state.showSaveModal
+		});
+	}
+
+	saveJSON = () => {
+		const blob = new Blob([ JSON.stringify( this.state.data ) ], {
+			type: 'application/json'
+		});
+		const name = `${this.props.dataInfo.name || 'dataset'}.json`;
+		saveAs( blob, name );
+	}
+
+	saveCSV = () => {
+		const session = this.context;
+		stringify( this.state.rows, {
+			header: true
+		}, ( err, output ) => {
+			if ( err ) {
+				return session.addNotification({
+					title: 'Error encountered',
+					message: 'Encountered an error while creating CSV: '+err.message,
+					level: 'error',
+					position: 'tl'
+				});
+			}
+			const blob = new Blob([ output ], {
+				type: 'text/plain'
+			});
+			const name = `${this.props.dataInfo.name || 'dataset'}.csv`;
+			saveAs( blob, name );
+		});
+	}
+
+
 	render() {
 		debug( 'Rendering component' );
 		let { selectedRows, rows, dataInfo } = this.state;
@@ -669,29 +708,33 @@ class DataTable extends Component {
 			resizable: false,
 			width: 30
 		});
+		const saveButton = <OverlayTrigger placement="bottom" overlay={<Tooltip>Download data</Tooltip>} >
+			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} >
+				<i className="fas fa-download"></i>
+			</Button>
+		</OverlayTrigger>;
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
-					{ dataInfo.info.length > 0 ?
-					<div className='data_button_wrapper'>
+					<div className='data-table-header-wrapper'>
 						<OverlayTrigger placement="bottom" overlay={<Tooltip>Open dataset description</Tooltip>} >
 							<Button
 								variant="light"
+								disabled={dataInfo.info.length === 0}
 								onClick={this.showInfo}
 								className='title-button'
+								style={{
+									cursor: dataInfo.info.length > 0 ? 'pointer' : 'inherit'
+								}}
 							>
 								<h4 className='title-button-h4'>
 									{dataInfo.name ? dataInfo.name : 'Data'}
 								</h4>
 							</Button>
 						</OverlayTrigger>
+						{saveButton}
 						<TutorialButton id={this.id} session={this.context} onTutorialCompletion={this.props.onTutorialCompletion} />
-					</div> : null}
-					{ dataInfo.info.length === 0 ?
-						<h4 className="title-nobutton-h4">
-							{dataInfo.name ? dataInfo.name : 'Data'}
-						</h4>: null
-					}
+					</div>
 					<ButtonToolbar className="data-table-header-toolbar">
 						{ dataInfo.variables ? <OverlayTrigger placement="right" overlay={<Tooltip>Open variable descriptions</Tooltip>} ><Button
 							onClick={this.showDescriptions}
@@ -760,6 +803,24 @@ class DataTable extends Component {
 					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
 				</div>
 				{modal}
+				{this.state.showSaveModal ?
+					<Modal
+						show={this.state.showSaveModal}
+						onHide={this.toggleSaveModal}
+					>
+						<Modal.Header closeButton>
+							<Modal.Title>
+								Download Data
+							</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							Download the current dataset in either the CSV or JSON file formats.
+						</Modal.Body>
+						<Modal.Footer>
+							<Button onClick={this.saveCSV} >Save CSV</Button>
+							<Button onClick={this.saveJSON} >Save JSON</Button>
+						</Modal.Footer>
+					</Modal> : null }
 			</Fragment>
 		);
 	}
