@@ -198,7 +198,6 @@ class VideoChat extends Component {
 
 // PROPERTIES //
 
-
 VideoChat.contextType = SessionContext;
 
 

@@ -166,6 +166,16 @@ class UserList extends Component {
 		};
 	}
 
+	videoChatInviteFactory = ( data, email ) => {
+		const session = this.props.session;
+		return ( _, opened ) => {
+			debug( 'Invite '+email+' to video chat...' );
+			if ( opened ) {
+				session.inviteToVideo( data, email );
+			}
+		};
+	}
+
 	render() {
 		const session = this.props.session;
 		const userFocuses = session.userFocuses;
@@ -238,8 +248,18 @@ class UserList extends Component {
 							<Tooltip placement="bottom" tooltip="Lesson Progress">
 								<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
 							</Tooltip>
-							{ showInteractionButtons ? <ChatButton showTooltip={false} for={`Chat with ${user.name}`} onClick={this.chatInviteFactory( `Chat with ${user.name}`, user.email )} /> : null }
-							{ showInteractionButtons ? <VideoChatButton showTooltip={false} for={`${session.user.name}-${user.name}`} subject={`Video with ${user.name}`} style={{ marginLeft: 5 }} /> : null }
+							{ showInteractionButtons ? <ChatButton
+								showTooltip={false} for={`Chat with ${user.name}`}
+								onClick={this.chatInviteFactory( `Chat with ${user.name}`, user.email )}
+							/> : null }
+							{ showInteractionButtons ? <VideoChatButton
+								showTooltip={false} for={`${session.user.name}-${user.name}`}
+								subject={`Video with ${user.name}`} style={{ marginLeft: 5 }}
+								onClick={this.videoChatInviteFactory({
+									name: `${session.user.name}-${user.name}`,
+									subject: `Video with ${user.name}`
+								}, user.email )}
+							/> : null }
 						</div>
 						<div style={{ width: '100%', color }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}

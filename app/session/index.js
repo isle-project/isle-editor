@@ -711,13 +711,23 @@ class Session {
 	}
 
 	/**
-	* Invites a user to a chat with the supplied information.
+	* Invites a user to a text chat with the supplied information.
 	*
 	* @param {Object} data - chat information object with at least a `name`
 	* @param {string} email - email of user to invite
 	*/
 	inviteToChat( data, email ) {
 		this.socket.emit( 'chat_invitation', data, email );
+	}
+
+	/**
+	* Invites a user to a video chat with the supplied information.
+	*
+	* @param {Object} data - chat information object with at least a `name`
+	* @param {string} email - email of user to invite
+	*/
+	inviteToVideo( data, email ) {
+		this.socket.emit( 'video_invitation', data, email );
 	}
 
 	/**
@@ -1136,6 +1146,10 @@ class Session {
 
 		socket.on( 'chat_invitation', ( data ) => {
 			this.joinChat( data );
+		});
+
+		socket.on( 'video_invitation', ( data ) => {
+			this.joinVideoChat( data );
 		});
 
 		socket.on( 'closed_chat', ( name ) => {
