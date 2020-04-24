@@ -60,9 +60,13 @@ AnswerOption.propTypes = {
 		PropTypes.element,
 		PropTypes.string
 	]).isRequired,
-	correct: PropTypes.bool.isRequired,
+	correct: PropTypes.bool,
 	disabled: PropTypes.bool.isRequired,
 	onAnswerSelected: PropTypes.func.isRequired
+};
+
+AnswerOption.defaultProps = {
+	correct: false
 };
 
 
