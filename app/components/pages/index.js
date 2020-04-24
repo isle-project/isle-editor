@@ -13,6 +13,7 @@ import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import ordinal from './ordinal.js';
 import './pages.css';
 
 
@@ -147,7 +148,7 @@ class Pages extends Component {
 				items.push(
 					<Tooltip
 						placement="top" key={`${i}-tooltip`}
-						tooltip={`Jump to ${i}-th page`}
+						tooltip={`Jump to ${ordinal(i)} page`}
 						show={!this.props.disabled && !isActive}
 					>
 						<Pagination.Item
@@ -183,7 +184,7 @@ class Pages extends Component {
 				items.push(
 					<Tooltip
 						placement="top" key={`${i}-tooltip`}
-						tooltip={`Jump to ${i}-th page`}
+						tooltip={`Jump to ${ordinal(i)} page`}
 						show={!this.props.disabled && !isActive}
 					>
 						<Pagination.Item
