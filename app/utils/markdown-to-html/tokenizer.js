@@ -457,26 +457,32 @@ class Tokenizer {
 				inString = !inString;
 			}
 			if ( braceLevel === 0 ) {
+				const tag = tagName( inner, i+1 );
 				if ( !innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
-					innerJSXStartTag = tagName( inner, i+1 );
+					innerJSXStartTag = tag;
 					notSelfClosing = false;
 					tagLevel += 1;
 					current = char;
 				}
 				else if ( innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
-					if ( tagName( inner, i+1 ) === innerJSXStartTag ) {
+					if ( innerJSXStartTag === tag ) {
 						tagLevel += 1;
 					} else {
 						notSelfClosing = true;
 					}
 				}
-				else if ( prevChar === '<' && char === '/' && !inString && tagName( inner, i+1 ) === innerJSXStartTag ) {
+				else if ( prevChar === '<' && char === '/' && !inString && innerJSXStartTag === tag ) {
 					tagLevel -= 1;
 					if ( tagLevel === 0 ) {
 						debug( 'Outer tag match found...' );
 						current += innerJSXStartTag + '>';
 						i += innerJSXStartTag.length + 1;
-						const tokenizer = new Tokenizer();
+						const isInner = RE_HTML_INNER_TAGS.test( innerJSXStartTag ) ||
+						RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
+						RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
+						const tokenizer = new Tokenizer({
+							inline: isInner
+						});
 						this._current += tokenizer.parse( current );
 						current = '';
 						innerJSXStartTag = null;
@@ -484,7 +490,12 @@ class Tokenizer {
 				}
 				else if ( innerJSXStartTag && !notSelfClosing && char === '>' && prevChar === '/' && tagLevel === 1 && !inString ) {
 					debug( 'Self-closing tag match found...' );
-					const tokenizer = new Tokenizer();
+					const isInner = RE_HTML_INNER_TAGS.test( innerJSXStartTag ) ||
+					RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
+					RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
+					const tokenizer = new Tokenizer({
+						inline: isInner
+					});
 					this._current += tokenizer.parse( current );
 					current = '';
 					innerJSXStartTag = null;
