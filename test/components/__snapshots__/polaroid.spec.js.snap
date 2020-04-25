@@ -15,7 +15,9 @@ exports[`renders a draggable polaroid image 1`] = `
   role="button"
   style={
     Object {
+      "height": 385.00000000000006,
       "transform": "translate(0px,0px)",
+      "width": 350,
     }
   }
   tabIndex={0}
@@ -48,7 +50,12 @@ exports[`renders a polaroid image 1`] = `
   onMouseOut={[Function]}
   onMouseOver={[Function]}
   role="button"
-  style={Object {}}
+  style={
+    Object {
+      "height": 385.00000000000006,
+      "width": 350,
+    }
+  }
   tabIndex={0}
 >
   <div
@@ -78,7 +85,12 @@ exports[`renders a polaroid image with a pin 1`] = `
   onMouseOut={[Function]}
   onMouseOver={[Function]}
   role="button"
-  style={Object {}}
+  style={
+    Object {
+      "height": 385.00000000000006,
+      "width": 350,
+    }
+  }
   tabIndex={0}
 >
   <div
@@ -111,7 +123,12 @@ exports[`renders a removable polaroid image 1`] = `
   onMouseOut={[Function]}
   onMouseOver={[Function]}
   role="button"
-  style={Object {}}
+  style={
+    Object {
+      "height": 385.00000000000006,
+      "width": 350,
+    }
+  }
   tabIndex={0}
 >
   <div
@@ -126,10 +143,6 @@ exports[`renders a removable polaroid image 1`] = `
           "backgroundSize": "auto 100%",
         }
       }
-    />
-    <button
-      className="pin-image-map"
-      onClick={[Function]}
     />
   </div>
 </div>
