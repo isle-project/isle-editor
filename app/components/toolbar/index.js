@@ -64,6 +64,9 @@ class Toolbar extends Component {
 				if ( x.name === 'calculator' ) {
 					newState.hideCalculator = true;
 				}
+				if ( x.name === 'sketchpad' ) {
+					newState.hideSketchpad = true;
+				}
 			});
 			newState.elements = nextProps.elements;
 			return newState;
@@ -305,6 +308,9 @@ class Toolbar extends Component {
 							className="toolbar-button"
 							onClick={this.toggleSketchpad}
 							onKeyPress={this.toggleSketchpad}
+							style={{
+								display: !this.state.hideSketchpad ? 'inherit' : 'none'
+							}}
 						>
 							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
 						</Button>
