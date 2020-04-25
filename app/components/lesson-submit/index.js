@@ -236,15 +236,20 @@ class LessonSubmit extends Component {
 			message: notificationMesage,
 			level: 'success',
 			position: 'tr',
-			dismissible: 'none',
 			autoDismiss: 0,
+			dismissible: 'button',
 			children: <div style={{ marginBottom: '40px' }}>
 				<Button
 					variant="success"
 					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
 					onClick={this.createReponseSummaryDoc}
 				>Download PDF of Responses</Button>
-			</div>
+			</div>,
+			onRemove: () => {
+				this.setState({
+					disabled: false
+				});
+			}
 		});
 		session.log({
 			id: session.lessonName,
