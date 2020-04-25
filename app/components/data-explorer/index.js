@@ -1552,12 +1552,16 @@ class DataExplorer extends Component {
 		return (
 			<Fragment>
 				{mainContainer}
-				<Draggable cancel=".input" disabled={this.state.disableToolbarDragging} >
+				<Draggable
+					cancel=".input" disabled={this.state.disableToolbarDragging}
+					style={{
+						display: this.state.showToolbox ? 'inline' : 'none'
+					}}
+				>
 					<Card
 						border="secondary"
 						id={`${this.id}-toolbox`}
 						className="data-explorer-toolbox"
-						style={{ display: this.state.showToolbox ? 'inline' : 'none' }}
 						role="button" tabIndex={0}
 					>
 						<Card.Header className="data-explorer-toolbox-header" >
