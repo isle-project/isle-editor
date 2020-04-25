@@ -14,7 +14,6 @@ import './polaroid.css';
 *
 * @property {string} image - the URL of the image to be displayed in the polaroid frame
 * @property {boolean} draggable - controls whether one can drag the polaroid around the screen
-* @property {boolean} removable - indicates whether the image is removable when clicking on the pin
 * @property {Function} onClick - event handler invoked when image is clicked (receives the id of the Polaroid as parameter)
 * @property {boolean} showPin - shows a pin
 * @property {Object} style - CSS inline styles
@@ -26,8 +25,7 @@ class Polaroid extends Component {
 		this.state = {
 			height: '100%',
 			width: 'auto',
-			touched: false,
-			exit: false
+			touched: false
 		};
 	}
 
@@ -55,13 +53,6 @@ class Polaroid extends Component {
 		this.setState({
 			width: width,
 			height: height
-		});
-	}
-
-	remove = ( evt ) => {
-		evt.stopPropagation();
-		this.setState({
-			exit: true
 		});
 	}
 
@@ -94,9 +85,6 @@ class Polaroid extends Component {
 		if ( this.props.onClick !== noop ) {
 			imageClass += ' clickable-polaroid';
 		}
-		if ( this.state.exit === true ) {
-			imageClass += ' polaroid-exit';
-		}
 		let innerImage = 'polaroid-image';
 		if ( this.state.touched === true ) {
 			innerImage = 'polaroid-image polaroid-touched';
@@ -112,7 +100,6 @@ class Polaroid extends Component {
 				{this.props.stain ? <div className="polaroid-stain" /> : null}
 				<div style={background} className={innerImage} />
 				{this.props.showPin ? <div className="polaroid-pin" /> : null}
-				{this.props.removable ? <button onClick={this.remove} className="pin-image-map" /> : null }
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
@@ -127,7 +114,6 @@ class Polaroid extends Component {
 
 Polaroid.propTypes = {
 	image: PropTypes.string,
-	removable: PropTypes.bool,
 	draggable: PropTypes.bool,
 	showPin: PropTypes.bool,
 	style: PropTypes.object,
@@ -136,7 +122,6 @@ Polaroid.propTypes = {
 
 Polaroid.defaultProps = {
 	image: null,
-	removable: false,
 	draggable: false,
 	showPin: false,
 	style: {},

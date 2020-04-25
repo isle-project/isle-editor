@@ -13,11 +13,6 @@
 	height: 100%;
 }
 
-.polaroid-exit {
-	opacity: 0.5;
-	animation: swirl-out-bck 0.8s ease-in forwards;
-}
-
 .polaroid-image {
 	position: absolute;
 	left: 5.7%;
@@ -55,18 +50,6 @@
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_Pin-PNG-Picture.png);
 }
 
-.pin-image-map {
-	position: absolute;
-	left: 46%;
-	top: 4px;
-	width: 48px;
-	height: 48px;
-	cursor: crosshair;
-	z-index: 2;
-	background: none;
-	border: none;
-}
-
 .polaroid-stain {
 	position: absolute;
 	left: 45%;
@@ -79,37 +62,4 @@
 	z-index: 5;
 	filter: saturate(20%);
 	transform: rotate(20deg);
-}
-
-/**
-* ----------------------------------------
-* animation swirl-out-bck
-* ----------------------------------------
-*/
-@-webkit-keyframes swirl-out-bck {
-	0% {
-		-webkit-transform: rotate(0) scale(1);
-		transform: rotate(0) scale(1);
-		opacity: 1;
-	}
-
-	100% {
-		-webkit-transform: rotate(-540deg) scale(0);
-		transform: rotate(-540deg) scale(0);
-		opacity: 0;
-	}
-}
-
-@keyframes swirl-out-bck {
-	0% {
-		-webkit-transform: rotate(0) scale(1);
-		transform: rotate(0) scale(1);
-		opacity: 1;
-	}
-
-	100% {
-		-webkit-transform: rotate(-540deg) scale(0);
-		transform: rotate(-540deg) scale(0);
-		opacity: 0;
-	}
 }
