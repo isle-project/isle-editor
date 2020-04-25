@@ -50,8 +50,12 @@ class KeyControls extends Component {
 		const keys = objectKeys( this.props.actions );
 		debug( `Add keydown event listeners for ${this.props.container ? 'container' : 'document'}: ${keys.join( ', ')}` );
 		if ( this.props.container ) {
-			const node = ReactDOM.findDOMNode( this.props.container );
-			node.addEventListener( 'keydown', this.triggerEvent );
+			try {
+				const node = ReactDOM.findDOMNode( this.props.container );
+				node.addEventListener( 'keydown', this.triggerEvent );
+			} catch ( err ) {
+				debug( err.message );
+			}
 		} else {
 			document.addEventListener( 'keydown', this.triggerDocEvent );
 		}
@@ -61,8 +65,12 @@ class KeyControls extends Component {
 		const keys = objectKeys( this.props.actions );
 		debug( `Remove keydown event listeners for ${container ? 'container' : 'document'}: ${keys.join( ', ')}` );
 		if ( container ) {
-			const node = ReactDOM.findDOMNode( container );
-			node.removeEventListener( 'keydown', this.triggerEvent );
+			try {
+				const node = ReactDOM.findDOMNode( container );
+				node.removeEventListener( 'keydown', this.triggerEvent );
+			} catch ( err ) {
+				debug( err.message );
+			}
 		}
 		document.removeEventListener( 'keydown', this.triggerDocEvent );
 	}
