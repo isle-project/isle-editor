@@ -1149,6 +1149,12 @@
         "default": ""
       },
       {
+        "name": "instantSolution",
+        "type": "boolean",
+        "description": "whether one can toggle the display of the model answer immediately",
+        "default": false
+      },
+      {
         "name": "rows",
         "type": "number",
         "description": "number of rows of the text field for students to type their answers",
@@ -4043,12 +4049,6 @@
         "default": null
       },
       {
-        "name": "removable",
-        "type": "boolean",
-        "description": "indicates whether the image is removable when clicking on the pin",
-        "default": false
-      },
-      {
         "name": "draggable",
         "type": "boolean",
         "description": "controls whether one can drag the polaroid around the screen",
@@ -4059,6 +4059,11 @@
         "type": "boolean",
         "description": "shows a pin",
         "default": false
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "default": 350
       },
       {
         "name": "style",

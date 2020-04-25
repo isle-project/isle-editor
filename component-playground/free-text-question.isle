@@ -33,6 +33,7 @@ state:
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __solution__ | `(string|node)`: a model answer to the problem. Default: `''`.
+* __instantSolution__ | `boolean`: whether one can toggle the display of the model answer immediately. Default: `false`.
 * __rows__ | `number`: number of rows of the text field for students to type their answers. Default: `5`.
 * __chat__ | `boolean`: controls whether to enable group chat should for the question. Default: `false`.
 * __resizable__ | `boolean`: controls whether the text area should be resizable. Default: `false`.
