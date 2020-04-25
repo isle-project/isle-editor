@@ -1,6 +1,4 @@
 .polaroid {
-	width: 327px;
-	height: 360px;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_PolaroidFrame.png);
 	background-size: 100% auto;
 	transform: rotate(1.7deg);

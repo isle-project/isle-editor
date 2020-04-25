@@ -89,14 +89,19 @@ class Polaroid extends Component {
 		if ( this.state.touched === true ) {
 			innerImage = 'polaroid-image polaroid-touched';
 		}
+		const style = {
+			...this.props.style
+		};
+		style.width = this.props.width;
+		style.height = style.width * 1.10;
 		const out = <div
 			id={this.props.id} role="button" tabIndex={0}
 			onMouseOver={this.touch} onFocus={this.touch}
 			onMouseOut={this.untouch} onBlur={this.untouch}
 			onClick={this.trigger} onKeyPress={this.trigger}
-			style={this.props.style} className={imageClass}
+			style={style} className={imageClass}
 		>
-			<div className="polaroid-wrapper">
+			<div className="polaroid-wrapper" >
 				{this.props.stain ? <div className="polaroid-stain" /> : null}
 				<div style={background} className={innerImage} />
 				{this.props.showPin ? <div className="polaroid-pin" /> : null}
@@ -116,6 +121,7 @@ Polaroid.propTypes = {
 	image: PropTypes.string,
 	draggable: PropTypes.bool,
 	showPin: PropTypes.bool,
+	width: PropTypes.number,
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };
@@ -124,6 +130,7 @@ Polaroid.defaultProps = {
 	image: null,
 	draggable: false,
 	showPin: false,
+	width: 350,
 	style: {},
 	onClick: noop
 };
