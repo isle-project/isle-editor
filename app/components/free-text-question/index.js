@@ -308,7 +308,7 @@ class FreeTextQuestion extends Component {
 								</div> : null
 						}
 						{
-							this.state.value.length >= 1 ?
+							this.state.value.length >= 1 && !this.state.solutionDisplayed ?
 								<TimedButton
 									className="submit-button"
 									variant="primary"
