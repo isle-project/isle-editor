@@ -1,11 +1,13 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import isArray from '@stdlib/assert/is-array';
+import startsWith from '@stdlib/string/starts-with';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './slick-theme.min.css';
@@ -44,6 +46,14 @@ class DefaultSlider extends Component {
 			...props,
 			beforeChange: ( oldIndex, newIndex ) => {
 				this.setState({ currentSlide: newIndex+1 });
+
+				const node = findDOMNode( this.slider );
+				const hintButtons = node.getElementsByClassName( 'hint-button' );
+				for ( let i = 0; i < hintButtons.length; i++ ) {
+					if ( startsWith( hintButtons[ i ].innerText, 'Close' ) ) {
+						hintButtons[ i ].click();
+					}
+				}
 			}
 		};
 

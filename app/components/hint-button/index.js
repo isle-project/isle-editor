@@ -112,7 +112,7 @@ class HintButton extends Component {
 			this.setState({
 				hintOpen: !this.state.hintOpen
 			});
-			return callback( true );
+			return callback( this.state.hintOpen );
 		}
 	};
 
@@ -125,6 +125,7 @@ class HintButton extends Component {
 				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
 			>
 				<TimedButton
+					className="hint-button"
 					variant="success"
 					size={this.props.size}
 					onClick={this.handleHintClick}
