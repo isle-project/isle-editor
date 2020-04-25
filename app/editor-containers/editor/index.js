@@ -189,6 +189,23 @@ class App extends Component {
 			currentMode,
 			unsaved
 		} = this.props;
+
+		const preview = <ErrorBoundary code={markdown} preamble={this.props.preamble} >
+			<Preview
+				code={markdown}
+				filePath={filePath}
+				preamble={this.props.preamble}
+				currentRole={currentRole}
+				currentMode={currentMode}
+				onCode={this.lintCode}
+				encounteredError={this.props.encounteredError}
+				preambleText={this.props.preambleText}
+				updatePreamble={this.props.updatePreamble}
+				unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
+				resetError={this.resetError}
+			/>
+		</ErrorBoundary>;
+
 		return (
 			<div>
 				{ !hideToolbar ?
@@ -226,7 +243,9 @@ class App extends Component {
 						filePath={filePath}
 						fontSize={this.props.fontSize}
 					/>
-					<SplitPane
+					{this.state.splitPos === 1 ? <div style={{
+						transform: 'translateZ(0)'
+					}}>{preview}</div> : <SplitPane
 						className="splitpane"
 						split="vertical"
 						primary="second"
@@ -264,24 +283,10 @@ class App extends Component {
 									msg={error.message} code={markdown}
 									resetError={this.resetError}
 								/> :
-								<ErrorBoundary code={markdown} preamble={this.props.preamble} >
-									<Preview
-										code={markdown}
-										filePath={filePath}
-										preamble={this.props.preamble}
-										currentRole={currentRole}
-										currentMode={currentMode}
-										onCode={this.lintCode}
-										encounteredError={this.props.encounteredError}
-										preambleText={this.props.preambleText}
-										updatePreamble={this.props.updatePreamble}
-										unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
-										resetError={this.resetError}
-									/>
-								</ErrorBoundary>
+								preview
 							}
 						</SplitPanel>
-					</SplitPane>
+					</SplitPane>}
 				</SplitPane>
 				{
 					( () => {
