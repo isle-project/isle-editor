@@ -1,8 +1,9 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Rnd } from 'react-rnd';
+import { Portal } from 'react-portal';
 import KeyControls from 'components/key-controls';
 import './draggable.css';
 
@@ -73,7 +74,9 @@ class Draggable extends Component {
 
 	render() {
 		return (
-			<Fragment>
+			<Portal
+				node={document && document.getElementById( 'Lesson' )}
+			>
 				<Rnd
 					{...this.props}
 					onDragStop={this.handleStop}
@@ -100,7 +103,7 @@ class Draggable extends Component {
 						'Escape': this.handleEscape
 					}}
 				/>
-			</Fragment>
+			</Portal>
 		);
 	}
 }

@@ -214,6 +214,7 @@
     "react-live": "^2.2.2",
     "react-notification-system": "^0.3.0",
     "react-plotly.js": "^2.3.0",
+    "react-portal": "^4.2.1",
     "react-redux": "7.2.0",
     "react-rnd": "^10.1.9",
     "react-router": "5.1.2",
