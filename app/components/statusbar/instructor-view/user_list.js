@@ -218,12 +218,17 @@ class UserList extends Component {
 						</span>
 					);
 				}
-				const color = user.owner ? '#3c763d' : 'black';
+				let color;
+				if ( user.owner ) {
+					color = '#3c763d';
+				} else {
+					color = user.inactive ? 'lightgray' : 'black';
+				}
 				let background;
 				if ( this.state.selected === user.email ) {
 					background = '#e0a800';
 				} else {
-					background = user.inactive ? 'lightgrey' : 'transparent';
+					background = 'transparent';
 				}
 				const src = session.server + '/thumbnail/' + user.picture;
 				const handleClick = this.thumbnailClickFactory( user.email );
