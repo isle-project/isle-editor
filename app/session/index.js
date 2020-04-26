@@ -218,11 +218,6 @@ class Session {
 			description: 'Persistent data storage for ISLE lesson'
 		});
 
-		// Connect via WebSockets to other users...
-		if ( !isEmptyObject( this.user ) && this.server && !this._offline ) {
-			this.socketConnect();
-		}
-
 		if ( !this._offline ) {
 			// Ping server to check status:
 			this.startPingServer();
@@ -338,10 +333,6 @@ class Session {
 			if ( res.data === 'live' ) {
 				this.live = true;
 
-				// Connect via WebSockets to other users...
-				if ( !isEmptyObject( this.user ) ) {
-					this.socketConnect();
-				}
 				this.update( CONNECTED_TO_SERVER );
 				if ( !this.lessonID && !this.namespaceID ) {
 					// [1] Retrieve lesson information:
@@ -641,7 +632,6 @@ class Session {
 	* @returns {boolean} boolean indicating whether user is enrolled
 	*/
 	isEnrolled = () => {
-		debug( 'Check whether user is enrolled...' );
 		if ( !userRights ) {
 			return false;
 		}
@@ -654,7 +644,6 @@ class Session {
 	* @returns {boolean} boolean indicating whether user is course owner
 	*/
 	isOwner = () => {
-		debug( 'Check whether user is an owner...' );
 		if ( !userRights ) {
 			return false;
 		}
@@ -1201,8 +1190,8 @@ class Session {
 			debug( 'Encountered an error: '+err.message );
 		});
 
-		socket.on( 'disconnect', () => {
-			debug( 'Socket is disconnected from the server...' );
+		socket.on( 'disconnect', ( reason ) => {
+			debug( 'Socket is disconnected from the server. Reason: '+reason );
 			this.live = false;
 			if ( this.socket ) {
 				this.socket.close();
@@ -1608,7 +1597,7 @@ class Session {
 	* Verifies user credentials via JSON Web Token to finish login process.
 	*
 	* @param {Object} obj - user object with `token` and `id` fields
-	* @param silent - controls whether to display notification or not
+	* @param {boolean} silent - controls whether to display notification or not
 	* @returns {void}
 	*/
 	handleLogin = ( obj, silent = false ) => {
@@ -1626,6 +1615,7 @@ class Session {
 			return response.json();
 		})
 		.then( ( json ) => {
+			debug( 'Received credentials for login...' );
 			if ( !silent ) {
 				this.addNotification({
 					title: 'Logged in',
