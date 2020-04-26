@@ -14,7 +14,7 @@ import InstructorNotes from 'components/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
-import { RECEIVED_USERS, SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
+import { RECEIVED_USERS, SELECTED_COHORT, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
 import './instructor_view.css';
@@ -50,6 +50,7 @@ class InstructorView extends Component {
 				type === RECEIVED_USERS ||
 				type === USER_JOINED ||
 				type === USER_LEFT ||
+				type === USER_FINALLY_REMOVED ||
 				type === SELECTED_COHORT
 			) {
 				this.forceUpdate();

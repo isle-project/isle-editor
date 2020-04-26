@@ -16,7 +16,7 @@ import VideoChatButton from 'components/video-chat-button';
 import Tooltip from 'components/tooltip';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
-	SELECTED_COHORT, USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
+	SELECTED_COHORT, USER_FINALLY_REMOVED, 	USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
 import './user_list.css';
 
 
@@ -64,6 +64,7 @@ class UserList extends Component {
 				type === RECEIVED_USERS ||
 				type === USER_JOINED ||
 				type === USER_LEFT ||
+				type === USER_FINALLY_REMOVED ||
 				type === SELECTED_COHORT ||
 				type === USER_PROGRESS
 			) {
