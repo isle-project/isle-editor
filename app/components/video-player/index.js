@@ -70,10 +70,13 @@ class Video extends Component {
 		this.props.onPause();
 	}
 
-	handleStartTime = () => {
+	handleReady = ( player ) => {
+		this.player = player;
 		if ( this.props.startTime ) {
-			const player = this.player.getInternalPlayer();
-			player.seekTo( this.props.startTime );
+			const internalPlayer = this.player.getInternalPlayer();
+
+			// Skip ahead to chosen start time:
+			internalPlayer.seekTo( this.props.startTime );
 		}
 	}
 
@@ -170,10 +173,9 @@ class Video extends Component {
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
 					onProgress={this.handleProgress}
-					onReady={this.handleStartTime}
+					onReady={this.handleReady}
 					onError={this.handleError}
 					progressInterval={1000}
-					ref={( div ) => { this.player = div; }}
 					config={config}
 					{...props}
 				/>
