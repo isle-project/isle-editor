@@ -1773,7 +1773,7 @@ class Session {
 		let msg = 'You have started the presentation mode which hides the status bar, the instructorView and all owner elements. Hit F7 to leave the it.';
 		let title = 'Started presentation mode';
 
-		if ( this.presentationMode === false) {
+		if ( this.presentationMode === false ) {
 			msg = 'You have finished the presentation mode. Hit F7 to start it again.';
 			title = 'Finished presentation mode';
 		}
