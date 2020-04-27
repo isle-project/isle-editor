@@ -218,6 +218,11 @@ class Session {
 			description: 'Persistent data storage for ISLE lesson'
 		});
 
+		// Connect via WebSockets to other users...
+		if ( !isEmptyObject( this.user ) && this.server && !this._offline ) {
+			this.socketConnect();
+		}
+
 		if ( !this._offline ) {
 			// Ping server to check status:
 			this.startPingServer();
@@ -332,6 +337,11 @@ class Session {
 		axios.get( this.server + '/ping' ).then( ( res ) => {
 			if ( res.data === 'live' ) {
 				this.live = true;
+
+				// Connect via WebSockets to other users...
+				if ( !isEmptyObject( this.user ) ) {
+					this.socketConnect();
+				}
 
 				this.update( CONNECTED_TO_SERVER );
 				if ( !this.lessonID && !this.namespaceID ) {
@@ -548,7 +558,7 @@ class Session {
 	* Send data packet to specified group of users or a single user.
 	*
 	* @param {Object} data - message data
-	* @param {string} [to='owners] - group of people to send message to. Can be either of `owners`, `members`, or an email address of a single user
+	* @param {string} [to='owners'] - group of people to send message to. Can be either of `owners`, `members`, or an email address of a single user
 	* @returns {void}
 	*/
 	sendSocketMessage = ( data, to ) => {
