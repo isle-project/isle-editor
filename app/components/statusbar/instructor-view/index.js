@@ -5,7 +5,6 @@ import logger from 'debug';
 import Badge from 'react-bootstrap/Badge';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
@@ -17,6 +16,7 @@ import SessionContext from 'session/context.js';
 import { RECEIVED_USERS, SELECTED_COHORT, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
+import CohortSelect from './../cohort_select.js';
 import './instructor_view.css';
 
 
@@ -108,39 +108,6 @@ class InstructorView extends Component {
 		}
 	}
 
-	onCohortChange = ( event ) => {
-		debug( 'Change selected cohort...' );
-		const session = this.context;
-		session.selectCohort( event.target.value );
-	}
-
-	renderCohortSelection() {
-		const session = this.context;
-		const cohorts = session.cohorts;
-		if ( !isArray( cohorts ) ) {
-			return null;
-		}
-		const select = ( <select
-			id="instructor-view-cohort-select"
-			onChange={this.onCohortChange} onBlur={this.onCohortChange}
-			value={session.selectedCohort ? session.selectedCohort.title : 'all'}
-		>
-			<option value="all">All Cohorts</option>
-			{cohorts.map( ( v, key ) => {
-				return (
-					<option
-						key={key}
-						value={v.title}
-					>{v.title}</option>
-				);
-			})}
-		</select> );
-		return ( <div style={{ padding: '5px' }}>
-			<label htmlFor="instructor-view-cohort-select" style={{ marginRight: 5 }}>Only show users from:</label>
-			{select}
-		</div> );
-	}
-
 	renderTabs = () => {
 		// This is the button that toggles it
 		const session = this.context;
@@ -211,7 +178,11 @@ class InstructorView extends Component {
 				</div>
 				<div className="instructor-view-middle">
 					{this.renderTabs()}
-					{this.renderCohortSelection()}
+					<CohortSelect
+						id="instructor-view-cohort-select"
+						label="Only show users from:"
+						session={this.context}
+					/>
 				</div>
 				<div className="instructor-view-bottom"></div>
 				<Tooltip tooltip={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`} placement="left" >

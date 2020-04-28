@@ -1,4 +1,4 @@
-#Lesson .statusbar {
+.statusbar {
 	position: fixed;
 	width: 34%;
 	min-width: 420px;
@@ -12,7 +12,7 @@
 	transition: opacity 0.4s ease-in-out;
 }
 
-#Lesson .statusbar-progress {
+.statusbar-progress {
 	position: absolute;
 	height: 12px;
 	top: 50px;
@@ -22,7 +22,7 @@
 	width: 83%;
 }
 
-#Lesson .statusbar-cohort {
+.statusbar-cohort {
 	position: absolute;
 	top: 3px;
 	left: 10px;
@@ -32,7 +32,7 @@
 	color: #6c757d;
 }
 
-#Lesson .statusbar-icon {
+.statusbar-icon {
 	opacity: 0.6;
 	position: absolute;
 	z-index: 2;
@@ -40,11 +40,11 @@
 	height: 18px;
 }
 
-#Lesson .statusbar-icon:hover {
+.statusbar-icon:hover {
 	opacity: 1;
 }
 
-#Lesson .outer-statusbar-progress-bar {
+.outer-statusbar-progress-bar {
 	float: left;
 	margin-left: 3px;
 	margin-right: 3px;
@@ -52,18 +52,18 @@
 	height: 16px;
 }
 
-#Lesson .statusbar-progress .progress-bar {
+.statusbar-progress .progress-bar {
 	font-variant: small-caps;
 	color: darkslategray;
 	font-size: 10px;
 	font-weight: 600;
 }
 
-#Lesson .statusbar-progress .bg-success {
+.statusbar-progress .bg-success {
 	background-color: rgb(130, 224, 160) !important;
 }
 
-#Lesson .statusbar-progress .progress-time {
+.statusbar-progress .progress-time {
 	animation: anim-fade-in 0.7s;
 	float: left;
 	color: darkslategray;
@@ -77,15 +77,15 @@
 	border-radius: 0.25rem;
 }
 
-#Lesson .progress-fade-out {
+.progress-fade-out {
 	animation: anim-fade-out 2s 2s forwards;
 }
 
-#Lesson .statusbar:hover {
+.statusbar:hover {
 	opacity: 1;
 }
 
-#Lesson .statusbar-upper {
+.statusbar-upper {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -95,11 +95,11 @@
 	z-index: 2;
 }
 
-#Lesson .statusbar-smooth {
+.statusbar-smooth {
 	background-color: rgb(232, 232, 232);
 }
 
-#Lesson .statusbar-button {
+.statusbar-button {
 	margin-top: 2px;
 	font-family: Open Sans Condensed;
 	font-weight: 700;
@@ -115,12 +115,12 @@
 	border: solid 1px darkgray;
 }
 
-#Lesson .statusbar-button:hover {
+.statusbar-button:hover {
 	background: #c49978;
 	box-shadow: 0 0 4px white inset;
 }
 
-#Lesson .statusbar-left {
+.statusbar-left {
 	position: absolute;
 	left: 0;
 	width: 20%;
@@ -133,7 +133,7 @@
 	border-bottom-left-radius: 10px;
 }
 
-#Lesson .statusbar-middle {
+.statusbar-middle {
 	position: absolute;
 	left: 10%;
 	width: 80%;
@@ -143,7 +143,7 @@
 	z-index: 5;
 }
 
-#Lesson .statusbar-right {
+.statusbar-right {
 	position: absolute;
 	left: 80%;
 	width: 20%;
@@ -155,7 +155,7 @@
 	border-bottom-right-radius: 10px;
 }
 
-#Lesson .statusbar-text {
+.statusbar-text {
 	color: #2e4468;
 	bottom: -1px;
 	height: auto;
@@ -167,29 +167,29 @@
 	z-index: 2;
 }
 
-#Lesson .statusbar-voice {
+.statusbar-voice {
 	left: 0px;
 	bottom: 5px;
 	position: absolute;
 	z-index: 2;
 }
 
-#Lesson .statusbar-presentation-mode {
+.statusbar-presentation-mode {
 	left: 36px;
 	bottom: 3px;
 }
 
-#Lesson .statusbar-blackscreen-mode {
+.statusbar-blackscreen-mode {
 	left: 56px;
 	bottom: 3px;
 }
 
-#Lesson .statusbar-group-manager {
+.statusbar-group-manager {
 	left: 72px;
 	bottom: 3px;
 }
 
-#Lesson .statusbar-video-chat {
+.statusbar-video-chat {
 	right: 60px;
 	bottom: 0px;
 	font-size: 12px;
@@ -197,7 +197,7 @@
 	padding: 0;
 }
 
-#Lesson .statusbar-text-chat {
+.statusbar-text-chat {
 	right: 42px;
 	bottom: 0px;
 	font-size: 12px;
@@ -205,12 +205,12 @@
 	padding: 0;
 }
 
-#Lesson .statusbar-transcript-editor {
+.statusbar-transcript-editor {
 	left: 18px;
 	bottom: 3px;
 }
 
-#Lesson #blackscreen {
+#blackscreen {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -222,7 +222,7 @@
 	animation: anim-fade-in 2s;
 }
 
-#Lesson .statusbar-voice-text {
+.statusbar-voice-text {
 	position: fixed;
 	font-size: 2em;
 	top: 20px;
@@ -238,7 +238,7 @@
 	pointer-events: none;
 }
 
-#Lesson .statusbar-username {
+.statusbar-username {
 	bottom: -1px;
 	height: auto;
 	margin-left: 35%;
@@ -258,7 +258,7 @@
 	}
 }
 
-#Lesson .statusbar-presence {
+.statusbar-presence {
 	width: 10px;
 	left: 30%;
 	height: 10px;
@@ -269,7 +269,7 @@
 	z-index: 2;
 }
 
-#Lesson .statusbar-inner-presence {
+.statusbar-inner-presence {
 	position: absolute;
 	top: -3px;
 	left: -3px;
@@ -282,7 +282,7 @@
 	-webkit-animation-duration: 2s;
 }
 
-#Lesson .statusbar-profile {
+.statusbar-profile {
 	width: 33px;
 	height: 33px;
 	border: solid 1px darkgray;
@@ -317,4 +317,10 @@
 	cursor: pointer;
 	opacity: 0.75;
 	z-index: 2;
+}
+
+.cohort-select {
+	width: 150px;
+	background-color: ghostwhite;
+	padding: 2px;
 }
