@@ -144,7 +144,7 @@
     "dompurify": "^2.0.10",
     "electron-prompt": "^1.5.1",
     "electron-store": "^5.1.1",
-    "electron-updater": "^4.3.0",
+    "electron-updater": "^4.3.1",
     "electron-window-state": "^5.0.0",
     "element-resize-event": "^3.0.1",
     "eslint": "^6.7.1",
