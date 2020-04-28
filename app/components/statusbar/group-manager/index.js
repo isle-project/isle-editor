@@ -9,6 +9,7 @@ import { components } from 'react-select';
 import Button from 'react-bootstrap/Button';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import objectKeys from '@stdlib/utils/keys';
+import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import ceil from '@stdlib/math/base/special/ceil';
 import floor from '@stdlib/math/base/special/floor';
@@ -29,8 +30,9 @@ import SessionContext from 'session/context.js';
 import retrieveUserGroup from 'utils/retrieve-user-group';
 import Group from './group.js';
 import ConfirmModal from './../confirm_modal.js';
+import CohortSelect from './../cohort_select.js';
 import names from './names.json';
-import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, USER_JOINED, USER_LEFT } from 'constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_manager.css';
 
@@ -68,11 +70,40 @@ const customSelectComponents = {
 
 // FUNCTIONS //
 
-function countStudents( userList ) {
+function selectUsers( userList, selectedCohort ) {
+	const users = userList;
+	if ( !selectedCohort ) {
+		return users.filter( x => !x.owner );
+	}
+	const members = selectedCohort.members;
+	const out = [];
+	for ( let i = 0; i < users.length; i++ ) {
+		const user = users[ i ];
+		if ( !user.owner && contains( members, user.email ) ) {
+			out.push( user );
+		}
+	}
+	return out;
+}
+
+function countStudents( userList, selectedCohort ) {
 	let out = 0;
-	for ( let i = 0; i < userList.length; i++ ) {
-		if ( !userList[ i ].owner && !userList[ i ].exitTime ) {
-			out += 1;
+	if ( !selectedCohort ) {
+		for ( let i = 0; i < userList.length; i++ ) {
+			if ( !userList[ i ].owner && !userList[ i ].exitTime ) {
+				out += 1;
+			}
+		}
+	} else {
+		const members = selectedCohort.members;
+		for ( let i = 0; i < userList.length; i++ ) {
+			if (
+				!userList[ i ].owner &&
+				!userList[ i ].exitTime &&
+				contains( members, userList[ i ].email )
+			) {
+				out += 1;
+			}
 		}
 	}
 	return out;
@@ -236,7 +267,10 @@ class GroupManager extends Component {
 						return true;
 					});
 					this.setState({ notAssigned });
-				} else if ( type === USER_JOINED ) {
+				} else if (
+					type === USER_JOINED ||
+					type === SELECTED_COHORT
+				) {
 					this.forceUpdate();
 				}
 				else if ( type === USER_LEFT ) {
@@ -258,7 +292,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		const groups = createGroups({
 			nGroups: this.state.nGroups,
-			users: session.userList.filter( x => !x.owner ),
+			users: selectUsers( session.userList, session.selectedCohort ),
 			mode: this.state.activeMode,
 			progress: session.userProgress,
 			matching: this.state.matching
@@ -433,7 +467,7 @@ class GroupManager extends Component {
 
 	renderBody() {
 		const session = this.context;
-		const nUsers = countStudents( session.userList );
+		const nUsers = countStudents( session.userList, session.selectedCohort );
 		const nUsersPerGroup = floor( nUsers / this.state.nGroups );
 		let groupSizes = `(group sizes: ${nUsersPerGroup}`;
 		if ( nUsers % this.state.nGroups !== 0 ) {
@@ -474,6 +508,11 @@ class GroupManager extends Component {
 			</Fragment> );
 		}
 		return ( <Fragment>
+			<CohortSelect
+				id="group-manager-cohort-select"
+				label="Pair users from:"
+				session={this.context}
+			/>
 			<NumberInput
 				legend="Number of Groups"
 				value={this.state.nGroups}
