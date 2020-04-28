@@ -1,5 +1,6 @@
 // MODULES //
 
+import React from 'react';
 import isArray from '@stdlib/assert/is-array';
 
 
