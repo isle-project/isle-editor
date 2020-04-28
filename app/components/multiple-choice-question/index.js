@@ -185,7 +185,7 @@ class MultipleChoiceQuestion extends Component {
 				level = 'error';
 			}
 		}
-		if ( this.props.provideFeedback === 'full' && hasSolution ) {
+		else if ( this.props.provideFeedback === 'full' && hasSolution ) {
 			if ( isCorrect ) {
 				msg = 'Hooray, your answer is correct!';
 			} else {
