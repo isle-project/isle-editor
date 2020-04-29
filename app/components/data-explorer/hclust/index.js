@@ -19,7 +19,7 @@ import PriorityQueue from './queue.js';
 // FUNCTIONS //
 
 /**
-* Creates a two-dimensional array
+* Creates a two-dimensional array.
 *
 * @param {number} m - number of rows
 * @param {number} n - number of columns
@@ -34,7 +34,7 @@ function create2dArray( m, n ) {
 }
 
 /**
-* Returns a function which checks whether an element is equal to input
+* Returns a function which checks whether an element is equal to input.
 *
 * @param {string} input - the element the generated function should compare to
 * @return {Function} a function which when invoked checks whether its first argument is equal to input
@@ -48,12 +48,12 @@ function isEqual( input ) {
 /**
 * Algorithm adapted from Introduction to Information Retrieval by Manning et al., Cambridge University Press. 2008 [p.386].
 *
-* @param {Array} data - input data, two-dimensional array of numeric values
+* @param {Array} data - input data
 * @param {Function} linkage - used linkage function
 * @param {Function} distance - used distance metric
-* @return {Array}  a list holding merge instructions
+* @return {Array} a list holding merge instructions
 */
-function efficientHAC( data, linkage, distance ) {
+export function efficientHAC( data, linkage, distance ) {
 	const d = data;
 	const N = d.length;
 	const P = [];
@@ -73,7 +73,7 @@ function efficientHAC( data, linkage, distance ) {
 
 	const A = [];
 
-	function maxSim(q, i){
+	function maxSim( q, i ){
 		return I[i] === 1 ? q.max().sim : 0;
 	}
 	for ( let k = 0; k < N - 1; k++ ) {
@@ -103,22 +103,21 @@ function efficientHAC( data, linkage, distance ) {
 * Hierarchical clustering based on priority-queue algorithm. Implements single-linkage and complete-linkage.
 *
 * @param {Array} data - two-dimensional array
-* @param {Object} [options] - function options
-* @param {String} [options.linkage='complete'] - accessor function for accessing array values
-* @param {String} [options.distance='euclidean'] - boolean indicating whether to return a new array
+* @param {Object} [opts] - function options
+* @param {String} [opts.linkage='complete'] - accessor function for accessing array values
+* @param {String} [opts.distance='euclidean'] - boolean indicating whether to return a new array
 * @return {Object} an object exposing two functions, `getTree` and `getClusters(k)`, where `k` is the number of clusters
 */
-function hclust( dat, opts ) {
-	let linkage;
-	let distance;
+function hclust( data, opts ) {
 	let allDistances;
-	let linkageFun;
 	let distanceFun;
+	let linkageFun;
+	let distance;
+	let linkage;
 
-	if ( !isArrayArray( dat ) ) {
-		throw new TypeError( 'invalid input argument. Data must be passed as an array of arrays. Value: `' + dat + '`.' );
+	if ( !isArrayArray( data ) ) {
+		throw new TypeError( 'invalid input argument. Data must be passed as an array of arrays. Value: `' + data + '`.' );
 	}
-
 	if ( arguments.length > 1 ) {
 		if ( !isObject( opts ) ) {
 			throw new TypeError( 'invalid input argument. Options argument must be an object. Value: `' + opts + '`.' );
@@ -168,14 +167,14 @@ function hclust( dat, opts ) {
 			distanceFun = euclidean;
 		break;
 	}
-	const A = efficientHAC( dat, linkageFun, distanceFun );
+	const A = efficientHAC( data, linkageFun, distanceFun );
 
 	function getClusters( k ) {
 		if ( !isInteger( k ) ) {
 			throw new TypeError( 'invalid argument. The number of desired clusters must be an integer. Option: `' + k + '`.' );
 		}
 		const clusters = [];
-		for ( let i = 0; i < dat.length; i++ ) {
+		for ( let i = 0; i < data.length; i++ ) {
 			const current = [ i ];
 			clusters.push( current );
 		}
@@ -194,7 +193,7 @@ function hclust( dat, opts ) {
 
 	function getClusterAssignments( k ) {
 		const clusters = getClusters( k );
-		const out = new Array( dat.length );
+		const out = new Array( data.length );
 		for ( let i = 0; i < clusters.length; i++ ) {
 			const cluster = clusters[ i ];
 			for ( let j = 0; j < cluster.length; j++ ) {
@@ -207,9 +206,9 @@ function hclust( dat, opts ) {
 
 	function getTree() {
 		const clusters = [];
-		for ( let i = 0; i < dat.length; i++ ) {
+		for ( let i = 0; i < data.length; i++ ) {
 			const current = {};
-			current.name = dat[ i ].join( ', ' );
+			current.name = data[ i ].join( ', ' );
 			current.value = 1;
 			clusters.push( current );
 		}
