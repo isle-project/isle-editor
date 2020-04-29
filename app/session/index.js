@@ -70,7 +70,7 @@ function titleCompare( a, b ) {
 	return ( '' + a.title ).localeCompare( b.title );
 }
 
-function arrayBufferToBase64(buffer) {
+function arrayBufferToBase64( buffer ) {
 	let binary = '';
 	const bytes = [].slice.call( new Uint8Array( buffer ) );
 	bytes.forEach( ( b ) => {
@@ -242,6 +242,9 @@ class Session {
 		}
 	}
 
+	/**
+	* Invoked when the main lesson component has mounted.
+	*/
 	onLessonMount = () => {
 		debug( 'Lesson has mounted...' );
 		if ( !this.anonymous && !isEmptyObject( this.currentUserActions ) ) {
@@ -250,11 +253,17 @@ class Session {
 		}
 	}
 
+	/**
+	* Invoked when the browser fires `online` event.
+	*/
 	onlineListener = () => {
 		debug( 'Browser switched to being online...' );
 		this.startPingServer();
 	}
 
+	/**
+	* Invoked when the browser fires `offline` event.
+	*/
 	offlineListener = () => {
 		debug( 'Browser switched to being offline...' );
 		this.live = false;
@@ -265,6 +274,9 @@ class Session {
 		this.update( DISCONNECTED_FROM_SERVER );
 	}
 
+	/**
+	* Invoked when the content of the document tab becomes visible or has been hidden.
+	*/
 	visibilityChangeListener = () => {
 		if ( document.hidden ) {
 			this.stopPingServer();
@@ -274,6 +286,9 @@ class Session {
 		this.logSession();
 	}
 
+	/**
+	* Invoked when a user has focused on a new element.
+	*/
 	focusInListener = ( event ) => {
 		let activeElement = document.activeElement;
 		let id;
@@ -295,6 +310,9 @@ class Session {
 		}, 'owners' );
 	}
 
+	/**
+	* Invoked when a user ceased to focus on an element.
+	*/
 	focusOutListener = ( event ) => {
 		debug( `Users ${this.user.email} lost focus...` );
 		this.log({
@@ -319,6 +337,9 @@ class Session {
 
 	/**
 	* Registers a listener by pushing it to the array of listeners and returns a function to unsubscribe the listener.
+	*
+	* @param {Function} listener - function invoked with session updates
+	* @returns {Function} unsubscribe function to remove the `listener`
 	*/
 	subscribe = ( listener ) => {
 		this.listeners.push( listener );
@@ -534,6 +555,9 @@ class Session {
 			.catch( error => clbk( error ) );
 	}
 
+	/**
+	* Retrieves and stores Jitsi Meet token for the current user and namespace.
+	*/
 	getJitsiToken = () => {
 		let url = this.server+'/get_jitsi_token';
 		url += '?';
@@ -694,6 +718,13 @@ class Session {
 		}
 	}
 
+	/**
+	* Joins the specified video chat
+	*
+	* @param {Object} opts - options
+	* @param {string} opts.name - chat name
+	* @param {string} opts.subject - displayed subject line
+	*/
 	joinVideoChat({ name, subject }) {
 		let found = false;
 		for ( let i = 0; i < this.videoChats.length; i++ ) {
@@ -851,6 +882,12 @@ class Session {
 		return null;
 	}
 
+	/**
+	* Removes leading namespace and lesson identifiers from chat name.
+	*
+	* @param {string} name - full chat name
+	* @returns {string} stripped chat name
+	*/
 	stripChatName( name ) {
 		let idx = name.indexOf( ':' );
 		if ( idx !== -1 ) {
@@ -859,6 +896,11 @@ class Session {
 		return name;
 	}
 
+	/**
+	* Removes specified chat from list of chats
+	*
+	* @param {string} name - full chat name
+	*/
 	removeChat = ( name ) => {
 		name = this.stripChatName( name );
 		debug( `Remove the "${name}" chat from the list of chats` );
@@ -883,6 +925,12 @@ class Session {
 		}
 	}
 
+	/**
+	* Leaves video chat with the given name and removes it from the current list of chats.
+	*
+	* @param {string} name - video chat room name
+	* @returns {void}
+	*/
 	leaveVideoChat( name ) {
 		debug( `Closing video chat with name ${name}` );
 		for ( let i = this.videoChats.length - 1; i >= 0; i-- ) {
@@ -893,10 +941,18 @@ class Session {
 		this.update( VIDEO_CHAT_ENDED, name );
 	}
 
+	/**
+	* Emits the `create_groups` event with the newly generated group assignments.
+	*
+	* @param {Object} groups - group assignments
+	*/
 	createGroups( groups ) {
 		this.socket.emit( 'create_groups', groups );
 	}
 
+	/**
+	* Emits the `delete_groups` event and closes all group chats upon finishing group mode.
+	*/
 	deleteGroups = () => {
 		for ( let i = 0; i < this.allGroups.length; i++ ) {
 			this.closeChatForAll( this.allGroups[ i ].name );
@@ -904,6 +960,13 @@ class Session {
 		this.socket.emit( 'delete_groups' );
 	}
 
+	/**
+	* Saves sketchpad data (lines, annotations, etc.) on the server.
+	*
+	* @param {string} id - sketchpad identifier
+	* @param {Object} data - sketchpad data
+	* @returns {Promise} server response
+	*/
 	saveSketchpadData( id, data ) {
 		return fetch( this.server+'/save_sketchpad_data', {
 			method: 'POST',
@@ -928,6 +991,12 @@ class Session {
 		});
 	}
 
+	/**
+	* Retrieves instructor sketchpad data for logged-in users and anonymous visitors.
+	*
+	* @param {string} id - sketchpad identifier
+	* @returns {Promise} sketchpad data
+	*/
 	getSketchpadVisitorData( id ) {
 		if ( this._offline ) {
 			return new Promise( ( resolve, reject ) => {
@@ -953,6 +1022,12 @@ class Session {
 			});
 	}
 
+	/**
+	* Retrieves sketchpad data for the currently logged-in user.
+	*
+	* @param {string} id - sketchpad identifier
+	* @returns {Promise} sketchpad data
+	*/
 	getSketchpadUserData( id ) {
 		if ( this._offline ) {
 			return new Promise( ( resolve, reject ) => {
@@ -1215,6 +1290,11 @@ class Session {
 		this.socket = socket;
 	}
 
+	/**
+	* Retrieves all fake users.
+	*
+	* @param {Function} clbk - callback invoked with error (`null` if operation successful) and hash table of fake credentials for users of the namespace
+	*/
 	getFakeUsers = ( clbk ) => {
 		let url = this.server+'/get_fake_users?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
@@ -1377,6 +1457,12 @@ class Session {
 		this.listeners.forEach( listener => listener( type, data ) );
 	}
 
+	/**
+	* Creates an account for a new user.
+	*
+	* @param {Object} data - registration data (`email`, `name`, `password`)
+	* @param {Function} clbk - callback invoked after successful login or when encountering an error
+	*/
 	registerUser( data, clbk ) {
 		fetch( this.server+'/create_user', {
 			method: 'POST',
@@ -1749,6 +1835,12 @@ class Session {
 		}
 	}
 
+	/**
+	* Updates the user's score based on his latest action.
+	*
+	* @param {Object} action - user action
+	* @returns {void}
+	*/
 	setScore( action ) {
 		if (
 			this.anonymous ||
@@ -1880,6 +1972,12 @@ class Session {
 		}
 	}
 
+	/**
+	* Removes a session object from the remote data store.
+	*
+	* @param {string} sessionElementID - id of session
+	* @param {Function} clbk - callback invoked upon removal or error
+	*/
 	removeSessionElementFromDB( sessionElementID, clbk ) {
 		fetch( this.server+'/delete_session_element?' + qs.stringify({
 			_id: sessionElementID
@@ -1972,6 +2070,11 @@ class Session {
 		}
 	}
 
+	/**
+	* Retrieves all owner files for the current lesson.
+	*
+	* @param {Function} clbk - callback invoked with error as first (`null` if successful) and files as second argument
+	*/
 	getLessonOwnerFiles = ( clbk ) => {
 		if ( this.lessonName && this.namespaceName ) {
 			let url = this.server + '/get_files';
@@ -1981,7 +2084,10 @@ class Session {
 				.then( body => {
 					clbk( null, body.files );
 				})
-				.catch( err => debug( 'Encountered an error: '+err.message ) );
+				.catch( err => {
+					debug( 'Encountered an error: '+err.message );
+					clbk( err );
+				});
 		}
 	}
 
@@ -2082,6 +2188,11 @@ class Session {
 			OPEN_CPU_DEFAULT_SERVER;
 	}
 
+	/**
+	* Updates whether voice recording is currently active.
+	*
+	* @param {boolean} value - voice recording status
+	*/
 	setVoiceRecordingStatus( value ) {
 		this.voiceRecordingStatus = value;
 		this.update( VOICE_RECORDING_STATUS, value );
