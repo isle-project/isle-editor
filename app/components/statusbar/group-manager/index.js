@@ -212,6 +212,7 @@ class GroupManager extends Component {
 			notAssigned: [],
 			toRemove: [],
 			toAdd: [],
+			lastGroups: null,
 			message: '',
 			docId: 0
 		};
@@ -237,7 +238,8 @@ class GroupManager extends Component {
 				else if ( type === DELETED_GROUPS ) {
 					session.removeNotification( this.closeNotification );
 					this.setState({
-						isClosing: false
+						isClosing: false,
+						lastGroups: data
 					});
 				}
 				else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
@@ -298,6 +300,11 @@ class GroupManager extends Component {
 			matching: this.state.matching
 		});
 		session.createGroups( groups );
+	}
+
+	reuseLastGroups = () => {
+		const session = this.context;
+		session.createGroups( this.state.lastGroups );
 	}
 
 	updateGroups = () => {
@@ -577,18 +584,41 @@ class GroupManager extends Component {
 		const nUsers = countStudents( session.userList );
 		if ( session.allGroups.length > 0 ) {
 			return ( <Fragment>
-				<Button onClick={this.sendMessageToAll} >
-					Broadcast message to all
-				</Button>
-				<Button variant="danger" disabled={this.state.isClosing} onClick={this.toggleCloseConfirm} style={{ float: 'right' }} >
-					Close Groups
-				</Button>
-				{ this.state.toAdd.length > 0 || this.state.toRemove.length > 0 ? <Button onClick={this.updateGroups} style={{ float: 'right', marginRight: 6 }} >
-					Update Groups
-				</Button> : null }
+				<Tooltip tooltip="Broadcast message to all groups" placement="bottom" >
+					<Button onClick={this.sendMessageToAll} >
+						Broadcast Message
+					</Button>
+				</Tooltip>
+				<Tooltip tooltip="Students have sixty seconds to finish their work once group closure is initiated" placement="bottom" >
+					<Button variant="danger" disabled={this.state.isClosing} onClick={this.toggleCloseConfirm} style={{ float: 'right' }} >
+						Close Groups
+					</Button>
+				</Tooltip>
+				{ this.state.toAdd.length > 0 || this.state.toRemove.length > 0 ?
+					<Tooltip tooltip="Apply changes to the group compositions and send them out" placement="bottom" >
+						<Button onClick={this.updateGroups} style={{ float: 'right', marginRight: 6 }} >
+							Update Groups
+						</Button>
+					</Tooltip>: null
+				}
 			</Fragment> );
 		}
-		return <Button disabled={nUsers === 0} onClick={this.handleGroupCreation}>Create Groups</Button>;
+		return ( <Fragment>
+			<Tooltip tooltip="Reuse the last group assignment" placement="bottom" show={this.state.lastGroups} >
+				<Button
+					variant="secondary"
+					disabled={!this.state.lastGroups}
+					onClick={this.reuseLastGroups}
+				>Reopen Last Groups</Button>
+			</Tooltip>
+			<Tooltip tooltip="Create group assignments via the selected method" placement="bottom" show={nUsers > 0} >
+			<Button
+				disabled={nUsers === 0}
+				onClick={this.handleGroupCreation}
+				style={{ float: 'right' }}
+			>Create Groups</Button>
+			</Tooltip>
+		</Fragment> );
 	}
 
 	render() {

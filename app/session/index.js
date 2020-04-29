@@ -1190,8 +1190,9 @@ class Session {
 
 		socket.on( 'deleted_groups', () => {
 			this.group = null;
+			const lastGroups = this.allGroups;
 			this.allGroups = [];
-			this.update( DELETED_GROUPS );
+			this.update( DELETED_GROUPS, lastGroups );
 		});
 
 		socket.on( 'memberAction', this.saveAction );
