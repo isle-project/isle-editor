@@ -40,7 +40,7 @@ import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
-import VoiceControl from 'components/voice-control';
+import VoiceControl from 'internal-components/voice-control';
 import randomstring from 'utils/randomstring/ascii';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';

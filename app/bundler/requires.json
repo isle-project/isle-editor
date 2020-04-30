@@ -560,7 +560,7 @@
 		"async": false
 	},
 	"VoiceControl": {
-		"path": "components/voice-control",
+		"path": "internal-components/voice-control",
 		"async": true
 	},
 	"Weather": {

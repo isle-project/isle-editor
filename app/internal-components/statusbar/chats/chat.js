@@ -13,7 +13,7 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
 import Draggable from 'components/draggable';
-import VoiceControl from 'components/voice-control';
+import VoiceControl from 'internal-components/voice-control';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';

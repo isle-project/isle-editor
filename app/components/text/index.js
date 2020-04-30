@@ -6,7 +6,7 @@ import markdownit from 'markdown-it';
 import katex from '@iktakahiro/markdown-it-katex';
 import logger from 'debug';
 import ltrim from '@stdlib/string/left-trim';
-import VoiceControl from 'components/voice-control';
+import VoiceControl from 'internal-components/voice-control';
 
 
 // VARIABLES //

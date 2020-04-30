@@ -111,7 +111,7 @@ import React, { Component } from 'react';
 import { json, csv } from 'd3';
 import { render } from 'react-dom';
 import { extname } from 'path';
-import Lesson from 'components/lesson';
+import Lesson from 'internal-components/lesson';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 import obsToVar from 'utils/obs-to-var';

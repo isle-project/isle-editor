@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
-import VoiceControl from 'components/voice-control';
+import VoiceControl from 'internal-components/voice-control';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
