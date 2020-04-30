@@ -106,14 +106,13 @@ class Session {
 		// String for distinguishing multiple browser windows from each other:
 		this.sessionID = randomstring( 3 );
 
-		// User object container:
-		this.user = {};
-
-		// If user token is available in local storage, login to server:
+		// If user object is available in local storage, login to server:
 		item = localStorage.getItem( this.userVal );
 		if ( item ) {
-			item = JSON.parse( item );
-			this.handleLogin( item, true );
+			this.user = JSON.parse( item );
+			this.handleLogin( this.user, true );
+		} else {
+			this.user = {};
 		}
 
 		// Boolean whether lesson is finished:
