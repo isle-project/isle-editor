@@ -29,7 +29,7 @@ import GroupManager from './group-manager';
 import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
-const InstructorView = lazy( () => import( 'components/statusbar/instructor-view' ) );
+const InstructorView = lazy( () => import( 'internal-components/statusbar/instructor-view' ) );
 
 
 // VARIABLES //

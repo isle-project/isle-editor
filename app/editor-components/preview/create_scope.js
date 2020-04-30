@@ -147,7 +147,7 @@ export const SCOPE = {
 	SliderInput,
 	Slider: Loadable( () => import( /* webpackChunkName: "Slider" */ 'components/slider' ) ),
 	Spinner: Loadable( () => import( /* webpackChunkName: "Spinner" */ 'components/spinner' ) ),
-	StatusBar: Loadable( () => import( /* webpackChunkName: "StatusBar" */ 'components/statusbar' ) ),
+	StatusBar: Loadable( () => import( /* webpackChunkName: "StatusBar" */ 'internal-components/statusbar' ) ),
 	TextEditor: Loadable( () => import( /* webpackChunkName: "TextEditor" */ 'components/text-editor' ) ),
 	Toolbar: Loadable( () => import( /* webpackChunkName: "Toolbar" */ 'components/toolbar' ) ),
 	Sunburst: Loadable( () => import( /* webpackChunkName: "Sunburst" */ 'components/d3/sunburst' ) ),
