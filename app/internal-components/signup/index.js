@@ -53,8 +53,10 @@ class Signup extends Component {
 			this.getPasswordValidationState() === 'success'
 		) {
 			const data = pick( this.state, FORM_DATA );
-			session.registerUser( data, () => {
-				this.props.onClose();
+			session.registerUser( data, ( err ) => {
+				if ( !err ) {
+					this.props.onClose();
+				}
 			});
 		} else {
 			this.setState({
@@ -126,7 +128,7 @@ class Signup extends Component {
 			<Modal
 				show={this.props.show}
 				onHide={this.props.onClose}
-				dialogClassName="modal-75w"
+				dialogClassName="modal-60w"
 			>
 				<Modal.Header closeButton >
 					<Modal.Title as="h3">Create User</Modal.Title>
@@ -152,6 +154,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 										onKeyPress={this.handleKeyPress}
 										isInvalid={invalidEmail}
+										value={this.state.email}
 									/>
 									<FormControl.Feedback type="invalid">
 										Not a valid email address.
@@ -175,6 +178,7 @@ class Signup extends Component {
 										onChange={this.handleInputChange}
 										onKeyPress={this.handleKeyPress}
 										isInvalid={invalidName}
+										value={this.state.name}
 									/>
 									<FormControl.Feedback type="invalid">
 										Name must contain four characters.
@@ -201,6 +205,7 @@ class Signup extends Component {
 										maxLength={30}
 										minLength={6}
 										isInvalid={invalidPassword}
+										value={this.state.password}
 									/>
 									<FormControl.Feedback type="invalid">
 										Please enter a new password with at least six characters.
@@ -223,6 +228,7 @@ class Signup extends Component {
 									maxLength={30}
 									minLength={6}
 									isInvalid={invalidPasswordRepeat}
+									value={this.state.passwordRepeat}
 								/>
 								<FormControl.Feedback type="invalid">
 									Passwords do not match.
