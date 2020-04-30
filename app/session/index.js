@@ -106,6 +106,14 @@ class Session {
 		// String for distinguishing multiple browser windows from each other:
 		this.sessionID = randomstring( 3 );
 
+		axios.interceptors.request.use( ( config ) => {
+			const token = this.user.token;
+			if ( token && startsWith( config.url, this.server ) ) {
+				config.headers.Authorization = `JWT ${token}`;
+			}
+			return config;
+		});
+
 		// If user object is available in local storage, login to server:
 		item = localStorage.getItem( this.userVal );
 		if ( item ) {
@@ -231,14 +239,6 @@ class Session {
 			window.addEventListener( 'online', this.onlineListener );
 			window.addEventListener( 'offline', this.offlineListener );
 		}
-
-		axios.interceptors.request.use( ( config ) => {
-			const token = this.user.token;
-			if ( token && startsWith( config.url, this.server ) ) {
-				config.headers.Authorization = `JWT ${token}`;
-			}
-			return config;
-		});
 	}
 
 	/**
