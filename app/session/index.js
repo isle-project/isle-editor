@@ -9,6 +9,7 @@ import localforage from 'localforage';
 import { basename } from 'path';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import startsWith from '@stdlib/string/starts-with';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -68,15 +69,6 @@ const PRIVATE_VARS = {
 
 function titleCompare( a, b ) {
 	return ( '' + a.title ).localeCompare( b.title );
-}
-
-function arrayBufferToBase64( buffer ) {
-	let binary = '';
-	const bytes = [].slice.call( new Uint8Array( buffer ) );
-	bytes.forEach( ( b ) => {
-		binary += String.fromCharCode( b );
-	});
-	return window.btoa( binary );
 }
 
 
@@ -240,6 +232,14 @@ class Session {
 			window.addEventListener( 'online', this.onlineListener );
 			window.addEventListener( 'offline', this.offlineListener );
 		}
+
+		axios.interceptors.request.use( ( config ) => {
+			const token = this.user.token;
+			if ( token && startsWith( config.url, this.server ) ) {
+				config.headers.Authorization = `JWT ${token}`;
+			}
+			return config;
+		});
 	}
 
 	/**
@@ -439,24 +439,25 @@ class Session {
 			debug( 'Received body:\n '+body );
 			debug( 'Response status: '+response.status );
 			const plots = [];
-			if ( response.status !== 400 ) {
-				const stdout = body.match( STDOUT_REGEX );
-				if ( stdout && stdout[ 0 ] ) {
-					getElem( stdout[ 0 ] );
-				}
-				const matches = body.matchAll( GRAPHICS_REGEX );
-				for ( const match of matches ) {
-					const imgURL = OPEN_CPU + match[ 0 ] + '/svg';
-					plots.push( imgURL );
-				}
-				if ( isFunction( onPlots ) ) {
-					onPlots( plots );
-				}
-			} else {
-				onError( body.replace( ERR_REGEX, '' ) );
+			const stdout = body.match( STDOUT_REGEX );
+			if ( stdout && stdout[ 0 ] ) {
+				getElem( stdout[ 0 ] );
+			}
+			const matches = body.matchAll( GRAPHICS_REGEX );
+			for ( const match of matches ) {
+				const imgURL = OPEN_CPU + match[ 0 ] + '/svg';
+				plots.push( imgURL );
+			}
+			if ( isFunction( onPlots ) ) {
+				onPlots( plots );
 			}
 		})
-		.catch( error => debug( 'Encountered an error: '+error.message ) );
+		.catch( error => {
+			debug( 'Encountered an error: '+error.message );
+			if ( error.response.data ) {
+				onError( error.response.data.replace( ERR_REGEX, '' ) );
+			}
+		});
 	}
 
 	/**
@@ -520,31 +521,21 @@ class Session {
 		const OPEN_CPU = this.getOpenCPUServer();
 
 		const fetchImage = ( imgURL ) => {
-			fetch( imgURL )
-				.then( res => {
-					if ( filetype === 'png' ) {
-						res.arrayBuffer().then( buffer => {
-							const mimeType = res.headers.get( 'Content-Type' );
-							const base64String = `data:${mimeType};base64,${arrayBufferToBase64( buffer )}`;
-							clbk( null, imgURL, base64String );
-						});
-					} else {
-						res.text().then( body => {
-							clbk( null, imgURL, body );
-						});
-					}
-				})
-				.catch( err => clbk( err ) );
+			axios.get( imgURL ).then( res => {
+				if ( filetype === 'png' ) {
+					const mimeType = res.headers[ 'content-type' ];
+					const base64String = `data:${mimeType};base64,${res.data}`;
+					return clbk( null, imgURL, base64String );
+				}
+				return clbk( null, imgURL, res.data );
+			})
+			.catch( err => clbk( err ) );
 		};
 		const formData = new FormData();
 		formData.append( 'x', code );
-		fetch( OPEN_CPU + OPEN_CPU_IDENTITY, {
-			method: 'POST',
-			body: formData
-		})
-			.then( res => res.text() )
-			.then( body => {
-				const arr = body.split( '\n' );
+		axios.post( OPEN_CPU + OPEN_CPU_IDENTITY, formData )
+			.then( response => {
+				const arr = response.data.split( '\n' );
 				arr.forEach( elem => {
 					if ( GRAPHICS_REGEX.test( elem ) === true ) {
 						const imgURL = OPEN_CPU + elem + '/' + filetype;
@@ -562,12 +553,7 @@ class Session {
 		let url = this.server+'/get_jitsi_token';
 		url += '?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
-		fetch( url, {
-			headers: {
-				'Authorization': 'JWT ' + this.user.token
-			}
-		})
-		.then( res => res.json() )
+		axios.get( url )
 		.then( json => {
 			this.jitsi = json;
 			this.update( RECEIVED_JITSI_TOKEN );
@@ -615,20 +601,12 @@ class Session {
 		) {
 			debug( 'Retrieve user rights...' );
 			this.userRightsQuestionPosed = true;
-			fetch( this.server+'/get_user_rights', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Authorization': 'JWT ' + this.user.token
-				},
-				body: JSON.stringify({
-					namespaceName: this.namespaceName,
-					lessonName: this.lessonName
-				})
+			axios.post( this.server+'/get_user_rights', {
+				namespaceName: this.namespaceName,
+				lessonName: this.lessonName
 			})
-			.then( res => res.json() )
-			.then( json => {
-				userRights = json;
+			.then( res => {
+				userRights = res.data;
 				this.cohort = userRights.cohort;
 				if ( userRights.owner && isEmptyArray( this.socketActions ) ) {
 					debug( '[3a] Retrieve all user actions for owners:' );
@@ -968,18 +946,11 @@ class Session {
 	* @returns {Promise} server response
 	*/
 	saveSketchpadData( id, data ) {
-		return fetch( this.server+'/save_sketchpad_data', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'JWT ' + this.user.token
-			},
-			body: JSON.stringify({
-				namespaceID: this.namespaceID,
-				lessonID: this.lessonID,
-				sketchpadID: id,
-				data: data
-			})
+		return axios.post( this.server+'/save_sketchpad_data', {
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID,
+			sketchpadID: id,
+			data: data
 		})
 		.catch( error => {
 			this.addNotification({
@@ -1004,22 +975,20 @@ class Session {
 			});
 		}
 		return this.store.getItem( id ).then( ( visitorData ) => {
-				let url = this.server+'/get_sketchpad_shared_data';
-				url += '?'+qs.stringify({
-					lessonID: this.lessonID,
-					sketchpadID: id
-				});
-				return fetch( url )
-					.then( res => {
-						return res.json();
-					})
-					.then( ownerData => {
-						if ( !visitorData ) {
-							return ownerData;
-						}
-						return merge( visitorData, ownerData );
-					});
+			let url = this.server+'/get_sketchpad_shared_data';
+			url += '?'+qs.stringify({
+				lessonID: this.lessonID,
+				sketchpadID: id
 			});
+			return axios.get( url )
+				.then( response => {
+					const ownerData = response.data;
+					if ( !visitorData ) {
+						return ownerData;
+					}
+					return merge( visitorData, ownerData );
+				});
+		});
 	}
 
 	/**
@@ -1040,14 +1009,7 @@ class Session {
 			lessonID: this.lessonID,
 			sketchpadID: id
 		});
-		return fetch( url, {
-			headers: {
-				'Authorization': 'JWT ' + this.user.token
-			}
-		})
-		.then( res => {
-			return res.json();
-		});
+		return axios.get( url ).then( res => res.data );
 	}
 
 	/**
@@ -1298,17 +1260,8 @@ class Session {
 	getFakeUsers = ( clbk ) => {
 		let url = this.server+'/get_fake_users?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
-		fetch( url, {
-			headers: {
-				'Authorization': 'JWT ' + this.user.token
-			}
-		})
-		.then( response => {
-			if ( response.status === 200 ) {
-				response.json().then( body => {
-					clbk( null, body );
-				});
-			}
+		axios.get( url ).then( response => {
+			return clbk( null, response.data );
 		})
 		.catch( error => clbk( error ) );
 	}
@@ -1320,29 +1273,18 @@ class Session {
 	*/
 	getUserActions = () => {
 		debug( 'Retrieve user actions...' );
-
-		fetch( this.server+'/get_user_actions', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'JWT ' + this.user.token
-			},
-			body: JSON.stringify({
-				lessonID: this.lessonID,
-				anonymous: true
-			})
+		axios.post( this.server+'/get_user_actions', {
+			lessonID: this.lessonID,
+			anonymous: true
 		})
 		.then( ( response ) => {
 			debug( '/get_user_actions response status: '+response.status );
-			if ( response.status === 200 ) {
-				response.json().then( json => {
-					debug( `Received ${json.actions.length} actions for lesson ${this.lessonName} (id: ${this.lessonID})...` );
-					this.socketActions = json.actions;
-					this.update( RETRIEVED_USER_ACTIONS, json.actions );
-					debug( '[4] Retrieve cohort information...' );
-					this.getCohorts();
-				});
-			}
+			const { actions } = response.data;
+			debug( `Received ${actions.length} actions for lesson ${this.lessonName} (id: ${this.lessonID})...` );
+			this.socketActions = actions;
+			this.update( RETRIEVED_USER_ACTIONS, actions );
+			debug( '[4] Retrieve cohort information...' );
+			this.getCohorts();
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
@@ -1351,22 +1293,15 @@ class Session {
 	* Retrieves cohort information for course owners.
 	*/
 	getCohorts = () => {
-		fetch( this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID, memberFields: 'email' }), {
-			headers: {
-				'Authorization': 'JWT ' + this.user.token
-			}
-		})
-		.then( response => {
-			if ( response.status === 200 ) {
-				response.json().then( body => {
-					const cohorts = body.cohorts;
-					cohorts.forEach( cohort => {
-						cohort.members = pluck( cohort.members, 'email' );
-					});
-					this.cohorts = cohorts.sort( titleCompare );
-					this.update( RETRIEVED_COHORTS, this.cohorts );
-				});
-			}
+		const url = this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID, memberFields: 'email' });
+		axios.get( url ).then( response => {
+			const data = response.data;
+			const cohorts = data.cohorts;
+			cohorts.forEach( cohort => {
+				cohort.members = pluck( cohort.members, 'email' );
+			});
+			this.cohorts = cohorts.sort( titleCompare );
+			this.update( RETRIEVED_COHORTS, this.cohorts );
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
@@ -1400,24 +1335,13 @@ class Session {
 	* @returns {void}
 	*/
 	getCurrentUserActions = () => {
-		fetch( this.server+'/get_current_user_actions', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'JWT ' + this.user.token
-			},
-			body: JSON.stringify({
-				lessonID: this.lessonID
-			})
+		axios.post( this.server+'/get_current_user_actions', {
+			lessonID: this.lessonID
 		})
 		.then( ( response ) => {
 			debug( 'Received current user actions...' );
-			if ( response.status === 200 ) {
-				response.json().then( body => {
-					this.currentUserActions = body.actions;
-					this.update( RETRIEVED_CURRENT_USER_ACTIONS, this.currentUserActions );
-				});
-			}
+			this.currentUserActions = response.data.actions;
+			this.update( RETRIEVED_CURRENT_USER_ACTIONS, this.currentUserActions );
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
@@ -1464,34 +1388,23 @@ class Session {
 	* @param {Function} clbk - callback invoked after successful login or when encountering an error
 	*/
 	registerUser( data, clbk ) {
-		fetch( this.server+'/create_user', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify( data )
-		})
-		.then( ( response ) => {
-			if ( response.status !== 200 ) {
-				response.text().then( message => {
-					this.addNotification({
-						title: 'User not created',
-						message: message,
-						level: 'error',
-						position: 'tl'
-					});
-				});
-			} else {
-				this.addNotification({
-					title: 'User created',
-					message: 'You have successfully signed up.',
-					level: 'success',
-					position: 'tl'
-				});
-				this.login({ email: data.email, password: data.password }, clbk );
-			}
+		axios.post( this.server+'/create_user', data )
+		.then( () => {
+			this.addNotification({
+				title: 'User created',
+				message: 'You have successfully signed up.',
+				level: 'success',
+				position: 'tl'
+			});
+			this.login({ email: data.email, password: data.password }, clbk );
 		})
 		.catch( ( err ) => {
+			this.addNotification({
+				title: 'User not created',
+				message: err.response.data,
+				level: 'error',
+				position: 'tl'
+			});
 			debug( 'Encountered an error: '+err.message );
 			clbk( err );
 		});
@@ -1560,45 +1473,37 @@ class Session {
 	* @returns {void}
 	*/
 	login = ( form, clbk ) => {
-		fetch( this.server+'/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify( form )
-		})
+		axios.post( this.server+'/login', form )
 		.then( response => {
-			if ( response.status === 404 ) {
+			const { token, id, message } = response.data;
+
+			// Save user token to local storage:
+			localStorage.setItem( this.userVal, JSON.stringify({
+				token,
+				id
+			}) );
+			if ( message === 'ok' ) {
+				this.handleLogin({ token, id });
+			}
+			clbk( null, response, response.data );
+		})
+		.catch( ( err ) => {
+			if ( err.response.status === 404 ) {
 				return this.addNotification({
-					title: response.statusText,
+					title: err.response.statusText,
 					message: 'A user with the supplied email address does not exist',
 					level: 'error',
 					position: 'tl'
 				});
 			}
-			if ( response.status === 401 ) {
+			else if ( err.response.status === 401 ) {
 				return this.addNotification({
-					title: response.statusText,
+					title: err.response.statusText,
 					message: 'Please make sure that you enter the correct password. If you need to reset your password, please click on the "Forgot password?" link',
 					level: 'error',
 					position: 'tl'
 				});
 			}
-			response.json().then( body => {
-				const { token, id, message } = body;
-
-				// Save user token to local storage:
-				localStorage.setItem( this.userVal, JSON.stringify({
-					token,
-					id
-				}) );
-				if ( message === 'ok' ) {
-					this.handleLogin({ token, id });
-				}
-				clbk( null, response, body );
-			});
-		})
-		.catch( ( err ) => {
 			clbk( err );
 		});
 	}
@@ -1610,31 +1515,18 @@ class Session {
 	* @returns {void}
 	*/
 	forgotPassword( email ) {
-		fetch( this.server+'/forgot_password?'+qs.stringify({ email }) )
-			.then( ( res ) => {
+		axios.get( this.server+'/forgot_password?'+qs.stringify({ email }) )
+			.then( () => {
 				debug( 'GET: /forgot_password' );
-				if ( res.status < 400 ) {
-					this.addNotification({
-						title: 'New Password',
-						message: 'Check your email inbox for a link to choose a new password.',
-						level: 'success',
-						position: 'tl'
-					});
-				} else {
-					return res.text();
-				}
-			})
-			.then( ( body ) => {
-				if ( body ) {
-					this.addNotification({
-						title: 'New Password',
-						message: body,
-						level: 'error',
-						position: 'tl'
-					});
-				}
+				this.addNotification({
+					title: 'New Password',
+					message: 'Check your email inbox for a link to choose a new password.',
+					level: 'success',
+					position: 'tl'
+				});
 			})
 			.catch( ( error ) => {
+				console.log( error.response );
 				this.addNotification({
 					title: 'New Password',
 					message: error.message,
@@ -1651,14 +1543,14 @@ class Session {
 		const { lessonName, namespaceName, server } = this;
 		debug( `Retrieve lesson info for ${namespaceName}/${lessonName} from ${server}` );
 		if ( lessonName && namespaceName ) {
-			fetch( this.server+'/get_lesson_info?'+qs.stringify({ lessonName, namespaceName }) )
-			.then( res => res.json() )
-			.then( ( body ) => {
-				this.lessonID = body.lessonID;
-				this.namespaceID = body.namespaceID;
-				PRIVATE_VARS[ 'active' ] = ( body.active === void 0 ) ? true : body.active;
+			axios.get( this.server+'/get_lesson_info?'+qs.stringify({ lessonName, namespaceName }) )
+			.then( ( response ) => {
+				const data = response.data;
+				this.lessonID = data.lessonID;
+				this.namespaceID = data.namespaceID;
+				PRIVATE_VARS[ 'active' ] = ( data.active === void 0 ) ? true : data.active;
 				debug( '[2] Retrieve user rights for said lesson and its namespace' );
-				this.update( RECEIVED_LESSON_INFO, body );
+				this.update( RECEIVED_LESSON_INFO, data );
 				this.getUserRights();
 			})
 			.catch( ( err ) => {
@@ -1675,18 +1567,11 @@ class Session {
 	* @returns {void}
 	*/
 	retrieveData( query, onData ) {
-		fetch( this.server + '/retrieve_data', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				query,
-				user: this.user
-			})
+		axios.post( this.server + '/retrieve_data', {
+			query,
+			user: this.user
 		})
-			.then( res => res.json() )
-			.then( body => onData( null, body ) )
+			.then( response => onData( null, response.data ) )
 			.catch( error => onData( error ) );
 	}
 
@@ -1698,20 +1583,10 @@ class Session {
 	* @returns {void}
 	*/
 	handleLogin = ( obj, silent = false ) => {
-		fetch( this.server+'/credentials', {
-			method: 'POST',
-			headers: {
-				'Authorization': 'JWT ' + obj.token,
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				id: obj.id
-			})
+		axios.post( this.server+'/credentials', {
+			id: obj.id
 		})
 		.then( ( response ) => {
-			return response.json();
-		})
-		.then( ( json ) => {
 			debug( 'Received credentials for login...' );
 			if ( !silent ) {
 				this.addNotification({
@@ -1723,7 +1598,7 @@ class Session {
 			}
 			const user = {
 				...obj,
-				...json
+				...response.data
 			};
 			this.user = user;
 			if ( this.user && this.user.picture ) {
@@ -1914,18 +1789,11 @@ class Session {
 		PRIVATE_VARS[ 'addedActionTypes' ] = [];
 
 		if ( !this._offline && !this.anonymous ) {
-			fetch( this.server+'/update_user_session', {
-				method: 'POST',
-				body: JSON.stringify( currentSession ),
-				headers: {
-					'Authorization': 'JWT ' + this.user.token,
-					'Content-Type': 'application/json'
-				}
-			})
-			.catch( err => debug( 'Encountered an error: '+err.message ) )
+			axios.post( this.server+'/update_user_session', currentSession )
 			.then( ( res ) => {
 				debug( '/update_user_session returns: '+res.status );
-			});
+			})
+			.catch( err => debug( 'Encountered an error: '+err.message ) );
 		}
 	}
 
@@ -1950,20 +1818,10 @@ class Session {
 			PRIVATE_VARS[ 'addedActionTypes' ].push( data.type );
 			const body = JSON.stringify( obj );
 			debug( 'Storing session element: '+body );
-			fetch( this.server+'/store_session_element', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: body
-			})
+			axios.post( this.server+'/store_session_element', body )
 				.then( ( res ) => {
 					debug( '/store_session_element status code: '+res.status );
-					return res;
-				})
-				.then( res => res.json() )
-				.then( body => {
-					clbk( null, body );
+					clbk( null, res.data );
 				})
 				.catch( err => {
 					debug( `Encountered an error: ${err.message}.` );
@@ -1979,13 +1837,9 @@ class Session {
 	* @param {Function} clbk - callback invoked upon removal or error
 	*/
 	removeSessionElementFromDB( sessionElementID, clbk ) {
-		fetch( this.server+'/delete_session_element?' + qs.stringify({
+		axios.get( this.server+'/delete_session_element?' + qs.stringify({
 			_id: sessionElementID
-		}), {
-			headers: {
-				'Authorization': 'JWT ' + this.user.token
-			}
-		})
+		}))
 		.then( () => {
 			for ( let i = 0; i < this.socketActions.length; i++ ) {
 				if ( this.socketActions[ i ].sessiondataID === sessionElementID ) {
@@ -2079,15 +1933,13 @@ class Session {
 		if ( this.lessonName && this.namespaceName ) {
 			let url = this.server + '/get_files';
 			url += '?'+qs.stringify({ namespaceName: this.namespaceName, lessonName: this.lessonName, owner: true });
-			fetch( url )
-				.then( res => res.json() )
-				.then( body => {
-					clbk( null, body.files );
-				})
-				.catch( err => {
-					debug( 'Encountered an error: '+err.message );
-					clbk( err );
-				});
+			axios.get( url ).then( response => {
+				clbk( null, response.data.files );
+			})
+			.catch( err => {
+				debug( 'Encountered an error: '+err.message );
+				clbk( err );
+			});
 		}
 	}
 
@@ -2167,14 +2019,9 @@ class Session {
 		if ( !hasOwnProp( mailOptions, 'to' ) ) {
 			mailOptions.to = to;
 		}
-		fetch( this.server + '/send_mail', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify( mailOptions )
-		})
-		.catch( error => debug( 'Encountered an error: '+error.message ) );
+		axios.post( this.server + '/send_mail', mailOptions ).catch( error =>
+			debug( 'Encountered an error: '+error.message )
+		);
 	}
 
 	/**
