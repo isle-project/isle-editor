@@ -1477,11 +1477,13 @@ class Session {
 		.then( response => {
 			const { token, id, message } = response.data;
 
-			// Save user token to local storage:
-			localStorage.setItem( this.userVal, JSON.stringify({
+			this.user = {
 				token,
 				id
-			}) );
+			};
+
+			// Save user token to local storage:
+			localStorage.setItem( this.userVal, JSON.stringify( this.user ) );
 			if ( message === 'ok' ) {
 				this.handleLogin({ token, id });
 			}
@@ -1596,15 +1598,14 @@ class Session {
 					position: 'tl'
 				});
 			}
-			const user = {
-				...obj,
+			this.user = {
+				...this.user,
 				...response.data
 			};
-			this.user = user;
 			if ( this.user && this.user.picture ) {
 				this.user.picture = this.server + '/avatar/' + this.user.picture;
 			}
-			PRIVATE_VARS[ 'score' ] = user.score;
+			PRIVATE_VARS[ 'score' ] = this.user.score;
 			this.anonymous = false;
 			this.socketConnect();
 			if ( !userRights ) {
