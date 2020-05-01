@@ -15,6 +15,7 @@ exports[`renders feedback buttons (horizontal format) 1`] = `
     }
   >
     <button
+      aria-label="Confused"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -29,6 +30,7 @@ exports[`renders feedback buttons (horizontal format) 1`] = `
       />
     </button>
     <button
+      aria-label="Understood"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -43,6 +45,7 @@ exports[`renders feedback buttons (horizontal format) 1`] = `
       />
     </button>
     <button
+      aria-label="Give custom feedback"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -78,6 +81,7 @@ exports[`renders feedback buttons (vertical format) 1`] = `
     }
   >
     <button
+      aria-label="Confused"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -92,6 +96,7 @@ exports[`renders feedback buttons (vertical format) 1`] = `
       />
     </button>
     <button
+      aria-label="Understood"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -106,6 +111,7 @@ exports[`renders feedback buttons (vertical format) 1`] = `
       />
     </button>
     <button
+      aria-label="Give custom feedback"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -141,6 +147,7 @@ exports[`renders feedback buttons with custom messages 1`] = `
     }
   >
     <button
+      aria-label="Confused"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -155,6 +162,7 @@ exports[`renders feedback buttons with custom messages 1`] = `
       />
     </button>
     <button
+      aria-label="Understood"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -169,6 +177,7 @@ exports[`renders feedback buttons with custom messages 1`] = `
       />
     </button>
     <button
+      aria-label="Give custom feedback"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -204,6 +213,7 @@ exports[`renders feedback buttons without option to supply custom feedback 1`] =
     }
   >
     <button
+      aria-label="Confused"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
@@ -218,6 +228,7 @@ exports[`renders feedback buttons without option to supply custom feedback 1`] =
       />
     </button>
     <button
+      aria-label="Understood"
       className="feedback-button btn btn-light btn-small"
       disabled={false}
       onBlur={[Function]}
