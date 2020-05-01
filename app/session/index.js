@@ -1816,9 +1816,8 @@ class Session {
 		};
 		if ( !this._offline ) {
 			PRIVATE_VARS[ 'addedActionTypes' ].push( data.type );
-			const body = JSON.stringify( obj );
-			debug( 'Storing session element: '+body );
-			axios.post( this.server+'/store_session_element', body )
+			debug( 'Storing session element...' );
+			axios.post( this.server+'/store_session_element', obj )
 				.then( ( res ) => {
 					debug( '/store_session_element status code: '+res.status );
 					clbk( null, res.data );
