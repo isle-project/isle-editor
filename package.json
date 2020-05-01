@@ -156,7 +156,7 @@
     "history": "^4.9.0",
     "html-to-image": "^0.1.1",
     "html-to-pdfmake": "^1.2.2",
-    "html-webpack-plugin": "4.2.1",
+    "html-webpack-plugin": "4.3.0",
     "is-extendable": "^1.0.1",
     "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
