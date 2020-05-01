@@ -194,6 +194,7 @@ class TeX extends Component {
 					role="button" tabIndex={0}
 					style={this.props.style}
 					onClick={this.props.onClick} onKeyPress={this.props.onClick}
+					aria-label="Equation"
 				>
 					{ this.props.numbered ?
 						<div
@@ -223,6 +224,7 @@ class TeX extends Component {
 				ref={( span ) => { this.katex = span; }}
 				style={this.props.style}
 				onClick={this.props.onClick} onKeyPress={this.props.onClick}
+				aria-label="Equation"
 			>
 				<span
 					dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger

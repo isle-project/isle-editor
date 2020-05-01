@@ -398,13 +398,14 @@ class StatusBar extends Component {
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
 										className="statusbar-presentation-mode statusbar-icon"
+										aria-label="Toggle presentation mode"
 									>
 										<span className="fa fa-xs fa-eye-slash" />
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
 								<Tooltip placement="bottom" tooltip="Black out screen for everyone" >
-									<span role="button" tabIndex={0}
+									<span role="button" tabIndex={0} aria-label="Black out screen"
 										onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
 										className="statusbar-blackscreen-mode statusbar-icon"
 									>
@@ -413,7 +414,7 @@ class StatusBar extends Component {
 								</Tooltip> : null }
 							{isOwner ?
 								<Tooltip placement="bottom" tooltip="Group Manager" >
-									<span role="button" tabIndex={0}
+									<span role="button" tabIndex={0} aria-label="Group Manager"
 										onClick={this.toggleGroupManager} onKeyPress={this.toggleGroupManager}
 										className="statusbar-group-manager statusbar-icon"
 									>
@@ -435,6 +436,7 @@ class StatusBar extends Component {
 								onClick={preventPropForUsers} onKeyPress={preventPropForUsers}
 								onMouseEnter={this.toggleProgress} onFocus={this.toggleProgress}
 								onMouseOut={this.toggleProgress} onBlur={this.toggleProgress}
+								aria-label="User Progress"
 							>
 								{ session.anonymous ? 'Anonymous' : session.user.name }
 							</div>

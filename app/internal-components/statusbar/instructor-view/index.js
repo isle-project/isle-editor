@@ -188,6 +188,7 @@ class InstructorView extends Component {
 				<Tooltip tooltip={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`} placement="left" >
 					<div className="instructor-view-handler"
 						role="button" tabIndex={0}
+						aria-label={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`}
 						onClick={this.toggleBar} onKeyPress={this.toggleBar}
 						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}

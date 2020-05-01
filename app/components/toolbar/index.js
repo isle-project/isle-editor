@@ -256,6 +256,7 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideCalculator ? 'inherit' : 'none'
 							}}
+							aria-label={`${this.state.calculator ? 'Close' : 'Open'} calculator`}
 						>
 							<span className="fa fa-lg fa-calculator toolbar-icon" />
 						</Button>
@@ -268,6 +269,7 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideQueue ? 'inherit' : 'none'
 							}}
+							aria-label={`${this.state.queue ? 'Close' : 'Open'} help queue`}
 						>
 							<Tooltip tooltip={`${this.state.queue ? 'Close' : 'Open'} help queue`} placement="right" >
 								<span className="fa fa-lg fa-question-circle toolbar-icon" />
@@ -289,6 +291,7 @@ class Toolbar extends Component {
 								ref={div => {
 									this.engagementButton = div;
 								}}
+								aria-label={this.state.engagementInProgress ? 'Finish poll' : 'Open poll menu'}
 							>
 								<span className="fa fa-lg fa-poll-h toolbar-icon" />
 							</Button>
@@ -311,6 +314,7 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideSketchpad ? 'inherit' : 'none'
 							}}
+							aria-label={`${this.state.sketchpad ? 'Close' : 'Open'} sketchpad`}
 						>
 							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
 						</Button>
@@ -321,6 +325,7 @@ class Toolbar extends Component {
 							className="toolbar-button"
 							onClick={this.toggleHelp}
 							onKeyPress={this.toggleHelp}
+							aria-label={`${this.state.help ? 'Close' : 'Open'} documentation`}
 						>
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>

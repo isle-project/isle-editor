@@ -99,6 +99,7 @@ class VideoChatButton extends Component {
 				size={this.props.size}
 				className={this.props.className}
 				style={this.props.style}
+				aria-disabled="true"
 			>
 				{label}
 			</Button> );
@@ -115,6 +116,7 @@ class VideoChatButton extends Component {
 			className={this.props.className}
 			onClick={this.toggleVideoChat}
 			style={this.props.style}
+			aria-label="Toggle Video Chat"
 		>
 			<span style={{ pointerEvents: 'none' }} >
 				{label}

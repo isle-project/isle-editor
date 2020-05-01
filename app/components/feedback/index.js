@@ -141,28 +141,28 @@ class FeedbackButtons extends Component {
 				<ButtonGroup style={{ float: 'right', ...this.props.style }} vertical={this.props.vertical} >
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
-							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
+							<Button aria-label="Confused" variant="light" disabled className="feedback-button-disabled" size="small" >
 								<Confused className="feedback-icon" />
 							</Button>
-							<Button variant="light" disabled className="feedback-button-disabled" size="small" >
+							<Button aria-label="Understood" variant="light" disabled className="feedback-button-disabled" size="small" >
 								<Understood className="feedback-icon" />
 							</Button>
 						</Fragment> :
 						<Fragment>
 							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{this.props.confusedMsg}</strong>}>
-								<Button variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
+								<Button aria-label="Confused" variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
 									<Confused className="feedback-icon" />
 								</Button>
 							</Tooltip>
 							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{this.props.understoodMsg}</strong>} >
-								<Button variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
+								<Button aria-label="Understood" variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
 									<Understood className="feedback-icon" />
 								</Button>
 							</Tooltip>
 						</Fragment>
 					}
 					{ this.props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg}</strong>} >
-						<Button variant="light" className="feedback-button" size="small" onClick={this.openModal}>
+						<Button aria-label="Give custom feedback" variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="feedback-icon" />
 						</Button>
 					</Tooltip> : null }

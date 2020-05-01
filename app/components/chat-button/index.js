@@ -126,6 +126,7 @@ class ChatButton extends Component {
 			size={this.props.size}
 			onClick={this.handleClick}
 			style={this.props.style}
+			aria-label="Toggle Chat"
 		>
 			<span style={{ pointerEvents: 'none' }} >
 				{label}
