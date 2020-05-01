@@ -106,8 +106,12 @@ class Session {
 		// String for distinguishing multiple browser windows from each other:
 		this.sessionID = randomstring( 3 );
 
+		// User object:
+		this.user = {};
+
+		// Authenticate requests:
 		axios.interceptors.request.use( ( config ) => {
-			const token = this.user.token;
+			const token = this.jwt.token;
 			if ( token && startsWith( config.url, this.server ) ) {
 				config.headers.Authorization = `JWT ${token}`;
 			}
@@ -117,10 +121,10 @@ class Session {
 		// If user object is available in local storage, login to server:
 		item = localStorage.getItem( this.userVal );
 		if ( item ) {
-			this.user = JSON.parse( item );
-			this.handleLogin( this.user, true );
+			this.jwt = JSON.parse( item );
+			this.handleLogin( this.jwt, true );
 		} else {
-			this.user = {};
+			this.jwt = {};
 		}
 
 		// Boolean whether lesson is finished:
@@ -1476,13 +1480,13 @@ class Session {
 		.then( response => {
 			const { token, id, message } = response.data;
 
-			this.user = {
+			this.jwt = {
 				token,
 				id
 			};
 
 			// Save user token to local storage:
-			localStorage.setItem( this.userVal, JSON.stringify( this.user ) );
+			localStorage.setItem( this.userVal, JSON.stringify( this.jwt ) );
 			if ( message === 'ok' ) {
 				this.handleLogin({ token, id });
 			}
@@ -1584,6 +1588,7 @@ class Session {
 	* @returns {void}
 	*/
 	handleLogin = ( obj, silent = false ) => {
+		console.log( obj );
 		axios.post( this.server+'/credentials', {
 			id: obj.id
 		})
@@ -1597,10 +1602,7 @@ class Session {
 					position: 'tl'
 				});
 			}
-			this.user = {
-				...this.user,
-				...response.data
-			};
+			this.user = response.data;
 			if ( this.user && this.user.picture ) {
 				this.user.picture = this.server + '/avatar/' + this.user.picture;
 			}
