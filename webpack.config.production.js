@@ -3,7 +3,6 @@
 import webpack from 'webpack';
 import path from 'path';
 import HappyPack from 'happypack';
-import TerserPlugin from 'terser-webpack-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
