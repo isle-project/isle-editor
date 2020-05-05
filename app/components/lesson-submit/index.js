@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isArray from '@stdlib/assert/is-array';
 import round from '@stdlib/math/base/special/round';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'internal-components/signup';
@@ -165,7 +166,25 @@ class LessonSubmit extends Component {
 								image: lastAction.value,
 								width: 500
 							});
-						} else {
+						}
+						else if ( dataType === 'factor' ) {
+							let levels = visualizer.ref.props.data.levels;
+							levels = levels.map( ( x, i ) => {
+								let out = isString( x ) ? x : innerText( x );
+								if ( !out ) {
+									out = `Choice ${i+1}`;
+								}
+								return out;
+							});
+							let text;
+							if ( isArray( lastAction.value ) ) {
+								text = lastAction.value.map( x => levels[ x ] ).join( ', ' );
+							} else {
+								text = levels[ lastAction.value ];
+							}
+							doc.content.push({ text });
+						}
+						else {
 							doc.content.push({
 								text: lastAction.value
 							});
