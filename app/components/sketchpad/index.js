@@ -237,7 +237,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			window.addEventListener( 'resize', this.handleResize );
 		}
-		window.addEventListener( 'beforeunload', this.save );
+		window.addEventListener( 'unload', this.save );
 		let init;
 		if ( this.props.pdf ) {
 			init = this.initializePDF();
@@ -581,7 +581,7 @@ class Sketchpad extends Component {
 		}
 		window.removeEventListener( 'resize', this.handleResize );
 		window.removeEventListener( 'hashchange', this.handleHashChange );
-		window.removeEventListener( 'beforeunload', this.save );
+		window.removeEventListener( 'unload', this.save );
 		const opts = {
 			passive: false
 		};

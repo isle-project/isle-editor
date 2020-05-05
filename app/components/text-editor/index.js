@@ -359,7 +359,7 @@ class TextEditor extends Component {
 				}
 			}
 		});
-		window.addEventListener( 'beforeunload', this.saveInBrowser );
+		window.addEventListener( 'unload', this.saveInBrowser );
 	}
 
 	componentWillUnmount() {
@@ -369,7 +369,7 @@ class TextEditor extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
-		window.removeEventListener( 'beforeunload', this.saveInBrowser );
+		window.removeEventListener( 'unload', this.saveInBrowser );
 	}
 
 	saveInBrowser = () => {
