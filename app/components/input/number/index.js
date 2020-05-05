@@ -22,7 +22,7 @@ const debug = logger( 'isle:number-input' );
 
 // FUNCTIONS //
 
-function createTooltip( props ) {
+export function createTooltip( props ) {
 	let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
 	if ( props.max !== PINF && props.min !== NINF ) {
 		tooltip += `between ${props.min} and ${props.max}`;
@@ -50,6 +50,7 @@ function createTooltip( props ) {
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
+* @property {string} tooltip - tooltip string (if not set, the tooltip is automatically generated)
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {Object} style - CSS inline styles
 * @property {Object} inputStyle - CSS inline styles for input element
@@ -68,7 +69,7 @@ class NumberInput extends Input {
 			value: props.value || (props.bind && session.state ?
 				session.state[ props.bind ]:
 				props.defaultValue),
-			tooltip: createTooltip( props ),
+			tooltip: props.tooltip || createTooltip( props ),
 			prevProps: props
 		};
 	}
@@ -83,7 +84,10 @@ class NumberInput extends Input {
 			newState.value = global.lesson.state[ nextProps.bind ];
 		}
 		if ( nextProps.min !== prevProps.min || nextProps.max !== prevProps.max ) {
-			newState.tooltip = createTooltip( nextProps );
+			newState.tooltip = nextProps.tooltip || createTooltip( nextProps );
+		}
+		else if ( nextProps.tooltip && nextProps.tooltip !== prevState.tooltip ) {
+			newState.tooltip = nextProps.tooltip;
 		}
 		if ( !isEmptyObject( newState ) ) {
 			debug( 'Created new state from props...' );
@@ -292,6 +296,7 @@ NumberInput.defaultProps = {
 	style: {},
 	inputStyle: {},
 	value: null,
+	tooltip: null,
 	tooltipPlacement: 'right'
 };
 
@@ -319,6 +324,7 @@ NumberInput.propTypes = {
 	style: PropTypes.object,
 	inputStyle: PropTypes.object,
 	value: PropTypes.number,
+	tooltip: PropTypes.string,
 	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
 };
 

@@ -13,7 +13,7 @@ import generateUID from 'utils/uid';
 import TimedButton from 'components/timed-button';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
-import NumberInput from 'components/input/number';
+import NumberInput, { createTooltip } from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
@@ -196,6 +196,7 @@ class NumberQuestion extends Component {
 							width={90}
 							numbersOnly={false}
 							onKeyPress={this.handleKeyPress}
+							tooltip={createTooltip( this.props )}
 						/>
 						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 							<span>
@@ -206,6 +207,7 @@ class NumberQuestion extends Component {
 									defaultValue={this.props.solution}
 									inline
 									width={90}
+									tooltip={createTooltip( this.props )}
 								/>
 							</span>:
 							null
