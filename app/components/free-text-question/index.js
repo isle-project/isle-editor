@@ -22,6 +22,7 @@ import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 import getLastAction from 'utils/get-last-action';
+import beforeUnload from 'utils/before-unload';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -125,6 +126,10 @@ class FreeTextQuestion extends Component {
 		this.setState({
 			value: newValue
 		});
+		if ( !this.beforeUnload ) {
+			window.addEventListener( 'beforeunload', beforeUnload );
+			this.beforeUnload = true;
+		}
 		this.props.onChange( newValue );
 	};
 
@@ -166,6 +171,8 @@ class FreeTextQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
+		window.removeEventListener( 'beforeunload', beforeUnload );
+		this.beforeUnload = false;
 		session.log({
 			id: this.id,
 			type: FREE_TEXT_QUESTION_SUBMIT_ANSWER,
