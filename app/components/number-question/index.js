@@ -9,6 +9,8 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import isNumber from '@stdlib/assert/is-number';
+import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
 import TimedButton from 'components/timed-button';
 import ChatButton from 'components/chat-button';
@@ -17,6 +19,8 @@ import NumberInput, { createTooltip } from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import getLastAction from 'utils/get-last-action';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './number-question.css';
 
@@ -54,15 +58,17 @@ class NumberQuestion extends Component {
 	*
 	* @param {Object} props
 	*/
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
 		this.id = props.id || uid( props );
+		const currentUserActions = context.currentUserActions;
+		const value = getLastAction( currentUserActions, this.id, NUMBER_QUESTION_SUBMISSION );
 
 		// Initialize state variables...
 		this.state = {
-			value: props.defaultValue,
-			submitted: false,
+			value: isNumber( value ) ? value : props.defaultValue,
+			submitted: value && isUndefinedOrNull( props.solution ),
 			...props
 		};
 	}
@@ -80,6 +86,35 @@ class NumberQuestion extends Component {
 			};
 		}
 		return null;
+	}
+
+	componentDidMount() {
+		const session = this.context;
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, val ) => {
+				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
+					let actions = val[ this.id ];
+					if ( isArray( actions ) ) {
+						actions = actions.filter( action => {
+							return action.type === NUMBER_QUESTION_SUBMISSION;
+						});
+						if ( actions.length > 0 ) {
+							const lastAction = actions[ 0 ].value;
+							this.setState({
+								value: lastAction,
+								submitted: isUndefinedOrNull( this.props.solution )
+							});
+						}
+					}
+				}
+			});
+		}
+	}
+
+	componentWillUnmount() {
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	/*
