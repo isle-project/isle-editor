@@ -18,6 +18,7 @@ import VoiceControl from 'internal-components/voice-control';
 import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
 import generateUID from 'utils/uid';
+import getLastAction from 'utils/get-last-action';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION } from 'constants/actions.js';
 import { FOCUS_ELEMENT, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -67,29 +68,31 @@ const hasExplanations = ( answers ) => {
 * @property {Function} onSubmit - callback invoked after an answer is submitted
 */
 class MultipleChoiceQuestion extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
 		this.id = props.id || uid( props );
+		const currentUserActions = context.currentUserActions;
 
+		const value = getLastAction( currentUserActions, this.id, MULTIPLE_CHOICE_SUBMISSION );
+		this.state = {
+			correct: new Array( props.answers.length ),
+			answerSelected: false,
+			question: props.question
+		};
 		if ( props.displaySolution ) {
-			this.state = {
-				submitted: true,
-				active: this.props.solution,
-				correct: new Array( props.answers.length ),
-				answerSelected: false
-			};
-		} else {
-			let active = isArray( this.props.solution ) ?
+			this.state.submitted = true;
+			this.state.active = this.props.solution;
+		}
+		else if ( isArray( value ) || isNumber( value ) ) {
+			this.state.active = value;
+			this.state.submitted = true;
+		}
+		else {
+			this.state.active = isArray( this.props.solution ) ?
 				new Array( props.answers.length ) :
 				null;
-			this.state = {
-				submitted: false,
-				active,
-				correct: new Array( props.answers.length ),
-				answerSelected: false,
-				question: props.question
-			};
+			this.state.submitted = false;
 		}
 	}
 
@@ -119,7 +122,8 @@ class MultipleChoiceQuestion extends Component {
 						if ( actions.length > 0 ) {
 							const lastAction = actions[ 0 ].value;
 							this.setState({
-								active: lastAction
+								active: lastAction,
+								submitted: this.props.provideFeedback === 'none'
 							});
 						}
 					}

@@ -10,8 +10,6 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
 import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
-import isArray from '@stdlib/assert/is-array';
-import isObject from '@stdlib/assert/is-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from 'utils/uid';
 import ChatButton from 'components/chat-button';
@@ -23,6 +21,7 @@ import VoiceControl from 'internal-components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import getLastAction from 'utils/get-last-action';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -72,7 +71,7 @@ class FreeTextQuestion extends Component {
 
 		const actions = context.currentUserActions;
 		this.id = props.id || uid( props );
-		const value = this.getLastAction( actions, this.id );
+		const value = getLastAction( actions, this.id, FREE_TEXT_QUESTION_SUBMIT_ANSWER );
 
 		// Initialize state variables...
 		this.state = {
@@ -195,25 +194,10 @@ class FreeTextQuestion extends Component {
 		}
 	}
 
-	getLastAction = ( val, id ) => {
-		if ( isObject( val ) ) {
-			let actions = val[ id ];
-			if ( isArray( actions ) ) {
-				actions = actions.filter( action => {
-					return action.type === FREE_TEXT_QUESTION_SUBMIT_ANSWER;
-				});
-				if ( actions.length > 0 ) {
-					return actions[ 0 ].value;
-				}
-			}
-		}
-		return null;
-	}
-
 	setToLastAction() {
 		const session = this.context;
 		const actions = session.currentUserActions;
-		const value = this.getLastAction( actions, this.id );
+		const value = getLastAction( actions, this.id, FREE_TEXT_QUESTION_SUBMIT_ANSWER );
 		if ( isString( value ) && value !== this.state.value ) {
 			this.setState({
 				value: value,
