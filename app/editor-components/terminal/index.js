@@ -38,7 +38,7 @@ class TerminalWrapper extends Component {
 			cursorStyle: 'block',
 			windowsMode: IS_WINDOWS,
 			theme: {
-				background: '#fffff8',
+				background: 'white',
 				foreground: 'darkslategrey',
 				black: '#000000',
 				blue: '#0a2fc4',

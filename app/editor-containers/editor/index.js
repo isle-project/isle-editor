@@ -233,7 +233,16 @@ class App extends Component {
 				}
 				<SplitPane
 					split="horizontal"
-					style={{ marginTop: 88, background: '#fffff8' }}
+					style={{
+						marginTop: hideToolbar ? 0 : 88
+					}}
+					pane1Style={{
+						background: 'white',
+						zIndex: 2
+					}}
+					resizerStyle={{
+						zIndex: 10
+					}}
 					onChange={this.handleHorizontalSplit}
 					minSize={0}
 				>
