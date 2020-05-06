@@ -262,7 +262,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.9.0",
     "eslint-plugin-react-hooks": "^4.0.0",
-    "eslint-plugin-spellcheck": "0.0.14",
+    "eslint-plugin-spellcheck": "0.0.16",
     "gh-pages": "^2.1.1",
     "happypack": "^5.0.1",
     "hard-source-webpack-plugin": "^0.13.1",
