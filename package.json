@@ -212,7 +212,7 @@
     "react-joyride": "2.2.1",
     "react-json-tree": "^0.11.2",
     "react-live": "^2.2.2",
-    "react-notification-system": "^0.3.0",
+    "react-notification-system": "^0.4.0",
     "react-plotly.js": "^2.3.0",
     "react-portal": "^4.2.1",
     "react-redux": "7.2.0",
