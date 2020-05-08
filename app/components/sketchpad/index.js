@@ -255,8 +255,7 @@ class Sketchpad extends Component {
 			});
 		});
 		Pressure.set( '.sketch-canvas', {
-			change: ( force, event ) => {
-				debug( 'Changed pen pressure: '+force );
+			change: ( force ) => {
 				this.force = force;
 			}
 		});
@@ -2657,7 +2656,8 @@ class Sketchpad extends Component {
 						position: 'relative',
 						marginBottom: this.props.fullscreen ? '0px' : '20px',
 						marginLeft: 'auto',
-						marginRight: 'auto'
+						marginRight: 'auto',
+						overflowX: 'none'
 					}}
 					tabIndex="0"
 				>
