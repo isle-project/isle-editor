@@ -4,7 +4,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "1.51.1"
+		"version": "1.54.1"
 	},
 	{
 		"name": "katex",
@@ -55,14 +55,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "34.1.2"
+		"version": "34.2.0"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.62"
+		"version": "0.1.65"
 	},
 	{
 		"name": "localforage",
@@ -77,7 +77,7 @@
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "1.15.2"
+		"version": "2.0.1"
 	},
 	{
 		"name": "react-draggable",
@@ -117,7 +117,7 @@
 		"var": "ReactNotificationSystem",
 		"path": "dist/react-notification-system.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "0.3.0"
+		"version": "0.4.0"
 	},
 	{
 		"name": "d3",
@@ -125,6 +125,6 @@
 		"var": "d3",
 		"path": "dist/d3.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "5.15.0"
+		"version": "5.16.0"
 	}
 ]
