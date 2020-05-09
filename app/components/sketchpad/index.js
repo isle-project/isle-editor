@@ -526,13 +526,15 @@ class Sketchpad extends Component {
 			this.saveInterval = setInterval( this.save, this.props.intervalTime );
 		}
 
-		// Prevent scrolling when touching the canvas on iOS
-		const opts = {
-			passive: false
-		};
-		document.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
-		document.addEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		// Prevent scrolling when touching the canvas on iOS in fullscreen mode:
+		if ( this.props.fullscreen ) {
+			const opts = {
+				passive: false
+			};
+			document.addEventListener( 'touchstart', this.preventDefaultTouch, opts );
+			document.addEventListener( 'touchend', this.preventDefaultTouch, opts );
+			document.addEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		}
 		document.addEventListener( 'visibilitychange', this.handleVisibilityChange );
 
 		if ( this.props.fullscreen ) {
@@ -581,12 +583,14 @@ class Sketchpad extends Component {
 		window.removeEventListener( 'resize', this.handleResize );
 		window.removeEventListener( 'hashchange', this.handleHashChange );
 		window.removeEventListener( 'unload', this.save );
-		const opts = {
-			passive: false
-		};
-		document.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
-		document.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
-		document.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		if ( this.props.fullscreen ) {
+			const opts = {
+				passive: false
+			};
+			document.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
+			document.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
+			document.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
+		}
 		document.removeEventListener( 'visibilitychange', this.handleVisibilityChange, opts );
 		if ( this.props.fullscreen ) {
 			document.removeEventListener( 'gesturestart', preventGesture );
@@ -696,8 +700,9 @@ class Sketchpad extends Component {
 
 	preventDefaultTouch = ( e ) => {
 		if (
-			this.props.fullscreen &&
-			( e.target === this.canvas || e.target === this.textLayer || e.target === this.canvasWrapper )
+			e.target === this.canvas ||
+			e.target === this.textLayer ||
+			e.target === this.canvasWrapper
 		) {
 			e.preventDefault();
 		}
