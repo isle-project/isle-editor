@@ -522,7 +522,11 @@ function writeIndexFile({
 				},
 				minify: false
 			}),
-			new PreloadWebpackPlugin({}),
+			new PreloadWebpackPlugin({
+				rel: 'preload',
+				include: 'allAssets',
+				fileBlacklist: [ /\.map/, /\.js/ ]
+			}),
 			new WebpackCdnPlugin({
 				prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
 				modules: CDN_MODULES
