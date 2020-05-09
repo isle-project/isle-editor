@@ -4,7 +4,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import pdfjs from 'pdfjs-dist/webpack';
+import pdfjsLib from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
@@ -770,7 +770,7 @@ class Sketchpad extends Component {
 			};
 
 			page.getTextContent().then( textContent => {
-				pdfjs.renderTextLayer({
+				pdfjsLib.renderTextLayer({
 					textContent,
 					container: textLayer,
 					viewport,
@@ -1682,6 +1682,7 @@ class Sketchpad extends Component {
 			const { x, y } = this.mousePosition( event );
 			const input = this.textInput;
 			input.style.left = String( x + this.leftMargin ) + 'px';
+			input.style.width = String( window.innerWidth - ( x + this.leftMargin ) ) + 'px';
 			input.style.top = y + 'px';
 			const width = max( this.state.canvasWidth - x, 60 );
 			debug( `Resize to width ${width}...` );
@@ -1943,7 +1944,7 @@ class Sketchpad extends Component {
 		reader.onload = () => {
 			let pdfData = reader.result;
 			pdfData = new Uint8Array( pdfData );
-			const loadingTask = pdfjs.getDocument({
+			const loadingTask = pdfjsLib.getDocument({
 				data: pdfData,
 				disableFontFace: false
 			});
@@ -2656,8 +2657,7 @@ class Sketchpad extends Component {
 						position: 'relative',
 						marginBottom: this.props.fullscreen ? '0px' : '20px',
 						marginLeft: 'auto',
-						marginRight: 'auto',
-						overflowX: 'none'
+						marginRight: 'auto'
 					}}
 					tabIndex="0"
 				>
