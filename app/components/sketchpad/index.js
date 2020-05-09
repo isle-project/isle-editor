@@ -583,10 +583,10 @@ class Sketchpad extends Component {
 		window.removeEventListener( 'resize', this.handleResize );
 		window.removeEventListener( 'hashchange', this.handleHashChange );
 		window.removeEventListener( 'unload', this.save );
+		const opts = {
+			passive: false
+		};
 		if ( this.props.fullscreen ) {
-			const opts = {
-				passive: false
-			};
 			document.removeEventListener( 'touchstart', this.preventDefaultTouch, opts );
 			document.removeEventListener( 'touchend', this.preventDefaultTouch, opts );
 			document.removeEventListener( 'touchmove', this.preventDefaultTouch, opts );
