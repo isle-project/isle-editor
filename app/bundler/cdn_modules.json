@@ -1,5 +1,11 @@
 [
 	{
+		"name": "axios",
+		"alias": "axios",
+		"var": "axios",
+		"path": "axios.min.js"
+	},
+	{
 		"name": "katex",
 		"alias": "KaTeX",
 		"var": "katex",
