@@ -7,6 +7,7 @@ import jsyaml from 'js-yaml';
 import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import PreloadWebpackPlugin from 'preload-webpack-plugin';
 import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
@@ -521,6 +522,7 @@ function writeIndexFile({
 				},
 				minify: false
 			}),
+			new PreloadWebpackPlugin({}),
 			new WebpackCdnPlugin({
 				prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
 				modules: CDN_MODULES
