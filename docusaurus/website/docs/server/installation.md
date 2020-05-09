@@ -169,6 +169,35 @@ Finally, restart [nginx][nginx].
 $ sudo service nginx restart
 ```
 
+## Serving Compressed Files
+
+To reduce the amount of data sent over the wire, we enable the lossless brotli compression algorithm, a successor to gzip. The latter is newer and not supported in [nginx][nginx] by default. To install brotli, run the following:
+
+```bash
+$ sudo apt-add-repository -y ppa:hda-me/nginx-stable
+$ sudo apt-get update
+$ sudo apt-get install brotli nginx nginx-module-brotli
+```
+
+To enable the Brotli module, we uncomment the following commands in `/etc/nginx/nginx.conf`:
+
+```
+    # ngx_brotli filter module - used to compress responses on-the-fly.
+    load_module modules/ngx_http_brotli_filter_module.so;
+    # ngx_brotli static module - used to serve pre-compressed files.
+    # Both modules could be used separately
+    load_module modules/ngx_http_brotli_static_module.so;
+```
+
+We can then add Brotli compression by adding the following:
+
+```
+brotli on;
+brotli_static on;
+brotli_comp_level 11;
+brotli_types text/plain text/css text/javascript application/javascript text/xml application/xml image/svg+xml application/json;
+```
+
 ## Start the ISLE server program
 
 Navigate again into the isle-server directory. To start the server program in the background, we advise to use a program like [pm2][pm2] to ensure that the process runs continuously. As `sudo`, install it with the command
