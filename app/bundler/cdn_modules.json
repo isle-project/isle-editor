@@ -68,7 +68,7 @@
 		"name": "react-table",
 		"alias": "react-table",
 		"var": "ReactTable",
-		"path": "react-table.js"
+		"path": "react-table.min.js"
 	},
 	{
 		"name": "markdown-it",
