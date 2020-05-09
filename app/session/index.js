@@ -1531,7 +1531,6 @@ class Session {
 				});
 			})
 			.catch( ( error ) => {
-				console.log( error.response );
 				this.addNotification({
 					title: 'New Password',
 					message: error.message,
@@ -1588,7 +1587,6 @@ class Session {
 	* @returns {void}
 	*/
 	handleLogin = ( obj, silent = false ) => {
-		console.log( obj );
 		axios.post( this.server+'/credentials', {
 			id: obj.id
 		})
