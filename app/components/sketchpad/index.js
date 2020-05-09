@@ -1960,7 +1960,7 @@ class Sketchpad extends Component {
 	initializePDF = () => {
 		debug( `Initialize PDF document at ${this.props.pdf}...` );
 		return new Promise( ( resolve, reject ) => {
-			const loadingTask = pdfjs.getDocument({
+			const loadingTask = pdfjsLib.getDocument({
 				url: this.props.pdf,
 				disableFontFace: false
 			});
