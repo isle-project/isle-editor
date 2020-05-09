@@ -28,6 +28,14 @@ const NOTIFICATION_STYLE = {
 			border: 'solid 8px #007bff',
 			borderRadius: 6,
 			padding: 20
+		},
+		success: {
+			boxShadow: '1px 1px 3px 1px darkslategrey'
+		}
+	},
+	Title: {
+		success: {
+			color: '#3c763d'
 		}
 	}
 };
