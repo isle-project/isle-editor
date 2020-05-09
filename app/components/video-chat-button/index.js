@@ -95,11 +95,13 @@ class VideoChatButton extends Component {
 		if ( !session.jitsi ) {
 			return ( <Button
 				disabled
+				name="Video Chat"
 				variant={variant}
 				size={this.props.size}
 				className={this.props.className}
 				style={this.props.style}
 				aria-disabled="true"
+				aria-label="Disabled Video Chat"
 			>
 				{label}
 			</Button> );
@@ -111,6 +113,7 @@ class VideoChatButton extends Component {
 			tooltip = `${this.state.opened ? 'Leave' : 'Join'} video chat with ID ${this.props.for}`;
 		}
 		let button = <Button
+			name="Video Chat"
 			variant={variant}
 			size={this.props.size}
 			className={this.props.className}

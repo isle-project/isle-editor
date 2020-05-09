@@ -401,7 +401,11 @@ class Toolbar extends Component {
 									{elem.props.children}
 								</elem.type>
 							</div>
-							<button className="toolbar-hide-button fa fa-times" onClick={toggleElement} />
+							<button
+								name={elem.props.name}
+								className="toolbar-hide-button fa fa-times"
+								onClick={toggleElement}
+							/>
 						</div>
 					</Draggable> : null;
 				})}
