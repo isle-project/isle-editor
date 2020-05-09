@@ -1,6 +1,5 @@
 // MODULES //
 
-import webpack from 'webpack';
 import { join, resolve } from 'path';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 

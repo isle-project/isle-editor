@@ -75,6 +75,11 @@ const config = {
 	plugins: [
 		...baseConfig.plugins,
 		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: '"production"'
+			}
+		}),
 		new HardSourceWebpackPlugin(),
 		new HappyPack({
 			loaders: [{
