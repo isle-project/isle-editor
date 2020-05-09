@@ -181,8 +181,7 @@ export default {
 				'wordPartOperations'
 			],
 			languages: [ 'javascript', 'typescript' ]
-		}),
-		new webpack.IgnorePlugin( /vertx/ )
+		})
 	],
 	externals: EXTERNALS
 };

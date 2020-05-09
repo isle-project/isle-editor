@@ -533,8 +533,7 @@ function writeIndexFile({
 				'process.env': {
 					NODE_ENV: '"production"'
 				}
-			}),
-			new webpack.IgnorePlugin( /vertx/ )
+			})
 		]
 	};
 
