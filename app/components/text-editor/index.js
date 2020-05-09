@@ -27,7 +27,6 @@ const TableSelect = Loadable( () => import( './table_select.js' ) );
 const Guides = Loadable( () => import( './guides' ) );
 const PDFModal = Loadable( () => import( './pdf_modal.js' ) );
 import UserPairer from 'components/user-pairer';
-import loadFonts from 'utils/load-fonts';
 import menu from './config/menu';
 import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
@@ -41,6 +40,7 @@ import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_e
 import generatePDF from './generate_pdf.js';
 import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
+import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
 
 
@@ -314,7 +314,6 @@ class TextEditor extends Component {
 				content: icon
 			});
 		}
-		loadFonts();
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {

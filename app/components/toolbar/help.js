@@ -10,11 +10,11 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Text from 'components/text';
-import loadFonts from 'utils/load-fonts';
 import DataExplorerHelp from './help/data_explorer.js';
 import DataTableHelp from './help/data_table.js';
 import STATUSBAR_HELP from './help/statusbar.js';
 import QuestionsHelp from './help/questions.js';
+import 'pdfmake/build/vfs_fonts.js';
 
 
 // VARIABLES //
@@ -39,7 +39,6 @@ function getDataUrl( img ) {
 class HelpPage extends Component {
 	constructor( props ) {
 		super( props );
-		loadFonts();
 		this.hasQuestions = document.getElementsByClassName( 'submit-button' ).length > 0;
 		this.hasDataTable = document.getElementsByClassName( 'data-table-wrapper' ).length > 0;
 		this.hasDataExplorer = document.getElementsByClassName( 'data-explorer' ).length > 0;

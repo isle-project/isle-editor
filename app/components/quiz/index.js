@@ -28,9 +28,9 @@ import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import generateUID from 'utils/uid';
-import loadFonts from 'utils/load-fonts';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
+import 'pdfmake/build/vfs_fonts.js';
 import './quiz.css';
 
 
@@ -141,7 +141,6 @@ class Quiz extends Component {
 			questions: [],
 			questionIDs: []
 		};
-		loadFonts();
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
