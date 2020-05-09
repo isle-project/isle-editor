@@ -1,17 +1,37 @@
 [
 	{
-		"name": "plotly.js",
-		"alias": "plotly.js",
-		"var": "Plotly",
-		"path": "plotly.min.js",
-		"version": "1.54.1"
-	},
-	{
 		"name": "katex",
 		"alias": "KaTeX",
 		"var": "katex",
 		"path": "katex.min.js",
 		"version": "0.11.1"
+	},
+	{
+		"name": "pdfjs-dist/webpack",
+		"alias": "pdf.js",
+		"var": "pdfjsLib",
+		"path": "pdf.min.js",
+		"version": "2.4.456"
+	},
+	{
+		"name": "plotly.js",
+		"alias": "plotly.js",
+		"var": "Plotly",
+		"path": "plotly.min.js",
+		"version": "1.51.1"
+	},
+	{
+		"name": "lodash",
+		"alias": "lodash.js",
+		"path": "lodash.min.js",
+		"version": "4.17.15"
+	},
+	{
+		"name": "js-yaml",
+		"alias": "js-yaml",
+		"var": "jsyaml",
+		"path": "js-yaml.min.js",
+		"version": "3.13.1"
 	},
 	{
 		"name": "moment",
@@ -62,7 +82,14 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.65"
+		"version": "0.1.62"
+	},
+	{
+		"name": "pdfmake/build/vfs_fonts.js",
+		"alias": "pdfmake",
+		"var": "pdfMake",
+		"path": "vfs_fonts.js",
+		"version": "0.1.62"
 	},
 	{
 		"name": "localforage",
