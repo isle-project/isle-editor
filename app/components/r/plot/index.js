@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import yaml from 'js-yaml';
+import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
 import isNull from '@stdlib/assert/is-null';
 import createPrependCode from 'components/r/utils/create-prepend-code';
@@ -88,7 +88,7 @@ class RPlot extends Component {
 						meta = omitBy( meta, ( _, value ) => {
 							return isNull( value );
 						});
-						meta = yaml.safeDump( meta );
+						meta = jsyaml.safeDump( meta );
 						img = `<img src="${this.state.plot}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
 					}
 					ev.dataTransfer.setData( 'text/html', img );

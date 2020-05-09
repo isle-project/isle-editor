@@ -3,7 +3,7 @@
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { copy, removeSync } from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
-import yaml from 'js-yaml';
+import jsyaml from 'js-yaml';
 import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -319,7 +319,7 @@ function writeIndexFile({
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
 	let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
 	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
-	const meta = yaml.load( yamlStr );
+	const meta = jsyaml.load( yamlStr );
 	if ( isArray( meta.author ) ) {
 		meta.author = meta.author.join( ', ' );
 	}

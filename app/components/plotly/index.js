@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
-import yaml from 'js-yaml';
+import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
 import isNull from '@stdlib/assert/is-null';
 import isUndefined from '@stdlib/assert/is-undefined';
@@ -192,7 +192,7 @@ class Wrapper extends Component {
 					meta = omitBy( meta, ( _, value ) => {
 						return isNull( value );
 					});
-					meta = yaml.safeDump( meta );
+					meta = jsyaml.safeDump( meta );
 					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
 				}
 				this.plotData = value;

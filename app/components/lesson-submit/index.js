@@ -16,9 +16,9 @@ import beforeUnload from 'utils/before-unload';
 import Signup from 'internal-components/signup';
 import Login from 'internal-components/login';
 import SessionContext from 'session/context.js';
-import loadFonts from 'utils/load-fonts';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import { LESSON_SUBMIT } from 'constants/actions.js';
+import 'pdfmake/build/vfs_fonts.js';
 
 
 // VARIABLES //
@@ -58,7 +58,6 @@ class LessonSubmit extends Component {
 			visibleLogin: false,
 			visibleSignup: false
 		};
-		loadFonts();
 	}
 
 	componentDidMount() {
