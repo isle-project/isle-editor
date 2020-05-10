@@ -185,9 +185,10 @@ class SurveyGenerator extends Component {
 			body = <Gate owner banner={<h3>The survey has not been started yet.</h3>}>
 				<FormGroup>
 					<Row>
-						<Col md={3}><FormLabel>Type:</FormLabel></Col>
+						<Col md={3}><FormLabel htmlFor="survey-select-input" >Type:</FormLabel></Col>
 						<Col md={9}>
 							<SelectInput
+								id="survey-select-input"
 								defaultValue={this.state.type}
 								options={[ 'multiple-choice', 'number', 'free-text' ]}
 								onChange={this.setType}
@@ -208,7 +209,9 @@ class SurveyGenerator extends Component {
 					</FormGroup> : null
 				}
 				<CheckboxInput
-					legend="Make the survey anonymous"
+					tooltip="Choose whether survey data should be collected anonymously or not"
+					tooltipPlacement="top"
+					legend="Anonymous survey"
 					defaultValue={true}
 					onChange={this.toggleAnonymous}
 				/>

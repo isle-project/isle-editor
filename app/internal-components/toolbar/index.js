@@ -183,6 +183,7 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
+						aria-label="Yes / No Poll"
 					>
 						<span className="fa fa-lg fa-check toolbar-icon" />
 					</Button>
@@ -199,6 +200,7 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
+						aria-label="Too Slow / Too Fast Poll"
 					>
 						<span className="fa fa-lg fa-tachometer-alt toolbar-icon" />
 					</Button>
@@ -215,6 +217,7 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
+						aria-label="Like / Dislike Poll"
 					>
 						<span className="fa fa-lg fa-thumbs-up toolbar-icon" />
 					</Button>
@@ -231,6 +234,7 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
+						aria-label="Survey"
 					>
 						<span className="fa fa-lg fa-poll toolbar-icon" />
 					</Button>
