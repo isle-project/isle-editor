@@ -2,6 +2,8 @@
 
 const preamble = `title: Lesson
 author: John Doe
+description:
+keywords:
 date: <today>
 language: en-US
 state:
