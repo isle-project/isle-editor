@@ -542,6 +542,7 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'random' });
 							}
 						}}
+						aria-label="Random assignment"
 					>
 						<span className="fa fa-dice" />
 					</Button>
@@ -555,6 +556,7 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'progress' });
 							}
 						}}
+						aria-label="Match by progress"
 					>
 						<span className="fa fa-trophy" />
 					</Button>
@@ -569,6 +571,7 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'answers' });
 							}
 						}}
+						aria-label="Match by answers"
 					>
 						<span className="fa fa-poll" />
 					</Button>

@@ -314,17 +314,26 @@ class Chat extends Component {
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
 						{ chat.canLeave ? <Tooltip tooltip="Close (Esc)" placement="bottom" >
-							<button className="chat-header-button" onClick={this.closeChat} >
+							<button
+								className="chat-header-button" onClick={this.closeChat}
+								aria-label="Close (Esc)"
+							>
 								<i className="fas fa-times"></i>
 							</button>
 						</Tooltip> : null }
 						<Tooltip tooltip={this.state.maximized ? 'Shrink' : 'Enlarge'} placement="bottom" >
-							<button className="chat-header-button" onClick={this.toggleMaximize} >
+							<button
+								className="chat-header-button" onClick={this.toggleMaximize}
+								aria-label={this.state.maximized ? 'Shrink' : 'Enlarge'}
+							>
 								<i className="far fa-window-maximize" ></i>
 							</button>
 						</Tooltip>
 						<Tooltip tooltip={this.state.opened ? 'Minimize' : 'Maximize'} placement="left" >
-							<button className="chat-header-button" onClick={this.toggleChat} >
+							<button
+								className="chat-header-button" onClick={this.toggleChat}
+								aria-label={this.state.opened ? 'Minimize' : 'Maximize'}
+							>
 								<i className="far fa-window-minimize"></i>
 							</button>
 						</Tooltip>

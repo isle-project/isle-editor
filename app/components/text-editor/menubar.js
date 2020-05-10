@@ -34,6 +34,7 @@ const Button = ( props ) => {
 				}}
 				disabled={true}
 				className="menu-item"
+				aria-label={props.title}
 			>{props.children}</button>
 		);
 	}
@@ -45,6 +46,7 @@ const Button = ( props ) => {
 					color: props.active ? 'black' : '#777'
 				}}
 				className="menu-item"
+				aria-label={props.title}
 			>{props.children}</button>
 		</Tooltip>
 	);
@@ -114,6 +116,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 					title=""
 					variant="outline-secondary"
 					size="sm" style={{ display: 'inline-block', marginRight: 4 }}
+					aria-label="Headers"
 				>
 					{renderMenuGroupButtons( menu.headers )}
 				</DropdownButton>
@@ -152,6 +155,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 						title={icons.insert}
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
+						name="Insert"
 					>
 						{menu.insert.map( createDropdownButtons )}
 					</DropdownButton>
@@ -163,6 +167,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 						title={icons.table}
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
+						name="Table"
 					>
 						{menu.tableEdits.map( createDropdownButtons )}
 					</DropdownButton>

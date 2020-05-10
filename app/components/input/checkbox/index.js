@@ -90,10 +90,11 @@ class CheckboxInput extends Input {
 			value="checkbox"
 			onChange={this.handleChange}
 			disabled={this.props.disabled}
+			aria-label={this.props.tooltip}
 		></input>;
 		if ( this.props.inline === true ) {
 			return (
-				<Tooltip tooltip={this.props.tooltip}>
+				<Tooltip tooltip={this.props.tooltip} placement={this.props.tooltipPlacement} >
 					<span style={{ marginLeft: '8px', ...this.props.style }}>
 						{input}
 						<span
@@ -110,7 +111,7 @@ class CheckboxInput extends Input {
 		}
 		const onChange = this.props.disabled ? noop : this.handleChange;
 		return (
-			<Tooltip tooltip={this.props.tooltip}>
+			<Tooltip tooltip={this.props.tooltip} placement={this.props.tooltipPlacement} >
 				<div className="input checkbox-input-div" style={this.props.style}>
 					{input}
 					<span
@@ -137,6 +138,8 @@ CheckboxInput.defaultProps = {
 	disabled: false,
 	inline: false,
 	legend: '',
+	tooltip: '',
+	tooltipPlacement: 'right',
 	style: {}
 };
 
@@ -150,6 +153,8 @@ CheckboxInput.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	tooltip: PropTypes.string,
+	tooltipPlacement: PropTypes.oneOf([ 'left', 'top', 'right', 'bottom' ]),
 	style: PropTypes.object
 };
 

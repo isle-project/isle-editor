@@ -334,7 +334,7 @@ class Wrapper extends Component {
 					right: -12,
 					top: -12,
 					zIndex: 2
-				}}>
+				}} aria-label="Save Word Cloud" >
 					<div className="fa fa-save" />
 				</Button>
 			</Tooltip> : null }
