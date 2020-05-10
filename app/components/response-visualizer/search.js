@@ -77,12 +77,15 @@ class Search extends Component {
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
 					<Checkbox
+						tooltip="Whether to search for whole words"
+						tooltipPlacement="top"
 						size="small" inline
 						legend="Whole Word"
 						style={{ fontSize: '0.9rem' }}
 						onChange={( value ) => this.setState({ exact: value }, this.handleSubmit )}
 					/>
 					<Checkbox
+						tooltip="Toggle sensitivity" tooltipPlacement="top"
 						size="small" inline
 						legend="Case-sensitive"
 						style={{ fontSize: '0.9rem' }}

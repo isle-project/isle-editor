@@ -349,6 +349,8 @@ class FullscreenActionDisplay extends Component {
 					}}
 				/>
 				<Checkbox
+					tooltip="Whether to remove words in question prompt from word cloud"
+					tooltipPlacement="top"
 					size="small" inline legend="Remove question words"
 					defaultValue={this.state.removeQuestionWords}
 					onChange={( value ) => {
@@ -608,6 +610,7 @@ class FullscreenActionDisplay extends Component {
 					variant="outline-secondary"
 					size="sm"
 					onClick={this.showModalFactory({ ...elem, value: value })}
+					aria-label="Fullscreen View"
 				>
 					<span className="fa fa-search-plus" />
 				</Button>
@@ -616,6 +619,7 @@ class FullscreenActionDisplay extends Component {
 						variant="outline-danger"
 						size="sm"
 						onClick={this.props.deleteFactory( index )}
+						aria-label="Delete"
 					>
 						<span className="fa fa-trash" />
 					</Button> :

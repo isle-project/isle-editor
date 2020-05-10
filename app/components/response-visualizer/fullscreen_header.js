@@ -12,6 +12,7 @@ const FullscreenHeader = ( props ) => {
 	let select = null;
 	if ( isArray( props.cohorts ) ) {
 		select = ( <select
+			title="Cohort"
 			style={{ width: '150px', backgroundColor: 'ghostwhite', padding: '2px' }}
 			onChange={props.onCohortChange} onBlur={props.onCohortChange}
 			value={props.selectedCohort ? props.selectedCohort.title : 'all'}
