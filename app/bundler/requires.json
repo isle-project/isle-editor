@@ -544,7 +544,7 @@
 		"async": true
 	},
 	"Toolbar": {
-		"path": "components/toolbar",
+		"path": "internal-components/toolbar",
 		"async": true
 	},
 	"SortableTree": {
