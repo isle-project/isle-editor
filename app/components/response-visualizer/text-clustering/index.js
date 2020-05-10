@@ -120,6 +120,7 @@ class TextClustering extends Component {
 				<label>Cluster {this.props.actionLabel}</label>
 				<span className="cluster-select-wrapper">
 					<select
+						title="Select cluster size"
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						onBlur={this.handleClusterCountChange}

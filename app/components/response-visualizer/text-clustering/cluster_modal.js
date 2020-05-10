@@ -125,6 +125,7 @@ class ClusterModal extends Component {
 				</Modal.Title>
 				<span className="cluster-modal-select-wrapper">
 					<select
+						title="Cluster Select"
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						onBlur={this.handleClusterCountChange}

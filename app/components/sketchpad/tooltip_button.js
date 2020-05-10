@@ -9,7 +9,11 @@ import Tooltip from 'components/tooltip';
 
 const TooltipButton = ({ tooltip, onClick, glyph, label, disabled, size, variant = 'light' }) => {
 	return ( <Tooltip placement="bottom" tooltip={tooltip} >
-		<Button variant={variant} size={size} onClick={onClick} disabled={disabled} >
+		<Button
+			variant={variant}
+			size={size} onClick={onClick} disabled={disabled}
+			aria-label={tooltip}
+		>
 			{ glyph ? <div className={`fa fa-${glyph}`} /> : null }
 			{label}
 		</Button>

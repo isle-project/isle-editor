@@ -88,6 +88,7 @@ class InputButtons extends Component {
 							max={42}
 							onChange={this.props.onBrushSelect}
 							value={this.props.brushSize}
+							aria-label="Brush Size"
 						/>
 					</InputGroup>
 				</ButtonGroup>
@@ -114,6 +115,7 @@ class InputButtons extends Component {
 							max={60}
 							onChange={this.props.onFontSizeSelect}
 							value={this.props.fontSize}
+							aria-label="Font Size"
 						/>
 					</InputGroup>
 				</ButtonGroup>
