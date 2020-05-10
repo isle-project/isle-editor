@@ -12,12 +12,14 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-object';
 import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
+import generateUID from 'utils/uid';
 import './select.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:select-input' );
+const uid = generateUID( 'select-input' );
 const customStyles = {
 	control: ( base, state ) => {
 		if ( state.isDisabled ) {
@@ -124,6 +126,7 @@ class SelectInput extends Input {
 			transformMultiValue( defaultValue ) :
 			transformValue( defaultValue );
 		}
+		this.id = props.id || uid( props );
 		this.state = {
 			value,
 			options: props.options.map( e => {
@@ -229,12 +232,15 @@ class SelectInput extends Input {
 		}
 		return (
 				<Form className="input" style={{ ...style }} >
-					<FormGroup controlId="form-controls-select">
+					<FormGroup controlId="form-controls-select" >
 						{ this.props.legend ?
-							<Tooltip tooltip={this.props.tooltip}><label>{this.props.legend}</label></Tooltip> :
+							<Tooltip tooltip={this.props.tooltip}>
+								<label htmlFor={this.id} >{this.props.legend}</label>
+							</Tooltip> :
 							null
 						}
 						<Select
+							id={this.id}
 							name="form-field-name"
 							className="select-field"
 							{...this.props}

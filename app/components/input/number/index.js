@@ -12,12 +12,14 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import generateUID from 'utils/uid';
 import './number.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:number-input' );
+const uid = generateUID( 'number-input' );
 
 
 // FUNCTIONS //
@@ -65,6 +67,7 @@ class NumberInput extends Input {
 		super( props );
 
 		const session = context;
+		this.id = props.id || uid( props );
 		this.state = {
 			value: props.value || (props.bind && session.state ?
 				session.state[ props.bind ]:
@@ -193,8 +196,9 @@ class NumberInput extends Input {
 		if ( this.props.inline === true ) {
 			const input =
 				<span className="input" style={{ padding: '5px', ...this.props.style }}>
-					{ this.props.legend ? <label> {this.props.legend} =  </label> : null }
+					{ this.props.legend ? <label htmlFor={this.id} > {this.props.legend} =  </label> : null }
 					<input
+						id={this.id}
 						type={this.props.numbersOnly ? 'number' : 'text'}
 						name="input"
 						className="number-number-input"
@@ -228,6 +232,7 @@ class NumberInput extends Input {
 				</Tooltip>;
 		}
 		let input = <input
+			id={this.id}
 			type={this.props.numbersOnly ? 'number' : 'text'}
 			name="input"
 			className="number-number-input"
@@ -255,7 +260,7 @@ class NumberInput extends Input {
 		}}>
 			{ this.props.legend ?
 				<span>
-					<label style={{ padding: '3px', minWidth: 200 }}>
+					<label htmlFor={this.id} style={{ padding: '3px', minWidth: 200 }} >
 						{isString( this.props.legend ) ?
 							this.props.legend+':' :
 							this.props.legend

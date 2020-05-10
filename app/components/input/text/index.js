@@ -4,8 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
+import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import './text.css';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'text-input' );
 
 
 // MAIN //
@@ -40,7 +46,7 @@ class TextInput extends Input {
 			prevProps: props
 		};
 
-		this.focus = this.focus.bind( this );
+		this.id = props.id || uid( props );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -83,7 +89,7 @@ class TextInput extends Input {
 		});
 	};
 
-	focus() {
+	focus = () => {
 		this.textInput.focus();
 	}
 
@@ -91,8 +97,11 @@ class TextInput extends Input {
 		if ( this.props.inline ) {
 			return (
 				<span className="input" style={this.props.style} >
-					{ this.props.legend ? <label>{this.props.legend}:</label> : <span /> }
+					{ this.props.legend ? <label htmlFor={this.id} >
+						{this.props.legend}:
+					</label> : <span /> }
 					<input
+						id={this.id}
 						className="text-inline-input"
 						type="text"
 						name="input"
@@ -119,13 +128,14 @@ class TextInput extends Input {
 		return (
 			<div className="input text-container-div" style={this.props.style} >
 				<span>
-					<label>{this.props.legend}:</label>
+					<label htmlFor={this.id} >{this.props.legend}:</label>
 					{ this.props.description ?
 						<span> {this.props.description}</span> :
 						<span />
 					}
 				</span>
 				<input
+					id={this.id}
 					className="text-input"
 					type="text"
 					name="input"

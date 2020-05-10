@@ -4,7 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import generateUID from 'utils/uid';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'text-area' );
 
 
 // MAIN //
@@ -31,6 +38,8 @@ class TextArea extends Component {
 	*/
 	constructor( props ) {
 		super( props );
+
+		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -61,8 +70,10 @@ class TextArea extends Component {
 	}
 
 	renderLegend() {
-		if (this.props.legend !== '') {
-			return <label>{this.props.legend}</label>;
+		if ( this.props.legend ) {
+			return ( <FormLabel htmlFor={this.id} >
+				{this.props.legend}
+			</FormLabel> );
 		}
 		return null;
 	}
@@ -79,6 +90,7 @@ class TextArea extends Component {
 			<FormGroup id={this.props.id} className="input" controlId="formControlsTextarea" >
 				{this.renderLegend()}
 				<FormControl
+					id={this.id}
 					as="textarea"
 					placeholder={this.props.placeholder}
 					ref={div => { this.textarea = div; }}
