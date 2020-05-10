@@ -58,7 +58,7 @@ class WebpackCdnPlugin {
 		const { output } = compiler.options;
 		output.publicPath = output.publicPath || '/';
 
-		if ( output.publicPath.slice(-1) !== slash ) {
+		if ( output.publicPath.slice( -1 ) !== slash ) {
 			output.publicPath += slash;
 		}
 		this.prefix = this.prod ? empty : this.prefix || output.publicPath;
@@ -76,8 +76,8 @@ class WebpackCdnPlugin {
 					let modules = this.modules[moduleId || Reflect.ownKeys(this.modules)[0]];
 					if ( modules ) {
 						if ( this.optimize ) {
-							const usedModules = WebpackCdnPlugin._getUsedModules(compilation);
-							modules = modules.filter(p => usedModules[p.name]);
+							const usedModules = WebpackCdnPlugin._getUsedModules( compilation );
+							modules = modules.filter( p => usedModules[p.name] );
 						}
 						WebpackCdnPlugin._cleanModules( modules );
 						data.assets.js = WebpackCdnPlugin._getJs(modules, ...getArgs).concat(data.assets.js);
@@ -90,11 +90,11 @@ class WebpackCdnPlugin {
 
 		if ( this.prod && this.crossOrigin ) {
 			compiler.hooks.afterPlugins.tap('WebpackCdnPlugin', compiler => {
-			compiler.hooks.thisCompilation.tap('WebpackCdnPlugin', () => {
-				compiler.hooks.compilation.tap('HtmlWebpackPluginHooks', compilation => {
-					HtmlWebpackPlugin.getHooks( compilation ).alterAssetTags.tapAsync('WebpackCdnPlugin', this.alterAssetTags.bind(this));
+				compiler.hooks.thisCompilation.tap('WebpackCdnPlugin', () => {
+					compiler.hooks.compilation.tap('HtmlWebpackPluginHooks', compilation => {
+						HtmlWebpackPlugin.getHooks( compilation ).alterAssetTags.tapAsync( 'WebpackCdnPlugin', this.alterAssetTags.bind( this ) );
+					});
 				});
-			});
 			});
 		}
 	}
@@ -102,21 +102,21 @@ class WebpackCdnPlugin {
 	alterAssetTags( pluginArgs, callback ) {
 		const filterTag = tag => {
 			const prefix = this.url.split('/:')[0];
-			const url = (tag.tagName === 'script' && tag.attributes.src) || (tag.tagName === 'link' && tag.attributes.href);
-			return url && url.indexOf(prefix) === 0;
+			const url = ( tag.tagName === 'script' && tag.attributes.src ) || ( tag.tagName === 'link' && tag.attributes.href );
+			return url && url.indexOf( prefix ) === 0;
 		};
 		const processTag = tag => {
 			tag.attributes.crossorigin = this.crossOrigin;
 		};
-		pluginArgs.head.filter(filterTag).forEach(processTag);
-		pluginArgs.body.filter(filterTag).forEach(processTag);
-		callback(null, pluginArgs);
+		pluginArgs.head.filter( filterTag ).forEach( processTag );
+		pluginArgs.body.filter( filterTag ).forEach( processTag );
+		callback( null, pluginArgs );
 	}
 
 	/**
 	* Returns the version of a package
 	*/
-	static getVersion(name) {
+	static getVersion( name ) {
 		try {
 			return readJSON.sync( path.join( NODE_MODULES_DIR, name, packageJson ) ).version;
 		} catch ( e ) {
@@ -132,9 +132,9 @@ class WebpackCdnPlugin {
 
 		compilation.getStats().toJson().chunks.forEach(c => {
 			c.modules.forEach(m => {
-			m.reasons.forEach(r => {
-				usedModules[r.userRequest] = true;
-			});
+				m.reasons.forEach(r => {
+					usedModules[r.userRequest] = true;
+				});
 			});
 		});
 
@@ -147,8 +147,8 @@ class WebpackCdnPlugin {
 	* - add a default path if none provided
 	*/
 	static _cleanModules(modules) {
-		modules.forEach(p => {
-			p.version = p.version || WebpackCdnPlugin.getVersion(p.name);
+		modules.forEach( p => {
+			p.version = p.version || WebpackCdnPlugin.getVersion( p.name );
 
 			if ( !p.paths ) {
 				p.paths = [];
@@ -158,7 +158,7 @@ class WebpackCdnPlugin {
 				p.path = void 0;
 			}
 			if ( p.paths.length === 0 && !p.cssOnly ) {
-				p.paths.push(require.resolve(p.name).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/'));
+				p.paths.push( require.resolve(p.name).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/') );
 			}
 			if ( !p.styles ) {
 				p.styles = [];
@@ -174,34 +174,33 @@ class WebpackCdnPlugin {
 	* Returns the list of CSS files for all modules
 	* It is the concatenation of "localStyle" and all "styles"
 	*/
-	static _getCss(modules, url, prefix, prod, publicPath) {
-		return WebpackCdnPlugin._get(modules, url, prefix, prod, publicPath, 'styles', 'localStyle');
+	static _getCss( modules, url, prefix, prod, publicPath ) {
+		return WebpackCdnPlugin._get( modules, url, prefix, prod, publicPath, 'styles', 'localStyle' );
 	}
 
 	/**
 	* Returns the list of JS files for all modules
 	* It is the concatenation of "localScript" and all "paths"
 	*/
-	static _getJs(modules, url, prefix, prod, publicPath) {
-		return WebpackCdnPlugin._get(modules, url, prefix, prod, publicPath, 'paths', 'localScript');
+	static _getJs( modules, url, prefix, prod, publicPath ) {
+		return WebpackCdnPlugin._get( modules, url, prefix, prod, publicPath, 'paths', 'localScript' );
 	}
 
 	/**
 	* Generic method to construct the list of files
 	*/
-	static _get(modules, url, prefix, prod, publicPath, pathsKey, localKey) {
+	static _get( modules, url, prefix, prod, publicPath, pathsKey, localKey ) {
 		prefix = prefix || empty;
 		prod = prod !== false;
 
 		let files = [];
-
-		modules.filter(p => p[localKey])
-			.forEach(p => files.push(publicPath + p[localKey]));
-
-		modules.filter(p => p[pathsKey].length > 0)
-			.forEach(p => {
+		modules
+			.filter( p => p[ localKey ] )
+			.forEach( p => files.push( publicPath + p[ localKey ] ) );
+		modules.filter( p => p[pathsKey].length > 0 )
+			.forEach( p => {
 				const moduleSpecificUrl = ( prod ? p.prodUrl : p.devUrl );
-				p[pathsKey].forEach(s => files.push(
+				p[ pathsKey ].forEach( s => files.push(
 					prefix + ( moduleSpecificUrl || url ).replace( paramsRegex, ( m, p1 ) => {
 						if ( prod && p.cdn && p1 === 'alias' ) {
 							return p.cdn;
@@ -210,7 +209,6 @@ class WebpackCdnPlugin {
 					})
 				));
 			});
-
 		return files;
 	}
 }

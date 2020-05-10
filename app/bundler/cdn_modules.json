@@ -17,7 +17,8 @@
 		"alias": "pdf.js",
 		"var": "pdfjsLib",
 		"path": "pdf.min.js",
-		"version": "2.4.456"
+		"version": "2.4.456",
+		"defer": true
 	},
 	{
 		"name": "plotly.js",
@@ -88,14 +89,16 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.62"
+		"version": "0.1.62",
+		"defer": true
 	},
 	{
 		"name": "pdfmake/build/vfs_fonts.js",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.1.62"
+		"version": "0.1.62",
+		"defer": true
 	},
 	{
 		"name": "localforage",
