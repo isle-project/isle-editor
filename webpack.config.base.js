@@ -61,6 +61,7 @@ const EXTERNALS = [
 	'spectacle',
 	'stemmer',
 	'svgo',
+	'tapable',
 	'terser',
 	'terser-webpack-plugin',
 	'typo-js',
