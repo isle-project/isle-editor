@@ -557,8 +557,8 @@ class Session {
 		url += '?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
 		axios.get( url )
-		.then( json => {
-			this.jitsi = json;
+		.then( response => {
+			this.jitsi = response.data;
 			this.update( RECEIVED_JITSI_TOKEN );
 		})
 		.catch( err => {
