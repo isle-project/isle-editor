@@ -163,7 +163,7 @@ class SelectQuestion extends Component {
 		return (
 			<Card id={this.id} className="select-question" style={this.props.style} body >
 				<Form>
-					<FormGroup controlId="formControlsSelect">
+					<FormGroup controlId={`${this.id}-form`}>
 						{ this.props.question ?
 							<label>{this.props.question}</label> :
 							null
