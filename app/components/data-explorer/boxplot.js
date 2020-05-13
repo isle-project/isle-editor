@@ -225,7 +225,7 @@ class Boxplot extends Component {
 							this.setState({ variable });
 						}}
 					/>
-					<FormGroup controlId="form-controls-select">
+					<FormGroup controlId="boxplot-form-select">
 						<FormLabel>Group By:</FormLabel>
 						<Select
 							value={this.state.group}

@@ -140,7 +140,7 @@ class Signup extends Component {
 					<Form horizontal>
 						<Tooltip placement="right" tooltip="Please enter a valid email address." >
 							<FormGroup
-								controlId="formHorizontalEmail"
+								controlId="signup-form-email"
 							>
 								<Col sm={2}>
 									<FormLabel>Email</FormLabel>

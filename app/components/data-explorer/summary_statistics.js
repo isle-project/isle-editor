@@ -264,7 +264,7 @@ class SummaryStatistics extends Component {
 					<QuestionButton title="Summary Statistics" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
-					<FormGroup controlId="form-controls-select">
+					<FormGroup controlId="statistics-form-select">
 						<Tooltip
 							tooltip="One or more statistics to compute for the variable of interest"
 							placement="right"

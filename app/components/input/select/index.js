@@ -232,7 +232,7 @@ class SelectInput extends Input {
 		}
 		return (
 				<Form className="input" style={{ ...style }} >
-					<FormGroup controlId="form-controls-select" >
+					<FormGroup controlId={`${this.id}-form`} >
 						{ this.props.legend ?
 							<Tooltip tooltip={this.props.tooltip}>
 								<label htmlFor={this.id} >{this.props.legend}</label>
