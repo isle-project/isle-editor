@@ -5,6 +5,7 @@ import markdownit from 'markdown-it';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
+import trim from '@stdlib/string/trim';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isLowercase from '@stdlib/assert/is-lowercase';
@@ -115,6 +116,14 @@ function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
 		return '\n'.repeat( p1.length >= 2 ? p1.length : 1 );
 	});
+}
+
+function isPreviousChar( buffer, pos, char ) {
+	pos -= 1;
+	while ( isWhitespace( buffer[ pos ] ) ) {
+		pos -= 1;
+	}
+	return buffer.charAt( pos ) === char;
 }
 
 /**
@@ -416,7 +425,7 @@ class Tokenizer {
 		else if ( char === '}' ) {
 			this._braceLevel -= 1;
 		}
-		if ( this._braceLevel === 0 && this._buffer.charAt( this.pos-1 ) === '`' && char === '}' ) {
+		if ( this._braceLevel === 0 && char === '}' && isPreviousChar( this._buffer, this.pos, '`' ) ) {
 			if ( this._openingTagName ) {
 				debug( 'IN_JSX_STRING -> IN_OPENING_TAG' );
 				this._state = IN_OPENING_TAG;
@@ -568,7 +577,7 @@ class Tokenizer {
 				this._state = IN_OPENING_TAG;
 			} else {
 				debug( 'IN_JSX_OTHER -> IN_BASE' );
-				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
+				this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = trim( this._current );
 				this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 				this._current = '';
 				this._state = IN_BASE;
@@ -644,6 +653,7 @@ class Tokenizer {
 		debug( str );
 		debug( '---' );
 		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
+		str = trim( str );
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
