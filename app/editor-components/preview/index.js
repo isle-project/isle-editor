@@ -190,7 +190,11 @@ class Preview extends Component {
 			noEmptyLines += ( p1.match( RE_LINES ) || '' ).length;
 			return '';
 		};
-		code = code.replace( /---([\S\s]*?)---/g, replacer );
+
+		// Replace preamble with empty lines:
+		code = code.replace( /---([\S\s]*?)---/, replacer );
+
+		// Replace comments with empty lines:
 		code = code.replace( /<!--([\S\s]*)-->/g, replacer );
 
 		// Replace Markdown by HTML...
