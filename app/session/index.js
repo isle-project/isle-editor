@@ -1046,8 +1046,8 @@ class Session {
 			namespaceName: this.namespaceName,
 			lessonName: this.lessonName,
 			userID: this.user.id,
-			userName: this.user.name,
-			userEmail: this.user.email
+			userName: this.user.name || this.anonymousIdentifier,
+			userEmail: this.user.email || this.anonymousIdentifier
 		};
 		socket.emit( 'join', config );
 		socket.on( 'console', function onConsole( msg ) {
