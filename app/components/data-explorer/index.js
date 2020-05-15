@@ -1474,7 +1474,7 @@ class DataExplorer extends Component {
 						</div>
 						{ this.props.editor ?
 						<TextEditor {...this.props.editorProps}
-							mode={this.props.groupMode ? 'group' : 'individual'}
+							mode={this.props.reportMode}
 							id={this.id + '_editor'}
 							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
 							submitButton /> : null
@@ -1668,7 +1668,7 @@ DataExplorer.defaultProps = {
 	editor: true,
 	editorProps: null,
 	editorTitle: 'Report',
-	groupMode: false,
+	reportMode: 'invididual',
 	histogramDensities: true,
 	showTestDecisions: true,
 	onTutorialCompletion() {},
@@ -1685,7 +1685,7 @@ DataExplorer.propTypes = {
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
 	dataTable: PropTypes.bool,
-	groupMode: PropTypes.bool,
+	reportMode: PropTypes.oneOf([ 'individual', 'group', 'collaborative' ]),
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
 	opened: PropTypes.oneOf([ 'data', 'toolbox', 'editor' ]),
