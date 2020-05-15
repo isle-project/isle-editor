@@ -222,7 +222,7 @@ class Session {
 		});
 
 		// Connect via WebSockets to other users...
-		if ( !isEmptyObject( this.user ) && this.server && !this._offline ) {
+		if ( this.server && !this._offline && !this.socket ) {
 			this.socketConnect();
 		}
 
@@ -363,7 +363,7 @@ class Session {
 				this.live = true;
 
 				// Connect via WebSockets to other users...
-				if ( !isEmptyObject( this.user ) ) {
+				if ( !this.socket || this.socket.disconnected ) {
 					this.socketConnect();
 				}
 
@@ -760,6 +760,7 @@ class Session {
 	joinCollaborativeEditing( name ) {
 		name = `${this.namespaceName}-${this.lessonName}-${name}`;
 		if ( this.socket ) {
+			debug( 'Join collaborative editing for '+name );
 			this.socket.emit( 'join_collaborative_editing', name );
 		}
 	}
