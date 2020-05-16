@@ -861,7 +861,12 @@ class DataExplorer extends Component {
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = '1';
 		if ( nStatistics === 0 ) {
-			defaultActiveKey = '2';
+			if ( this.props.tables.length > 0 ) {
+				defaultActiveKey = '2.1';
+			}
+			else {
+				defaultActiveKey = '3.1';
+			}
 		}
 		const categoricalProps = {
 			data: this.state.data,
