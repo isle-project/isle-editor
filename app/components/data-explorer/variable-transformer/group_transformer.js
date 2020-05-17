@@ -147,6 +147,7 @@ class GroupTransformer extends Component {
 					footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
 						Create new variable
 					</Button>}
+					role="button" tabIndex={0}
 				>
 					<Row>
 						<Col>

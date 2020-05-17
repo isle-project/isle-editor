@@ -453,6 +453,7 @@ class BinTransformer extends Component {
 					footer={<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
 						Create new variable
 					</Button>}
+					role="button" tabIndex={0}
 				>
 					{this.renderBody()}
 				</Panel>

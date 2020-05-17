@@ -171,6 +171,7 @@ class FormulaTransformer extends Component {
 					onHide={this.props.onHide}
 					header="Create a new variable as a function of existing variables"
 					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>}
+					role="button" tabIndex={0}
 				>
 					<div className="formula-transformer-body">
 						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Example Guide' : 'Show Example Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
