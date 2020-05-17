@@ -19,6 +19,7 @@ import './menubar.css';
 // VARIABLES //
 
 const debug = logger( 'isle:text-editor' );
+const BUTTON_INACTIVE_COLOR = '#6e6e6e';
 
 
 // MAIN //
@@ -29,7 +30,7 @@ const Button = ( props ) => {
 			<button onMouseDown={props.onMouseDown}
 				style={{
 					active: props.active,
-					color: props.active ? 'black' : '#777',
+					color: props.active ? 'black' : BUTTON_INACTIVE_COLOR,
 					opacity: 0.2
 				}}
 				disabled={true}
@@ -43,7 +44,7 @@ const Button = ( props ) => {
 			<button onMouseDown={props.onMouseDown}
 				style={{
 					active: props.active,
-					color: props.active ? 'black' : '#777'
+					color: props.active ? 'black' : BUTTON_INACTIVE_COLOR
 				}}
 				className="menu-item"
 				aria-label={props.title}
