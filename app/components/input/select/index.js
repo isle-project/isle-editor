@@ -32,7 +32,7 @@ const customStyles = {
 		}
 		return {
 			...base,
-			background: 'rgba(186, 204, 234, 0.12)',
+			background: 'rgba(186, 204, 234, 0.15)',
 			boxShadow: 'none',
 			cursor: 'pointer'
 		};

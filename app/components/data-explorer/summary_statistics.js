@@ -34,9 +34,15 @@ const customStyles = {
 		}
 		return {
 			...base,
-			background: 'rgba(186, 204, 234, 0.3)',
+			background: 'rgba(186, 204, 234, 0.15)',
 			boxShadow: 'none',
 			cursor: 'pointer'
+		};
+	},
+	placeholder: ( base, state ) => {
+		return {
+			...base,
+			color: 'rgb(112, 112, 112)'
 		};
 	},
 	option: ( base, state ) => {

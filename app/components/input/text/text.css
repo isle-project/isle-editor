@@ -8,7 +8,7 @@
 .text-inline-input {
 	text-align: left;
 	display: inline;
-	background: rgba(186, 204, 234, 0.3);
+	background: rgba(186, 204, 234, 0.15);
 	font-weight: 600;
 	color: rgb(92, 92, 92);
 	box-shadow: inset 1px 1px 4px  rgba(186, 204, 234, 1);
@@ -26,7 +26,7 @@
 	padding-left: 8px;
 	padding-right: 4px;
 	border: solid 1px darkgrey;
-	background: rgba(186, 204, 234, 0.3);
+	background: rgba(186, 204, 234, 0.15);
 	font-weight: 600;
 	padding-top: 4px;
 	padding-bottom: 4px;
