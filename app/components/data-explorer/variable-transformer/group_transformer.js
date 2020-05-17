@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';

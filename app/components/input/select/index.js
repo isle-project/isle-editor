@@ -14,7 +14,6 @@ import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
 import generateUID from 'utils/uid';
 import './select.css';
-import { rgb } from 'd3';
 
 
 // VARIABLES //
