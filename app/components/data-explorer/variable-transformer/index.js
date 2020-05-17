@@ -81,7 +81,7 @@ class Transformer extends Component {
 		return (
 			<GroupModal
 				show={isActive}
-				onHide={this.toggleCategoricalModal}
+				onHide={this.toggleGroupModal}
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
