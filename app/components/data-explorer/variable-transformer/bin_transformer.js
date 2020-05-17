@@ -13,13 +13,14 @@ import FormText from 'react-bootstrap/FormText';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Plotly from 'components/plotly';
+import Draggable from 'components/draggable';
+import Panel from 'components/panel';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
 import NumberInput from 'components/input/number';
 import mean from 'utils/statistic/mean.js';
 import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
-import Modal from 'react-bootstrap/Modal';
 import TeX from 'components/tex';
 import runif from '@stdlib/random/base/uniform';
 import keys from '@stdlib/utils/keys';
@@ -29,7 +30,6 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from '../histogram.js';
-import DraggableModalDialog from './draggable_modal_dialog.js';
 import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
 import './bin_transformer.css';
@@ -406,7 +406,7 @@ class BinTransformer extends Component {
 					Drag the red vertical bar(s) to change breakpoints
 					(<NumberInput legend="digits after comma to snap to" min={0} max={9} inline defaultValue={this.state.snapDigits} onChange={this.handleSnapDigitsChange} />)
 				</p>
-				<div>
+				<div style={{ height: 250 }}>
 					<Plotly
 						data={configHist.data}
 						layout={configHist.layout}
@@ -443,27 +443,18 @@ class BinTransformer extends Component {
 
 	render() {
 		return (
-			<Modal
-				dialogAs={DraggableModalDialog}
-				dialogClassName='modal-60w input'
-				onHide={this.props.onHide}
-				show={this.props.show}
-				backdrop={false}
-				bsPrefix="draggable-modal"
-				tabIndex={0} role="button"
-			>
-				<Modal.Header closeButton className="draggable-modal-header" >
-					<Modal.Title>Create new variable by binning a quantitative variable into categories</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					{this.renderBody()}
-				</Modal.Body>
-				<Modal.Footer style={{ justifyContent: 'center' }} >
-					<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
+			<Draggable cancel=".card-body" >
+				<Panel
+					onHide={this.props.onHide}
+					show={this.props.show}
+					header="Create new variable by binning a quantitative variable into categories"
+					footer={<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
 						Create new variable
-					</Button>
-				</Modal.Footer>
-			</Modal>
+					</Button>}
+				>
+					{this.renderBody()}
+				</Panel>
+			</Draggable>
 		);
 	}
 }

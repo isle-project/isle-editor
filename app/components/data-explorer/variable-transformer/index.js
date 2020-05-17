@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import BinTransformer from './bin_transformer.js';
@@ -91,78 +91,80 @@ class Transformer extends Component {
 
 	toggleFormulaModal = () => {
 		this.setState({
-			active: this.state.active ? null : 'formula'
+			active: this.state.active === 'formula' ? null : 'formula'
 		});
 	}
 
 	toggleBinModal = () => {
 		this.setState({
-			active: this.state.active ? null : 'bin'
+			active: this.state.active === 'bin' ? null : 'bin'
 		});
 	}
 
 	toggleCategoricalModal = () => {
 		this.setState({
-			active: this.state.active ? null : 'categorical'
+			active: this.state.active === 'categorical' ? null : 'categorical'
 		});
 	}
 
 	toggleGroupModal = () => {
 		this.setState({
-			active: this.state.active ? null : 'group'
+			active: this.state.active === 'group' ? null : 'group'
 		});
 	}
 
 	render() {
 		return (
-			<div className="well" style={{ padding: 15, margin: 15 }} >
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={this.toggleFormulaModal}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						Interactions, Transformations (e.g., sqrt), Functions
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={this.toggleBinModal}
-						disabled={this.props.quantitative.length === 0}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						Bin quantitative variables into categorical
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={this.toggleCategoricalModal}
-						disabled={this.props.categorical.length === 0}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						Rename or combine categories
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={this.toggleGroupModal}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						Create groups (e.g., for training-test set split or cross-validation)
-					</Button>
+			<Fragment>
+				<div className="well" style={{ padding: 15, margin: 15 }} >
+					<div style={{ padding: 12 }} >
+						<Button
+							onClick={this.toggleFormulaModal}
+							variant="primary"
+							block
+							style={{ fontSize: '1.2em' }}
+						>
+							Interactions, Transformations (e.g., sqrt), Functions
+						</Button>
+					</div>
+					<div style={{ padding: 12 }} >
+						<Button
+							onClick={this.toggleBinModal}
+							disabled={this.props.quantitative.length === 0}
+							variant="primary"
+							block
+							style={{ fontSize: '1.2em' }}
+						>
+							Bin quantitative variables into categorical
+						</Button>
+					</div>
+					<div style={{ padding: 12 }} >
+						<Button
+							onClick={this.toggleCategoricalModal}
+							disabled={this.props.categorical.length === 0}
+							variant="primary"
+							block
+							style={{ fontSize: '1.2em' }}
+						>
+							Rename or combine categories
+						</Button>
+					</div>
+					<div style={{ padding: 12 }} >
+						<Button
+							onClick={this.toggleGroupModal}
+							variant="primary"
+							block
+							style={{ fontSize: '1.2em' }}
+						>
+							Create groups (e.g., for training-test set split or cross-validation)
+						</Button>
+					</div>
 				</div>
 				{this.renderBinModal()}
 				{this.renderFormulaModal()}
 				{this.renderCategoricalModal()}
 				{this.renderGroupModal()}
-			</div>
+			</Fragment>
 		);
 	}
 }

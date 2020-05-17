@@ -16,8 +16,9 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import objectKeys from '@stdlib/utils/keys';
 import TextInput from 'components/input/text';
 import NumberInput from 'components/input/number';
+import Draggable from 'components/draggable';
+import Panel from 'components/panel';
 import { DATA_EXPLORER_GROUP_TRANSFORMER } from 'constants/actions.js';
-import DraggableModalDialog from './draggable_modal_dialog.js';
 
 
 // VARIABLES //
@@ -137,19 +138,15 @@ class GroupTransformer extends Component {
 		}
 		const hasValidValues = this.state.generatedName.length > 2 && absdiff( sum, 1.0 ) <= 1.5e-8;
 		return (
-			<Modal
-				dialogAs={DraggableModalDialog}
-				dialogClassName='modal-60w input'
-				onHide={this.props.onHide}
-				show={this.props.show}
-				backdrop={false}
-				bsPrefix="draggable-modal"
-				tabIndex={0} role="button"
-			>
-				<Modal.Header closeButton className="draggable-modal-header" >
-					<Modal.Title>Create group variables (e.g., for training/test set split or cross-validation)</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
+			<Draggable cancel=".card-body">
+				<Panel
+					onHide={this.props.onHide}
+					show={this.props.show}
+					header="Create group variables (e.g., for training/test set split or cross-validation)"
+					footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
+						Create new variable
+					</Button>}
+				>
 					<Row>
 						<Col>
 							<NumberInput
@@ -177,13 +174,8 @@ class GroupTransformer extends Component {
 							</FormText>
 						</FormGroup>
 					</Row>
-				</Modal.Body>
-				<Modal.Footer style={{ justifyContent: 'center' }}>
-					<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
-						Create new variable
-					</Button>
-				</Modal.Footer>
-			</Modal>
+				</Panel>
+			</Draggable>
 		);
 	}
 }

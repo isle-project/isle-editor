@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Modal from 'react-bootstrap/Modal';
+import Draggable from 'components/draggable';
+import Panel from 'components/panel';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -22,7 +23,6 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
-import DraggableModalDialog from './draggable_modal_dialog.js';
 import recodeCategorical from './recode_categorical';
 import './categorical_transformer.css';
 
@@ -287,19 +287,15 @@ class CategoricalTransformer extends Component {
 
 	render() {
 		return (
-			<Modal
-				dialogAs={DraggableModalDialog}
-				dialogClassName='modal-60w input'
-				onHide={this.props.onHide}
-				show={this.props.show}
-				backdrop={false}
-				bsPrefix="draggable-modal"
-				tabIndex={0} role="button"
-			>
-				<Modal.Header closeButton className="draggable-modal-header" >
-					<Modal.Title>Create new variable by renaming or combining categories</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
+			<Draggable cancel=".card-body">
+				<Panel
+					onHide={this.props.onHide}
+					show={this.props.show}
+					header="Create new variable by renaming or combining categories"
+					footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
+						Create new variable
+					</Button>}
+				>
 					<Row>
 						<Col md={4}>
 							<SelectInput
@@ -350,13 +346,8 @@ class CategoricalTransformer extends Component {
 							</FormText>
 						</FormGroup>
 					</Row>
-				</Modal.Body>
-				<Modal.Footer style={{ justifyContent: 'center' }}>
-					<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
-						Create new variable
-					</Button>
-				</Modal.Footer>
-			</Modal>
+				</Panel>
+			</Draggable>
 		);
 	}
 }

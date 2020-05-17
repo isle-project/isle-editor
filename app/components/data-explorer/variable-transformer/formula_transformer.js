@@ -12,7 +12,8 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Modal from 'react-bootstrap/Modal';
+import Draggable from 'components/draggable';
+import Panel from 'components/panel';
 import Collapse from 'components/collapse';
 import TextArea from 'components/input/text-area';
 import Tooltip from 'components/tooltip';
@@ -20,7 +21,6 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
-import DraggableModalDialog from './draggable_modal_dialog.js';
 import valuesFromFormula from './values_from_formula.js';
 import FUNCTION_KEYS from './function_keys.json';
 import './formula_transformer.css';
@@ -163,19 +163,13 @@ class FormulaTransformer extends Component {
 			return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
 		});
 		return (
-			<Modal
-				dialogAs={DraggableModalDialog}
-				dialogClassName='modal-60w input'
-				show={this.props.show}
-				onHide={this.props.onHide}
-				backdrop={false}
-				bsPrefix="draggable-modal"
-				tabIndex={0} role="button"
-			>
-				<Modal.Header closeButton className="draggable-modal-header" >
-					<Modal.Title>Create a new variable as a function of existing variables</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
+			<Draggable cancel=".card-body">
+				<Panel
+					show={this.props.show}
+					onHide={this.props.onHide}
+					header="Create a new variable as a function of existing variables"
+					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>}
+				>
 					<div className="formula-transformer-body">
 						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Example Guide' : 'Show Example Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
 							<p>Use the formula text area below to create a new variable. The following table illustrates a few use-cases:</p>
@@ -302,11 +296,8 @@ class FormulaTransformer extends Component {
 							</FormText>
 						</FormGroup>
 					</div>
-				</Modal.Body>
-				<Modal.Footer style={{ justifyContent: 'center' }} >
-					<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>
-				</Modal.Footer>
-			</Modal>
+				</Panel>
+			</Draggable>
 		);
 	}
 }
