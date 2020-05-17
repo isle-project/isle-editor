@@ -138,7 +138,9 @@ class GroupTransformer extends Component {
 		}
 		const hasValidValues = this.state.generatedName.length > 2 && absdiff( sum, 1.0 ) <= 1.5e-8;
 		return (
-			<Draggable cancel=".card-body">
+			<Draggable cancel=".card-body" onDragStart={( event ) => {
+				event.stopPropagation();
+			}} style={{ zIndex: 1006 }} >
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}

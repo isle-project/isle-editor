@@ -163,7 +163,9 @@ class FormulaTransformer extends Component {
 			return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
 		});
 		return (
-			<Draggable cancel=".card-body">
+			<Draggable cancel=".card-body" onDragStart={( event ) => {
+				event.stopPropagation();
+			}} style={{ zIndex: 1006 }} >
 				<Panel
 					show={this.props.show}
 					onHide={this.props.onHide}

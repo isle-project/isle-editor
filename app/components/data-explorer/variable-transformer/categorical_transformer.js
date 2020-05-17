@@ -287,7 +287,9 @@ class CategoricalTransformer extends Component {
 
 	render() {
 		return (
-			<Draggable cancel=".card-body">
+			<Draggable cancel=".card-body" onDragStart={( event ) => {
+				event.stopPropagation();
+			}} style={{ zIndex: 1006 }} >
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}
