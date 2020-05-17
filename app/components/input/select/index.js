@@ -14,6 +14,7 @@ import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
 import generateUID from 'utils/uid';
 import './select.css';
+import { rgb } from 'd3';
 
 
 // VARIABLES //
@@ -32,9 +33,15 @@ const customStyles = {
 		}
 		return {
 			...base,
-			background: 'rgba(186, 204, 234, 0.3)',
+			background: 'rgba(186, 204, 234, 0.12)',
 			boxShadow: 'none',
 			cursor: 'pointer'
+		};
+	},
+	placeholder: ( base, state ) => {
+		return {
+			...base,
+			color: 'rgb(112, 112, 112)'
 		};
 	},
 	option: ( base, state ) => {

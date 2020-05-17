@@ -517,6 +517,10 @@ mark {
 	color: #2e4468;
 }
 
+.navbar-light .navbar-nav .nav-link {
+	color: rgba(0, 0, 0, 0.54);
+}
+
 .Lesson .dropdown-item.active,
 .Lesson .dropdown-item:active,
 .Presentation .dropdown-item.active,
