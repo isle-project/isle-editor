@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import noop from '@stdlib/utils/noop';
+import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from 'components/draggable';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
@@ -343,12 +344,14 @@ class StickyNote extends Component {
 			</div>
 		</div>;
 		if ( this.props.draggable ) {
+			const props = isObject( this.props.draggable ) ? this.props.draggable : {};
 			return ( <Draggable
 				bounds="#Lesson"
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
 				onStart={this.handleDragStart}
 				onDrag={this.handleDrag}
+				{...props}
 			>{out}</Draggable> );
 		}
 		return out;
@@ -370,7 +373,10 @@ StickyNote.propTypes = {
 	color: PropTypes.string,
 	style: PropTypes.object,
 	date: PropTypes.string,
-	draggable: PropTypes.bool,
+	draggable: PropTypes.oneOfType([
+		PropTypes.bool,
+		PropTypes.object
+	]),
 	editable: PropTypes.bool,
 	minimizable: PropTypes.bool,
 	minimized: PropTypes.bool,

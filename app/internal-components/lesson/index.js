@@ -134,11 +134,13 @@ class Lesson extends Component {
 		const note = <StickyNote
 			id={noteID}
 			color="green"
-			editable draggable minimizable removable
-			key={this.state.notes.length} style={{
-				position: 'absolute',
-				top,
-				left
+			editable minimizable removable
+			key={this.state.notes.length}
+			draggable={{
+				default: {
+					x: left,
+					y: top
+				}
 			}}
 			title={title}
 			body={body}
