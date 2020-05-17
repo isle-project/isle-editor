@@ -125,6 +125,11 @@ class Session {
 			this.handleLogin( this.jwt, true );
 		} else {
 			this.jwt = {};
+
+			// Connect via WebSockets to other users as an anonymous user...
+			if ( this.server && !this._offline && !this.socket ) {
+				this.socketConnect();
+			}
 		}
 
 		// Boolean whether lesson is finished:
@@ -220,11 +225,6 @@ class Session {
 			name: `ISLE_${this.namespaceName}_${this.lessonName}`,
 			description: 'Persistent data storage for ISLE lesson'
 		});
-
-		// Connect via WebSockets to other users...
-		if ( this.server && !this._offline && !this.socket ) {
-			this.socketConnect();
-		}
 
 		if ( !this._offline ) {
 			// Ping server to check status:
@@ -1607,6 +1607,7 @@ class Session {
 			}
 			PRIVATE_VARS[ 'score' ] = this.user.score;
 			this.anonymous = false;
+			this.socket.close();
 			this.socketConnect();
 			if ( !userRights ) {
 				this.getUserRights();
