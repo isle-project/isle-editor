@@ -397,7 +397,7 @@ class FullscreenActionDisplay extends Component {
 							orientation: 'h'
 						}
 					]}
-					fit
+					fit editable
 					layout={{
 						xaxis: {
 							title: 'Count'
@@ -466,7 +466,7 @@ class FullscreenActionDisplay extends Component {
 							value
 						}
 					}]}
-					fit
+					fit editable
 					layout={{
 						fontSize: 10
 					}}
@@ -513,7 +513,7 @@ class FullscreenActionDisplay extends Component {
 								name: 'histogram'
 							}
 						]}
-						fit
+						fit editable
 						layout={{
 							xaxis: {
 								title: 'Value'
@@ -663,7 +663,7 @@ class FullscreenActionDisplay extends Component {
 							orientation: 'h'
 						}
 					]}
-					fit
+					fit editable
 					layout={{
 						xaxis: {
 							showticklabels: false,
