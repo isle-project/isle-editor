@@ -73,7 +73,7 @@ const customSelectComponents = {
 function selectUsers( userList, selectedCohort ) {
 	const users = userList;
 	if ( !selectedCohort ) {
-		return users.filter( x => !x.owner );
+		return users.filter( x => !x.owner || x.exitTime );
 	}
 	const members = selectedCohort.members;
 	const out = [];
