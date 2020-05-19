@@ -75,7 +75,12 @@ ipcMain.on( 'save-file-as', ( e, { data, filePath }) => {
 	});
 });
 
-ipcMain.on( 'create-from-user-template', ( e, { name }) => {
+ipcMain.on( 'create', () => {
+	createWindow();
+});
+
+ipcMain.on( 'create-from-user-template', ( e, name ) => {
+	console.log( 'Creating new file from template...' );
 	createWindow({ fromTemplate: name });
 });
 
@@ -183,13 +188,11 @@ export function saveAs({ browserWindow }) {
 }
 
 export function newFile({ browserWindow }) {
-	browserWindow.webContents.send( 'clear-cache' );
-	createWindow();
+	browserWindow.webContents.send( 'clear-cache-and-create' );
 }
 
 export function newFromTemplate({ browserWindow, name }) {
-	browserWindow.webContents.send( 'clear-cache' );
-	createWindow({ fromTemplate: name });
+	browserWindow.webContents.send( 'clear-cache-and-create', name );
 }
 
 export function createTemplate({ browserWindow, includePreamble }) {

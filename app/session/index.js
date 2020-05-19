@@ -21,6 +21,7 @@ import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
 import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
+import sample from '@stdlib/random/sample';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
 import isElectron from 'utils/is-electron';
 import randomstring from 'utils/randomstring/alphanumeric';
@@ -39,6 +40,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 import retrieveUserGroup from 'utils/retrieve-user-group';
 import beforeUnload from 'utils/before-unload';
 import POINTS from 'constants/points.js';
+import ANIMALS from './animals.json';
 
 
 // VARIABLES //
@@ -99,7 +101,7 @@ class Session {
 		if ( item ) {
 			this.anonymousIdentifier = item;
 		} else {
-			this.anonymousIdentifier = 'anonymous_'+randomstring( 8 );
+			this.anonymousIdentifier = sample( ANIMALS, { size: 1 }) + ' ' + randomstring( 4 );
 			localStorage.setItem( anonStorageID, this.anonymousIdentifier );
 		}
 

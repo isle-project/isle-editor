@@ -213,12 +213,17 @@ function configureIpcRenderer( store ) {
 		});
 	});
 
-	ipcRenderer.on( 'clear-cache', () => {
+	ipcRenderer.on( 'clear-cache-and-create', ( _, name ) => {
 		config.set( 'mostRecentFilePath', null );
 		config.set( 'mostRecentFileData', null );
 		config.set( 'mostRecentPreamble', {} );
 		config.set( 'mostRecentPreambleText', '' );
 		config.set( 'recentFiles', [] );
+		if ( name ) {
+			ipcRenderer.send( 'create-from-user-template', name );
+		} else {
+			ipcRenderer.send( 'create' );
+		}
 	});
 
 	ipcRenderer.on( 'confirm-close-when-unsaved', ( e, { windowID }) => {
