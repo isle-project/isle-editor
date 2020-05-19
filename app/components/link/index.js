@@ -21,7 +21,8 @@ class Link extends Component {
 
 		this.state = {
 			url: null,
-			href: null
+			href: null,
+			target: '_blank'
 		};
 	}
 
@@ -36,9 +37,11 @@ class Link extends Component {
 				!startsWith( nextProps.href, '#' )
 			) {
 				newState.url = 'http://'+nextProps.href;
+				newState.target = '_blank';
 			}
 			else {
 				newState.url = nextProps.href;
+				newState.target = null;
 			}
 			return newState;
 		}
@@ -56,7 +59,7 @@ class Link extends Component {
 				>
 					<a
 						href={this.state.url}
-						target="_blank"
+						target={this.state.target}
 					>
 						{this.props.children}
 					</a>
