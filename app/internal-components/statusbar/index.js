@@ -438,7 +438,7 @@ class StatusBar extends Component {
 								onMouseOut={this.toggleProgress} onBlur={this.toggleProgress}
 								aria-label="User Progress"
 							>
-								{ session.anonymous ? 'Anonymous' : session.user.name }
+								{ session.anonymous ? `Anonymous ${session.anonymousIdentifier}` : session.user.name }
 							</div>
 							{ !session.config.hideVideoChat ? <VideoChatButton
 								for={roomName}
