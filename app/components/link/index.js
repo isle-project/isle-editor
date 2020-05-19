@@ -67,6 +67,7 @@ class Link extends Component {
 				<LinkContextMenu
 					session={this.context}
 					url={this.state.url}
+					target={this.state.target}
 				/>
 			</Fragment>
 		);
