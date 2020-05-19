@@ -32,7 +32,8 @@ class Link extends Component {
 			};
 			if (
 				!startsWith( nextProps.href, 'http' ) &&
-				!startsWith( nextProps.href, 'mailto' )
+				!startsWith( nextProps.href, 'mailto' ) &&
+				!startsWith( nextProps.href, '#' )
 			) {
 				newState.url = 'http://'+nextProps.href;
 			}
