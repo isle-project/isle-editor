@@ -1083,52 +1083,34 @@ class Session {
 			}
 			this.userList = this.userList.filter( user => user.email !== data.email );
 			this.userList.push( data );
-			const isUser = data.email === this.user.email;
-			if ( this.config.joinNotifications && !isUser ) {
-				this.addNotification({
-					title: 'User has joined',
-					message: `User ${data.name} (${data.email}) has joined us.`,
-					level: 'success',
-					position: 'tl'
-				});
-			}
 			this.update( USER_JOINED, data );
 		});
 
 		socket.on( 'user_leaves', ( data ) => {
-			if ( !isEmptyObject( this.user ) ) {
-				debug( 'A user has disconnected and should be removed: ' + data );
-				data = JSON.parse( data );
-				this.userList = this.userList.map( user => {
-					if ( user.email === data.email ) {
-						user.inactive = true;
-						user.exitTime = data.exitTime;
-					}
-					return user;
-				});
-				setTimeout( () => {
-					// Remove user after three minutes:
-					this.userList = this.userList.filter( user => {
-						if ( user.email === data.email ) {
-							return !user.inactive;
-						}
-						return true;
-					});
-					this.update( USER_FINALLY_REMOVED, data.email );
-				}, 3 * 60000 );
-				const isUser = data.email === this.user.email;
-				this.update( USER_LEFT, data.email );
-				if ( this.config.joinNotifications && !isUser ) {
-					this.addNotification({
-						title: 'User has left',
-						message: `User ${data.name} (${data.email}) has left us.`,
-						level: 'success',
-						position: 'tl'
-					});
-				} else if ( isUser ) {
-					// Case: Oneself has logged off on another browser tab
-					this.forcedLogout();
+			debug( 'A user has disconnected and should be removed: ' + data );
+			data = JSON.parse( data );
+			this.userList = this.userList.map( user => {
+				if ( user.email === data.email ) {
+					user.inactive = true;
+					user.exitTime = data.exitTime;
 				}
+				return user;
+			});
+			setTimeout( () => {
+				// Remove user after three minutes:
+				this.userList = this.userList.filter( user => {
+					if ( user.email === data.email ) {
+						return !user.inactive;
+					}
+					return true;
+				});
+				this.update( USER_FINALLY_REMOVED, data.email );
+			}, 3 * 60000 );
+			const isUser = data.email === this.user.email;
+			this.update( USER_LEFT, data.email );
+			if ( isUser ) {
+				// Case: Oneself has logged off on another browser tab
+				this.forcedLogout();
 			}
 		});
 
