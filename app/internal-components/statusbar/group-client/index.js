@@ -74,7 +74,7 @@ class GroupClient extends Component {
 
 	render() {
 		const session = this.context;
-		if ( !session.group) {
+		if ( !session.group ) {
 			return null;
 		}
 		return (

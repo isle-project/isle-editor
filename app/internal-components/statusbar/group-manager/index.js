@@ -73,7 +73,7 @@ const customSelectComponents = {
 function selectUsers( userList, selectedCohort ) {
 	const users = userList;
 	if ( !selectedCohort ) {
-		return users.filter( x => !x.owner || x.exitTime );
+		return users.filter( x => !x.owner && !x.exitTime && contains( x.email, '@' ) );
 	}
 	const members = selectedCohort.members;
 	const out = [];
@@ -90,17 +90,19 @@ function countStudents( userList, selectedCohort ) {
 	let out = 0;
 	if ( !selectedCohort ) {
 		for ( let i = 0; i < userList.length; i++ ) {
-			if ( !userList[ i ].owner && !userList[ i ].exitTime ) {
+			const user = userList[ i ];
+			if ( !user.owner && !user.exitTime && contains( user.email, '@' ) ) {
 				out += 1;
 			}
 		}
 	} else {
 		const members = selectedCohort.members;
 		for ( let i = 0; i < userList.length; i++ ) {
+			const user = userList[ i ];
 			if (
-				!userList[ i ].owner &&
-				!userList[ i ].exitTime &&
-				contains( members, userList[ i ].email )
+				!user.owner &&
+				!user.exitTime &&
+				contains( members, user.email )
 			) {
 				out += 1;
 			}
