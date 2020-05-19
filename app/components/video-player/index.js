@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import ReactPlayer from 'react-player';
 import omit from '@stdlib/utils/omit';
@@ -17,6 +18,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 // VARIABLES //
 
 const uid = generateUID( 'video-player' );
+const debug = logger( 'isle:video-player' );
 const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID' ];
 
 
@@ -90,9 +92,19 @@ class Video extends Component {
 		this.props.onEnded();
 	}
 
-	handleError = ( event ) => {
+	handleError = ( errorCode ) => {
+		debug( 'Encountered an error: '+errorCode );
+		let encounteredError;
+		switch ( errorCode ) {
+			case 150:
+				encounteredError = 'Playback on other websites has been disabled by the video owner.';
+				break;
+			default:
+				encounteredError = 'Video could not be loaded.';
+				break;
+		}
 		this.setState({
-			encounteredError: 'Video could not be loaded.'
+			encounteredError
 		});
 	}
 
