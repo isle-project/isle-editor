@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
@@ -69,7 +70,8 @@ class RangeQuestion extends Component {
 		this.state = {
 			lower: props.min,
 			upper: props.max,
-			submitted: false
+			submitted: false,
+			correct: false
 		};
 	}
 
@@ -89,7 +91,8 @@ class RangeQuestion extends Component {
 			this.setState({
 				lower: void 0,
 				upper: void 0,
-				submitted: false
+				submitted: false,
+				correct: false
 			});
 		}
 	}
@@ -99,12 +102,12 @@ class RangeQuestion extends Component {
 	*/
 	handleChangeUpper = ( newValue ) => {
 		this.setState({ upper: newValue });
-		this.props.onChangeUpper( max(newValue, this.state.lower) );
+		this.props.onChangeUpper( max( newValue, this.state.lower ) );
 	}
 
 	handleChangeLower = ( newValue ) => {
 		this.setState({ lower: newValue });
-		this.props.onChangeLower( min(newValue, this.state.upper) );
+		this.props.onChangeLower( min( newValue, this.state.upper ) );
 	}
 
 	handleKeyPress = ( event ) => {
@@ -129,16 +132,16 @@ class RangeQuestion extends Component {
 	submitHandler = () => {
 		const { digits, solution } = this.props;
 		const session = this.context;
+		let correct;
 		if ( !isUndefinedOrNull( solution ) ) {
 			const lowerVal = parseFloat( this.state.lower );
 			const upperVal = parseFloat( this.state.upper );
 			const upperSol = solution[1];
 			const lowerSol = solution[0];
-			let correct;
 			if ( digits === null ) {
-				correct = (lowerVal === lowerSol && upperVal === upperSol);
+				correct = ( lowerVal === lowerSol && upperVal === upperSol );
 			} else {
-				correct = (roundn( lowerVal, -digits ) === roundn( lowerVal, -digits ) &&
+				correct = (roundn( lowerVal, -digits ) === roundn( lowerSol, -digits ) &&
 					(roundn(upperVal, -digits) === roundn(upperSol, -digits)));
 			}
 			this.props.onSubmit( [ lowerVal, upperVal ], correct );
@@ -170,7 +173,8 @@ class RangeQuestion extends Component {
 			});
 		}
 		this.setState({
-			submitted: true
+			submitted: true,
+			correct
 		});
 		session.log({
 			id: this.id,
@@ -241,11 +245,10 @@ class RangeQuestion extends Component {
 							onKeyPress={this.handleKeyPress}
 						/>
 						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
-							<span>
-								<br />
-								<span className="title">Solution:</span>
-								<span> {this.props.solution[0]}, {this.props.solution[1]} </span>
-							</span>:
+							<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+								{'Solution:   '}
+								{this.props.solution[0]}, {this.props.solution[1]}
+							</Badge> :
 							null
 						}
 					</div>
@@ -317,7 +320,9 @@ RangeQuestion.propTypes = {
 	question: PropTypes.string,
 	solution: PropTypes.arrayOf( PropTypes.number ),
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.element ]) ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	digits: PropTypes.number,

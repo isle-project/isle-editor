@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
@@ -69,6 +70,7 @@ class NumberQuestion extends Component {
 		this.state = {
 			value: isNumber( value ) ? value : props.defaultValue,
 			submitted: value && isUndefinedOrNull( props.solution ),
+			correct: value === props.solution,
 			...props
 		};
 	}
@@ -191,7 +193,8 @@ class NumberQuestion extends Component {
 			this.sendSubmitNotification( correct );
 		}
 		this.setState({
-			submitted: true
+			submitted: true,
+			correct
 		});
 		session.log({
 			id: this.id,
@@ -234,17 +237,10 @@ class NumberQuestion extends Component {
 							tooltip={createTooltip( this.props )}
 						/>
 						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
-							<span>
-								<span> | </span>
-								<NumberInput
-									legend="Solution"
-									disabled
-									defaultValue={this.props.solution}
-									inline
-									width={90}
-									tooltip={createTooltip( this.props )}
-								/>
-							</span>:
+							<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+								{'Solution:   '}
+								{this.props.solution}
+							</Badge>:
 							null
 						}
 					</div>
@@ -316,7 +312,9 @@ NumberQuestion.propTypes = {
 		PropTypes.node
 	]),
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	feedback: PropTypes.bool,
 	solution: PropTypes.number,
 	digits: PropTypes.number,
