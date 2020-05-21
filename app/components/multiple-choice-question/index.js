@@ -523,7 +523,9 @@ MultipleChoiceQuestion.propTypes = {
 	]),
 	answers: PropTypes.array.isRequired,
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	feedback: PropTypes.bool,
 	disabled: PropTypes.bool,
 	chat: PropTypes.bool,

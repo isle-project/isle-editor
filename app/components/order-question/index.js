@@ -205,7 +205,9 @@ OrderQuestion.propTypes = {
 	options: PropTypes.array.isRequired,
 	provideFeedback: PropTypes.bool,
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	failureMsg: PropTypes.string,

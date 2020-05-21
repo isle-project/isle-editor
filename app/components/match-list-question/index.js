@@ -286,7 +286,9 @@ MatchListQuestion.propTypes = {
 		b: PropTypes.string.isRequired
 	}) ),
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	provideFeedback: PropTypes.bool,
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,

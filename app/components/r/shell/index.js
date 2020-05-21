@@ -526,7 +526,9 @@ class RShell extends Component {
 RShell.propTypes = {
 	code: PropTypes.string,
 	solution: PropTypes.string,
-	hints: PropTypes.array,
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	addPreceding: PropTypes.bool,
 	libraries: PropTypes.array,
 	precompute: PropTypes.bool,

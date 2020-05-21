@@ -372,7 +372,9 @@ FreeTextQuestion.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	hintPlacement: PropTypes.string,
 	feedback: PropTypes.bool,
 	solution: PropTypes.oneOfType([

@@ -283,7 +283,9 @@ SelectQuestionMatrix.propTypes = {
 	cols: PropTypes.array,
 	options: PropTypes.object,
 	solution: PropTypes.object,
-	hints: PropTypes.array,
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	hintPlacement: PropTypes.string,
 	feedback: PropTypes.bool,
 	provideFeedback: PropTypes.oneOf([ 'none', 'overall', 'individual' ]),

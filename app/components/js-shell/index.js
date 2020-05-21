@@ -448,7 +448,9 @@ JSShell.defaultProps = {
 JSShell.propTypes = {
 	code: PropTypes.string,
 	solution: PropTypes.string,
-	hints: PropTypes.array,
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	precompute: PropTypes.bool,
 	chat: PropTypes.bool,
 	check: PropTypes.string,

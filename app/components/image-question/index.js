@@ -221,7 +221,9 @@ ImageQuestion.defaultProps = {
 ImageQuestion.propTypes = {
 	question: PropTypes.string,
 	hintPlacement: PropTypes.string,
-	hints: PropTypes.arrayOf( PropTypes.string ),
+	hints: PropTypes.arrayOf(
+		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
+	),
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,
