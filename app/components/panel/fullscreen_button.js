@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'components/tooltip';
 
@@ -30,14 +31,20 @@ class FullscreenButton extends Component {
 				<Tooltip
 					id="fullscreen_tooltip"
 					placement="bottom"
-					tooltip="Toggle FullScreen"
+					tooltip="Toggle Fullscreen"
 				>
 					<Button
-						variant="outline-danger"
+						variant="outline-secondary"
 						size="sm"
 						onClick={this.toggleFullscreen}
+						style={{
+							position: 'absolute',
+							top: 0,
+							right: 0,
+							fontSize: 12
+						}}
 					>
-						<div className="fa fa-window-maximize" />
+						<span className="fa fa-window-maximize" />
 					</Button>
 				</Tooltip>
 				<Modal
@@ -51,14 +58,23 @@ class FullscreenButton extends Component {
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
-						className="data-explorer-fullscreen-output"
 						style={{
 							height: 0.75 * window.innerHeight
 						}}
 					>
-						{this.props.body}
+						<Card body
+							className={this.props.className}
+							style={{
+								maxWidth: 1200,
+								fontSize: 22,
+								height: 'fit-content'
+							}}
+						>
+							{this.props.body}
+						</Card>
 					</Modal.Body>
 					<Modal.Footer>
+						{this.props.footer}
 						<Button onClick={this.toggleFullscreen}>Close</Button>
 					</Modal.Footer>
 				</Modal>
@@ -71,11 +87,13 @@ class FullscreenButton extends Component {
 // PROPERTIES //
 
 FullscreenButton.propTypes = {
+	className: PropTypes.string,
 	header: PropTypes.string,
 	body: PropTypes.node.isRequired
 };
 
 FullscreenButton.defaultProps = {
+	className: null,
 	header: 'Fullscreen Display'
 };
 

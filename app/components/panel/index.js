@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'components/tooltip';
 import Card from 'react-bootstrap/Card';
 import omit from '@stdlib/utils/omit';
+import FullscreenButton from './fullscreen_button.js';
 import './panel.css';
 
 
@@ -17,6 +18,7 @@ import './panel.css';
 * @property {(string|node)} header - panel heading (h3)
 * @property {(string|node)} footer - panel footer
 * @property {boolean} minimizable - whether the panel can be minimized
+* @property {boolean} fullscreen - whether the panel can be made fullscreen
 * @property {Function} onHide - callback invoked when the close button is clicked
 * @property {Object} style - CSS inline styles
 */
@@ -62,6 +64,12 @@ class Wrapper extends Component {
 				...this.props.style
 			}}
 		>
+			{ this.props.fullscreen ? <FullscreenButton
+				header={this.props.header}
+				body={this.props.children}
+				footer={this.props.footer}
+				className={this.props.className}
+			/> : null }
 			{this.renderHeader()}
 			<Card.Body style={{
 				...this.props.bodyStyle,
@@ -93,6 +101,7 @@ Wrapper.propTypes = {
 		PropTypes.node
 	]),
 	minimizable: PropTypes.bool,
+	fullscreen: PropTypes.bool,
 	hideTooltip: PropTypes.string,
 	bodyStyle: PropTypes.object,
 	footerStyle: PropTypes.object,
@@ -105,6 +114,7 @@ Wrapper.defaultProps = {
 	header: null,
 	footer: null,
 	minimizable: false,
+	fullscreen: false,
 	hideTooltip: 'Close',
 	bodyStyle: {},
 	footerStyle: {},

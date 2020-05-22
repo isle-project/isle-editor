@@ -7,11 +7,11 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
-import Card from 'react-bootstrap/Card';
 import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from 'utils/uid';
+import Panel from 'components/panel';
 import ChatButton from 'components/chat-button';
 import TimedButton from 'components/timed-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -239,105 +239,107 @@ class FreeTextQuestion extends Component {
 			hasHints={this.props.hints.length > 0}
 		/>;
 		return (
-			<Card id={this.id} className="free-text-question" style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
-					<VoiceControl id={this.props.voiceID} reference={this}
-						commands={VOICE_COMMANDS}
-					/>
-					{ this.props.question ? <div className="title">{this.props.question}</div> : null }
-					<FormGroup>
-						<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
-						{!this.state.solutionDisplayed ?
-							<FormControl
-								id={`${this.id}-textarea`}
-								as="textarea"
-								placeholder={this.props.placeholder}
-								onChange={this.handleChange}
-								style={{
-									resize: this.props.resizable ? 'both' : 'none'
-								}}
-								maxLength={this.props.maxlength}
-								rows={this.props.rows}
-								value={this.state.value}
-								disabled={this.state.solutionDisplayed}
-							/> :
-							<div className="free-text-question-solution-wrapper" style={{
-								height: `calc(${this.props.rows*1.5}rem + 14px)`
-							}}>
-								{this.state.value}
-							</div>
-						}
-						</FormGroup>
-					<ResponseVisualizer
-						buttonLabel="Answers" id={this.id}
-						info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
-						data={{
-							question: this.props.question
-						}}
-					/>
-					<ButtonToolbar className="free-text-question-toolbar" >
-						{ nHints > 0 ?
-							<HintButton
-								onClick={this.logHint}
-								ref={( div ) => { this.hintButton = div; }}
-								hints={this.props.hints}
-								onFinished={() => {
-									this.setState({ exhaustedHints: true });
-								}}
-								style={{
-									marginRight: '4px'
-								}}
-								placement={this.props.hintPlacement} /> :
-							null
-						}
-						{
-							this.props.provideFeedback && this.props.solution ? solutionButton : null
-						}
-						{
-							this.props.chat ?
-								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.id} />
-								</div> : null
-						}
-						{
-							this.state.value.length >= 1 && !this.state.solutionDisplayed ?
-								<TimedButton
-									className="submit-button"
-									variant="primary"
-									size="sm"
-									onClick={this.submitHandler}
-									duration={5}
-									style={{ marginLeft: '4px' }}
-								>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</TimedButton> :
-								<OverlayTrigger
-									placement="top"
-									positionLeft={100}
-									overlay={<Tooltip id="submitTooltip">
-										Click submit after you have typed your answer.
-									</Tooltip>}
-									rootClose={true}
-								>
-									<div style={{ display: 'inline-block' }}>
-										<Button
-											className="submit-button"
-											variant="primary"
-											size="sm"
-											style={{
-												pointerEvents: 'none',
-												marginLeft: '4px'
-											}}
-											disabled
-										>Submit</Button>
-									</div>
-								</OverlayTrigger>
-						}
-					</ButtonToolbar>
-					{ this.props.feedback ? <FeedbackButtons
-						id={this.id+'_feedback'}
-						style={{ marginRight: 5, marginTop: -5 }}
-					/> : null }
-				</Card.Body>
-			</Card>
+			<Panel
+				id={this.id} className="free-text-question"
+				style={this.props.style} fullscreen
+				bodyStyle={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}
+			>
+				<VoiceControl id={this.props.voiceID} reference={this}
+					commands={VOICE_COMMANDS}
+				/>
+				{ this.props.question ? <div className="title">{this.props.question}</div> : null }
+				<FormGroup>
+					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
+					{!this.state.solutionDisplayed ?
+						<FormControl
+							id={`${this.id}-textarea`}
+							as="textarea"
+							placeholder={this.props.placeholder}
+							onChange={this.handleChange}
+							style={{
+								resize: this.props.resizable ? 'both' : 'none'
+							}}
+							maxLength={this.props.maxlength}
+							rows={this.props.rows}
+							value={this.state.value}
+							disabled={this.state.solutionDisplayed}
+						/> :
+						<div className="free-text-question-solution-wrapper" style={{
+							height: `calc(${this.props.rows*1.5}rem + 14px)`
+						}}>
+							{this.state.value}
+						</div>
+					}
+					</FormGroup>
+				<ResponseVisualizer
+					buttonLabel="Answers" id={this.id}
+					info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
+					data={{
+						question: this.props.question
+					}}
+				/>
+				<ButtonToolbar className="free-text-question-toolbar" >
+					{ nHints > 0 ?
+						<HintButton
+							onClick={this.logHint}
+							ref={( div ) => { this.hintButton = div; }}
+							hints={this.props.hints}
+							onFinished={() => {
+								this.setState({ exhaustedHints: true });
+							}}
+							style={{
+								marginRight: '4px'
+							}}
+							placement={this.props.hintPlacement} /> :
+						null
+					}
+					{
+						this.props.provideFeedback && this.props.solution ? solutionButton : null
+					}
+					{
+						this.props.chat ?
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.id} />
+							</div> : null
+					}
+					{
+						this.state.value.length >= 1 && !this.state.solutionDisplayed ?
+							<TimedButton
+								className="submit-button"
+								variant="primary"
+								size="sm"
+								onClick={this.submitHandler}
+								duration={5}
+								style={{ marginLeft: '4px' }}
+							>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</TimedButton> :
+							<OverlayTrigger
+								placement="top"
+								positionLeft={100}
+								overlay={<Tooltip id="submitTooltip">
+									Click submit after you have typed your answer.
+								</Tooltip>}
+								rootClose={true}
+							>
+								<div style={{ display: 'inline-block' }}>
+									<Button
+										className="submit-button"
+										variant="primary"
+										size="sm"
+										style={{
+											pointerEvents: 'none',
+											marginLeft: '4px'
+										}}
+										disabled
+									>Submit</Button>
+								</div>
+							</OverlayTrigger>
+					}
+				</ButtonToolbar>
+				{ this.props.feedback ? <FeedbackButtons
+					id={this.id+'_feedback'}
+					style={{ marginRight: 5, marginTop: -5 }}
+				/> : null }
+			</Panel>
 		);
 	}
 }
