@@ -195,7 +195,7 @@ class Preview extends Component {
 		code = code.replace( /---([\S\s]*?)---/, replacer );
 
 		// Replace comments with empty lines:
-		code = code.replace( /<!--([\S\s]*)-->/g, replacer );
+		code = code.replace( /<!--([\S\s]*?)-->/g, replacer );
 
 		// Replace Markdown by HTML...
 		try {
