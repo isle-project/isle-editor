@@ -37,4 +37,6 @@ state:
 * __inline__ | `boolean`: indicates whether the checkbox is displayed inline. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value. Default: `onChange() {}`.
 * __legend__ | `(string|node)`: text displayed next to the checkbox. Default: `''`.
+* __tooltip__ | `string`: text displayed when hovering over checkbox. Default: `''`.
+* __tooltipPlacement__ | `string`: undefined. Default: `'right'`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

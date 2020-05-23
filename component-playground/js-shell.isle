@@ -32,7 +32,7 @@ console.log(x);\`}
 
 * __code__ | `string`: JavaScript code to be evaluated. Default: `''`.
 * __solution__ | `string`: for programming questions, code `string` representing the official solution for the problem. Default: `''`.
-* __hints__ | `array`: for programming questions, an array of hints providing guidance on how to approach the problem. Default: `[]`.
+* __hints__ | `array<(string|node)>`: for programming questions, an array of hints providing guidance on how to approach the problem. Default: `[]`.
 * __precompute__ | `boolean`: controls whether the default code should be executed once the component has mounted. Default: `false`.
 * __chat__ | `boolean`: controls whether group chat functionality should be enabled. Default: `false`.
 * __check__ | `string`: appended JavaScript code to check the `code` to be evaluated. Default: `none`.

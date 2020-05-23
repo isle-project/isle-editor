@@ -634,10 +634,9 @@
         "default": true
       },
       {
-        "name": "groupMode",
-        "type": "boolean",
-        "description": "controls whether to sync editor changes across users in a group",
-        "default": false
+        "name": "reportMode",
+        "type": "string",
+        "default": "invididual"
       },
       {
         "name": "histogramDensities",
@@ -1126,7 +1125,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -1409,7 +1408,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -1548,6 +1547,17 @@
         "default": ""
       },
       {
+        "name": "tooltip",
+        "type": "string",
+        "description": "text displayed when hovering over checkbox",
+        "default": ""
+      },
+      {
+        "name": "tooltipPlacement",
+        "type": "string",
+        "default": "right"
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -1662,6 +1672,12 @@
         "name": "value",
         "type": "number",
         "description": "number value (for controlled component)",
+        "default": null
+      },
+      {
+        "name": "tooltip",
+        "type": "string",
+        "description": "tooltip string (if not set, the tooltip is automatically generated)",
         "default": null
       },
       {
@@ -2212,7 +2228,7 @@
       },
       {
         "name": "hints",
-        "type": "array",
+        "type": "array<(string|node)>",
         "description": "for programming questions, an array of hints providing guidance on how to approach the problem",
         "default": []
       },
@@ -3116,7 +3132,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -3404,7 +3420,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -3573,7 +3589,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -3724,7 +3740,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -3856,6 +3872,12 @@
         "name": "minimizable",
         "type": "boolean",
         "description": "whether the panel can be minimized",
+        "default": false
+      },
+      {
+        "name": "fullscreen",
+        "type": "boolean",
+        "description": "whether the panel can be made fullscreen",
         "default": false
       },
       {
@@ -4491,7 +4513,7 @@
       },
       {
         "name": "hints",
-        "type": "array",
+        "type": "array<(string|node)>",
         "description": "for programming questions, an array of hints providing guidance on how to approach the problem",
         "default": []
       },
@@ -4632,7 +4654,7 @@
       },
       {
         "name": "hints",
-        "type": "array<(string|element)>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -4990,7 +5012,7 @@
       },
       {
         "name": "hints",
-        "type": "array",
+        "type": "array<(string|node)>",
         "default": []
       },
       {
@@ -5074,7 +5096,7 @@
       },
       {
         "name": "hints",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "hints providing guidance on how to answer the question",
         "default": []
       },
@@ -5816,10 +5838,6 @@
     "props": [],
     "description": "Spectacle text component."
   },
-  "StatusBar": {
-    "props": [],
-    "description": "Description is missing."
-  },
   "StickyNote": {
     "props": [
       {
@@ -5854,7 +5872,7 @@
       },
       {
         "name": "draggable",
-        "type": "boolean",
+        "type": "(boolean|object)",
         "default": false
       },
       {
@@ -6260,17 +6278,6 @@
     ],
     "description": "Formats time in the format `minutes:seconds`."
   },
-  "Toolbar": {
-    "props": [
-      {
-        "name": "elements",
-        "type": "array",
-        "description": "array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys",
-        "default": []
-      }
-    ],
-    "description": "Toolbar of widgets for students to use during the course of a lesson."
-  },
   "Tooltip": {
     "props": [
       {
@@ -6586,33 +6593,6 @@
       }
     ],
     "description": "A component for playing media files and content from YouTube, SoundCloud, and Vimeo."
-  },
-  "VoiceControl": {
-    "props": [
-      {
-        "name": "id",
-        "type": "string",
-        "description": "unique identifier",
-        "default": null
-      },
-      {
-        "name": "commands",
-        "type": "array (required)",
-        "description": "array of voice commands"
-      },
-      {
-        "name": "hide",
-        "type": "boolean",
-        "description": "controls whether to hide control elements for toggling on/off voice control and display a list of available commands",
-        "default": false
-      },
-      {
-        "name": "reference",
-        "type": "object (required)",
-        "description": "reference object"
-      }
-    ],
-    "description": "Component to register a reference with the speech control interface."
   },
   "Weather": {
     "props": [
