@@ -546,6 +546,9 @@ function writeIndexFile({
 	// Remove YAML preamble...
 	content = content.replace( RE_PREAMBLE, '' );
 
+	// Replace comments:
+	content = content.replace( /<!--([\S\s]*?)-->/g, '' );
+
 	// Replace Markdown by HTML...
 	content = markdownToHTML( content );
 	if ( meta.type === 'presentation' ) {
