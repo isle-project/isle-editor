@@ -21,6 +21,7 @@ const extraResources = [
 	'app/css/*',
 	'app/constants/*',
 	'app/components/**/*',
+	'app/internal-components/**/*',
 	'app/session/*',
 	'app/speech-interface/*',
 	'app/utils/**/*',
