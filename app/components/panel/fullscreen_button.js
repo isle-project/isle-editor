@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'components/tooltip';
+import Gate from 'components/gate';
 
 
 // MAIN //
@@ -28,25 +29,27 @@ class FullscreenButton extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Tooltip
-					id="fullscreen_tooltip"
-					placement="bottom"
-					tooltip="Toggle Fullscreen"
-				>
-					<Button
-						variant="outline-secondary"
-						size="sm"
-						onClick={this.toggleFullscreen}
-						style={{
-							position: 'absolute',
-							top: 0,
-							right: 0,
-							fontSize: 12
-						}}
+				<Gate owner >
+					<Tooltip
+						id="fullscreen_tooltip"
+						placement="bottom"
+						tooltip="Toggle Fullscreen"
 					>
-						<span className="fa fa-window-maximize" />
-					</Button>
-				</Tooltip>
+						<Button
+							variant="outline-secondary"
+							size="sm"
+							onClick={this.toggleFullscreen}
+							style={{
+								position: 'absolute',
+								top: 0,
+								right: 0,
+								fontSize: 12
+							}}
+						>
+							<span className="fa fa-window-maximize" />
+						</Button>
+					</Tooltip>
+				</Gate>
 				<Modal
 					show={this.state.fullscreen}
 					onHide={this.toggleFullscreen}
@@ -63,12 +66,7 @@ class FullscreenButton extends Component {
 						}}
 					>
 						<Card body
-							className={this.props.className}
-							style={{
-								maxWidth: 1200,
-								fontSize: 22,
-								height: 'fit-content'
-							}}
+							className={`${this.props.className} panel-fullscreen-view`}
 						>
 							{this.props.body}
 						</Card>
