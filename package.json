@@ -281,7 +281,7 @@
     "react-draggable": "^4.4.2",
     "react-list": "^0.8.15",
     "react-monaco-editor": "0.36.0",
-    "react-player": "^2.0.1",
+    "react-player": "^2.1.0",
     "react-test-renderer": "16.13.1",
     "redux-devtools": "3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",
