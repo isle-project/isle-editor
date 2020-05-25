@@ -204,30 +204,28 @@ class FormulaTransformer extends Component {
 							</Table>
 						</Collapse>
 						<hr />
-						<Card className="mb-2" >
-							<Card.Body>
-								<ButtonToolbar style={{ marginBottom: 5 }} >
-									<Dropdown className="mr-2">
-										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-											Quantitative
-										</Dropdown.Toggle>
-										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-											{continousItems}
-										</Dropdown.Menu>
-									</Dropdown>
-									<Dropdown className="mr-2">
-										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-											Categorical
-										</Dropdown.Toggle>
-										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-											{this.props.categorical.map( ( v, i ) => {
-												return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-											})}
-										</Dropdown.Menu>
-									</Dropdown>
-								</ButtonToolbar>
-							</Card.Body>
-						</Card>
+						<div className="mb-2" >
+							<ButtonToolbar style={{ marginBottom: 5 }} >
+								<Dropdown className="mr-2">
+									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
+										Quantitative
+									</Dropdown.Toggle>
+									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+										{continousItems}
+									</Dropdown.Menu>
+								</Dropdown>
+								<Dropdown className="mr-2">
+									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
+										Categorical
+									</Dropdown.Toggle>
+									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+										{this.props.categorical.map( ( v, i ) => {
+											return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+										})}
+									</Dropdown.Menu>
+								</Dropdown>
+							</ButtonToolbar>
+						</div>
 						<Card className="mb-2" >
 							<Card.Body>
 								<ButtonToolbar style={{ marginBottom: 5 }} >
