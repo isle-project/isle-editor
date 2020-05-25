@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
@@ -13,6 +12,7 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isNumber from '@stdlib/assert/is-number';
 import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
+import Panel from 'components/panel';
 import TimedButton from 'components/timed-button';
 import ChatButton from 'components/chat-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -220,67 +220,68 @@ class NumberQuestion extends Component {
 		const nHints = this.props.hints.length;
 		const solutionPresent = this.props.solution !== null;
 		return (
-			<Card id={this.id} className="number-question" style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block', marginBottom: 6 }} >
-					{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
-					<div className="number-question-input-wrapper">
-						<NumberInput
-							step="any"
-							legend="Your answer"
-							onChange={this.handleChange}
-							defaultValue={this.state.value}
-							disabled={this.state.submitted && solutionPresent}
-							inline
-							width={90}
-							numbersOnly={false}
-							onKeyPress={this.handleKeyPress}
-							tooltip={createTooltip( this.props )}
-						/>
-						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
-							<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-								{'Solution:   '}
-								{this.props.solution}
-							</Badge>:
-							null
-						}
-					</div>
-					<ButtonToolbar className="number-question-toolbar">
-						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
-							null
-						}
-						{
-							this.props.chat ?
-								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.id} />
-								</div> : null
-						}
-					</ButtonToolbar>
-					<TimedButton
-						className="submit-button"
-						variant="primary"
-						size="sm"
+			<Panel
+				id={this.id} className="number-question" style={this.props.style} fullscreen
+				bodyStyle={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block', marginBottom: 6 }}
+			>
+				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
+				<div className="number-question-input-wrapper">
+					<NumberInput
+						step="any"
+						legend="Your answer"
+						onChange={this.handleChange}
+						defaultValue={this.state.value}
 						disabled={this.state.submitted && solutionPresent}
-						onClick={this.submitHandler}
-					>
-						{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
-					</TimedButton>
-					<ResponseVisualizer
-						buttonLabel="Answers" id={this.id}
-						data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
-						style={{ marginLeft: '6px' }}
+						inline
+						width={90}
+						numbersOnly={false}
+						onKeyPress={this.handleKeyPress}
+						tooltip={createTooltip( this.props )}
 					/>
-					{ this.props.feedback ? <FeedbackButtons
-						vertical
-						id={this.id+'_feedback'}
-						style={{
-							position: 'absolute',
-							right: '4px',
-							top: '4px'
-						}}
-					/> : null }
-				</Card.Body>
-			</Card>
+					{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
+						<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+							{'Solution:   '}
+							{this.props.solution}
+						</Badge>:
+						null
+					}
+				</div>
+				<ButtonToolbar className="number-question-toolbar">
+					{ nHints > 0 ?
+						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+						null
+					}
+					{
+						this.props.chat ?
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.id} />
+							</div> : null
+					}
+				</ButtonToolbar>
+				<TimedButton
+					className="submit-button"
+					variant="primary"
+					size="sm"
+					disabled={this.state.submitted && solutionPresent}
+					onClick={this.submitHandler}
+				>
+					{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+				</TimedButton>
+				<ResponseVisualizer
+					buttonLabel="Answers" id={this.id}
+					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
+					style={{ marginLeft: '6px' }}
+				/>
+				{ this.props.feedback ? <FeedbackButtons
+					vertical
+					id={this.id+'_feedback'}
+					style={{
+						position: 'absolute',
+						right: '4px',
+						bottom: '4px'
+					}}
+				/> : null }
+			</Panel>
 		);
 	}
 }
