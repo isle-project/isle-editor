@@ -242,7 +242,9 @@
     "v8-compile-cache": "^2.1.0",
     "venn.js": "0.2.20",
     "webpack": "4.43.0",
+    "webpack-manifest-plugin": "^2.2.0",
     "whatwg-fetch": "^3.0.0",
+    "workbox-webpack-plugin": "^4.3.1",
     "worker-loader": "^2.0.0",
     "xterm": "^4.6.0",
     "xterm-addon-fit": "^0.4.0"

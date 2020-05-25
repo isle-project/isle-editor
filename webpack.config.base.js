@@ -67,7 +67,8 @@ const EXTERNALS = [
 	'typo-js',
 	'uniq',
 	'venn.js',
-	'webpack'
+	'webpack',
+	'workbox-webpack-plugin'
 ];
 
 

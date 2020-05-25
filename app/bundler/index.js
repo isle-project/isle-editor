@@ -10,6 +10,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
 import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import ManifestPlugin from 'webpack-manifest-plugin';
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -26,6 +28,7 @@ import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
 import CDN_MODULES from './cdn_modules.json';
+import MANIFEST_TEMPLATE from './manifest.json';
 
 
 // VARIABLES //
@@ -535,6 +538,14 @@ function writeIndexFile({
 				filename: 'css/[name].css',
 				chunkFilename: 'css/[id].css'
 			}),
+			new ManifestPlugin({
+				fileName: 'asset-manifest.json'
+			}),
+			new WorkboxWebpackPlugin.GenerateSW({
+				clientsClaim: true,
+				exclude: [/\.map$/, /asset-manifest\.json$/],
+				importWorkboxFrom: 'cdn'
+			}),
 			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: '"production"'
@@ -600,6 +611,13 @@ function writeIndexFile({
 
 	let imgPath = join( basePath, 'app', 'img' );
 	copyFileSync( join( imgPath, 'favicon.ico' ), join( appDir, 'favicon.ico' ) );
+	copyFileSync( join( imgPath, 'favicon.png' ), join( appDir, 'favicon.png' ) );
+	copyFileSync( join( imgPath, 'apple-touch-icon.png' ), join( appDir, 'apple-touch-icon.png' ) );
+
+	const manifest = { ...MANIFEST_TEMPLATE };
+	manifest[ 'short_name' ] = meta.title;
+	manifest[ 'name' ] = meta.title;
+	writeFileSync( join( appDir, 'manifest.json' ), JSON.stringify( manifest ) );
 
 	config.entry = indexPath;
 	config.output = {
