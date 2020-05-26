@@ -212,7 +212,7 @@ class VideoLecture extends Component {
 				<div className="video-lecture-wrapper" ref={( div ) => {
 					this.videoLectureWrapper = div;
 				}}>
-					{ this.state.active >= this.props.steps.length ?
+					{ this.state.active >= this.props.steps.length && !this.state.showInstructorView ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>You have reached the end of this video lecture.</h1>
 							<ButtonGroup block>
