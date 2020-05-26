@@ -82,6 +82,9 @@ async function loadRequires( libs, filePath ) {
 						if ( !str ) {
 							str = resolveFrom.silent( BASE_PATH, lib );
 						}
+						if ( process.platform === 'win32' ) {
+							str = replace( str, '\\', '\\\\' );
+						}
 						debug( `Resolved library path: ${str}` );
 
 						// Use `eval` to bypass Webpack and use Electron runtime module resolution:
