@@ -147,10 +147,12 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		layout: {
 			title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
 			xaxis: {
+				title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
 				type: orientation === 'vertical' ? 'category' : null,
 				showticklabels: ( group.length > 0 || orientation === 'horizontal' )
 			},
 			yaxis: {
+				title: orientation === 'horizontal' && group.length === 2 ? group[ 1 ] : '',
 				type: orientation === 'horizontal' ? 'category' : null,
 				showticklabels: ( group.length > 0 || orientation === 'vertical' )
 			}
