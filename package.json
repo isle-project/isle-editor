@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.53.3",
+  "version": "0.53.4",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -1523,7 +1523,7 @@
       "!node_modules/stylelint/node_modules/parse-json/**/*",
       "!node_modules/execall/**/*",
       "!node_modules/clone-regexp/**/*",
-      "!node_modules/is-regexp/**/*",
+      "!node_modules/clone-regexp/node_modules/is-regexp/**/*",
       "!node_modules/get-stdin/**/*",
       "!node_modules/global-modules/**/*",
       "!node_modules/global-prefix/**/*",
