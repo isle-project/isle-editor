@@ -620,6 +620,7 @@ function writeIndexFile({
 	const manifest = { ...MANIFEST_TEMPLATE };
 	manifest[ 'short_name' ] = meta.title;
 	manifest[ 'name' ] = meta.title;
+	manifest[ 'description' ] = meta.description;
 	writeFileSync( join( appDir, 'manifest.json' ), JSON.stringify( manifest, null, '\t' ) );
 
 	config.entry = indexPath;

@@ -1,6 +1,7 @@
 {
 	"short_name": "",
 	"name": "",
+	"description": "",
 	"icons": [
 		{
 			"src": "favicon.png",
@@ -14,7 +15,7 @@
 		}
 	],
 	"start_url": "index.html",
-	"display": "standalone",
+	"display": "fullscreen",
 	"theme_color": "#000000",
 	"background_color": "#ffffff"
 }
