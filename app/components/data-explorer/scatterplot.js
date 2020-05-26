@@ -23,6 +23,8 @@ import group from '@stdlib/utils/group';
 import unique from 'uniq';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
+import PINF from '@stdlib/constants/math/float64-pinf';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import { CAT20 } from 'constants/colors';
 import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
@@ -56,13 +58,36 @@ const SYMBOLS = [
 
 // FUNCTIONS //
 
+/**
+* Computes the minimum and maximum value of an array.
+*
+* @param {Array} arr - array of values
+* @returns {Array} minimum and maximum value
+*/
+function minmax( arr ) {
+	let min = PINF;
+	let max = NINF;
+	for ( let i = 1; i < arr.length; i++ ) {
+		if ( arr[ i ] < min ) {
+			min = arr[ i ];
+		}
+		if ( arr[ i ] > max ) {
+			max = arr[ i ];
+		}
+	}
+	return [ min, max ];
+}
+
 function scale( arr, a, b ) {
-	const minimum = min( arr );
-	const maximum = max( arr );
+	const [ minimum, maximum ] = minmax( arr );
 	const range = maximum - minimum;
 	const out = new Array( arr.length );
 	for ( let i = 0; i < out.length; i++ ) {
-		out[ i ] = ( ( b - a ) * ( arr[ i ] - minimum ) / range ) + a;
+		if ( !isNumber( arr[ i ] ) ) {
+			out[ i ] = NaN;
+		} else {
+			out[ i ] = ( ( b - a ) * ( arr[ i ] - minimum ) / range ) + a;
+		}
 	}
 	return out;
 }
@@ -186,7 +211,6 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		const groups = colors.slice();
 		unique( groups );
 		nColors = groups.length;
-		console.log( colors );
 		const xgrouped = group( x, colors );
 		const ygrouped = group( y, colors );
 		let texts;
