@@ -1,5 +1,6 @@
 // MODULES //
 
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNull from '@stdlib/assert/is-null';
 import replace from '@stdlib/string/replace';
 
@@ -7,7 +8,7 @@ import replace from '@stdlib/string/replace';
 // FUNCTIONS //
 
 function escapeDots( str ) {
-	if ( !str ) {
+	if ( !isString( str ) ) {
 		return str;
 	}
 	return replace( str, '.', '[dot]' );
