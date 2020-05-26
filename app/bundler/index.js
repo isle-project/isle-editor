@@ -119,6 +119,7 @@ import Lesson from 'internal-components/lesson';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 import obsToVar from 'utils/obs-to-var';
+import * as serviceWorker from 'utils/service-worker';
 `;
 
 const getComponents = ( arr ) => {
@@ -220,7 +221,9 @@ render(
 		<LessonWrapper />
 	</Provider>,
 	document.getElementById( 'App' )
-);`;
+);
+
+serviceWorker.register();`;
 
 /**
  * Generates a list of components used in the lesson.
