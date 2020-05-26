@@ -84,9 +84,11 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	const nobs = data[ xval ].length;
 	if ( color ) {
 		colors = data[ color ];
+		colors = colors.map( x => isUndefinedOrNull( x ) ? String( x ) : x );
 	}
 	if ( type ) {
 		types = data[ type ];
+		types = types.map( x => isUndefinedOrNull( x ) ? String( x ) : x );
 	}
 	if ( size ) {
 		sizes = data[ size ];
@@ -184,6 +186,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 		const groups = colors.slice();
 		unique( groups );
 		nColors = groups.length;
+		console.log( colors );
 		const xgrouped = group( x, colors );
 		const ygrouped = group( y, colors );
 		let texts;
