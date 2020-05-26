@@ -25,7 +25,6 @@ const BASE_PATH = IS_PACKAGED ? process.resourcesPath : resolve( '.' );
 
 // MAIN //
 
-
 async function loadRequires( libs, filePath ) {
 	/* eslint-disable no-eval */
 	debug( 'Should require files or modules...' );
@@ -83,6 +82,7 @@ async function loadRequires( libs, filePath ) {
 						if ( !str ) {
 							str = resolveFrom.silent( BASE_PATH, lib );
 						}
+						debug( `Resolved library path: ${str}` );
 
 						// Use `eval` to bypass Webpack and use Electron runtime module resolution:
 						eval( `global[ '${key}' ] = require( '${str}' );` );
