@@ -415,7 +415,7 @@ class Session {
 	}
 
 	/**
-	*  Executes R code via OpenCPU.
+	* Executes R code via OpenCPU.
 	*
 	* @param {Object} opt - options
 	* @param {string} opt.code - R code
