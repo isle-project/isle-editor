@@ -1,6 +1,7 @@
 // MODULES //
 
 import logger from 'debug';
+import { EOL } from 'os';
 import markdownit from 'markdown-it';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
@@ -65,7 +66,7 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	return renderer.renderToken( tokens, idx, options );
 };
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /(\n+)\s*/g;
+const RE_LINE_BEGINNING = /((?:\r\n|\r|\n)+)\s*/g;
 
 
 // FUNCTIONS //
@@ -114,7 +115,7 @@ function tagName( str, pos ) {
 
 function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
-		return '\n'.repeat( p1.length >= 2 ? p1.length : 1 );
+		return EOL.repeat( p1.length >= 2 ? p1.length : 1 );
 	});
 }
 
@@ -166,12 +167,17 @@ class Tokenizer {
 
 	_inBase( char ) {
 		const pos = this.pos;
-		if ( this.addEmptySpans && char === '\n' && this._buffer.charAt( pos+1 ) === '\n' ) {
-			this._current += '\n<span />';
+		const nextChar = this._buffer.charAt( pos+1 );
+		if (
+			this.addEmptySpans &&
+			char === '\n' &&
+			( nextChar === '\n' || nextChar === '\r' )
+		) {
+			this._current += `${EOL}<span />`;
 		}
 		else if (
 			char === '<' &&
-			!isWhitespace( this._buffer.charAt( pos+1 ) ) && // Avoid mistaking smaller than sign in text as tag opening
+			!isWhitespace( nextChar ) && // Avoid mistaking smaller than sign in text as tag opening
 			this._buffer.charAt( pos-1 ) !== '\\' // Allow escaping of left angle brackets
 		) {
 			debug( 'IN_BASE -> IN_OPENING_TAG_NAME' );
@@ -182,7 +188,6 @@ class Tokenizer {
 		else if ( char === '$' ) {
 			this._eqnChar = char;
 			const prevChar = this._buffer.charAt( pos-1 );
-			const nextChar = this._buffer.charAt( pos+1 );
 			if (
 				nextChar === '$' &&
 				prevChar !== '\\' &&
@@ -202,7 +207,6 @@ class Tokenizer {
 		}
 		else if ( char === '\\' ) {
 			this._eqnChar = char;
-			const nextChar = this._buffer.charAt( pos+1 );
 			if ( nextChar === '[' ) {
 				debug( 'IN_BASE -> IN_DISPLAY_EQUATION' );
 				this._state = IN_DISPLAY_EQUATION;
