@@ -20,7 +20,7 @@ import HintButton from 'components/hint-button';
 import VoiceControl from 'internal-components/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import getLastAction from 'utils/get-last-action';
 import beforeUnload from 'utils/before-unload';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';

@@ -10,7 +10,7 @@ import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
 import VoiceControl from 'internal-components/voice-control';
 import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';

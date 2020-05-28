@@ -44,7 +44,7 @@ import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VoiceControl from 'internal-components/voice-control';
 import randomstring from 'utils/randomstring/ascii';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import VOICE_COMMANDS from './voice_commands.json';
 import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';

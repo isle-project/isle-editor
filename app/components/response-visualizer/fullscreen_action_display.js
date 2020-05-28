@@ -38,7 +38,7 @@ import Checkbox from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import Switch from 'components/switch';
 import WordCloud from 'components/word-cloud';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { CAT20 as COLORS } from 'constants/colors';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';

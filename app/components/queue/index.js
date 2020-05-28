@@ -15,7 +15,7 @@ import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
 import { USER_JOINED, USER_LEFT } from 'constants/events.js';
 import 'react-table/react-table.css';

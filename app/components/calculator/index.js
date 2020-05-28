@@ -13,7 +13,7 @@ import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
 import { CALCULATOR_SOLVE } from 'constants/actions.js';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';

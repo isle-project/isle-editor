@@ -8,7 +8,7 @@ import isNull from '@stdlib/assert/is-null';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import Spinner from 'components/spinner';
 import Image from 'components/image';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import './plot.css';
 
 

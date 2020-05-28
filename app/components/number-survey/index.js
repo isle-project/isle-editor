@@ -19,7 +19,7 @@ import Gate from 'components/gate';
 import Plotly from 'components/plotly';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { NUMBER_SURVEY_SUBMISSION } from 'constants/actions.js';
 import './number-survey.css';
 

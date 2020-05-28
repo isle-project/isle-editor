@@ -15,7 +15,7 @@ import uncapitalize from '@stdlib/string/uncapitalize';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
 	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';

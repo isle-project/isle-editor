@@ -254,15 +254,6 @@ const getISLEcode = ( config ) => {
 	return `const preamble = ${JSON.stringify( config )};`;
 };
 
-const getSessionCode = ( basePath ) => {
-	let requirePath = resolve( join( basePath, 'app', 'session' ) );
-	if ( process.platform === 'win32' ) {
-		requirePath = replace( requirePath, '\\', '\\\\' );
-	}
-	let str = `import Session from '${requirePath}';`;
-	return str;
-};
-
 
 // MAIN //
 
@@ -293,7 +284,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += '\n';
 	res += getISLEcode( meta );
 
-	res += getSessionCode( basePath );
+	res += 'import Session from \'@isle-project/session\';';
 
 	res += getComponents( components );
 	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );

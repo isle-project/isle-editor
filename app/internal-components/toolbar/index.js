@@ -14,7 +14,7 @@ import Sketchpad from 'components/sketchpad';
 import Panel from 'components/panel';
 import KeyControls from 'components/key-controls';
 import isElectron from 'utils/is-electron';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import pixelsToNumber from 'utils/pixels-to-number';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';

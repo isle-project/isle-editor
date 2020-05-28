@@ -13,7 +13,7 @@ import FeedbackButtons from 'components/feedback';
 import SolutionButton from 'components/solution-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import Text from 'components/text';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from 'constants/actions.js';
 import './multiple_choice_matrix.css';
 

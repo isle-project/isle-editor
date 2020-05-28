@@ -15,7 +15,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import generateUID from 'utils/uid';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { SELECT_QUESTION_SUBMISSION } from 'constants/actions.js';
 import './select-question.css';
 

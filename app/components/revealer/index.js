@@ -8,7 +8,7 @@ import isNull from '@stdlib/assert/is-null';
 import Panel from 'components/panel';
 import Gate from 'components/gate';
 import generateUID from 'utils/uid';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
 import { MEMBER_ACTION, RETRIEVED_COHORTS, USER_JOINED } from 'constants/events.js';
 

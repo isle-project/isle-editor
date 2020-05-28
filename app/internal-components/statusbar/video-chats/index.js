@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from 'constants/events.js';
 import VideoChat from './video_chat.js';
 

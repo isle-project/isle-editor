@@ -15,7 +15,7 @@ import Tooltip from 'components/tooltip';
 import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
 import Text from 'components/text';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from 'constants/actions.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';

@@ -19,7 +19,7 @@ import replace from '@stdlib/string/replace';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 const PeerSubmitModal = Loadable( () => import( './peer_submit_modal.js' ) );
 const SubmitModal = Loadable( () => import( './submit_modal.js' ) );
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );

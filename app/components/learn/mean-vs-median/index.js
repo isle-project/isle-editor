@@ -17,7 +17,7 @@ import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
 import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from 'components/feedback';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { MEMBER_ACTION } from 'constants/events.js';
 
 

@@ -11,7 +11,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import generateUID from 'utils/uid';
 import './number.css';
 

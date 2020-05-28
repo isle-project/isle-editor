@@ -19,7 +19,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import Text from 'components/text';
 import FeedbackButtons from 'components/feedback';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { SELECT_QUESTION_MATRIX_SUBMISSION } from 'constants/actions.js';
 import './select-question-matrix.css';
 

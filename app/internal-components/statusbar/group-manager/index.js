@@ -26,7 +26,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import EditorView from 'components/text-editor/view.js';
 import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import retrieveUserGroup from 'utils/retrieve-user-group';
 import Group from './group.js';
 import ConfirmModal from './../confirm_modal.js';

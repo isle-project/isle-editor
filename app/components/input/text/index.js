@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Input from 'components/input/base';
 import generateUID from 'utils/uid';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import './text.css';
 
 

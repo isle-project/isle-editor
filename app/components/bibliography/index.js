@@ -4,7 +4,7 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 
 
 // FUNCTIONS //

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VoiceInput from 'components/input/voice';
 import logger from 'debug';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import './wikipedia.css';
 
 

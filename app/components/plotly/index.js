@@ -16,7 +16,7 @@ import isUndefined from '@stdlib/assert/is-undefined';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import deepEqual from '@stdlib/assert/deep-equal';
 import copy from '@stdlib/utils/copy';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { PLOT_UPDATE } from 'constants/actions.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';

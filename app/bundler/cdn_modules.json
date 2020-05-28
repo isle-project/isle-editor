@@ -162,5 +162,12 @@
 		"path": "dist/d3.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"version": "5.16.0"
+	},
+	{
+		"name": "@isle-project/session",
+		"alias": "@isle-project/session",
+		"var": "Session",
+		"path": "umd/session.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path"
 	}
 ]

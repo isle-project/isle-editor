@@ -15,7 +15,7 @@ import round from '@stdlib/math/base/special/round';
 import beforeUnload from 'utils/before-unload';
 import Signup from 'internal-components/signup';
 import Login from 'internal-components/login';
-import SessionContext from 'session/context.js';
+import { SessionContext } from '@isle-project/session';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import { LESSON_SUBMIT } from 'constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
