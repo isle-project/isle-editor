@@ -101,7 +101,7 @@
     "@babel/plugin-transform-runtime": "^7.10.0",
     "@babel/preset-env": "^7.10.0",
     "@babel/preset-react": "^7.10.0",
-    "@babel/register": "^7.9.0",
+    "@babel/register": "^7.10.1",
     "@babel/runtime": "^7.10.0",
     "@iktakahiro/markdown-it-katex": "^3.1.0",
     "@stdlib/stdlib": "0.0.91",
