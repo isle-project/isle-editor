@@ -7,6 +7,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
+import { version as pkgVersion } from './package.json';
 
 
 // VARIABLES //
@@ -31,7 +32,7 @@ const config = {
 	output: {
 		...baseConfig.output,
 		publicPath: '../dist/',
-		filename: 'renderer.prod.js',
+		filename: `renderer_${pkgVersion}.js`,
 		chunkFilename: '[name].bundle.js'
 	},
 
