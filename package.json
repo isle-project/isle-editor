@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.53.7",
+  "version": "0.53.8",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -985,7 +985,6 @@
       "!node_modules/null-loader/**/*",
       "!node_modules/null-loader/node_modules/loader-utils/**/*",
       "!node_modules/pdfjs-dist/**/*",
-      "!node_modules/node-ensure/**/*",
       "!node_modules/pdfmake/**/*",
       "!node_modules/pdfmake/node_modules/iconv-lite/**/*",
       "!node_modules/linebreak/**/*",
