@@ -436,11 +436,11 @@ class SampleCLT extends Component {
 					{' '}
 					{this.state.trueMean.toFixed( 3 )}
 				</p>
-				<p>
+				{!this.props.hidePopulationStdev ? <p>
 					<span className="title">Population standard deviation: </span>
 					{' '}
 					{this.state.trueStdev.toFixed( 3 )}
-				</p>
+				</p> : null}
 			</Card.Body>
 		</Card> );
 	}
@@ -511,16 +511,16 @@ class SampleCLT extends Component {
 									</Card>
 								</div>
 							}
-							<Card>
+							{this.state.type === 'numeric' ? <Card>
 								<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={this.onXChange} />
 								<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
-							</Card>
+							</Card> : null}
 						</Col>
 						<Col md={6}>
 							<div>
 								{this.renderMeanHistogram()}
-								{ this.state.xbars.length > 1 ? <Card>
+								{this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card>
 									<NumberInput step="any" legend={<span>Estimate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
 									<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
@@ -542,12 +542,14 @@ class SampleCLT extends Component {
 
 SampleCLT.propTypes = {
 	data: PropTypes.array.isRequired,
+	hidePopulationStdev: PropTypes.bool,
 	populationProbabilities: PropTypes.bool,
 	variables: PropTypes.array.isRequired
 };
 
 SampleCLT.defaultProps = {
-	populationProbabilities: null
+	hidePopulationStdev: false,
+	populationProbabilities: false
 };
 
 
