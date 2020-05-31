@@ -257,7 +257,7 @@ class ProportionTest extends Component {
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null }
 				</Card>
-				<p>We conduct the following test (click on the formula to switch between the one-sided variants and the two-sided test):</p>
+				<p>We conduct the following test (click on the hypotheses below to switch between the one-sided variants and the two-sided test):</p>
 				<Switch onChange={this.onDirectionChange} style={{ width: '100%' }} >
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
