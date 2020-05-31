@@ -27,6 +27,7 @@ import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
+import COMPONENTS_MANIFEST from 'components/_dist_/components-manifest.json';
 import CDN_MODULES from './cdn_modules.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
@@ -115,7 +116,8 @@ import React, { Component } from 'react';
 import { json, csv } from 'd3';
 import { render } from 'react-dom';
 import { extname } from 'path';
-import Lesson from 'internal-components/lesson';
+import Lesson from 'components/internal/lesson';
+import 'css/lesson.css';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 import obsToVar from 'utils/obs-to-var';
@@ -130,7 +132,7 @@ const getComponents = ( arr ) => {
 		}
 		return `const ${elem} = Loadable( () => import( /* webpackChunkName: "${elem}" */ '${pkg.path}' ) );`;
 	});
-	requireStatements.unshift( 'import Loadable from \'components/loadable\'; ' );
+	requireStatements.unshift( 'import Loadable from \'components/internal/loadable\'; ' );
 	return requireStatements.join( '\n' );
 };
 
@@ -539,6 +541,9 @@ function writeIndexFile({
 				clientsClaim: true,
 				exclude: [/\.map$/, /asset-manifest\.json$/],
 				importWorkboxFrom: 'cdn'
+			}),
+			new webpack.DllReferencePlugin({
+				manifest: COMPONENTS_MANIFEST
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {

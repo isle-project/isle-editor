@@ -55,6 +55,7 @@
   "scripts": {
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
+    "build-components": "node -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.components.js --progress --colors",
     "build-main": "cross-env NODE_ENV=production node --max_old_space_size=16384 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --colors",
     "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=16384 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --colors",
     "clean": "rm -rf node_modules",
@@ -315,7 +316,7 @@
       "app/css/*",
       "app/constants/*",
       "app/components/**/*",
-      "app/internal-components/**/*",
+      "app/components/internal/**/*",
       "app/session/*",
       "app/speech-interface/*",
       "app/utils/**/*",
