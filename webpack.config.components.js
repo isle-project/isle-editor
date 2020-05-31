@@ -60,6 +60,7 @@ const config = {
 			'./app/components/background',
 			'./app/components/beacon-tooltip',
 			'./app/components/bibliography',
+			/*
 			'./app/components/calculator',
 			'./app/components/chat-button',
 			'./app/components/citation',
@@ -163,6 +164,7 @@ const config = {
 			'./app/components/weather',
 			'./app/components/wikipedia',
 			'./app/components/word-cloud',
+			*/
 			'./app/components/internal/lesson',
 			'./app/components/internal/login',
 			'./app/components/internal/signup',

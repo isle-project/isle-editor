@@ -1,10 +1,4 @@
-/* WEBPACK VAR INJECTION */
-
-/* eslint-disable react/no-danger */
-
-/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
-
-/* eslint-enable react/no-danger */
+/* eslint-disable no-bitwise, no-cond-assign */
 
 /* harmony default export */
 
@@ -12,51 +6,454 @@
 
 /* harmony import */
 
-/* import() */
+/* harmony reexport (safe) */
 
 /*#__PURE__*/
 
 /**
-* Animates a position property of a specified DOM element.
-*
-* @param {Node} element - DOM node
-* @param {string} prop - property name
-* @param {number} to - target value for property
-* @param {integer} duration - number of milliseconds for the animation to complete
-*/
+   * A Callback fired by the Overlay when it wishes to be hidden.
+   *
+   * __required__ when `rootClose` is `true`.
+   *
+   * @type func
+   */
 
 /**
-* Casts a pixel string to a number.
-*
-* @private
-* @param {(string|number)} x - input value
-* @param {number} cast number (in px)
-*/
+   * A DOM Element, Ref to an element, or function that returns either. The `container` will have the Portal children
+   * appended to it.
+   */
+
+/**
+   * A DOM Element, Ref to an element, or function that returns either. The `target` element is where
+   * the overlay is positioned relative to.
+   */
+
+/**
+   * A `react-transition-group@2.0.0` `<Transition/>` component
+   * used to animate the overlay as it changes visibility.
+   */
+
+/**
+   * A render prop that returns an element to overlay and position. See
+   * the [react-popper documentation](https://github.com/FezVrasta/react-popper#children) for more info.
+   *
+   * @type {Function ({
+   *   show: boolean,
+   *   placement: Placement,
+   *   outOfBoundaries: ?boolean,
+   *   scheduleUpdate: () => void,
+   *   props: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *     aria-labelledby: ?string
+   *   },
+   *   arrowProps: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *   },
+   * }) => React.Element}
+   */
+
+/**
+   * A set of popper options and props passed directly to react-popper's Popper component.
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning in
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning out
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition in
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition out
+   */
+
+/**
+   * Callback fired before the Overlay transitions in
+   */
+
+/**
+   * Callback fired right before the Overlay transitions out
+   */
+
+/**
+   * Control how much space there is between the edge of the boundary element and overlay.
+   * A convenience shortcut to setting `popperConfig.modfiers.preventOverflow.padding`
+   */
+
+/**
+   * Enables the Popper.js `flip` modifier, allowing the Overlay to
+   * automatically adjust it's placement in case of overlap with the viewport or toggle.
+   * Refer to the [flip docs](https://popper.js.org/popper-documentation.html#modifiers..flip.enabled) for more info
+   */
+
+/**
+   * Set the visibility of the Overlay
+   */
+
+/**
+   * Specify disabled for disable RootCloseWrapper
+   */
+
+/**
+   * Specify event for toggling overlay
+   */
+
+/**
+   * Specify whether the overlay should trigger `onHide` when the user clicks outside the overlay
+   */
+
+/**
+ * A convenience hook around `useState` designed to be paired with
+ * the component [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) api.
+ * Callback refs are useful over `useRef()` when you need to respond to the ref being set
+ * instead of lazily accessing it in an effect.
+ *
+ * ```ts
+ * const [element, attachRef] = useCallbackRef<HTMLDivElement>()
+ *
+ * useEffect(() => {
+ *   if (!element) return
+ *
+ *   const calendar = new FullCalendar.Calendar(element)
+ *
+ *   return () => {
+ *     calendar.destroy()
+ *   }
+ * }, [element])
+ *
+ * return <div ref={attachRef} />
+ * ```
+ *
+ * @category refs
+ */
+
+/**
+ * Attach a callback that fires when a component unmounts
+ *
+ * @param fn Handler to run when the component unmounts
+ * @category effects
+ */
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Create and returns a single callback ref composed from two other Refs.
+ *
+ * ```tsx
+ * const Button = React.forwardRef((props, ref) => {
+ *   const [element, attachRef] = useCallbackRef<HTMLButtonElement>();
+ *   const mergedRef = useMergedRefs(ref, attachRef);
+ *
+ *   return <button ref={mergedRef} {...props}/>
+ * })
+ * ```
+ *
+ * @param refA A Callback or mutable Ref
+ * @param refB A Callback or mutable Ref
+ * @category refs
+ */
+
+/**
+ * Position an element relative some reference element using Popper.js
+ *
+ * @param referenceElement
+ * @param popperElement
+ * @param {object}      options
+ * @param {object=}     options.modifiers Popper.js modifiers
+ * @param {boolean=}    options.enabled toggle the popper functionality on/off
+ * @param {string=}     options.placement The popper element placement relative to the reference element
+ * @param {string=}     options.strategy the positioning strategy
+ * @param {boolean=}    options.eventsEnabled have Popper listen on window resize events to reposition the element
+ * @param {function=}   options.onCreate called when the popper is created
+ * @param {function=}   options.onUpdate called when the popper is updated
+ *
+ * @returns {UsePopperState} The popper state
+ */
+
+/**
+ * Returns a ref that is immediately updated with the new value
+ *
+ * @param value The Ref value
+ * @category refs
+ */
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+/**
+ * The `useRootClose` hook registers your callback on the document
+ * when rendered. Powers the `<Overlay/>` component. This is used achieve modal
+ * style behavior where your callback is triggered when the user tries to
+ * interact with the rest of the document or hits the `esc` key.
+ *
+ * @param {Ref<HTMLElement>| HTMLElement} ref  The element boundary
+ * @param {function} onRootClose
+ * @param {object=}  options
+ * @param {boolean=} options.disabled
+ * @param {string=}  options.clickTrigger The DOM event name (click, mousedown, etc) to attach listeners on
+ */
+
+/**
+ * Track whether a component is current mounted. Generally less preferable than
+ * properlly canceling effects so they don't run after a component is unmounted,
+ * but helpful in cases where that isn't feasible, such as a `Promise` resolution.
+ *
+ * @returns a function that returns the current isMounted state of the component
+ *
+ * ```ts
+ * const [data, setData] = useState(null)
+ * const isMounted = useMounted()
+ *
+ * useEffect(() => {
+ *   fetchdata().then((newData) => {
+ *      if (isMounted()) {
+ *        setData(newData);
+ *      }
+ *   })
+ * })
+ * ```
+ */
+
+/** Specify where the overlay element is positioned in relation to the target element */
 
 /***/
 
-// Case: User is not an owner
+/*:: declare function getWindow(node: Node | Window): Window; */
 
-// Case: `matching` is set to `dissimilar`
+/*:: declare function isElement(node: mixed): boolean %checks(node instanceof
+  Element); */
 
-// EXPORTS //
+/*:: declare function isHTMLElement(node: mixed): boolean %checks(node instanceof
+  HTMLElement); */
 
-// Exports
+/*:: import type { Window } from '../types'; */
 
-// FUNCTIONS //
+/*:: offsetParent = (offsetParent: Element); */
 
-// Initialize progress if not already set:
+/*:: type OverflowsMap = { [ComputedPlacement]: number }; */
 
-// MAIN //
+/*;; type OverflowsMap = { [key in ComputedPlacement]: number }; */
 
-// MODULES /
+//   is about 17px)
 
-// MODULES //
+// $FlowFixMe: HTMLElement is a Node
 
-// Module
+// $FlowFixMe: assume body is always available
 
-// PROPERTIES //
+// $FlowFixMe: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
-// TYPES //
+// $FlowFixMe: hasOwnProperty doesn't seem to work in tests
 
-// VARIABLES //
+// $FlowFixMe: https://github.com/facebook/flow/issues/1414
+
+// $FlowFixMe: isBody tells us target will be an HTMLElement here
+
+// $FlowFixMe: need a better way to handle this...
+
+// $FlowFixMe: this is a quicker (but less type safe) way to save quite some bytes from the bundle
+
+// * A 50px thick scrollbar is likely non-existent (macOS is 15px and Windows
+
+// * The mobile bar is 114px tall
+
+// @ts-ignore
+
+// A "clipping parent" is an overflowable container with the characteristic of
+
+// A placement difference in state means popper determined a new placement
+
+// Async and optimistically optimized update – it will not be executed if
+
+// Borders + scrollbars
+
+// Browsers where the left scrollbar doesn't cause an issue report `0` for
+
+// CSS selector
+
+// Composite means it takes into account transforms as well as layout.
+
+// DOM Element detected
+
+// Don't bother showing anything if we don't have to.
+
+// Don't proceed if `reference` or `popper` are not valid elements
+
+// Don't un-render the overlay while it's transitioning out.
+
+// Find the nearest non-table offsetParent
+
+// Firefox wants us to check `-x` and `-y` variations as well
+
+// First, attempt with faster native method
+
+// For high frequency updates (e.g. `resize` and `scroll` events), always
+
+// For the common JS build we will turn this file into a bundle with no imports.
+
+// Gets the maximum area that the element is visible in due to any number of
+
+// Give up, the result is false
+
+// HACK:
+
+// HTML DOM and SVG DOM may have different support levels,
+
+// IE11 does not support Object.values
+
+// If <html> has a CSS width greater than the viewport, then this will be
+
+// If the difference between window innerHeight and html clientHeight is more
+
+// Investigation required
+
+// LTR scrollbar
+
+// Modifiers have the ability to reset the current update cycle. The
+
+// Offsets are the actual position the popper needs to have to be
+
+// Offsets can be applied only to the popper element
+
+// On each update cycle, the `modifiersData` property for each modifier
+
+// On visiting object, check for its dependencies and visit them recursively
+
+// Orders the modifiers based on their dependencies and `phase`
+
+// Popper 1 is broken in this case and never had a bug report so let's assume
+
+// RTL scrollbar (scrolling containers only)
+
+// Returns the composite rect of an element relative to its offsetParent.
+
+// Returns the layout rect of an element relative to its offsetParent. Layout
+
+// Round the offsets to the nearest suitable subpixel based on the DPR.
+
+// ShadowRoot detected
+
+// Store the reference and popper rects to be read by modifiers
+
+// Strip out disabled modifiers
+
+// Sync update – it will always be executed, even if not necessary. This
+
+// This is b/c the Popper lib is all esm files, and would break in a common js only environment
+
+// This is only run once to _create_ the popper
+
+// This is the most basic placement, and will be adjusted by
+
+// To ensure persistent data, use `${name}#persistent`
+
+// Use capture for this listener so it fires before React's listener, to
+
+// We don't know which browsers have buggy or odd implementations of this, so
+
+// Zooming can change the DPR, but it seems to report a value that will
+
+// `2` may be desired in some cases – research later
+
+// `initial`
+
+// a size change it will result in a misaligned popper. So we schedule an update to be sure.
+
+// anymore
+
+// anyway.
+
+// apart from the props value. By the time the popper element is rendered with
+
+// avoid false positives in the contains() check below if the target DOM
+
+// check for visited object
+
+// cleanly divide the values into the appropriate subpixels.
+
+// clipping (or hiding) overflowing elements with a position different from
+
+// clipping parents
+
+// document.documentElement.clientHeight on iOS reports the height of the
+
+// element is removed in the React mouse callback.
+
+// eslint-disable-next-line import/no-unused-modules
+
+// eslint-disable-next-line no-unused-expressions
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+
+// for now we're only applying it to iOS to fix the keyboard issue.
+
+// https://github.com/popperjs/popper-core/issues/1078
+
+// https://github.com/popperjs/popper-core/issues/837
+
+// incorrect for RTL.
+
+// is filled with the initial data specified by the modifier. This means
+
+// is useful for low frequency updates where sync behavior simplifies the
+
+// it doesn't persist and is fresh on each update.
+
+// it's not an issue. I don't think anyone ever specifies width on <html>
+
+// logic was previously ran for the previous placement and is therefore
+
+// logic.
+
+// means it doesn't take into account transforms.
+
+// most common use case for this is the `flip` modifier changing the
+
+// not necessary (debounced to run at most once-per-tick)
+
+// order based on dependencies
+
+// order based on phase
+
+// placement, which then needs to re-run all the modifiers, because the
+
+// prefer the async Popper#update method
+
+// properly positioned near its reference element
+
+// properties
+
+// so we need to check on context instead of a document root element.
+
+// source: https://stackoverflow.com/questions/49875255
+
+// stale/incorrect
+
+// step into the shadow DOM of the parent of a slotted node
+
+// than 50, we assume it's a mobile bottom bar and ignore scrollbars.
+
+// the modifiers in the next step
+
+// the new position Popper has already measured it, if the place change triggers
+
+// this (e.g. Edge 2019, IE11, Safari)
+
+// until docjs supports type exports...
+
+// viewport including the bottom bar, even if the bottom bar isn't visible.

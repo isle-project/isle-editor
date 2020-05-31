@@ -1,3 +1,5 @@
+/* (ignored) */
+
 /* harmony default export */
 
 /* harmony import */
@@ -6,12 +8,36 @@
 
 /***/
 
+// Case: Guest
+
+// Case: Owner
+
+// Case: Student
+
+// DEFAULT PROPERTIES //
+
 // EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
 
 // MAIN //
 
 // MODULES //
 
+// Module
+
 // PROPERTIES //
 
-// eslint-disable-line react/no-unused-prop-types
+// Remove glow effect from previously highlighted elements:
+
+// TYPES //
+
+// This is the button that toggles it
+
+// VARIABLES //
+
+// eslint-disable-line react/no-did-mount-set-state
+
+// eslint-disable-next-line react/no-did-mount-set-state
