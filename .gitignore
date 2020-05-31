@@ -33,8 +33,8 @@ node_modules/
 build
 dist
 release
-main.js
-main.js.map
+/main.js
+/main.js.map
 
 # Visual Studio #
 #################
