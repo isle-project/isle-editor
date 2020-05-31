@@ -5,7 +5,7 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const Accordion = Loadable( () => import( './main.js' ) );
+const Accordion = Loadable( () => import( /* webpackChunkName: "Accordion" */ './main.js' ) );
 
 
 // EXPORTS //
