@@ -1,6 +1,8 @@
 // MODULES //
 
 import Loadable from 'components/internal/loadable';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 // MAIN //
