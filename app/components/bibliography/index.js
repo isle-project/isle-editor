@@ -5,7 +5,7 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const Bibliography = Loadable( () => import( './main.js' ) );
+const Bibliography = Loadable( () => import( /* webpackChunkName: "Bibliography" */ './main.js' ) );
 
 
 // EXPORTS //

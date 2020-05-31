@@ -5,7 +5,7 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const Background = Loadable( () => import( './main.js' ) );
+const Background = Loadable( () => import( /* webpackChunkName: "Background" */ './main.js' ) );
 
 
 // EXPORTS //

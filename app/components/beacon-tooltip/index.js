@@ -5,7 +5,7 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const BeaconTooltip = Loadable( () => import( './main.js' ) );
+const BeaconTooltip = Loadable( () => import( /* webpackChunkName: "BeaconTooltip" */ './main.js' ) );
 
 
 // EXPORTS //
