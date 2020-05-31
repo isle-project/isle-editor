@@ -172,6 +172,31 @@ import VictoryTooltip from 'components/victory/tooltip';
 import VictoryVoronoiContainer from 'components/victory/voronoi-container';
 import VictoryZoomContainer from 'components/victory/zoom-container';
 import VictoryWrapper from 'components/victory/wrapper';
+
+import Appear from 'components/spectacle/appear';
+import BlockQuote from 'components/spectacle/block-quote';
+import Cite from 'components/spectacle/cite';
+import Code from 'components/spectacle/code';
+import CodePane from 'components/spectacle/code-pane';
+import CodeSlide from 'components/spectacle/code-slide';
+import Deck from 'components/spectacle/deck';
+import Fill from 'components/spectacle/fill';
+import Fit from 'components/spectacle/fit';
+import Heading from 'components/spectacle/heading';
+import SImage from 'components/spectacle/image';
+import Layout from 'components/spectacle/layout';
+import ListItem from 'components/spectacle/list-item';
+import List from 'components/spectacle/list';
+import Notes from 'components/spectacle/notes';
+import Quote from 'components/spectacle/quote';
+import Slide from 'components/spectacle/slide';
+import STable from 'components/spectacle/table';
+import TableRow from 'components/spectacle/table-row';
+import TableHeaderItem from 'components/spectacle/table-header-item';
+import TableItem from 'components/spectacle/table-item';
+import TableBody from 'components/spectacle/table-body';
+import TableHeader from 'components/spectacle/table-header';
+import SText from 'components/spectacle/text';
 import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 
@@ -350,6 +375,31 @@ const scope = {
 	VictoryVoronoiContainer,
 	VictoryZoomContainer,
 	VictoryWrapper,
+
+	Appear,
+	BlockQuote,
+	Cite,
+	Code,
+	CodePane,
+	CodeSlide,
+	Deck,
+	Fill,
+	Fit,
+	Heading,
+	SImage,
+	Layout,
+	ListItem,
+	List,
+	Notes,
+	Quote,
+	Slide,
+	STable,
+	TableRow,
+	TableHeaderItem,
+	TableItem,
+	TableBody,
+	TableHeader,
+	SText,
 	SPECTACLE_THEME
 };
 
