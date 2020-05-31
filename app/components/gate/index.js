@@ -5,7 +5,7 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const Gate = Loadable( () => import( './main.js' ) );
+const Gate = Loadable( () => import( /* webpackChunkName: "Gate" */ './main.js' ) );
 
 
 // EXPORTS //
