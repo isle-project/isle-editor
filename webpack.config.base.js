@@ -18,7 +18,6 @@ const EXTERNALS = [
 	'child_process',
 	'component-playground',
 	'component-raf',
-	'component-tween',
 	'compute-chunkify',
 	'compute-mean',
 	'compute-stdev',

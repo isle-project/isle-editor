@@ -60,7 +60,6 @@ const config = {
 			'./app/components/background',
 			'./app/components/beacon-tooltip',
 			'./app/components/bibliography',
-			/*
 			'./app/components/calculator',
 			'./app/components/chat-button',
 			'./app/components/citation',
@@ -164,7 +163,6 @@ const config = {
 			'./app/components/weather',
 			'./app/components/wikipedia',
 			'./app/components/word-cloud',
-			*/
 			'./app/components/internal/lesson',
 			'./app/components/internal/login',
 			'./app/components/internal/signup',
@@ -177,7 +175,7 @@ const config = {
 		path: join( __dirname, 'dll', 'components' ),
 		filename: 'dll.[name].js',
 		library: '[name]_[hash]',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.4.7/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.4.8/'
 	},
 	optimization: {
 		minimize: true,
