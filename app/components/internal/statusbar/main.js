@@ -7,8 +7,8 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import round from '@stdlib/math/base/special/round';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import Signup from 'internal-components/signup';
-import Login from 'internal-components/login';
+import Signup from 'components/internal/signup';
+import Login from 'components/internal/login';
 import Gate from 'components/gate';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
@@ -29,7 +29,7 @@ import GroupManager from './group-manager';
 import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
-const InstructorView = lazy( () => import( 'internal-components/statusbar/instructor-view' ) );
+const InstructorView = lazy( () => import( 'components/internal/statusbar/instructor-view' ) );
 
 
 // VARIABLES //

@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import copy from '@stdlib/utils/copy';
-import Loadable from 'internal-components/loadable';
+import Loadable from 'components/internal/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
 import Dashboard from 'components/dashboard';
@@ -61,7 +61,7 @@ export const SCOPE = {
 	Joyride: Loadable( () => import( /* webpackChunkName: "Joyride" */ 'components/joyride' ) ),
 	JSShell: Loadable( () => import( /* webpackChunkName: "JSShell" */ 'components/js-shell' ) ),
 	KeyControls: Loadable( () => import( /* webpackChunkName: "KeyControls" */ 'components/key-controls' ) ),
-	Lesson: Loadable( () => import( /* webpackChunkName: "Lesson" */ 'internal-components/lesson' ) ),
+	Lesson: Loadable( () => import( /* webpackChunkName: "Lesson" */ 'components/internal/lesson' ) ),
 	LearnCrossValidation: Loadable( /* webpackChunkName: "LearnCrossValidation" */ () => import( 'components/learn/cross-validation' ) ),
 	LearnDiceThrowing: Loadable( /* webpackChunkName: "LearnDiceThrowing" */ () => import( 'components/learn/dice-throwing' ) ),
 	LearnBetaDistribution: Loadable( /* webpackChunkName: "LearnBetaDistribution" */ () => import( 'components/learn/distribution-beta' ) ),
@@ -147,9 +147,9 @@ export const SCOPE = {
 	SliderInput,
 	Slider: Loadable( () => import( /* webpackChunkName: "Slider" */ 'components/slider' ) ),
 	Spinner: Loadable( () => import( /* webpackChunkName: "Spinner" */ 'components/spinner' ) ),
-	StatusBar: Loadable( () => import( /* webpackChunkName: "StatusBar" */ 'internal-components/statusbar' ) ),
+	StatusBar: Loadable( () => import( /* webpackChunkName: "StatusBar" */ 'components/internal/statusbar' ) ),
 	TextEditor: Loadable( () => import( /* webpackChunkName: "TextEditor" */ 'components/text-editor' ) ),
-	Toolbar: Loadable( () => import( /* webpackChunkName: "Toolbar" */ 'internal-components/toolbar' ) ),
+	Toolbar: Loadable( () => import( /* webpackChunkName: "Toolbar" */ 'components/internal/toolbar' ) ),
 	Sunburst: Loadable( () => import( /* webpackChunkName: "Sunburst" */ 'components/d3/sunburst' ) ),
 	Switch: Loadable( () => import( /* webpackChunkName: "Switch" */ 'components/switch' ) ),
 	Table: Loadable( () => import( /* webpackChunkName: "Table" */ 'components/table' ) ),
@@ -168,7 +168,7 @@ export const SCOPE = {
 	VideoLecture: Loadable( () => import( /* webpackChunkName: "VideoLecture" */ 'components/video-lecture' ) ),
 	VideoPlayer: Loadable( () => import( /* webpackChunkName: "VideoPlayer" */ 'components/video-player' ) ),
 	VoiceInput,
-	VoiceControl: Loadable( () => import( /* webpackChunkName: "VoiceControl" */ 'internal-components/voice-control' ) ),
+	VoiceControl: Loadable( () => import( /* webpackChunkName: "VoiceControl" */ 'components/internal/voice-control' ) ),
 	Weather: Loadable( () => import( /* webpackChunkName: "Weather" */ 'components/weather' ) ),
 	Wikipedia: Loadable( () => import( /* webpackChunkName: "Wikipedia" */ 'components/wikipedia' ) ),
 	WordCloud: Loadable( () => import( /* webpackChunkName: "WordCloud" */ 'components/word-cloud' ) ),

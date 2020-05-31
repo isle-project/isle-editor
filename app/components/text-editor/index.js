@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
-import Loadable from 'internal-components/loadable';
+import Loadable from 'components/internal/loadable';
 import VoiceInput from 'components/input/voice';
 import Gate from 'components/gate';
 import SelectInput from 'components/input/select';

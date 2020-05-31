@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } from 'recordrtc';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import { SessionContext } from '@isle-project/session';
 import VOICE_COMMANDS from './voice_commands.json';
 import './ebml.js';

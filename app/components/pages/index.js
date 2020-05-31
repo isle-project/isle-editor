@@ -8,7 +8,7 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
 import { SessionContext } from '@isle-project/session';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';

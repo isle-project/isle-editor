@@ -1,6 +1,6 @@
 // MODULES //
 
-import Loadable from 'internal-components/loadable';
+import Loadable from 'components/internal/loadable';
 
 
 // MAIN //

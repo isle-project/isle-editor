@@ -9,7 +9,7 @@ import contains from '@stdlib/assert/contains';
 import Timer from 'components/timer';
 import Tooltip from 'components/tooltip';
 import KeyControls from 'components/key-controls';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import Gate from 'components/gate';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { SessionContext } from '@isle-project/session';

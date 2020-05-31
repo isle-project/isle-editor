@@ -41,7 +41,7 @@ import base64toBlob from 'utils/base64-to-blob';
 import Joyride from 'components/joyride';
 import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import randomstring from 'utils/randomstring/ascii';
 import { SessionContext } from '@isle-project/session';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -49,7 +49,7 @@ import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
-import Loadable from 'internal-components/loadable';
+import Loadable from 'components/internal/loadable';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,

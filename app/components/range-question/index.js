@@ -20,7 +20,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import { SessionContext } from '@isle-project/session';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';

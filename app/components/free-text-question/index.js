@@ -17,7 +17,7 @@ import TimedButton from 'components/timed-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import SolutionButton from 'components/solution-button';
 import HintButton from 'components/hint-button';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
 import { SessionContext } from '@isle-project/session';

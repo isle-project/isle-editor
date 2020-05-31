@@ -19,7 +19,7 @@ import CodeMirror from 'codemirror';
 import scrollTo from 'utils/scroll-to';
 import generateUID from 'utils/uid';
 import OverlayTrigger from 'components/overlay-trigger';
-import VoiceControl from 'internal-components/voice-control';
+import VoiceControl from 'components/internal/voice-control';
 import { SessionContext } from '@isle-project/session';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
