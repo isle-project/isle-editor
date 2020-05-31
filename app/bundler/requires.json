@@ -520,7 +520,7 @@
 		"async": false
 	},
 	"StatusBar": {
-		"path": "internal-components/statusbar",
+		"path": "components/internal/statusbar",
 		"async": true
 	},
 	"StickyNote": {
@@ -544,7 +544,7 @@
 		"async": true
 	},
 	"Toolbar": {
-		"path": "internal-components/toolbar",
+		"path": "components/internal/toolbar",
 		"async": true
 	},
 	"SortableTree": {
@@ -560,7 +560,7 @@
 		"async": false
 	},
 	"VoiceControl": {
-		"path": "internal-components/voice-control",
+		"path": "components/internal/voice-control",
 		"async": true
 	},
 	"Weather": {
