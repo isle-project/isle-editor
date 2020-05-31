@@ -11,7 +11,7 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import TerminalGrid from 'editor-components/terminal-grid';
-import Loadable from 'components/loadable';
+import Loadable from 'internal-components/loadable';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
 import SpellChecker from 'utils/spell-checker';
 const Header = Loadable( () => import( 'editor-components/header' ) );

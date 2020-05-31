@@ -28,7 +28,7 @@ import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import readJSON from '@stdlib/fs/read-json';
-import Loadable from 'components/loadable';
+import Loadable from 'internal-components/loadable';
 import { ipcRenderer } from 'electron';
 import MonacoEditor from 'react-monaco-editor';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';

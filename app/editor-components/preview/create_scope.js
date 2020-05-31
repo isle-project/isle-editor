@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import copy from '@stdlib/utils/copy';
-import Loadable from 'components/loadable';
+import Loadable from 'internal-components/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
 import Dashboard from 'components/dashboard';

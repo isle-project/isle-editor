@@ -49,7 +49,7 @@ import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
-import Loadable from 'components/loadable';
+import Loadable from 'internal-components/loadable';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,

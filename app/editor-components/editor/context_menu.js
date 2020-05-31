@@ -7,7 +7,7 @@ import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import groupBy from '@stdlib/utils/group-by';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
-import Loadable from 'components/loadable';
+import Loadable from 'internal-components/loadable';
 const AnimationHelp = Loadable( () => import( 'editor-components/editor/animation-help' ) );
 const MarkdownHelp = Loadable( () => import( 'editor-components/editor/markdown-help' ) );
 import { componentSnippets } from 'snippets';
