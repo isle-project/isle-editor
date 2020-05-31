@@ -1,17 +1,11 @@
 // MODULES //
 
-import React from 'react';
+import Loadable from 'components/internal/loadable';
 
 
 // MAIN //
 
-/**
-* Component displaying the current date in the format `<month>/<day>/<year>`.
-*/
-const DateDisplay = () => {
-	const date = new Date();
-	return <span>{date.getMonth()+1}/{date.getDate()}/{date.getFullYear()}</span>;
-};
+const DateDisplay = Loadable( () => import( /* webpackChunkName: "DateDisplay" */ './main.js' ) );
 
 
 // EXPORTS //
