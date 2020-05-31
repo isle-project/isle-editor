@@ -127,12 +127,8 @@ import * as serviceWorker from 'utils/service-worker';
 const getComponents = ( arr ) => {
 	const requireStatements = arr.map( elem => {
 		const pkg = REQUIRES[ elem ];
-		if ( !pkg.async ) {
-			return `import ${elem} from '${pkg.path}';`;
-		}
-		return `const ${elem} = Loadable( () => import( /* webpackChunkName: "${elem}" */ '${pkg.path}' ) );`;
+		return `import ${elem} from '${pkg}';`;
 	});
-	requireStatements.unshift( 'import Loadable from \'components/internal/loadable\'; ' );
 	return requireStatements.join( '\n' );
 };
 
