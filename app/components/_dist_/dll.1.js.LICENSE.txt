@@ -1,0 +1,62 @@
+/* WEBPACK VAR INJECTION */
+
+/* eslint-disable react/no-danger */
+
+/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+
+/* eslint-enable react/no-danger */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* import() */
+
+/*#__PURE__*/
+
+/**
+* Animates a position property of a specified DOM element.
+*
+* @param {Node} element - DOM node
+* @param {string} prop - property name
+* @param {number} to - target value for property
+* @param {integer} duration - number of milliseconds for the animation to complete
+*/
+
+/**
+* Casts a pixel string to a number.
+*
+* @private
+* @param {(string|number)} x - input value
+* @param {number} cast number (in px)
+*/
+
+/***/
+
+// Case: User is not an owner
+
+// Case: `matching` is set to `dissimilar`
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// Initialize progress if not already set:
+
+// MAIN //
+
+// MODULES /
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// TYPES //
+
+// VARIABLES //

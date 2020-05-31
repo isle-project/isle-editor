@@ -1,0 +1,33 @@
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* The main lesson component holding all other components.
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// Override the notification item
+
+// PROPERTIES //
+
+// VARIABLES //
+
+// focused element
+
+// selected node
