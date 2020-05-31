@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Joyride, { ACTIONS, EVENTS } from 'react-joyride';
+import Joyride from 'react-joyride';
 
 
 // VARIABLES //
@@ -66,5 +66,3 @@ Wrapper.defaultProps = {
 // EXPORTS //
 
 export default Wrapper;
-
-export { EVENTS as EVENTS, ACTIONS as ACTIONS };
