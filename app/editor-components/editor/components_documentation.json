@@ -2191,6 +2191,48 @@
     ],
     "description": "A voice input component."
   },
+  "StatusBar": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Toolbar": {
+    "props": [
+      {
+        "name": "elements",
+        "type": "array",
+        "description": "array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys",
+        "default": []
+      }
+    ],
+    "description": "Toolbar of widgets for students to use during the course of a lesson."
+  },
+  "VoiceControl": {
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "description": "unique identifier",
+        "default": null
+      },
+      {
+        "name": "commands",
+        "type": "array (required)",
+        "description": "array of voice commands"
+      },
+      {
+        "name": "hide",
+        "type": "boolean",
+        "description": "controls whether to hide control elements for toggling on/off voice control and display a list of available commands",
+        "default": false
+      },
+      {
+        "name": "reference",
+        "type": "object (required)",
+        "description": "reference object"
+      }
+    ],
+    "description": "Component to register a reference with the speech control interface."
+  },
   "Joyride": {
     "props": [
       {
@@ -2348,9 +2390,14 @@
         "type": "array (required)"
       },
       {
+        "name": "hidePopulationStdev",
+        "type": "boolean",
+        "default": false
+      },
+      {
         "name": "populationProbabilities",
         "type": "boolean",
-        "default": null
+        "default": false
       },
       {
         "name": "variables",
