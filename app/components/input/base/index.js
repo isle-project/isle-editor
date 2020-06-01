@@ -31,16 +31,13 @@ class Input extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Input.defaultProps = {
 	defaultValue: 0,
 	legend: '',
 	onChange() {}
 };
-
-
-// PROPERTIES //
 
 Input.propTypes = {
 	defaultValue: PropTypes.number,
