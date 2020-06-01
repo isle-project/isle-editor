@@ -1,6 +1,6 @@
 // MODULES //
 
-import CheckboxInput from 'components/input/checkbox';
+import CheckboxInput from './main.js';
 
 
 // EXPORTS //

@@ -1,6 +1,6 @@
 // MODULES //
 
-import TextInput from 'components/input/text';
+import TextInput from './main.js';
 
 
 // EXPORTS //

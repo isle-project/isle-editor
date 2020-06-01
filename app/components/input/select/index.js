@@ -1,6 +1,6 @@
 // MODULES //
 
-import SelectInput from 'components/input/select';
+import SelectInput from './main.js';
 
 
 // EXPORTS //

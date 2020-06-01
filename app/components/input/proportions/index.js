@@ -1,6 +1,6 @@
 // MODULES //
 
-import ProportionsInput from 'components/input/proportions';
+import ProportionsInput from './main.js';
 
 
 // EXPORTS //

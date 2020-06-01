@@ -13,6 +13,7 @@ import NINF from '@stdlib/constants/math/float64-ninf';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import generateUID from 'utils/uid';
+import createTooltip from './create_tooltip.js';
 import './number.css';
 
 
@@ -20,21 +21,6 @@ import './number.css';
 
 const debug = logger( 'isle:number-input' );
 const uid = generateUID( 'number-input' );
-
-
-// FUNCTIONS //
-
-export function createTooltip( props ) {
-	let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
-	if ( props.max !== PINF && props.min !== NINF ) {
-		tooltip += `between ${props.min} and ${props.max}`;
-	} else if ( props.min !== NINF ) {
-		tooltip += `larger or equal to ${props.min}`;
-	} else if ( props.max !== PINF ) {
-		tooltip += `smaller or equal to ${props.max}`;
-	}
-	return tooltip;
-}
 
 
 // MAIN //

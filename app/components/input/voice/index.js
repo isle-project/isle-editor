@@ -1,6 +1,6 @@
 // MODULES //
 
-import VoiceInput from 'components/input/voice';
+import VoiceInput from './main.js';
 
 
 // EXPORTS //

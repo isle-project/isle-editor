@@ -1,8 +1,10 @@
 // MODULES //
 
-import NumberInput from 'components/input/number';
+import NumberInput from './main';
+import CreateTooltip from './create_tooltip.js';
 
 
 // EXPORTS //
 
+export const createTooltip = CreateTooltip;
 export default NumberInput;

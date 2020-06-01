@@ -1,6 +1,6 @@
 // MODULES //
 
-import TextArea from 'components/input/text-area';
+import TextArea from './main.js';
 
 
 // EXPORTS //

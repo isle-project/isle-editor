@@ -1,6 +1,6 @@
 // MODULES //
 
-import SliderInput from 'components/input/select';
+import SliderInput from './main.js';
 
 
 // EXPORTS //
