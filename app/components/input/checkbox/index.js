@@ -6,7 +6,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import noop from '@stdlib/utils/noop';
 import Input from 'components/input/base';
 import Tooltip from 'components/tooltip';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import './checkbox.css';
 
 

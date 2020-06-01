@@ -43,7 +43,7 @@ import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
 import SelectInput from 'components/input/select';
 import { components } from 'react-select';

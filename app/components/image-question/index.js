@@ -12,7 +12,7 @@ import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './image_question.css';
 

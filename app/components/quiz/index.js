@@ -25,7 +25,7 @@ import OrderQuestion from 'components/order-question';
 import RangeQuestion from 'components/range-question';
 import SelectQuestion from 'components/select-question';
 import Gate from 'components/gate';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import convertJSONtoJSX from 'utils/json-to-jsx';
 import generateUID from 'utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from 'constants/actions.js';

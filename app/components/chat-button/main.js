@@ -7,7 +7,7 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
 

@@ -15,7 +15,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/internal/voice-control';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
 import generateUID from 'utils/uid';
 import getLastAction from 'utils/get-last-action';

@@ -23,7 +23,7 @@ import generateUID from 'utils/uid';
 import Spinner from 'components/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import 'codemirror/mode/r/r.js';

@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import Tooltip from 'components/tooltip';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { SELF_UPDATED_SCORE } from 'constants/events.js';
 import './score.css';
 

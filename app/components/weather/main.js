@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
 import VoiceControl from 'components/internal/voice-control';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import Description from './description.js';
 import Location from './location.js';
 import './weather.css';

@@ -11,7 +11,7 @@ import contains from '@stdlib/assert/contains';
 import shuffle from '@stdlib/random/shuffle';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import Gate from 'components/gate';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_USERS, RETRIEVED_COHORTS, USER_JOINED, USER_LEFT } from 'constants/events.js';

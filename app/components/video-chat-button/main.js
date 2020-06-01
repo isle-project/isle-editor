@@ -6,7 +6,7 @@ import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from 'constants/events.js';
 
 

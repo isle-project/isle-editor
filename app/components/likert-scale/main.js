@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import indexOf from '@stdlib/utils/index-of';
 import generateUID from 'utils/uid';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import ResponseVisualizer from 'components/response-visualizer';
 import { LIKERT_SCALE_SUBMISSION } from 'constants/actions.js';
 

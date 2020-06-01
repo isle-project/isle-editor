@@ -19,7 +19,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput, { createTooltip } from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import getLastAction from 'utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from 'constants/actions.js';

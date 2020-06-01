@@ -17,7 +17,7 @@ import isElectron from 'utils/is-electron';
 import VideoChatButton from 'components/video-chat-button';
 import ChatButton from 'components/chat-button';
 import animatePosition from 'utils/animate-position';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import VideoChats from './video-chats';
 import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';

@@ -19,7 +19,7 @@ import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import scrollTo from 'utils/scroll-to';
 import isElectron from 'utils/is-electron';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { CHAT_MESSAGE, MARK_MESSAGES, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT } from 'constants/events.js';
 import EditorView from 'components/text-editor/view.js';
 import { marks, wraps, insert } from 'components/text-editor/config/menu.js';

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
 import Spinner from 'components/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 
 
 // FUNCTIONS //

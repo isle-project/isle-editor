@@ -20,7 +20,7 @@ import TextArea from 'components/input/text-area';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from 'constants/actions.js';
 import './free-text-survey.css';
 

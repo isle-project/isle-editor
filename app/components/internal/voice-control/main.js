@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from 'components/overlay-trigger';
-import { SessionContext } from 'session';
+import SessionContext from 'session/context.js';
 import { VOICE_RECORDING_STATUS } from 'constants/events.js';
 
 
