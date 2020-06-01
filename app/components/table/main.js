@@ -54,7 +54,7 @@ function isTouchDevice() {
 
 function addEventListener( el, event, handler ) {
 	if ( el.addEventListener !== null ) {
-		return el.addEventListener(event, handler, false);
+		return el.addEventListener( event, handler, false );
 	}
 	return el.attachEvent( 'on' + event, handler);
 }
@@ -78,7 +78,7 @@ setupTypes([
 			return a.match( NUM_RE );
 		},
 		comparator( a ) {
-			return parseFloat(a.replace(/[^0-9.-]/g, ''), 10) || 0;
+			return parseFloat( a.replace(/[^0-9.-]/g, '' ), 10 ) || 0;
 		}
 	},
 	{
@@ -120,11 +120,13 @@ function setupClickableTH( table, th, i ) {
 		} else {
 			newSortedDirection = type.defaultSortDirection;
 		}
-		const ths = this.parentNode.querySelectorAll( 'th' );
-		for ( let _i = 0, _len = ths.length; _i < _len; _i++ ) {
-			th = ths[_i];
-			th.setAttribute( 'data-sorted', 'false' );
-			th.removeAttribute( 'data-sorted-direction' );
+		if ( this.parentNode ) {
+			const ths = this.parentNode.querySelectorAll( 'th' );
+			for ( let _i = 0, _len = ths.length; _i < _len; _i++ ) {
+				th = ths[_i];
+				th.setAttribute( 'data-sorted', 'false' );
+				th.removeAttribute( 'data-sorted-direction' );
+			}
 		}
 		this.setAttribute( 'data-sorted', 'true' );
 		this.setAttribute( 'data-sorted-direction', newSortedDirection );
@@ -140,10 +142,10 @@ function setupClickableTH( table, th, i ) {
 				};
 			}
 			const compare = ( a, b ) => {
-				if (a[0] === b[0]) {
+				if ( a[0] === b[0] ) {
 					return a[2] - b[2];
 				}
-				if (type.reverse) {
+				if ( type.reverse ) {
 					return _compare(b[0], a[0]);
 				}
 				return _compare(a[0], b[0]);
