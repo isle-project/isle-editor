@@ -175,7 +175,7 @@ const config = {
 		path: join( __dirname, 'dll', 'components' ),
 		filename: 'dll.[name].js',
 		library: '[name]_[hash]',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.4.8/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.12.0/'
 	},
 	optimization: {
 		minimize: true,
@@ -189,7 +189,7 @@ const config = {
 	},
 	plugins: [
 		new DllPlugin({
-			path: join( __dirname, 'dll', 'components', '[name]-manifest.json' ),
+			path: join( __dirname, 'app', 'components', '[name]-manifest.json' ),
 			name: '[name]_[hash]'
 		})
 	],
