@@ -22,7 +22,6 @@ const extraResources = [
 	'app/constants/*',
 	'app/components/**/*',
 	'app/session/*',
-	'app/speech-interface/*',
 	'app/utils/**/*',
 	'app/img/*',
 	'app/bundler/index.html',
@@ -69,6 +68,7 @@ listDevDeps.stdout.on( 'close', ( code ) => {
 			extraResources.push( ignorePattern );
 		});
 
+		console.log( extraResources );
 		pkg.build.extraResources = extraResources;
 
 		fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, 2 ) );
