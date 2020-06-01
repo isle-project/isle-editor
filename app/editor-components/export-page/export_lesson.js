@@ -202,8 +202,8 @@ class ExportLesson extends Component {
 							disabled={this.state.spinning}
 						/>
 						<CheckboxInput
-							legend="Optimize bundle size by sharing resources"
-							tooltip="Disabling this option will massively increase upload time and bundle sizes"
+							legend="Load ISLE resources from CDN"
+							tooltip="WARNING: Disabling this option will massively increase upload time and bundle sizes"
 							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({

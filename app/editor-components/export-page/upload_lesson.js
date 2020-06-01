@@ -395,8 +395,8 @@ class UploadLesson extends Component {
 						defaultValue={true}
 					/>
 					<CheckboxInput
-						legend="Optimize bundle size by sharing resources"
-						tooltip="Disabling this option will massively increase upload time and bundle sizes"
+						legend="Load ISLE resources from CDN"
+						tooltip="WARNING: Disabling this option will massively increase upload time and bundle sizes"
 						onChange={( value ) => {
 							this.setState({
 								loadFromCDN: value
