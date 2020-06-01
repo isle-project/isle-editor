@@ -49,7 +49,7 @@ const config = {
 		path: join( __dirname, 'dll', 'session' ),
 		filename: 'dll.[name].js',
 		library: '[name]_[hash]',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.8.0/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.9.0/'
 	},
 	optimization: {
 		minimize: true,

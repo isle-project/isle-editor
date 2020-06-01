@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import shuffle from '@stdlib/random/shuffle';
 import { DndProvider } from 'react-dnd';
 import isTouchDevice from 'is-touch-device';
-import HTML5Backend from 'react-dnd-html5-backend';
-import TouchBackend from 'react-dnd-touch-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import Card from './card.js';
 
 
