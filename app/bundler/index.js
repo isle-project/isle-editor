@@ -28,6 +28,7 @@ import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
 import COMPONENTS_MANIFEST from 'components/components-manifest.json';
+import SESSION_MANIFEST from 'session/session-manifest.json';
 import CDN_MODULES from './cdn_modules.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
@@ -280,7 +281,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += '\n';
 	res += getISLEcode( meta );
 
-	res += 'import Session from \'@isle-project/session\';';
+	res += 'import Session from \'session\';';
 
 	res += getComponents( components );
 	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );
@@ -538,6 +539,9 @@ function writeIndexFile({
 			}),
 			new webpack.DllReferencePlugin({
 				manifest: COMPONENTS_MANIFEST
+			}),
+			new webpack.DllReferencePlugin({
+				manifest: SESSION_MANIFEST
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {
