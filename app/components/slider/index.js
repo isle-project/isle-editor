@@ -1,6 +1,6 @@
 // MODULES //
 
-import Slider from 'components/slider';
+import Slider from './main.js';
 
 
 // EXPORTS //

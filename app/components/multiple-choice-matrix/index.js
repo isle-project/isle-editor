@@ -1,6 +1,6 @@
 // MODULES //
 
-import MultipleChoiceMatrix from 'components/multiple-choice-matrix';
+import MultipleChoiceMatrix from './main.js';
 
 
 // EXPORTS //

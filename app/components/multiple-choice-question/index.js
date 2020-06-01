@@ -1,6 +1,6 @@
 // MODULES //
 
-import MultipleChoiceQuestion from 'components/multiple-choice-question';
+import MultipleChoiceQuestion from './main.js';
 
 
 // EXPORTS //

@@ -1,6 +1,6 @@
 // MODULES //
 
-import Pages from 'components/pages';
+import Pages from './main.js';
 
 
 // EXPORTS //

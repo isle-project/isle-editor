@@ -1,6 +1,6 @@
 // MODULES //
 
-import Switch from 'components/switch';
+import Switch from './main.js';
 
 
 // EXPORTS //

@@ -1,6 +1,6 @@
 // MODULES //
 
-import DraggableList from 'components/draggable-list';
+import DraggableList from './main.js';
 
 
 // EXPORTS //

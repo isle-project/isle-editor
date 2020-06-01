@@ -1,6 +1,6 @@
 // MODULES //
 
-import FreeTextQuestion from 'components/free-text-question';
+import FreeTextQuestion from './main.js';
 
 
 // EXPORTS //

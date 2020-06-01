@@ -1,6 +1,6 @@
 // MODULES //
 
-import OrderQuestion from 'components/order-question';
+import OrderQuestion from './main.js';
 
 
 // EXPORTS //

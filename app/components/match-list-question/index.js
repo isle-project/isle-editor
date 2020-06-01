@@ -1,6 +1,6 @@
 // MODULES //
 
-import MatchListQuestion from 'components/match-list-question';
+import MatchListQuestion from './main.js';
 
 
 // EXPORTS //
