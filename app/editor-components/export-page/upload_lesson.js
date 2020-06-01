@@ -50,6 +50,7 @@ class UploadLesson extends Component {
 			spinning: false,
 			namespaces: [],
 			minify: true,
+			loadFromCDN: true,
 			lessonName,
 			dirname: randomstring( 16, 65, 90 ),
 			server: localStorage.getItem( 'server' ),
@@ -243,7 +244,8 @@ class UploadLesson extends Component {
 			basePath: IS_PACKAGED ? process.resourcesPath : '.',
 			content: this.props.content,
 			outputDir: this.state.dirname,
-			minify: this.state.minify
+			minify: this.state.minify,
+			loadFromCDN: this.state.loadFromCDN
 		};
 		bundler( settings, ( error ) => {
 			if ( error ) {
@@ -383,6 +385,7 @@ class UploadLesson extends Component {
 					<FormLabel>Settings</FormLabel>
 					<CheckboxInput
 						legend="Minify code"
+						tooltip="Disabling this option slightly reduces build time but results in more data to be downloaded by users"
 						onChange={( value ) => {
 							this.setState({
 								minify: value
@@ -390,6 +393,17 @@ class UploadLesson extends Component {
 						}}
 						disabled={this.state.spinning}
 						defaultValue={true}
+					/>
+					<CheckboxInput
+						legend="Optimize bundle size by sharing resources"
+						tooltip="Disabling this option will massively increase upload time and bundle sizes"
+						onChange={( value ) => {
+							this.setState({
+								loadFromCDN: value
+							});
+						}}
+						defaultValue={this.state.loadFromCDN}
+						disabled={this.state.spinning}
 					/>
 				</FormGroup>
 			</Fragment>;

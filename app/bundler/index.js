@@ -299,6 +299,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 * @param {string} options.outputDir - name of output directory
 * @param {string} options.yamlStr - lesson meta data in YAML format
 * @param {boolean} options.minify - boolean indicating whether code should be minified
+* @param {boolean} options.loadFromCDN - boolean indicating whether resources should be loaded from CDN
 * @param {boolean} options.writeStats - boolean indicating whether bundle stats should be written to `stats.json` file
 * @param {Function} clbk - callback function
 */
@@ -309,6 +310,7 @@ function writeIndexFile({
 	content,
 	outputDir,
 	minify,
+	loadFromCDN,
 	writeStats
 }, clbk ) {
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
@@ -338,6 +340,56 @@ function writeIndexFile({
 		fileName = basename( filePath, extname( filePath ) );
 		isleDir = join( fileDir, `${fileName}-resources` );
 		modulePaths.push( resolve( join( isleDir, 'node_modules' ) ) );
+	}
+	const plugins = [
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			title: meta.title,
+			preventScaleGestures: meta.preventScaleGestures,
+			template: resolve( basePath, './app/bundler/index.html' ),
+			templateParameters: {
+				meta
+			},
+			minify: false
+		}),
+		new PreloadWebpackPlugin({
+			rel: 'preload',
+			include: 'allAssets',
+			fileBlacklist: [ /\.map/, /\.js/ ]
+		}),
+		new WebpackCdnPlugin({
+			prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
+			modules: CDN_MODULES
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css',
+			chunkFilename: 'css/[id].css'
+		}),
+		new ManifestPlugin({
+			fileName: 'asset-manifest.json'
+		}),
+		new WorkboxWebpackPlugin.GenerateSW({
+			clientsClaim: true,
+			exclude: [/\.map$/, /asset-manifest\.json$/],
+			importWorkboxFrom: 'cdn'
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: '"production"'
+			}
+		})
+	];
+	if ( loadFromCDN ) {
+		plugins.push(
+			new webpack.DllReferencePlugin({
+				manifest: COMPONENTS_MANIFEST
+			})
+		);
+		plugins.push(
+			new webpack.DllReferencePlugin({
+				manifest: SESSION_MANIFEST
+			})
+		);
 	}
 	const config = {
 		context: resolve( basePath ),
@@ -505,50 +557,7 @@ function writeIndexFile({
 			tls: 'mock'
 		},
 		externals: EXTERNALS,
-		plugins: [
-			new HtmlWebpackPlugin({
-				filename: 'index.html',
-				title: meta.title,
-				preventScaleGestures: meta.preventScaleGestures,
-				template: resolve( basePath, './app/bundler/index.html' ),
-				templateParameters: {
-					meta
-				},
-				minify: false
-			}),
-			new PreloadWebpackPlugin({
-				rel: 'preload',
-				include: 'allAssets',
-				fileBlacklist: [ /\.map/, /\.js/ ]
-			}),
-			new WebpackCdnPlugin({
-				prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
-				modules: CDN_MODULES
-			}),
-			new MiniCssExtractPlugin({
-				filename: 'css/[name].css',
-				chunkFilename: 'css/[id].css'
-			}),
-			new ManifestPlugin({
-				fileName: 'asset-manifest.json'
-			}),
-			new WorkboxWebpackPlugin.GenerateSW({
-				clientsClaim: true,
-				exclude: [/\.map$/, /asset-manifest\.json$/],
-				importWorkboxFrom: 'cdn'
-			}),
-			new webpack.DllReferencePlugin({
-				manifest: COMPONENTS_MANIFEST
-			}),
-			new webpack.DllReferencePlugin({
-				manifest: SESSION_MANIFEST
-			}),
-			new webpack.DefinePlugin({
-				'process.env': {
-					NODE_ENV: '"production"'
-				}
-			})
-		]
+		plugins
 	};
 
 	// Remove YAML preamble...
