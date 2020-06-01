@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Panel from 'components/panel';
+import Panel from 'components/panel/main.js';
 
 
 // TESTS //

@@ -1,830 +1,209 @@
 {
-	"Accordion": {
-		"path": "components/accordion",
-		"async": true
-	},
-	"Alert": {
-		"path": "react-bootstrap/Alert",
-		"async": true
-	},
-	"Animated": {
-		"path": "components/animated",
-		"async": true
-	},
-	"Background": {
-		"path": "components/background",
-		"async": true
-	},
-	"Badge": {
-		"path": "react-bootstrap/Badge",
-		"async": true
-	},
-	"BeaconTooltip": {
-		"path": "components/beacon-tooltip",
-		"async": true
-	},
-	"Bibliography": {
-		"path": "components/bibliography",
-		"async": true
-	},
-	"Button": {
-		"path": "react-bootstrap/Button",
-		"async": false
-	},
-	"Card": {
-		"path": "react-bootstrap/Card",
-		"async": false
-	},
-	"Calculator": {
-		"path": "components/calculator",
-		"async": true
-	},
-	"CheckboxInput": {
-		"path": "components/input/checkbox",
-		"async": false
-	},
-	"Citation": {
-		"path": "components/citation",
-		"async": true
-	},
-	"Clock": {
-		"path": "components/clock",
-		"async": true
-	},
-	"ColorPicker": {
-		"path": "components/color-picker",
-		"async": true
-	},
-	"Col": {
-		"path": "react-bootstrap/Col",
-		"async": true
-	},
-	"Form": {
-		"path": "react-bootstrap/Form",
-		"async": true
-	},
-	"Joyride": {
-		"path": "components/joyride",
-		"async": true
-	},
-	"LearnCrossValidation": {
-		"path": "components/learn/cross-validation",
-		"async": true
-	},
-	"LearnDiceThrowing": {
-		"path": "components/learn/dice-throwing",
-		"async": true
-	},
-	"LearnBetaDistribution": {
-		"path": "components/learn/distribution-beta",
-		"async": true
-	},
-	"LearnBinomialDistribution": {
-		"path": "components/learn/distribution-binomial",
-		"async": true
-	},
-	"LearnChisquareDistribution": {
-		"path": "components/learn/distribution-chisquare",
-		"async": true
-	},
-	"LearnContinuousDistribution": {
-		"path": "components/learn/continuous-distribution",
-		"async": true
-	},
-	"LearnDiscreteDistribution": {
-		"path": "components/learn/discrete-distribution",
-		"async": true
-	},
-	"LearnExponentialDistribution": {
-		"path": "components/learn/distribution-exponential",
-		"async": true
-	},
-	"LearnFDistribution": {
-		"path": "components/learn/distribution-f",
-		"async": true
-	},
-	"LearnGammaDistribution": {
-		"path": "components/learn/distribution-gamma",
-		"async": true
-	},
-	"LearnGeometricDistribution": {
-		"path": "components/learn/distribution-geometric",
-		"async": true
-	},
-	"LearnHypergeometricDistribution": {
-		"path": "components/learn/distribution-hypergeometric",
-		"async": true
-	},
-	"LearnNegativeBinomialDistribution": {
-		"path": "components/learn/distribution-negative-binomial",
-		"async": true
-	},
-	"LearnNormalDistribution": {
-		"path": "components/learn/distribution-normal",
-		"async": true
-	},
-	"LearnPoissonDistribution": {
-		"path": "components/learn/distribution-poisson",
-		"async": true
-	},
-	"LearnTDistribution": {
-		"path": "components/learn/distribution-t",
-		"async": true
-	},
-	"LearnUniformDistribution": {
-		"path": "components/learn/distribution-uniform",
-		"async": true
-	},
-	"LearnStandardize": {
-		"path": "components/learn/standardize",
-		"async": true
-	},
-	"LearnContinuousCLT": {
-		"path": "components/learn/clt-continuous",
-		"async": true
-	},
-	"LearnDiscreteCLT": {
-		"path": "components/learn/clt-discrete",
-		"async": true
-	},
-	"LearnSampleCLT": {
-		"path": "components/learn/clt-sample",
-		"async": true
-	},
-	"LearnConfidenceCoverageBinomial": {
-		"path": "components/learn/confidence-coverage-binomial",
-		"async": true
-	},
-	"LearnConfidenceCoverageNormal": {
-		"path": "components/learn/confidence-coverage-normal",
-		"async": true
-	},
-	"LearnMeanTest": {
-		"path": "components/learn/hypothesis-testing-mean",
-		"async": true
-	},
-	"LearnProportionTest": {
-		"path": "components/learn/hypothesis-testing-proportion",
-		"async": true
-	},
-	"LearnMeanVSMedian": {
-		"path": "components/learn/mean-vs-median",
-		"async": true
-	},
-	"LearnNetworks": {
-		"path": "components/learn/networks",
-		"async": true
-	},
-	"LearnStatisticalModels": {
-		"path": "components/learn/statistical-models",
-		"async": true
-	},
-	"LearnConditionalProbability": {
-		"path": "components/learn/conditional-probability",
-		"async": true
-	},
-	"LearnVennDiagramBuilder": {
-		"path": "components/learn/venn-diagram-builder",
-		"async": true
-	},
-	"LearnWordVennDiagram": {
-		"path": "components/learn/word-venn-diagram",
-		"async": true
-	},
-	"LearnSOTU": {
-		"path": "components/learn/sotu",
-		"async": true
-	},
-	"LearnImagePixelPicker": {
-		"path": "components/learn/image-pixel-picker",
-		"async": true
-	},
-	"ListGroup": {
-		"path": "react-bootstrap/ListGroup",
-		"async": true
-	},
-	"ListGroupItem": {
-		"path": "react-bootstrap/ListGroupItem",
-		"async": true
-	},
-	"Container": {
-		"path": "components/container",
-		"async": true
-	},
-	"DataExplorer": {
-		"path": "components/data-explorer",
-		"async": true
-	},
-	"DataSampler": {
-		"path": "components/data-sampler",
-		"async": true
-	},
-	"DataTable": {
-		"path": "components/data-table",
-		"async": true
-	},
-	"DateDisplay": {
-		"path": "components/date-display",
-		"async": true
-	},
-	"Dashboard": {
-		"path": "components/dashboard",
-		"async": true
-	},
-	"DensityPlot": {
-		"path": "components/d3/density-plot",
-		"async": true
-	},
-	"DraggableGrid": {
-		"path": "components/draggable-grid",
-		"async": true
-	},
-	"DraggableList": {
-		"path": "components/draggable-list",
-		"async": true
-	},
-	"EnlargeableGrid": {
-		"path": "components/enlargeable-grid",
-		"async": true
-	},
-	"Expire": {
-		"path": "components/expire",
-		"async": true
-	},
-	"FeedbackButtons": {
-		"path": "components/feedback",
-		"async": true
-	},
-	"ImageQuestion": {
-		"path": "components/image-question",
-		"async": false
-	},
-	"FlippableCard": {
-		"path": "components/flippable-card",
-		"async": true
-	},
-	"FreeTextQuestion": {
-		"path": "components/free-text-question",
-		"async": false
-	},
-	"FreeTextSurvey": {
-		"path": "components/free-text-survey",
-		"async": true
-	},
-	"Gate": {
-		"path": "components/gate",
-		"async": true
-	},
-	"Generator": {
-		"path": "components/generator",
-		"async": true
-	},
-	"Input": {
-		"path": "components/input",
-		"async": false
-	},
-	"IFrame": {
-		"path": "components/iframe",
-		"async": true
-	},
-	"Image": {
-		"path": "components/image",
-		"async": true
-	},
-	"JSShell": {
-		"path": "components/js-shell",
-		"async": true
-	},
-	"KeyControls": {
-		"path": "components/key-controls",
-		"async": true
-	},
-	"LessonSubmit": {
-		"path": "components/lesson-submit",
-		"async": true
-	},
-	"LikertScale": {
-		"path": "components/likert-scale",
-		"async": true
-	},
-	"Link": {
-		"path": "components/link",
-		"async": true
-	},
-	"MatchListQuestion": {
-		"path": "components/match-list-question",
-		"async": false
-	},
-	"Metrics": {
-		"path": "components/metrics/db",
-		"async": true
-	},
-	"MetricsContingencyTable": {
-		"path": "components/metrics/contingency-table",
-		"async": true
-	},
-	"Modal": {
-		"path": "react-bootstrap/Modal",
-		"async": true
-	},
-	"MultiCards": {
-		"path": "components/multi-cards",
-		"async": true
-	},
-	"MultipleChoiceMatrix": {
-		"path": "components/multiple-choice-matrix",
-		"async": true
-	},
-	"MultipleChoiceQuestion": {
-		"path": "components/multiple-choice-question",
-		"async": false
-	},
-	"MultipleChoiceSurvey": {
-		"path": "components/multiple-choice-survey",
-		"async": true
-	},
-	"Nav": {
-		"path": "react-bootstrap/Nav",
-		"async": true
-	},
-	"Navbar": {
-		"path": "react-bootstrap/Navbar",
-		"async": true
-	},
-	"NavItem": {
-		"path": "react-bootstrap/NavItem",
-		"async": true
-	},
-	"NavLink": {
-		"path": "react-bootstrap/NavLink",
-		"async": true
-	},
-	"NetworkPlot": {
-		"path": "components/d3/network-plot",
-		"async": true
-	},
-	"News": {
-		"path": "components/news",
-		"async": true
-	},
-	"NumberInput": {
-		"path": "components/input/number",
-		"async": false
-	},
-	"NumberQuestion": {
-		"path": "components/number-question",
-		"async": false
-	},
-	"NumberSurvey": {
-		"path": "components/number-survey",
-		"async": true
-	},
-	"OrderQuestion": {
-		"path": "components/order-question",
-		"async": false
-	},
-	"Pages": {
-		"path": "components/pages",
-		"async": false
-	},
-	"TextEditor": {
-		"path": "components/text-editor",
-		"async": true
-	},
-	"Panel": {
-		"path": "components/panel",
-		"async": true
-	},
-	"Playground": {
-		"path": "components/playground",
-		"async": true
-	},
-	"Plotly": {
-		"path": "components/plotly",
-		"async": true
-	},
-	"Polaroid": {
-		"path": "components/polaroid",
-		"async": true
-	},
-	"Preload": {
-		"path": "components/preload",
-		"async": true
-	},
-	"ProportionsInput": {
-		"path": "components/input/proportions",
-		"async": false
-	},
-	"ProportionsSurvey": {
-		"path": "components/proportions-survey",
-		"async": true
-	},
-	"QRCode": {
-		"path": "components/qrcode",
-		"async": true
-	},
-	"Queue": {
-		"path": "components/queue",
-		"async": true
-	},
-	"RandomVideo": {
-		"path": "components/random-video",
-		"async": true
-	},
-	"RangeQuestion": {
-		"path": "components/range-question",
-		"async": false
-	},
-	"Reaction": {
-		"path": "components/reaction",
-		"async": true
-	},
-	"RealTimeMetrics": {
-		"path": "components/metrics/realtime",
-		"async": true
-	},
-	"Recorder": {
-		"path": "components/recorder",
-		"async": true
-	},
-	"Revealer": {
-		"path": "components/revealer",
-		"async": true
-	},
-	"RHelp": {
-		"path": "components/r/help",
-		"async": true
-	},
-	"ROutput": {
-		"path": "components/r/output",
-		"async": true
-	},
-	"RPlot": {
-		"path": "components/r/plot",
-		"async": true
-	},
-	"RShell": {
-		"path": "components/r/shell",
-		"async": true
-	},
-	"RTable": {
-		"path": "components/r/table",
-		"async": true
-	},
-	"Row": {
-		"path": "react-bootstrap/Row",
-		"async": true
-	},
-	"Runner": {
-		"path": "components/runner",
-		"async": true
-	},
-	"ScrollingText": {
-		"path": "components/scrolling-text",
-		"async": true
-	},
-	"Seal": {
-		"path": "components/seal",
-		"async": true
-	},
-	"SelectInput": {
-		"path": "components/input/select",
-		"async": false
-	},
-	"SelectQuestion": {
-		"path": "components/select-question",
-		"async": false
-	},
-	"SelectQuestionMatrix": {
-		"path": "components/select-question-matrix",
-		"async": false
-	},
-	"ShapedForm": {
-		"path": "components/shaped-form",
-		"async": true
-	},
-	"ShapedImage": {
-		"path": "components/shaped-image",
-		"async": true
-	},
-	"Sketchpad": {
-		"path": "components/sketchpad",
-		"async": true
-	},
-	"Slider": {
-		"path": "components/slider",
-		"async": false
-	},
-	"SliderInput": {
-		"path": "components/input/slider",
-		"async": false
-	},
-	"StatusBar": {
-		"path": "internal-components/statusbar",
-		"async": true
-	},
-	"StickyNote": {
-		"path": "components/sticky-note",
-		"async": true
-	},
-	"Sunburst": {
-		"path": "components/d3/sunburst",
-		"async": true
-	},
-	"Table": {
-		"path": "components/table",
-		"async": true
-	},
-	"Typewriter": {
-		"path": "components/typewriter",
-		"async": true
-	},
-	"TimedButton": {
-		"path": "components/timed-button",
-		"async": true
-	},
-	"Toolbar": {
-		"path": "internal-components/toolbar",
-		"async": true
-	},
-	"SortableTree": {
-		"path": "components/sortable-tree",
-		"async": true
-	},
-	"Unveil": {
-		"path": "components/unveil",
-		"async": true
-	},
-	"VoiceInput": {
-		"path": "components/input/voice",
-		"async": false
-	},
-	"VoiceControl": {
-		"path": "internal-components/voice-control",
-		"async": true
-	},
-	"Weather": {
-		"path": "components/weather",
-		"async": true
-	},
-	"Wikipedia": {
-		"path": "components/wikipedia",
-		"async": true
-	},
-	"Appear": {
-		"path": "components/spectacle/appear",
-		"async": true
-	},
-	"BlockQuote": {
-		"path": "components/spectacle/block-quote",
-		"async": true
-	},
-	"Cite": {
-		"path": "components/spectacle/cite",
-		"async": true
-	},
-	"Code": {
-		"path": "components/spectacle/code",
-		"async": true
-	},
-	"CodePane": {
-		"path": "components/spectacle/code-pane",
-		"async": true
-	},
-	"CodeSlide": {
-		"path": "components/spectacle/code-slide",
-		"async": true
-	},
-	"Deck": {
-		"path": "components/spectacle/deck",
-		"async": true
-	},
-	"Fill": {
-		"path": "components/spectacle/fill",
-		"async": true
-	},
-	"Fit": {
-		"path": "components/spectacle/fit",
-		"async": true
-	},
-	"Heading": {
-		"path": "components/spectacle/heading",
-		"async": true
-	},
-	"SImage": {
-		"path": "components/spectacle/image",
-		"async": true
-	},
-	"Layout": {
-		"path": "components/spectacle/layout",
-		"async": true
-	},
-	"ListItem": {
-		"path": "components/spectacle/list-item",
-		"async": true
-	},
-	"List": {
-		"path": "components/spectacle/list",
-		"async": true
-	},
-	"Notes": {
-		"path": "components/spectacle/notes",
-		"async": true
-	},
-	"QuestionForm": {
-		"path": "components/question-form",
-		"async": false
-	},
-	"Quiz": {
-		"path": "components/quiz",
-		"async": true
-	},
-	"Quote": {
-		"path": "components/spectacle/quote",
-		"async": true
-	},
-	"Spectacle": {
-		"path": "components/spectacle",
-		"async": true
-	},
-	"Slide": {
-		"path": "components/spectacle/slide",
-		"async": true
-	},
-	"STable": {
-		"path": "components/spectacle/table",
-		"async": true
-	},
-	"SText": {
-		"path": "components/spectacle/text",
-		"async": true
-	},
-	"TableBody": {
-		"path": "components/spectacle/table-body",
-		"async": true
-	},
-	"TableRow": {
-		"path": "components/spectacle/table-row",
-		"async": true
-	},
-	"TableHeaderItem": {
-		"path": "components/spectacle/table-header-item",
-		"async": true
-	},
-	"TableHeader": {
-		"path": "components/spectacle/table-header",
-		"async": true
-	},
-	"TableItem": {
-		"path": "components/spectacle/table-item",
-		"async": true
-	},
-	"Switch": {
-		"path": "components/switch",
-		"async": false
-	},
-	"Tab": {
-		"path": "react-bootstrap/Tab",
-		"async": true
-	},
-	"Tabs": {
-		"path": "react-bootstrap/Tabs",
-		"async": true
-	},
-	"TeX": {
-		"path": "components/tex",
-		"async": true
-	},
-	"Text": {
-		"path": "components/text",
-		"async": true
-	},
-	"TextArea": {
-		"path": "components/input/text-area",
-		"async": true
-	},
-	"TextInput": {
-		"path": "components/input/text",
-		"async": false
-	},
-	"Timer": {
-		"path": "components/timer",
-		"async": true
-	},
-	"Tooltip": {
-		"path": "components/tooltip",
-		"async": true
-	},
-	"Collapse": {
-		"path": "components/collapse",
-		"async": true
-	},
-	"VictoryAnimation": {
-		"path": "components/victory/animation",
-		"async": true
-	},
-	"VictoryArea": {
-		"path": "components/victory/area",
-		"async": true
-	},
-	"VictoryBar": {
-		"path": "components/victory/bar",
-		"async": true
-	},
-	"VictoryBoxPlot": {
-		"path": "components/victory/boxplot",
-		"async": true
-	},
-	"VictoryBrushContainer": {
-		"path": "components/victory/brush-container",
-		"async": true
-	},
-	"VictoryCandlestick": {
-		"path": "components/victory/candlestick",
-		"async": true
-	},
-	"VictoryCursorContainer": {
-		"path": "components/victory/cursor-container",
-		"async": true
-	},
-	"VictoryTheme": {
-		"path": "components/victory/theme",
-		"async": true
-	},
-	"VictoryChart": {
-		"path": "components/victory/chart",
-		"async": true
-	},
-	"VictoryGroup": {
-		"path": "components/victory/group",
-		"async": true
-	},
-	"VictoryAxis": {
-		"path": "components/victory/axis",
-		"async": true
-	},
-	"VictoryErrorBar": {
-		"path": "components/victory/error-bar",
-		"async": true
-	},
-	"VictoryLabel": {
-		"path": "components/victory/label",
-		"async": true
-	},
-	"VictoryLegend": {
-		"path": "components/victory/legend",
-		"async": true
-	},
-	"VictoryLine": {
-		"path": "components/victory/line",
-		"async": true
-	},
-	"VictoryPie": {
-		"path": "components/victory/pie",
-		"async": true
-	},
-	"VictoryPolarAxis": {
-		"path": "components/victory/polaraxis",
-		"async": true
-	},
-	"VictoryScatter": {
-		"path": "components/victory/scatter",
-		"async": true
-	},
-	"VictoryStack": {
-		"path": "components/victory/stack",
-		"async": true
-	},
-	"VictoryTooltip": {
-		"path": "components/victory/tooltip",
-		"async": true
-	},
-	"VictoryVoronoiContainer": {
-		"path": "components/victory/voronoi-container",
-		"async": true
-	},
-	"VictoryVoronoi": {
-		"path": "components/victory/voronoi",
-		"async": true
-	},
-	"VictoryZoomContainer": {
-		"path": "components/victory/zoom-container",
-		"async": true
-	},
-	"VictoryWrapper": {
-		"path": "components/victory/wrapper",
-		"async": true
-	},
-	"VideoLecture": {
-		"path": "components/video-lecture",
-		"async": true
-	},
-	"VideoPlayer": {
-		"path": "components/video-player",
-		"async": true
-	},
-	"WordCloud": {
-		"path": "components/word-cloud",
-		"async": true
-	}
+	"Accordion": "components/accordion",
+	"Alert": "react-bootstrap/Alert",
+	"Animated": "components/animated",
+	"Background": "components/background",
+	"Badge": "react-bootstrap/Badge",
+	"BeaconTooltip": "components/beacon-tooltip",
+	"Bibliography": "components/bibliography",
+	"Button": "react-bootstrap/Button",
+	"Card": "react-bootstrap/Card",
+	"Calculator": "components/calculator",
+	"CheckboxInput": "components/input/checkbox",
+	"Citation": "components/citation",
+	"Clock": "components/clock",
+	"ColorPicker": "components/color-picker",
+	"Col": "react-bootstrap/Col",
+	"Form": "react-bootstrap/Form",
+	"Joyride": "components/joyride",
+	"LearnCrossValidation": "components/learn/cross-validation",
+	"LearnDiceThrowing": "components/learn/dice-throwing",
+	"LearnBetaDistribution": "components/learn/distribution-beta",
+	"LearnBinomialDistribution": "components/learn/distribution-binomial",
+	"LearnChisquareDistribution": "components/learn/distribution-chisquare",
+	"LearnContinuousDistribution": "components/learn/continuous-distribution",
+	"LearnDiscreteDistribution": "components/learn/discrete-distribution",
+	"LearnExponentialDistribution": "components/learn/distribution-exponential",
+	"LearnFDistribution": "components/learn/distribution-f",
+	"LearnGammaDistribution": "components/learn/distribution-gamma",
+	"LearnGeometricDistribution": "components/learn/distribution-geometric",
+	"LearnHypergeometricDistribution": "components/learn/distribution-hypergeometric",
+	"LearnNegativeBinomialDistribution": "components/learn/distribution-negative-binomial",
+	"LearnNormalDistribution": "components/learn/distribution-normal",
+	"LearnPoissonDistribution": "components/learn/distribution-poisson",
+	"LearnTDistribution": "components/learn/distribution-t",
+	"LearnUniformDistribution": "components/learn/distribution-uniform",
+	"LearnStandardize": "components/learn/standardize",
+	"LearnContinuousCLT": "components/learn/clt-continuous",
+	"LearnDiscreteCLT": "components/learn/clt-discrete",
+	"LearnSampleCLT": "components/learn/clt-sample",
+	"LearnConfidenceCoverageBinomial": "components/learn/confidence-coverage-binomial",
+	"LearnConfidenceCoverageNormal": "components/learn/confidence-coverage-normal",
+	"LearnMeanTest": "components/learn/hypothesis-testing-mean",
+	"LearnProportionTest": "components/learn/hypothesis-testing-proportion",
+	"LearnMeanVSMedian": "components/learn/mean-vs-median",
+	"LearnNetworks": "components/learn/networks",
+	"LearnStatisticalModels": "components/learn/statistical-models",
+	"LearnConditionalProbability": "components/learn/conditional-probability",
+	"LearnVennDiagramBuilder": "components/learn/venn-diagram-builder",
+	"LearnWordVennDiagram": "components/learn/word-venn-diagram",
+	"LearnSOTU": "components/learn/sotu",
+	"LearnImagePixelPicker": "components/learn/image-pixel-picker",
+	"ListGroup": "react-bootstrap/ListGroup",
+	"ListGroupItem": "react-bootstrap/ListGroupItem",
+	"Container": "components/container",
+	"DataExplorer": "components/data-explorer",
+	"DataSampler": "components/data-sampler",
+	"DataTable": "components/data-table",
+	"DateDisplay": "components/date-display",
+	"Dashboard": "components/dashboard",
+	"DensityPlot": "components/d3/density-plot",
+	"DraggableGrid": "components/draggable-grid",
+	"DraggableList": "components/draggable-list",
+	"EnlargeableGrid": "components/enlargeable-grid",
+	"Expire": "components/expire",
+	"FeedbackButtons": "components/feedback",
+	"ImageQuestion": "components/image-question",
+	"FlippableCard": "components/flippable-card",
+	"FreeTextQuestion": "components/free-text-question",
+	"FreeTextSurvey": "components/free-text-survey",
+	"Gate": "components/gate",
+	"Generator": "components/generator",
+	"Input": "components/input",
+	"IFrame": "components/iframe",
+	"Image": "components/image",
+	"JSShell": "components/js-shell",
+	"KeyControls": "components/key-controls",
+	"LessonSubmit": "components/lesson-submit",
+	"LikertScale": "components/likert-scale",
+	"Link": "components/link",
+	"MatchListQuestion": "components/match-list-question",
+	"Metrics": "components/metrics/db",
+	"MetricsContingencyTable": "components/metrics/contingency-table",
+	"Modal": "react-bootstrap/Modal",
+	"MultiCards": "components/multi-cards",
+	"MultipleChoiceMatrix": "components/multiple-choice-matrix",
+	"MultipleChoiceQuestion": "components/multiple-choice-question",
+	"MultipleChoiceSurvey": "components/multiple-choice-survey",
+	"Nav": "react-bootstrap/Nav",
+	"Navbar": "react-bootstrap/Navbar",
+	"NavItem": "react-bootstrap/NavItem",
+	"NavLink": "react-bootstrap/NavLink",
+	"NetworkPlot": "components/d3/network-plot",
+	"News": "components/news",
+	"NumberInput": "components/input/number",
+	"NumberQuestion": "components/number-question",
+	"NumberSurvey": "components/number-survey",
+	"OrderQuestion": "components/order-question",
+	"Pages": "components/pages",
+	"TextEditor": "components/text-editor",
+	"Panel": "components/panel",
+	"Playground": "components/playground",
+	"Plotly": "components/plotly",
+	"Polaroid": "components/polaroid",
+	"Preload": "components/preload",
+	"ProportionsInput": "components/input/proportions",
+	"ProportionsSurvey": "components/proportions-survey",
+	"QRCode": "components/qrcode",
+	"Queue": "components/queue",
+	"RandomVideo": "components/random-video",
+	"RangeQuestion": "components/range-question",
+	"Reaction": "components/reaction",
+	"RealTimeMetrics": "components/metrics/realtime",
+	"Recorder": "components/recorder",
+	"Revealer": "components/revealer",
+	"RHelp": "components/r/help",
+	"ROutput": "components/r/output",
+	"RPlot": "components/r/plot",
+	"RShell": "components/r/shell",
+	"RTable": "components/r/table",
+	"Row": "react-bootstrap/Row",
+	"Runner": "components/runner",
+	"ScrollingText": "components/scrolling-text",
+	"Seal": "components/seal",
+	"SelectInput": "components/input/select",
+	"SelectQuestion": "components/select-question",
+	"SelectQuestionMatrix": "components/select-question-matrix",
+	"ShapedForm": "components/shaped-form",
+	"ShapedImage": "components/shaped-image",
+	"Sketchpad": "components/sketchpad",
+	"Slider": "components/slider",
+	"SliderInput": "components/input/slider",
+	"StatusBar": "components/internal/statusbar",
+	"StickyNote": "components/sticky-note",
+	"Sunburst": "components/d3/sunburst",
+	"Table": "components/table",
+	"Typewriter": "components/typewriter",
+	"TimedButton": "components/timed-button",
+	"Toolbar": "components/internal/toolbar",
+	"SortableTree": "components/sortable-tree",
+	"Unveil": "components/unveil",
+	"VoiceInput": "components/input/voice",
+	"VoiceControl": "components/internal/voice-control",
+	"Weather": "components/weather",
+	"Wikipedia": "components/wikipedia",
+	"Appear": "components/spectacle/appear",
+	"BlockQuote": "components/spectacle/block-quote",
+	"Cite": "components/spectacle/cite",
+	"Code": "components/spectacle/code",
+	"CodePane": "components/spectacle/code-pane",
+	"CodeSlide": "components/spectacle/code-slide",
+	"Deck": "components/spectacle/deck",
+	"Fill": "components/spectacle/fill",
+	"Fit": "components/spectacle/fit",
+	"Heading": "components/spectacle/heading",
+	"SImage": "components/spectacle/image",
+	"Layout": "components/spectacle/layout",
+	"ListItem": "components/spectacle/list-item",
+	"List": "components/spectacle/list",
+	"Notes": "components/spectacle/notes",
+	"QuestionForm": "components/question-form",
+	"Quiz": "components/quiz",
+	"Quote": "components/spectacle/quote",
+	"Spectacle": "components/spectacle",
+	"Slide": "components/spectacle/slide",
+	"STable": "components/spectacle/table",
+	"SText": "components/spectacle/text",
+	"TableBody": "components/spectacle/table-body",
+	"TableRow": "components/spectacle/table-row",
+	"TableHeaderItem": "components/spectacle/table-header-item",
+	"TableHeader": "components/spectacle/table-header",
+	"TableItem": "components/spectacle/table-item",
+	"Switch": "components/switch",
+	"Tab": "react-bootstrap/Tab",
+	"Tabs": "react-bootstrap/Tabs",
+	"TeX": "components/tex",
+	"Text": "components/text",
+	"TextArea": "components/input/text-area",
+	"TextInput": "components/input/text",
+	"Timer": "components/timer",
+	"Tooltip": "components/tooltip",
+	"Collapse": "components/collapse",
+	"VictoryAnimation": "components/victory/animation",
+	"VictoryArea": "components/victory/area",
+	"VictoryBar": "components/victory/bar",
+	"VictoryBoxPlot": "components/victory/boxplot",
+	"VictoryBrushContainer": "components/victory/brush-container",
+	"VictoryCandlestick": "components/victory/candlestick",
+	"VictoryCursorContainer": "components/victory/cursor-container",
+	"VictoryTheme": "components/victory/theme",
+	"VictoryChart": "components/victory/chart",
+	"VictoryGroup": "components/victory/group",
+	"VictoryAxis": "components/victory/axis",
+	"VictoryErrorBar": "components/victory/error-bar",
+	"VictoryLabel": "components/victory/label",
+	"VictoryLegend": "components/victory/legend",
+	"VictoryLine": "components/victory/line",
+	"VictoryPie": "components/victory/pie",
+	"VictoryPolarAxis": "components/victory/polaraxis",
+	"VictoryScatter": "components/victory/scatter",
+	"VictoryStack": "components/victory/stack",
+	"VictoryTooltip": "components/victory/tooltip",
+	"VictoryVoronoiContainer": "components/victory/voronoi-container",
+	"VictoryVoronoi": "components/victory/voronoi",
+	"VictoryZoomContainer": "components/victory/zoom-container",
+	"VictoryWrapper": "components/victory/wrapper",
+	"VideoLecture": "components/video-lecture",
+	"VideoPlayer": "components/video-player",
+	"WordCloud": "components/word-cloud"
 }

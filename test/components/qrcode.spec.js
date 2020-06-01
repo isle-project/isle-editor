@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import QRCode from 'components/qrcode';
+import QRCode from 'components/qrcode/main.js';
 
 
 // TESTS //

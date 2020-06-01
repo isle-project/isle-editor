@@ -19,7 +19,7 @@ import rtrim from '@stdlib/string/right-trim';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import COMPONENT_DOCS from './components_documentation.json';
-import Session from '@isle-project/session';
+import Session from 'session';
 import './component_configurator.css';
 
 

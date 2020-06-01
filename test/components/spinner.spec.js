@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 
 
 // TESTS //

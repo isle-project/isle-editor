@@ -9,7 +9,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import { SessionContext } from '@isle-project/session';
+import SessionContext from 'session/context.js';
 import './slider.css';
 
 

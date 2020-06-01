@@ -11,7 +11,7 @@ import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
-import { SessionContext } from '@isle-project/session';
+import SessionContext from 'session/context.js';
 import permute from 'utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './order-question.css';

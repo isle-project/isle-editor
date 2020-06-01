@@ -115,7 +115,7 @@ function tagName( str, pos ) {
 
 function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
-		return EOL.repeat( p1.length >= 2 ? p1.length : 1 );
+		return EOL.repeat( p1.length >= 2 ? p1.length : 2 );
 	});
 }
 
@@ -173,7 +173,7 @@ class Tokenizer {
 			char === '\n' &&
 			( nextChar === '\n' || nextChar === '\r' )
 		) {
-			this._current += `${EOL}<span />`;
+			this._current += `${EOL}<span />${EOL}`;
 		}
 		else if (
 			char === '<' &&

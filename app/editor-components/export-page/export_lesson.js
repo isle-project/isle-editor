@@ -14,7 +14,7 @@ import path from 'path';
 import exists from '@stdlib/fs/exists';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import './export_page.css';
 
 
@@ -40,6 +40,7 @@ class ExportLesson extends Component {
 			finished: false,
 			spinning: false,
 			minify: false,
+			loadFromCDN: true,
 			writeStats: false,
 			alreadyExists: false
 		};
@@ -81,7 +82,7 @@ class ExportLesson extends Component {
 	}
 
 	generateApp = () => {
-		const { outputPath, outputDir, minify, writeStats } = this.state;
+		const { outputPath, outputDir, minify, writeStats, loadFromCDN } = this.state;
 		if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
 			this.setState({
 				alreadyExists: true
@@ -98,6 +99,7 @@ class ExportLesson extends Component {
 				content: this.props.content,
 				outputDir,
 				minify,
+				loadFromCDN,
 				writeStats
 			}, ( error ) => {
 				const newState = {
@@ -179,6 +181,8 @@ class ExportLesson extends Component {
 						<FormLabel>Settings</FormLabel>
 						<CheckboxInput
 							legend="Minify code"
+							tooltip="Disabling this option slightly reduces build time but results in more data to be downloaded by users"
+							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({
 									minify: value
@@ -188,11 +192,25 @@ class ExportLesson extends Component {
 						/>
 						<CheckboxInput
 							legend="Save bundle stats"
+							tooltip="Create a `stats.json` file with bundle statistics for debugging and analysis purposes"
+							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({
 									writeStats: value
 								});
 							}}
+							disabled={this.state.spinning}
+						/>
+						<CheckboxInput
+							legend="Load ISLE resources from CDN"
+							tooltip="WARNING: Disabling this option will massively increase upload time and bundle sizes"
+							tooltipPlacement="left"
+							onChange={( value ) => {
+								this.setState({
+									loadFromCDN: value
+								});
+							}}
+							defaultValue={this.state.loadFromCDN}
 							disabled={this.state.spinning}
 						/>
 					</FormGroup>

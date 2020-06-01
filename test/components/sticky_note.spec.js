@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import StickyNote from 'components/sticky-note';
+import StickyNote from 'components/sticky-note/main.js';
 
 
 // TESTS //

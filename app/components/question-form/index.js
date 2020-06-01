@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
-import { SessionContext } from '@isle-project/session';
+import SessionContext from 'session/context.js';
 import './question_form.css';
 
 

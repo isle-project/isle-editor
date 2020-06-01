@@ -1,0 +1,13 @@
+{
+	"name": "@isle-project/components",
+	"version": "0.18.0",
+	"author": {
+		"name": "Philipp Burckhardt",
+		"email": "pburckhardt@outlook.com",
+		"url": "https://github.com/planeshifter"
+	},
+	"bundleDependencies": false,
+	"description": "ISLE components.",
+	"license": "AGPL-3.0-only",
+	"main": "dll.components.js"
+}

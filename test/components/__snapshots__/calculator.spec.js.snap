@@ -1,319 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a basic calculator 1`] = `
-<div
-  node={null}
+<span
+  className="sk-cube-grid"
 >
-  <div
-    className="react-draggable"
-    onEscape={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    onStop={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    resizable={false}
-    style={
-      Object {
-        "boxSizing": "border-box",
-        "cursor": "move",
-        "display": "inline-block",
-        "flexShrink": 0,
-        "height": "auto",
-        "left": 0,
-        "maxHeight": 9007199254740991,
-        "maxWidth": 9007199254740991,
-        "minHeight": undefined,
-        "minWidth": undefined,
-        "position": "fixed",
-        "top": 0,
-        "touchAction": "none",
-        "transform": "translate(30px,30px)",
-        "userSelect": "auto",
-        "width": "auto",
-      }
-    }
-    transform={null}
-  >
-    <div
-      className="panel  card"
-      footer={null}
-      footerStyle={Object {}}
-      fullscreen={false}
-      header="Calculator"
-      hideTooltip="Close"
-      id="calc-panel"
-      minimizable={true}
-      role="button"
-      style={
-        Object {
-          "height": undefined,
-        }
-      }
-      tabIndex={0}
-    >
-      <h3
-        className="card-header"
-      >
-        <span
-          className="unselectable"
-        >
-          Calculator
-        </span>
-        <button
-          className="panel-hide-button fas fa-window-minimize"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        />
-      </h3>
-      <div
-        className="card-body"
-        style={
-          Object {
-            "display": null,
-          }
-        }
-      >
-        <div
-          className="desaturated container"
-        >
-          <input
-            autoFocus={true}
-            className="form-control"
-            id="calc-text-area"
-            onChange={[Function]}
-            onKeyPress={[Function]}
-            type="text"
-            value="0"
-          />
-          <p>
-            Answer = 
-            0
-          </p>
-          <div
-            className="row"
-          >
-            <div
-              className="col"
-            >
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-light"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  (
-                </button>
-                <button
-                  className="input-button-small btn btn-light"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  )
-                </button>
-                <button
-                  className="input-button-small btn btn-warning"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Copy
-                </button>
-                <button
-                  className="input-button-small btn btn-warning"
-                  disabled={true}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Expand
-                </button>
-              </div>
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  7
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  8
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  9
-                </button>
-                <button
-                  className="input-button-small btn btn-info"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  ÷
-                </button>
-              </div>
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  4
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  5
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  6
-                </button>
-                <button
-                  className="input-button-small btn btn-info"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  ×
-                </button>
-              </div>
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  1
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  2
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  3
-                </button>
-                <button
-                  className="input-button-small btn btn-info"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  -
-                </button>
-              </div>
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Ans
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  0
-                </button>
-                <button
-                  className="input-button-small btn btn-dark"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  .
-                </button>
-                <button
-                  className="input-button-small btn btn-info"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  +
-                </button>
-              </div>
-              <div
-                className="row"
-              >
-                <button
-                  className="input-button-small btn btn-danger"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  CE
-                </button>
-                <button
-                  className="input-button-small btn btn-danger"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  AC
-                </button>
-                <button
-                  className="half-button btn btn-success"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  =
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <span
+    className="sk-cube sk-cube1"
+  />
+  <span
+    className="sk-cube sk-cube2"
+  />
+  <span
+    className="sk-cube sk-cube3"
+  />
+  <span
+    className="sk-cube sk-cube4"
+  />
+  <span
+    className="sk-cube sk-cube5"
+  />
+  <span
+    className="sk-cube sk-cube6"
+  />
+  <span
+    className="sk-cube sk-cube7"
+  />
+  <span
+    className="sk-cube sk-cube8"
+  />
+  <span
+    className="sk-cube sk-cube9"
+  />
+</span>
 `;
 
 exports[`renders an expandable calculator 1`] = `
@@ -376,14 +94,37 @@ exports[`renders an expandable calculator 1`] = `
         >
           Calculator
         </span>
-        <button
-          className="panel-hide-button fas fa-window-minimize"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        />
+        <span
+          className="sk-cube-grid"
+        >
+          <span
+            className="sk-cube sk-cube1"
+          />
+          <span
+            className="sk-cube sk-cube2"
+          />
+          <span
+            className="sk-cube sk-cube3"
+          />
+          <span
+            className="sk-cube sk-cube4"
+          />
+          <span
+            className="sk-cube sk-cube5"
+          />
+          <span
+            className="sk-cube sk-cube6"
+          />
+          <span
+            className="sk-cube sk-cube7"
+          />
+          <span
+            className="sk-cube sk-cube8"
+          />
+          <span
+            className="sk-cube sk-cube9"
+          />
+        </span>
       </h3>
       <div
         className="card-body"

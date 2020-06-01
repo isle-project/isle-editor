@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BeaconTooltip from 'components/beacon-tooltip';
+import BeaconTooltip from 'components/beacon-tooltip/main.js';
 
 
 // TESTS //
