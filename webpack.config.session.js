@@ -49,7 +49,7 @@ const config = {
 		path: join( __dirname, 'dll', 'session' ),
 		filename: 'dll.[name].js',
 		library: '[name]_[hash]',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.6.0/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.7.0/'
 	},
 	optimization: {
 		minimize: true,
@@ -72,7 +72,6 @@ const config = {
 		'localforage': 'localforage',
 		'react': 'React',
 		'react-dom': 'ReactDOM',
-		'@isle-project/session': 'Session',
 		'pdfjs-dist/webpack': 'pdfjsLib',
 		'react-table': 'ReactTable',
 		'prop-types': 'PropTypes',
