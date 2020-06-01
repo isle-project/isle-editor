@@ -125,7 +125,7 @@ import ShapedForm from 'components/shaped-form';
 import ShapedImage from 'components/shaped-image';
 import Sketchpad from 'components/sketchpad';
 import Slider from 'components/slider';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import StatusBar from 'components/internal/statusbar';
 import TextEditor from 'components/text-editor';
 import Toolbar from 'components/internal/toolbar';

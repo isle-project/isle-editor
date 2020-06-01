@@ -25,7 +25,7 @@ import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import KeyControls from 'components/key-controls';
 
 

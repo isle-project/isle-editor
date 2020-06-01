@@ -143,7 +143,7 @@ const config = {
 			'./app/components/slider',
 			'./app/components/solution-button',
 			'./app/components/sortable-tree',
-			'./app/components/spinner',
+			'./app/components/internal/spinner',
 			'./app/components/spreadsheet-upload',
 			'./app/components/sticky-note',
 			'./app/components/switch',

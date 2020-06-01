@@ -20,7 +20,7 @@ import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
 import CodeMirror from 'codemirror';
 import generateUID from 'utils/uid';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import HintButton from 'components/hint-button';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';

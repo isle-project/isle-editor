@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DOMPurify from 'dompurify';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import createPrependCode from 'components/r/utils/create-prepend-code';
 import SessionContext from 'session/context.js';
 

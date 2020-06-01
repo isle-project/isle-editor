@@ -6,7 +6,7 @@ import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
 import isNull from '@stdlib/assert/is-null';
 import createPrependCode from 'components/r/utils/create-prepend-code';
-import Spinner from 'components/spinner';
+import Spinner from 'components/internal/spinner';
 import Image from 'components/image';
 import SessionContext from 'session/context.js';
 import './plot.css';
