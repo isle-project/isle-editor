@@ -27,7 +27,7 @@ import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
-import COMPONENTS_MANIFEST from './../../dll/components/components-manifest.json';
+import COMPONENTS_MANIFEST from 'components/components-manifest.json';
 import CDN_MODULES from './cdn_modules.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
