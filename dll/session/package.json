@@ -1,0 +1,13 @@
+{
+	"name": "@isle-project/session",
+	"version": "0.4.3",
+	"author": {
+		"name": "Philipp Burckhardt",
+		"email": "pburckhardt@outlook.com",
+		"url": "https://github.com/planeshifter"
+	},
+	"bundleDependencies": false,
+	"description": "ISLE lesson session class.",
+	"license": "AGPL-3.0-only",
+	"main": "dll.session.js"
+}
