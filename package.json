@@ -87,6 +87,13 @@
       "\\.(css|less)$": "<rootDir>/test/mocks/style_mock.js",
       "worker\\.js$": "<rootDir>/test/mocks/worker.js"
     },
+    "modulePaths": [
+      "<rootDir>",
+      "app"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "roots": [
       "<rootDir>",
       "<rootDir>/test"
