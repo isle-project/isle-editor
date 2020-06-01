@@ -2,31 +2,44 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Playground from 'components/beacon-tooltip';
-import TeX from 'components/tex';
+import Provider from 'components/provider';
+import Session from 'session';
+import Playground from 'components/playground/main.js';
+import Clock from 'components/clock';
+
+
+// VARIABLES //
+
+const session = new Session( {}, true );
 
 
 // TESTS //
 
 it( 'renders a controlled playground', () => {
 	const playground = renderer.create(
-		<Playground value="<div>Code comes here...</div>" />
+		<Provider session={session}>
+			<Playground value="<div>Code comes here...</div>" />
+		</Provider>
 	).toJSON();
 	expect( playground ).toMatchSnapshot();
 });
 
 it( 'renders an uncontrolled playground', () => {
 	const playground = renderer.create(
-		<Playground defaultValue="<div>Code comes here...</div>" />
+		<Provider session={session}>
+			<Playground defaultValue="<div>Code comes here...</div>" />
+		</Provider>
 	).toJSON();
 	expect( playground ).toMatchSnapshot();
 });
 
 it( 'renders a playground with a supplied scope', () => {
 	const playground = renderer.create(
-		<Playground defaultValue="<TeX raw={`2+2`} />" scope={[
-			TeX
-		]} />
+		<Provider session={session}>
+			<Playground defaultValue="<Clock />" scope={{
+				Clock
+			}} />
+		</Provider>
 	).toJSON();
 	expect( playground ).toMatchSnapshot();
 });

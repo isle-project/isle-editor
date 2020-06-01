@@ -4,7 +4,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Tooltip from 'components/tooltip';
 import Adapter from 'enzyme-adapter-react-16';
-import Switch from 'components/switch';
+import Switch from 'components/switch/main.js';
 
 
 // VARIABLES //

@@ -3,7 +3,7 @@
 import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Pages from 'components/pages';
+import Pages from 'components/pages/main.js';
 
 
 // VARIABLES //

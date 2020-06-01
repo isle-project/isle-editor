@@ -3,8 +3,8 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Wikipedia from 'components/wikipedia';
 import VoiceInput from 'components/input/voice';
+import Wikipedia from 'components/wikipedia/main.js';
 
 
 // VARIABLES //

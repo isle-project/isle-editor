@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Typewriter from 'components/typewriter';
+import Typewriter from 'components/typewriter/main.js';
 
 
 // TESTS //

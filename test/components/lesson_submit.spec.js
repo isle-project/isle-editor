@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Provider from 'components/provider';
 import Session from 'session';
-import LessonSubmit from 'components/lesson-submit';
+import LessonSubmit from 'components/lesson-submit/main.js';
 
 
 // VARIABLES //

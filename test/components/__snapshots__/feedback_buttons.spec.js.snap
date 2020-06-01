@@ -1,69 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders feedback buttons (horizontal format) 1`] = `
-<div
-  className="feedback-buttons"
-  id="feedback-2"
+<span
+  className="sk-cube-grid"
 >
-  <div
-    className="btn-group"
-    role="group"
-    style={
-      Object {
-        "float": "right",
-      }
-    }
-  >
-    <button
-      aria-label="Confused"
-      className="feedback-button btn btn-light btn-small"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-      type="button"
-    >
-      <test-file-stub
-        className="feedback-icon"
-      />
-    </button>
-    <button
-      aria-label="Understood"
-      className="feedback-button btn btn-light btn-small"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-      type="button"
-    >
-      <test-file-stub
-        className="feedback-icon"
-      />
-    </button>
-    <button
-      aria-label="Give custom feedback"
-      className="feedback-button btn btn-light btn-small"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-      type="button"
-    >
-      <test-file-stub
-        className="feedback-icon"
-      />
-    </button>
-  </div>
-  <div
-    id="response"
+  <span
+    className="sk-cube sk-cube1"
   />
-</div>
+  <span
+    className="sk-cube sk-cube2"
+  />
+  <span
+    className="sk-cube sk-cube3"
+  />
+  <span
+    className="sk-cube sk-cube4"
+  />
+  <span
+    className="sk-cube sk-cube5"
+  />
+  <span
+    className="sk-cube sk-cube6"
+  />
+  <span
+    className="sk-cube sk-cube7"
+  />
+  <span
+    className="sk-cube sk-cube8"
+  />
+  <span
+    className="sk-cube sk-cube9"
+  />
+</span>
 `;
 
 exports[`renders feedback buttons (vertical format) 1`] = `

@@ -3,7 +3,7 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Unveil from 'components/unveil';
+import Unveil from 'components/unveil/main.js';
 
 
 // VARIABLES //

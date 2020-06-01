@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Tooltip from 'components/tooltip';
+import Tooltip from 'components/tooltip/main.js';
 
 
 // TESTS //
