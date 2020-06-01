@@ -198,7 +198,7 @@ const config = {
 		'localforage': 'localforage',
 		'react': 'React',
 		'react-dom': 'ReactDOM',
-		'@isle-project/session': 'Session',
+		'session': 'Session',
 		'pdfjs-dist/webpack': 'pdfjsLib',
 		'react-table': 'ReactTable',
 		'prop-types': 'PropTypes',

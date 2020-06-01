@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Provider from 'components/provider';
 import FeedbackButtons from 'components/feedback';
-import Session from '@isle-project/session';
+import Session from 'session';
 
 
 // VARIABLES //
