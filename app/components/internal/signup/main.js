@@ -16,7 +16,7 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import Tooltip from 'components/tooltip';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 
 
 // VARIABLES //

@@ -6,7 +6,7 @@ import logger from 'debug';
 import noop from '@stdlib/utils/noop';
 import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from 'components/draggable';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import './sticky_note.css';
 

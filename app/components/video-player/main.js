@@ -10,7 +10,7 @@ import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 

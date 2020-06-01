@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 
 
 // MAIN //

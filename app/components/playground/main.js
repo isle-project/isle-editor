@@ -13,7 +13,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import Provider from 'components/provider';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import styles from './styles.json';
 import theme from './theme.js';
 import './playground.css';

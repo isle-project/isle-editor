@@ -12,7 +12,7 @@ import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/internal/voice-control';
 import Gate from 'components/gate';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import VOICE_COMMANDS from './voice_commands.json';
 import './deck.css';
 

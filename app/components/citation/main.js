@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import trim from '@stdlib/string/trim';
 import contains from '@stdlib/assert/contains';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 
 
 // FUNCTIONS //

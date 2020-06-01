@@ -16,7 +16,7 @@ import Plotly from 'components/plotly';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { MULTIPLE_CHOICE_SURVEY_SUBMISSION } from 'constants/actions.js';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';

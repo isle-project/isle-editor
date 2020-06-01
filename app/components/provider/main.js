@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SessionContext, RoleContext } from '@isle-project/session';
+import { SessionContext, RoleContext } from 'session';
 
 
 // MAIN //

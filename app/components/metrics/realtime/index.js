@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import indexOf from '@stdlib/utils/index-of';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION } from 'constants/events.js';
 
 

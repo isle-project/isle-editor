@@ -12,7 +12,7 @@ import ActionLog from 'components/internal/statusbar/action-log';
 import InstructorNotes from 'components/internal/statusbar/instructor-notes';
 import animatePosition from 'utils/animate-position';
 import Tooltip from 'components/tooltip';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { RECEIVED_USERS, SELECTED_COHORT, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import './video_chat.css';
 
 

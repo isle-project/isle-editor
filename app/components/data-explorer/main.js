@@ -47,7 +47,7 @@ import Plotly from 'components/plotly';
 import OverlayTrigger from 'components/overlay-trigger';
 import RPlot from 'components/r/plot';
 import DataTable from 'components/data-table';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
 import formatFilters from './format_filters.js';

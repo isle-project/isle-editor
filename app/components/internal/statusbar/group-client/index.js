@@ -8,7 +8,7 @@ import Panel from 'components/panel';
 import Draggable from 'components/draggable';
 import VideoChatButton from 'components/video-chat-button';
 import Timer from 'components/timer';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
 import './group_client.css';

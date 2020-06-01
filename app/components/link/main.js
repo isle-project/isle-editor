@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import startsWith from '@stdlib/string/starts-with';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import LinkContextMenu from './contextmenu.js';
 
 

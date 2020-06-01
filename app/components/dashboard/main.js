@@ -13,7 +13,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { DASHBOARD_CLICK_GENERATE } from 'constants/actions.js';
 import './dashboard.css';
 

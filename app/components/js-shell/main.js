@@ -20,7 +20,7 @@ import scrollTo from 'utils/scroll-to';
 import generateUID from 'utils/uid';
 import OverlayTrigger from 'components/overlay-trigger';
 import VoiceControl from 'components/internal/voice-control';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from 'constants/actions.js';

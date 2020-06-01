@@ -6,7 +6,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
 import Input from 'components/input/base';
 import OverlayTrigger from 'components/overlay-trigger';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import Microphone from './microphone.js';
 import './voice.css';
 

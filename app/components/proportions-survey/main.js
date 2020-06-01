@@ -13,7 +13,7 @@ import ProportionsInput from 'components/input/proportions';
 import Gate from 'components/gate';
 import ResponseVisualizer from 'components/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { PROPORTIONS_SURVEY_SUBMISSION } from 'constants/actions.js';
 
 

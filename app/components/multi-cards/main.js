@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import copy from '@stdlib/utils/copy';
 import FlippableCard from 'components/flippable-card';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import VoiceInput from 'components/input/voice';
 import Memory from './memory.js';
 import Bingo from './bingo.js';

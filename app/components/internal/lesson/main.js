@@ -7,7 +7,7 @@ import { ContextMenuTrigger } from 'react-contextmenu';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import StickyNote from 'components/sticky-note';
 import randomstring from 'utils/randomstring/alphanumeric';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';

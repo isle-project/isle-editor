@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import capitalize from '@stdlib/string/capitalize';
 import VoiceInput from 'components/input/voice';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 import './styles.css';

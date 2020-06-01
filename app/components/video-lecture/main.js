@@ -11,7 +11,7 @@ import Gate from 'components/gate';
 import KeyControls from 'components/key-controls';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
-import { SessionContext } from '@isle-project/session';
+import { SessionContext } from 'session';
 import './video_lecture.css';
 
 
