@@ -70,7 +70,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	DOCS[ tagName ] = {
 		props: []
 	};
-	const fpath = path.join( './app/components', component, 'index.js' );
+	const fpath = path.join( './app/components', component, 'main.js' );
 	const mdpath = path.join( './docusaurus/docs', component+'.md' );
 	const islepath = path.join( './component-playground', component+'.isle' );
 
