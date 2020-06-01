@@ -14,10 +14,8 @@ const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
 const noop = require( '@stdlib/utils/noop' );
 const isFunction = require( '@stdlib/assert/is-function' );
-const invertBy = require( '@stdlib/utils/object-inverse-by' );
-const REQUIRES = invertBy( require( './../app/bundler/requires.json' ), ( key, value ) => {
-	return value.path;
-});
+const invert = require( '@stdlib/utils/object-inverse' );
+const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
 const PropTypes = require( './prop_types.js' );
 
 
@@ -74,7 +72,12 @@ for ( let i = 0; i < files.length; i++ ) {
 	const mdpath = path.join( './docusaurus/docs', component+'.md' );
 	const islepath = path.join( './component-playground', component+'.isle' );
 
-	const file = fs.readFileSync( fpath ).toString();
+	let file;
+	try {
+		file = fs.readFileSync( fpath ).toString();
+	} catch ( err ) {
+		continue;
+	}
 	let str = `## Options
 
 `;
