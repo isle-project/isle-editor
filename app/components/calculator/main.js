@@ -188,6 +188,11 @@ class Calculator extends Component {
 				answer: visible
 			});
 		}
+		// Handle implicit multiplication operators:
+		visible = replace( visible, /\) *\(/g, ') * (' );
+		visible = replace( visible, /\) *([a-z0-9])/g, ') * $1' );
+		visible = replace( visible, /(\d|!)([a-z]|\()/g, '$1 * $2' );
+
 		// Handle unary operators:
 		visible = replace( visible, /(^|[(*/:^!+]) *-([^+\-/*^!]+)/g, '$1 (0-$2) ' );
 		visible = replace( visible, /(^|[(*/:^!+]) *\+/g, '$1 ' );
