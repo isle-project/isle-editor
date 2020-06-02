@@ -72,6 +72,11 @@ async function loadRequires( libs, filePath ) {
 							global[ key ] = json;
 						}
 					}
+					else if ( ext === '.csv' ) {
+						asyncOps.push( csv( lib ) );
+						asyncKeys.push( key );
+						global[ key ] = null;
+					}
 					else {
 						debug( `Load '${lib}' library...` );
 						const match = lib.match( RE_SEMVER );
