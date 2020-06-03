@@ -261,7 +261,7 @@ class Calculator extends Component {
 								<Row>
 									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('cos')} >cos(x)</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('ln')} >ln(x)</Button>
-									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('^(1/')} ><sup>n</sup>&radic;</Button>
+									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('^(1/')} ><TeX style={{ color: 'white' }} raw="\sqrt[n]{}" /></Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('4')} >4</Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('5')} >5</Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('6')} >6</Button>
@@ -269,7 +269,7 @@ class Calculator extends Component {
 								</Row>
 								<Row>
 									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('tan')} >tan(x)</Button>
-									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('log10')} >log10(x)</Button>
+									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('log10')} >log<sub>10</sub>(x)</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('^')} >x<sup>y</sup></Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('1')} >1</Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory('2')} >2</Button>
