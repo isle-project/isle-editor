@@ -19,6 +19,7 @@ import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
 import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
 	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from 'constants/events.js';
+import 'components/plotly/tooltip.css';
 
 
 // VARIABLES //
