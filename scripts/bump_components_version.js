@@ -22,8 +22,8 @@ const pkgPath = join( __dirname, '..', 'dll', 'components', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
-	oldVersion = match;
-	newVersion = `${p1}.${Number( p2 ) + 1}.0`;
+	oldVersion = replace( match, RE_VERSION, '$1.$2' );
+	newVersion = `${p1}.${Number( p2 ) + 1}`;
 	return newVersion;
 });
 fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ) );

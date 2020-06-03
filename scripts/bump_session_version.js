@@ -22,8 +22,8 @@ const pkgPath = join( __dirname, '..', 'dll', 'session', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
-	oldVersion = match;
-	newVersion = `${p1}.${Number( p2 ) + 1}.0`;
+	oldVersion = replace( match, RE_VERSION, '$1.$2' );
+	newVersion = `${p1}.${Number( p2 ) + 1}`;
 	return newVersion;
 });
 fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ) );
@@ -41,12 +41,12 @@ out = replace( html, oldVersion, newVersion );
 fs.writeFileSync( htmlPath, out );
 
 // Delete current DLL files:
-fs.readdir( join( __dirname, '..', 'dll', 'components' ), ( error, files ) => {
+fs.readdir( join( __dirname, '..', 'dll', 'session' ), ( error, files ) => {
 	if ( error ) {
 		throw error;
 	}
 	files.filter( name => RE_DLL_FILE.test( name ) ).forEach( x => {
-		fs.unlink( join( __dirname, '..', 'dll', 'components', x ), ( err ) => {
+		fs.unlink( join( __dirname, '..', 'dll', 'session', x ), ( err ) => {
 			if ( err ) {
 				console.error( err );
 			}
