@@ -1,6 +1,6 @@
 // MODULES //
 
-import ImageQuestion from 'components/image-question';
+import ImageQuestion from './main.js';
 
 
 // EXPORTS //
