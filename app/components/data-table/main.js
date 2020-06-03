@@ -222,7 +222,7 @@ function createColumns( props, state ) {
 				isNumColumn = true;
 				uniqueValues = vals;
 			} else {
-				vals = vals.filter( x => !isNull( x ) && x !== '' );
+				vals = vals.filter( x => !isNull( x ) && x !== '' && x !== 'NA' );
 				uniqueValues = unique( vals );
 				isNumColumn = isNumberArray( vals ) && uniqueValues.length > 2;
 			}
