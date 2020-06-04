@@ -48,8 +48,8 @@ const config = {
 	output: {
 		path: join( __dirname, 'dll', 'session' ),
 		filename: 'dll.[name].js',
-		library: '[name]_[hash]',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.10/'
+		library: '[name]_dll',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.12/'
 	},
 	optimization: {
 		minimize: true,
@@ -64,7 +64,7 @@ const config = {
 	plugins: [
 		new DllPlugin({
 			path: join( __dirname, 'app', 'session', '[name]-manifest.json' ),
-			name: '[name]_[hash]'
+			name: '[name]_dll'
 		})
 	],
 	externals: {
