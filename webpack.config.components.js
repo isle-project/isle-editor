@@ -216,7 +216,7 @@ const config = {
 		'socket.io-client': 'io',
 		'js-yaml': 'jsyaml',
 		'markdown-it': 'markdownit',
-		'lodash': 'lodash'
+		'lodash': '_'
 	}
 };
 

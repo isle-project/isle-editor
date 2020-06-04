@@ -30,6 +30,7 @@
 	{
 		"name": "lodash",
 		"alias": "lodash.js",
+		"var": "_",
 		"path": "lodash.min.js",
 		"version": "4.17.15"
 	},
