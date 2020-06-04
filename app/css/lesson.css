@@ -651,12 +651,12 @@ mark {
 
 .centered {
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto !important;
 }
 
 .center {
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto !important;
 	text-align: center;
 }
 
