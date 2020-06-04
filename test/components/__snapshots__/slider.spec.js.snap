@@ -11,13 +11,17 @@ exports[`renders a slider for child elements (dragging disabled) 1`] = `
       "marginRight": "auto",
       "marginTop": "20px",
       "maxWidth": "1200px",
-      "paddingBottom": "20px",
       "width": "100%",
     }
   }
 >
   <div
     className="card-body"
+    style={
+      Object {
+        "paddingBottom": "40px",
+      }
+    }
   >
     <div
       beforeChange={[Function]}
@@ -65,7 +69,6 @@ exports[`renders a slider for child elements (with title) 1`] = `
       "marginRight": "auto",
       "marginTop": "20px",
       "maxWidth": "1200px",
-      "paddingBottom": "20px",
       "width": "100%",
     }
   }
@@ -88,6 +91,11 @@ exports[`renders a slider for child elements (with title) 1`] = `
   </h3>
   <div
     className="card-body"
+    style={
+      Object {
+        "paddingBottom": "40px",
+      }
+    }
   >
     <div
       beforeChange={[Function]}
@@ -135,13 +143,17 @@ exports[`renders a slider for child elements (without dots for navigation) 1`] =
       "marginRight": "auto",
       "marginTop": "20px",
       "maxWidth": "1200px",
-      "paddingBottom": "20px",
       "width": "100%",
     }
   }
 >
   <div
     className="card-body"
+    style={
+      Object {
+        "paddingBottom": "40px",
+      }
+    }
   >
     <div
       beforeChange={[Function]}
@@ -189,13 +201,17 @@ exports[`renders a slider for child elements 1`] = `
       "marginRight": "auto",
       "marginTop": "20px",
       "maxWidth": "1200px",
-      "paddingBottom": "20px",
       "width": "100%",
     }
   }
 >
   <div
     className="card-body"
+    style={
+      Object {
+        "paddingBottom": "40px",
+      }
+    }
   >
     <div
       beforeChange={[Function]}
