@@ -53,7 +53,7 @@ if ( type === 'major' || type === 'minor' ) {
 	const htmlPath = join( __dirname, '..', 'app', 'bundler', 'index.html' );
 	const html = fs.readFileSync( htmlPath, 'utf8' );
 
-	out = replace( html, oldVersion, newVersion );
+	out = replace( html, `session@${oldVersion}`, `session@${newVersion}` );
 	fs.writeFileSync( htmlPath, out );
 }
 
