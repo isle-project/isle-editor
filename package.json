@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.54.3",
+  "version": "0.54.4",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -980,7 +980,7 @@
       "!node_modules/jest-cli/node_modules/y18n/**/*",
       "!node_modules/jest-cli/node_modules/yargs-parser/**/*",
       "!node_modules/jest-cli/node_modules/camelcase/**/*",
-      "!node_modules/argparse/**/*",
+      "!node_modules/sprintf-js/**/*",
       "!node_modules/katex/**/*",
       "!node_modules/localforage/**/*",
       "!node_modules/localforage/node_modules/lie/**/*",
@@ -1332,7 +1332,6 @@
       "!node_modules/array-bounds/**/*",
       "!node_modules/array-normalize/**/*",
       "!node_modules/bubleify/**/*",
-      "!node_modules/vlq/**/*",
       "!node_modules/math-log2/**/*",
       "!node_modules/polybooljs/**/*",
       "!node_modules/regl/**/*",
