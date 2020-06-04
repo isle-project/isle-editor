@@ -115,14 +115,13 @@ class DefaultSlider extends Component {
 					marginRight: 'auto',
 					marginTop: '20px',
 					marginBottom: '20px',
-					paddingBottom: '20px',
 					maxWidth: '1200px',
 					width: '100%',
 					...this.props.style
 				}}
 			>
 				{this.renderTitle()}
-				<Card.Body>
+				<Card.Body style={{ paddingBottom: '40px' }}>
 					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings} >
 						{ this.state.childDivs }
 					</Slider>
