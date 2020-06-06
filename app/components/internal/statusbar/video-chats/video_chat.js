@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import Tooltip from 'components/tooltip';
 import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
@@ -159,10 +160,12 @@ class VideoChat extends Component {
 			></div>
 			{this.state.minimized ? <h3 style={{ marginTop: 22 }}>
 				{this.state.screensharing ? <span>
-					Sharing screen <Button onClick={this.stopScreenSharing} variant="secondary" size="sm">Stop sharing</Button>
-				</span> : 'Video active'}
+					{this.props.t( 'sharing-screen' )} <Button onClick={this.stopScreenSharing} variant="secondary" size="sm">
+						{this.props.t( 'stop-sharing' )}
+					</Button>
+				</span> : this.props.t( 'video-active' )}
 			</h3> : null}
-			<Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'} >
+			<Tooltip tooltip={this.state.minimized ? this.props.t( 'maximize') : this.props.t( 'minimize' )} >
 				<Button
 					size="sm"
 					onClick={this.handleCompress}
@@ -171,7 +174,7 @@ class VideoChat extends Component {
 					<i className={this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'} ></i>
 				</Button>
 			</Tooltip>
-			<Tooltip tooltip="Leave video" >
+			<Tooltip tooltip={this.props.t( 'leave-video' )} >
 				<Button
 					size="sm"
 					onClick={this.handleClose}
@@ -203,4 +206,4 @@ VideoChat.contextType = SessionContext;
 
 // EXPORTS //
 
-export default VideoChat;
+export default withTranslation()( VideoChat );

@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import markdownit from 'markdown-it';
 import replace from '@stdlib/string/replace';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -159,7 +160,7 @@ class Chat extends Component {
 	renderMembers() {
 		const { chat } = this.props;
 		const userlistPopover = <Popover id="userlistPopover" >
-			<PopoverTitle>Members of {chat.name} chat:</PopoverTitle>
+			<PopoverTitle>{this.props.t( 'chat-members', { name: chat.name })}</PopoverTitle>
 			<PopoverContent>
 				<ListGroup>
 					{chat.members.map( ( member, idx ) => {
@@ -210,13 +211,13 @@ class Chat extends Component {
 								<img
 									className="chat-picture unselectable"
 									src={session.server + '/thumbnail/' + ( msg.picture && !msg.anonymous ? msg.picture : 'anonymous.jpg' )}
-									alt="Profile Pic"
+									alt={this.props.t( 'profile-pic' )}
 								/>
 								<div className="chat-message-right" >
 									<span className="chat-user">
 										{!msg.anonymous ? msg.user :
 										<Fragment>
-											<span style={{ marginRight: 4 }}>Anonymous</span>
+											<span style={{ marginRight: 4 }}>{this.props.t( 'anonymous' )}</span>
 											<Gate owner>
 												<Tooltip tooltip={msg.user} placement="right" >
 													<i className="fas fa-user-secret"></i>
@@ -265,12 +266,12 @@ class Chat extends Component {
 					size="sm" variant="default"
 					onClick={this.sendMessage}
 					style={{ float: 'left' }}
-				>Send Message</Button>
+				>{this.props.t( 'send-message' )}</Button>
 				{this.props.chat.anonymousSubmissions ? <Button
 					size="sm" variant="default"
 					onClick={this.sendAnonymousChatMessage}
 					style={{ float: 'left', marginLeft: '4px' }}
-				>Send Anonymously</Button> : null}
+				>{this.props.t( 'send-anonymously' )}</Button> : null}
 				<VoiceControl id={this.props.chat.name} reference={this}
 					commands={VOICE_COMMANDS}
 				/>
@@ -313,26 +314,26 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						{ chat.canLeave ? <Tooltip tooltip="Close (Esc)" placement="bottom" >
+						{ chat.canLeave ? <Tooltip tooltip={`${this.props.t( 'close' )} (Esc)`} placement="bottom" >
 							<button
 								className="chat-header-button" onClick={this.closeChat}
-								aria-label="Close (Esc)"
+								aria-label={`${this.props.t( 'close' )} (Esc)`}
 							>
 								<i className="fas fa-times"></i>
 							</button>
 						</Tooltip> : null }
-						<Tooltip tooltip={this.state.maximized ? 'Shrink' : 'Enlarge'} placement="bottom" >
+						<Tooltip tooltip={this.state.maximized ? this.props.t( 'shrink' ) : this.props.t( 'enlarge' )} placement="bottom" >
 							<button
 								className="chat-header-button" onClick={this.toggleMaximize}
-								aria-label={this.state.maximized ? 'Shrink' : 'Enlarge'}
+								aria-label={this.state.maximized ? this.props.t( 'shrink' ) : this.props.t( 'enlarge' )}
 							>
 								<i className="far fa-window-maximize" ></i>
 							</button>
 						</Tooltip>
-						<Tooltip tooltip={this.state.opened ? 'Minimize' : 'Maximize'} placement="left" >
+						<Tooltip tooltip={this.state.opened ? this.props.t( 'minimize' ) : this.props.t( 'maximize' )} placement="left" >
 							<button
 								className="chat-header-button" onClick={this.toggleChat}
-								aria-label={this.state.opened ? 'Minimize' : 'Maximize'}
+								aria-label={this.state.opened ? this.props.t( 'minimize' ) : this.props.t( 'maximize' )}
 							>
 								<i className="far fa-window-minimize"></i>
 							</button>
@@ -347,7 +348,7 @@ class Chat extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Chat.defaultProps = {
 	left: 400,
@@ -365,4 +366,4 @@ Chat.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Chat;
+export default withTranslation()( Chat );

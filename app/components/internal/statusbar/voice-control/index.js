@@ -142,9 +142,9 @@ class VoiceControl extends Component {
 		let transcriptText = '';
 		if ( this.state.showTranscriptEditor ) {
 			const date = new Date();
-			transcriptText += `# Transcript for ISLE lesson ${session.namespaceName+'/'+session.lessonName}`;
+			transcriptText += `# ${this.props.t( 'transcript-header' )} ${session.namespaceName+'/'+session.lessonName}`;
 			if ( !isEmptyObject( session.user ) ) {
-				transcriptText += `\n## by ${session.user.name} (${session.user.email})`;
+				transcriptText += `\n## ${this.props.t( 'by' )} ${session.user.name} (${session.user.email})`;
 			}
 			transcriptText += `\n### ${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
 			transcriptText += '\n\n\n';
@@ -165,8 +165,8 @@ class VoiceControl extends Component {
 							this.voiceInput = input;
 						}}
 						mode="microphone" width={18} height={18}
-						stopTooltip="Disable voice recording / control (F9)"
-						startTooltip="Enable voice recording / control (F9)"
+						stopTooltip={`${this.props.t( 'disable-voice' )} (F9)`}
+						startTooltip={`${this.props.t( 'enable-voice' )} (F9)`}
 						onSegment={this.handleVoiceInput}
 						onFinalText={this.handleFinalVoiceInput}
 						onRecordingStart={this.handleStartRecording}
@@ -177,7 +177,7 @@ class VoiceControl extends Component {
 						}}
 					/>
 				</div>
-				{ this.state.transcript.length > 0 ? <Tooltip placement="bottom" tooltip="Open transcript" >
+				{ this.state.transcript.length > 0 ? <Tooltip placement="bottom" tooltip={this.props.t( 'open-transcript' )} >
 					<span role="button" tabIndex={0}
 						onClick={this.toggleTranscriptEditor} onKeyPress={this.toggleTranscriptEditor}
 						className="statusbar-transcript-editor statusbar-icon"
@@ -199,7 +199,7 @@ class VoiceControl extends Component {
 				>
 					<Modal.Header closeButton >
 						<Modal.Title as="h3">
-							Transcript
+							{this.props.t( 'transcript' )}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body style={{
@@ -210,19 +210,19 @@ class VoiceControl extends Component {
 							defaultValue={transcriptText}
 							allowSubmissions={false}
 							resetModal={{
-								title: 'Load latest transcript',
-								body: 'Clicking this button will discard the current file and load the latest transcript.',
-								buttonLabel: 'Confirm',
-								tooltip: 'Load latest transcript',
-								notificationTitle: 'Transcript loaded',
-								notification: 'The current file has been successfully discarded and the latest transcript loaded into the editor.',
+								title: this.props.t( 'load-latest-transcript' ),
+								body: this.props.t( 'transcript-click-discard' ),
+								buttonLabel: this.props.t( 'confirm' ),
+								tooltip: this.props.t( 'load-latest-transcript' ),
+								notificationTitle: this.props.t( 'transcript-loaded' ),
+								notification: this.props.t( 'transcript-discard-notification' ),
 								icon: <i className="prosemirror-icon fa fa-closed-captioning"></i>
 							}}
 							canLoadHTML={false}
 						/>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.toggleTranscriptEditor}>Close</Button>
+						<Button onClick={this.toggleTranscriptEditor}>{this.props.t( 'close' )}</Button>
 					</Modal.Footer>
 				</Modal> : null }
 			</Fragment>

@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import innerText from 'react-innertext';
 import CreatableSelect from 'react-select/creatable';
 import { components } from 'react-select';
@@ -246,8 +247,8 @@ class GroupManager extends Component {
 				}
 				else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
 					this.closeNotification = session.addNotification({
-						title: 'Groups will close soon.',
-						message: 'You have initiated closing the group mode. Please wait while students finish their work.',
+						title: this.props.t( 'groups-close-soon' ),
+						message: this.props.t( 'groups-close-soon-instructor-message' ),
 						level: 'info',
 						position: 'tr',
 						dismissible: 'none',
@@ -409,7 +410,7 @@ class GroupManager extends Component {
 			default:
 				return (
 					<div>
-						<p>Create groups by randomly placing students into groups.</p>
+						<p>{this.props.t( 'random-groups-description' )}</p>
 					</div>
 				);
 		}
@@ -428,7 +429,7 @@ class GroupManager extends Component {
 				key={i}
 			>
 				<h3 className="group-manager-header" >
-					<span className="group-manager-header-name">Group {name}</span>
+					<span className="group-manager-header-name">{this.props.t( 'group' )} {name}</span>
 					{this.props.video ? <VideoChatButton showTooltip={false} for={name} subject={name} style={{ float: 'right', marginTop: -2, marginLeft: 5 }} /> : null}
 					<ChatButton showTooltip={false} for={name} style={{ float: 'right', marginTop: -2 }} />
 				</h3>
@@ -468,7 +469,9 @@ class GroupManager extends Component {
 		}
 		if ( this.state.notAssigned.length > 0 ) {
 			out.push( <span className="group-manager-not-assigned-warning" >
-				There are currently {this.state.notAssigned.length} users not assigned to any group.
+				{this.props.t( 'nonassigned-students', {
+					n: this.state.notAssigned.length
+				})}
 			</span> );
 		}
 		return out;
@@ -478,7 +481,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		const nUsers = countStudents( session.userList, session.selectedCohort );
 		const nUsersPerGroup = floor( nUsers / this.state.nGroups );
-		let groupSizes = `(group sizes: ${nUsersPerGroup}`;
+		let groupSizes = `(${this.props.t( 'group-sizes' )}: ${nUsersPerGroup}`;
 		if ( nUsers % this.state.nGroups !== 0 ) {
 			groupSizes += `-${nUsersPerGroup+1})`;
 		} else {
@@ -519,11 +522,12 @@ class GroupManager extends Component {
 		return ( <Fragment>
 			<CohortSelect
 				id="group-manager-cohort-select"
-				label="Pair users from:"
+				label={this.props.t( 'pair-users-from' )}
 				session={this.context}
+				t={this.props.t}
 			/>
 			<NumberInput
-				legend="Number of Groups"
+				legend={this.props.t( 'number-of-groups' )}
 				value={this.state.nGroups}
 				min={1} max={floor( ceil( nUsers / 2 + 1e-9 ), 99 )}
 				onChange={( nGroups ) => {
@@ -536,7 +540,7 @@ class GroupManager extends Component {
 			<span className="title" >{groupSizes}</span>
 			<hr />
 			<div>
-				<Tooltip tooltip="Random assignment" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'random-assignment' )} placement="bottom" >
 					<Button
 						active={this.state.activeMode === 'random'} size="lg" variant="outline-secondary"
 						onClick={() => {
@@ -544,12 +548,12 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'random' });
 							}
 						}}
-						aria-label="Random assignment"
+						aria-label={this.props.t( 'random-assignment' )}
 					>
 						<span className="fa fa-dice" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Match by progress" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'match-by-progress' )} placement="bottom" >
 					<Button
 						active={this.state.activeMode === 'progress'}
 						size="lg" variant="outline-secondary" style={{ marginLeft: 6 }}
@@ -558,12 +562,12 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'progress' });
 							}
 						}}
-						aria-label="Match by progress"
+						aria-label={this.props.t( 'match-by-progress' )}
 					>
 						<span className="fa fa-trophy" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Match by answers" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'match-by-answers' )} placement="bottom" >
 					<Button
 						active={this.state.activeMode === 'answers'}
 						disabled={isEmptyObject( session.responseVisualizers )}
@@ -573,7 +577,7 @@ class GroupManager extends Component {
 								this.setState({ activeMode: 'answers' });
 							}
 						}}
-						aria-label="Match by answers"
+						aria-label={this.props.t( 'match-by-answers' )}
 					>
 						<span className="fa fa-poll" />
 					</Button>
@@ -589,39 +593,39 @@ class GroupManager extends Component {
 		const nUsers = countStudents( session.userList );
 		if ( session.allGroups.length > 0 ) {
 			return ( <Fragment>
-				<Tooltip tooltip="Broadcast message to all groups" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'broadcast-message-tooltip')} placement="bottom" >
 					<Button onClick={this.sendMessageToAll} >
-						Broadcast Message
+						{this.props.t( 'broadcast-message' )}
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Students have sixty seconds to finish their work once group closure is initiated" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'close-groups-tooltip' )} placement="bottom" >
 					<Button variant="danger" disabled={this.state.isClosing} onClick={this.toggleCloseConfirm} style={{ float: 'right' }} >
-						Close Groups
+						{this.props.t( 'close-groups' )}
 					</Button>
 				</Tooltip>
 				{ this.state.toAdd.length > 0 || this.state.toRemove.length > 0 ?
-					<Tooltip tooltip="Apply changes to the group compositions and send them out" placement="bottom" >
+					<Tooltip tooltip={this.props.t( 'update-groups-tooltip' )} placement="bottom" >
 						<Button onClick={this.updateGroups} style={{ float: 'right', marginRight: 6 }} >
-							Update Groups
+							{this.props.t( 'update-groups' )}
 						</Button>
 					</Tooltip>: null
 				}
 			</Fragment> );
 		}
 		return ( <Fragment>
-			<Tooltip tooltip="Reuse the last group assignment" placement="bottom" show={this.state.lastGroups} >
+			<Tooltip tooltip={this.props.t( 'reopen-last-groups-tooltip' )} placement="bottom" show={this.state.lastGroups} >
 				<Button
 					variant="secondary"
 					disabled={!this.state.lastGroups}
 					onClick={this.reuseLastGroups}
-				>Reopen Last Groups</Button>
+				>{this.props.t( 'reopen-last-groups' )}</Button>
 			</Tooltip>
-			<Tooltip tooltip="Create group assignments via the selected method" placement="bottom" show={nUsers > 0} >
+			<Tooltip tooltip={this.props.t( 'create-groups-tooltip' )} placement="bottom" show={nUsers > 0} >
 			<Button
 				disabled={nUsers === 0}
 				onClick={this.handleGroupCreation}
 				style={{ float: 'right' }}
-			>Create Groups</Button>
+			>{this.props.t( 'create-groups' )}</Button>
 			</Tooltip>
 		</Fragment> );
 	}
@@ -635,7 +639,7 @@ class GroupManager extends Component {
 				<Draggable cancel=".card-body" default={{ x: 0.4 * window.innerWidth }} >
 					<Panel minimizable header={<span>
 						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
-						Group Manager
+						{this.props.t( 'group-manager' )}
 					</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{
 						maxHeight: '75vh'
 					}} footer={this.renderFooter()}>
@@ -645,9 +649,10 @@ class GroupManager extends Component {
 				<ConfirmModal
 					show={this.state.showCloseModal}
 					close={this.toggleCloseConfirm}
-					title="Close Groups"
-					message="Do you really want to close the groups?"
+					title={this.props.t( 'close-groups' )}
+					message={this.props.t( 'close-groups-confirm' )}
 					onConfirm={this.handleGroupDeletion}
+					t={this.props.t}
 				/>
 			</Fragment>
 		);
@@ -670,4 +675,4 @@ GroupManager.defaultProps = {
 
 // EXPORTS //
 
-export default GroupManager;
+export default withTranslation()( GroupManager );

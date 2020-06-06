@@ -242,7 +242,7 @@ class UserList extends Component {
 						key={idx}
 					>
 						<div style={{ width: '100%' }} >
-							<Tooltip placement="right" tooltip="Click to open user actions" >
+							<Tooltip placement="right" tooltip={this.props.t( 'open-user-actions' )} >
 								<span role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>
 									<img
 										className="user-thumbnail"
@@ -251,25 +251,25 @@ class UserList extends Component {
 									/>
 								</span>
 							</Tooltip>
-							<Tooltip placement="bottom" tooltip="Lesson Progress">
+							<Tooltip placement="bottom" tooltip={this.props.t( 'lesson-progress' )}>
 								<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
 							</Tooltip>
 							{ showInteractionButtons ? <ChatButton
-								showTooltip={false} for={`Chat with ${user.name}`}
-								onClick={this.chatInviteFactory( `Chat with ${user.name}`, user.email )}
+								showTooltip={false} for={this.props.t( 'chat-with', { name: user.name })}
+								onClick={this.chatInviteFactory( this.props.t( 'chat-with', { name: user.name }), user.email )}
 							/> : null }
 							{ showInteractionButtons ? <VideoChatButton
 								showTooltip={false} for={`${session.user.name}-${user.name}`}
-								subject={`Video with ${user.name}`} style={{ marginLeft: 5 }}
+								subject={this.props.t( 'video-chat-with', { name: user.name })} style={{ marginLeft: 5 }}
 								onClick={this.videoChatInviteFactory({
 									name: `${session.user.name}-${user.name}`,
-									subject: `Video with ${user.name}`
+									subject: this.props.t( 'video-chat-with', { name: user.name })
 								}, user.email )}
 							/> : null }
 						</div>
 						<div style={{ width: '100%', color }} >
 							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
-							{ focusedID ? <Tooltip placement="left" tooltip="Element user is interacting with" >
+							{ focusedID ? <Tooltip placement="left" tooltip={this.props.t( 'element-interacted-with' )} >
 								<Button
 									className="user-list-active-button"
 									variant="outline-secondary"

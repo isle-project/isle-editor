@@ -38,7 +38,7 @@ class ActionLog extends Component {
 		this.state = {
 			anonymized: true,
 			includes: [ 'guests', 'owners', 'students' ],
-			filters: <span className="title">Filters:</span>,
+			filters: <span className="title">{this.props.t( 'filters' )}</span>,
 			period: {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
@@ -59,7 +59,7 @@ class ActionLog extends Component {
 			if ( type === LOGGED_OUT ) {
 				debug( 'Should reset the filters after user logout:' );
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
-					filters: <span className="title">Filters:</span>
+					filters: <span className="title">{this.props.t( 'filters' )}</span>
 				});
 			}
 			else if (
@@ -74,7 +74,7 @@ class ActionLog extends Component {
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
 				this.setState({ // eslint-disable-line react/no-did-mount-set-state
 					filter: {},
-					filters: <span className="title">Filters:</span>
+					filters: <span className="title">{this.props.t( 'filters' )}</span>
 				});
 			}
 		});
@@ -85,7 +85,7 @@ class ActionLog extends Component {
 			this.setState({
 				filter: { email: this.props.selectedEmail },
 				filters: <Fragment>
-				<span className="title">Filters:</span>
+				<span className="title">{this.props.t( 'filters' )}</span>
 				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					<span
 						role="button" tabIndex={0}
@@ -101,7 +101,7 @@ class ActionLog extends Component {
 			this.setState({
 				filter: { id: this.props.selectedID },
 				filters: <Fragment>
-				<span className="title">Filters:</span>
+				<span className="title">{this.props.t( 'filters' )}</span>
 				<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 					<span
 						role="button" tabIndex={0}
@@ -271,8 +271,8 @@ class ActionLog extends Component {
 		session.getFakeUsers( ( err, hash ) => {
 			if ( err ) {
 				return session.addNotification({
-					title: 'Error encountered',
-					message: 'Encountered an error while generating fake users: '+err.message,
+					title: this.props.t( 'error-encountered' ),
+					message: this.props.t( 'error-fake-users' )+err.message,
 					level: 'error',
 					position: 'tl'
 				});
@@ -291,8 +291,8 @@ class ActionLog extends Component {
 		session.getFakeUsers( ( err, hash ) => {
 			if ( err ) {
 				return session.addNotification({
-					title: 'Error encountered',
-					message: 'Encountered an error while generating fake users: '+err.message,
+					title: this.props.t( 'error-encountered' ),
+					message: this.props.t( 'error-fake-users' )+err.message,
 					level: 'error',
 					position: 'tl'
 				});
@@ -303,8 +303,8 @@ class ActionLog extends Component {
 			}, ( err, output ) => {
 				if ( err ) {
 					return session.addNotification({
-						title: 'Error encountered',
-						message: 'Encountered an error while creating CSV: '+err.message,
+						title: this.props.t( 'error-encountered' ),
+						message: this.props.t( 'error-csv' )+err.message,
 						level: 'error',
 						position: 'tl'
 					});
@@ -351,7 +351,7 @@ class ActionLog extends Component {
 				<ButtonToolbar>
 					<ButtonGroup>
 						<span style={{ fontSize: '14px', marginRight: 20, paddingTop: 5, fontWeight: 600 }}>
-							{'# of Actions: '+this.state.actions.length}
+							{this.props.t( 'num-actions', { n: this.state.actions.length })}
 						</span>
 					</ButtonGroup>
 					<ToggleButtonGroup
@@ -370,7 +370,7 @@ class ActionLog extends Component {
 								fontSize: '12px',
 								color: this.state.anonymized ? '#A9A9A9' : 'black'
 							}}
-						>Original</ToggleButton>
+						>{this.props.t( 'original' )}</ToggleButton>
 						<ToggleButton
 							size="sm"
 							variant="light"
@@ -379,7 +379,7 @@ class ActionLog extends Component {
 								fontSize: '12px',
 								color: this.state.anonymized ? 'black' : '#A9A9A9'
 							}}
-						>Anonymized</ToggleButton>
+						>{this.props.t( 'anonymized' )}</ToggleButton>
 					</ToggleButtonGroup>
 					<ToggleButtonGroup
 						type="checkbox"
@@ -397,7 +397,7 @@ class ActionLog extends Component {
 								fontSize: '12px',
 								color: contains( this.state.includes, 'owners' ) ? 'black' : '#A9A9A9'
 							}}
-						>Owners</ToggleButton>
+						>{this.props.t( 'instructors' )}</ToggleButton>
 						<ToggleButton
 							size="sm"
 							variant="light"
@@ -406,7 +406,7 @@ class ActionLog extends Component {
 								fontSize: '12px',
 								color: contains( this.state.includes, 'students' ) ? 'black' : '#A9A9A9'
 							}}
-						>Students</ToggleButton>
+						>{this.props.t( 'students' )}</ToggleButton>
 						<ToggleButton
 							size="sm"
 							variant="light"
@@ -415,11 +415,11 @@ class ActionLog extends Component {
 								fontSize: '12px',
 								color: contains( this.state.includes, 'guests' ) ? 'black' : '#A9A9A9'
 							}}
-						>Guests</ToggleButton>
+						>{this.props.t( 'guests' )}</ToggleButton>
 					</ToggleButtonGroup>
 					<ButtonGroup size="sm">
-						<Button variant="primary" onClick={this.saveJSON} >Save JSON</Button>
-						<Button variant="primary" onClick={this.saveCSV} >Save CSV</Button>
+						<Button variant="primary" onClick={this.saveJSON} >{this.props.t( 'save-json' )}</Button>
+						<Button variant="primary" onClick={this.saveCSV} >{this.props.t( 'save-csv' )}</Button>
 					</ButtonGroup>
 				</ButtonToolbar>
 			</Card.Body>

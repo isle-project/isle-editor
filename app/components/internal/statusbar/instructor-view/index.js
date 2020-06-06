@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -125,7 +126,7 @@ class InstructorView extends Component {
 					});
 				}}
 			>
-				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title="Responses" >
+				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={this.props.t( 'responses' )} >
 					<ResponseVisualizers
 						selectedCohort={session.selectedCohort}
 						session={session}
@@ -136,9 +137,10 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
+						t={this.props.t}
 					/>
 				</Tab> : null }
-					<Tab eventKey="active_users" title={<span>Active Users<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
+					<Tab eventKey="active_users" title={<span>{this.props.t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
 					<UserList
 						session={session}
 						onThumbnailClick={( email ) => {
@@ -148,15 +150,17 @@ class InstructorView extends Component {
 								selectedEmail: email
 							});
 						}}
+						t={this.props.t}
 					/>
 				</Tab>
-				<Tab eventKey="action_log" title="Action Log" >
+				<Tab eventKey="action_log" title={this.props.t( 'action-log' )} >
 					<ActionLog
 						selectedEmail={this.state.selectedEmail}
 						selectedID={this.state.selectedID}
+						t={this.props.t}
 					/>
 				</Tab>
-				<Tab eventKey="instructor_notes" title="Instructor Notes" >
+				<Tab eventKey="instructor_notes" title={this.props.t( 'instructor-notes' )} >
 					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotes /> : null }
 				</Tab>
 			</Tabs>
@@ -173,22 +177,23 @@ class InstructorView extends Component {
 				}}
 			>
 				<div className="instructor-view-top">
-					<h3 style={{ marginTop: '20px' }}>Instructor Panel</h3>
+					<h3 style={{ marginTop: '20px' }}>{this.props.t( 'instructor-panel' )}</h3>
 					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 				</div>
 				<div className="instructor-view-middle">
 					{this.renderTabs()}
 					<CohortSelect
 						id="instructor-view-cohort-select"
-						label="Only show users from:"
+						label={this.props.t( 'only-show-users-from')}
 						session={this.context}
+						t={this.props.t}
 					/>
 				</div>
 				<div className="instructor-view-bottom"></div>
-				<Tooltip tooltip={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`} placement="left" >
+				<Tooltip tooltip={this.state.hidden ? this.props.t( 'instructor-panel-open' ) : this.props.t( 'instructor-panel-close' )} placement="left" >
 					<div className="instructor-view-handler"
 						role="button" tabIndex={0}
-						aria-label={`${this.state.hidden ? 'Open' : 'Close'} instructor panel`}
+						aria-label={this.state.hidden ? this.props.t( 'instructor-panel-open' ) : this.props.t( 'instructor-panel-close' )}
 						onClick={this.toggleBar} onKeyPress={this.toggleBar}
 						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
@@ -214,4 +219,4 @@ InstructorView.contextType = SessionContext;
 
 // EXPORTS //
 
-export default InstructorView;
+export default withTranslation()( InstructorView );

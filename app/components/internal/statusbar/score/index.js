@@ -81,7 +81,7 @@ class Score extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Tooltip placement="bottom" tooltip="Achievement points" >
+				<Tooltip placement="bottom" tooltip={this.props.t( 'achievement-points' )} >
 					<div
 						className="statusbar-score"
 						role="button"

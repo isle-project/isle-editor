@@ -145,12 +145,11 @@ class ResponseVisualizers extends Component {
 		let nUsers;
 		const session = this.props.session;
 		if ( session.selectedCohort ) {
-			console.log( 'RS: '+session.activeCohortMembers.length );
 			nUsers = session.activeCohortMembers.length;
-			completionTooltip = `Completion rate for students from cohort ${session.selectedCohort.title}`;
+			completionTooltip = this.props.t( 'completion-rate-cohort', { cohort: session.selectedCohort.title });
 		} else {
 			nUsers = session.userList.length;
-			completionTooltip = 'Completion rate for currently active students from all cohorts';
+			completionTooltip = this.props.t( 'completion-rate-all' );
 		}
 		const visualizers = session.responseVisualizers;
 		const { means } = this.state;
@@ -212,21 +211,21 @@ class ResponseVisualizers extends Component {
 					}}
 					onClick={this.highlightFactory( id )}
 				>
-					<Tooltip placement="right" tooltip="Question ID (click on row to show question">
+					<Tooltip placement="right" tooltip={this.props.t( 'question-id-tooltip' )}>
 						<label style={{ margin: 0 }}>{id}</label>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="Open actions">
+					<Tooltip placement="left" tooltip={this.props.t( 'open-actions' )} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }} onClick={this.thumbnailClickFactory( id )}>
-							Open
+							{this.props.t( 'open' )}
 						</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={`# of actions (${session.selectedCohort ? session.selectedCohort.title: 'all cohorts'})`}>
+					<Tooltip placement="left" tooltip={this.props.t( 'num-cohort-actions', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={`# of students who answered (${session.selectedCohort ? session.selectedCohort.title: 'all cohorts'})`}>
+					<Tooltip placement="left" tooltip={this.props.t( 'num-students-answered', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip="Average elapsed time until answer (all cohorts)">
+					<Tooltip placement="left" tooltip={this.props.t( 'elapsed-time' )}>
 						<Badge
 							variant={timeBadgeVariant}
 							style={{ float: 'right', margin: '2px' }}
@@ -254,7 +253,7 @@ class ResponseVisualizers extends Component {
 			<ProgressBar
 				striped
 				variant="success"
-				label={`Current class progress: ${round( overallProgress )}%`}
+				label={this.props.t( 'class-progress', { progress: round( overallProgress ) })}
 				now={overallProgress}
 			/>
 			<ListGroup style={{

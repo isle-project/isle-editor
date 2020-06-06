@@ -22,7 +22,7 @@ const CohortSelect = ( props ) => {
 		onChange={handleCohortChange} onBlur={handleCohortChange}
 		value={session.selectedCohort ? session.selectedCohort.title : 'all'}
 	>
-		<option value="all">All Cohorts</option>
+		<option value="all">{props.t( 'all-cohorts' )}</option>
 		{cohorts.map( ( v, key ) => {
 			return (
 				<option

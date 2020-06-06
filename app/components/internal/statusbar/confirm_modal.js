@@ -17,8 +17,8 @@ const ConfirmModal = ( props ) => (
 			{props.message}
 		</Modal.Body>
 		<Modal.Footer>
-			<Button onClick={props.close}>Cancel</Button>
-			<Button variant="danger" onClick={props.onConfirm}>Confirm</Button>
+			<Button onClick={props.close}>{props.t( 'cancel' )}</Button>
+			<Button variant="danger" onClick={props.onConfirm}>{props.t( 'confirm' )}</Button>
 		</Modal.Footer>
 	</Modal>
 );

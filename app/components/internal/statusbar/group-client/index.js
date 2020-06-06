@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Panel from 'components/panel';
@@ -33,8 +34,8 @@ class GroupClient extends Component {
 			}
 			else if ( type === MEMBER_ACTION && data.type === GROUP_MODE_END ) {
 				this.closeNotification = session.addNotification({
-					title: 'Groups will close soon.',
-					message: 'The instructor has closed the group mode. Please finish your work in the remaining time.',
+					title: this.props.t( 'groups-close-soon' ),
+					message: this.props.t( 'groups-close-soon-message' ),
 					level: 'info',
 					position: 'tr',
 					dismissible: 'none',
@@ -83,7 +84,7 @@ class GroupClient extends Component {
 					minimizable
 					header={<span>
 						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
-						<span className="group-name">Group {session.group.name}</span>
+						<span className="group-name">{this.props.t( 'group' )} {session.group.name}</span>
 					</span>}
 					className="group-client-panel"
 				>
@@ -111,4 +112,4 @@ GroupClient.defaultProps = {
 
 // EXPORTS //
 
-export default GroupClient;
+export default withTranslation()( GroupClient );
