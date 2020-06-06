@@ -5,18 +5,23 @@ import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import isObjectArray from '@stdlib/assert/is-object-array';
-import StickyNote from 'components/sticky-note';
+import i18next from './i18n.js';
 import LanguageSwitcher from 'components/internal/language-switcher';
+import StickyNote from 'components/sticky-note';
 import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
-import './i18n.js';
+import TRANSLATION from './translation.json';
 
 
 // VARIABLES //
+
+i18next.addResources( 'de', 'components', TRANSLATION.DE );
+i18next.addResources( 'en', 'components', TRANSLATION.EN );
+i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 const NOTIFICATION_STYLE = {
 	Containers: {

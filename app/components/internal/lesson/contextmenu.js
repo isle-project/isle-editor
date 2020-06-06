@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ContextMenu, MenuItem } from 'react-contextmenu';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
+import { ContextMenu, MenuItem } from 'react-contextmenu';
 import replace from '@stdlib/string/replace';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 
@@ -133,8 +134,8 @@ class LessonContextMenu extends Component {
 		navigator.clipboard.readText().then( ( text ) => {
 			if ( !text ) {
 				return this.props.session.addNotification({
-					title: 'Clipboard is empty',
-					message: 'Failed to insert text. The clipboard is currently empty.',
+					title: this.props.t( 'clipboard-empty' ),
+					message: this.props.t( 'clipboard-empty-message' ),
 					level: 'error',
 					position: 'tr'
 				});
@@ -153,8 +154,8 @@ class LessonContextMenu extends Component {
 		const session = this.props.session;
 		if ( isEmptyArray( window.speechSynthesis.getVoices() ) ) {
 			return session.addNotification({
-				title: 'Not supported.',
-				message: 'The text-to-speech functionality is currently not supported on your browser. Please try Google Chrome.',
+				title: this.props.t( 'voice-not-supported' ),
+				message: this.props.t( 'voice-not-supported-message' ),
 				level: 'error',
 				position: 'tr'
 			});
@@ -172,24 +173,24 @@ class LessonContextMenu extends Component {
 		if ( !sel.isCollapsed || sel.type === 'Range' ) {
 			if ( this.state.editable ) {
 				menuItems.push( <MenuItem key={0} onClick={this.cutSelection}>
-					Cut
+					{this.props.t( 'cut' )}
 				</MenuItem> );
 			}
 			menuItems.push( <MenuItem key={1} onClick={this.copyToClipboard}>
-				Copy
+				{this.props.t( 'copy' )}
 			</MenuItem> );
 			menuItems.push( <MenuItem key={2} onClick={this.textToSpeech}>
-				Read aloud
+				{this.props.t( 'read-aloud' )}
 			</MenuItem> );
 			if ( !inTextField && !el.isContentEditable ) {
 				menuItems.push( <MenuItem key={3} onClick={this.highlightText}>
-					Highlight
+					{this.props.t( 'highlight' )}
 				</MenuItem> );
 				if ( sel && sel.focusNode ) {
 					const elem = sel.focusNode.parentElement;
 					if ( elem && elem.style.backgroundColor === 'yellow' ) {
 						menuItems.push( <MenuItem key={4} onClick={this.removeHighlight}>
-							Remove Highlight
+							{this.props.t( 'remove-highlight' )}
 						</MenuItem> );
 					}
 				}
@@ -197,14 +198,14 @@ class LessonContextMenu extends Component {
 		}
 		if ( inTextField ) {
 			menuItems.push( <MenuItem key={5} onClick={this.copyFromClipboard}>
-				Paste
+				{this.props.t( 'paste' )}
 			</MenuItem> );
 		} else if ( !el.isContentEditable ) {
 			menuItems.push(
 				<MenuItem key={6} onClick={( event ) => {
 					this.props.addNote({ left: event.pageX, top: event.pageY });
 				}}>
-					Add Note
+					{this.props.t( 'add-note' )}
 				</MenuItem>
 			);
 		}
@@ -235,4 +236,4 @@ LessonContextMenu.propTypes = {
 
 // EXPORTS //
 
-export default LessonContextMenu;
+export default withTranslation()( LessonContextMenu );
