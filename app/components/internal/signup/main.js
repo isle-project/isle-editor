@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import pick from '@stdlib/utils/pick';
+import i18next from 'i18next';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
@@ -15,14 +16,19 @@ import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
+import pick from '@stdlib/utils/pick';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import TRANSLATION from './translation.json';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:signup' );
 const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
+i18next.addResources( 'de', 'components', TRANSLATION.DE );
+i18next.addResources( 'en', 'components', TRANSLATION.EN );
+i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 
 // MAIN //
@@ -131,25 +137,23 @@ class Signup extends Component {
 				dialogClassName="modal-60w"
 			>
 				<Modal.Header closeButton >
-					<Modal.Title as="h3">Create User</Modal.Title>
+					<Modal.Title as="h3">{this.props.t( 'create-user' )}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<p>Please fill in the required information to set up an ISLE user account.
-						When solving ISLE lessons in the future from the current browser, you will not have to fill out this form again.
-						If you are already registered before, supplying your email address suffices.</p>
+					<p>{this.props.t( 'opening-paragraph' )}</p>
 					<Form horizontal>
-						<Tooltip placement="right" tooltip="Please enter a valid email address." >
+						<Tooltip placement="right" tooltip={this.props.t( 'enter-valid-email' )} >
 							<FormGroup
 								controlId="signup-form-email"
 							>
 								<Col sm={2}>
-									<FormLabel>Email</FormLabel>
+									<FormLabel>{this.props.t( 'email' )}</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
 										name="email"
 										type="email"
-										placeholder="Enter Email"
+										placeholder={this.props.t( 'email-placeholder' )}
 										autoComplete="username"
 										onChange={this.handleInputChange}
 										onKeyPress={this.handleKeyPress}
@@ -157,48 +161,48 @@ class Signup extends Component {
 										value={this.state.email}
 									/>
 									<FormControl.Feedback type="invalid">
-										Not a valid email address.
+										{this.props.t( 'invalid-email' )}
 									</FormControl.Feedback>
-									{ !this.state.email ? <small className="form-text text-muted" >Please enter your university email address.</small> : null}
+									{ !this.state.email ? <small className="form-text text-muted" >{this.props.t( 'enter-email' )}</small> : null}
 								</Col>
 							</FormGroup>
 						</Tooltip>
-						<Tooltip placement="right" tooltip="Please enter your name (minimum three characters)." >
+						<Tooltip placement="right" tooltip={this.props.t( 'name-tooltip' )} >
 							<FormGroup
 								controlId="signup-form-name"
 							>
 								<Col sm={2}>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>{this.props.t( 'name' )}</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
 										name="name"
 										type="text"
-										placeholder="Enter Name"
+										placeholder={this.props.t( 'name-placeholder' )}
 										onChange={this.handleInputChange}
 										onKeyPress={this.handleKeyPress}
 										isInvalid={invalidName}
 										value={this.state.name}
 									/>
 									<FormControl.Feedback type="invalid">
-										Name must contain four characters.
+										{this.props.t( 'invalid-name' )}
 									</FormControl.Feedback>
-									{ !this.state.name ? <small className="form-text text-muted" >Please enter your name.</small> : null}
+									{ !this.state.name ? <small className="form-text text-muted" >{this.props.t( 'enter-name' )}</small> : null}
 								</Col>
 							</FormGroup>
 						</Tooltip>
-						<Tooltip placement="right" tooltip="Please enter a password of your choosing with at least six characters" >
+						<Tooltip placement="right" tooltip={this.props.t( 'password-tooltip' )} >
 							<FormGroup
 								controlId="signup-form-password"
 							>
 								<Col sm={2}>
-									<FormLabel>Password</FormLabel>
+									<FormLabel>{this.props.t( 'password' )}</FormLabel>
 								</Col>
 								<Col sm={10}>
 									<FormControl
 										name="password"
 										type="password"
-										placeholder="Choose Password"
+										placeholder={this.props.t( 'password-placeholder' )}
 										autoComplete="new-password"
 										onChange={this.handleInputChange}
 										onKeyPress={this.handleKeyPress}
@@ -208,7 +212,7 @@ class Signup extends Component {
 										value={this.state.password}
 									/>
 									<FormControl.Feedback type="invalid">
-										Please enter a new password with at least six characters.
+										{this.props.t( 'invalid-password' )}
 									</FormControl.Feedback>
 								</Col>
 							</FormGroup>
@@ -221,7 +225,7 @@ class Signup extends Component {
 								<FormControl
 									name="passwordRepeat"
 									type="password"
-									placeholder="Confirm Password"
+									placeholder={this.props.t( 'confirm-password' )}
 									autocomplete="new-password"
 									onChange={this.handleInputChange}
 									onKeyPress={this.handleKeyPress}
@@ -231,7 +235,7 @@ class Signup extends Component {
 									value={this.state.passwordRepeat}
 								/>
 								<FormControl.Feedback type="invalid">
-									Passwords do not match.
+									{this.props.t( 'passwords-no-match' )}
 								</FormControl.Feedback>
 							</Col>
 						</FormGroup>
@@ -243,8 +247,8 @@ class Signup extends Component {
 						containerPadding={20}
 					>
 						<Popover id="popover-contained" >
-							<PopoverTitle>Input fields are not valid</PopoverTitle>
-							<PopoverContent>Please make sure that all input values are valid before submitting.</PopoverContent>
+							<PopoverTitle>{this.props.t( 'inputs-invalid' )}</PopoverTitle>
+							<PopoverContent>{this.props.t( 'inputs-invalid-content' )}</PopoverContent>
 						</Popover>
 					</Overlay>
 				</Modal.Body>
@@ -254,8 +258,8 @@ class Signup extends Component {
 						className="centered"
 						type="submit"
 						onClick={this.handleSubmit}
-					>Sign up</Button>
-					<Button onClick={this.props.onClose}>Close</Button>
+					>{this.props.t( 'signup' )}</Button>
+					<Button onClick={this.props.onClose}>{this.props.t( 'close' )}</Button>
 				</Modal.Footer>
 			</Modal>
 		);
@@ -280,4 +284,4 @@ Signup.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Signup;
+export default withTranslation()( Signup );
