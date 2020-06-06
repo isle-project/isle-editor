@@ -6,7 +6,6 @@ import logger from 'debug';
 import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -146,98 +145,83 @@ class Signup extends Component {
 							<FormGroup
 								controlId="signup-form-email"
 							>
-								<Col sm={2}>
-									<FormLabel>{this.props.t( 'email' )}</FormLabel>
-								</Col>
-								<Col sm={10}>
-									<FormControl
-										name="email"
-										type="email"
-										placeholder={this.props.t( 'email-placeholder' )}
-										autoComplete="username"
-										onChange={this.handleInputChange}
-										onKeyPress={this.handleKeyPress}
-										isInvalid={invalidEmail}
-										value={this.state.email}
-									/>
-									<FormControl.Feedback type="invalid">
-										{this.props.t( 'invalid-email' )}
-									</FormControl.Feedback>
-									{ !this.state.email ? <small className="form-text text-muted" >{this.props.t( 'enter-email' )}</small> : null}
-								</Col>
+								<FormLabel>{this.props.t( 'email' )}</FormLabel>
+								<FormControl
+									name="email"
+									type="email"
+									placeholder={this.props.t( 'email-placeholder' )}
+									autoComplete="username"
+									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
+									isInvalid={invalidEmail}
+									value={this.state.email}
+								/>
+								<FormControl.Feedback type="invalid">
+									{this.props.t( 'invalid-email' )}
+								</FormControl.Feedback>
+								{ !this.state.email ? <small className="form-text text-muted" >{this.props.t( 'enter-email' )}</small> : null}
 							</FormGroup>
 						</Tooltip>
 						<Tooltip placement="right" tooltip={this.props.t( 'name-tooltip' )} >
 							<FormGroup
 								controlId="signup-form-name"
 							>
-								<Col sm={2}>
-									<FormLabel>{this.props.t( 'name' )}</FormLabel>
-								</Col>
-								<Col sm={10}>
-									<FormControl
-										name="name"
-										type="text"
-										placeholder={this.props.t( 'name-placeholder' )}
-										onChange={this.handleInputChange}
-										onKeyPress={this.handleKeyPress}
-										isInvalid={invalidName}
-										value={this.state.name}
-									/>
-									<FormControl.Feedback type="invalid">
-										{this.props.t( 'invalid-name' )}
-									</FormControl.Feedback>
-									{ !this.state.name ? <small className="form-text text-muted" >{this.props.t( 'enter-name' )}</small> : null}
-								</Col>
+								<FormLabel>{this.props.t( 'name' )}</FormLabel>
+								<FormControl
+									name="name"
+									type="text"
+									placeholder={this.props.t( 'name-placeholder' )}
+									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
+									isInvalid={invalidName}
+									value={this.state.name}
+								/>
+								<FormControl.Feedback type="invalid">
+									{this.props.t( 'invalid-name' )}
+								</FormControl.Feedback>
+								{ !this.state.name ? <small className="form-text text-muted" >{this.props.t( 'enter-name' )}</small> : null}
 							</FormGroup>
 						</Tooltip>
 						<Tooltip placement="right" tooltip={this.props.t( 'password-tooltip' )} >
 							<FormGroup
 								controlId="signup-form-password"
 							>
-								<Col sm={2}>
-									<FormLabel>{this.props.t( 'password' )}</FormLabel>
-								</Col>
-								<Col sm={10}>
-									<FormControl
-										name="password"
-										type="password"
-										placeholder={this.props.t( 'password-placeholder' )}
-										autoComplete="new-password"
-										onChange={this.handleInputChange}
-										onKeyPress={this.handleKeyPress}
-										maxLength={30}
-										minLength={6}
-										isInvalid={invalidPassword}
-										value={this.state.password}
-									/>
-									<FormControl.Feedback type="invalid">
-										{this.props.t( 'invalid-password' )}
-									</FormControl.Feedback>
-								</Col>
+								<FormLabel>{this.props.t( 'password' )}</FormLabel>
+								<FormControl
+									name="password"
+									type="password"
+									placeholder={this.props.t( 'password-placeholder' )}
+									autoComplete="new-password"
+									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
+									maxLength={30}
+									minLength={6}
+									isInvalid={invalidPassword}
+									value={this.state.password}
+								/>
+								<FormControl.Feedback type="invalid">
+									{this.props.t( 'invalid-password' )}
+								</FormControl.Feedback>
 							</FormGroup>
 						</Tooltip>
 						<FormGroup
 							controlId="signup-form-password-confirmation"
 						>
-							<Col sm={2}></Col>
-							<Col sm={10}>
-								<FormControl
-									name="passwordRepeat"
-									type="password"
-									placeholder={this.props.t( 'confirm-password' )}
-									autocomplete="new-password"
-									onChange={this.handleInputChange}
-									onKeyPress={this.handleKeyPress}
-									maxLength={30}
-									minLength={6}
-									isInvalid={invalidPasswordRepeat}
-									value={this.state.passwordRepeat}
-								/>
-								<FormControl.Feedback type="invalid">
-									{this.props.t( 'passwords-no-match' )}
-								</FormControl.Feedback>
-							</Col>
+							<FormControl
+								name="passwordRepeat"
+								type="password"
+								placeholder={this.props.t( 'confirm-password' )}
+								autocomplete="new-password"
+								onChange={this.handleInputChange}
+								onKeyPress={this.handleKeyPress}
+								maxLength={30}
+								minLength={6}
+								isInvalid={invalidPasswordRepeat}
+								value={this.state.passwordRepeat}
+							/>
+							<FormControl.Feedback type="invalid">
+								{this.props.t( 'passwords-no-match' )}
+							</FormControl.Feedback>
 						</FormGroup>
 					</Form>
 					<Overlay

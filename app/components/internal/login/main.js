@@ -7,7 +7,6 @@ import logger from 'debug';
 import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -152,36 +151,28 @@ class Login extends Component {
 				<Modal.Body>
 					<Form horizontal>
 						<FormGroup controlId="form-email" >
-							<Col sm={3}>
-								<FormLabel>{this.props.t( 'email' )}</FormLabel>
-							</Col>
-							<Col sm={9}>
-								<FormControl
-									name="email"
-									type="email"
-									placeholder="Email"
-									autoComplete="username"
-									onChange={this.handleInputChange}
-									onKeyPress={this.handleKeyPress}
-									ref={( input ) => { this.emailInput = input; }}
-								/>
-							</Col>
+							<FormLabel>{this.props.t( 'email' )}</FormLabel>
+							<FormControl
+								name="email"
+								type="email"
+								placeholder="Email"
+								autoComplete="username"
+								onChange={this.handleInputChange}
+								onKeyPress={this.handleKeyPress}
+								ref={( input ) => { this.emailInput = input; }}
+							/>
 						</FormGroup>
 						<FormGroup controlId="form-password" >
-							<Col sm={3}>
-								<FormLabel>{this.props.t( 'password' )}</FormLabel>
-							</Col>
-							<Col sm={9}>
-								<FormControl
-									name="password"
-									type="password"
-									placeholder="Password"
-									autoComplete="current-password"
-									onChange={this.handleInputChange}
-									onKeyPress={this.handleKeyPress}
-									ref={( input ) => { this.passwordInput = input; }}
-								/>
-							</Col>
+							<FormLabel>{this.props.t( 'password' )}</FormLabel>
+							<FormControl
+								name="password"
+								type="password"
+								placeholder="Password"
+								autoComplete="current-password"
+								onChange={this.handleInputChange}
+								onKeyPress={this.handleKeyPress}
+								ref={( input ) => { this.passwordInput = input; }}
+							/>
 						</FormGroup>
 					</Form>
 				</Modal.Body>
