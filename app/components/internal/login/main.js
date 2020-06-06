@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
@@ -17,16 +16,13 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import SessionContext from 'session/context.js';
-import TRANSLATION from './translation.json';
+import './load_translations.js';
 import './login.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:login' );
-i18next.addResources( 'de', 'components', TRANSLATION.DE );
-i18next.addResources( 'en', 'components', TRANSLATION.EN );
-i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 
 // MAIN //
@@ -177,7 +173,9 @@ class Login extends Component {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<button className="forgot-password-button" onClick={this.handleForgotPassword}>{this.props.t( 'forgot-password' )}</button>
+					<button className="forgot-password-button" onClick={this.handleForgotPassword}>
+						{this.props.t( 'forgot-password' )}
+					</button>
 					<Button
 						variant="primary"
 						type="submit"
