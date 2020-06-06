@@ -1,0 +1,38 @@
+{
+	"DE": {
+		"close": "Schließen",
+		"email": "E-Mail",
+		"enter-email": "Geben Sie Ihre E-Mail-Adresse ein.",
+		"enter-email-before-password-reset": "Bitte geben Sie Ihre E-Mail-Adresse ein, bevor Sie ein neues Passwort anfordern.",
+		"enter-password": "Bitte geben Sie Ihr Passwort ein.",
+		"forgot-password": "Passwort vergessen?",
+		"invalid": "Nicht gültig",
+		"login": "Anmeldung",
+		"password": "Passwort",
+		"signin": "Anmelden"
+	},
+	"EN": {
+		"close": "Close",
+		"email": "Email",
+		"enter-email": "Enter your email address.",
+		"enter-email-before-password-reset": "Please enter your email address before requesting a new password.",
+		"enter-password": "Enter your password.",
+		"forgot-password": "Forgot password?",
+		"invalid": "Not valid",
+		"login": "Login",
+		"password": "Password",
+		"signin": "Sign in"
+	},
+	"ES": {
+		"close": "Cerca",
+		"email": "Email",
+		"enter-email": "Introduzca su dirección de correo electrónico.",
+		"enter-email-before-password-reset": "Por favor, introduzca su dirección de correo electrónico antes de solicitar una nueva contraseña.",
+		"enter-password": "Introduzca su contraseña.",
+		"forgot-password": "¿Olvidó su contraseña?",
+		"invalid": "No es válida",
+		"login": "Login",
+		"password": "Contraseña",
+		"signin": "Firmar"
+	}
+}

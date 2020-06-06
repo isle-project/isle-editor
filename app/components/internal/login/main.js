@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import i18next from 'i18next';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import FormControl from 'react-bootstrap/FormControl';
@@ -16,12 +18,16 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import SessionContext from 'session/context.js';
+import TRANSLATION from './translation.json';
 import './login.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:login' );
+i18next.addResources( 'de', 'components', TRANSLATION.DE );
+i18next.addResources( 'en', 'components', TRANSLATION.EN );
+i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 
 // MAIN //
@@ -69,7 +75,7 @@ class Login extends Component {
 			this.setState({
 				showInputOverlay: true,
 				overlayTarget: ReactDOM.findDOMNode( this.emailInput ),
-				invalidInputMessage: 'Please enter your email address before requesting a new password.'
+				invalidInputMessage: this.props.t( 'enter-email-before-password-reset' )
 			});
 		} else {
 			const session = this.context;
@@ -103,7 +109,7 @@ class Login extends Component {
 			this.setState({
 				showInputOverlay: true,
 				overlayTarget: ReactDOM.findDOMNode( this.emailInput ),
-				invalidInputMessage: 'Enter your email address.'
+				invalidInputMessage: this.props.t( 'enter-email' )
 			}, this.hideAfterDelay );
 		}
 		else if ( form.password === '' ) {
@@ -111,7 +117,7 @@ class Login extends Component {
 			this.setState({
 				showInputOverlay: true,
 				overlayTarget: ReactDOM.findDOMNode( this.passwordInput ),
-				invalidInputMessage: 'Enter your password.'
+				invalidInputMessage: this.props.t( 'enter-password' )
 			}, this.hideAfterDelay );
 		}
 		else {
@@ -141,13 +147,13 @@ class Login extends Component {
 				onHide={this.props.onClose}
 			>
 				<Modal.Header closeButton >
-					<Modal.Title as="h3">Login</Modal.Title>
+					<Modal.Title as="h3">{this.props.t( 'login' )}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form horizontal>
 						<FormGroup controlId="form-email" >
 							<Col sm={2}>
-								<FormLabel>Email</FormLabel>
+								<FormLabel>{this.props.t( 'email' )}</FormLabel>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -163,7 +169,7 @@ class Login extends Component {
 						</FormGroup>
 						<FormGroup controlId="form-password" >
 							<Col sm={2}>
-								<FormLabel>Password</FormLabel>
+								<FormLabel>{this.props.t( 'password' )}</FormLabel>
 							</Col>
 							<Col sm={10}>
 								<FormControl
@@ -180,13 +186,13 @@ class Login extends Component {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<button className="forgot-password-button" onClick={this.handleForgotPassword}>Forgot password?</button>
+					<button className="forgot-password-button" onClick={this.handleForgotPassword}>{this.props.t( 'forgot-password' )}</button>
 					<Button
 						variant="primary"
 						type="submit"
 						onClick={this.handleSubmit}
-					>Sign in</Button>
-					<Button onClick={this.props.onClose}>Close</Button>
+					>{this.props.t( 'signin' )}</Button>
+					<Button onClick={this.props.onClose}>{this.props.t( 'close' )}</Button>
 				</Modal.Footer>
 				<Overlay
 					show={this.state.showInputOverlay}
@@ -195,7 +201,7 @@ class Login extends Component {
 					containerPadding={20}
 				>
 					<Popover id="popover-contained">
-						<PopoverTitle>Not valid</PopoverTitle>
+						<PopoverTitle>{this.props.t( 'invalid' )}</PopoverTitle>
 						<PopoverContent>{this.state.invalidInputMessage}</PopoverContent>
 					</Popover>
 				</Overlay>
@@ -222,4 +228,4 @@ Login.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Login;
+export default withTranslation()( Login );
