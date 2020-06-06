@@ -2,17 +2,19 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from 'components/overlay-trigger';
 import SessionContext from 'session/context.js';
 import { VOICE_RECORDING_STATUS } from 'constants/events.js';
+import './load_translations.js';
 
 
 // FUNCTIONS //
 
-const createTooltip = ( commands ) => {
+const createTooltip = ( commands, t ) => {
 	if ( commands ) {
 		const rows = commands.map( ( elem, idx ) => {
 			return ( <tr key={idx} >
@@ -22,20 +24,20 @@ const createTooltip = ( commands ) => {
 		});
 		return ( <Tooltip style={{ fontSize: 10 }} id="voice_control_tooltip">
 			<p>
-				<b>Available voice commands:</b>
+				<b>{t( 'available-commands' )}</b>
 			</p>
 			<table className="table table-bordered table-condensed" >
 				<thead>
 					<tr>
-						<th>Command(s)</th>
-						<th>Description</th>
+						<th>{t( 'commands' )}</th>
+						<th>{t( 'description' )}</th>
 					</tr>
 				</thead>
 				<tbody>
 					{rows}
 				</tbody>
 			</table>
-			<p>Click to set component as active</p>
+			<p>{t( 'click-to-set-active' )}</p>
 		</Tooltip> );
 	}
 	return null;
@@ -110,7 +112,7 @@ class VoiceControl extends Component {
 		return (
 			<OverlayTrigger
 				placement="left"
-				overlay={createTooltip( this.props.commands )}
+				overlay={createTooltip( this.props.commands, this.props.t )}
 			>
 				<Button style={{ boxShadow: 'none', float: 'right' }} variant={variant} onClick={this.handleClick} size="sm" >
 					<div className="fa fa-phone" />
@@ -141,4 +143,4 @@ VoiceControl.contextType = SessionContext;
 
 // EXPORTS //
 
-export default VoiceControl;
+export default withTranslation()( VoiceControl );
