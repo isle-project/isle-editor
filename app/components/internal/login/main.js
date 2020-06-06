@@ -152,10 +152,10 @@ class Login extends Component {
 				<Modal.Body>
 					<Form horizontal>
 						<FormGroup controlId="form-email" >
-							<Col sm={2}>
+							<Col sm={3}>
 								<FormLabel>{this.props.t( 'email' )}</FormLabel>
 							</Col>
-							<Col sm={10}>
+							<Col sm={9}>
 								<FormControl
 									name="email"
 									type="email"
@@ -168,10 +168,10 @@ class Login extends Component {
 							</Col>
 						</FormGroup>
 						<FormGroup controlId="form-password" >
-							<Col sm={2}>
+							<Col sm={3}>
 								<FormLabel>{this.props.t( 'password' )}</FormLabel>
 							</Col>
-							<Col sm={10}>
+							<Col sm={9}>
 								<FormControl
 									name="password"
 									type="password"
