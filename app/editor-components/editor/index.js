@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
 import { spawn } from 'child_process';
@@ -102,6 +103,8 @@ const mapErrors = e => {
 		severity: e.severity
 	};
 };
+const ISLE_SERVER = localStorage.getItem( 'server' );
+const ISLE_SERVER_TOKEN = localStorage.getItem( 'token' );
 let overlayInstallWidget = null;
 
 
@@ -885,6 +888,23 @@ class Editor extends Component {
 		});
 	}
 
+	translateLesson = async ( language ) => {
+		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
+		editorDiv.style.opacity = 0.4;
+		this.editor.updateOptions({ readOnly: true });
+		const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
+			target_lang: language,
+			text: this.props.value
+		}, {
+			headers: {
+				'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
+			}
+		});
+		this.editor.updateOptions({ readOnly: false });
+		editorDiv.style.opacity = 1.0;
+		this.props.onChange( res.data.text );
+	}
+
 	insertImgAtPos = (
 		file,
 		coords = [0, 0],
@@ -1058,6 +1078,7 @@ class Editor extends Component {
 				</ContextMenuTrigger>
 				<EditorContextMenu
 					onContextMenuClick={this.handleContextMenuClick}
+					onTranslate={this.translateLesson}
 				/>
 				{ this.state.showComponentConfigurator ? <ComponentConfigurator
 					show={this.state.showComponentConfigurator}

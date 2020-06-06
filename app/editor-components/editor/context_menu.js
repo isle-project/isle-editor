@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import groupBy from '@stdlib/utils/group-by';
+import objectKeys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import trim from '@stdlib/string/trim';
 import Loadable from 'components/internal/loadable';
 const AnimationHelp = Loadable( () => import( 'editor-components/editor/animation-help' ) );
 const MarkdownHelp = Loadable( () => import( 'editor-components/editor/markdown-help' ) );
 import { componentSnippets } from 'snippets';
+import { LANGUAGES } from 'constants/deepl';
 import COMPONENTS from './components.json';
 
 
@@ -18,6 +20,8 @@ import COMPONENTS from './components.json';
 
 const debug = logger( 'isle:editor:context-menu' );
 const snippets = groupBy( componentSnippets, groupIndicator );
+const LANGUAGE_NAMES = objectKeys( LANGUAGES );
+const ISLE_SERVER_TOKEN = localStorage.getItem( 'token' );
 
 
 // FUNCTIONS //
@@ -112,7 +116,7 @@ class EditorContextMenu extends Component {
 		});
 	}
 
-	handleContextMenuClick = ( evt, data ) => {
+	handleContextMenuClick = ( _, data ) => {
 		this.props.onContextMenuClick( this.customClick, data );
 		this.customClick = false;
 	}
@@ -121,6 +125,10 @@ class EditorContextMenu extends Component {
 		debug( 'Clicked top open configuration menu...' );
 		this.customClick = true;
 		// Propagate to `handleContextMenuClick`...
+	}
+
+	handleTranslateClick = ( _, data ) => {
+		this.props.onTranslate( data.language );
 	}
 
 	render() {
@@ -175,6 +183,20 @@ class EditorContextMenu extends Component {
 					<MenuItem
 						onClick={this.toggleMarkdownHelp}>Markdown Help
 					</MenuItem>
+					{ISLE_SERVER_TOKEN ? <SubMenu title="Translate entire lesson to" >
+						{LANGUAGE_NAMES.map( ( name, idx ) => {
+							return (
+								<MenuItem
+									key={idx} data={{
+										language: LANGUAGES[ name ]
+									}}
+									onClick={this.handleTranslateClick}
+								>
+									{name}
+								</MenuItem>
+							);
+						})}
+					</SubMenu> : null}
 				</ContextMenu>
 				{ this.state.showAnimationHelp ? <AnimationHelp onHide={this.toggleAnimationHelp} /> : null }
 				{ this.state.showMarkdownHelp ? <MarkdownHelp onHide={this.toggleMarkdownHelp} /> : null }
