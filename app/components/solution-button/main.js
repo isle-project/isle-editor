@@ -2,9 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'components/overlay-trigger';
+import './load_translations.js';
 
 
 // MAIN //
@@ -29,8 +31,8 @@ class SolutionButton extends Component {
 			<Tooltip
 				id="tooltip"
 			>
-				Solution becomes available after answer is submitted
-				{this.props.hasHints ? 'and all hints have been requested.' : '.'}
+				{this.props.t( 'solution-available-tooltip')}
+				{this.props.hasHints ? this.props.t( 'solution-available-tooltip-hints' ) : null}.
 			</Tooltip>
 		);
 		return ( !this.props.disabled ?
@@ -41,7 +43,7 @@ class SolutionButton extends Component {
 					size="sm"
 					onClick={this.handleClick}
 				>
-					{ !this.state.showSolution ? 'Show Solution' : 'Hide Solution' }
+					{ !this.state.showSolution ? this.props.t( 'show-solution' ) : this.props.t( 'hide-solution' ) }
 				</Button>
 			</div> :
 			<OverlayTrigger
@@ -59,7 +61,7 @@ class SolutionButton extends Component {
 						style={{
 							pointerEvents: 'none'
 						}}
-					>Show Solution</Button>
+					>{this.props.t( 'show-solution' )}</Button>
 				</div>
 			</OverlayTrigger>
 		);
@@ -82,4 +84,4 @@ SolutionButton.defaultProps = {
 
 // EXPORTS //
 
-export default SolutionButton;
+export default withTranslation()( SolutionButton );
