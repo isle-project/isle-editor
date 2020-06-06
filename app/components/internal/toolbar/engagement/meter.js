@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import incrmmean from '@stdlib/stats/incr/mmean';
@@ -59,13 +60,13 @@ class EngagementMeter extends Component {
 		}
 		if ( !session.isOwner() ) {
 			const notification = session.addNotification({
-				title: 'Poll',
-				message: 'Please indicate your answer on below scale by dragging the orange bar',
+				title: this.props.t( 'poll' ),
+				message: this.props.t( 'meter-prompt' ),
 				level: 'info',
 				position: 'tc',
 				dismissible: 'none',
 				autoDismiss: 0,
-				children: <ScoreSetter onSubmit={( progress ) => {
+				children: <ScoreSetter t={this.props.t} onSubmit={( progress ) => {
 					const session = this.props.session;
 					session.log({
 						id: this.id,
@@ -74,8 +75,8 @@ class EngagementMeter extends Component {
 					});
 					session.removeNotification( notification );
 					session.addNotification({
-						title: 'Answer recorded',
-						message: 'Your answer was recorded successfully.',
+						title: this.props.t( 'answer-recorded' ),
+						message: this.props.t( 'answer-recorded-message' ),
 						level: 'success',
 						position: 'tc'
 					});
@@ -94,7 +95,7 @@ class EngagementMeter extends Component {
 		return (
 			<Gate owner>
 				<Draggable>
-					<Panel header="Poll" hideTooltip="Finish poll" onHide={this.props.onHide}
+					<Panel header={this.props.t( 'poll' )} hideTooltip={this.props.t( 'finish-poll' )} onHide={this.props.onHide}
 						className="engagement-meter-panel" minimizable
 					>
 						<div className="score-bottom" >
@@ -107,16 +108,16 @@ class EngagementMeter extends Component {
 								</Fragment> : null }
 						</div>
 						{this.state.mean ?
-							<p>mean: {roundn( this.state.mean, -2 )} (n: {this.state.responses.length})</p> : null
+							<p>{this.props.t( 'mean' )}: {roundn( this.state.mean, -2 )} (n: {this.state.responses.length})</p> : null
 						}
 						{this.state.range ?
-							<p>range: {roundn( this.state.range, -2 )}</p> : null
+							<p>{this.props.t( 'range' )}: {roundn( this.state.range, -2 )}</p> : null
 						}
 						<Button
 							variant="link"
 							onClick={this.toggleResponses}
 						>
-							<small>Toggle Details</small>
+							<small>{this.props.t( 'toggle-details' )}</small>
 						</Button>
 					</Panel>
 				</Draggable>
@@ -144,4 +145,4 @@ EngagementMeter.propTypes = {
 
 // EXPORTS //
 
-export default EngagementMeter;
+export default withTranslation()( EngagementMeter );

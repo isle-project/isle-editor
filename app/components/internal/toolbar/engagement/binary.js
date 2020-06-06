@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Draggable from 'components/draggable';
@@ -67,17 +68,17 @@ class EngagementBinary extends Component {
 			case 'yes:no':
 				leftButton = 'fas fa-times';
 				rightButton = 'fas fa-check';
-				message = 'Please answer with "Yes" or "No".';
+				message = this.props.t( 'answer-yes-no' );
 			break;
 			case 'too-slow:too-fast':
 				leftButton = 'fas fa-backward';
 				rightButton = 'fas fa-forward';
-				message = 'Is the speed "Too Slow" or "Too Fast"?';
+				message = this.props.t( 'answer-slow-fast' );
 			break;
 		}
 		if ( !session.isOwner() ) {
 			const notification = session.addNotification({
-				title: 'Poll',
+				title: this.props.t( 'poll' ),
 				message,
 				level: 'info',
 				position: 'tc',
@@ -94,8 +95,8 @@ class EngagementBinary extends Component {
 							});
 							session.removeNotification( notification );
 							session.addNotification({
-								title: 'Answer recorded',
-								message: 'Your answer was recorded successfully.',
+								title: this.props.t( 'answer-recorded' ),
+								message: this.props.t( 'answer-recorded-message' ),
 								level: 'success',
 								position: 'tc'
 							});
@@ -113,8 +114,8 @@ class EngagementBinary extends Component {
 							});
 							session.removeNotification( notification );
 							session.addNotification({
-								title: 'Answer recorded',
-								message: 'Your answer was recorded successfully.',
+								title: this.props.t( 'answer-recorded' ),
+								message: this.props.t( 'answer-recorded-message' ),
 								level: 'success',
 								position: 'tc'
 							});
@@ -146,10 +147,11 @@ class EngagementBinary extends Component {
 				rightButton = 'fas fa-forward';
 			break;
 		}
+		const { t } = this.props;
 		return (
 			<Gate owner>
 				<Draggable>
-					<Panel header="Poll" hideTooltip="Finish poll" onHide={this.props.onHide}
+					<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={this.props.onHide}
 						className="engagement-meter-panel" minimizable
 					>
 						<Table bordered size="sm">
@@ -170,7 +172,7 @@ class EngagementBinary extends Component {
 							variant="link"
 							onClick={this.toggleResponses}
 						>
-							<small>Toggle Details</small>
+							<small>{t('toggle-details')}</small>
 						</Button>
 					</Panel>
 				</Draggable>
@@ -201,4 +203,4 @@ EngagementBinary.propTypes = {
 
 // EXPORTS //
 
-export default EngagementBinary;
+export default withTranslation()( EngagementBinary );

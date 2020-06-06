@@ -60,7 +60,7 @@ class ScoreSetter extends Component {
 					variant="secondary" size="sm"
 					onClick={this.handleSubmit} style={{ marginTop: 10 }}
 				>
-					Submit
+					{this.props.t( 'submit' )}
 				</Button>
 			</Fragment>
 		);

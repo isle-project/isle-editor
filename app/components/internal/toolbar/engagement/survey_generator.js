@@ -1,12 +1,13 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import logger from 'debug';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import Gate from 'components/gate';
@@ -170,22 +171,24 @@ class SurveyGenerator extends Component {
 						anonymous={this.state.anonymous}
 					/> : null
 				}
-				<label>Data is { !this.state.anonymous ? 'not' : '' }collected anonymously.</label>
+				<label>
+					{ !this.state.anonymous ? this.props.t( 'survey-not-anonymous' ) : '' }
+				</label>
 				<Gate owner>
 					<Button
 						disabled={this.state.disabled}
 						onClick={this.toggleSurvey}
 						style={{ float: 'right' }}
 					>
-						Stop Survey
+						{this.props.t( 'stop-survey' )}
 					</Button>
 				</Gate>
 			</div>;
 		} else {
-			body = <Gate owner banner={<h3>The survey has not been started yet.</h3>}>
+			body = <Gate owner banner={<h3>{this.props.t( 'survey-not-started' )}</h3>}>
 				<FormGroup>
 					<Row>
-						<Col md={3}><FormLabel htmlFor="survey-select-input" >Type:</FormLabel></Col>
+						<Col md={3}><FormLabel htmlFor="survey-select-input" >{this.props.t( 'type' )}:</FormLabel></Col>
 						<Col md={9}>
 							<SelectInput
 								id="survey-select-input"
@@ -209,9 +212,9 @@ class SurveyGenerator extends Component {
 					</FormGroup> : null
 				}
 				<CheckboxInput
-					tooltip="Choose whether survey data should be collected anonymously or not"
+					tooltip={this.props.t( 'anonymous-survey-tooltip' )}
 					tooltipPlacement="top"
-					legend="Anonymous survey"
+					legend={this.props.t( 'anonymous-survey' )}
 					defaultValue={true}
 					onChange={this.toggleAnonymous}
 				/>
@@ -219,17 +222,17 @@ class SurveyGenerator extends Component {
 					disabled={this.state.disabled}
 					onClick={this.toggleSurvey}
 				>
-					Start Survey
+					{this.props.t( 'start-survey' )}
 				</Button>
 			</Gate>;
 		}
 		const session = this.props.session;
 		return ( <Draggable handle=".card-header" >
 			<Panel
-				header="Survey" minimizable
+				header={this.props.t( 'survey' )} minimizable
 				className="survey-generator"
 				onHide={session.isOwner() ? this.props.onHide : null}
-				hideTooltip="Finish survey"
+				hideTooltip={this.props.t( 'finish-survey' )}
 			>
 				{body}
 			</Panel>
@@ -240,4 +243,4 @@ class SurveyGenerator extends Component {
 
 // EXPORTS //
 
-export default SurveyGenerator;
+export default withTranslation()( SurveyGenerator );

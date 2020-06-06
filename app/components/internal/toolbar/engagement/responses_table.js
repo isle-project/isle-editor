@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import ReactTable from 'react-table';
 import Tooltip from 'components/tooltip';
 import Panel from 'components/panel';
@@ -12,7 +13,7 @@ import ChatButton from 'components/chat-button';
 
 const ResponsesTable = ( props ) => {
 	const responsesPanel = <Draggable>
-		<Panel className="engagement-meter-panel" header="Poll Responses" onHide={props.onHide}
+		<Panel className="engagement-meter-panel" header={props.t( 'poll-responses')} onHide={props.onHide}
 			minimizable style={{ width: 400 }}
 		>
 			<ReactTable
@@ -47,7 +48,7 @@ const ResponsesTable = ( props ) => {
 						style: { color: 'darkslategrey' }
 					},
 					{
-						Header: 'Name',
+						Header: props.t( 'name' ),
 						id: 'nameCol',
 						accessor: 'name',
 						width: 180,
@@ -58,7 +59,7 @@ const ResponsesTable = ( props ) => {
 						}
 					},
 					{
-						Header: 'Resp',
+						Header: props.t( 'response' ),
 						id: 'responseCol',
 						accessor: 'value',
 						Cell: props.renderValue,
@@ -66,10 +67,10 @@ const ResponsesTable = ( props ) => {
 						minWidth: 38
 					},
 					{
-						Header: 'Chat',
+						Header: props.t( 'chat' ),
 						Cell: ( row ) => {
 							const chatID = `Chat with ${row.original.name}`;
-							return <ChatButton tooltip="Start chat with student" showTooltip={false} for={chatID} />;
+							return <ChatButton tooltip={props.t( 'chat-tooltip' )} showTooltip={false} for={chatID} />;
 						}
 					}
 				]}
@@ -83,4 +84,4 @@ const ResponsesTable = ( props ) => {
 
 // EXPORTS //
 
-export default ResponsesTable;
+export default withTranslation()( ResponsesTable );

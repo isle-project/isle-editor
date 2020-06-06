@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Overlay from 'react-bootstrap/Overlay';
@@ -20,6 +21,7 @@ import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MOD
 import { MEMBER_ACTION, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
 import Engagement from './engagement';
+import './load_translations.js';
 import './toolbar.css';
 
 
@@ -151,7 +153,7 @@ class Toolbar extends Component {
 			this.setState({ [elem.name]: !this.state[ elem.name ] });
 		};
 		return (
-			<Tooltip key={key} tooltip={`${this.state[ elem.name ] ? 'Close' : 'Open'} ${elem.name}`} placement="right" >
+			<Tooltip key={key} tooltip={`${this.state[ elem.name ] ? this.props.t( 'close' ) : this.props.t( 'open' )} ${elem.name}`} placement="right" >
 				<Button
 					variant="light"
 					className="toolbar-button"
@@ -171,7 +173,7 @@ class Toolbar extends Component {
 		const session = this.context;
 		return (
 			<ButtonGroup className="toolbar-engagement-buttons" {...props} >
-				<Tooltip tooltip="Yes / No" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'yes-no' )} placement="bottom" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -183,12 +185,12 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
-						aria-label="Yes / No Poll"
+						aria-label={`${this.props.t( 'yes-no' )} ${this.props.t( 'poll' )}`}
 					>
 						<span className="fa fa-lg fa-check toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Too slow / Too fast" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'slow-fast' )} placement="bottom" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -200,12 +202,12 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
-						aria-label="Too Slow / Too Fast Poll"
+						aria-label={`${this.props.t( 'slow-fast' )} ${this.props.t( 'poll' )}`}
 					>
 						<span className="fa fa-lg fa-tachometer-alt toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Like / Dislike" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'like-dislike' )} placement="bottom" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -217,12 +219,12 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
-						aria-label="Like / Dislike Poll"
+						aria-label={`${this.props.t( 'like-dislike' )} ${this.props.t( 'poll' )}`}
 					>
 						<span className="fa fa-lg fa-thumbs-up toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Survey" placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'survey' )} placement="bottom" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -234,7 +236,7 @@ class Toolbar extends Component {
 							};
 							session.log( action, 'members' );
 						}}
-						aria-label="Survey"
+						aria-label={this.props.t( 'survey' )}
 					>
 						<span className="fa fa-lg fa-poll toolbar-icon" />
 					</Button>
@@ -245,13 +247,16 @@ class Toolbar extends Component {
 
 	render() {
 		const session = this.context;
+		const { t } = this.props;
+		const close = t( 'close' );
+		const open = t( 'open' );
 		return (
 			<Fragment>
 				<ButtonGroup vertical className="toolbar-buttongroup" style={{
 					display: this.state.showToolbar ? 'inherit' : 'none'
 				}} >
 					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
-					<Tooltip tooltip={`${this.state.calculator ? 'Close' : 'Open'} calculator (F2)`} placement="right" >
+					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} (F2)`} placement="right" >
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
 							className="toolbar-button"
@@ -260,7 +265,7 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideCalculator ? 'inherit' : 'none'
 							}}
-							aria-label={`${this.state.calculator ? 'Close' : 'Open'} calculator`}
+							aria-label={`${this.state.calculator ? close : open} ${t( 'calculator' )}`}
 						>
 							<span className="fa fa-lg fa-calculator toolbar-icon" />
 						</Button>
@@ -273,19 +278,19 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideQueue ? 'inherit' : 'none'
 							}}
-							aria-label={`${this.state.queue ? 'Close' : 'Open'} help queue`}
+							aria-label={`${this.state.queue ? close : open} ${t( 'help-queue' )}`}
 						>
-							<Tooltip tooltip={`${this.state.queue ? 'Close' : 'Open'} help queue`} placement="right" >
+							<Tooltip tooltip={`${this.state.queue ? close : open} ${t( 'help-queue' )}`} placement="right" >
 								<span className="fa fa-lg fa-question-circle toolbar-icon" />
 							</Tooltip>
-							<Tooltip placement="right" tooltip="# of open questions" >
+							<Tooltip placement="right" tooltip={t( 'num-open-questions' )} >
 								<span className="toolbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
 							</Tooltip>
 						</Button> : null
 					}
 					<Gate owner >
 						<Tooltip
-							tooltip={this.state.engagementInProgress ? 'Finish poll' : 'Polls'}
+							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
 							placement={this.state.engagementInProgress ? 'right' : 'top'}
 						>
 							<Button
@@ -295,7 +300,7 @@ class Toolbar extends Component {
 								ref={div => {
 									this.engagementButton = div;
 								}}
-								aria-label={this.state.engagementInProgress ? 'Finish poll' : 'Open poll menu'}
+								aria-label={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'open-poll-menu' )}
 							>
 								<span className="fa fa-lg fa-poll-h toolbar-icon" />
 							</Button>
@@ -309,7 +314,7 @@ class Toolbar extends Component {
 							{this.renderEngagementButtons()}
 						</Overlay>
 					</Gate>
-					<Tooltip tooltip={`${this.state.sketchpad ? 'Close' : 'Open'} sketchpad`} placement="right" >
+					<Tooltip tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`} placement="right" >
 						<Button
 							variant={this.state.sketchpad ? 'success' : 'light'}
 							className="toolbar-button"
@@ -318,18 +323,18 @@ class Toolbar extends Component {
 							style={{
 								display: !this.state.hideSketchpad ? 'inherit' : 'none'
 							}}
-							aria-label={`${this.state.sketchpad ? 'Close' : 'Open'} sketchpad`}
+							aria-label={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`}
 						>
 							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={`${this.state.help ? 'Close' : 'Open'} documentation`} placement="right" >
+					<Tooltip tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`} placement="right" >
 						<Button
 							variant={this.state.help ? 'success' : 'light'}
 							className="toolbar-button"
 							onClick={this.toggleHelp}
 							onKeyPress={this.toggleHelp}
-							aria-label={`${this.state.help ? 'Close' : 'Open'} documentation`}
+							aria-label={`${this.state.help ? close : open} ${t( 'documentation' )}`}
 						>
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
@@ -347,9 +352,9 @@ class Toolbar extends Component {
 						height: this.state.sketchpadHeight + 150
 					}} minWidth={510} minHeight={300} >
 						<Panel
-							title="Sketchpad"
+							title={this.props.t( 'sketchpad' )}
 							style={{ maxWidth: 'none' }}
-							header="Sketchpad" onHide={this.toggleSketchpad} minimizable
+							header={this.props.t( 'sketchpad' )} onHide={this.toggleSketchpad} minimizable
 							ref={( div ) => {
 								this.sketchpad = div;
 							}}
@@ -374,12 +379,12 @@ class Toolbar extends Component {
 					}}
 					onNewQuestion={() => {
 						session.addNotification({
-							title: 'Queue',
-							message: 'Someone posted a question on the queue',
+							title: t( 'queue' ),
+							message: t( 'posted-to-queue' ),
 							level: 'success',
 							position: 'tr',
 							action: {
-								label: 'Open queue',
+								label: t( 'open-queue'),
 								callback: () => {
 									this.setState({
 										queue: true
@@ -440,4 +445,4 @@ Toolbar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Toolbar;
+export default withTranslation()( Toolbar );
