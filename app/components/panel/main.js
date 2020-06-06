@@ -2,10 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Tooltip from 'components/tooltip';
 import Card from 'react-bootstrap/Card';
 import omit from '@stdlib/utils/omit';
 import FullscreenButton from './fullscreen_button.js';
+import './load_translations.js';
 import './panel.css';
 
 
@@ -48,7 +50,7 @@ class Wrapper extends Component {
 					<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} />
 				</Tooltip> : null
 			}
-			{ this.props.minimizable ? <Tooltip tooltip={this.state.minimized ? 'Maximize' : 'Minimize'}><button
+			{ this.props.minimizable ? <Tooltip tooltip={this.state.minimized ? this.props.t( 'maximize' ) : this.props.t( 'minimize' )}><button
 				className={`panel-hide-button ${this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
 				onClick={this.toggleMinimize}
 			/></Tooltip> : null }
@@ -125,4 +127,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default Wrapper;
+export default withTranslation()( Wrapper );
