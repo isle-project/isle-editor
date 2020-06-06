@@ -6,12 +6,14 @@ import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import StickyNote from 'components/sticky-note';
+import LanguageSwitcher from 'components/internal/language-switcher';
 import randomstring from 'utils/randomstring/alphanumeric';
 import SessionContext from 'session/context.js';
 import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
+import './i18n.js';
 
 
 // VARIABLES //
@@ -172,6 +174,7 @@ class Lesson extends Component {
 					>
 						{this.props.children}
 						{this.state.notes}
+						<LanguageSwitcher />
 					</div>
 				</ContextMenuTrigger>
 				<LessonContextMenu
