@@ -11,7 +11,7 @@
 		"inputs-invalid": "Eingabefelder sind nicht gültig",
 		"inputs-invalid-content": "Bitte vergewissern Sie sich vor dem Absenden, dass alle Eingabewerte gültig sind.",
 		"invalid-email": "Keine gültige E-Mail-Adresse",
-		"invalid-name": "Name muss vier Zeichen enthalte.",
+		"invalid-name": "Name muss vier Zeichen enthalten.",
 		"invalid-password": "Bitte geben Sie ein neues Passwort mit mindestens sechs Zeichen ein.",
 		"name": "Name",
 		"name-placeholder": "Name eingeben",

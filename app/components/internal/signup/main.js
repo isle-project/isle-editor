@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
@@ -18,16 +17,13 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import pick from '@stdlib/utils/pick';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
-import TRANSLATION from './translation.json';
+import './load_translations.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:signup' );
 const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
-i18next.addResources( 'de', 'components', TRANSLATION.DE );
-i18next.addResources( 'en', 'components', TRANSLATION.EN );
-i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 
 // MAIN //
@@ -220,7 +216,7 @@ class Signup extends Component {
 								value={this.state.passwordRepeat}
 							/>
 							<FormControl.Feedback type="invalid">
-								{this.props.t( 'passwords-no-match' )}
+								{this.props.t( 'password-no-match' )}
 							</FormControl.Feedback>
 						</FormGroup>
 					</Form>
