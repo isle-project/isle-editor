@@ -4,9 +4,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import TimedButton from 'components/timed-button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'components/overlay-trigger';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -22,9 +24,10 @@ const debug = logger( 'isle:hint-button' );
 * @private
 * @param {integer} id - current hint index
 * @param {Array} hints - array of hints
+* @param {Function} t - translation function
 * @returns {Node} popover with hints
 */
-const displayHint = ( id, hints ) => {
+const displayHint = ( id, hints, t ) => {
 	return (
 		<Popover
 			id="popover-positioned-top"
@@ -37,7 +40,7 @@ const displayHint = ( id, hints ) => {
 			{ hints
 				.filter( ( e, i ) => i <= id )
 				.map( ( hintText, i ) => ( <span key={i}>
-					<label style={{ marginBottom: 0 }}>Hint {i+1}:</label>
+					<label style={{ marginBottom: 0 }}>{t( 'hint' )} {i+1}:</label>
 					<br />
 					<span>{hintText}</span>
 					<br />
@@ -56,17 +59,17 @@ const displayHint = ( id, hints ) => {
 * @param {boolean} hintOpen - indicates whether hint popover is opened
 * @returns {string} hint button label
 */
-const getHintLabel = ( id, noHints, hintOpen ) => {
+const getHintLabel = ( id, noHints, hintOpen, t ) => {
 	if ( hintOpen ) {
-		return id <= 1 ? 'Close Hint' : 'Close Hints';
+		return id <= 1 ? t( 'close-hint' ) : t( 'close-hints' );
 	}
 	if ( id === 0 ) {
-		return 'Get Hint';
+		return t( 'get-hint' );
 	}
 	if ( id === noHints ) {
-		return 'Show Hints';
+		return t( 'show-hints' );
 	}
-	return 'Next Hint';
+	return t( 'next-hint' );
 };
 
 
@@ -117,12 +120,12 @@ class HintButton extends Component {
 	};
 
 	render() {
-		const label = getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen );
+		const label = getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen, this.props.t );
 		return (
 			<OverlayTrigger
 				trigger="click"
 				placement={this.props.placement}
-				overlay={displayHint( this.state.currentHint - 1, this.props.hints )}
+				overlay={displayHint( this.state.currentHint - 1, this.props.hints, this.props.t )}
 			>
 				<TimedButton
 					className="hint-button"
@@ -165,4 +168,4 @@ HintButton.defaultProps = {
 
 // EXPORTS //
 
-export default HintButton;
+export default withTranslation()( HintButton );
