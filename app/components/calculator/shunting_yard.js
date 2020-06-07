@@ -1,5 +1,6 @@
 // MODULES //
 
+import i18next from 'i18next';
 import keys from '@stdlib/utils/keys';
 import ln from '@stdlib/math/base/special/ln';
 import sin from '@stdlib/math/base/special/sin';
@@ -110,7 +111,7 @@ function toRPN( arr ) {
 		else if ( token === ')' ) {
 			while ( s.first() !== '(' ) {
 				if ( s.first() === void 0 ) {
-					return 'Too many closing parentheses';
+					return i18next.t( 'too-many-closing-parens' );
 				}
 				output.push( s.pop() );
 			}
@@ -120,7 +121,7 @@ function toRPN( arr ) {
 	while ( s.length ) {
 		let token = s.pop();
 		if ( token === '(' ) {
-			return 'Too many opening parentheses';
+			return i18next.t( 'too-many-opening-parens' );
 		}
 		output.push( token );
 	}

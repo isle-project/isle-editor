@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import FormControl from 'react-bootstrap/FormControl';
@@ -21,6 +22,7 @@ import noop from '@stdlib/utils/noop';
 import PI from '@stdlib/constants/math/float64-pi';
 import E from '@stdlib/constants/math/float64-e';
 import evaluate from './shunting_yard.js';
+import './load_translations.js';
 import './calculator.css';
 
 
@@ -223,7 +225,7 @@ class Calculator extends Component {
 				onEscape={this.handleEscape}
 			>
 				<Panel id="calc-panel-full" tabIndex={0} role="button"
-					header="Calculator" onHide={this.props.onHide} minimizable
+					header={this.props.t( 'calculator' )} onHide={this.props.onHide} minimizable
 					style={this.props.style}
 				>
 					<Container className="desaturated" >
@@ -235,7 +237,7 @@ class Calculator extends Component {
 							ref={( div ) => { this.textInput = div; }}
 							onKeyPress={this.handleKeyPress}
 						/>
-						<p>Answer = {this.state.answer}</p>
+						<p>{this.props.t( 'answer' )} = {this.state.answer}</p>
 						<Row>
 							<Col>
 								<Row>
@@ -245,9 +247,9 @@ class Calculator extends Component {
 									<Button variant="light" className="input-button-full" onClick={this.onClickFactory('(')} >(</Button>
 									<Button variant="light" className="input-button-full" onClick={this.onClickFactory(')')} >)</Button>
 									<CopyToClipboard text={this.state.answer}>
-										<Button variant="warning" className="input-button-full" onClick={noop} >Copy</Button>
+										<Button variant="warning" className="input-button-full" onClick={noop} >{this.props.t( 'copy' )}</Button>
 									</CopyToClipboard>
-									<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >Basic</Button>
+									<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >{this.props.t( 'basic' )}</Button>
 								</Row>
 								<Row>
 									<Button variant="info" className="input-button-full" onClick={this.onClickWrapFactory('sin')} >sin(x)</Button>
@@ -318,7 +320,7 @@ class Calculator extends Component {
 				<Panel
 					id="calc-panel"
 					tabIndex={0} role="button"
-					header="Calculator"
+					header={this.props.t( 'calculator' )}
 					onHide={this.props.onHide}
 					style={this.props.style}
 					minimizable
@@ -332,16 +334,16 @@ class Calculator extends Component {
 							ref={( div ) => { this.textInput = div; }}
 							onKeyPress={this.handleKeyPress}
 						/>
-						<p>Answer = {this.state.answer}</p>
+						<p>{this.props.t( 'answer' )} = {this.state.answer}</p>
 						<Row>
 							<Col>
 								<Row>
 									<Button variant="light" className="input-button-small" onClick={this.onClickFactory('(')} >(</Button>
 									<Button variant="light" className="input-button-small" onClick={this.onClickFactory(')')} >)</Button>
 									<CopyToClipboard text={this.state.answer}>
-										<Button variant="warning" className="input-button-small" onClick={noop} >Copy</Button>
+										<Button variant="warning" className="input-button-small" onClick={noop} >{this.props.t( 'copy' )}</Button>
 									</CopyToClipboard>
-									<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >Expand</Button>
+									<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >{this.props.t( 'expand' )}</Button>
 								</Row>
 								<Row>
 									<Button variant="dark" className="input-button-small" onClick={this.onClickNumberFactory('7')} >7</Button>
@@ -403,4 +405,4 @@ Calculator.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Calculator;
+export default withTranslation()( Calculator );
