@@ -188,7 +188,7 @@ class LessonContextMenu extends Component {
 				</MenuItem> );
 				if ( sel && sel.focusNode ) {
 					const elem = sel.focusNode.parentElement;
-					if ( elem && elem.style.backgroundColor === 'yellow' ) {
+					if ( elem && elem.style && elem.style.backgroundColor === 'yellow' ) {
 						menuItems.push( <MenuItem key={4} onClick={this.removeHighlight}>
 							{this.props.t( 'remove-highlight' )}
 						</MenuItem> );
