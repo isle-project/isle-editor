@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -12,6 +13,7 @@ import KeyControls from 'components/key-controls';
 import VideoPlayer from 'components/video-player';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
+import './load_translations.js';
 import './video_lecture.css';
 
 
@@ -175,14 +177,14 @@ class VideoLecture extends Component {
 						size="lg"
 						onClick={this.decrementStep}
 						style={{ float: 'left' }}
-					>Back</Button> : null }
+					>{this.props.t('back')}</Button> : null }
 					<Button
 						variant="success"
 						size="lg"
 						onClick={this.incrementStep}
 						style={{ float: 'right' }}
 						disabled={this.state.waitForAnswer[ this.state.active ]}
-					>Next</Button>
+					>{this.props.t('next')}</Button>
 				</Panel> : null }
 			</div>
 		);
@@ -207,6 +209,7 @@ class VideoLecture extends Component {
 	render() {
 		const steps = this.renderSteps();
 		const session = this.context;
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<div className="video-lecture-wrapper" ref={( div ) => {
@@ -214,17 +217,17 @@ class VideoLecture extends Component {
 				}}>
 					{ this.state.active >= this.props.steps.length && !this.state.showInstructorView ?
 						<Alert variant="success" className="video-lecture-end-alert" >
-							<h1>You have reached the end of this video lecture.</h1>
+							<h1>{t('reached-end')}</h1>
 							<ButtonGroup block>
 								<Button
 									variant="secondary"
 									size="lg"
 									onClick={this.decrementStep}
-								>Go to previous part</Button>
+								>{t('to-previous')}</Button>
 								<a href={session.server}><Button
 									variant="secondary"
 									size="lg"
-								>Close and go to dashboard</Button></a>
+								>{t('close-and-to-dashboard')}</Button></a>
 							</ButtonGroup>
 						</Alert> : null
 					}
@@ -236,7 +239,7 @@ class VideoLecture extends Component {
 							onClick={this.toggleInstructorView}
 							block
 						>
-							{ this.state.showInstructorView ? 'Close Instructor View' : 'Open Instructor View' }
+							{ this.state.showInstructorView ? t('close-instructor-view') : t('open-instructor-view') }
 						</Button>
 					</Gate> : null }
 				</div>
@@ -271,4 +274,4 @@ VideoLecture.contextType = SessionContext;
 
 // EXPORTS //
 
-export default VideoLecture;
+export default withTranslation( 'video-lecture' )( VideoLecture );
