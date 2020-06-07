@@ -9,6 +9,8 @@ import Session from 'session';
 
 // VARIABLES //
 
+jest.mock('./load_translations.js', ()=>({ cacheFile: jest.fn() }));
+
 const session = new Session( {}, true );
 global.window.URL = {
 	createObjectURL() {}

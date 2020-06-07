@@ -7,13 +7,14 @@ exports[`renders a panel 1`] = `
   footerStyle={Object {}}
   fullscreen={false}
   header={null}
-  hideTooltip="Close"
+  hideTooltip={null}
   minimizable={false}
   style={
     Object {
       "height": undefined,
     }
   }
+  t={[Function]}
 >
   <div
     className="card-body"
@@ -37,13 +38,14 @@ exports[`renders a panel with a heading 1`] = `
   footerStyle={Object {}}
   fullscreen={false}
   header="Title"
-  hideTooltip="Close"
+  hideTooltip={null}
   minimizable={false}
   style={
     Object {
       "height": undefined,
     }
   }
+  t={[Function]}
 >
   <h3
     className="card-header"

@@ -74,8 +74,8 @@ exports[`renders an expandable calculator 1`] = `
       footer={null}
       footerStyle={Object {}}
       fullscreen={false}
-      header="Calculator"
-      hideTooltip="Close"
+      header="calculator"
+      hideTooltip={null}
       id="calc-panel"
       minimizable={true}
       role="button"
@@ -84,6 +84,7 @@ exports[`renders an expandable calculator 1`] = `
           "height": undefined,
         }
       }
+      t={[Function]}
       tabIndex={0}
     >
       <h3
@@ -92,7 +93,7 @@ exports[`renders an expandable calculator 1`] = `
         <span
           className="unselectable"
         >
-          Calculator
+          calculator
         </span>
         <span
           className="sk-cube-grid"
@@ -147,7 +148,8 @@ exports[`renders an expandable calculator 1`] = `
             value="0"
           />
           <p>
-            Answer = 
+            answer
+             = 
             0
           </p>
           <div
@@ -181,7 +183,7 @@ exports[`renders an expandable calculator 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  Copy
+                  copy
                 </button>
                 <button
                   className="input-button-small btn btn-warning"
@@ -189,7 +191,7 @@ exports[`renders an expandable calculator 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  Expand
+                  expand
                 </button>
               </div>
               <div
