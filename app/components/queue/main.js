@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation, Trans } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -19,6 +20,7 @@ import SessionContext from 'session/context.js';
 import { SEND_QUEUE_SIZE, ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
 import { USER_JOINED, USER_LEFT } from 'constants/events.js';
 import 'react-table/react-table.css';
+import './load_translations.js';
 import './queue.css';
 
 
@@ -211,12 +213,12 @@ class Queue extends Component {
 	renderChatButton = ( row ) => {
 		const session = this.context;
 		const chatID = row.original.name+'-'+session.user.name;
-		return <ChatButton tooltip="Start chat with student" for={chatID} />;
+		return <ChatButton tooltip={this.props.t( 'queue-start-chat' )} for={chatID} />;
 	}
 
 	renderButtonRemovable = ( cellInfo ) => {
 		return (
-			<Tooltip placement="left" tooltip="Mark question as answered and remove">
+			<Tooltip placement="left" tooltip={this.props.t( 'mark-and-remove' )}>
 				<Button variant="secondary" size="sm" onClick={() => {
 					const session = this.context;
 					session.log({
@@ -241,9 +243,9 @@ class Queue extends Component {
 			if ( session.isOwner() ) {
 				debug( 'User is an owner...' );
 				out = <Panel className="queue-panel" tabIndex={0} role="button"
-					header="Queue" onHide={this.props.onHide} minimizable
+					header={this.props.t( 'queue' )} onHide={this.props.onHide} minimizable
 				>
-					{ this.state.arr.length === 0 ? <p>There are currently no questions in the queue.</p> :
+					{ this.state.arr.length === 0 ? <p>{this.props.t( 'no-questions' )}</p> :
 					<ReactTable
 						className="queue-table"
 						showPageSizeOptions={false}
@@ -282,7 +284,7 @@ class Queue extends Component {
 								style: { color: 'darkslategrey' }
 							},
 							{
-								Header: 'Name',
+								Header: this.props.t( 'name' ),
 								id: 'nameCol',
 								accessor: 'name',
 								width: 150,
@@ -293,7 +295,7 @@ class Queue extends Component {
 								}
 							},
 							{
-								Header: 'Cohort',
+								Header: this.props.t( 'cohort' ),
 								id: 'cohortCol',
 								accessor: ( d ) => {
 									const { cohorts } = session;
@@ -306,14 +308,14 @@ class Queue extends Component {
 								}
 							},
 							{
-								Header: 'Question',
+								Header: this.props.t( 'question' ),
 								id: 'qCol',
 								accessor: 'question',
 								width: 350,
 								style: { 'white-space': 'unset' }
 							},
 							{
-								Header: 'Chat',
+								Header: this.props.t( 'chat' ),
 								Cell: this.renderChatButton
 							},
 							{
@@ -338,17 +340,25 @@ class Queue extends Component {
 				}
 				return out;
 			}
+			const question = this.state.questionText;
+			const spot = this.state.spot;
+			const size = this.state.queueSize;
+
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
 				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
 				out = <Panel className="queue-panel" tabIndex={0} role="button"
-					header="Queue" onHide={this.props.onHide} minimizable >
-					<p>Your question: <i>{this.state.questionText}</i></p>
-					<p>You are currently at position <b>{this.state.spot}</b> on the queue.</p>
-					<p>There are {this.state.queueSize} individual(s) in the queue.</p>
+					header={this.props.t( 'queue' )} onHide={this.props.onHide} minimizable >
+					<p>
+					<Trans i18nKey="queue-status" >
+						Your question: <i>{{ question }}</i><br />
+						You are currently at position <strong>{{ spot }}</strong> on the queue.<br />
+						There are <strong>{{ size }}</strong> individual(s) in the queue.
+					</Trans>
+					</p>
 					<ChatButton for={chatID} showTooltip={false} />
 					<Button style={{ marginLeft: 10 }} size="sm" onClick={this.leaveQueue}>
-						Remove me from queue
+						{this.props.t( 'remove-myself-from-queue' )}
 					</Button>
 				</Panel>;
 				if ( this.props.draggable ) {
@@ -362,10 +372,10 @@ class Queue extends Component {
 				}
 				return out;
 			}
-			out = <Panel className="queue-panel" tabIndex={0} role="button" header="Queue" onHide={this.props.onHide} minimizable >
-				<p>You can submit a question below and someone will be with you shortly!</p>
+			out = <Panel className="queue-panel" tabIndex={0} role="button" header={this.props.t( 'queue' )} onHide={this.props.onHide} minimizable >
+				<p>{this.props.t( 'queue-prompt' )}</p>
 				<FormGroup>
-					<FormLabel>Question</FormLabel>
+					<FormLabel>{this.props.t( 'question' )}</FormLabel>
 					<FormControl type="text" id="queue_form"
 						value={this.state.questionText}
 						onChange={this.handleText}
@@ -377,9 +387,9 @@ class Queue extends Component {
 					disabled={this.state.questionText.length === 0}
 					onClick={this.enterQueue}
 				>
-					Submit question
+					{this.props.t( 'submit-question' )}
 				</Button>
-				<span style={{ marginLeft: 8 }}>(there are currently {this.state.queueSize} individual(s) in the queue)</span>
+				<span style={{ marginLeft: 8 }}>{this.props.t( 'queue-size', { n: this.state.queueSize })}</span>
 			</Panel>;
 			if ( this.props.draggable ) {
 				out = <Draggable
@@ -421,4 +431,4 @@ Queue.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Queue;
+export default withTranslation()( Queue );
