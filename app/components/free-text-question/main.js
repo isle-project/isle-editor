@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FormControl from 'react-bootstrap/FormControl';
@@ -26,6 +27,7 @@ import beforeUnload from 'utils/before-unload';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import './load_translations.js';
 import './free-text-question.css';
 
 
@@ -143,7 +145,7 @@ class FreeTextQuestion extends Component {
 		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
-				title: 'Answer re-submitted.',
+				title: this.props.t('answer-resubmitted'),
 				message: this.props.resubmissionMsg,
 				level: 'success'
 			});
@@ -151,11 +153,11 @@ class FreeTextQuestion extends Component {
 			let submissionMsg = this.props.submissionMsg;
 			if ( submissionMsg === '' ) {
 				submissionMsg = this.props.solution && this.props.provideFeedback ?
-					'Compare your answer with solution using the "Show Solution" button. You can then change your answer and re-submit if necessary.' :
-					'You can change your answer and re-submit if you want to.';
+					this.props.t('submission-message-solution') :
+					this.props.t('submission-message-no-solution');
 			}
 			session.addNotification({
-				title: 'Answer submitted.',
+				title: this.props.t('answer-submitted'),
 				message: submissionMsg,
 				level: 'success'
 			});
@@ -249,7 +251,7 @@ class FreeTextQuestion extends Component {
 				/>
 				{ this.props.question ? <div className="title">{this.props.question}</div> : null }
 				<FormGroup>
-					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? 'Solution:' : 'Your answer:' }</label>
+					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? this.props.t('solution') : this.props.t('your-answer') }</label>
 					{!this.state.solutionDisplayed ?
 						<FormControl
 							id={`${this.id}-textarea`}
@@ -272,7 +274,7 @@ class FreeTextQuestion extends Component {
 					}
 					</FormGroup>
 				<ResponseVisualizer
-					buttonLabel="Answers" id={this.id}
+					buttonLabel={this.props.t('answers')} id={this.id}
 					info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
 					data={{
 						question: this.props.question
@@ -311,12 +313,12 @@ class FreeTextQuestion extends Component {
 								onClick={this.submitHandler}
 								duration={5}
 								style={{ marginLeft: '4px' }}
-							>{ !this.state.submitted ? 'Submit' : 'Resubmit' }</TimedButton> :
+							>{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }</TimedButton> :
 							<OverlayTrigger
 								placement="top"
 								positionLeft={100}
 								overlay={<Tooltip id="submitTooltip">
-									Click submit after you have typed your answer.
+									{this.props.t('submit-tooltip')}
 								</Tooltip>}
 								rootClose={true}
 							>
@@ -330,7 +332,7 @@ class FreeTextQuestion extends Component {
 											marginLeft: '4px'
 										}}
 										disabled
-									>Submit</Button>
+									>{this.props.t('submit')}</Button>
 								</div>
 							</OverlayTrigger>
 					}
@@ -404,4 +406,4 @@ FreeTextQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default FreeTextQuestion;
+export default withTranslation( 'free-text-question' )( FreeTextQuestion );

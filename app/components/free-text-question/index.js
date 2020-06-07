@@ -1,6 +1,11 @@
 // MODULES //
 
-import FreeTextQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const FreeTextQuestion = Loadable( () => import( /* webpackChunkName: "FreeTextQuestion" */ './main.js' ) );
 
 
 // EXPORTS //
