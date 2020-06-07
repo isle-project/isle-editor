@@ -1,13 +1,14 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import PropTypes from 'prop-types';
 import sample from '@stdlib/random/sample';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import copy from '@stdlib/utils/copy';
@@ -22,6 +23,7 @@ import isNumberArray from '@stdlib/assert/is-number-array';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import { VictoryArea, VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import { NumberInput, SelectInput } from 'components/input';
+import Panel from 'components/panel';
 import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 import mean from 'utils/statistic/mean';
@@ -84,7 +86,7 @@ function getBins( data ) {
 }
 
 function renderHistogram( values ) {
-	return ( <VictoryChart domainPadding={20} padding={60} >
+	return ( <VictoryChart domainPadding={20} padding={{ top: 40, bottom: 20 }} >
 		<VictoryAxis style={{
 			axisLabel: {
 				fontSize: 22
@@ -271,7 +273,7 @@ class SampleCLT extends Component {
 		}
 		const layout = plots.map( ( x, i ) => {
 			return {
-				i: String( i ), x: i*4 % 12, y: floor( i / 3 ) * 3, w: 4, h: 3, static: true
+				i: String( i ), x: i*4 % 12, y: floor( i / 4 ) * 4, w: 4, h: 4, static: true
 			};
 		});
 		this.setState({
@@ -365,11 +367,7 @@ class SampleCLT extends Component {
 		} else if ( this.state.type === 'binary' ) {
 			label = <span> Histogram of <TeX raw="\hat p" />&#39;s</span>;
 		}
-		return ( <Card>
-			<Card.Header as="h4">
-				{label}
-			</Card.Header>
-			<Card.Body>
+		return ( <Panel header={label} >
 			{ this.state.xbars.length > 1 ?
 				<Plotly
 					data={[
@@ -413,8 +411,7 @@ class SampleCLT extends Component {
 					&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 				</p> : null
 			}
-			</Card.Body>
-		</Card> );
+		</Panel> );
 	}
 
 	renderPopulationProbabilities() {
@@ -447,7 +444,7 @@ class SampleCLT extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container style={{ maxWidth: 1200 }}>
 				<Row>
 					<Card body style={{ margin: '2%', width: '96%' }}>
 						<Row>
@@ -489,8 +486,7 @@ class SampleCLT extends Component {
 							{ this.props.populationProbabilities ?
 								this.renderPopulationProbabilities() :
 								<div>
-									<Card><span className="title">Drawn Samples</span></Card>
-									<Card style={{ height: '400px', overflowY: 'scroll' }}>
+									<Panel header="Drawn Samples" style={{ height: '400px' }} >
 										<GridLayout
 											className="layout"
 											layout={this.state.layout}
@@ -508,7 +504,7 @@ class SampleCLT extends Component {
 												</div> );
 											})}
 										</GridLayout>
-									</Card>
+									</Panel>
 								</div>
 							}
 							{this.state.type === 'numeric' ? <Card>
@@ -528,9 +524,9 @@ class SampleCLT extends Component {
 							</div>
 						</Col>
 					</Row> :
-					<Card>
+					<Alert variant="info" style={{ fontSize: 24 }}>
 						Please sample from either a numeric variable or a categorical variable with two categories.
-					</Card>
+					</Alert>
 				}
 			</Container>
 		);
