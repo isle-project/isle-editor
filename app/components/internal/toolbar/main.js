@@ -445,4 +445,4 @@ Toolbar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Toolbar );
+export default withTranslation( 'toolbar' )( Toolbar );

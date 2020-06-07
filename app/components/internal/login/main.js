@@ -217,4 +217,4 @@ Login.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Login );
+export default withTranslation( 'login' )( Login );

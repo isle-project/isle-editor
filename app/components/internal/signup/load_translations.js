@@ -6,7 +6,7 @@ import TRANSLATION from './translation.json';
 
 // MAIN //
 
-i18next.addResources( 'de', 'components', TRANSLATION.DE );
-i18next.addResources( 'en', 'components', TRANSLATION.EN );
-i18next.addResources( 'es', 'components', TRANSLATION.ES );
+i18next.addResources( 'de', 'signup', TRANSLATION.DE );
+i18next.addResources( 'en', 'signup', TRANSLATION.EN );
+i18next.addResources( 'es', 'signup', TRANSLATION.ES );
 

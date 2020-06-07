@@ -599,4 +599,4 @@ StatusBar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( StatusBar );
+export default withTranslation( 'statusbar' )( StatusBar );

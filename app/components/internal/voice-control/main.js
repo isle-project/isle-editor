@@ -143,4 +143,4 @@ VoiceControl.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( VoiceControl );
+export default withTranslation( 'voice-control' )( VoiceControl );
