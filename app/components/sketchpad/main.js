@@ -2066,6 +2066,7 @@ class Sketchpad extends Component {
 		return (
 			<Modal
 				show={this.state.isExporting}
+				onHide={noop}
 			>
 				<Modal.Header>
 					<Modal.Title>{this.props.t('generate-pdf')}</Modal.Title>

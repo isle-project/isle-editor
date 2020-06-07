@@ -1965,12 +1965,13 @@ class Session {
 			formData.append( 'owner', true );
 		}
 		if ( isEmptyObject( this.user ) ) {
-			return this.addNotification({
+			this.addNotification({
 				title: 'File Upload',
 				message: 'You have to be signed in in order to upload files.',
 				level: 'warning',
 				position: 'tl'
 			});
+			return callback( new Error( 'You have to be signed in in order to upload files.' ) );
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
