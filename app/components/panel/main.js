@@ -46,7 +46,7 @@ class Wrapper extends Component {
 		return ( <Card.Header as="h3">
 			<span className="unselectable" >{this.props.header}</span>
 			{ this.props.onHide ?
-				<Tooltip tooltip={this.props.hideTooltip} >
+				<Tooltip tooltip={this.props.hideTooltip || this.props.t( 'close' )} >
 					<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} />
 				</Tooltip> : null
 			}
@@ -117,7 +117,7 @@ Wrapper.defaultProps = {
 	footer: null,
 	minimizable: false,
 	fullscreen: false,
-	hideTooltip: 'Close',
+	hideTooltip: null,
 	bodyStyle: {},
 	footerStyle: {},
 	style: {},

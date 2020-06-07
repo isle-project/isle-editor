@@ -1,13 +1,16 @@
 {
 	"DE": {
+		"close": "Schließen",
 		"maximize": "Maximieren",
 		"minimize": "Minimieren"
 	},
 	"EN": {
+		"close": "Close",
 		"maximize": "Maximize",
 		"minimize": "Minimize"
 	},
 	"ES": {
+		"close": "Cerrar",
 		"maximize": "Maximizar",
 		"minimize": "Minimizar"
 	}
