@@ -117,6 +117,12 @@ function renderHistogram( values ) {
 
 /**
 * A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set.
+*
+* @property {Object} data - data object with keys correspond to variable names and values holding the values of respective variables
+* @property {Array<string>} variables - names of variables that can be sampled from
+* @property {boolean} hidePopulationStdev - hide display of population standard deviation
+* @property {(Array<number>|number)} samples - array of numbers or a single numbers denoting the sample sizes that can be drawn
+* @property {boolean} populationProbabilities- whether to display equations for calculation of population probabilities
 */
 class SampleCLT extends Component {
 	constructor( props ) {
@@ -465,11 +471,19 @@ class SampleCLT extends Component {
 											}}>
 												Draw Sample
 											</Button>
-											<Button onClick={() => {
-												this.drawSamples( 25 );
-											}}>
-												Draw 25 Samples
-											</Button>
+											{isNumberArray( this.props.samples ) ?
+												this.props.samples.map( ( n, idx ) => {
+													return ( <Button key={idx} onClick={() => {
+														this.drawSamples( n );
+													}}>
+														Draw {n} Samples
+													</Button> );
+												}) : <Button onClick={() => {
+														this.drawSamples( this.props.samples );
+													}}>
+														Draw {this.props.samples} Samples
+													</Button>
+											}
 											<Button onClick={this.clear.bind( this )}>
 												Clear
 											</Button>
@@ -539,12 +553,14 @@ class SampleCLT extends Component {
 SampleCLT.propTypes = {
 	data: PropTypes.array.isRequired,
 	hidePopulationStdev: PropTypes.bool,
+	samples: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.number ]),
 	populationProbabilities: PropTypes.bool,
 	variables: PropTypes.array.isRequired
 };
 
 SampleCLT.defaultProps = {
 	hidePopulationStdev: false,
+	samples: 25,
 	populationProbabilities: false
 };
 
