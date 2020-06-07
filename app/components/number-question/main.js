@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Badge from 'react-bootstrap/Badge';
 import logger from 'debug';
@@ -23,6 +24,7 @@ import SessionContext from 'session/context.js';
 import getLastAction from 'utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from 'constants/actions.js';
+import './load_translations.js';
 import './number-question.css';
 
 
@@ -144,16 +146,16 @@ class NumberQuestion extends Component {
 		if ( !isUndefinedOrNull( this.props.solution ) ) {
 			if ( this.props.provideFeedback ) {
 				session.addNotification({
-					title: 'Answer submitted.',
-					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+					title: this.props.t( 'answer-submitted' ),
+					message: correct ? this.props.t('submission-correct') : this.props.t('submission-incorrect'),
 					level: correct ? 'success' : 'error'
 				});
 			} else {
 				session.addNotification({
-					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+					title: this.state.submitted ? this.props.t( 'answer-resubmitted' ) : this.props.t( 'answer-submitted' ),
 					message: this.state.submitted ?
-						'You have successfully re-submitted your answer.' :
-						'Your answer has been submitted.',
+						this.props.t('resubmission-message') :
+						this.props.t('submission-message'),
 					level: 'info'
 				});
 			}
@@ -161,8 +163,8 @@ class NumberQuestion extends Component {
 			session.addNotification({
 				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
 				message: this.state.submitted ?
-					'You have successfully re-submitted your answer.' :
-					'Your answer has been submitted.',
+					this.props.t('resubmission-message') :
+					this.props.t('submission-message'),
 				level: 'info'
 			});
 		}
@@ -173,8 +175,8 @@ class NumberQuestion extends Component {
 		const val = parseFloat( this.state.value );
 		if ( val < this.props.min || val > this.props.max ) {
 			return session.addNotification({
-				title: 'Invalid answer',
-				message: `Your response should be a number between ${this.props.min} and ${this.props.max}`,
+				title: this.props.t('invalid-answer'),
+				message: this.props.t( 'invalid-range', { min: this.props.min, max: this.props.max }),
 				level: 'error'
 			});
 		}
@@ -228,7 +230,7 @@ class NumberQuestion extends Component {
 				<div className="number-question-input-wrapper">
 					<NumberInput
 						step="any"
-						legend="Your answer"
+						legend={this.props.t('your-answer')}
 						onChange={this.handleChange}
 						defaultValue={this.state.value}
 						disabled={this.state.submitted && solutionPresent}
@@ -240,7 +242,7 @@ class NumberQuestion extends Component {
 					/>
 					{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 						<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-							{'Solution:   '}
+							{`${this.props.t('solution')}:   `}
 							{this.props.solution}
 						</Badge>:
 						null
@@ -265,10 +267,10 @@ class NumberQuestion extends Component {
 					disabled={this.state.submitted && solutionPresent}
 					onClick={this.submitHandler}
 				>
-					{ ( this.state.submitted && !this.props.solution ) ? 'Resubmit' : 'Submit' }
+					{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
 				</TimedButton>
 				<ResponseVisualizer
-					buttonLabel="Answers" id={this.id}
+					buttonLabel={this.props.t('answers')} id={this.id}
 					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
 					style={{ marginLeft: '6px' }}
 				/>
@@ -335,4 +337,4 @@ NumberQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default NumberQuestion;
+export default withTranslation( 'number-question' )( NumberQuestion );

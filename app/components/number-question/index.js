@@ -1,6 +1,11 @@
 // MODULES //
 
-import NumberQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const NumberQuestion = Loadable( () => import( /* webpackChunkName: "NumberQuestion" */ './main.js' ) );
 
 
 // EXPORTS //

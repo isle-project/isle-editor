@@ -1,0 +1,34 @@
+{
+	"DE": {
+		"answers": "Antworten",
+		"answer-resubmitted": "Antwort erneut eingereicht",
+		"answer-submitted": "Antwort eingereicht.",
+		"invalid-answer": "Ungültige Antwort",
+		"invalid-range": "Deine Antwort sollte eine Zahl zwischen {{min}} und {{max}} sein.",
+		"resubmit": "Erneut einreichen",
+		"solution": "Lösung:",
+		"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
+		"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
+		"submission-message": "Deine Antwort wurde aufgezeichnet",
+		"submit": "Abschicken",
+		"your-answer": "Deine Antwort:"
+	},
+	"EN": {
+		"answers": "Answers",
+		"answer-resubmitted": "Answer re-submitted.",
+		"answer-submitted": "Answer submitted.",
+		"invalid-answer": "Invalid answer",
+		"invalid-range": "Your response should be a number between {{min}} and {{max}}.",
+		"resubmit": "Resubmit",
+		"resubmission-message": "You have successfully re-submitted your answer.",
+		"solution": "Solution:",
+		"submission-correct": "Congratulations, that is correct!",
+		"submission-incorrect": "Not quite. Compare your answer with the solution.",
+		"submission-message": "Your answer has been submitted.",
+		"submit": "Submit",
+		"your-answer": "Your answer:"
+	},
+	"ES": {
+
+	}
+}
