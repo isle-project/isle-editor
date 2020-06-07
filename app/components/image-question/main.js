@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import generateUID from 'utils/uid';
@@ -14,6 +15,7 @@ import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
+import './load_translations.js';
 import './image_question.css';
 
 
@@ -63,8 +65,8 @@ class ImageQuestion extends Component {
 	sendSubmitNotification = () => {
 		const session = this.context;
 		session.addNotification({
-			title: 'Submitted',
-			message: 'You have successfully submitted your answer',
+			title: this.props.t('sunmitted'),
+			message: this.props.t('answer-submitted'),
 			level: 'info'
 		});
 	}
@@ -140,7 +142,7 @@ class ImageQuestion extends Component {
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					{ this.state.src ?
-						<Image className="image-question-image" alt="Uploaded submission" src={this.state.src} /> :
+						<Image className="image-question-image" alt={this.props.t('upload')} src={this.state.src} /> :
 						<Fragment>
 							<div
 								className="image-question-dropzone"
@@ -148,9 +150,9 @@ class ImageQuestion extends Component {
 								onDragOver={this.ignoreDrag}
 								onDragEnd={this.ignoreDrag}
 							>
-								<span>Drop file here</span>
+								<span>{this.props.t('drop-file')}</span>
 							</div>
-							<p className="center">or</p>
+							<p className="center">{this.props.t('or')}</p>
 							<input
 								id={this.id+'-upload'}
 								className="image-question-upload center"
@@ -186,12 +188,12 @@ class ImageQuestion extends Component {
 						}
 						{ this.state.src ? <Button size="sm" variant="warning" onClick={() => {
 							this.setState({ src: null });
-						}}>Reset</Button> : null }
+						}}>{this.props.t('reset')}</Button> : null }
 						<TimedButton
 							className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}
 							disabled={!this.state.src}
 						>
-							{ this.state.submitted ? 'Resubmit' : 'Submit' }
+							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 						</TimedButton>
 						{
 							this.props.chat ?
@@ -236,4 +238,4 @@ ImageQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default ImageQuestion;
+export default withTranslation( 'image-question' )( ImageQuestion );

@@ -1,6 +1,11 @@
 // MODULES //
 
-import ImageQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const ImageQuestion = Loadable( () => import( /* webpackChunkName: "ImageQuestion" */ './main.js' ) );
 
 
 // EXPORTS //
