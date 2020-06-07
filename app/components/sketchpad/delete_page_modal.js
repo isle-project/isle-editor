@@ -25,13 +25,15 @@ class DeletePageModal extends Component {
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Clear Page?</Modal.Title>
+				<Modal.Title as="h4">{this.props.t('clear-page')}?</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Are you sure you want to delete the elements on the current page?
+				{this.props.t('clear-page-modal-body')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="danger" onClick={this.handleClick} block>Clear</Button>
+				<Button variant="danger" onClick={this.handleClick} block>
+					{this.props.t('clear')}
+				</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

@@ -57,7 +57,7 @@ class NavigationModal extends Component {
 			dialogClassName={dialogClassName}
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4" >Jump to Page:</Modal.Title>
+				<Modal.Title as="h4" >{this.props.t('jump-page')}:</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{rows.map( ( row ) => {
@@ -80,7 +80,7 @@ class NavigationModal extends Component {
 									onMouseLeave={this.hoverOff}
 								>
 									<Nav.Link eventKey={page}>
-										Page {page+1}
+										{this.props.t('page')} {page+1}
 									</Nav.Link>
 								</Nav.Item> );
 							})}

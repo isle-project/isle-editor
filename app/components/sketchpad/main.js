@@ -4,8 +4,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import pdfjsLib from 'pdfjs-dist/webpack';
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js';
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
@@ -66,6 +66,7 @@ const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
 const SaveModal = Loadable( () => import( './save_modal.js' ) );
 import guide from './guide.json';
+import './load_translations.js';
 import './sketchpad.css';
 import './pdf_viewer.css';
 
@@ -84,6 +85,9 @@ const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
+if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
+	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js';
+}
 
 
 // FUNCTIONS //
@@ -1470,12 +1474,12 @@ class Sketchpad extends Component {
 								isExporting: false,
 								showUploadModal: true,
 								modalMessage: <span>
-									The file has been uploaded successfully and can be accessed at the following address: <a href={link} target="_blank" >{link}</a>
+									{this.props.t('upload-successful')}: <a href={link} target="_blank" >{link}</a>
 								</span>
 							});
 							const msg = {
-								text: `Dear ${session.user.name}, your notes have been successfully uploaded and are now available at <a href="${link}">${link}</a>.`,
-								subject: 'PDF uploaded'
+								text: `${this.props.t('upload-email', { name: session.user.name })}<a href="${link}">${link}</a>.`,
+								subject: this.props.t('pdf-uploaded')
 							};
 							session.sendMail( msg, session.user.email );
 						}
@@ -2064,7 +2068,7 @@ class Sketchpad extends Component {
 				show={this.state.isExporting}
 			>
 				<Modal.Header>
-					<Modal.Title>Generating PDF...</Modal.Title>
+					<Modal.Title>{this.props.t('generate-pdf')}</Modal.Title>
 				</Modal.Header>
 			</Modal>
 		);
@@ -2080,13 +2084,13 @@ class Sketchpad extends Component {
 				onHide={this.closeResponseModal}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Server Response</Modal.Title>
+					<Modal.Title>{this.props.t('server-response')}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					{this.state.modalMessage}
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.closeResponseModal}>Close</Button>
+					<Button onClick={this.closeResponseModal}>{this.props.t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 		);
@@ -2102,12 +2106,13 @@ class Sketchpad extends Component {
 		if ( this.state.hideNavigationButtons ) {
 			return null;
 		}
+		const { t } = this.props;
 		const currentPage = this.state.currentPage;
 		if ( this.props.dynamicallyHideButtons && this.state.canvasWidth < 600 ) {
 			return ( <ButtonGroup size="sm" className="sketch-pages" >
 				<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
 				<Gate owner >
-					<TooltipButton tooltip="Insert page after current one" onClick={() => {
+					<TooltipButton tooltip={t('insert-page')} onClick={() => {
 						const idx = this.state.currentPage + 1;
 						this.insertPage( idx );
 					}} glyph="plus" size="sm" />
@@ -2116,12 +2121,12 @@ class Sketchpad extends Component {
 		}
 		return ( <ButtonGroup size="sm" className="sketch-pages" >
 			<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
-			<TooltipButton tooltip="Go to first page" onClick={this.firstPage} glyph="fast-backward" size="sm" />
-			<TooltipButton tooltip="Go to previous page" onClick={this.previousPage} glyph="backward" size="sm" />
-			<TooltipButton tooltip="Go to next page" onClick={this.nextPage} glyph="forward" size="sm" />
-			<TooltipButton tooltip="Go to last page" onClick={this.lastPage} glyph="fast-forward" size="sm" />
+			<TooltipButton tooltip={t('goto-first')} onClick={this.firstPage} glyph="fast-backward" size="sm" />
+			<TooltipButton tooltip={t('goto-previous')} onClick={this.previousPage} glyph="backward" size="sm" />
+			<TooltipButton tooltip={t('goto-next')} onClick={this.nextPage} glyph="forward" size="sm" />
+			<TooltipButton tooltip={t('goto-last')} onClick={this.lastPage} glyph="fast-forward" size="sm" />
 			<Gate owner >
-				<TooltipButton tooltip="Insert page after current one" onClick={() => {
+				<TooltipButton tooltip={t('insert-page')} onClick={() => {
 					const idx = this.state.currentPage + 1;
 					this.insertPage( idx );
 				}} glyph="plus" size="sm" />
@@ -2170,6 +2175,7 @@ class Sketchpad extends Component {
 					mode: 'text'
 				});
 			}}
+			t={this.props.t}
 		/> );
 	}
 
@@ -2180,21 +2186,22 @@ class Sketchpad extends Component {
 		) {
 			return null;
 		}
+		const { t } = this.props;
 		return (
 			<ButtonGroup size="sm" className="sketch-undo-redo sketch-button-group">
 				<TooltipButton
-					tooltip="Undo"
+					tooltip={t('undo')}
 					onClick={this.undo}
 					glyph="step-backward"
 					size="sm"
 				/>
-				<TooltipButton tooltip="Redo" glyph="step-forward" onClick={this.redo} size="sm" />
-				<TooltipButton tooltip="Clear current page" onClick={() => {
+				<TooltipButton tooltip={t('redo')} glyph="step-forward" onClick={this.redo} size="sm" />
+				<TooltipButton tooltip={t('clear-current')} onClick={() => {
 					this.setState({
 						showDeletePageModal: !this.state.showDeletePageModal
 					});
 				}} glyph="eraser" size="sm" />
-				<TooltipButton tooltip="Reset all pages" onClick={() => {
+				<TooltipButton tooltip={t('reset-pages')} onClick={() => {
 					this.setState({
 						showResetModal: !this.state.showResetModal
 					});
@@ -2211,30 +2218,31 @@ class Sketchpad extends Component {
 			return null;
 		}
 		const session = this.context;
+		const { t } = this.props;
 		return (
 			<ButtonGroup size="sm" className="sketch-save-buttons sketch-button-group">
-				{ !this.props.pdf ? <TooltipButton tooltip="Load PDF (clears current canvas)" onClick={this.loadPDF} size="sm" glyph="file" /> : null }
-				<TooltipButton tooltip="Download Slides" onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
-				<TooltipButton tooltip={`Save ${session.anonymous ? 'in local browser' : 'on server'}`} onClick={() => {
+				{ !this.props.pdf ? <TooltipButton tooltip={t('load-pdf')} onClick={this.loadPDF} size="sm" glyph="file" /> : null }
+				<TooltipButton tooltip={t('download')} onClick={this.toggleSaveModal} glyph="file-pdf" size="sm" />
+				<TooltipButton tooltip={session.anonymous ? t('save-local') : t('save-server')} onClick={() => {
 					const promise = this.save();
 					promise.then( () => {
 						session.addNotification({
-							title: 'Saved',
-							message: `Notes saved ${session.anonymous ? 'in local browser' : 'on server'}`,
+							title: t('saved'),
+							message: session.anonymous ? t('saved-local') : t('saved-server'),
 							level: 'success',
 							position: 'tr'
 						});
 					})
 					.catch( ( err ) => {
 						session.addNotification({
-							title: 'Encountered an error',
+							title: t('encountered-error'),
 							message: err.message,
 							level: 'error',
 							position: 'tr'
 						});
 					});
 				}} glyph="save" size="sm" />
-				<TooltipButton tooltip="Upload to the server" onClick={this.uploadSketches} glyph="upload" size="sm" />
+				<TooltipButton tooltip={t('upload-to-server')} onClick={this.uploadSketches} glyph="upload" size="sm" />
 				{ hasTouch ? <TooltipButton tooltip={`${this.state.swiping ? 'Disable' : 'Enable'} two-finger swiping gestures for changing slides`} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
 			</ButtonGroup>
 		);
@@ -2346,21 +2354,21 @@ class Sketchpad extends Component {
 				return { value: user.name, label: user.name };
 			});
 		const popover = <Popover id="popover-positioned-right" >
-			<PopoverTitle>Remote control by...</PopoverTitle>
+			<PopoverTitle>{this.props.t('remote-control-by')}</PopoverTitle>
 			<PopoverContent>
 				<Select isClearable inline options={users} onChange={( newValue ) => {
 					this.setState({
 						receiveFrom: newValue
 					});
 				}} />
-				<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend="Group Mode" />
+				<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend={this.props.t('group-mode')} />
 			</PopoverContent>
 		</Popover>;
 		let toggleFillButton;
 		if ( this.props.pdf ) {
 			toggleFillButton = <TooltipButton
 				size="sm"
-				tooltip={this.state.fill === 'vertical' ? 'Click to fill entire sketchpad width with page' : 'Click to fit page on the sketchpad'}
+				tooltip={this.state.fill === 'vertical' ? this.props.t('fill-entire-width') : this.props.t('fit-page')}
 				onClick={() => {
 					let fill;
 					if ( this.state.fill === 'vertical' ) {
@@ -2375,11 +2383,12 @@ class Sketchpad extends Component {
 				glyph={this.state.fill === 'vertical' ? 'fas fa-grip-lines' : 'fas fa-grip-lines-vertical'}
 			/>;
 		}
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<Gate owner>
 					<ButtonGroup size="sm" className="sketch-button-group" >
-						<TooltipButton size="sm" tooltip={`Click to ${ this.state.transmitOwner ? 'disable' : 'enable'} transmitting actions`} variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
+						<TooltipButton size="sm" tooltip={this.state.transmitOwner ? t('disable-transmissions') : t('enable-transmissions')} variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
 						<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>
 							<Button size="sm" variant="light" >
 								<div className="fa fa-eye" />
@@ -2392,7 +2401,7 @@ class Sketchpad extends Component {
 					<ButtonGroup size="sm" className="sketch-button-group" >
 						<TooltipButton
 							size="sm"
-							tooltip={`Click to ${ this.state.showInstructorAnnotations ? 'only show own' : 'all'} annotations`}
+							tooltip={this.state.showInstructorAnnotations ? t('show-only-own-annotations') : t('show-all-annotations')}
 							variant={this.state.showInstructorAnnotations ? 'success' : 'light'}
 							onClick={() => {
 								this.setState({
@@ -2512,7 +2521,7 @@ class Sketchpad extends Component {
 					style={{ zIndex: 3, position: 'absolute', top: 35, right: 20 }}
 				/>
 				<Gate owner>
-					<Tooltip tooltip="Open slide feedback" placement="left" >
+					<Tooltip tooltip={this.props.t('open-slide-feedback')} placement="left" >
 						<Button
 							onClick={() => this.setState({
 								showFeedbackModal: !this.state.showFeedbackModal
@@ -2521,7 +2530,7 @@ class Sketchpad extends Component {
 							size="sm"
 							style={{ right: 20, top: 175, position: 'absolute', zIndex: 3 }}
 						>
-							Show
+							{this.props.t('show')}
 						</Button>
 					</Tooltip>
 				</Gate>
@@ -2714,6 +2723,7 @@ class Sketchpad extends Component {
 						onSelect={this.gotoPage}
 						noPages={this.state.noPages}
 						onHide={this.toggleNavigationModal}
+						t={this.props.t}
 					/>
 					{this.renderProgressModal()}
 					<ResetModal
@@ -2722,6 +2732,7 @@ class Sketchpad extends Component {
 						onHide={() => {
 							this.setState({ showResetModal: false });
 						}}
+						t={this.props.t}
 					/>
 					<DeletePageModal
 						show={this.state.showDeletePageModal}
@@ -2729,6 +2740,7 @@ class Sketchpad extends Component {
 						onHide={() => {
 							this.setState({ showDeletePageModal: false });
 						}}
+						t={this.props.t}
 					/>
 					<SaveModal
 						show={this.state.showSaveModal}
@@ -2738,6 +2750,7 @@ class Sketchpad extends Component {
 						pdf={this.props.pdf}
 						session={this.context}
 						id={this.id}
+						t={this.props.t}
 					/>
 					{ this.state.showFeedbackModal ? <FeedbackModal
 						session={this.context}
@@ -2751,6 +2764,7 @@ class Sketchpad extends Component {
 						noPages={this.state.noPages}
 						toOriginalPage={this.toOriginalPage}
 						gotoPage={this.gotoPage}
+						t={this.props.t}
 					/> : null }
 					{ this.props.showTutorial ?
 						<Joyride
@@ -2838,4 +2852,4 @@ Sketchpad.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Sketchpad;
+export default withTranslation( 'sketchpad' )( Sketchpad );

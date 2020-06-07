@@ -51,31 +51,32 @@ class SaveModal extends Component {
 			ownerDate = new Date( this.state.ownerFile.updatedAt );
 			ownerName = this.state.ownerFile.name;
 		}
+		const { t } = this.props;
 		return ( <Modal
 			onHide={this.clickHide}
 			show={this.props.show}
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Download Slides</Modal.Title>
+				<Modal.Title as="h4">{t('download')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{ this.props.pdf ? <Button size="large" variant="secondary" block onClick={this.clickHide} >
 					<a className="unstyled-link" href={this.props.pdf} download >
-						Download original PDF
+						{t('download-original')}
 					</a>
 				</Button> : null }
 				{ this.state.ownerFile ? <Button size="large" variant="secondary" block onClick={this.clickHide}>
 					<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
-						Download PDF with instructor annotations <br />
-						<small>(last updated: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} by {ownerName})</small>
+						{t('download-instructor-annotations')}<br />
+						<small>({t('last-updated')}: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} {t('by')} {ownerName})</small>
 					</a>
 				</Button> : null }
 				<Button variant="secondary" size="large" onClick={this.handlePDFExport} block >
-					Export my annotations as PDF
+					{t('export-pdf')}
 				</Button>
 				<Button variant="secondary" size="large" onClick={this.handlePNGExport} block >
-					Export current slide as PNG
+					{t('export-png')}
 				</Button>
 			</Modal.Body>
 		</Modal> );

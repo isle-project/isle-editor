@@ -71,16 +71,17 @@ class InputButtons extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
-					<TooltipButton tooltip="Drag Mode" size="sm" variant={this.props.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
-					<TooltipButton tooltip="Delete Mode" size="sm" variant={this.props.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
-					<TooltipButton tooltip="Magnifying Glass" size="sm" variant={this.props.mode === 'zoom' ? 'success' : 'secondary'} onClick={this.toggleZoomMode} glyph="search-plus" />
-					<TooltipButton tooltip="Pointer Mode" size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
+					<TooltipButton tooltip={t('drag-mode')} size="sm" variant={this.props.mode === 'drag' ? 'success' : 'secondary'} onClick={this.toggleDragMode} glyph="arrows-alt" />
+					<TooltipButton tooltip={t('delete-mode')} size="sm" variant={this.props.mode === 'delete' ? 'success' : 'secondary'} onClick={this.toggleDeleteMode} glyph="times" />
+					<TooltipButton tooltip={t('magnifying-glass')} size="sm" variant={this.props.mode === 'zoom' ? 'success' : 'secondary'} onClick={this.toggleZoomMode} glyph="search-plus" />
+					<TooltipButton tooltip={t('pointer-mode')} size="sm" variant={this.props.mode === 'pointer' ? 'success' : 'secondary'} onClick={this.togglePointerMode} glyph="circle" />
 				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
-					<TooltipButton tooltip="Drawing Mode" glyph="paint-brush" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
+					<TooltipButton tooltip={t('drawing-mode')} glyph="paint-brush" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
 					<InputGroup size="sm" className="sketch-input-group" >
 						<FormControl
 							type="number"
@@ -88,12 +89,16 @@ class InputButtons extends Component {
 							max={42}
 							onChange={this.props.onBrushSelect}
 							value={this.props.brushSize}
-							aria-label="Brush Size"
+							aria-label={t('brush-size')}
 						/>
 					</InputGroup>
 				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-text-buttons" >
-					<TooltipButton size="sm" variant={this.props.mode === 'text' ? 'success' : 'secondary'} onClick={this.toggleTextMode} tooltip="Text Mode" glyph="font" />
+					<TooltipButton
+						size="sm" variant={this.props.mode === 'text' ? 'success' : 'secondary'}
+						onClick={this.toggleTextMode} tooltip={t('text-mode')}
+						glyph="font"
+					/>
 					<DropdownButton
 						id="sketch-font-dropdown"
 						size="sm"
@@ -115,12 +120,12 @@ class InputButtons extends Component {
 							max={60}
 							onChange={this.props.onFontSizeSelect}
 							value={this.props.fontSize}
-							aria-label="Font Size"
+							aria-label={t('font-size')}
 						/>
 					</InputGroup>
 				</ButtonGroup>
 				<ButtonGroup size="sm" >
-					<Tooltip placement="right" tooltip="Change brush color" >
+					<Tooltip placement="right" tooltip={t('change-brush-color')} >
 						<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.props.color, color: 'white' }} >Col</Button>
 					</Tooltip>
 				</ButtonGroup>

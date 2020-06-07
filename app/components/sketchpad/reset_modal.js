@@ -25,13 +25,13 @@ class ResetModal extends Component {
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Reset Sketchpad</Modal.Title>
+				<Modal.Title as="h4">{this.props.t('reset-sketchpad')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Are you sure you want to reset the sketchpad contents to their default value? This action is irreversible and all your work will be lost unless you saved it.
+				{this.props.t('reset-modal-body')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="danger" onClick={this.handleClick} block>Reset</Button>
+				<Button variant="danger" onClick={this.handleClick} block>{this.props.t('reset')}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
