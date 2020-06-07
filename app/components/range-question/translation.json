@@ -1,0 +1,32 @@
+{
+	"DE": {
+		"answers": "Antworten",
+		"answer-resubmitted": "Antwort erneut eingereicht",
+		"answer-submitted": "Antwort eingereicht.",
+		"lower": "Untere",
+		"resubmit": "Erneut einreichen",
+		"solution": "Lösung:",
+		"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
+		"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
+		"submission-message": "Deine Antwort wurde aufgezeichnet",
+		"submit": "Abschicken",
+		"upper": "Obere"
+	},
+	"EN": {
+		"answers": "Answers",
+		"answer-resubmitted": "Answer re-submitted.",
+		"answer-submitted": "Answer submitted.",
+		"lower": "Lower",
+		"resubmit": "Resubmit",
+		"resubmission-message": "You have successfully re-submitted your answer.",
+		"solution": "Solution:",
+		"submission-correct": "Congratulations, that is correct!",
+		"submission-incorrect": "Not quite. Compare your answer with the solution.",
+		"submission-message": "Your answer has been submitted.",
+		"submit": "Submit",
+		"upper": "Ipper"
+	},
+	"ES": {
+
+	}
+}

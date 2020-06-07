@@ -1,6 +1,11 @@
 // MODULES //
 
-import RangeQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const RangeQuestion = Loadable( () => import( /* webpackChunkName: "RangeQuestion" */ './main.js' ) );
 
 
 // EXPORTS //

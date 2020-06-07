@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
@@ -147,16 +148,16 @@ class RangeQuestion extends Component {
 			this.props.onSubmit( [ lowerVal, upperVal ], correct );
 			if ( this.props.provideFeedback ) {
 				session.addNotification({
-					title: 'Answer submitted.',
-					message: correct ? 'Congratulations, that is correct!' : 'Not quite. Compare your answer with the solution.',
+					title: this.props.t('answer-submitted'),
+					message: correct ? this.props.t('submission-correct') : this.props.t('submission-incorrect'),
 					level: correct ? 'success' : 'error'
 				});
 			} else {
 				session.addNotification({
-					title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+					title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
 					message: this.state.submitted ?
-						'You have successfully re-submitted your answer.' :
-						'Your answer has been submitted.',
+						this.props.t('resubmission-message') :
+						this.props.t('submission-message'),
 					level: 'info'
 				});
 			}
@@ -165,10 +166,10 @@ class RangeQuestion extends Component {
 			const upperVal = parseFloat( this.state.upper );
 			this.props.onSubmit( [ lowerVal, upperVal ] );
 			session.addNotification({
-				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+				title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
 				message: this.state.submitted ?
-					'You have successfully re-submitted your answer.' :
-					'Your answer has been submitted.',
+					this.props.t('resubmission-message') :
+					this.props.t('submission-message'),
 				level: 'success'
 			});
 		}
@@ -218,7 +219,7 @@ class RangeQuestion extends Component {
 					<div className="range-question-input-wrapper" >
 						<NumberInput
 							step="any"
-							legend="Lower"
+							legend={this.props.t('lower')}
 							onChange={this.handleChangeLower}
 							defaultValue={this.state.lower}
 							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
@@ -232,7 +233,7 @@ class RangeQuestion extends Component {
 						/>
 						<NumberInput
 							step="any"
-							legend="Upper"
+							legend={this.props.t('upper')}
 							onChange={this.handleChangeUpper}
 							defaultValue={this.state.upper}
 							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
@@ -246,7 +247,7 @@ class RangeQuestion extends Component {
 						/>
 						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 							<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-								{'Solution:   '}
+								{`${this.props.t('solution')}:   `}
 								{this.props.solution[0]}, {this.props.solution[1]}
 							</Badge> :
 							null
@@ -272,10 +273,10 @@ class RangeQuestion extends Component {
 						disabled={this.state.submitted && !this.props.allowMultipleAnswers}
 						onClick={this.submitHandler}
 					>
-						{ this.state.submitted && this.props.allowMultipleAnswers ? 'Resubmit' : 'Submit' }
+						{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
 					</TimedButton>
 					<ResponseVisualizer
-						buttonLabel="Answers"
+						buttonLabel={this.props.t('answers')}
 						id={this.id}
 						data={{
 							type: 'range',
@@ -342,4 +343,4 @@ RangeQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default RangeQuestion;
+export default withTranslation( 'range-question' )( RangeQuestion );
