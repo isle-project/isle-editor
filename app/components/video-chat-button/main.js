@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from 'constants/events.js';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -80,11 +82,12 @@ class VideoChatButton extends Component {
 
 	render() {
 		const session = this.context;
+		const { t } = this.props;
 		let label;
 		if ( this.props.buttonLabel ) {
 			label = this.props.buttonLabel;
 		} else {
-			label = this.state.opened ? 'Leave Video' : 'Join Video';
+			label = this.state.opened ? t('leave') : t('join');
 		}
 		let variant;
 		if ( this.props.buttonVariant ) {
@@ -101,7 +104,7 @@ class VideoChatButton extends Component {
 				className={this.props.className}
 				style={this.props.style}
 				aria-disabled="true"
-				aria-label="Disabled Video Chat"
+				aria-label={t('disabled')}
 			>
 				{label}
 			</Button> );
@@ -110,7 +113,7 @@ class VideoChatButton extends Component {
 		if ( this.props.tooltip ) {
 			tooltip = this.props.tooltip;
 		} else {
-			tooltip = `${this.state.opened ? 'Leave' : 'Join'} video chat with ID ${this.props.for}`;
+			tooltip = this.state.opened ? t('leave-id', { id: this.props.for }) : t('join-id', { id: this.props.for });
 		}
 		let button = <Button
 			name="Video Chat"
@@ -119,7 +122,7 @@ class VideoChatButton extends Component {
 			className={this.props.className}
 			onClick={this.toggleVideoChat}
 			style={this.props.style}
-			aria-label="Toggle Video Chat"
+			aria-label={t('toggle')}
 		>
 			<span style={{ pointerEvents: 'none' }} >
 				{label}
@@ -175,4 +178,4 @@ VideoChatButton.contextType = SessionContext;
 
 // EXPORTS //
 
-export default VideoChatButton;
+export default withTranslation( 'video-chat-button' )( VideoChatButton );
