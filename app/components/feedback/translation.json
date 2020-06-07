@@ -1,0 +1,43 @@
+{
+	"DE": {
+		"cancel": "Abbrechen",
+		"cannot-follow": "Ich kann der Logik nicht folgen",
+		"enter-text": "Text eingeben",
+		"feedback": "Feedback",
+		"give-custom-feedback": "Detailliertes Feedback geben",
+		"have-feedback": "Ich habe eine Rückmeldung.",
+		"makes-sense": "Ergibt Sinn.",
+		"needs-detailed-explanation": "Dies bedarf einer detaillierteren Erklärung",
+		"no-understanding": "Das verstehe ich überhaupt nicht",
+		"not-clear": "Das ist mir nicht klar.",
+		"responses": "Antworten",
+		"submit": "Einreichen",
+		"submit-confused-message": "Es tut uns leid, das zu hören. Dein Feedback hilft uns, das Material zu verbessern.",
+		"submit-custom-message": "Danke, dass Du Dir die Zeit genommen haben, uns Feedback zu schicken.",
+		"submit-understood-message": "Schön, das zu hören! Vielen Dank für Deine Rückmeldung.",
+		"textarea-legend": "Ich habe folgende Kommentare (optional):",
+		"thank-you": "Danke Dir!"
+	},
+	"EN": {
+		"cancel": "Cancel",
+		"cannot-follow": "I can't follow the logic.",
+		"enter-text": "Enter text",
+		"feedback": "Feedback",
+		"give-custom-feedback": "Give custom feedback",
+		"have-feedback": "I have feedback.",
+		"makes-sense": "Makes sense.",
+		"needs-detailed-explanation": "This needs a more detailed explanation.",
+		"no-understanding": "I do not understand this at all",
+		"not-clear": "This is not clear to me.",
+		"responses": "Responses",
+		"submit": "Submit",
+		"submit-confused-message": "We are sorry to hear that. Your feedback helps us to improve the material.",
+		"submit-custom-message": "Thank you for for taking the time to send us feedback.",
+		"submit-understood-message": "'Glad to hear that! Thank you for your feedback.",
+		"textarea-legend": "I have the following comments (optional):",
+		"thank-you": "Thank you!"
+	},
+	"ES": {
+
+	}
+}

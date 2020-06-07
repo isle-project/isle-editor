@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -16,6 +17,7 @@ import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } 
 import Confused from '-!svg-react-loader!./../../img/confused.svg';
 import Understood from '-!svg-react-loader!./../../img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./../../img/feedback.svg';
+import './load_translations.js';
 import './feedback.css';
 
 
@@ -64,8 +66,8 @@ class FeedbackButtons extends Component {
 			value: 'confused'
 		}, 'members' );
 		session.addNotification({
-			title: 'Thank you!',
-			message: 'We are sorry to hear that. Your feedback helps us to improve the material.',
+			title: this.props.t( 'thank-you' ),
+			message: this.props( 'submit-confused-message' ),
 			level: 'info',
 			position: 'tr'
 		});
@@ -86,8 +88,8 @@ class FeedbackButtons extends Component {
 			value: 'understood'
 		}, 'members' );
 		session.addNotification({
-			title: 'Thank you!',
-			message: 'Glad to hear that! Thank you for your feedback.',
+			title: this.props.t( 'thank-you' ),
+			message: this.props.t( 'submit-understood-message' ),
 			level: 'info',
 			position: 'tr'
 		});
@@ -116,8 +118,8 @@ class FeedbackButtons extends Component {
 			...ORIGINAL_STATE
 		});
 		session.addNotification({
-			title: 'Thank you!',
-			message: 'Thank you for for taking the time to send us feedback.',
+			title: this.props.t( 'thank-you' ),
+			message: this.props.t( 'submit-custom-message' ),
 			level: 'info',
 			position: 'tr'
 		});
@@ -149,26 +151,26 @@ class FeedbackButtons extends Component {
 							</Button>
 						</Fragment> :
 						<Fragment>
-							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{this.props.confusedMsg}</strong>}>
+							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{this.props.confusedMsg || this.props.t('not-clear')}</strong>}>
 								<Button aria-label="Confused" variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
 									<Confused className="feedback-icon" />
 								</Button>
 							</Tooltip>
-							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{this.props.understoodMsg}</strong>} >
+							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{this.props.understoodMsg || this.props.t('makes-sense')}</strong>} >
 								<Button aria-label="Understood" variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
 									<Understood className="feedback-icon" />
 								</Button>
 							</Tooltip>
 						</Fragment>
 					}
-					{ this.props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg}</strong>} >
-						<Button aria-label="Give custom feedback" variant="light" className="feedback-button" size="small" onClick={this.openModal}>
+					{ this.props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg || this.props.t('have-feedback')}</strong>} >
+						<Button aria-label={this.props.t('give-custom-feedback')} variant="light" className="feedback-button" size="small" onClick={this.openModal}>
 							<Feedback className="feedback-icon" />
 						</Button>
 					</Tooltip> : null }
 					<ResponseVisualizer
 						variant="light"
-						buttonLabel={this.props.vertical ? '' : 'Responses'}
+						buttonLabel={this.props.vertical ? '' : this.props.t( 'responses' )}
 						buttonStyle={{
 							fontSize: '10px',
 							lineHeight: this.props.vertical ? '2em' : 'inherit'
@@ -188,11 +190,11 @@ class FeedbackButtons extends Component {
 					show={this.state.showModal}
 					onHide={this.closeModal}
 					dialogClassName="modal-50w"
-					title="Feedback"
+					title={this.props.t('feedback')}
 					backdrop={true}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">Feedback</Modal.Title>
+						<Modal.Title id="contained-modal-title-lg">{this.props.t('feedback')}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<FormGroup>
@@ -202,7 +204,7 @@ class FeedbackButtons extends Component {
 										noUnderstanding: !this.state.noUnderstanding
 									});
 								}}
-								legend="I do not understand this at all."
+								legend={this.props.t('no-understanding')}
 							/>
 							<CheckboxInput
 								onChange={() => {
@@ -210,7 +212,7 @@ class FeedbackButtons extends Component {
 										needsExplanation: !this.state.needsExplanation
 									});
 								}}
-								legend="This needs a more detailed explanation."
+								legend={this.props.t('needs-detailed-explanation')}
 							/>
 							<CheckboxInput
 								onChange={() => {
@@ -218,23 +220,23 @@ class FeedbackButtons extends Component {
 										noLogic: !this.state.noLogic
 									});
 								}}
-								legend="I can't follow the logic."
+								legend={this.props.t('cannot-follow')}
 							/>
 						</FormGroup>
 						<TextArea
 							ref={( div ) => { this.textarea = div; }}
-							legend="I have the following comments (optional):"
-							text="Enter text"
+							legend={this.props.t('textarea-legend')}
+							text={this.props.t('enter-text')}
 							resizable={false}
 							rows={6}
 						/>
 					</Modal.Body>
 					<Modal.Footer>
 						<Button onClick={this.closeModal}>
-							Cancel
+							{this.props.t('cancel')}
 						</Button>
 						<Button variant="primary" onClick={this.submitFeedback}>
-							Submit
+							{this.props.t('submit')}
 						</Button>
 					</Modal.Footer>
 				</Modal>
@@ -260,9 +262,9 @@ FeedbackButtons.contextType = SessionContext;
 
 FeedbackButtons.defaultProps = {
 	customFeedback: true,
-	confusedMsg: 'This is not clear to me.',
-	feedbackMsg: 'I have feedback.',
-	understoodMsg: 'Makes sense.',
+	confusedMsg: null,
+	feedbackMsg: null,
+	understoodMsg: null,
 	vertical: false,
 	style: {}
 };
@@ -270,4 +272,4 @@ FeedbackButtons.defaultProps = {
 
 // EXPORTS //
 
-export default FeedbackButtons;
+export default withTranslation( 'feedback' )( FeedbackButtons );
