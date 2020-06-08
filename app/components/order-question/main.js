@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import generateUID from 'utils/uid';
 import DraggableList from 'components/draggable-list';
@@ -108,21 +109,21 @@ class OrderQuestion extends Component {
 		if ( this.props.provideFeedback ) {
 			if ( this.state.correct ) {
 				session.addNotification({
-					title: 'Correct',
-					message: this.props.successMsg,
+					title: this.props.t('correct'),
+					message: this.props.successMsg || this.props.t('submission-correct'),
 					level: 'success'
 				});
 			} else {
 				session.addNotification({
-					title: 'Incorrect',
-					message: this.props.failureMsg,
+					title: this.props.t('incorrect'),
+					message: this.props.failureMsg || this.props.t('submission-incorrect'),
 					level: 'error'
 				});
 			}
 		} else {
 			session.addNotification({
-				title: 'Submitted',
-				message: 'You have successfully submitted your answer',
+				title: this.props.t('submitted'),
+				message: this.props.t('submission-message'),
 				level: 'info'
 			});
 		}
@@ -157,7 +158,7 @@ class OrderQuestion extends Component {
 							null
 						}
 						<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
-							{ this.state.submitted ? 'Resubmit' : 'Submit' }
+							{ this.state.submitted ? this.props.t('resubmit') : this.prop.t('submit') }
 						</TimedButton>
 						{
 							this.props.chat ?
@@ -192,8 +193,8 @@ OrderQuestion.defaultProps = {
 	hintPlacement: 'bottom',
 	feedback: true,
 	chat: false,
-	failureMsg: 'Not quite, try again!',
-	successMsg: 'That\'s the correct ordering!',
+	failureMsg: null,
+	successMsg: null,
 	disableSubmitNotification: false,
 	style: {},
 	onChange() {},
@@ -223,4 +224,4 @@ OrderQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default OrderQuestion;
+export default withTranslation( 'order-question' )( OrderQuestion );

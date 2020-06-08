@@ -1,6 +1,11 @@
 // MODULES //
 
-import OrderQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const OrderQuestion = Loadable( () => import( /* webpackChunkName: "OrderQuestion" */ './main.js' ) );
 
 
 // EXPORTS //

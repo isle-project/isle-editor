@@ -1,0 +1,26 @@
+{
+	"DE": {
+		"correct": "Correct",
+		"incorrect": "Incorrect",
+		"resubmit": "Erneut einreichen",
+		"submission-correct": "Das ist die richtige Reihenfolge!",
+		"submission-incorrect": "Nicht ganz, versuche es noch einmal!",
+		"submission-message": "Deine Antwort wurde erfolgreich übermittelt.",
+		"submit": "Abschicken",
+		"submitted": "Submitted"
+	},
+	"EN": {
+		"correct": "Correct",
+		"incorrect": "Incorrect",
+		"resubmit": "Resubmit",
+		"resubmission-message": "You have successfully re-submitted your answer.",
+		"submission-correct": "That's the correct ordering!",
+		"submission-incorrect": "Not quite, try again!",
+		"submission-message": "You have successfully submitted your answer.",
+		"submit": "Submit",
+		"submitted": "Submitted"
+	},
+	"ES": {
+
+	}
+}
