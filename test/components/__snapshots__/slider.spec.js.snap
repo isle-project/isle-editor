@@ -50,6 +50,7 @@ exports[`renders a slider for child elements (dragging disabled) 1`] = `
       speed={1000}
       style={Object {}}
       swipe={false}
+      t={[Function]}
       title=""
     >
       0
@@ -124,6 +125,7 @@ exports[`renders a slider for child elements (with title) 1`] = `
       speed={1000}
       style={Object {}}
       swipe={false}
+      t={[Function]}
       title="Questions"
     >
       0
@@ -182,6 +184,7 @@ exports[`renders a slider for child elements (without dots for navigation) 1`] =
       speed={1000}
       style={Object {}}
       swipe={false}
+      t={[Function]}
       title=""
     >
       0
@@ -240,6 +243,7 @@ exports[`renders a slider for child elements 1`] = `
       speed={1000}
       style={Object {}}
       swipe={false}
+      t={[Function]}
       title=""
     >
       0
