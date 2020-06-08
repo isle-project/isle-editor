@@ -15,6 +15,7 @@ import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 import permute from 'utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from 'constants/actions.js';
+import './load_translations.js';
 import './order-question.css';
 
 

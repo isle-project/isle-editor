@@ -27,6 +27,7 @@ import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
 import AnswerOption from './answer_option';
 import Question from './question.js';
+import './load_translations.js';
 
 
 // VARIABLES //

@@ -25,6 +25,7 @@ import VoiceControl from 'components/internal/voice-control';
 import SessionContext from 'session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import './load_translations.js';
 import './range-question.css';
 
 
