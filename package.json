@@ -285,7 +285,7 @@
     "jest-cli": "^26.0.1",
     "js-yaml": "^3.13.0",
     "katex": "^0.11.1",
-    "localforage": "^1.7.2",
+    "localforage": "^1.7.4",
     "moment": "2.26.0",
     "monaco-editor": "0.20.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
