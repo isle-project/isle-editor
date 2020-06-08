@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import pdfMake from 'pdfmake/build/pdfmake';
 import innerText from 'react-innertext';
 import Button from 'react-bootstrap/Button';
@@ -19,6 +20,7 @@ import SessionContext from 'session/context.js';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
 import { LESSON_SUBMIT } from 'constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -82,7 +84,7 @@ class LessonSubmit extends Component {
 		const doc = {
 			content: [
 				{
-					text: `Responses for ISLE lesson ${session.namespaceName+'/'+session.lessonName}`,
+					text: `${this.props.t('responses-header')} ${session.namespaceName+'/'+session.lessonName}`,
 					style: 'header',
 					alignment: 'center'
 				}
@@ -125,7 +127,7 @@ class LessonSubmit extends Component {
 		};
 		if ( !isEmptyObject( session.user ) ) {
 			doc.content.push({
-				text: `by ${session.user.name} (${session.user.email})`,
+				text: `${this.props.t('by')} ${session.user.name} (${session.user.email})`,
 				style: 'author'
 			});
 		}
@@ -135,7 +137,7 @@ class LessonSubmit extends Component {
 			style: 'date'
 		});
 		doc.content.push({
-			text: `elapsed: ${round( session.duration / 60000 )}min`,
+			text: `${this.props.t('elapsed')}: ${round( session.duration / 60000 )}min`,
 			style: 'elapsed'
 		});
 		if ( session.currentUserActions ) {
@@ -171,7 +173,7 @@ class LessonSubmit extends Component {
 							levels = levels.map( ( x, i ) => {
 								let out = isString( x ) ? x : innerText( x );
 								if ( !out ) {
-									out = `Choice ${i+1}`;
+									out = `${this.props.t('choice')} ${i+1}`;
 								}
 								return out;
 							});
@@ -238,19 +240,19 @@ class LessonSubmit extends Component {
 		const session = this.context;
 		const elems = document.getElementsByClassName( 'submit-button' );
 		for ( let i = 0; i < elems.length; i++ ) {
-			if ( elems[ i ].innerText === 'Submit' ) {
+			if ( elems[ i ].innerText === this.props.t('submit') ) {
 				elems[ i ].click();
 			}
 		}
 		session.finalize();
-		let notificationMesage = 'Lesson successfully completed.';
+		let notificationMesage = this.props.t('lesson-successfully-completed');
 		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
-			notificationMesage += ' You will receive a confirmation email shortly.';
+			notificationMesage += this.props.t('confirmation-email');
 			const msg = createMessage( session, this.props.message );
 			session.sendMail( msg, session.user.email );
 		}
 		session.addNotification({
-			title: 'Completed',
+			title: this.props.t('completed'),
 			message: notificationMesage,
 			level: 'success',
 			position: 'tr',
@@ -261,7 +263,7 @@ class LessonSubmit extends Component {
 					variant="success"
 					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
 					onClick={this.createReponseSummaryDoc}
-				>Download PDF of Responses</Button>
+				>{this.props.t('download-pdf')}</Button>
 			</div>,
 			onRemove: () => {
 				this.setState({
@@ -272,7 +274,7 @@ class LessonSubmit extends Component {
 		session.log({
 			id: session.lessonName,
 			type: LESSON_SUBMIT,
-			value: 'Lesson submitted!'
+			value: this.props.t('lesson-submitted')
 		});
 		this.setState({
 			disabled: true
@@ -305,17 +307,16 @@ class LessonSubmit extends Component {
 				<Button disabled={disabled} variant="primary" size="large" onClick={this.handleClick} block>{this.props.label}</Button>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
-						<Modal.Title>Authentication</Modal.Title>
+						<Modal.Title>{this.props.t('authentication')}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<p>
-							To finalize this lesson, please login in to your ISLE account. If you have not created one,
-							please sign up and get access to the full functionality of ISLE.
+							{this.props.t('authentication-prompt')}
 						</p>
 					</Modal.Body>
 					<Modal.Footer style={{ textAlign: 'center' }}>
-						<Button variant="primary" onClick={this.login.bind( this )} style={{ marginRight: '10px' }}>Login</Button>
-						<Button onClick={this.signup.bind( this )}>Sign up</Button>
+						<Button variant="primary" onClick={this.login.bind( this )} style={{ marginRight: '10px' }}>{this.props.t('login')}</Button>
+						<Button onClick={this.signup.bind( this )}>{this.props.t('signup')}</Button>
 					</Modal.Footer>
 				</Modal>
 				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
@@ -351,4 +352,4 @@ LessonSubmit.contextType = SessionContext;
 
 // EXPORTS //
 
-export default LessonSubmit;
+export default withTranslation( 'lesson-submit' )( LessonSubmit );
