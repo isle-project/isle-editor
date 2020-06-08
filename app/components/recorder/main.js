@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
@@ -13,6 +14,7 @@ import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } 
 import VoiceControl from 'components/internal/voice-control';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import './load_translations.js';
 import './ebml.js';
 import './recorder.css';
 
@@ -151,7 +153,7 @@ class Recorder extends Component {
 	handleError( msg ) {
 		const session = this.context;
 		session.addNotification({
-			title: 'Encountered Error',
+			title: this.props.t('encountered-error'),
 			message: msg,
 			level: 'error',
 			position: 'tr'
@@ -171,7 +173,7 @@ class Recorder extends Component {
 			}
 		};
 		const onError = ( error ) => {
-			const msg = `Failed to capture your screen (error: ${error.message})`;
+			const msg = this.props.t( 'failed-to-capture-screen', { msg: error.message });
 			this.handleError( msg );
 		};
 		navigator.mediaDevices.getDisplayMedia( screenConstraints )
@@ -183,7 +185,7 @@ class Recorder extends Component {
 		navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: true })
 			.then( cb )
 			.catch( ( error ) => {
-				const msg = `Failed to capture your camera (error: ${error.message})`;
+				const msg = this.props.t( 'failed-to-capture-camera', { msg: error.message });
 				this.handleError( msg );
 			});
 	}
@@ -192,7 +194,7 @@ class Recorder extends Component {
 		navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 			.then( cb )
 			.catch( ( error ) => {
-				const msg = `Failed to capture your microphone (error: ${error.message})`;
+				const msg = this.props.t( 'failed-to-capture-microphone', { msg: error.message });
 				this.handleError( msg );
 			});
 	}
@@ -257,13 +259,13 @@ class Recorder extends Component {
 					const filename = res.filename;
 					const link = session.server + '/' + filename;
 					session.addNotification({
-						title: 'Recording uploaded',
-						message: 'Your recording has been successfully uploaded and may be accessed at:',
+						title: this.props.t('recording-uploaded'),
+						message: this.props.t('recording-uploaded-message'),
 						level: 'success',
 						position: 'tl',
 						autoDismiss: 0,
 						children: <span>
-							<a href={link} target="_blank" >Open Link</a>
+							<a href={link} target="_blank" >{this.props.t('open-link')}</a>
 						</span>
 					});
 					this.setState({
@@ -495,9 +497,9 @@ class Recorder extends Component {
 						value={this.state.selectedSources}
 						onChange={this.handleSourceChange}
 					>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">Screen</ToggleButton>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">Cam</ToggleButton>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">Audio</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">{this.props.t('screen')}</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">{this.props.t('cam')}</ToggleButton>
+						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">{this.props.t('audio')}</ToggleButton>
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ToggleButtonGroup> : null
 				}
@@ -505,13 +507,13 @@ class Recorder extends Component {
 				<div style={{ background: 'rgba(0, 80,255,0.5)' }}>
 				{ this.state.finished ?
 					<ButtonGroup>
-						<Button size="sm" onClick={this.clearFile} variant="warning">Clear File</Button>
+						<Button size="sm" onClick={this.clearFile} variant="warning">{this.props.t('clear-file')}</Button>
 						{ this.props.downloadable ?
-							<Button size="sm" onClick={this.storeFile} variant="primary">Download File</Button> :
+							<Button size="sm" onClick={this.storeFile} variant="primary">{this.props.t('download-file')}</Button> :
 							null
 						}
 						{ this.props.uploadable ?
-							<Button size="sm" onClick={this.uploadFile} disabled={this.state.uploaded} variant="primary">Upload File</Button> :
+							<Button size="sm" onClick={this.uploadFile} disabled={this.state.uploaded} variant="primary">{this.props.t('upload-file')}</Button> :
 							null
 						}
 					</ButtonGroup> :
@@ -555,4 +557,4 @@ Recorder.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Recorder;
+export default withTranslation( 'recorder' )( Recorder );
