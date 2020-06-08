@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
@@ -21,6 +22,7 @@ import Text from 'components/text';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
 import { SELECT_QUESTION_MATRIX_SUBMISSION } from 'constants/actions.js';
+import './load_translations.js';
 import './select-question-matrix.css';
 
 
@@ -103,22 +105,22 @@ class SelectQuestionMatrix extends Component {
 			if ( correct ) {
 				session.addNotification({
 					title: 'Correct',
-					message: this.props.successMsg,
+					message: this.props.successMsg || this.props.t('success-message'),
 					level: 'success'
 				});
 			} else {
 				session.addNotification({
 					title: 'Incorrect',
-					message: this.props.failureMsg,
+					message: this.props.failureMsg || this.props.t('failure-message'),
 					level: 'error'
 				});
 			}
 		} else {
 			session.addNotification({
-				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+				title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
 				message: this.state.submitted ?
-					'You have successfully re-submitted your answer.' :
-					'Your answer has been submitted.',
+					this.props.t('resubmit-message') :
+					this.props.t('submit-message'),
 				level: 'info'
 			});
 		}
@@ -223,7 +225,7 @@ class SelectQuestionMatrix extends Component {
 						variant="primary" size="sm" onClick={this.handleSubmit}
 						disabled={nAnswers < nInputs || this.state.submitted && this.state.answerState === 'success'}
 					>
-						{ this.state.submitted ? 'Resubmit' : 'Submit' }
+						{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 					</Button>
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -267,8 +269,8 @@ SelectQuestionMatrix.defaultProps = {
 	hintPlacement: 'bottom',
 	feedback: true,
 	provideFeedback: 'individual',
-	failureMsg: 'Not quite, try again!',
-	successMsg: 'That\'s the correct answer!',
+	failureMsg: null,
+	successMsg: null,
 	chat: false,
 	style: {},
 	onSubmit() {}
@@ -301,4 +303,4 @@ SelectQuestionMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default SelectQuestionMatrix;
+export default withTranslation( 'select-question-matrix' )( SelectQuestionMatrix );

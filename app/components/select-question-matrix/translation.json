@@ -1,0 +1,25 @@
+{
+	"DE": {
+		"answer-resubmitted": "Antwort erneut eingereicht",
+		"answer-submitted": "Antwort eingereicht.",
+		"success-message": "Das ist die richtige Antwort!",
+		"failure-message": "Nicht ganz, versuche es noch einmal!",
+		"resubmit": "Erneut einreichen",
+		"resubmit-message": "Du hast Deine Antwort erfolgreich erneut eingereicht.",
+		"submit": "Abschicken",
+		"submit-message": "Deine Antwort wurde übermittelt."
+	},
+	"EN": {
+		"answer-resubmitted": "Answer re-submitted.",
+		"answer-submitted": "Answer submitted.",
+		"success-message": "That's the correct answer!",
+		"failure-message": "Not quite, try again!",
+		"resubmit": "Resubmit",
+		"resubmit-message": "You have successfully re-submitted your answer.",
+		"submit": "Submit",
+		"submit-message": "Your answer has been submitted."
+	},
+	"ES": {
+
+	}
+}

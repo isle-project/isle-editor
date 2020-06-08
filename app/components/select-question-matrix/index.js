@@ -1,6 +1,11 @@
 // MODULES //
 
-import SelectQuestionMatrix from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const SelectQuestionMatrix = Loadable( () => import( /* webpackChunkName: "SelectQuestionMatrix" */ './main.js' ) );
 
 
 // EXPORTS //
