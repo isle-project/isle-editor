@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { Trans } from 'react-i18next';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
@@ -340,18 +341,19 @@ class FullscreenActionDisplay extends Component {
 				/>
 				<TextClustering
 					texts={this.state.filtered.map( x => x.value )}
-					actionLabel={this.props.actionLabel}
+					actionLabel={this.props.actionLabel || this.props.t('action-label')}
 					onClusters={( data ) => {
 						debug( 'Received clusters...' );
 						this.setState({
 							clusters: data
 						});
 					}}
+					t={this.props.t}
 				/>
 				<Checkbox
-					tooltip="Whether to remove words in question prompt from word cloud"
+					tooltip={this.props.t('remove-question-words-tooltip')}
 					tooltipPlacement="top"
-					size="small" inline legend="Remove question words"
+					size="small" inline legend={this.props.t('remove-question-words')}
 					defaultValue={this.state.removeQuestionWords}
 					onChange={( value ) => {
 						this.setState({ removeQuestionWords: value });
@@ -372,7 +374,7 @@ class FullscreenActionDisplay extends Component {
 		let levels = this.props.data.levels.map( ( x, i ) => {
 			let out = isString( x ) ? x : innerText( x );
 			if ( !out ) {
-				out = `Choice ${i+1}`;
+				out = `${this.props.t('choice')} ${i+1}`;
 			}
 			if ( out.length > maxLength ) {
 				maxLength = out.length;
@@ -400,10 +402,10 @@ class FullscreenActionDisplay extends Component {
 					fit editable
 					layout={{
 						xaxis: {
-							title: 'Count'
+							title: this.props.t('count')
 						},
 						yaxis: {
-							title: 'Value',
+							title: this.props.t('value'),
 							categoryorder: 'array',
 							categoryarray: levels
 						},
@@ -488,9 +490,9 @@ class FullscreenActionDisplay extends Component {
 					<Table>
 						<thead>
 							<tr>
-								<th>Value</th>
-								<th>Absolute</th>
-								<th>Relative</th>
+								<th>{this.props.t('value')}</th>
+								<th>{this.props.t('absolute')}</th>
+								<th>{this.props.t('relative')}</th>
 							</tr>
 						</thead>
 						<tbody >
@@ -516,10 +518,10 @@ class FullscreenActionDisplay extends Component {
 						fit editable
 						layout={{
 							xaxis: {
-								title: 'Value'
+								title: this.props.t('value')
 							},
 							yaxis: {
-								title: 'Count'
+								title: this.props.t('count')
 							}
 						}}
 					/>
@@ -610,7 +612,7 @@ class FullscreenActionDisplay extends Component {
 					variant="outline-secondary"
 					size="sm"
 					onClick={this.showModalFactory({ ...elem, value: value })}
-					aria-label="Fullscreen View"
+					aria-label={this.props.t('fullscreen-view')}
 				>
 					<span className="fa fa-search-plus" />
 				</Button>
@@ -619,7 +621,7 @@ class FullscreenActionDisplay extends Component {
 						variant="outline-danger"
 						size="sm"
 						onClick={this.props.deleteFactory( index )}
-						aria-label="Delete"
+						aria-label={this.props.t('delete')}
 					>
 						<span className="fa fa-trash" />
 					</Button> :
@@ -670,7 +672,7 @@ class FullscreenActionDisplay extends Component {
 							showline: false
 						},
 						yaxis: {
-							title: 'Value'
+							title: this.props.t('value')
 						}
 					}}
 				/>
@@ -681,7 +683,7 @@ class FullscreenActionDisplay extends Component {
 	renderPlot() {
 		let plot;
 		if ( this.props.actions.length === 0 ) {
-			return <Alert variant="warning" >No data available (yet) to be visualized</Alert>;
+			return <Alert variant="warning" >{this.props.t('no-data-available')}</Alert>;
 		}
 		switch ( this.props.data.type ) {
 			case 'image':
@@ -728,9 +730,21 @@ class FullscreenActionDisplay extends Component {
 				}
 				this.setState({ handleMultipleResponses: type });
 			}}>
-				<i><b>Only</b> include first {label} for any student.</i>
-				<i>Include <b>all</b> {label}s for any student.</i>
-				<i><b>Only</b> include latest {label} for any student.</i>
+				<i>
+					<Trans i18nKey="include-first" >
+						<b>Only</b> include first {label} for any student.
+					</Trans>
+				</i>
+				<i>
+					<Trans i18nKey="include-all" >
+						Include <b>all</b> {label}s for any student.
+					</Trans>
+				</i>
+				<i>
+					<Trans i18nKey="include-latest" >
+						<b>Only</b> include latest {label} for any student.
+					</Trans>
+				</i>
 			</Switch>
 		</div> );
 	}
@@ -750,6 +764,7 @@ class FullscreenActionDisplay extends Component {
 					selectedCohort={this.props.selectedCohort}
 					onCohortChange={this.props.onCohortChange}
 					actions={this.props.actions}
+					t={this.props.t}
 				/>
 				<Modal.Body style={{ minHeight: 0.75 * window.innerHeight, padding: 0 }} >
 					<Row>
@@ -767,7 +782,7 @@ class FullscreenActionDisplay extends Component {
 									/>
 								</div> :
 								<Card body className="bg-light">
-									<h2>There are no data matching the selected parameters.</h2>
+									<h2>{this.props.t('no-matching-data')}</h2>
 								</Card>
 							}
 						</Col>
@@ -779,15 +794,16 @@ class FullscreenActionDisplay extends Component {
 				<Modal.Footer>
 					<h4>
 						<Badge variant="secondary">
-							{`# of displayed ${uncapitalize( this.props.actionLabel )}: ${this.state.filtered.length}`}
+							{this.props.t( 'num-actions', { label: uncapitalize( this.props.actionLabel ), n: this.state.filtered.length })}
 						</Badge>
 					</h4>
 					<Search
 						onClick={this.searchFilter}
 						extended={this.props.showExtended}
+						t={this.props.t}
 					/>
-					<Button variant="secondary" onClick={this.props.toggleExtended}>{ this.props.showExtended ? 'Hide Extended' : 'Show Extended' }</Button>
-					<Button onClick={this.props.toggleActions}>Close</Button>
+					<Button variant="secondary" onClick={this.props.toggleExtended}>{ this.props.showExtended ? this.props.t('hide-extended') : this.props.t('show-extended') }</Button>
+					<Button onClick={this.props.toggleActions}>{this.props.t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 			<SingleActionModal show={this.state.showModal} onHide={this.hideModal} modalContent={this.state.modalContent} actionLabel={this.props.actionLabel} showExtended={this.state.showExtended} />
@@ -811,7 +827,7 @@ FullscreenActionDisplay.propTypes = {
 };
 
 FullscreenActionDisplay.defaultProps = {
-	actionLabel: 'Responses'
+	actionLabel: null
 };
 
 FullscreenActionDisplay.contextType = SessionContext;

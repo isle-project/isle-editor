@@ -1,8 +1,9 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
+import { withTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
@@ -10,6 +11,7 @@ import isArray from '@stdlib/assert/is-array';
 import startsWith from '@stdlib/string/starts-with';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
+import './load_translations.js';
 import './slick-theme.min.css';
 import './slick.min.css';
 
@@ -50,7 +52,7 @@ class DefaultSlider extends Component {
 				const node = findDOMNode( this.slider );
 				const hintButtons = node.getElementsByClassName( 'hint-button' );
 				for ( let i = 0; i < hintButtons.length; i++ ) {
-					if ( startsWith( hintButtons[ i ].innerText, 'Close' ) ) {
+					if ( startsWith( hintButtons[ i ].innerText, this.props.t('close') ) ) {
 						hintButtons[ i ].click();
 					}
 				}
@@ -105,7 +107,7 @@ class DefaultSlider extends Component {
 
 	render() {
 		if ( !isArray( this.props.children ) ) {
-			return <Alert variant="danger" >The slider requires at least two child elements for it to be rendered.</Alert>;
+			return <Alert variant="danger" >{this.props.t('missing-children')}</Alert>;
 		}
 		return (
 			<Card
@@ -163,4 +165,4 @@ DefaultSlider.propTypes = {
 
 // EXPORTS //
 
-export default DefaultSlider;
+export default withTranslation( 'slider' )( DefaultSlider );

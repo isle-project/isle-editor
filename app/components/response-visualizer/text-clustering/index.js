@@ -14,7 +14,7 @@ import './text_clustering.css';
 
 const debug = logger( 'isle:response-visualizer:text-clustering' );
 const CLUSTER_SIZES = [ 3, 5, 7 ];
-const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
+const CLUSTER_LABELS = [ 'few-clusters', 'some-clusters', 'many-clusters' ];
 
 
 // MAIN //
@@ -117,10 +117,10 @@ class TextClustering extends Component {
 	render() {
 		return (
 			<div className="cluster-wrapper">
-				<label>Cluster {this.props.actionLabel}</label>
+				<label>{this.props.t('cluster')} {this.props.actionLabel}</label>
 				<span className="cluster-select-wrapper">
 					<select
-						title="Select cluster size"
+						title={this.props.t('select-size')}
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						onBlur={this.handleClusterCountChange}
@@ -131,14 +131,14 @@ class TextClustering extends Component {
 								<option
 									key={key}
 									value={key}
-								>{v}</option>
+								>{this.props.t( v )}</option>
 							);
 						})}
 					</select>
 				</span>
 				<ButtonGroup>
-					<Button variant="secondary" onClick={this.clusterDocuments}>Start</Button>
-					<Button variant="secondary" disabled={!this.state.isClustering} onClick={this.toggleClusterModal}>Show Clusters</Button>
+					<Button variant="secondary" onClick={this.clusterDocuments}>{this.props.t('start')}</Button>
+					<Button variant="secondary" disabled={!this.state.isClustering} onClick={this.toggleClusterModal}>{this.props.t('show-clusters')}</Button>
 					{ this.state.showClusterModal ? <ClusterModal
 						show={this.state.showClusterModal}
 						onHide={this.toggleClusterModal}
@@ -157,6 +157,7 @@ class TextClustering extends Component {
 								}
 							});
 						}}
+						t={this.props.t}
 					/> : null }
 				</ButtonGroup>
 			</div>

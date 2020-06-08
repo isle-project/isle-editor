@@ -60,7 +60,7 @@ class Search extends Component {
 					<InputGroup size="small" >
 						<FormControl
 							type="text"
-							placeholder="Enter text..."
+							placeholder={this.props.t('enter-text')}
 							onChange={this.handleSearch}
 							onKeyPress={this.handleKeyPress}
 							value={this.state.search}
@@ -68,26 +68,26 @@ class Search extends Component {
 						<Button
 							onClick={this.handleSubmit}
 						>
-							Search
+							{this.props.t('search')}
 						</Button>
 						<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
-							Reset
+							{this.props.t('reset')}
 						</Button>
 					</InputGroup>
 				</FormGroup>
 				<FormGroup style={{ float: 'left', margin: '4px' }} >
 					<Checkbox
-						tooltip="Whether to search for whole words"
+						tooltip={this.props.t('whole-word-tooltip')}
 						tooltipPlacement="top"
 						size="small" inline
-						legend="Whole Word"
+						legend={this.props.t('whole-word')}
 						style={{ fontSize: '0.9rem' }}
 						onChange={( value ) => this.setState({ exact: value }, this.handleSubmit )}
 					/>
 					<Checkbox
-						tooltip="Toggle sensitivity" tooltipPlacement="top"
+						tooltip={this.props.t('toggle-sensitivity')} tooltipPlacement="top"
 						size="small" inline
-						legend="Case-sensitive"
+						legend={this.props.t('case-sensitive')}
 						style={{ fontSize: '0.9rem' }}
 						onChange={( value ) => this.setState({ caseSensitive: value }, this.handleSubmit )}
 					/>

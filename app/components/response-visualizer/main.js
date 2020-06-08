@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
@@ -21,6 +22,7 @@ import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
 	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
+import './load_translations.js';
 import './response_visualizer.css';
 
 
@@ -306,13 +308,13 @@ class ResponseVisualizer extends Component {
 			nUsers = session.userList.length;
 		}
 		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
-		let tooltip = 'Interaction rate for currently active students:\n\n';
+		let tooltip = `${this.props.t('interaction-rate-tooltip')}:\n\n`;
 		const table = <table className="table table-bordered table-condensed" >
 			<thead>
 				<tr>
-					<th>Action Type</th>
-					<th>Rate</th>
-					<th>Color</th>
+					<th>{this.props.t('action-type')}</th>
+					<th>{this.props.t('rate')}</th>
+					<th>{this.props.t('color')}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -320,27 +322,27 @@ class ResponseVisualizer extends Component {
 					<tr>
 						<td>{extractSubstr( this.props.success )}</td>
 						<td>{this.state.nSuccess} / {nUsers}</td>
-						<td>Green</td>
+						<td>{this.props.t('green')}</td>
 					</tr> : null
 				}
 				{ this.props.danger ?
 					<tr>
 						<td>{extractSubstr( this.props.danger)}</td>
 						<td>{this.state.nDanger} / {nUsers}</td>
-						<td>Red</td>
+						<td>{this.props.t('red')}</td>
 					</tr> : null
 				}
 				{ this.props.info ?
 					<tr>
 						<td>{extractSubstr( this.props.info )}</td>
 						<td>{this.state.nInfo} / {nUsers}</td>
-						<td>Blue</td>
+						<td>{this.props.t('blue')}</td>
 					</tr> : null
 				}
 				<tr>
-					<td>Component in focus</td>
+					<td>{this.props.t('in-focus')}</td>
 					<td>{focusUsers.length} / {nUsers}</td>
-					<td>Orange</td>
+					<td>{this.props.t('orange')}</td>
 				</tr>
 			</tbody>
 		</table>;
@@ -348,7 +350,7 @@ class ResponseVisualizer extends Component {
 		tooltip = <Popover title={tooltip} style={{ fontSize: 12, textAlign: 'left', maxWidth: 1200 }} >
 			<Popover.Content>
 				{table}
-				<p>The following users currently have the component in focus:</p>
+				<p>{this.props.t('users-in-focus')}</p>
 				<p style={{ wordWrap: 'break-word' }} >{focusUsers.join( ', ')}</p>
 			</Popover.Content>
 		</Popover>;
@@ -362,18 +364,18 @@ class ResponseVisualizer extends Component {
 			backdropClassName="modal-backdrop-second-order"
 		>
 			<Modal.Header>
-				<Modal.Title>Delete user action?</Modal.Title>
+				<Modal.Title>{this.props.t('delete-title')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Are you sure that you want to delete the selected user action?
+				{this.props.t('delete-body')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={this.closeDeleteModal}>Cancel</Button>
+				<Button onClick={this.closeDeleteModal}>{this.props.t('cancel')}</Button>
 				<Button
 					variant="warning"
 					onClick={this.deleteSelectedAction}
 				>
-					Delete
+					{this.props.t('delete')}
 				</Button>
 			</Modal.Footer>
 		</Modal> );
@@ -383,6 +385,8 @@ class ResponseVisualizer extends Component {
 		const optionalProps = {};
 		if ( this.props.buttonLabel ) {
 			optionalProps.actionLabel = this.props.buttonLabel;
+		} else {
+			optionalProps.actionLabel = this.props.t('actions');
 		}
 		if ( !this.state.showActions ) {
 			return null;
@@ -398,13 +402,14 @@ class ResponseVisualizer extends Component {
 			data={this.props.data}
 			selectedCohort={this.context.selectedCohort}
 			onCohortChange={this.onCohortChange}
+			t={this.props.t}
 			{...optionalProps}
 		/> );
 	}
 
 	render() {
 		if ( !this.props.id ) {
-			return <Gate owner><span className="title no-id-message">No ID supplied.</span></Gate>;
+			return <Gate owner><span className="title no-id-message">{this.props.t('no-id')}</span></Gate>;
 		}
 		const session = this.context;
 		let nUsers;
@@ -429,7 +434,7 @@ class ResponseVisualizer extends Component {
 					<Tooltip
 						placement='top'
 						tooltip={this.props.showID ? <span>
-							Open {uncapitalize( this.props.buttonLabel )} for component with ID {this.props.id}
+							{this.props.t('open-tooltip', { label: uncapitalize( this.props.buttonLabel || this.props.t('actions') ), id: this.props.id })}
 						</span> : null}
 					>
 						<Button
@@ -486,7 +491,7 @@ ResponseVisualizer.propTypes = {
 };
 
 ResponseVisualizer.defaultProps = {
-	buttonLabel: 'Actions',
+	buttonLabel: null,
 	buttonStyle: {},
 	data: {
 		type: 'text'
@@ -505,4 +510,4 @@ ResponseVisualizer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default ResponseVisualizer;
+export default withTranslation( 'response-visualizer' )( ResponseVisualizer );

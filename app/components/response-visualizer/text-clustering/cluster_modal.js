@@ -17,7 +17,7 @@ import { CAT20 as COLORS } from 'constants/colors';
 
 // VARIABLES //
 
-const CLUSTER_LABELS = [ 'Few clusters', 'Some clusters', 'Many clusters' ];
+const CLUSTER_LABELS = [ 'few-clusters', 'some-clusters', 'many-clusters' ];
 
 
 // MAIN //
@@ -38,7 +38,7 @@ class ClusterModal extends Component {
 			{
 				x: arr.map( x => x[ 0 ] ),
 				y: arr.map( x => x[ 1 ] ),
-				text: arr.map( ( x, i ) => `Cluster ${i+1}` ),
+				text: arr.map( ( x, i ) => `${this.props.t('cluster')} ${i+1}` ),
 				marker: {
 					size: 40,
 					color: COLORS.slice( 0, nClusters )
@@ -97,7 +97,7 @@ class ClusterModal extends Component {
 						color: COLORS[ this.state.selectedCluster ]
 					}}
 				>
-					Representative documents for cluster {this.state.selectedCluster+1}
+					{this.props.t('representative-documents')} {this.state.selectedCluster+1}
 				</h4>
 				<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.70 * window.innerHeight }}>
 					<ListGroup className="cluster-list">
@@ -112,7 +112,7 @@ class ClusterModal extends Component {
 				</div>
 			</Fragment>;
 		} else {
-			docDisplay = <h4 className="cluster-directive">Select a cluster to display representative documents</h4>;
+			docDisplay = <h4 className="cluster-directive">{this.props.t('select-cluster-representative')}</h4>;
 		}
 		return ( <Modal
 			show={this.props.show}
@@ -121,11 +121,11 @@ class ClusterModal extends Component {
 		>
 			<Modal.Header closeButton>
 				<Modal.Title as="h3" >
-					Clustering Results
+					{this.props.t('clustering-results')}
 				</Modal.Title>
 				<span className="cluster-modal-select-wrapper">
 					<select
-						title="Cluster Select"
+						title={this.props.t('cluster-select')}
 						className="cluster-select"
 						onChange={this.handleClusterCountChange}
 						onBlur={this.handleClusterCountChange}
@@ -136,7 +136,7 @@ class ClusterModal extends Component {
 								<option
 									key={key}
 									value={key}
-								>{v}</option>
+								>{this.props.t( v )}</option>
 							);
 						})}
 					</select>
@@ -153,7 +153,7 @@ class ClusterModal extends Component {
 				</Row>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={this.props.onHide}>Close</Button>
+				<Button onClick={this.props.onHide}>{this.props.t('close')}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
