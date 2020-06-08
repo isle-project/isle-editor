@@ -1,11 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import moment from 'moment';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import moment from 'moment';
-import PropTypes from 'prop-types';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
 import './_datepicker.css';
 
@@ -112,42 +113,42 @@ class RangePicker extends Component {
 						id="last_hour"
 						onClick={this.timeClickFactory( 'last_hour' )}
 						style={this.state.active === 0 ? activeStyle : {}}
-					>Last Hour</Button>
+					>{this.props.t('last-hour')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_day"
 						onClick={this.timeClickFactory( 'last_day' )}
 						style={this.state.active === 1 ? activeStyle : {}}
-					>Day</Button>
+					>{this.props.t('day')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_week"
 						onClick={this.timeClickFactory( 'last_week' )}
 						style={this.state.active === 2 ? activeStyle : {}}
-					>Week</Button>
+					>{this.props.t('week')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_month"
 						onClick={this.timeClickFactory( 'last_month' )}
 						style={this.state.active === 3 ? activeStyle : {}}
-					>Month</Button>
+					>{this.props.t('month')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_year"
 						onClick={this.timeClickFactory( 'last_year' )}
 						style={this.state.active === 4 ? activeStyle : {}}
-					>Year</Button>
+					>{this.props.t('year')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="all_time"
 						onClick={this.timeClickFactory( 'all_time' )}
 						style={this.state.active === 5 ? activeStyle : {}}
-					>All</Button>
+					>{this.props.t('all')}</Button>
 				</ButtonGroup>
 				<DateRangePicker
 					startDate={this.state.period.from}
@@ -204,4 +205,4 @@ RangePicker.defaultProps = {
 
 // EXPORTS //
 
-export default RangePicker;
+export default withTranslation( 'range-picker' )( RangePicker );

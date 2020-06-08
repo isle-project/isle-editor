@@ -1,0 +1,21 @@
+{
+	"DE": {
+		"all": "Alle",
+		"day": "Tag",
+		"last-hour": "Letzte Stunde",
+		"month": "Monat",
+		"week": "Woche",
+		"year": "Jahr"
+	},
+	"EN": {
+		"all": "All",
+		"day": "Day",
+		"last-hour": "Last Hour",
+		"month": "Month",
+		"week": "Week",
+		"year": "Year"
+	},
+	"ES": {
+
+	}
+}
