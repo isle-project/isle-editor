@@ -81,6 +81,12 @@ function bidx( bmin, h, v ) {
 }
 
 function getBins( data ) {
+	if ( data.length === 1 ) {
+		return ([
+			{ 'y': 1, 'y0': 0, 'x': data[0]+1 },
+			{ 'y': 1, 'y0': 0, 'x': data[0]-1 }
+		]);
+	}
 	const h = 2 * iqr( data ) * pow( data.length, -1/3 );
 	const bmax = max( data );
 	const bmin = min( data );
@@ -221,9 +227,9 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: j*4 % 12,
-							y: floor( j / 3 ) * 3,
+							y: floor( j / 4 ) * 4,
 							w: 4,
-							h: 3,
+							h: 4,
 							static: true
 						};
 						newEnlarged[ j ] = false;
@@ -232,7 +238,7 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: 0,
-							y: floor( j / 3 ) * 3,
+							y: floor( j / 4 ) * 4,
 							w: 12,
 							h: 9,
 							static: true
@@ -242,9 +248,9 @@ class ContinuousCLT extends Component {
 						newLayout[ j ] = {
 							i: String( j ),
 							x: ( ( j-i )*4 ) % 12,
-							y: floor( j / 3 ) * 3 + 9,
+							y: floor( j / 4 ) * 4 + 9,
 							w: 4,
-							h: 3,
+							h: 4,
 							static: true
 						};
 						newEnlarged[ j ] = false;
@@ -255,9 +261,9 @@ class ContinuousCLT extends Component {
 					newLayout[ j ] = {
 						i: String( j ),
 						x: j*4 % 12,
-						y: floor( j / 3 ) * 3,
+						y: floor( j / 4 ) * 4,
 						w: 4,
-						h: 3,
+						h: 4,
 						static: true
 					};
 					newEnlarged[ j ] = false;
@@ -296,7 +302,7 @@ class ContinuousCLT extends Component {
 				borderWidth: 1
 			}}>
 				<TeX raw={`\\bar x = ${xbar.toFixed( 2 )} \\; (n = ${this.state.n})`} />
-				<VictoryChart domainPadding={20} padding={60} >
+				<VictoryChart domainPadding={20} padding={{ top: 40, bottom: 20 }} >
 					<VictoryAxis style={{
 						axisLabel: {
 							fontSize: 22
@@ -327,9 +333,9 @@ class ContinuousCLT extends Component {
 			return {
 				i: String( i ),
 				x: i*4 % 12,
-				y: floor( i / 3 ) * 3,
+				y: floor( i / 4 ) * 4,
 				w: 4,
-				h: 3,
+				h: 4,
 				static: true
 			};
 		});
@@ -591,7 +597,7 @@ class ContinuousCLT extends Component {
 	render() {
 		const title = <span>Probability Calculations for {this.state.distFormula}</span>;
 		return (
-			<div>
+			<div style={{ maxWidth: 1200, margin: '0 auto' }} >
 				<Container>
 					<Row>
 						<Col md={12} >
