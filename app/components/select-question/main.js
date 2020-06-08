@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -17,6 +18,7 @@ import FeedbackButtons from 'components/feedback';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from 'constants/actions.js';
+import './load_translations.js';
 import './select-question.css';
 
 
@@ -80,23 +82,23 @@ class SelectQuestion extends Component {
 		if ( this.props.provideFeedback ) {
 			if ( correct ) {
 				session.addNotification({
-					title: 'Correct',
+					title: this.props.t('correct'),
 					message: this.props.successMsg,
 					level: 'success'
 				});
 			} else {
 				session.addNotification({
-					title: 'Incorrect',
+					title: this.props.t('incorrect'),
 					message: this.props.failureMsg,
 					level: 'error'
 				});
 			}
 		} else {
 			session.addNotification({
-				title: this.state.submitted ? 'Answer re-submitted.' : 'Answer submitted.',
+				title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
 				message: this.state.submitted ?
-					'You have successfully re-submitted your answer.' :
-					'Your answer has been submitted.',
+					this.props.t('resubmit-message') :
+					this.props.t('submit-message'),
 				level: 'info'
 			});
 		}
@@ -186,7 +188,7 @@ class SelectQuestion extends Component {
 				</Form>
 				<div className="select-question-toolbar">
 					<TimedButton className="submit-button" variant="primary" disabled={isValid} size="sm" onClick={this.handleSubmit}>
-						{ this.state.submitted ? 'Resubmit' : 'Submit' }
+						{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 					</TimedButton>
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -249,4 +251,4 @@ SelectQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default SelectQuestion;
+export default withTranslation( 'select-question' )( SelectQuestion );

@@ -1,6 +1,11 @@
 // MODULES //
 
-import SelectQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const SelectQuestion = Loadable( () => import( /* webpackChunkName: "SelectQuestion" */ './main.js' ) );
 
 
 // EXPORTS //
