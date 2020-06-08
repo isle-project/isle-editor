@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import Panel from 'components/panel';
@@ -11,6 +12,7 @@ import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
 import { MEMBER_ACTION, RETRIEVED_COHORTS, USER_JOINED } from 'constants/events.js';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -168,7 +170,7 @@ class Revealer extends Component {
 
 	render() {
 		const cohorts = this.context.cohorts || [];
-		const header = <h3 className="center" >{this.props.message}</h3>;
+		const header = <h3 className="center" >{this.props.message || this.props.t('message')}</h3>;
 		return (<Fragment>
 			<Gate owner >
 				<Panel
@@ -181,8 +183,8 @@ class Revealer extends Component {
 					<Button
 						onClick={this.toggleContent}
 						style={{ marginRight: 10 }}
-					>{this.state.showChildren ? 'Hide' : 'Reveal'}</Button>
-					contents of <i>{this.id}</i> {this.state.showChildren ? 'from' : 'to'}
+					>{this.state.showChildren ? this.props.t('hide') : this.props.t('reveal')}</Button>
+					{this.props.t('contents-of')}<i>{this.id}</i> {this.state.showChildren ? this.props.t('from') : this.props.t('to')}
 					<select
 						style={{ width: '150px', background: '#2e4468', marginLeft: '10px', padding: '2px', color: 'white' }}
 						onChange={this.handleCohortChange}
@@ -190,7 +192,7 @@ class Revealer extends Component {
 						onClick={this.stopPropagation}
 						value={this.state.selectedCohort || 'all'}
 					>
-						<option value="all">All students</option>
+						<option value="all">{this.props.t('all-students')}</option>
 						{cohorts.map( ( v, key ) => {
 							return (
 								<option
@@ -211,7 +213,7 @@ class Revealer extends Component {
 // PROPERTIES //
 
 Revealer.defaultProps = {
-	message: 'Content hidden by instructor',
+	message: null,
 	show: false
 };
 
@@ -225,4 +227,4 @@ Revealer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Revealer;
+export default withTranslation( 'revealer' )( Revealer );

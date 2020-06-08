@@ -1,0 +1,23 @@
+{
+	"DE": {
+		"all-students": "Alle Studenten",
+		"contents-of": "Inhalt von ",
+		"from": "von",
+		"hide": "Ausblenden",
+		"message": "Vom Instruktor verborgener Inhalt",
+		"reveal": "Aufdecken",
+		"to": "zu"
+	},
+	"EN": {
+		"all-students": "All students",
+		"contents-of": "contents of ",
+		"from": "from",
+		"hide": "Hide",
+		"message": "Content hidden by instructor",
+		"reveal": "Reveal",
+		"to": "to"
+	},
+	"ES": {
+
+	}
+}
