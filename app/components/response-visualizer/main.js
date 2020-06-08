@@ -427,6 +427,7 @@ class ResponseVisualizer extends Component {
 		infoRate *= 100.0;
 		let focusRate = focusUsers.length / nUsers;
 		focusRate *= 100.0;
+		const buttonLabel = this.props.buttonLabel || this.props.t('actions');
 		return (
 			<Gate owner>
 				{this.renderFullscreenModal()}
@@ -434,7 +435,7 @@ class ResponseVisualizer extends Component {
 					<Tooltip
 						placement='top'
 						tooltip={this.props.showID ? <span>
-							{this.props.t('open-tooltip', { label: uncapitalize( this.props.buttonLabel || this.props.t('actions') ), id: this.props.id })}
+							{this.props.t('open-tooltip', { label: uncapitalize( buttonLabel ), id: this.props.id })}
 						</span> : null}
 					>
 						<Button
@@ -444,7 +445,7 @@ class ResponseVisualizer extends Component {
 							size="sm"
 							id={`${this.props.id}_answers_button`}
 						>
-							<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{this.props.buttonLabel}</span>
+							<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{buttonLabel}</span>
 							<Badge variant="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
 						</Button>
 					</Tooltip>

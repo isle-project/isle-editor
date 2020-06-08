@@ -37,7 +37,7 @@ const FullscreenHeader = ( props ) => {
 	}
 	return (
 		<Modal.Header style={{ paddingBottom: '5px' }} closeButton >
-			<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{props.actionLabel} {this.props.t('for')} {props.componentID}</h4>
+			<h4 style={{ float: 'left', margin: '2px 14px 2px 2px' }} >{props.actionLabel} {props.t('for')} {props.componentID}</h4>
 			{select}
 			<RangePicker
 				style={{ float: 'left' }}

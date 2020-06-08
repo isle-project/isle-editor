@@ -806,7 +806,11 @@ class FullscreenActionDisplay extends Component {
 					<Button onClick={this.props.toggleActions}>{this.props.t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
-			<SingleActionModal show={this.state.showModal} onHide={this.hideModal} modalContent={this.state.modalContent} actionLabel={this.props.actionLabel} showExtended={this.state.showExtended} />
+			<SingleActionModal
+				show={this.state.showModal} onHide={this.hideModal}
+				modalContent={this.state.modalContent} actionLabel={this.props.actionLabel}
+				showExtended={this.state.showExtended} t={this.props.t}
+			/>
 		</Fragment> );
 	}
 }

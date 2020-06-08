@@ -32,8 +32,8 @@ const SingleActionModal = ( props ) => {
 			<Modal.Header closeButton>
 				<Modal.Title as="h3">
 					{removeLast( props.actionLabel) }
-					{ props.showExtended ? ` ${this.props.t('from')} ${props.modalContent.name}`: ''}
-					{this.props.t('on')}
+					{ props.showExtended ? ` ${props.t('from')} ${props.modalContent.name}`: ''}
+					{props.t('on')}
 					{toTimeString( props.modalContent.absoluteTime )}
 				</Modal.Title>
 			</Modal.Header>
