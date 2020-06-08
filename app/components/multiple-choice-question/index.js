@@ -1,6 +1,11 @@
 // MODULES //
 
-import MultipleChoiceQuestion from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const MultipleChoiceQuestion = Loadable( () => import( /* webpackChunkName: "MultipleChoiceQuestion" */ './main.js' ) );
 
 
 // EXPORTS //

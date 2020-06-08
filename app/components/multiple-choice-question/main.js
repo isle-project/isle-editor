@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
@@ -183,28 +184,28 @@ class MultipleChoiceQuestion extends Component {
 		const hasSolution = !isNull( this.props.solution );
 		if ( this.props.provideFeedback === 'incremental' && hasSolution ) {
 			if ( isCorrect ) {
-				msg = 'Hooray, your answer is correct!';
+				msg = this.props.t('answer-correct');
 			} else {
-				msg = 'Unfortunately, your answer is incorrect. You may try again by selecting another answer choice.';
+				msg = this.props.t('answer-incorrect-incremental');
 				level = 'error';
 			}
 		}
 		else if ( this.props.provideFeedback === 'full' && hasSolution ) {
 			if ( isCorrect ) {
-				msg = 'Hooray, your answer is correct!';
+				msg = this.props.t('answer-correct');
 			} else {
-				msg = 'Unfortunately, your answer is incorrect. The correct answer is displayed in orange.';
+				msg = this.props.t('answer-incorrect-full');
 				if ( hasExplanations( this.props.answers ) ) {
-					msg += 'You may hover over the different answer choices to bring up a tooltip with an explanation why the respective answer is wrong';
+					msg += this.props.t('answer-incorrect-explanations');
 				}
 				level = 'error';
 			}
 		}
 		else {
-			msg = 'You have successfully submitted your answer. You may change your answer and re-submit if you want to.';
+			msg = this.props.t('answer-submitted-nofeedback');
 		}
 		session.addNotification({
-			title: 'Answer submitted.',
+			title: this.props.t('answer-submitted'),
 			message: msg,
 			level
 		});
@@ -425,25 +426,25 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.state.submitted ) {
 			switch ( this.props.provideFeedback ) {
 				case 'none':
-					submitLabel = 'Resubmit';
+					submitLabel = this.props.t('resubmit');
 					break;
 				case 'full':
 				default:
-					submitLabel = 'Submitted';
+					submitLabel = this.props.t('submitted');
 					break;
 				case 'incremental':
-					submitLabel = 'Submit';
+					submitLabel = this.props.t('submit');
 					break;
 			}
 		} else {
-			submitLabel = 'Submit';
+			submitLabel = this.props.t('submit');
 		}
 		return (
 			<Card id={this.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
 					<Question
 						content={question}
-						task={allowMultipleAnswers ? 'Choose all that apply' : 'Select an answer'}
+						task={allowMultipleAnswers ? this.props.t('chose-all-apply') : this.props.t('select-answer')}
 					/>
 					<ListGroup>
 						{ allowMultipleAnswers ?
@@ -473,7 +474,7 @@ class MultipleChoiceQuestion extends Component {
 					</div>
 					{ this.id ? <div style={{ marginTop: '6px' }}>
 						<ResponseVisualizer
-							buttonLabel="Answers"
+							buttonLabel={this.props.t('answers')}
 							id={this.id}
 							data={{
 								type: 'factor',
@@ -543,4 +544,4 @@ MultipleChoiceQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default MultipleChoiceQuestion;
+export default withTranslation( 'multiple-choice-question' )( MultipleChoiceQuestion );
