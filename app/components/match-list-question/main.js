@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import shuffle from '@stdlib/random/shuffle';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -18,6 +19,7 @@ import Text from 'components/text';
 import SessionContext from 'session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from 'constants/actions.js';
 import OptionsList from './options_list.js';
+import './load_translations.js';
 import './match_list_question.css';
 
 
@@ -114,13 +116,13 @@ class MatchListQuestion extends Component {
 		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
-				title: 'Answer re-submitted.',
+				title: this.props.t('answer-resubmitted'),
 				message: this.props.resubmissionMsg,
 				level: 'success'
 			});
 		} else {
 			session.addNotification({
-				title: 'Answer submitted.',
+				title: this.props.t('answer-submitted'),
 				message: this.props.submissionMsg,
 				level: 'success'
 			});
@@ -190,7 +192,7 @@ class MatchListQuestion extends Component {
 		return (
 			<div id={this.id} className="match-list-question-container" style={this.props.style} >
 				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
-				<i style={{ fontSize: '0.8rem' }}>Match the elements from the left-hand side with those on the right-hand side by clicking on them.</i>
+				<i style={{ fontSize: '0.8rem' }}>{this.props.t('instructions')}</i>
 				<div className="match-list-question-lists">
 					<OptionsList
 						options={elements.map( q => q.a )}
@@ -209,7 +211,7 @@ class MatchListQuestion extends Component {
 					/>
 				</div>
 				<div className="match-list-question-controls">
-					<Tooltip id={`${this.id}_tooltip`} tooltip="You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side" >
+					<Tooltip id={`${this.id}_tooltip`} tooltip={this.props.t('submit-tooltip')} >
 						<div style={{ display: 'inline-block' }}>
 							<Button
 								className="submit-button"
@@ -221,7 +223,7 @@ class MatchListQuestion extends Component {
 								}}
 								disabled={unfinished}
 							>
-								{ !this.state.submitted ? 'Submit' : 'Resubmit' }
+								{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }
 							</Button>
 						</div>
 					</Tooltip>
@@ -237,7 +239,7 @@ class MatchListQuestion extends Component {
 							</div> : null
 					}
 					<ResponseVisualizer
-						buttonLabel="Answers"
+						buttonLabel={this.props.t('answers')}
 						info={MATCH_LIST_SUBMISSION}
 						id={this.id}
 						data={{
@@ -306,4 +308,4 @@ MatchListQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default MatchListQuestion;
+export default withTranslation( 'match-list-question' )( MatchListQuestion );
