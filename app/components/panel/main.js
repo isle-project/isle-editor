@@ -21,8 +21,11 @@ import './panel.css';
 * @property {(string|node)} footer - panel footer
 * @property {boolean} minimizable - whether the panel can be minimized
 * @property {boolean} fullscreen - whether the panel can be made fullscreen
+* @property {string} hideTooltip - tooltip displayed over the hide button
 * @property {Function} onHide - callback invoked when the close button is clicked
-* @property {Object} style - CSS inline styles
+* @property {Object} style - CSS inline styles for container
+* @property {Object} bodyStyle - CSS inline styles for body
+* @property {Object} footerStyle - CSS inline styles for footer
 */
 class Wrapper extends Component {
 	constructor( props ) {
@@ -59,7 +62,7 @@ class Wrapper extends Component {
 
 	render() {
 		return ( <Card
-			{...omit( this.props, [ 'bodyStyle', 'onHide' ] )}
+			{...omit( this.props, [ 'footerStyle', 'bodyStyle', 'onHide', 'minimizable', 'hideTooltip', 'fullscreen', 't' ] )}
 			className={`panel ${this.props.className}`}
 			style={{
 				height: this.state.minimized ? '53px' : void 0,
