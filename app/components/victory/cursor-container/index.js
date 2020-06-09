@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryCursorContainer } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryCursorContainer = Loadable( () => import( /* webpackChunkName: "VictoryCursorContainer" */ './main.js' ) );
 
 
 // EXPORTS //

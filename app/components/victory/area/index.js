@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryArea } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryArea = Loadable( () => import( /* webpackChunkName: "VictoryArea" */ './main.js' ) );
 
 
 // EXPORTS //

@@ -1,6 +1,11 @@
+// MODULES //
+
+import Loadable from 'components/internal/loadable';
+
+
 // MAIN //
 
-import { VictoryAnimation } from 'victory';
+const VictoryAnimation = Loadable( () => import( /* webpackChunkName: "VictoryAnimation" */ './main.js' ) );
 
 
 // EXPORTS //

@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryBoxPlot } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryBoxPlot = Loadable( () => import( /* webpackChunkName: "VictoryBoxPlot" */ './main.js' ) );
 
 
 // EXPORTS //

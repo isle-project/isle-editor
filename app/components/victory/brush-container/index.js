@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryBrushContainer } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryBrushContainer = Loadable( () => import( /* webpackChunkName: "VictoryBrushContainer" */ './main.js' ) );
 
 
 // EXPORTS //

@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryPie } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryPie = Loadable( () => import( /* webpackChunkName: "VictoryPie" */ './main.js' ) );
 
 
 // EXPORTS //

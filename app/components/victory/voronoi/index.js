@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryVoronoi } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryVoronoi = Loadable( () => import( /* webpackChunkName: "VictoryVoronoi" */ './main.js' ) );
 
 
 // EXPORTS //

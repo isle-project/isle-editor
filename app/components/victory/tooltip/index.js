@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryTooltip } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryTooltip = Loadable( () => import( /* webpackChunkName: "VictoryTooltip" */ './main.js' ) );
 
 
 // EXPORTS //

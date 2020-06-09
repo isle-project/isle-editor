@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryScatter } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryScatter = Loadable( () => import( /* webpackChunkName: "VictoryScatter" */ './main.js' ) );
 
 
 // EXPORTS //

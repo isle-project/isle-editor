@@ -1,6 +1,11 @@
 // MODULES //
 
-import { VictoryAxis } from 'victory';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const VictoryAxis = Loadable( () => import( /* webpackChunkName: "VictoryAxis" */ './main.js' ) );
 
 
 // EXPORTS //
