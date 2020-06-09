@@ -350,7 +350,7 @@ class Toolbar extends Component {
 					}} default={{
 						width: this.state.sketchpadWidth + 50,
 						height: this.state.sketchpadHeight + 150
-					}} minWidth={510} minHeight={300} >
+					}} minWidth={510} minHeight={300} cancel=".textLayer,.btn" >
 						<Panel
 							title={this.props.t( 'sketchpad' )}
 							style={{ maxWidth: 'none' }}
