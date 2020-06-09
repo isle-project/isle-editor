@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Draggable from 'react-draggable';
-
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -21,7 +20,6 @@ import NavLink from 'react-bootstrap/NavLink';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
 import copy from '@stdlib/utils/copy';
 import Components from 'components';
 import factor from 'utils/factor-variable';
