@@ -9,6 +9,7 @@ import pdfjsLib from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
+import { ContextMenuTrigger } from 'react-contextmenu';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -65,6 +66,7 @@ const DeletePageModal = Loadable( () => import( './delete_page_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
 const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
 const SaveModal = Loadable( () => import( './save_modal.js' ) );
+import SketchpadContextMenu from './contextmenu.js';
 import guide from './guide.json';
 import './load_translations.js';
 import './sketchpad.css';
@@ -88,6 +90,7 @@ const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js';
 }
+let TEMPORARY_BLOB = null;
 
 
 // FUNCTIONS //
@@ -2662,7 +2665,7 @@ class Sketchpad extends Component {
 		/>;
 		return (
 			<Fragment>
-				<Card
+				<ContextMenuTrigger id="sketchpadWindow" ><Card
 					id={this.id}
 					ref={( div ) => {
 						this.sketchpadPanel = div;
@@ -2774,7 +2777,7 @@ class Sketchpad extends Component {
 							run={true}
 						/> : null
 					}
-				</Card>
+				</Card></ContextMenuTrigger>
 				{ this.sketchpadPanel ? <KeyControls
 					container={this.sketchpadPanel}
 					actions={{
@@ -2782,6 +2785,9 @@ class Sketchpad extends Component {
 						'ArrowUp': this.previousPage
 					}}
 				/> : null }
+				<SketchpadContextMenu
+					canvas={this.canvas}
+				/>
 			</Fragment>
 		);
 	}
