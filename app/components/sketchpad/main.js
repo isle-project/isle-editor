@@ -90,7 +90,6 @@ const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js';
 }
-let TEMPORARY_BLOB = null;
 
 
 // FUNCTIONS //
