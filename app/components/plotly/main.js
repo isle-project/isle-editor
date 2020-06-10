@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import createPlotlyComponent from 'react-plotly.js/factory';
@@ -20,6 +21,7 @@ import SessionContext from 'session/context.js';
 import { PLOT_UPDATE } from 'constants/actions.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
+import './load_translations.js';
 import './plotly.css';
 import './tooltip.css';
 import { ACCESS_TOKEN } from 'constants/mapbox.js';
@@ -94,26 +96,26 @@ class Wrapper extends Component {
 		const buttonsToAdd = [];
 		if ( props.legendButtons && !props.removeButtons ) {
 			buttonsToAdd.push({
-				name: 'Toggle Legend',
+				name: this.props.t('toggle-legend'),
 				icon: PlotlyIcons[ 'legend' ],
 				click: this.toggleLegend
 			});
 			buttonsToAdd.push({
-				name: 'Change Legend Orientation',
+				name: this.props.t('change-orientation'),
 				icon: PlotlyIcons[ 'changeLegendOrientation' ],
 				click: this.toggleLegendOrientation
 			});
 		}
 		if ( props.onShare && !props.removeButtons ) {
 			buttonsToAdd.push({
-				name: 'Share',
+				name: this.props.t('share'),
 				icon: PlotlyIcons[ 'share' ],
 				click: props.onShare
 			});
 		}
 		if ( props.toggleFullscreen ) {
 			buttonsToAdd.push({
-				name: 'Toggle FullScreen',
+				name: this.props.t('toggle-fullscreen'),
 				icon: PlotlyIcons[ 'fullscreen' ],
 				click: this.toggleFullscreen
 			});
@@ -262,7 +264,7 @@ class Wrapper extends Component {
 						0.6 :
 						0.2
 				}}
-			>Drag Plot</div>;
+			>{this.props.t('drag-plot')}</div>;
 		}
 		let plot = <Fragment>
 			{draggableBar}
@@ -306,7 +308,9 @@ class Wrapper extends Component {
 						{plot}
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.toggleFullscreen}>Close</Button>
+						<Button onClick={this.toggleFullscreen}>
+							{this.props.t('close')}
+						</Button>
 					</Modal.Footer>
 				</Modal>
 			);
@@ -366,4 +370,4 @@ Wrapper.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Wrapper;
+export default withTranslation( 'plotly' )( Wrapper );
