@@ -2,9 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import trim from '@stdlib/string/trim';
 import contains from '@stdlib/assert/contains';
 import SessionContext from 'session/context.js';
+import './load_translations.js';
 
 
 // FUNCTIONS //
@@ -42,7 +44,7 @@ class Citation extends Component {
 		if ( authors.length > 2 ) {
 			author = extractSurname( authors[ 0 ] ) + ' et al.';
 		} else if ( authors.length > 1 ) {
-			author = extractSurname( authors[ 0 ] ) + ' and ' + extractSurname( authors[ 1 ] );
+			author = extractSurname( authors[ 0 ] ) + this.props.t('and') + extractSurname( authors[ 1 ] );
 		} else {
 			author = extractSurname( authors[ 0 ] );
 		}
@@ -73,4 +75,4 @@ Citation.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Citation;
+export default withTranslation( 'citation' )( Citation );
