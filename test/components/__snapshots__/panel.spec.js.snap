@@ -4,17 +4,12 @@ exports[`renders a panel 1`] = `
 <div
   className="panel  card"
   footer={null}
-  footerStyle={Object {}}
-  fullscreen={false}
   header={null}
-  hideTooltip={null}
-  minimizable={false}
   style={
     Object {
       "height": undefined,
     }
   }
-  t={[Function]}
 >
   <div
     className="card-body"
@@ -35,17 +30,12 @@ exports[`renders a panel with a heading 1`] = `
 <div
   className="panel  card"
   footer={null}
-  footerStyle={Object {}}
-  fullscreen={false}
   header="Title"
-  hideTooltip={null}
-  minimizable={false}
   style={
     Object {
       "height": undefined,
     }
   }
-  t={[Function]}
 >
   <h3
     className="card-header"
