@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
+import { withTranslation } from 'react-i18next';
 import {
 	LiveProvider,
 	LiveEditor,
@@ -17,6 +18,7 @@ import SessionContext from 'session/context.js';
 import styles from './styles.json';
 import theme from './theme.js';
 import './playground.css';
+import './load_translations.js';
 
 
 // MAIN //
@@ -104,7 +106,7 @@ class Playground extends Component {
 		}
 		return (
 			<div className="component-documentation" style={this.props.style} >
-				<div className="playground-editable unselectable">EDITABLE SOURCE</div>
+				<div className="playground-editable unselectable">{this.props.t('editable-source')}</div>
 				<LiveProvider code={value} scope={scope} theme={theme} >
 					<div className="playground-live-editor" >
 						<LiveEditor
@@ -152,4 +154,4 @@ Playground.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Playground;
+export default withTranslation( 'playground' )( Playground );
