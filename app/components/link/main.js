@@ -2,10 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import startsWith from '@stdlib/string/starts-with';
 import SessionContext from 'session/context.js';
 import LinkContextMenu from './contextmenu.js';
+import './load_translations.js';
 
 
 // MAIN //
@@ -68,6 +70,7 @@ class Link extends Component {
 					session={this.context}
 					url={this.state.url}
 					target={this.state.target}
+					t={this.props.t}
 				/>
 			</Fragment>
 		);
@@ -86,4 +89,4 @@ Link.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Link;
+export default withTranslation( 'link' )( Link );

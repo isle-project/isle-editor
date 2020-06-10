@@ -59,25 +59,25 @@ class LinkContextMenu extends Component {
 	render() {
 		let menuItems = [
 			<MenuItem key={0} onClick={this.copyToClipboard} >
-				Copy link
+				{this.props.t('copy-link')}
 			</MenuItem>
 		];
 		if ( this.props.target === '_blank' ) {
 			menuItems.push(
 				<MenuItem key={1} onClick={this.openInTab} >
-					Open link in new tab
+					{this.props.t('open-link-tab')}
 				</MenuItem>
 			);
 			menuItems.push(
 				<MenuItem key={2} onClick={this.openInWindow} >
-					Open link in new window
+					{this.props.t('open-link-window')}
 				</MenuItem>
 			);
 		} else {
 			menuItems = [];
 		}
 		menuItems.push( <MenuItem key={3} onClick={this.textToSpeech} >
-			Read aloud
+			{this.props.t('read-aloud')}
 		</MenuItem> );
 		return ( <ContextMenu
 			id={`${this.props.url}-context-menu`}
