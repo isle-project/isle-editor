@@ -2,9 +2,11 @@
 
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
 import SessionContext from 'session/context.js';
+import './load_translations.js';
 
 
 // FUNCTIONS //
@@ -64,7 +66,7 @@ class Bibliography extends Component {
 				const title = item.title ? <i>{item.title}. </i> : '';
 				const publisher = item.publisher ? `${item.publisher}, ` : '';
 				const address = item.address ? `${item.address}, ` : '';
-				const edition = item.edition ? `${item.edition} edition, ` : '';
+				const edition = item.edition ? `${item.edition} ${this.props.t('edition')}, ` : '';
 				const month = item.month ? `${item.month} ` : '';
 				const year = item.year ? `${item.year}.` : '';
 				let val = <span>{author} {title}{publisher}{address}{edition}{month}{year}</span>;
@@ -74,7 +76,7 @@ class Bibliography extends Component {
 		}
 		return (
 			<Fragment>
-				{this.props.title ? <h2>{this.props.title}</h2> : null}
+				{this.props.title ? <h2>{this.props.title}</h2> : <h2>{this.props.t('references')}</h2>}
 				<ol>
 					{out}
 				</ol>
@@ -91,7 +93,7 @@ Bibliography.propTypes = {
 };
 
 Bibliography.defaultProps = {
-	title: 'References'
+	title: null
 };
 
 Bibliography.contextType = SessionContext;
@@ -99,4 +101,4 @@ Bibliography.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Bibliography;
+export default withTranslation( 'bibliography' )( Bibliography );
