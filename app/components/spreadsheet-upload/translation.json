@@ -1,0 +1,25 @@
+{
+	"DE": {
+		"csv-upload-prompt": "Bitte laden Sie einen Datensatz hoch (CSV-Format)",
+		"drop-file": "Datei hier ablegen",
+		"error-message": "Der folgende Fehler wurde beim Versuch, die Datei zu lesen, festgestellt",
+		"error-title": "Could not read file.",
+		"first-row-names": "Erste Reihe enthält Variablennamen",
+		"no-csv": "Keine CSV-Datei.",
+		"no-csv-message": "Bei der bereitgestellten Datei handelt es sich nicht um eine CSV-Datei.",
+		"title": "Datei-Upload"
+	},
+	"EN": {
+		"csv-upload-prompt": "Please upload a data set (CSV format)",
+		"drop-file": "Drop file here",
+		"error-message": "The following error was encountered while trying to read the file",
+		"error-title": "Konnte Datei nicht lesen.",
+		"first-row-names": "First row contains variable names",
+		"no-csv": "No CSV file.",
+		"no-csv-message": "The supplied file is not a CSV file.",
+		"title": "File Upload"
+	},
+	"ES": {
+
+	}
+}

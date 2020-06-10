@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import parse from 'csv-parse';
@@ -11,6 +12,7 @@ import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
 import SessionContext from 'session/context.js';
 import CheckboxInput from 'components/input/checkbox';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -91,8 +93,8 @@ class SpreadsheetUpload extends Component {
 			if ( err ) {
 				const session = this.context;
 				session.addNotification({
-					title: 'Could not read file.',
-					message: `The following error was encountered while trying to read the file:${err.message}`,
+					title: this.props.t('error-title'),
+					message: `${this.props.t('error-message')}: ${err.message}`,
 					level: 'error',
 					position: 'tr'
 				});
@@ -131,8 +133,8 @@ class SpreadsheetUpload extends Component {
 			if ( mimeType !== 'text/csv' ) {
 				const session = this.context;
 				return session.addNotification({
-					title: 'No CSV file.',
-					message: 'The supplied file is not a CSV file.',
+					title: this.props.t('no-csv'),
+					message: this.props.t('no-csv-message'),
 					level: 'error',
 					position: 'tr'
 				});
@@ -146,10 +148,10 @@ class SpreadsheetUpload extends Component {
 		const completed = round( this.state.percentCompleted * 100.0 );
 		return ( <Card>
 			<Card.Header as="h2">
-				{this.props.title}
+				{this.props.title || this.props.t('title')}
 			</Card.Header>
 			<Card.Body>
-				<label htmlFor="CSVUpload">Please upload a data set (CSV format):</label>
+				<label htmlFor="CSVUpload">{this.props.t('csv-upload-prompt')}:</label>
 				<input
 					id="CSVUpload"
 					type="file"
@@ -172,10 +174,10 @@ class SpreadsheetUpload extends Component {
 						padding: '10px'
 					}}
 				>
-					<span>Drop file here</span>
+					<span>{this.props.t('drop-file')}</span>
 				</div>
 				<CheckboxInput
-					legend="First row contains variable names"
+					legend={this.props.t('first-row-names')}
 					defaultValue={true}
 					onChange={( value ) => {
 						this.setState({
@@ -193,11 +195,11 @@ class SpreadsheetUpload extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 SpreadsheetUpload.defaultProps = {
 	onUpload() {},
-	title: 'File Upload'
+	title: null
 };
 
 SpreadsheetUpload.propTypes = {
@@ -210,4 +212,4 @@ SpreadsheetUpload.contextType = SessionContext;
 
 // EXPORTS //
 
-export default SpreadsheetUpload;
+export default withTranslation( 'spreadsheet-upload' )( SpreadsheetUpload );
