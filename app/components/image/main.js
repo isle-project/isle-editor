@@ -2,11 +2,13 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import randomstring from 'utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
+import './load_translations.js';
 import './image.css';
 
 
@@ -76,19 +78,31 @@ class Image extends Component {
 					</Modal.Body>
 					<Modal.Footer>
 						{ this.props.body ?
-							<CopyToClipboard text={this.props.body} onCopy={this.closeModal}><Button variant="secondary">Copy SVG</Button></CopyToClipboard> : null
+							<CopyToClipboard text={this.props.body} onCopy={this.closeModal}>
+								<Button variant="secondary">
+									{this.props.t('copy-svg')}
+								</Button>
+							</CopyToClipboard> : null
 						}
 						{ this.props.onShare ?
 							<Button variant="secondary" onClick={() => {
 								this.props.onShare( this.props.src );
 								this.closeModal();
 							}}>
-								Share
+								{this.props.t('share')}
 							</Button> : null
 						}
-						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={this.closeModal}><Button variant="secondary">Copy Link</Button></CopyToClipboard>
-						<Button variant="secondary" href={this.props.src} download="image.png" >Save Image</Button>
-						<Button variant="secondary" onClick={this.closeModal}>Close</Button>
+						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={this.closeModal}>
+							<Button variant="secondary">
+								{this.props.t('copy-link')}
+							</Button>
+						</CopyToClipboard>
+						<Button variant="secondary" href={this.props.src} download="image.png" >
+							{this.props.t('save-image')}
+						</Button>
+						<Button variant="secondary" onClick={this.closeModal}>
+							{this.props.t('close')}
+						</Button>
 					</Modal.Footer>
 				</Modal>
 			</Fragment>
@@ -166,4 +180,4 @@ Image.defaultProps = {
 
 // EXPORTS //
 
-export default Image;
+export default withTranslation( 'image' )( Image );
