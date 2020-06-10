@@ -14,9 +14,10 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import logger from 'debug';
-import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ReactTable from 'react-table';
 import unique from 'uniq';
 import stringify from 'csv-stringify';
@@ -50,6 +51,7 @@ import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
 import FilterInputRange from './input_range.js';
+import './load_translations.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -78,7 +80,7 @@ function comparer( a, b ) {
 	return a.localeCompare( b, void 0, LOCALE_COMPARE_OPTS );
 }
 
-function createDescriptions( descriptions ) {
+function createDescriptions( descriptions, t ) {
 	const strTable = [];
 	for ( let varName in descriptions ) {
 		if ( hasOwnProp( descriptions, varName ) ) {
@@ -89,7 +91,7 @@ function createDescriptions( descriptions ) {
 	}
 	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
 		<thead>
-			<tr><th>Name</th><th>Description</th></tr>
+			<tr><th>{t('name')}</th><th>{t('description')}</th></tr>
 		</thead>
 		<tbody>
 		{strTable}
@@ -169,7 +171,7 @@ function createColumns( props, state ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable && !contains( props.undeletableVars, key ) ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-					<Tooltip placement="left" tooltip="Rename variable" >
+					<Tooltip placement="left" tooltip={this.props.t('rename-variable')} >
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
@@ -194,7 +196,7 @@ function createColumns( props, state ) {
 						/>
 					</span>
 				</Tooltip>
-				<Tooltip placement="left" tooltip="Remove variable" >
+				<Tooltip placement="left" tooltip={this.props.t('remove-variable')} >
 					<button className="fa fa-times delete-button" onClick={( evt ) => {
 						evt.stopPropagation();
 						props.onColumnDelete( key );
@@ -261,7 +263,7 @@ function createColumns( props, state ) {
 							options={uniqueValues}
 							menuPlacement="auto"
 							multi
-							placeholder="Show all"
+							placeholder={this.props.t('show-all')}
 							components={{
 								DropdownIndicator: CustomIndicator,
 								MultiValueLabel: props => {
@@ -269,7 +271,7 @@ function createColumns( props, state ) {
 										onChange( uniqueValues.filter( x => x !== props.children ) );
 									};
 									return (
-										<Tooltip tooltip="Select all others" placement="bottom" >
+										<Tooltip tooltip={this.props.t('select-others')} placement="bottom" >
 											<span
 												role="button" tabIndex={0}
 												onClick={invertSelection}
@@ -572,8 +574,8 @@ class DataTable extends Component {
 		}, ( err, output ) => {
 			if ( err ) {
 				return session.addNotification({
-					title: 'Error encountered',
-					message: 'Encountered an error while creating CSV: '+err.message,
+					title: this.props.t('error-encountered'),
+					message: this.props.t('error-csv')+err.message,
 					level: 'error',
 					position: 'tl'
 				});
@@ -591,7 +593,7 @@ class DataTable extends Component {
 		debug( 'Rendering component' );
 		let { selectedRows, rows, dataInfo } = this.state;
 		if ( !rows ) {
-			return <Alert variant="danger">No data provided.</Alert>;
+			return <Alert variant="danger">{this.props.t('no-data')}</Alert>;
 		}
 		let modal = null;
 		if ( this.state.showVarModal ) {
@@ -603,11 +605,11 @@ class DataTable extends Component {
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						Variables
+						{this.props.t('variables')}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{createDescriptions( dataInfo.variables )}
+					{createDescriptions( dataInfo.variables, this.props.t )}
 				</Modal.Body>
 			</Modal>;
 		} else if ( this.state.showInfo ) {
@@ -622,7 +624,7 @@ class DataTable extends Component {
 				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{dataInfo.name} Description
+						{dataInfo.name} {this.props.t('description')}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
@@ -690,7 +692,7 @@ class DataTable extends Component {
 		}
 		if ( this.props.showRemove ) {
 			cols.push({
-				Header: 'Remove',
+				Header: this.props.t('remove'),
 				accessor: 'remove',
 				Cell: this.renderCheckboxRemovable,
 				filterable: false
@@ -704,7 +706,7 @@ class DataTable extends Component {
 			resizable: false,
 			width: 30
 		});
-		const saveButton = <Tooltip placement="bottom" tooltip="Download data" >
+		const saveButton = <Tooltip placement="bottom" tooltip={this.props.t('download-data')} >
 			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} >
 				<i className="fas fa-download"></i>
 			</Button>
@@ -713,7 +715,7 @@ class DataTable extends Component {
 			<Fragment>
 				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
 					<div className='data-table-header-wrapper'>
-						<Tooltip placement="bottom" tooltip="Open dataset description" show={dataInfo.info.length > 0} >
+						<Tooltip placement="bottom" tooltip={this.props.t('open-description')} show={dataInfo.info.length > 0} >
 							<Button
 								variant="light"
 								disabled={dataInfo.info.length === 0}
@@ -724,7 +726,7 @@ class DataTable extends Component {
 								}}
 							>
 								<h4 className='title-button-h4'>
-									{dataInfo.name ? dataInfo.name : 'Data'}
+									{dataInfo.name ? dataInfo.name : this.props.t('data')}
 								</h4>
 							</Button>
 						</Tooltip>
@@ -732,23 +734,23 @@ class DataTable extends Component {
 						<TutorialButton id={this.id} session={this.context} onTutorialCompletion={this.props.onTutorialCompletion} />
 					</div>
 					<ButtonToolbar className="data-table-header-toolbar">
-						{ dataInfo.variables ? <Tooltip placement="right" tooltip="Open variable descriptions" ><Button
+						{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('variable-descriptions-tooltip')} ><Button
 							onClick={this.showDescriptions}
 							variant="light"
 							size="xsmall"
 							className="variable-descriptions-button"
 						>
-							Variable Descriptions
+							{this.props.t('variable-descriptions')}
 						</Button></Tooltip> : null }
 						{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
-						<Tooltip placement="left" tooltip="Reset filters and sorting" >
+						<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
 							<Button
 								onClick={this.reset}
 								variant="light"
 								size="xsmall"
 								className="reset-button"
 							>
-								Reset Table Display
+								{this.props.t('reset-display')}
 							</Button>
 						</Tooltip> : null }
 					</ButtonToolbar>
@@ -797,7 +799,7 @@ class DataTable extends Component {
 							return out;
 						}}
 					/>
-					<label className="label-number-rows"><i>Number of rows: {selectedRows} (total: {rows.length})</i></label>
+					<label className="label-number-rows"><i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i></label>
 				</div>
 				{modal}
 				{this.state.showSaveModal ?
@@ -807,21 +809,21 @@ class DataTable extends Component {
 					>
 						<Modal.Header closeButton>
 							<Modal.Title>
-								Download Data
+								{this.props.t('download-data')}
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
-							Download the current dataset in either the CSV or JSON file formats.
+							{this.props.t('download-data-body')}
 						</Modal.Body>
 						<Modal.Footer>
 							<Button onClick={() => {
 								this.saveCSV();
 								this.toggleSaveModal();
-							}} >Save CSV</Button>
+							}} >{this.props.t('save-csv')}</Button>
 							<Button onClick={() => {
 								this.saveJSON();
 								this.toggleSaveModal();
-							}} >Save JSON</Button>
+							}} >{this.props.t('save-json')}</Button>
 						</Modal.Footer>
 					</Modal> : null }
 			</Fragment>
@@ -887,5 +889,5 @@ DataTable.contextType = SessionContext;
 
 // EXPORTS //
 
-export default DataTable;
+export default withTranslation( 'data-table' )( DataTable );
 
