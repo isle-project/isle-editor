@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import isNull from '@stdlib/assert/is-null';
@@ -15,6 +16,7 @@ import SliderInput from 'components/input/slider';
 import TextInput from 'components/input/text';
 import SessionContext from 'session/context.js';
 import { DASHBOARD_CLICK_GENERATE } from 'constants/actions.js';
+import './load_translations.js';
 import './dashboard.css';
 
 
@@ -179,7 +181,7 @@ class Dashboard extends Component {
 							disabled={this.props.disabled}
 							onClick={this.handleClick}
 							block
-						>{this.props.label}</Button> :
+						>{this.props.label || this.props.t('generate')}</Button> :
 						<span />
 					}
 				</Card.Body>
@@ -196,7 +198,7 @@ Dashboard.defaultProps = {
 	autoUpdate: false,
 	description: '',
 	disabled: false,
-	label: 'Generate',
+	label: null,
 	maxWidth: 600,
 	style: {},
 	onGenerate() {},
@@ -223,4 +225,4 @@ Dashboard.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Dashboard;
+export default withTranslation( 'dashboard' )( Dashboard );
