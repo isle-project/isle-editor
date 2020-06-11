@@ -2,7 +2,7 @@
 
 // MODULES //
 
-import React, { Component, Fragment, lazy, Suspense } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Alert from 'react-bootstrap/Alert';
@@ -45,6 +45,7 @@ import Gate from 'components/gate';
 import RealtimeMetrics from 'components/metrics/realtime';
 import Plotly from 'components/plotly';
 import OverlayTrigger from 'components/overlay-trigger';
+import SpreadsheetUpload from 'components/spreadsheet-upload';
 import RPlot from 'components/r/plot';
 import DataTable from 'components/data-table';
 import SessionContext from 'session/context.js';
@@ -58,7 +59,6 @@ import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import './data_explorer.css';
-const SpreadsheetUpload = lazy( () => import( 'components/spreadsheet-upload' ) );
 
 
 // MODEL COMPONENTS //
@@ -802,12 +802,10 @@ class DataExplorer extends Component {
 		debug( 'Render component...' );
 		if ( !this.state.data ) {
 			return (
-				<Suspense fallback={<div>Loading...</div>} >
-					<SpreadsheetUpload
-						title="Data Explorer"
-						onUpload={this.onFileUpload}
-					/>
-				</Suspense>
+				<SpreadsheetUpload
+					title="Data Explorer"
+					onUpload={this.onFileUpload}
+				/>
 			);
 		}
 		if ( !this.state.ready ) {
