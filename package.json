@@ -115,7 +115,7 @@
     "@babel/runtime": "^7.10.0",
     "@iktakahiro/markdown-it-katex": "^3.1.0",
     "@stdlib/stdlib": "0.0.91",
-    "acorn": "^7.3.0",
+    "acorn": "^7.3.1",
     "ajv": "^6.12.2",
     "ansi-to-react": "6.0.7",
     "archiver": "^4.0.1",
