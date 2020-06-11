@@ -157,7 +157,7 @@
         "name": "title",
         "type": "string",
         "description": "heading to be displayed in front of references",
-        "default": "References"
+        "default": null
       }
     ],
     "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."
@@ -549,7 +549,7 @@
         "name": "label",
         "type": "string",
         "description": "button label",
-        "default": "Generate"
+        "default": null
       },
       {
         "name": "maxWidth",
@@ -1009,19 +1009,19 @@
         "name": "confusedMsg",
         "type": "string",
         "description": "message to be displayed in tooltip for confused button",
-        "default": "This is not clear to me."
+        "default": null
       },
       {
         "name": "feedbackMsg",
         "type": "string",
         "description": "message to be displayed in tooltip for detailed feedback button",
-        "default": "I have feedback."
+        "default": null
       },
       {
         "name": "understoodMsg",
         "type": "string",
         "description": "message to be displayed in tooltip for understood button",
-        "default": "Makes sense."
+        "default": null
       },
       {
         "name": "customFeedback",
@@ -2387,12 +2387,20 @@
     "props": [
       {
         "name": "data",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "data object with keys correspond to variable names and values holding the values of respective variables"
       },
       {
         "name": "hidePopulationStdev",
         "type": "boolean",
+        "description": "hide display of population standard deviation",
         "default": false
+      },
+      {
+        "name": "samples",
+        "type": "(array<number>|number)",
+        "description": "array of numbers or a single numbers denoting the sample sizes that can be drawn",
+        "default": 25
       },
       {
         "name": "populationProbabilities",
@@ -2401,7 +2409,8 @@
       },
       {
         "name": "variables",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "names of variables that can be sampled from"
       }
     ],
     "description": "A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set."
@@ -3807,13 +3816,13 @@
         "name": "failureMsg",
         "type": "string",
         "description": "message to be displayed when student submits a wrong answer",
-        "default": "Not quite, try again!"
+        "default": null
       },
       {
         "name": "successMsg",
         "type": "string",
         "description": "message to be displayed when student submits the correct answer",
-        "default": "That's the correct ordering!"
+        "default": null
       },
       {
         "name": "disableSubmitNotification",
@@ -3930,22 +3939,25 @@
       {
         "name": "hideTooltip",
         "type": "string",
-        "default": "Close"
+        "description": "tooltip displayed over the hide button",
+        "default": null
       },
       {
         "name": "bodyStyle",
         "type": "object",
+        "description": "CSS inline styles for body",
         "default": {}
       },
       {
         "name": "footerStyle",
         "type": "object",
+        "description": "CSS inline styles for footer",
         "default": {}
       },
       {
         "name": "style",
         "type": "object",
-        "description": "CSS inline styles",
+        "description": "CSS inline styles for container",
         "default": {}
       },
       {
@@ -4861,7 +4873,7 @@
         "name": "message",
         "type": "string",
         "description": "message to be displayed when content is hidden",
-        "default": "Content hidden by instructor"
+        "default": null
       },
       {
         "name": "show",
@@ -5080,12 +5092,12 @@
       {
         "name": "failureMsg",
         "type": "string",
-        "default": "Not quite, try again!"
+        "default": null
       },
       {
         "name": "successMsg",
         "type": "string",
-        "default": "That's the correct answer!"
+        "default": null
       },
       {
         "name": "chat",
