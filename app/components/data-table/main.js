@@ -157,6 +157,7 @@ function adjustWidth( event ) {
 
 function createColumns( props, state ) {
 	debug( 'Create columns...' );
+	const t = props.t;
 	const columns = state.keys.filter( key => key !== 'id' ).map( ( key, idx ) => {
 		let header = key;
 		const hasDescription = props.dataInfo &&
@@ -164,14 +165,14 @@ function createColumns( props, state ) {
 			props.dataInfo.variables[ key ];
 		const out = {
 			id: key,
-			accessor: ( d ) => isNull( d[ key ] ) ? 'NA' : d[ key ],
+			accessor: ( d ) => isNull( d[ key ] ) ? 'NA' : String( d[ key ] ),
 			minWidth: hasDescription ? 125 : 150
 		};
 		if ( hasDescription ) {
 			header = <ColumnTitle title={key} tooltip={props.dataInfo.variables[ key ]} />;
 		} else if ( props.deletable && !contains( props.undeletableVars, key ) ) {
 			header = <div style={{ backgroundColor: 'papayawhip' }}>
-					<Tooltip placement="left" tooltip={props.t('rename-variable')} >
+					<Tooltip placement="left" tooltip={t('rename-variable')} >
 					<span>
 						<input type="text" className="header-text-input"
 							style={{
@@ -196,7 +197,7 @@ function createColumns( props, state ) {
 						/>
 					</span>
 				</Tooltip>
-				<Tooltip placement="left" tooltip={props.t('remove-variable')} >
+				<Tooltip placement="left" tooltip={t('remove-variable')} >
 					<button className="fa fa-times delete-button" onClick={( evt ) => {
 						evt.stopPropagation();
 						props.onColumnDelete( key );
@@ -263,7 +264,7 @@ function createColumns( props, state ) {
 							options={uniqueValues}
 							menuPlacement="auto"
 							multi
-							placeholder={props.t('show-all')}
+							placeholder={t('show-all')}
 							components={{
 								DropdownIndicator: CustomIndicator,
 								MultiValueLabel: props => {
@@ -271,7 +272,7 @@ function createColumns( props, state ) {
 										onChange( uniqueValues.filter( x => x !== props.children ) );
 									};
 									return (
-										<Tooltip tooltip={props.t('select-others')} placement="bottom" >
+										<Tooltip tooltip={t('select-others')} placement="bottom" >
 											<span
 												role="button" tabIndex={0}
 												onClick={invertSelection}
