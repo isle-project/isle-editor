@@ -467,7 +467,12 @@ class Tokenizer {
 				current += char;
 			}
 			if ( !innerJSXStartTag && isQuotationMark( char ) && prevChar !== '\\' ) {
-				inString = !inString;
+				if ( !inString ) {
+					this._stringOpener = char;
+					inString = true;
+				} else if ( char === this._stringOpener ) {
+					inString = false;
+				}
 			}
 			if ( braceLevel === 0 ) {
 				const tag = tagName( inner, i+1 );
