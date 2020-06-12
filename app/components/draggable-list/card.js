@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import flow from 'lodash.flow';
 
 
 // VARIABLES //
@@ -72,6 +71,18 @@ const cardTarget = {
 };
 
 
+// FUNCTIONS //
+
+const sourceCollect = ( connect, monitor ) => ({
+	connectDragSource: connect.dragSource(),
+	isDragging: monitor.isDragging()
+});
+
+const targetCollect = connect => ({
+	connectDropTarget: connect.dropTarget()
+});
+
+
 // MAIN //
 
 class Card extends Component {
@@ -102,12 +113,6 @@ Card.propTypes = {
 
 // EXPORTS //
 
-export default flow([
-	DragSource( 'card', cardSource, ( connect, monitor ) => ({
-		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
-	}) ),
-	DropTarget( 'card', cardTarget, connect => ({
-		connectDropTarget: connect.dropTarget()
-	}) )
-])( Card );
+export default DragSource( 'card', cardSource, sourceCollect )(
+	DropTarget( 'card', cardTarget, targetCollect )( Card )
+);
