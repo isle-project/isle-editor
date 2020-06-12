@@ -32,7 +32,6 @@ import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';

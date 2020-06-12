@@ -9,7 +9,6 @@ import CreatableSelect from 'react-select/creatable';
 import { components } from 'react-select';
 import Button from 'react-bootstrap/Button';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import objectKeys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import ceil from '@stdlib/math/base/special/ceil';

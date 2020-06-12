@@ -8,7 +8,6 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import innerText from 'react-innertext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import objectKeys from '@stdlib/utils/keys';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
