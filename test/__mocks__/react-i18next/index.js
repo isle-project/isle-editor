@@ -61,7 +61,7 @@ module.exports = {
 	// this mock makes sure any components using the translate HoC receive the t function as a prop
 	withTranslation: () => Component => props => <Component t={k => k} {...props} />,
 	Trans: ({ children }) => renderNodes(children),
-	Translation: ({ children }) => children(k => k, { i18n: {} }),
+	Translation: ({ children }) => children(k => k, { i18n: {}}),
 	useTranslation: () => useMock,
 
 	// mock if needed
