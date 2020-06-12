@@ -92,18 +92,11 @@ class ResponseVisualizer extends Component {
 			selectedAction: null,
 			period: null
 		};
-
-		if ( props.info && props.id && !props.noSessionRegistration ) {
-			debug( `Register response visualizer for ${props.id} in session:` );
-			context.responseVisualizers[ props.id ] = {
-				type: props.info,
-				ref: this
-			};
-		}
 	}
 
 	componentDidMount() {
 		const session = this.context;
+		this.registerInSession();
 		this.addSessionActions();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
@@ -140,6 +133,33 @@ class ResponseVisualizer extends Component {
 	componentWillUnmount() {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
+		}
+	}
+
+	registerInSession() {
+		const props = this.props;
+		const session = this.context;
+		if ( props.info && props.id && !props.noSessionRegistration ) {
+			debug( `Register response visualizer for ${props.id} in session:` );
+			session.responseVisualizers[ props.id ] = {
+				type: props.info,
+				ref: this
+			};
+			const ids = session.responseVisualizerIds;
+			ids.push( props.id );
+			ids.sort( ( a, b ) => {
+				a = document.getElementById( `${a}_response_visualizer` );
+				b = document.getElementById( `${b}_response_visualizer` );
+				if ( a === b ) {
+					return 0;
+				}
+				const comp = a.compareDocumentPosition( b );
+				if ( comp & 2 ) {
+					// `b` comes before `a`
+					return 1;
+				}
+				return -1;
+			});
 		}
 	}
 
@@ -429,41 +449,43 @@ class ResponseVisualizer extends Component {
 		focusRate *= 100.0;
 		const buttonLabel = this.props.buttonLabel || this.props.t('actions');
 		return (
-			<Gate owner>
+			<div id={`${this.props.id}_response_visualizer`} >
+				<Gate owner>
 				{this.renderFullscreenModal()}
-				<ButtonGroup id={`${this.props.id}_response_visualizer`} size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
-					<Tooltip
-						placement='top'
-						tooltip={this.props.showID ? <span>
-							{this.props.t('open-tooltip', { label: uncapitalize( buttonLabel ), id: this.props.id })}
-						</span> : null}
-					>
-						<Button
-							onClick={this.toggleActions}
-							style={{ ...this.props.buttonStyle }}
-							variant={this.props.variant}
-							size="sm"
-							id={`${this.props.id}_answers_button`}
+					<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
+						<Tooltip
+							placement='top'
+							tooltip={this.props.showID ? <span>
+								{this.props.t('open-tooltip', { label: uncapitalize( buttonLabel ), id: this.props.id })}
+							</span> : null}
 						>
-							<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{buttonLabel}</span>
-							<Badge variant="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
-						</Button>
-					</Tooltip>
-					<OverlayTrigger
-						trigger="hover"
-						placement="top"
-						overlay={this.renderTooltip()}
-					>
-						<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
-							<ProgressBar variant="info" now={infoRate} max={100} min={0} />
-							<ProgressBar variant="warning" now={focusRate} max={100} min={0} />
-							<ProgressBar variant="success" now={successRate} max={100} min={0} />
-							<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
-						</ProgressBar>
-					</OverlayTrigger>
-				</ButtonGroup>
+							<Button
+								onClick={this.toggleActions}
+								style={{ ...this.props.buttonStyle }}
+								variant={this.props.variant}
+								size="sm"
+								id={`${this.props.id}_answers_button`}
+							>
+								<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{buttonLabel}</span>
+								<Badge variant="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
+							</Button>
+						</Tooltip>
+						<OverlayTrigger
+							trigger="hover"
+							placement="top"
+							overlay={this.renderTooltip()}
+						>
+							<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
+								<ProgressBar variant="info" now={infoRate} max={100} min={0} />
+								<ProgressBar variant="warning" now={focusRate} max={100} min={0} />
+								<ProgressBar variant="success" now={successRate} max={100} min={0} />
+								<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
+							</ProgressBar>
+						</OverlayTrigger>
+					</ButtonGroup>
+				</Gate>
 				{this.renderDeleteModal()}
-			</Gate>
+			</div>
 		);
 	}
 }

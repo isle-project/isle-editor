@@ -57,7 +57,7 @@ class ResponseVisualizers extends Component {
 	componentDidMount() {
 		const session = this.props.session;
 		const visualizers = session.responseVisualizers;
-		const ids = keys( visualizers );
+		const ids = session.responseVisualizerIds;
 
 		const means = {};
 		for ( let i = 0; i < ids.length; i++ ) {
@@ -153,19 +153,7 @@ class ResponseVisualizers extends Component {
 		}
 		const visualizers = session.responseVisualizers;
 		const { means } = this.state;
-		const ids = keys( visualizers );
-		ids.sort( ( a, b ) => {
-			if ( means[ a ] && means[ b ] ) {
-				const meanA = means[ a ]();
-				const meanB = means[ b ]();
-				if ( meanA && meanB ) {
-					return meanA - meanB;
-				}
-			}
-			const na = visualizers[ a ].ref.state.nInfo;
-			const nb = visualizers[ b ].ref.state.nInfo;
-			return nb - na;
-		});
+		const ids = session.responseVisualizerIds;
 		const list = new Array( ids.length );
 		const currentTime = new Date() - this.props.session.startTime;
 		let overallProgress = 0;

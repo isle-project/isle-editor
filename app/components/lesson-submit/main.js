@@ -141,7 +141,7 @@ class LessonSubmit extends Component {
 			style: 'elapsed'
 		});
 		if ( session.currentUserActions ) {
-			const ids = objectKeys( session.responseVisualizers );
+			const ids = session.responseVisualizerIds;
 			for ( let i = 0; i < ids.length; i++ ) {
 				const visualizer = session.responseVisualizers[ ids[ i ] ];
 				doc.content.push({

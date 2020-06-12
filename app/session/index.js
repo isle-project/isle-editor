@@ -172,6 +172,7 @@ class Session {
 
 		// Registered response visualizers:
 		this.responseVisualizers = {};
+		this.responseVisualizerIds = [];
 
 		// Presentation mode for the owners (hiding owner elements)
 		this.presentationMode = false;
@@ -1657,7 +1658,7 @@ class Session {
 		) {
 			return;
 		}
-		const ids = objectKeys( this.responseVisualizers );
+		const ids = this.responseVisualizerIds;
 		if ( !this.unfinished ) {
 			this.unfinished = ids.slice();
 		}

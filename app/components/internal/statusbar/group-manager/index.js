@@ -114,7 +114,7 @@ function countStudents( userList, selectedCohort ) {
 
 function extractQuestions( session ) {
 	const questions = [];
-	const keys = objectKeys( session.responseVisualizers );
+	const keys = session.responseVisualizerIds;
 	for ( let i = 0; i < keys.length; i++ ) {
 		const id = keys[ i ];
 		let question = session.responseVisualizers[ id ].ref.props.data.question;
