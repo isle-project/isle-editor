@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
@@ -10,6 +11,7 @@ import Gate from 'components/gate';
 import SessionContext from 'session/context.js';
 import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -113,7 +115,7 @@ class ChatButton extends Component {
 		if ( this.props.buttonLabel ) {
 			label = this.props.buttonLabel;
 		} else {
-			label = this.state.opened ? 'Leave Chat' : 'Join Chat';
+			label = this.state.opened ? this.props.t('leave-chat') : this.props.t('join-chat');
 		}
 		if ( this.props.buttonVariant ) {
 			variant = this.props.buttonVariant;
@@ -126,7 +128,7 @@ class ChatButton extends Component {
 			size={this.props.size}
 			onClick={this.handleClick}
 			style={this.props.style}
-			aria-label="Toggle Chat"
+			aria-label={this.props.t('toggle-chat')}
 		>
 			<span style={{ pointerEvents: 'none' }} >
 				{label}
@@ -145,7 +147,9 @@ class ChatButton extends Component {
 		if ( this.props.tooltip ) {
 			tooltip = this.props.tooltip;
 		} else {
-			tooltip = `${this.state.opened ? 'Leave' : 'Join'} chat with ID ${this.props.for}`;
+			tooltip = this.state.opened ?
+				this.props.t( 'leave-chat-id', { id: this.props.for }) :
+				this.props.t( 'join-chat-id', { id: this.props.for });
 		}
 		if ( this.props.showTooltip ) {
 			button = <Tooltip
@@ -198,4 +202,4 @@ ChatButton.contextType = SessionContext;
 
 // EXPORTS //
 
-export default ChatButton;
+export default withTranslation( 'chat-button' )( ChatButton );

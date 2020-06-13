@@ -1,0 +1,18 @@
+{
+	"DE": {
+		"join-chat": "Chat beitreten",
+		"join-chat-id": "Chat mit ID {{id}} beitreten",
+		"leave-chat": "Chat mit ID {{id}} verlassen",
+		"leave-chat-id": "Leave chat with ID {{id}}",
+		"toggle-chat": "Chat ein-/ausschalten"
+	},
+	"EN": {
+		"join-chat": "Join Chat",
+		"join-chat-id": "Join chat with ID {{id}}",
+		"leave-chat-id": "Leave chat with ID {{id}}",
+		"leave-chat": "Leave Chat",
+		"toggle-chat": "Toggle Chat"
+	},
+	"ES": {
+	}
+}
