@@ -33,7 +33,7 @@ class FullscreenButton extends Component {
 					<Tooltip
 						id="fullscreen_tooltip"
 						placement="bottom"
-						tooltip="Toggle Fullscreen"
+						tooltip={this.props.t('fullscreen-tooltip')}
 					>
 						<Button
 							variant="outline-secondary"
@@ -57,7 +57,7 @@ class FullscreenButton extends Component {
 				>
 					<Modal.Header closeButton>
 						<Modal.Title as="h1">
-							{this.props.header}
+							{this.props.header || this.props.t('fullscreen-header')}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
@@ -73,7 +73,9 @@ class FullscreenButton extends Component {
 					</Modal.Body>
 					<Modal.Footer>
 						{this.props.footer}
-						<Button onClick={this.toggleFullscreen}>Close</Button>
+						<Button onClick={this.toggleFullscreen}>
+							{this.props.t('close')}
+						</Button>
 					</Modal.Footer>
 				</Modal>
 			</Fragment>
@@ -92,7 +94,7 @@ FullscreenButton.propTypes = {
 
 FullscreenButton.defaultProps = {
 	className: null,
-	header: 'Fullscreen Display'
+	header: null
 };
 
 

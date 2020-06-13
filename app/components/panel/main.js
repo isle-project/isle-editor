@@ -74,6 +74,7 @@ class Wrapper extends Component {
 				body={this.props.children}
 				footer={this.props.footer}
 				className={this.props.className}
+				t={this.props.t}
 			/> : null }
 			{this.renderHeader()}
 			<Card.Body style={{
