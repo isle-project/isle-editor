@@ -405,4 +405,4 @@ Calculator.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Calculator );
+export default withTranslation( 'calculator' )( Calculator );
