@@ -260,6 +260,15 @@ class NumberQuestion extends Component {
 							</div> : null
 					}
 				</ButtonToolbar>
+				<ResponseVisualizer
+					buttonLabel={this.props.t('answers')} id={this.id}
+					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
+					style={{
+						position: 'absolute',
+						left: 120,
+						bottom: '0.75rem'
+					}}
+				/>
 				<TimedButton
 					className="submit-button"
 					variant="primary"
@@ -269,18 +278,12 @@ class NumberQuestion extends Component {
 				>
 					{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
 				</TimedButton>
-				<ResponseVisualizer
-					buttonLabel={this.props.t('answers')} id={this.id}
-					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
-					style={{ marginLeft: '6px' }}
-				/>
 				{ this.props.feedback ? <FeedbackButtons
-					vertical
 					id={this.id+'_feedback'}
 					style={{
 						position: 'absolute',
-						right: '4px',
-						bottom: '4px'
+						right: '1.1rem',
+						bottom: '1.2rem'
 					}}
 				/> : null }
 			</Panel>

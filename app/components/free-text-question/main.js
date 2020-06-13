@@ -279,6 +279,7 @@ class FreeTextQuestion extends Component {
 					data={{
 						question: this.props.question
 					}}
+					style={{ float: 'left' }}
 				/>
 				<ButtonToolbar className="free-text-question-toolbar" >
 					{ nHints > 0 ?
