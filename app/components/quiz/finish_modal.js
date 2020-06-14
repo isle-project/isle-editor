@@ -25,14 +25,14 @@ class FinishModal extends Component {
 			dialogClassName="modal-w30"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h4">Finish?</Modal.Title>
+				<Modal.Title as="h4">{this.props.t('finish')}?</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Are you sure you want to finish and jump to the end before answering all the questions?
+				{this.props.t('finish-prompt')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={this.clickHide} >Cancel</Button>
-				<Button variant="warning" onClick={this.handleClick} >Confirm</Button>
+				<Button variant="secondary" onClick={this.clickHide} >{this.props.t('cancel')}</Button>
+				<Button variant="warning" onClick={this.handleClick} >{this.props.t('confirm')}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pdfMake from 'pdfmake/build/pdfmake';
+import { withTranslation } from 'react-i18next';
 import innerText from 'react-innertext';
 import FormGroup from 'react-bootstrap/FormGroup';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -31,6 +32,7 @@ import generateUID from 'utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from 'constants/actions.js';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
+import './load_translations.js';
 import './quiz.css';
 
 
@@ -335,7 +337,7 @@ class Quiz extends Component {
 			const doc = {
 				content: [
 					{
-						text: `Answers for ${this.id}`,
+						text: this.props.t('answer-for', { id: this.id }),
 						style: 'header',
 						alignment: 'center'
 					}
@@ -345,7 +347,7 @@ class Quiz extends Component {
 			const session = this.context;
 			if ( !isEmptyObject( session.user ) ) {
 				doc.content.push({
-					text: `by ${session.user.name} (${session.user.email})`,
+					text: `${this.props.t('by')} ${session.user.name} (${session.user.email})`,
 					style: 'author'
 				});
 			}
@@ -364,7 +366,7 @@ class Quiz extends Component {
 					style: 'question'
 				});
 				doc.content.push({
-					text: 'Answer:',
+					text: `${this.props.t('answer')}:`,
 					style: 'boldTitle'
 				});
 				doc.content.push({
@@ -376,7 +378,7 @@ class Quiz extends Component {
 				});
 				if ( confidence ) {
 					doc.content.push({
-						text: 'Your confidence:',
+						text: `${this.props.t('your-confidence')}:`,
 						style: 'boldTitle'
 					});
 					doc.content.push({
@@ -384,7 +386,7 @@ class Quiz extends Component {
 					});
 				}
 				doc.content.push({
-					text: 'Solution:',
+					text: `${this.props.t('solution')}:`,
 					style: 'boldTitle'
 				});
 				doc.content.push({
@@ -398,7 +400,7 @@ class Quiz extends Component {
 	renderScoreboard() {
 		debug( 'Rendering scoreboard...' );
 		if ( !this.props.provideFeedback ) {
-			return <h3>You have finished the quiz.</h3>;
+			return <h3>{this.props.t('quiz-finished')}</h3>;
 		}
 		let answers = this.state.answers.slice();
 		for ( let i = 0; i < answers.length; i++ ) {
@@ -409,14 +411,14 @@ class Quiz extends Component {
 		answers.sort( ( a, b ) => a.counter > b.counter );
 		answers = answers.filter( x => isObject( x ) );
 		return ( <div>
-			<p>{ this.props.duration ? 'Your time is up. ' : 'You have finished the quiz. ' } Here is a summary of your answers:</p>
+			<p>{ this.props.duration ? this.props.t('time-up') : this.props.t('quiz-finished') }{this.props.t('summary-label')}:</p>
 			<table className="table table-bordered" >
 				<thead>
 					<tr>
-						<th>Question</th>
-						<th>Your answer</th>
-						<th>Solution</th>
-						{ this.props.confidence ? <th>Your Confidence</th> : null }
+						<th>{this.props.t('question')}</th>
+						<th>{this.props.t('your-answer')}</th>
+						<th>{this.props.t('solution')}</th>
+						{ this.props.confidence ? <th>{this.props.t('your-confidence')}</th> : null }
 					</tr>
 				</thead>
 				<tbody>
@@ -451,7 +453,9 @@ class Quiz extends Component {
 					})}
 				</tbody>
 			</table>
-			<Button onClick={this.downloadResponsesFactory( answers )} >Download PDF</Button>
+			<Button onClick={this.downloadResponsesFactory( answers )} >
+				{this.props.t('download-pdf')}
+			</Button>
 		</div> );
 	}
 
@@ -512,11 +516,13 @@ class Quiz extends Component {
 		return (
 			<Card className="center" style={{ width: '75%' }}>
 				<FormGroup className="center" >
-					<Form.Label>Please indicate how confident you are in your answer(s):</Form.Label>
+					<Form.Label>
+						{this.props.t('confidence-prompt')}
+					</Form.Label>
 					<br />
 					<Form.Check
 						type="radio"
-						label="Guessed"
+						label={this.props.t('guessed')}
 						checked={this.state.selectedConfidence === 'Guessed'}
 						value="Guessed"
 						inline
@@ -525,7 +531,7 @@ class Quiz extends Component {
 					{' '}
 					<Form.Check
 						type="radio"
-						label="Somewhat sure"
+						label={this.props.t('somewhat-sure')}
 						checked={this.state.selectedConfidence === 'Somewhat sure'}
 						value="Somewhat sure"
 						inline
@@ -534,7 +540,7 @@ class Quiz extends Component {
 					{' '}
 					<Form.Check
 						type="radio"
-						label="Confident"
+						label={this.props.t('confident')}
 						checked={this.state.selectedConfidence === 'Confident'}
 						value="Confident"
 						inline
@@ -573,13 +579,13 @@ class Quiz extends Component {
 			return ( <Card className="quiz">
 				<Card.Header>
 					<span>
-						<h3 style={{ display: 'inline-block' }}>Instructor View</h3>
+						<h3 style={{ display: 'inline-block' }}>{this.props.t('instructor-view')}</h3>
 						<Button
 							variant="secondary"
 							style={{ float: 'right' }}
 							onClick={this.toggleInstructorView}
 						>
-							Close Instructor View
+							{this.props.t('close-instructor-view')}
 						</Button>
 					</span>
 				</Card.Header>
@@ -587,7 +593,7 @@ class Quiz extends Component {
 					{this.state.questions.map( ( elem, idx ) => {
 						const id = this.state.questionIDs[ idx ];
 						return ( <div key={idx}>
-							<h3>Question {idx+1}:</h3>
+							<h3>{this.props.t('question')} {idx+1}:</h3>
 							{this.renderQuestion( elem, id )}
 							{this.renderFooterNodes( elem, idx )}
 						</div> );
@@ -598,7 +604,7 @@ class Quiz extends Component {
 					variant="secondary"
 					onClick={this.toggleInstructorView}
 				>
-					Close Instructor View
+					{this.props.t('close-instructor-view')}
 				</Button>
 			</Card> );
 		}
@@ -626,8 +632,8 @@ class Quiz extends Component {
 				<Card className="quiz" >
 					<Card.Header>
 						{ this.state.finished ?
-							<h3>Answer Summary</h3> :
-							<h3>Question {this.state.counter+1}/{this.state.count}</h3>
+							<h3>{this.props.t('answer-summary')}</h3> :
+							<h3>{this.props.t('question')} {this.state.counter+1}/{this.state.count}</h3>
 						}
 					</Card.Header>
 					<Card.Body>
@@ -648,7 +654,7 @@ class Quiz extends Component {
 											onClick={this.toggleInstructorView}
 											style={{ marginRight: 10 }}
 										>
-											Open Instructor View
+											{this.props.t('open-instructor-view')}
 										</Button>
 								</Gate>
 								{
@@ -660,7 +666,7 @@ class Quiz extends Component {
 										variant="secondary"
 										onClick={this.state.last ? this.handleFinishClick : this.toggleFinishModal}
 									>
-										{this.props.finishLabel}
+										{this.props.finishLabel || this.props.t('finish-label')}
 									</Button> : null
 								}
 								{ showButton && !this.state.last ?
@@ -670,7 +676,7 @@ class Quiz extends Component {
 										onClick={this.handleNextClick}
 										disabled={this.props.forceConfidence && !this.state.selectedConfidence && this.state.answerSelected}
 									>
-										{this.props.nextLabel}
+										{this.props.nextLabel || this.props.t('next-question')}
 									</Button> :
 									null
 								}
@@ -682,6 +688,7 @@ class Quiz extends Component {
 					show={this.state.showFinishModal}
 					onSubmit={this.handleFinishClick}
 					onHide={this.toggleFinishModal}
+					t={this.props.t}
 				/>
 			</Fragment>
 		);
@@ -716,10 +723,10 @@ Quiz.defaultProps = {
 	duration: null,
 	skippable: true,
 	footerNodes: [],
-	nextLabel: 'Next Question',
+	nextLabel: null,
 	provideFeedback: true,
 	showFinishButton: false,
-	finishLabel: 'Finish Quiz',
+	finishLabel: null,
 	onFinished() {},
 	onSubmit() {}
 };
@@ -729,4 +736,4 @@ Quiz.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Quiz;
+export default withTranslation( 'quiz' )( Quiz );
