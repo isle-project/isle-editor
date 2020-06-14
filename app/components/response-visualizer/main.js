@@ -134,6 +134,13 @@ class ResponseVisualizer extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
+
+		// Unregister from session:
+		const session = this.context;
+		delete session.responseVisualizers[ this.props.id ];
+		session.responseVisualizerIds = session.responseVisualizerIds.filter( x => {
+			return x !== this.props.id;
+		});
 	}
 
 	registerInSession() {
