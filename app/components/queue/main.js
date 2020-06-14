@@ -431,4 +431,4 @@ Queue.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Queue );
+export default withTranslation( 'queue' )( Queue );
