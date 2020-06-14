@@ -2,9 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import SessionContext from 'session/context.js';
+import './load_translations.js';
 import './question_form.css';
 
 
@@ -66,7 +68,9 @@ class QuestionForm extends Component {
 			className="question-form"
 		>
 			{children}
-			<Button disabled={disabled} onClick={this.handleClick}>{this.props.buttonLabel}</Button>
+			<Button disabled={disabled} onClick={this.handleClick}>
+				{this.props.buttonLabel || this.props.t('submit')}
+			</Button>
 		</div> );
 	}
 }
@@ -80,7 +84,7 @@ QuestionForm.propTypes = {
 };
 
 QuestionForm.defaultProps = {
-	buttonLabel: 'Submit',
+	buttonLabel: null,
 	onSubmit() {}
 };
 
@@ -89,4 +93,4 @@ QuestionForm.contextType = SessionContext;
 
 // EXPORTS //
 
-export default QuestionForm;
+export default withTranslation( 'question-form' )( QuestionForm );
