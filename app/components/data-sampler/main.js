@@ -74,7 +74,7 @@ class DataSampler extends Component {
 		}
 		const key = `${sampleIds[ 0 ]}-${sampleIds[ 1 ]}-${sampleIds[ 2 ]}`;
 		this.setState({
-			children: <div key={key} style={{ animation: 'rotate-in-ver 3s' }}>
+			children: <div key={key} style={{ animation: 'roll-in-left 1s' }}>
 				{this.props.children( sampleData )}
 			</div>
 		});
