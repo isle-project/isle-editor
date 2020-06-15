@@ -5,7 +5,7 @@
 		"answer-submitted": "Antwort eingereicht.",
 		"lower": "Untere",
 		"resubmit": "Erneut einreichen",
-		"solution": "Lösung:",
+		"solution": "Lösung",
 		"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
 		"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
 		"submission-message": "Deine Antwort wurde aufgezeichnet",
@@ -19,12 +19,12 @@
 		"lower": "Lower",
 		"resubmit": "Resubmit",
 		"resubmission-message": "You have successfully re-submitted your answer.",
-		"solution": "Solution:",
+		"solution": "Solution",
 		"submission-correct": "Congratulations, that is correct!",
 		"submission-incorrect": "Not quite. Compare your answer with the solution.",
 		"submission-message": "Your answer has been submitted.",
 		"submit": "Submit",
-		"upper": "Ipper"
+		"upper": "Upper"
 	},
 	"ES": {
 
