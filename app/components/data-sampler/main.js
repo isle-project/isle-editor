@@ -87,8 +87,8 @@ class DataSampler extends Component {
 					<NumberInput
 						legend="Sample size"
 						defaultValue={this.state.sampleSize}
-						min={1}
-						max={this.state.nobs}
+						min={this.props.minSampleSize}
+						max={this.props.maxSampleSize || this.state.nobs}
 						step={1}
 						onChange={this.handleNumberChange}
 					/>
@@ -106,11 +106,15 @@ class DataSampler extends Component {
 DataSampler.propTypes = {
 	children: PropTypes.func.isRequired,
 	data: PropTypes.object.isRequired,
-	sampleSize: PropTypes.number
+	sampleSize: PropTypes.number,
+	minSampleSize: PropTypes.number,
+	maxSampleSize: PropTypes.number
 };
 
 DataSampler.defaultProps = {
-	sampleSize: 50
+	sampleSize: 50,
+	minSampleSize: 1,
+	maxSampleSize: null
 };
 
 
