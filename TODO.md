@@ -18,12 +18,7 @@ Fall
 * Add save reminders in data explorer 
 * Log actions in instructor bar
 * Consider adding vertical gridlines to plots
-* QQPlot and model diagnostics for models
 
-Summer 2019
-===========
-
-* Close hints when moving to another question
 
 Spring 2020
 ===========
@@ -31,6 +26,13 @@ Spring 2020
 * Automatic email reminders for uncompleted labs
 * Allow expressions in number question input fields
 * Add option to toggle between counts or densities in histogram of data explorer
+
+
+Summer 2020
+===========
+
+* Add option for multiple correct answers to question types like number
+
 
 LONG-TERM
 ===
