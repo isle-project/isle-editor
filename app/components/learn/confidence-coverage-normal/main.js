@@ -211,14 +211,14 @@ class ConfidenceCoverageNormal extends Component {
 										defaultValue={1}
 										max={5}
 										min={-5}
-										step={1}
+										step={0.1}
 									/>
 									<NumberInput
 										legend="Standard deviation"
 										defaultValue={1}
 										max={20}
-										min={1}
-										step={1}
+										min={0.1}
+										step={0.1}
 									/>
 									<SliderInput
 										legend="Confidence level"
