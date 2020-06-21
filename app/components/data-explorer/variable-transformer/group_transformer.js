@@ -148,6 +148,11 @@ class GroupTransformer extends Component {
 						Create new variable
 					</Button>}
 					role="button" tabIndex={0}
+					bodyStyle={{
+						maxHeight: 'calc(100vh - 250px)',
+						overflowY: 'auto',
+						position: 'relative'
+					}}
 				>
 					<Row>
 						<Col>

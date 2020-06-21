@@ -297,6 +297,11 @@ class CategoricalTransformer extends Component {
 					footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
 						Create new variable
 					</Button>}
+					bodyStyle={{
+						maxHeight: 'calc(100vh - 250px)',
+						overflowY: 'auto',
+						position: 'relative'
+					}}
 					role="button" tabIndex={0}
 				>
 					<Row>
