@@ -298,7 +298,7 @@ class CategoricalTransformer extends Component {
 						Create new variable
 					</Button>}
 					bodyStyle={{
-						maxHeight: 'calc(100vh - 250px)',
+						maxHeight: 'calc(100vh - 200px)',
 						overflowY: 'auto',
 						position: 'relative'
 					}}

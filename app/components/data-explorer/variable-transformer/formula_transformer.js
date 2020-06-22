@@ -173,7 +173,7 @@ class FormulaTransformer extends Component {
 					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>}
 					role="button" tabIndex={0}
 					bodyStyle={{
-						maxHeight: 'calc(100vh - 250px)',
+						maxHeight: 'calc(100vh - 200px)',
 						overflowY: 'auto',
 						position: 'relative'
 					}}
