@@ -89,28 +89,32 @@ class Transformer extends Component {
 		);
 	}
 
+	handleActive = () => {
+		this.props.onActive( this.state.active );
+	}
+
 	toggleFormulaModal = () => {
 		this.setState({
 			active: this.state.active === 'formula' ? null : 'formula'
-		});
+		}, this.handleActive );
 	}
 
 	toggleBinModal = () => {
 		this.setState({
 			active: this.state.active === 'bin' ? null : 'bin'
-		});
+		}, this.handleActive );
 	}
 
 	toggleCategoricalModal = () => {
 		this.setState({
 			active: this.state.active === 'categorical' ? null : 'categorical'
-		});
+		}, this.handleActive );
 	}
 
 	toggleGroupModal = () => {
 		this.setState({
 			active: this.state.active === 'group' ? null : 'group'
-		});
+		}, this.handleActive );
 	}
 
 	render() {
@@ -174,6 +178,7 @@ class Transformer extends Component {
 
 Transformer.defaultProps = {
 	logAction() {},
+	onActive() {},
 	onGenerate() {},
 	defaultCode: '',
 	session: {}
@@ -185,6 +190,7 @@ Transformer.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultCode: PropTypes.string,
 	logAction: PropTypes.func,
+	onActive: PropTypes.func,
 	onGenerate: PropTypes.func,
 	session: PropTypes.object
 };

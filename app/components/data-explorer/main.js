@@ -1368,6 +1368,11 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onGenerate={this.onGenerateTransformedVariable}
+						onActive={( active ) => {
+							this.setState({
+								disableToolbarDragging: active
+							});
+						}}
 					/>
 				</Tab.Pane> : null
 			}
