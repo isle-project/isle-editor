@@ -668,7 +668,7 @@ GroupManager.propTypes = {
 };
 
 GroupManager.defaultProps = {
-	video: false
+	video: true
 };
 
 

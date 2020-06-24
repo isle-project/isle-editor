@@ -106,7 +106,7 @@ GroupClient.propTypes = {
 };
 
 GroupClient.defaultProps = {
-	video: false
+	video: true
 };
 
 
