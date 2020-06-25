@@ -20,7 +20,6 @@ import isNumberArray from '@stdlib/assert/is-number-array';
 import { NumberInput, SelectInput } from 'components/input';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
-import min from 'utils/statistic/min';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
 import 'react-grid-layout/css/styles.css';
