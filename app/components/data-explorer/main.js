@@ -137,7 +137,7 @@ function checkVariables( data, variables ) {
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
 * @property {Object} editorProps - object to be passed to `TextEditor` indicating properties to be used
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
-* @property {boolean} groupMode - controls whether to sync editor changes across users in a group
+* @property {string} reportMode - controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)
 * @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
