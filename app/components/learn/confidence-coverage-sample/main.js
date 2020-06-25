@@ -152,7 +152,8 @@ class ConfidenceCoverageSample extends Component {
 			});
 			const avg = mean( data );
 			const stderr = stdev( data ) / sqrt( sampleSize );
-			const err = abs( stderr * qt( 1.0 - alpha/ 2.0, sampleSize - 1 ) );
+			const critical = qt( 1.0 - alpha / 2.0, sampleSize - 1 );
+			const err = abs( stderr * critical );
 			const o = {
 				'num': errorBars.length + 1,
 				'yval': avg,
