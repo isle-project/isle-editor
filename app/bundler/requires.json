@@ -39,6 +39,7 @@
 	"LearnSampleCLT": "components/learn/clt-sample",
 	"LearnConfidenceCoverageBinomial": "components/learn/confidence-coverage-binomial",
 	"LearnConfidenceCoverageNormal": "components/learn/confidence-coverage-normal",
+	"LearnConfidenceCoverageSample": "components/learn/confidence-coverage-sample",
 	"LearnMeanTest": "components/learn/hypothesis-testing-mean",
 	"LearnProportionTest": "components/learn/hypothesis-testing-proportion",
 	"LearnMeanVSMedian": "components/learn/mean-vs-median",

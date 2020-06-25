@@ -67,6 +67,7 @@ import LearnNetworks from 'components/learn/networks';
 import LearnSampleCLT from 'components/learn/clt-sample';
 import LearnConfidenceCoverageBinomial from 'components/learn/confidence-coverage-binomial';
 import LearnConfidenceCoverageNormal from 'components/learn/confidence-coverage-normal';
+import LearnConfidenceCoverageSample from 'components/learn/confidence-coverage-sample';
 import LearnContinuousDistribution from 'components/learn/continuous-distribution';
 import LearnDiscreteDistribution from 'components/learn/discrete-distribution';
 import LearnMeanTest from 'components/learn/hypothesis-testing-mean';
@@ -270,6 +271,7 @@ const scope = {
 	LearnSampleCLT,
 	LearnConfidenceCoverageBinomial,
 	LearnConfidenceCoverageNormal,
+	LearnConfidenceCoverageSample,
 	LearnContinuousDistribution,
 	LearnDiscreteDistribution,
 	LearnMeanTest,
