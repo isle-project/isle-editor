@@ -311,6 +311,7 @@ class ConfidenceCoverageSample extends Component {
 								{ this.state.errorBars.length > 0 ?
 									<Fragment>
 										<TeX raw={`\\text{Coverage: }${roundn( this.state.nTrapped / nobs, -3 )}\\%`} displayMode />
+										Number of confidence intervals not covering the population {center}: <br />
 										<TeX raw={`\\text{Interval above population ${center}: }${this.state.nHigher}`} displayMode />
 										<TeX raw={`\\text{Interval below population ${center}: }${this.state.nLower}`} displayMode />
 									</Fragment> : null }
