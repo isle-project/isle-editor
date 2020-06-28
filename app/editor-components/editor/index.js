@@ -563,6 +563,22 @@ class Editor extends Component {
 				}
 			]);
 		}
+		const node = this.editor.getContainerDomNode();
+		node.addEventListener( 'dblclick', () => {
+			const selection = this.editor.getSelection();
+			const line = model.getLineContent( selection.startLineNumber );
+			if ( RE_TAG_START.test( line ) ) {
+				const lineNumber = selection.startLineNumber;
+				const elem = document.getElementById( 'line-'+lineNumber );
+				if ( elem ) {
+					elem.scrollIntoView({
+						behavior: 'smooth',
+						block: 'nearest',
+						inline: 'end'
+					});
+				}
+			}
+		});
 	}
 
 	shouldComponentUpdate( prevProps, prevState ) {
