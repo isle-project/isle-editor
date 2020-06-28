@@ -76,6 +76,16 @@ export function resetError() {
 	};
 }
 
+export function jumpToElementInEditor({ startLineNumber, endLineNumber }) {
+	return {
+		type: types.JUMP_TO_ELEMENT_IN_EDITOR,
+		payload: {
+			startLineNumber,
+			endLineNumber
+		}
+	};
+}
+
 export function toggleScrolling() {
 	return {
 		type: types.TOGGLE_SCROLLING

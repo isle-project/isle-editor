@@ -48,6 +48,7 @@ const initialState = {
 	preambleText: preambleText || '',
 	isScrolling: true,
 	hideToolbar: false,
+	elementRange: null,
 	filePath,
 	fileName,
 	currentRole: 'user',
@@ -123,6 +124,11 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			namespaceName: action.payload.namespaceName
+		};
+	case types.JUMP_TO_ELEMENT_IN_EDITOR:
+		return {
+			...state,
+			elementRange: action.payload
 		};
 	case types.TOGGLE_SCROLLING:
 		return {

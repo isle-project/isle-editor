@@ -61,6 +61,7 @@ const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 9;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
+const RE_TAG_START = /<[a-z]+/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	minimap: {
@@ -119,6 +120,7 @@ class Editor extends Component {
 			showComponentConfigurator: false,
 			sourceFiles: {}
 		};
+		this.decorations = [];
 	}
 
 	async componentDidMount() {
@@ -400,6 +402,17 @@ class Editor extends Component {
 			}, 5000 );
 		});
 
+		this.scrollIntoViewInPreview = this.editor.addCommand( 'scroll-into-view', ( _, line ) => {
+			const elem = document.getElementById( 'line-'+line );
+			if ( elem ) {
+				elem.scrollIntoView({
+					behavior: 'smooth',
+					block: 'nearest',
+					inline: 'end'
+				});
+			}
+		});
+
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
@@ -540,7 +553,7 @@ class Editor extends Component {
 
 		const preamble = model.findNextMatch( '---([\\S\\s\\n]*?)---', 0, true, false, null, false );
 		if ( preamble && preamble.range ) {
-			this.editor.deltaDecorations([], [
+			this.editor.deltaDecorations( this.decorations, [
 				{
 					range: preamble.range,
 					options: {
@@ -555,6 +568,7 @@ class Editor extends Component {
 	shouldComponentUpdate( prevProps, prevState ) {
 		if (
 			this.props.filePath !== prevProps.filePath ||
+			this.props.elementRange !== prevProps.elementRange ||
 			this.props.preamble.title !== prevProps.preamble.title ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
@@ -577,6 +591,19 @@ class Editor extends Component {
 	componentDidUpdate( prevProps ) {
 		if ( !this.monaco ) {
 			return;
+		}
+		if ( this.props.elementRange !== prevProps.elementRange ) {
+			this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
+			this.decorations = this.editor.deltaDecorations( this.decorations, [
+				{
+					range: this.props.elementRange,
+					options: {
+						isWholeLine: true,
+						className: 'highlighted_content'
+					}
+				}
+			]);
+			this.hasHighlight = true;
 		}
 		if ( this.props.spellingErrors.length !== prevProps.spellingErrors.length ) {
 			const errs = this.props.spellingErrors;
@@ -796,6 +823,16 @@ class Editor extends Component {
 					}
 				}
 			}
+			if ( RE_TAG_START.test( line ) ) {
+				actions.push({
+					command: {
+						id: this.scrollIntoViewInPreview,
+						title: 'Scroll component into view in preview',
+						arguments: [ selection.startLineNumber ]
+					},
+					title: 'Scroll component into view in preview'
+				});
+			}
 		}
 		return {
 			actions,
@@ -847,6 +884,17 @@ class Editor extends Component {
 	}
 
 	handleChange = ( newValue ) => {
+		if ( this.hasHighlight ) {
+			this.decorations = this.editor.deltaDecorations( this.decorations, [
+				{
+					range: this.props.elementRange,
+					options: {
+						isWholeLine: true
+					}
+				}
+			] );
+			this.hasHighlight = false;
+		}
 		this.props.onChange( newValue );
 	}
 
@@ -1099,6 +1147,7 @@ class Editor extends Component {
 Editor.defaultProps = {
 	filePath: '',
 	fontSize: 14,
+	elementRange: null,
 	onChange: noop,
 	value: ''
 };
@@ -1112,6 +1161,7 @@ Editor.propTypes = {
 	preamble: PropTypes.object.isRequired,
 	author: PropTypes.string.isRequired,
 	value: PropTypes.string,
+	elementRange: PropTypes.object,
 	lintErrors: PropTypes.array.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,

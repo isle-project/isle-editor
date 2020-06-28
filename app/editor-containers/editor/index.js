@@ -271,6 +271,7 @@ class App extends Component {
 								filePath={filePath}
 								name="monaco_editor"
 								fontSize={this.props.fontSize}
+								elementRange={this.props.elementRange}
 								preamble={this.props.preamble}
 								author={this.props.author}
 								currentRole={currentRole}
@@ -314,6 +315,7 @@ class App extends Component {
 // PROPERTIES //
 
 App.defaultProps = {
+	elementRange: null,
 	error: null,
 	fileName: null,
 	filePath: null
@@ -329,6 +331,7 @@ App.propTypes = {
 	encounteredError: PropTypes.func.isRequired,
 	resetError: PropTypes.func.isRequired,
 	error: PropTypes.object,
+	elementRange: PropTypes.object,
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
