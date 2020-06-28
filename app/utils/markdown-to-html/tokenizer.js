@@ -150,6 +150,7 @@ class Tokenizer {
 			this.addEmptySpans = opts.addEmptySpans ? true : false;
 			this.inline = opts.inline ? true : false;
 			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
+			this.addLineWrappers = opts.addLineWrappers;
 		}
 	}
 
@@ -322,7 +323,8 @@ class Tokenizer {
 						RE_INLINE_TAGS.test( this._openingTagName );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
-						lineNumber: this._startLineNumber
+						lineNumber: this._startLineNumber,
+						addLineWrappers: this.addLineWrappers
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
 						console.log( this.betweenStr );
@@ -360,7 +362,7 @@ class Tokenizer {
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
 			this._endLineNumber = this.lineNumber;
-			if ( !isInline && !RE_INNER_TAGS.test( this._openingTagName ) ) {
+			if ( this.addLineWrappers && !isInline && !RE_INNER_TAGS.test( this._openingTagName ) ) {
 				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'"/>';
@@ -405,7 +407,7 @@ class Tokenizer {
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				const isInner = RE_INNER_TAGS.test( this._openingTagName ) ||
 					RE_INLINE_TAGS.test( this._openingTagName );
-				if ( !isInner ) {
+				if ( this.addLineWrappers && !isInner ) {
 					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 				}
 				this._level -= 1;
@@ -517,7 +519,8 @@ class Tokenizer {
 							RE_INLINE_TAGS.test( innerJSXStartTag );
 						const tokenizer = new Tokenizer({
 							inline: isInner,
-							lineNumber: this.lineNumber
+							lineNumber: this.lineNumber,
+							addLineWrappers: this.addLineWrappers
 						});
 						this._current += tokenizer.parse( current );
 						current = '';
@@ -530,7 +533,8 @@ class Tokenizer {
 						RE_INLINE_TAGS.test( innerJSXStartTag );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
-						lineNumber: this._startLineNumber
+						lineNumber: this._startLineNumber,
+						addLineWrappers: this.addLineWrappers
 					});
 					this._current += tokenizer.parse( current );
 					current = '';
@@ -628,7 +632,8 @@ class Tokenizer {
 				RE_INLINE_TAGS.test( tag );
 			const tokenizer = new Tokenizer({
 				inline: isInner,
-				lineNumber: this._startLineNumber
+				lineNumber: this._startLineNumber,
+				addLineWrappers: this.addLineWrappers
 			});
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +

@@ -199,12 +199,12 @@ class Preview extends Component {
 
 		// Replace Markdown by HTML...
 		try {
-			code = markdownToHTML(
-				code,
-				this.props.filePath,
-				preamble.type !== 'presentation',
-				noEmptyLines
-			);
+			code = markdownToHTML( code, {
+				filePath: this.props.filePath,
+				addEmptySpans: preamble.type !== 'presentation',
+				lineNumber: noEmptyLines,
+				addLineWrappers: true
+			});
 		} catch ( err ) {
 			err.message = replace( err.message, '\n', '\n | ' );
 			return this.props.encounteredError( err );
