@@ -40,6 +40,7 @@ const RE_OPERATOR = /[+\-/*^!]/;
 *
 * @property {boolean} expandable - controls whether calculator is expandable
 * @property {boolean} show - controls whether calculator is shown
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onHide - callback invoked when the close button is clicked
 */
@@ -227,6 +228,7 @@ class Calculator extends Component {
 				<Panel id="calc-panel-full" tabIndex={0} role="button"
 					header={this.props.t( 'calculator' )} onHide={this.props.onHide} minimizable
 					style={this.props.style}
+					className={this.props.className}
 				>
 					<Container className="desaturated" >
 						<FormControl
@@ -323,6 +325,7 @@ class Calculator extends Component {
 					header={this.props.t( 'calculator' )}
 					onHide={this.props.onHide}
 					style={this.props.style}
+					className={this.props.className}
 					minimizable
 				>
 					<Container className="desaturated" >
@@ -389,6 +392,7 @@ class Calculator extends Component {
 Calculator.defaultProps = {
 	expandable: true,
 	show: true,
+	className: null,
 	style: {},
 	onHide: null
 };
@@ -396,6 +400,7 @@ Calculator.defaultProps = {
 Calculator.propTypes = {
 	expandable: PropTypes.bool,
 	show: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onHide: PropTypes.func
 };

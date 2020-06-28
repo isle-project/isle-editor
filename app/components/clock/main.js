@@ -9,9 +9,10 @@ import PropTypes from 'prop-types';
 /**
 * Clock component displaying the current time.
 *
-* @property {Object} style - CSS inline styles
 * @property {boolean} duration - if set, the duration of the session is displayed (not the actual time)
 * @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)
+* @property {Object} style - CSS inline styles
+* @property {string} className - class name
 */
 class Clock extends Component {
 	constructor( props ) {
@@ -102,7 +103,7 @@ class Clock extends Component {
 			...this.props.style
 		};
 		return (
-			<span style={styles}>
+			<span style={styles} className={this.props.className} >
 				{this.state.time}
 			</span>
 		);
@@ -113,15 +114,17 @@ class Clock extends Component {
 // PROPERTIES //
 
 Clock.propTypes = {
-	style: PropTypes.object,
 	duration: PropTypes.bool,
-	format: PropTypes.string
+	format: PropTypes.string,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 Clock.defaultProps = {
-	style: {},
 	duration: false,
-	format: ''
+	format: '',
+	className: null,
+	style: {}
 };
 
 

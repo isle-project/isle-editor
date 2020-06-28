@@ -32,9 +32,10 @@ function getClassName( val ) {
 *
 * @property {boolean} defaultVisible - if set, the body is visible right from the start
 * @property {boolean} visible - controls whether slider is visible; turns it into a controlled component where state needs to be handled externally
-* @property {string} header - header string
-* @property {string} headerClassName - this overrules the given className of the header
+* @property {(string|node)} header - header content
+* @property {string} headerClassName - this overrules the given class name of the header
 * @property {Object} headerStyle - one may also assign a style to the header bar
+* @property {Object} style - inline CSS styles for outer container
 * @property {Function} onClick - event handler invoked when header is clicked
 */
 class Collapse extends Component {
@@ -107,7 +108,7 @@ class Collapse extends Component {
 // PROPERTIES //
 
 Collapse.propTypes = {
-	header: PropTypes.string,
+	header: PropTypes.oneOfType([ PropTypes.string, PropTypes.node ]),
 	headerStyle: PropTypes.object,
 	headerClassName: PropTypes.string,
 	defaultVisible: PropTypes.bool,
