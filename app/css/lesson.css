@@ -61,7 +61,8 @@ pre {
 	border-radius: 4px;
 }
 
-.Lesson > p {
+.Lesson > p,
+.Lesson > .line-wrapper > p {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
@@ -433,21 +434,28 @@ mark {
 }
 
 .Lesson > h1,
+.Lesson > .line-wrapper > h1,
 .Lesson > h2,
+.Lesson > .line-wrapper > h2,
 .Lesson > h3,
-.Lesson > h4 {
+.Lesson > .line-wrapper > h3,
+.Lesson > h4,
+.Lesson > .line-wrapper > h4 {
 	text-align: center;
 }
 
 .Lesson > p,
-.Lesson > pre {
+.Lesson > .line-wrapper > p,
+.Lesson > pre,
+.Lesson > .line-wrapper > pre {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .Lesson > img,
-.Lesson > p > img {
+.Lesson > p > img,
+.Lesson > .line-wrapper > img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -556,14 +564,16 @@ mark {
 	font-weight: 600px;
 }
 
-.Lesson > ul {
+.Lesson > ul,
+.Lesson > .line-wrapper > ul {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1200px;
 }
 
-.Lesson > ol {
+.Lesson > ol,
+.Lesson > .line-wrapper > ol {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
@@ -594,7 +604,8 @@ mark {
 	border-top: 2px solid #dee2e6;
 }
 
-.Lesson > blockquote {
+.Lesson > blockquote,
+.Lesson > .line-wrapper > blockquote {
 	font-size: 1.4em;
 	width: 60%;
 	max-width: 900px;
@@ -607,7 +618,8 @@ mark {
 	background: #EDEDED;
 }
 
-.Lesson > blockquote::before {
+.Lesson > blockquote::before,
+.Lesson > .line-wrapper > blockquote::before {
 	font-family: Arial;
 	content: "\201C";
 	color: var(--primaryhalf);
@@ -617,7 +629,8 @@ mark {
 	top: -10px;
 }
 
-.Lesson > blockquote::after {
+.Lesson > blockquote::after,
+.Lesson > .line-wrapper > blockquote::after {
 	font-family: Arial;
 	content: "\201D";
 	color: var(--primaryhalf);
@@ -627,7 +640,8 @@ mark {
 	bottom: -10px;
 }
 
-.Lesson > .alert {
+.Lesson > .alert,
+.Lesson > .line-wrapper > .alert {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
