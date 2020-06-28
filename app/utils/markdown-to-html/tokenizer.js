@@ -66,7 +66,7 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	return renderer.renderToken( tokens, idx, options );
 };
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /((?:\r\n|\r|\n)+)\s*/g;
+const RE_LINE_BEGINNING = /(\r\n|\r|\n)[ \t]*/g;
 
 
 // FUNCTIONS //
@@ -115,7 +115,8 @@ function tagName( str, pos ) {
 
 function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
-		return EOL.repeat( p1.length >= 2 ? p1.length : 1 );
+		const num = p1 ? p1.length : 0;
+		return EOL.repeat( num );
 	});
 }
 
@@ -327,7 +328,6 @@ class Tokenizer {
 						addLineWrappers: this.addLineWrappers
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
-						console.log( this.betweenStr );
 						const str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
 						this._current += str + '<';
 					} else {
