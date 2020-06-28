@@ -115,7 +115,7 @@ function tagName( str, pos ) {
 
 function trimLineStarts( str ) {
 	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
-		return EOL.repeat( p1.length >= 2 ? p1.length : 2 );
+		return EOL.repeat( p1.length >= 2 ? p1.length : 1 );
 	});
 }
 
@@ -145,8 +145,10 @@ function isWhitespace( c ) {
 
 class Tokenizer {
 	constructor( opts ) {
+		console.log( 'Create tokenizer: '+JSON.stringify( opts ) );
 		this.addEmptySpans = ( opts && opts.addEmptySpans ) ? true : false;
 		this.inline = ( opts && opts.inline ) ? true : false;
+		this.lineNumber = ( opts && opts.lineNumber ) ? opts.lineNumber : 1;
 	}
 
 	setup( str ) {
@@ -160,6 +162,9 @@ class Tokenizer {
 		this._state = IN_BASE;
 		this._braceLevel = 0;
 		this._level = 0;
+
+		this._startLineNumber = null;
+		this._endLineNumber = null;
 		this.pos = 0;
 		this.placeholderHash = {};
 		this.inBetweenEquation = false;
@@ -184,6 +189,7 @@ class Tokenizer {
 			this._state = IN_OPENING_TAG_NAME;
 			this._level += 1;
 			this._startTagNamePos = 0;
+			this._startLineNumber = this.lineNumber;
 		}
 		else if ( char === '$' ) {
 			this._eqnChar = char;
@@ -314,9 +320,11 @@ class Tokenizer {
 						RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
 						RE_ISLE_INLINE_TAGS.test( this._openingTagName );
 					const tokenizer = new Tokenizer({
-						inline: isInner
+						inline: isInner,
+						lineNumber: this._startLineNumber
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
+						console.log( this.betweenStr );
 						const str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
 						this._current += str + '<';
 					} else {
@@ -351,6 +359,8 @@ class Tokenizer {
 				this._current = replace( this._current, '<a ', '<Link ' );
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
+			this._endLineNumber = this.lineNumber;
+			this._current = '<LineWrapper startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
 			this.tokens.push( placeholder );
@@ -389,7 +399,9 @@ class Tokenizer {
 		}
 		else if ( char === '>' ) {
 			this._openTagEnd = this._current.length;
+			this._endLineNumber = this.lineNumber;
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
+				this._current = '<LineWrapper startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 				this._level -= 1;
 				if ( this._level === 0 ) {
 					this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
@@ -499,7 +511,8 @@ class Tokenizer {
 						RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
 						RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
 						const tokenizer = new Tokenizer({
-							inline: isInner
+							inline: isInner,
+							lineNumber: this._startLineNumber
 						});
 						this._current += tokenizer.parse( current );
 						current = '';
@@ -512,7 +525,8 @@ class Tokenizer {
 					RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
 					RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
 					const tokenizer = new Tokenizer({
-						inline: isInner
+						inline: isInner,
+						lineNumber: this._startLineNumber
 					});
 					this._current += tokenizer.parse( current );
 					current = '';
@@ -610,7 +624,8 @@ class Tokenizer {
 			RE_HTML_INLINE_TAGS.test( tag ) ||
 			RE_ISLE_INLINE_TAGS.test( tag );
 			const tokenizer = new Tokenizer({
-				inline: isInner
+				inline: isInner,
+				lineNumber: this._startLineNumber
 			});
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
@@ -662,10 +677,15 @@ class Tokenizer {
 		debug( str );
 		debug( '---' );
 		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
-		str = trim( str );
+		if ( this.inline ) {
+			str = trim( str );
+		}
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
+			if ( char === '\n' ) {
+				this.lineNumber += 1;
+			}
 			switch ( this._state ) {
 			case IN_BASE:
 				this._inBase( char );
@@ -721,6 +741,8 @@ class Tokenizer {
 				this.tokens.push( this._current );
 			}
 		}
+		console.log( this.tokens );
+		console.log( this.lineNumber );
 		let out = this.tokens.join( '' );
 		out = this.inline ? md.renderInline( out ) : md.render( out );
 		for ( let key in this.placeholderHash ) {

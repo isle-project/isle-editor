@@ -199,12 +199,16 @@ class Preview extends Component {
 
 		// Replace Markdown by HTML...
 		try {
-			code = markdownToHTML( code, this.props.filePath, preamble.type !== 'presentation' );
+			code = markdownToHTML(
+				code,
+				this.props.filePath,
+				preamble.type !== 'presentation',
+				noEmptyLines
+			);
 		} catch ( err ) {
 			err.message = replace( err.message, '\n', '\n | ' );
 			return this.props.encounteredError( err );
 		}
-
 		if ( preamble.type === 'presentation' ) {
 			debug( 'Should render a presentation...' );
 			code = transformToPresentation( code, preamble );

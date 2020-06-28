@@ -14,9 +14,12 @@ const RE_SRC = /(src|url)=['"]\.([^'"]+)['"]/g;
 
 // MAIN //
 
-function toMarkdown( str, filePath, addEmptySpans = false ) {
+function toMarkdown( str, filePath, addEmptySpans = false, lineNumber = 1 ) {
 	debug( 'Create tokenizer...' );
-	const tokenizer = new Tokenizer({ addEmptySpans });
+	const tokenizer = new Tokenizer({
+		addEmptySpans,
+		lineNumber: lineNumber + 1
+	});
 
 	// Make all relative file paths in code absolute to path of source file:
 	if ( filePath ) {
