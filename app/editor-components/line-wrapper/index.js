@@ -31,6 +31,7 @@ class LineWrapper extends Component {
 				id={`line-${this.props.startLineNumber}`}
 				className="line-wrapper"
 				onDoubleClick={this.handleDoubleClick}
+				title={`Double-click to highlight source code for <${this.props.tagName} />`}
 			>
 				{this.props.children}
 			</div>
@@ -42,12 +43,14 @@ class LineWrapper extends Component {
 // PROPERTIES //
 
 LineWrapper.defaultProps = {
+	tagName: null
 };
 
 LineWrapper.propTypes = {
 	jumpToElementInEditor: PropTypes.func.isRequired,
 	endLineNumber: PropTypes.number.isRequired,
-	startLineNumber: PropTypes.number.isRequired
+	startLineNumber: PropTypes.number.isRequired,
+	tagName: PropTypes.string
 };
 
 
