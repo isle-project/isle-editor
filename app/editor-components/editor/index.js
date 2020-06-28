@@ -410,6 +410,10 @@ class Editor extends Component {
 					block: 'nearest',
 					inline: 'end'
 				});
+				elem.classList.add( 'focus-glow' );
+				setTimeout( () => {
+					elem.classList.remove( 'focus-glow' );
+				}, 2000 );
 			}
 		});
 
@@ -576,6 +580,10 @@ class Editor extends Component {
 						block: 'nearest',
 						inline: 'end'
 					});
+					elem.classList.add( 'focus-glow' );
+					setTimeout( () => {
+						elem.classList.remove( 'focus-glow' );
+					}, 2000 );
 				}
 			}
 		});
