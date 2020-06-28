@@ -7,6 +7,7 @@ import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import trim from '@stdlib/string/trim';
+import rightTrim from '@stdlib/string/right-trim';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isLowercase from '@stdlib/assert/is-lowercase';
@@ -32,9 +33,8 @@ const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
 const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_ALPHACHAR = /[A-Z]/i;
-const RE_HTML_INNER_TAGS = /^(?:p|th|td)$/;
-const RE_HTML_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var)$/;
-const RE_ISLE_INLINE_TAGS = /^(?:Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_INNER_TAGS = /^(?:p|th|td|Row|Col)$/;
+const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 const md = markdownit({
 	html: true,
@@ -145,10 +145,12 @@ function isWhitespace( c ) {
 
 class Tokenizer {
 	constructor( opts ) {
-		console.log( 'Create tokenizer: '+JSON.stringify( opts ) );
-		this.addEmptySpans = ( opts && opts.addEmptySpans ) ? true : false;
-		this.inline = ( opts && opts.inline ) ? true : false;
-		this.lineNumber = ( opts && opts.lineNumber ) ? opts.lineNumber : 1;
+		debug( 'Create tokenizer: '+JSON.stringify( opts ) );
+		if ( opts ) {
+			this.addEmptySpans = opts.addEmptySpans ? true : false;
+			this.inline = opts.inline ? true : false;
+			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
+		}
 	}
 
 	setup( str ) {
@@ -316,9 +318,8 @@ class Tokenizer {
 					this._level -= 1;
 				}
 				if ( this._level === 0 ) {
-					const isInner = RE_HTML_INNER_TAGS.test( this._openingTagName ) ||
-						RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
-						RE_ISLE_INLINE_TAGS.test( this._openingTagName );
+					const isInner = RE_INNER_TAGS.test( this._openingTagName ) ||
+						RE_INLINE_TAGS.test( this._openingTagName );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
 						lineNumber: this._startLineNumber
@@ -353,14 +354,15 @@ class Tokenizer {
 		if ( char === '>' && prevChar !== '=' ) {
 			this._openTagEnd = this._current.length;
 			this._endTagStart = null;
-			const isInline = RE_HTML_INLINE_TAGS.test( this._openingTagName ) ||
-			RE_ISLE_INLINE_TAGS.test( this._openingTagName );
+			const isInline = RE_INLINE_TAGS.test( this._openingTagName );
 			if ( this._openingTagName === 'a' ) {
 				this._current = replace( this._current, '<a ', '<Link ' );
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
 			this._endLineNumber = this.lineNumber;
-			this._current = '<LineWrapper startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+			if ( !isInline && !RE_INNER_TAGS.test( this._openingTagName ) ) {
+				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
 			this.tokens.push( placeholder );
@@ -401,7 +403,11 @@ class Tokenizer {
 			this._openTagEnd = this._current.length;
 			this._endLineNumber = this.lineNumber;
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
-				this._current = '<LineWrapper startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+				const isInner = RE_INNER_TAGS.test( this._openingTagName ) ||
+					RE_INLINE_TAGS.test( this._openingTagName );
+				if ( !isInner ) {
+					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+				}
 				this._level -= 1;
 				if ( this._level === 0 ) {
 					this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
@@ -507,12 +513,11 @@ class Tokenizer {
 						debug( 'Outer tag match found...' );
 						current += innerJSXStartTag + '>';
 						i += innerJSXStartTag.length + 1;
-						const isInner = RE_HTML_INNER_TAGS.test( innerJSXStartTag ) ||
-						RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
-						RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
+						const isInner = RE_INNER_TAGS.test( innerJSXStartTag ) ||
+							RE_INLINE_TAGS.test( innerJSXStartTag );
 						const tokenizer = new Tokenizer({
 							inline: isInner,
-							lineNumber: this._startLineNumber
+							lineNumber: this.lineNumber
 						});
 						this._current += tokenizer.parse( current );
 						current = '';
@@ -521,9 +526,8 @@ class Tokenizer {
 				}
 				else if ( innerJSXStartTag && !notSelfClosing && char === '>' && prevChar === '/' && tagLevel === 1 && !inString ) {
 					debug( 'Self-closing tag match found...' );
-					const isInner = RE_HTML_INNER_TAGS.test( innerJSXStartTag ) ||
-					RE_HTML_INLINE_TAGS.test( innerJSXStartTag ) ||
-					RE_ISLE_INLINE_TAGS.test( innerJSXStartTag );
+					const isInner = RE_INNER_TAGS.test( innerJSXStartTag ) ||
+						RE_INLINE_TAGS.test( innerJSXStartTag );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
 						lineNumber: this._startLineNumber
@@ -620,9 +624,8 @@ class Tokenizer {
 			this._JSX_ATTRIBUTE_END = this._current.length;
 			const inner = this._current.substring( this._JSX_ATTRIBUTE_START, this._JSX_ATTRIBUTE_END-1 );
 			const tag = tagName( inner, 1 );
-			const isInner = RE_HTML_INNER_TAGS.test( tag ) ||
-			RE_HTML_INLINE_TAGS.test( tag ) ||
-			RE_ISLE_INLINE_TAGS.test( tag );
+			const isInner = RE_INNER_TAGS.test( tag ) ||
+				RE_INLINE_TAGS.test( tag );
 			const tokenizer = new Tokenizer({
 				inline: isInner,
 				lineNumber: this._startLineNumber
@@ -671,6 +674,22 @@ class Tokenizer {
 		}
 	}
 
+	leftTrim( str ) {
+		let idx;
+		for ( let i = 0; i < str.length; i++ ) {
+			const char = str[ i ];
+			if ( isWhitespace( char ) ) {
+				if ( char === '\n' ) {
+					this.lineNumber += 1;
+				}
+			} else {
+				idx = i;
+				break;
+			}
+		}
+		return str.substring( idx );
+	}
+
 	parse( str ) {
 		debug( `Transform the following ${this.inline ? 'inline ' : ''}string: ` );
 		debug( '---' );
@@ -678,7 +697,7 @@ class Tokenizer {
 		debug( '---' );
 		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
 		if ( this.inline ) {
-			str = trim( str );
+			str = this.leftTrim( str );
 		}
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
@@ -738,11 +757,12 @@ class Tokenizer {
 					throw new Error( `Make sure <${this._openingTagName}> tag is properly closed:\n\n${this._current}${this.betweenStr || ''}` );
 				}
 				debug( 'Remainder of input string: '+this._current );
+				if ( this.inline ) {
+					this._current = rightTrim( this._current );
+				}
 				this.tokens.push( this._current );
 			}
 		}
-		console.log( this.tokens );
-		console.log( this.lineNumber );
 		let out = this.tokens.join( '' );
 		out = this.inline ? md.renderInline( out ) : md.render( out );
 		for ( let key in this.placeholderHash ) {
