@@ -17,7 +17,8 @@ class LineWrapper extends Component {
 		super( props );
 	}
 
-	handleDoubleClick = () => {
+	handleDoubleClick = ( event ) => {
+		event.stopPropagation();
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber
