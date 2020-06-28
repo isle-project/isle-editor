@@ -10,7 +10,6 @@
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
@@ -322,11 +321,15 @@ function createColumns( props, state ) {
 * @property {boolean} filterable - controls whether columns are filterable
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
 * @property {boolean} showIdColumn - controls whether to show an ID column
+* @property {string} className - class name
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
 * @property {Function} getTrProps - callback function executed for each row to customize its styling (passed table state, row info,
 column, and the table instance)
-* @property {Function} onClickRemove - A function specifying an action to take for rows removed from the data (defaults to an empty function)
+* @property {Function} onColumnNameChange - function invoked when a column has been renamed (called with the old name as first and new name as second argument)
+* @property {Function} onColumnDrag - function invoked when a column has been dragged to a different position
+* @property {Function} onClickRemove - function specifying an action to take for rows removed from the data (defaults to an empty function)
 * @property {Function} onColumnDelete - function invoked with the name of a column when the respective delete button for a column is clicked
+* @property {Function} onFilteredChange - function invoked with the current filters after data has been filtered by user
 * @property {Function} onEdit - function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`)
 * @property {Function} onTutorialCompletion - function invoked when user has completed the data table tutorial
 */
@@ -857,6 +860,7 @@ DataTable.defaultProps = {
 	filters: [],
 	showRemove: false,
 	showIdColumn: true,
+	className: null,
 	style: {}
 };
 
@@ -882,6 +886,7 @@ DataTable.propTypes = {
 	onFilteredChange: PropTypes.func,
 	showRemove: PropTypes.bool,
 	showIdColumn: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object
 };
 

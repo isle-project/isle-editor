@@ -31,7 +31,7 @@ const uid = generateUID( 'dashboard' );
 /**
 * A dashboard for combining the handling of multiple child input fields.
 *
-* @property {string} title - card title
+* @property {(string|node)} title - card title
 * @property {string} description - dashboard description
 * @property {boolean} autoStart - if set to `true`, the `onGenerate` function is executed at startup with the default input values
 * @property {boolean} autoUpdate - controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes
@@ -159,7 +159,7 @@ class Dashboard extends Component {
 		this._children = this.registerChildren( this.props.children );
 		return (
 			<Card
-				className="dashboard"
+				className={`dashboard ${this.props.clasName}`}
 				style={{
 					maxWidth: this.props.maxWidth,
 					...this.props.style
@@ -200,6 +200,7 @@ Dashboard.defaultProps = {
 	disabled: false,
 	label: null,
 	maxWidth: 600,
+	className: null,
 	style: {},
 	onGenerate() {},
 	title: ''
@@ -212,6 +213,7 @@ Dashboard.propTypes = {
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onGenerate: PropTypes.func,
 	title: PropTypes.oneOfType([

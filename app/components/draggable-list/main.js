@@ -25,6 +25,8 @@ const DnDBackend = hasTouch ? TouchBackend : HTML5Backend;
 * @property {Function} onChange - callback invoked with newly ordered data array on each change
 * @property {Function} onInit - callback function invoked after mounting of component
 * @property {boolean} shuffle - controls whether data elements should be shuffled in initial display
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
 */
 class DraggableList extends Component {
 	constructor( props ) {
@@ -57,9 +59,10 @@ class DraggableList extends Component {
 		const { cards } = this.state;
 		return (
 			<DndProvider backend={DnDBackend} >
-				<div style={{
+				<div className={this.props.className} style={{
 					maxWidth: '600px',
-					margin: '0 auto 10px'
+					margin: '0 auto 10px',
+					...this.props.style
 				}}>
 					{cards.map( ( card, i ) => {
 						return (
@@ -83,14 +86,18 @@ class DraggableList extends Component {
 DraggableList.defaultProps = {
 	onChange(){},
 	onInit(){},
-	shuffle: false
+	shuffle: false,
+	className: null,
+	style: {}
 };
 
 DraggableList.propTypes = {
 	data: PropTypes.array.isRequired,
 	onChange: PropTypes.func,
 	onInit: PropTypes.func,
-	shuffle: PropTypes.bool
+	shuffle: PropTypes.bool,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 

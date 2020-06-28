@@ -37,6 +37,7 @@ const uid = generateUID( 'feedback' );
 /**
 * Buttons to collect user feedback.
 *
+* @property {boolean} customFeedback - controls whether the component accepts custom feedback
 * @property {string} confusedMsg - message to be displayed in tooltip for confused button
 * @property {string} feedbackMsg - message to be displayed in tooltip for detailed feedback button
 * @property {string} understoodMsg - message to be displayed in tooltip for understood button
