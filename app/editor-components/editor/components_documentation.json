@@ -661,7 +661,7 @@
         "name": "reportMode",
         "type": "string",
         "description": "controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)",
-        "default": "invididual"
+        "default": "individual"
       },
       {
         "name": "histogramDensities",

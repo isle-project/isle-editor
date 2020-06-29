@@ -1676,7 +1676,7 @@ DataExplorer.defaultProps = {
 	editor: true,
 	editorProps: null,
 	editorTitle: 'Report',
-	reportMode: 'invididual',
+	reportMode: 'individual',
 	histogramDensities: true,
 	showTestDecisions: true,
 	onTutorialCompletion() {},
