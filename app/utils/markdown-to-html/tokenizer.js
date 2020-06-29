@@ -34,7 +34,7 @@ const IN_ANGLE_LINK = 14;
 const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_ALPHACHAR = /[A-Z]/i;
 const RE_INNER_TAGS = /^(?:p|th|td)$/;
-const RE_FLEX_TAGS = /^(?:Col|Row)$/;
+const RE_FLEX_TAGS = /^(?:Col|Row|tr)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 
 const md = markdownit({
