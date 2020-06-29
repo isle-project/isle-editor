@@ -26,6 +26,7 @@ removeStatusBar: true
 
 * __expandable__ | `boolean`: controls whether calculator is expandable. Default: `true`.
 * __show__ | `boolean`: controls whether calculator is shown. Default: `true`.
+* __className__ | `string`: class name. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onHide__ | `function`: callback invoked when the close button is clicked. Default: `none`.
         </Text>

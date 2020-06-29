@@ -86,7 +86,7 @@
       {
         "name": "parent",
         "type": "boolean",
-        "description": "sets the parent div's backgroundColor to transparent, overflow to hidden",
+        "description": "sets the parent element's backgroundColor to transparent, overflow to hidden",
         "default": false
       },
       {
@@ -175,6 +175,12 @@
         "type": "boolean",
         "description": "controls whether calculator is shown",
         "default": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -275,12 +281,6 @@
   "Clock": {
     "props": [
       {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "default": {}
-      },
-      {
         "name": "duration",
         "type": "boolean",
         "description": "if set, the duration of the session is displayed (not the actual time)",
@@ -291,6 +291,18 @@
         "type": "string",
         "description": "time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)",
         "default": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "Clock component displaying the current time."
@@ -299,8 +311,8 @@
     "props": [
       {
         "name": "header",
-        "type": "string",
-        "description": "header string",
+        "type": "(string|node)",
+        "description": "header content",
         "default": "Header"
       },
       {
@@ -312,7 +324,7 @@
       {
         "name": "headerClassName",
         "type": "string",
-        "description": "this overrules the given className of the header",
+        "description": "this overrules the given class name of the header",
         "default": null
       },
       {
@@ -330,6 +342,7 @@
       {
         "name": "style",
         "type": "object",
+        "description": "inline CSS styles for outer container",
         "default": {}
       },
       {
@@ -382,6 +395,12 @@
         "type": "number",
         "description": "width of the color picker (in px)",
         "default": 200
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       },
       {
         "name": "onChange",
@@ -558,6 +577,11 @@
         "default": 600
       },
       {
+        "name": "className",
+        "type": "string",
+        "default": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -636,6 +660,7 @@
       {
         "name": "reportMode",
         "type": "string",
+        "description": "controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)",
         "default": "invididual"
       },
       {
@@ -780,6 +805,16 @@
         "name": "sampleSize",
         "type": "number",
         "default": 50
+      },
+      {
+        "name": "minSampleSize",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "maxSampleSize",
+        "type": "number",
+        "default": null
       }
     ],
     "description": "Component to sample observations from a dataset and pass it to child components."
@@ -834,6 +869,7 @@
       {
         "name": "onColumnDrag",
         "type": "function",
+        "description": "function invoked when a column has been dragged to a different position",
         "default": "onColumnDrag() {}"
       },
       {
@@ -845,12 +881,13 @@
       {
         "name": "onColumnNameChange",
         "type": "function",
+        "description": "function invoked when a column has been renamed (called with the old name as first and new name as second argument)",
         "default": "onColumnNameChange() {}"
       },
       {
         "name": "onClickRemove",
         "type": "function",
-        "description": "A function specifying an action to take for rows removed from the data (defaults to an empty function)",
+        "description": "function specifying an action to take for rows removed from the data (defaults to an empty function)",
         "default": "onClickRemove() {}"
       },
       {
@@ -873,6 +910,7 @@
       {
         "name": "onFilteredChange",
         "type": "function",
+        "description": "function invoked with the current filters after data has been filtered by user",
         "default": "onFilteredChange() {}"
       },
       {
@@ -886,6 +924,12 @@
         "type": "boolean",
         "description": "controls whether to show an ID column",
         "default": true
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -947,6 +991,18 @@
         "type": "boolean",
         "description": "controls whether data elements should be shuffled in initial display",
         "default": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A list of draggable elements that can be re-ordered by the students."
@@ -1026,6 +1082,7 @@
       {
         "name": "customFeedback",
         "type": "boolean",
+        "description": "controls whether the component accepts custom feedback",
         "default": true
       },
       {
@@ -1080,12 +1137,6 @@
         "default": 1
       },
       {
-        "name": "isFlipped",
-        "type": "boolean",
-        "description": "initial flip state of the card",
-        "default": false
-      },
-      {
         "name": "onChange",
         "type": "function",
         "description": "callback invoked once the card is flipped; receives the current flipped status as its sole argument",
@@ -1105,11 +1156,13 @@
       },
       {
         "name": "value",
-        "type": "boolean"
+        "type": "boolean",
+        "description": "flip state of the card (for controlled component)"
       },
       {
         "name": "defaultValue",
         "type": "boolean",
+        "description": "initial flip state of the card",
         "default": false
       }
     ],
@@ -1214,6 +1267,12 @@
         "default": null
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -1255,7 +1314,7 @@
       {
         "name": "anonymous",
         "type": "boolean",
-        "description": "controls whether student answers are anonymized",
+        "description": "controls whether student answers are anonymously collected",
         "default": false
       },
       {
@@ -1263,6 +1322,12 @@
         "type": "number",
         "description": "number of text rows in the input field",
         "default": 4
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -1342,12 +1407,14 @@
     "props": [
       {
         "name": "buttonLabel",
-        "type": "string",
+        "type": "(string|node)",
+        "description": "label for button",
         "default": "Generate"
       },
       {
         "name": "onGenerate",
-        "type": "function (required)"
+        "type": "function (required)",
+        "description": "function invoked that should return a new component to be rendered in the lesson"
       }
     ],
     "description": "A component for generating other components (e.g., automatically generated questions)."
@@ -1382,6 +1449,12 @@
         "type": "number",
         "description": "iFrame height (in px)",
         "default": 600
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -1428,6 +1501,11 @@
         "name": "disableSubmitNotification",
         "type": "boolean",
         "default": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "default": null
       },
       {
         "name": "style",
@@ -2244,6 +2322,7 @@
       {
         "name": "scrollToSteps",
         "type": "boolean",
+        "description": "controls whether the window should scroll to the current step",
         "default": true
       },
       {
@@ -2303,6 +2382,12 @@
         "type": "number",
         "description": "number of lines to display",
         "default": 5
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -2473,6 +2558,27 @@
       }
     ],
     "description": "A learning component illustrating coverage of confidence intervals for the mean of a normal distribution."
+  },
+  "LearnConfidenceCoverageSample": {
+    "props": [
+      {
+        "name": "data",
+        "type": "array (required)",
+        "description": "data object with keys correspond to variable names and values holding the values of respective variables"
+      },
+      {
+        "name": "samples",
+        "type": "(array<number>|number)",
+        "description": "array of numbers or a single numbers denoting the sample sizes that can be drawn",
+        "default": 25
+      },
+      {
+        "name": "variables",
+        "type": "array (required)",
+        "description": "names of variables that can be sampled from"
+      }
+    ],
+    "description": "A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set."
   },
   "LearnContinuousDistribution": {
     "props": [],
@@ -3107,6 +3213,12 @@
         "default": true
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -3152,6 +3264,18 @@
         "type": "boolean",
         "description": "controls whether to disable submission notifications",
         "default": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "default": {}
       }
     ],
     "description": "A component showing a question and a five-point scale for students to answer."
@@ -3162,6 +3286,16 @@
         "name": "href",
         "type": "string (required)",
         "description": "URL of website to link to"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "default": null
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
       }
     ],
     "description": "A link component."
@@ -3239,6 +3373,12 @@
         "type": "string",
         "description": "notification displayed for all submissions after the first one",
         "default": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": null
       },
       {
         "name": "style",
@@ -4322,7 +4462,7 @@
         "name": "buttonLabel",
         "type": "string",
         "description": "label of the submit button",
-        "default": "Submit"
+        "default": null
       },
       {
         "name": "onSubmit",
@@ -4416,7 +4556,7 @@
         "name": "nextLabel",
         "type": "string",
         "description": "label of button to advance to next question",
-        "default": "Next Question"
+        "default": null
       },
       {
         "name": "provideFeedback",
@@ -4434,7 +4574,7 @@
         "name": "finishLabel",
         "type": "string",
         "description": "label of button to finish quiz",
-        "default": "Finish Quiz"
+        "default": null
       },
       {
         "name": "onFinished",
@@ -5497,10 +5637,10 @@
         "default": null
       },
       {
-        "name": "onClick",
-        "type": "function",
-        "description": "callback invoked when clicking on the next/previous buttons",
-        "default": "onClick() {}"
+        "name": "swipe",
+        "type": "boolean",
+        "description": "enables drag/swipe behavior",
+        "default": false
       },
       {
         "name": "style",
@@ -5509,10 +5649,10 @@
         "default": {}
       },
       {
-        "name": "swipe",
-        "type": "boolean",
-        "description": "enables drag/swipe behavior",
-        "default": false
+        "name": "onClick",
+        "type": "function",
+        "description": "callback invoked when clicking on the next/previous buttons",
+        "default": "onClick() {}"
       }
     ],
     "description": "A component which displays its children in a slideshow or carousel."
@@ -6557,9 +6697,32 @@
         "default": true
       },
       {
+        "name": "linkToDashboard",
+        "type": "boolean",
+        "description": "controls whether to display a link to the dashboard once completing the video lecture",
+        "default": false
+      },
+      {
         "name": "steps",
         "type": "array (required)",
         "description": "array of video URLs and components to be displayed in-between"
+      },
+      {
+        "name": "videoWidth",
+        "type": "(string|number)",
+        "description": "video width",
+        "default": "100%"
+      },
+      {
+        "name": "videoHeight",
+        "type": "(string|number)",
+        "description": "video height",
+        "default": "98vh"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "default": {}
       }
     ],
     "description": "A video lecture component that displays videos interspersed with interactive elements."

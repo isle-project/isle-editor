@@ -51,5 +51,6 @@ removeStatusBar: true
   '#FFFFFF'
 ]`.
 * __width__ | `number`: width of the color picker (in px). Default: `200`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.
