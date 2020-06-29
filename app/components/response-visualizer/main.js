@@ -157,6 +157,9 @@ class ResponseVisualizer extends Component {
 			ids.sort( ( a, b ) => {
 				a = document.getElementById( `${a}_response_visualizer` );
 				b = document.getElementById( `${b}_response_visualizer` );
+				if ( !a || !b ) {
+					return 0;
+				}
 				if ( a === b ) {
 					return 0;
 				}
