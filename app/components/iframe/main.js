@@ -15,6 +15,7 @@ import Card from 'react-bootstrap/Card';
 * @property {boolean} fullscreen - controls whether to display the iFrame in fullscreen mode
 * @property {number} width - iFrame width (in px)
 * @property {number} height - iFrame height (in px)
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
 class IFrame extends Component {
@@ -64,7 +65,7 @@ class IFrame extends Component {
 			};
 		}
 		return (
-			<Card id={this.props.id} style={style} >
+			<Card id={this.props.id} className={this.props.className} style={style} >
 				<iframe
 					src={this.props.src}
 					width={this.state.width}
@@ -84,6 +85,7 @@ IFrame.defaultProps = {
 	fullscreen: false,
 	width: 900,
 	height: 600,
+	className: null,
 	style: {}
 };
 
@@ -93,6 +95,7 @@ IFrame.propTypes = {
 	title: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object
 };
 

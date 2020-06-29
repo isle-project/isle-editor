@@ -122,6 +122,7 @@ function makeLog( e, i ) {
 * @property {number} lines - number of lines to display
 * @property {Object} vars - scope object with variables that should be made available to evaluated `code`
 * @property {string} voiceID - voice control identifier
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever the text field input changes
 * @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
@@ -397,7 +398,7 @@ class JSShell extends Component {
 			<div id={this.id} >
 				<div className="js-shell" >
 					{editor}
-					<div className="js-shell-toolbar">
+					<div className={`js-shell-toolbar ${this.props.className}`}>
 						{ !this.props.disabled ?
 							<Button
 								variant="primary"
@@ -438,6 +439,7 @@ JSShell.defaultProps = {
 	check: null,
 	disabled: false,
 	lines: 5,
+	className: null,
 	style: {},
 	vars: null,
 	voiceID: null,
@@ -456,6 +458,7 @@ JSShell.propTypes = {
 	check: PropTypes.string,
 	disabled: PropTypes.bool,
 	lines: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onEvaluate: PropTypes.func,

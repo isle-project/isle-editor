@@ -30,6 +30,7 @@ const STYLES = {
 * Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walkthroughs and guided tours.
 *
 * @property {Array} steps - array of step `objects`
+* @property {boolean} scrollToSteps - controls whether the window should scroll to the current step
 * @property {boolean} run - controls whether the guide is active
 */
 class Wrapper extends Component {

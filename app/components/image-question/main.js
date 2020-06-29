@@ -138,7 +138,7 @@ class ImageQuestion extends Component {
 	render() {
 		const nHints = this.props.hints.length;
 		return (
-			<Card id={this.id} className="image-question" style={this.props.style} >
+			<Card id={this.id} className={`image-question ${this.props.className}`} style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					{ this.state.src ?
@@ -216,6 +216,7 @@ ImageQuestion.defaultProps = {
 	feedback: true,
 	chat: false,
 	disableSubmitNotification: false,
+	className: null,
 	style: {},
 	onSubmit() {}
 };
@@ -229,6 +230,7 @@ ImageQuestion.propTypes = {
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

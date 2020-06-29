@@ -17,14 +17,14 @@ import './image.css';
 /**
 * Component to display an image.
 *
+* @property {string} id - component identifier
 * @property {string} src - image source location
-* @property {string} className - class name
 * @property {string} body - base64 encoded data of image
 * @property {number} height - image height (in px)
 * @property {number} width - image width (in px)
-* @property {string} id - component identifier
 * @property {boolean} showModal - controls whether to display fullscreen modal view
 * @property {string} alt - image description
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onShare - callback invoked with the image if the "share" button is clicked
 */
