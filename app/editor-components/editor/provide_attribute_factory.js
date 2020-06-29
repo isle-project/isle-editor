@@ -122,7 +122,7 @@ function factory( monaco ) {
 						title: 'Trigger new suggestion',
 						id: 'editor.action.triggerSuggest'
 					},
-					documentation: 'Component identifier',
+					documentation: 'Component identifier. Has to begin with a letter followed by letters, digits, hyphens ( - ), underscores ( _ ), colons ( : ), and periods ( . ).',
 					kind: monaco.languages.CompletionItemKind.Snippet,
 					detail: 'string',
 					insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
