@@ -62,6 +62,7 @@ function createColorScale( length ) {
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {number} maxlength - maximum allowed number of characters
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked when students submits an answer
 */
@@ -190,7 +191,7 @@ class MatchListQuestion extends Component {
 		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
 		const unfinished = answers.length !== elements.length;
 		return (
-			<div id={this.id} className="match-list-question-container" style={this.props.style} >
+			<div id={this.id} className={`match-list-question-container ${this.props.className}`} style={this.props.style} >
 				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
 				<i style={{ fontSize: '0.8rem' }}>{this.props.t('instructions')}</i>
 				<div className="match-list-question-lists">
@@ -274,6 +275,7 @@ MatchListQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	className: null,
 	style: {},
 	onSubmit() {}
 };
@@ -299,6 +301,7 @@ MatchListQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

@@ -60,8 +60,10 @@ class Link extends Component {
 					renderTag="span"
 				>
 					<a
+						className={this.props.className}
 						href={this.state.url}
 						target={this.state.target}
+						style={this.props.style}
 					>
 						{this.props.children}
 					</a>
@@ -81,7 +83,14 @@ class Link extends Component {
 // PROPERTIES //
 
 Link.propTypes = {
-	href: PropTypes.string.isRequired // eslint-disable-line react/no-unused-prop-types
+	href: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types,
+	className: PropTypes.string,
+	style: PropTypes.object
+};
+
+Link.defaultProps = {
+	className: null,
+	style: {}
 };
 
 Link.contextType = SessionContext;

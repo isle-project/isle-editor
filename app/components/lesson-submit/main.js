@@ -47,6 +47,7 @@ function createMessage( session, message ) {
 * @property {boolean} requireLogin - controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
 * @property {string} message - message for confirmation email
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback invoked when clicking on the submission button
 */
@@ -296,7 +297,7 @@ class LessonSubmit extends Component {
 		const session = this.context;
 		const disabled = !session.live || this.state.disabled;
 		return (
-			<div className="bg-light" style={{
+			<div className={`bg-light ${this.props.className}`} style={{
 				maxWidth: 400,
 				margin: '0 auto 0px',
 				padding: '20px',
@@ -333,6 +334,7 @@ LessonSubmit.defaultProps = {
 	message: '',
 	requireLogin: true,
 	sendConfirmationEmail: true,
+	className: null,
 	style: {},
 	onClick() {}
 };
@@ -342,6 +344,7 @@ LessonSubmit.propTypes = {
 	message: PropTypes.string,
 	requireLogin: PropTypes.bool,
 	sendConfirmationEmail: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };

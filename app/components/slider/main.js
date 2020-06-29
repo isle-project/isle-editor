@@ -157,9 +157,9 @@ DefaultSlider.propTypes = {
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
 	interval: PropTypes.number,
-	onClick: PropTypes.func,
+	swipe: PropTypes.bool,
 	style: PropTypes.object,
-	swipe: PropTypes.bool
+	onClick: PropTypes.func
 };
 
 

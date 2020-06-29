@@ -27,6 +27,8 @@ const uid = generateUID( 'likert-scale' );
 * @property {Array} options - an array of five elements holding the labels for the different scale levels
 * @property {boolean} noMultipleResponses - disallow multiple submissions from a single student
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
 */
 class LikertScale extends Component {
 	constructor( props ) {
@@ -68,7 +70,7 @@ class LikertScale extends Component {
 	render() {
 		const disabled = this.props.noMultipleResponses && this.state.submitted;
 		return (
-			<Card className="center" style={{ width: '75%' }} >
+			<Card className={`${this.props.className} center`} style={{ width: '75%', ...this.props.style }} >
 				<Card.Body>
 					<FormGroup className="center" >
 						<label>{this.props.question}</label>
@@ -123,7 +125,9 @@ LikertScale.propTypes = {
 	question: PropTypes.string,
 	options: PropTypes.array,
 	noMultipleResponses: PropTypes.bool,
-	disableSubmitNotification: PropTypes.bool
+	disableSubmitNotification: PropTypes.bool,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 LikertScale.defaultProps = {
@@ -136,7 +140,9 @@ LikertScale.defaultProps = {
 		'Strongly agree'
 	],
 	noMultipleResponses: false,
-	disableSubmitNotification: false
+	disableSubmitNotification: false,
+	className: null,
+	style: {}
 };
 
 LikertScale.contextType = SessionContext;
