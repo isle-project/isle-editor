@@ -46,6 +46,9 @@ const waitStatuses = ( steps ) => {
 * @property {Array} steps - array of video URLs and components to be displayed in-between
 * @property {boolean} controls - indicates whether to display control elements of the video players
 * @property {boolean} instructorView - controls whether to include instructor view
+* @property {boolean} linkToDashboard - controls whether to display a link to the dashboard once completing the video lecture
+* @property {(string|number)} videoHeight - video height
+* @property {(string|number)} videoWidth - video width
 */
 class VideoLecture extends Component {
 	constructor( props ) {
@@ -141,7 +144,8 @@ class VideoLecture extends Component {
 						key={page}
 						onEnded={this.incrementStep}
 						controls={this.props.controls}
-						width="100%" height="98vh"
+						width={this.props.videoWidth}
+						height={this.props.videoHeight}
 						playing={this.state.active !== 0}
 					/> : null }
 					{ this.state.active > 0 ? <div
@@ -214,7 +218,7 @@ class VideoLecture extends Component {
 			<Fragment>
 				<div className="video-lecture-wrapper" ref={( div ) => {
 					this.videoLectureWrapper = div;
-				}}>
+				}} style={this.props.style} >
 					{ this.state.active >= this.props.steps.length && !this.state.showInstructorView ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>{t('reached-end')}</h1>
@@ -224,10 +228,10 @@ class VideoLecture extends Component {
 									size="lg"
 									onClick={this.decrementStep}
 								>{t('to-previous')}</Button>
-								<a href={session.server}><Button
+								{this.props.linkToDashboard ? <a href={session.server}><Button
 									variant="secondary"
 									size="lg"
-								>{t('close-and-to-dashboard')}</Button></a>
+								>{t('close-and-to-dashboard')}</Button></a> : null}
 							</ButtonGroup>
 						</Alert> : null
 					}
@@ -261,12 +265,26 @@ class VideoLecture extends Component {
 VideoLecture.propTypes = {
 	controls: PropTypes.bool,
 	instructorView: PropTypes.bool,
-	steps: PropTypes.array.isRequired
+	linkToDashboard: PropTypes.bool,
+	steps: PropTypes.array.isRequired,
+	videoWidth: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	videoHeight: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	style: PropTypes.object
 };
 
 VideoLecture.defaultProps = {
 	controls: true,
-	instructorView: true
+	instructorView: true,
+	linkToDashboard: false,
+	videoWidth: '100%',
+	videoHeight: '98vh',
+	style: {}
 };
 
 VideoLecture.contextType = SessionContext;

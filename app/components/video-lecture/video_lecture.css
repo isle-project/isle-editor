@@ -55,12 +55,10 @@
 
 .video-lecture-wrapper {
 	position: relative;
-	height: 100vh;
-	width: 100%;
 }
 
 .video-lecture-end-alert {
-	top: 33%;
+	margin-top: 30vh;
 	height: fit-content;
 	max-width: 900px;
 	text-align: center;
