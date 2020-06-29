@@ -138,7 +138,10 @@ const siteConfig = {
 		twitterImage: 'img/undraw_tweetstorm.svg'
 	},
 
-	scripts: [],
+	scripts: [
+		'https://cdn.jsdelivr.net/npm/@isle-project/session/dll.session.js',
+		'https://cdn.jsdelivr.net/npm/@isle-project/components/dll.components.js'
+	],
 
 	stylesheets: [
 		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap'
