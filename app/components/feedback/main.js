@@ -42,6 +42,7 @@ const uid = generateUID( 'feedback' );
 * @property {string} feedbackMsg - message to be displayed in tooltip for detailed feedback button
 * @property {string} understoodMsg - message to be displayed in tooltip for understood button
 * @property {boolean} vertical - buttons are displayed vertically if set to `true`
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
 class FeedbackButtons extends Component {
@@ -140,7 +141,7 @@ class FeedbackButtons extends Component {
 	render() {
 		const tpos = this.props.vertical ? 'left' : 'bottom';
 		return (
-			<div id={this.id} className="feedback-buttons" >
+			<div id={this.id} className={`feedback-buttons ${this.props.className}`} >
 				<ButtonGroup style={{ float: 'right', ...this.props.style }} vertical={this.props.vertical} >
 					{ this.state.submittedBinaryChoice ?
 						<Fragment>
@@ -256,6 +257,7 @@ FeedbackButtons.propTypes = {
 	understoodMsg: PropTypes.string,
 	customFeedback: PropTypes.bool,
 	vertical: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -267,6 +269,7 @@ FeedbackButtons.defaultProps = {
 	feedbackMsg: null,
 	understoodMsg: null,
 	vertical: false,
+	className: '',
 	style: {}
 };
 
