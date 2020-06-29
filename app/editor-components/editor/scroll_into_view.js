@@ -16,7 +16,7 @@ function scrollIntoView( lineNumber ) {
 	const elem = document.getElementById( 'line-'+lineNumber );
 	if ( elem ) {
 		if ( isHidden( elem ) ) {
-			vex.dialog.alert({ unsafeMessage: 'The component is currently not displayed.' });
+			vex.dialog.alert({ unsafeMessage: 'The component is not displayed.' });
 		}
 		elem.scrollIntoView({
 			behavior: 'smooth',
@@ -28,7 +28,7 @@ function scrollIntoView( lineNumber ) {
 			elem.classList.remove( 'focus-glow' );
 		}, 2000 );
 	} else {
-		vex.dialog.alert({ unsafeMessage: 'The component is currently not rendered in the lesson document.' });
+		vex.dialog.alert({ unsafeMessage: 'The component is not rendered in the lesson document.' });
 	}
 }
 
