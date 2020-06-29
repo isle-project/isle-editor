@@ -41,6 +41,7 @@ import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import loadRequires from '../preview/load_requires.js';
+import scrollIntoView from './scroll_into_view.js';
 import './editor.css';
 
 
@@ -403,18 +404,7 @@ class Editor extends Component {
 		});
 
 		this.scrollIntoViewInPreview = this.editor.addCommand( 'scroll-into-view', ( _, line ) => {
-			const elem = document.getElementById( 'line-'+line );
-			if ( elem ) {
-				elem.scrollIntoView({
-					behavior: 'smooth',
-					block: 'nearest',
-					inline: 'end'
-				});
-				elem.classList.add( 'focus-glow' );
-				setTimeout( () => {
-					elem.classList.remove( 'focus-glow' );
-				}, 2000 );
-			}
+			scrollIntoView( line );
 		});
 
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
@@ -573,18 +563,7 @@ class Editor extends Component {
 			const line = model.getLineContent( selection.startLineNumber );
 			if ( RE_TAG_START.test( line ) ) {
 				const lineNumber = selection.startLineNumber;
-				const elem = document.getElementById( 'line-'+lineNumber );
-				if ( elem ) {
-					elem.scrollIntoView({
-						behavior: 'smooth',
-						block: 'nearest',
-						inline: 'end'
-					});
-					elem.classList.add( 'focus-glow' );
-					setTimeout( () => {
-						elem.classList.remove( 'focus-glow' );
-					}, 2000 );
-				}
+				scrollIntoView( lineNumber );
 			}
 		});
 	}
