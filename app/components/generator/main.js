@@ -10,6 +10,9 @@ import Panel from 'components/panel';
 
 /**
 * A component for generating other components (e.g., automatically generated questions).
+*
+* @property {(string|node)} buttonLabel - label for button
+* @property {Function} onGenerate - function invoked that should return a new component to be rendered in the lesson
 */
 class Generator extends Component {
 	constructor( props ) {
@@ -41,7 +44,10 @@ class Generator extends Component {
 // PROPERTIES //
 
 Generator.propTypes = {
-	buttonLabel: PropTypes.string,
+	buttonLabel: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	onGenerate: PropTypes.func.isRequired
 };
 

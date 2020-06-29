@@ -18,10 +18,11 @@ import isArray from '@stdlib/assert/is-array';
 * @property {boolean} draggable - controls whether the card may be dragged around
 * @property {number} flipSpeedBackToFront - the speed by which the card turns from background to foreground, in seconds
 * @property {number} flipSpeedFrontToBack {number} the speed by which the card turns from foreground to background, in seconds
-* @property {boolean} isFlipped - initial flip state of the card
+* @property {boolean} defaultValue - initial flip state of the card
+* @property {boolean} value - flip state of the card (for controlled component)
 * @property {number} perspective - CSS property value to give 3d-positioned element a perspective
-* @property {Function} onChange - callback invoked once the card is flipped; receives the current flipped status as its sole argument
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
+* @property {Function} onChange - callback invoked once the card is flipped; receives the current flipped status as its sole argument
 */
 class FlippableCard extends Component {
 	constructor( props ) {
@@ -34,15 +35,15 @@ class FlippableCard extends Component {
 	}
 
 	componentDidUpdate( nextProps ) {
-		if ( nextProps.isFlipped !== this.props.isFlipped ) {
+		if ( nextProps.defaultValue !== this.props.defaultValue ) {
 			this.setState({
-				isFlipped: nextProps.isFlipped
+				isFlipped: nextProps.defaultValue
 			});
 		}
 	}
 
 	oneShot = () => {
-		if (this.state.fired === false) {
+		if ( !this.state.fired ) {
 			this.setState({
 				fired: true,
 				isFlipped: !this.state.isFlipped
@@ -56,7 +57,7 @@ class FlippableCard extends Component {
 		if ( this.props.value !== void 0 ) {
 			return this.props.onChange( !this.props.value );
 		}
-		if ( this.props.oneTime === false)
+		if ( !this.props.oneTime )
 			{
 			this.setState({
 				isFlipped: !this.state.isFlipped
@@ -139,12 +140,12 @@ class FlippableCard extends Component {
 			onClick={this.interaction} onKeyPress={this.interaction}
 			className="react-card-flip" style={styles.container}
 		>
-			<div className="react-card-flipper" style={styles.flipper}>
-				<div className="react-card-front" style={styles.front}>
+			<div className="react-card-flipper" style={styles.flipper} >
+				<div className="react-card-front" style={styles.front} >
 					{this.props.children[ 0 ]}
 					{this.renderButton()}
 				</div>
-				<div className="react-card-back" style={styles.back}>
+				<div className="react-card-back" style={styles.back} >
 					{this.props.children[ 1 ]}
 					{this.renderButton()}
 				</div>
@@ -175,7 +176,6 @@ FlippableCard.propTypes = {
 	draggable: PropTypes.bool,
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
-	isFlipped: PropTypes.bool,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
 	perspective: PropTypes.number,
@@ -194,7 +194,6 @@ FlippableCard.defaultProps = {
 	draggable: false,
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
-	isFlipped: false,
 	onChange() {},
 	oneTime: false,
 	perspective: 1000,

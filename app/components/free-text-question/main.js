@@ -58,6 +58,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {number} maxlength - maximum allowed number of characters
 * @property {string} voiceID - voice control identifier
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
 * @property {Function} onSubmit - callback invoked when user submits an answer; receives the submitted text as its sole argument
@@ -242,7 +243,7 @@ class FreeTextQuestion extends Component {
 		/>;
 		return (
 			<Panel
-				id={this.id} className="free-text-question"
+				id={this.id} className={`free-text-question ${this.props.className}`}
 				style={this.props.style} fullscreen
 				bodyStyle={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}
 			>
@@ -367,6 +368,7 @@ FreeTextQuestion.defaultProps = {
 	provideFeedback: true,
 	maxlength: 2500,
 	voiceID: null,
+	className: null,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -397,6 +399,7 @@ FreeTextQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	maxlength: PropTypes.number,
 	voiceID: PropTypes.string,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

@@ -54,9 +54,10 @@ function containsProfanity( text ) {
 *
 * @property {string} question - the question to ask the students
 * @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
-* @property {boolean} anonymous - controls whether student answers are anonymized
+* @property {boolean} anonymous - controls whether student answers are anonymously collected
 * @property {boolean} multipleAnswers - controls whether students may select more than one answer. Note that this differs from `allowMultipleAnswers`, which allows students able to submit an answer multiple times
 * @property {number} rows - number of text rows in the input field
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function called when an answer is submitted
 */
@@ -213,6 +214,7 @@ FreeTextSurvey.defaultProps = {
 	allowMultipleAnswers: false,
 	anonymous: false,
 	rows: 4,
+	className: null,
 	style: {},
 	onSubmit() {}
 };
@@ -223,6 +225,7 @@ FreeTextSurvey.propTypes = {
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	rows: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
