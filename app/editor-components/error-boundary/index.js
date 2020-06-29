@@ -50,7 +50,11 @@ class ErrorBoundary extends Component {
 	render() {
 		debug( 'Check whether error has been encountered...' );
 		if ( this.state.hasError ) {
-			return <ErrorMessage msg={this.state.msg} code={this.props.code} />;
+			return ( <ErrorMessage
+				msg={this.state.msg}
+				code={this.props.code}
+				resetError={this.props.resetError}
+			/> );
 		}
 		return this.props.children;
 	}
@@ -61,7 +65,8 @@ class ErrorBoundary extends Component {
 
 ErrorBoundary.propTypes = {
 	code: PropTypes.string.isRequired,
-	preamble: PropTypes.object.isRequired
+	preamble: PropTypes.object.isRequired,
+	resetError: PropTypes.func.isRequired
 };
 
 

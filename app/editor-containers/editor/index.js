@@ -190,7 +190,11 @@ class App extends Component {
 			unsaved
 		} = this.props;
 
-		const preview = <ErrorBoundary code={markdown} preamble={this.props.preamble} >
+		const preview = <ErrorBoundary
+			code={markdown}
+			preamble={this.props.preamble}
+			resetError={this.props.resetError}
+		>
 			<Preview
 				code={markdown}
 				filePath={filePath}
