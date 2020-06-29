@@ -275,7 +275,7 @@ MatchListQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
-	className: null,
+	className: '',
 	style: {},
 	onSubmit() {}
 };

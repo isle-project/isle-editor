@@ -439,7 +439,7 @@ JSShell.defaultProps = {
 	check: null,
 	disabled: false,
 	lines: 5,
-	className: null,
+	className: '',
 	style: {},
 	vars: null,
 	voiceID: null,

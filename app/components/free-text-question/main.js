@@ -368,7 +368,7 @@ FreeTextQuestion.defaultProps = {
 	provideFeedback: true,
 	maxlength: 2500,
 	voiceID: null,
-	className: null,
+	className: '',
 	style: {},
 	onChange() {},
 	onSubmit() {}

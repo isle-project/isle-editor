@@ -214,7 +214,7 @@ FreeTextSurvey.defaultProps = {
 	allowMultipleAnswers: false,
 	anonymous: false,
 	rows: 4,
-	className: null,
+	className: '',
 	style: {},
 	onSubmit() {}
 };

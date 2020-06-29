@@ -85,7 +85,7 @@ IFrame.defaultProps = {
 	fullscreen: false,
 	width: 900,
 	height: 600,
-	className: null,
+	className: '',
 	style: {}
 };
 

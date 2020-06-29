@@ -392,7 +392,7 @@ class Calculator extends Component {
 Calculator.defaultProps = {
 	expandable: true,
 	show: true,
-	className: null,
+	className: '',
 	style: {},
 	onHide: null
 };

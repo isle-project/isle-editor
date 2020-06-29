@@ -860,7 +860,7 @@ DataTable.defaultProps = {
 	filters: [],
 	showRemove: false,
 	showIdColumn: true,
-	className: null,
+	className: '',
 	style: {}
 };
 

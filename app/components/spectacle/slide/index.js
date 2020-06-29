@@ -42,7 +42,7 @@ Wrapper.defaultProps = {
 	transition: null,
 	transitionDuration: null,
 	notes: null,
-	className: null,
+	className: '',
 	duration: null,
 	style: {}
 };

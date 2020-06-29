@@ -93,7 +93,7 @@ FullscreenButton.propTypes = {
 };
 
 FullscreenButton.defaultProps = {
-	className: null,
+	className: '',
 	header: null
 };
 

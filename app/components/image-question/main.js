@@ -216,7 +216,7 @@ ImageQuestion.defaultProps = {
 	feedback: true,
 	chat: false,
 	disableSubmitNotification: false,
-	className: null,
+	className: '',
 	style: {},
 	onSubmit() {}
 };

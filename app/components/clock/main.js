@@ -123,7 +123,7 @@ Clock.propTypes = {
 Clock.defaultProps = {
 	duration: false,
 	format: '',
-	className: null,
+	className: '',
 	style: {}
 };
 

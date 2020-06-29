@@ -27,7 +27,7 @@ class Wrapper extends Component {
 Wrapper.defaultProps = {
 	lang: null,
 	source: '',
-	className: null,
+	className: '',
 	theme: 'dark'
 };
 

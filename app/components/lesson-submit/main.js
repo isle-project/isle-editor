@@ -334,7 +334,7 @@ LessonSubmit.defaultProps = {
 	message: '',
 	requireLogin: true,
 	sendConfirmationEmail: true,
-	className: null,
+	className: '',
 	style: {},
 	onClick() {}
 };

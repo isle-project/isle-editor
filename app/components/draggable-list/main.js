@@ -87,7 +87,7 @@ DraggableList.defaultProps = {
 	onChange(){},
 	onInit(){},
 	shuffle: false,
-	className: null,
+	className: '',
 	style: {}
 };
 

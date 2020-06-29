@@ -89,7 +89,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
-	className: null,
+	className: '',
 	style: {}
 };
 

@@ -141,7 +141,7 @@ LikertScale.defaultProps = {
 	],
 	noMultipleResponses: false,
 	disableSubmitNotification: false,
-	className: null,
+	className: '',
 	style: {}
 };
 

@@ -23,7 +23,7 @@ class Wrapper extends Component {
 // PROPERTIES //
 
 Wrapper.defaultProps = {
-	className: null,
+	className: '',
 	style: {}
 };
 

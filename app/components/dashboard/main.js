@@ -200,7 +200,7 @@ Dashboard.defaultProps = {
 	disabled: false,
 	label: null,
 	maxWidth: 600,
-	className: null,
+	className: '',
 	style: {},
 	onGenerate() {},
 	title: ''
