@@ -180,7 +180,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -296,7 +296,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -579,7 +579,7 @@
       {
         "name": "className",
         "type": "string",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -929,7 +929,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -996,7 +996,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -1270,7 +1270,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -1327,7 +1327,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -1454,7 +1454,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -1505,7 +1505,7 @@
       {
         "name": "className",
         "type": "string",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -2387,7 +2387,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -3216,7 +3216,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -3269,7 +3269,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -3290,7 +3290,7 @@
       {
         "name": "className",
         "type": "string",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -3378,7 +3378,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5713,7 +5713,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5730,7 +5730,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5759,7 +5759,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "theme",
@@ -5802,7 +5802,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5902,7 +5902,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5919,7 +5919,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "style",
@@ -5992,7 +5992,7 @@
         "name": "className",
         "type": "string",
         "description": "class name",
-        "default": null
+        "default": ""
       },
       {
         "name": "duration",
