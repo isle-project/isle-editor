@@ -8,6 +8,13 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
+// MODULES //
+
+const path = require( 'path' );
+
+
+// MAIN //
+
 const siteConfig = {
 	presets: [
 		[
@@ -131,9 +138,15 @@ const siteConfig = {
 		twitterImage: 'img/undraw_tweetstorm.svg'
 	},
 
+	scripts: [],
+
 	stylesheets: [
 		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap'
-	]
+	],
+
+	plugins: [],
+
+	themes: ['@docusaurus/theme-live-codeblock']
 };
 
 module.exports = siteConfig;
