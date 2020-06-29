@@ -159,7 +159,7 @@ class Dashboard extends Component {
 		this._children = this.registerChildren( this.props.children );
 		return (
 			<Card
-				className={`dashboard ${this.props.clasName}`}
+				className={`dashboard ${this.props.className}`}
 				style={{
 					maxWidth: this.props.maxWidth,
 					...this.props.style
