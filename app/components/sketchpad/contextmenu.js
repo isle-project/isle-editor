@@ -15,18 +15,22 @@ const debug = logger( 'isle:lesson:sketchpad-contextmenu' );
 // MAIN //
 
 class SketchpadContextMenu extends Component {
-	copyToClipboard = ( event ) => {
+	copyToClipboard = () => {
 		debug( 'Copying page to clipboard... ' );
-		const url = this.props.canvas.toDataURL();
-		const img = `<img alt="Sketchpad Page" src="${url}" />`;
+		let img;
+		if ( this.props.canvas ) {
+			const url = this.props.canvas.toDataURL();
+			img = `<img alt="Sketchpad Page" src="${url}" />`;
+			document.addEventListener('copy', listener);
+			document.execCommand('copy');
+			document.removeEventListener('copy', listener);
+		}
+
 		function listener( e ) {
 			e.clipboardData.setData( 'text/html ', img );
 			e.clipboardData.setData( 'text/plain ', img );
 			e.preventDefault();
 		}
-		document.addEventListener('copy', listener);
-		document.execCommand('copy');
-		document.removeEventListener('copy', listener);
 	}
 
 	render() {
@@ -46,7 +50,11 @@ class SketchpadContextMenu extends Component {
 // PROPERTIES //
 
 SketchpadContextMenu.propTypes = {
-	canvas: PropTypes.object.isRequired
+	canvas: PropTypes.object
+};
+
+SketchpadContextMenu.defaultProps = {
+	canvas: null
 };
 
 
