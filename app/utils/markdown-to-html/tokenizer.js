@@ -115,10 +115,7 @@ function tagName( str, pos ) {
 }
 
 function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, ( _, p1 ) => {
-		const num = p1 ? p1.length : 0;
-		return EOL.repeat( num );
-	});
+	return replace( str, RE_LINE_BEGINNING, EOL );
 }
 
 function isPreviousChar( buffer, pos, char ) {
