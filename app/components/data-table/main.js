@@ -567,7 +567,13 @@ class DataTable extends Component {
 		const blob = new Blob([ JSON.stringify( this.state.data ) ], {
 			type: 'application/json'
 		});
-		const name = `${this.props.dataInfo.name || 'dataset'}.json`;
+		const dataInfo = this.props.dataInfo;
+		let name;
+		if ( !dataInfo || !dataInfo.name ) {
+			name = 'dataset.json';
+		} else {
+			name = dataInfo.name;
+		}
 		saveAs( blob, name );
 	}
 
@@ -587,7 +593,13 @@ class DataTable extends Component {
 			const blob = new Blob([ output ], {
 				type: 'text/plain'
 			});
-			const name = `${this.props.dataInfo.name || 'dataset'}.csv`;
+			const dataInfo = this.props.dataInfo;
+			let name;
+			if ( !dataInfo || !dataInfo.name ) {
+				name = 'dataset.json';
+			} else {
+				name = dataInfo.name;
+			}
 			saveAs( blob, name );
 		});
 	}
