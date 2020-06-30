@@ -8,6 +8,7 @@ import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
 import copy from '@stdlib/utils/copy';
@@ -56,6 +57,10 @@ function isMissing( x ) {
 	return isnan( x ) || isUndefinedOrNull( x );
 }
 
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
 
 // MAIN //
 
@@ -76,8 +81,8 @@ class SimpleLinearRegression extends Component {
 				for ( let i = 0; i < x.length; i++ ) {
 					if (
 						!isMissing( groups[ i ] ) &&
-						!isMissing( x[ i ] ) &&
-						!isMissing( y[ i ] )
+						isNonMissingNumber( x[ i ] ) &&
+						isNonMissingNumber( y[ i ] )
 					) {
 						xvals.push( x[ i ] );
 						yvals.push( y[ i ] );
@@ -87,8 +92,8 @@ class SimpleLinearRegression extends Component {
 			} else {
 				for ( let i = 0; i < x.length; i++ ) {
 					if (
-						!isMissing( x[ i ] ) &&
-						!isMissing( y[ i ] )
+						isNonMissingNumber( x[ i ] ) &&
+						isNonMissingNumber( y[ i ] )
 					) {
 						xvals.push( x[ i ] );
 						yvals.push( y[ i ] );

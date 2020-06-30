@@ -9,6 +9,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import stdev from 'utils/statistic/stdev';
@@ -26,6 +28,13 @@ const debug = logger( 'isle:data-explorer:meantest2' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
 const DESCRIPTION = 'A test for equality of means across two groups.';
+
+
+// FUNCTIONS //
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
 
 
 // MAIN //
@@ -57,18 +66,28 @@ class MeanTest2 extends Component {
 		const { showDecision } = this.props;
 		const x = this.state.xvalues;
 		const y = this.state.yvalues;
+		const xvals = [];
+		const yvals = [];
+		for ( let i = 0; i < x.length; i++ ) {
+			if (
+				isNonMissingNumber( x[ i ] ) &&
+				isNonMissingNumber( y[ i ] )
+			) {
+				xvals.push( x[ i ] );
+				yvals.push( y[ i ] );
+			}
+		}
 		let value;
-
 		if ( grouping ) {
 			let result;
 			if ( type === 'Z Test' ) {
-				result = ztest2( x, y, xstdev, ystdev, {
+				result = ztest2( xvals, yvals, xstdev, ystdev, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
 			} else {
-				result = ttest2( x, y, {
+				result = ttest2( xvals, yvals, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
@@ -104,13 +123,13 @@ class MeanTest2 extends Component {
 		} else if ( yvar ) {
 			let result;
 			if ( type === 'Z Test' ) {
-				result = ztest2( x, y, xstdev, ystdev, {
+				result = ztest2( xvals, yvals, xstdev, ystdev, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
 				});
 			} else {
-				result = ttest2( x, y, {
+				result = ttest2( xvals, yvals, {
 					'alpha': alpha,
 					'alternative': direction,
 					'difference': diff
