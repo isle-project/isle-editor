@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uniq from 'uniq';
 import MLR from 'ml-regression-multivariate-linear';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
@@ -24,6 +23,7 @@ import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import mean from 'utils/statistic/mean';
 import QuestionButton from './question_button.js';
+import uniqueNonMissing from './unique_nonmissing.js';
 
 
 // VARIABLES //
@@ -44,7 +44,7 @@ function designMatrix( x, data, quantitative, intercept ) {
 		if ( contains( quantitative, x[ j ] ) ) {
 			predictors.push( x[ j ] );
 		} else {
-			const categories = x[ j ].categories || uniq( values.slice() );
+			const categories = x[ j ].categories || uniqueNonMissing( values );
 			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
 				predictors.push( `${x[ j ]}_${categories[ k ]}` );
 			}
