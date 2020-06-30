@@ -36,7 +36,7 @@ exports[`renders feedback buttons (horizontal format) 1`] = `
 
 exports[`renders feedback buttons (vertical format) 1`] = `
 <div
-  className="feedback-buttons"
+  className="feedback-buttons "
   id="feedback-3"
 >
   <div
@@ -105,7 +105,7 @@ exports[`renders feedback buttons (vertical format) 1`] = `
 
 exports[`renders feedback buttons with custom messages 1`] = `
 <div
-  className="feedback-buttons"
+  className="feedback-buttons "
   id="feedback-5"
 >
   <div
@@ -174,7 +174,7 @@ exports[`renders feedback buttons with custom messages 1`] = `
 
 exports[`renders feedback buttons without option to supply custom feedback 1`] = `
 <div
-  className="feedback-buttons"
+  className="feedback-buttons "
   id="feedback-4"
 >
   <div
