@@ -14,6 +14,7 @@ import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
+import { UpdateNotification } from './service_worker.js';
 import TRANSLATION from './translation.json';
 
 
@@ -180,6 +181,7 @@ class Lesson extends Component {
 						{this.props.children}
 						{this.state.notes}
 						<LanguageSwitcher />
+						<UpdateNotification />
 					</div>
 				</ContextMenuTrigger>
 				<LessonContextMenu

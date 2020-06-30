@@ -1,3 +1,11 @@
+// MODULES //
+
+import React from 'react';
+import './update_notification.css';
+
+
+// FUNCTIONS //
+
 /**
 * MIT License
 *
@@ -23,6 +31,8 @@
 */
 
 /* eslint-disable no-process-env, no-console */
+
+let installingWorker;
 
 const isLocalhost = Boolean(
 	window.location.hostname === 'localhost' ||
@@ -63,13 +73,13 @@ function registerValidSW( swUrl, config ) {
 		.register(swUrl)
 		.then(registration => {
 			registration.onupdatefound = () => {
-				const installingWorker = registration.installing;
+				installingWorker = registration.installing;
 				if ( installingWorker === null ) {
 					return;
 				}
 				installingWorker.onstatechange = () => {
 					if ( installingWorker.state === 'installed' ) {
-						if (navigator.serviceWorker.controller) {
+						if ( navigator.serviceWorker.controller ) {
 							/*
 								At this point, the updated precached content has been fetched,
 								but the previous service worker will still serve the older
@@ -80,9 +90,14 @@ function registerValidSW( swUrl, config ) {
 									'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
 							);
 
+							const notification = document.getElementById( 'pwa-notification' );
+							if ( notification ) {
+								notification.className = 'show';
+							}
+
 							// Execute callback
-							if (config && config.onUpdate) {
-								config.onUpdate(registration);
+							if ( config && config.onUpdate ) {
+								config.onUpdate( registration );
 							}
 						} else {
 							/*
@@ -92,8 +107,8 @@ function registerValidSW( swUrl, config ) {
 							*/
 							console.log('Content is cached for offline use.');
 							// Execute callback
-							if (config && config.onSuccess) {
-								config.onSuccess(registration);
+							if ( config && config.onSuccess ) {
+								config.onSuccess( registration );
 							}
 						}
 					}
@@ -103,9 +118,18 @@ function registerValidSW( swUrl, config ) {
 		.catch(error => {
 			console.error( 'Error during service worker registration:', error );
 		});
+	let refreshing;
+	navigator.serviceWorker.addEventListener( 'controllerchange', () => {
+		console.log( 'Controller status has changed '+refreshing );
+		if ( refreshing ) {
+			return;
+		}
+		window.location.reload();
+		refreshing = true;
+	});
 }
 
-function checkValidServiceWorker(swUrl, config) {
+function checkValidServiceWorker( swUrl, config ) {
 	// Check if the service worker can be found. If it can't reload the page.
 	fetch(swUrl, {
 		headers: { 'Service-Worker': 'script' }
@@ -142,3 +166,24 @@ export function unregister() {
 		});
 	}
 }
+
+function handleClick() {
+	console.log( 'Skip waiting and immediately reload newest data...' );
+	installingWorker.postMessage({ type: 'SKIP_WAITING' });
+}
+
+
+// MAIN //
+
+const Notification = () => {
+	return (
+		<div id="pwa-notification" >
+			A new version of this lesson is available. Click <button onClick={handleClick}>here</button> to update.
+		</div>
+	);
+};
+
+
+// EXPORTS //
+
+export const UpdateNotification = Notification;

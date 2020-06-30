@@ -116,11 +116,11 @@ import { json, csv } from 'd3';
 import { render } from 'react-dom';
 import { extname } from 'path';
 import Lesson from 'components/internal/lesson';
+import * as serviceWorker from 'components/internal/lesson/service_worker.js';
 import 'css/lesson.css';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 import obsToVar from 'utils/obs-to-var';
-import * as serviceWorker from 'utils/service-worker';
 `;
 
 const getComponents = ( arr ) => {
