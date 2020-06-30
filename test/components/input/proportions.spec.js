@@ -3,7 +3,7 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Proportions from 'components/input/proportions';
+import Proportions from 'components/input/proportions/main.js';
 import NumberInput from 'components/input/number';
 import { VictoryPie } from 'victory';
 import contains from '@stdlib/assert/contains';
