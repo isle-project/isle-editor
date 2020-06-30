@@ -26,6 +26,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'components/tooltip';
 import markdownit from 'markdown-it';
+import isDigitString from '@stdlib/assert/is-digit-string';
 import isTypedArray from '@stdlib/assert/is-typed-array';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
@@ -248,6 +249,11 @@ function createColumns( props, state ) {
 			} else if ( uniqueValues.length <= 50 ) {
 				// Cast values to strings for select component to work and sort:
 				uniqueValues = uniqueValues.map( x => String( x ) ).sort( comparer );
+				if ( isDigitString( uniqueValues[ 0 ] ) ) {
+					out[ 'style' ] = {
+						textAlign: 'right'
+					};
+				}
 				out[ 'filterMethod' ] = filterMethodCategories;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
