@@ -1,6 +1,11 @@
 // MODULES //
 
-import ProportionsInput from './main.js';
+import Loadable from 'components/internal/loadable';
+
+
+// MAIN //
+
+const ProportionsInput = Loadable( () => import( /* webpackChunkName: "ProportionsInput" */ './main.js' ) );
 
 
 // EXPORTS //
