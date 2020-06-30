@@ -7,8 +7,8 @@
 	padding: 8px;
 	position: fixed;
 	z-index: 1;
-	left: 50%;
-	bottom: 30px;
+	left: 1%;
+	top: 2%;
 }
 
 #pwa-notification.show {

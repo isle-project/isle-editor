@@ -33,6 +33,7 @@ import './update_notification.css';
 /* eslint-disable no-process-env, no-console */
 
 let installingWorker;
+let refreshing = true;
 
 const isLocalhost = Boolean(
 	window.location.hostname === 'localhost' ||
@@ -118,7 +119,6 @@ function registerValidSW( swUrl, config ) {
 		.catch(error => {
 			console.error( 'Error during service worker registration:', error );
 		});
-	let refreshing;
 	navigator.serviceWorker.addEventListener( 'controllerchange', () => {
 		console.log( 'Controller status has changed '+refreshing );
 		if ( refreshing ) {
@@ -169,6 +169,7 @@ export function unregister() {
 
 function handleClick() {
 	console.log( 'Skip waiting and immediately reload newest data...' );
+	refreshing = false;
 	installingWorker.postMessage({ type: 'SKIP_WAITING' });
 }
 
