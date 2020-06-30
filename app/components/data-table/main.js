@@ -230,6 +230,9 @@ function createColumns( props, state ) {
 			}
 			if ( isNumColumn ) {
 				out[ 'filterMethod' ] = filterMethodNumbers;
+				out[ 'style' ] = {
+					textAlign: 'right'
+				};
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					const maxValue = ceil( max( uniqueValues ) );
 					const minValue = floor( min( uniqueValues ) );
