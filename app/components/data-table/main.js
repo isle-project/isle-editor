@@ -46,6 +46,7 @@ import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import SessionContext from 'session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from 'constants/actions.js';
+import NINF from '@stdlib/constants/math/float64-ninf';
 import SelectInput from 'components/input/select';
 import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';
@@ -77,6 +78,8 @@ const LOCALE_COMPARE_OPTS = {
 // FUNCTIONS //
 
 function comparer( a, b ) {
+	a = ( a === null || a === void 0 ) ? NINF : a;
+	b = ( b === null || b === void 0 ) ? NINF : b;
 	return a.localeCompare( b, void 0, LOCALE_COMPARE_OPTS );
 }
 
@@ -311,6 +314,7 @@ function createColumns( props, state ) {
 				out[ 'filterMethod' ] = filterMethodStrings;
 			}
 		}
+		out[ 'sortMethod' ] = comparer;
 		return out;
 	});
 	return columns;
