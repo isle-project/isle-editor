@@ -11,6 +11,7 @@ import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ztest2 from '@stdlib/stats/ztest2';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
@@ -79,8 +80,19 @@ class PropTest2 extends Component {
 		}
 		if ( grouping ) {
 			x = data[ var1 ];
-			let binary = x.map( x => x === success ? 1 : 0 );
-			let categories = data[ grouping ];
+			const binary = [];
+			const categories = [];
+			for ( let i = 0; i < x.length; i++ ) {
+				const v = x[ i ];
+				const group = data[ grouping ][ i ];
+				if (
+					!isUndefinedOrNull( v ) && v !== '' &&
+					!isUndefinedOrNull( group ) && group !== ''
+				) {
+					binary.push( v === success ? 1 : 0 );
+					categories.push( group );
+				}
+			}
 			firstCategory = categories[ 0 ];
 			for ( let i = 1; i < categories.length; i++ ) {
 				if ( categories[ i ] !== firstCategory ) {
@@ -133,10 +145,21 @@ class PropTest2 extends Component {
 				</pre>
 			</div>;
 		} else if ( var2 ) {
-			x = data[ var1 ];
-			x = x.map( x => x === success ? 1 : 0 );
-			y = data[ var2 ];
-			y = y.map( y => y === success ? 1 : 0 );
+			const xvals = data[ var1 ];
+			const yvals = data[ var2 ];
+			const x = [];
+			const y = [];
+			for ( let i = 0; i < x.length; i++ ) {
+				const xv = xvals[ i ];
+				const yv = yvals[ i ];
+				if (
+					!isUndefinedOrNull( xv ) && xv !== '' &&
+					!isUndefinedOrNull( yv ) && yv !== ''
+				) {
+					x.push( xv === success ? 1 : 0 );
+					y.push( yv === success ? 1 : 0 );
+				}
+			}
 			const result = ztest2( x, y, stdev( x ), stdev( y ), {
 				'alpha': alpha,
 				'alternative': direction,
@@ -186,18 +209,6 @@ class PropTest2 extends Component {
 			});
 			this.props.onCreated( output );
 		}
-	}
-
-	getBinaryVars( vars ) {
-		const out = [];
-		for ( let i = 0; i < vars.length; i++ ) {
-			let data = this.props.data[ vars[ i ] ].slice();
-			unique( data );
-			if ( data.length === 2 ) {
-				out.push( vars[ i ]);
-			}
-		}
-		return out;
 	}
 
 	render() {
@@ -306,7 +317,10 @@ class PropTest2 extends Component {
 							});
 						}}
 					/>
-					<Button variant="primary" block onClick={this.calculateTwoSamplePropTest}>Calculate</Button>
+					<Button
+						variant="primary" block
+						onClick={this.calculateTwoSamplePropTest}
+					>Calculate</Button>
 				</Card.Body>
 			</Card>
 		);
