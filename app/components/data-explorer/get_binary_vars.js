@@ -11,10 +11,12 @@ function getBinaryVars( vars, data ) {
 	for ( let i = 0; i < vars.length; i++ ) {
 		let vals = data[ vars[ i ] ];
 		if ( vals ) {
-			vals = vals.filter( x => !isNull( x ) && !isnan( x ) );
 			const encountered = new Set();
 			for ( let j = 0; j < vals.length; j++ ) {
-				encountered.add( vals[ j ] );
+				let v = vals[ j ];
+				if ( !isNull( v ) && !isnan( v ) && v !== '' ) {
+					encountered.add( v );
+				}
 				if ( encountered.size > 2 ) {
 					break;
 				}
