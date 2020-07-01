@@ -110,7 +110,7 @@
     "@babel/plugin-transform-react-jsx": "^7.10.3",
     "@babel/plugin-transform-runtime": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
-    "@babel/preset-react": "^7.10.0",
+    "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.4",
     "@babel/runtime": "^7.10.3",
     "@iktakahiro/markdown-it-katex": "^3.1.0",
