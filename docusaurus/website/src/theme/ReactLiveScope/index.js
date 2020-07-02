@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import Session from 'session';
 import Provider from 'components/provider';
-import Components from 'components/index.js';
+import Components from './components.js';
 import 'css/lesson.css';
 import './i18n.js';
 
@@ -18,9 +18,11 @@ for ( let key in Components ) {
 		const Comp = Components[ key ];
 		WrappedComponents[ key ] = class Wrapper extends Component {
 			render() {
-				return ( <Provider session={session} >
-					<Comp {...this.props} />
-				</Provider> );
+				return (
+					<Provider session={session} >
+						<Comp {...this.props} />
+					</Provider>
+				);
 			}
 		};
 		Object.defineProperty( WrappedComponents[ key ], 'name', {
