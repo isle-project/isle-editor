@@ -1,5 +1,12 @@
 // MODULES //
 
+import React, { Component } from 'react';
+import hasOwnProp from '@stdlib/assert/has-own-property';
+import Provider from 'components/provider';
+import Session from 'session';
+import 'css/lesson.css';
+import './i18n.js';
+
 import Loadable from 'components/internal/loadable';
 import EnlargeableGrid from 'components/enlargeable-grid';
 import TeX from 'components/tex';
@@ -150,9 +157,9 @@ import Wikipedia from 'components/wikipedia';
 import WordCloud from 'components/word-cloud';
 
 
-// EXPORTS //
+// VARIABLES //
 
-const scope = {
+const Components = {
 	Loadable,
 	EnlargeableGrid,
 	TeX,
@@ -304,6 +311,30 @@ const scope = {
 };
 
 
+// MAIN //
+
+
+const session = new Session({}, true );
+const WrappedComponents = {};
+for ( let key in Components ) {
+	if ( hasOwnProp( Components, key ) ) {
+		const Comp = Components[ key ];
+		WrappedComponents[ key ] = class Wrapper extends Component {
+			render() {
+				return (
+					<Provider session={session} >
+						<Comp {...this.props} />
+					</Provider>
+				);
+			}
+		};
+		Object.defineProperty( WrappedComponents[ key ], 'name', {
+			value: Comp.name
+		});
+	}
+}
+
+
 // EXPORTS //
 
-export default scope;
+export default WrappedComponents;
