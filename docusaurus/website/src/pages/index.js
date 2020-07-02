@@ -12,7 +12,12 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
-import './globals.js';
+
+global.Buffer = global.Buffer || require('buffer').Buffer;
+if ( typeof window === 'undefined' ) {
+	global.window = {};
+}
+global.localStorage = null;
 
 const features = [
 	{
