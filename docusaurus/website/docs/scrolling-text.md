@@ -8,7 +8,7 @@ A dynamic background component that changes a background image at a specified in
 
 ## Example
 
-```js
+```jsx live
 <ScrollingText
     list={[ 'Heading' ]}
     style={{ fontSize: 44, color: 'red' }}

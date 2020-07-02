@@ -28,7 +28,7 @@ Consider a dataset called "heartdisease" with the following variables:
 
 We will include the explorer with the following code:
 
-```js
+```jsx live
 <DataExplorer 
 	id="heartdisease"
 	data={heartdisease} 

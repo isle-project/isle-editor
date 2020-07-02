@@ -8,7 +8,7 @@ Clock component displaying the current time.
 
 ## Example
 
-```js
+```jsx live
 <Clock />
 ```
 

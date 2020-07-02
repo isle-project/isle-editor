@@ -8,7 +8,7 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 
 ## Example
 
-```js
+```jsx live
 <Wikipedia
     language = "de-DE"
 />

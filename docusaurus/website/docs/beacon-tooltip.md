@@ -8,7 +8,7 @@ Component placing a beacon in the lesson, either independently or attached to a 
 
 ## Example
 
-```js
+```jsx live
 <BeaconTooltip
     content="Body of the tooltip..."
     title="Title comes here..."

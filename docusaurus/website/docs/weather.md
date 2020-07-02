@@ -8,7 +8,7 @@ A component for displaying the current weather at a designated location.
 
 ## Example
 
-```js
+```jsx live
 <Weather
     location="Pittsburgh"
 />

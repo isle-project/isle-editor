@@ -8,7 +8,7 @@ A word cloud component built on top of [d3-cloud](https://github.com/jasondavies
 
 ## Example
 
-```js
+```jsx live
 <WordCloud data={[
 	'This is my holiday', 
 	'Breakfast is great', 

@@ -8,7 +8,7 @@ The **News** component scans the public **News API** (consisting of 71 internati
 
 ## Example
 
-```js
+```jsx live
 <News
     onArticles={(data) => {
         console.log( data );
