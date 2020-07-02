@@ -140,11 +140,15 @@ const siteConfig = {
 
 	scripts: [
 		'https://cdn.jsdelivr.net/npm/@isle-project/session/dll.session.js',
-		'https://cdn.jsdelivr.net/npm/@isle-project/components/dll.components.js'
+		'https://cdn.jsdelivr.net/npm/@isle-project/components/dll.components.js',
+		'https://kit.fontawesome.com/3a7c01b4b9.js'
 	],
 
 	stylesheets: [
-		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap'
+		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap',
+		'https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css',
+		'https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Open+Sans:400,400i,700,800',
+		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css'
 	],
 
 	plugins: [
