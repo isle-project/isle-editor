@@ -1,8 +1,6 @@
 // MAIN //
 
 const path = require( 'path' );
-const CDN_MODULES = require( './../../../../app/bundler/cdn_modules.json' );
-const WebpackCdnPlugin = require( './webpack_cdn_plugin.js' );
 
 
 // VARIABLES //
@@ -13,11 +11,6 @@ const modulePaths = [
 	path.join( basePath, 'node_modules' ),
 	path.join( basePath, 'app' )
 ];
-const EXTERNALS = {};
-for ( let i = 0; i < CDN_MODULES.length; i++ ) {
-	const p = CDN_MODULES[ i ];
-	EXTERNALS[ p.name ] = p.var || p.name;
-}
 
 
 // MODULES //
@@ -30,7 +23,6 @@ module.exports = function main( context, options ) {
 				resolve: {
 					modules: modulePaths
 				},
-				externals: EXTERNALS,
 				node: {
 					Buffer: 'mock',
 					child_process: 'empty',
@@ -96,13 +88,7 @@ module.exports = function main( context, options ) {
 							}
 						}
 					]
-				},
-				plugins: [
-					new WebpackCdnPlugin({
-						prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
-						modules: CDN_MODULES
-					})
-				]
+				}
 			};
 		}
 	};
