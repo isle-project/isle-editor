@@ -10,7 +10,7 @@ sidebar_label: LaTeX Equations
 
 ```jsx live
 <TeX
-    raw="\int f(x) \; dx"
+    raw="2 + 3 = 5"
     displayMode={true}
 />
 ```
