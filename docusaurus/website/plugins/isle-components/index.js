@@ -82,6 +82,12 @@ module.exports = function main( context, options ) {
 									]
 								}]
 							}
+						},
+						{
+							test: /\.svg$/i,
+							use: {
+								loader: 'svg-react-loader'
+							}
 						}
 					]
 				},

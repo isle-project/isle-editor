@@ -147,7 +147,9 @@ const siteConfig = {
 		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap'
 	],
 
-	plugins: [],
+	plugins: [
+		path.resolve( __dirname, 'plugins', 'isle-components' )
+	],
 
 	themes: ['@docusaurus/theme-live-codeblock']
 };
