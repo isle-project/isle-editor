@@ -72,6 +72,7 @@ html[data-theme='dark'] {
 
 body {
 	font-family: 'Noto Sans', sans-serif;
+	background: white !important;
 }
 
 h1,
