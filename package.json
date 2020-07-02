@@ -264,7 +264,7 @@
     "xterm-addon-fit": "^0.4.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.10.1",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "codecov": "^3.7.0",
     "concurrently": "^5.1.0",
     "doctrine": "^3.0.0",
