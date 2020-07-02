@@ -159,7 +159,7 @@ class OrderQuestion extends Component {
 							null
 						}
 						<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
-							{ this.state.submitted ? this.props.t('resubmit') : this.prop.t('submit') }
+							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 						</TimedButton>
 						{
 							this.props.chat ?
