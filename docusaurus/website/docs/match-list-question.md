@@ -8,7 +8,7 @@ An ISLE component that renders a question in which the learner has to match elem
 
 ## Example
 
-``` javascript
+```jsx live
 <MatchListQuestion
     question="Please match the correct surnames and first names."
     elements={[
