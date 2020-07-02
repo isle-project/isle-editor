@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Microphone from './../../../img/microphone.svg';
+import Microphone from '-!svg-react-loader!./../../../img/microphone.svg';
 
 
 // MAIN //
