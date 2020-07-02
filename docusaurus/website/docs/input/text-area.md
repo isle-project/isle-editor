@@ -15,7 +15,7 @@ A text area component. Used as a stand-alone component, changes should be handle
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/text-area/)
+
 
 ## Options
 

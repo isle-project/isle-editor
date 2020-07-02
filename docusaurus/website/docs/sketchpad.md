@@ -12,7 +12,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 <Sketchpad />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/sketchpad/)
+
 
 ## Options
 

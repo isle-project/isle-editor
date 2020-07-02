@@ -30,7 +30,7 @@ An ISLE component that renders a matrix of multiple choice questions with the sa
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/multiple-choice-matrix/)
+
 
 ## Options
 

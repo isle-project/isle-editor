@@ -28,7 +28,7 @@ A word cloud component built on top of [d3-cloud](https://github.com/jasondavies
 ]} />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/word-cloud/)
+
 
 ## Options
 

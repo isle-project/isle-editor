@@ -12,7 +12,7 @@ Text component, which allows rendering of raw text as Markdown and enables voice
 <Text>*Markdown* formatted text comes here...</Text>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/text/)
+
 
 ## Options
 

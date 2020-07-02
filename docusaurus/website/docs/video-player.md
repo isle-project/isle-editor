@@ -15,7 +15,7 @@ A component for playing media files and content from YouTube, SoundCloud, and Vi
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/video-player/)
+
 
 ## Options
 

@@ -19,7 +19,7 @@ A form component combining different question components together with a single 
 </QuestionForm>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/question-form/)
+
 
 ## Options
 

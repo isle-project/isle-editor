@@ -12,7 +12,7 @@ An ISLE component that allows you to create a typewriter effect.
 <Typewriter text="Lorem ipsum" />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/typerwriter/)
+
 
 ## Options
 

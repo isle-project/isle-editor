@@ -19,7 +19,7 @@ A dynamic background component that changes a background image at a specified in
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/scrolling-text/)
+
 
 ## Options
 

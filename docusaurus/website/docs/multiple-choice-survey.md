@@ -16,7 +16,7 @@ A survey component in which the instructor may collect multiple-choice survey da
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/multiple-choice-survey)
+
 
 ## Options
 

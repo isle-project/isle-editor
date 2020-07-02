@@ -38,7 +38,7 @@ We will include the explorer with the following code:
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/data-explorer/)
+
 
 ## Options
 

@@ -14,7 +14,7 @@ Buttons to collect user feedback.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/feedback/)
+
 
 ## Options
 

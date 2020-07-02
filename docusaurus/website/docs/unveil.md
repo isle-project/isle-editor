@@ -14,7 +14,7 @@ The appear component will cause all of its children to become visible after a sp
 </Unveil>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/unveil/)
+
 
 ## Options
 

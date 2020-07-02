@@ -14,7 +14,7 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/r-shell/)
+
 
 ## Options
 

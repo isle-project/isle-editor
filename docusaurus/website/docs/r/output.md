@@ -12,7 +12,7 @@ Component for rendering R output inside an ISLE lesson.
 <ROutput code="runif(10)" />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/r-output/)
+
 
 ## Options
 

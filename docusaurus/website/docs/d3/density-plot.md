@@ -17,7 +17,7 @@ A d3-based density plot component.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/density-plot/)
+
 
 ## Options
 

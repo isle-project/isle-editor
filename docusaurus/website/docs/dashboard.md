@@ -16,7 +16,7 @@ A dashboard for combining the handling of multiple child input fields.
 </Dashboard>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/dashboard/)
+
 
 ## Options
 

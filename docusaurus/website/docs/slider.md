@@ -17,7 +17,7 @@ A component which displays its children in a slideshow or carousel.
 </Slider>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/slider/)
+
 
 ## Options
 

@@ -10,14 +10,14 @@ An ISLE component that allows to display its children only to reserved audiences
 
 ```jsx live
 <Gate 
-    banner={"<div>You have to be logged in to see the content</div>"}
+    banner={<h2>You have to be logged in to see the content</h2>}
     user 
 >
-    <h1>For users only</div>
+    <h1>For users only</h1>
 </Gate>
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/gate/)
+
 
 ## Options
 

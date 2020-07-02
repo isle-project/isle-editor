@@ -15,7 +15,7 @@ A checkbox input component. Can be used as part of an ISLE dashboard or standalo
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/checkbox-input1)
+
 
 Note: To see a prior version of the demonstration, visit [the old link](https://isle.heinz.cmu.edu/components/checkbox-input)
 

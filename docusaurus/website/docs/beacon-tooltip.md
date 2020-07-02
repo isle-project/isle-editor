@@ -17,7 +17,7 @@ Component placing a beacon in the lesson, either independently or attached to a 
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/beacon-tooltip/)
+
 
 ## Options
 

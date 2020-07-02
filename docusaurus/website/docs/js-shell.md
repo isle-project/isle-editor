@@ -14,7 +14,7 @@ An interactive Javascript shell that can be used to execute JavaScript commands.
 </JSShell>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/js-shell/)
+
 
 ## Options
 

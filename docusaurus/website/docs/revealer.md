@@ -18,7 +18,7 @@ An ISLE component that instructors may use to selectively reveal or hide childre
 </Revealer>
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/revealer/)
+
 
 ## Options
 

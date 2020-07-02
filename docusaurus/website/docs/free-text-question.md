@@ -16,7 +16,7 @@ An ISLE component for questions where answers by students should be supplied in 
 />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/free-text-question/)
+
 
 ## Options
 

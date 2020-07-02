@@ -15,7 +15,7 @@ A number question component.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/number-question/)
+
 
 ## Options
 

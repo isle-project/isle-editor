@@ -15,7 +15,7 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/text-input/)
+
 
 ## Options
 

@@ -14,7 +14,7 @@ The expire component will cause all of its children to become invisible after a 
 </Expire>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/expire/)
+
 
 ## Options
 

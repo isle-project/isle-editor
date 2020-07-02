@@ -15,7 +15,7 @@ The Switch component allows the display of one element out of a list of several 
 </Switch>
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/switch/)
+
 
 ## Options
 

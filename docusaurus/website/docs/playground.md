@@ -32,7 +32,7 @@ A module in which the author may place interactive content within a component, i
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/playground)
+
 
 ## Options
 

@@ -42,7 +42,7 @@ An ISLE component that allows two render two-sides.
 </FlippableCard>
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/flippable-card/)
+
 
 ## Options
 

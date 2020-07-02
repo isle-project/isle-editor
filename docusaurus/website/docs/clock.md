@@ -12,7 +12,7 @@ Clock component displaying the current time.
 <Clock />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/clock/)
+
 
 ## Options
 

@@ -22,7 +22,7 @@ An order question component that asks student to bring a collection of elements 
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/order-question/)
+
 
 ## Options
 

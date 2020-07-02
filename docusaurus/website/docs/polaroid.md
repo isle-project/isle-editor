@@ -12,7 +12,7 @@ A component displaying an image in the style of a polaroid.
 <Polaroid image="Enter URL" />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/polaroid/)
+
 
 ## Options
 

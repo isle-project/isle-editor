@@ -19,7 +19,7 @@ A survey component in which the instructor may collect numeric survey data from 
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/number-survey)
+
 
 ## Options
 

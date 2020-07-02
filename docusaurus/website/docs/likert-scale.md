@@ -16,7 +16,7 @@ A component showing a question and a five-point scale for students to answer.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/likert-scale/)
+
 
 ## Options
 

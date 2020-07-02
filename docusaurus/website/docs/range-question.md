@@ -15,7 +15,7 @@ A range question component that asks students to supply a lower and upper end po
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/range-question/)
+
 
 ## Options
 

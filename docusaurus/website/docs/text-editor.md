@@ -12,7 +12,7 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 <TextEditor />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/text-editor/)
+
 
 ## Options
 

@@ -15,7 +15,7 @@ sidebar_label: LaTeX Equations
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/tex/)
+
 
 ## Options
 

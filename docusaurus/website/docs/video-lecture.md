@@ -15,7 +15,7 @@ A video lecture component that displays videos interspersed with interactive ele
 ]} />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/video-lecture/)
+
 
 ## Options
 

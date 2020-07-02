@@ -16,7 +16,7 @@ An ISLE component for recording audio, screen and video.
 />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/recorder/)
+
 
 ## Options
 

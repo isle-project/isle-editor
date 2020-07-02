@@ -25,7 +25,7 @@ A quiz component displaying a sequence of question components.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/quiz/)
+
 
 ## Options
 

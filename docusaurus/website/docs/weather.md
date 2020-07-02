@@ -14,7 +14,7 @@ A component for displaying the current weather at a designated location.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/weather/)
+
 
 ## Options
 

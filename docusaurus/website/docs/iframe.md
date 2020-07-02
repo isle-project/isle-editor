@@ -12,7 +12,7 @@ An iFrame component.
 <IFrame src="https://isledocs.com" />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/iframe/)
+
 
 ## Options
 

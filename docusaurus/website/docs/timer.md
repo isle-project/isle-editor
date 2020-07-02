@@ -19,7 +19,7 @@ Formats time in the format `minutes:seconds`.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/timer/)
+
 
 ## Options
 

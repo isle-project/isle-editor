@@ -28,7 +28,7 @@ A d3-based network plot.
 />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/network-plot/)
+
 
 ## Options
 

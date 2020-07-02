@@ -24,7 +24,7 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 }} />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/color-picker/)
+
 
 ## Options
 

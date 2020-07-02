@@ -15,7 +15,7 @@ data`}
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/r-table/)
+
 
 ## Options
 

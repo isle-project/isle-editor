@@ -16,7 +16,7 @@ The **News** component scans the public **News API** (consisting of 71 internati
 />
 ```
 
- [Open interactive preview](https://isle.heinz.cmu.edu/components/news/)
+ 
 
 ## Options
 

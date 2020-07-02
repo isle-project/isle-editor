@@ -20,7 +20,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/data-table)
+
 
 ## Options
 

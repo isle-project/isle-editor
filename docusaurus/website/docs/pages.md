@@ -20,7 +20,7 @@ An ISLE pagination component that allows the user to step through a sequence of 
 </Pages>
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/pages/)
+
 
 ## Options
 

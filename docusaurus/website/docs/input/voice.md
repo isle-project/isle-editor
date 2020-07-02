@@ -15,7 +15,7 @@ A voice input component.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/voice-input/)
+
 
 ## Options
 

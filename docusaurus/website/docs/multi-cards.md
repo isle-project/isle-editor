@@ -50,7 +50,7 @@ An ISLE component that allows you to create and control multiple flippable cards
 />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/multi-cards/)
+
 
 ## Options
 

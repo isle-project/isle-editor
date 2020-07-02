@@ -15,7 +15,7 @@ The runner component will execute a supplied function either once or at a given 
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/runner/)
+
 
 ## Options
 

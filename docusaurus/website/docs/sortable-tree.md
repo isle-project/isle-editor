@@ -84,7 +84,7 @@ A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-
 />
 ``` 
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/sortable-tree/)
+
 
 ## Options
 

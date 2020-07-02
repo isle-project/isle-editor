@@ -19,7 +19,7 @@ Plotly visualization.
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/plotly)
+
 
 ## Options
 

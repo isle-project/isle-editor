@@ -23,7 +23,7 @@ A proportions input component. Can be used as part of an ISLE dashboard or stand
 />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/proportions-input/)
+
 
 ## Options
 

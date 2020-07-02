@@ -12,7 +12,7 @@ Component for rendering an R plot inside an ISLE lesson.
 <RPlot code="hist( c(20,50,40,70,40,30) )" />
 ```
 
-[Open interactive preview](https://isle.heinz.cmu.edu/components/r-plot/)
+
 
 ## Options
 
