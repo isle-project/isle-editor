@@ -8,7 +8,7 @@ An ISLE component that allows you to create and control multiple flippable cards
 
 ## Example
 
-``` js
+```jsx live
 <MultiCards
     id="Memory"
 

@@ -8,7 +8,7 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 
 ## Example
 
-``` js
+```jsx live
 <RShell
     code="abs(c(-2,3,-1))"
 />

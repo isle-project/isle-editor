@@ -8,7 +8,7 @@ sidebar_label: LaTeX Equations
 
 ## Example
 
-``` js
+```jsx live
 <TeX
     raw="\int f(x) \; dx"
     displayMode={true}

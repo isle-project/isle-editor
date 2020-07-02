@@ -6,7 +6,7 @@ sidebar_label: Playground
 
 A module in which the author may place interactive content within a component, independent of the environment. This is often used to place related or unrelated elements without the use of `panel`.
 
-``` js
+```jsx live
 <Playground style = {{ position: "absolute",  
     left: 10, 
     top: '0px',
@@ -20,7 +20,7 @@ A module in which the author may place interactive content within a component, i
 />
 ```
 
-``` js
+```jsx live
 <Playground style = {{ position: "absolute",  
     left: 10, 
     top: '0px',

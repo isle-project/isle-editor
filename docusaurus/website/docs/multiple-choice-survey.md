@@ -8,7 +8,7 @@ A survey component in which the instructor may collect multiple-choice survey da
 
 ## Example
 
-``` js
+```jsx live
 <MultipleChoiceSurvey
     anonymous
     question="Are you left- or right-handed"

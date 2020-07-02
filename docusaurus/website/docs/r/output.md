@@ -8,7 +8,7 @@ Component for rendering R output inside an ISLE lesson.
 
 ## Example
 
-``` js
+```jsx live
 <ROutput code="runif(10)" />
 ```
 

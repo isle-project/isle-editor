@@ -8,7 +8,7 @@ A slider input component. Can be used as part of an ISLE dashboard or standalone
 
 ## Example
 
-``` js
+```jsx live
 <SliderInput
     legend="Success Probability"
     defaultValue={0.5}

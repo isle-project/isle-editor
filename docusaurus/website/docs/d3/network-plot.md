@@ -8,7 +8,7 @@ A d3-based network plot.
 
 ## Example
 
-``` js
+```jsx live
 <NetworkPlot
     width={400}
     height={400}

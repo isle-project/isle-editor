@@ -8,7 +8,7 @@ An interactive Javascript shell that can be used to execute JavaScript commands.
 
 ## Example
 
-``` js
+```jsx live
 <JSShell id = "jseditor" 
         code = "var a = 22;" >
 </JSShell>

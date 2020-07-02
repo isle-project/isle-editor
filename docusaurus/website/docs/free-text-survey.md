@@ -8,7 +8,7 @@ An ISLE component for questions where the answers by the students should be supp
 
 ## Example
 
-``` js
+```jsx live
 <FreeTextSurvey 
     question="Where are you from?"
     anonymous

@@ -8,7 +8,7 @@ Component for rendering an R plot inside an ISLE lesson.
 
 ## Example
 
-``` js
+```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />
 ```
 

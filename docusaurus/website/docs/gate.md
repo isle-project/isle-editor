@@ -8,7 +8,7 @@ An ISLE component that allows to display its children only to reserved audiences
 
 ## Example
 
-``` js
+```jsx live
 <Gate 
     banner={"<div>You have to be logged in to see the content</div>"}
     user 

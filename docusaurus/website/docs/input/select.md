@@ -8,7 +8,7 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 
 ## Example
 
-``` js
+```jsx live
 <SelectInput
     legend="Choose the test direction"
     defaultValue="two-sided"

@@ -8,7 +8,7 @@ An ISLE component for questions where answers by students should be supplied in 
 
 ## Example
 
-``` js
+```jsx live
 <FreeTextQuestion 
     question="What is the p-value your obtained for this test?" 
     rows={1} 

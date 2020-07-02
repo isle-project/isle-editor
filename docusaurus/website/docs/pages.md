@@ -8,7 +8,7 @@ An ISLE pagination component that allows the user to step through a sequence of 
 
 ## Example
 
-``` js
+```jsx live
 <Pages title="Pages">
     <div>
         <h1>First Page</h1>

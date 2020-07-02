@@ -8,7 +8,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 
 ## Example
 
-``` js
+```jsx live
 <Sketchpad />
 ```
 

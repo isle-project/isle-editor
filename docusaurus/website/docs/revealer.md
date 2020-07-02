@@ -8,7 +8,7 @@ An ISLE component that instructors may use to selectively reveal or hide childre
 
 ## Example
 
-``` js
+```jsx live
 <Revealer
         id="mudgelove"
     >

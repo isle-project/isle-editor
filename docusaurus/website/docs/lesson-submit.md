@@ -8,7 +8,7 @@ A button to be displayed at the end of a lesson for students to click on. By def
 
 ## Example
 
-``` js
+```jsx live
 <LessonSubmit />
 ```
 

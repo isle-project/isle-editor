@@ -8,7 +8,7 @@ A checkbox input component. Can be used as part of an ISLE dashboard or standalo
 
 ## Example
 
-``` js
+```jsx live
 <CheckboxInput
     legend="Take the logarithm"
     defaultValue={false}

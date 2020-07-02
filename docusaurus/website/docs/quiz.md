@@ -8,7 +8,7 @@ A quiz component displaying a sequence of question components.
 
 ## Example
 
-``` js
+```jsx live
 <Quiz
 	count={2}
 	questions={[

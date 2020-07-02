@@ -8,7 +8,7 @@ An ISLE component that renders a matrix of multiple choice questions with the sa
 
 ## Example
 
-``` js
+```jsx live
 <MultipleChoiceMatrix 
     title="Do you think these concepts are important for an introductory statistics course, and do you (or your department) cover them in your introductory courses?" id="topics" 
     questions={[

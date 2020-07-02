@@ -8,7 +8,7 @@ A component showing a question and a five-point scale for students to answer.
 
 ## Example
 
-``` js
+```jsx live
 <LikertScale 
     id="discrimination" 
     question="After your initial analysis of the data, how likely do you think it is that players are discriminated against by soccer referees because of their skin tone?" 

@@ -8,7 +8,7 @@ Component for rendering a R data frame or matrix in a tabular display.
 
 ## Example
 
-``` js
+```jsx live
 <RTable
     code={`data <- matrix( runif(16), nrow=4, ncol=4)
 data`}

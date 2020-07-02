@@ -8,7 +8,7 @@ Plotly visualization.
 
 ## Example
 
-``` js
+```jsx live
 <Plotly
     data={[{
         values: [ 24, 7, 0.5 ],

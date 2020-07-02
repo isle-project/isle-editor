@@ -8,7 +8,7 @@ A text area component. Used as a stand-alone component, changes should be handle
 
 ## Example
 
-``` js
+```jsx live
 <TextArea
     legend="Please enter a few sentences"
     placeholder="Enter text"

@@ -8,7 +8,7 @@ A number question component.
 
 ## Example
 
-``` js
+```jsx live
 <NumberQuestion
     question="What is the number PI - three digits after the period"
     solution={3.142}

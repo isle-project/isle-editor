@@ -8,7 +8,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 
 ## Example
 
-``` js
+```jsx live
 <DataTable
     showRemove
     onClickRemove={( data ) => { console.log(data); }}

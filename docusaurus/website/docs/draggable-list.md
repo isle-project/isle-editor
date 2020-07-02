@@ -8,7 +8,7 @@ A list of draggable elements that can be re-ordered by the students.
 
 ## Example
 
-``` js
+```jsx live
 <DraggableList
     data={[
         { id: 0, text: "Compact" },

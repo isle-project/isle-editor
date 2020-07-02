@@ -8,7 +8,7 @@ An ISLE component for recording audio, screen and video.
 
 ## Example
 
-``` js
+```jsx live
 <Recorder 
     audio
     screen

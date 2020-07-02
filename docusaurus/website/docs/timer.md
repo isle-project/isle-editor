@@ -8,7 +8,7 @@ Formats time in the format `minutes:seconds`.
 
 ## Example
 
-``` js
+```jsx live
 <Timer 
     id='test-quiz'
     active={true} 

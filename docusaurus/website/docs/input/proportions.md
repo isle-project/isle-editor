@@ -8,7 +8,7 @@ A proportions input component. Can be used as part of an ISLE dashboard or stand
 
 ## Example
 
-``` js
+```jsx live
 <ProportionsInput
     user
     id="Survey"

@@ -8,7 +8,7 @@ A component displaying an image in the style of a polaroid.
 
 ## Example
 
-``` js
+```jsx live
 <Polaroid image="Enter URL" />
 ```
 

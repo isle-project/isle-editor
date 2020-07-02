@@ -8,7 +8,7 @@ An iFrame component.
 
 ## Example
 
-``` js
+```jsx live
 <IFrame src="https://isledocs.com" />
 ``` 
 

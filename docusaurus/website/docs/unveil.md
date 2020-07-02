@@ -8,7 +8,7 @@ The appear component will cause all of its children to become visible after a sp
 
 ## Example
 
-``` js
+```jsx live
 <Unveil duration={5000} >
     <span> I will appear</span>
 </Unveil>

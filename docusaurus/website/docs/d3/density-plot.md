@@ -8,7 +8,7 @@ A d3-based density plot component.
 
 ## Example
 
-``` js
+```jsx live
 <DensityPlot
     data={[ 40, 80, 20, 30, 50, 30, 40, 10, 20, 10, 20, 20 ]}
     xmin={0}

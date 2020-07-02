@@ -8,7 +8,7 @@ An ISLE component that allows you to create a typewriter effect.
 
 ## Example
 
-``` js
+```jsx live
 <Typewriter text="Lorem ipsum" />
 ```
 

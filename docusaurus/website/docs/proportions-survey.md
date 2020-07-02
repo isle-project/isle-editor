@@ -8,7 +8,7 @@ Component that allows a group of people to vote on the weights and importance of
 
 ## Example
 
-``` js
+```jsx live
 <ProportionsSurvey 
     user
     id="Survey"

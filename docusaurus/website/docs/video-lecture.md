@@ -8,7 +8,7 @@ A video lecture component that displays videos interspersed with interactive ele
 
 ## Example
 
-``` js
+```jsx live
 <VideoLecture steps={[
     'https://www.youtube.com/watch?v=Lkj8b25ppZo',
     <FreeTextQuestion id="video-lecture-brainstorming" question="Write down a few ideas of how one could enrich video lectures using other ISLE components" />

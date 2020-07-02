@@ -8,7 +8,7 @@ An order question component that asks student to bring a collection of elements 
 
 ## Example
 
-``` js
+```jsx live
 <OrderQuestion
     question="Order the letters alphabetically"
     options={[

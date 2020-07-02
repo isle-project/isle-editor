@@ -8,7 +8,7 @@ The expire component will cause all of its children to become invisible after a 
 
 ## Example
 
-``` js
+```jsx live
 <Expire>
     <span> I will disappear </span>
 </Expire>

@@ -8,7 +8,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
 
 ## Example
 
-``` js
+```jsx live
 <MultipleChoiceQuestion
     solution={1}
     answers={[

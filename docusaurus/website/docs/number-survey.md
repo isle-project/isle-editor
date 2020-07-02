@@ -8,7 +8,7 @@ A survey component in which the instructor may collect numeric survey data from 
 
 ## Example
 
-``` js
+```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
     anonymous="false"

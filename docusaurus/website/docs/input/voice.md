@@ -8,7 +8,7 @@ A voice input component.
 
 ## Example
 
-``` js
+```jsx live
 <VoiceInput
     langage="en-US"
     defaultValue="Enter text"

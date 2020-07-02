@@ -8,7 +8,7 @@ A dashboard for combining the handling of multiple child input fields.
 
 ## Example
 
-``` js
+```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
     <SliderInput
         legend="Input value"

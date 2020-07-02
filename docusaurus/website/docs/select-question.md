@@ -8,7 +8,7 @@ A select question component.
 
 ## Example
 
-``` js
+```jsx live
 <SelectQuestion
     question="The usual t-test is"
     solution="two-sided"

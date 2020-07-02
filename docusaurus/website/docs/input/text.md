@@ -8,7 +8,7 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 
 ## Example
 
-``` js
+```jsx live
 <TextInput
     legend="Your name"
     defaultValue="Enter text"

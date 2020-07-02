@@ -8,7 +8,7 @@ The runner component will execute a supplied function either once or at a given 
 
 ## Example
 
-``` js
+```jsx live
 <Runner
     interval={2000}
     onEvaluate={() => { console.log( 'Two seconds have passed...' ); }}

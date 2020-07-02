@@ -8,7 +8,7 @@ A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-
 
 ## Example
 
-``` js
+```jsx live
 <SortableTree 
   onlyExpandSearchedNodes 
   canDrag={false} 

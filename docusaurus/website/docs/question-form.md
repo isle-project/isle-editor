@@ -8,7 +8,7 @@ A form component combining different question components together with a single 
 
 ## Example
 
-``` js
+```jsx live
 <QuestionForm>
     <NumberQuestion
         question="What is 2+2?"

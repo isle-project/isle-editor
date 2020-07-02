@@ -8,7 +8,7 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 
 ## Example
 
-``` js
+```jsx live
 <TextEditor />
 ```
 

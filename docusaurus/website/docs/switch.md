@@ -8,7 +8,7 @@ The Switch component allows the display of one element out of a list of several 
 
 ## Example
 
-``` js
+```jsx live
 <Switch>
     <span>Option 1</span>
     <span>Option 2</span>

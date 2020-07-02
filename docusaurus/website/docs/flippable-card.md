@@ -8,7 +8,7 @@ An ISLE component that allows two render two-sides.
 
 ## Example
 
-``` js
+```jsx live
 <FlippableCard
     button="Click me!"
     perspective={1400}

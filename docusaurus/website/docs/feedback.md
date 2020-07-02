@@ -8,7 +8,7 @@ Buttons to collect user feedback.
 
 ## Example
 
-``` js
+```jsx live
 <FeedbackButtons
     id="my_feedback"
 />

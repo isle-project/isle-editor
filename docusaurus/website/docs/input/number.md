@@ -8,7 +8,7 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 
 ## Example
 
-``` js
+```jsx live
 <NumberInput
     legend="Number of observations"
     defaultValue={20}

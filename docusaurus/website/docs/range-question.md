@@ -8,7 +8,7 @@ A range question component that asks students to supply a lower and upper end po
 
 ## Example
 
-``` js
+```jsx live
 <RangeQuestion
     question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
     solution={[-3,3]}

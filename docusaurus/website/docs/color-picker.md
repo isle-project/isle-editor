@@ -8,7 +8,7 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 
 ## Example
 
-``` js
+```jsx live
 <ColorPicker onChangeComplete={ color => {
     const out = color;
     /* e.g., returns 

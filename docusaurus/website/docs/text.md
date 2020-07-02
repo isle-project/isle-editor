@@ -8,7 +8,7 @@ Text component, which allows rendering of raw text as Markdown and enables voice
 
 ## Example
 
-``` js
+```jsx live
 <Text>*Markdown* formatted text comes here...</Text>
 ```
 
