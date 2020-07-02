@@ -97,7 +97,7 @@ class Session {
 		debug( 'Should create session...' );
 
 		// Address where ISLE server is running:
-		this.server = window.location.origin;
+		this.server = offline ? null : window.location.origin;
 
 		// Set whether the session tries to communicate with the server
 		this._offline = offline || false;
@@ -113,12 +113,15 @@ class Session {
 
 		// Assign unique ID to anonymous user:
 		const anonStorageID = 'ISLE_ANONYMOUS_' + config.server;
-		let item = localStorage.getItem( anonStorageID );
-		if ( item ) {
-			this.anonymousIdentifier = item;
-		} else {
-			this.anonymousIdentifier = sample( ANIMALS, { size: 1 }) + ' ' + randomstring( 4 );
-			localStorage.setItem( anonStorageID, this.anonymousIdentifier );
+		let item;
+		if ( localStorage ) {
+			item = localStorage.getItem( anonStorageID );
+			if ( item ) {
+				this.anonymousIdentifier = item;
+			} else {
+				this.anonymousIdentifier = sample( ANIMALS, { size: 1 }) + ' ' + randomstring( 4 );
+				localStorage.setItem( anonStorageID, this.anonymousIdentifier );
+			}
 		}
 
 		// String for distinguishing multiple browser windows from each other:
@@ -136,17 +139,19 @@ class Session {
 			return config;
 		});
 
-		// If user object is available in local storage, login to server:
-		item = localStorage.getItem( this.userVal );
-		if ( item ) {
-			this.jwt = JSON.parse( item );
-			this.handleLogin( this.jwt, true );
-		} else {
-			this.jwt = {};
+		if ( localStorage ) {
+			// If user object is available in local storage, login to server:
+			item = localStorage.getItem( this.userVal );
+			if ( item ) {
+				this.jwt = JSON.parse( item );
+				this.handleLogin( this.jwt, true );
+			} else {
+				this.jwt = {};
 
-			// Connect via WebSockets to other users as an anonymous user...
-			if ( this.server && !this._offline && !this.socket ) {
-				this.socketConnect();
+				// Connect via WebSockets to other users as an anonymous user...
+				if ( this.server && !this._offline && !this.socket ) {
+					this.socketConnect();
+				}
 			}
 		}
 
@@ -224,7 +229,7 @@ class Session {
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
 		this.lessonName = null;
-		if ( !isElectron ) {
+		if ( !isElectron && !offline ) {
 			const url = window.location.pathname;
 			if ( isString( url ) ) {
 				const matches = url.match( PATH_REGEXP );
@@ -255,7 +260,7 @@ class Session {
 			this.getLessonInfo();
 		}
 
-		if ( !isElectron ) {
+		if ( !isElectron && !offline ) {
 			document.addEventListener( 'focusin', this.focusInListener );
 			document.addEventListener( 'focusout', this.focusOutListener );
 			document.addEventListener( 'visibilitychange', this.visibilityChangeListener );
