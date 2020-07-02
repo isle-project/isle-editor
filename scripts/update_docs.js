@@ -70,7 +70,6 @@ for ( let i = 0; i < files.length; i++ ) {
 	};
 	let fpath = path.join( './app/components', component, 'main.js' );
 	const mdpath = path.join( './docusaurus/docs', component+'.md' );
-	const islepath = path.join( './component-playground', component+'.isle' );
 
 	let file;
 	try {
@@ -155,15 +154,6 @@ for ( let i = 0; i < files.length; i++ ) {
 		fs.writeFileSync( mdpath, md );
 	} catch ( err ) {
 		debug( `Documentation for ${component} does not exist` );
-	}
-
-	try {
-		let isle = fs.readFileSync( islepath ).toString();
-		isle = replace( isle, /## Options[\s\S]*?($| *<\/Text>)/, str+'$1' );
-		fs.writeFileSync( islepath, isle );
-	}
-	catch ( err ) {
-		debug( `Playground site for ${component} does not exist` );
 	}
 	debug( '\n\n' );
 }
