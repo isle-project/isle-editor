@@ -30,6 +30,7 @@ module.exports = function main( context, options ) {
 				resolve: {
 					modules: modulePaths
 				},
+				externals: EXTERNALS,
 				node: {
 					Buffer: 'mock',
 					child_process: 'empty',
