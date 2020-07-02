@@ -19,7 +19,6 @@ import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import ReactTable from 'react-table';
 import unique from 'uniq';
-import stringify from 'csv-stringify';
 import Alert from 'react-bootstrap/Alert';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
@@ -592,28 +591,30 @@ class DataTable extends Component {
 
 	saveCSV = () => {
 		const session = this.context;
-		stringify( this.state.rows, {
-			header: true
-		}, ( err, output ) => {
-			if ( err ) {
-				return session.addNotification({
-					title: this.props.t('error-encountered'),
-					message: this.props.t('error-csv')+err.message,
-					level: 'error',
-					position: 'tl'
+		import( 'csv-stringify' ).then( stringify => {
+			stringify( this.state.rows, {
+				header: true
+			}, ( err, output ) => {
+				if ( err ) {
+					return session.addNotification({
+						title: this.props.t('error-encountered'),
+						message: this.props.t('error-csv')+err.message,
+						level: 'error',
+						position: 'tl'
+					});
+				}
+				const blob = new Blob([ output ], {
+					type: 'text/plain'
 				});
-			}
-			const blob = new Blob([ output ], {
-				type: 'text/plain'
+				const dataInfo = this.props.dataInfo;
+				let name;
+				if ( !dataInfo || !dataInfo.name ) {
+					name = 'dataset.json';
+				} else {
+					name = dataInfo.name;
+				}
+				saveAs( blob, name );
 			});
-			const dataInfo = this.props.dataInfo;
-			let name;
-			if ( !dataInfo || !dataInfo.name ) {
-				name = 'dataset.json';
-			} else {
-				name = dataInfo.name;
-			}
-			saveAs( blob, name );
 		});
 	}
 
