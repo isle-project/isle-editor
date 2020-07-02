@@ -9,7 +9,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 ## Example
 
 ```jsx live
-<Sketchpad />
+<Sketchpad canvasWidth={750} />
 ```
 
 
