@@ -20,10 +20,10 @@ function scroll( element ) {
 
 // MAIN //
 
-function scrollToElement(element, x, y, options) {
+function scrollToElement( element, x, y, options ) {
 	options = options || {};
 
-	const start = scroll(element);
+	const start = scroll( element );
 	const tween = Tween( start )
 		.ease(options.ease || 'out-circ')
 		.to({ top: y, left: x })
