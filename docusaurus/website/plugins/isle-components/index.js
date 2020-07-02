@@ -1,9 +1,6 @@
 // MAIN //
 
-const webpack = require( 'webpack' );
 const path = require( 'path' );
-const COMPONENTS_MANIFEST = require( './../../../../app/components/components-manifest.json' );
-const SESSION_MANIFEST = require( './../../../../app/session/session-manifest.json' );
 const CDN_MODULES = require( './../../../../app/bundler/cdn_modules.json' );
 const WebpackCdnPlugin = require( './webpack_cdn_plugin.js' );
 
@@ -33,7 +30,15 @@ module.exports = function main( context, options ) {
 				resolve: {
 					modules: modulePaths
 				},
-				externals: EXTERNALS,
+				node: {
+					Buffer: 'mock',
+					child_process: 'empty',
+					module: 'empty',
+					dns: 'mock',
+					fs: 'empty',
+					net: 'mock',
+					tls: 'mock'
+				},
 				module: {
 					rules: [
 						{
@@ -95,12 +100,6 @@ module.exports = function main( context, options ) {
 					new WebpackCdnPlugin({
 						prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
 						modules: CDN_MODULES
-					}),
-					new webpack.DllReferencePlugin({
-						manifest: COMPONENTS_MANIFEST
-					}),
-					new webpack.DllReferencePlugin({
-						manifest: SESSION_MANIFEST
 					})
 				]
 			};
