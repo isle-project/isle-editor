@@ -139,8 +139,6 @@ const siteConfig = {
 	},
 
 	scripts: [
-		'https://cdn.jsdelivr.net/npm/@isle-project/session/dll.session.js',
-		'https://cdn.jsdelivr.net/npm/@isle-project/components/dll.components.js',
 		'https://kit.fontawesome.com/3a7c01b4b9.js'
 	],
 
