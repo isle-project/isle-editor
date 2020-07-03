@@ -213,7 +213,6 @@ ProportionsSurvey.defaultProps = {
 };
 
 ProportionsSurvey.propTypes = {
-	id: PropTypes.string.isRequired,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	colors: PropTypes.array,

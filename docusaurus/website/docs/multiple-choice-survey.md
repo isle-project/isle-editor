@@ -12,7 +12,7 @@ A survey component in which the instructor may collect multiple-choice survey da
 <MultipleChoiceSurvey
     anonymous
     question="Are you left- or right-handed"
-    answers={[ 'Left-handed', 'Right-handed' ]}/>
+    answers={[ 'Left-handed', 'Right-handed' ]}
 />
 ```
 

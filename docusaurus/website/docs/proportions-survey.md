@@ -10,7 +10,6 @@ Component that allows a group of people to vote on the weights and importance of
 
 ```jsx live
 <ProportionsSurvey 
-    user
     id="Survey"
     question="Decide what is important"
     group="Group decision"
