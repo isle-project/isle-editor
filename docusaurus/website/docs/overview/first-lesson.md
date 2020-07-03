@@ -48,23 +48,23 @@ Let's now intercept the answer of the learner and provide a notification in case
 ### Create 100 random draws from a Uniform(0,1) distribution
 
 <RShell 
-	hints={["Use the runif function"]} 
-	solution="runif(100)" 
-	onEvaluate={ ( str ) => { 
+	hints={["Use the runif function"]}
+	solution="runif(100)"
+	onEvaluate={ ( str ) => {
 		if ( /runif\(100/.test( str ) ) {
-			this.addNotification({
+			session.addNotification({
 				title: 'Correct.',
 				message: 'Your answer is correct!',
 				level: 'success',
 				position: 'tr'
 			});
 		} else {
-			this.addNotification({
+			session.addNotification({
 				title: 'Incorrect.',
 				message: 'Your answer is incorrect!',
 				level: 'warning',
 				position: 'tr'
-			});			
+			});
 		}
 	}}
 />
