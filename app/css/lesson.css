@@ -442,6 +442,9 @@ mark {
 .Lesson > h4,
 .Lesson > .line-wrapper > h4 {
 	text-align: center;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .Lesson > p,
