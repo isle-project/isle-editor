@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { createReadStream, createWriteStream } from 'fs';
 import { join } from 'path';
-import { resolve } from 'url';
 import https from 'https';
 import http from 'http';
 import os from 'os';
+import { resolve } from 'url';
 import qs from 'querystring';
 import FormData from 'form-data';
 import Button from 'react-bootstrap/Button';
@@ -22,7 +22,6 @@ import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
-import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
 import KeyControls from 'components/key-controls';
@@ -249,18 +248,21 @@ class UploadLesson extends Component {
 			minify: this.state.minify,
 			loadFromCDN: this.state.loadFromCDN
 		};
-		bundler( settings, ( error ) => {
-			if ( error ) {
-				return this.setState({
-					error,
-					spinning: false,
-					dirname: randomstring( 16, 65, 90 )
+		import( 'bundler' ).then( ( main ) => {
+			const bundler = main.default;
+			bundler( settings, ( error ) => {
+				if ( error ) {
+					return this.setState({
+						error,
+						spinning: false,
+						dirname: randomstring( 16, 65, 90 )
+					});
+				}
+				debug( 'Lesson successfully bundled...' );
+				this.zipLesson( settings.outputPath, settings.outputDir, () => {
+					debug( 'Lesson successfully zipped...' );
+					this.upstreamData( settings );
 				});
-			}
-			debug( 'Lesson successfully bundled...' );
-			this.zipLesson( settings.outputPath, settings.outputDir, () => {
-				debug( 'Lesson successfully zipped...' );
-				this.upstreamData( settings );
 			});
 		});
 	}
