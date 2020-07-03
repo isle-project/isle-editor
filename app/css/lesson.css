@@ -440,7 +440,11 @@ mark {
 .Lesson > h3,
 .Lesson > .line-wrapper > h3,
 .Lesson > h4,
-.Lesson > .line-wrapper > h4 {
+.Lesson > .line-wrapper > h4,
+.Lesson > h5,
+.Lesson > .line-wrapper > h5,
+.Lesson > h6,
+.Lesson > .line-wrapper > h6 {
 	text-align: center;
 	max-width: 1200px;
 	margin-left: auto;
