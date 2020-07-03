@@ -476,6 +476,10 @@
 		"value": "<LearnConfidenceCoverageNormal />\n"
 	},
 	{
+		"name": "LearnConfidenceCoverageSample",
+		"value": "<LearnConfidenceCoverageSample />\n"
+	},
+	{
 		"name": "LearnMeanTest",
 		"value": "<LearnMeanTest />\n"
 	},

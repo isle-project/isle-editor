@@ -71,6 +71,7 @@
 		"LearnStandardize",
 		"LearnConfidenceCoverageBinomial",
 		"LearnConfidenceCoverageNormal",
+		"LearnConfidenceCoverageSample",
 		"LearnImagePixelPicker"
 	],
 	"MAIN": [
