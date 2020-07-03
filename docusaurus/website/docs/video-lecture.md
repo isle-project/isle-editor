@@ -15,10 +15,12 @@ A video lecture component that displays videos interspersed with interactive ele
 ]} />
 ```
 
-
-
 ## Options
 
 * __controls__ | `boolean`: indicates whether to display control elements of the video players. Default: `true`.
 * __instructorView__ | `boolean`: controls whether to include instructor view. Default: `true`.
+* __linkToDashboard__ | `boolean`: controls whether to display a link to the dashboard once completing the video lecture. Default: `false`.
 * __steps__ | `array (required)`: array of video URLs and components to be displayed in-between. Default: `none`.
+* __videoWidth__ | `(string|number)`: video width. Default: `'100%'`.
+* __videoHeight__ | `(string|number)`: video height. Default: `'98vh'`.
+* __style__ | `object`: CSS inline style. Default: `{}`.

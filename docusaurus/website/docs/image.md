@@ -9,7 +9,13 @@ Component to display an image.
 ## Example
 
 ```jsx live
-<Image alt="The Starry Night by Vincent van Gogh" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+<Image 
+    alt="The Starry Night by Vincent van Gogh" 
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+    className="center"
+    width="50%"
+    height="auto"
+/>
 ```
 
 ## Options

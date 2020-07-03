@@ -9,10 +9,8 @@ Make words pull up R documentation in a modal window when clicked.
 ## Example
 
 ```jsx live
-<RHelp library="graphics">hist</RHelp> is used to create a histogram.
+<span><RHelp library="graphics">hist</RHelp> is used to create a histogram.</span>
 ```
-
-
 
 ## Options
 

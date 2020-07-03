@@ -14,13 +14,11 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 />
 ```
 
-
-
 ## Options
 
 * __code__ | `string`: R code to be evaluated. Default: `''`.
 * __solution__ | `string`: for programming questions, R code `string` representing the official solution for the problem. Default: `''`.
-* __hints__ | `array`: for programming questions, an array of hints providing guidance on how to approach the problem. Default: `[]`.
+* __hints__ | `array<(string|node)>`: for programming questions, an array of hints providing guidance on how to approach the problem. Default: `[]`.
 * __addPreceding__ | `boolean`: if set to true, the shell will evaluate all the code from the current component and all previous ones occurring in the lesson. Default: `false`.
 * __libraries__ | `array`: R libraries that should be loaded automatically when the input `code` is executed. Default: `[]`.
 * __precompute__ | `boolean`: controls whether the default code should be executed once the component has mounted. Default: `false`.
