@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
+import isPlainObject from '@stdlib/assert/is-plain-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -49,6 +50,7 @@ const waitStatuses = ( steps ) => {
 * @property {boolean} linkToDashboard - controls whether to display a link to the dashboard once completing the video lecture
 * @property {(string|number)} videoHeight - video height
 * @property {(string|number)} videoWidth - video width
+* @property {Object} style - CSS inline style
 */
 class VideoLecture extends Component {
 	constructor( props ) {
@@ -125,12 +127,17 @@ class VideoLecture extends Component {
 				</div>
 			</div> );
 		}
-		if ( isString( elem ) ) {
+		const isStr = isString( elem );
+		const isProps = isPlainObject( elem );
+		if ( isStr || isProps ) {
+			const props = isProps ? elem : {
+				id: elem,
+				url: elem
+			};
 			if ( this.state.showInstructorView ) {
 				return ( <div key={page}>
 					<VideoPlayer
-						id={elem}
-						url={elem}
+						{...props}
 						controls={this.props.controls}
 						light
 					/>
@@ -139,8 +146,7 @@ class VideoLecture extends Component {
 			return (
 				<div>
 					{ this.state.active === page ? <VideoPlayer
-						id={elem}
-						url={elem}
+						{...props}
 						key={page}
 						onEnded={this.incrementStep}
 						controls={this.props.controls}
