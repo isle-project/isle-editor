@@ -10,12 +10,10 @@ Component for rendering a R data frame or matrix in a tabular display.
 
 ```jsx live
 <RTable
-    code={`data <- matrix( runif(16), nrow=4, ncol=4)
-data`}
+    code={`data <- matrix( runif(64), nrow=8, ncol=8); 
+    data`}
 />
 ```
-
-
 
 ## Options
 

@@ -20,7 +20,7 @@ import './panel.css';
 * @property {(string|node)} header - panel heading (h3)
 * @property {(string|node)} footer - panel footer
 * @property {boolean} minimizable - whether the panel can be minimized
-* @property {boolean} fullscreen - whether the panel can be made fullscreen
+* @property {boolean} fullscreen - whether the panel can be made fullscreen (only for instructors)
 * @property {string} hideTooltip - tooltip displayed over the hide button
 * @property {Function} onHide - callback invoked when the close button is clicked
 * @property {Object} style - CSS inline styles for container

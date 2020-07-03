@@ -9,9 +9,12 @@ Buttons to collect user feedback.
 ## Example
 
 ```jsx live
-<FeedbackButtons
-    id="my_feedback"
-/>
+<Panel>
+  Lorem ipsum....
+  <FeedbackButtons
+    id="my_feedback" 
+  />
+</Panel>
 ```
 
 ## Options

@@ -4072,7 +4072,7 @@
       {
         "name": "fullscreen",
         "type": "boolean",
-        "description": "whether the panel can be made fullscreen",
+        "description": "whether the panel can be made fullscreen (only for instructors)",
         "default": false
       },
       {
@@ -4314,10 +4314,6 @@
   },
   "ProportionsSurvey": {
     "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
       {
         "name": "allowMultipleAnswers",
         "type": "boolean",
