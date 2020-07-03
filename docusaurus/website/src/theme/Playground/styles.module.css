@@ -32,4 +32,5 @@
 	border-bottom-right-radius: var(--ifm-global-radius);
 	position: relative;
 	padding: 1rem;
+	transform: translateZ(0);
 }
