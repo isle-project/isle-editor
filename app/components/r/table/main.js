@@ -61,7 +61,7 @@ class RTable extends Component {
 				code: jsonCode,
 				onResult: ( err, res, body ) => {
 					this.setState({
-						data: JSON.parse( body ),
+						data: body,
 						waiting: false
 					});
 				}
