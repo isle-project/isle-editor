@@ -26,7 +26,7 @@ class Link extends Component {
 		this.state = {
 			url: null,
 			href: null,
-			target: '_blank'
+			target: props.target
 		};
 	}
 
@@ -41,11 +41,11 @@ class Link extends Component {
 				!startsWith( nextProps.href, '#' )
 			) {
 				newState.url = 'http://'+nextProps.href;
-				newState.target = '_blank';
+				newState.target = nextProps.target;
 			}
 			else {
 				newState.url = nextProps.href;
-				newState.target = null;
+				newState.target = nextProps.target;
 			}
 			return newState;
 		}
@@ -86,11 +86,13 @@ class Link extends Component {
 
 Link.propTypes = {
 	href: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types,
+	target: PropTypes.string,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
 
 Link.defaultProps = {
+	target: '_blank',
 	className: '',
 	style: {}
 };
