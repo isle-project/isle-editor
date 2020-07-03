@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import path from 'path';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -10,7 +11,6 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 import { remote, shell } from 'electron';
-import path from 'path';
 import exists from '@stdlib/fs/exists';
 import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
