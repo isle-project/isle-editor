@@ -69,7 +69,7 @@ class FeedbackButtons extends Component {
 		}, 'members' );
 		session.addNotification({
 			title: this.props.t( 'thank-you' ),
-			message: this.props( 'submit-confused-message' ),
+			message: this.props.t( 'submit-confused-message' ),
 			level: 'info',
 			position: 'tr'
 		});
