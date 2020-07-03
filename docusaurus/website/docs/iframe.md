@@ -12,8 +12,6 @@ An iFrame component.
 <IFrame src="https://isledocs.com" />
 ``` 
 
-
-
 ## Options
 
 * __src__ | `string (required)`: source URL. Default: `none`.
@@ -21,4 +19,5 @@ An iFrame component.
 * __title__ | `string`: iFrame title. Default: `'An iFrame'`.
 * __width__ | `number`: iFrame width (in px). Default: `900`.
 * __height__ | `number`: iFrame height (in px). Default: `600`.
+* __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

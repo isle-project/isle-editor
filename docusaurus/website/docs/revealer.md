@@ -18,9 +18,7 @@ An ISLE component that instructors may use to selectively reveal or hide childre
 </Revealer>
 ``` 
 
-
-
 ## Options
 
-* __message__ | `string`: message to be displayed when content is hidden. Default: `'Content hidden by instructor'`.
+* __message__ | `string`: message to be displayed when content is hidden. Default: `none`.
 * __show__ | `boolean`: controls whether to initially display child elements. Default: `false`.

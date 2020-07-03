@@ -20,8 +20,6 @@ A component rendering data in a tabular display. Built on top of [react-table](h
 />
 ```
 
-
-
 ## Options
 
 * __data__ | `(array|object) (required)`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. Default: `none`.

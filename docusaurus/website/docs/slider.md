@@ -17,8 +17,6 @@ A component which displays its children in a slideshow or carousel.
 </Slider>
 ```
 
-
-
 ## Options
 
 * __title__ | `string`: title for the slideshow / carousel to be displayed at its top. Default: `''`.
@@ -28,6 +26,6 @@ A component which displays its children in a slideshow or carousel.
 * __goto__ | `number`: If property is changed, the component jumps to the slide with the selected index. Default: `0`.
 * __infinite__ | `boolean`: controls whether the slideshow wraps around it's contents. Default: `false`.
 * __interval__ | `number`: sets a time interval for an automatic slide change. Default: `none`.
-* __onClick__ | `function`: callback invoked when clicking on the next/previous buttons. Default: `onClick() {}`.
-* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __swipe__ | `boolean`: enables drag/swipe behavior. Default: `false`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onClick__ | `function`: callback invoked when clicking on the next/previous buttons. Default: `onClick() {}`.

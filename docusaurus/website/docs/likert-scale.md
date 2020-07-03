@@ -16,8 +16,6 @@ A component showing a question and a five-point scale for students to answer.
 />
 ```
 
-
-
 ## Options
 
 * __question__ | `string`: question to be printed. Default: `''`.
@@ -30,3 +28,5 @@ A component showing a question and a five-point scale for students to answer.
 ]`.
 * __noMultipleResponses__ | `boolean`: disallow multiple submissions from a single student. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
+* __className__ | `string`: class name. Default: `''`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
