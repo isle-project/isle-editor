@@ -17,6 +17,7 @@ A component rendering data in a tabular display. Built on top of [react-table](h
         lastName: [ 'Bauer', 'Müller', 'Schultz' ],
         age: [ 37, 55, 62 ]
     }}
+    style={{ width: 600 }}
 />
 ```
 

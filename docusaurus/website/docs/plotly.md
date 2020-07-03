@@ -19,8 +19,6 @@ Plotly visualization.
 />
 ```
 
-
-
 ## Options
 
 * __data__ | `array (required)`: data array. Default: `none`.
@@ -40,5 +38,5 @@ Plotly visualization.
 * __onRelayout__ | `function`: callback function invoked when relayout is triggered. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: callback function invoked when elements are selected. Default: `onSelected() {}`.
 * __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
-* __removeButtons__ | `boolean`: controls whether to remove all buttons. Default: `false`.
-* __toggleFullscreen__ | `boolean`: controls whether to display the plot in fullscreen mode. Default: `true`.
+* __removeButtons__ | `boolean`: controls whether to remove all buttons (aside from fullscreen button if enabled). Default: `false`.
+* __toggleFullscreen__ | `boolean`: controls whether to allow displaying the plot in fullscreen mode. Default: `true`.
