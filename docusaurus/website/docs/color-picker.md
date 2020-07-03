@@ -24,8 +24,6 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 }} />
 ```
 
-
-
 ## Options
 
 * __color__ | `(string|object)`: `string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one. Default: `'#fff'`.
@@ -48,5 +46,6 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
   '#FFFFFF'
 ]`.
 * __width__ | `number`: width of the color picker (in px). Default: `200`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.
