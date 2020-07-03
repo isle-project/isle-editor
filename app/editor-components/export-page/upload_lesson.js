@@ -11,7 +11,6 @@ import http from 'http';
 import os from 'os';
 import qs from 'querystring';
 import FormData from 'form-data';
-import archiver from 'archiver';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -124,22 +123,25 @@ class UploadLesson extends Component {
 
 	zipLesson = ( outputPath, outputDir, clbk ) => {
 		let output = createWriteStream( join( outputPath, outputDir+'.zip' ) );
-		let archive = archiver( 'zip', {
-			store: true
-		});
-		output.on( 'close', function onClose() {
-			debug( archive.pointer() + ' total bytes' );
-			debug( 'archiver has been finalized and the output file descriptor has closed.' );
-			clbk();
-		});
-		archive.on( 'error', ( error ) => {
-			return this.setState({
-				error
+		import( 'archiver' ).then( main => {
+			const archiver = main.default;
+			let archive = archiver( 'zip', {
+				store: true
 			});
+			output.on( 'close', function onClose() {
+				debug( archive.pointer() + ' total bytes' );
+				debug( 'archiver has been finalized and the output file descriptor has closed.' );
+				clbk();
+			});
+			archive.on( 'error', ( error ) => {
+				return this.setState({
+					error
+				});
+			});
+			archive.pipe( output );
+			archive.directory( join( outputPath, outputDir ), '/' );
+			archive.finalize();
 		});
-		archive.pipe( output );
-		archive.directory( join( outputPath, outputDir ), '/' );
-		archive.finalize();
 	};
 
 	upstreamData = ({ outputPath, outputDir }) => {
