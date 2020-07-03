@@ -161,7 +161,7 @@ class FreeTextSurvey extends Component {
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
-				<Card id={this.id} style={this.props.style} >
+				<Card id={this.id} className={this.props.className} style={this.props.style} >
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
 							<Row>
@@ -169,7 +169,7 @@ class FreeTextSurvey extends Component {
 									<Card className="free-text-survey" body>
 										<label>{props.question}</label>
 										<TextArea
-											{...props}
+											value={this.state.value}
 											inline
 											disabled={disabled}
 											onChange={( value ) => {
@@ -220,7 +220,6 @@ FreeTextSurvey.defaultProps = {
 };
 
 FreeTextSurvey.propTypes = {
-	id: PropTypes.string.isRequired,
 	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,

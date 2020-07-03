@@ -38,6 +38,7 @@ const uid = generateUID( 'dashboard' );
 * @property {boolean} disabled - controls whether the dashboard shall be disabled
 * @property {string} label - button label
 * @property {number} maxWidth - maximum width of dashboard
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onGenerate - function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard
 */

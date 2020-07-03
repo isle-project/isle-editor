@@ -247,7 +247,6 @@ MultipleChoiceSurvey.defaultProps = {
 };
 
 MultipleChoiceSurvey.propTypes = {
-	id: PropTypes.string.isRequired,
 	question: PropTypes.string,
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,

@@ -21,6 +21,7 @@ import './checkbox.css';
 * @property {boolean} inline - indicates whether the checkbox is displayed inline
 * @property {string} legend - text displayed next to the checkbox
 * @property {string} tooltip - text displayed when hovering over checkbox
+* @property {string} tooltipPlacement - position of button tooltip
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
 */

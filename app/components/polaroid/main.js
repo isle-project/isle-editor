@@ -16,6 +16,7 @@ import './polaroid.css';
 * @property {boolean} draggable - controls whether one can drag the polaroid around the screen
 * @property {Function} onClick - event handler invoked when image is clicked (receives the id of the Polaroid as parameter)
 * @property {boolean} showPin - shows a pin
+* @property {number} width - polaroid width (in px)
 * @property {Object} style - CSS inline styles
 */
 class Polaroid extends Component {

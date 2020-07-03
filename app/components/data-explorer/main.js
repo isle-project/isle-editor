@@ -151,6 +151,7 @@ function checkVariables( data, variables ) {
 * @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
 * @property {boolean} transformer - boolean indicating whether one wants to display a variable transformer
 * @property {Function} onTutorialCompletion - function invoked when user has completed the data explorer tutorial
+* @property {Function} onTutorialStart - function invoked when user starts the data explorer tutorial
 * @property {Object} style - CSS inline styles for main container
 */
 class DataExplorer extends Component {

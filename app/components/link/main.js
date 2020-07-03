@@ -13,9 +13,11 @@ import './load_translations.js';
 // MAIN //
 
 /**
-* A link component.
+* A component for displaying a link.
 *
 * @property {string} href - URL of website to link to
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
 */
 class Link extends Component {
 	constructor( props ) {
