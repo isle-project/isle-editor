@@ -115,4 +115,4 @@ We will include the explorer with the following code:
 ]`.
 * __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `true`.
 * __onTutorialCompletion__ | `function`: function invoked when user has completed the data explorer tutorial. Default: `onTutorialCompletion() {}`.
-* __onTutorialStart__ | `function`: undefined. Default: `onTutorialStart() {}`.
+* __onTutorialStart__ | `function`: function invoked when user starts the data explorer tutorial. Default: `onTutorialStart() {}`.

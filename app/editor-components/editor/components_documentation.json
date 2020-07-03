@@ -579,6 +579,7 @@
       {
         "name": "className",
         "type": "string",
+        "description": "class name",
         "default": ""
       },
       {
@@ -790,6 +791,7 @@
       {
         "name": "onTutorialStart",
         "type": "function",
+        "description": "function invoked when user starts the data explorer tutorial",
         "default": "onTutorialStart() {}"
       }
     ],
@@ -1092,6 +1094,12 @@
         "default": false
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "default": ""
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -1295,10 +1303,6 @@
   },
   "FreeTextSurvey": {
     "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
       {
         "name": "question",
         "type": "string",
@@ -1633,6 +1637,7 @@
       {
         "name": "tooltipPlacement",
         "type": "string",
+        "description": "position of button tooltip",
         "default": "right"
       },
       {
@@ -3290,15 +3295,17 @@
       {
         "name": "className",
         "type": "string",
+        "description": "class name",
         "default": ""
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "default": {}
       }
     ],
-    "description": "A link component."
+    "description": "A component for displaying a link."
   },
   "MatchListQuestion": {
     "props": [
@@ -3686,10 +3693,6 @@
   "MultipleChoiceSurvey": {
     "props": [
       {
-        "name": "id",
-        "type": "string (required)"
-      },
-      {
         "name": "question",
         "type": "string",
         "description": "string indicating the question to ask the students",
@@ -3866,10 +3869,6 @@
   },
   "NumberSurvey": {
     "props": [
-      {
-        "name": "id",
-        "type": "string (required)"
-      },
       {
         "name": "question",
         "type": "string",
@@ -4284,6 +4283,7 @@
       {
         "name": "width",
         "type": "number",
+        "description": "polaroid width (in px)",
         "default": 350
       },
       {
@@ -6722,6 +6722,7 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline style",
         "default": {}
       }
     ],

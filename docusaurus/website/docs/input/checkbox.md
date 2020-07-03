@@ -15,10 +15,6 @@ A checkbox input component. Can be used as part of an ISLE dashboard or standalo
 />
 ```
 
-
-
-Note: To see a prior version of the demonstration, visit [the old link](https://isle.heinz.cmu.edu/components/checkbox-input)
-
 ## Options
 
 * __bind__ | `string`: name of global variable for the checkbox value to be assigned to. Default: `''`.
@@ -27,4 +23,6 @@ Note: To see a prior version of the demonstration, visit [the old link](https://
 * __inline__ | `boolean`: indicates whether the checkbox is displayed inline. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value. Default: `onChange() {}`.
 * __legend__ | `(string|node)`: text displayed next to the checkbox. Default: `''`.
+* __tooltip__ | `string`: text displayed when hovering over checkbox. Default: `''`.
+* __tooltipPlacement__ | `string`: position of button tooltip. Default: `'right'`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
