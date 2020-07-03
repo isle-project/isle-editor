@@ -69,7 +69,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		props: []
 	};
 	let fpath = path.join( './app/components', component, 'main.js' );
-	const mdpath = path.join( './docusaurus/docs', component+'.md' );
+	const mdpath = path.join( './docusaurus/website/docs', component+'.md' );
 
 	let file;
 	try {
