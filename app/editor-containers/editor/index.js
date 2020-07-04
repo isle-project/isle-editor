@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { CLIEngine } from 'eslint';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
@@ -12,7 +11,6 @@ import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
 import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
-import SpellChecker from 'utils/spell-checker';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -53,6 +51,9 @@ class App extends Component {
 
 		let eslintOpts = await import( './eslint_opts.js' );
 		eslintOpts = eslintOpts.default;
+
+		const eslint = await import( 'eslint' );
+		const { CLIEngine } = eslint;
 		this.cliEngine = new CLIEngine( eslintOpts, this.props.fileName );
 
 		const jsYAML = await import( 'js-yaml' );
@@ -146,9 +147,10 @@ class App extends Component {
 		}
 	}
 
-	spellcheckCode = ( code ) => {
+	spellcheckCode = async ( code ) => {
 		const language = this.props.preamble.language || 'en-US';
-		const errs = SpellChecker( code, {
+		const SpellChecker = await import( 'utils/spell-checker' );
+		const errs = SpellChecker.default( code, {
 			language
 		});
 		if ( errs ) {
