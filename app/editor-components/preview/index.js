@@ -6,8 +6,8 @@
 /* eslint no-new-func: 0 */
 
 import React, { Component } from 'react';
-import { transformSync } from '@babel/core';
 import PropTypes from 'prop-types';
+import { transformSync } from '@babel/core';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
 import isObjectArray from '@stdlib/assert/is-object-array';

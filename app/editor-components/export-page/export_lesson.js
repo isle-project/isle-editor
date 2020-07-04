@@ -12,7 +12,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 import { remote, shell } from 'electron';
 import exists from '@stdlib/fs/exists';
-import bundler from 'bundler';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
 import './export_page.css';
@@ -92,24 +91,27 @@ class ExportLesson extends Component {
 				finished: false,
 				spinning: true
 			});
-			bundler({
-				outputPath: outputPath,
-				filePath: this.props.filePath,
-				basePath: IS_PACKAGED ? process.resourcesPath : '.',
-				content: this.props.content,
-				outputDir,
-				minify,
-				loadFromCDN,
-				writeStats
-			}, ( error ) => {
-				const newState = {
-					finished: true,
-					spinning: false
-				};
-				if ( error ) {
-					newState.error = error;
-				}
-				this.setState( newState );
+			import( 'bundler' ).then( main => {
+				const bundler = main.default;
+				bundler({
+					outputPath: outputPath,
+					filePath: this.props.filePath,
+					basePath: IS_PACKAGED ? process.resourcesPath : '.',
+					content: this.props.content,
+					outputDir,
+					minify,
+					loadFromCDN,
+					writeStats
+				}, ( error ) => {
+					const newState = {
+						finished: true,
+						spinning: false
+					};
+					if ( error ) {
+						newState.error = error;
+					}
+					this.setState( newState );
+				});
 			});
 		}
 	}

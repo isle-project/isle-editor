@@ -1,17 +1,16 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import os from 'os';
-import { dirname } from 'path';
 import PropTypes from 'prop-types';
+import { dirname } from 'path';
 import logger from 'debug';
+import os from 'os';
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { SearchAddon } from 'xterm-addon-search';
 import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
 import IS_WINDOWS from '@stdlib/assert/is-windows';
-const pty = require( 'node-pty' );
 import './terminal.css';
 
 
@@ -104,6 +103,7 @@ class TerminalWrapper extends Component {
 			dir = os.homedir();
 		}
 		debug( `Open ${dir} directory in shell...` );
+		const pty = require( 'node-pty' );
 		this.ptyProcess = pty.spawn( shell, [], {
 			name: 'xterm-color',
 			cols: this.xterm.cols,
