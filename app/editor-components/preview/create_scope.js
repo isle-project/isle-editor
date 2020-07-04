@@ -20,7 +20,6 @@ import NavLink from 'react-bootstrap/NavLink';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import copy from '@stdlib/utils/copy';
 import Components from 'components';
 import LineWrapper from 'editor-components/line-wrapper';
 import factor from 'utils/factor-variable';
@@ -54,7 +53,7 @@ export const SCOPE = {
 // MAIN //
 
 const createScope = ( session ) => {
-	const scope = copy( SCOPE, 1 );
+	const scope = { ...SCOPE };
 	scope.session = session;
 	scope.React = React;
 	scope.Component = Component;
