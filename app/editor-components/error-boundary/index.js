@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ErrorMessage from 'editor-components/error-message';
 import logger from 'debug';
+import ErrorMessage from 'editor-components/error-message';
 
 
 // VARIABLES //

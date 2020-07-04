@@ -2,7 +2,6 @@
 
 import { basename, dirname, resolve, join } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
-import { text } from 'd3';
 import isURI from '@stdlib/assert/is-uri';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
@@ -16,15 +15,13 @@ import mergePreambles from 'utils/merge-preambles';
 
 const RE_INCLUDES = /<!-- #include ["']([^'"]+)['"] -->/g;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
-let yaml;
-import( 'js-yaml' ).then( ( jsYAML ) => {
-	yaml = jsYAML.default;
-});
 
 
 // FUNCTIONS //
 
-function matchPreamble( str, preamble ) {
+async function matchPreamble( str, preamble ) {
+	const main = await import( 'js-yaml' );
+	const yaml = main.default;
 	let childPreamble = str.match( /^(?:\s*)---([\S\s]*?)---/ );
 	if ( childPreamble ) {
 		// Extract the capture group:
@@ -63,6 +60,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 	const asyncOps = [];
 	const asyncMatches = [];
 	const asyncDirs = [];
+	const d3 = await import( 'd3' );
 	while ( match ) {
 		let str;
 		const path = match[ 1 ];
@@ -72,7 +70,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 			}
 			asyncMatches.push( match[ 0 ] );
 			asyncDirs.push( dirname( path ) );
-			asyncOps.push( text( path ) );
+			asyncOps.push( d3.text( path ) );
 		} else {
 			str = readFileSync( resolve( dirname( filePath ), path ), 'utf8' );
 			matchPreamble( str, preamble );

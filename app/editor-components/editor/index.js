@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, max-nested-callbacks */
 
 // MODULES //
 
@@ -11,7 +11,6 @@ import { spawn } from 'child_process';
 import https from 'https';
 import http from 'http';
 import url from 'url';
-import { text } from 'd3';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -485,51 +484,54 @@ class Editor extends Component {
 			if ( !endsWith( url, '.isle' ) ) {
 				url += '/index.isle';
 			}
-			text( url ).then( res => {
-				const files = res.match( RE_RELATIVE_FILE );
-				let done = 0;
-				if ( !files ) {
-					writeFileSync( outPath, res );
-					const fix = {
-						title: 'Copy to local',
-						identifier: id,
-						range,
-						text: localPath
-					};
-					this.editor.executeEdits( 'my-source', [ fix ] );
-					return;
-				}
-				files.forEach( ( match ) => {
-					// Replace path:
-					res = replace( res, match, join( includePath, match ) );
-
-					// Download all remote resources to disk:
-					const remotePath = join( dirname( url ), match );
-					const destFilePath = join( includePath, match );
-					const file = createWriteStream( destFilePath );
-					const get = startsWith( url, 'https' ) ? https.get : http.get;
-					const handleResponse = ( response ) => {
-						response.pipe( file );
-						const onDone = ( err ) => {
-							done += 1;
-							if ( done === files.length ) {
-								writeFileSync( outPath, res );
-								const fix = {
-									title: 'Copy to local',
-									identifier: id,
-									range,
-									text: localPath
-								};
-								this.editor.executeEdits( 'my-source', [ fix ] );
-							}
-							if ( err ) {
-								return debug( err );
-							}
-							file.close();
+			import( 'd3' ).then( d3 => {
+				const { text } = d3;
+				text( url ).then( res => {
+					const files = res.match( RE_RELATIVE_FILE );
+					let done = 0;
+					if ( !files ) {
+						writeFileSync( outPath, res );
+						const fix = {
+							title: 'Copy to local',
+							identifier: id,
+							range,
+							text: localPath
 						};
-						file.on( 'finish', onDone );
-					};
-					get( remotePath, handleResponse );
+						this.editor.executeEdits( 'my-source', [ fix ] );
+						return;
+					}
+					files.forEach( ( match ) => {
+						// Replace path:
+						res = replace( res, match, join( includePath, match ) );
+
+						// Download all remote resources to disk:
+						const remotePath = join( dirname( url ), match );
+						const destFilePath = join( includePath, match );
+						const file = createWriteStream( destFilePath );
+						const get = startsWith( url, 'https' ) ? https.get : http.get;
+						const handleResponse = ( response ) => {
+							response.pipe( file );
+							const onDone = ( err ) => {
+								done += 1;
+								if ( done === files.length ) {
+									writeFileSync( outPath, res );
+									const fix = {
+										title: 'Copy to local',
+										identifier: id,
+										range,
+										text: localPath
+									};
+									this.editor.executeEdits( 'my-source', [ fix ] );
+								}
+								if ( err ) {
+									return debug( err );
+								}
+								file.close();
+							};
+							file.on( 'finish', onDone );
+						};
+						get( remotePath, handleResponse );
+					});
 				});
 			});
 		});

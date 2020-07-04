@@ -1,7 +1,6 @@
 // MODULES //
 
 import { basename, dirname, join, extname, resolve } from 'path';
-import { json, csv } from 'd3';
 import resolveFrom from 'resolve-from';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -34,6 +33,8 @@ async function loadRequires( libs, filePath ) {
 	const asyncOps = [];
 	const asyncKeys = [];
 	const asyncExtensions = [];
+	const d3 = await import( 'd3' );
+	const { json, csv } = d3;
 	debug( 'Directory: '+dir );
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
