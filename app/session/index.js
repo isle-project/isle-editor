@@ -35,7 +35,6 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import countBy from '@stdlib/utils/count-by';
 import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';
-import copy from '@stdlib/utils/copy';
 import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
 import sample from '@stdlib/random/sample';
@@ -2020,7 +2019,7 @@ class Session {
 	* @returns {void}
 	*/
 	sendMail( mail, to ) {
-		const mailOptions = copy( mail );
+		const mailOptions = { ...mail };
 		if ( !hasOwnProp( mailOptions, 'from' ) ) {
 			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
 		}

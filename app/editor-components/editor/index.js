@@ -61,9 +61,11 @@ const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 11;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
-const RE_TAG_START = /<[a-z]+/i;
+const RE_TAG_START = /<([a-z]+)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
+	glyphMargin: true,
+	lineNumbersMinChars: 3,
 	minimap: {
 		enabled: false
 	},
@@ -568,6 +570,15 @@ class Editor extends Component {
 				const lineNumber = selection.startLineNumber;
 				scrollIntoView( lineNumber );
 			}
+			const elem = document.getElementById( 'line-'+selection.startLineNumber );
+			if ( elem ) {
+				const event = new MouseEvent( 'dblclick', {
+					'view': window,
+					'bubbles': true,
+					'cancelable': true
+				});
+				elem.dispatchEvent( event );
+			}
 		});
 	}
 
@@ -605,7 +616,20 @@ class Editor extends Component {
 					range: this.props.elementRange,
 					options: {
 						isWholeLine: true,
-						className: 'highlighted_content'
+						className: 'highlighted_content',
+						glyphMarginClassName: 'configurator_glyph',
+						glyphMarginHoverMessage: {
+							value: 'Click on the cogs to open component configurator'
+						}
+					}
+				},
+				{
+					range: {
+						startLineNumber: this.props.elementRange.startLineNumber,
+						endLineNumber: this.props.elementRange.startLineNumber
+					},
+					options: {
+						glyphMarginClassName: 'fas fa-cogs glyph-icon'
 					}
 				}
 			]);
@@ -833,10 +857,10 @@ class Editor extends Component {
 				actions.push({
 					command: {
 						id: this.scrollIntoViewInPreview,
-						title: 'Scroll component into view in preview',
+						title: 'Scroll component into view (double-click)',
 						arguments: [ selection.startLineNumber ]
 					},
-					title: 'Scroll component into view in preview'
+					title: 'Scroll component into view (double-click)'
 				});
 			}
 		}
@@ -1105,9 +1129,34 @@ class Editor extends Component {
 		}
 	};
 
+	triggerConfiguratorViaGlyph = () => {
+		const model = this.editor.getModel();
+
+		const range = {
+			startLineNumber: this.props.elementRange.startLineNumber,
+			endLineNumber: this.props.elementRange.endLineNumber + 1
+		};
+		const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
+
+		this.editor.setSelection( selection );
+		const content = model.getValueInRange( range );
+		const match = content.match( RE_TAG_START );
+		this.toggleComponentConfigurator({
+			name: match[ 1 ],
+			value: content
+		});
+	}
+
 	onEditorMount = ( editor, monaco ) => {
 		this.editor = editor;
 		this.monaco = monaco;
+
+		this.editor.onMouseDown( ( e ) => {
+			const data = e.target.detail;
+			if ( data && data.glyphMarginWidth ) {
+				this.triggerConfiguratorViaGlyph();
+			}
+		});
 	}
 
 	render() {

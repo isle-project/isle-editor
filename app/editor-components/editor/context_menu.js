@@ -92,6 +92,7 @@ class EditorContextMenu extends Component {
 			{obj.name}
 			<button
 				className="fa fa-cogs"
+				title="Open component configurator"
 				style={{
 					float: 'right',
 					border: 'none',

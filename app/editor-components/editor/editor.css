@@ -105,6 +105,18 @@
 	background: rgba(235, 235, 62, 0.7);
 }
 
+.configurator_glyph {
+	background: rgba(235, 235, 62, 0.7);
+}
+
+.glyph-icon:hover {
+	background: rgba(235, 97, 62, 0.7);
+}
+
+.glyph-icon {
+	cursor: pointer;
+}
+
 .non_highlighted_content {
 	background: none;
 }
