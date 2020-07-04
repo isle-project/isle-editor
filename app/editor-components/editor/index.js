@@ -59,7 +59,7 @@ const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
-const NUM_WRAPPER_LINES = 9;
+const NUM_WRAPPER_LINES = 11;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
 const RE_TAG_START = /<[a-z]+/i;
 const MONACO_OPTIONS = {
