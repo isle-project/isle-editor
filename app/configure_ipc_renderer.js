@@ -1,6 +1,7 @@
 // MODULES //
 
 import * as actions from 'actions';
+import logger from 'debug';
 import { ipcRenderer } from 'electron';
 import Store from 'electron-store';
 import vex from 'vex-js';
@@ -9,7 +10,6 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import trim from '@stdlib/string/trim';
-import logger from 'debug';
 import VIDEO_LECTURE_TEMPLATE from 'constants/templates/video_lecture.js';
 import LECTURE_SLIDES_TEMPLATE from 'constants/templates/lecture_slides.js';
 import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
