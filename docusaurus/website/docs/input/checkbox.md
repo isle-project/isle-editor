@@ -18,7 +18,8 @@ A checkbox input component. Can be used as part of an ISLE dashboard or standalo
 ## Options
 
 * __bind__ | `string`: name of global variable for the checkbox value to be assigned to. Default: `''`.
-* __defaultValue__ | `boolean`: A boolean value indicating the default value of the checkbox. Default: `false`.
+* __defaultValue__ | `boolean`: boolean value indicating the default value of the checkbox. Default: `false`.
+* __value__ | `boolean`: checkbox value (for controlled component). Default: `none`.
 * __disabled__ | `boolean`: indicates whether the input is active or not. Default: `false`.
 * __inline__ | `boolean`: indicates whether the checkbox is displayed inline. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value. Default: `onChange() {}`.

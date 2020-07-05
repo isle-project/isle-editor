@@ -21,6 +21,7 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 
 * __bind__ | `string`: name of global variable for the number to be assigned to. Default: `none`.
 * __defaultValue__ | `string`: A value indicating the default value of the input at start. Default: `''`.
+* __value__ | `string`: text value (for controlled component). Default: `none`.
 * __legend__ | `(string|node)`: A string indicating the text displayed next to the number input. Default: `''`.
 * __inline__ | `boolean`: Indicates whether the input is displayed inline. Default: `false`.
 * __onBlur__ | `function`: callback function invoked when the text area loses focus. Default: `onBlur() {}`.
