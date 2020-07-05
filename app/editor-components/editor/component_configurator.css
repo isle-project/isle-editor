@@ -8,3 +8,13 @@
 	color: #2e4468;
 	margin-bottom: 0px;
 }
+
+.configurator-column {
+	width: 15%;
+	word-wrap: break-word;
+}
+
+.configurator-wide-column {
+	width: 27.5%;
+	word-wrap: break-word;
+}
