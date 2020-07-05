@@ -87,7 +87,7 @@ class TextArea extends Component {
 			value = this.props.value;
 		}
 		return (
-			<FormGroup className="input" controlId={`${this.id}-form`} >
+			<FormGroup className="input" id={`${this.id}-form`} >
 				{this.renderLegend()}
 				<FormControl
 					id={this.id}
