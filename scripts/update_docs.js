@@ -131,7 +131,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
 		str += '\n';
 		if ( isFunction( defaults[ key ] ) ) {
-			defaults[ key ] = defaults[ key ].toString();
+			defaults[ key ] = `function ${defaults[ key ].toString()}`;
 		}
 		DOCS[ tagName ].props.push({
 			name: key,
