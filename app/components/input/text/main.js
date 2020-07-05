@@ -128,7 +128,10 @@ class TextInput extends Input {
 		return (
 			<div className="input text-container-div" style={this.props.style} >
 				<span>
-					<label htmlFor={this.id} >{this.props.legend}:</label>
+					{ this.props.legend ?
+						<label htmlFor={this.id} >{this.props.legend}:</label> :
+						null
+					}
 					{ this.props.description ?
 						<span> {this.props.description}</span> :
 						<span />
