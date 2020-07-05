@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
@@ -8,12 +10,14 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
+import ReactJson from 'react-json-view';
 import TextArea from 'components/input/text-area';
 import Checkbox from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import Playground from 'components/playground';
 import Provider from 'components/provider';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
 import objectKeys from '@stdlib/utils/keys';
@@ -29,13 +33,12 @@ import './component_configurator.css';
 
 // VARIABLES //
 
-const RE_FUNCTION = /^[a-z0-9]*\(([^)]*)\)/i;
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const RE_NEW_LINES = /\n{2,99}/g;
 const RE_PROP_KEY_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)(?=[a-z]+=|\/>)/gi;
 const RE_PROP_KEY_NON_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)(?=[a-z]+=|>)/gi;
-const RE_EXTRACT_PROP = /^["{`]{1,2}([\s\S]*)[`"}]{1,2}/;
+const RE_EXTRACT_PROP = /^["{]`?([\s\S]*)`?["}]/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
 const md = markdownit({
@@ -49,26 +52,38 @@ const debug = logger('isle:editor:component-configurator');
 
 // FUNCTIONS //
 
-function generateReplacement( defaultValue ) {
-	const match = RE_FUNCTION.exec(defaultValue);
-	if ( match ) {
-		// Convert to arrow function:
-		defaultValue = replace( defaultValue, match[0], '(' + match[1] + ') => ' );
-		return '{' + defaultValue + '}';
+function extractType( type, defaultValue ) {
+	switch ( type ) {
+		case 'number':
+		case 'string':
+		case 'boolean':
+		case 'array':
+		case 'function':
+		case 'object':
+			return type;
+		default:
+			return typeOf( defaultValue );
 	}
-	const type = typeOf( defaultValue );
+}
+
+function generateReplacement( defaultValue, type ) {
 	switch ( type ) {
 		case 'boolean':
 			return '{' + !defaultValue + '}';
 		case 'object':
 		case 'array':
+			if ( !defaultValue ) {
+				return '{[]}';
+			}
 			return '{' + JSON.stringify( defaultValue ) + '}';
 		case 'string':
-			if ( contains( defaultValue, '\n' ) ) {
+			if ( defaultValue && contains( defaultValue, '\n' ) ) {
 				return '{`' + defaultValue + '`}';
 			}
 			return `"${defaultValue}"`;
 		case 'number':
+			return '{' + defaultValue + '}';
+		case 'function':
 			return '{' + defaultValue + '}';
 		default:
 			return '{}';
@@ -109,7 +124,7 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
 			propValues[ p.name ] = p.default;
-			propertyTypes[ p.name ] = p.type;
+			propertyTypes[ p.name ] = extractType( p.type, p.default );
 			const RE_KEY_AROUND_WHITESPACE = new RegExp(`\\s+${p.name}\\s*=`);
 			propActive[ p.name ] = RE_KEY_AROUND_WHITESPACE.test( value );
 		}
@@ -184,6 +199,17 @@ class ComponentConfigurator extends Component {
 					case 'number':
 						val = Number( val );
 						break;
+					case 'array':
+					case 'object':
+						try {
+							val = eval(`(${val})` ); // eslint-disable-line no-eval
+						} catch ( err ) {
+							val = String( val );
+						}
+						break;
+					case 'function':
+						val = String( val );
+						break;
 					default:
 						val = String( val );
 				}
@@ -191,8 +217,6 @@ class ComponentConfigurator extends Component {
 				newActive[ propName ] = true;
 			}
 		} while ( match );
-		console.log(newValues);
-		console.log(newActive);
 		this.setState({
 			propValues: newValues,
 			propActive: newActive
@@ -240,10 +264,47 @@ class ComponentConfigurator extends Component {
 		};
 	}
 
+	handleObjectChangeFactory = ( key ) => {
+		let RE_FULL_KEY;
+		if ( this.selfClosing ) {
+			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+		} else {
+			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+		}
+		return ({ updated_src }) => {
+			let { value, propValues } = this.state;
+			const newPropValues = { ...propValues };
+			newPropValues[ key ] = updated_src;
+			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + JSON.stringify( updated_src, null, 2 ) + '}$3' );
+			this.setState({
+				value,
+				propValues: newPropValues
+			});
+		};
+	}
+
+	replaceObjectFactory = ( key ) => {
+		let RE_FULL_KEY;
+		if ( this.selfClosing ) {
+			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+		} else {
+			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+		}
+		return ( newValue ) => {
+			let { value, propValues } = this.state;
+			const newPropValues = { ...propValues };
+			newPropValues[ key ] = newValue;
+			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + newValue + '}$3' );
+			this.setState({
+				value,
+				propValues: newPropValues
+			});
+		};
+	}
+
 	replaceNumberOrBooleanFactory = (key) => {
 		const RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i');
 		return ( newValue ) => {
-			console.log( newValue );
 			let { value, propValues } = this.state;
 			const newPropValues = { ...propValues };
 			newPropValues[ key ] = newValue;
@@ -256,7 +317,8 @@ class ComponentConfigurator extends Component {
 	}
 
 	checkboxClickFactory = ( key, defaultValue ) => {
-		const replacement = generateReplacement( defaultValue );
+		const type = this.propertyTypes[ key ];
+		const replacement = generateReplacement( defaultValue, type );
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
 			RE_FULL_KEY = new RegExp('[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
@@ -321,7 +383,8 @@ class ComponentConfigurator extends Component {
 			const className = isActive ? 'success' : '';
 			let input;
 			const propValue = this.state.propValues[ name ];
-			switch ( type ) {
+			const propType = this.propertyTypes[ name ];
+			switch ( propType ) {
 				case 'number':
 					input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
 					break;
@@ -331,8 +394,29 @@ class ComponentConfigurator extends Component {
 				case 'boolean':
 					input = <Checkbox value={propValue} onChange={this.replaceNumberOrBooleanFactory(name)} />;
 					break;
+				case 'array':
+				case 'object': {
+					if ( isString( propValue ) ) {
+						// Case: Array or object contains JSX or other non-standard code
+						input = <TextArea value={propValue} rows={3} onChange={this.replaceObjectFactory(name)} />;
+					} else {
+						const changeHandler = this.handleObjectChangeFactory( name );
+						input = <ReactJson
+							name={false}
+							src={propValue}
+							onAdd={changeHandler}
+							onEdit={changeHandler}
+							onDelete={changeHandler}
+							enableClipboard={false}
+							displayDataTypes={false}
+							displayObjectSize={false}
+						/>;
+					}
+					break;
+				}
+				case 'function':
 				default:
-					input = <TextArea value={propValue} />;
+					input = <TextArea value={propValue} rows={3} onChange={this.replaceObjectFactory(name)} />;
 			}
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 				<td>
