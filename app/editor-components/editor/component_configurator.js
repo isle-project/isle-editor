@@ -13,6 +13,7 @@ import Checkbox from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import Playground from 'components/playground';
 import Provider from 'components/provider';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
 import objectKeys from '@stdlib/utils/keys';
@@ -170,11 +171,9 @@ class ComponentConfigurator extends Component {
 			match = RE.exec( this.state.value );
 			if ( match ) {
 				propName = match[ 1 ];
-				console.log( propName );
 				let val = replace( match[ 2 ], RE_EXTRACT_PROP, '$1' );
-				console.log( val );
-				const types = this.propertyTypes[ propName ] || '';
-				switch ( types.type ) {
+				const propertyType = this.propertyTypes[ propName ] || '';
+				switch ( propertyType ) {
 					case 'boolean':
 						if ( val === 'true' ) {
 							val = true;
@@ -200,7 +199,7 @@ class ComponentConfigurator extends Component {
 		});
 	}
 
-	handleBlur = () => {
+	handleMouseOut = () => {
 		this.calculateValuesFromText();
 	};
 
@@ -244,6 +243,7 @@ class ComponentConfigurator extends Component {
 	replaceNumberOrBooleanFactory = (key) => {
 		const RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i');
 		return ( newValue ) => {
+			console.log( newValue );
 			let { value, propValues } = this.state;
 			const newPropValues = { ...propValues };
 			newPropValues[ key ] = newValue;
@@ -281,10 +281,13 @@ class ComponentConfigurator extends Component {
 					if ( value[ value.length - 1 ] === ' ' ) {
 						value = removeLast(value);
 					}
-					value = rtrim(value) + `\n  ${key}=${replacement}\n>`;
+					value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
 					value = value + rest;
 				}
-				newPropValues[ key ] = replacement;
+				if ( isBoolean( defaultValue ) ) {
+					defaultValue = !defaultValue;
+				}
+				newPropValues[ key ] = defaultValue;
 			} else {
 				debug(`Remove ${key} attribute...`);
 				newPropActive[ key ] = false;
@@ -320,7 +323,7 @@ class ComponentConfigurator extends Component {
 			const propValue = this.state.propValues[ name ];
 			switch ( type ) {
 				case 'number':
-					input = <NumberInput value={propValue} onChange={this.replaceNumberOrBooleanFactory(name)} />;
+					input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
 					break;
 				case 'string':
 					input = <TextArea value={propValue} rows={2} onChange={this.replaceStringFactory(name)} />;
@@ -401,7 +404,9 @@ class ComponentConfigurator extends Component {
 							value={this.state.value}
 							scope={SCOPE}
 							onChange={this.handleChange}
-							onBlur={this.handleBlur}
+							editorProps={{
+								onMouseOut: this.handleMouseOut
+							}}
 							style={{
 								marginTop: '12px',
 								maxWidth: '100vw',
