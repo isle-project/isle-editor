@@ -30,6 +30,7 @@ import './load_translations.js';
 * @property {number} defaultValue - value indicating the default code
 * @property {Object} scope - scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display
 * @property {Function} onChange - callback invoked with new code once code in editor changes
+* @property {Function} onBlur - callback invoked when object loses focus
 * @property {Object} style - CSS inline styles
 */
 class Playground extends Component {
@@ -111,6 +112,7 @@ class Playground extends Component {
 					<div className="playground-live-editor" >
 						<LiveEditor
 							onChange={this.handleChange}
+							onBlur={this.props.onBlur}
 							style={{
 								fontSize: '1.25em',
 								fontFamily: '\'Source Code Pro\', monospace'
@@ -138,6 +140,7 @@ Playground.propTypes = {
 	value: PropTypes.string,
 	scope: PropTypes.object,
 	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
 	style: PropTypes.object
 };
 
@@ -146,6 +149,7 @@ Playground.defaultProps = {
 	value: null,
 	scope: {},
 	onChange() {},
+	onBlur() {},
 	style: {}
 };
 
