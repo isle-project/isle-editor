@@ -1131,20 +1131,22 @@ class Editor extends Component {
 
 	triggerConfiguratorViaGlyph = () => {
 		const model = this.editor.getModel();
+		const { elementRange } = this.props;
+		if ( elementRange ) {
+			const range = {
+				startLineNumber: elementRange.startLineNumber,
+				endLineNumber: elementRange.endLineNumber + 1
+			};
+			const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
 
-		const range = {
-			startLineNumber: this.props.elementRange.startLineNumber,
-			endLineNumber: this.props.elementRange.endLineNumber + 1
-		};
-		const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
-
-		this.editor.setSelection( selection );
-		const content = model.getValueInRange( range );
-		const match = content.match( RE_TAG_START );
-		this.toggleComponentConfigurator({
-			name: match[ 1 ],
-			value: content
-		});
+			this.editor.setSelection( selection );
+			const content = model.getValueInRange( range );
+			const match = content.match( RE_TAG_START );
+			this.toggleComponentConfigurator({
+				name: match[ 1 ],
+				value: content
+			});
+		}
 	}
 
 	onEditorMount = ( editor, monaco ) => {
