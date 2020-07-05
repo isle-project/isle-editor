@@ -43,14 +43,15 @@ class CheckboxInput extends Input {
 		* Event handler invoked once the checkbox is clicked by the user. Changes the
 		* `isChecked` property and then invokes the user-supplied `onChange` callback function.
 		*/
-		this.handleChange = () => {
+		this.handleChange = ( event ) => {
+			const newValue = event.target.checked;
+			this.props.onChange( newValue );
 			this.setState({
-				value: !this.state.value
+				value: newValue
 			}, () => {
-				this.props.onChange( this.state.value );
 				if ( this.props.bind ) {
 					global.lesson.setState({
-						[ this.props.bind ]: this.state.value
+						[ this.props.bind ]: newValue
 					});
 				}
 			});
@@ -86,7 +87,7 @@ class CheckboxInput extends Input {
 
 	render() {
 		let { value } = this.state;
-		if ( this.props.value ) {
+		if ( this.props.value !== null ) {
 			value = this.props.value;
 		}
 		const input = <input
@@ -141,6 +142,7 @@ CheckboxInput.defaultProps = {
 	bind: '',
 	onChange() {},
 	defaultValue: false,
+	value: null,
 	disabled: false,
 	inline: false,
 	legend: '',
@@ -152,6 +154,7 @@ CheckboxInput.defaultProps = {
 CheckboxInput.propTypes = {
 	bind: PropTypes.string,
 	defaultValue: PropTypes.bool,
+	value: PropTypes.bool,
 	disabled: PropTypes.bool,
 	inline: PropTypes.bool,
 	onChange: PropTypes.func,

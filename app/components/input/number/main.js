@@ -176,7 +176,7 @@ class NumberInput extends Input {
 
 	render() {
 		let { value } = this.state;
-		if ( this.props.value ) {
+		if ( this.props.value !== null ) {
 			value = this.props.value;
 		}
 		if ( this.props.inline === true ) {
