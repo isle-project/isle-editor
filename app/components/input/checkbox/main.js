@@ -16,7 +16,8 @@ import './checkbox.css';
 * A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 *
 * @property {string} bind - name of global variable for the checkbox value to be assigned to
-* @property {boolean} defaultValue - A boolean value indicating the default value of the checkbox
+* @property {boolean} defaultValue - boolean value indicating the default value of the checkbox
+* @property {boolean} value - checkbox value (for controlled component)
 * @property {boolean} disabled - indicates whether the input is active or not
 * @property {boolean} inline - indicates whether the checkbox is displayed inline
 * @property {string} legend - text displayed next to the checkbox
@@ -84,10 +85,14 @@ class CheckboxInput extends Input {
 	}
 
 	render() {
+		let { value } = this.state;
+		if ( this.props.value ) {
+			value = this.props.value;
+		}
 		const input = <input
 			className="checkbox-input"
 			type="checkbox"
-			checked={this.state.value}
+			checked={value}
 			value="checkbox"
 			onChange={this.handleChange}
 			disabled={this.props.disabled}
