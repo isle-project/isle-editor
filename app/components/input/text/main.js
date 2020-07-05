@@ -21,11 +21,11 @@ const uid = generateUID( 'text-input' );
 *
 * @property {Function} onChange - A function to be called when a text value is changed
 * @property {string} defaultValue - A value indicating the default value of the input at start
+* @property {string} value - text value (for controlled component)
 * @property {boolean} disabled - A boolean indicating whether the input is active or not
 * @property {number} width - A number indicating the width of the input in pixels
 * @property {boolean} inline - Indicates whether the input is displayed inline
 * @property {string} legend - A string indicating the text displayed next to the number input
-* @property {string} value - text value (for controlled component)
 * @property {string} bind - name of global variable for the number to be assigned to
 * @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
 * @property {Object} style - CSS inline styles
@@ -77,10 +77,10 @@ class TextInput extends Input {
 
 	handleChange = ( event ) => {
 		const value = event.target.value;
+		this.props.onChange( value );
 		this.setState({
 			value
 		}, () => {
-			this.props.onChange( value );
 			if ( this.props.bind ) {
 				global.lesson.setState({
 					[ this.props.bind ]: value
@@ -94,6 +94,10 @@ class TextInput extends Input {
 	}
 
 	render() {
+		let { value } = this.state;
+		if ( this.props.value !== null ) {
+			value = this.props.value;
+		}
 		if ( this.props.inline ) {
 			return (
 				<span className="input" style={this.props.style} >
@@ -106,7 +110,7 @@ class TextInput extends Input {
 						type="text"
 						name="input"
 						placeholder={this.props.placeholder}
-						value={this.state.value}
+						value={value}
 						ref={( input ) => {
 							this.textInput = input;
 						}}
@@ -143,7 +147,7 @@ class TextInput extends Input {
 					type="text"
 					name="input"
 					placeholder={this.props.placeholder}
-					value={this.state.value}
+					value={value}
 					ref={( input ) => {
 						this.textInput = input;
 					}}
@@ -167,6 +171,7 @@ class TextInput extends Input {
 TextInput.defaultProps = {
 	bind: null,
 	defaultValue: '',
+	value: null,
 	legend: '',
 	width: 80,
 	onBlur() {},
@@ -182,6 +187,7 @@ TextInput.defaultProps = {
 TextInput.propTypes = {
 	bind: PropTypes.string,
 	defaultValue: PropTypes.string,
+	value: PropTypes.string,
 	legend: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node

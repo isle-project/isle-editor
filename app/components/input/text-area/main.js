@@ -83,7 +83,7 @@ class TextArea extends Component {
 	*/
 	render() {
 		let { value } = this.state;
-		if ( this.props.value ) {
+		if ( this.props.value !== null ) {
 			value = this.props.value;
 		}
 		return (
