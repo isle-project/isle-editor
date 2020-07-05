@@ -160,9 +160,9 @@ Finally, ISLE can be used for homework assignments that involve writing and data
             quantitative={[]}
             distributions={[]}
             editorTitle="Answers"
-            questions={<Text raw={`
-            1. text here...
-        
-            2. text here...
-            `} />}
+            questions={[
+                <div>Intro with *bold* text</div>,
+                'More text',
+                <FreeTextQuestion question="Can use any ISLE components..." />
+            ]}
     />
