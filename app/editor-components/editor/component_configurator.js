@@ -121,6 +121,7 @@ class ComponentConfigurator extends Component {
 		const propValues = {};
 		const propActive = {};
 		const propertyTypes = {};
+		const isRequired = {};
 		value = removePlaceholderMarkup( value );
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
@@ -128,6 +129,7 @@ class ComponentConfigurator extends Component {
 			propertyTypes[ p.name ] = extractType( p.type, p.default );
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${p.name}\\s*=` );
 			propActive[ p.name ] = RE_KEY_AROUND_WHITESPACE.test( value );
+			isRequired[ p.name ] = contains( propertyTypes[ p.name ], '(required)' );
 		}
 		this.state = {
 			name: name,
@@ -136,6 +138,7 @@ class ComponentConfigurator extends Component {
 			...propValues
 		};
 		this.propertyTypes = propertyTypes;
+		this.isRequired = isRequired;
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
@@ -237,7 +240,7 @@ class ComponentConfigurator extends Component {
 	handleReset = () => {
 		this.setState({
 			value: removePlaceholderMarkup( this.props.component.value )
-		});
+		}, this.calculateValuesFromText );
 	}
 
 	replaceStringFactory = ( key ) => {
@@ -365,7 +368,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	renderPropertyControls() {
-		console.log( 'Rendering property controls...' );
+		debug( 'Rendering property controls...' );
 		const props = this.docProps;
 		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
@@ -374,11 +377,8 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < props.length; i++ ) {
 			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
-			let isRequired = false;
-			if ( type ) {
-				isRequired = contains( type, '(required)' );
-			}
 			const isActive = this.state.propActive[ name ];
+			const isRequired = this.isRequired[ name ];
 			const className = isActive ? 'configurator-tr-active' : '';
 			let input;
 			const propValue = this.state[ 'prop:'+name ];
