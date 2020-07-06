@@ -93,7 +93,7 @@ class StickyNote extends Component {
 
 	// If a transform is set, this functions sets the scale manually:
 	checkTransforms() {
-		const style = this.props.style;
+		const style = { ...this.props.style };
 		if ( style.transform ) {
 			if ( this.state.minimized === true ) {
 				style.transform += ' scale(0.15)';
@@ -102,33 +102,27 @@ class StickyNote extends Component {
 				style.transform += ' scale(1)';
 			}
 		}
-		if ( this.props.color ) {
-			switch ( this.props.color ) {
-				case 'blue':
-					style.WebkitFilter = 'hue-rotate(166deg)';
-					style.filter = 'hue-rotate(166deg)';
+		switch ( this.props.color ) {
+			case 'blue':
+				style.WebkitFilter = 'hue-rotate(166deg)';
+				style.filter = 'hue-rotate(166deg)';
 				break;
-
-				case 'green':
-					style.WebkitFilter = 'hue-rotate(88deg) saturate(70%)';
-					style.filter = 'hue-rotate(88deg) saturate(70%)';
+			case 'green':
+				style.WebkitFilter = 'hue-rotate(88deg) saturate(70%)';
+				style.filter = 'hue-rotate(88deg) saturate(70%)';
 				break;
-
-				case 'pink':
-					style.WebkitFilter = 'hue-rotate(220deg) saturate(70%)';
-					style.filter = 'hue-rotate(220deg) saturate(70%)';
+			case 'pink':
+				style.WebkitFilter = 'hue-rotate(220deg) saturate(70%)';
+				style.filter = 'hue-rotate(220deg) saturate(70%)';
 				break;
-
-				case 'red':
-					style.WebkitFilter = 'hue-rotate(290deg) saturate(70%)';
-					style.filter = 'hue-rotate(290deg) saturate(70%)';
+			case 'red':
+				style.WebkitFilter = 'hue-rotate(290deg) saturate(70%)';
+				style.filter = 'hue-rotate(290deg) saturate(70%)';
 				break;
-
-				case 'orange':
-					style.WebkitFilter = 'hue-rotate(320deg) saturate(70%)';
-					style.filter = 'hue-rotate(320deg) saturate(70%)';
+			case 'orange':
+				style.WebkitFilter = 'hue-rotate(320deg) saturate(70%)';
+				style.filter = 'hue-rotate(320deg) saturate(70%)';
 				break;
-			}
 		}
 		return style;
 	}
@@ -210,10 +204,6 @@ class StickyNote extends Component {
 		this.setState({
 			title: event.target.value
 		});
-	}
-
-	handleDragStart = () => {
-		debug( 'Started dragging...' );
 	}
 
 	handleDrag = () => {
@@ -349,7 +339,6 @@ class StickyNote extends Component {
 				bounds="#Lesson"
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
-				onStart={this.handleDragStart}
 				onDrag={this.handleDrag}
 				{...props}
 			>{out}</Draggable> );
