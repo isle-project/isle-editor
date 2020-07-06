@@ -122,14 +122,17 @@ class ComponentConfigurator extends Component {
 		const propActive = {};
 		const propertyTypes = {};
 		const isRequired = {};
+		const defaultStrings = {};
 		value = removePlaceholderMarkup( value );
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
-			propValues[ 'prop:'+p.name ] = p.default;
-			propertyTypes[ p.name ] = extractType( p.type, p.default );
-			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${p.name}\\s*=` );
-			propActive[ p.name ] = RE_KEY_AROUND_WHITESPACE.test( value );
-			isRequired[ p.name ] = contains( propertyTypes[ p.name ], '(required)' );
+			const { name, type, defaultValue } = p;
+			propValues[ 'prop:'+name ] = defaultValue;
+			propertyTypes[ p.name ] = extractType( type, defaultValue );
+			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
+			propActive[ name ] = RE_KEY_AROUND_WHITESPACE.test( value );
+			isRequired[ name ] = contains( propertyTypes[ name ], '(required)' );
+			defaultStrings[ name ] = generateDefaultString( defaultValue, contains( type, 'function' ) );
 		}
 		this.state = {
 			name: name,
@@ -139,6 +142,7 @@ class ComponentConfigurator extends Component {
 		};
 		this.propertyTypes = propertyTypes;
 		this.isRequired = isRequired;
+		this.defaultStrings = defaultStrings;
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
@@ -435,8 +439,15 @@ class ComponentConfigurator extends Component {
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 				<td>
 					{!isRequired ?
-						<Checkbox className="configurator-checkbox" id={name} value={isActive} onChange={this.checkboxClickFactory(name, prop.default)} legend={name} /> :
-						<Checkbox className="configurator-checkbox" id={name} value={true} disabled legend={name} />
+						<Checkbox
+							className="configurator-checkbox"
+							id={name} value={isActive}
+							onChange={this.checkboxClickFactory( name, prop.defaultValue )}
+							legend={name} /> :
+						<Checkbox
+							className="configurator-checkbox" id={name}
+							value={true} disabled legend={name}
+						/>
 					}
 				</td>
 				<td>{description}</td>
@@ -447,7 +458,7 @@ class ComponentConfigurator extends Component {
 					{type ? `${type}` : ''}
 				</td>
 				<td>
-					{generateDefaultString( prop.default, contains( type, 'function' ) )}
+					{this.defaultStrings[ name ]}
 				</td>
 			</tr>;
 			controls.push( elem );

@@ -137,7 +137,7 @@ for ( let i = 0; i < files.length; i++ ) {
 			name: key,
 			type: types[ key ],
 			description: description[ key ],
-			default: defaults[ key ]
+			defaultValue: defaults[ key ]
 		});
 	}
 
