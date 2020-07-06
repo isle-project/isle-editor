@@ -656,6 +656,9 @@ class Editor extends Component {
 
 	componentWillUnmount() {
 		window.removeEventListener( 'resize', this.updateDimensions );
+		if ( this.editor ) {
+			this.editor.dispose();
+		}
 		if ( this._codeActionProvider ) {
 			this._codeActionProvider.dispose();
 		}
