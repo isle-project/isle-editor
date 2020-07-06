@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Rnd } from 'react-rnd';
 import { Portal } from 'react-portal';
+import omit from '@stdlib/utils/omit';
 import KeyControls from 'components/key-controls';
 import './draggable.css';
 
@@ -74,12 +75,13 @@ class Draggable extends Component {
 	}
 
 	render() {
+		const dndProps = omit( this.props, [ 'onStop', 'onEscape' ]);
 		return (
 			<Portal
 				node={document && document.getElementById( 'Lesson' )}
 			>
 				<Rnd
-					{...this.props}
+					{...dndProps}
 					onDragStop={this.handleStop}
 					ref={( div ) => {
 						this.container = div;
