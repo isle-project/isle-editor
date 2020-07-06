@@ -6917,7 +6917,7 @@
       {
         "name": "height",
         "type": "number",
-        "description": "height of the word clloud (in px)",
+        "description": "height of the word cloud (in px)",
         "default": 600
       },
       {

@@ -150,7 +150,7 @@ const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 * @property {boolean} precalculated - controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts
 * @property {(Function|number)} rotate - accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function
 * @property {number} width - width of the word cloud (in px)
-* @property {number} height - height of the word clloud (in px)
+* @property {number} height - height of the word cloud (in px)
 * @property {string} language - language identifier (determines the stopwords to be removed)
 * @property {number} minCount - if set, only include words that appear more than `minCount` times in the given data
 * @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
