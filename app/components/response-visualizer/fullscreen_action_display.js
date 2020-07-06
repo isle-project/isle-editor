@@ -35,6 +35,8 @@ import Modal from 'react-bootstrap/Modal';
 import ReactList from 'react-list';
 import innerText from 'react-innertext';
 import Highlighter from 'react-highlight-words';
+import ChatButton from 'components/chat-button';
+import VideoChatButton from 'components/video-chat-button';
 import Checkbox from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import Switch from 'components/switch';
@@ -575,11 +577,36 @@ class FullscreenActionDisplay extends Component {
 		return null;
 	}
 
+	chatInviteFactory = ( chatName, email ) => {
+		const session = this.context;
+		return ( _, opened ) => {
+			debug( 'Invite '+email+' to personal chat...' );
+			if ( opened ) {
+				session.inviteToChat({
+					name: chatName,
+					canLeave: false
+				}, email );
+			} else {
+				session.closeChatForAll( chatName );
+			}
+		};
+	}
+
+	videoChatInviteFactory = ( data, email ) => {
+		const session = this.context;
+		return ( _, opened ) => {
+			debug( 'Invite '+email+' to video chat...' );
+			if ( opened ) {
+				session.inviteToVideo( data, email );
+			}
+		};
+	}
+
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
 		const value = generateValueLabel({ value: elem.value, ...this.props.data });
-		const higlighter = isString( value ) ? <Highlighter
+		const highlighter = isString( value ) ? <Highlighter
 			className="response-visualizer-text"
 			searchWords={this.state.searchwords}
 			autoEscape={true}
@@ -597,16 +624,41 @@ class FullscreenActionDisplay extends Component {
 			style.background = rgba;
 			style.border = '1px solid '+col;
 		}
+		const session = this.context;
 		const date = new Date( elem.absoluteTime );
 		return ( <ListGroupItem key={key} style={style}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>
-					<b>{name} ({elem.email}) ({date.toLocaleTimeString() + ' ' + date.toLocaleDateString()}):</b>
+					<b style={{ marginBottom: 4 }}>{name} ({elem.email}) ({date.toLocaleTimeString() + ' ' + date.toLocaleDateString()}):</b>
 					<br />
-					{higlighter}
+					{highlighter}
 				</span> :
-				higlighter
+				highlighter
 			}
+			{ this.props.showExtended && session.userProgress[ elem.email ] ? <ButtonGroup className="chat-button-group" >
+				<VideoChatButton
+					for={`${session.user.name}-${name}`}
+					subject={this.props.t( 'video-chat-with', { name })}
+					style={{ float: 'right' }}
+					onClick={this.videoChatInviteFactory({
+						name: `${session.user.name}-${name}`,
+						subject: this.props.t( 'video-chat-with', { name })
+					}, elem.email )}
+					buttonVariant="outline-secondary"
+					buttonLabel={<i className="fa fa-xs fa-video"></i>}
+					tooltipPlacement="bottom"
+					tooltip={this.props.t( 'video-chat' )}
+				/>
+				<ChatButton
+					for={this.props.t( 'chat-with', { name })}
+					onClick={this.chatInviteFactory( this.props.t( 'chat-with', { name }), elem.email )}
+					buttonVariant="outline-secondary"
+					buttonLabel={<i className="fas fa-comments"></i>}
+					tooltipPlacement="bottom"
+					tooltip={this.props.t( 'text-chat' )}
+					style={{ float: 'right' }}
+				/>
+			</ButtonGroup> : null }
 			<ButtonGroup className="action-display-button-group">
 				<Button
 					variant="outline-secondary"
