@@ -20,7 +20,7 @@ class Root extends Component {
 	render() {
 		const { store, history } = this.props;
 		return (
-			<Provider store={store}>
+			<Provider store={store} >
 				<Suspense fallback={<div className="welcome-screen" />}>
 					<Router history={history}>
 						<div className="App">
