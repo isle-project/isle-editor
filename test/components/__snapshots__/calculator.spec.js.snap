@@ -41,10 +41,8 @@ exports[`renders an expandable calculator 1`] = `
   <div
     className="react-draggable"
     disabled={false}
-    onEscape={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
-    onStop={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     resizable={false}

@@ -145,12 +145,7 @@ exports[`renders a sticky note 1`] = `
 exports[`renders a sticky note with a date 1`] = `
 <div
   className="sticky-note-outer"
-  style={
-    Object {
-      "WebkitFilter": "hue-rotate(320deg) saturate(70%)",
-      "filter": "hue-rotate(320deg) saturate(70%)",
-    }
-  }
+  style={Object {}}
 >
   <div
     className="sticky-note"
@@ -192,12 +187,7 @@ exports[`renders a sticky note with a date 1`] = `
 exports[`renders a sticky note with a stain 1`] = `
 <div
   className="sticky-note-outer"
-  style={
-    Object {
-      "WebkitFilter": "hue-rotate(320deg) saturate(70%)",
-      "filter": "hue-rotate(320deg) saturate(70%)",
-    }
-  }
+  style={Object {}}
 >
   <div
     className="sticky-note"
