@@ -21,7 +21,7 @@
 		"show-all": "Alle anzeigen",
 		"total": "insgesamt",
 		"variable-descriptions": "Variablen-Beschreibungen",
-		"variable-desciptions-tooltip": "Variablen-Beschreibungen öffnen",
+		"variable-descriptions-tooltip": "Variablen-Beschreibungen öffnen",
 		"variables": "Variablen"
 	},
 	"EN": {
@@ -46,7 +46,7 @@
 		"show-all": "Show all",
 		"total": "total",
 		"variable-descriptions": "Variable Descriptions",
-		"variable-desciptions-tooltip": "Open variable descriptions",
+		"variable-descriptions-tooltip": "Open variable descriptions",
 		"variables": "Variables"
 	},
 	"ES": {
