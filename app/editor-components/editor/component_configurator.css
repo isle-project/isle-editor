@@ -18,3 +18,7 @@
 	width: 27.5%;
 	word-wrap: break-word;
 }
+
+.configurator-tr-active {
+	background: rgba(129, 226, 129, 0.2) !important;
+}
