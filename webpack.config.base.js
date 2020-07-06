@@ -12,7 +12,6 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 const EXTERNALS = [
 	'@stdlib/stdlib',
 	'ajv',
-	'ansi-to-react',
 	'archiver',
 	'camelcase',
 	'child_process',
@@ -29,7 +28,7 @@ const EXTERNALS = [
 	'form-data',
 	'fsevents',
 	'highlight.js',
-	'html-webpack-plugin',
+	'html-webpack-plugin', // must be external due to errors otherwise
 	'markdown-it',
 	'@iktakahiro/markdown-it-katex',
 	'minimist',
@@ -61,8 +60,7 @@ const EXTERNALS = [
 	'stemmer',
 	'svgo',
 	'tapable',
-	'terser',
-	'terser-webpack-plugin',
+	'terser-webpack-plugin', // must be external due to errors otherwise
 	'typo-js',
 	'uniq',
 	'venn.js',
