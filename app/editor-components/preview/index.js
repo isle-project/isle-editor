@@ -207,7 +207,8 @@ class Preview extends Component {
 			});
 		} catch ( err ) {
 			err.message = replace( err.message, '\n', '\n | ' );
-			return this.props.encounteredError( err );
+			this.props.encounteredError( err );
+			return null;
 		}
 		if ( preamble.type === 'presentation' ) {
 			debug( 'Should render a presentation...' );
