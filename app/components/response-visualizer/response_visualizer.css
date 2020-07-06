@@ -23,7 +23,14 @@
 .action-display-button-group {
 	padding: 0rem 0rem;
 	right: 5px;
-	bottom: 5px;
+	bottom: 3px;
+	position: absolute;
+}
+
+.chat-button-group {
+	padding: 0rem 0rem;
+	right: 5px;
+	top: 3px;
 	position: absolute;
 }
 
