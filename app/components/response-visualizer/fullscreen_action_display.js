@@ -584,7 +584,7 @@ class FullscreenActionDisplay extends Component {
 			if ( opened ) {
 				session.inviteToChat({
 					name: chatName,
-					canLeave: true
+					canLeave: false
 				}, email );
 			} else {
 				session.closeChatForAll( chatName );
