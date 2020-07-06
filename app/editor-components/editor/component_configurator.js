@@ -6,6 +6,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
+import debounce from 'lodash.debounce';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
@@ -90,14 +91,14 @@ function generateReplacement( defaultValue, type ) {
 	}
 }
 
-function generateDefaultString(defaultValue, isFunc) {
+function generateDefaultString( defaultValue, isFunc ) {
 	if ( isFunc ) {
 		return defaultValue;
 	}
 	if ( defaultValue === null || defaultValue === void 0 ) {
 		return 'none';
 	}
-	return JSON.stringify(defaultValue, null, 2);
+	return JSON.stringify( defaultValue, null, 2 );
 }
 
 function removePlaceholderMarkup(str) {
@@ -123,29 +124,29 @@ class ComponentConfigurator extends Component {
 		value = removePlaceholderMarkup( value );
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
-			propValues[ p.name ] = p.default;
+			propValues[ 'prop:'+p.name ] = p.default;
 			propertyTypes[ p.name ] = extractType( p.type, p.default );
-			const RE_KEY_AROUND_WHITESPACE = new RegExp(`\\s+${p.name}\\s*=`);
+			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${p.name}\\s*=` );
 			propActive[ p.name ] = RE_KEY_AROUND_WHITESPACE.test( value );
 		}
 		this.state = {
 			name: name,
 			value,
-			propValues,
-			propActive
+			propActive,
+			...propValues
 		};
 		this.propertyTypes = propertyTypes;
 		this.docProps = docProps;
-		this.session = new Session({}, props.currentMode === 'offline');
+		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
 		this.selfClosing = contains( value, '/>' );
 	}
 
-	static getDerivedStateFromProps(nextProps, prevState) {
+	static getDerivedStateFromProps( nextProps, prevState ) {
 		let newState = {};
 		if ( nextProps.component.name !== prevState.name ) {
 			newState.name = nextProps.component.name;
-			newState.value = removePlaceholderMarkup(nextProps.component.value);
+			newState.value = removePlaceholderMarkup( nextProps.component.value );
 		}
 		if ( !isEmptyObject( newState ) ) {
 			return newState;
@@ -161,7 +162,7 @@ class ComponentConfigurator extends Component {
 		this.props.onHide();
 	}
 
-	handleChange = (newValue) => {
+	handleChange = ( newValue ) => {
 		this.setState({
 			value: newValue
 		});
@@ -169,7 +170,7 @@ class ComponentConfigurator extends Component {
 
 	calculateValuesFromText = () => {
 		let match;
-		const newValues = { ...this.state.propValues };
+		const newValues = {};
 		const newActive = {};
 		const keys = objectKeys( this.state.propActive );
 		for ( let i = 0; i < keys.length; i++ ) {
@@ -213,12 +214,12 @@ class ComponentConfigurator extends Component {
 					default:
 						val = String( val );
 				}
-				newValues[ propName ] = val;
+				newValues[ 'prop:'+propName ] = val;
 				newActive[ propName ] = true;
 			}
 		} while ( match );
 		this.setState({
-			propValues: newValues,
+			...newValues,
 			propActive: newActive
 		});
 	}
@@ -242,43 +243,43 @@ class ComponentConfigurator extends Component {
 	replaceStringFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
-		return ( newValue ) => {
-			let { value, propValues } = this.state;
+		const debouncedValueUpdate = debounce( ( newValue ) => {
+			let { value } = this.state;
 			let replacement;
 			if ( contains( newValue, '\n' )) {
-				replacement = '\\{`' + newValue + '`\\}';
+				replacement = '{`' + newValue + '`}';
 			} else {
 				replacement = `"${newValue}"`;
 			}
-			const newPropValues = { ...propValues };
-			newPropValues[key] = newValue;
-			value = replace(value, RE_FULL_KEY, '$1' + key + '=' + replacement + '$3');
+			value = replace( value, RE_FULL_KEY, '$1' + key + '=' + replacement + '$3' );
+			this.setState({ value });
+		}, 300 );
+		return ( newValue ) => {
 			this.setState({
-				value,
-				propValues: newPropValues
+				[ 'prop:'+key ]: newValue
+			}, () => {
+				debouncedValueUpdate( newValue );
 			});
 		};
 	}
 
-	handleObjectChangeFactory = ( key ) => {
+	handleJSONChangeFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		return ({ updated_src }) => {
-			let { value, propValues } = this.state;
-			const newPropValues = { ...propValues };
-			newPropValues[ key ] = updated_src;
+			let { value } = this.state;
 			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + JSON.stringify( updated_src, null, 2 ) + '}$3' );
 			this.setState({
 				value,
-				propValues: newPropValues
+				[ 'prop:'+key ]: updated_src
 			});
 		};
 	}
@@ -286,32 +287,29 @@ class ComponentConfigurator extends Component {
 	replaceObjectFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		return ( newValue ) => {
-			let { value, propValues } = this.state;
-			const newPropValues = { ...propValues };
-			newPropValues[ key ] = newValue;
-			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + newValue + '}$3' );
 			this.setState({
-				value,
-				propValues: newPropValues
+				[ 'prop:'+key ]: newValue
+			}, () => {
+				let { value } = this.state;
+				value = replace( value, RE_FULL_KEY, '$1' + key + '={' + newValue + '}$3' );
+				this.setState({ value });
 			});
 		};
 	}
 
-	replaceNumberOrBooleanFactory = (key) => {
-		const RE_FULL_KEY = new RegExp('([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i');
+	replaceNumberOrBooleanFactory = ( key ) => {
+		const RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i' );
 		return ( newValue ) => {
-			let { value, propValues } = this.state;
-			const newPropValues = { ...propValues };
-			newPropValues[ key ] = newValue;
+			let { value } = this.state;
 			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + newValue + '}$3' );
 			this.setState({
 				value,
-				propValues: newPropValues
+				[ 'prop:'+key ]: newValue
 			});
 		};
 	}
@@ -321,27 +319,27 @@ class ComponentConfigurator extends Component {
 		const replacement = generateReplacement( defaultValue, type );
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp('[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i');
+			RE_FULL_KEY = new RegExp( '[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp('[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|>)', 'i');
+			RE_FULL_KEY = new RegExp( '[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
-		const RE_KEY_AROUND_WHITESPACE = new RegExp(`\\s+${key}\\s*=`);
+		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
-			let { value, propActive, propValues } = this.state;
+			let { value, propActive } = this.state;
 			const newPropActive = { ...propActive };
-			const newPropValues = { ...propValues };
+			const propValues = {};
 			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
 				debug(`Insert ${key} attribute...`);
 				newPropActive[ key ] = true;
 				if ( this.selfClosing ) {
 					value = value.substring( 0, value.length - 3 );
-					value = rtrim(value) + `\n  ${key}=${replacement}\n/>`;
+					value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
 				} else {
 					const idx = value.indexOf( '>' );
-					const rest = value.substring(idx + 1);
-					value = value.substring(0, idx);
+					const rest = value.substring( idx + 1 );
+					value = value.substring( 0, idx );
 					if ( value[ value.length - 1 ] === ' ' ) {
-						value = removeLast(value);
+						value = removeLast( value );
 					}
 					value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
 					value = value + rest;
@@ -349,7 +347,7 @@ class ComponentConfigurator extends Component {
 				if ( isBoolean( defaultValue ) ) {
 					defaultValue = !defaultValue;
 				}
-				newPropValues[ key ] = defaultValue;
+				propValues[ 'prop:'+key ] = defaultValue;
 			} else {
 				debug(`Remove ${key} attribute...`);
 				newPropActive[ key ] = false;
@@ -361,35 +359,41 @@ class ComponentConfigurator extends Component {
 			this.setState({
 				value,
 				propActive: newPropActive,
-				propValues: newPropValues
+				...propValues
 			});
 		};
 	}
 
 	renderPropertyControls() {
+		console.log( 'Rendering property controls...' );
 		const props = this.docProps;
 		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
 		}
 		const controls = [];
 		for ( let i = 0; i < props.length; i++ ) {
-			const prop = props[i] || {};
+			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
 			let isRequired = false;
 			if ( type ) {
 				isRequired = contains( type, '(required)' );
 			}
 			const isActive = this.state.propActive[ name ];
-			const className = isActive ? 'success' : '';
+			const className = isActive ? 'configurator-tr-active' : '';
 			let input;
-			const propValue = this.state.propValues[ name ];
+			const propValue = this.state[ 'prop:'+name ];
 			const propType = this.propertyTypes[ name ];
 			switch ( propType ) {
 				case 'number':
 					input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
 					break;
 				case 'string':
-					input = <TextArea value={propValue} rows={2} onChange={this.replaceStringFactory(name)} />;
+					input = <TextArea
+						value={propValue}
+						rows={2}
+						placeholder={`Enter ${name}...`}
+						onChange={this.replaceStringFactory(name)}
+					/>;
 					break;
 				case 'boolean':
 					input = <Checkbox value={propValue} onChange={this.replaceNumberOrBooleanFactory(name)} />;
@@ -398,9 +402,14 @@ class ComponentConfigurator extends Component {
 				case 'object': {
 					if ( isString( propValue ) ) {
 						// Case: Array or object contains JSX or other non-standard code
-						input = <TextArea value={propValue} rows={3} onChange={this.replaceObjectFactory(name)} />;
+						input = <TextArea
+							value={propValue}
+							rows={3}
+							placeholder={`Enter ${name}...`}
+							onChange={this.replaceObjectFactory(name)}
+						/>;
 					} else {
-						const changeHandler = this.handleObjectChangeFactory( name );
+						const changeHandler = this.handleJSONChangeFactory( name );
 						input = <ReactJson
 							name={false}
 							src={propValue}
@@ -416,7 +425,12 @@ class ComponentConfigurator extends Component {
 				}
 				case 'function':
 				default:
-					input = <TextArea value={propValue} rows={3} onChange={this.replaceObjectFactory(name)} />;
+					input = <TextArea
+						value={propValue}
+						rows={3}
+						onChange={this.replaceObjectFactory(name)}
+						placeholder={`Enter ${name}...`}
+					/>;
 			}
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 				<td>
@@ -433,14 +447,14 @@ class ComponentConfigurator extends Component {
 					{type ? `${type}` : ''}
 				</td>
 				<td>
-					{generateDefaultString(prop.default, contains(type, 'function'))}
+					{generateDefaultString( prop.default, contains( type, 'function' ) )}
 				</td>
 			</tr>;
-			controls.push(elem);
+			controls.push( elem );
 		}
 		return (
 			<Fragment>
-				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to add the respective options:</Card.Subtitle>
+				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to toggle the respective options on and off and set their values:</Card.Subtitle>
 				<div style={{ height: '400px', overflowY: 'scroll' }}>
 					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 						<thead>
@@ -462,7 +476,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
-		debug('Rendering component configurator modal...');
+		debug( 'Rendering component configurator modal...' );
 		const innerHTML = {
 			'__html': this.description
 		};
