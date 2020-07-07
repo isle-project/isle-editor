@@ -9,7 +9,7 @@ A learning component on hypothesis tests for a population proportion.
 ## Example
 
 ```jsx live
-<LearnHypothesisTestingProportion />
+<LearnProportionTest />
 ```
 
 ## Options

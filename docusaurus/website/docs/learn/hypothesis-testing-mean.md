@@ -9,7 +9,7 @@ A learning component on hypothesis tests for a population mean.
 ## Example
 
 ```jsx live
-<LearnHypothesisTestingMean />
+<LearnMeanTest />
 ```
 
 ## Options
