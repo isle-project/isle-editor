@@ -3,7 +3,7 @@ TODO
 
 For various to-do items related to the `ISLE` project.
 
-Fall
+Fall 2020
 =====
 * Dashboard: Have a repository with old TA notes
 * Insert equation menu similar to table select
@@ -18,19 +18,9 @@ Fall
 * Add save reminders in data explorer 
 * Log actions in instructor bar
 * Consider adding vertical gridlines to plots
-
-
-Spring 2020
-===========
-
 * Automatic email reminders for uncompleted labs
 * Allow expressions in number question input fields
 * Add option to toggle between counts or densities in histogram of data explorer
-
-
-Summer 2020
-===========
-
 * Add option for multiple correct answers to question types like number
 
 
