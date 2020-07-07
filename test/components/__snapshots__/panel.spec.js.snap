@@ -45,6 +45,37 @@ exports[`renders a panel with a heading 1`] = `
     >
       Title
     </span>
+    <span
+      className="sk-cube-grid"
+    >
+      <span
+        className="sk-cube sk-cube1"
+      />
+      <span
+        className="sk-cube sk-cube2"
+      />
+      <span
+        className="sk-cube sk-cube3"
+      />
+      <span
+        className="sk-cube sk-cube4"
+      />
+      <span
+        className="sk-cube sk-cube5"
+      />
+      <span
+        className="sk-cube sk-cube6"
+      />
+      <span
+        className="sk-cube sk-cube7"
+      />
+      <span
+        className="sk-cube sk-cube8"
+      />
+      <span
+        className="sk-cube sk-cube9"
+      />
+    </span>
   </h3>
   <div
     className="card-body"
