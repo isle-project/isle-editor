@@ -81,6 +81,9 @@ function generateReplacement( defaultValue, type ) {
 			if ( defaultValue && contains( defaultValue, '\n' ) ) {
 				return '{`' + defaultValue + '`}';
 			}
+			if ( !defaultValue ) {
+				defaultValue = '';
+			}
 			return `"${defaultValue}"`;
 		case 'number':
 			return '{' + defaultValue + '}';
