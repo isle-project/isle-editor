@@ -114,7 +114,24 @@
         ],
         "Learning Components": [
           "learn/clt-continuous",
-          "learn/clt-discrete"
+          "learn/clt-discrete",
+          "learn/clt-sample",
+          "learn/conditional-probability",
+          "learn/confidence-coverage-binomial",
+          "learn/confidence-coverage-normal",
+          "learn/confidence-coverage-sample",
+          "learn/continuous-distribution",
+          "learn/cross-validation",
+          "learn/dice-throwing",
+          "learn/discrete-distribution",
+          "learn/hypothesis-testing-mean",
+          "learn/hypothesis-testing-proportion",
+          "learn/image-pixel-picker",
+          "learn/mean-vs-median",
+          "learn/networks",
+          {
+            "Distributions": []
+          }
         ]
       }
     ],
