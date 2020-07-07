@@ -17,7 +17,6 @@ import Checkbox from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
 import Playground from 'components/playground';
 import Provider from 'components/provider';
-import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';
@@ -71,7 +70,7 @@ function extractType( type, defaultValue ) {
 function generateReplacement( defaultValue, type ) {
 	switch ( type ) {
 		case 'boolean':
-			return '{' + !defaultValue + '}';
+			return '{' + defaultValue + '}';
 		case 'object':
 		case 'array':
 			if ( !defaultValue ) {
@@ -337,7 +336,10 @@ class ComponentConfigurator extends Component {
 		const newPropActive = { ...this.state.propActive };
 		let { value } = this.state;
 		const type = this.propertyTypes[ key ];
-		const defaultValue = this.state[ 'prop:'+key ];
+		let defaultValue = this.state[ 'prop:'+key ];
+		if ( defaultValue === false ) {
+			defaultValue = true;
+		}
 		const replacement = generateReplacement( defaultValue, type );
 		newPropActive[ key ] = true;
 		if ( this.selfClosing ) {
@@ -352,9 +354,6 @@ class ComponentConfigurator extends Component {
 			}
 			value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
 			value = value + rest;
-		}
-		if ( isBoolean( defaultValue ) ) {
-			defaultValue = !defaultValue;
 		}
 		this.setState({
 			value,
@@ -421,7 +420,10 @@ class ComponentConfigurator extends Component {
 					/>;
 					break;
 				case 'boolean':
-					input = <Checkbox value={propValue} onChange={this.replaceNumberOrBooleanFactory(name)} />;
+					input = <Checkbox
+						value={propValue}
+						onChange={this.replaceNumberOrBooleanFactory(name)}
+					/>;
 					break;
 				case 'array':
 				case 'object': {
