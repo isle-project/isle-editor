@@ -343,7 +343,10 @@ class ComponentConfigurator extends Component {
 		const replacement = generateReplacement( defaultValue, type );
 		newPropActive[ key ] = true;
 		if ( this.selfClosing ) {
-			value = value.substring( 0, value.length - 3 );
+			value = value.substring( 0, value.length - 2 );
+			if ( value[ value.length - 1 ] === ' ' || value[ value.length - 1 ] === '/' ) {
+				value = removeLast( value );
+			}
 			value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
 		} else {
 			const idx = value.indexOf( '>' );
