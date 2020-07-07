@@ -152,7 +152,7 @@ class SummaryStatistics extends Component {
 				x = [];
 				y = [];
 				groupData = [];
-				if ( variable && secondVariable ) {
+				if ( variable && this.state.showSecondVarSelect ) {
 					let first = data[ variable ];
 					let second = data[ secondVariable ];
 					for ( let i = 0; i < first.length; i++ ) {
@@ -200,7 +200,7 @@ class SummaryStatistics extends Component {
 			if ( omit ) {
 				x = [];
 				y = [];
-				if ( variable && secondVariable ) {
+				if ( variable && this.state.showSecondVarSelect ) {
 					let first = data[ variable ];
 					let second = data[ secondVariable ];
 					for ( let i = 0; i < first.length; i++ ) {
