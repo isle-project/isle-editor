@@ -43,11 +43,6 @@
 }
 
 /* MAIN */
-body {
-	background-color: #fffff8;
-	font-family: 'Open Sans', sans-serif;
-}
-
 pre {
 	display: block;
 	padding: 9.5px;
@@ -222,6 +217,7 @@ mark {
 
 .Lesson {
 	font-family: 'Open Sans', sans-serif;
+	background-color: #fffff8;
 	font-size: 16px !important;
 	margin-left: auto;
 	margin-right: auto;

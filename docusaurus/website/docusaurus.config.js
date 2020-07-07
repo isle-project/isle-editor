@@ -129,6 +129,7 @@ const siteConfig = {
 		},
 		image: 'img/docusaurus.png',
 		sidebarCollapsible: true,
+		disableDarkMode: true,
 		algolia: {
 			apiKey: '79d8a88e3298cd96be31662732f18703',
 			indexName: 'isledocs',
