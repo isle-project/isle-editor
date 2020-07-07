@@ -63,6 +63,9 @@ function extractType( type, defaultValue ) {
 		case 'object':
 			return type;
 		default:
+			if ( contains( type, 'string' ) ) {
+				return 'string';
+			}
 			return typeOf( defaultValue );
 	}
 }
@@ -452,7 +455,7 @@ class ComponentConfigurator extends Component {
 				</td>
 				<td>{description}</td>
 				<td>
-					{isActive ? input : null}
+					{(isActive || isRequired ) ? input : null}
 				</td>
 				<td>
 					{type ? `${type}` : ''}
@@ -466,7 +469,7 @@ class ComponentConfigurator extends Component {
 		return (
 			<Fragment>
 				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to toggle the respective options on and off and set their values:</Card.Subtitle>
-				<div style={{ height: '400px', overflowY: 'scroll' }}>
+				<div style={{ maxHeight: '400px', overflowY: 'scroll' }}>
 					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 						<thead>
 							<tr>
