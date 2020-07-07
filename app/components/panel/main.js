@@ -125,7 +125,7 @@ Wrapper.defaultProps = {
 	bodyStyle: {},
 	footerStyle: {},
 	style: {},
-	onHide: null
+	onHide() {}
 };
 
 
