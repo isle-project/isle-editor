@@ -67,28 +67,28 @@ function extractType( type, defaultValue ) {
 	}
 }
 
-function generateReplacement( defaultValue, type ) {
+function generateReplacement( value, type ) {
 	switch ( type ) {
 		case 'boolean':
-			return '{' + defaultValue + '}';
+			return '{' + value + '}';
 		case 'object':
 		case 'array':
-			if ( !defaultValue ) {
+			if ( !value ) {
 				return '{[]}';
 			}
-			return '{' + JSON.stringify( defaultValue ) + '}';
+			return '{' + JSON.stringify( value ) + '}';
 		case 'string':
-			if ( defaultValue && contains( defaultValue, '\n' ) ) {
-				return '{`' + defaultValue + '`}';
+			if ( value && contains( value, '\n' ) ) {
+				return '{`' + value + '`}';
 			}
-			if ( !defaultValue ) {
-				defaultValue = '';
+			if ( !value ) {
+				value = '';
 			}
-			return `"${defaultValue}"`;
+			return `"${value}"`;
 		case 'number':
-			return '{' + defaultValue + '}';
+			return '{' + value + '}';
 		case 'function':
-			return '{' + defaultValue + '}';
+			return '{' + value + '}';
 		default:
 			return '{}';
 	}
@@ -247,7 +247,7 @@ class ComponentConfigurator extends Component {
 
 	handleMouseOut = () => {
 		this.calculateValuesFromText();
-	};
+	}
 
 	handleClick = () => {
 		if ( this.state.value ) {
