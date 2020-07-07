@@ -3116,10 +3116,11 @@
       {
         "name": "questions",
         "type": "array<(node|element)>",
+        "description": "array of questions",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Learning component to explore the State of the Union speeches of US presidents."
   },
   "LearnStandardize": {
     "props": [
@@ -3143,10 +3144,11 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "defaultValue": {}
       }
     ],
-    "description": "Description is missing."
+    "description": "Component to browse descriptions of various statistical models."
   },
   "LearnVennDiagramBuilder": {
     "props": [

@@ -129,6 +129,11 @@
           "learn/image-pixel-picker",
           "learn/mean-vs-median",
           "learn/networks",
+          "learn/sotu",
+          "learn/standardize",
+          "learn/statistical-models",
+          "learn/venn-diagram-builder",
+          "learn/word-venn-diagram",
           {
             "Distributions": [
               "learn/distribution-beta",
