@@ -117,7 +117,7 @@
 	},
 	{
 		"name": "Link",
-		"value": "<Link href=\"${1:}\">${2:}</Link>"
+		"value": "<Link href=\"${1:Enter URL}\" >${2:Link text}</Link>"
 	},
 	{
 		"name": "MatchListQuestion",
