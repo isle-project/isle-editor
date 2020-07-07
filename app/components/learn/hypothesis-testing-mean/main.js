@@ -60,6 +60,7 @@ const EQN_TOOLTIPS = {
 * A learning component on hypothesis tests for a population mean.
 *
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
+* @property {Array} tests - the test(s) exposed by the widget
 * @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {object} style - CSS inline styles

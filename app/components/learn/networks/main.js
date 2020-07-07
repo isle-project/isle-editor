@@ -25,6 +25,7 @@ import calculateTransitivity from './calculate_transitivity.js';
 * Generate networks from a Erdős-Rényi model.
 *
 * @property {boolean} showEdgeChart - controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)
+* @property {boolean} showTransitivities - whether to tally transitivities / global clustering coefficients for generated networks
 */
 class Networks extends Component {
 	constructor( props ) {

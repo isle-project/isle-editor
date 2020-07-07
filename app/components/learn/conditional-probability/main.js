@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
@@ -15,47 +14,16 @@ import FeedbackButtons from 'components/feedback';
 import NumberInput from 'components/input/number';
 import TextInput from 'components/input/text';
 import TeX from 'components/tex';
-
-
-// VARIABLES //
-
-const probabilityTableLabels = ({ A, B }) => ( <table className="table-bordered">
-	<tbody>
-		<tr>
-			<th></th>
-			<th> {B} </th>
-			<th>not {B} </th>
-		</tr>
-		<tr>
-			<th> {A} </th>
-			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}}^C )`} /></td>
-			<td><TeX raw={`P(\\text{${A}})`} /></td>
-		</tr>
-		<tr>
-			<th>not {A}</th>
-			<td><TeX raw={`P(\\text{${A}}^C \\cap \\text{${B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${A}} \\cap \\text{${B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${A}}^c)`} /></td>
-		</tr>
-		<tr>
-			<th></th>
-			<td><TeX raw={`P( \\text{${B}} )`} /></td>
-			<td><TeX raw={`P(\\text{${B}}^c)`} /></td><td><TeX raw="P(\Omega)" /></td>
-		</tr>
-	</tbody>
-</table> );
-
-probabilityTableLabels.propTypes = {
-	A: PropTypes.string.isRequired,
-	B: PropTypes.string.isRequired
-};
+import probabilityTableLabels from './table_labels.js';
 
 
 // MAIN //
 
 /**
 * A learning component illustrating conditional probability for two dependent binary variables.
+*
+* @property {string} A - first variable
+* @property {string} B - second variable
 */
 class ConditionalProbability extends Component {
 	constructor( props ) {

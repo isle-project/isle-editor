@@ -149,6 +149,9 @@ function generateLaTeX( code ) {
 
 // MAIN //
 
+/**
+* A learning component for exploring user-defined continuous probability distributions.
+*/
 class ContinuousDistributions extends Component {
 	constructor( props ) {
 		super( props );
