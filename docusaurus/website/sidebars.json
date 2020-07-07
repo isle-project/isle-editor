@@ -130,7 +130,21 @@
           "learn/mean-vs-median",
           "learn/networks",
           {
-            "Distributions": []
+            "Distributions": [
+              "learn/distribution-beta",
+              "learn/distribution-binomial",
+              "learn/distribution-chisquare",
+              "learn/distribution-exponential",
+              "learn/distribution-f",
+              "learn/distribution-gamma",
+              "learn/distribution-geometric",
+              "learn/distribution-hypergeometric",
+              "learn/distribution-negative-binomial",
+              "learn/distribution-normal",
+              "learn/distribution-poisson",
+              "learn/distribution-t",
+              "learn/distribution-uniform"
+            ]
           }
         ]
       }

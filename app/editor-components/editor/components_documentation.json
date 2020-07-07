@@ -2681,11 +2681,13 @@
       {
         "name": "maxDF",
         "type": "number",
+        "description": "maximum degrees of freedom that can be chosen in input field",
         "defaultValue": 50
       },
       {
         "name": "minDF",
         "type": "number",
+        "description": "minimum degrees of freedom that can be chosen in input field",
         "defaultValue": 1
       },
       {
@@ -2714,11 +2716,13 @@
       {
         "name": "maxRate",
         "type": "number",
+        "description": "maximum rate parameter that can be chosen in input field",
         "defaultValue": 10
       },
       {
         "name": "minRate",
         "type": "number",
+        "description": "minimum rate parameter that can be chosen in input field",
         "defaultValue": 0.001
       },
       {

@@ -31,6 +31,8 @@ const NEAR_ONE = 0.999999;
 *
 * @property {boolean} hideCDF - controls whether to hide the CDF plots
 * @property {number} step - step size of the scroll input
+* @property {number} maxRate - maximum rate parameter that can be chosen in input field
+* @property {number} minRate - minimum rate parameter that can be chosen in input field
 * @property {Object} style - CSS inline styles
 */
 class ExponentialProbs extends Component {

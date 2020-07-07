@@ -30,6 +30,8 @@ const NEAR_ONE = 0.99999;
 * A learning component for calculating probabilities of a chi-squared distribution.
 *
 * @property {number} step - step size of the scroll input
+* @property {number} maxDF - maximum degrees of freedom that can be chosen in input field
+* @property {number} minDF - minimum degrees of freedom that can be chosen in input field
 * @property {Object} style - CSS inline styles
 */
 class ChisquareProbs extends Component {
