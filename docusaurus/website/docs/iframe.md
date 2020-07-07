@@ -9,7 +9,7 @@ An iFrame component.
 ## Example
 
 ```jsx live
-<IFrame src="https://isledocs.com" />
+<IFrame src="https://wikipedia.org" height="700px" />
 ``` 
 
 ## Options
