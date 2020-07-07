@@ -12,8 +12,6 @@ Component for rendering an R plot inside an ISLE lesson.
 <RPlot code="hist( c(20,50,40,70,40,30) )" />
 ```
 
-
-
 ## Options
 
 * __code__ | `string`: R code to generate the plot. Default: `''`.

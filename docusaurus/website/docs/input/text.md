@@ -15,8 +15,6 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 />
 ```
 
-
-
 ## Options
 
 * __bind__ | `string`: name of global variable for the number to be assigned to. Default: `none`.

@@ -12,8 +12,6 @@ Component for rendering R output inside an ISLE lesson.
 <ROutput code="runif(10)" />
 ```
 
-
-
 ## Options
 
 * __code__ | `string`: R code used to evaluate. Default: `''`.

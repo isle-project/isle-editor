@@ -28,8 +28,6 @@ A d3-based network plot.
 />
 ``` 
 
-
-
 ## Options
 
 * __width__ | `number`: width of the plot (in px). Default: `900`.

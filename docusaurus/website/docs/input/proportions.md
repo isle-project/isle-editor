@@ -23,8 +23,6 @@ A proportions input component. Can be used as part of an ISLE dashboard or stand
 />
 ```
 
-
-
 ## Options
 
 * __disabled__ | `boolean`: controls whether the input field is deactivated. Default: `false`.

@@ -17,8 +17,6 @@ A d3-based density plot component.
 />
 ```
 
-
-
 ## Options
 
 * __bandwidth__ | `number`: smoothing parameter for the kernel density estimator. Default: `4`.
