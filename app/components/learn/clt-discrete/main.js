@@ -37,6 +37,8 @@ const GridLayout = WidthProvider( ReactGridLayout );
 
 /**
 * A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution.
+*
+* @property {boolean} showPopStdev - controls whether to display the population standard deviation
 */
 class DiscreteCLT extends Component {
 	constructor( props ) {

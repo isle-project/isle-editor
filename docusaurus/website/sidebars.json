@@ -113,7 +113,8 @@
         "Presentation Components": [
         ],
         "Learning Components": [
-          "learning-components"
+          "learn/clt-continuous",
+          "learn/clt-discrete"
         ]
       }
     ],

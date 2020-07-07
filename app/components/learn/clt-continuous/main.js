@@ -155,6 +155,9 @@ function makeVisibleData(arr, display = 100) {
 
 /**
 * A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution.
+*
+* @property {Array<string>} distributions - statistical distributions to choose from ('uniform', 'exponential', and/or 'normal')
+* @property {boolean} hideFormulas - controls whether to hide formulas in the component text
 */
 class ContinuousCLT extends Component {
 	constructor( props ) {

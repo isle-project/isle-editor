@@ -2461,6 +2461,7 @@
       {
         "name": "distributions",
         "type": "array<string>",
+        "description": "statistical distributions to choose from ('uniform', 'exponential', and/or 'normal')",
         "defaultValue": [
           "uniform",
           "exponential",
@@ -2470,6 +2471,7 @@
       {
         "name": "hideFormulas",
         "type": "boolean",
+        "description": "controls whether to hide formulas in the component text",
         "defaultValue": false
       }
     ],
@@ -2480,6 +2482,7 @@
       {
         "name": "showPopStdev",
         "type": "boolean",
+        "description": "controls whether to display the population standard deviation",
         "defaultValue": true
       }
     ],
