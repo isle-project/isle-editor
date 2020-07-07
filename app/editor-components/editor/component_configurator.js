@@ -37,8 +37,8 @@ import './component_configurator.css';
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const RE_NEW_LINES = /\n{2,99}/g;
-const RE_PROP_KEY_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)(?=[a-z]+=|\/>)/gi;
-const RE_PROP_KEY_NON_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)(?=[a-z]+=|>)/gi;
+const RE_PROP_KEY_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)?(?=[a-z]+=|\/>)/gi;
+const RE_PROP_KEY_NON_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)?(?=[a-z]+=|>)/gi;
 const RE_EXTRACT_PROP = /^["{]`?([\s\S]*)`?["}]/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
@@ -54,6 +54,7 @@ const debug = logger('isle:editor:component-configurator');
 // FUNCTIONS //
 
 function extractType( type, defaultValue ) {
+	type = replace( type, ' (required)', '' );
 	switch ( type ) {
 		case 'number':
 		case 'string':
@@ -63,9 +64,6 @@ function extractType( type, defaultValue ) {
 		case 'object':
 			return type;
 		default:
-			if ( contains( type, 'string' ) ) {
-				return 'string';
-			}
 			return typeOf( defaultValue );
 	}
 }
@@ -104,7 +102,7 @@ function generateDefaultString( defaultValue, isFunc ) {
 	return JSON.stringify( defaultValue, null, 2 );
 }
 
-function removePlaceholderMarkup(str) {
+function removePlaceholderMarkup( str ) {
 	if ( !str ) {
 		return '';
 	}
@@ -134,7 +132,7 @@ class ComponentConfigurator extends Component {
 			propertyTypes[ p.name ] = extractType( type, defaultValue );
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
 			propActive[ name ] = RE_KEY_AROUND_WHITESPACE.test( value );
-			isRequired[ name ] = contains( propertyTypes[ name ], '(required)' );
+			isRequired[ name ] = contains( type, '(required)' );
 			defaultStrings[ name ] = generateDefaultString( defaultValue, contains( type, 'function' ) );
 		}
 		this.state = {
@@ -231,6 +229,17 @@ class ComponentConfigurator extends Component {
 		this.setState({
 			...newValues,
 			propActive: newActive
+		}, () => {
+			const requiredKeys = objectKeys( this.isRequired );
+			for ( let i = 0; i < requiredKeys.length; i++ ) {
+				if (
+					this.isRequired[ requiredKeys[ i ] ] &&
+					!newActive[ requiredKeys[ i ] ]
+				) {
+					debug( `Should insert ${requiredKeys[ i ]} attribute...` );
+					this.insertAttribute( requiredKeys[ i ] );
+				}
+			}
 		});
 	}
 
@@ -324,9 +333,37 @@ class ComponentConfigurator extends Component {
 		};
 	}
 
-	checkboxClickFactory = ( key, defaultValue ) => {
+	insertAttribute = ( key ) => {
+		const newPropActive = { ...this.state.propActive };
+		let { value } = this.state;
 		const type = this.propertyTypes[ key ];
+		const defaultValue = this.state[ 'prop:'+key ];
 		const replacement = generateReplacement( defaultValue, type );
+		newPropActive[ key ] = true;
+		if ( this.selfClosing ) {
+			value = value.substring( 0, value.length - 3 );
+			value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
+		} else {
+			const idx = value.indexOf( '>' );
+			const rest = value.substring( idx + 1 );
+			value = value.substring( 0, idx );
+			if ( value[ value.length - 1 ] === ' ' ) {
+				value = removeLast( value );
+			}
+			value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
+			value = value + rest;
+		}
+		if ( isBoolean( defaultValue ) ) {
+			defaultValue = !defaultValue;
+		}
+		this.setState({
+			value,
+			propActive: newPropActive,
+			[ 'prop:'+key ]: defaultValue
+		});
+	}
+
+	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
 			RE_FULL_KEY = new RegExp( '[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
@@ -336,41 +373,22 @@ class ComponentConfigurator extends Component {
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
 		return () => {
 			let { value, propActive } = this.state;
-			const newPropActive = { ...propActive };
-			const propValues = {};
 			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
 				debug(`Insert ${key} attribute...`);
-				newPropActive[ key ] = true;
-				if ( this.selfClosing ) {
-					value = value.substring( 0, value.length - 3 );
-					value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
-				} else {
-					const idx = value.indexOf( '>' );
-					const rest = value.substring( idx + 1 );
-					value = value.substring( 0, idx );
-					if ( value[ value.length - 1 ] === ' ' ) {
-						value = removeLast( value );
-					}
-					value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
-					value = value + rest;
-				}
-				if ( isBoolean( defaultValue ) ) {
-					defaultValue = !defaultValue;
-				}
-				propValues[ 'prop:'+key ] = defaultValue;
+				this.insertAttribute( key );
 			} else {
 				debug(`Remove ${key} attribute...`);
+				const newPropActive = { ...propActive };
 				newPropActive[ key ] = false;
 				value = replace( value, RE_FULL_KEY, '\n$1' );
 				value = replace( value, RE_NEW_LINES, '\n' );
 				value = replace( value, SPACES_AFTER_NEW_LINE, '\n  ' );
 				value = replace( value, SPACES_BEFORE_CLOSING_TAG, '$1' );
+				this.setState({
+					value,
+					propActive: newPropActive
+				});
 			}
-			this.setState({
-				value,
-				propActive: newPropActive,
-				...propValues
-			});
 		};
 	}
 
@@ -445,7 +463,7 @@ class ComponentConfigurator extends Component {
 						<Checkbox
 							className="configurator-checkbox"
 							id={name} value={isActive}
-							onChange={this.checkboxClickFactory( name, prop.defaultValue )}
+							onChange={this.checkboxClickFactory( name )}
 							legend={name} /> :
 						<Checkbox
 							className="configurator-checkbox" id={name}
