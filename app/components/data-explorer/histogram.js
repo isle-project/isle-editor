@@ -16,6 +16,7 @@ import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
@@ -40,6 +41,10 @@ const SETTINGS = {
 
 
 // FUNCTIONS //
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
 
 /**
 * Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.
@@ -83,7 +88,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		let nonmissing = [];
 		for ( let i = 0; i < vals.length; i++ ) {
 			let x = vals[ i ];
-			if ( isNumber( x ) ) {
+			if ( isNonMissingNumber( x ) ) {
 				nonmissing.push( x );
 			}
 		}
@@ -129,7 +134,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			let nonmissing = [];
 			for ( let i = 0; i < arr.length; i++ ) {
 				let x = arr[ i ];
-				if ( isNumber( x ) ) {
+				if ( isNonMissingNumber( x ) ) {
 					nonmissing.push( x );
 				}
 			}

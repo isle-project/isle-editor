@@ -12,6 +12,8 @@ import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
+import isnan from '@stdlib/assert/is-nan';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -70,18 +72,29 @@ const customStyles = {
 
 // FUNCTIONS //
 
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
 export function generateBoxplotConfig({ data, variable, group, orientation, overlayPoints }) {
 	let traces;
 	if ( group.length === 0 ) {
-		let values = data[ variable ];
+		const values = data[ variable ];
+		const nonmissing = [];
+		for ( let i = 0; i < values.length; i++ ) {
+			const v = values[ i ];
+			if ( isNonMissingNumber( v ) ) {
+				nonmissing.push( v );
+			}
+		}
 		const trace = {
 			type: 'box',
 			name: variable
 		};
 		if ( orientation === 'horizontal' ) {
-			trace.x = values;
+			trace.x = nonmissing;
 		} else {
-			trace.y = values;
+			trace.y = nonmissing;
 		}
 		traces = [ trace ];
 	}
@@ -93,15 +106,22 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		const keys = group[ 0 ].categories || objectKeys( freqs );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
-			const val = freqs[ key ];
+			const values = freqs[ key ];
+			const nonmissing = [];
+			for ( let i = 0; i < values.length; i++ ) {
+				const v = values[ i ];
+				if ( isNonMissingNumber( v ) ) {
+					nonmissing.push( v );
+				}
+			}
 			const trace = {
 				name: key,
 				type: 'box'
 			};
 			if ( orientation === 'horizontal' ) {
-				trace.x = val;
+				trace.x = nonmissing;
 			} else {
-				trace.y = val;
+				trace.y = nonmissing;
 			}
 			traces.push( trace );
 		}
@@ -119,11 +139,19 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 			const key = keys[ i ];
 			let x;
 			let y;
+			const values = freqs[ key ];
+			const nonmissing = [];
+			for ( let i = 0; i < values.length; i++ ) {
+				const v = values[ i ];
+				if ( isNonMissingNumber( v ) ) {
+					nonmissing.push( v );
+				}
+			}
 			if ( orientation === 'horizontal' ) {
 				y = cats[ key ];
-				x = freqs[ key ];
+				x = nonmissing;
 			} else {
-				y = freqs[ key ];
+				y = nonmissing;
 				x = cats[ key ];
 			}
 			traces.push({
