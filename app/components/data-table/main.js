@@ -68,18 +68,22 @@ const md = markdownit({
 });
 const debug = logger( 'isle:data-table' );
 const uid = generateUID( 'data-table' );
+const collator = new Intl.Collator( 'en', { numeric: true, sensitivity: 'base' });
 const RE_NUMBER = /[0-9.,]+/;
-const LOCALE_COMPARE_OPTS = {
-	numeric: true
-};
 
 
 // FUNCTIONS //
 
-function comparer( a, b ) {
-	a = ( a === null || a === void 0 ) ? NINF : a;
-	b = ( b === null || b === void 0 ) ? NINF : b;
-	return a.localeCompare( b, void 0, LOCALE_COMPARE_OPTS );
+function numericComparer( a, b ) {
+	a = ( a === null || a === void 0 || a === 'NA' ) ? NINF : a;
+	b = ( b === null || b === void 0 || b === 'NA' ) ? NINF : b;
+	return a - b;
+}
+
+function generalComparer( a, b ) {
+	a = ( a === null || a === void 0 || a === 'NA' ) ? NINF : a;
+	b = ( b === null || b === void 0 || b === 'NA' ) ? NINF : b;
+	return collator.compare( a, b );
 }
 
 function createDescriptions( descriptions, t ) {
@@ -233,6 +237,7 @@ function createColumns( props, state ) {
 			}
 			if ( isNumColumn ) {
 				out[ 'filterMethod' ] = filterMethodNumbers;
+				out[ 'sortMethod' ] = numericComparer;
 				out[ 'style' ] = {
 					textAlign: 'right'
 				};
@@ -250,13 +255,14 @@ function createColumns( props, state ) {
 				};
 			} else if ( uniqueValues.length <= 50 ) {
 				// Cast values to strings for select component to work and sort:
-				uniqueValues = uniqueValues.map( x => String( x ) ).sort( comparer );
+				uniqueValues = uniqueValues.map( x => String( x ) ).sort( generalComparer );
 				if ( isDigitString( uniqueValues[ 0 ] ) ) {
 					out[ 'style' ] = {
 						textAlign: 'right'
 					};
 				}
 				out[ 'filterMethod' ] = filterMethodCategories;
+				out[ 'sortMethod' ] = generalComparer;
 				out[ 'Filter' ] = ({ filter, onChange }) => {
 					return (
 						<SelectInput
@@ -311,9 +317,9 @@ function createColumns( props, state ) {
 				};
 			} else {
 				out[ 'filterMethod' ] = filterMethodStrings;
+				out[ 'sortMethod' ] = generalComparer;
 			}
 		}
-		out[ 'sortMethod' ] = comparer;
 		return out;
 	});
 	return columns;
