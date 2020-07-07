@@ -91,8 +91,12 @@ class LinkContextMenu extends Component {
 // PROPERTIES //
 
 LinkContextMenu.propTypes = {
-	url: PropTypes.string.isRequired,
+	url: PropTypes.string,
 	session: PropTypes.object.isRequired
+};
+
+LinkContextMenu.defaultProps = {
+	url: ''
 };
 
 
