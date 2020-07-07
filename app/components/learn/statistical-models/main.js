@@ -116,6 +116,11 @@ function makeCards( list ) {
 
 // MAIN //
 
+/**
+* Component to browse descriptions of various statistical models.
+*
+* @property {Object} style - CSS inline styles
+*/
 class LearnStatisticalModels extends Component {
 	constructor( props ) {
 		super( props );

@@ -24,6 +24,11 @@ const debug = logger( 'isle:learn-sotu' );
 
 // MAIN //
 
+/**
+* Learning component to explore the State of the Union speeches of US presidents.
+*
+* @property {Array<(string|node)>} questions - array of questions
+*/
 class SOTU extends Component {
 	constructor( props ) {
 		super( props );
