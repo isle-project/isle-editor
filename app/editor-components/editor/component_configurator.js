@@ -72,6 +72,10 @@ function generateReplacement( value, type ) {
 		case 'boolean':
 			return '{' + value + '}';
 		case 'object':
+			if ( !value ) {
+				return '{{}}';
+			}
+			return '{' + JSON.stringify( value ) + '}';
 		case 'array':
 			if ( !value ) {
 				return '{[]}';
@@ -88,6 +92,9 @@ function generateReplacement( value, type ) {
 		case 'number':
 			return '{' + value + '}';
 		case 'function':
+			if ( !value ) {
+				value = '() => {}';
+			}
 			return '{' + value + '}';
 		default:
 			return '{}';
@@ -442,6 +449,9 @@ class ComponentConfigurator extends Component {
 							onChange={this.replaceObjectFactory(name)}
 						/>;
 					} else {
+						if ( !propValue ) {
+							propValue = ( propType === 'array' ) ? [] : {};
+						}
 						const changeHandler = this.handleJSONChangeFactory( name );
 						input = <ReactJson
 							name={false}
@@ -547,8 +557,7 @@ class ComponentConfigurator extends Component {
 							}}
 							style={{
 								marginTop: '12px',
-								maxWidth: '100vw',
-								height: 'calc(80vh - 300px)'
+								maxWidth: '100vw'
 							}}
 						/>
 					</Provider>
