@@ -24,6 +24,7 @@ import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import rtrim from '@stdlib/string/right-trim';
+import endsWith from '@stdlib/string/ends-with';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import COMPONENT_DOCS from './components_documentation.json';
@@ -156,7 +157,7 @@ class ComponentConfigurator extends Component {
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
-		this.selfClosing = contains( value, '/>' );
+		this.selfClosing = endsWith( rtrim( value ), '/>' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
