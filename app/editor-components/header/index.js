@@ -9,6 +9,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
+import CheckboxInput from 'components/input/checkbox';
 import './header.css';
 
 
@@ -82,6 +83,20 @@ class Header extends Component {
 						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
 					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
+						<CheckboxInput
+							value={this.props.autoUpdatePreview}
+							onChange={this.props.changeAutoUpdate}
+							legend="Automatically update preview"
+							inline
+							style={{ marginTop: 3, marginRight: 5 }}
+						/>
+						<Button
+							onClick={this.props.onTriggeredUpdate}
+							style={{
+								display: this.props.autoUpdatePreview ? 'none' : 'inline'
+							}}
+							variant="outline-secondary"
+						>Trigger Update</Button>
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">Switch between offline and online mode</Tooltip>}>
 							<DropdownButton
 								title={this.props.mode}
@@ -89,6 +104,7 @@ class Header extends Component {
 								size="sm"
 								variant="warning"
 								onSelect={this.handleModeSelection}
+								style={{ marginLeft: 25 }}
 							>
 								<DropdownItem eventKey="1">offline</DropdownItem>
 								<DropdownItem eventKey="2">online</DropdownItem>
@@ -134,9 +150,11 @@ Header.propTypes = {
 	filePath: PropTypes.string,
 	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
+	autoUpdatePreview: PropTypes.bool.isRequired,
 	onPreview: PropTypes.func.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
+	onTriggeredUpdate: PropTypes.func.isRequired,
 	role: PropTypes.string.isRequired
 };
 

@@ -8,6 +8,7 @@ import * as types from 'constants/editor_actions.js';
 
 const config = new Store( 'ISLE' );
 const initialState = {
+	autoUpdatePreview: true,
 	renderInterval: config.get( 'renderInterval' ) || 2000
 };
 
@@ -21,6 +22,11 @@ export default function linting( state = initialState, action ) {
 		return {
 			...state,
 			renderInterval: action.payload.renderInterval
+		};
+	case types.AUTO_UPDATE_CHANGED:
+		return {
+			...state,
+			autoUpdatePreview: action.payload.autoUpdatePreview
 		};
 	default:
 		return state;

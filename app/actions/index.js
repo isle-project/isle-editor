@@ -144,6 +144,15 @@ export function changeRenderInterval( renderInterval ) {
 	};
 }
 
+export function changeAutoUpdate( autoUpdatePreview ) {
+	return {
+		type: types.AUTO_UPDATE_CHANGED,
+		payload: {
+			autoUpdatePreview
+		}
+	};
+}
+
 export function changeFontSize( fontSize ) {
 	return {
 		type: types.FONT_SIZE_CHANGED,

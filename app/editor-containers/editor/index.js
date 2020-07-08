@@ -10,7 +10,7 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
-import { convertMarkdown, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
+import { convertMarkdown, changeAutoUpdate, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -42,7 +42,8 @@ class App extends Component {
 		this.state = {
 			splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
 			horizontalSplit: 0,
-			innerWidth: window.innerWidth
+			innerWidth: window.innerWidth,
+			version: 0
 		};
 	}
 
@@ -180,6 +181,7 @@ class App extends Component {
 
 	render() {
 		let {
+			autoUpdatePreview,
 			error,
 			fileName,
 			filePath,
@@ -187,6 +189,7 @@ class App extends Component {
 			hideToolbar,
 			changeView,
 			changeMode,
+			changeAutoUpdate,
 			currentRole,
 			currentMode,
 			unsaved
@@ -199,6 +202,7 @@ class App extends Component {
 		>
 			<Preview
 				code={markdown}
+				autoUpdatePreview={autoUpdatePreview}
 				filePath={filePath}
 				preamble={this.props.preamble}
 				currentRole={currentRole}
@@ -209,6 +213,7 @@ class App extends Component {
 				updatePreamble={this.props.updatePreamble}
 				unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
 				resetError={this.resetError}
+				version={this.state.version}
 			/>
 		</ErrorBoundary>;
 
@@ -223,6 +228,13 @@ class App extends Component {
 						onSelectMode={changeMode}
 						mode={currentMode}
 						unsaved={unsaved}
+						onTriggeredUpdate={() => {
+							this.setState({
+								version: this.state.version + 1
+							});
+						}}
+						autoUpdatePreview={autoUpdatePreview}
+						changeAutoUpdate={changeAutoUpdate}
 						onPreview={() => {
 							let splitPos;
 							if ( this.state.splitPos === 1 ) {
@@ -329,6 +341,8 @@ App.defaultProps = {
 
 App.propTypes = {
 	author: PropTypes.string.isRequired,
+	autoUpdatePreview: PropTypes.bool.isRequired,
+	changeAutoUpdate: PropTypes.func.isRequired,
 	changeMode: PropTypes.func.isRequired,
 	changeView: PropTypes.func.isRequired,
 	convertMarkdown: PropTypes.func.isRequired,
@@ -358,6 +372,7 @@ App.propTypes = {
 
 export default connect( mapStateToProps, {
 	convertMarkdown,
+	changeAutoUpdate,
 	saveLintErrors,
 	saveSpellingErrors,
 	encounteredError,
