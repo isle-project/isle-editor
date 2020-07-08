@@ -19,11 +19,11 @@ import './image.css';
 *
 * @property {string} id - component identifier
 * @property {string} src - image source location
+* @property {string} alt - image description
 * @property {string} body - base64 encoded data of image
 * @property {number} height - image height (in px)
 * @property {number} width - image width (in px)
 * @property {boolean} showModal - controls whether to display fullscreen modal view
-* @property {string} alt - image description
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onShare - callback invoked with the image if the "share" button is clicked
@@ -147,8 +147,9 @@ class Image extends Component {
 // PROPERTIES //
 
 Image.propTypes = {
+	src: PropTypes.string.isRequired,
+	alt: PropTypes.string,
 	body: PropTypes.string,
-	className: PropTypes.string,
 	height: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
@@ -158,11 +159,10 @@ Image.propTypes = {
 		PropTypes.string
 	]),
 	id: PropTypes.string,
-	onShare: PropTypes.func,
 	showModal: PropTypes.bool,
-	src: PropTypes.string.isRequired,
-	alt: PropTypes.string,
-	style: PropTypes.object
+	className: PropTypes.string,
+	style: PropTypes.object,
+	onShare: PropTypes.func
 };
 
 Image.defaultProps = {
