@@ -90,13 +90,21 @@ class Preview extends Component {
 
 	shouldComponentUpdate( nextProps, nextState ) {
 		if (
+			!nextProps.autoUpdatePreview &&
+			nextProps.version === this.props.version
+		) {
+			return false;
+		}
+		if (
 			this.props.code !== nextProps.code ||
+			this.props.autoUpdatePreview !== nextProps.autoUpdatePreview ||
 			this.props.preambleText !== nextProps.preambleText ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole ||
 			this.props.unavailableHeight !== nextProps.unavailableHeight ||
 			this.state.isLoading !== nextState.isLoading ||
-			this.state.includes !== nextState.includes
+			this.state.includes !== nextState.includes ||
+			this.props.version !== nextProps.version
 		) {
 			return true;
 		}
@@ -293,6 +301,7 @@ Preview.defaultProps = {
 };
 
 Preview.propTypes = {
+	autoUpdatePreview: PropTypes.bool,
 	code: PropTypes.string,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
