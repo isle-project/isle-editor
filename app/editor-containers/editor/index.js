@@ -228,7 +228,7 @@ class App extends Component {
 						onSelectMode={changeMode}
 						mode={currentMode}
 						unsaved={unsaved}
-						onTriggeredUpdate={() => {
+						triggerUpdate={() => {
 							this.setState({
 								version: this.state.version + 1
 							});

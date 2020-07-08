@@ -9,7 +9,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
-import CheckboxInput from 'components/input/checkbox';
+import CheckboxInput from 'components/input/checkbox'
+import KeyControls from 'components/key-controls';;
 import './header.css';
 
 
@@ -90,13 +91,15 @@ class Header extends Component {
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
-						<Button
-							onClick={this.props.onTriggeredUpdate}
-							style={{
-								display: this.props.autoUpdatePreview ? 'none' : 'inline'
-							}}
-							variant="outline-secondary"
-						>Trigger Update</Button>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="trigger-update">Trigger update (F5)</Tooltip>}>
+							<Button
+								onClick={this.props.triggerUpdate}
+								style={{
+									display: this.props.autoUpdatePreview ? 'none' : 'inline'
+								}}
+								variant="outline-secondary"
+							><i className="fas fa-sync"></i></Button>
+						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">Switch between offline and online mode</Tooltip>}>
 							<DropdownButton
 								title={this.props.mode}
@@ -132,6 +135,13 @@ class Header extends Component {
 						</OverlayTrigger>
 					</ButtonGroup>
 				</div>
+				<KeyControls
+					actions={{
+						'F5': () => {
+							this.props.triggerUpdate();
+						}
+					}}
+				/>
 			</div>
 		);
 	}
@@ -154,7 +164,7 @@ Header.propTypes = {
 	onPreview: PropTypes.func.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
-	onTriggeredUpdate: PropTypes.func.isRequired,
+	triggerUpdate: PropTypes.func.isRequired,
 	role: PropTypes.string.isRequired
 };
 
