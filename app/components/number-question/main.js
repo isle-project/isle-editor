@@ -248,18 +248,6 @@ class NumberQuestion extends Component {
 						null
 					}
 				</div>
-				<ButtonToolbar className="number-question-toolbar">
-					{ nHints > 0 ?
-						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
-						null
-					}
-					{
-						this.props.chat ?
-							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.id} />
-							</div> : null
-					}
-				</ButtonToolbar>
 				<ResponseVisualizer
 					buttonLabel={this.props.t('answers')} id={this.id}
 					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
@@ -269,22 +257,37 @@ class NumberQuestion extends Component {
 						bottom: '0.75rem'
 					}}
 				/>
-				<TimedButton
-					className="submit-button"
-					variant="primary"
-					size="sm"
-					disabled={this.state.submitted && solutionPresent}
-					onClick={this.submitHandler}
-				>
-					{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
-				</TimedButton>
+				<ButtonToolbar className="number-question-toolbar">
+					{ nHints > 0 ?
+						<HintButton
+							onClick={this.logHint}
+							hints={this.props.hints}
+							placement={this.props.hintPlacement}
+							style={{
+								marginRight: '4px'
+							}}
+						/> :
+						null
+					}
+					{
+						this.props.chat ?
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={this.id} />
+							</div> : null
+					}
+					<TimedButton
+						className="submit-button"
+						variant="primary"
+						size="sm"
+						disabled={this.state.submitted && solutionPresent}
+						onClick={this.submitHandler}
+					>
+						{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
+					</TimedButton>
+				</ButtonToolbar>
 				{ this.props.feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
-					style={{
-						position: 'absolute',
-						right: '1.1rem',
-						bottom: '1.2rem'
-					}}
+					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
 			</Panel>
 		);
