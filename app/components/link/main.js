@@ -17,6 +17,7 @@ import './load_translations.js';
 * A component for displaying a link.
 *
 * @property {string} href - URL of website to link to
+* @property {string} target - defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
