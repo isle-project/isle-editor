@@ -77,6 +77,9 @@ const MONACO_OPTIONS = {
 	snippetSuggestions: 'top',
 	suggestOnTriggerCharacters: true,
 	quickSuggestions: true,
+	folding: true,
+	foldingHighlight: true,
+	foldingStrategy: 'auto',
 	quickSuggestionsDelay: 500,
 	dragAndDrop: true,
 	scrollbar: {
@@ -1157,8 +1160,8 @@ class Editor extends Component {
 		this.monaco = monaco;
 
 		this.editor.onMouseDown( ( e ) => {
-			const data = e.target.detail;
-			if ( data && data.glyphMarginWidth ) {
+			const target = e.target;
+			if ( target && target.element && target.element.classList.contains( 'glyph-icon' ) ) {
 				this.triggerConfiguratorViaGlyph();
 			}
 		});
