@@ -31,6 +31,7 @@ import './load_translations.js';
 * @property {Object} scope - scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display
 * @property {Object} editorProps - properties passed down to code editor
 * @property {Object} previewProps - properties passed down to the preview pane
+* @property {Function} transformCode - function transforming the code before it is rendered
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked with new code once code in editor changes
 */
@@ -109,7 +110,7 @@ class Playground extends Component {
 		return (
 			<div className="component-documentation" style={this.props.style} >
 				<div className="playground-editable unselectable">{this.props.t('editable-source')}</div>
-				<LiveProvider code={value} scope={scope} theme={theme} >
+				<LiveProvider code={value} scope={scope} theme={theme} transformCode={this.props.transformCode} >
 					<div className="playground-live-editor" >
 						<LiveEditor
 							onChange={this.handleChange}
@@ -143,6 +144,7 @@ Playground.propTypes = {
 	scope: PropTypes.object,
 	editorProps: PropTypes.object,
 	previewProps: PropTypes.object,
+	transformCode: PropTypes.func,
 	onChange: PropTypes.func,
 	style: PropTypes.object
 };
@@ -153,6 +155,7 @@ Playground.defaultProps = {
 	scope: {},
 	editorProps: {},
 	previewProps: {},
+	transformCode: null,
 	onChange() {},
 	style: {}
 };
