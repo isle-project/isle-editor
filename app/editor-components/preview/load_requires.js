@@ -48,7 +48,7 @@ async function loadRequires( libs, filePath ) {
 				}
 				const ext = extname( lib );
 				if ( isURI( lib ) ) {
-					debug( 'Load file from online location...' );
+					debug( 'Load file from online location: '+lib );
 					asyncExtensions.push( ext );
 					if ( global[ key ] ) {
 						continue;
