@@ -27,6 +27,7 @@ import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
+import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from './components_documentation.json';
 import Session from 'session';
 import './component_configurator.css';
@@ -559,6 +560,14 @@ class ComponentConfigurator extends Component {
 							style={{
 								marginTop: '12px',
 								maxWidth: '100vw'
+							}}
+							transformCode={( code ) => {
+								let out = markdownToHTML( code );
+								out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+									const raw = replace( p1, '\\', '\\\\' );
+									return `String.raw({ raw: '${raw}' })`;
+								});
+								return out;
 							}}
 						/>
 					</Provider>
