@@ -194,24 +194,6 @@ class Editor extends Component {
 				provideCompletionItems: provideRequireFactory( this.monaco )
 			});
 		}
-		if ( !this._foldingProvider ) {
-			this._foldingProvider = this.monaco.languages.registerFoldingRangeProvider( 'javascript', {
-				provideFoldingRanges: ( model ) => {
-					const matches = model.findNextMatch( '\n---', 0, false, false, null, false );
-					if ( !matches || !matches.range ) {
-						return [];
-					}
-					return [
-						{
-							start: 1,
-							end: matches.range.endLineNumber,
-							kind: this.monaco.languages.FoldingRangeKind.Comment
-						}
-					];
-				}
-			});
-		}
-
 		this.editTextCommand = this.editor.addCommand( 'fix-spelling', ( _, text, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const id = { major: 1, minor: 1 };
@@ -682,9 +664,6 @@ class Editor extends Component {
 		}
 		if ( this._snippetHoverProvider ) {
 			this._snippetHoverProvider.dispose();
-		}
-		if ( this._foldingProvider ) {
-			this._foldingProvider.dispose();
 		}
 	}
 
