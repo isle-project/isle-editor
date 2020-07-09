@@ -36,6 +36,8 @@ const RE_ALPHACHAR = /[A-Z]/i;
 const RE_INNER_TAGS = /^(?:p|th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
+const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^*-\d ][\s\S]+(\r?\n|$))/g;
 
 const md = markdownit({
 	html: true,
@@ -66,8 +68,6 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	token.tag = 'Image';
 	return renderer.renderToken( tokens, idx, options );
 };
-const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^*-\d ][\s\S]+(\r?\n|$))/g;
 
 
 // FUNCTIONS //
@@ -338,7 +338,6 @@ class Tokenizer {
 				}
 			}
 		}
-
 		if ( this._state === IN_BETWEEN_TAGS ) {
 			if ( !this.betweenStr ) {
 				this.betweenStr = char;
