@@ -27,6 +27,7 @@ import rtrim from '@stdlib/string/right-trim';
 import ltrim from '@stdlib/string/left-trim';
 import endsWith from '@stdlib/string/ends-with';
 import contains from '@stdlib/assert/contains';
+import rescape from '@stdlib/utils/escape-regexp-string';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from './components_documentation.json';
@@ -39,9 +40,6 @@ import './component_configurator.css';
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const RE_NEW_LINES = /\n{2,99}/g;
-const RE_PROP_KEY_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)?(?=[a-z]+=|\/>)/gi;
-const RE_PROP_KEY_NON_SELF_CLOSING = /(?=[ \t]*)([a-z]+)=([\s\S]*?)\s*( +|\t|\r?\n)?(?=[a-z]+=|>)/gi;
-const RE_EXTRACT_PROP = /^["{]`?([\s\S]*)`?["}]/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
 const md = markdownit({
@@ -198,16 +196,18 @@ class ComponentConfigurator extends Component {
 		}
 		let RE;
 		if ( this.selfClosing ) {
-			RE = RE_PROP_KEY_SELF_CLOSING;
+			RE = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			RE = RE_PROP_KEY_NON_SELF_CLOSING;
+			RE = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
+		let value = this.state.value;
 		do {
 			let propName;
-			match = RE.exec( this.state.value );
+			match = RE.exec( value );
 			if ( match ) {
 				propName = match[ 1 ];
-				let val = replace( match[ 2 ], RE_EXTRACT_PROP, '$1' );
+				let val = match[ 2 ];
+				value = replace( value, new RegExp( match[ 1 ]+'=["{]`?'+rescape( match[ 2 ] )+'`?["}]', 'i' ), '' );
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
