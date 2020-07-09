@@ -24,6 +24,7 @@ import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import rtrim from '@stdlib/string/right-trim';
+import ltrim from '@stdlib/string/left-trim';
 import endsWith from '@stdlib/string/ends-with';
 import contains from '@stdlib/assert/contains';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
@@ -562,7 +563,7 @@ class ComponentConfigurator extends Component {
 								maxWidth: '100vw'
 							}}
 							transformCode={( code ) => {
-								let out = markdownToHTML( code );
+								let out = markdownToHTML( ltrim( code ) );
 								out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
 									const raw = replace( p1, '\\', '\\\\' );
 									return `String.raw({ raw: '${raw}' })`;
