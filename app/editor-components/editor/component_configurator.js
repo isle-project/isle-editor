@@ -135,6 +135,7 @@ class ComponentConfigurator extends Component {
 		const isRequired = {};
 		const defaultStrings = {};
 		value = removePlaceholderMarkup( value );
+		let regexpString = '(';
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
 			const { name, type, defaultValue } = p;
@@ -143,6 +144,12 @@ class ComponentConfigurator extends Component {
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
 			propActive[ name ] = RE_KEY_AROUND_WHITESPACE.test( value );
 			isRequired[ name ] = contains( type, '(required)' );
+			regexpString += name;
+			if ( i < docProps.length - 1 ) {
+				regexpString += '|';
+			} else {
+				regexpString += ')';
+			}
 			defaultStrings[ name ] = generateDefaultString( defaultValue, contains( type, 'function' ) );
 		}
 		this.state = {
@@ -164,7 +171,7 @@ class ComponentConfigurator extends Component {
 		} else {
 			this.RE_PROPERTY = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
-		this.RE_BOOLEAN_SHORTHAND = new RegExp( '^(<'+this.state.name+'[\\s\\S]*?\\s)([a-z]+)\\s(?=[\\s\\S]*?/?>)', 'i' );
+		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s`, 'i' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -202,9 +209,7 @@ class ComponentConfigurator extends Component {
 			newActive[ keys[ i ] ] = false;
 		}
 		let value = this.state.value;
-		while ( this.RE_BOOLEAN_SHORTHAND.test( value ) ) {
-			value = replace( value, this.RE_BOOLEAN_SHORTHAND, '$1 $2={true} ' );
-		}
+		value = replace( value, this.RE_BOOLEAN_SHORTHAND, ' $1={true} ' );
 		do {
 			let propName;
 			match = this.RE_PROPERTY.exec( value );
