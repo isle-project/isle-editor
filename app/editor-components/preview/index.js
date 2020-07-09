@@ -304,7 +304,7 @@ Preview.defaultProps = {
 };
 
 Preview.propTypes = {
-	autoUpdatePreview: PropTypes.bool,
+	autoUpdatePreview: PropTypes.bool.isRequired,
 	code: PropTypes.string,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
