@@ -179,6 +179,12 @@ class App extends Component {
 		}
 	}
 
+	incrementVersion = () => {
+		this.setState({
+			version: this.state.version + 1
+		});
+	}
+
 	render() {
 		let {
 			autoUpdatePreview,
@@ -228,11 +234,7 @@ class App extends Component {
 						onSelectMode={changeMode}
 						mode={currentMode}
 						unsaved={unsaved}
-						triggerUpdate={() => {
-							this.setState({
-								version: this.state.version + 1
-							});
-						}}
+						triggerUpdate={this.incrementVersion}
 						autoUpdatePreview={autoUpdatePreview}
 						changeAutoUpdate={changeAutoUpdate}
 						onPreview={() => {

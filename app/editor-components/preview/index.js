@@ -90,8 +90,15 @@ class Preview extends Component {
 
 	shouldComponentUpdate( nextProps, nextState ) {
 		if (
-			!nextProps.autoUpdatePreview &&
-			nextProps.version === this.props.version
+			this.props.version !== nextProps.version ||
+			this.state.isLoading !== nextState.isLoading ||
+			this.props.currentMode !== nextProps.currentMode ||
+			this.props.currentRole !== nextProps.currentRole
+		) {
+			return true;
+		}
+		if (
+			!nextProps.autoUpdatePreview
 		) {
 			return false;
 		}
@@ -99,12 +106,8 @@ class Preview extends Component {
 			this.props.code !== nextProps.code ||
 			this.props.autoUpdatePreview !== nextProps.autoUpdatePreview ||
 			this.props.preambleText !== nextProps.preambleText ||
-			this.props.currentMode !== nextProps.currentMode ||
-			this.props.currentRole !== nextProps.currentRole ||
 			this.props.unavailableHeight !== nextProps.unavailableHeight ||
-			this.state.isLoading !== nextState.isLoading ||
-			this.state.includes !== nextState.includes ||
-			this.props.version !== nextProps.version
+			this.state.includes !== nextState.includes
 		) {
 			return true;
 		}
