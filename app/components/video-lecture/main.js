@@ -128,7 +128,7 @@ class VideoLecture extends Component {
 			</div> );
 		}
 		const isStr = isString( elem );
-		const isProps = isPlainObject( elem );
+		const isProps = !React.isValidElement( elem ) && isPlainObject( elem );
 		if ( isStr || isProps ) {
 			const props = isProps ? elem : {
 				id: elem,
