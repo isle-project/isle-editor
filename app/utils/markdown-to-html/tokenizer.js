@@ -7,7 +7,6 @@ import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import trim from '@stdlib/string/trim';
-import rightTrim from '@stdlib/string/right-trim';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isLowercase from '@stdlib/assert/is-lowercase';
@@ -323,11 +322,13 @@ class Tokenizer {
 					const tokenizer = new Tokenizer({
 						inline: isInner,
 						lineNumber: this._startLineNumber,
-						addLineWrappers: this.addLineWrappers
+						addLineWrappers: this.addLineWrappers,
+						addEmptySpans: true
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
-						const str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
-						this._current += str + '<';
+						let str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
+						str = replace( str, '<span />', '' );
+						this._current += EOL + str + '<';
 					} else {
 						this._current += '<';
 					}
@@ -677,7 +678,7 @@ class Tokenizer {
 	}
 
 	leftTrim( str ) {
-		let idx;
+		let idx = 0;
 		for ( let i = 0; i < str.length; i++ ) {
 			const char = str[ i ];
 			if ( isWhitespace( char ) ) {
@@ -690,6 +691,22 @@ class Tokenizer {
 			}
 		}
 		return str.substring( idx );
+	}
+
+	rightTrim( str ) {
+		let idx = str.length;
+		for ( let i = str.length - 1; i >= 0; i-- ) {
+			const char = str[ i ];
+			if ( isWhitespace( char ) ) {
+				if ( char === '\n' ) {
+					this.lineNumber += 1;
+				}
+			} else {
+				idx = i;
+				break;
+			}
+		}
+		return str.substring( 0, idx );
 	}
 
 	parse( str ) {
@@ -760,7 +777,7 @@ class Tokenizer {
 				}
 				debug( 'Remainder of input string: '+this._current );
 				if ( this.inline ) {
-					this._current = rightTrim( this._current );
+					this._current = this.rightTrim( this._current );
 				}
 				this.tokens.push( this._current );
 			}
