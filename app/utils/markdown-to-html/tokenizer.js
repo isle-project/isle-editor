@@ -67,7 +67,7 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	return renderer.renderToken( tokens, idx, options );
 };
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /(\r\n|\r|\n)[ \t]*/g;
+const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^*-\d ][\s\S]+(\r?\n|$))/g;
 
 
 // FUNCTIONS //
@@ -115,7 +115,7 @@ function tagName( str, pos ) {
 }
 
 function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, EOL );
+	return replace( str, RE_LINE_BEGINNING, '$1' );
 }
 
 function isPreviousChar( buffer, pos, char ) {
