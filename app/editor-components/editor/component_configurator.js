@@ -158,6 +158,13 @@ class ComponentConfigurator extends Component {
 		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
+
+		if ( this.selfClosing ) {
+			this.RE_PROPERTY = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
+		} else {
+			this.RE_PROPERTY = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
+		}
+		this.RE_BOOLEAN_SHORTHAND = new RegExp( '^(<'+this.state.name+'[\\s\\S]*?\\s)([a-z]+)\\s(?=[\\s\\S]*?/?>)', 'i' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -194,16 +201,13 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < keys.length; i++ ) {
 			newActive[ keys[ i ] ] = false;
 		}
-		let RE;
-		if ( this.selfClosing ) {
-			RE = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
-		} else {
-			RE = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
-		}
 		let value = this.state.value;
+		while ( this.RE_BOOLEAN_SHORTHAND.test( value ) ) {
+			value = replace( value, this.RE_BOOLEAN_SHORTHAND, '$1 $2={true} ' );
+		}
 		do {
 			let propName;
-			match = RE.exec( value );
+			match = this.RE_PROPERTY.exec( value );
 			if ( match ) {
 				propName = match[ 1 ];
 				let val = match[ 2 ];
@@ -381,11 +385,11 @@ class ComponentConfigurator extends Component {
 	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp( '[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '=?[\\s\\S]*?( +|\\t|\\r?\\n)(?=[a-z]+=?|\\/>)', 'i' );
 		} else {
-			RE_FULL_KEY = new RegExp( '[ \t]*' + key + '=[\\s\\S]*?( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '=?[\\s\\S]*?( +|\\t|\\r?\\n)(?=[a-z]+=?|>)', 'i' );
 		}
-		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=` );
+		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=?` );
 		return () => {
 			let { value, propActive } = this.state;
 			if ( !RE_KEY_AROUND_WHITESPACE.test( value ) ) {
