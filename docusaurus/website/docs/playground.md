@@ -41,5 +41,6 @@ A module in which the author may place interactive content within a component, i
 * __scope__ | `object`: scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display. Default: `{}`.
 * __editorProps__ | `object`: properties passed down to code editor. Default: `{}`.
 * __previewProps__ | `object`: properties passed down to the preview pane. Default: `{}`.
+* __transformCode__ | `function`: function transforming the code before it is rendered. Default: `none`.
 * __onChange__ | `function`: callback invoked with new code once code in editor changes. Default: `onChange() {}`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

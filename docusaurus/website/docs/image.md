@@ -20,13 +20,13 @@ Component to display an image.
 
 ## Options
 
+* __src__ | `string (required)`: image source location. Default: `none`.
+* __alt__ | `string`: image description. Default: `''`.
 * __body__ | `string`: base64 encoded data of image. Default: `none`.
-* __className__ | `string`: class name. Default: `''`.
 * __height__ | `(number|string)`: image height (in px). Default: `none`.
 * __width__ | `(number|string)`: image width (in px). Default: `none`.
 * __id__ | `string`: component identifier. Default: `none`.
-* __onShare__ | `function`: callback invoked with the image if the "share" button is clicked. Default: `none`.
 * __showModal__ | `boolean`: controls whether to display fullscreen modal view. Default: `true`.
-* __src__ | `string (required)`: image source location. Default: `none`.
-* __alt__ | `string`: image description. Default: `''`.
+* __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+* __onShare__ | `function`: callback invoked with the image if the "share" button is clicked. Default: `none`.

@@ -1529,16 +1529,21 @@
   "Image": {
     "props": [
       {
+        "name": "src",
+        "type": "string (required)",
+        "description": "image source location"
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "description": "image description",
+        "defaultValue": ""
+      },
+      {
         "name": "body",
         "type": "string",
         "description": "base64 encoded data of image",
         "defaultValue": null
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
       },
       {
         "name": "height",
@@ -1559,26 +1564,15 @@
         "defaultValue": null
       },
       {
-        "name": "onShare",
-        "type": "function",
-        "description": "callback invoked with the image if the \"share\" button is clicked",
-        "defaultValue": null
-      },
-      {
         "name": "showModal",
         "type": "boolean",
         "description": "controls whether to display fullscreen modal view",
         "defaultValue": true
       },
       {
-        "name": "src",
-        "type": "string (required)",
-        "description": "image source location"
-      },
-      {
-        "name": "alt",
+        "name": "className",
         "type": "string",
-        "description": "image description",
+        "description": "class name",
         "defaultValue": ""
       },
       {
@@ -1586,6 +1580,12 @@
         "type": "object",
         "description": "CSS inline styles",
         "defaultValue": {}
+      },
+      {
+        "name": "onShare",
+        "type": "function",
+        "description": "callback invoked with the image if the \"share\" button is clicked",
+        "defaultValue": null
       }
     ],
     "description": "Component to display an image."
@@ -3309,6 +3309,7 @@
       {
         "name": "target",
         "type": "string",
+        "description": "defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame",
         "defaultValue": "_blank"
       },
       {
@@ -4158,6 +4159,12 @@
         "type": "object",
         "description": "properties passed down to the preview pane",
         "defaultValue": {}
+      },
+      {
+        "name": "transformCode",
+        "type": "function",
+        "description": "function transforming the code before it is rendered",
+        "defaultValue": null
       },
       {
         "name": "onChange",
