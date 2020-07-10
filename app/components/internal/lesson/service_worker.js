@@ -32,7 +32,7 @@ import './update_notification.css';
 
 /* eslint-disable no-process-env, no-console */
 
-let installingWorker;
+let installingWorker = null;
 let refreshing = true;
 
 const isLocalhost = Boolean(
@@ -170,7 +170,9 @@ export function unregister() {
 function handleClick() {
 	console.log( 'Skip waiting and immediately reload newest data...' );
 	refreshing = false;
-	installingWorker.postMessage({ type: 'SKIP_WAITING' });
+	if ( installingWorker ) {
+		installingWorker.postMessage({ type: 'SKIP_WAITING' });
+	}
 }
 
 
