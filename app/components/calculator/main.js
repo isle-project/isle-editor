@@ -194,7 +194,10 @@ class Calculator extends Component {
 		// Handle implicit multiplication operators:
 		visible = replace( visible, /\) *\(/g, ') * (' );
 		visible = replace( visible, /\) *([a-z0-9])/g, ') * $1' );
-		visible = replace( visible, /(\d|!)([a-z]|\()/g, '$1 * $2' );
+		visible = replace( visible, /((?:\s|^)-?\d+|!)([a-z][^\d-]|\()/g, '$1 * $2' );
+
+		// Transform scientific notation (e.g., `3e10` and `3.12e-1`):
+		visible = replace( visible, /([-\d.])e(-?\d+)/g, '$1 * 10^$2' );
 
 		// Handle unary operators:
 		visible = replace( visible, /(^|[(*/:^!+]) *-([^+\-/*^!]+)/g, '$1 (0-$2) ' );
@@ -207,6 +210,7 @@ class Calculator extends Component {
 			type: CALCULATOR_SOLVE,
 			value: visible
 		});
+
 		let keys = visible.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
 		const val = String( evaluate( keys ) );
