@@ -5,6 +5,7 @@
 		"calculator": "Taschenrechner",
 		"copy": "Kopiere",
 		"expand": "Mehr",
+		"malformed-expression": "Fehlerhafter Ausdruck",
 		"too-many-closing-parens": "Zu viele schließende Klammern",
 		"too-many-opening-parens": "Zu viele öffnende Klammern"
 	},
@@ -14,6 +15,7 @@
 		"calculator": "Calculator",
 		"copy": "Copy",
 		"expand": "Expand",
+		"malformed-expression": "Malformed expression",
 		"too-many-closing-parens": "Too many closing parentheses",
 		"too-many-opening-parens": "Too many opening parentheses"
 	},

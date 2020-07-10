@@ -19,8 +19,6 @@ import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
 import noop from '@stdlib/utils/noop';
-import PI from '@stdlib/constants/math/float64-pi';
-import E from '@stdlib/constants/math/float64-e';
 import evaluate from './shunting_yard.js';
 import './load_translations.js';
 import './calculator.css';
@@ -285,7 +283,7 @@ class Calculator extends Component {
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('-')} >-</Button>
 								</Row>
 								<Row>
-									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( PI )} >&pi;</Button>
+									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( 'pi' )} >&pi;</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory(' log ')} >log<sub>b</sub>(x)</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('!')} >x!</Button>
 									<Button variant="dark" className="input-button-full" onClick={this.onClickNumberFactory(String(this.state.answer))} >Ans</Button>
@@ -294,7 +292,7 @@ class Calculator extends Component {
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
 								</Row>
 								<Row>
-									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( E )} >e</Button>
+									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( 'e' )} >e</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearLast} >CE</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearEquation} >AC</Button>
 									<Button variant="success" className="solve-button" onClick={this.solveEq} >=</Button>

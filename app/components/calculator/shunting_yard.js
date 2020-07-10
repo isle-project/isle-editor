@@ -18,6 +18,8 @@ import choose from '@stdlib/math/base/special/binomcoef';
 import factorial from '@stdlib/math/base/special/factorial';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import stack from '@stdlib/utils/stack';
+import PI from '@stdlib/constants/math/float64-pi';
+import E from '@stdlib/constants/math/float64-e';
 
 
 // VARIABLES //
@@ -54,6 +56,10 @@ const FUNCTIONS = {
 	'choose': { params: 2, method: choose },
 	'log': { params: 2, method: log }
 };
+const CONSTANTS = {
+	'pi': PI,
+	'e': E
+};
 const FUNCTION_NAMES = keys( FUNCTIONS );
 const OPERATOR_NAMES = keys( OPERATORS );
 
@@ -68,6 +74,10 @@ function isFunction( token ) {
 	return FUNCTION_NAMES.indexOf( token ) !== -1;
 }
 
+function isConstant( token ) {
+	return CONSTANTS[ token ] !== void 0;
+}
+
 function checkPrecedence( o1, o2 ) {
 	if ( !isOperator( o1 ) || !isOperator( o2 ) ) {
 		return false;
@@ -80,14 +90,20 @@ function checkPrecedence( o1, o2 ) {
 	);
 }
 
+/**
+* Transforms an expression into reverse Polish notation (RPN), also known as Polish postfix notation or simply postfix notation.
+*
+* @param {Array<string>} arr - expression tokens
+* @returns {Array<string>} expression tokens in RPN
+*/
 function toRPN( arr ) {
 	let output = [];
 	let s = stack();
 
 	for ( let i = 0; i < arr.length; i++ ) {
 		let token = arr[ i ];
-		if ( RE_DIGIT.test( token ) ) {
-			output.push( token );
+		if ( isConstant( token ) ) {
+			output.push( String( CONSTANTS[ token ] ) );
 		}
 		else if ( isFunction( token ) ) {
 			s.push( token );
@@ -111,17 +127,22 @@ function toRPN( arr ) {
 		else if ( token === ')' ) {
 			while ( s.first() !== '(' ) {
 				if ( s.first() === void 0 ) {
-					return i18next.t( 'too-many-closing-parens' );
+					return i18next.t( 'calculator:too-many-closing-parens' );
 				}
 				output.push( s.pop() );
 			}
 			s.pop();
 		}
+		else if ( RE_DIGIT.test( token ) ) {
+			output.push( token );
+		} else if ( token !== ' ' ) {
+			return i18next.t( 'calculator:malformed-expression' );
+		}
 	}
 	while ( s.length ) {
 		let token = s.pop();
 		if ( token === '(' ) {
-			return i18next.t( 'too-many-opening-parens' );
+			return i18next.t( 'calculator:too-many-opening-parens' );
 		}
 		output.push( token );
 	}
