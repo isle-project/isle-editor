@@ -211,8 +211,7 @@ class Queue extends Component {
 	}
 
 	renderChatButton = ( row ) => {
-		const session = this.context;
-		const chatID = row.original.name+'-'+session.user.name;
+		const chatID = 'Queue_'+row.original.name;
 		return <ChatButton tooltip={this.props.t( 'queue-start-chat' )} for={chatID} />;
 	}
 
@@ -346,7 +345,7 @@ class Queue extends Component {
 
 			// Case: We are not an owner
 			if ( this.state.inQueue ) {
-				const chatID = 'Queue_'+session.user.name+'_'+this.state.spot;
+				const chatID = 'Queue_'+session.user.name;
 				out = <Panel className="queue-panel" tabIndex={0} role="button"
 					header={this.props.t( 'queue' )} onHide={this.props.onHide} minimizable >
 					<p>
