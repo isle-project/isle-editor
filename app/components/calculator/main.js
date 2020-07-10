@@ -158,6 +158,16 @@ class Calculator extends Component {
 		};
 	}
 
+	sendCopyToClipboardNotification = () => {
+		const session = this.context;
+		session.addNotification({
+			title: this.props.t( 'copied' ),
+			message: this.props.t( 'copied-message' ),
+			level: 'success',
+			position: 'tr'
+		});
+	}
+
 	handleTypeChange = ( event ) => {
 		this.setState({
 			visible: event.target.value
@@ -251,7 +261,7 @@ class Calculator extends Component {
 									<Button variant="light" className="input-button-full" onClick={this.onClickFactory('(')} >(</Button>
 									<Button variant="light" className="input-button-full" onClick={this.onClickFactory(')')} >)</Button>
 									<CopyToClipboard text={this.state.answer}>
-										<Button variant="warning" className="input-button-full" onClick={noop} >{this.props.t( 'copy' )}</Button>
+										<Button variant="warning" className="input-button-full" onClick={this.sendCopyToClipboardNotification} >{this.props.t( 'copy' )}</Button>
 									</CopyToClipboard>
 									<Button variant="warning" className="input-button-full" onClick={this.toggleFullDisplay} >{this.props.t( 'basic' )}</Button>
 								</Row>
