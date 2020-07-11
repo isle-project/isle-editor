@@ -11,9 +11,7 @@ import {
 	LivePreview
 } from 'react-live';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
-import Provider from 'components/provider';
 import SessionContext from 'session/context.js';
 import styles from './styles.json';
 import theme from './theme.js';
@@ -43,23 +41,6 @@ class Playground extends Component {
 			value: props.value || props.defaultValue,
 			prevProps: props
 		};
-		const wrappedScope = {};
-		for ( let key in props.scope ) {
-			if ( hasOwnProp( props.scope, key ) ) {
-				let Comp = props.scope[ key ];
-				wrappedScope[ key ] = class Wrapper extends Component {
-					render() {
-						return ( <Provider session={context} >
-							<Comp {...this.props} />
-						</Provider> );
-					}
-				};
-				Object.defineProperty( wrappedScope[ key ], 'name', {
-					value: Comp.name
-				});
-			}
-		}
-		this.wrappedScope = wrappedScope;
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -98,10 +79,18 @@ class Playground extends Component {
 		}
 	}
 
+	transformCode = ( code ) => {
+		code = this.props.transformCode( code );
+		return `<Provider session={session}>
+			<Lesson>${code}</Lesson>
+		</Provider>`;
+	}
+
 	render() {
 		const scope = {
 			React,
-			...this.wrappedScope
+			session: this.context,
+			...this.props.scope
 		};
 		let { value } = this.state;
 		if ( this.props.value ) {
@@ -110,7 +99,7 @@ class Playground extends Component {
 		return (
 			<div className="component-documentation" style={this.props.style} >
 				<div className="playground-editable unselectable">{this.props.t('editable-source')}</div>
-				<LiveProvider code={value} scope={scope} theme={theme} transformCode={this.props.transformCode} >
+				<LiveProvider code={value} scope={scope} theme={theme} transformCode={this.transformCode} >
 					<div className="playground-live-editor" >
 						<LiveEditor
 							onChange={this.handleChange}
@@ -122,7 +111,7 @@ class Playground extends Component {
 						/>
 					</div>
 					<LivePreview
-						className="Lesson"
+						className="playground-live-preview"
 						style={styles.livePreview}
 						{...this.props.previewProps}
 					/>

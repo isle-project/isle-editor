@@ -28,6 +28,11 @@
 	width: 50%;
 }
 
+.playground-live-preview {
+	transform: translateZ(0);
+	padding: 4px;
+}
+
 .playground-live-editor textarea:focus {
 	outline: none;
 }
