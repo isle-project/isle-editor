@@ -121,6 +121,7 @@ import 'css/lesson.css';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
 import obsToVar from 'utils/obs-to-var';
+import { UpdateNotification } from './service_worker.js';
 `;
 
 const getComponents = ( arr ) => {
@@ -199,6 +200,7 @@ class LessonWrapper extends Component {
 				className="${className}"
 			>
 				${lessonContent}
+				<UpdateNotification />
 			</Lesson>
 		);
 	}
