@@ -361,7 +361,8 @@ App.defaultProps = {
 	elementRange: null,
 	error: null,
 	fileName: null,
-	filePath: null
+	filePath: null,
+	insertionText: null
 };
 
 App.propTypes = {
@@ -381,7 +382,7 @@ App.propTypes = {
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
-	insertionText: PropTypes.string.isRequired,
+	insertionText: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
 	markdown: PropTypes.string.isRequired,
 	pasteInsertion: PropTypes.func.isRequired,

@@ -1187,6 +1187,7 @@ class Editor extends Component {
 Editor.defaultProps = {
 	filePath: '',
 	fontSize: 14,
+	insertionText: null,
 	elementRange: null,
 	onChange: noop,
 	value: ''
@@ -1197,7 +1198,7 @@ Editor.propTypes = {
 	currentRole: PropTypes.string.isRequired,
 	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
-	insertionText: PropTypes.string.isRequired,
+	insertionText: PropTypes.string,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	author: PropTypes.string.isRequired,
