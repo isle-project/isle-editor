@@ -158,7 +158,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	debug( '\n\n' );
 }
 
-console.log( 'Write `component_documentation.json` file...' );
-fs.writeFileSync( './app/editor-components/editor/components_documentation.json', JSON.stringify( DOCS, null, 2 ) );
+console.log( 'Write `documentation.json` file...' );
+fs.writeFileSync( './app/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
 
 console.log( 'Finished updating docs.' );

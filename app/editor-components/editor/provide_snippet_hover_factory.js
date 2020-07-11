@@ -1,7 +1,7 @@
 // MODULES //
 
 import getLastOpenedTag from './get_last_opened_tag.js';
-import COMPONENT_DOCS from './components_documentation.json';
+import COMPONENT_DOCS from 'components/documentation.json';
 
 
 // MAIN //

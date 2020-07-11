@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ipcRenderer } from 'electron';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
@@ -29,15 +30,14 @@ import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
 import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/internal/loadable';
-import { ipcRenderer } from 'electron';
 import MonacoEditor from 'react-monaco-editor';
+const ComponentConfigurator = Loadable( () => import( 'editor-components/component-configurator' ) );
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
-const ComponentConfigurator = Loadable( () => import( './component_configurator.js' ) );
 const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
 import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';

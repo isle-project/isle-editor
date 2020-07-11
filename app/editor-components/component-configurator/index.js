@@ -30,7 +30,7 @@ import contains from '@stdlib/assert/contains';
 import rescape from '@stdlib/utils/escape-regexp-string';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import markdownToHTML from 'utils/markdown-to-html';
-import COMPONENT_DOCS from './components_documentation.json';
+import COMPONENT_DOCS from 'components/documentation.json';
 import Session from 'session';
 import './component_configurator.css';
 

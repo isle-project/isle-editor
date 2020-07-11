@@ -4,74 +4,19 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
-import groupBy from '@stdlib/utils/group-by';
 import objectKeys from '@stdlib/utils/keys';
-import contains from '@stdlib/assert/contains';
-import trim from '@stdlib/string/trim';
 import Loadable from 'components/internal/loadable';
 const AnimationHelp = Loadable( () => import( 'editor-components/editor/animation-help' ) );
 const MarkdownHelp = Loadable( () => import( 'editor-components/editor/markdown-help' ) );
-import { componentSnippets } from 'snippets';
 import { LANGUAGES } from 'constants/deepl';
-import COMPONENTS from './components.json';
+import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:editor:context-menu' );
-const snippets = groupBy( componentSnippets, groupIndicator );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = localStorage.getItem( 'token' );
-
-
-// FUNCTIONS //
-
-function groupIndicator( v ) {
-	v.name = trim( v.name );
-	if ( contains( COMPONENTS.R, v.name ) ) {
-		return 'rComponents';
-	}
-	if ( contains( COMPONENTS.PRESENTATION, v.name ) ) {
-		return 'presentation';
-	}
-	if ( contains( COMPONENTS.PLOTS, v.name ) ) {
-		return 'plots';
-	}
-	if ( contains( COMPONENTS.VICTORY, v.name ) ) {
-		return 'victory';
-	}
-	if ( contains( COMPONENTS.LEARNING, v.name ) ) {
-		if ( contains( v.name, 'Distribution' ) ) {
-			return 'learningDistribution';
-		}
-		return 'learning';
-	}
-	if ( contains( COMPONENTS.PROGRAMMATIC, v.name ) ) {
-		return 'programmatic';
-	}
-	if ( contains( COMPONENTS.SERVICES, v.name ) ) {
-		return 'services';
-	}
-	if ( contains( COMPONENTS.SURVEY, v.name ) ) {
-		return 'surveys';
-	}
-	if ( contains( COMPONENTS.INPUT, v.name ) ) {
-		return 'inputs';
-	}
-	if ( contains( COMPONENTS.QUESTION, v.name ) ) {
-		return 'questions';
-	}
-	if ( contains( COMPONENTS.DISPLAY, v.name ) ) {
-		return 'displayComponents';
-	}
-	if ( contains( COMPONENTS.LAYOUT, v.name ) ) {
-		return 'layout';
-	}
-	if ( contains( COMPONENTS.MAIN, v.name ) ) {
-		return 'main';
-	}
-	return 'general';
-}
 
 
 // MAIN //
@@ -140,48 +85,48 @@ class EditorContextMenu extends Component {
 			<Fragment>
 				<ContextMenu id="editor-context-menu" >
 					<SubMenu title="Main">
-						{snippets.main.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.main.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Display">
-						{snippets.displayComponents.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.displayComponents.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Layout">
-						{snippets.layout.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.layout.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Inputs">
-						{snippets.inputs.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.inputs.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Questions">
-						{snippets.questions.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.questions.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Surveys">
-						{snippets.surveys.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.surveys.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="R Components">
-						{snippets.rComponents.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.rComponents.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Programmatic Components">
-						{snippets.programmatic.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.programmatic.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Learning Components">
-						{snippets.learning.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.learning.map( this.renderMenuItem )}
 						<SubMenu title="Distributions">
-							{snippets.learningDistribution.map( this.renderMenuItem )}
+							{GROUPED_SNIPPETS.learningDistribution.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
 					<SubMenu title="General">
-						{snippets.general.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.general.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Services">
-						{snippets.services.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.services.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Presentation">
-						{snippets.presentation.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.presentation.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Plots">
-						{snippets.plots.map( this.renderMenuItem )}
+						{GROUPED_SNIPPETS.plots.map( this.renderMenuItem )}
 						<SubMenu title="Victory Charts">
-							{snippets.victory.map( this.renderMenuItem )}
+							{GROUPED_SNIPPETS.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
 					<MenuItem

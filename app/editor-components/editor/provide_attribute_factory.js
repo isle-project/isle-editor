@@ -6,8 +6,8 @@ import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
+import COMPONENT_DOCS from 'components/documentation.json';
 import getLastOpenedTag from './get_last_opened_tag.js';
-import COMPONENT_DOCS from './components_documentation.json';
 import CSS_PROPERTIES from './css_properties.json';
 import CSS_NAMES from './css_names.json';
 
