@@ -1,8 +1,24 @@
 .line-wrapper {
+	position: relative;
 	padding: 2px;
 	border: solid 1px transparent;
 }
 
 .line-wrapper:hover {
 	border: solid 1px red;
+}
+
+.line-wrapper-open-configurator {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	display: none;
+}
+
+.line-wrapper:hover > .line-wrapper-open-configurator {
+	display: inherit;
+	z-index: 1051;
+	background-color: #F1F176;
+	cursor: pointer;
+	padding: 2px;
 }

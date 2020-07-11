@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { jumpToElementInEditor } from 'actions';
+import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
 
@@ -21,7 +21,16 @@ class LineWrapper extends Component {
 		event.stopPropagation();
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
-			endLineNumber: this.props.endLineNumber
+			endLineNumber: this.props.endLineNumber,
+			shouldTriggerConfigurator: false
+		});
+	}
+
+	handleConfiguratorTrigger = () => {
+		this.props.jumpToElementInEditor({
+			startLineNumber: this.props.startLineNumber,
+			endLineNumber: this.props.endLineNumber,
+			shouldTriggerConfigurator: true
 		});
 	}
 
@@ -33,6 +42,13 @@ class LineWrapper extends Component {
 				onDoubleClick={this.handleDoubleClick}
 				title={`Double-click to highlight source code for <${this.props.tagName} />`}
 			>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-open-configurator fa fa-cogs"
+					title="Click to open configurator menu"
+					onClick={this.handleConfiguratorTrigger}
+					onKeyPress={this.handleConfiguratorTrigger}
+				></span>
 				{this.props.children}
 			</div>
 		);
@@ -57,7 +73,7 @@ LineWrapper.propTypes = {
 // EXPORTS //
 
 export default connect( mapStateToProps, {
-	jumpToElementInEditor
+	jumpToElementInEditor, toggleConfigurator
 })( LineWrapper );
 
 function mapStateToProps() {
