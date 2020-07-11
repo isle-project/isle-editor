@@ -58,7 +58,8 @@ const initialState = {
 	fontSize: config.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
-	unsaved: false
+	unsaved: false,
+	shouldTriggerConfigurator: false
 };
 
 
@@ -128,7 +129,11 @@ export default function markdown( state = initialState, action ) {
 	case types.JUMP_TO_ELEMENT_IN_EDITOR:
 		return {
 			...state,
-			elementRange: action.payload
+			elementRange: {
+				startLineNumber: action.payload.startLineNumber,
+				endLineNumber: action.payload.endLineNumber
+			},
+			shouldTriggerConfigurator: action.payload.shouldTriggerConfigurator
 		};
 	case types.TOGGLE_SCROLLING:
 		return {
