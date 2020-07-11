@@ -270,7 +270,7 @@ class ComponentConfigurator extends Component {
 
 	handleClick = () => {
 		if ( this.state.value ) {
-			this.props.onInsert( this.state.value );
+			this.props.onInsert( this.state.value+'\n' );
 		}
 	}
 

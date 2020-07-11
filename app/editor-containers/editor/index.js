@@ -10,7 +10,7 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
-import { convertMarkdown, changeAutoUpdate, changeMode, changeView, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
+import { convertMarkdown, changeAutoUpdate, changeMode, changeView, clearInsertion, pasteInsertion, setConfiguratorComponent, toggleConfigurator, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -18,6 +18,7 @@ const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
 const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
 const DevTools = Loadable( () => import( '../dev_tools.js' ) );
+const ComponentConfigurator = Loadable( () => import( 'editor-components/component-configurator' ) );
 
 
 // VARIABLES //
@@ -78,6 +79,9 @@ class App extends Component {
 			this.props.convertMarkdown( value );
 			this.spellcheckCode( value );
 			this.handlePreambleChange( value );
+			if ( this.props.insertionText ) {
+				this.props.clearInsertion();
+			}
 		};
 
 		if ( this.debouncedChange ) {
@@ -185,6 +189,10 @@ class App extends Component {
 		});
 	}
 
+	hideConfigurator = () => {
+		this.props.toggleConfigurator( false );
+	}
+
 	render() {
 		let {
 			autoUpdatePreview,
@@ -272,9 +280,7 @@ class App extends Component {
 						filePath={filePath}
 						fontSize={this.props.fontSize}
 					/>
-					{this.state.splitPos === 1 ? <div style={{
-						transform: 'translateZ(0)'
-					}}>{preview}</div> : <SplitPane
+					<SplitPane
 						className="splitpane"
 						split="vertical"
 						primary="second"
@@ -299,6 +305,12 @@ class App extends Component {
 								splitPos={this.state.splitPos}
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}
+								setConfiguratorComponent={this.props.setConfiguratorComponent}
+								pasteInsertion={this.props.pasteInsertion}
+								insertionText={this.props.insertionText}
+								clearInsertion={this.props.clearInsertion}
+								shouldTriggerConfigurator={this.props.shouldTriggerConfigurator}
+								toggleConfigurator={this.props.toggleConfigurator}
 								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
 							/>
 						</SplitPanel>
@@ -316,8 +328,19 @@ class App extends Component {
 								preview
 							}
 						</SplitPanel>
-					</SplitPane>}
+					</SplitPane>
 				</SplitPane>
+				{ this.props.configuratorIsOpened ? <ComponentConfigurator
+					show={this.props.configuratorIsOpened}
+					onHide={this.hideConfigurator}
+					component={this.props.selectedComponent}
+					currentMode={this.props.currentMode}
+					currentRole={this.props.currentRole}
+					onInsert={( text ) => {
+						this.props.pasteInsertion({ text });
+						this.props.toggleConfigurator( false );
+					}}
+				/> : null }
 				{
 					( () => {
 						// eslint-disable-next-line no-process-env
@@ -347,6 +370,7 @@ App.propTypes = {
 	changeAutoUpdate: PropTypes.func.isRequired,
 	changeMode: PropTypes.func.isRequired,
 	changeView: PropTypes.func.isRequired,
+	clearInsertion: PropTypes.func.isRequired,
 	convertMarkdown: PropTypes.func.isRequired,
 	currentMode: PropTypes.string.isRequired,
 	currentRole: PropTypes.string.isRequired,
@@ -357,14 +381,18 @@ App.propTypes = {
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
+	insertionText: PropTypes.string.isRequired,
 	lintErrors: PropTypes.array.isRequired,
 	markdown: PropTypes.string.isRequired,
+	pasteInsertion: PropTypes.func.isRequired,
 	preamble: PropTypes.object.isRequired,
 	preambleText: PropTypes.string.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	saveSpellingErrors: PropTypes.func.isRequired,
+	shouldTriggerConfigurator: PropTypes.bool.isRequired,
+	toggleConfigurator: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired,
 	unsaved: PropTypes.bool.isRequired
 };
@@ -375,19 +403,24 @@ App.propTypes = {
 export default connect( mapStateToProps, {
 	convertMarkdown,
 	changeAutoUpdate,
+	clearInsertion,
 	saveLintErrors,
 	saveSpellingErrors,
 	encounteredError,
 	resetError,
 	changeView,
 	changeMode,
+	pasteInsertion,
+	setConfiguratorComponent,
+	toggleConfigurator,
 	toggleScrolling,
 	toggleToolbar,
 	updatePreamble
 })( App );
 
-function mapStateToProps({ markdown, linting, preview }) {
+function mapStateToProps({ configurator, markdown, linting, preview }) {
 	return {
+		...configurator,
 		...markdown,
 		...linting,
 		...preview

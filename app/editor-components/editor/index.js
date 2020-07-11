@@ -31,7 +31,6 @@ import readFile from '@stdlib/fs/read-file';
 import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/internal/loadable';
 import MonacoEditor from 'react-monaco-editor';
-const ComponentConfigurator = Loadable( () => import( 'editor-components/component-configurator' ) );
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
@@ -121,8 +120,6 @@ class Editor extends Component {
 		super( props );
 
 		this.state = {
-			selectedComponent: {},
-			showComponentConfigurator: false,
 			sourceFiles: {}
 		};
 		this.decorations = [];
@@ -576,8 +573,7 @@ class Editor extends Component {
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.height !== prevProps.height ||
-			this.state.showComponentConfigurator !== prevState.showComponentConfigurator ||
-			this.state.selectedComponent !== prevState.selectedComponent ||
+			this.props.insertionText !== prevProps.insertionText ||
 			this.state.sourceFiles !== prevState.sourceFiles
 		) {
 			return true;
@@ -593,6 +589,18 @@ class Editor extends Component {
 	componentDidUpdate( prevProps ) {
 		if ( !this.monaco ) {
 			return;
+		}
+		if ( this.props.insertionText && !prevProps.insertionText ) {
+			const selection = this.editor.getSelection();
+			const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+			const id = { major: 1, minor: 1 };
+			const op = {
+				identifier: id,
+				range: range,
+				text: String( this.props.insertionText ),
+				forceMoveMarkers: true
+			};
+			this.editor.executeEdits( 'my-source', [ op ] );
 		}
 		if ( this.props.elementRange !== prevProps.elementRange ) {
 			this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
@@ -614,11 +622,14 @@ class Editor extends Component {
 						endLineNumber: this.props.elementRange.startLineNumber
 					},
 					options: {
-						glyphMarginClassName: 'fas fa-cogs glyph-icon'
+						glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon'
 					}
 				}
 			]);
 			this.hasHighlight = true;
+			if ( this.props.shouldTriggerConfigurator ) {
+				this.triggerConfiguratorViaGlyph();
+			}
 		}
 		if ( this.props.spellingErrors.length !== prevProps.spellingErrors.length ) {
 			const errs = this.props.spellingErrors;
@@ -914,10 +925,10 @@ class Editor extends Component {
 	}
 
 	toggleComponentConfigurator = ( data ) => {
-		this.setState({
-			selectedComponent: data,
-			showComponentConfigurator: !this.state.showComponentConfigurator
+		this.props.setConfiguratorComponent({
+			component: data
 		});
+		this.props.toggleConfigurator( true );
 	}
 
 	handleContextMenuClick = ( customClick, data ) => {
@@ -934,21 +945,8 @@ class Editor extends Component {
 	}
 
 	handleComponentInsertion = ( text ) => {
-		this.setState({
-			selectedComponent: {},
-			showComponentConfigurator: !this.state.showComponentConfigurator
-		}, () => {
-			const selection = this.editor.getSelection();
-			const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
-			const id = { major: 1, minor: 1 };
-			const op = {
-				identifier: id,
-				range: range,
-				text: String( text ),
-				forceMoveMarkers: true
-			};
-			this.editor.executeEdits( 'my-source', [ op ] );
-		});
+		this.props.toggleComponentConfigurator();
+		this.props.pasteInsertion({ text });
 	}
 
 	translateLesson = async ( language ) => {
@@ -1114,19 +1112,27 @@ class Editor extends Component {
 		}
 	};
 
-	triggerConfiguratorViaGlyph = () => {
+	extractComponentFromSelection = () => {
 		const model = this.editor.getModel();
 		const { elementRange } = this.props;
-		if ( elementRange ) {
-			const range = {
-				startLineNumber: elementRange.startLineNumber,
-				endLineNumber: elementRange.endLineNumber + 1
-			};
-			const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
+		if ( !elementRange ) {
+			return null;
+		}
+		const range = {
+			startLineNumber: elementRange.startLineNumber,
+			endLineNumber: elementRange.endLineNumber + 1
+		};
+		const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
 
-			this.editor.setSelection( selection );
-			const content = model.getValueInRange( range );
-			const match = content.match( RE_TAG_START );
+		this.editor.setSelection( selection );
+		const content = model.getValueInRange( range );
+		const match = content.match( RE_TAG_START );
+		return { match, content };
+	}
+
+	triggerConfiguratorViaGlyph = () => {
+		const { match, content } = this.extractComponentFromSelection();
+		if ( match ) {
 			this.toggleComponentConfigurator({
 				name: match[ 1 ],
 				value: content
@@ -1170,14 +1176,6 @@ class Editor extends Component {
 					onContextMenuClick={this.handleContextMenuClick}
 					onTranslate={this.translateLesson}
 				/>
-				{ this.state.showComponentConfigurator ? <ComponentConfigurator
-					show={this.state.showComponentConfigurator}
-					onHide={this.toggleComponentConfigurator}
-					onInsert={this.handleComponentInsertion}
-					component={this.state.selectedComponent}
-					currentMode={this.props.currentMode}
-					currentRole={this.props.currentRole}
-				/> : null }
 			</div>
 		);
 	}
@@ -1199,12 +1197,14 @@ Editor.propTypes = {
 	currentRole: PropTypes.string.isRequired,
 	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
+	insertionText: PropTypes.string.isRequired,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	author: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	elementRange: PropTypes.object,
 	lintErrors: PropTypes.array.isRequired,
+	shouldTriggerConfigurator: PropTypes.bool.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired
