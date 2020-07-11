@@ -234,7 +234,7 @@ exports[`renders a playground with a supplied scope 1`] = `
     </div>
   </div>
   <div
-    className="Lesson"
+    className="playground-live-preview"
     style={
       Object {
         "height": "calc(100% - 33px)",
@@ -246,39 +246,24 @@ exports[`renders a playground with a supplied scope 1`] = `
         "width": "50%",
       }
     }
+  />
+  <pre
+    style={
+      Object {
+        "background": "#F2777A",
+        "color": "white",
+        "fontSize": "1.1em",
+        "padding": "10px",
+        "position": "absolute",
+        "right": 0,
+        "top": 33,
+        "width": "50%",
+        "zIndex": "9999",
+      }
+    }
   >
-    <span
-      className="sk-cube-grid"
-    >
-      <span
-        className="sk-cube sk-cube1"
-      />
-      <span
-        className="sk-cube sk-cube2"
-      />
-      <span
-        className="sk-cube sk-cube3"
-      />
-      <span
-        className="sk-cube sk-cube4"
-      />
-      <span
-        className="sk-cube sk-cube5"
-      />
-      <span
-        className="sk-cube sk-cube6"
-      />
-      <span
-        className="sk-cube sk-cube7"
-      />
-      <span
-        className="sk-cube sk-cube8"
-      />
-      <span
-        className="sk-cube sk-cube9"
-      />
-    </span>
-  </div>
+    ReferenceError: Provider is not defined
+  </pre>
 </div>
 `;
 
@@ -519,7 +504,7 @@ exports[`renders an uncontrolled playground 1`] = `
     </div>
   </div>
   <div
-    className="Lesson"
+    className="playground-live-preview"
     style={
       Object {
         "height": "calc(100% - 33px)",
@@ -531,10 +516,23 @@ exports[`renders an uncontrolled playground 1`] = `
         "width": "50%",
       }
     }
+  />
+  <pre
+    style={
+      Object {
+        "background": "#F2777A",
+        "color": "white",
+        "fontSize": "1.1em",
+        "padding": "10px",
+        "position": "absolute",
+        "right": 0,
+        "top": 33,
+        "width": "50%",
+        "zIndex": "9999",
+      }
+    }
   >
-    <div>
-      Code comes here...
-    </div>
-  </div>
+    ReferenceError: Provider is not defined
+  </pre>
 </div>
 `;
