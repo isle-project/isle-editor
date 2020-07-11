@@ -167,9 +167,9 @@ class ComponentConfigurator extends Component {
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
 
 		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			this.RE_PROPERTY = new RegExp( '^<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
 		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s`, 'i' );
 	}
