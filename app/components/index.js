@@ -99,6 +99,7 @@ import Panel from 'components/panel';
 import Playground from 'components/playground';
 import Plotly from 'components/plotly';
 import Polaroid from 'components/polaroid';
+import Provider from 'components/provider';
 import QRCode from 'components/qrcode';
 import StickyNote from 'components/sticky-note';
 import Preload from 'components/preload';
@@ -303,6 +304,7 @@ const scope = {
 	Playground,
 	Plotly,
 	Polaroid,
+	Provider,
 	QRCode,
 	StickyNote,
 	Preload,
