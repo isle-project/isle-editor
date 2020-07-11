@@ -80,7 +80,9 @@ class Playground extends Component {
 	}
 
 	transformCode = ( code ) => {
-		code = this.props.transformCode( code );
+		if ( this.props.transformCode ) {
+			code = this.props.transformCode( code );
+		}
 		return `<Provider session={session}>
 			<Lesson>${code}</Lesson>
 		</Provider>`;
