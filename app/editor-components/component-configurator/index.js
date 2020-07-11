@@ -171,7 +171,7 @@ class ComponentConfigurator extends Component {
 		} else {
 			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
-		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s`, 'i' );
+		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s` );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -283,9 +283,9 @@ class ComponentConfigurator extends Component {
 	replaceStringFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-zA-Z]+=|\\/>)' );
 		} else {
-			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-zA-Z]+=|>)' );
 		}
 		const debouncedValueUpdate = debounce( ( newValue ) => {
 			let { value } = this.state;
@@ -390,9 +390,9 @@ class ComponentConfigurator extends Component {
 	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '=?[\\s\\S]*?( +|\\t|\\r?\\n)(?=[a-z]+=?|\\/>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)( +|\\t|\\r?\\n)(?=[a-zA-Z]+=?|\\/>)' );
 		} else {
-			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '=?[\\s\\S]*?( +|\\t|\\r?\\n)(?=[a-z]+=?|>)', 'i' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)( +|\\t|\\r?\\n)(?=[a-zA-Z]+=?|>)' );
 		}
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=?` );
 		return () => {
