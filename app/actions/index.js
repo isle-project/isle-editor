@@ -76,13 +76,48 @@ export function resetError() {
 	};
 }
 
-export function jumpToElementInEditor({ startLineNumber, endLineNumber }) {
+export function jumpToElementInEditor({ startLineNumber, endLineNumber, shouldTriggerConfigurator }) {
 	return {
 		type: types.JUMP_TO_ELEMENT_IN_EDITOR,
 		payload: {
 			startLineNumber,
-			endLineNumber
+			endLineNumber,
+			shouldTriggerConfigurator
 		}
+	};
+}
+
+export function toggleConfigurator( opened ) {
+	return {
+		type: types.TOGGLE_CONFIGURATOR,
+		payload: {
+			opened
+		}
+	};
+}
+
+export function setConfiguratorComponent({ component }) {
+	return {
+		type: types.SET_CONFIGURATOR_COMPONENT,
+		payload: {
+			component
+		}
+	};
+}
+
+export function pasteInsertion({ text }) {
+	return {
+		type: types.PASTE_INSERTION,
+		payload: {
+			text
+		}
+	};
+}
+
+export function clearInsertion() {
+	return {
+		type: types.CLEAR_INSERTION,
+		payload: {}
 	};
 }
 
