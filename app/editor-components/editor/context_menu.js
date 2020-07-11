@@ -64,6 +64,9 @@ function groupIndicator( v ) {
 	if ( contains( COMPONENTS.DISPLAY, v.name ) ) {
 		return 'displayComponents';
 	}
+	if ( contains( COMPONENTS.LAYOUT, v.name ) ) {
+		return 'layout';
+	}
 	if ( contains( COMPONENTS.MAIN, v.name ) ) {
 		return 'main';
 	}
@@ -141,6 +144,9 @@ class EditorContextMenu extends Component {
 					</SubMenu>
 					<SubMenu title="Display">
 						{snippets.displayComponents.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Layout">
+						{snippets.layout.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Inputs">
 						{snippets.inputs.map( this.renderMenuItem )}
