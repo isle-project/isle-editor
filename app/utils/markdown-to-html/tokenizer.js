@@ -695,19 +695,18 @@ class Tokenizer {
 	}
 
 	rightTrim( str ) {
-		let idx = str.length;
-		for ( let i = str.length - 1; i >= 0; i-- ) {
+		let i;
+		for ( i = str.length - 1; i >= 0; i-- ) {
 			const char = str[ i ];
 			if ( isWhitespace( char ) ) {
 				if ( char === '\n' ) {
 					this.lineNumber += 1;
 				}
 			} else {
-				idx = i + 1;
 				break;
 			}
 		}
-		return str.substring( 0, idx );
+		return str.substring( 0, i + 1 );
 	}
 
 	parse( str ) {
