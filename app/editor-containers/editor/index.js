@@ -10,7 +10,11 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
-import { convertMarkdown, changeAutoUpdate, changeMode, changeView, clearInsertion, pasteInsertion, setConfiguratorComponent, toggleConfigurator, toggleScrolling, toggleToolbar, updatePreamble, encounteredError, resetError, saveLintErrors, saveSpellingErrors } from 'actions';
+import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
+	clearInsertion, pasteInsertion, setConfiguratorComponent,
+	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
+	updatePreamble, encounteredError, resetError, saveLintErrors,
+	saveSpellingErrors } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -206,7 +210,8 @@ class App extends Component {
 			changeAutoUpdate,
 			currentRole,
 			currentMode,
-			unsaved
+			unsaved,
+			toggleLineButtons
 		} = this.props;
 
 		const preview = <ErrorBoundary
@@ -245,6 +250,7 @@ class App extends Component {
 						triggerUpdate={this.incrementVersion}
 						autoUpdatePreview={autoUpdatePreview}
 						changeAutoUpdate={changeAutoUpdate}
+						toggleLineButtons={toggleLineButtons}
 						onPreview={() => {
 							let splitPos;
 							if ( this.state.splitPos === 1 ) {
@@ -392,6 +398,7 @@ App.propTypes = {
 	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	saveSpellingErrors: PropTypes.func.isRequired,
+	toggleLineButtons: PropTypes.func.isRequired,
 	elementRangeAction: PropTypes.string.isRequired,
 	toggleConfigurator: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired,
@@ -414,6 +421,7 @@ export default connect( mapStateToProps, {
 	pasteInsertion,
 	setConfiguratorComponent,
 	toggleConfigurator,
+	toggleLineButtons,
 	toggleScrolling,
 	toggleToolbar,
 	updatePreamble

@@ -37,7 +37,7 @@ class LineButtons extends Component {
 	}
 
 	render() {
-		if ( !this.props.show ) {
+		if ( !this.props.showLineButtons || !this.props.show ) {
 			return null;
 		}
 		return (
@@ -89,6 +89,6 @@ export default connect( mapStateToProps, {
 	jumpToElementInEditor, toggleConfigurator
 })( LineButtons );
 
-function mapStateToProps() {
-	return {};
+function mapStateToProps({ preview }) {
+	return preview;
 }

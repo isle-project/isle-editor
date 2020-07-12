@@ -85,6 +85,13 @@ class Header extends Component {
 					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
 						<CheckboxInput
+							value={this.props.showLineButtons}
+							onChange={this.props.toggleLineButtons}
+							legend="Show line buttons"
+							inline
+							style={{ marginTop: 3, marginRight: 5 }}
+						/>
+						<CheckboxInput
 							value={this.props.autoUpdatePreview}
 							onChange={this.props.changeAutoUpdate}
 							legend="Automatically update preview"
@@ -156,11 +163,14 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-	fileName: PropTypes.string,
 	filePath: PropTypes.string,
+	fileName: PropTypes.string,
 	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
 	autoUpdatePreview: PropTypes.bool.isRequired,
+	changeAutoUpdate: PropTypes.func.isRequired,
+	showLineButtons: PropTypes.bool.isRequired,
+	toggleLineButtons: PropTypes.func.isRequired,
 	onPreview: PropTypes.func.isRequired,
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,

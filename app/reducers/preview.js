@@ -9,6 +9,7 @@ import * as types from 'constants/editor_actions.js';
 const config = new Store( 'ISLE' );
 const initialState = {
 	autoUpdatePreview: true,
+	showLineButtons: false,
 	renderInterval: config.get( 'renderInterval' ) || 2000
 };
 
@@ -22,6 +23,11 @@ export default function linting( state = initialState, action ) {
 		return {
 			...state,
 			renderInterval: action.payload.renderInterval
+		};
+	case types.TOGGLE_LINE_BUTTONS:
+		return {
+			...state,
+			showLineButtons: action.payload.show
 		};
 	case types.AUTO_UPDATE_CHANGED:
 		return {

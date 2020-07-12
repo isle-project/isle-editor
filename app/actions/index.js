@@ -96,6 +96,15 @@ export function toggleConfigurator( opened ) {
 	};
 }
 
+export function toggleLineButtons( show ) {
+	return {
+		type: types.TOGGLE_LINE_BUTTONS,
+		payload: {
+			show
+		}
+	};
+}
+
 export function setConfiguratorComponent({ component }) {
 	return {
 		type: types.SET_CONFIGURATOR_COMPONENT,
