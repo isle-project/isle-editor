@@ -324,7 +324,7 @@ class Tokenizer {
 						inline: isInner,
 						lineNumber: this._startLineNumber,
 						addLineWrappers: this.addLineWrappers,
-						addEmptySpans: true
+						addEmptySpans: this.addEmptySpans
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
 						let str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
