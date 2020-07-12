@@ -601,6 +601,7 @@ class Editor extends Component {
 				text: String( this.props.insertionText ),
 				forceMoveMarkers: true
 			};
+			this.immediateUpdate = true;
 			this.editor.executeEdits( 'my-source', [ op ] );
 		}
 		if ( this.props.elementRangeVersion !== prevProps.elementRangeVersion ) {
@@ -616,6 +617,7 @@ class Editor extends Component {
 					text: '',
 					forceMoveMarkers: true
 				};
+				this.immediateUpdate = true;
 				this.editor.executeEdits( 'my-source', [ op ] );
 			}
 			else if ( this.props.elementRangeAction === 'reveal' ) {
@@ -942,7 +944,7 @@ class Editor extends Component {
 		this.forceUpdate(); // Ensure Monaco editor is resized...
 	}
 
-	handleChange = ( newValue ) => {
+	handleChange = ( newValue, event ) => {
 		if ( this.hasHighlight ) {
 			this.decorations = this.editor.deltaDecorations( this.decorations, [
 				{
@@ -954,7 +956,8 @@ class Editor extends Component {
 			] );
 			this.hasHighlight = false;
 		}
-		this.props.onChange( newValue );
+		this.props.onChange( newValue, this.immediateUpdate );
+		this.immediateUpdate = false;
 	}
 
 	toggleComponentConfigurator = ( data ) => {
@@ -972,6 +975,7 @@ class Editor extends Component {
 			if ( data.context === 'preview' ) {
 				data.value = EOL + data.value;
 			}
+			this.immediateUpdate = true;
 			controller.insert( data.value );
 			this.editor.focus();
 		} else {
