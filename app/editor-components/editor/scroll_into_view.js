@@ -27,8 +27,6 @@ function scrollIntoView( lineNumber ) {
 		setTimeout( () => {
 			elem.classList.remove( 'focus-glow' );
 		}, 2000 );
-	} else {
-		vex.dialog.alert({ unsafeMessage: 'The component is not rendered in the lesson document.' });
 	}
 }
 
