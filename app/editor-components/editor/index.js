@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { EOL } from 'os';
 import { ipcRenderer } from 'electron';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
@@ -969,6 +970,9 @@ class Editor extends Component {
 		if ( !customClick ) {
 			debug( 'Insert snippet into editor...' );
 			const controller = this.editor.getContribution( 'snippetController2' );
+			if ( data.context === 'preview' ) {
+				data.value = EOL + data.value + EOL;
+			}
 			controller.insert( data.value );
 			this.editor.focus();
 		} else {

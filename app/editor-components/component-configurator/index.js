@@ -273,13 +273,15 @@ class ComponentConfigurator extends Component {
 	}
 
 	handleClick = () => {
-		const value = this.state.value;
+		let value = this.state.value;
 		if ( value ) {
-			if ( !endsWith( value, '\n' ) ) {
-				this.props.onInsert( value + EOL );
-			} else {
-				this.props.onInsert( value );
+			if ( this.props.component.context === 'preview' ) {
+				value = EOL + value + EOL;
 			}
+			else if ( !endsWith( value, '\n' ) ) {
+				value = value + EOL;
+			}
+			this.props.onInsert( value );
 		}
 	}
 
