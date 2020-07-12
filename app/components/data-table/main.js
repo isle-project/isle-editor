@@ -723,6 +723,7 @@ class DataTable extends Component {
 				className: 'frozen',
 				headerClassName: 'frozen',
 				filterable: false,
+				resizable: false,
 				width: 50
 			});
 		}
@@ -831,7 +832,7 @@ class DataTable extends Component {
 							if ( !out.style ) {
 								out.style = {};
 							}
-							out.style.width = 'max-content';
+							out.style.width = 'max-content !important';
 							return out;
 						}}
 					/>
