@@ -703,7 +703,7 @@ class Tokenizer {
 					this.lineNumber += 1;
 				}
 			} else {
-				idx = i;
+				idx = i + 1;
 				break;
 			}
 		}
