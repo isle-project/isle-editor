@@ -1183,7 +1183,13 @@ class Editor extends Component {
 		const dragProvider = new MonacoDragNDropProvider( this.handleDrop, this.editor, this.monaco );
 		return (
 			<div>
-				<ContextMenuTrigger id="editor-context-menu" holdToDisplay={-1} style={{ height: '100%', width: '100%' }} >
+				<ContextMenuTrigger
+					id="editor-context-menu" holdToDisplay={-1}
+					style={{ height: '100%', width: '100%' }}
+					collect={() => {
+						return { context: 'editor' };
+					}}
+				>
 					<div {...dragProvider.props}>
 						<MonacoEditor
 							height={this.props.height}

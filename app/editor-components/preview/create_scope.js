@@ -22,6 +22,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Components from 'components';
 import LineWrapper from 'editor-components/line-wrapper';
+import LineButtons from 'editor-components/line-buttons';
 import factor from 'utils/factor-variable';
 
 
@@ -30,6 +31,7 @@ import factor from 'utils/factor-variable';
 export const SCOPE = {
 	...Components,
 	LineWrapper,
+	LineButtons,
 	Card,
 	Form,
 	Modal,

@@ -179,7 +179,7 @@ class Tokenizer {
 			char === '\n' &&
 			( nextChar === '\n' || nextChar === '\r' )
 		) {
-			this._current += `${EOL}<span />${EOL}`;
+			this._current += `${EOL}<LineButtons startLineNumber={${this.lineNumber}} endLineNumber={${this.lineNumber}} />${EOL}`;
 		}
 		else if (
 			char === '<' &&
@@ -795,6 +795,9 @@ class Tokenizer {
 		debug( '---' );
 		debug( out );
 		debug( '---' );
+		if ( this.addEmptySpans ) {
+			out += `${EOL}<LineButtons startLineNumber={${this.lineNumber}} endLineNumber={${this.lineNumber}} />${EOL}`;
+		}
 		return out;
 	}
 }

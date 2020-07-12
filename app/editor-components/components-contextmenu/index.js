@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { EOL } from 'os';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
@@ -66,6 +67,9 @@ class EditorContextMenu extends Component {
 	}
 
 	handleContextMenuClick = ( _, data ) => {
+		if ( data.context === 'preview' ) {
+			data.value += EOL;
+		}
 		this.props.onContextMenuClick( this.customClick, data );
 		this.customClick = false;
 	}
@@ -161,6 +165,7 @@ class EditorContextMenu extends Component {
 // PROPERTIES //
 
 EditorContextMenu.propTypes = {
+	onTranslate: PropTypes.func.isRequired,
 	onContextMenuClick: PropTypes.func.isRequired
 };
 
