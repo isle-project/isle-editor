@@ -146,8 +146,8 @@ class Tokenizer {
 	constructor( opts ) {
 		debug( 'Create tokenizer: '+JSON.stringify( opts ) );
 		if ( opts ) {
-			this.addEmptySpans = opts.addEmptySpans ? true : false;
 			this.inline = opts.inline ? true : false;
+			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
 			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
 			this.addLineWrappers = opts.addLineWrappers;
 		}
