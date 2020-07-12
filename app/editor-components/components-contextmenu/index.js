@@ -68,7 +68,7 @@ class EditorContextMenu extends Component {
 
 	handleContextMenuClick = ( _, data ) => {
 		if ( data.context === 'preview' ) {
-			data.value += EOL;
+			data.value = EOL + data.value + EOL;
 		}
 		this.props.onContextMenuClick( this.customClick, data );
 		this.customClick = false;
