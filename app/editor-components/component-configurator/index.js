@@ -276,7 +276,7 @@ class ComponentConfigurator extends Component {
 		let value = this.state.value;
 		if ( value ) {
 			if ( this.props.component.context === 'preview' ) {
-				value = EOL + value + EOL;
+				value = EOL + value;
 			}
 			else if ( !endsWith( value, '\n' ) ) {
 				value = value + EOL;

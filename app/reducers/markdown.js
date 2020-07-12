@@ -50,6 +50,7 @@ const initialState = {
 	hideToolbar: false,
 	elementRange: null,
 	elementRangeAction: null,
+	elementRangeVersion: 0,
 	filePath,
 	fileName,
 	currentRole: 'user',
@@ -133,6 +134,7 @@ export default function markdown( state = initialState, action ) {
 				startLineNumber: action.payload.startLineNumber,
 				endLineNumber: action.payload.endLineNumber
 			},
+			elementRangeVersion: state.elementRangeVersion + 1,
 			elementRangeAction: action.payload.elementRangeAction
 		};
 	case types.TOGGLE_SCROLLING:

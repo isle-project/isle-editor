@@ -568,7 +568,7 @@ class Editor extends Component {
 	shouldComponentUpdate( prevProps, prevState ) {
 		if (
 			this.props.filePath !== prevProps.filePath ||
-			this.props.elementRange !== prevProps.elementRange ||
+			this.props.elementRangeVersion !== prevProps.elementRangeVersion ||
 			this.props.preamble.title !== prevProps.preamble.title ||
 			this.props.lintErrors.length !== prevProps.lintErrors.length ||
 			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
@@ -603,7 +603,8 @@ class Editor extends Component {
 			};
 			this.editor.executeEdits( 'my-source', [ op ] );
 		}
-		if ( this.props.elementRange !== prevProps.elementRange ) {
+		console.log( this.props.elementRangeVersion );
+		if ( this.props.elementRangeVersion !== prevProps.elementRangeVersion ) {
 			if ( this.props.elementRangeAction === 'delete' ) {
 				const id = { major: 1, minor: 1 };
 				const op = {
@@ -632,8 +633,7 @@ class Editor extends Component {
 			}
 			else if ( this.props.elementRangeAction === 'select' ) {
 				const range = this.props.elementRange;
-				const selection = new this.monaco.Selection( range.startLineNumber, Infinity, range.endLineNumber+1, 0 );
-				this.editor.setSelection( selection );
+				this.editor.setPosition({ lineNumber: range.startLineNumber, column: Infinity });
 			}
 			else {
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
@@ -971,7 +971,7 @@ class Editor extends Component {
 			debug( 'Insert snippet into editor...' );
 			const controller = this.editor.getContribution( 'snippetController2' );
 			if ( data.context === 'preview' ) {
-				data.value = EOL + data.value + EOL;
+				data.value = EOL + data.value;
 			}
 			controller.insert( data.value );
 			this.editor.focus();
