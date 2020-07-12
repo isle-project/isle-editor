@@ -2,7 +2,6 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { EOL } from 'os';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
