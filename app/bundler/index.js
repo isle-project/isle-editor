@@ -183,7 +183,9 @@ class LessonWrapper extends Component {
 					loader.style.animation = 'anim-fade-out 0.5s forwards';
 				}, ${max( loaderTimeout - 750, 0 )});
 				setTimeout(function onRemove() {
-					loader.parentElement.removeChild( loader );
+					if ( loader && loader.parentElement ) {
+						loader.parentElement.removeChild( loader );
+					}
 					document.body.style[ 'overflow-y' ] = 'auto';
 				}, ${loaderTimeout} );
 			}
