@@ -8,8 +8,11 @@ import NumberInput from 'components/input/number';
 import sample from '@stdlib/random/sample';
 import incrspace from '@stdlib/math/utils/incrspace';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isArray from '@stdlib/assert/is-array';
+import isFunction from '@stdlib/assert/is-function';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
+import noop from '@stdlib/utils/noop';
 
 
 // MAIN //
@@ -73,9 +76,21 @@ class DataSampler extends Component {
 			});
 		}
 		const key = `${sampleIds[ 0 ]}-${sampleIds[ 1 ]}-${sampleIds[ 2 ]}`;
+		let fun = noop;
+		if ( isFunction( this.props.children ) ) {
+			fun = this.props.children;
+		} else if ( isArray( this.props.children ) ) {
+			for ( let i = 0; i < this.props.children.length; i++ ) {
+				const child = this.props.children[ i ];
+				if ( isFunction( child ) ) {
+					fun = child;
+					break;
+				}
+			}
+		}
 		this.setState({
 			children: <div key={key} style={{ animation: 'roll-in-left 1s' }}>
-				{this.props.children( sampleData )}
+				{fun( sampleData )}
 			</div>
 		});
 	}
