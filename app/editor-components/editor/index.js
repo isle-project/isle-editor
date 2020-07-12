@@ -603,7 +603,6 @@ class Editor extends Component {
 			};
 			this.editor.executeEdits( 'my-source', [ op ] );
 		}
-		console.log( this.props.elementRangeVersion );
 		if ( this.props.elementRangeVersion !== prevProps.elementRangeVersion ) {
 			if ( this.props.elementRangeAction === 'delete' ) {
 				const id = { major: 1, minor: 1 };
@@ -979,11 +978,6 @@ class Editor extends Component {
 			debug( 'Open component configuration modal window...' );
 			this.toggleComponentConfigurator( data );
 		}
-	}
-
-	handleComponentInsertion = ( text ) => {
-		this.props.toggleComponentConfigurator();
-		this.props.pasteInsertion({ text });
 	}
 
 	translateLesson = async ( language ) => {
