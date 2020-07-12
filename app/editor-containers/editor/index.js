@@ -86,8 +86,14 @@ class App extends Component {
 		}
 	};
 
-	onChange = ( value ) => {
-		if ( this.debouncedChange ) {
+	onChange = ( value, immediateUpdate ) => {
+		if ( immediateUpdate ) {
+			this.handleCodeChange( value );
+			if ( this.debouncedChange ) {
+				this.debouncedChange.cancel();
+			}
+		}
+		else if ( this.debouncedChange ) {
 			this.debouncedChange( value );
 		} else {
 			this.debouncedChange = debounce( this.handleCodeChange, this.props.renderInterval );
@@ -343,7 +349,6 @@ class App extends Component {
 					currentMode={this.props.currentMode}
 					currentRole={this.props.currentRole}
 					onInsert={( text ) => {
-						console.log( 'PASTE INSERTION' );
 						this.props.pasteInsertion({ text });
 						this.props.toggleConfigurator( false );
 					}}
