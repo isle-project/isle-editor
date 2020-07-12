@@ -36,8 +36,12 @@ class DefaultSlider extends Component {
 	constructor( props ) {
 		super( props );
 		const childDivs = props.children && props.children.length > 0 ?
-			React.Children.map( props.children, child => <div> {child} </div> ) :
-			<div></div>;
+			React.Children.map( props.children, ( child ) => {
+				if ( child.type.displayName === 'Connect(LineButtons)' ) {
+					return null;
+				}
+				return ( <div> {child} </div> );
+			}) : <div></div>;
 		const settings = {
 			className: 'centered',
 			speed: 1000,
@@ -80,8 +84,12 @@ class DefaultSlider extends Component {
 	componentDidUpdate( prevProps ) {
 		if ( this.props.children !== prevProps.children ) {
 			let childDivs = this.props.children && this.props.children.length > 0 ?
-				React.Children.map( this.props.children, child => <div> {child} </div> ) :
-				<div></div>;
+				React.Children.map( this.props.children, ( child ) => {
+					if ( child.type.displayName === 'Connect(LineButtons)' ) {
+						return null;
+					}
+					return <div> {child} </div>;
+				}) : <div></div>;
 			this.setState({
 				childDivs
 			});

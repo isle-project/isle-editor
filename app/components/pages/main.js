@@ -11,6 +11,7 @@ import generateUID from 'utils/uid';
 import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import isElectron from 'utils/is-electron';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
@@ -137,7 +138,20 @@ class Pages extends Component {
 		if ( !this.props.children ) {
 			return null;
 		}
-		const nChildren = this.props.children.length;
+		let children;
+		if ( isElectron ) {
+			children = [];
+			React.Children.forEach( this.props.children, ( child ) => {
+				if (
+					child.type.displayName !== 'Connect(LineButtons)'
+				) {
+					children.push( child );
+				}
+			});
+		} else {
+			children = this.props.children;
+		}
+		const nChildren = children.length;
 		const header = <Card.Header>
 			<h3>{this.props.title}</h3>
 		</Card.Header>;
@@ -209,7 +223,7 @@ class Pages extends Component {
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				<Pagination className="my-pagination"
 					size={this.props.size}
-					items={this.props.children.length || 1}
+					items={children.length || 1}
 				>
 					<Tooltip
 						placement="top" tooltip="Go to previous page"
@@ -224,10 +238,10 @@ class Pages extends Component {
 					{items}
 					<Tooltip
 						placement="top" tooltip="Go to next page"
-						show={!this.props.disabled && ( this.state.activePage !== this.props.children.length )}
+						show={!this.props.disabled && ( this.state.activePage !== children.length )}
 					>
 						<Pagination.Next
-							disabled={this.props.disabled || ( this.state.activePage === this.props.children.length )}
+							disabled={this.props.disabled || ( this.state.activePage === children.length )}
 							key="next"
 							onClick={this.nextPage}
 						/>
@@ -242,14 +256,14 @@ class Pages extends Component {
 						...this.props.style
 					}}
 				>
-					{ isArray( this.props.children ) ? this.props.children.map( ( elem, idx ) => {
+					{ isArray( children ) ? children.map( ( elem, idx ) => {
 						return ( <div
 							className={this.state.activePage-1 !== idx ? 'invisible-page' : 'visible-page'}
 							key={idx}
 						>
 							{elem}
 						</div> );
-					}) : this.props.children }
+					}) : children }
 				</div>
 			</Card>
 		);
