@@ -61,14 +61,14 @@ class LineWrapper extends Component {
 				<span
 					role="button" tabIndex={0}
 					className="line-wrapper-delete fa fa-trash"
-					title="Delete element from lesson"
+					title={`Delete <${this.props.tagName} /> from lesson`}
 					onClick={this.deleteElement}
 					onKeyPress={this.deleteElement}
 				></span>
 				<span
 					role="button" tabIndex={0}
 					className="line-wrapper-open-configurator fa fa-cogs"
-					title="Click to open configurator menu"
+					title={`Click to open configurator menu for <${this.props.tagName} />`}
 					onClick={this.handleConfiguratorTrigger}
 					onKeyPress={this.handleConfiguratorTrigger}
 				></span>
