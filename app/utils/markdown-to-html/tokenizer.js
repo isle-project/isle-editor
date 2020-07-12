@@ -7,6 +7,7 @@ import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import trim from '@stdlib/string/trim';
+import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isLowercase from '@stdlib/assert/is-lowercase';
@@ -179,7 +180,7 @@ class Tokenizer {
 			char === '\n' &&
 			( nextChar === '\n' || nextChar === '\r' )
 		) {
-			this._current += `${EOL}<LineButtons startLineNumber={${this.lineNumber}} endLineNumber={${this.lineNumber}} />${EOL}`;
+			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
 		}
 		else if (
 			char === '<' &&
@@ -796,7 +797,7 @@ class Tokenizer {
 		debug( out );
 		debug( '---' );
 		if ( this.addEmptySpans ) {
-			out += `${EOL}<LineButtons startLineNumber={${this.lineNumber}} endLineNumber={${this.lineNumber}} />${EOL}`;
+			out += `${EOL}<LineButtons lineNumber={${this.lineNumber}} />${EOL}`;
 		}
 		return out;
 	}

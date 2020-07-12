@@ -20,21 +20,24 @@ class LineButtons extends Component {
 
 	jumpToLine = () => {
 		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.startLineNumber,
-			endLineNumber: this.props.endLineNumber,
+			startLineNumber: this.props.lineNumber,
+			endLineNumber: this.props.lineNumber,
 			elementRangeAction: 'reveal'
 		});
 	}
 
 	selectLine = () => {
 		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.startLineNumber,
-			endLineNumber: this.props.endLineNumber,
+			startLineNumber: this.props.lineNumber,
+			endLineNumber: this.props.lineNumber,
 			elementRangeAction: 'select'
 		});
 	}
 
 	render() {
+		if ( !this.props.show ) {
+			return null;
+		}
 		return (
 			<span className="line-buttons" >
 				<i
@@ -42,7 +45,7 @@ class LineButtons extends Component {
 					className="line-buttons-jump fas fa-arrow-circle-left"
 					onClick={this.jumpToLine}
 					onKeyPress={this.jumpToLine}
-					title="Center editor on this content"
+					title={`Center editor on line ${this.props.lineNumber}`}
 				></i>
 				<ContextMenuTrigger
 					id="editor-context-menu"
@@ -57,7 +60,7 @@ class LineButtons extends Component {
 						className="line-buttons-contextmenu fas fa-plus-circle"
 						onClick={this.selectLine}
 						onKeyPress={this.selectLine}
-						title="Click to insert component at this location"
+						title={`Click to insert component at line ${this.props.lineNumber}`}
 					></i>
 				</ContextMenuTrigger>
 			</span>
@@ -68,12 +71,13 @@ class LineButtons extends Component {
 
 // PROPERTIES //
 
-LineButtons.defaultProps = {
+LineButtons.propTypes = {
+	show: PropTypes.bool,
+	lineNumber: PropTypes.number.isRequired
 };
 
-LineButtons.propTypes = {
-	endLineNumber: PropTypes.number.isRequired,
-	startLineNumber: PropTypes.number.isRequired
+LineButtons.defaultProps = {
+	show: true
 };
 
 
