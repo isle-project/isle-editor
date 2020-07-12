@@ -49,6 +49,7 @@ const initialState = {
 	isScrolling: true,
 	hideToolbar: false,
 	elementRange: null,
+	elementRangeAction: null,
 	filePath,
 	fileName,
 	currentRole: 'user',
@@ -58,8 +59,7 @@ const initialState = {
 	fontSize: config.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
-	unsaved: false,
-	shouldTriggerConfigurator: false
+	unsaved: false
 };
 
 
@@ -133,7 +133,7 @@ export default function markdown( state = initialState, action ) {
 				startLineNumber: action.payload.startLineNumber,
 				endLineNumber: action.payload.endLineNumber
 			},
-			shouldTriggerConfigurator: action.payload.shouldTriggerConfigurator
+			elementRangeAction: action.payload.elementRangeAction
 		};
 	case types.TOGGLE_SCROLLING:
 		return {

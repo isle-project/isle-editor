@@ -76,13 +76,13 @@ export function resetError() {
 	};
 }
 
-export function jumpToElementInEditor({ startLineNumber, endLineNumber, shouldTriggerConfigurator }) {
+export function jumpToElementInEditor({ startLineNumber, endLineNumber, elementRangeAction }) {
 	return {
 		type: types.JUMP_TO_ELEMENT_IN_EDITOR,
 		payload: {
 			startLineNumber,
 			endLineNumber,
-			shouldTriggerConfigurator
+			elementRangeAction
 		}
 	};
 }

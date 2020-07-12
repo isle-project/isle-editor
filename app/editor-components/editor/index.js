@@ -603,32 +603,48 @@ class Editor extends Component {
 			this.editor.executeEdits( 'my-source', [ op ] );
 		}
 		if ( this.props.elementRange !== prevProps.elementRange ) {
-			this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
-			this.decorations = this.editor.deltaDecorations( this.decorations, [
-				{
-					range: this.props.elementRange,
-					options: {
-						isWholeLine: true,
-						className: 'highlighted_content',
-						glyphMarginClassName: 'configurator_glyph',
-						glyphMarginHoverMessage: {
-							value: 'Click on the cogs to open component configurator'
+			if ( this.props.elementRangeAction === 'delete' ) {
+				const id = { major: 1, minor: 1 };
+				const op = {
+					identifier: id,
+					range: {
+						...this.props.elementRange,
+						startColumn: 1,
+						endColumn: Infinity
+					},
+					text: '',
+					forceMoveMarkers: true
+				};
+				this.editor.executeEdits( 'my-source', [ op ] );
+			}
+			else {
+				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
+				this.decorations = this.editor.deltaDecorations( this.decorations, [
+					{
+						range: this.props.elementRange,
+						options: {
+							isWholeLine: true,
+							className: 'highlighted_content',
+							glyphMarginClassName: 'configurator_glyph',
+							glyphMarginHoverMessage: {
+								value: 'Click on the cogs to open component configurator'
+							}
+						}
+					},
+					{
+						range: {
+							startLineNumber: this.props.elementRange.startLineNumber,
+							endLineNumber: this.props.elementRange.startLineNumber
+						},
+						options: {
+							glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon'
 						}
 					}
-				},
-				{
-					range: {
-						startLineNumber: this.props.elementRange.startLineNumber,
-						endLineNumber: this.props.elementRange.startLineNumber
-					},
-					options: {
-						glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon'
-					}
+				]);
+				this.hasHighlight = true;
+				if ( this.props.elementRangeAction === 'trigger_configurator' ) {
+					this.triggerConfiguratorViaGlyph();
 				}
-			]);
-			this.hasHighlight = true;
-			if ( this.props.shouldTriggerConfigurator ) {
-				this.triggerConfiguratorViaGlyph();
 			}
 		}
 		if ( this.props.spellingErrors.length !== prevProps.spellingErrors.length ) {
@@ -1204,8 +1220,8 @@ Editor.propTypes = {
 	author: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	elementRange: PropTypes.object,
+	elementRangeAction: PropTypes.string.isRequired,
 	lintErrors: PropTypes.array.isRequired,
-	shouldTriggerConfigurator: PropTypes.bool.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired

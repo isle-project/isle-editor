@@ -309,7 +309,7 @@ class App extends Component {
 								pasteInsertion={this.props.pasteInsertion}
 								insertionText={this.props.insertionText}
 								clearInsertion={this.props.clearInsertion}
-								shouldTriggerConfigurator={this.props.shouldTriggerConfigurator}
+								elementRangeAction={this.props.elementRangeAction}
 								toggleConfigurator={this.props.toggleConfigurator}
 								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
 							/>
@@ -392,7 +392,7 @@ App.propTypes = {
 	renderInterval: PropTypes.number.isRequired,
 	saveLintErrors: PropTypes.func.isRequired,
 	saveSpellingErrors: PropTypes.func.isRequired,
-	shouldTriggerConfigurator: PropTypes.bool.isRequired,
+	elementRangeAction: PropTypes.string.isRequired,
 	toggleConfigurator: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired,
 	unsaved: PropTypes.bool.isRequired

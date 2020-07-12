@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import vex from 'vex-js';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
@@ -22,7 +23,7 @@ class LineWrapper extends Component {
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
-			shouldTriggerConfigurator: false
+			elementRangeAction: null
 		});
 	}
 
@@ -30,7 +31,22 @@ class LineWrapper extends Component {
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
-			shouldTriggerConfigurator: true
+			elementRangeAction: 'trigger_configurator'
+		});
+	}
+
+	deleteElement = () => {
+		vex.dialog.confirm({
+			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
+			callback: ( value ) => {
+				if ( value ) {
+					this.props.jumpToElementInEditor({
+						startLineNumber: this.props.startLineNumber,
+						endLineNumber: this.props.endLineNumber,
+						elementRangeAction: 'delete'
+					});
+				}
+			}
 		});
 	}
 
@@ -42,6 +58,13 @@ class LineWrapper extends Component {
 				onDoubleClick={this.handleDoubleClick}
 				title={`Double-click to highlight source code for <${this.props.tagName} />`}
 			>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-delete fa fa-trash"
+					title="Delete element from lesson"
+					onClick={this.deleteElement}
+					onKeyPress={this.deleteElement}
+				></span>
 				<span
 					role="button" tabIndex={0}
 					className="line-wrapper-open-configurator fa fa-cogs"
