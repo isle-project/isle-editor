@@ -4,6 +4,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { EOL } from 'os';
 import logger from 'debug';
 import markdownit from 'markdown-it';
 import debounce from 'lodash.debounce';
@@ -171,6 +172,9 @@ class ComponentConfigurator extends Component {
 		} else {
 			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
+		if ( regexpString === '(' ) {
+			regexpString += ')';
+		}
 		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s` );
 	}
 
@@ -269,8 +273,13 @@ class ComponentConfigurator extends Component {
 	}
 
 	handleClick = () => {
-		if ( this.state.value ) {
-			this.props.onInsert( this.state.value+'\n' );
+		const value = this.state.value;
+		if ( value ) {
+			if ( !endsWith( value, '\n' ) ) {
+				this.props.onInsert( value + EOL );
+			} else {
+				this.props.onInsert( value );
+			}
 		}
 	}
 
