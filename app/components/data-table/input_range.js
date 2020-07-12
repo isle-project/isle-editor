@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
+import NumberInput from 'components/input/number';
+import Button from 'react-bootstrap/Button';
 import round from '@stdlib/math/base/special/round';
 
 
@@ -14,7 +16,8 @@ class FilterInputRange extends Component {
 
 		this.state = {
 			currentValue: props.defaultValue,
-			defaultValue: props.defaultValue
+			defaultValue: props.defaultValue,
+			showRangeInput: false
 		};
 	}
 
@@ -29,8 +32,21 @@ class FilterInputRange extends Component {
 		return null;
 	}
 
+	showRangeInput = () => {
+		this.setState({
+			showRangeInput: true
+		});
+	}
+
+	hideRangeInput = () => {
+		this.setState({
+			showRangeInput: false
+		});
+	}
+
 	render() {
 		const { currentValue } = this.state;
+		console.log( currentValue );
 		return ( <div className="input-range-wrapper" >
 			<InputRange
 				allowSameValues
@@ -44,9 +60,54 @@ class FilterInputRange extends Component {
 					this.props.onChange( newValue );
 				}}
 				formatLabel={( val ) => {
-					return round( val );
+					return ( <span
+						role="button" tabIndex={0}
+						onKeyPress={this.showRangeInput}
+						onClick={this.showRangeInput}
+					>
+						{round( val )}
+					</span> );
 				}}
+				style={{ float: 'left' }}
 			/>
+			{ this.state.showRangeInput ? <div>
+				<NumberInput
+					inline value={currentValue.min}
+					min={this.props.minValue}
+					max={currentValue.max}
+					onChange={( v ) => {
+						const newValue = {
+							min: Number( v ),
+							max: this.state.currentValue.max
+						};
+						this.setState({
+							currentValue: newValue
+						});
+					}}
+					step={0.1}
+				/>
+				<NumberInput
+					inline value={currentValue.max}
+					min={currentValue.min}
+					max={this.props.maxValue}
+					onChange={( v ) => {
+						const newValue = {
+							min: this.state.currentValue.min,
+							max: Number( v )
+						};
+						this.setState({
+							currentValue: newValue
+						});
+					}}
+					step={0.1}
+				/>
+				<Button
+					variant="outline-secondary" size="sm"
+					onClick={this.hideRangeInput}
+				>
+					<i className="fas fa-times"></i>
+				</Button>
+			</div> : null}
 		</div> );
 	}
 }
