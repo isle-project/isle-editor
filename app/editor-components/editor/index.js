@@ -53,13 +53,14 @@ const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_DATE = /date: ([^\n]+)/;
 const RE_AUTHOR = /author: ([^\n]+)/;
-const RE_EMPTY_SPANS = /<span \/>/g;
+const RE_LINE_WRAPPER_OPENING = /<LineWrapper tagName="[a-zA-Z0-9]+" startLineNumber=\{\d+\} endLineNumber=\{\d+\} >/g;
+const RE_LINE_WRAPPER_CLOSING = /<\/LineWrapper>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
-const NUM_WRAPPER_LINES = 11;
+const NUM_WRAPPER_LINES = 8;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
 const RE_TAG_START = /<([a-z]+)/i;
 const MONACO_OPTIONS = {
@@ -96,7 +97,8 @@ const mapErrors = e => {
 	let bare = e.message.replace( RE_ANSI, '' );
 	bare = bare.replace( RE_STATUSBAR, '\n' );
 	bare = bare.replace( '</Lesson>', '' );
-	bare = bare.replace( RE_EMPTY_SPANS, '' );
+	bare = bare.replace( RE_LINE_WRAPPER_OPENING, '' );
+	bare = bare.replace( RE_LINE_WRAPPER_CLOSING, '' );
 	bare = bare.replace( RE_FRAGMENT, '' );
 	bare = bare.replace( '&lt;', '<' );
 	bare = bare.replace( '&gt;', '>' );

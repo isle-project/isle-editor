@@ -12,7 +12,8 @@ import Tooltip from 'components/tooltip';
 
 const RE_DIGIT_COLON = /\((\d+):/;
 const RE_LINE_DIGIT = /( *)(\d*) \|/g;
-const RE_EMPTY_SPANS = /<span \/>/g;
+const RE_LINE_WRAPPER_OPENING = /<LineWrapper tagName="[a-zA-Z0-9]+" startLineNumber=\{\d+\} endLineNumber=\{\d+\} >/g;
+const RE_LINE_WRAPPER_CLOSING = /<\/LineWrapper>/g;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
 const NUM_WRAPPER_LINES = 9;
@@ -33,7 +34,8 @@ const ErrorMessage = ( props ) => {
 		const spaces = repeat( ' ', p2.length - line.length );
 		return p1 + spaces + line + ' |';
 	});
-	msg = msg.replace( RE_EMPTY_SPANS, '' );
+	msg = msg.replace( RE_LINE_WRAPPER_OPENING, '' );
+	msg = msg.replace( RE_LINE_WRAPPER_CLOSING, '' );
 	msg = msg.replace( RE_FRAGMENT, '' );
 	msg = msg.replace( '&lt;', '<' );
 	msg = msg.replace( '&gt;', '>' );
