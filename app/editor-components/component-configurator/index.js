@@ -16,7 +16,7 @@ import ReactJson from 'react-json-view';
 import TextArea from 'components/input/text-area';
 import Checkbox from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
-import Playground from 'components/playground';
+import Playground from 'editor-components/playground';
 import Provider from 'components/provider';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
