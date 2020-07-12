@@ -99,7 +99,6 @@
 	"Pages": "components/pages",
 	"TextEditor": "components/text-editor",
 	"Panel": "components/panel",
-	"Playground": "components/playground",
 	"Plotly": "components/plotly",
 	"Polaroid": "components/polaroid",
 	"Preload": "components/preload",

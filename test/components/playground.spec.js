@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Provider from 'components/provider';
 import Session from 'session';
-import Playground from 'components/playground/main.js';
+import Playground from 'editor-components/playground/main.js';
 import Clock from 'components/clock';
 
 

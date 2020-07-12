@@ -110,7 +110,6 @@ const config = {
 			'./app/components/overlay-trigger',
 			'./app/components/pages',
 			'./app/components/panel',
-			'./app/components/playground',
 			'./app/components/plotly',
 			'./app/components/polaroid',
 			'./app/components/preload',

@@ -96,7 +96,6 @@ import NumberSurvey from 'components/number-survey';
 import OrderQuestion from 'components/order-question';
 import Pages from 'components/pages';
 import Panel from 'components/panel';
-import Playground from 'components/playground';
 import Plotly from 'components/plotly';
 import Polaroid from 'components/polaroid';
 import Provider from 'components/provider';
@@ -301,7 +300,6 @@ const scope = {
 	OrderQuestion,
 	Pages,
 	Panel,
-	Playground,
 	Plotly,
 	Polaroid,
 	Provider,

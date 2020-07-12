@@ -102,7 +102,6 @@ import NumberSurvey from 'components/number-survey';
 import OrderQuestion from 'components/order-question';
 import Pages from 'components/pages';
 import Panel from 'components/panel';
-import Playground from 'components/playground';
 import Plotly from 'components/plotly';
 import Polaroid from 'components/polaroid';
 import QRCode from 'components/qrcode';
@@ -259,7 +258,6 @@ const Components = {
 	OrderQuestion,
 	Pages,
 	Panel,
-	Playground,
 	Plotly,
 	Polaroid,
 	QRCode,

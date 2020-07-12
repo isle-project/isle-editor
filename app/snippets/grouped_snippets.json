@@ -99,10 +99,6 @@
       "value": "<MultiCards\n  values={[\n    { front: ${1:<div>First front</div>}, back: ${2:<div>First back</div>}},\n    { front: ${3:<div>Second front</div>}, back: ${4:<div>Second back</div>}}\n    ${5:}\n  ]}\n/>\n"
     },
     {
-      "name": "Playground",
-      "value": "<Playground\n  defaultCode={`${1:}`}\n  scope={{\n    ${2:}\n  }}\n/>\n"
-    },
-    {
       "name": "Preload",
       "value": "<Preload\n  image={${1:}} />\n"
     },
