@@ -76,36 +76,36 @@ class App extends Component {
 		});
 	}
 
-	onChange = ( value ) => {
-		debug( 'Editor text changed...' );
-		const handleChange = ( value ) => {
-			debug( 'Should handle change...' );
-			this.props.convertMarkdown( value );
-			this.spellcheckCode( value );
-			this.handlePreambleChange( value );
-			if ( this.props.insertionText ) {
-				this.props.clearInsertion();
-			}
-		};
+	handleCodeChange = ( value ) => {
+		debug( 'Should handle change...' );
+		this.props.convertMarkdown( value );
+		this.spellcheckCode( value );
+		this.handlePreambleChange( value );
+		if ( this.props.insertionText ) {
+			this.props.clearInsertion();
+		}
+	};
 
+	onChange = ( value ) => {
 		if ( this.debouncedChange ) {
 			this.debouncedChange( value );
 		} else {
-			this.debouncedChange = debounce( handleChange, this.props.renderInterval );
+			this.debouncedChange = debounce( this.handleCodeChange, this.props.renderInterval );
 			this.debouncedChange( value );
 		}
 	}
 
+	handleHorizontalSplitChange = ( size ) => {
+		this.setState({
+			horizontalSplit: size
+		});
+	};
+
 	handleHorizontalSplit = ( size ) => {
-		const handleChange = ( size ) => {
-			this.setState({
-				horizontalSplit: size
-			});
-		};
 		if ( this.debouncedHorizonalSplit ) {
 			this.debouncedHorizonalSplit( size );
 		} else {
-			this.debouncedHorizonalSplit = debounce( handleChange, 250 );
+			this.debouncedHorizonalSplit = debounce( this.handleHorizontalSplitChange, 250 );
 			this.debouncedHorizonalSplit( size );
 		}
 	}
@@ -312,7 +312,6 @@ class App extends Component {
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}
 								setConfiguratorComponent={this.props.setConfiguratorComponent}
-								pasteInsertion={this.props.pasteInsertion}
 								insertionText={this.props.insertionText}
 								clearInsertion={this.props.clearInsertion}
 								elementRangeAction={this.props.elementRangeAction}
@@ -344,6 +343,7 @@ class App extends Component {
 					currentMode={this.props.currentMode}
 					currentRole={this.props.currentRole}
 					onInsert={( text ) => {
+						console.log( 'PASTE INSERTION' );
 						this.props.pasteInsertion({ text });
 						this.props.toggleConfigurator( false );
 					}}
