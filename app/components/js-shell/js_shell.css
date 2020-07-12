@@ -1,6 +1,8 @@
 .js-shell {
 	position: relative;
-	width: 95%;
+	max-width: 1200px;
+	min-width: 400px;
+	padding: 5px;
 	height: auto;
 	margin: 0 auto;
 	font-family: monospace;
