@@ -168,10 +168,6 @@
 		"value": "<Panel>\n  ${1:}\n</Panel>\n"
 	},
 	{
-		"name": "Playground",
-		"value": "<Playground\n  defaultCode={`${1:}`}\n  scope={{\n    ${2:}\n  }}\n/>\n"
-	},
-	{
 		"name": "Plotly",
 		"value": "<Plotly\n  data={${1:data array}}\n  layout={${2:{}}}\n/>\n"
 	},
@@ -277,7 +273,7 @@
 	},
 	{
 		"name": "SelectQuestion",
-		"value": "<SelectQuestion\n  question=\"${1:}\"\n  solution={${2:}}\n  options={[\n    ${3:}\n  ]}\n/>\n"
+		"value": "<SelectQuestion\n  question=\"${1:}\"\n  solution={${2:0}}\n  options={[\n    ${3:}\n  ]}\n/>\n"
 	},
 	{
 		"name": "SelectQuestionMatrix",
