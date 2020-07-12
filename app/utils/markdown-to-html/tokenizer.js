@@ -797,7 +797,7 @@ class Tokenizer {
 		debug( out );
 		debug( '---' );
 		if ( this.addEmptySpans ) {
-			out += `${EOL}<LineButtons lineNumber={${this.lineNumber}} />${EOL}`;
+			out += `${EOL}<LineButtons lineNumber={${this.lineNumber+1}} />${EOL}`;
 		}
 		return out;
 	}
