@@ -6,8 +6,8 @@ import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
 import Loadable from 'components/internal/loadable';
-const AnimationHelp = Loadable( () => import( 'editor-components/editor/animation-help' ) );
-const MarkdownHelp = Loadable( () => import( 'editor-components/editor/markdown-help' ) );
+const AnimationHelp = Loadable( () => import( 'editor-components/components-contextmenu/animation-help' ) );
+const MarkdownHelp = Loadable( () => import( 'editor-components/components-contextmenu/markdown-help' ) );
 import { LANGUAGES } from 'constants/deepl';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
 
@@ -83,7 +83,7 @@ class EditorContextMenu extends Component {
 	render() {
 		return (
 			<Fragment>
-				<ContextMenu id="editor-context-menu" >
+				<ContextMenu id={this.props.id} >
 					<SubMenu title="Main">
 						{GROUPED_SNIPPETS.main.map( this.renderMenuItem )}
 					</SubMenu>

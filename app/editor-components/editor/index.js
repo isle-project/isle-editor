@@ -37,7 +37,7 @@ import today from 'utils/today';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
-const EditorContextMenu = Loadable( () => import( './context_menu.js' ) );
+const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
 import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
 import './editor.css';
@@ -617,6 +617,14 @@ class Editor extends Component {
 				};
 				this.editor.executeEdits( 'my-source', [ op ] );
 			}
+			else if ( this.props.elementRangeAction === 'reveal' ) {
+				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
+			}
+			else if ( this.props.elementRangeAction === 'select' ) {
+				const range = this.props.elementRange;
+				const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber+1, 0 );
+				this.editor.setSelection( selection );
+			}
 			else {
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
 				this.decorations = this.editor.deltaDecorations( this.decorations, [
@@ -1189,6 +1197,7 @@ class Editor extends Component {
 					</div>
 				</ContextMenuTrigger>
 				<EditorContextMenu
+					id="editor-context-menu"
 					onContextMenuClick={this.handleContextMenuClick}
 					onTranslate={this.translateLesson}
 				/>
