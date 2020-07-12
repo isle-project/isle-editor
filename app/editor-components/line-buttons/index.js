@@ -18,7 +18,8 @@ class LineButtons extends Component {
 		super( props );
 	}
 
-	jumpToLine = () => {
+	jumpToLine = ( event ) => {
+		event.stopPropagation();
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.lineNumber,
 			endLineNumber: this.props.lineNumber,
@@ -26,7 +27,8 @@ class LineButtons extends Component {
 		});
 	}
 
-	selectLine = () => {
+	selectLine = ( event ) => {
+		event.stopPropagation();
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.lineNumber,
 			endLineNumber: this.props.lineNumber,
