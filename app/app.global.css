@@ -87,7 +87,9 @@ h6 {
 }
 
 .Lesson {
-	overflow: hidden;
+	overflow-y: scroll !important;
+	overflow-x: auto !important;
+	z-index: 2;
 }
 
 .common_x97hsk.overflowScroll_eywtei {
