@@ -25,6 +25,7 @@ import './plot.css';
 * @property {Array} libraries - R libraries that should be loaded automatically when the input `code` is executed
 * @property {(string|Array<string>)} prependCode - `string` or an `array` of R code snippets to be prepended to the code stored in `code` when evaluating
 * @property {Object} meta - plot meta-information
+* @property {string} className - class name
 * @property {Function} onDone - callback invoked with `err`, `img` and `body` arguments once a plot is created
 */
 class RPlot extends Component {
@@ -95,8 +96,9 @@ class RPlot extends Component {
 				}}
 			>Drag Plot</div>;
 		}
+		const { className, ...rest } = this.props;
 		return (
-			<div className="rplot" style={{ minHeight: 128, cursor: 'pointer' }}>
+			<div className={`rplot ${className}`} style={{ minHeight: 128, cursor: 'pointer' }}>
 				<Spinner running={this.state.waiting} width={256} height={128} />
 				{ this.state.waiting ?
 					<span /> :
@@ -106,7 +108,7 @@ class RPlot extends Component {
 							src={this.state.plotURL}
 							body={this.state.plot}
 							title="R Plot"
-							{...this.props}
+							{...rest}
 						/>
 					</Fragment>
 				}
@@ -136,18 +138,20 @@ RPlot.propTypes = {
 		PropTypes.array
 	]),
 	meta: PropTypes.object,
+	className: PropTypes.string,
 	onDone: PropTypes.func
 };
 
 RPlot.defaultProps = {
 	code: '',
 	width: 600,
-	height: 350,
+	height: 'auto',
 	draggable: false,
 	fileType: 'png',
 	libraries: [],
 	prependCode: '',
 	meta: null,
+	className: '',
 	onDone() {}
 };
 

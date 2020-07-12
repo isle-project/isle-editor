@@ -1,6 +1,7 @@
 .isle-image {
 	cursor: zoom-in;
-	margin: 12px;
+	margin-top: 12px;
+	margin-bottom: 12px;
 }
 
 .isle-image:hover {
