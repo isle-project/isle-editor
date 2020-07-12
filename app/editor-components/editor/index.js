@@ -619,10 +619,19 @@ class Editor extends Component {
 			}
 			else if ( this.props.elementRangeAction === 'reveal' ) {
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
+				this.decorations = this.editor.deltaDecorations( this.decorations, [
+					{
+						range: this.props.elementRange,
+						options: {
+							isWholeLine: true,
+							className: 'highlighted_content'
+						}
+					}
+				]);
 			}
 			else if ( this.props.elementRangeAction === 'select' ) {
 				const range = this.props.elementRange;
-				const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber+1, 0 );
+				const selection = new this.monaco.Selection( range.startLineNumber, Infinity, range.endLineNumber+1, 0 );
 				this.editor.setSelection( selection );
 			}
 			else {
