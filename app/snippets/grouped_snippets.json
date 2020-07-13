@@ -107,10 +107,6 @@
       "value": "<Preload\n  image={${1:}} />\n"
     },
     {
-      "name": "Queue",
-      "value": "<Queue\n  id=\"${1:ID comes here...}\"\n/>\n"
-    },
-    {
       "name": "QRCode",
       "value": "<QRCode />"
     },

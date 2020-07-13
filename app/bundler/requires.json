@@ -105,7 +105,6 @@
 	"ProportionsInput": "components/input/proportions",
 	"ProportionsSurvey": "components/proportions-survey",
 	"QRCode": "components/qrcode",
-	"Queue": "components/queue",
 	"RandomVideo": "components/random-video",
 	"RangeQuestion": "components/range-question",
 	"Reaction": "components/reaction",

@@ -109,7 +109,6 @@ import StickyNote from 'components/sticky-note';
 import Preload from 'components/preload';
 import ProportionsSurvey from 'components/proportions-survey';
 import QuestionForm from 'components/question-form';
-import Queue from 'components/queue';
 import Quiz from 'components/quiz';
 import RandomVideo from 'components/random-video';
 import RangeQuestion from 'components/range-question';
@@ -265,7 +264,6 @@ const Components = {
 	Preload,
 	ProportionsSurvey,
 	QuestionForm,
-	Queue,
 	Quiz,
 	RandomVideo,
 	RangeQuestion,

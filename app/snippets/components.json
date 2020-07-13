@@ -244,10 +244,6 @@
 		"value": "<Quiz\n  questions={[${1:\n    { 'type': 'FreeTextQuestion', 'question': 'Enter questions here...' }\n  }]}\n  count={${2:0}}\n/>\n"
 	},
 	{
-		"name": "Queue",
-		"value": "<Queue\n  id=\"${1:ID comes here...}\"\n/>\n"
-	},
-	{
 		"name": "QRCode",
 		"value": "<QRCode />"
 	},
