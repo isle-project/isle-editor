@@ -44,13 +44,17 @@ const SCOPE_VALUES = [
 	'<number>'
 ];
 const HTML_ELEMENTS = {
+	'components/html/div': 'div',
 	'components/html/h1': 'h1',
 	'components/html/h2': 'h2',
 	'components/html/h3': 'h3',
 	'components/html/h4': 'h4',
 	'components/html/h5': 'h5',
 	'components/html/h6': 'h6',
-	'components/html/hr': 'hr'
+	'components/html/hr': 'hr',
+	'components/html/p': 'p',
+	'components/html/pre': 'pre',
+	'components/html/span': 'span'
 };
 const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS );
 

@@ -87,32 +87,8 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
-      "name": "Level 1 Heading (h1)",
-      "value": "<h1>${1:}</h1>"
-    },
-    {
-      "name": "Level 2 Heading (h2)",
-      "value": "<h2>${1:}</h2>"
-    },
-    {
-      "name": "Level 3 Heading (h3)",
-      "value": "<h3>${1:}</h3>"
-    },
-    {
-      "name": "Level 4 Heading (h4)",
-      "value": "<h4>${1:}</h4>"
-    },
-    {
-      "name": "Level 5 Heading (h5)",
-      "value": "<h5>${1:}</h5>"
-    },
-    {
-      "name": "Level 6 Heading (h6)",
-      "value": "<h6>${1:}</h6>"
-    },
-    {
-      "name": "Horizontal Rule (hr)",
-      "value": "<hr />"
+      "name": "blockquote",
+      "value": "<blockquote>\n  ${1:}\n</blockquote>"
     },
     {
       "name": "Joyride",
@@ -363,10 +339,70 @@
       "value": "<ProportionsSurvey\n  user\n  question=\"${1:Invest now!}\"\n  group=\"${2:Group Decision}\"\n  nElements ={${3:3}}\n  personalHeight={${4:300}}\n  colors = {${5:['red', 'blue', 'gold']}}\n  legends = {${6:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
     }
   ],
+  "basicHeadings": [
+    {
+      "name": "h1",
+      "value": "<h1>${1:}</h1>"
+    },
+    {
+      "name": "h2",
+      "value": "<h2>${1:}</h2>"
+    },
+    {
+      "name": "h3",
+      "value": "<h3>${1:}</h3>"
+    },
+    {
+      "name": "h4",
+      "value": "<h4>${1:}</h4>"
+    },
+    {
+      "name": "h5",
+      "value": "<h5>${1:}</h5>"
+    },
+    {
+      "name": "h6",
+      "value": "<h6>${1:}</h6>"
+    }
+  ],
+  "basic": [
+    {
+      "name": "hr",
+      "value": "<hr />"
+    },
+    {
+      "name": "div",
+      "value": "<div>\n  ${1:}\n</div>${2:}"
+    },
+    {
+      "name": "p",
+      "value": "<p>\n  ${1:}\n</p>${2:}"
+    },
+    {
+      "name": "pre",
+      "value": "<pre>\n${1:}\n</pre>${2:}"
+    },
+    {
+      "name": "span",
+      "value": "<span>${1:}</span>${2:}"
+    },
+    {
+      "name": "Image",
+      "value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
+    },
+    {
+      "name": "Link",
+      "value": "<Link href=\"${1:Enter URL}\" >${2:Link text}</Link>"
+    },
+    {
+      "name": "TeX",
+      "value": "<TeX raw=\"${1:}\" />\n"
+    }
+  ],
   "layout": [
     {
       "name": "Container",
-      "value": "<Container>\n  <Row>\n    <Col md={12}></Col>\n  </Row>\n</Container>\n"
+      "value": "<Container>\n  <Row>\n    <Col md={${1:6}}>\n      ${2:}\n    </Col>\n    <Col md={${3:6}}>\n      ${4:}\n    </Col>\n  </Row>\n</Container>\n${5:}"
     },
     {
       "name": "Nav justified",
@@ -399,20 +435,6 @@
     {
       "name": "Col",
       "value": "<Col md={${1:12}}>\n  ${2:}\n</Col>\n"
-    }
-  ],
-  "basic": [
-    {
-      "name": "Image",
-      "value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
-    },
-    {
-      "name": "Link",
-      "value": "<Link href=\"${1:Enter URL}\" >${2:Link text}</Link>"
-    },
-    {
-      "name": "TeX",
-      "value": "<TeX raw=\"${1:}\" />\n"
     }
   ],
   "services": [
@@ -585,16 +607,8 @@
       "value": "<Appear active={true} delay={${1:1000}}>\n  ${2:}\n</Appear>\n"
     },
     {
-      "name": "BlockQuote",
-      "value": "<BlockQuote>\n  <Quote>${1:}</Quote>\n  <Cite>${2:}</Cite>\n</BlockQuote>\n"
-    },
-    {
       "name": "Code",
       "value": "<Code>${1:}</Code>\n"
-    },
-    {
-      "name": "Cite",
-      "value": "<Cite>${1:}</Cite>\n"
     },
     {
       "name": "Fill",
@@ -607,10 +621,6 @@
     {
       "name": "Layout",
       "value": "<Layout>${1:}</Layout>\n"
-    },
-    {
-      "name": "Quote",
-      "value": "<Quote>${1:}</Quote>\n"
     },
     {
       "name": "Slide",

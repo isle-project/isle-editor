@@ -1,5 +1,6 @@
 {
 	"BASIC": [
+		"div",
 		"h1",
 		"h2",
 		"h3",
@@ -9,6 +10,9 @@
 		"hr",
 		"Image",
 		"Link",
+		"p",
+		"pre",
+		"span",
 		"TeX"
 	],
 	"DISPLAY": [

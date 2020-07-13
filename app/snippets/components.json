@@ -116,12 +116,28 @@
 		"value": "<hr />"
 	},
 	{
+		"name": "div",
+		"value": "<div>\n  ${1:}\n</div>${2:}"
+	},
+	{
+		"name": "p",
+		"value": "<p>\n  ${1:}\n</p>${2:}"
+	},
+	{
+		"name": "pre",
+		"value": "<pre>\n${1:}\n</pre>${2:}"
+	},
+	{
+		"name": "span",
+		"value": "<span>${1:}</span>${2:}"
+	},
+	{
 		"name": "blockquote",
 		"value": "<blockquote>\n  ${1:}\n</blockquote>"
 	},
 	{
 		"name": "Container",
-		"value": "<Container>\n  <Row>\n    <Col md={12}></Col>\n  </Row>\n</Container>\n"
+		"value": "<Container>\n  <Row>\n    <Col md={${1:6}}>\n      ${2:}\n    </Col>\n    <Col md={${3:6}}>\n      ${4:}\n    </Col>\n  </Row>\n</Container>\n${5:}"
 	},
 	{
 		"name": "IFrame",
