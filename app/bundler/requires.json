@@ -143,7 +143,6 @@
 	"Appear": "components/spectacle/appear",
 	"Code": "components/spectacle/code",
 	"CodePane": "components/spectacle/code-pane",
-	"CodeSlide": "components/spectacle/code-slide",
 	"Deck": "components/spectacle/deck",
 	"Fill": "components/spectacle/fill",
 	"Fit": "components/spectacle/fit",
