@@ -474,8 +474,12 @@ class Tokenizer {
 		let tagLevel = 0;
 		let inString = false;
 		let notSelfClosing = false;
+		let startLineNumber;
 		for ( let i = 0; i < inner.length; i++ ) {
 			const char = inner[ i ];
+			if ( char === '\n' ) {
+				this._jsxStartLine += 1;
+			}
 			const prevChar = inner[ i-1 ];
 			if ( innerJSXStartTag ) {
 				if ( char === '{' ) {
@@ -498,6 +502,7 @@ class Tokenizer {
 				const tag = tagName( inner, i+1 );
 				if ( !innerJSXStartTag && char === '<' && inner[ i+1 ] !== '/' && !inString ) {
 					innerJSXStartTag = tag;
+					startLineNumber = this._jsxStartLine;
 					notSelfClosing = false;
 					tagLevel += 1;
 					current = char;
@@ -519,7 +524,7 @@ class Tokenizer {
 							RE_INLINE_TAGS.test( innerJSXStartTag );
 						const tokenizer = new Tokenizer({
 							inline: isInner,
-							lineNumber: this.lineNumber,
+							lineNumber: startLineNumber,
 							addLineWrappers: this.addLineWrappers
 						});
 						this._current += tokenizer.parse( current );
@@ -533,7 +538,7 @@ class Tokenizer {
 						RE_INLINE_TAGS.test( innerJSXStartTag );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
-						lineNumber: this._startLineNumber,
+						lineNumber: startLineNumber,
 						addLineWrappers: this.addLineWrappers
 					});
 					this._current += tokenizer.parse( current );
@@ -660,10 +665,12 @@ class Tokenizer {
 		else if ( char === '{' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_OBJECT' );
 			this._state = IN_JSX_OBJECT;
+			this._jsxStartLine = this.lineNumber;
 		}
 		else if ( char === '[' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_ARRAY' );
 			this._state = IN_JSX_ARRAY;
+			this._jsxStartLine = this.lineNumber;
 		}
 		else if ( char === '<' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_EXPRESSION' );
