@@ -1233,6 +1233,7 @@ Editor.defaultProps = {
 	fontSize: 14,
 	insertionText: null,
 	elementRange: null,
+	elementRangeAction: null,
 	onChange: noop,
 	value: ''
 };
@@ -1248,7 +1249,7 @@ Editor.propTypes = {
 	author: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	elementRange: PropTypes.object,
-	elementRangeAction: PropTypes.string.isRequired,
+	elementRangeAction: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
 	splitPos: PropTypes.number.isRequired,

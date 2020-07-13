@@ -217,6 +217,7 @@ class App extends Component {
 			currentRole,
 			currentMode,
 			unsaved,
+			showLineButtons,
 			toggleLineButtons
 		} = this.props;
 
@@ -257,6 +258,7 @@ class App extends Component {
 						autoUpdatePreview={autoUpdatePreview}
 						changeAutoUpdate={changeAutoUpdate}
 						toggleLineButtons={toggleLineButtons}
+						showLineButtons={showLineButtons}
 						onPreview={() => {
 							let splitPos;
 							if ( this.state.splitPos === 1 ) {
@@ -371,6 +373,7 @@ class App extends Component {
 
 App.defaultProps = {
 	elementRange: null,
+	elementRangeAction: null,
 	error: null,
 	fileName: null,
 	filePath: null,
@@ -405,7 +408,7 @@ App.propTypes = {
 	saveLintErrors: PropTypes.func.isRequired,
 	saveSpellingErrors: PropTypes.func.isRequired,
 	toggleLineButtons: PropTypes.func.isRequired,
-	elementRangeAction: PropTypes.string.isRequired,
+	elementRangeAction: PropTypes.string,
 	elementRangeVersion: PropTypes.number.isRequired,
 	toggleConfigurator: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired,
