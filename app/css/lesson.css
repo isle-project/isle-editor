@@ -215,6 +215,10 @@ mark {
 	color: silver;
 }
 
+#App .Lesson {
+	min-height: 100vh;
+}
+
 .Lesson {
 	font-family: 'Open Sans', sans-serif;
 	background-color: #fffff8;
@@ -225,7 +229,6 @@ mark {
 	width: 100%;
 	height: 100%;
 	display: block;
-	min-height: 100vh;
 }
 
 .title {
