@@ -88,6 +88,10 @@
 		"value": "<Generator onGenerate={() => {\n  ${1:}\n}} ${2:} />\n"
 	},
 	{
+		"name": "hr",
+		"value": "<hr />"
+	},
+	{
 		"name": "Container",
 		"value": "<Container>\n  <Row>\n    <Col md={12}></Col>\n  </Row>\n</Container>\n"
 	},
