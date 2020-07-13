@@ -580,10 +580,6 @@
 		"value": "<Slide>\n  ${1:}\n</Slide>\n"
 	},
 	{
-		"name": "CodeSlide",
-		"value": "<CodeSlide\n  lang=\"${1:javascript}\"\n  code={`\n  ${2:}\n  `}\n  ranges={[\n    ${3:{ loc: [0, 1], note: 'Attach notes or title' }}\n  ]}\n/>\n"
-	},
-	{
 		"name": "Collapse",
 		"value": "<Collapse>\n  ${1:}\n</Collapse>\n"
 	},

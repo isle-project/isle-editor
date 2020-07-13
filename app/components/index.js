@@ -175,7 +175,6 @@ import VictoryWrapper from 'components/victory/wrapper';
 import Appear from 'components/spectacle/appear';
 import Code from 'components/spectacle/code';
 import CodePane from 'components/spectacle/code-pane';
-import CodeSlide from 'components/spectacle/code-slide';
 import Deck from 'components/spectacle/deck';
 import Fill from 'components/spectacle/fill';
 import Fit from 'components/spectacle/fit';
@@ -374,7 +373,6 @@ const scope = {
 	Appear,
 	Code,
 	CodePane,
-	CodeSlide,
 	Deck,
 	Fill,
 	Fit,
