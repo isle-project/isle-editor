@@ -62,7 +62,7 @@ const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 8;
 const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
-const RE_TAG_START = /<([a-z]+)/i;
+const RE_TAG_START = /<([a-z]+[0-9]*)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	glyphMargin: true,
