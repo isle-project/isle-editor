@@ -21,7 +21,7 @@ function Playground({ children, theme, transformCode, ...props }) {
 			code={children.replace(/\n$/, '')}
 			theme={theme}
 			transformCode={( code ) => {
-				return '<Provider session={session}><Lesson>'+code+'</Lesson></Provider>;';
+				return '<Provider session={session}><Lesson className="Lesson" >'+code+'</Lesson></Provider>;';
 			}}
 			{...props}>
 			<div
