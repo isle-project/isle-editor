@@ -4128,59 +4128,6 @@
     ],
     "description": "Card component."
   },
-  "Playground": {
-    "props": [
-      {
-        "name": "defaultValue",
-        "type": "string",
-        "description": "value indicating the default code",
-        "defaultValue": ""
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "description": "code value (for controlled component)",
-        "defaultValue": null
-      },
-      {
-        "name": "scope",
-        "type": "object",
-        "description": "scope object with variables / components which should be made available to the executed code; most often this is the name of the component you wish to display",
-        "defaultValue": {}
-      },
-      {
-        "name": "editorProps",
-        "type": "object",
-        "description": "properties passed down to code editor",
-        "defaultValue": {}
-      },
-      {
-        "name": "previewProps",
-        "type": "object",
-        "description": "properties passed down to the preview pane",
-        "defaultValue": {}
-      },
-      {
-        "name": "transformCode",
-        "type": "function",
-        "description": "function transforming the code before it is rendered",
-        "defaultValue": null
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback invoked with new code once code in editor changes",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      }
-    ],
-    "description": "Playground component to experiment with ISLE components."
-  },
   "Plotly": {
     "props": [
       {
@@ -4689,7 +4636,7 @@
         "name": "height",
         "type": "(number|string)",
         "description": "height of the plot (in px)",
-        "defaultValue": 350
+        "defaultValue": "auto"
       },
       {
         "name": "draggable",
@@ -4720,6 +4667,12 @@
         "type": "object",
         "description": "plot meta-information",
         "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
       },
       {
         "name": "onDone",
