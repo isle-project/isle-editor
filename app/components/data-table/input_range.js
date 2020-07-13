@@ -46,7 +46,6 @@ class FilterInputRange extends Component {
 
 	render() {
 		const { currentValue } = this.state;
-		console.log( currentValue );
 		return ( <div className="input-range-wrapper" >
 			<InputRange
 				allowSameValues
