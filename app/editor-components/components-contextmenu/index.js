@@ -87,6 +87,12 @@ class EditorContextMenu extends Component {
 					<SubMenu title="Main">
 						{GROUPED_SNIPPETS.main.map( this.renderMenuItem )}
 					</SubMenu>
+					<SubMenu title="Basic">
+						<SubMenu title="Headings">
+							{GROUPED_SNIPPETS.basicHeadings.map( this.renderMenuItem )}
+						</SubMenu>
+						{GROUPED_SNIPPETS.basic.map( this.renderMenuItem )}
+					</SubMenu>
 					<SubMenu title="Display">
 						{GROUPED_SNIPPETS.displayComponents.map( this.renderMenuItem )}
 					</SubMenu>

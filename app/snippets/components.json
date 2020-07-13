@@ -88,7 +88,31 @@
 		"value": "<Generator onGenerate={() => {\n  ${1:}\n}} ${2:} />\n"
 	},
 	{
-		"name": "hr",
+		"name": "Level 1 Heading (h1)",
+		"value": "<h1>${1:}</h1>"
+	},
+	{
+		"name": "Level 2 Heading (h2)",
+		"value": "<h2>${1:}</h2>"
+	},
+	{
+		"name": "Level 3 Heading (h3)",
+		"value": "<h3>${1:}</h3>"
+	},
+	{
+		"name": "Level 4 Heading (h4)",
+		"value": "<h4>${1:}</h4>"
+	},
+	{
+		"name": "Level 5 Heading (h5)",
+		"value": "<h5>${1:}</h5>"
+	},
+	{
+		"name": "Level 6 Heading (h6)",
+		"value": "<h6>${1:}</h6>"
+	},
+	{
+		"name": "Horizontal Rule (hr)",
 		"value": "<hr />"
 	},
 	{

@@ -15,6 +15,7 @@ const endsWith = require( '@stdlib/string/ends-with' );
 const noop = require( '@stdlib/utils/noop' );
 const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
+const merge = require( '@stdlib/utils/merge' );
 const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
 const PropTypes = require( './prop_types.js' );
 
@@ -25,7 +26,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
-const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export)/;
+const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
@@ -42,6 +43,16 @@ const SCOPE_VALUES = [
 	repeat( '\n', 15 ),
 	'<number>'
 ];
+const HTML_ELEMENTS = {
+	'components/html/h1': 'h1',
+	'components/html/h2': 'h2',
+	'components/html/h3': 'h3',
+	'components/html/h4': 'h4',
+	'components/html/h5': 'h5',
+	'components/html/h6': 'h6',
+	'components/html/hr': 'hr'
+};
+const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS );
 
 
 // FUNCTIONS //
@@ -64,7 +75,7 @@ function generateDefaultString( defaultValue ) {
 const DOCS = {};
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
-	const tagName = REQUIRES[ 'components/'+component ];
+	const tagName = REQUIRES_MAP[ 'components/'+component ];
 	DOCS[ tagName ] = {
 		props: []
 	};

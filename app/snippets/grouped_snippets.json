@@ -87,6 +87,34 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
+      "name": "Level 1 Heading (h1)",
+      "value": "<h1>${1:}</h1>"
+    },
+    {
+      "name": "Level 2 Heading (h2)",
+      "value": "<h2>${1:}</h2>"
+    },
+    {
+      "name": "Level 3 Heading (h3)",
+      "value": "<h3>${1:}</h3>"
+    },
+    {
+      "name": "Level 4 Heading (h4)",
+      "value": "<h4>${1:}</h4>"
+    },
+    {
+      "name": "Level 5 Heading (h5)",
+      "value": "<h5>${1:}</h5>"
+    },
+    {
+      "name": "Level 6 Heading (h6)",
+      "value": "<h6>${1:}</h6>"
+    },
+    {
+      "name": "Horizontal Rule (hr)",
+      "value": "<hr />"
+    },
+    {
       "name": "Joyride",
       "value": "<Joyride\n  run={${1:true}}\n  steps={${2:[]}}\n/>\n"
     },
@@ -191,24 +219,12 @@
       "value": "<Gate banner={${1:null}} ${2:user} ${3:owner} >\n  ${4:}\n</Gate>\n"
     },
     {
-      "name": "Image",
-      "value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
-    },
-    {
       "name": "LessonSubmit",
       "value": "<LessonSubmit />\n"
     },
     {
-      "name": "Link",
-      "value": "<Link href=\"${1:Enter URL}\" >${2:Link text}</Link>"
-    },
-    {
       "name": "Sketchpad",
       "value": "<Sketchpad />\n"
-    },
-    {
-      "name": "TeX",
-      "value": "<TeX raw=\"${1:}\" />\n"
     },
     {
       "name": "VideoLecture",
@@ -318,7 +334,7 @@
     },
     {
       "name": "SelectQuestion",
-      "value": "<SelectQuestion\n  question=\"${1:}\"\n  solution={${2:}}\n  options={[\n    ${3:}\n  ]}\n/>\n"
+      "value": "<SelectQuestion\n  question=\"${1:}\"\n  solution={${2:0}}\n  options={[\n    ${3:}\n  ]}\n/>\n"
     },
     {
       "name": "SelectQuestionMatrix",
@@ -383,6 +399,20 @@
     {
       "name": "Col",
       "value": "<Col md={${1:12}}>\n  ${2:}\n</Col>\n"
+    }
+  ],
+  "basic": [
+    {
+      "name": "Image",
+      "value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
+    },
+    {
+      "name": "Link",
+      "value": "<Link href=\"${1:Enter URL}\" >${2:Link text}</Link>"
+    },
+    {
+      "name": "TeX",
+      "value": "<TeX raw=\"${1:}\" />\n"
     }
   ],
   "services": [

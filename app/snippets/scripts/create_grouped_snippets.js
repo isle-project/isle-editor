@@ -11,6 +11,11 @@ const SNIPPETS = require( './../components.json' ); // FIXME: Avoid relative pat
 const GROUPINGS = require( './../groupings.json' );
 
 
+// VARIABLES //
+
+const RE_HEADING = /h\d/;
+
+
 // FUNCTIONS //
 
 function groupIndicator( v ) {
@@ -56,6 +61,12 @@ function groupIndicator( v ) {
 	}
 	if ( contains( GROUPINGS.MAIN, v.name ) ) {
 		return 'main';
+	}
+	if ( contains( GROUPINGS.BASIC, v.name ) ) {
+		if ( RE_HEADING.test( v.name ) ) {
+			return 'basicHeadings';
+		}
+		return 'basic';
 	}
 	return 'general';
 }

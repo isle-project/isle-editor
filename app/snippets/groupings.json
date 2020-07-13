@@ -1,4 +1,16 @@
 {
+	"BASIC": [
+		"h1",
+		"h2",
+		"h3",
+		"h4",
+		"h5",
+		"h6",
+		"hr",
+		"Image",
+		"Link",
+		"TeX"
+	],
 	"DISPLAY": [
 		"Accordion",
 		"Animated",
@@ -81,11 +93,8 @@
 		"DataTable",
 		"FeedbackButtons",
 		"Gate",
-		"Image",
-		"Link",
 		"TextEditor",
 		"Sketchpad",
-		"TeX",
 		"LessonSubmit",
 		"VideoLecture",
 		"VideoPlayer"

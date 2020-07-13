@@ -1423,6 +1423,125 @@
     ],
     "description": "A component for generating other components (e.g., automatically generated questions)."
   },
+  "h1": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 1 Section Heading."
+  },
+  "h2": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 2 Section Heading."
+  },
+  "h3": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 3 Section Heading."
+  },
+  "h4": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 4 Section Heading."
+  },
+  "h5": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 3 Section Heading."
+  },
+  "h6": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Level 3 Section Heading."
+  },
+  "hr": {
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Horizontal rule defining a thematic break in the document."
+  },
   "IFrame": {
     "props": [
       {
@@ -4414,7 +4533,7 @@
       {
         "name": "text",
         "type": "string",
-        "description": "text to encode in QR code",
+        "description": "text to encode in QR code (defaults to lesson URL if not set)",
         "defaultValue": null
       },
       {
@@ -4432,6 +4551,7 @@
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "defaultValue": {}
       }
     ],
