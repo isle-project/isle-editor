@@ -1,15 +1,17 @@
 ---
-id: hr
-title: hr
-sidebar_label: hr
+id: pre
+title: pre
+sidebar_label: pre
 ---
 
-Horizontal rule defining a thematic break in the document.
+Element displaying preformatted text.
 
 ## Example
 
 ```jsx live
-<hr />
+<pre>
+    mean(x) - mean function
+</pre>
 ```
 
 ## Options

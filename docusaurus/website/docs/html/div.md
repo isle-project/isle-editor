@@ -1,15 +1,17 @@
 ---
-id: hr
-title: hr
-sidebar_label: hr
+id: div
+title: div
+sidebar_label: div
 ---
 
-Horizontal rule defining a thematic break in the document.
+Generic container element.
 
 ## Example
 
 ```jsx live
-<hr />
+<div>
+    Use a div as a generic container for other content.
+</div>
 ```
 
 ## Options

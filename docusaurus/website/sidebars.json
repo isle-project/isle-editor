@@ -22,12 +22,6 @@
     ],
     "Components": [
       {
-        "Basic Components": [
-          "html/hr",
-          "image",
-          "link",
-          "tex"
-        ],
         "Main Components": [
           "data-explorer",
           "data-table",
@@ -38,6 +32,25 @@
           "lesson-submit",
           "video-lecture",
           "video-player"
+        ],
+        "Basic Components": [
+          "image",
+          "link",
+          "tex",
+          "html/blockquote",
+          "html/div",
+          "html/hr",
+          "html/p",
+          "html/pre",
+          "html/span",
+          { "Headings": [
+            "html/h1",
+            "html/h2",
+            "html/h3",
+            "html/h4",
+            "html/h5",
+            "html/h6"
+          ]}
         ],
         "Question Components": [
           "free-text-question",

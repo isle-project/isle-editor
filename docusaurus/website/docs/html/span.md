@@ -1,15 +1,15 @@
 ---
-id: hr
-title: hr
-sidebar_label: hr
+id: span
+title: span
+sidebar_label: span
 ---
 
-Horizontal rule defining a thematic break in the document.
+Generic inline container element.
 
 ## Example
 
 ```jsx live
-<hr />
+<span>inline text wrapped by span tag</span>
 ```
 
 ## Options
