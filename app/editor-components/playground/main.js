@@ -85,7 +85,9 @@ class Playground extends Component {
 			code = this.props.transformCode( code );
 		}
 		return `<Provider session={session}>
-			<Lesson className="${session.config.type === 'presentation' ? 'Presentation' : 'Lesson'}" >${code}</Lesson>
+			<Lesson
+				className="${session.config.type === 'presentation' ? 'Presentation' : 'Lesson'}"
+			>${code}</Lesson>
 		</Provider>`;
 	}
 
@@ -115,7 +117,10 @@ class Playground extends Component {
 					</div>
 					<LivePreview
 						className="playground-live-preview"
-						style={styles.livePreview}
+						style={{
+							...styles.livePreview,
+							overflowY: 'hidden'
+						}}
 						{...this.props.previewProps}
 					/>
 					<LiveError
