@@ -16,9 +16,10 @@ const debug = logger( 'isle:qrcode' );
 /**
 * QR Code.
 *
-* @property {string} text - text to encode in QR code
+* @property {string} text - text to encode in QR code (defaults to lesson URL if not set)
 * @property {number} scale - number of pixels per modules (black dots)
 * @property {boolean} center - boolean controlling whether to center the QR code
+* @property {Object} style - CSS inline styles
 */
 class Qrcode extends Component {
 	constructor( props, context ) {

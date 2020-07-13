@@ -155,7 +155,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	} catch ( err ) {
 		debug( `Documentation for ${component} does not exist` );
 	}
-	debug( '\n\n' );
+	debug( '\n' );
 }
 
 console.log( 'Write `documentation.json` file...' );

@@ -22,16 +22,19 @@
     ],
     "Components": [
       {
+        "Basic Components": [
+          "html/hr",
+          "image",
+          "link",
+          "tex"
+        ],
         "Main Components": [
           "data-explorer",
           "data-table",
           "feedback",
           "gate",
-          "image",
-          "link",
           "text-editor",
           "sketchpad",
-          "tex",
           "lesson-submit",
           "video-lecture",
           "video-player"
@@ -99,6 +102,7 @@
           "flippable-card",
           "js-shell",
           "likert-scale",
+          "qrcode",
           "recorder",
           "sortable-tree"
         ],
