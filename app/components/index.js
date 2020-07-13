@@ -175,8 +175,6 @@ import VictoryZoomContainer from 'components/victory/zoom-container';
 import VictoryWrapper from 'components/victory/wrapper';
 
 import Appear from 'components/spectacle/appear';
-import BlockQuote from 'components/spectacle/block-quote';
-import Cite from 'components/spectacle/cite';
 import Code from 'components/spectacle/code';
 import CodePane from 'components/spectacle/code-pane';
 import CodeSlide from 'components/spectacle/code-slide';
@@ -189,7 +187,6 @@ import Layout from 'components/spectacle/layout';
 import ListItem from 'components/spectacle/list-item';
 import List from 'components/spectacle/list';
 import Notes from 'components/spectacle/notes';
-import Quote from 'components/spectacle/quote';
 import Slide from 'components/spectacle/slide';
 import STable from 'components/spectacle/table';
 import TableRow from 'components/spectacle/table-row';
@@ -379,8 +376,6 @@ const scope = {
 	VictoryWrapper,
 
 	Appear,
-	BlockQuote,
-	Cite,
 	Code,
 	CodePane,
 	CodeSlide,
@@ -393,7 +388,6 @@ const scope = {
 	ListItem,
 	List,
 	Notes,
-	Quote,
 	Slide,
 	STable,
 	TableRow,
