@@ -18,7 +18,6 @@ import Animated from 'components/animated';
 import Background from 'components/background';
 import BeaconTooltip from 'components/beacon-tooltip';
 import Bibliography from 'components/bibliography';
-import Calculator from 'components/calculator';
 import Citation from 'components/citation';
 import Clock from 'components/clock';
 import Collapse from 'components/collapse';
@@ -218,7 +217,6 @@ const scope = {
 	Background,
 	BeaconTooltip,
 	Bibliography,
-	Calculator,
 	Citation,
 	Clock,
 	Collapse,

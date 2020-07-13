@@ -8,7 +8,6 @@
 	"Bibliography": "components/bibliography",
 	"Button": "react-bootstrap/Button",
 	"Card": "react-bootstrap/Card",
-	"Calculator": "components/calculator",
 	"CheckboxInput": "components/input/checkbox",
 	"Citation": "components/citation",
 	"Clock": "components/clock",
