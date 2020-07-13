@@ -1,5 +1,6 @@
 // MODULES //
 
+import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
@@ -7,6 +8,7 @@ import objectKeys from '@stdlib/utils/keys';
 
 // VARIABLES //
 
+const debug = logger( 'isle:transform-to-presentation' );
 const RE_HEADING = /<h([0-5])([^>]*)>(.*?)<\/h[0-5]>/g;
 const RE_PARAGRAPH = /<p([^>]*)>([\s\S]*?)<\/p>/g;
 const RE_TABLE = /<table([^>]*)>([\s\S]*?)<\/table>/g;
@@ -79,6 +81,10 @@ function transformToPresentation( code, preamble ) {
 	const lastPos = pres.lastIndexOf( '</Slide>' );
 	const replacement = '</Slide></Deck>';
 	pres = pres.substring( 0, lastPos ) + replacement + pres.substring( lastPos+'</Slide>'.length );
+	debug( 'Transformed lesson code: ' );
+	debug( '------------------' );
+	debug( pres );
+	debug( '------------------' );
 	return pres;
 }
 
