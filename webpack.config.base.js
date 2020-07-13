@@ -15,7 +15,6 @@ const EXTERNALS = [
 	'archiver',
 	'camelcase',
 	'child_process',
-	'component-raf',
 	'compute-chunkify',
 	'compute-mean',
 	'compute-stdev',
