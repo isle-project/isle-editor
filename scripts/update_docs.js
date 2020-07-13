@@ -44,6 +44,7 @@ const SCOPE_VALUES = [
 	'<number>'
 ];
 const HTML_ELEMENTS = {
+	'components/html/blockquote': 'blockquote',
 	'components/html/div': 'div',
 	'components/html/h1': 'h1',
 	'components/html/h2': 'h2',
