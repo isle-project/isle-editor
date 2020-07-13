@@ -62,7 +62,7 @@ class Wrapper extends Component {
 
 	render() {
 		return ( <Card
-			{...omit( this.props, [ 'footerStyle', 'bodyStyle', 'onHide', 'minimizable', 'hideTooltip', 'fullscreen', 't' ] )}
+			{...omit( this.props, [ 'footerStyle', 'bodyStyle', 'onHide', 'minimizable', 'hideTooltip', 'fullscreen', 't', 'tReady' ] )}
 			className={`panel ${this.props.className}`}
 			style={{
 				height: this.state.minimized ? '53px' : void 0,
