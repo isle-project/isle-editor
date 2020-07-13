@@ -608,7 +608,8 @@ mark {
 }
 
 .Lesson > blockquote,
-.Lesson > .line-wrapper > blockquote {
+.Lesson > .line-wrapper > blockquote,
+.Presentation blockquote {
 	font-size: 1.4em;
 	width: 60%;
 	max-width: 900px;
@@ -622,25 +623,27 @@ mark {
 }
 
 .Lesson > blockquote::before,
-.Lesson > .line-wrapper > blockquote::before {
+.Lesson > .line-wrapper > blockquote::before,
+.Presentation blockquote::before {
 	font-family: Arial;
 	content: "\201C";
 	color: var(--primaryhalf);
 	font-size: 4em;
 	position: absolute;
 	left: 10px;
-	top: -10px;
+	top: -0.2em;
 }
 
 .Lesson > blockquote::after,
-.Lesson > .line-wrapper > blockquote::after {
+.Lesson > .line-wrapper > blockquote::after,
+.Presentation blockquote::after {
 	font-family: Arial;
 	content: "\201D";
 	color: var(--primaryhalf);
 	font-size: 4em;
 	position: absolute;
 	right: 20px;
-	bottom: -10px;
+	bottom: -0.4em;
 }
 
 .Lesson > .alert,
