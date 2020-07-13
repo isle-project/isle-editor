@@ -1252,7 +1252,10 @@ Editor.propTypes = {
 	elementRangeAction: PropTypes.string,
 	lintErrors: PropTypes.array.isRequired,
 	spellingErrors: PropTypes.array.isRequired,
-	splitPos: PropTypes.number.isRequired,
+	splitPos: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]).isRequired,
 	height: PropTypes.number.isRequired
 };
 
