@@ -18,7 +18,6 @@ import SessionContext from 'session/context.js';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
-import noop from '@stdlib/utils/noop';
 import evaluate from './shunting_yard.js';
 import './load_translations.js';
 import './calculator.css';
@@ -52,6 +51,7 @@ class Calculator extends Component {
 		this.state = {
 			visible: '0',
 			showFull: false,
+			useDegrees: false,
 			answer: 0
 		};
 	}
@@ -174,6 +174,12 @@ class Calculator extends Component {
 		});
 	}
 
+	toggleDegrees = () => {
+		this.setState({
+			useDegrees: !this.state.useDegrees
+		});
+	}
+
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
 			this.solveEq( event );
@@ -221,7 +227,7 @@ class Calculator extends Component {
 
 		let keys = visible.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
-		const val = String( evaluate( keys ) );
+		const val = String( evaluate( keys, this.state.useDegrees ) );
 		this.setState({
 			visible: val,
 			answer: val
@@ -302,6 +308,7 @@ class Calculator extends Component {
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
 								</Row>
 								<Row>
+									<Button variant="info" className="input-button-full" onClick={this.toggleDegrees} >{this.state.useDegrees ? 'DEG' : 'RAD'}</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( 'e' )} >e</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearLast} >CE</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearEquation} >AC</Button>
@@ -356,7 +363,7 @@ class Calculator extends Component {
 									<Button variant="light" className="input-button-small" onClick={this.onClickFactory('(')} >(</Button>
 									<Button variant="light" className="input-button-small" onClick={this.onClickFactory(')')} >)</Button>
 									<CopyToClipboard text={this.state.answer}>
-										<Button variant="warning" className="input-button-small" onClick={noop} >{this.props.t( 'copy' )}</Button>
+										<Button variant="warning" className="input-button-small" onClick={this.sendCopyToClipboardNotification} >{this.props.t( 'copy' )}</Button>
 									</CopyToClipboard>
 									<Button variant="warning" disabled={!this.props.expandable} className="input-button-small" onClick={this.toggleFullDisplay} >{this.props.t( 'expand' )}</Button>
 								</Row>

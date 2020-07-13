@@ -16,6 +16,8 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import log10 from '@stdlib/math/base/special/log10';
 import choose from '@stdlib/math/base/special/binomcoef';
 import factorial from '@stdlib/math/base/special/factorial';
+import deg2rad from '@stdlib/math/base/special/deg2rad';
+import roundn from '@stdlib/math/base/special/roundn';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import stack from '@stdlib/utils/stack';
 import PI from '@stdlib/constants/math/float64-pi';
@@ -62,6 +64,7 @@ const CONSTANTS = {
 };
 const FUNCTION_NAMES = keys( FUNCTIONS );
 const OPERATOR_NAMES = keys( OPERATORS );
+const TRIG_FUNCTIONS = [ 'sin', 'cos', 'tan' ];
 
 
 // FUNCTIONS //
@@ -152,7 +155,7 @@ function toRPN( arr ) {
 
 // MAIN //
 
-function evaluate( arr ) {
+function evaluate( arr, useDegrees ) {
 	arr = toRPN( arr );
 	if ( isString( arr ) ) {
 		return arr;
@@ -161,7 +164,14 @@ function evaluate( arr ) {
 	for ( let i = 0, l = arr.length; i < l; i++ ) {
 		const op = OPERATORS[ arr[i] ] || FUNCTIONS[ arr[i] ];
 		if ( op ) {
-			s.push( op.method.apply( this, s.splice( -op.params ) ) );
+			if ( useDegrees && TRIG_FUNCTIONS.includes( arr[ i ] ) ) {
+				const rad = deg2rad.apply( this, s.splice( -op.params ) );
+				let val = op.method( rad );
+				val = roundn( val, -15 );
+				s.push( val );
+			} else {
+				s.push( op.method.apply( this, s.splice( -op.params ) ) );
+			}
 		} else {
 			s.push( parseFloat( arr[ i ] ) );
 		}
