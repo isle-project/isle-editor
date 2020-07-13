@@ -74,7 +74,7 @@
     "start-main-dev": "cross-env START_HOT=1 NODE_ENV=development electron -r @babel/register ./main.development.js",
     "start-renderer-dev": "cross-env NODE_ENV=development node --max-old-space-size=16384 --trace-warnings -r @babel/register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=webpack.config.development.js --mode=development",
     "test": "jest",
-    "update-docs": "cross-env node ./scripts/update_docs.js && node ./scripts/update_versions.js",
+    "update-docs": "cross-env node ./scripts/update_docs.js && node ./scripts/update_versions.js && node ./app/snippets/scripts/create_grouped_snippets.js",
     "update-extra-resources": "cross-env node ./scripts/update_extra_resources.js",
     "version": "npm run update-docs && npm run update-extra-resources && git add -A",
     "postversion": "git push && git push --tags"
@@ -130,8 +130,6 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "codemirror": "^5.55.0",
-    "component-raf": "^1.2.0",
-    "component-tween": "^1.2.0",
     "compute-argmax": "^1.0.0",
     "compute-chebyshev-distance": "^1.0.2",
     "compute-chunkify": "0.0.0",
