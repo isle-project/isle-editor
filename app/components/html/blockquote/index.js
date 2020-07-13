@@ -15,11 +15,13 @@ const blockquote = ( props ) => {
 // PROPERTIES //
 
 blockquote.defaultProps = {
+	cite: null,
 	className: '',
 	style: {}
 };
 
 blockquote.propTypes = {
+	cite: PropTypes.string,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
@@ -30,6 +32,7 @@ blockquote.propTypes = {
 /**
 * Component displaying an extended quotation.
 *
+* @param {string} cite - source for the quote
 * @param {string} className - class name
 * @param {Object} style - CSS inline styles
 */

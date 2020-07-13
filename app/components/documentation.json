@@ -1388,6 +1388,29 @@
     ],
     "description": "A component for generating other components (e.g., automatically generated questions)."
   },
+  "blockquote": {
+    "props": [
+      {
+        "name": "cite",
+        "type": "string",
+        "description": "source for the quote",
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      }
+    ],
+    "description": "Component displaying an extended quotation."
+  },
   "div": {
     "props": [
       {
