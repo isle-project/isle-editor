@@ -83,7 +83,7 @@ class Header extends Component {
 						</OverlayTrigger>
 						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
 					</span>
-					<ButtonGroup className="unselectable" style={{ zIndex: 1001 }} size="sm" >
+					<ButtonGroup className="unselectable" style={{ zIndex: 100 }} size="sm" >
 						<CheckboxInput
 							value={this.props.showLineButtons}
 							onChange={this.props.toggleLineButtons}
