@@ -80,11 +80,12 @@ class Playground extends Component {
 	}
 
 	transformCode = ( code ) => {
+		const session = this.context;
 		if ( this.props.transformCode ) {
 			code = this.props.transformCode( code );
 		}
 		return `<Provider session={session}>
-			<Lesson>${code}</Lesson>
+			<Lesson className="${session.config.type === 'presentation' ? 'Presentation' : 'Lesson'}" >${code}</Lesson>
 		</Provider>`;
 	}
 
