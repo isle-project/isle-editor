@@ -149,6 +149,7 @@ class Tokenizer {
 			this.inline = opts.inline ? true : false;
 			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
 			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
+			this.outer = this.lineNumber <= 2;
 			this.addLineWrappers = opts.addLineWrappers;
 		}
 	}
@@ -795,7 +796,7 @@ class Tokenizer {
 		debug( '---' );
 		debug( out );
 		debug( '---' );
-		if ( this.addEmptySpans ) {
+		if ( this.addEmptySpans && this.outer ) {
 			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber+1}} />${EOL}`;
 		}
 		return out;
