@@ -10,10 +10,10 @@ import isArray from '@stdlib/assert/is-array';
 import generateUID from 'utils/uid';
 import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
-import LineButtons from 'editor-components/line-buttons';
 import SessionContext from 'session/context.js';
 import isElectron from 'utils/is-electron';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from 'constants/actions.js';
+import isLineButtons from 'utils/is-line-buttons';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
 import './pages.css';
@@ -143,10 +143,7 @@ class Pages extends Component {
 		if ( isElectron ) {
 			children = [];
 			React.Children.forEach( this.props.children, ( child ) => {
-				console.log( child.type.name );
-				if (
-					child.type !== LineButtons
-				) {
+				if ( !isLineButtons( child ) ) {
 					children.push( child );
 				}
 			});

@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import isArray from '@stdlib/assert/is-array';
 import startsWith from '@stdlib/string/starts-with';
-import LineButtons from 'editor-components/line-buttons';
+import isLineButtons from 'utils/is-line-buttons';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './load_translations.js';
@@ -38,7 +38,7 @@ class DefaultSlider extends Component {
 		super( props );
 		const childDivs = props.children && props.children.length > 0 ?
 			React.Children.map( props.children, ( child ) => {
-				if ( child.type === LineButtons ) {
+				if ( isLineButtons( child ) ) {
 					return null;
 				}
 				return ( <div> {child} </div> );
