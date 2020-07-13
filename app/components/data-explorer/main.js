@@ -268,6 +268,12 @@ class DataExplorer extends Component {
 					debug( err );
 				});
 		}
+		if ( session.currentUserActions ) {
+			const actions = session.currentUserActions[ this.id ];
+			if ( this.props.data && isObjectArray( actions ) ) {
+				this.restoreTransformations( actions );
+			}
+		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				const currentUserActions = value;
@@ -292,10 +298,12 @@ class DataExplorer extends Component {
 
 	restoreTransformations = ( actions ) => {
 		let state = this.state;
+		console.log( 'Restoring transformations...' );
 		for ( let i = actions.length - 1; i >= 0; i-- ) {
 			const action = actions[ i ];
 			switch ( action.type ) {
 				case DATA_EXPLORER_VARIABLE_TRANSFORMER:
+					console.log( `Should add transformed variable ${action.value.name}` );
 					if ( !hasProp( this.props.data, action.value.name ) ) {
 						const values = valuesFromFormula( action.value.code, state.data );
 						state = this.transformVariable( action.value.name, values, state );
@@ -303,6 +311,7 @@ class DataExplorer extends Component {
 				break;
 				case DATA_EXPLORER_BIN_TRANSFORMER: {
 					const { name, variable, breaks, catNames } = action.value;
+					console.log( `Should add binned variable ${name}` );
 					if ( !hasProp( this.props.data, name ) ) {
 						const rawData = state.data[ variable ];
 						const values = retrieveBinnedValues( rawData, catNames, breaks );
@@ -312,6 +321,7 @@ class DataExplorer extends Component {
 				break;
 				case DATA_EXPLORER_CAT_TRANSFORMER: {
 					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
+					console.log( `Should add recoded variable ${name}` );
 					if ( !hasProp( this.props.data, name ) ) {
 						if ( state.data[ firstVar ]) {
 							const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
