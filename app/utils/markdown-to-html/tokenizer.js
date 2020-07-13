@@ -149,7 +149,7 @@ class Tokenizer {
 			this.inline = opts.inline ? true : false;
 			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
 			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
-			this.outer = this.lineNumber <= 2;
+			this.outer = opts.outer ? true : false;
 			this.addLineWrappers = opts.addLineWrappers;
 		}
 	}

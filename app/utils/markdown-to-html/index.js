@@ -19,7 +19,8 @@ function toMarkdown( str, { filePath, addEmptySpans = false, lineNumber = 1, add
 	const tokenizer = new Tokenizer({
 		addEmptySpans,
 		lineNumber: lineNumber + 1,
-		addLineWrappers: addLineWrappers
+		addLineWrappers: addLineWrappers,
+		outer: true
 	});
 
 	// Make all relative file paths in code absolute to path of source file:
