@@ -162,41 +162,6 @@
     ],
     "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."
   },
-  "Calculator": {
-    "props": [
-      {
-        "name": "expandable",
-        "type": "boolean",
-        "description": "controls whether calculator is expandable",
-        "defaultValue": true
-      },
-      {
-        "name": "show",
-        "type": "boolean",
-        "description": "controls whether calculator is shown",
-        "defaultValue": true
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onHide",
-        "type": "function",
-        "description": "callback invoked when the close button is clicked",
-        "defaultValue": null
-      }
-    ],
-    "description": "A calculator with a base and expanded (scientific) mode."
-  },
   "undefined": {
     "props": [
       {
@@ -4642,36 +4607,6 @@
     ],
     "description": "A form component combining different question components together with a single submission button."
   },
-  "Queue": {
-    "props": [
-      {
-        "name": "draggable",
-        "type": "boolean",
-        "defaultValue": true
-      },
-      {
-        "name": "show",
-        "type": "boolean",
-        "defaultValue": true
-      },
-      {
-        "name": "onHide",
-        "type": "function",
-        "defaultValue": "function onHide() {}"
-      },
-      {
-        "name": "onQueueSize",
-        "type": "function",
-        "defaultValue": "function onQueueSize() {}"
-      },
-      {
-        "name": "onNewQuestion",
-        "type": "function",
-        "defaultValue": "function onNewQuestion() {}"
-      }
-    ],
-    "description": "Description is missing."
-  },
   "Quiz": {
     "props": [
       {
@@ -5910,32 +5845,6 @@
       }
     ],
     "description": "Component displaying a styled, highlighted code preview."
-  },
-  "CodeSlide": {
-    "props": [
-      {
-        "name": "lang",
-        "type": "string (required)",
-        "description": "language identifier"
-      },
-      {
-        "name": "code",
-        "type": "string (required)",
-        "description": "program code"
-      },
-      {
-        "name": "ranges",
-        "type": "array<{loc,title,note}> (required)",
-        "description": "array of objects with `loc` (for line of code), `title`, and `note` properties"
-      },
-      {
-        "name": "showLineNumbers",
-        "type": "boolean",
-        "description": "controls whether to display line numbers",
-        "defaultValue": true
-      }
-    ],
-    "description": "Adapted from spectacle-code-slide@0.5.2 (MIT Licensed) https://github.com/jamiebuilds/spectacle-code-slide\n/\n\n// MODULES //\n\nimport React, { Component } from 'react';\nimport PropTypes from 'prop-types';\nimport logger from 'debug';\nimport { Slide } from 'spectacle';\nimport hljs from 'highlight.js';\nimport clamp from '@stdlib/math/base/special/clamp';\nimport lpad from '@stdlib/string/left-pad';\nimport CodeSlideTitle from './code_slide_title.js';\nimport CodeSlideNote from './code_slide_note.js';\nimport CodeSlideImage from './code_slide_image.js';\nimport calculateScrollCenter from './calculate_scroll_center.js';\nimport scrollToElement from './scroll_to_element.js';\nimport 'highlight.js/styles/googlecode.css';\n\n\n// FUNCTIONS //\n\nfunction calculateOpacity(index, loc) {\nreturn ( loc[0] <= index && loc[1] > index ) ? 1 : 0.2;\n}\n\nfunction getLineNumber(index) {\nreturn '<span class=\"token comment\">' + lpad( String( index + 1 ), 3 ) + '.</span> ';\n}\n\n\n// VARIABLES //\n\nconst debug = logger( 'isle:spectacle:code-slide' );\nconst defaultBgColor = '#122b45';\nconst defaultColor = 'white';\nconst style = {\nposition: 'relative',\ntextAlign: 'center',\noverflow: 'hidden',\ncolor: defaultColor,\nheight: '646px',\nmargin: 0,\nfontSize: '1.1em',\npadding: '40% 0',\nwhiteSpace: 'pre-wrap',\nwordBreak: 'break-word'\n};\n\n\n// MAIN //\n\n/**\nA slide displaying code in an step-by-step manner."
   },
   "Code": {
     "props": [

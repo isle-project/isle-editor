@@ -1,5 +1,6 @@
 {
 	"BASIC": [
+		"blockquote",
 		"div",
 		"h1",
 		"h2",
@@ -19,6 +20,7 @@
 		"Accordion",
 		"Animated",
 		"Background",
+		"Collapse",
 		"DraggableGrid",
 		"Grid",
 		"IFrame",

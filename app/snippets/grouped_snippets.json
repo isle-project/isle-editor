@@ -59,6 +59,10 @@
     {
       "name": "Typewriter",
       "value": "<Typewriter text=\"${1:}\" />\n"
+    },
+    {
+      "name": "Collapse",
+      "value": "<Collapse>\n  ${1:}\n</Collapse>\n"
     }
   ],
   "general": [
@@ -85,10 +89,6 @@
     {
       "name": "FlippableCard",
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
-    },
-    {
-      "name": "blockquote",
-      "value": "<blockquote>\n  ${1:}\n</blockquote>"
     },
     {
       "name": "Joyride",
@@ -129,10 +129,6 @@
     {
       "name": "Citation",
       "value": "<Citation citeKey=\"${1:Enter key}\" />"
-    },
-    {
-      "name": "Collapse",
-      "value": "<Collapse>\n  ${1:}\n</Collapse>\n"
     }
   ],
   "inputs": [
@@ -383,6 +379,10 @@
       "value": "<span>${1:}</span>${2:}"
     },
     {
+      "name": "blockquote",
+      "value": "<blockquote>\n  ${1:}\n</blockquote>"
+    },
+    {
       "name": "Image",
       "value": "<Image src=\"${1:}\" alt=\"${2:Enter description}\" />\n"
     },
@@ -621,10 +621,6 @@
     {
       "name": "Slide",
       "value": "<Slide>\n  ${1:}\n</Slide>\n"
-    },
-    {
-      "name": "CodeSlide",
-      "value": "<CodeSlide\n  lang=\"${1:javascript}\"\n  code={`\n  ${2:}\n  `}\n  ranges={[\n    ${3:{ loc: [0, 1], note: 'Attach notes or title' }}\n  ]}\n/>\n"
     }
   ],
   "victory": [
