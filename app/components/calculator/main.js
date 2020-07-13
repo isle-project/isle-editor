@@ -308,7 +308,7 @@ class Calculator extends Component {
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory('+')} >+</Button>
 								</Row>
 								<Row>
-									<Button variant="info" className="input-button-full" onClick={this.toggleDegrees} >{this.state.useDegrees ? 'DEG' : 'RAD'}</Button>
+									<Button variant="info" className="input-button-full" onClick={this.toggleDegrees} >{this.state.useDegrees ? 'Deg' : 'Rad'}</Button>
 									<Button variant="info" className="input-button-full" onClick={this.onClickFactory( 'e' )} >e</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearLast} >CE</Button>
 									<Button variant="danger" className="input-button-full" onClick={this.clearEquation} >AC</Button>
