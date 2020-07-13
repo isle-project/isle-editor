@@ -88,32 +88,36 @@
 		"value": "<Generator onGenerate={() => {\n  ${1:}\n}} ${2:} />\n"
 	},
 	{
-		"name": "Level 1 Heading (h1)",
+		"name": "h1",
 		"value": "<h1>${1:}</h1>"
 	},
 	{
-		"name": "Level 2 Heading (h2)",
+		"name": "h2",
 		"value": "<h2>${1:}</h2>"
 	},
 	{
-		"name": "Level 3 Heading (h3)",
+		"name": "h3",
 		"value": "<h3>${1:}</h3>"
 	},
 	{
-		"name": "Level 4 Heading (h4)",
+		"name": "h4",
 		"value": "<h4>${1:}</h4>"
 	},
 	{
-		"name": "Level 5 Heading (h5)",
+		"name": "h5",
 		"value": "<h5>${1:}</h5>"
 	},
 	{
-		"name": "Level 6 Heading (h6)",
+		"name": "h6",
 		"value": "<h6>${1:}</h6>"
 	},
 	{
-		"name": "Horizontal Rule (hr)",
+		"name": "hr",
 		"value": "<hr />"
+	},
+	{
+		"name": "blockquote",
+		"value": "<blockquote>\n  ${1:}\n</blockquote>"
 	},
 	{
 		"name": "Container",
@@ -540,20 +544,12 @@
 		"value": "<Bibliography />"
 	},
 	{
-		"name": "BlockQuote",
-		"value": "<BlockQuote>\n  <Quote>${1:}</Quote>\n  <Cite>${2:}</Cite>\n</BlockQuote>\n"
-	},
-	{
 		"name": "Code",
 		"value": "<Code>${1:}</Code>\n"
 	},
 	{
 		"name": "Citation",
 		"value": "<Citation citeKey=\"${1:Enter key}\" />"
-	},
-	{
-		"name": "Cite",
-		"value": "<Cite>${1:}</Cite>\n"
 	},
 	{
 		"name": "Fill",
@@ -566,10 +562,6 @@
 	{
 		"name": "Layout",
 		"value": "<Layout>${1:}</Layout>\n"
-	},
-	{
-		"name": "Quote",
-		"value": "<Quote>${1:}</Quote>\n"
 	},
 	{
 		"name": "Slide",
