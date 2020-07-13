@@ -633,6 +633,7 @@ class Editor extends Component {
 						}
 					}
 				]);
+				this.hasHighlight = true;
 			}
 			else if ( this.props.elementRangeAction === 'select' ) {
 				const range = this.props.elementRange;
