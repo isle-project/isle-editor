@@ -84,9 +84,9 @@ class DefaultSlider extends Component {
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.children !== prevProps.children ) {
-			let childDivs = this.props.children && this.props.children.length > 0 ?
+			const childDivs = this.props.children && this.props.children.length > 0 ?
 				React.Children.map( this.props.children, ( child ) => {
-					if ( child.type.displayName === 'Connect(LineButtons)' ) {
+					if ( isLineButtons( child ) ) {
 						return null;
 					}
 					return <div> {child} </div>;
@@ -108,7 +108,7 @@ class DefaultSlider extends Component {
 			<Card.Header as="h3">
 				{this.props.title}
 				<span style={{ float: 'right' }}>
-					{this.state.currentSlide} / {this.props.children.length}
+					{this.state.currentSlide} / {this.state.childDivs.length}
 				</span>
 			</Card.Header>
 		);
