@@ -1,9 +1,11 @@
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { ipcRenderer } from 'electron';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import Tooltip from 'components/tooltip';
 import './header_upper_bar.css';
 
@@ -15,11 +17,15 @@ const HeaderUpperBar = ( props ) => {
 	let updateMsg;
 	switch ( props.updateStatus ) {
 		case 'available':
-			updateMsg = `Downloading update... (${props.updateInfo.version})`;
-			updateTooltip = 'Please do not exit while download is in progress';
+			updateMsg = `Update available (${props.updateInfo.version}).`;
+			updateTooltip = 'Click on the button to the right to initiate download';
 			break;
 		case 'downloading':
-			updateMsg = `Download progress: ${props.updateDownloadPercent} (${props.updateInfo.version})`;
+			if ( props.updateDownloadPercent ) {
+				updateMsg = `Download in progress: ${props.updateDownloadPercent}% (${props.updateInfo.version}).`;
+			} else {
+				updateMsg = `Download in progress... (${props.updateInfo.version}).`;
+			}
 			updateTooltip = 'Please do not exit while download is in progress';
 			break;
 		case 'downloaded':
@@ -37,11 +43,21 @@ const HeaderUpperBar = ( props ) => {
 			ISLE {props.title ? props.title : 'Editor'}
 		</h3>
 		<div>
-			{ props.updateStatus ? <Tooltip tooltip={updateTooltip} >
-				<Badge variant="success" id="update-indicator-badge" >
-					{updateMsg}
-				</Badge>
-			</Tooltip> : null }
+			{ props.updateStatus ? <Fragment>
+				<Tooltip tooltip={updateTooltip} >
+					<Badge variant="success" id="update-indicator-badge" >
+						{updateMsg}
+						<Button id="update-download-button" variant="secondary" size="sm" onClick={() => {
+							props.updateDownloading();
+							ipcRenderer.send( 'download-update' );
+						}} style={{
+							display: props.updateStatus === 'available' ? 'inherit' : 'none'
+						}}>
+							Download
+						</Button>
+					</Badge>
+				</Tooltip>
+			</Fragment>: null }
 			{ props.backToEditor ?
 				<Link
 					to="/"
@@ -79,6 +95,7 @@ HeaderUpperBar.defaultProps = {
 };
 
 HeaderUpperBar.propTypes = {
+	updateDownloading: PropTypes.func.isRequired,
 	updateDownloadPercent: PropTypes.number,
 	updateInfo: PropTypes.object,
 	updateStatus: PropTypes.string

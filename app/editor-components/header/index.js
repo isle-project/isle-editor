@@ -61,6 +61,7 @@ class Header extends Component {
 				<HeaderUpperBar
 					updateStatus={this.props.updateStatus}
 					updateInfo={this.props.updateInfo}
+					updateDownloading={this.props.updateDownloading}
 					updateDownloadPercent={this.props.updateDownloadPercent}
 				/>
 				<div
@@ -182,6 +183,7 @@ Header.propTypes = {
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
 	triggerUpdate: PropTypes.func.isRequired,
+	updateDownloading: PropTypes.func.isRequired,
 	updateDownloadPercent: PropTypes.number,
 	updateInfo: PropTypes.object,
 	updateStatus: PropTypes.string,

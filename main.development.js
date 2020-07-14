@@ -29,6 +29,7 @@ else if ( config.has( 'mostRecentFilePath' ) ) {
 	pathToOpen = config.get( 'mostRecentFilePath' );
 }
 autoUpdater.allowPrerelease = true;
+autoUpdater.autoDownload = false;
 autoUpdater.currentVersion = currentVersion;
 
 

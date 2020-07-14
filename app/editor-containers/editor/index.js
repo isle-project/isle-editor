@@ -13,7 +13,7 @@ import Loadable from 'components/internal/loadable';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
-	updatePreamble, encounteredError, resetError, saveLintErrors,
+	updateDownloading, updatePreamble, encounteredError, resetError, saveLintErrors,
 	saveSpellingErrors, changeSplitPos } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
@@ -217,7 +217,8 @@ class App extends Component {
 			showLineButtons,
 			toggleLineButtons,
 			updateInfo,
-			updateStatus
+			updateStatus,
+			updateDownloading
 		} = this.props;
 
 		const preview = <ErrorBoundary
@@ -269,6 +270,7 @@ class App extends Component {
 						}}
 						updateStatus={updateStatus}
 						updateInfo={updateInfo}
+						updateDownloading={updateDownloading}
 					/> :
 					null
 				}
@@ -410,6 +412,7 @@ App.propTypes = {
 	elementRangeAction: PropTypes.string,
 	elementRangeVersion: PropTypes.number.isRequired,
 	toggleConfigurator: PropTypes.func.isRequired,
+	updateDownloading: PropTypes.func.isRequired,
 	updatePreamble: PropTypes.func.isRequired,
 	unsaved: PropTypes.bool.isRequired
 };
@@ -434,6 +437,7 @@ export default connect( mapStateToProps, {
 	toggleLineButtons,
 	toggleScrolling,
 	toggleToolbar,
+	updateDownloading,
 	updatePreamble
 })( App );
 

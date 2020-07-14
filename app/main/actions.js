@@ -100,6 +100,10 @@ ipcMain.on( 'quit-and-install', () => {
 	autoUpdater.quitAndInstall();
 });
 
+ipcMain.on( 'download-update', () => {
+	autoUpdater.downloadUpdate();
+});
+
 
 // EXPORTS //
 

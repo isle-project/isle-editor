@@ -19,8 +19,7 @@ export default function updater( state = initialState, action ) {
 	case types.DOWNLOAD_PROGRESS:
 		return {
 			...state,
-			updateDownloadPercent: action.payload.percent,
-			updateStatus: 'downloading'
+			updateDownloadPercent: action.payload.percent
 		};
 	case types.UPDATE_DOWNLOADED:
 		return {
@@ -28,11 +27,15 @@ export default function updater( state = initialState, action ) {
 			updateStatus: 'downloaded'
 		};
 	case types.UPDATE_AVAILABLE:
-		console.log( 'REDUCER DOWNLOAD AVAILABLE' );
 		return {
 			...state,
 			updateStatus: 'available',
 			updateInfo: action.payload.info
+		};
+	case types.UPDATE_DOWNLOADING:
+		return {
+			...state,
+			updateStatus: 'downloading'
 		};
 	default:
 		return state;

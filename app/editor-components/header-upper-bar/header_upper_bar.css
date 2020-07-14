@@ -43,3 +43,8 @@
 	margin-right: 15px;
 	font-size: 16px;
 }
+
+#update-download-button {
+	font-weight: 700;
+	margin-left: 6px;
+}

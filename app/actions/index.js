@@ -239,6 +239,12 @@ export function updateDownloaded() {
 	};
 }
 
+export function updateDownloading() {
+	return {
+		type: types.UPDATE_DOWNLOADING
+	};
+}
+
 export function updateAvailable( info ) {
 	return {
 		type: types.UPDATE_AVAILABLE,
