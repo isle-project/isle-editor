@@ -288,6 +288,35 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'download-progress', ( event, percent ) => {
 		store.dispatch( actions.downloadProgress( percent ) );
 	});
+
+	ipcRenderer.on( 'update-downloaded', ( event, info ) => {
+		store.dispatch( actions.updateDownloaded() );
+		vex.dialog.confirm({
+			unsafeMessage: `${info.releaseName} of the ISLE Editor was successfully downloaded. Do you wish to exit the application now and install the update?`,
+			callback( value ) {
+				if ( value ) {
+					const state = store.getState();
+					const data = state.editor.markdown;
+					const filePath = state.editor.filePath;
+					if ( !filePath ) {
+						ipcRenderer.send( 'save-file-as', {
+							data
+						});
+					} else {
+						ipcRenderer.send( 'save-file', {
+							data,
+							filePath
+						});
+					}
+					ipcRenderer.send( 'quit-and-install' );
+				}
+			}
+		});
+	});
+
+	ipcRenderer.on( 'update-available', ( event, info ) => {
+		store.dispatch( actions.updateAvailable( info ) );
+	});
 }
 
 

@@ -4,6 +4,7 @@ import { app, dialog, ipcMain, BrowserWindow } from 'electron';
 import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
+import { autoUpdater } from 'electron-updater';
 import Store from 'electron-store';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
@@ -93,6 +94,10 @@ ipcMain.on( 'close-window', ( e, { windowID }) => {
 	const win = windows[ windowID ];
 	win.unref();
 	win.destroy();
+});
+
+ipcMain.on( 'quit-and-install', () => {
+	autoUpdater.quitAndInstall();
 });
 
 

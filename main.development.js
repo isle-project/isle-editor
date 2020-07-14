@@ -51,11 +51,12 @@ function onReady() {
 				sendStatusToWindow( 'Check for updates and notify if available...' );
 
 				autoUpdater.on( 'checking-for-update', () => {
-					sendStatusToWindow('Checking for update...');
+					sendStatusToWindow( 'Checking for update...' );
 				});
 
 				autoUpdater.on( 'update-available', ( info ) => {
 					sendStatusToWindow( 'Update available.' );
+					mainWindow.webContents.send( 'update-available', info );
 				});
 
 				autoUpdater.on( 'update-not-available', ( info ) => {
@@ -75,7 +76,7 @@ function onReady() {
 				});
 
 				autoUpdater.on( 'update-downloaded', ( info ) => {
-					sendStatusToWindow( 'Update downloaded' );
+					mainWindow.webContents.send( 'update-downloaded', info );
 				});
 				autoUpdater.checkForUpdatesAndNotify();
 			}
