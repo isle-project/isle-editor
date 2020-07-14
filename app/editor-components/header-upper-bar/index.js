@@ -15,7 +15,7 @@ const HeaderUpperBar = ( props ) => {
 	let updateMsg;
 	switch ( props.updateStatus ) {
 		case 'available':
-			updateMsg = `Update available (${props.updateInfo.version})`;
+			updateMsg = `Downloading update... (${props.updateInfo.version})`;
 			updateTooltip = 'Please do not exit while download is in progress';
 			break;
 		case 'downloading':
