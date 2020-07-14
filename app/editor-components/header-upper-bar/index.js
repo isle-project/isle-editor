@@ -1,19 +1,43 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import Tooltip from 'components/tooltip';
 import './header_upper_bar.css';
 
 
 // MAIN //
 
 const HeaderUpperBar = ( props ) => {
+	let updateTooltip;
+	let updateMsg;
+	switch ( props.updateStatus ) {
+		case 'available':
+			updateMsg = `Update available (${props.updateInfo.version})`;
+			updateTooltip = 'Please do not exit while download is in progress';
+			break;
+		case 'downloaded':
+			updateMsg = 'Update downloaded.';
+			updateTooltip = 'New version of ISLE editor will be installed upon closing the application';
+			break;
+		default:
+			break;
+	}
 	return ( <div
 		id="header-upper-bar"
 		className="unselectable"
 	>
-		<h3>ISLE {props.title ? props.title : 'Editor'}</h3>
+		<h3>
+			ISLE {props.title ? props.title : 'Editor'}
+		</h3>
 		<div>
+			{ props.updateStatus ? <Tooltip tooltip={updateTooltip} >
+				<Badge variant="success" id="update-indicator-badge" >
+					{updateMsg}
+				</Badge>
+			</Tooltip> : null }
 			{ props.backToEditor ?
 				<Link
 					to="/"
@@ -39,6 +63,19 @@ const HeaderUpperBar = ( props ) => {
 			>Documentation</Link>
 		</div>
 	</div> );
+};
+
+
+// PROPERTIES //
+
+HeaderUpperBar.defaultProps = {
+	updateInfo: null,
+	updateStatus: null
+};
+
+HeaderUpperBar.propTypes = {
+	updateInfo: PropTypes.object,
+	updateStatus: PropTypes.string
 };
 
 

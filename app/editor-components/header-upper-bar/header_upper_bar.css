@@ -38,3 +38,8 @@
 	color: silver;
 	font-size: 18px;
 }
+
+#update-indicator-badge {
+	margin-right: 15px;
+	font-size: 16px;
+}

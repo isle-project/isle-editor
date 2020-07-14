@@ -58,7 +58,10 @@ class Header extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderUpperBar />
+				<HeaderUpperBar
+					updateStatus={this.props.updateStatus}
+					updateInfo={this.props.updateInfo}
+				/>
 				<div
 					id="header-lower-bar"
 					className="unselectable"
@@ -159,7 +162,9 @@ class Header extends Component {
 
 Header.defaultProps = {
 	fileName: '',
-	filePath: 'Please save file...'
+	filePath: 'Please save file...',
+	updateInfo: null,
+	updateStatus: null
 };
 
 Header.propTypes = {
@@ -175,6 +180,8 @@ Header.propTypes = {
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
 	triggerUpdate: PropTypes.func.isRequired,
+	updateInfo: PropTypes.object,
+	updateStatus: PropTypes.string,
 	role: PropTypes.string.isRequired
 };
 
