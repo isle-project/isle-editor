@@ -20,7 +20,7 @@ const debug = logger( 'isle:accordion' );
 *
 * @property {number} active - index of slider to be opened at the beginning
 * @property {Array} headers - array of header names
-* @property {string} headerClassName - this overrules the given className of the headers
+* @property {string} headerClassName - this overrules the given class name of the headers
 * @property {object} headerStyle - one may also assign a style to the header bars
 */
 class Accordion extends Component {

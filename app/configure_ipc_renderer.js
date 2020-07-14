@@ -112,7 +112,7 @@ function configureIpcRenderer( store ) {
 			placeholder: 'Enter template name',
 			callback( value ) {
 				if ( value ) {
-					const state = store.getState().markdown;
+					const state = store.getState().editor;
 					let text = state.markdown;
 					if ( !includePreamble ) {
 						text = replace( text, RE_PREAMBLE, '---\n<preamble>\n---' );
@@ -179,7 +179,7 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'prepare-reload', () => {
 		debug( 'Prepare reload...' );
-		const state = store.getState().markdown;
+		const state = store.getState().editor;
 		const { markdown, filePath, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
 		config.set( 'mostRecentFileData', markdown );
@@ -189,8 +189,8 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'save-file', () => {
 		const state = store.getState();
-		const data = state.markdown.markdown;
-		const filePath = state.markdown.filePath;
+		const data = state.editor.markdown;
+		const filePath = state.editor.filePath;
 		if ( !filePath ) {
 			ipcRenderer.send( 'save-file-as', {
 				data
@@ -205,8 +205,8 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'save-file-as', () => {
 		const state = store.getState();
-		const data = state.markdown.markdown;
-		const filePath = state.markdown.filePath;
+		const data = state.editor.markdown;
+		const filePath = state.editor.filePath;
 		ipcRenderer.send( 'save-file-as', {
 			data,
 			filePath
@@ -228,7 +228,7 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'confirm-close-when-unsaved', ( e, { windowID }) => {
 		const state = store.getState();
-		const unsaved = state.markdown.unsaved;
+		const unsaved = state.editor.unsaved;
 		if ( unsaved ) {
 			vex.dialog.open({
 				message: 'Do you want to save the changes made to the current file?',
@@ -238,8 +238,8 @@ function configureIpcRenderer( store ) {
 						text: 'Save',
 						className: 'vex-dialog-button-primary',
 						click() {
-							const filePath = state.markdown.filePath;
-							const data = state.markdown.markdown;
+							const filePath = state.editor.filePath;
+							const data = state.editor.markdown;
 							if ( !filePath ) {
 								ipcRenderer.send( 'save-file-as', {
 									data

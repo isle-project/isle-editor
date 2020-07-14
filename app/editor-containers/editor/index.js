@@ -14,7 +14,7 @@ import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
 	updatePreamble, encounteredError, resetError, saveLintErrors,
-	saveSpellingErrors } from 'actions';
+	saveSpellingErrors, changeSplitPos } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
@@ -45,7 +45,6 @@ class App extends Component {
 		super( props );
 
 		this.state = {
-			splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
 			horizontalSplit: 0,
 			innerWidth: window.innerWidth,
 			version: 0
@@ -124,9 +123,7 @@ class App extends Component {
 			this.debouncedSplitUpdate = debounce( updateSplitPos, 1000 );
 			this.debouncedSplitUpdate( size );
 		}
-		this.setState({
-			splitPos: size
-		});
+		this.props.changeSplitPos( size );
 	}
 
 	handlePreambleChange = ( text ) => {
@@ -261,14 +258,12 @@ class App extends Component {
 						showLineButtons={showLineButtons}
 						onPreview={() => {
 							let splitPos;
-							if ( this.state.splitPos === 1 ) {
+							if ( this.props.splitPos === 1 ) {
 								splitPos = localStorage.getItem( 'splitPos' ) || 0.5;
 							} else {
 								splitPos = 1;
 							}
-							this.setState({
-								splitPos
-							});
+							this.props.changeSplitPos( splitPos );
 						}}
 					/> :
 					null
@@ -298,7 +293,7 @@ class App extends Component {
 						className="splitpane"
 						split="vertical"
 						primary="second"
-						size={this.state.splitPos * this.state.innerWidth}
+						size={this.props.splitPos * this.state.innerWidth}
 						onChange={this.handleVerticalSplit}
 						maxSize={-300}
 						minSize={300}
@@ -316,7 +311,7 @@ class App extends Component {
 								author={this.props.author}
 								currentRole={currentRole}
 								currentMode={currentMode}
-								splitPos={this.state.splitPos}
+								splitPos={this.props.splitPos}
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}
 								setConfiguratorComponent={this.props.setConfiguratorComponent}
@@ -421,6 +416,7 @@ App.propTypes = {
 export default connect( mapStateToProps, {
 	convertMarkdown,
 	changeAutoUpdate,
+	changeSplitPos,
 	clearInsertion,
 	saveLintErrors,
 	saveSpellingErrors,
@@ -437,10 +433,10 @@ export default connect( mapStateToProps, {
 	updatePreamble
 })( App );
 
-function mapStateToProps({ configurator, markdown, linting, preview }) {
+function mapStateToProps({ configurator, editor, linting, preview }) {
 	return {
 		...configurator,
-		...markdown,
+		...editor,
 		...linting,
 		...preview
 	};

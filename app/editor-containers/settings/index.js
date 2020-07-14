@@ -92,9 +92,9 @@ export default connect( mapStateToProps, {
 	changeRenderInterval
 })( Settings );
 
-function mapStateToProps({ markdown, preview }) {
+function mapStateToProps({ editor, preview }) {
 	return {
-		...markdown,
+		...editor,
 		...preview
 	};
 }

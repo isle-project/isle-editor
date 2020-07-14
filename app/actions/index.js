@@ -170,6 +170,15 @@ export function changeMode( mode ) {
 	};
 }
 
+export function changeSplitPos( splitPos ) {
+	return {
+		type: types.SPLIT_POS_CHANGED,
+		payload: {
+			splitPos
+		}
+	};
+}
+
 export function changeNamespace( namespaceName ) {
 	return {
 		type: types.SERVER_NAMESPACE_CHANGED,

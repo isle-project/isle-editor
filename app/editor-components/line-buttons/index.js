@@ -20,18 +20,22 @@ class LineButtons extends Component {
 
 	jumpToLine = ( event ) => {
 		event.stopPropagation();
+		const { lineNumber } = this.props;
+		console.log( 'Select line '+lineNumber );
 		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.lineNumber,
-			endLineNumber: this.props.lineNumber,
+			startLineNumber: lineNumber,
+			endLineNumber: lineNumber,
 			elementRangeAction: 'reveal'
 		});
 	}
 
 	selectLine = ( event ) => {
 		event.stopPropagation();
+		const { lineNumber } = this.props;
+		console.log( 'Select line '+lineNumber );
 		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.lineNumber,
-			endLineNumber: this.props.lineNumber,
+			startLineNumber: lineNumber,
+			endLineNumber: lineNumber,
 			elementRangeAction: 'select'
 		});
 	}
@@ -42,13 +46,13 @@ class LineButtons extends Component {
 		}
 		return (
 			<span className="line-buttons" >
-				<i
+				{ this.props.splitPos !== 1 ? <i
 					role="button" tabIndex={0}
 					className="line-buttons-jump fas fa-arrow-circle-left"
 					onClick={this.jumpToLine}
 					onKeyPress={this.jumpToLine}
 					title={`Center editor on line ${this.props.lineNumber}`}
-				></i>
+				></i> : null }
 				<ContextMenuTrigger
 					id="editor-context-menu"
 					renderTag="span"
@@ -89,6 +93,9 @@ export default connect( mapStateToProps, {
 	jumpToElementInEditor, toggleConfigurator
 })( LineButtons );
 
-function mapStateToProps({ preview }) {
-	return preview;
+function mapStateToProps({ preview, editor }) {
+	return {
+		...preview,
+		splitPos: editor.splitPos
+	};
 }

@@ -56,6 +56,7 @@ const initialState = {
 	currentRole: 'user',
 	currentMode: 'offline',
 	namespaceName: null,
+	splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
 	error: null,
 	fontSize: config.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
@@ -126,6 +127,11 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			namespaceName: action.payload.namespaceName
+		};
+	case types.SPLIT_POS_CHANGED:
+		return {
+			...state,
+			splitPos: action.payload.splitPos
 		};
 	case types.JUMP_TO_ELEMENT_IN_EDITOR:
 		return {
