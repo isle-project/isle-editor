@@ -38,24 +38,6 @@ class CheckboxInput extends Input {
 			bind: props.bind,
 			defaultValue: props.defaultValue
 		};
-
-		/**
-		* Event handler invoked once the checkbox is clicked by the user. Changes the
-		* `isChecked` property and then invokes the user-supplied `onChange` callback function.
-		*/
-		this.handleChange = ( event ) => {
-			const newValue = event.target.checked;
-			this.props.onChange( newValue );
-			this.setState({
-				value: newValue
-			}, () => {
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: newValue
-					});
-				}
-			});
-		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -85,6 +67,30 @@ class CheckboxInput extends Input {
 		}
 	}
 
+	updateValue = ( newValue ) => {
+		this.setState({
+			value: newValue
+		}, () => {
+			if ( this.props.bind ) {
+				global.lesson.setState({
+					[ this.props.bind ]: newValue
+				});
+			}
+		});
+	}
+
+	handleChange = ( event ) => {
+		const newValue = event.target.checked;
+		this.props.onChange( newValue );
+		this.updateValue( newValue );
+	}
+
+	handleSpanChange = ( event ) => {
+		const newValue = this.props.value !== null ? !this.props.value : !this.state.value;
+		this.props.onChange( newValue );
+		this.updateValue( newValue );
+	}
+
 	render() {
 		let { value } = this.state;
 		if ( this.props.value !== null ) {
@@ -110,7 +116,7 @@ class CheckboxInput extends Input {
 							style={{
 								color: this.props.disabled ? 'darkgray' : null
 							}}
-							onClick={this.handleChange} onKeyPress={this.handleChange}
+							onClick={this.handleSpanChange} onKeyPress={this.handleSpanChange}
 						>{this.props.legend}</span>
 					</span>
 				</Tooltip>
