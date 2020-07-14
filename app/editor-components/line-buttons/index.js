@@ -60,12 +60,12 @@ class LineButtons extends Component {
 					collect={() => {
 						return { context: 'preview' };
 					}}
+					attributes={{
+						onClick: this.selectLine
+					}}
 				>
 					<i
-						role="button" tabIndex={0}
 						className="line-buttons-contextmenu fas fa-plus-circle"
-						onClick={this.selectLine}
-						onKeyPress={this.selectLine}
 						title={`Click to insert component at line ${this.props.lineNumber}`}
 					></i>
 				</ContextMenuTrigger>
