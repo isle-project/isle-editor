@@ -52,13 +52,20 @@ class LineButtons extends Component {
 		}
 		return (
 			<span className="line-buttons" >
-				{ this.props.splitPos !== 1 ? <i
+				{ this.props.splitPos !== 1 ? <span
+					className="line-buttons-jump"
 					role="button" tabIndex={0}
-					className="line-buttons-jump fas fa-arrow-circle-left"
 					onClick={this.jumpToLine}
 					onKeyPress={this.jumpToLine}
 					title={`Center editor on line ${this.props.lineNumber}`}
-				></i> : null }
+				>
+					<span
+						className="fa fa-arrow-circle-left"
+					></span>
+					<strong className="line-buttons-line-display" >
+						{this.props.lineNumber}
+					</strong>
+				</span> : null }
 				<ContextMenuTrigger
 					id="editor-context-menu"
 					renderTag="span"

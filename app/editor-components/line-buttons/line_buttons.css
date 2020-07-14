@@ -4,6 +4,7 @@
 	z-index: 1051;
 	font-size: 13px;
 	padding: 1px;
+	cursor: pointer;
 }
 
 .line-buttons-jump {
@@ -14,4 +15,9 @@
 .line-buttons-contextmenu {
 	position: absolute;
 	left: 50%;
+	padding-top: 3px;
+}
+
+.line-buttons-line-display {
+	margin-left: 3px;
 }
