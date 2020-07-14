@@ -22,7 +22,7 @@
       {
         "name": "headerClassName",
         "type": "string",
-        "description": "this overrules the given className of the headers",
+        "description": "this overrules the given class name of the headers",
         "defaultValue": null
       }
     ],
