@@ -215,7 +215,9 @@ class App extends Component {
 			currentMode,
 			unsaved,
 			showLineButtons,
-			toggleLineButtons
+			toggleLineButtons,
+			updateInfo,
+			updateStatus
 		} = this.props;
 
 		const preview = <ErrorBoundary
@@ -265,6 +267,8 @@ class App extends Component {
 							}
 							this.props.changeSplitPos( splitPos );
 						}}
+						updateStatus={updateStatus}
+						updateInfo={updateInfo}
 					/> :
 					null
 				}
@@ -433,11 +437,12 @@ export default connect( mapStateToProps, {
 	updatePreamble
 })( App );
 
-function mapStateToProps({ configurator, editor, linting, preview }) {
+function mapStateToProps({ configurator, editor, linting, preview, updater }) {
 	return {
 		...configurator,
 		...editor,
 		...linting,
-		...preview
+		...preview,
+		...updater
 	};
 }

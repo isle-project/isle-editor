@@ -18,6 +18,10 @@ const HeaderUpperBar = ( props ) => {
 			updateMsg = `Update available (${props.updateInfo.version})`;
 			updateTooltip = 'Please do not exit while download is in progress';
 			break;
+		case 'downloading':
+			updateMsg = `Download progress: ${props.updateDownloadPercent} (${props.updateInfo.version})`;
+			updateTooltip = 'Please do not exit while download is in progress';
+			break;
 		case 'downloaded':
 			updateMsg = 'Update downloaded.';
 			updateTooltip = 'New version of ISLE editor will be installed upon closing the application';
@@ -69,11 +73,13 @@ const HeaderUpperBar = ( props ) => {
 // PROPERTIES //
 
 HeaderUpperBar.defaultProps = {
+	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
 };
 
 HeaderUpperBar.propTypes = {
+	updateDownloadPercent: PropTypes.number,
 	updateInfo: PropTypes.object,
 	updateStatus: PropTypes.string
 };

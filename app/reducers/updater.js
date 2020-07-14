@@ -6,7 +6,7 @@ import * as types from 'constants/editor_actions.js';
 // VARIABLES //
 
 const initialState = {
-	downloadPercent: null,
+	updateDownloadPercent: null,
 	updateStatus: null,
 	updateInfo: null
 };
@@ -19,10 +19,10 @@ export default function updater( state = initialState, action ) {
 	case types.DOWNLOAD_PROGRESS:
 		return {
 			...state,
-			downloadPercent: action.payload.percent
+			updateDownloadPercent: action.payload.percent,
+			updateStatus: 'downloading'
 		};
 	case types.UPDATE_DOWNLOADED:
-		console.log( 'REDUCER DOWNLOAD PROGRESS' );
 		return {
 			...state,
 			updateStatus: 'downloaded'

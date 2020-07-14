@@ -61,6 +61,7 @@ class Header extends Component {
 				<HeaderUpperBar
 					updateStatus={this.props.updateStatus}
 					updateInfo={this.props.updateInfo}
+					updateDownloadPercent={this.props.updateDownloadPercent}
 				/>
 				<div
 					id="header-lower-bar"
@@ -163,6 +164,7 @@ class Header extends Component {
 Header.defaultProps = {
 	fileName: '',
 	filePath: 'Please save file...',
+	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
 };
@@ -180,6 +182,7 @@ Header.propTypes = {
 	onSelectMode: PropTypes.func.isRequired,
 	onSelectRole: PropTypes.func.isRequired,
 	triggerUpdate: PropTypes.func.isRequired,
+	updateDownloadPercent: PropTypes.number,
 	updateInfo: PropTypes.object,
 	updateStatus: PropTypes.string,
 	role: PropTypes.string.isRequired
