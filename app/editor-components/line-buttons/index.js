@@ -2,10 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { connect } from 'react-redux';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_buttons.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:line-buttons' );
 
 
 // MAIN //
@@ -21,7 +27,7 @@ class LineButtons extends Component {
 	jumpToLine = ( event ) => {
 		event.stopPropagation();
 		const { lineNumber } = this.props;
-		console.log( 'Select line '+lineNumber );
+		debug( 'Select line '+lineNumber );
 		this.props.jumpToElementInEditor({
 			startLineNumber: lineNumber,
 			endLineNumber: lineNumber,
@@ -32,7 +38,7 @@ class LineButtons extends Component {
 	selectLine = ( event ) => {
 		event.stopPropagation();
 		const { lineNumber } = this.props;
-		console.log( 'Select line '+lineNumber );
+		debug( 'Select line '+lineNumber );
 		this.props.jumpToElementInEditor({
 			startLineNumber: lineNumber,
 			endLineNumber: lineNumber,
