@@ -300,7 +300,7 @@ function configureIpcRenderer( store ) {
 					if ( !unsaved ) {
 						ipcRenderer.send( 'quit-and-install' );
 					} else {
-						vex.dialog.alert( 'Please save your changes and manually close the application whenever you are ready to trigger the update.' );
+						vex.dialog.alert( 'You have unsaved changes. Please save your file and manually close the application whenever you are ready to trigger the update.' );
 					}
 				}
 			},
