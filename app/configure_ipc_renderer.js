@@ -292,25 +292,19 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'update-downloaded', ( event, info ) => {
 		store.dispatch( actions.updateDownloaded() );
 		vex.dialog.confirm({
-			unsafeMessage: `${info.releaseName} of the ISLE Editor was successfully downloaded. Do you wish to exit the application now and install the update?`,
+			message: `${info.releaseName} of the ISLE Editor was successfully downloaded. Do you wish to exit the application now and install the update?`,
 			callback( value ) {
 				if ( value ) {
 					const state = store.getState();
-					const data = state.editor.markdown;
-					const filePath = state.editor.filePath;
-					if ( !filePath ) {
-						ipcRenderer.send( 'save-file-as', {
-							data
-						});
+					const unsaved = state.editor.unsaved;
+					if ( !unsaved ) {
+						ipcRenderer.send( 'quit-and-install' );
 					} else {
-						ipcRenderer.send( 'save-file', {
-							data,
-							filePath
-						});
+						vex.dialog.alert( 'Please save your changes and manually close the application whenever you are ready to trigger the update.' );
 					}
-					ipcRenderer.send( 'quit-and-install' );
 				}
-			}
+			},
+			overlayClosesOnClick: false
 		});
 	});
 
