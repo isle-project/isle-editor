@@ -232,3 +232,18 @@ export function downloadProgress( percent ) {
 		}
 	};
 }
+
+export function updateDownloaded() {
+	return {
+		type: types.UPDATE_DOWNLOADED
+	};
+}
+
+export function updateAvailable( info ) {
+	return {
+		type: types.UPDATE_AVAILABLE,
+		payload: {
+			info
+		}
+	};
+}
