@@ -1,19 +1,21 @@
 // MODULES //
 
 import { combineReducers } from 'redux';
-import linting from './linting.js';
-import editor from './editor.js';
-import preview from './preview.js';
 import configurator from './configurator.js';
+import editor from './editor.js';
+import linting from './linting.js';
+import preview from './preview.js';
+import updater from './updater.js';
 
 
 // MAIN //
 
 const rootReducer = combineReducers({
 	configurator,
-	linting,
 	editor,
-	preview
+	linting,
+	preview,
+	updater
 });
 
 

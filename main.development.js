@@ -66,11 +66,12 @@ function onReady() {
 					sendStatusToWindow( 'Error in auto-updater. ' + err );
 				});
 
-				autoUpdater.on( 'download-progress', ( progressObj ) => {
-					let msg = 'Download speed: ' + progressObj.bytesPerSecond;
-					msg = msg + ' - Downloaded ' + progressObj.percent + '%';
-					msg = msg + ' (' + progressObj.transferred + '/' + progressObj.total + ')';
+				autoUpdater.on( 'download-progress', ( progress ) => {
+					let msg = 'Download speed: ' + progress.bytesPerSecond;
+					msg = msg + ' - Downloaded ' + progress.percent + '%';
+					msg = msg + ' (' + progress.transferred + '/' + progress.total + ')';
 					sendStatusToWindow( msg );
+					mainWindow.webContents.send( 'download-progress', progress.percent );
 				});
 
 				autoUpdater.on( 'update-downloaded', ( info ) => {

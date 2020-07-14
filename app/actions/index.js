@@ -223,3 +223,12 @@ export function changePreambleTemplate( preambleTemplate ) {
 		}
 	};
 }
+
+export function downloadProgress( percent ) {
+	return {
+		type: types.DOWNLOAD_PROGRESS,
+		payload: {
+			percent
+		}
+	};
+}
