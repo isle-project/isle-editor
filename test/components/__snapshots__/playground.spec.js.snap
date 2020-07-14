@@ -239,7 +239,7 @@ exports[`renders a playground with a supplied scope 1`] = `
       Object {
         "height": "calc(100% - 33px)",
         "overflowX": "hidden",
-        "overflowY": "auto",
+        "overflowY": "hidden",
         "position": "absolute",
         "right": 0,
         "top": 33,
@@ -509,7 +509,7 @@ exports[`renders an uncontrolled playground 1`] = `
       Object {
         "height": "calc(100% - 33px)",
         "overflowX": "hidden",
-        "overflowY": "auto",
+        "overflowY": "hidden",
         "position": "absolute",
         "right": 0,
         "top": 33,
