@@ -284,6 +284,10 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'message', ( event, text ) => {
 		console.log( text ); // eslint-disable-line no-console
 	});
+
+	ipcRenderer.on( 'download-progress', ( event, percent ) => {
+		store.dispatch( actions.downloadProgress( percent ) );
+	});
 }
 
 
