@@ -66,20 +66,23 @@ class LineWrapper extends Component {
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
 			>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-delete fa fa-trash"
-					title={`Delete <${tagName} /> from lesson`}
-					onClick={this.deleteElement}
-					onKeyPress={this.deleteElement}
-				></span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-open-configurator fa fa-cogs"
-					title={`Click to open configurator menu for <${tagName} />`}
-					onClick={this.handleConfiguratorTrigger}
-					onKeyPress={this.handleConfiguratorTrigger}
-				></span>
+				<div className="line-wrapper-bar">
+					<span className="line-wrapper-tagname" >{tagName}</span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-delete fa fa-trash"
+						title={`Delete <${tagName} /> from lesson`}
+						onClick={this.deleteElement}
+						onKeyPress={this.deleteElement}
+					></span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-open-configurator fa fa-cogs"
+						title={`Click to open configurator menu for <${tagName} />`}
+						onClick={this.handleConfiguratorTrigger}
+						onKeyPress={this.handleConfiguratorTrigger}
+					></span>
+				</div>
 				{this.props.children}
 			</div>
 		);
