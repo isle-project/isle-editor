@@ -10,12 +10,20 @@
 .line-buttons-jump {
 	position: absolute;
 	left: 5px;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 
 .line-buttons-contextmenu {
 	position: absolute;
 	left: 50%;
-	padding-top: 3px;
+	padding: 3px;
+}
+
+.line-buttons-contextmenu:hover,
+.line-buttons-jump:hover {
+	background: #F1F176;
+	border-radius: 39px;
 }
 
 .line-buttons-line-display {
