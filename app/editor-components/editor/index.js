@@ -29,6 +29,7 @@ import endsWith from '@stdlib/string/ends-with';
 import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import readFile from '@stdlib/fs/read-file';
+import max from '@stdlib/math/base/special/max';
 import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/internal/loadable';
 import MonacoEditor from 'react-monaco-editor';
@@ -1191,12 +1192,23 @@ class Editor extends Component {
 	}
 
 	render() {
-		MONACO_OPTIONS.fontSize = this.props.fontSize;
+		MONACO_OPTIONS.fontSize = this.props.splitPos !== 1 ? this.props.fontSize : 4;
 		debug( 'Re-rendering monaco editor...' );
 
 		const dragProvider = new MonacoDragNDropProvider( this.handleDrop, this.editor, this.monaco );
+		let outerStyle;
+		if ( this.props.splitPos === 1 ) {
+			// Need to place monaco editor outside of split pane hidden from view since we cannot set its width to zero as this causes a crash and there is no headless mode but we need to interact with the editor.
+			outerStyle = {
+				position: 'absolute',
+				top: -2000,
+				left: -2000
+			};
+		} else {
+			outerStyle = null;
+		}
 		return (
-			<div>
+			<div style={outerStyle} >
 				<ContextMenuTrigger
 					id="editor-context-menu" holdToDisplay={-1}
 					style={{ height: '100%', width: '100%' }}
@@ -1207,7 +1219,7 @@ class Editor extends Component {
 					<div {...dragProvider.props}>
 						<MonacoEditor
 							height={this.props.height}
-							width={window.innerWidth * ( 1.0 - this.props.splitPos )}
+							width={max( window.innerWidth * ( 1.0 - this.props.splitPos ), 300 )}
 							language="javascript"
 							value={this.props.value}
 							options={MONACO_OPTIONS}
