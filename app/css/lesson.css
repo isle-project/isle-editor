@@ -57,7 +57,8 @@ pre {
 }
 
 .Lesson > p,
-.Lesson > .line-wrapper > p {
+.Lesson > .line-wrapper > p,
+.Lesson > .line-wrapper > .line-wrapper > p {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
@@ -435,16 +436,22 @@ mark {
 
 .Lesson > h1,
 .Lesson > .line-wrapper > h1,
+.Lesson > .line-wrapper > .line-wrapper > h1,
 .Lesson > h2,
 .Lesson > .line-wrapper > h2,
+.Lesson > .line-wrapper > .line-wrapper > h2,
 .Lesson > h3,
 .Lesson > .line-wrapper > h3,
+.Lesson > .line-wrapper > .line-wrapper > h3,
 .Lesson > h4,
 .Lesson > .line-wrapper > h4,
+.Lesson > .line-wrapper > .line-wrapper > h4,
 .Lesson > h5,
 .Lesson > .line-wrapper > h5,
+.Lesson > .line-wrapper > .line-wrapper > h5,
 .Lesson > h6,
-.Lesson > .line-wrapper > h6 {
+.Lesson > .line-wrapper > h6,
+.Lesson > .line-wrapper > .line-wrapper > h6 {
 	text-align: center;
 	max-width: 1200px;
 	margin-left: auto;
@@ -453,8 +460,10 @@ mark {
 
 .Lesson > p,
 .Lesson > .line-wrapper > p,
+.Lesson > .line-wrapper > .line-wrapper > p,
 .Lesson > pre,
-.Lesson > .line-wrapper > pre {
+.Lesson > .line-wrapper > pre,
+.Lesson > .line-wrapper > .line-wrapper > pre {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -462,7 +471,8 @@ mark {
 
 .Lesson > img,
 .Lesson > p > img,
-.Lesson > .line-wrapper > img {
+.Lesson > .line-wrapper > img,
+.Lesson > .line-wrapper > .line-wrapper > img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -572,7 +582,8 @@ mark {
 }
 
 .Lesson > ul,
-.Lesson > .line-wrapper > ul {
+.Lesson > .line-wrapper > ul,
+.Lesson > .line-wrapper > .line-wrapper > ul {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
@@ -580,7 +591,8 @@ mark {
 }
 
 .Lesson > ol,
-.Lesson > .line-wrapper > ol {
+.Lesson > .line-wrapper > ol,
+.Lesson > .line-wrapper > .line-wrapper > ol {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
@@ -613,6 +625,7 @@ mark {
 
 .Lesson > blockquote,
 .Lesson > .line-wrapper > blockquote,
+.Lesson > .line-wrapper > .line-wrapper > blockquote,
 .Presentation blockquote {
 	font-size: 1.4em;
 	width: 60%;
@@ -628,6 +641,7 @@ mark {
 
 .Lesson > blockquote::before,
 .Lesson > .line-wrapper > blockquote::before,
+.Lesson > .line-wrapper > .line-wrapper > blockquote::before,
 .Presentation blockquote::before {
 	font-family: Arial;
 	content: "\201C";
@@ -640,6 +654,7 @@ mark {
 
 .Lesson > blockquote::after,
 .Lesson > .line-wrapper > blockquote::after,
+.Lesson > .line-wrapper > .line-wrapper > blockquote::after,
 .Presentation blockquote::after {
 	font-family: Arial;
 	content: "\201D";
@@ -651,7 +666,8 @@ mark {
 }
 
 .Lesson > .alert,
-.Lesson > .line-wrapper > .alert {
+.Lesson > .line-wrapper > .alert,
+.Lesson > .line-wrapper > .line-wrapper > .alert {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
