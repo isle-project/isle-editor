@@ -28,7 +28,7 @@ function createWindow({ filePath, callback, fromTemplate } = {}) {
 		y: mainWindowState.y,
 		width: mainWindowState.width,
 		height: mainWindowState.height,
-		minWidth: 400,
+		minWidth: 850,
 		minHeight: 300
 	});
 	mainWindow.on( 'close', ( event ) => {
