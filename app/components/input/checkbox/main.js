@@ -122,7 +122,7 @@ class CheckboxInput extends Input {
 				</Tooltip>
 			);
 		}
-		const onChange = this.props.disabled ? noop : this.handleChange;
+		const onSpanChange = this.props.disabled ? noop : this.handleSpanChange;
 		return (
 			<Tooltip tooltip={this.props.tooltip} placement={this.props.tooltipPlacement} >
 				<div className="input checkbox-input-div" style={this.props.style}>
@@ -133,7 +133,7 @@ class CheckboxInput extends Input {
 						style={{
 							color: this.props.disabled ? 'darkgray' : null
 						}}
-						onClick={onChange} onKeyPress={this.onChange}
+						onClick={onSpanChange} onKeyPress={onSpanChange}
 					>{this.props.legend}</span>
 				</div>
 			</Tooltip>
