@@ -22,7 +22,6 @@ Fall 2020
 * Allow expressions in number question input fields
 * Add option to toggle between counts or densities in histogram of data explorer
 * Add option for multiple correct answers to question types like number
-* Add option to toggle between radians and degrees for trigonometric functions in calculator
 
 LONG-TERM
 ===
