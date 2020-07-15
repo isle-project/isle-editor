@@ -13,6 +13,7 @@ import { spawn } from 'child_process';
 import https from 'https';
 import http from 'http';
 import url from 'url';
+import vex from 'vex-js';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
@@ -992,17 +993,23 @@ class Editor extends Component {
 		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
 		editorDiv.style.opacity = 0.4;
 		this.editor.updateOptions({ readOnly: true });
-		const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
-			target_lang: language,
-			text: this.props.value
-		}, {
-			headers: {
-				'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
-			}
-		});
-		this.editor.updateOptions({ readOnly: false });
-		editorDiv.style.opacity = 1.0;
-		this.props.onChange( res.data.text );
+		try {
+			const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
+				target_lang: language,
+				text: this.props.value
+			}, {
+				headers: {
+					'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
+				}
+			});
+			this.editor.updateOptions({ readOnly: false });
+			editorDiv.style.opacity = 1.0;
+			this.props.onChange( res.data.text );
+		} catch ( err ) {
+			this.editor.updateOptions({ readOnly: false });
+			editorDiv.style.opacity = 1.0;
+			vex.dialog.alert( 'Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: '+err.message );
+		}
 	}
 
 	insertImgAtPos = (
