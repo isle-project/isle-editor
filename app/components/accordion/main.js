@@ -6,6 +6,7 @@ import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from 'components/collapse';
+import './accordion.css';
 
 
 // VARIABLES //
