@@ -37,6 +37,7 @@ import MonacoEditor from 'react-monaco-editor';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
+import formatError from 'utils/format-error';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
@@ -52,18 +53,13 @@ const debug = logger( 'isle:editor' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
-const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_DATE = /date: ([^\n]+)/;
 const RE_AUTHOR = /author: ([^\n]+)/;
-const RE_LINE_WRAPPER_OPENING = /<LineWrapper tagName="[a-zA-Z0-9]+" startLineNumber=\{\d+\} endLineNumber=\{\d+\} >/g;
-const RE_LINE_WRAPPER_CLOSING = /<\/LineWrapper>/g;
 const RE_EXPORT = /export = [a-z0-9]+/;
-const RE_FRAGMENT = /<\/?React.Fragment>/g;
 const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 8;
-const RE_STATUSBAR = /<StatusBar[^\n]+\n/;
 const RE_TAG_START = /<([a-z]+[0-9]*)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
@@ -96,20 +92,12 @@ const MONACO_OPTIONS = {
 	}
 };
 const mapErrors = e => {
-	let bare = e.message.replace( RE_ANSI, '' );
-	bare = bare.replace( RE_STATUSBAR, '\n' );
-	bare = bare.replace( '</Lesson>', '' );
-	bare = bare.replace( RE_LINE_WRAPPER_OPENING, '' );
-	bare = bare.replace( RE_LINE_WRAPPER_CLOSING, '' );
-	bare = bare.replace( RE_FRAGMENT, '' );
-	bare = bare.replace( '&lt;', '<' );
-	bare = bare.replace( '&gt;', '>' );
 	return {
 		startLineNumber: e.line - NUM_WRAPPER_LINES,
 		startColumn: 1,
 		endLineNumber: e.line - NUM_WRAPPER_LINES,
 		endColumn: e.column,
-		message: bare,
+		message: formatError( e.message ),
 		severity: e.severity
 	};
 };
