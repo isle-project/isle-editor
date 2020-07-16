@@ -35,17 +35,6 @@ class LineButtons extends Component {
 		});
 	}
 
-	selectLine = ( event ) => {
-		event.stopPropagation();
-		const { lineNumber } = this.props;
-		debug( 'Select line '+lineNumber );
-		this.props.jumpToElementInEditor({
-			startLineNumber: lineNumber,
-			endLineNumber: lineNumber,
-			elementRangeAction: 'select'
-		});
-	}
-
 	render() {
 		if ( !this.props.showLineButtons || !this.props.show ) {
 			return null;
@@ -71,10 +60,10 @@ class LineButtons extends Component {
 					renderTag="span"
 					holdToDisplay={0}
 					collect={() => {
-						return { context: 'preview' };
-					}}
-					attributes={{
-						onClick: this.selectLine
+						return {
+							context: 'preview',
+							lineNumber: this.props.lineNumber
+						};
 					}}
 				>
 					<i

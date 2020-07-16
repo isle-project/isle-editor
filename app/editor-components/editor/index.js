@@ -962,6 +962,10 @@ class Editor extends Component {
 
 	handleContextMenuClick = ( customClick, data ) => {
 		debug( 'Handle click to open context menu... ' );
+		if ( data.lineNumber ) {
+			debug( 'Set position to line '+data.lineNumber+'...' );
+			this.editor.setPosition({ lineNumber: data.lineNumber, column: Infinity });
+		}
 		if ( !customClick ) {
 			debug( 'Insert snippet into editor...' );
 			const controller = this.editor.getContribution( 'snippetController2' );
