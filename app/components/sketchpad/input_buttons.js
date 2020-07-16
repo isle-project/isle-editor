@@ -93,6 +93,11 @@ class InputButtons extends Component {
 						/>
 					</InputGroup>
 				</ButtonGroup>
+				<ButtonGroup size="sm" >
+					<Tooltip placement="right" tooltip={t('change-brush-color')} >
+						<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.props.color, color: 'white' }} >Col</Button>
+					</Tooltip>
+				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-text-buttons" >
 					<TooltipButton
 						size="sm" variant={this.props.mode === 'text' ? 'success' : 'secondary'}
@@ -123,11 +128,6 @@ class InputButtons extends Component {
 							aria-label={t('font-size')}
 						/>
 					</InputGroup>
-				</ButtonGroup>
-				<ButtonGroup size="sm" >
-					<Tooltip placement="right" tooltip={t('change-brush-color')} >
-						<Button size="sm" onClick={this.toggleColorPicker} style={{ background: this.props.color, color: 'white' }} >Col</Button>
-					</Tooltip>
 				</ButtonGroup>
 				<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
 					<TwitterPicker
