@@ -34,6 +34,46 @@ const uid = generateUID( 'number-question' );
 const debug = logger( 'isle:number-question' );
 
 
+// FUNCTIONS //
+
+function isCorrect( answer, solution ) {
+	if ( isArray( solution ) ) {
+		for ( let i = 0; i < solution.length; i++ ) {
+			if ( answer === solution[ i ] ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	return answer === solution;
+}
+
+function isApproximatelyCorrect( answer, solution, digits ) {
+	answer = roundn( answer, -digits );
+	if ( isArray( solution ) ) {
+		for ( let i = 0; i < solution.length; i++ ) {
+			if ( answer === roundn( solution[ i ], -digits ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	return answer === roundn( solution, -digits );
+}
+
+function formatArraySolution( solution, t ) {
+	let out = t( 'one-of' );
+	out += solution[ 0 ];
+	for ( let i = 1; i < solution.length - 1; i++ ) {
+		out += ', ';
+		out += solution[ i ];
+	}
+	out += t( ' or ' );
+	out += solution[ solution.length-1 ];
+	return out;
+}
+
+
 // MAIN //
 
 /**
@@ -43,7 +83,7 @@ const debug = logger( 'isle:number-question' );
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
-* @property {number} solution - a numeric answer to the problem
+* @property {(number|Array<number>)} solution - a numeric answer to the problem (or multiple correct answers if an array is supplied)
 * @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
 * @property {number} max - maximum allowed input value
 * @property {number} min - minimum allowed input value
@@ -72,7 +112,9 @@ class NumberQuestion extends Component {
 		this.state = {
 			value: isNumber( value ) ? value : props.defaultValue,
 			submitted: value && isUndefinedOrNull( props.solution ),
-			correct: value === props.solution,
+			correct: props.digits ?
+				isApproximatelyCorrect( value, props.solution, props.digits ) :
+				isCorrect( value, props.solution ),
 			...props
 		};
 	}
@@ -185,9 +227,9 @@ class NumberQuestion extends Component {
 		if ( !isUndefinedOrNull( solution ) ) {
 			const val = parseFloat( this.state.value );
 			if ( digits === null ) {
-				correct = val === solution;
+				correct = isCorrect( val, solution );
 			} else {
-				correct = roundn( val, -digits ) === roundn( solution, -digits );
+				correct = isApproximatelyCorrect( val, solution, digits );
 			}
 		}
 		this.props.onSubmit( val, correct );
@@ -243,7 +285,10 @@ class NumberQuestion extends Component {
 					{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
 						<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
 							{`${this.props.t('solution')}:   `}
-							{this.props.solution}
+							{isArray( this.props.solution ) ?
+								formatArraySolution( this.props.solution, this.props.t ) :
+								String( this.props.solution )
+							}
 						</Badge>:
 						null
 					}
@@ -325,7 +370,10 @@ NumberQuestion.propTypes = {
 		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
 	),
 	feedback: PropTypes.bool,
-	solution: PropTypes.number,
+	solution: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.arrayOf( PropTypes.number )
+	]),
 	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
