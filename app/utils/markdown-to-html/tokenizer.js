@@ -70,21 +70,27 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	return renderer.renderToken( tokens, idx, options );
 };
 md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
+	if ( !env.addLineWrappers ) {
+		return renderer.renderToken( tokens, idx, options );
+	}
 	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
 	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
 };
 md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
+	if ( !env.addLineWrappers ) {
+		return renderer.renderToken( tokens, idx, options );
+	}
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
 };
 md.renderer.rules.paragraph_open = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.outer ) {
+	if ( !env.addLineWrappers || !env.outer ) {
 		return renderer.renderToken( tokens, idx, options );
 	}
 	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
 	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
 };
 md.renderer.rules.paragraph_close = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.outer ) {
+	if ( !env.addLineWrappers || !env.outer ) {
 		return renderer.renderToken( tokens, idx, options );
 	}
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
@@ -843,7 +849,8 @@ class Tokenizer {
 		const env = {
 			initialLineNumber: this.initialLineNumber,
 			lineAdjustment: 0,
-			outer: this.outer
+			outer: this.outer,
+			addLineWrappers: this.addLineWrappers
 		};
 		out = this.inline ? md.renderInline( out, env ) : md.render( out, env );
 		for ( let key in this.placeholderHash ) {
