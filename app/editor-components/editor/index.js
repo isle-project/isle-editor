@@ -13,6 +13,7 @@ import { spawn } from 'child_process';
 import https from 'https';
 import http from 'http';
 import url from 'url';
+import markdownit from 'markdown-it';
 import vex from 'vex-js';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
@@ -50,6 +51,12 @@ import './editor.css';
 // VARIABLES //
 
 const debug = logger( 'isle:editor' );
+const md = markdownit({
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	typographer: false
+});
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
@@ -1160,8 +1167,12 @@ class Editor extends Component {
 		const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
 
 		this.editor.setSelection( selection );
-		const content = model.getValueInRange( range );
-		const match = content.match( RE_TAG_START );
+		let content = model.getValueInRange( range );
+		let match = content.match( RE_TAG_START );
+		if ( !match ) {
+			content = md.render( content );
+			match = content.match( RE_TAG_START );
+		}
 		return { match, content };
 	}
 
