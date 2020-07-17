@@ -83,14 +83,15 @@ md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
 };
 md.renderer.rules.paragraph_open = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers || !env.outer ) {
+	if ( !env.addLineWrappers || !env.outer || isSlideDelimiter( tokens[ idx+1 ] ) ) {
 		return renderer.renderToken( tokens, idx, options );
 	}
 	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
-	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
+	const content = renderer.renderToken( tokens, idx, options );
+	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${content}`;
 };
 md.renderer.rules.paragraph_close = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers || !env.outer ) {
+	if ( !env.addLineWrappers || !env.outer || isSlideDelimiter( tokens[ idx-1 ] ) ) {
 		return renderer.renderToken( tokens, idx, options );
 	}
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
@@ -116,6 +117,14 @@ md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
 
 
 // FUNCTIONS //
+
+function isSlideDelimiter( token ) {
+	return (
+		token.type === 'inline' &&
+		token.children.length &&
+		token.children[ 0 ].content === '==='
+	);
+}
 
 /**
 * Escapes raw attribute tags of TeX and Text components.
@@ -412,7 +421,11 @@ class Tokenizer {
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
 			this._endLineNumber = this.lineNumber;
-			if ( this.addLineWrappers && !isInline && !RE_INNER_TAGS.test( this._openingTagName ) && !RE_FLEX_TAGS.test( this._openingTagName ) ) {
+			if (
+				this.addLineWrappers && !isInline &&
+				!RE_INNER_TAGS.test( this._openingTagName ) &&
+				!RE_FLEX_TAGS.test( this._openingTagName )
+			) {
 				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'" data-lines="'+(this._endLineNumber - this._startLineNumber)+'"/>';
