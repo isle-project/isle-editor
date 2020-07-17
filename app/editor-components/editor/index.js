@@ -540,11 +540,8 @@ class Editor extends Component {
 		node.addEventListener( 'dblclick', () => {
 			const selection = this.editor.getSelection();
 			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
-			const line = model.getLineContent( selection.startLineNumber );
-			if ( RE_TAG_START.test( line ) ) {
-				const lineNumber = selection.startLineNumber;
-				scrollIntoView( lineNumber );
-			}
+			const lineNumber = selection.startLineNumber;
+			scrollIntoView( lineNumber );
 			const elem = document.getElementById( 'line-'+selection.startLineNumber );
 			if ( elem ) {
 				const event = new MouseEvent( 'dblclick', {
