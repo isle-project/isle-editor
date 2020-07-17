@@ -49,6 +49,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+md.disable( 'code' );
 const debug = logger('isle:editor:component-configurator');
 
 
