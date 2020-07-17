@@ -1,11 +1,12 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Loadable from 'components/internal/loadable';
+import HeaderUpperBar from 'editor-components/header-upper-bar';
 const ExportPage = Loadable( () => import( 'editor-components/export-page' ) );
-import { convertMarkdown, toggleScrolling, changeNamespace } from 'actions';
+import { convertMarkdown, toggleScrolling, changeNamespace, updateDownloading } from 'actions';
 
 
 // MAIN //
@@ -13,13 +14,23 @@ import { convertMarkdown, toggleScrolling, changeNamespace } from 'actions';
 class Export extends Component {
 	render() {
 		return (
-			<ExportPage
-				content={this.props.markdown}
-				filePath={this.props.filePath}
-				fileName={this.props.fileName}
-				namespaceName={this.props.namespaceName || ''}
-				changeNamespace={this.props.changeNamespace}
-			/>
+			<Fragment>
+				<HeaderUpperBar
+					backToEditor
+					title="Export"
+					updateStatus={this.props.updateStatus}
+					updateInfo={this.props.updateInfo}
+					updateDownloading={this.props.updateDownloading}
+					updateDownloadPercent={this.props.updateDownloadPercent}
+				/>
+				<ExportPage
+					content={this.props.markdown}
+					filePath={this.props.filePath}
+					fileName={this.props.fileName}
+					namespaceName={this.props.namespaceName || ''}
+					changeNamespace={this.props.changeNamespace}
+				/>
+			</Fragment>
 		);
 	}
 }
@@ -32,7 +43,11 @@ Export.propTypes = {
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	markdown: PropTypes.string,
-	namespaceName: PropTypes.string
+	namespaceName: PropTypes.string,
+	updateDownloading: PropTypes.func.isRequired,
+	updateDownloadPercent: PropTypes.number,
+	updateInfo: PropTypes.object,
+	updateStatus: PropTypes.string
 };
 
 Export.defaultProps = {
@@ -40,7 +55,10 @@ Export.defaultProps = {
 	fileName: null,
 	filePath: null,
 	markdown: '',
-	namespaceName: null
+	namespaceName: null,
+	updateDownloadPercent: null,
+	updateInfo: null,
+	updateStatus: null
 };
 
 
@@ -49,9 +67,13 @@ Export.defaultProps = {
 export default connect( mapStateToProps, {
 	convertMarkdown,
 	toggleScrolling,
-	changeNamespace
+	changeNamespace,
+	updateDownloading
 })( Export );
 
-function mapStateToProps({ markdown }) {
-	return markdown;
+function mapStateToProps({ editor, updater }) {
+	return {
+		...editor,
+		...updater
+	};
 }

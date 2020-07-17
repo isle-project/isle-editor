@@ -218,7 +218,8 @@ class App extends Component {
 			toggleLineButtons,
 			updateInfo,
 			updateStatus,
-			updateDownloading
+			updateDownloading,
+			updateDownloadPercent
 		} = this.props;
 
 		const preview = <ErrorBoundary
@@ -271,6 +272,7 @@ class App extends Component {
 						updateStatus={updateStatus}
 						updateInfo={updateInfo}
 						updateDownloading={updateDownloading}
+						updateDownloadPercent={updateDownloadPercent}
 					/> :
 					null
 				}
@@ -378,7 +380,10 @@ App.defaultProps = {
 	error: null,
 	fileName: null,
 	filePath: null,
-	insertionText: null
+	insertionText: null,
+	updateDownloadPercent: null,
+	updateInfo: null,
+	updateStatus: null
 };
 
 App.propTypes = {
@@ -413,6 +418,9 @@ App.propTypes = {
 	elementRangeVersion: PropTypes.number.isRequired,
 	toggleConfigurator: PropTypes.func.isRequired,
 	updateDownloading: PropTypes.func.isRequired,
+	updateDownloadPercent: PropTypes.number,
+	updateInfo: PropTypes.object,
+	updateStatus: PropTypes.string,
 	updatePreamble: PropTypes.func.isRequired,
 	unsaved: PropTypes.bool.isRequired
 };
