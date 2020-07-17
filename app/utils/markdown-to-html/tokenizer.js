@@ -69,6 +69,31 @@ md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer 
 	token.tag = 'Image';
 	return renderer.renderToken( tokens, idx, options );
 };
+md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
+	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
+	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
+};
+md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
+	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
+};
+md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
+	const { content } = tokens[ idx ];
+	const match = content.match( /data-lines="(\d+)"/ );
+	if ( match && match[ 1 ] ) {
+		env.lineAdjustment += Number( match[ 1 ] );
+	}
+	if ( content.includes( '<LineButtons' ) ) {
+		env.lineAdjustment -= 1;
+	}
+	return content;
+};
+md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
+	const { content } = tokens[ idx ];
+	if ( content.includes( '<LineButtons' ) ) {
+		env.markdownLineAdjustment -= 1;
+	}
+	return content;
+};
 
 
 // FUNCTIONS //
@@ -146,53 +171,17 @@ function isWhitespace( c ) {
 class Tokenizer {
 	constructor( opts ) {
 		debug( 'Create tokenizer: '+JSON.stringify( opts ) );
-		let initialLineNumber;
 		if ( opts && opts.lineNumber ) {
-			initialLineNumber = opts.lineNumber;
+			this.initialLineNumber = opts.lineNumber;
 		} else {
-			initialLineNumber = 1;
+			this.initialLineNumber = 1;
 		}
 		if ( opts ) {
 			this.inline = opts.inline ? true : false;
 			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
-			this.lineNumber = initialLineNumber;
+			this.lineNumber = this.initialLineNumber;
 			this.outer = opts.outer ? true : false;
 			this.addLineWrappers = opts.addLineWrappers;
-		}
-
-		if ( this.addLineWrappers && this.outer ) {
-			this.markdownLineAdjustment = 0;
-			md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
-				const line = initialLineNumber + this.markdownLineAdjustment + tokens[ idx ].map[ 0 ];
-				return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
-			};
-			md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
-				return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
-			};
-			md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
-				const { content } = tokens[ idx ];
-				if ( !this.outer ) {
-					return content;
-				}
-				const match = content.match( /data-lines="(\d+)"/ );
-				if ( match && match[ 1 ] ) {
-					this.markdownLineAdjustment += Number( match[ 1 ] );
-				}
-				if ( content.includes( '<LineButtons' ) ) {
-					this.markdownLineAdjustment -= 1;
-				}
-				return content;
-			};
-			md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
-				const { content } = tokens[ idx ];
-				if ( !this.outer ) {
-					return content;
-				}
-				if ( content.includes( '<LineButtons' ) ) {
-					this.markdownLineAdjustment -= 1;
-				}
-				return content;
-			};
 		}
 	}
 
@@ -837,7 +826,11 @@ class Tokenizer {
 			}
 		}
 		let out = this.tokens.join( '' );
-		out = this.inline ? md.renderInline( out ) : md.render( out );
+		const env = {
+			initialLineNumber: this.initialLineNumber,
+			lineAdjustment: 0
+		};
+		out = this.inline ? md.renderInline( out, env ) : md.render( out, env );
 		for ( let key in this.placeholderHash ) {
 			if ( hasOwnProp( this.placeholderHash, key ) ) {
 				// Treat dollar signs literally and do not confuse them for replacement patterns:
