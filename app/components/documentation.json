@@ -23,7 +23,7 @@
         "name": "headerClassName",
         "type": "string",
         "description": "this overrules the given class name of the headers",
-        "defaultValue": null
+        "defaultValue": "card-title"
       }
     ],
     "description": "An accordion component controlling vertical sliders."
@@ -3995,8 +3995,8 @@
       },
       {
         "name": "solution",
-        "type": "number",
-        "description": "a numeric answer to the problem",
+        "type": "(number|array<number>)",
+        "description": "a numeric answer to the problem (or multiple correct answers if an array is supplied)",
         "defaultValue": null
       },
       {

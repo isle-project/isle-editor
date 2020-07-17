@@ -360,19 +360,19 @@
   "basic": [
     {
       "name": "hr",
-      "value": "<hr />"
+      "value": "<hr />\n${1:}"
     },
     {
       "name": "div",
-      "value": "<div>\n  ${1:}\n</div>${2:}"
+      "value": "<div>\n  ${1:}\n</div>\n${2:}"
     },
     {
       "name": "p",
-      "value": "<p>\n  ${1:}\n</p>${2:}"
+      "value": "<p>\n  ${1:}\n</p>\n${2:}"
     },
     {
       "name": "pre",
-      "value": "<pre>\n${1:}\n</pre>${2:}"
+      "value": "<pre>\n${1:}\n</pre>\n${2:}"
     },
     {
       "name": "span",
@@ -380,7 +380,7 @@
     },
     {
       "name": "blockquote",
-      "value": "<blockquote>\n  ${1:}\n</blockquote>"
+      "value": "<blockquote>\n  ${1:}\n</blockquote>\n${2:}"
     },
     {
       "name": "Image",
