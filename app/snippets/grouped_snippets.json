@@ -22,7 +22,7 @@
     },
     {
       "name": "Polaroid",
-      "value": "<Polaroid image=\"${1:Enter URL}\" />"
+      "value": "<Polaroid image=\"${1:Enter URL}\" />\n${2:}"
     },
     {
       "name": "RandomVideo",
@@ -200,7 +200,7 @@
     },
     {
       "name": "VideoPlayer",
-      "value": "<VideoPlayer url=\"${1:url}\" />\n"
+      "value": "<VideoPlayer url=\"${1:https://youtu.be/Lkj8b25ppZo}\" />\n"
     }
   ],
   "plots": [
@@ -398,7 +398,7 @@
   "layout": [
     {
       "name": "Container",
-      "value": "<Container>\n  <Row>\n    <Col md={${1:6}}>\n      ${2:}\n    </Col>\n    <Col md={${3:6}}>\n      ${4:}\n    </Col>\n  </Row>\n</Container>\n${5:}"
+      "value": "<Container>\n  <Row>\n    <Col md={${1:6}}>\n      ${2:}\n    </Col>\n    <Col md={${3:6}}>\n      ${4:}\n    </Col>\n  </Row>\n\n</Container>\n${5:}"
     },
     {
       "name": "Nav justified",
