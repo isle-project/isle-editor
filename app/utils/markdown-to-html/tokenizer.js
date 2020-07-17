@@ -76,6 +76,19 @@ md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
 md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
 };
+md.renderer.rules.paragraph_open = ( tokens, idx, options, env, renderer ) => {
+	if ( !env.outer ) {
+		return renderer.renderToken( tokens, idx, options );
+	}
+	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
+	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
+};
+md.renderer.rules.paragraph_close = ( tokens, idx, options, env, renderer ) => {
+	if ( !env.outer ) {
+		return renderer.renderToken( tokens, idx, options );
+	}
+	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
+};
 md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
 	const { content } = tokens[ idx ];
 	const match = content.match( /data-lines="(\d+)"/ );
@@ -90,7 +103,7 @@ md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
 md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
 	const { content } = tokens[ idx ];
 	if ( content.includes( '<LineButtons' ) ) {
-		env.markdownLineAdjustment -= 1;
+		env.lineAdjustment -= 1;
 	}
 	return content;
 };
@@ -671,7 +684,7 @@ class Tokenizer {
 				RE_INLINE_TAGS.test( tag );
 			const tokenizer = new Tokenizer({
 				inline: isInner,
-				lineNumber: this._startLineNumber,
+				lineNumber: this._jsxStartLine,
 				addLineWrappers: this.addLineWrappers,
 				addEmptySpans: this.addEmptySpans
 			});
@@ -710,6 +723,7 @@ class Tokenizer {
 		else if ( char === '<' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_EXPRESSION' );
 			this._state = IN_JSX_EXPRESSION;
+			this._jsxStartLine = this.lineNumber;
 		}
 		else if ( char === '}' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_OPENING_TAG' );
@@ -828,7 +842,8 @@ class Tokenizer {
 		let out = this.tokens.join( '' );
 		const env = {
 			initialLineNumber: this.initialLineNumber,
-			lineAdjustment: 0
+			lineAdjustment: 0,
+			outer: this.outer
 		};
 		out = this.inline ? md.renderInline( out, env ) : md.render( out, env );
 		for ( let key in this.placeholderHash ) {
