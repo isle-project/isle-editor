@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { changeRenderInterval, changeFontSize, changePreambleTemplate } from 'actions';
+import { changeRenderInterval, changeFontSize, changePreambleTemplate, updateDownloading } from 'actions';
 import NumberInput from 'components/input/number';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -34,7 +34,14 @@ class Settings extends Component {
 	render() {
 		return (
 			<Fragment>
-				<HeaderUpperBar backToEditor title="Settings" />
+				<HeaderUpperBar
+					backToEditor
+					title="Settings"
+					updateStatus={this.props.updateStatus}
+					updateInfo={this.props.updateInfo}
+					updateDownloading={this.props.updateDownloading}
+					updateDownloadPercent={this.props.updateDownloadPercent}
+				/>
 				<div className="settings-wrapper">
 					<SettingsLogin />
 					<Card className="settings-card" >
@@ -89,12 +96,14 @@ class Settings extends Component {
 export default connect( mapStateToProps, {
 	changeFontSize,
 	changePreambleTemplate,
-	changeRenderInterval
+	changeRenderInterval,
+	updateDownloading
 })( Settings );
 
-function mapStateToProps({ editor, preview }) {
+function mapStateToProps({ editor, preview, updater }) {
 	return {
 		...editor,
-		...preview
+		...preview,
+		...updater
 	};
 }
