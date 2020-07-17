@@ -96,14 +96,14 @@ md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
 		env.lineAdjustment += Number( match[ 1 ] );
 	}
 	if ( content.includes( '<LineButtons' ) ) {
-		env.lineAdjustment -= 1;
+		env.lineAdjustment -= 2;
 	}
 	return content;
 };
 md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
 	const { content } = tokens[ idx ];
 	if ( content.includes( '<LineButtons' ) ) {
-		env.lineAdjustment -= 1;
+		env.lineAdjustment -= 2;
 	}
 	return content;
 };
@@ -225,7 +225,7 @@ class Tokenizer {
 			char === '\n' &&
 			( nextChar === '\n' || nextChar === '\r' )
 		) {
-			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}` )}} lineNumber={${this.lineNumber}} />`;
+			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
 		}
 		else if (
 			char === '<' &&
@@ -858,7 +858,7 @@ class Tokenizer {
 		debug( out );
 		debug( '---' );
 		if ( this.addEmptySpans && this.outer ) {
-			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}` )}} lineNumber={${this.lineNumber+1}} />`;
+			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber+1}} />${EOL}`;
 		}
 		return out;
 	}
