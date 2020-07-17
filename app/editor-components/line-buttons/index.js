@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { ContextMenuTrigger } from 'react-contextmenu';
@@ -40,42 +40,38 @@ class LineButtons extends Component {
 			return null;
 		}
 		return (
-			<Fragment>
-				<br />
-				<span className="line-buttons" >
-					{ this.props.splitPos !== 1 ? <span
-						className="line-buttons-jump"
-						role="button" tabIndex={0}
-						onClick={this.jumpToLine}
-						onKeyPress={this.jumpToLine}
-						title={`Center editor on line ${this.props.lineNumber}`}
-					>
-						<span
-							className="fa fa-arrow-circle-left"
-						></span>
-						<strong className="line-buttons-line-display" >
-							{this.props.lineNumber}
-						</strong>
-					</span> : null }
-					<ContextMenuTrigger
-						id="editor-context-menu"
-						renderTag="span"
-						holdToDisplay={0}
-						collect={() => {
-							return {
-								context: 'preview',
-								lineNumber: this.props.lineNumber
-							};
-						}}
-					>
-						<i
-							className="line-buttons-contextmenu fas fa-plus-circle"
-							title={`Click to insert component at line ${this.props.lineNumber}`}
-						></i>
-					</ContextMenuTrigger>
-				</span>
-				<br />
-			</Fragment>
+			<span className="line-buttons" >
+				{ this.props.splitPos !== 1 ? <span
+					className="line-buttons-jump"
+					role="button" tabIndex={0}
+					onClick={this.jumpToLine}
+					onKeyPress={this.jumpToLine}
+					title={`Center editor on line ${this.props.lineNumber}`}
+				>
+					<span
+						className="fa fa-arrow-circle-left"
+					></span>
+					<strong className="line-buttons-line-display" >
+						{this.props.lineNumber}
+					</strong>
+				</span> : null }
+				<ContextMenuTrigger
+					id="editor-context-menu"
+					renderTag="span"
+					holdToDisplay={0}
+					collect={() => {
+						return {
+							context: 'preview',
+							lineNumber: this.props.lineNumber
+						};
+					}}
+				>
+					<i
+						className="line-buttons-contextmenu fas fa-plus-circle"
+						title={`Click to insert component at line ${this.props.lineNumber}`}
+					></i>
+				</ContextMenuTrigger>
+			</span>
 		);
 	}
 }

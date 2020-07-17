@@ -45,6 +45,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+md.disable( 'code' );
 md.renderer.rules.link_open = function onLinkOpen( tokens, idx, options, env, renderer ) {
 	// If you are sure other plugins can't add `target` - drop check below
 	const token = tokens[ idx ];
@@ -145,12 +146,53 @@ function isWhitespace( c ) {
 class Tokenizer {
 	constructor( opts ) {
 		debug( 'Create tokenizer: '+JSON.stringify( opts ) );
+		let initialLineNumber;
+		if ( opts && opts.lineNumber ) {
+			initialLineNumber = opts.lineNumber;
+		} else {
+			initialLineNumber = 1;
+		}
 		if ( opts ) {
 			this.inline = opts.inline ? true : false;
 			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
-			this.lineNumber = opts.lineNumber ? opts.lineNumber : 1;
+			this.lineNumber = initialLineNumber;
 			this.outer = opts.outer ? true : false;
 			this.addLineWrappers = opts.addLineWrappers;
+		}
+
+		if ( this.addLineWrappers && this.outer ) {
+			this.markdownLineAdjustment = 0;
+			md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
+				const line = initialLineNumber + this.markdownLineAdjustment + tokens[ idx ].map[ 0 ];
+				return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
+			};
+			md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
+				return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
+			};
+			md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
+				const { content } = tokens[ idx ];
+				if ( !this.outer ) {
+					return content;
+				}
+				const match = content.match( /data-lines="(\d+)"/ );
+				if ( match && match[ 1 ] ) {
+					this.markdownLineAdjustment += Number( match[ 1 ] );
+				}
+				if ( content.includes( '<LineButtons' ) ) {
+					this.markdownLineAdjustment -= 1;
+				}
+				return content;
+			};
+			md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
+				const { content } = tokens[ idx ];
+				if ( !this.outer ) {
+					return content;
+				}
+				if ( content.includes( '<LineButtons' ) ) {
+					this.markdownLineAdjustment -= 1;
+				}
+				return content;
+			};
 		}
 	}
 
@@ -181,7 +223,7 @@ class Tokenizer {
 			char === '\n' &&
 			( nextChar === '\n' || nextChar === '\r' )
 		) {
-			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
+			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}` )}} lineNumber={${this.lineNumber}} />`;
 		}
 		else if (
 			char === '<' &&
@@ -365,7 +407,7 @@ class Tokenizer {
 			if ( this.addLineWrappers && !isInline && !RE_INNER_TAGS.test( this._openingTagName ) && !RE_FLEX_TAGS.test( this._openingTagName ) ) {
 				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
 			}
-			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'"/>';
+			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'" data-lines="'+(this._endLineNumber - this._startLineNumber)+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
 			this.tokens.push( placeholder );
 			this._current = '';
@@ -412,8 +454,9 @@ class Tokenizer {
 				}
 				this._level -= 1;
 				if ( this._level === 0 ) {
-					this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = this._current;
-					this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+					const placeholder = '<div id="placeholder_'+this.pos+'" data-lines="'+(this.lineNumber - this._startLineNumber)+'" />';
+					this.placeholderHash[ placeholder ] = this._current;
+					this.tokens.push( placeholder );
 					this._current = '';
 					debug( 'IN_OPENING_TAG -> IN_BASE' );
 					this._state = IN_BASE;
@@ -807,7 +850,7 @@ class Tokenizer {
 		debug( out );
 		debug( '---' );
 		if ( this.addEmptySpans && this.outer ) {
-			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber+1}} />${EOL}`;
+			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}` )}} lineNumber={${this.lineNumber+1}} />`;
 		}
 		return out;
 	}
