@@ -1,5 +1,5 @@
 .spectacle-styled-fullscreen {
-	position: absolute;
+	position: fixed;
 	bottom: 6px;
 	right: 38px;
 	width: 32px;
