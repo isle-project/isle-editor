@@ -388,7 +388,7 @@ class Tokenizer {
 						RE_INLINE_TAGS.test( this._openingTagName );
 					const tokenizer = new Tokenizer({
 						inline: isInner,
-						lineNumber: this._startLineNumber,
+						lineNumber: this._betweenLineNumber,
 						addLineWrappers: this.addLineWrappers,
 						addEmptySpans: this.addEmptySpans
 					});
@@ -491,10 +491,12 @@ class Tokenizer {
 				} else {
 					debug( 'IN_OPENING_TAG: IN_BETWEEN_TAGS' );
 					this._state = IN_BETWEEN_TAGS;
+					this._betweenLineNumber = this.lineNumber;
 				}
 			} else {
 				debug( 'IN_OPENING_TAG -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
+				this._betweenLineNumber = this.lineNumber;
 			}
 		} else if ( isQuotationMark( char ) ) {
 			this._stringOpener = char;
