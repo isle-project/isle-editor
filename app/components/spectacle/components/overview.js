@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 /*
 * The MIT License (MIT)
 *
@@ -29,13 +31,13 @@
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { getSlideByIndex } from '../utils/slides';
-import './overview.css';
 import { SpectacleContext } from '../utils/context';
+import './overview.css';
 
 
-// EXPORTS //
+// MAIN //
 
-export default class Overview extends Component {
+class Overview extends Component {
 	constructor() {
 		super(...arguments);
 		this.resizeHandler = this.resizeHandler.bind(this);
@@ -112,6 +114,9 @@ export default class Overview extends Component {
 	}
 }
 
+
+// PROPERTIES //
+
 Overview.propTypes = {
 	resetViewedIndexes: PropTypes.function,
 	route: PropTypes.object,
@@ -121,3 +126,8 @@ Overview.propTypes = {
 };
 
 Overview.contextType = SpectacleContext;
+
+
+// EXPORTS //
+
+export default Overview;

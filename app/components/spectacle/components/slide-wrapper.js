@@ -68,7 +68,11 @@ class SlideWrapper extends React.PureComponent {
 
 	getTransitionKeys = () => {
 		const {
-			props: { transition = [], transitionIn = [], transitionOut = [] },
+			props: {
+				transition = [],
+				transitionIn = [],
+				transitionOut = []
+			},
 			state: { reverse }
 		} = this;
 		if ( reverse && transitionOut.length > 0 ) {

@@ -101,15 +101,6 @@ function buildSlideReference(props) {
 export class Manager extends Component {
 	constructor(props) {
 		super(...arguments);
-		this._getProgressStyles = this._getProgressStyles.bind(this);
-		this._getControlStyles = this._getControlStyles.bind(this);
-		this._handleKeyPress = this._handleKeyPress.bind(this);
-		this._handleScreenChange = this._handleScreenChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
-		this._goToSlide = this._goToSlide.bind(this);
-		this._startAutoplay = this._startAutoplay.bind(this);
-		this._stopAutoplay = this._stopAutoplay.bind(this);
-		this._resetViewedIndexes = this._resetViewedIndexes.bind(this);
 		this.presentationConnection = null;
 
 		this.state = {
@@ -119,7 +110,6 @@ export class Manager extends Component {
 			mobile: window.innerWidth < this.props.contentWidth,
 			autoplaying: this.props.autoplay ? this.props.autoplayOnStart : false
 		};
-
 		this.viewedIndexes = new Set();
 		this.slideCache = null;
 	}
@@ -147,7 +137,7 @@ export class Manager extends Component {
 		}
 	}
 
-	_attachEvents() {
+	_attachEvents = () => {
 		window.addEventListener('storage', this._goToSlide);
 		window.addEventListener('keydown', this._handleKeyPress);
 		window.addEventListener('resize', this._handleScreenChange);
@@ -171,13 +161,13 @@ export class Manager extends Component {
 		}
 	}
 
-	_detachEvents() {
+	_detachEvents = () => {
 		window.removeEventListener('storage', this._goToSlide);
 		window.removeEventListener('keydown', this._handleKeyPress);
 		window.removeEventListener('resize', this._handleScreenChange);
 	}
 
-	_startAutoplay() {
+	_startAutoplay = () => {
 		clearInterval( this.autoplayInterval );
 		this.setState({ autoplaying: true });
 		this.autoplayInterval = setInterval(() => {
@@ -185,12 +175,12 @@ export class Manager extends Component {
 		}, this.props.autoplayDuration);
 	}
 
-	_stopAutoplay() {
+	_stopAutoplay = () => {
 		this.setState({ autoplaying: false });
 		clearInterval(this.autoplayInterval);
 	}
 
-	_toggleAutoplaying() {
+	_toggleAutoplaying = () => {
 		if (this.state.autoplaying) {
 			this._stopAutoplay();
 		} else {
@@ -198,7 +188,7 @@ export class Manager extends Component {
 		}
 	}
 
-	_handleEvent(e) {
+	_handleEvent = (e) => {
 		// eslint-disable-line complexity
 		const event = window.event ? window.event : e;
 
@@ -257,9 +247,8 @@ export class Manager extends Component {
 		}
 	}
 
-	_handleKeyPress(e) {
+	_handleKeyPress = (e) => {
 		const event = window.event ? window.event : e;
-
 		if (
 			event.target instanceof HTMLInputElement ||
 			event.target.type === 'textarea' ||
@@ -268,24 +257,23 @@ export class Manager extends Component {
 		) {
 			return;
 		}
-
 		this._handleEvent(e);
 	}
 
-	_handleScreenChange() {
+	_handleScreenChange = () => {
 		this.setState({
 			fullscreen: window.innerHeight === screen.height,
 			mobile: window.innerWidth < this.props.contentWidth
 		});
 	}
 
-	_toggleOverviewMode() {
+	_toggleOverviewMode = () => {
 		const suffix =
 			this.context.route.params.indexOf('overview') !== -1 ? '' : '?overview';
 		this.context.history.replace(`/${this.context.route.slide}${suffix}`);
 	}
 
-	_togglePresenterMode() {
+	_togglePresenterMode = () => {
 		const presenting = this.context.route.params.indexOf('presenter') !== -1;
 		const suffix = presenting ? '' : '?presenter';
 		const originalLocation = location.href;
@@ -305,7 +293,8 @@ export class Manager extends Component {
 			this.presentationConnection.terminate();
 		}
 	}
-	_toggleTimerMode() {
+
+	_toggleTimerMode = () => {
 		const isTimer =
 			this.context.route.params.indexOf('presenter') !== -1 &&
 			this.context.route.params.indexOf('timer') !== -1;
@@ -313,7 +302,7 @@ export class Manager extends Component {
 		this.context.history.replace(`/${this.context.route.slide}${suffix}`);
 	}
 
-	_getSuffix() {
+	_getSuffix = () => {
 		if (this.context.route.params.indexOf('presenter') !== -1) {
 			const isTimerMode = this.context.route.params.indexOf('timer') !== -1;
 			return isTimerMode ? '?presenter&timer' : '?presenter';
@@ -323,7 +312,7 @@ export class Manager extends Component {
 		return '';
 	}
 
-	_goToSlide(e) {
+	_goToSlide = (e) => {
 		let data = null;
 		let canNavigate = true;
 		let offset = 0;
@@ -333,21 +322,17 @@ export class Manager extends Component {
 		} else if (e.slide) {
 			data = e;
 			offset = 1;
-
-			const index = isNaN(parseInt(data.slide, 10))
-				? get(
+			const index = isNaN(parseInt(data.slide, 10)) ? get(
 						this.state.slideReference.find(slide => slide.id === data.slide),
 						'rootIndex',
 						0
-					)
-				: data.slide - 1;
+					) : data.slide - 1;
 
 			const msgData = JSON.stringify({
 				slide: this._getHash(index),
 				forward: false,
 				time: Date.now()
 			});
-
 			localStorage.setItem('spectacle-slide', msgData);
 
 			if (this.presentationConnection) {
@@ -356,7 +341,6 @@ export class Manager extends Component {
 		} else {
 			return;
 		}
-
 		const slideIndex = this._getSlideIndex();
 		this.setState({
 			lastSlideIndex: slideIndex || 0
@@ -371,11 +355,11 @@ export class Manager extends Component {
 		}
 	}
 
-	_resetViewedIndexes() {
+	_resetViewedIndexes = () => {
 		this.viewedIndexes = new Set();
 	}
 
-	_prevSlide() {
+	_prevSlide = () => {
 		const slideIndex = this._getSlideIndex();
 		this.setState({
 			lastSlideIndex: slideIndex
@@ -417,7 +401,7 @@ export class Manager extends Component {
 		}
 	}
 
-	_nextUnviewedIndex() {
+	_nextUnviewedIndex = () => {
 		const sortedIndexes = Array.from(this.viewedIndexes).sort((a, b) => a - b);
 		return Math.min(
 			(sortedIndexes[sortedIndexes.length - 1] || 0) + 1,
@@ -425,7 +409,7 @@ export class Manager extends Component {
 		);
 	}
 
-	_getOffset(slideIndex) {
+	_getOffset = (slideIndex) => {
 		const { goTo } = this.state.slideReference[slideIndex];
 		const nextUnviewedIndex = this._nextUnviewedIndex();
 		if ( goTo && !isNaN( parseInt( goTo, 10 ) ) ) {
@@ -439,7 +423,8 @@ export class Manager extends Component {
 		}
 		return nextUnviewedIndex - slideIndex;
 	}
-	_nextSlide() {
+
+	_nextSlide = () => {
 		const slideIndex = this._getSlideIndex();
 		this.setState({
 			lastSlideIndex: slideIndex
@@ -502,12 +487,11 @@ export class Manager extends Component {
 		return reference.id;
 	}
 
-	_updateFragment(fragData) {
-		console.log( 'UPDATE FRAGMENT ');
-		return this.props.updateFragment(fragData);
+	_updateFragment = ( fragData ) => {
+		return this.props.updateFragment( fragData );
 	}
 
-	_checkFragments(slide, forward) {
+	_checkFragments = ( slide, forward ) => {
 		const fragments = this.props.fragments;
 		// Not proud of this at all. 0.14 Parent based contexts will fix this.
 		if (this.context.route.params.indexOf('presenter') !== -1) {
@@ -578,12 +562,11 @@ export class Manager extends Component {
 		return true;
 	}
 
-	_getTouchEvents() {
+	_getTouchEvents = () => {
 		if (this.props.disableTouchControls) {
 			return {};
 		}
 		const self = this;
-
 		return {
 			onTouchStart(e) {
 				self.touchObject = {
@@ -623,7 +606,7 @@ export class Manager extends Component {
 		};
 	}
 
-	handleClick( e ) {
+	preventPropagation = ( e ) => {
 		if ( this.clickSafe === true ) {
 			e.preventDefault();
 			e.stopPropagation();
@@ -631,7 +614,7 @@ export class Manager extends Component {
 		}
 	}
 
-	_handleSwipe() {
+	_handleSwipe = () => {
 		if (
 			typeof this.touchObject.length !== 'undefined' &&
 			this.touchObject.length > 44
@@ -648,11 +631,10 @@ export class Manager extends Component {
 				this._prevSlide();
 			}
 		}
-
 		this.touchObject = {};
 	}
 
-	_getSlideIndex() {
+	_getSlideIndex = () => {
 		let index = parseInt( this.context.route.slide, 10 );
 		if ( !Number.isFinite( index ) ) {
 			const foundIndex = findIndex(this.state.slideReference, reference => {
@@ -663,7 +645,7 @@ export class Manager extends Component {
 		return index;
 	}
 
-	_getSlideByIndex(index) {
+	_getSlideByIndex = (index) => {
 		return getSlideByIndex(
 			this.props.children,
 			this.state.slideReference,
@@ -671,7 +653,7 @@ export class Manager extends Component {
 		);
 	}
 
-	_renderSlide() {
+	_renderSlide = () => {
 		const slideIndex = this._getSlideIndex();
 		const slide = this._getSlideByIndex(slideIndex);
 		if ( !slide ) {
@@ -698,7 +680,7 @@ export class Manager extends Component {
 		);
 	}
 
-	_getProgressStyles() {
+	_getProgressStyles = () => {
 		const slideIndex = this._getSlideIndex();
 		const slide = this._getSlideByIndex(slideIndex);
 
@@ -708,7 +690,7 @@ export class Manager extends Component {
 		return null;
 	}
 
-	_getControlStyles() {
+	_getControlStyles = () => {
 		const slideIndex = this._getSlideIndex();
 		const slide = this._getSlideByIndex(slideIndex);
 
@@ -719,11 +701,9 @@ export class Manager extends Component {
 	}
 
 	render() {
-		console.log( this.context.route )
 		if ( this.context.route.slide === null ) {
 			return false;
 		}
-
 		let componentToRender;
 		const children = Children.toArray( this.props.children );
 		if (this.context.route.params.indexOf('presenter') !== -1) {
@@ -768,6 +748,7 @@ export class Manager extends Component {
 			this.context.route.params.indexOf('overview') === -1 &&
 			this.context.route.params.indexOf('presenter') === -1;
 
+		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
 			<div
 				className="spectacle-deck"
@@ -778,7 +759,7 @@ export class Manager extends Component {
 						this.context.route.params.indexOf('overview') !== -1 ) ?
 						'black' : ''
 				}}
-				onClick={this.handleClick}
+				onClick={this.preventPropagation}
 				{...this._getTouchEvents()}
 			>
 				{this.props.controls && showControls && (
@@ -819,6 +800,7 @@ export class Manager extends Component {
 				)}
 			</div>
 		);
+		/* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 	}
 }
 

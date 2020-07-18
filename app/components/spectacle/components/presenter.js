@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 /*
 * The MIT License (MIT)
 *
@@ -109,14 +111,13 @@ class Presenter extends Component {
 			return false;
 		}
 		if ( typeof notes === 'string' ) {
+			/* eslint-disable-next-line react/no-danger */
 			return <div dangerouslySetInnerHTML={{ __html: notes }} />;
 		}
 		return <div>{notes}</div>;
 	}
 
 	render() {
-		console.log( 'PRESENTER CONTEXT' );
-		console.log( this.context );
 		return (
 			<div className="spectacle-presenter-content" >
 				<div className="spectacle-header-container" >
@@ -150,7 +151,6 @@ class Presenter extends Component {
 Presenter.propTypes = {
 	hash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	lastSlideIndex: PropTypes.number,
-	route: PropTypes.object,
 	slideIndex: PropTypes.number,
 	slideReference: PropTypes.array,
 	slides: PropTypes.array,

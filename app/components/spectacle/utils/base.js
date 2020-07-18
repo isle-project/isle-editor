@@ -24,7 +24,15 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*eslint max-statements:0,complexity:0,no-invalid-this:0,consistent-return:0*/
+/* eslint max-statements:0,complexity:0,no-invalid-this:0,consistent-return:0 */
+
+// MODULES //
+
+import hasOwnProperty from '@stdlib/assert/has-own-property';
+
+
+// MAIN //
+
 // eslint-disable-next-line max-params
 export const buildStyles = (transforms, props, context, styles = {}) => {
 	return transforms.reduce((av, cv) => {
@@ -40,7 +48,7 @@ const applyHeight = ({ height }) => (height ? { height } : void 0 );
 export const transformTextColor = ({ textColor }, context) => {
 	if (textColor) {
 		let color = '';
-		if (!context.styles.colors.hasOwnProperty(textColor)) {
+		if (!hasOwnProperty( context.styles.colors, textColor)) {
 			color = textColor;
 		} else {
 			color = context.styles.colors[textColor];
@@ -52,7 +60,7 @@ export const transformTextColor = ({ textColor }, context) => {
 export const transformTextFont = ({ textFont }, context) => {
 	if (textFont) {
 		let fontFamily = '';
-		if (!context.styles.fonts.hasOwnProperty(textFont)) {
+		if ( !hasOwnProperty( context.styles.fonts, textFont ) ) {
 			fontFamily = textFont;
 		} else {
 			fontFamily = context.styles.fonts[textFont];
@@ -90,9 +98,9 @@ export const transformCaps = ({ caps }) => {
 };
 
 export const transformBgColor = ({ bgColor }, context) => {
-	if (bgColor) {
+	if ( bgColor ) {
 		let backgroundColor = '';
-		if (!context.styles.colors.hasOwnProperty(bgColor)) {
+		if (!hasOwnProperty(context.styles.colors, bgColor)) {
 			backgroundColor = bgColor;
 		} else {
 			backgroundColor = context.styles.colors[bgColor];
@@ -134,15 +142,12 @@ export const transformBgImage = ({
 	if (!bgImage && !bgImageStyle && !bgGradient) {
 		return;
 	}
-
 	if (bgImageStyle) {
 		return transformBgImageByBgStyle({ bgImageStyle });
 	}
-
 	if (bgGradient) {
 		return transformBgImageByGradient({ bgGradient });
 	}
-
 	if (bgDarken) {
 		return {
 			backgroundImage: `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`
@@ -151,9 +156,8 @@ export const transformBgImage = ({
 		return {
 			backgroundImage: `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})`
 		};
-	} else {
-		return { backgroundImage: `url(${bgImage})` };
 	}
+	return { backgroundImage: `url(${bgImage})` };
 };
 
 const textTransforms = [
@@ -187,6 +191,6 @@ const styleTransforms = [
 	...bgTransforms
 ];
 
-export const getStyles = function getStyles() {
+export function getStyles() {
 	return buildStyles(styleTransforms, this.props, this.context);
-};
+}

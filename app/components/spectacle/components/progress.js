@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 /*
 * The MIT License (MIT)
 *
@@ -24,12 +26,17 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+// MODULES //
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import hasOwnProperty from '@stdlib/assert/has-own-property';
 import { SpectacleContext } from '../utils/context';
 
 
-export default class Progress extends Component {
+// MAIN //
+
+class Progress extends Component {
 	constructor() {
 		super(...arguments);
 		this.resolveProgressStyles = this.resolveProgressStyles.bind(this);
@@ -37,22 +44,18 @@ export default class Progress extends Component {
 
 	resolveProgressStyles(field) {
 		const { progressColor } = this.props;
-
 		if (!this.props.progressColor) {
 			return null;
 		}
 
 		const style = {};
 		let color;
-
-		if (!this.context.styles.colors.hasOwnProperty(progressColor)) {
+		if ( !hasOwnProperty( this.context.styles.colors, progressColor ) ) {
 			color = progressColor;
 		} else {
 			color = this.context.styles.colors[progressColor];
 		}
-
 		style[field] = color;
-
 		return style;
 	}
 
@@ -122,6 +125,9 @@ export default class Progress extends Component {
 	}
 }
 
+
+// PROPERTIES //
+
 Progress.propTypes = {
 	currentSlideIndex: PropTypes.number,
 	items: PropTypes.array,
@@ -130,3 +136,8 @@ Progress.propTypes = {
 };
 
 Progress.contextType = SpectacleContext;
+
+
+// EXPORTS //
+
+export default Progress;
