@@ -530,6 +530,52 @@ mark {
 	color: var(--quartarylight);
 }
 
+.Presentation h1 {
+	font-size: 5rem;
+	line-height: 1;
+	margin: 0.5rem auto;
+	text-shadow: 0 1px 2px darkslategray;
+	zoom: 1;
+}
+
+.Presentation h2 {
+	font-size: 4rem;
+	line-height: 1;
+	text-shadow: 0 1px 2px darkslategray;
+	margin: 0.5rem auto;
+}
+
+.Presentation h3 {
+	font-size: 3.5rem;
+	line-height: 1;
+	margin: 0.5rem auto;
+}
+
+.Presentation h4 {
+	font-size: 3rem;
+	line-height: 1;
+	margin: 0.5rem auto;
+}
+
+.Presentation h5 {
+	font-size: 2.5rem;
+	line-height: 1;
+	margin: 0.5rem auto;
+}
+
+.Presentation h6 {
+	font-size: 2rem;
+	line-height: 1;
+	margin: 0.5rem auto;
+}
+
+.Presentation p {
+	color: black;
+	font-size: 2rem;
+	margin: 0.25rem auto;
+	text-align: left;
+}
+
 .Lesson th,
 .Lesson td {
 	padding: 5px;
@@ -599,7 +645,15 @@ mark {
 	max-width: 1200px;
 }
 
-.Lesson table {
+.Presentation ol,
+.Presentation ul {
+	text-align: left;
+	font-size: 2rem;
+	padding-left: 1em;
+}
+
+.Lesson table,
+.Presentation table {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1200px;
@@ -608,18 +662,22 @@ mark {
 }
 
 .Lesson table th,
-.Lesson table td {
+.Presentation table th,
+.Lesson table td,
+.Presentation table td {
 	padding: 0.75rem;
 	vertical-align: top;
 	border-top: 1px solid #dee2e6;
 }
 
-.Lesson table thead th {
+.Lesson table thead th,
+.Presentation table thead th{
 	vertical-align: bottom;
 	border-bottom: 2px solid #dee2e6;
 }
 
-.Lesson table tbody + tbody {
+.Lesson table tbody + tbody,
+.Presentation table tbody + tbody  {
 	border-top: 2px solid #dee2e6;
 }
 
