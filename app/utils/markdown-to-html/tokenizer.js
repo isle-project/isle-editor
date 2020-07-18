@@ -238,7 +238,13 @@ class Tokenizer {
 		if (
 			this.addEmptySpans &&
 			char === '\n' &&
-			( nextChar === '\n' || nextChar === '\r' )
+			( nextChar === '\n' || nextChar === '\r' ) &&
+			(
+				// Skip over slide transitions:
+				this._buffer.charAt( pos-1 ) !== '=' ||
+				this._buffer.charAt( pos-2 ) !== '=' ||
+				this._buffer.charAt( pos-3 ) !== '='
+			)
 		) {
 			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
 		}
