@@ -45,9 +45,6 @@ function transformToPresentation( code, preamble ) {
 
 	// Add opening <Deck> tag in front of first slide:
 	pres = pres.replace( '<Slide', `<Deck
-		controls={true}
-		transition={[]}
-		progress="number"
 		${configString}
 	><Slide` );
 
