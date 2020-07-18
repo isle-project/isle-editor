@@ -1,7 +1,7 @@
 .presenter-mode-button {
 	position: fixed;
 	top: 4px;
-	left: 10px;
+	left: 30px;
 	font-size: 1.5em;
 	color: #c95d0a;
 	z-index: 3;
@@ -9,7 +9,19 @@
 	transition: 300ms transform ease;
 }
 
-.presenter-mode-button:hover {
+.overview-mode-button {
+	position: fixed;
+	top: 4px;
+	left: 4px;
+	font-size: 1.5em;
+	color: #c95d0a;
+	z-index: 3;
+	cursor: pointer;
+	transition: 300ms transform ease;
+}
+
+.presenter-mode-button:hover,
+.overview-mode-button:hover {
 	transform: scale(1.25);
 }
 

@@ -34,6 +34,22 @@ function togglePresenterMode() {
 	}
 }
 
+function toggleOverviewMode() {
+	if ( contains( window.location.hash, 'overview' ) ) {
+		let hash = window.location.hash;
+		hash = replace( hash, 'overview', '' );
+		window.location.hash = hash;
+	} else {
+		let hash = window.location.hash;
+		if ( contains( hash, '?' ) ) {
+			hash += '&overview';
+		} else {
+			hash = '?overview';
+		}
+		window.location.hash = hash;
+	}
+}
+
 
 // MAIN //
 
@@ -130,6 +146,16 @@ class CustomDeck extends Component {
 					</div>
 				</Tooltip>
 			</Gate>
+			<Tooltip tooltip="Toggle Overview Mode" placement="bottom" >
+				<div
+					tabIndex={0} role="button"
+					className="overview-mode-button"
+					onClick={toggleOverviewMode}
+					onKeyPress={toggleOverviewMode}
+				>
+					<i className="fas fa-arrows-alt"></i>
+				</div>
+			</Tooltip>
 			<Deck
 				{...rest}
 				showFullscreenControl={this.state.showFullscreenControl}
