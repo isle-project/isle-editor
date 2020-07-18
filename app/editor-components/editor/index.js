@@ -1205,7 +1205,7 @@ class Editor extends Component {
 		const dragProvider = new MonacoDragNDropProvider( this.handleDrop, this.editor, this.monaco );
 		let outerStyle;
 		if ( this.props.splitPos === 1 ) {
-			// Need to place monaco editor outside of split pane hidden from view since we cannot set its width to zero as this causes a crash and there is no headless mode but we need to interact with the editor.
+			// Need to place Monaco editor outside of split pane hidden from view since we cannot set its width to zero as this causes a crash and there is no headless mode but we need to interact with the editor.
 			outerStyle = {
 				position: 'absolute',
 				top: -2000,
