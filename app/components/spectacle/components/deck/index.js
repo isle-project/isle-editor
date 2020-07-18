@@ -11,6 +11,8 @@ import Tooltip from 'components/tooltip';
 import VoiceControl from 'components/internal/voice-control';
 import Gate from 'components/gate';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
+import isLineButtons from 'utils/is-line-buttons';
+import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import './deck.css';
@@ -95,7 +97,9 @@ class CustomDeck extends Component {
 	componentDidMount() {
 		let totalDuration = 0;
 		React.Children.forEach( this.props.children, ( child, i ) => {
-			totalDuration += ( child.props.duration ? child.props.duration : 0 );
+			if ( !isLineButtons( child ) ) {
+				totalDuration += ( child.props.duration ? child.props.duration : 0 );
+			}
 		});
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
@@ -125,8 +129,16 @@ class CustomDeck extends Component {
 	}
 
 	render() {
-		const { children, ...rest } = this.props;
+		let { children, ...rest } = this.props;
 		const presenterMode = endsWith( window.location.hash, '?presenter' );
+		if ( isElectron ) {
+			children = [];
+			React.Children.forEach( this.props.children, ( child ) => {
+				if ( !isLineButtons( child ) ) {
+					children.push( child );
+				}
+			});
+		}
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
 			{ presenterMode ? <Timer
@@ -153,7 +165,7 @@ class CustomDeck extends Component {
 					onClick={toggleOverviewMode}
 					onKeyPress={toggleOverviewMode}
 				>
-					<i className="fas fa-arrows-alt"></i>
+					<i className="fa fa-map"></i>
 				</div>
 			</Tooltip>
 			<Deck
@@ -179,7 +191,7 @@ CustomDeck.defaultProps = {
 	pageControls: true,
 	progress: 'number',
 	showFullscreenControl: true,
-	transition: [ 'slide' ],
+	transition: [],
 	transitionDuration: 500
 };
 

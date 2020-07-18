@@ -150,7 +150,7 @@ class SlideWrapper extends React.PureComponent {
 						duration={transitionDuration}
 						easing="quadInOut"
 					>
-						{(tweenedProps, animationInfo) => {
+						{( tweenedProps, animationInfo ) => {
 							return ( <div
 								style={{
 									...tweenedProps,

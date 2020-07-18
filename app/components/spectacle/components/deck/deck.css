@@ -7,7 +7,7 @@
 .presenter-mode-button {
 	position: fixed;
 	top: 4px;
-	left: 30px;
+	left: 35px;
 	font-size: 1.5em;
 	color: #c95d0a;
 	z-index: 3;
@@ -17,9 +17,9 @@
 
 .overview-mode-button {
 	position: fixed;
-	top: 4px;
+	top: 9px;
 	left: 4px;
-	font-size: 1.5em;
+	font-size: 1.25em;
 	color: #c95d0a;
 	z-index: 3;
 	cursor: pointer;

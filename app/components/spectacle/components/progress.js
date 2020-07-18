@@ -126,7 +126,7 @@ Progress.propTypes = {
 	currentSlideIndex: PropTypes.number,
 	items: PropTypes.array,
 	progressColor: PropTypes.string,
-	type: PropTypes.oneOf(['pacman', 'bar', 'number', 'none'])
+	type: PropTypes.oneOf(['bar', 'number', 'none'])
 };
 
 Progress.contextType = SpectacleContext;
