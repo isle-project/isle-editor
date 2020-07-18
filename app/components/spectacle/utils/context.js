@@ -69,6 +69,7 @@ Context.propTypes = {
 	onStateChange: PropTypes.func,
 	contentHeight: PropTypes.number,
 	contentWidth: PropTypes.number,
+	notes: PropTypes.object,
 	route: PropTypes.object,
 	styles: PropTypes.object
 };

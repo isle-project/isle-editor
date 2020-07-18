@@ -81,6 +81,9 @@ class Controller extends Component {
 				onStateChange={this.props.onStateChange}
 				route={this.props.route}
 				styles={styles.screen}
+				notes={this.props.notes}
+				contentWidth={this.props.contentWidth}
+				contentHeight={this.props.contentHeight}
 				updateNotes={this.props.updateNotes}
 			>
 				{this.props.children}
