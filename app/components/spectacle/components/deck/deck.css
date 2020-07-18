@@ -7,7 +7,7 @@
 .presenter-mode-button {
 	position: fixed;
 	top: 4px;
-	left: 35px;
+	left: 37px;
 	font-size: 1.5em;
 	color: #c95d0a;
 	z-index: 3;
@@ -18,7 +18,7 @@
 .overview-mode-button {
 	position: fixed;
 	top: 9px;
-	left: 4px;
+	left: 6px;
 	font-size: 1.25em;
 	color: #c95d0a;
 	z-index: 3;
@@ -50,6 +50,10 @@
 
 .spectacle-overview-container {
 	font-size: 8px;
+}
+
+.spectacle-presenter-container {
+	font-size: 12px;
 }
 
 .spectacle-content h3 {
@@ -84,4 +88,42 @@
 	font-size: 2em;
 	margin: 0.25em auto;
 	text-align: left;
+}
+
+.spectacle-notes-wrapper {
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	flex: 1 0 auto;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 20px;
+}
+
+.spectacle-slide-wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.spectacle-overview-container .spectacle-slide-wrapper {
+	box-shadow: inset 0 0 2px;
+}
+
+.spectacle-with-notes-container {
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-self: center;
+	padding: 30px;
+}
+
+.spectacle-with-notes-slide {
+	width: 100%;
+	flex: 1 1 70%;
 }

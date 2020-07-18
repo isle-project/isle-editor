@@ -1,17 +1,17 @@
 .spectacle-styled-fullscreen {
 	position: absolute;
-	bottom: 2px;
-	right: 35px;
-	width: 36px;
-	height: 36px;
-	font-size: 24px;
+	bottom: 6px;
+	right: 38px;
+	width: 32px;
+	height: 32px;
+	font-size: 20px;
 	color: #fff;
-	transition: 300ms transform ease;
+	transition: transform 0.3s ease;
 	transform: scale(1);
 }
 
 .spectacle-styled-fullscreen:hover {
-	transform: scale(1.25);
+	transform: scale(1.2);
 }
 
 .spectacle-fullscreen-button {

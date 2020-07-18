@@ -1,6 +1,6 @@
 .spectacle-overview-container {
-	height: 100%;
-	overflow: scroll;
+	height: auto;
+	overflow: none;
 	width: 100%;
 }
 
