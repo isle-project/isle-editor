@@ -53,7 +53,6 @@ const EXTERNALS = [
 	'react-table',
 	'react-virtualized',
 	'recordrtc',
-	'spectacle',
 	'stemmer',
 	'svgo',
 	'tapable',
