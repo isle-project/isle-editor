@@ -1,0 +1,36 @@
+.spectacle-styled-fullscreen {
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+	width: 45px;
+	height: 45px;
+	font-size: 30px;
+	color: #fff;
+	transition: 300ms transform ease;
+	transform: scale(1);
+}
+
+.spectacle-styled-fullscreen:hover,
+.spectacle-styled-fullscreen:focus {
+	transform: scale(1.25);
+}
+
+.spectacle-styled-fullscreen:active {
+	transform: scale(1.1);
+}
+
+.spectacle-fullscreen-button {
+	display: inline-block;
+	appearance: none;
+	background: none;
+	border: none;
+	outline: 0;
+	color: inherit;
+	padding: 0;
+	cursor: pointer;
+}
+
+.spectacle-fullscreen-button > svg {
+	height: 1.5em;
+	width: 1.5em;
+}
