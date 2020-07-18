@@ -1,7 +1,8 @@
 .spectacle-overview-container {
-	height: auto;
-	overflow: none;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	width: 100%;
+	height: 100vh;
 }
 
 .spectacle-slide-thumbnail {
