@@ -5,6 +5,7 @@ import PREAMBLE_FIELDS from './preamble_fields.json';
 import LICENSES from './preamble_licenses.json';
 import LANGUAGES from './preamble_languages.json';
 import NAMESPACE from './stdlib/namespace.json';
+import COMPONENTS_DOCS from './../../components/documentation.json';
 
 
 // VARIABLES //
@@ -103,6 +104,17 @@ function factory( monaco ) {
 									sortText: 'ab'
 								}
 							];
+						}
+						else if ( last === '\npresentation:' ) {
+							suggestions = COMPONENTS_DOCS.Deck.props.map( o => {
+								return {
+									label: o.name,
+									documentation: o.description,
+									insertText: `${o.name}: ${String( o.defaultValue )}`,
+									kind: monaco.languages.CompletionItemKind.Snippet,
+									sortText: 'aa'
+								};
+							});
 						}
 					}
 				}

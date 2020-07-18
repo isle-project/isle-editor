@@ -70,6 +70,11 @@
 		"description": "Hide the statusbar (e.g., for lessons where users should not login)"
 	},
 	{
+		"name": "presentation",
+		"value": "presentation:\n    ${1:}",
+		"description": "Configuration options for presentations"
+	},
+	{
 		"name": "references",
 		"value": "references:\n    ${1:}",
 		"description": "List of key-value pairs denoting bibliography entries. Use the key in the <Citation /> component to cite a reference in your lesson."
