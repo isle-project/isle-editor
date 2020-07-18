@@ -1,3 +1,29 @@
+/*
+* The MIT License (MIT)
+*
+* Copyright (c) 2013-2018 Formidable Labs, Inc.
+*
+* Copyright (c) 2016-2018 Zachary Maybury, Kylie Stewart, and potentially other
+* DefinitelyTyped contributors
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy of
+* this software and associated documentation files (the "Software"), to deal in
+* the Software without restriction, including without limitation the rights to
+* use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+* the Software, and to permit persons to whom the Software is furnished to do so,
+* subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+* FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+* COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+* IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+* CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 // MODULES //
 
 import React, { Component } from 'react';
@@ -16,7 +42,7 @@ const history = createHashHistory();
 // MAIN //
 
 class Controller extends Component {
-	constructor(props) {
+	constructor( props ) {
 		super(...arguments);
 		this.history = props.history || history;
 	}
@@ -40,7 +66,7 @@ class Controller extends Component {
 	}
 
 	_updateRoute = ( location ) => {
-		const slideCount = countSlides(this.props.children.props.children);
+		const slideCount = countSlides( this.props.children.props.children );
 		this.props.updateRoute({
 			location,
 			slideCount
@@ -53,8 +79,9 @@ class Controller extends Component {
 			<Context
 				history={this.history}
 				onStateChange={this.props.onStateChange}
-				store={this.props.store}
+				route={this.props.route}
 				styles={styles.screen}
+				updateNotes={this.props.updateNotes}
 			>
 				{this.props.children}
 			</Context>
@@ -68,12 +95,12 @@ class Controller extends Component {
 Controller.propTypes = {
 	history: PropTypes.object,
 	onStateChange: PropTypes.func.isRequired,
-	store: PropTypes.object
+	route: PropTypes.object
 };
 
 Controller.defaultProps = {
 	history: null,
-	store: null
+	route: null
 };
 
 

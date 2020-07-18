@@ -172,10 +172,10 @@ import VictoryVoronoiContainer from 'components/victory/voronoi-container';
 import VictoryZoomContainer from 'components/victory/zoom-container';
 import VictoryWrapper from 'components/victory/wrapper';
 
-import Appear from 'components/spectacle/appear';
-import Deck from 'components/spectacle/deck';
-import Notes from 'components/spectacle/notes';
-import Slide from 'components/spectacle/slide';
+import Appear from 'components/spectacle/components/appear';
+import Deck from 'components/spectacle/components/deck';
+import Notes from 'components/spectacle/components/notes';
+import Slide from 'components/spectacle/components/slide';
 
 
 // EXPORTS //

@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 /*
 * The MIT License (MIT)
 *
@@ -28,52 +26,37 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-
-
-// VARIABLES //
-
-export const SpectacleContext = React.createContext( 'spectacle-context' );
+import { SlideContext } from '../slide/main';
 
 
 // MAIN //
 
-class Context extends Component {
+class Notes extends Component {
+	componentDidMount() {
+		const { slideHash: parentSlide, updateNotes } = this.context;
+		const currentSlide = this.props.route.slide;
+		if ( updateNotes && currentSlide === `${parentSlide}` ) {
+			updateNotes( this.props.children );
+		}
+	}
+
 	render() {
-		const { history, onStateChange, styles, route, notes, updateNotes, contentHeight, contentWidth } = this.props;
-		const value = {
-			history,
-			onStateChange,
-			route,
-			styles,
-			notes,
-			updateNotes,
-			contentHeight,
-			contentWidth
-		};
-		return (
-			<SpectacleContext.Provider value={value} >
-				{this.props.children}
-			</SpectacleContext.Provider>
-		);
+		return false;
 	}
 }
 
 
 // PROPERTIES //
 
-Context.propTypes = {
-	children: PropTypes.node,
-	history: PropTypes.object,
-	onStateChange: PropTypes.func,
-	contentHeight: PropTypes.number,
-	contentWidth: PropTypes.number,
-	route: PropTypes.object,
-	styles: PropTypes.object
+Notes.propTypes = {
+	children: PropTypes.node.isRequired
 };
+
+Notes.contextType = SlideContext;
 
 
 // EXPORTS //
 
-export default Context;
+export default Notes;

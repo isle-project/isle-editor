@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 /*
 * The MIT License (MIT)
 *
@@ -26,54 +24,28 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// MODULES //
-
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
-
-// VARIABLES //
-
-export const SpectacleContext = React.createContext( 'spectacle-context' );
-
-
 // MAIN //
 
-class Context extends Component {
-	render() {
-		const { history, onStateChange, styles, route, notes, updateNotes, contentHeight, contentWidth } = this.props;
-		const value = {
-			history,
-			onStateChange,
-			route,
-			styles,
-			notes,
-			updateNotes,
-			contentHeight,
-			contentWidth
-		};
-		return (
-			<SpectacleContext.Provider value={value} >
-				{this.props.children}
-			</SpectacleContext.Provider>
-		);
-	}
-}
-
-
-// PROPERTIES //
-
-Context.propTypes = {
-	children: PropTypes.node,
-	history: PropTypes.object,
-	onStateChange: PropTypes.func,
-	contentHeight: PropTypes.number,
-	contentWidth: PropTypes.number,
-	route: PropTypes.object,
-	styles: PropTypes.object
+const stepCounter = () => {
+	let frags = {};
+	let slideIndex = 0;
+	const setFragments = ( fragments, index ) => {
+		frags = fragments;
+		slideIndex = Number( index );
+	};
+	const getSteps = () => {
+		const steps = Object.keys( frags ).reduce( ( previous, key ) => {
+			return previous + frags[ key ].animations.every( a => a === true );
+		}, 0 );
+		return { steps, slideIndex };
+	};
+	return {
+		setFragments,
+		getSteps
+	};
 };
 
 
 // EXPORTS //
 
-export default Context;
+export default stepCounter;

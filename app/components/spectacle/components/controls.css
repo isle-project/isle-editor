@@ -1,0 +1,21 @@
+.spectacle-next-slide {
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+	z-index: 9999;
+	background: none;
+	border: none;
+	outline: 0;
+}
+
+.spectacle-previous-slide {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	transform: translateY(-50%);
+	z-index: 9999;
+	background: none;
+	border: none;
+	outline: 0;
+}

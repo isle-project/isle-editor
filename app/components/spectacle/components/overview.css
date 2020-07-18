@@ -1,0 +1,16 @@
+.spectacle-overview-container {
+	height: 100%;
+	overflow: scroll;
+	width: 100%;
+}
+
+.spectacle-slide-thumbnail {
+	cursor: pointer;
+	position: relative;
+	float: left;
+	transition: opacity 333ms ease-in-out;
+}
+
+.spectacle-slide-thumbnail:hover {
+	opacity: 1;
+}

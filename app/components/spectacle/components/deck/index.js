@@ -2,13 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Deck } from 'spectacle';
+import Deck from './main.js';
 import endsWith from '@stdlib/string/ends-with';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import Timer from 'components/timer';
 import Tooltip from 'components/tooltip';
-import KeyControls from 'components/key-controls';
 import VoiceControl from 'components/internal/voice-control';
 import Gate from 'components/gate';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
@@ -109,41 +108,11 @@ class CustomDeck extends Component {
 		}
 	}
 
-	nextSlide = () => {
-		const e = new KeyboardEvent( 'keydown', {
-			'bubbles': true,
-			'key': 'ArrowRight',
-			'code': 'ArrowRight'
-		});
-		delete e.keyCode;
-		Object.defineProperty( e, 'keyCode', {
-			'value': 39
-		});
-		document.dispatchEvent( e );
-	}
-
-	previousSlide = () => {
-		const e = new KeyboardEvent( 'keydown', {
-			'bubbles': true,
-			'key': 'ArrowLeft',
-			'code': 'ArrowLeft'
-		});
-		delete e.keyCode;
-		Object.defineProperty( e, 'keyCode', {
-			'value': 37
-		});
-		document.dispatchEvent( e );
-	}
-
 	render() {
 		const { children, ...rest } = this.props;
 		const presenterMode = endsWith( window.location.hash, '?presenter' );
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
-			{ this.props.pageControls ? <KeyControls actions={{
-				'PageUp': this.nextSlide,
-				'PageDown': this.previousSlide
-			}} /> : null }
 			{ presenterMode ? <Timer
 				legend="Total: "
 				duration={this.state.totalDuration}
@@ -182,9 +151,9 @@ CustomDeck.defaultProps = {
 	contentWidth: 1000,
 	disableKeyboardControls: false,
 	pageControls: true,
-	progress: 'pacman',
+	progress: 'number',
 	showFullscreenControl: true,
-	transition: null,
+	transition: [ 'slide' ],
 	transitionDuration: 500
 };
 
@@ -198,7 +167,7 @@ CustomDeck.propTypes = {
 	contentWidth: PropTypes.number,
 	disableKeyboardControls: PropTypes.bool,
 	pageControls: PropTypes.bool,
-	progress: PropTypes.oneOf([ 'pacman', 'bar', 'number', 'none' ]),
+	progress: PropTypes.oneOf([ 'bar', 'number', 'none' ]),
 	showFullscreenControl: PropTypes.bool,
 	transition: PropTypes.array,
 	transitionDuration: PropTypes.number

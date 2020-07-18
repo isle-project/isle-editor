@@ -2,9 +2,9 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Slide } from 'spectacle';
 import endsWith from '@stdlib/string/ends-with';
 import Timer from 'components/timer';
+import Slide from './main.js';
 
 
 // MAIN //

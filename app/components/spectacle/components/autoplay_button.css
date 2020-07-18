@@ -1,0 +1,9 @@
+.spectacle-autoplay-button {
+	opacity: 0;
+	cursor: pointer;
+	transition: 300ms opacity ease;
+}
+
+.spectacle-autoplay-button:hover {
+	opacity: 1;
+}

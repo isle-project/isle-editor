@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Appear } from 'spectacle';
+import Appear from './main.js';
 
 
 // MAIN //

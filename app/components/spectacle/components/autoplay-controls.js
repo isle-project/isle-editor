@@ -24,47 +24,64 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// MODULES //
-
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './autoplay_button.css';
+import { SpectacleContext } from '../utils/context';
 
 
-// MAIN //
-
-class Notes extends Component {
-	static propTypes = {
-		children: PropTypes.node.isRequired
-	}
-
-	static contextTypes = {
-		store: PropTypes.object,
-		slideHash: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-		updateNotes: PropTypes.func
-	}
-
-	componentDidMount() {
-		const { store, slideHash: parentSlide, updateNotes } = this.context;
-		const currentSlide = store.getState().route.slide;
-
-		// updateNotes is only defined when this component is wrapped in
-		// a Presenter.
-		// Also, the type of parentSlide is either string or number based
-		// on the parent slide having an id or not.
-		if ( updateNotes && currentSlide === `${parentSlide}` ) {
-			updateNotes( this.props.children );
-		}
-	}
-
+export default class AutoplayControls extends Component {
 	render() {
-		return false;
+		const pauseBtn = (
+			<button
+				className="spectacle-autoplay-button"
+				key="pause"
+				onClick={this.props.onPause}
+				styles={{
+					context: this.context.styles.autoplay.pause
+				}}
+			>
+				<svg
+					style={this.context.styles.autoplay.pauseIcon}
+					xmlns="http://www.w3.org/2000/svg"
+					width="30px"
+					height="30px"
+					viewBox="0 0 30 30"
+				>
+					<path d="M23.5,4V26h-6V4ZM6.5,26h6V4h-6Z" />
+				</svg>
+			</button>
+		);
+
+		const playBtn = (
+			<button
+				className="spectacle-autoplay-button"
+				key="play"
+				onClick={this.props.onPlay}
+				styles={{
+					context: this.context.styles.autoplay.play
+				}}
+			>
+				<svg
+					style={this.context.styles.autoplay.playIcon}
+					xmlns="http://www.w3.org/2000/svg"
+					width="30px"
+					height="30px"
+					viewBox="0 0 30 30"
+				>
+					<path d="M26,15,6,25V5Z" />
+				</svg>
+			</button>
+		);
+
+		return this.props.autoplaying ? pauseBtn : playBtn;
 	}
 }
 
+AutoplayControls.propTypes = {
+	autoplaying: PropTypes.bool,
+	onPause: PropTypes.func,
+	onPlay: PropTypes.func
+};
 
-// EXPORTS //
-
-/**
-* Spectacle presentation slide notes.
-*/
-export default Notes;
+AutoplayControls.contextType = SpectacleContext;

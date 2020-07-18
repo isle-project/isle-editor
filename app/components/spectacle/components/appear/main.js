@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 /*
 * The MIT License (MIT)
 *
@@ -30,32 +28,32 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Anim from './../anim';
+import { victoryEases } from './../../utils/types';
 
 
-// VARIABLES //
+// MAIN /
 
-export const SpectacleContext = React.createContext( 'spectacle-context' );
-
-
-// MAIN //
-
-class Context extends Component {
+class Appear extends Component {
 	render() {
-		const { history, onStateChange, styles, route, notes, updateNotes, contentHeight, contentWidth } = this.props;
-		const value = {
-			history,
-			onStateChange,
-			route,
-			styles,
-			notes,
-			updateNotes,
-			contentHeight,
-			contentWidth
-		};
+		const {
+			transitionDuration,
+			startValue,
+			endValue,
+			easing,
+			style
+		} = this.props;
 		return (
-			<SpectacleContext.Provider value={value} >
+			<Anim
+				{...this.props}
+				transitionDuration={transitionDuration}
+				fromStyle={startValue}
+				toStyle={[endValue]}
+				easing={easing}
+				style={style}
+			>
 				{this.props.children}
-			</SpectacleContext.Provider>
+			</Anim>
 		);
 	}
 }
@@ -63,17 +61,25 @@ class Context extends Component {
 
 // PROPERTIES //
 
-Context.propTypes = {
+Appear.defaultProps = {
+	transitionDuration: 300,
+	startValue: { opacity: 0, pointerEvents: 'none' },
+	endValue: { opacity: 1, pointerEvents: 'auto' },
+	easing: 'quadInOut'
+};
+
+Appear.propTypes = {
 	children: PropTypes.node,
-	history: PropTypes.object,
-	onStateChange: PropTypes.func,
-	contentHeight: PropTypes.number,
-	contentWidth: PropTypes.number,
-	route: PropTypes.object,
-	styles: PropTypes.object
+	easing: PropTypes.oneOf(victoryEases),
+	endValue: PropTypes.object,
+	fragment: PropTypes.object,
+	order: PropTypes.number,
+	startValue: PropTypes.object,
+	style: PropTypes.object,
+	transitionDuration: PropTypes.number
 };
 
 
 // EXPORTS //
 
-export default Context;
+export default Appear;
