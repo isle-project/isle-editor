@@ -1,0 +1,32 @@
+.spectacle-timer-header {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	float: right;
+	margin: 0;
+	line-height: 1;
+	display: block;
+	font-size: 28px;
+}
+
+.spectacle-time-container {
+	padding: 20px 0;
+}
+
+.spectacle-tbutton-container {
+	position: relative;
+	float: right;
+	padding-right: 20px;
+	-webkit-transform: translateY(-45%);
+	font-size: 20.088px;
+}
+
+.spectacle-tsingle-button {
+	width: 68px;
+	font-size: 1em;
+	font-family: 'Open Sans Condensed';
+	margin: 3px;
+	border: 0;
+	border-radius: 15px;
+	opacity: 0;
+}
