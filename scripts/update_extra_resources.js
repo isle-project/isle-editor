@@ -32,7 +32,6 @@ const extraResources = [
 	'!node_modules/@stdlib/stdlib/lib/node_modules/@stdlib/**/docs/repl.txt',
 	'!node_modules/@stdlib/datasets/spam-assassin/*',
 	'!node_modules/@stdlib/stdlib/lib/node_modules/@stdlib/datasets/spam-assassin/*',
-	'!node_modules/spectacle/docs/*',
 	'!node_modules/.cache/**/*',
 	'!node_modules/@icons/**/*'
 ];
