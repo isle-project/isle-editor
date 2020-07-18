@@ -101,3 +101,7 @@ h6 {
 	height: 100%;
 	width: 100%;
 }
+
+.Pane.vertical.Pane1 {
+	z-index: 2;
+}
