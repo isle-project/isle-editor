@@ -14,6 +14,13 @@ import './line_buttons.css';
 const debug = logger( 'isle:line-buttons' );
 
 
+// FUNCTIONS //
+
+function stopPropagation( event ) {
+	event.stopPropagation();
+}
+
+
 // MAIN //
 
 /**
@@ -39,8 +46,9 @@ class LineButtons extends Component {
 		if ( !this.props.showLineButtons || !this.props.show ) {
 			return null;
 		}
+		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
-			<span className="line-buttons" >
+			<span className="line-buttons" onClick={stopPropagation} >
 				{ this.props.splitPos !== 1 ? <span
 					className="line-buttons-jump"
 					role="button" tabIndex={0}
