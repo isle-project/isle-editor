@@ -405,11 +405,7 @@ function writeIndexFile({
 				'csv-stringify': resolve(
 					basePath,
 					'./node_modules/csv-stringify/lib/es5/index.js'
-				),
-				'react-transition-group/TransitionGroup': resolve(
-					basePath,
-					'./node_modules/spectacle/node_modules/react-transition-group/TransitionGroup.js'
-				) // ensure slide transitions work in Spectacle presentations
+				)
 			},
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 		},
