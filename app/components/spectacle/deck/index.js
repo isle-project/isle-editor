@@ -136,6 +136,7 @@ class CustomDeck extends Component {
 	}
 
 	render() {
+		const { children, ...rest } = this.props;
 		const presenterMode = endsWith( window.location.hash, '?presenter' );
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
@@ -160,7 +161,10 @@ class CustomDeck extends Component {
 					</div>
 				</Tooltip>
 			</Gate>
-			<Deck {...this.props} showFullscreenControl={this.state.showFullscreenControl} >{this.props.children}</Deck>
+			<Deck
+				{...rest}
+				showFullscreenControl={this.state.showFullscreenControl}
+			>{children}</Deck>
 		</Fragment> );
 	}
 }
