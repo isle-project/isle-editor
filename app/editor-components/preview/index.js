@@ -212,7 +212,7 @@ class Preview extends Component {
 		try {
 			code = markdownToHTML( code, {
 				filePath: this.props.filePath,
-				addEmptySpans: preamble.type !== 'presentation',
+				addEmptySpans: true,
 				lineNumber: noEmptyLines,
 				addLineWrappers: true
 			});
