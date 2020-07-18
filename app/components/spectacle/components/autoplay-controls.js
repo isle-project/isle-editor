@@ -37,9 +37,6 @@ export default class AutoplayControls extends Component {
 				className="spectacle-autoplay-button"
 				key="pause"
 				onClick={this.props.onPause}
-				styles={{
-					context: this.context.styles.autoplay.pause
-				}}
 			>
 				<svg
 					style={this.context.styles.autoplay.pauseIcon}
@@ -58,9 +55,6 @@ export default class AutoplayControls extends Component {
 				className="spectacle-autoplay-button"
 				key="play"
 				onClick={this.props.onPlay}
-				styles={{
-					context: this.context.styles.autoplay.play
-				}}
 			>
 				<svg
 					style={this.context.styles.autoplay.playIcon}

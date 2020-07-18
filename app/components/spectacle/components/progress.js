@@ -98,8 +98,9 @@ export default class Progress extends Component {
 				style = style.bar;
 				markup = (
 					<div
-						styles={[style.bar, this.resolveProgressStyles('background')]}
 						style={{
+							...style.bar,
+							...this.resolveProgressStyles('background'),
 							width: this.getWidth()
 						}}
 					/>
