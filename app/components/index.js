@@ -174,19 +174,8 @@ import VictoryWrapper from 'components/victory/wrapper';
 
 import Appear from 'components/spectacle/appear';
 import Deck from 'components/spectacle/deck';
-import Heading from 'components/spectacle/heading';
-import ListItem from 'components/spectacle/list-item';
-import List from 'components/spectacle/list';
 import Notes from 'components/spectacle/notes';
 import Slide from 'components/spectacle/slide';
-import STable from 'components/spectacle/table';
-import TableRow from 'components/spectacle/table-row';
-import TableHeaderItem from 'components/spectacle/table-header-item';
-import TableItem from 'components/spectacle/table-item';
-import TableBody from 'components/spectacle/table-body';
-import TableHeader from 'components/spectacle/table-header';
-import SText from 'components/spectacle/text';
-import SPECTACLE_THEME from 'components/spectacle/theme.json';
 
 
 // EXPORTS //
@@ -366,19 +355,8 @@ const scope = {
 
 	Appear,
 	Deck,
-	Heading,
-	ListItem,
-	List,
 	Notes,
-	Slide,
-	STable,
-	TableRow,
-	TableHeaderItem,
-	TableItem,
-	TableBody,
-	TableHeader,
-	SText,
-	SPECTACLE_THEME
+	Slide
 };
 
 
