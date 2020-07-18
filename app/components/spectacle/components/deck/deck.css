@@ -1,3 +1,9 @@
+.spectacle-deck {
+	font-size: 14px;
+	width: 100%;
+	height: 100%;
+}
+
 .presenter-mode-button {
 	position: fixed;
 	top: 4px;
@@ -26,7 +32,7 @@
 }
 
 .spectacle-content h1 {
-	font-size: 5rem;
+	font-size: 5em;
 	line-height: 1;
 	text-align: center;
 	margin: 0.5rem auto;
@@ -35,43 +41,47 @@
 }
 
 .spectacle-content h2 {
-	font-size: 4rem;
+	font-size: 4em;
 	line-height: 1;
 	text-align: center;
 	text-shadow: 0 1px 2px darkslategray;
-	margin: 0.5rem auto;
+	margin: 0.5em auto;
+}
+
+.spectacle-overview-container {
+	font-size: 12px;
 }
 
 .spectacle-content h3 {
-	font-size: 3.5rem;
+	font-size: 3.5em;
 	text-align: center;
 	line-height: 1;
-	margin: 0.5rem auto;
+	margin: 0.5em auto;
 }
 
 .spectacle-content h4 {
-	font-size: 3rem;
+	font-size: 3em;
 	line-height: 1;
 	text-align: center;
-	margin: 0.5rem auto;
+	margin: 0.5em auto;
 }
 
 .spectacle-content h5 {
-	font-size: 2.5rem;
+	font-size: 2.5em;
 	line-height: 1;
 	margin: 0.5rem auto;
 }
 
 .spectacle-content h6 {
-	font-size: 2rem;
+	font-size: 2em;
 	line-height: 1;
-	margin: 0.5rem auto;
+	margin: 0.5em auto;
 }
 
 .spectacle-content > p,
 .spectacle-content > .line-wrapper > p {
 	color: black;
-	font-size: 2rem;
-	margin: 0.25rem auto;
+	font-size: 2em;
+	margin: 0.25em auto;
 	text-align: left;
 }
