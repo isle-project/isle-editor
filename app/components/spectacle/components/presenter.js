@@ -38,10 +38,10 @@ import './presenter.css';
 
 class Presenter extends Component {
 	getCurrentSlide() {
-		return this.props.route.slide;
+		return this.context.route.slide;
 	}
 
-	_getSlideByIndex(index) {
+	_getSlideByIndex = ( index ) => {
 		return getSlideByIndex(
 			Children.toArray(this.props.slides),
 			this.props.slideReference,
@@ -49,16 +49,16 @@ class Presenter extends Component {
 		);
 	}
 
-	_renderMainSlide() {
+	_renderMainSlide = () => {
 		const { slideIndex, hash, lastSlideIndex } = this.props;
 		const child = this._getSlideByIndex(slideIndex);
 		const presenterStyle = {
 			position: 'relative'
 		};
-		return cloneElement(child, {
+		return cloneElement( child, {
 			key: slideIndex,
 			hash,
-			export: this.props.route.params.indexOf('export') !== -1,
+			export: this.context.route.params.indexOf('export') !== -1,
 			slideIndex,
 			lastSlideIndex,
 			transition: [],
@@ -70,7 +70,7 @@ class Presenter extends Component {
 		});
 	}
 
-	_renderNextSlide() {
+	_renderNextSlide = () => {
 		const { slideIndex, lastSlideIndex } = this.props;
 		const presenterStyle = {
 			position: 'relative'
@@ -78,7 +78,7 @@ class Presenter extends Component {
 		const child = this._getSlideByIndex(slideIndex + 1);
 		return child ? (
 			cloneElement(child, {
-				export: this.props.route.params.indexOf('export') !== -1,
+				export: this.context.route.params.indexOf('export') !== -1,
 				key: slideIndex + 1,
 				hash: child.props.id || slideIndex + 1,
 				slideIndex: slideIndex + 1,
@@ -96,11 +96,11 @@ class Presenter extends Component {
 		);
 	}
 
-	_renderNotes() {
+	_renderNotes = () => {
 		let notes;
 		const currentSlide = this.getCurrentSlide();
-		if ( this.context.notes[currentSlide] ) {
-			notes = this.context.notes[currentSlide];
+		if ( this.context.notes && this.context.notes[ currentSlide ] ) {
+			notes = this.context.notes[ currentSlide ];
 		} else {
 			const child = this._getSlideByIndex(this.props.slideIndex);
 			notes = child.props.notes;
@@ -115,6 +115,8 @@ class Presenter extends Component {
 	}
 
 	render() {
+		console.log( 'PRESENTER CONTEXT' );
+		console.log( this.context );
 		return (
 			<div className="spectacle-presenter-content" >
 				<div className="spectacle-header-container" >
@@ -133,7 +135,9 @@ class Presenter extends Component {
 							{this._renderNextSlide()}
 						</div>
 					</div>
-					<div className="spectacle-notes" >{this._renderNotes()}</div>
+					<div className="spectacle-notes" >
+						{this._renderNotes()}
+					</div>
 				</div>
 			</div>
 		);

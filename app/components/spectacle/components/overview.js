@@ -53,13 +53,8 @@ export default class Overview extends Component {
 		window.removeEventListener('resize', this.resizeHandler);
 	}
 
-	_slideClicked(index) {
-		this.props.resetViewedIndexes();
-		this.context.history.replace(`/${this._getHash(index)}`);
-	}
-
-	_getHash(slideIndex) {
-		return this.props.slideReference[slideIndex].id;
+	_getHash( slideIndex ) {
+		return this.props.slideReference[ slideIndex ].id;
 	}
 
 	_renderSlides() {
@@ -79,16 +74,23 @@ export default class Overview extends Component {
 				transitionDuration: 0,
 				appearOff: true
 			});
+			const slideClicked = () => {
+				this.props.resetViewedIndexes();
+				this.context.history.replace(`/${this._getHash( index )}`);
+			};
 			return (
 				<div
 					className="spectacle-slide-thumbnail"
 					screen={screen}
 					key={index}
-					onClick={this._slideClicked.bind(this, index)}
+					role="button" tabIndex={0}
+					onClick={slideClicked}
+					onKeyPress={slideClicked}
 					style={{
 						height: `${(screen / 3) * 0.7}px`,
 						opacity: index === slideIndex ? 1 : 0.5,
-						width: `${screen / 3}px`
+						width: `${( screen - 21 ) / 3}px`,
+						border: index === slideIndex ? 'solid 1px red' : 'none'
 					}}
 				>
 					{el}

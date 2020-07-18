@@ -35,8 +35,8 @@ import { SlideContext } from '../slide/main';
 
 class Notes extends Component {
 	componentDidMount() {
-		const { slideHash: parentSlide, updateNotes } = this.context;
-		const currentSlide = this.props.route.slide;
+		const { slideHash: parentSlide, updateNotes, route } = this.context;
+		const currentSlide = route.slide;
 		if ( updateNotes && currentSlide === `${parentSlide}` ) {
 			updateNotes( this.props.children );
 		}

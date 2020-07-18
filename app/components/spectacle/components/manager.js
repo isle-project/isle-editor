@@ -494,7 +494,7 @@ export class Manager extends Component {
 		}
 	}
 
-	_getHash( slideIndex ) {
+	_getHash = ( slideIndex ) => {
 		const reference = this.state.slideReference[ slideIndex ];
 		if ( !reference ) {
 			return 0;
@@ -752,7 +752,7 @@ export class Manager extends Component {
 		} else {
 			componentToRender = (
 				<ReactTransitionGroup component="div" style={{
-					height: '100%',
+					height: '100vh',
 					width: '100%',
 					perspective: 1000,
 					transformStyle: 'flat'
