@@ -279,8 +279,6 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	let className = 'Lesson';
 	if ( contains( components, 'Deck' ) ) {
 		className = 'Presentation';
-		res += '\n';
-		res += 'import SPECTACLE_THEME from \'components/spectacle/theme.json\';';
 	}
 	res += '\n';
 	res += getISLEcode( meta );
