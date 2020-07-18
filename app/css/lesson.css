@@ -265,6 +265,8 @@ mark {
 
 .spectacle-deck {
 	font-size: 24px;
+	width: 100%;
+	height: 100%;
 }
 
 .panel-heading {
