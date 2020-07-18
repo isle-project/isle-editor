@@ -109,7 +109,7 @@
 }
 
 .spectacle-overview-container .spectacle-slide-wrapper {
-	box-shadow: inset 0 0 2px;
+	box-shadow: inset 0 0 2px black;
 }
 
 .spectacle-with-notes-container {
