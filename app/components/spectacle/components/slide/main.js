@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable react/require-default-props, react/no-unused-prop-types */
 
 /*
 * The MIT License (MIT)
@@ -30,8 +30,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import isUndefined from 'lodash/isUndefined';
-import isFunction from 'lodash/isFunction';
+import isUndefined from '@stdlib/assert/is-undefined';
+import isFunction from '@stdlib/assert/is-function';
 import { getStyles } from './../../utils/base';
 import stepCounter from './../../utils/step-counter';
 import { SpectacleContext } from './../../utils/context';
@@ -47,12 +47,6 @@ class Slide extends React.PureComponent {
 		super(...arguments);
 		this.stepCounter = stepCounter();
 	}
-
-	state = {
-		reverse: false,
-		transitioning: true,
-		z: 1
-	};
 
 	componentDidMount() {
 		const slide = this.slideRef;

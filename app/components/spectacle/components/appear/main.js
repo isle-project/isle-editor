@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 /*
 * The MIT License (MIT)
 *

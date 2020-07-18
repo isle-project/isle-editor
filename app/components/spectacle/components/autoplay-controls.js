@@ -30,7 +30,9 @@ import './autoplay_button.css';
 import { SpectacleContext } from '../utils/context';
 
 
-export default class AutoplayControls extends Component {
+// MAIN //
+
+class AutoplayControls extends Component {
 	render() {
 		const pauseBtn = (
 			<button
@@ -72,10 +74,24 @@ export default class AutoplayControls extends Component {
 	}
 }
 
+
+// PROPERTIES //
+
 AutoplayControls.propTypes = {
 	autoplaying: PropTypes.bool,
 	onPause: PropTypes.func,
 	onPlay: PropTypes.func
 };
 
+AutoplayControls.defaultProps = {
+	autoplaying: null,
+	onPause() {},
+	onPlay() {}
+};
+
 AutoplayControls.contextType = SpectacleContext;
+
+
+// EXPORTS //
+
+export default AutoplayControls;

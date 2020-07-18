@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 /*
 * The MIT License (MIT)
 *
@@ -30,9 +32,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import findKey from 'lodash/findKey';
 import { findDOMNode } from 'react-dom';
-import { VictoryAnimation } from 'victory-core';
+import findKey from 'lodash/findKey';
+import hasOwnProperty from '@stdlib/assert/has-own-property';
+import { VictoryAnimation } from 'victory';
 import { victoryEases } from './../utils/types';
 import { SlideContext } from './slide/main';
 
@@ -75,9 +78,8 @@ class Anim extends Component {
 
 		const animationStatus = this.getAnimationStatus();
 		if (animationStatus) {
-			const nextAnimation = animationStatus.every(a => a === true)
-				? animationStatus.length - 1
-				: animationStatus.indexOf(false) - 1;
+			const nextAnimation = animationStatus.every(a => a === true) ?
+				animationStatus.length - 1 : animationStatus.indexOf(false) - 1;
 			if (prevState.activeAnimation !== nextAnimation) {
 				const state = this.props.fragment;
 				const { slide } = prevProps.route;
@@ -114,7 +116,7 @@ class Anim extends Component {
 		});
 		if (
 			slide in state.fragments &&
-			state.fragments[slide].hasOwnProperty(key)
+			hasOwnProperty( state.fragments[slide], key )
 		) {
 			return state.fragments[slide][key].animations;
 		}
@@ -131,10 +133,8 @@ class Anim extends Component {
 			style
 		} = this.props;
 		const child = React.Children.only(children);
-		const tweenData =
-			this.state.activeAnimation === -1
-				? fromStyle
-				: toStyle[this.state.activeAnimation];
+		const tweenData = this.state.activeAnimation === -1 ?
+			fromStyle : toStyle[this.state.activeAnimation];
 		return (
 			<VictoryAnimation
 				data={tweenData}
@@ -155,12 +155,14 @@ class Anim extends Component {
 	}
 }
 
+
+// PROPERTIES //
+
 Anim.defaultProps = {
 	order: 0
 };
 
 Anim.propTypes = {
-	children: PropTypes.node,
 	easing: PropTypes.oneOf(victoryEases).isRequired,
 	fragment: PropTypes.object,
 	fromStyle: PropTypes.object.isRequired,
@@ -173,5 +175,8 @@ Anim.propTypes = {
 };
 
 Anim.contextType = SlideContext;
+
+
+// EXPORTS //
 
 export default Anim;

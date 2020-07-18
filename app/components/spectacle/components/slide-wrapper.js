@@ -51,12 +51,10 @@ class SlideWrapper extends React.PureComponent {
 	}
 
 	componentWillEnter = ( callback ) => {
-		console.log( "WILL ENTER" );
 		this.setState({ transitioning: false, reverse: false, z: 1 });
 	}
 
 	componentWillLeave = ( callback ) => {
-		console.log( "WILL LEAVE" );
 		this.setState({ transitioning: true, reverse: true, z: '' });
 	}
 
@@ -115,7 +113,6 @@ class SlideWrapper extends React.PureComponent {
 			return memo;
 		}, {});
 		const out = { ...styles, transform: transformValue, ...functionStyles };
-		console.log( out );
 		return out;
 	}
 
@@ -133,9 +130,6 @@ class SlideWrapper extends React.PureComponent {
 		if ( !this.props.viewerScaleMode ) {
 			document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
 		}
-		console.log( this.props.transition );
-		console.log( 'SHOULD RENDER')
-		console.log( children );
 		return (
 			<Transition
 				{...this.props}
@@ -144,7 +138,6 @@ class SlideWrapper extends React.PureComponent {
 				duration={transitionDuration}
 			>
 				{ transitionState => {
-					console.log( transitionState );
 					return ( <VictoryAnimation
 						data={this.getTransitionStyles()}
 						duration={transitionDuration}
