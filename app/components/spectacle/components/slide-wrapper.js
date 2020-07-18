@@ -40,7 +40,7 @@ import { SpectacleContext } from '../utils/context';
 // MAIN //
 
 class SlideWrapper extends React.PureComponent {
-	constructor() {
+	constructor( props ) {
 		super( ...arguments );
 
 		this.state = {
@@ -88,13 +88,13 @@ class SlideWrapper extends React.PureComponent {
 		let styles = { zIndex: z };
 		let transformValue = '';
 
-		if (transition.indexOf('fade') !== -1) {
+		if ( transition.indexOf('fade') !== -1 ) {
 			styles = { ...styles, opacity: transitioning ? 0 : 1 };
 		}
-		if (transition.indexOf('zoom') !== -1) {
+		if ( transition.indexOf('zoom') !== -1 ) {
 			transformValue += ` scale(${transitioning ? 0.1 : 1.0})`;
 		}
-		if (transition.indexOf('slide') !== -1) {
+		if ( transition.indexOf('slide') !== -1 ) {
 			const offset = this.transitionDirection() ? 100 : -100;
 			transformValue += ` translate3d(${transitioning ? offset : 0}%, 0, 0)`;
 		} else {
@@ -106,7 +106,7 @@ class SlideWrapper extends React.PureComponent {
 			transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
 		}
 		const functionStyles = transition.reduce((memo, current) => {
-			if (isFunction(current)) {
+			if ( isFunction( current ) ) {
 				return {
 					...memo,
 					...current(transitioning, this.transitionDirection())
@@ -141,6 +141,7 @@ class SlideWrapper extends React.PureComponent {
 				{...this.props}
 				onEnter={this.componentWillEnter}
 				onExit={this.componentWillLeave}
+				duration={transitionDuration}
 			>
 				{ transitionState => {
 					console.log( transitionState );

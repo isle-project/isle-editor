@@ -118,11 +118,9 @@ class Slide extends React.PureComponent {
 				}}
 				style={{
 					backgroundColor: background ? background : '',
-					...this.props.style
-				}}
-				styles={{
-					base: getStyles.call(this),
-					presenter: presenterStyle
+					...this.props.style,
+					...getStyles.call( this ),
+					...presenterStyle
 				}}
 			>
 				<div
