@@ -208,6 +208,8 @@ class Preview extends Component {
 		// Replace comments with empty lines:
 		code = code.replace( /<!--([\S\s]*?)-->/g, replacer );
 
+		const isPresentation = preamble.type === 'presentation' || code.includes( '<Slide' );
+
 		// Replace Markdown by HTML...
 		try {
 			code = markdownToHTML( code, {
@@ -221,7 +223,7 @@ class Preview extends Component {
 			this.props.encounteredError( err );
 			return null;
 		}
-		if ( preamble.type === 'presentation' ) {
+		if ( isPresentation ) {
 			debug( 'Should render a presentation...' );
 			code = transformToPresentation( code, preamble );
 		}

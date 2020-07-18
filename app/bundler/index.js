@@ -565,8 +565,9 @@ function writeIndexFile({
 	content = content.replace( /<!--([\S\s]*?)-->/g, '' );
 
 	// Replace Markdown by HTML...
+	const isPresentation = meta.type === 'presentation' || contains( content, '<Slide' );
 	content = markdownToHTML( content );
-	if ( meta.type === 'presentation' ) {
+	if ( isPresentation ) {
 		content = transformToPresentation( content, meta );
 	}
 	if ( !meta.removeStatusBar ) {
