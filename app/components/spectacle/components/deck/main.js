@@ -132,22 +132,19 @@ export default class Deck extends Component {
 
 	updateNotes = ( newNotes, slide = null ) => {
 		const notes = { ...this.state.notes };
-		notes[ slide || this.getCurrentSlide() ] = newNotes;
+		notes[ slide || this.state.route.slide ] = newNotes;
 		this.setState({ notes });
 	}
 
 	handleStateChange = nextState => {
 		const prevState = this.state.slideState;
 		if ( prevState !== nextState ) {
-			console.log( 'Processing state change...' );
 			this.props.onStateChange( prevState, nextState );
 			this.setState({ slideState: nextState });
 		}
 	}
 
 	render() {
-		console.log( 'TRANS')
-		console.log( this.props.transition )
 		return (
 			<Controller
 				updateRoute={this.updateRoute}

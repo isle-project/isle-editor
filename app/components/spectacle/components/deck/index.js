@@ -27,6 +27,7 @@ function togglePresenterMode() {
 		window.location.hash = hash;
 	} else {
 		let hash = window.location.hash;
+		hash = replace( hash, 'overview', '' );
 		if ( contains( hash, '?' ) ) {
 			hash += '&presenter';
 		} else {
@@ -43,6 +44,7 @@ function toggleOverviewMode() {
 		window.location.hash = hash;
 	} else {
 		let hash = window.location.hash;
+		hash = replace( hash, 'presenter', '' );
 		if ( contains( hash, '?' ) ) {
 			hash += '&overview';
 		} else {
