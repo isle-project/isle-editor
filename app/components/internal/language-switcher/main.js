@@ -83,12 +83,12 @@ class LanguageSwitcher extends Component {
 		return (
 			<Fragment>
 				<OverlayTrigger placement="left" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
-					<Button
+					<button
 						onClick={this.toggleSelectModal} className="language-switcher"
-						variant="light" size="sm" aria-label={t('choose-language')}
+						aria-label={t('choose-language')}
 					>
 						<i className="fas fa-globe"></i>
-					</Button>
+					</button>
 				</OverlayTrigger>
 				{this.renderSelectModal()}
 			</Fragment>

@@ -43,7 +43,7 @@
 				"outline":0
 			},
 			"prevIcon":{
-				"fill":"orange"
+				"fill":"#c95d0a"
 			},
 			"next":{
 				"position":"absolute",
@@ -56,7 +56,7 @@
 				"outline":0
 			},
 			"nextIcon":{
-				"fill":"orange"
+				"fill":"#c95d0a"
 			}
 		},
 		"progress":{
@@ -126,7 +126,8 @@
 			"number":{
 				"container":{
 					"position":"absolute",
-					"bottom":5,
+					"bottom":8,
+					"fontSize": 18,
 					"right":90,
 					"zIndex":1000,
 					"color":"black",
