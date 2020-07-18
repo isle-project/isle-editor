@@ -152,14 +152,9 @@
 	"PRESENTATION": [
 		"Slide",
 		"Appear",
-		"CodeSlide",
-		"Layout",
-		"Fill",
-		"Fit",
 		"BlockQuote",
 		"Cite",
-		"Quote",
-		"Code"
+		"Quote"
 	],
 	"PLOTS": [
 		"Plotly",

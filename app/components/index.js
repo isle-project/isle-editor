@@ -173,14 +173,8 @@ import VictoryZoomContainer from 'components/victory/zoom-container';
 import VictoryWrapper from 'components/victory/wrapper';
 
 import Appear from 'components/spectacle/appear';
-import Code from 'components/spectacle/code';
-import CodePane from 'components/spectacle/code-pane';
 import Deck from 'components/spectacle/deck';
-import Fill from 'components/spectacle/fill';
-import Fit from 'components/spectacle/fit';
 import Heading from 'components/spectacle/heading';
-import SImage from 'components/spectacle/image';
-import Layout from 'components/spectacle/layout';
 import ListItem from 'components/spectacle/list-item';
 import List from 'components/spectacle/list';
 import Notes from 'components/spectacle/notes';
@@ -371,14 +365,8 @@ const scope = {
 	VictoryWrapper,
 
 	Appear,
-	Code,
-	CodePane,
 	Deck,
-	Fill,
-	Fit,
 	Heading,
-	SImage,
-	Layout,
 	ListItem,
 	List,
 	Notes,
