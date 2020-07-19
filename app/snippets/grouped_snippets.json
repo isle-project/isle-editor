@@ -334,33 +334,33 @@
   "basicHeadings": [
     {
       "name": "h1",
-      "value": "<h1>${1:}</h1>"
+      "value": "<h1>${1:Heading}</h1>\n${2:}"
     },
     {
       "name": "h2",
-      "value": "<h2>${1:}</h2>"
+      "value": "<h2>${1:Heading}</h2>\n${2:}"
     },
     {
       "name": "h3",
-      "value": "<h3>${1:}</h3>"
+      "value": "<h3>${1:Heading}</h3>\n${2:}"
     },
     {
       "name": "h4",
-      "value": "<h4>${1:}</h4>"
+      "value": "<h4>${1:Heading}</h4>\n${2:}"
     },
     {
       "name": "h5",
-      "value": "<h5>${1:}</h5>"
+      "value": "<h5>${1:Heading}</h5>\n${2:}"
     },
     {
       "name": "h6",
-      "value": "<h6>${1:}</h6>"
+      "value": "<h6>${1:Heading}</h6>\n${2:}"
     }
   ],
   "basic": [
     {
       "name": "hr",
-      "value": "<hr />\n${1:}"
+      "value": "<hr />\n${1:}\n${2:}"
     },
     {
       "name": "div",
@@ -368,7 +368,7 @@
     },
     {
       "name": "p",
-      "value": "<p>\n  ${1:}\n</p>\n${2:}"
+      "value": "<p>\n  ${1:Enter text}\n</p>\n${2:}"
     },
     {
       "name": "pre",
