@@ -6,6 +6,7 @@ import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from 'components/collapse';
+import isLineButtons from 'utils/is-line-buttons';
 import './accordion.css';
 
 
@@ -70,21 +71,38 @@ class Accordion extends Component {
 		}
 		const out = [];
 		const headers = this.props.headers || [];
+		let count = 0;
 		for ( let i = 0; i < this.props.children.length; i++ ) {
 			const child = this.props.children[ i ];
-			const elem = (
-				<Collapse
-					key={i}
-					visible={i === this.state.active}
-					header={headers[ i ] || `Header ${i+1}`}
-					headerClassName={this.props.headerClassName}
-					headerStyle={this.props.headerStyle}
-					onClick={this.clickFactory( this.props.children.length, i )}
-				>
-					{child}
-				</Collapse>
-			);
-			out.push( elem );
+			if ( !isLineButtons( child ) ) {
+				count += 1;
+				const style = {
+					boxShadow: '0 0 -4px rgba(92, 92, 92, 0.5)'
+				};
+				if ( count === 1 ) {
+					style.borderTopLeftRadius = 6;
+					style.borderTopRightRadius = 6;
+				}
+				if ( i === this.state.active ) {
+					style.background = 'rgba(201, 93, 10, 0.2)';
+				}
+				const elem = (
+					<Collapse
+						key={i}
+						visible={i === this.state.active}
+						header={headers[ i ] || `Header ${count}`}
+						headerClassName={this.props.headerClassName}
+						headerStyle={{
+							...style,
+							...this.props.headerStyle
+						}}
+						onClick={this.clickFactory( this.props.children.length, i )}
+					>
+						{child}
+					</Collapse>
+				);
+				out.push( elem );
+				}
 		}
 		return (
 			<div
