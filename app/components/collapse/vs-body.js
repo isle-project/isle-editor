@@ -13,8 +13,6 @@ import './vertical-slider.css';
 class VSBody extends Component {
 	constructor( props ) {
 		super( props );
-		this.myRef = React.createRef();
-
 		this.state = {
 			height: 0,
 			set: false
@@ -56,7 +54,9 @@ class VSBody extends Component {
 		return (
 			<div
 				style={style}
-				ref={this.myRef}
+				ref={( div ) => {
+					this.myRef = div;
+				}}
 				onMouseEnter={this.check}
 				className={this.props.className}
 			>
