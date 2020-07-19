@@ -6,6 +6,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { EOL } from 'os';
 import logger from 'debug';
+import SplitPane from 'react-split-pane';
 import markdownit from 'markdown-it';
 import debounce from 'lodash.debounce';
 import Button from 'react-bootstrap/Button';
@@ -529,22 +530,20 @@ class ComponentConfigurator extends Component {
 		return (
 			<Fragment>
 				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to toggle the respective options on and off and set their values:</Card.Subtitle>
-				<div style={{ maxHeight: '400px', overflowY: 'scroll' }}>
-					<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
-						<thead>
-							<tr>
-								<th className="configurator-column" >Option</th>
-								<th className="configurator-wide-column" >Description</th>
-								<th className="configurator-wide-column" >Value</th>
-								<th className="configurator-column" >Type</th>
-								<th className="configurator-column" >Default</th>
-							</tr>
-						</thead>
-						<tbody>
-							{controls}
-						</tbody>
-					</Table>
-				</div>
+				<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
+					<thead>
+						<tr>
+							<th className="configurator-column" >Option</th>
+							<th className="configurator-wide-column" >Description</th>
+							<th className="configurator-wide-column" >Value</th>
+							<th className="configurator-column" >Type</th>
+							<th className="configurator-column" >Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						{controls}
+					</tbody>
+				</Table>
 			</Fragment>
 		);
 	}
@@ -569,34 +568,45 @@ class ComponentConfigurator extends Component {
 					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto' }}>
-					{componentDescription}
-					{this.renderPropertyControls()}
-					<Provider session={this.session} currentRole={this.props.currentRole} >
-						<Playground
-							value={this.state.value}
-							scope={SCOPE}
-							onChange={this.handleChange}
-							editorProps={{
-								onMouseOut: this.handleMouseOut
-							}}
-							style={{
-								marginTop: '12px',
-								maxWidth: '100vw'
-							}}
-							transformCode={( code ) => {
-								try {
-									let out = markdownToHTML( ltrim( code ) );
-									out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
-										const raw = replace( p1, '\\', '\\\\' );
-										return `String.raw({ raw: '${raw}' })`;
-									});
-									return out;
-								} catch ( err ) {
-									return err;
-								}
-							}}
-						/>
-					</Provider>
+					<SplitPane
+						className="splitpane"
+						split="horizontal"
+						style={{ left: 0 }}
+						defaultSize={window.innerHeight / 2.25}
+					>
+						<div style={{ width: '100%', overflowY: 'scroll', padding: 10 }} >
+							{componentDescription}
+							{this.renderPropertyControls()}
+						</div>
+						<Provider session={this.session} currentRole={this.props.currentRole} >
+							<Playground
+								value={this.state.value}
+								scope={SCOPE}
+								onChange={this.handleChange}
+								editorProps={{
+									onMouseOut: this.handleMouseOut
+								}}
+								style={{
+									marginTop: '12px',
+									maxWidth: '100vw',
+									height: '100%',
+									overflowX: 'hidden'
+								}}
+								transformCode={( code ) => {
+									try {
+										let out = markdownToHTML( ltrim( code ) );
+										out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+											const raw = replace( p1, '\\', '\\\\' );
+											return `String.raw({ raw: '${raw}' })`;
+										});
+										return out;
+									} catch ( err ) {
+										return err;
+									}
+								}}
+							/>
+						</Provider>
+					</SplitPane>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
