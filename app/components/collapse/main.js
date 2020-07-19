@@ -6,7 +6,6 @@ import logger from 'debug';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
 import VSHeader from './vs-header.js';
-import VSBody from './vs-body.js';
 import './vertical-slider.css';
 
 
@@ -76,18 +75,19 @@ class Collapse extends Component {
 			return (
 				<VSHeader
 					onClick={this.toggleVisibility}
+					className={this.props.headerClassName}
+					style={this.props.headerStyle}
 				>
-					<div className={this.props.headerClassName}>
-						{this.props.header}
-					</div>
+					{this.props.header}
 				</VSHeader>
 			);
 		}
 		return (
 			<VSHeader
 				onClick={this.toggleVisibility}
+				style={this.props.headerStyle}
 			>
-				<div style={this.props.headerStyle}>{this.props.header}</div>
+				{this.props.header}
 			</VSHeader>
 		);
 	}
@@ -96,9 +96,9 @@ class Collapse extends Component {
 		return (
 			<div className="vertical-slider" style={this.props.style} >
 				{ this.renderHeader() }
-				<VSBody className={this.state.className}>
+				<div className={this.state.className}>
 					{this.props.children}
-				</VSBody>
+				</div>
 			</div>
 		);
 	}

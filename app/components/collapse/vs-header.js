@@ -11,14 +11,13 @@ import './vertical-slider.css';
 * An ISLE component that allows to slideDown and slideUp - JQuery style - the header section.
 */
 class VSHeader extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {};
-	}
-
 	render() {
 		return (
-			<button onClick={this.props.onClick} className="vertical-slider-header">
+			<button
+				onClick={this.props.onClick}
+				className={`vertical-slider-header ${this.props.className}`}
+				style={this.props.style}
+			>
 				<h3>
 					{this.props.children}
 				</h3>
@@ -31,10 +30,15 @@ class VSHeader extends Component {
 // PROPERTIES //
 
 VSHeader.propTypes = {
-	onClick: PropTypes.func.isRequired
+	onClick: PropTypes.func.isRequired,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
-VSHeader.defaultProps = {};
+VSHeader.defaultProps = {
+	className: '',
+	style: {}
+};
 
 
 // EXPORTS //

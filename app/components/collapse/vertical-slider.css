@@ -4,8 +4,7 @@
 }
 
 .vertical-slider-header:hover {
-	cursor: pointer;
-	color: red;
+	background: rgba(0, 0, 0, 0.1);
 	transition: all 0.3;
 }
 
@@ -14,6 +13,7 @@
 	width: 100%;
 	border: 1px solid rgba(92, 92, 92, 0.6);
 	background: rgba(0, 0, 0, 0.03);
+	cursor: pointer;
 }
 
 .vs-display {
