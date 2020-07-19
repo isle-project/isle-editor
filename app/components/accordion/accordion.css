@@ -1,3 +1,5 @@
-.accordion .card-body {
-	overflow: hidden !important;
+.Lesson > .accordion,
+.Lesson > .line-wrapper > .accordion {
+	max-width: 1200px;
+	margin: 0 auto;
 }

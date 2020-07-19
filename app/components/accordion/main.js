@@ -21,13 +21,13 @@ const debug = logger( 'isle:accordion' );
 *
 * @property {number} active - index of slider to be opened at the beginning
 * @property {Array} headers - array of header names
+* @property {boolean} canCloseAll - whether one can collapse all headers
 * @property {string} headerClassName - this overrules the given class name of the headers
-* @property {object} headerStyle - one may also assign a style to the header bars
+* @property {Object} headerStyle - one may also assign a style to the header bars
+* @property {string} className - class name for outer div
+* @property {Object} style - CSS inline styles for outer div
 */
 class Accordion extends Component {
-	/**
-	* Constructor function
-	*/
 	constructor( props ) {
 		super( props );
 
@@ -49,6 +49,12 @@ class Accordion extends Component {
 	}
 
 	clickFactory = ( len, idx ) => {
+		if ( this.props.canCloseAll ) {
+			return () => {
+				const active = ( this.state.active === idx ) ? null : idx;
+				this.setState({ active });
+			};
+		}
 		return () => {
 			const active = ( this.state.active === idx ) ? (idx+1) % len : idx;
 			debug( `Open accordion element at index ${active}...` );
@@ -58,9 +64,6 @@ class Accordion extends Component {
 		};
 	}
 
-	/**
-	* React component render method
-	*/
 	render() {
 		if ( !isArray( this.props.children ) ) {
 			return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
@@ -83,7 +86,14 @@ class Accordion extends Component {
 			);
 			out.push( elem );
 		}
-		return out;
+		return (
+			<div
+				className={`accordion ${this.props.className}`}
+				style={this.props.style}
+			>
+				{out}
+			</div>
+		);
 	}
 }
 
@@ -92,16 +102,24 @@ class Accordion extends Component {
 
 Accordion.defaultProps = {
 	active: 0,
+	canCloseAll: false,
 	headers: null,
 	headerClassName: null,
-	headerStyle: null
+	headerStyle: null,
+	className: '',
+	style: null
 };
 
 Accordion.propTypes = {
 	active: PropTypes.number,
-	headers: PropTypes.arrayOf( PropTypes.string ),
+	canCloseAll: PropTypes.bool,
+	headers: PropTypes.arrayOf( PropTypes.oneOfType([
+		PropTypes.string, PropTypes.node
+	]) ),
 	headerStyle: PropTypes.object,
-	headerClassName: PropTypes.string
+	headerClassName: PropTypes.string,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 
