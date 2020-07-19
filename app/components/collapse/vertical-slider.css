@@ -1,3 +1,8 @@
+.vertical-slider {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
 .vertical-slider-header:hover {
 	cursor: pointer;
 	color: red;
@@ -5,9 +10,11 @@
 }
 
 .vertical-slider-header {
+	padding: 4px;
 	width: 100%;
 	border: none;
-	background: none;
+	background: rgba(0, 0, 0, 0.03);
+	box-shadow: 0 0 2px black;
 }
 
 .vs-display {
@@ -15,6 +22,7 @@
 	height: auto;
 	transform-origin: left top;
 	animation: swing-in-top-fwd 0.5s;
+	box-shadow: 0 0 2px black;
 }
 
 .vs-hidden {
