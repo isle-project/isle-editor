@@ -605,6 +605,10 @@
     {
       "name": "Slide",
       "value": "<Slide>\n  ${1:}\n</Slide>\n"
+    },
+    {
+      "name": "SlideNotes",
+      "value": "<SlideNotes>\n  ${1:}\n</SlideNotes>\n"
     }
   ],
   "victory": [

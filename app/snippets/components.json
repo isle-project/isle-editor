@@ -564,6 +564,10 @@
 		"value": "<Slide>\n  ${1:}\n</Slide>\n"
 	},
 	{
+		"name": "SlideNotes",
+		"value": "<SlideNotes>\n  ${1:}\n</SlideNotes>\n"
+	},
+	{
 		"name": "Collapse",
 		"value": "<Collapse>\n  ${1:}\n</Collapse>\n"
 	},

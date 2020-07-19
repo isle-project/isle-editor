@@ -33,6 +33,9 @@ import { SlideContext } from '../slide/main';
 
 // MAIN //
 
+/**
+* Speaker notes for a presentation slides. Component should be only used as the child of a corresponding <Slide> component.
+*/
 class Notes extends Component {
 	componentDidMount() {
 		const { slideHash: parentSlide, updateNotes, route } = this.context;

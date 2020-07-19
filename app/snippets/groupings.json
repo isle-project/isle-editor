@@ -152,9 +152,7 @@
 	"PRESENTATION": [
 		"Slide",
 		"Appear",
-		"BlockQuote",
-		"Cite",
-		"Quote"
+		"SlideNotes"
 	],
 	"PLOTS": [
 		"Plotly",

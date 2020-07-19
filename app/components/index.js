@@ -174,7 +174,7 @@ import VictoryWrapper from 'components/victory/wrapper';
 
 import Appear from 'components/spectacle/components/appear';
 import Deck from 'components/spectacle/components/deck';
-import Notes from 'components/spectacle/components/notes';
+import SlideNotes from 'components/spectacle/components/notes';
 import Slide from 'components/spectacle/components/slide';
 
 
@@ -355,7 +355,7 @@ const scope = {
 
 	Appear,
 	Deck,
-	Notes,
+	SlideNotes,
 	Slide
 };
 

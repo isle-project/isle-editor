@@ -142,7 +142,7 @@
 	"Wikipedia": "components/wikipedia",
 	"Appear": "components/spectacle/components/appear",
 	"Deck": "components/spectacle/components/deck",
-	"Notes": "components/spectacle/components/notes",
+	"SlideNotes": "components/spectacle/components/notes",
 	"QuestionForm": "components/question-form",
 	"Quiz": "components/quiz",
 	"Slide": "components/spectacle/components/slide",
