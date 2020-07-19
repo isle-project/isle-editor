@@ -42,47 +42,42 @@ import { SlideContext } from './slide/main';
 // MAIN //
 
 class Anim extends Component {
-	state = {
-		activeAnimation: -1
-	};
+	constructor( props ) {
+		super( props );
+		this.state = {
+			activeAnimation: -1
+		};
+	}
 
 	componentDidMount() {
+		const route = this.context.route;
 		const shouldDisableAnimation =
-			this.props.route.params.indexOf('export') !== -1 ||
-			this.props.route.params.indexOf('overview') !== -1 ||
-			this.props.route.params.indexOf('notes') !== -1;
+			route.params.indexOf('export') !== -1 ||
+			route.params.indexOf('overview') !== -1 ||
+			route.params.indexOf('notes') !== -1;
 
 		if ( shouldDisableAnimation ) {
 			this.setState({ activeAnimation: this.props.toStyle.length - 1 });
-			return;
 		}
-		const order = this.props.order;
-		const node = findDOMNode(this.fragmentRef);
-		if (!node.dataset) {
-			node.dataset = {};
-		}
-		node.dataset.order = order;
-		node.dataset.animCount = this.props.toStyle.length;
 	}
 
 	componentDidUpdate(prevProps, prevState) {
+		const route = this.context.route;
 		const shouldDisableAnimation =
-			this.props.route.params.indexOf('export') !== -1 ||
-			this.props.route.params.indexOf('overview') !== -1 ||
-			this.props.route.params.indexOf('notes') !== -1;
+			route.params.indexOf('export') !== -1 ||
+			route.params.indexOf('overview') !== -1 ||
+			route.params.indexOf('notes') !== -1;
 
-		if (shouldDisableAnimation) {
+		if ( shouldDisableAnimation ) {
 			this.disableAnimation();
 		}
-
 		const animationStatus = this.getAnimationStatus();
-		if (animationStatus) {
+		if ( animationStatus ) {
 			const nextAnimation = animationStatus.every(a => a === true) ?
 				animationStatus.length - 1 : animationStatus.indexOf(false) - 1;
 			if (prevState.activeAnimation !== nextAnimation) {
-				const state = this.props.fragment;
-				const { slide } = prevProps.route;
-				this.context.stepCounter.setFragments(state.fragments[slide], slide);
+				const { slide } = route;
+				this.context.stepCounter.setFragments( this.context.fragments[ slide ], slide );
 				if (prevProps.onAnim) {
 					const forward = prevState.activeAnimation < nextAnimation;
 					prevProps.onAnim(forward, nextAnimation);
@@ -104,20 +99,23 @@ class Anim extends Component {
 				activeAnimation: nextAnimation
 			});
 		}
-	};
+	}
 
-	getAnimationStatus() {
-		const state = this.props.fragment;
-		const { slide } = this.props.route;
-		const fragment = findDOMNode(this.fragmentRef);
-		const key = findKey(state.fragments[slide], {
+	getAnimationStatus = () => {
+		const fragments = this.context.fragments;
+		const { slide } = this.context.route;
+		const fragment = findDOMNode( this.fragmentRef );
+		if ( !fragment ) {
+			return null;
+		}
+		const key = findKey(fragments[slide], {
 			id: `${this.context.slideHash}-${parseInt(fragment.dataset.fid, 10)}`
 		});
 		if (
-			slide in state.fragments &&
-			hasOwnProperty( state.fragments[slide], key )
+			slide in fragments &&
+			hasOwnProperty( fragments[slide], key )
 		) {
-			return state.fragments[slide][key].animations;
+			return fragments[slide][key].animations;
 		}
 		return null;
 	}
@@ -131,7 +129,7 @@ class Anim extends Component {
 			easing,
 			style
 		} = this.props;
-		const child = React.Children.only(children);
+		const child = React.Children.only( children );
 		const tweenData = this.state.activeAnimation === -1 ?
 			fromStyle : toStyle[this.state.activeAnimation];
 		return (
@@ -141,11 +139,22 @@ class Anim extends Component {
 				easing={easing}
 			>
 				{tweenStyle =>
-					React.cloneElement(child, {
-						className: `fragment ${child.props.className}`.trim(),
+					React.cloneElement( child, {
+						className: `fragment ${child.props.className || ''}`.trim(),
 						style: { ...child.props.style, ...style, ...tweenStyle },
 						ref: f => {
-							this.fragmentRef = f;
+							if ( !this.fragmentRef ) {
+								this.fragmentRef = f;
+								const order = this.props.order;
+								const node = findDOMNode( this.fragmentRef );
+								if ( node ) {
+									if ( !node.dataset ) {
+										node.dataset = {};
+									}
+									node.dataset.order = Number( order );
+									node.dataset.animCount = this.props.toStyle.length;
+								}
+							}
 						}
 					})
 				}
@@ -204,11 +213,9 @@ Anim.propTypes = {
 		'sinOut',
 		'sinInOut'
 	]).isRequired,
-	fragment: PropTypes.object,
 	fromStyle: PropTypes.object.isRequired,
 	onAnim: PropTypes.func,
 	order: PropTypes.number,
-	route: PropTypes.object,
 	style: PropTypes.object,
 	toStyle: PropTypes.arrayOf(PropTypes.object).isRequired,
 	transitionDuration: PropTypes.number.isRequired

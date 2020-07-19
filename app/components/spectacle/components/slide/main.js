@@ -50,27 +50,26 @@ class Slide extends React.PureComponent {
 
 	componentDidMount() {
 		const slide = this.slideRef;
-		const frags = slide.querySelectorAll('.fragment');
+		let frags = slide.querySelectorAll( '.fragment' );
 		let currentOrder = 0;
 		if (frags && frags.length && !this.context.overview) {
-			Array.prototype.slice
+			frags = Array.prototype.slice
 				.call(frags, 0)
 				.sort(
 					(lhs, rhs) =>
-						parseInt(lhs.dataset.order, 10) - parseInt(rhs.dataset.order, 10)
-				)
-				.forEach(frag => {
+						parseInt( lhs.dataset.order, 10 ) - parseInt( rhs.dataset.order, 10 )
+				);
+			frags.forEach( frag => {
 					frag.dataset.fid = currentOrder;
-					if ( this.props.addFragment ) {
-						this.props.addFragment({
-							className: frag.className || '',
-							slide: this.props.hash,
-							id: `${this.props.hash}-${currentOrder}`,
-							animations: Array.from({ length: frag.dataset.animCount }).fill(
-								this.props.lastSlideIndex > this.props.slideIndex
-							)
-						});
-					}
+					const id = `${this.props.hash}-${currentOrder}`;
+					this.context.addFragment({
+						className: frag.className || '',
+						slide: this.props.hash,
+						id,
+						animations: Array.from({ length: frag.dataset.animCount }).fill(
+							this.props.lastSlideIndex > this.props.slideIndex
+						)
+					});
 					currentOrder += 1;
 				});
 		}
@@ -84,8 +83,8 @@ class Slide extends React.PureComponent {
 	componentDidUpdate() {
 		const { steps, slideIndex } = this.stepCounter.getSteps();
 		const stepFunc = this.props.getAnimStep;
-		if (stepFunc) {
-			if (slideIndex === this.props.slideIndex) {
+		if (stepFunc ) {
+			if ( slideIndex === this.props.slideIndex ) {
 				stepFunc(steps);
 			}
 		}

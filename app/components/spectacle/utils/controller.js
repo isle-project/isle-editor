@@ -80,11 +80,14 @@ class Controller extends Component {
 				history={this.history}
 				onStateChange={this.props.onStateChange}
 				route={this.props.route}
+				fragments={this.props.fragments}
 				styles={styles.screen}
 				notes={this.props.notes}
 				contentWidth={this.props.contentWidth}
 				contentHeight={this.props.contentHeight}
 				updateNotes={this.props.updateNotes}
+				addFragment={this.props.addFragment}
+				updateFragment={this.props.updateFragment}
 			>
 				{this.props.children}
 			</Context>
@@ -98,12 +101,12 @@ class Controller extends Component {
 Controller.propTypes = {
 	history: PropTypes.object,
 	onStateChange: PropTypes.func.isRequired,
-	route: PropTypes.object
+	route: PropTypes.object.isRequired,
+	fragments: PropTypes.object.isRequired
 };
 
 Controller.defaultProps = {
-	history: null,
-	route: null
+	history: null
 };
 
 

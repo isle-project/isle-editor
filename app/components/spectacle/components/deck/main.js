@@ -30,8 +30,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Controller from './../../utils/controller';
 import Manager from './../manager';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:deck' );
 
 
 // FUNCTIONS //
@@ -73,19 +79,21 @@ class Deck extends Component {
 
 	addFragment = ( action ) => {
 		const { id, slide } = action;
-		const fragments = { ...this.state.fragments };
-		fragments[slide] = fragments[slide] || {};
-		fragments[slide][id] = action.payload;
+		debug( `Adding a fragment with id ${id} for slide ${slide}...` );
+		const fragments = this.state.fragments;
+		fragments[ slide] = fragments[ slide ] || {};
+		fragments[ slide ][ id ] = action;
 		this.setState({
 			fragments
 		});
 	}
 
-	updateFragment = (action) => {
+	updateFragment = ( action ) => {
 		const { fragment } = action;
+		debug( `Updating fragment ${fragment.id}...` );
 		const fragments = { ...this.state.fragments };
-		fragments[ fragment.slide ][fragment.id].animations =
-			action.payload.animations;
+		fragments[ fragment.slide ][ fragment.id ].animations =
+			action.animations;
 		this.setState({
 			fragments
 		});
@@ -110,7 +118,7 @@ class Deck extends Component {
 			route: {
 				slide,
 				params: location.search.replace('?', '').split('&'),
-				previousSlide: this.state.route.slide
+				previousSlide: this.state.route.slide || slide
 			}
 		});
 	}
@@ -140,12 +148,13 @@ class Deck extends Component {
 				onStateChange={this.handleStateChange}
 				contentHeight={this.props.contentHeight}
 				contentWidth={this.props.contentWidth}
+				fragments={this.state.fragments}
+				updateFragment={this.updateFragment}
+				addFragment={this.addFragment}
 			>
 				<Manager
 					{...this.props}
 					route={this.state.route}
-					updateFragment={this.updateFragment}
-					fragments={this.state.fragments}
 				>{this.props.children}</Manager>
 			</Controller>
 		);

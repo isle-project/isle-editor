@@ -488,24 +488,14 @@ export class Manager extends Component {
 	}
 
 	_updateFragment = ( fragData ) => {
-		return this.props.updateFragment( fragData );
+		return this.context.updateFragment( fragData );
 	}
 
 	_checkFragments = ( slide, forward ) => {
-		const fragments = this.props.fragments;
-		// Not proud of this at all. 0.14 Parent based contexts will fix this.
-		if (this.context.route.params.indexOf('presenter') !== -1) {
-			const main = document.querySelector('.spectacle-presenter-main');
-			if (main) {
-				const frags = main.querySelectorAll('.fragment');
-				if (!frags.length) {
-					return true;
-				}
-			} else {
-				return true;
-			}
-		}
-		if (slide in fragments) {
+		const fragments = this.context.fragments;
+		console.log( 'Checking fragments...' );
+		console.log( fragments );
+		if ( slide in fragments ) {
 			const currentSlideFragments = fragments[slide];
 			const count = size(currentSlideFragments);
 			const fullyAnimated = filter(currentSlideFragments, frag =>
@@ -535,7 +525,6 @@ export class Manager extends Component {
 					// If every fragment is animated back to square one, then switch slides
 					return true;
 				}
-
 				let target;
 				const lastFullyAnimatedFragment =
 					fullyAnimated[size(fullyAnimated) - 1];
@@ -660,7 +649,7 @@ export class Manager extends Component {
 			return null;
 		}
 		const targetProps = {
-			fragments: this.props.fragment,
+			fragments: this.context.fragments,
 			export: this.context.route.params.indexOf('export') !== -1,
 			hash: this.context.route.slide,
 			slideIndex,
@@ -671,8 +660,6 @@ export class Manager extends Component {
 				slide.props.transitionDuration : this.props.transitionDuration,
 			slideReference: this.state.slideReference
 		};
-		console.log( 'Should render slide at index '+slideIndex );
-		console.log( targetProps );
 		return (
 			<SlideWrapper key={slideIndex} {...slide.props} {...targetProps}>
 				{cloneElement(slide, { ...slide.props, ...targetProps })}

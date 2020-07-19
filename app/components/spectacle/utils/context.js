@@ -41,16 +41,19 @@ export const SpectacleContext = React.createContext( 'spectacle-context' );
 
 class Context extends Component {
 	render() {
-		const { history, onStateChange, styles, route, notes, updateNotes, contentHeight, contentWidth } = this.props;
+		const { history, onStateChange, styles, route, fragments, notes, updateNotes, contentHeight, contentWidth, addFragment, updateFragment } = this.props;
 		const value = {
 			history,
 			onStateChange,
 			route,
 			styles,
+			fragments,
 			notes,
 			updateNotes,
 			contentHeight,
-			contentWidth
+			contentWidth,
+			addFragment,
+			updateFragment
 		};
 		return (
 			<SpectacleContext.Provider value={value} >
@@ -65,6 +68,7 @@ class Context extends Component {
 
 Context.propTypes = {
 	children: PropTypes.node,
+	fragments: PropTypes.object,
 	history: PropTypes.object,
 	onStateChange: PropTypes.func,
 	contentHeight: PropTypes.number,
