@@ -172,7 +172,7 @@ import VictoryVoronoiContainer from 'components/victory/voronoi-container';
 import VictoryZoomContainer from 'components/victory/zoom-container';
 import VictoryWrapper from 'components/victory/wrapper';
 
-import Appear from 'components/spectacle/components/appear';
+import SlideAppear from 'components/spectacle/components/appear';
 import Deck from 'components/spectacle/components/deck';
 import SlideNotes from 'components/spectacle/components/notes';
 import Slide from 'components/spectacle/components/slide';
@@ -353,7 +353,7 @@ const scope = {
 	VictoryZoomContainer,
 	VictoryWrapper,
 
-	Appear,
+	SlideAppear,
 	Deck,
 	SlideNotes,
 	Slide

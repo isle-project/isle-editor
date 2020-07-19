@@ -33,6 +33,7 @@ const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
 const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_ALPHACHAR = /[A-Z]/i;
+const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
@@ -389,7 +390,7 @@ class Tokenizer {
 					const tokenizer = new Tokenizer({
 						inline: isInner,
 						lineNumber: this._betweenLineNumber,
-						addLineWrappers: this.addLineWrappers,
+						addLineWrappers: this.addLineWrappers && !RE_NO_WRAPPER_TAGS.test( this._openingTagName ),
 						addEmptySpans: this.addEmptySpans
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {

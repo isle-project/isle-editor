@@ -140,7 +140,7 @@
 	"VoiceControl": "components/internal/voice-control",
 	"Weather": "components/weather",
 	"Wikipedia": "components/wikipedia",
-	"Appear": "components/spectacle/components/appear",
+	"SlideAppear": "components/spectacle/components/appear",
 	"Deck": "components/spectacle/components/deck",
 	"SlideNotes": "components/spectacle/components/notes",
 	"QuestionForm": "components/question-form",

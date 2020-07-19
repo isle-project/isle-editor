@@ -548,8 +548,8 @@
 		"value": "<Col md={${1:12}}>\n  ${2:}\n</Col>\n"
 	},
 	{
-		"name": "Appear",
-		"value": "<Appear active={true} delay={${1:1000}}>\n  ${2:}\n</Appear>\n"
+		"name": "SlideAppear",
+		"value": "<SlideAppear ${1:}>\n  ${2:}\n</SlideAppear>\n"
 	},
 	{
 		"name": "Bibliography",
