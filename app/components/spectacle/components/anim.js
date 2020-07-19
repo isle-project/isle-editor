@@ -36,7 +36,6 @@ import { findDOMNode } from 'react-dom';
 import findKey from 'lodash/findKey';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import { VictoryAnimation } from 'victory';
-import { victoryEases } from './../utils/types';
 import { SlideContext } from './slide/main';
 
 
@@ -163,7 +162,48 @@ Anim.defaultProps = {
 };
 
 Anim.propTypes = {
-	easing: PropTypes.oneOf(victoryEases).isRequired,
+	easing: PropTypes.oneOf([
+		'back',
+		'backIn',
+		'backOut',
+		'backInOut',
+		'bounce',
+		'bounceIn',
+		'bounceOut',
+		'bounceInOut',
+		'circle',
+		'circleIn',
+		'circleOut',
+		'circleInOut',
+		'linear',
+		'linearIn',
+		'linearOut',
+		'linearInOut',
+		'cubic',
+		'cubicIn',
+		'cubicOut',
+		'cubicInOut',
+		'elastic',
+		'elasticIn',
+		'elasticOut',
+		'elasticInOut',
+		'exp',
+		'expIn',
+		'expOut',
+		'expInOut',
+		'poly',
+		'polyIn',
+		'polyOut',
+		'polyInOut',
+		'quad',
+		'quadIn',
+		'quadOut',
+		'quadInOut',
+		'sin',
+		'sinIn',
+		'sinOut',
+		'sinInOut'
+	]).isRequired,
 	fragment: PropTypes.object,
 	fromStyle: PropTypes.object.isRequired,
 	onAnim: PropTypes.func,

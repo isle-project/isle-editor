@@ -556,24 +556,8 @@
 		"value": "<Bibliography />"
 	},
 	{
-		"name": "Code",
-		"value": "<Code>${1:}</Code>\n"
-	},
-	{
 		"name": "Citation",
 		"value": "<Citation citeKey=\"${1:Enter key}\" />"
-	},
-	{
-		"name": "Fill",
-		"value": "<Fill>${1:}</Fill>\n"
-	},
-	{
-		"name": "Fit",
-		"value": "<Fit>${1:}</Fit>\n"
-	},
-	{
-		"name": "Layout",
-		"value": "<Layout>${1:}</Layout>\n"
 	},
 	{
 		"name": "Slide",

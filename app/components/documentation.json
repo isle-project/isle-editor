@@ -5806,305 +5806,139 @@
       {
         "name": "easing",
         "type": "string",
-        "description": "type of easing to use for an animation. Supported are: \"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\", \"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expIn\", \"expOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\"",
         "defaultValue": "quadInOut"
-      },
-      {
-        "name": "order",
-        "type": "number",
-        "description": "integer starting at 1 for the presentation order of the appear tags. If a slide contains ordered and unordered appear tags, unordered ones appear first",
-        "defaultValue": null
-      },
-      {
-        "name": "transitionDuration",
-        "type": "number",
-        "description": "duration of appearance animation in milliseconds",
-        "defaultValue": 300
-      },
-      {
-        "name": "startValue",
-        "type": "object",
-        "description": "style object for the starting, inactive state of the appear tag",
-        "defaultValue": {
-          "opacity": 0
-        }
       },
       {
         "name": "endValue",
         "type": "object",
-        "description": "style object for the ending, active state of the appear tag",
         "defaultValue": {
-          "opacity": 1
+          "opacity": 1,
+          "pointerEvents": "auto"
         }
-      }
-    ],
-    "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
-  },
-  "CodePane": {
-    "props": [
-      {
-        "name": "lang",
-        "type": "string",
-        "description": "Prism compatible language name",
-        "defaultValue": null
       },
       {
-        "name": "source",
-        "type": "string",
-        "description": "code to be shown",
-        "defaultValue": ""
+        "name": "fragment",
+        "type": "object"
       },
       {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
+        "name": "order",
+        "type": "number"
       },
       {
-        "name": "theme",
-        "type": "string",
-        "description": "`light`, `dark`, or `external` theme for the source editor's syntax highlighting",
-        "defaultValue": "dark"
-      }
-    ],
-    "description": "Component displaying a styled, highlighted code preview."
-  },
-  "Code": {
-    "props": [
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
+        "name": "startValue",
+        "type": "object",
+        "defaultValue": {
+          "opacity": 0,
+          "pointerEvents": "none"
+        }
       },
       {
         "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      }
-    ],
-    "description": "Component displaying inline text in a monospace font."
-  },
-  "Deck": {
-    "props": [
-      {
-        "name": "autoplay",
-        "type": "boolean",
-        "description": "automatically advance slides",
-        "defaultValue": false
-      },
-      {
-        "name": "autoplayDuration",
-        "type": "number",
-        "description": "global autoplay duration (in milliseconds)",
-        "defaultValue": 7000
-      },
-      {
-        "name": "autoplayLoop",
-        "type": "boolean",
-        "description": "keep slides in loop",
-        "defaultValue": true
-      },
-      {
-        "name": "autoplayOnStart",
-        "type": "boolean",
-        "description": "start presentation with autoplay on/not paused",
-        "defaultValue": true
-      },
-      {
-        "name": "controls",
-        "type": "boolean",
-        "description": "show control arrows when not in fullscreen",
-        "defaultValue": true
-      },
-      {
-        "name": "contentHeight",
-        "type": "number",
-        "description": "baseline content area height",
-        "defaultValue": 700
-      },
-      {
-        "name": "contentWidth",
-        "type": "number",
-        "description": "baseline content area width",
-        "defaultValue": 1000
-      },
-      {
-        "name": "disableKeyboardControls",
-        "type": "boolean",
-        "description": "toggle keyboard control",
-        "defaultValue": false
-      },
-      {
-        "name": "pageControls",
-        "type": "boolean",
-        "description": "controls whether page-up and page-down can be used to switch between slides",
-        "defaultValue": true
-      },
-      {
-        "name": "progress",
-        "type": "string",
-        "description": "progress indicator (accepts `pacman`, `bar`, `number` or `none`)",
-        "defaultValue": "pacman"
-      },
-      {
-        "name": "showFullscreenControl",
-        "type": "boolean",
-        "description": "show the fullscreen control button in bottom right of the screen",
-        "defaultValue": true
-      },
-      {
-        "name": "transition",
-        "type": "array",
-        "description": "global slide transitions (accepts `slide`, `zoom`, `fade` or `spin`, which can be combined)",
-        "defaultValue": null
+        "type": "object"
       },
       {
         "name": "transitionDuration",
         "type": "number",
-        "description": "global transition duration (in milliseconds)",
-        "defaultValue": 500
+        "defaultValue": 300
       }
     ],
-    "description": "Spectacle slide deck. Wraps `<Slide>` tags."
+    "description": "Description is missing."
   },
-  "Fill": {
-    "props": [
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      }
-    ],
-    "description": "The fill tag takes up all the space available to it. Fill tags next to each other form an equidistant grid."
-  },
-  "Fit": {
-    "props": [
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      }
-    ],
-    "description": "Component taking up as much space as its bounds provide, but not more."
-  },
-  "Heading": {
-    "props": [],
-    "description": "Spectacle slide headings."
-  },
-  "SImage": {
-    "props": [],
-    "description": "Spectacle slide image."
-  },
-  "Spectacle": {
+  "Deck": {
     "props": [],
     "description": "Description is missing."
   },
-  "Layout": {
-    "props": [],
-    "description": "Component wrapping `Fit` and `Fill` tags to provide a row."
-  },
-  "ListItem": {
-    "props": [],
-    "description": "Spectacle list item component."
-  },
-  "List": {
-    "props": [],
-    "description": "Spectacle list component."
-  },
   "Notes": {
     "props": [],
-    "description": "Spectacle presentation slide notes."
+    "description": "Description is missing."
   },
   "Slide": {
     "props": [
       {
         "name": "align",
         "type": "string",
-        "description": "Space delimited value for positioning interior content. The first value can be flex-start (left), center (middle), or flex-end (bottom). The second value can be flex-start (top) , center (middle), or flex-end (bottom)",
         "defaultValue": "center center"
       },
       {
-        "name": "transition",
-        "type": "array",
-        "description": "slide transition. Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",
-        "defaultValue": null
-      },
-      {
-        "name": "transitionDuration",
-        "type": "number",
-        "description": "slide transition duration in milliseconds",
-        "defaultValue": null
-      },
-      {
-        "name": "notes",
-        "type": "string",
-        "description": "presenter mode notes",
-        "defaultValue": null
-      },
-      {
         "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
+        "type": "string"
       },
       {
-        "name": "duration",
-        "type": "number",
-        "description": "slide duration displayed in presenter mode",
-        "defaultValue": null
+        "name": "contentStyles",
+        "type": "object"
+      },
+      {
+        "name": "export",
+        "type": "boolean"
+      },
+      {
+        "name": "getAnimStep",
+        "type": "function"
+      },
+      {
+        "name": "hash",
+        "type": "(number|string)"
+      },
+      {
+        "name": "lastSlideIndex",
+        "type": "number"
+      },
+      {
+        "name": "margin",
+        "type": "number"
+      },
+      {
+        "name": "notes"
+      },
+      {
+        "name": "onActive",
+        "type": "function"
+      },
+      {
+        "name": "presenterStyle",
+        "type": "object",
+        "defaultValue": {}
+      },
+      {
+        "name": "slideIndex",
+        "type": "number"
+      },
+      {
+        "name": "slideReference",
+        "type": "array"
+      },
+      {
+        "name": "state",
+        "type": "string"
       },
       {
         "name": "style",
         "type": "object",
-        "description": "CSS inline styles",
         "defaultValue": {}
+      },
+      {
+        "name": "transition",
+        "type": "array"
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number"
+      },
+      {
+        "name": "transitionIn",
+        "type": "array"
+      },
+      {
+        "name": "transitionOut",
+        "type": "array"
+      },
+      {
+        "name": "viewerScaleMode",
+        "type": "boolean",
+        "defaultValue": false
       }
     ],
-    "description": "Spectacle presentation slide."
-  },
-  "TableBody": {
-    "props": [],
-    "description": "Spectacle table body component."
-  },
-  "TableHeaderItem": {
-    "props": [],
-    "description": "Spectacle table header item component."
-  },
-  "TableHeader": {
-    "props": [],
-    "description": "Spectacle table header component."
-  },
-  "TableItem": {
-    "props": [],
-    "description": "Spectacle table item component."
-  },
-  "TableRow": {
-    "props": [],
-    "description": "Spectacle table row component."
-  },
-  "STable": {
-    "props": [],
-    "description": "Spectacle table component."
-  },
-  "SText": {
-    "props": [],
-    "description": "Spectacle text component."
+    "description": "Description is missing."
   },
   "StickyNote": {
     "props": [

@@ -603,22 +603,6 @@
       "value": "<Appear active={true} delay={${1:1000}}>\n  ${2:}\n</Appear>\n"
     },
     {
-      "name": "Code",
-      "value": "<Code>${1:}</Code>\n"
-    },
-    {
-      "name": "Fill",
-      "value": "<Fill>${1:}</Fill>\n"
-    },
-    {
-      "name": "Fit",
-      "value": "<Fit>${1:}</Fit>\n"
-    },
-    {
-      "name": "Layout",
-      "value": "<Layout>${1:}</Layout>\n"
-    },
-    {
       "name": "Slide",
       "value": "<Slide>\n  ${1:}\n</Slide>\n"
     }

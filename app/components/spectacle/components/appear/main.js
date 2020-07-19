@@ -31,7 +31,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Anim from './../anim';
-import { victoryEases } from './../../utils/types';
 
 
 // MAIN /
@@ -72,7 +71,48 @@ Appear.defaultProps = {
 
 Appear.propTypes = {
 	children: PropTypes.node,
-	easing: PropTypes.oneOf(victoryEases),
+	easing: PropTypes.oneOf([
+		'back',
+		'backIn',
+		'backOut',
+		'backInOut',
+		'bounce',
+		'bounceIn',
+		'bounceOut',
+		'bounceInOut',
+		'circle',
+		'circleIn',
+		'circleOut',
+		'circleInOut',
+		'linear',
+		'linearIn',
+		'linearOut',
+		'linearInOut',
+		'cubic',
+		'cubicIn',
+		'cubicOut',
+		'cubicInOut',
+		'elastic',
+		'elasticIn',
+		'elasticOut',
+		'elasticInOut',
+		'exp',
+		'expIn',
+		'expOut',
+		'expInOut',
+		'poly',
+		'polyIn',
+		'polyOut',
+		'polyInOut',
+		'quad',
+		'quadIn',
+		'quadOut',
+		'quadInOut',
+		'sin',
+		'sinIn',
+		'sinOut',
+		'sinInOut'
+	]),
 	endValue: PropTypes.object,
 	fragment: PropTypes.object,
 	order: PropTypes.number,
