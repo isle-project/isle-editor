@@ -565,7 +565,7 @@ function writeIndexFile({
 	content = content.replace( /<!--([\S\s]*?)-->/g, '' );
 
 	// Replace Markdown by HTML...
-	const isPresentation = meta.type === 'presentation' || contains( content, '<Slide' );
+	const isPresentation = meta.type === 'presentation' || contains( content, '<Slide ' );
 	content = markdownToHTML( content );
 	if ( isPresentation ) {
 		content = transformToPresentation( content, meta );
