@@ -243,6 +243,7 @@ exports[`renders a playground with a supplied scope 1`] = `
         "position": "absolute",
         "right": 0,
         "top": 33,
+        "transform": "translateZ(0)",
         "width": "50%",
       }
     }
@@ -513,6 +514,7 @@ exports[`renders an uncontrolled playground 1`] = `
         "position": "absolute",
         "right": 0,
         "top": 33,
+        "transform": "translateZ(0)",
         "width": "50%",
       }
     }
