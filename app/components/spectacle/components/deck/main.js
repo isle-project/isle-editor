@@ -34,7 +34,7 @@ import Controller from './../../utils/controller';
 import Manager from './../manager';
 
 
-// EXPORTS //
+// FUNCTIONS //
 
 export function defaultOnStateChange( prevState, nextState ) {
 	if ( nextState ) {
@@ -45,40 +45,24 @@ export function defaultOnStateChange( prevState, nextState ) {
 	}
 }
 
-export default class Deck extends Component {
-	static displayName = 'Deck';
 
-	static propTypes = {
-		autoplay: PropTypes.bool,
-		autoplayDuration: PropTypes.number,
-		autoplayLoop: PropTypes.bool,
-		autoplayOnStart: PropTypes.bool,
-		children: PropTypes.node,
-		controls: PropTypes.bool,
-		disableKeyboardControls: PropTypes.bool,
-		disableTouchControls: PropTypes.bool,
-		history: PropTypes.object,
-		onStateChange: PropTypes.func,
-		progress: PropTypes.oneOf(['bar', 'number', 'none']),
-		showFullscreenControl: PropTypes.bool,
-		transition: PropTypes.array,
-		transitionDuration: PropTypes.number
-	};
+// MAIN //
 
-	static defaultProps = {
-		onStateChange: defaultOnStateChange,
-		showFullscreenControl: true
-	};
+class Deck extends Component {
+	constructor( props ) {
+		super( props );
 
-	state = {
-		slideState: void 0,
-		fragments: {},
-		route: {
-			slide: null,
-			params: []
-		},
-		notes: {}
-	};
+		this.state = {
+			slideState: void 0,
+			fragments: {},
+			route: {
+				slide: null,
+				previousSlide: null,
+				params: []
+			},
+			notes: {}
+		};
+	}
 
 	componentWillUnmount() {
 		// Cleanup default onStateChange
@@ -125,7 +109,8 @@ export default class Deck extends Component {
 		return this.setState({
 			route: {
 				slide,
-				params: location.search.replace('?', '').split('&')
+				params: location.search.replace('?', '').split('&'),
+				previousSlide: this.state.route.slide
 			}
 		});
 	}
@@ -166,3 +151,33 @@ export default class Deck extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+Deck.propTypes = {
+	autoplay: PropTypes.bool,
+	autoplayDuration: PropTypes.number,
+	autoplayLoop: PropTypes.bool,
+	autoplayOnStart: PropTypes.bool,
+	children: PropTypes.node,
+	controls: PropTypes.bool,
+	disableKeyboardControls: PropTypes.bool,
+	disableTouchControls: PropTypes.bool,
+	history: PropTypes.object,
+	onStateChange: PropTypes.func,
+	progress: PropTypes.oneOf(['bar', 'number', 'none']),
+	showFullscreenControl: PropTypes.bool,
+	transition: PropTypes.array,
+	transitionDuration: PropTypes.number
+};
+
+Deck.defaultProps = {
+	onStateChange: defaultOnStateChange,
+	showFullscreenControl: true
+};
+
+
+// EXPORTS //
+
+export default Deck;

@@ -139,7 +139,7 @@ class SlideWrapper extends React.PureComponent {
 				{...this.props}
 				onEnter={this.componentWillEnter}
 				onExit={this.componentWillLeave}
-				duration={transitionDuration}
+				timeout={transitionDuration || 300}
 			>
 				{ transitionState => {
 					return ( <VictoryAnimation
