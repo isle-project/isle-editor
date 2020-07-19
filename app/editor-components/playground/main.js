@@ -92,9 +92,6 @@ class Playground extends Component {
 		return `<Provider session={session}>
 			<Lesson
 				className="${session.config.type === 'presentation' ? 'Presentation' : 'Lesson'}"
-				style={{
-					transform: 'translateZ(0)'
-				}}
 			>${code}</Lesson>
 		</Provider>`;
 	}
@@ -127,7 +124,8 @@ class Playground extends Component {
 						className="playground-live-preview"
 						style={{
 							...styles.livePreview,
-							overflowY: 'hidden'
+							overflowY: 'hidden',
+							transform: 'translateZ(0)'
 						}}
 						{...this.props.previewProps}
 					/>
