@@ -2,14 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import { withTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import isArray from '@stdlib/assert/is-array';
-import startsWith from '@stdlib/string/starts-with';
 import isLineButtons from 'utils/is-line-buttons';
+import closeHintButtons from 'utils/close-hint-buttons';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './load_translations.js';
@@ -53,14 +52,7 @@ class DefaultSlider extends Component {
 			...props,
 			beforeChange: ( oldIndex, newIndex ) => {
 				this.setState({ currentSlide: newIndex+1 });
-
-				const node = findDOMNode( this.slider );
-				const hintButtons = node.getElementsByClassName( 'hint-button' );
-				for ( let i = 0; i < hintButtons.length; i++ ) {
-					if ( startsWith( hintButtons[ i ].innerText, this.props.t('close') ) ) {
-						hintButtons[ i ].click();
-					}
-				}
+				closeHintButtons( this.slider );
 			}
 		};
 

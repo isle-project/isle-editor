@@ -285,6 +285,7 @@ class FreeTextQuestion extends Component {
 				<ButtonToolbar className="free-text-question-toolbar" >
 					{ nHints > 0 ?
 						<HintButton
+							id={`${this.id}-hints`}
 							onClick={this.logHint}
 							ref={( div ) => { this.hintButton = div; }}
 							hints={this.props.hints}

@@ -51,6 +51,7 @@ import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
 import Loadable from 'components/internal/loadable';
+import closeHintButtons from 'utils/close-hint-buttons';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
@@ -1869,6 +1870,9 @@ class Sketchpad extends Component {
 			if ( this.selectedElements ) {
 				this.deselectElements();
 			}
+			if ( this.props.nodes[ this.state.currentPage ] ) {
+				closeHintButtons( this.canvasWrapper );
+			}
 			this.setState({
 				currentPage
 			}, () => {
@@ -1891,6 +1895,9 @@ class Sketchpad extends Component {
 			const currentPage = this.state.currentPage - 1;
 			if ( this.selectedElements ) {
 				this.deselectElements();
+			}
+			if ( this.props.nodes[ this.state.currentPage ] ) {
+				closeHintButtons( this.canvasWrapper );
 			}
 			this.setState({
 				currentPage
@@ -1917,6 +1924,9 @@ class Sketchpad extends Component {
 			}
 			if ( this.selectedElements ) {
 				this.deselectElements();
+			}
+			if ( this.props.nodes[ this.state.currentPage ] ) {
+				closeHintButtons( this.canvasWrapper );
 			}
 			this.setState({
 				currentPage: idx,

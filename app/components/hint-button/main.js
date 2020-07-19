@@ -22,23 +22,25 @@ const debug = logger( 'isle:hint-button' );
 * Returns a popover displaying the unlocked hints.
 *
 * @private
-* @param {integer} id - current hint index
+* @param {integer} index - current hint index
 * @param {Array} hints - array of hints
+* @param {string} id - unique identifier
 * @param {Function} t - translation function
 * @returns {Node} popover with hints
 */
-const displayHint = ( id, hints, t ) => {
+const displayHint = ( index, hints, id, t ) => {
 	return (
 		<Popover
-			id="popover-positioned-top"
+			id={`${id}-hint-popover`}
 			title="Hints"
 			style={{
 				minWidth: '400px',
-				padding: '3px'
+				padding: '3px',
+				zIndex: 9999
 			}}
 		>
 			{ hints
-				.filter( ( e, i ) => i <= id )
+				.filter( ( e, i ) => i <= index )
 				.map( ( hintText, i ) => ( <span key={i}>
 					<label style={{ marginBottom: 0 }}>{t( 'hint' )} {i+1}:</label>
 					<br />
@@ -54,19 +56,19 @@ const displayHint = ( id, hints, t ) => {
 * Returns a hint button label.
 *
 * @private
-* @param {integer} id - current hint index
+* @param {integer} index - current hint index
 * @param {integer} noHints - total number of hints
 * @param {boolean} hintOpen - indicates whether hint popover is opened
 * @returns {string} hint button label
 */
-const getHintLabel = ( id, noHints, hintOpen, t ) => {
+const getHintLabel = ( index, noHints, hintOpen, t ) => {
 	if ( hintOpen ) {
-		return id <= 1 ? t( 'close-hint' ) : t( 'close-hints' );
+		return index <= 1 ? t( 'close-hint' ) : t( 'close-hints' );
 	}
-	if ( id === 0 ) {
+	if ( index === 0 ) {
 		return t( 'get-hint' );
 	}
-	if ( id === noHints ) {
+	if ( index === noHints ) {
 		return t( 'show-hints' );
 	}
 	return t( 'next-hint' );
@@ -125,7 +127,7 @@ class HintButton extends Component {
 			<OverlayTrigger
 				trigger="click"
 				placement={this.props.placement}
-				overlay={displayHint( this.state.currentHint - 1, this.props.hints, this.props.t )}
+				overlay={displayHint( this.state.currentHint - 1, this.props.hints, this.props.id, this.props.t )}
 			>
 				<TimedButton
 					className="hint-button"
