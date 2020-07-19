@@ -146,7 +146,10 @@ class CustomDeck extends Component {
 			{ presenterMode ? <Timer
 				legend="Total: "
 				duration={this.state.totalDuration}
-				style={{ top: '40px' }}
+				style={{
+					top: '0px',
+					right: '410px'
+				}}
 			/> : null}
 			<Gate owner >
 				<Tooltip tooltip="Toggle Slide Presenter Mode" placement="right" >

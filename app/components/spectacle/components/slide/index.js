@@ -27,7 +27,10 @@ class Wrapper extends Component {
 			{presenterMode && this.props.duration ? <Timer
 				legend="Current: "
 				duration={this.props.duration}
-				style={{ top: '40px', right: '160px' }}
+				style={{
+					top: '0px',
+					right: '220px'
+				}}
 			/> : null}
 			<Slide {...this.props} />
 		</Fragment> );
