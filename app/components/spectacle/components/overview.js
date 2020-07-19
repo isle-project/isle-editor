@@ -118,7 +118,7 @@ class Overview extends Component {
 // PROPERTIES //
 
 Overview.propTypes = {
-	resetViewedIndexes: PropTypes.function,
+	resetViewedIndexes: PropTypes.func,
 	route: PropTypes.object,
 	slideIndex: PropTypes.number,
 	slideReference: PropTypes.array,

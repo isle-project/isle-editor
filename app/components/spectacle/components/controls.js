@@ -28,8 +28,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './controls.css';
 import { SpectacleContext } from '../utils/context';
+import './controls.css';
 
 
 // MAIN //
@@ -43,7 +43,7 @@ class Controls extends Component {
 		let color;
 		const { controlColor } = this.props;
 		if ( controlColor ) {
-			if (!this.context.styles.colors.hasOwnProperty(controlColor)) {
+			if (!hasOwnProperty(this.context.styles.colors, controlColor)) {
 				color = controlColor;
 			} else {
 				color = this.context.styles.colors[controlColor];
