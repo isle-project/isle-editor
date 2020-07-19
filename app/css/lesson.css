@@ -621,13 +621,13 @@ mark {
 }
 
 .Lesson table thead th,
-.Presentation table thead th{
+.Presentation table thead th {
 	vertical-align: bottom;
 	border-bottom: 2px solid #dee2e6;
 }
 
 .Lesson table tbody + tbody,
-.Presentation table tbody + tbody  {
+.Presentation table tbody + tbody {
 	border-top: 2px solid #dee2e6;
 }
 
