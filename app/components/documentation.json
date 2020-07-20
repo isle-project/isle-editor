@@ -6052,6 +6052,11 @@
         "type": "function",
         "description": "optional callback called with the slide index when the slide comes into view",
         "defaultValue": "function onActive() {}"
+      },
+      {
+        "name": "viewerScaleMode",
+        "type": "boolean",
+        "defaultValue": false
       }
     ],
     "description": "Spectacle presentation slide."
