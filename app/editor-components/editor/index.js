@@ -57,6 +57,7 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+md.disable( 'code' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
@@ -67,7 +68,7 @@ const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 8;
-const RE_TAG_START = /^\s*<([a-z]+[0-9]*)/i;
+const RE_TAG_START = /^(?:\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	glyphMargin: true,

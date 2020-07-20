@@ -26,7 +26,6 @@ import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import rtrim from '@stdlib/string/right-trim';
-import ltrim from '@stdlib/string/left-trim';
 import endsWith from '@stdlib/string/ends-with';
 import contains from '@stdlib/assert/contains';
 import rescape from '@stdlib/utils/escape-regexp-string';
@@ -42,6 +41,7 @@ import './component_configurator.css';
 const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const RE_NEW_LINES = /\n{2,99}/g;
+const RE_BEFORE_TAG = /^\s*['"]?[\da-z]+['"]?:/i;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
 const md = markdownit({
@@ -132,6 +132,12 @@ class ComponentConfigurator extends Component {
 		let { name, value } = props.component;
 		const doc = COMPONENT_DOCS[ name ] || {};
 		const docProps = doc.props || [];
+		docProps.push({
+			name: 'id',
+			type: 'string',
+			defaultValue: '',
+			description: 'Component identifier. Has to begin with a letter followed by letters, digits, hyphens ( - ), underscores ( _ ), colons ( : ), and periods ( . ).'
+		});
 		const propValues = {};
 		const propActive = {};
 		const propertyTypes = {};
@@ -170,9 +176,9 @@ class ComponentConfigurator extends Component {
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
 
 		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)")\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+this.state.name+'\\s+(?:[ \\t]*)([a-z]+)=["{]`?([\\s\\S]*?)`?["}]\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)")\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
 		if ( regexpString === '(' ) {
 			regexpString += ')';
@@ -215,14 +221,15 @@ class ComponentConfigurator extends Component {
 			newActive[ keys[ i ] ] = false;
 		}
 		let value = this.state.value;
+		value = replace( value, RE_BEFORE_TAG, '' );
 		value = replace( value, this.RE_BOOLEAN_SHORTHAND, ' $1={true} ' );
 		do {
 			let propName;
 			match = this.RE_PROPERTY.exec( value );
 			if ( match ) {
 				propName = match[ 1 ];
-				let val = match[ 2 ];
-				value = replace( value, new RegExp( match[ 1 ]+'=["{]`?'+rescape( match[ 2 ] )+'`?["}]', 'i' ), '' );
+				let val = match[ 2 ] || match[ 3 ];
+				value = replace( value, new RegExp( match[ 1 ]+'=["{]`?'+rescape( val )+'`?["}]', 'i' ), '' );
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
@@ -594,7 +601,8 @@ class ComponentConfigurator extends Component {
 								}}
 								transformCode={( code ) => {
 									try {
-										let out = markdownToHTML( ltrim( code ) );
+										code = replace( code, RE_BEFORE_TAG, '' );
+										let out = markdownToHTML( code );
 										out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
 											const raw = replace( p1, '\\', '\\\\' );
 											return `String.raw({ raw: '${raw}' })`;
