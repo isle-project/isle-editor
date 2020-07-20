@@ -119,8 +119,6 @@ class Slide extends React.PureComponent {
 		const { presenterStyle, children } = this.props;
 		const contentClass = isUndefined(this.props.className) ? '' : this.props.className;
 		const align = this.props.align;
-		const background = this.context.styles.global.body.background;
-
 		const slideContext = {
 			slideHash: this.props.hash,
 			stepCounter: {
@@ -135,7 +133,6 @@ class Slide extends React.PureComponent {
 					this.slideRef = s;
 				}}
 				style={{
-					backgroundColor: background ? background : '',
 					...this.props.style,
 					...getStyles.call( this ),
 					...presenterStyle
@@ -197,7 +194,8 @@ Slide.defaultProps = {
 	presenterStyle: {},
 	contentStyles: {},
 	style: {},
-	onActive() {}
+	onActive() {},
+	viewerScaleMode: false
 };
 
 Slide.propTypes = {
@@ -222,7 +220,8 @@ Slide.propTypes = {
 	presenterStyle: PropTypes.object,
 	contentStyles: PropTypes.object,
 	style: PropTypes.object,
-	onActive: PropTypes.func
+	onActive: PropTypes.func,
+	viewerScaleMode: PropTypes.bool
 };
 
 Slide.contextType = SpectacleContext;
