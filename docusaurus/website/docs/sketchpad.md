@@ -37,6 +37,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __dynamicallyHideButtons__ | `boolean`: controls whether to start hiding buttons when toolbar width is not sufficient (otherwise a new line will be started). Default: `false`.
 * __transmitOwner__ | `boolean`: whether owner actions should be transmitted to other users in real-time. Default: `true`.
 * __groupMode__ | `boolean`: controls whether all user's actions are transmitted to everyone else. Default: `false`.
+* __useHashSign__ | `boolean`: controls whether to read/write to the hash mark of the URL of the lesson. Default: `true`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked whenever a new line element is drawn. Default: `onChange() {}`.

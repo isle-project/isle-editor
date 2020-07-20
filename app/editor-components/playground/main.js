@@ -89,9 +89,16 @@ class Playground extends Component {
 		if ( isError( code ) ) {
 			return formatError( code.message );
 		}
+		if ( session.config.type === 'presentation' ) {
+			return `<Provider session={session}>
+				<Lesson
+					className="Presentation"
+				><Deck>${code}</Deck></Lesson>
+			</Provider>`;
+		}
 		return `<Provider session={session}>
 			<Lesson
-				className="${session.config.type === 'presentation' ? 'Presentation' : 'Lesson'}"
+				className="Lesson"
 			>${code}</Lesson>
 		</Provider>`;
 	}

@@ -8,8 +8,14 @@
         "defaultValue": 0
       },
       {
+        "name": "canCloseAll",
+        "type": "boolean",
+        "description": "whether one can collapse all headers",
+        "defaultValue": false
+      },
+      {
         "name": "headers",
-        "type": "array<string>",
+        "type": "array<(string|node)>",
         "description": "array of header names",
         "defaultValue": null
       },
@@ -23,7 +29,19 @@
         "name": "headerClassName",
         "type": "string",
         "description": "this overrules the given class name of the headers",
-        "defaultValue": "card-title"
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name for outer div",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles for outer div",
+        "defaultValue": null
       }
     ],
     "description": "An accordion component controlling vertical sliders."
@@ -5705,6 +5723,12 @@
         "defaultValue": false
       },
       {
+        "name": "useHashSign",
+        "type": "boolean",
+        "description": "controls whether to read/write to the hash mark of the URL of the lesson",
+        "defaultValue": true
+      },
+      {
         "name": "voiceID",
         "type": "string",
         "description": "voice control identifier",
@@ -5801,16 +5825,18 @@
     ],
     "description": "A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component."
   },
-  "Appear": {
+  "SlideAppear": {
     "props": [
       {
         "name": "easing",
         "type": "string",
+        "description": "type of easing to use for an animation. Supported are: \"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\", \"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expIn\", \"expOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\"",
         "defaultValue": "quadInOut"
       },
       {
         "name": "endValue",
         "type": "object",
+        "description": "style object for the ending, active state of the appear tag",
         "defaultValue": {
           "opacity": 1,
           "pointerEvents": "auto"
@@ -5822,11 +5848,14 @@
       },
       {
         "name": "order",
-        "type": "number"
+        "type": "number",
+        "description": "integer starting at 1 for the presentation order of the appear tags. If a slide contains ordered and unordered appear tags, unordered ones appear first",
+        "defaultValue": null
       },
       {
         "name": "startValue",
         "type": "object",
+        "description": "style object for the starting, inactive state of the appear tag",
         "defaultValue": {
           "opacity": 0,
           "pointerEvents": "none"
@@ -5834,87 +5863,65 @@
       },
       {
         "name": "style",
-        "type": "object"
+        "type": "object",
+        "description": "CSS inline styles"
       },
       {
         "name": "transitionDuration",
         "type": "number",
+        "description": "duration of appearance animation in milliseconds",
         "defaultValue": 300
       }
     ],
-    "description": "Description is missing."
+    "description": "Wrapped elements in the appear tag makes them appear/disappear in order in response to navigation."
   },
   "Deck": {
-    "props": [],
-    "description": "Description is missing."
-  },
-  "SlideNotes": {
-    "props": [],
-    "description": "Description is missing."
-  },
-  "Slide": {
     "props": [
       {
-        "name": "align",
-        "type": "string",
-        "defaultValue": "center center"
-      },
-      {
-        "name": "className",
-        "type": "string"
-      },
-      {
-        "name": "contentStyles",
-        "type": "object"
-      },
-      {
-        "name": "export",
+        "name": "autoplay",
         "type": "boolean"
       },
       {
-        "name": "getAnimStep",
-        "type": "function"
-      },
-      {
-        "name": "hash",
-        "type": "(number|string)"
-      },
-      {
-        "name": "lastSlideIndex",
+        "name": "autoplayDuration",
         "type": "number"
       },
       {
-        "name": "margin",
-        "type": "number"
+        "name": "autoplayLoop",
+        "type": "boolean"
       },
       {
-        "name": "notes"
+        "name": "autoplayOnStart",
+        "type": "boolean"
       },
       {
-        "name": "onActive",
-        "type": "function"
+        "name": "controls",
+        "type": "boolean"
       },
       {
-        "name": "presenterStyle",
-        "type": "object",
-        "defaultValue": {}
+        "name": "disableKeyboardControls",
+        "type": "boolean"
       },
       {
-        "name": "slideIndex",
-        "type": "number"
+        "name": "disableTouchControls",
+        "type": "boolean"
       },
       {
-        "name": "slideReference",
-        "type": "array"
+        "name": "history",
+        "type": "object"
       },
       {
-        "name": "state",
+        "name": "onStateChange",
+        "type": "function",
+        "defaultValue": null
+      },
+      {
+        "name": "progress",
         "type": "string"
       },
       {
-        "name": "style",
-        "type": "object",
-        "defaultValue": {}
+        "name": "showFullscreenControl",
+        "type": "boolean",
+        "defaultValue": true
       },
       {
         "name": "transition",
@@ -5923,22 +5930,131 @@
       {
         "name": "transitionDuration",
         "type": "number"
-      },
-      {
-        "name": "transitionIn",
-        "type": "array"
-      },
-      {
-        "name": "transitionOut",
-        "type": "array"
-      },
-      {
-        "name": "viewerScaleMode",
-        "type": "boolean",
-        "defaultValue": false
       }
     ],
     "description": "Description is missing."
+  },
+  "SlideNotes": {
+    "props": [],
+    "description": "Speaker notes for a presentation slides. Component should be only used as the child of a corresponding <Slide> component."
+  },
+  "Slide": {
+    "props": [
+      {
+        "name": "align",
+        "type": "string",
+        "description": "space delimited value for positioning interior content. The first value can be flex-start (left), center (middle), or flex-end (bottom). The second value can be flex-start (top) , center (middle), or flex-end (bottom)",
+        "defaultValue": "center center"
+      },
+      {
+        "name": "bgImage",
+        "type": "string",
+        "description": "sets the specified background image",
+        "defaultValue": null
+      },
+      {
+        "name": "bgColor",
+        "type": "string",
+        "description": "sets the slide background to the specified color",
+        "defaultValue": null
+      },
+      {
+        "name": "bgDarken",
+        "type": "number",
+        "description": "number between 0 and 1 specifying how much to darken the background image",
+        "defaultValue": null
+      },
+      {
+        "name": "bgLighten",
+        "type": "number",
+        "description": "number between 0 and 1 specifying how much to lighten the background image",
+        "defaultValue": null
+      },
+      {
+        "name": "controlColor",
+        "type": "string",
+        "description": "overrides the color of the control arrows for the current slide",
+        "defaultValue": "#c95d0a"
+      },
+      {
+        "name": "progressColor",
+        "type": "string",
+        "description": "overrides the color of the progress elements for the current slide",
+        "defaultValue": "#c95d0a"
+      },
+      {
+        "name": "notes",
+        "type": "(string|node)",
+        "description": "presenter mode notes (alternatively they can be wrapped in a <SlideNotes> tag)",
+        "defaultValue": null
+      },
+      {
+        "name": "duration",
+        "type": "number",
+        "description": "slide duration displayed in presenter mode",
+        "defaultValue": null
+      },
+      {
+        "name": "transition",
+        "type": "array",
+        "description": "slide transition(s). Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",
+        "defaultValue": []
+      },
+      {
+        "name": "transitionDuration",
+        "type": "number",
+        "description": "slide transition duration in milliseconds (defaults to global presentation setting)",
+        "defaultValue": null
+      },
+      {
+        "name": "transitionIn",
+        "type": "array",
+        "description": "slide transition when the slide comes into view (can take same values as `transition`)",
+        "defaultValue": []
+      },
+      {
+        "name": "transitionOut",
+        "type": "array",
+        "description": "-slide transition when the slide exits the view (can take same values as `transition`)",
+        "defaultValue": []
+      },
+      {
+        "name": "margin",
+        "type": "number",
+        "description": "margin around slide (in px)",
+        "defaultValue": 0
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "presenterStyle",
+        "type": "object",
+        "defaultValue": {}
+      },
+      {
+        "name": "contentStyles",
+        "type": "object",
+        "description": "CSS inline styles passed to the slide contents",
+        "defaultValue": {}
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onActive",
+        "type": "function",
+        "description": "optional callback called with the slide index when the slide comes into view",
+        "defaultValue": "function onActive() {}"
+      }
+    ],
+    "description": "Spectacle presentation slide."
   },
   "StickyNote": {
     "props": [

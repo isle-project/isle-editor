@@ -123,6 +123,10 @@
       "value": "<SortableTree treeData={[\n  {title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3' }] }]}\n/>"
     },
     {
+      "name": "SlideAppear",
+      "value": "<SlideAppear ${1:}>\n  ${2:}\n</SlideAppear>\n"
+    },
+    {
       "name": "Bibliography",
       "value": "<Bibliography />"
     },
@@ -598,10 +602,6 @@
     }
   ],
   "presentation": [
-    {
-      "name": "Appear",
-      "value": "<Appear active={true} delay={${1:1000}}>\n  ${2:}\n</Appear>\n"
-    },
     {
       "name": "Slide",
       "value": "<Slide>\n  ${1:}\n</Slide>\n"

@@ -42,9 +42,6 @@
 				"border":"none",
 				"outline":0
 			},
-			"prevIcon":{
-				"fill":"#c95d0a"
-			},
 			"next":{
 				"position":"absolute",
 				"top":"50%",
@@ -54,9 +51,6 @@
 				"background":"none",
 				"border":"none",
 				"outline":0
-			},
-			"nextIcon":{
-				"fill":"#c95d0a"
 			}
 		},
 		"progress":{
