@@ -52,6 +52,22 @@ class Presenter extends Component {
 		);
 	}
 
+	_renderCurrentSlideDuration = () => {
+		const { slideIndex } = this.props;
+		const child = this._getSlideByIndex(slideIndex);
+		if ( child.props.duration ) {
+			return ( <Timer
+				legend="Current: "
+				duration={child.props.duration}
+				style={{
+					top: '0px',
+					right: '200px'
+				}}
+			/> );
+		}
+		return null;
+	}
+
 	_renderMainSlide = () => {
 		const { slideIndex, hash, lastSlideIndex } = this.props;
 		const child = this._getSlideByIndex(slideIndex);
@@ -126,6 +142,7 @@ class Presenter extends Component {
 						Slide {this.props.slideIndex + 1} of{' '}
 						{this.props.slideReference.length}
 					</h2>
+					{this._renderCurrentSlideDuration()}
 					<Timer
 						legend="Total: "
 						duration={this.props.totalDuration}

@@ -30,35 +30,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import hasOwnProperty from '@stdlib/assert/has-own-property';
 import { SpectacleContext } from '../utils/context';
 
 
 // MAIN //
 
 class Progress extends Component {
-	constructor() {
-		super(...arguments);
-		this.resolveProgressStyles = this.resolveProgressStyles.bind(this);
-	}
-
-	resolveProgressStyles(field) {
-		const { progressColor } = this.props;
-		if (!this.props.progressColor) {
-			return null;
-		}
-
-		const style = {};
-		let color;
-		if ( !hasOwnProperty( this.context.styles.colors, progressColor ) ) {
-			color = progressColor;
-		} else {
-			color = this.context.styles.colors[progressColor];
-		}
-		style[field] = color;
-		return style;
-	}
-
 	getWidth() {
 		return {
 			width: `${(100 * this.props.currentSlideIndex) /
@@ -92,7 +69,11 @@ class Progress extends Component {
 			case 'number':
 				style = style.number;
 				markup = (
-					<div>
+					<div
+						style={{
+							color: this.props.progressColor
+						}}
+					>
 						{currentSlideIndex + 1} / {items.length}
 					</div>
 				);
@@ -103,7 +84,7 @@ class Progress extends Component {
 					<div
 						style={{
 							...style.bar,
-							...this.resolveProgressStyles('background'),
+							color: this.props.progressColor,
 							width: this.getWidth()
 						}}
 					/>
@@ -116,7 +97,7 @@ class Progress extends Component {
 			<div
 				style={{
 					...style.container,
-					...this.resolveProgressStyles('color')
+					color: this.props.progressColor
 				}}
 			>
 				{markup}

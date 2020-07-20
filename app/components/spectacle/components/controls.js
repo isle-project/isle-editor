@@ -39,22 +39,6 @@ class Controls extends Component {
 		super(...arguments);
 	}
 
-	resolveFillStyle = ( name ) => {
-		let color;
-		const { controlColor } = this.props;
-		if ( controlColor ) {
-			if (!hasOwnProperty(this.context.styles.colors, controlColor)) {
-				color = controlColor;
-			} else {
-				color = this.context.styles.colors[controlColor];
-			}
-			return {
-				fill: color
-			};
-		}
-		return this.context.styles.controls[name];
-	}
-
 	render() {
 		return (
 			<div>
@@ -68,7 +52,9 @@ class Controls extends Component {
 					>
 						<svg
 							key="prevIcon"
-							style={this.resolveFillStyle('prevIcon')}
+							style={{
+								fill: this.props.controlColor
+							}}
 							width="32px"
 							height="32px"
 							viewBox="0 0 512 828.586"
@@ -89,7 +75,9 @@ class Controls extends Component {
 					>
 						<svg
 							key="nextIcon"
-							style={this.resolveFillStyle('nextIcon')}
+							style={{
+								fill: this.props.controlColor
+							}}
 							width="32px"
 							height="32px"
 							viewBox="0 0 512 828.586"

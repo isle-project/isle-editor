@@ -72,8 +72,8 @@ class Deck extends Component {
 
 	componentWillUnmount() {
 		// Cleanup default onStateChange
-		if (this.state.slideState && !this.props.onStateChange) {
-			document.documentElement.classList.remove(this.state.slideState);
+		if ( this.state.slideState && !this.props.onStateChange ) {
+			document.documentElement.classList.remove( this.state.slideState );
 		}
 	}
 
@@ -132,7 +132,8 @@ class Deck extends Component {
 	handleStateChange = nextState => {
 		const prevState = this.state.slideState;
 		if ( prevState !== nextState ) {
-			this.props.onStateChange( prevState, nextState );
+			const onStateChange = this.props.onStateChange || defaultOnStateChange;
+			onStateChange( prevState, nextState );
 			this.setState({ slideState: nextState });
 		}
 	}
@@ -183,7 +184,7 @@ Deck.propTypes = {
 };
 
 Deck.defaultProps = {
-	onStateChange: defaultOnStateChange,
+	onStateChange: null,
 	showFullscreenControl: true
 };
 
