@@ -41,13 +41,13 @@ function getLastOpenedTag( text ) {
 		}
 		else {
 			// Get the last position of the tag:
-			const tagPosition = text.lastIndexOf(tags[i]);
+			const tagPosition = text.lastIndexOf( tags[i] );
 			const tag = tags[i].substring( '<'.length );
 			const closingBracketIdx = text.indexOf( '/>', tagPosition );
 			// If the tag wasn't closed...
 			if ( closingBracketIdx === -1 ) {
 				// If there are no closing tags or the current tag wasn't closed...
-				if (!closingTags.length || closingTags[closingTags.length - 1] !== tag) {
+				if ( !closingTags.length || closingTags[closingTags.length - 1] !== tag ) {
 					// We found our tag, but let's get the information if we are looking for a child element or an attribute:
 					text = text.substring( tagPosition );
 					const nOpeningBraces = text.match( RE_OPENING_BRACES ) || [];
