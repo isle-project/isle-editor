@@ -30,7 +30,7 @@ function togglePresenterMode() {
 		if ( contains( hash, '?' ) ) {
 			hash += '&presenter';
 		} else {
-			hash = '?presenter';
+			hash += '?presenter';
 		}
 		window.location.hash = hash;
 	}
@@ -131,7 +131,6 @@ class CustomDeck extends Component {
 
 	render() {
 		let { children, ...rest } = this.props;
-		const presenterMode = endsWith( window.location.hash, '?presenter' );
 		if ( isElectron ) {
 			children = [];
 			React.Children.forEach( this.props.children, ( child ) => {
