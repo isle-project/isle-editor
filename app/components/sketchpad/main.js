@@ -153,6 +153,7 @@ function setDashedLines( ctx ) {
 * @property {boolean} showTutorial - show a tutorial for the sketchpad
 * @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
 * @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
+* @property {boolean} useHashSign - controls whether to read/write to the hash mark of the URL of the lesson
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever a new line element is drawn
@@ -179,7 +180,7 @@ class Sketchpad extends Component {
 		this.ctx = null;
 		this.id = props.id || uid( props );
 
-		const loc = this.readURL();
+		const loc = this.props.useHashSign ? this.readURL() : 0;
 		this.state = {
 			color: props.color,
 			brushSize: props.brushSize,
@@ -548,7 +549,9 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			document.body.addEventListener( 'gesturestart', preventGesture );
 		}
-		window.addEventListener( 'hashchange', this.handleHashChange );
+		if ( this.props.useHashSign ) {
+			window.addEventListener( 'hashchange', this.handleHashChange );
+		}
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -589,7 +592,9 @@ class Sketchpad extends Component {
 			this.unsubscribe();
 		}
 		window.removeEventListener( 'resize', this.handleResize );
-		window.removeEventListener( 'hashchange', this.handleHashChange );
+		if ( this.props.useHashSign ) {
+			window.removeEventListener( 'hashchange', this.handleHashChange );
+		}
 		window.removeEventListener( 'unload', this.save );
 		const opts = {
 			passive: false
@@ -654,7 +659,7 @@ class Sketchpad extends Component {
 				const { page } = data.state.insertedPages[ i ];
 				this.backgrounds.splice( page, 0, null );
 			}
-			const page = this.readURL();
+			const page = this.props.useHashSign ? this.readURL() : 0;
 			debug( 'Go to page '+page );
 			if ( page > 0 ) {
 				data.state.currentPage = page - 1;
@@ -1859,7 +1864,9 @@ class Sketchpad extends Component {
 	}
 
 	updateURL = ( pageNo ) => {
-		window.location.hash = '#/'+(pageNo+1);
+		if ( this.props.useHashSign ) {
+			window.location.hash = '#/'+(pageNo+1);
+		}
 	}
 
 	nextPage = () => {
@@ -2829,6 +2836,7 @@ Sketchpad.defaultProps = {
 	dynamicallyHideButtons: false,
 	transmitOwner: true,
 	groupMode: false,
+	useHashSign: true,
 	voiceID: null,
 	style: {},
 	onChange() {}
@@ -2858,6 +2866,7 @@ Sketchpad.propTypes = {
 	dynamicallyHideButtons: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	groupMode: PropTypes.bool,
+	useHashSign: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func

@@ -362,7 +362,7 @@ class Toolbar extends Component {
 							<Sketchpad
 								id={`${session.namespaceName}-${session.lessonName}-toolbar-sketchpad`}
 								canvasWidth={this.state.sketchpadWidth} canvasHeight={this.state.sketchpadHeight}
-								dynamicallyHideButtons
+								dynamicallyHideButtons useHashSign={false}
 							/>
 						</Panel>
 					</Draggable> : null
