@@ -21,6 +21,11 @@ import './playground.css';
 import './load_translations.js';
 
 
+// VARIABLES //
+
+const RE_BLOCKED_TAG = /^\s*<(?=SlideNotes|SlideAppear)/;
+
+
 // MAIN //
 
 /**
@@ -88,6 +93,9 @@ class Playground extends Component {
 		}
 		if ( isError( code ) ) {
 			return formatError( code.message );
+		}
+		if ( RE_BLOCKED_TAG.test( code ) ) {
+			code = '<h2>No live preview for this component</h2>';
 		}
 		if ( session.config.type === 'presentation' ) {
 			return `<Provider session={session}>

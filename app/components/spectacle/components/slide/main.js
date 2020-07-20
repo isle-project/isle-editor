@@ -98,8 +98,9 @@ class Slide extends React.PureComponent {
 					currentOrder += 1;
 				});
 		}
-
-		this.context.onStateChange( this.props.state );
+		if ( isFunction( this.context.onStateChange ) ) {
+			this.context.onStateChange( this.props.state );
+		}
 		if ( isFunction( this.props.onActive ) ) {
 			this.props.onActive( this.props.slideIndex );
 		}
@@ -160,7 +161,6 @@ class Slide extends React.PureComponent {
 							width: this.context.overview ? '100%' : 'initial',
 							...this.props.contentStyles
 						}}
-						styles={{ context: this.context.styles.components.content }}
 					>
 						<SlideContext.Provider value={slideContext} >
 							{children}
