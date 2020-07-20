@@ -704,6 +704,7 @@ export class Manager extends Component {
 					route={this.context.route}
 					lastSlideIndex={this.state.lastSlideIndex}
 					timer={isTimerMode}
+					totalDuration={this.props.totalDuration}
 				/>
 			);
 		} else if (this.context.route.params.indexOf('overview') !== -1) {

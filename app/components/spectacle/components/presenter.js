@@ -30,6 +30,7 @@
 
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
+import Timer from 'components/timer';
 import { getSlideByIndex } from '../utils/slides';
 import Time from './time';
 import { SpectacleContext } from '../utils/context';
@@ -125,6 +126,14 @@ class Presenter extends Component {
 						Slide {this.props.slideIndex + 1} of{' '}
 						{this.props.slideReference.length}
 					</h2>
+					<Timer
+						legend="Total: "
+						duration={this.props.totalDuration}
+						style={{
+							top: '0px',
+							right: '410px'
+						}}
+					/>
 					<Time timer={this.props.timer} />
 				</div>
 				<div className="spectacle-content-container" >

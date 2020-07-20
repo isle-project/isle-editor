@@ -155,6 +155,7 @@ class Deck extends Component {
 				<Manager
 					{...this.props}
 					route={this.state.route}
+					totalDuration={this.props.totalDuration}
 				>{this.props.children}</Manager>
 			</Controller>
 		);

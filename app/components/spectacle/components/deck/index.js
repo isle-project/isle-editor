@@ -6,7 +6,6 @@ import Deck from './main.js';
 import endsWith from '@stdlib/string/ends-with';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
-import Timer from 'components/timer';
 import Tooltip from 'components/tooltip';
 import VoiceControl from 'components/internal/voice-control';
 import Gate from 'components/gate';
@@ -143,14 +142,6 @@ class CustomDeck extends Component {
 		}
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
-			{ presenterMode ? <Timer
-				legend="Total: "
-				duration={this.state.totalDuration}
-				style={{
-					top: '0px',
-					right: '410px'
-				}}
-			/> : null}
 			<Gate owner >
 				<Tooltip tooltip="Toggle Slide Presenter Mode" placement="right" >
 					<div
@@ -176,6 +167,7 @@ class CustomDeck extends Component {
 			<Deck
 				{...rest}
 				showFullscreenControl={this.state.showFullscreenControl}
+				totalDuration={this.state.totalDuration}
 			>{children}</Deck>
 		</Fragment> );
 	}
