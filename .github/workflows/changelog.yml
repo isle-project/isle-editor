@@ -18,10 +18,10 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         sinceTag: v0.57.0
     - name: Update Changelog
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add CHANGELOG.md
-          git commit -sam "Update Changelog"
-          git push
+      run: |
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git add CHANGELOG.md
+        git commit -sam "Update Changelog"
+        git push
 
