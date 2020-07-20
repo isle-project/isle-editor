@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Deck from './main.js';
-import endsWith from '@stdlib/string/ends-with';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import Tooltip from 'components/tooltip';
