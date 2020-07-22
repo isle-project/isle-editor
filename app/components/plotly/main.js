@@ -36,7 +36,7 @@ const BUTTONS = [
 	'zoom2d',
 	'pan2d',
 	'select2d',
-	'lasso2d',
+	// 'lasso2d',
 	'zoomIn2d',
 	'zoomOut2d',
 	'autoScale2d',
@@ -44,8 +44,8 @@ const BUTTONS = [
 	'hoverClosestCartesian',
 	'hoverCompareCartesian',
 	'toggleHover',
-	'resetViews',
-	'toggleSpikelines'
+	'resetViews'
+	// 'toggleSpikelines'
 ];
 
 Plotly.setPlotConfig({
