@@ -69,11 +69,10 @@ class MeanTest2 extends Component {
 		const xvals = [];
 		const yvals = [];
 		for ( let i = 0; i < x.length; i++ ) {
-			if (
-				isNonMissingNumber( x[ i ] ) &&
-				isNonMissingNumber( y[ i ] )
-			) {
+			if ( isNonMissingNumber( x[ i ] ) ) {
 				xvals.push( x[ i ] );
+			}
+			if ( isNonMissingNumber( y[ i ] ) ) {
 				yvals.push( y[ i ] );
 			}
 		}
