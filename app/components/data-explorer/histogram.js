@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
+import NumberInput from 'components/input/number';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
@@ -46,6 +46,31 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
+function setBins( config, vals, binStrategy, nBins, xbins ) {
+	if ( binStrategy === 'Select # of bins' ) {
+		const maxVal = max( vals );
+		const minVal = min( vals );
+		const sizeVal = ( maxVal - minVal ) / nBins;
+		config.autobinx = false;
+		config.xbins = {
+			size: sizeVal,
+			start: minVal,
+			end: maxVal
+		};
+	}
+	else if ( binStrategy === 'Set bin width' ) {
+		const maxVal = max( vals );
+		const minVal = min( vals );
+		config.autobinx = false;
+		config.xbins = {
+			size: ( maxVal - minVal ) / xbins.size <= 1e4 ? xbins.size : null,
+			start: isNumber( xbins.start ) ? xbins.start : minVal,
+			end: isNumber( xbins.end ) ? xbins.end : maxVal
+		};
+	}
+	return config;
+}
+
 /**
 * Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.
 */
@@ -79,7 +104,7 @@ function calculateDensityValues( vals, densityType ) {
 	return [ x, y ];
 }
 
-export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, chooseBins, nBins }) {
+export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, binStrategy, nBins, xbins }) {
 	let traces;
 	let layout;
 
@@ -98,17 +123,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			type: 'histogram',
 			name: 'histogram'
 		} ];
-		if ( chooseBins ) {
-			const maxVal = max(vals);
-			const minVal = min(vals);
-			const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
-			traces[ 0 ].autobinx = false;
-			traces[ 0 ].xbins = {
-				size: sizeVal,
-				start: minVal,
-				end: maxVal
-			};
-		}
+		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );
 		if ( overlayDensity ) {
 			const [ x, y ] = calculateDensityValues( vals, densityType );
 			traces.push({
@@ -153,18 +168,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 					name: key+':histogram',
 					opacity: 0.5
 				};
-				if ( chooseBins ) {
-					// config.nbinsx = nBins;
-					const maxVal = max(vals);
-					const minVal = min(vals);
-					const sizeVal = ((1.0 * maxVal) - minVal) / nBins;
-					config.autobinx = false;
-					config.xbins = {
-						size: sizeVal,
-						start: minVal,
-						end: maxVal
-					};
-				}
+				setBins( config, vals, binStrategy, nBins, xbins );
 				traces.push( config );
 				const [ x, y ] = calculateDensityValues( vals, densityType );
 				traces.push({
@@ -180,10 +184,7 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 					name: key,
 					opacity: 0.5
 				};
-				if ( chooseBins ) {
-					// Supply `nBins` as a suggested value for the number of bins; exact number of bins may differ...
-					config.nbinsx = nBins;
-				}
+				setBins( config, vals, binStrategy, nBins, xbins );
 				traces.push( config );
 			}
 		}
@@ -217,7 +218,13 @@ class Histogram extends Component {
 			variable: props.defaultValue || props.variables[ 0 ],
 			group: null, // eslint-disable-line react/no-unused-state
 			nBins: 10,
-			densityType: 'Data-driven'
+			densityType: 'Data-driven',
+			xbins: {
+				start: null,
+				size: 100,
+				end: null
+			},
+			binStrategy: 'Automatic'
 		};
 	}
 
@@ -278,54 +285,112 @@ class Histogram extends Component {
 						}}
 					/>
 					<div>
-						<CheckboxInput
-							legend="Choose # of bins"
-							defaultValue={this.state.chooseBins}
-							inline
-							onChange={()=>{
-								this.setState({
-									chooseBins: !this.state.chooseBins
-								});
-							}}
-						/>
-						<SliderInput
-							defaultValue={this.state.nBins}
-							min={1}
-							step={1}
-							disabled={!this.state.chooseBins}
-							onChange={( value )=>{
-								this.setState({
-									nBins: value
-								});
-							}}
-							inline
-						/>
-					</div>
-					<div style={{
-						opacity: this.props.showDensityOption ? 1.0 : 0.0
-					}}>
-						<CheckboxInput
-							legend="Overlay Density"
-							defaultValue={this.state.overlayDensity}
-							onChange={()=>{
-								this.setState({
-									overlayDensity: !this.state.overlayDensity
-								});
-							}}
-						/>
 						<SelectInput
-							legend="Type:"
-							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
-							disabled={!this.state.overlayDensity}
-							defaultValue={this.state.densityType}
-							menuPlacement="top"
-							onChange={( value )=>{
+							legend="Binning Strategy"
+							options={[
+								'Automatic',
+								'Select # of bins',
+								'Set bin width'
+							]}
+							defaultValue={this.state.binStrategy}
+							inline
+							onChange={( binStrategy )=>{
 								this.setState({
-									densityType: value
+									binStrategy
 								});
 							}}
 						/>
+						{ this.state.binStrategy === 'Select # of bins' ?
+							<NumberInput
+								legend="# bins"
+								defaultValue={this.state.nBins}
+								min={1}
+								step={1}
+								onChange={( value )=>{
+									this.setState({
+										nBins: value
+									});
+								}}
+								inline
+							/> : null
+						}
+						{ this.state.binStrategy === 'Set bin width' ?
+							<div>
+								<NumberInput
+									legend="Start"
+									inline
+									defaultValue={this.state.xbins.start}
+									onChange={( val ) => {
+										const xbins = { ...this.state.xbins };
+										xbins.start = val;
+										this.setState({
+											xbins
+										});
+									}}
+									step="any"
+									inputStyle={{
+										width: 70
+									}}
+								/>
+								<NumberInput
+									legend="Size"
+									inline
+									defaultValue={this.state.xbins.size}
+									onChange={( val ) => {
+										const xbins = { ...this.state.xbins };
+										xbins.size = val;
+										this.setState({
+											xbins
+										});
+									}}
+									step="any"
+									inputStyle={{
+										width: 70
+									}}
+								/>
+								<NumberInput
+									legend="End"
+									inline
+									defaultValue={this.state.xbins.end}
+									onChange={( val ) => {
+										const xbins = { ...this.state.xbins };
+										xbins.end = val;
+										this.setState({
+											xbins
+										});
+									}}
+									step="any"
+									inputStyle={{
+										width: 70
+									}}
+								/>
+							</div> : null
+						}
 					</div>
+					{ this.props.showDensityOption ?
+						<div>
+							<CheckboxInput
+								legend="Overlay Density"
+								defaultValue={this.state.overlayDensity}
+								onChange={()=>{
+									this.setState({
+										overlayDensity: !this.state.overlayDensity
+									});
+								}}
+							/>
+							<SelectInput
+								legend="Type:"
+								options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
+								disabled={!this.state.overlayDensity}
+								defaultValue={this.state.densityType}
+								menuPlacement="top"
+								onChange={( value )=>{
+									this.setState({
+										densityType: value
+									});
+								}}
+							/>
+						</div> : null }
 					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
 				</Card.Body>
 			</Card>
@@ -334,7 +399,7 @@ class Histogram extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 Histogram.defaultProps = {
 	defaultValue: null,
@@ -344,9 +409,6 @@ Histogram.defaultProps = {
 	showDensityOption: true,
 	onSelected() {}
 };
-
-
-// PROPERTIES //
 
 Histogram.propTypes = {
 	data: PropTypes.object.isRequired,
