@@ -263,7 +263,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
-    "codecov": "^3.7.0",
+    "codecov": "^3.7.2",
     "concurrently": "^5.1.0",
     "doctrine": "^3.0.0",
     "electron": "9.1.1",
