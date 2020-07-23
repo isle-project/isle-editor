@@ -28,6 +28,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import copy from '@stdlib/utils/copy';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
+import factor from 'utils/factor-variable';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from '../histogram.js';
 import retrieveBinnedValues from './retrieve_binned_values.js';
@@ -335,7 +336,7 @@ class BinTransformer extends Component {
 	}
 
 	makeNewVar = () => {
-		const { name, activeVar, catNames, xBreaks } = this.state;
+		let { name, activeVar, catNames, xBreaks } = this.state;
 		const rawData = this.props.data[ activeVar ];
 		const values = retrieveBinnedValues( rawData, catNames, xBreaks );
 		this.props.logAction( DATA_EXPLORER_BIN_TRANSFORMER, {
@@ -344,6 +345,7 @@ class BinTransformer extends Component {
 			breaks: xBreaks,
 			catNames: catNames
 		});
+		name = factor( name, catNames );
 		this.props.onGenerate( name, values );
 		this.props.onHide();
 	}
