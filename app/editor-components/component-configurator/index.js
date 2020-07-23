@@ -132,7 +132,7 @@ class ComponentConfigurator extends Component {
 		super( props );
 		let { name, value } = props.component;
 		const doc = COMPONENT_DOCS[ name ] || {};
-		const docProps = doc.props || [];
+		const docProps = doc.props.slice() || [];
 		docProps.push({
 			name: 'id',
 			type: 'string',
@@ -177,9 +177,9 @@ class ComponentConfigurator extends Component {
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
 
 		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)")\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
 		} else {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)")\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
 		}
 		if ( regexpString === '(' ) {
 			regexpString += ')';
@@ -229,8 +229,8 @@ class ComponentConfigurator extends Component {
 			match = this.RE_PROPERTY.exec( value );
 			if ( match ) {
 				propName = match[ 1 ];
-				let val = match[ 2 ] || match[ 3 ];
-				value = replace( value, new RegExp( match[ 1 ]+'=["{]`?'+rescape( val )+'`?["}]', 'i' ), '' );
+				let val = match[ 2 ] || match[ 3 ] || match[ 4 ];
+				value = replace( value, new RegExp( match[ 1 ]+'=["{\']`?'+rescape( val )+'`?["}\']', 'i' ), '' );
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
