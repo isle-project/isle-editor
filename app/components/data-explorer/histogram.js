@@ -102,7 +102,7 @@ function calculateDensityValues( vals, densityType ) {
 	return [ x, y ];
 }
 
-export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, binStrategy, nBins, xbins }) {
+export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, binStrategy, nBins, xbins = {}}) {
 	let traces;
 	let layout;
 
