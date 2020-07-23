@@ -68,6 +68,9 @@ const customStyles = {
 	},
 	menuPortal: base => ({ ...base, zIndex: 1010 })
 };
+const SORT_OPTS = {
+	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
+};
 
 
 // FUNCTIONS //
@@ -80,7 +83,13 @@ function byWithCount( arr, factor, funs, groups ) {
 		}
 		table[ factor[ i ] ].push( arr[ i ]);
 	}
-	const keys = groups || objectKeys( table );
+	let keys;
+	if ( groups ) {
+		keys = groups;
+	} else {
+		keys = objectKeys( table );
+		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
 	const out = {};
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
@@ -104,7 +113,13 @@ function by2WithCount( arr1, arr2, factor, funs, groups ) {
 		ret1[ factor[ i ] ].push( arr1[ i ]);
 		ret2[ factor[ i ] ].push( arr2[ i ]);
 	}
-	const keys = groups || objectKeys( ret1 );
+	let keys;
+	if ( groups ) {
+		keys = groups;
+	} else {
+		keys = objectKeys( ret1 );
+		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		out[ key ] = {
