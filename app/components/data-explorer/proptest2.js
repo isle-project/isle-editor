@@ -120,7 +120,7 @@ class PropTest2 extends Component {
 			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
-			const title = `Hypothesis test for equality of mean ${var1} by ${grouping}`;
+			const title = `Hypothesis test for equality of ${var1} proportion by ${grouping}`;
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<span>
@@ -137,11 +137,12 @@ class PropTest2 extends Component {
 					raw={`H_1: p_{\\text{${grouping}:${firstCategory}}} - p_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
 					tag=""
 				/>
-				<label>Sample proportion in group {firstCategory}: {roundn( mean( x ), -3 )}</label>
-				<br />
-				<label>Sample proportion in group {secondCategory}: {roundn( mean( y ), -3 )}</label>
 				<pre>
 					{printout}
+					<br />
+					Sample proportion in group &quot;{firstCategory}&quot;: {roundn( mean( x ), -3 )}
+					<br />
+					Sample proportion in group &quot;{secondCategory}&quot;: {roundn( mean( y ), -3 )}
 				</pre>
 			</div>;
 		} else if ( var2 ) {
@@ -151,12 +152,13 @@ class PropTest2 extends Component {
 			const y = [];
 			for ( let i = 0; i < x.length; i++ ) {
 				const xv = xvals[ i ];
-				const yv = yvals[ i ];
-				if (
-					!isUndefinedOrNull( xv ) && xv !== '' &&
-					!isUndefinedOrNull( yv ) && yv !== ''
-				) {
+				if ( !isUndefinedOrNull( xv ) && xv !== '' ) {
 					x.push( xv === success ? 1 : 0 );
+				}
+			}
+			for ( let i = 0; i < y.length; i++ ) {
+				const yv = yvals[ i ];
+				if ( !isUndefinedOrNull( yv ) && yv !== '' ) {
 					y.push( yv === success ? 1 : 0 );
 				}
 			}
@@ -171,7 +173,7 @@ class PropTest2 extends Component {
 			} else if ( direction === 'greater' ){
 				arrow = '>';
 			}
-			const title = `Hypothesis test for equality of mean ${var1} against mean ${var2}`;
+			const title = `Hypothesis test for equality of proportion ${var1} against proportion ${var2}`;
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<p>
@@ -181,13 +183,14 @@ class PropTest2 extends Component {
 				<TeX displayMode raw={`H_0: p_{${var1}} - p_{${var2}} = ${diff}`} tag="" />
 				<span> vs. </span>
 				<TeX displayMode raw={`H_1: p_{${var1}} - p_{${var2}} ${arrow} ${diff}`} tag="" />
-				<label>Sample proportion in group {var1}: {roundn( mean( x ), -3 )}</label>
-				<br />
-				<label>Sample proportion in group {var2}: {roundn( mean( y ), -3 )}</label>
 				<pre style={{ fontSize: '11px' }}>
 					{result.print({
 						decision: showDecision
 					})}
+					<br />
+					Sample proportion in group &quot;{var1}&quot;: {roundn( mean( x ), -3 )}
+					<br />
+					Sample proportion in group &quot;{var2}&quot;: {roundn( mean( y ), -3 )}
 				</pre>
 			</div>;
 		} else {

@@ -12,6 +12,7 @@ import ztest2 from '@stdlib/stats/ztest2';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import replace from '@stdlib/string/replace';
+import roundn from '@stdlib/math/base/special/roundn';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
@@ -72,6 +73,8 @@ class MeanTest2 extends Component {
 			if ( isNonMissingNumber( x[ i ] ) ) {
 				xvals.push( x[ i ] );
 			}
+		}
+		for ( let i = 0; i < y.length; i++ ) {
 			if ( isNonMissingNumber( y[ i ] ) ) {
 				yvals.push( y[ i ] );
 			}
@@ -114,9 +117,14 @@ class MeanTest2 extends Component {
 				<TeX
 					displayMode
 					raw={`H_1: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
-					tag="" />
+					tag=""
+				/>
 				<pre>
 					{printout}
+					<br />
+					Sample mean in group &quot;{firstCategory}&quot;: {roundn( result.xmean, -3 )}
+					<br />
+					Sample mean in group &quot;{secondCategory}&quot;: {roundn( result.ymean, -3 )}
 				</pre>
 			</div>;
 		} else if ( yvar ) {
@@ -160,6 +168,10 @@ class MeanTest2 extends Component {
 				/>
 				<pre>
 					{printout}
+					<br />
+					Sample mean in group &quot;{xvar}&quot;: {roundn( result.xmean, -3 )}
+					<br />
+					Sample mean in group &quot;{yvar}&quot;: {roundn( result.ymean, -3 )}
 				</pre>
 			</div>;
 		} else {
