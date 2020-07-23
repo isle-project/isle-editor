@@ -25,8 +25,8 @@ import getBinaryVars from './get_binary_vars.js';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:meantest2' );
-const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
-const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
+const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
+const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 const DESCRIPTION = 'A test for equality of means across two groups.';
 
 
