@@ -20,8 +20,8 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A test for the proportion of a selected category of a qualitative variable.';
-const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
-const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
+const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
+const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
 
 // MAIN //

@@ -22,8 +22,8 @@ import QuestionButton from './question_button.js';
 
 // VARIABLES //
 
-const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[\d.]+\]/;
-const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[\d.]+,Infinity\]/;
+const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
+const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 const DESCRIPTION = 'A test for the mean of a quantitative variable.';
 
 
