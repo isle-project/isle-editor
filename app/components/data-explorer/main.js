@@ -150,7 +150,7 @@ function checkVariables( data, variables ) {
 * @property {Array<string>} tables - array of strings indicating which tables may be created from the data
 * @property {Array<Object>} tabs - array of objects and keys indicating any custom tabs to add
 * @property {Array<string>} tests - array of strings indicating which hypothesis tests to include
-* @property {boolean} transformer - boolean indicating whether one wants to display a variable transformer
+* @property {boolean} transformer - boolean indicating whether to display variable transformation tools
 * @property {Function} onTutorialCompletion - function invoked when user has completed the data explorer tutorial
 * @property {Function} onTutorialStart - function invoked when user starts the data explorer tutorial
 * @property {Object} style - CSS inline styles for main container
