@@ -47,9 +47,9 @@ function isNonMissingNumber( x ) {
 }
 
 function setBins( config, vals, binStrategy, nBins, xbins ) {
+	const maxVal = isNumber( xbins.end ) ? xbins.end : max( vals );
+	const minVal = isNumber( xbins.start ) ? xbins.start : min( vals );
 	if ( binStrategy === 'Select # of bins' ) {
-		const maxVal = max( vals );
-		const minVal = min( vals );
 		const sizeVal = ( maxVal - minVal ) / nBins;
 		config.autobinx = false;
 		config.xbins = {
@@ -59,13 +59,11 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 		};
 	}
 	else if ( binStrategy === 'Set bin width' ) {
-		const maxVal = max( vals );
-		const minVal = min( vals );
 		config.autobinx = false;
 		config.xbins = {
 			size: ( maxVal - minVal ) / xbins.size <= 1e4 ? xbins.size : null,
-			start: isNumber( xbins.start ) ? xbins.start : minVal,
-			end: isNumber( xbins.end ) ? xbins.end : maxVal
+			start: minVal,
+			end: maxVal
 		};
 	}
 	return config;
@@ -300,21 +298,7 @@ class Histogram extends Component {
 								});
 							}}
 						/>
-						{ this.state.binStrategy === 'Select # of bins' ?
-							<NumberInput
-								legend="# bins"
-								defaultValue={this.state.nBins}
-								min={1}
-								step={1}
-								onChange={( value )=>{
-									this.setState({
-										nBins: value
-									});
-								}}
-								inline
-							/> : null
-						}
-						{ this.state.binStrategy === 'Set bin width' ?
+						{ this.state.binStrategy !== 'Automatic' ?
 							<div>
 								<NumberInput
 									legend="Start"
@@ -332,22 +316,41 @@ class Histogram extends Component {
 										width: 70
 									}}
 								/>
-								<NumberInput
-									legend="Size"
-									inline
-									defaultValue={this.state.xbins.size}
-									onChange={( val ) => {
-										const xbins = { ...this.state.xbins };
-										xbins.size = val;
-										this.setState({
-											xbins
-										});
-									}}
-									step="any"
-									inputStyle={{
-										width: 70
-									}}
-								/>
+								{ this.state.binStrategy === 'Select # of bins' ?
+									<NumberInput
+										legend="Bins"
+										defaultValue={this.state.nBins}
+										min={1}
+										step={1}
+										onChange={( value )=>{
+											this.setState({
+												nBins: value
+											});
+										}}
+										inline
+										inputStyle={{
+											width: 70
+										}}
+									/> : null
+								}
+								{ this.state.binStrategy === 'Set bin width' ?
+									<NumberInput
+										legend="Size"
+										inline
+										defaultValue={this.state.xbins.size}
+										onChange={( val ) => {
+											const xbins = { ...this.state.xbins };
+											xbins.size = val;
+											this.setState({
+												xbins
+											});
+										}}
+										step="any"
+										inputStyle={{
+											width: 70
+										}}
+									/> : null
+								}
 								<NumberInput
 									legend="End"
 									inline
@@ -364,8 +367,7 @@ class Histogram extends Component {
 										width: 70
 									}}
 								/>
-							</div> : null
-						}
+							</div> : null }
 					</div>
 					{ this.props.showDensityOption ?
 						<div>
