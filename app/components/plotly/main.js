@@ -36,7 +36,6 @@ const BUTTONS = [
 	'zoom2d',
 	'pan2d',
 	'select2d',
-	// 'lasso2d',
 	'zoomIn2d',
 	'zoomOut2d',
 	'autoScale2d',
@@ -45,7 +44,13 @@ const BUTTONS = [
 	'hoverCompareCartesian',
 	'toggleHover',
 	'resetViews'
-	// 'toggleSpikelines'
+];
+const BUTTONS_TO_REMOVE = [
+	'sendDataToCloud',
+	'hoverClosestCartesian',
+	'hoverCompareCartesian',
+	'lasso2d',
+	'toggleSpikelines'
 ];
 
 Plotly.setPlotConfig({
@@ -125,7 +130,7 @@ class Wrapper extends Component {
 			editable: this.props.editable,
 			displayModeBar: true,
 			displaylogo: false,
-			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : [ 'sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian' ],
+			modeBarButtonsToRemove: this.props.removeButtons ? BUTTONS : BUTTONS_TO_REMOVE,
 			modeBarButtonsToAdd: buttonsToAdd,
 			...this.props.config
 		};
