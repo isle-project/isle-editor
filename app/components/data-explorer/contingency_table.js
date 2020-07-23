@@ -22,6 +22,9 @@ import QuestionButton from './question_button.js';
 
 const debug = logger( 'isle:data-explorer:contingency-table' );
 const DESCRIPTION = 'A contingency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
+const SORT_OPTS = {
+	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
+};
 
 
 // FUNCTIONS //
@@ -34,8 +37,20 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 	const rowFreqs = countBy( rowValues, identity );
 	const colFreqs = countBy( colValues, identity );
 
-	const rowKeys = rowVar.categories || objectKeys( rowFreqs );
-	const colKeys = colVar.categories || objectKeys( colFreqs );
+	let rowKeys;
+	if ( rowVar.categories ) {
+		rowKeys = rowVar.categories;
+	} else {
+		rowKeys = objectKeys( rowFreqs );
+		rowKeys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
+	let colKeys;
+	if ( colVar.categories ) {
+		colKeys = colVar.categories;
+	} else {
+		colKeys = objectKeys( colFreqs );
+		colKeys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
 	for ( let i = 0; i < rowKeys.length; i++ ) {
 		for ( let l = 0; l < colKeys.length; l++ ) {
 			let key1 = rowKeys[ i ];

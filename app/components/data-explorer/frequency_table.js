@@ -20,13 +20,22 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A frequency table is a tabular display for either the raw absolute or relative frequencies of a categorical variable\'s values.';
+const SORT_OPTS = {
+	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
+};
 
 
 // FUNCTIONS //
 
 function getFrequencies( variable, x, relativeFreqs ) {
 	const counts = countBy( x, identity );
-	const keys = variable.categories || objectKeys( counts );
+	let keys;
+	if ( variable.categories ) {
+		keys = variable.categories;
+	} else {
+		keys = objectKeys( counts );
+		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
 	let freqs = new Array( keys.length );
 	for ( let i = 0; i < keys.length; i++ ) {
 		freqs[ i ] = { category: keys[ i ], count: counts[ keys[ i ] ] };
