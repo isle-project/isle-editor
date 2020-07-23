@@ -27,21 +27,10 @@ class DatasetButton extends Component {
 	}
 
 	render() {
-		if ( !this.props.filters ) {
-			return ( <Button
-				variant="outline-danger"
-				size="sm"
-				disabled
-				ref={( button ) => { this.button = button; }}
-				style={this.props.style}
-			>
-				No Filters
-			</Button> );
-		}
 		return (
 			<Fragment>
 				<Tooltip
-					id="fullscreen_tooltip"
+					id="filter_info_tooltip"
 					placement="bottom"
 					tooltip="Show dataset info"
 				>
@@ -60,23 +49,34 @@ class DatasetButton extends Component {
 							});
 						}}
 					>
-						Filters
+						<i className="fas fa-info" />
 					</Button>
 				</Tooltip>
 				<Overlay target={this.button} show={this.state.show} placement="left">
 					{({ placement, scheduleUpdate, arrowProps, ...props }) => {
+						const style = {
+							backgroundColor: 'lightcoral',
+							padding: '10px 10px',
+							color: 'white',
+							marginRight: '5px',
+							borderRadius: 3,
+							zIndex: 1002,
+							...props.style
+						};
+						if ( !this.props.filters ) {
+							return (
+								<pre
+									{...props}
+									style={style}
+								>
+									Entire dataset used to create output.
+								</pre>
+							);
+						}
 						return (
 							<pre
 								{...props}
-								style={{
-									backgroundColor: 'lightcoral',
-									padding: '10px 10px',
-									color: 'white',
-									marginRight: '5px',
-									borderRadius: 3,
-									zIndex: 1002,
-									...props.style
-								}}
+								style={style}
 							>
 								{formatFilters( this.props.filters )}
 								{ this.props.restoreButton ? <Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
