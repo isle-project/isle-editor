@@ -92,10 +92,10 @@ function factory( monaco ) {
 				if ( docs ) {
 					suggestions = docs.props.map( x => {
 						let insertText;
-						const replacement = generateReplacement( x.default );
+						const replacement = generateReplacement( x.defaultValue );
 						if ( x.type === 'boolean' ) {
 							insertText = x.name;
-							if ( x.default ) {
+							if ( x.defaultValue ) {
 								insertText += '={false}$1';
 							}
 						} else {
@@ -218,12 +218,12 @@ function factory( monaco ) {
 						return {
 							suggestions: [
 								{
-									label: prop.default,
+									label: prop.defaultValue,
 									documentation: prop.description,
 									kind: monaco.languages.CompletionItemKind.Snippet,
 									insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-									insertText: prop.default,
-									sortText: 'a'+prop.default
+									insertText: prop.defaultValue,
+									sortText: 'a'+prop.defaultValue
 								}
 							],
 							incomplete: false
