@@ -184,7 +184,7 @@ class ComponentConfigurator extends Component {
 		if ( regexpString === '(' ) {
 			regexpString += ')';
 		}
-		this.RE_BOOLEAN_SHORTHAND = new RegExp( `\\s${regexpString}\\s` );
+		this.RE_BOOLEAN_SHORTHAND = new RegExp( '(^\\s*<'+name+'\\s[^>]*)\\s'+regexpString+'\\s' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -223,7 +223,7 @@ class ComponentConfigurator extends Component {
 		}
 		let value = this.state.value;
 		value = replace( value, RE_BEFORE_TAG, '' );
-		value = replace( value, this.RE_BOOLEAN_SHORTHAND, ' $1={true} ' );
+		value = replace( value, this.RE_BOOLEAN_SHORTHAND, '$1 $2={true} ' );
 		do {
 			let propName;
 			match = this.RE_PROPERTY.exec( value );
