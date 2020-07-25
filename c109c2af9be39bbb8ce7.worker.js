@@ -49141,7 +49141,7 @@ this.models=clusters.map(function(nClusters){return kmeans_lib_default()(nCluste
     * @param {integer} iter - number of times
     */},{key:"iterate",value:function iterate(iter){var _this2=this;this.centroids=this.models.map(function(acc){var out;for(var j=0;j<iter;j++){for(var i=0;i<_this2.nDocs;i++){out=acc(_this2.vecs[i]);}}return out?out.centroids:null;});}}]);return Corpus;}();// EXPORTS //
 /* harmony default export */ var corpus = (corpus_Corpus);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--4-0!./node_modules/babel-loader/lib??ref--4-1!./node_modules/babel-loader/lib??ref--10!/home/philipp/git/cmu-isle/isle-editor/app/components/response-visualizer/text-clustering/worker.js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--7-0!./node_modules/babel-loader/lib??ref--7-1!./node_modules/babel-loader/lib??ref--13!/home/philipp/git/cmu-isle/isle-editor/app/components/response-visualizer/text-clustering/worker.js
 // MODULES //
 // VARIABLES //
 var DIM=300;var vocab=new text_clustering_vocabulary(DIM);var worker_corpus=new corpus(vocab,[3,5,7]);// MAIN //
