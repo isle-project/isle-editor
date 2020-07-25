@@ -547,13 +547,14 @@ class Session {
 		const OPEN_CPU = this.getOpenCPUServer();
 
 		const fetchImage = ( imgURL ) => {
-			axios.get( imgURL ).then( res => {
-				if ( filetype === 'png' ) {
-					const mimeType = res.headers[ 'content-type' ];
-					const base64String = `data:${mimeType};base64,${res.data}`;
-					return clbk( null, imgURL, base64String );
-				}
-				return clbk( null, imgURL, res.data );
+			axios.get( imgURL, { responseType: 'arraybuffer' }).then( res => {
+				const mimeType = res.headers[ 'content-type' ];
+				const imageData = btoa(
+					new Uint8Array( res.data )
+					.reduce((data, byte) => data + String.fromCharCode(byte), '')
+				);
+				const base64String = `data:${mimeType};base64,${imageData}`;
+				return clbk( null, imgURL, base64String );
 			})
 			.catch( err => clbk( err ) );
 		};
