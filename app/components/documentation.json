@@ -762,7 +762,7 @@
       {
         "name": "transformer",
         "type": "boolean",
-        "description": "boolean indicating whether one wants to display a variable transformer",
+        "description": "boolean indicating whether to display variable transformation tools",
         "defaultValue": true
       },
       {
@@ -4812,7 +4812,7 @@
         "name": "fileType",
         "type": "string",
         "description": "file type of the plot (`png` or `svg`)",
-        "defaultValue": "png"
+        "defaultValue": "svg"
       },
       {
         "name": "libraries",

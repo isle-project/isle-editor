@@ -113,6 +113,6 @@ We will include the explorer with the following code:
   'Chi-squared Independence Test',
   'Kruskal-Wallis Test'
 ]`.
-* __transformer__ | `boolean`: boolean indicating whether one wants to display a variable transformer. Default: `true`.
+* __transformer__ | `boolean`: boolean indicating whether to display variable transformation tools. Default: `true`.
 * __onTutorialCompletion__ | `function`: function invoked when user has completed the data explorer tutorial. Default: `onTutorialCompletion() {}`.
 * __onTutorialStart__ | `function`: function invoked when user starts the data explorer tutorial. Default: `onTutorialStart() {}`.
