@@ -31,7 +31,8 @@
 	transform: scale(1.25);
 }
 
-.spectacle-content h1 {
+.spectacle-content > h1,
+.spectacle-content > .line-wrapper > h1 {
 	font-size: 5em;
 	line-height: 1;
 	text-align: center;
@@ -40,7 +41,8 @@
 	zoom: 1;
 }
 
-.spectacle-content h2 {
+.spectacle-content > h2,
+.spectacle-content > .line-wrapper > h2 {
 	font-size: 4em;
 	line-height: 1;
 	text-align: center;
@@ -56,27 +58,31 @@
 	font-size: 12px;
 }
 
-.spectacle-content h3 {
+.spectacle-content > h3,
+.spectacle-content > .line-wrapper > h3 {
 	font-size: 3.5em;
 	text-align: center;
 	line-height: 1;
 	margin: 0.5em auto;
 }
 
-.spectacle-content h4 {
+.spectacle-content > h4,
+.spectacle-content > .line-wrapper > h4 {
 	font-size: 3em;
 	line-height: 1;
 	text-align: center;
 	margin: 0.5em auto;
 }
 
-.spectacle-content h5 {
+.spectacle-content > h5,
+.spectacle-content > .line-wrapper > h5 {
 	font-size: 2.5em;
 	line-height: 1;
 	margin: 0.5rem auto;
 }
 
-.spectacle-content h6 {
+.spectacle-content > h6,
+.spectacle-content > .line-wrapper > h6 {
 	font-size: 2em;
 	line-height: 1;
 	margin: 0.5em auto;
