@@ -181,7 +181,7 @@ CustomDeck.defaultProps = {
 	autoplayOnStart: true,
 	controls: true,
 	contentHeight: 700,
-	contentWidth: 1000,
+	contentWidth: 1200,
 	disableKeyboardControls: false,
 	pageControls: true,
 	progress: 'number',
