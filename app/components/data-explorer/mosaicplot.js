@@ -138,7 +138,7 @@ class MosaicPlot extends Component {
 					defaultValue={false}
 				/>
 				<SelectInput
-					legend="Axis Labels"
+					legend="Axis Label Rotation"
 					options={AXIS_OPTIONS}
 				/>
 			</Dashboard>
