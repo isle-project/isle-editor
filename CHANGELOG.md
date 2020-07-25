@@ -14,6 +14,10 @@
 
 - Unable to click on last two buttons on Plotly modebar  [\#1154](https://github.com/isle-project/isle-editor/issues/1154)
 - mosaic plot left side levels not fitting \(since written vertical\) [\#1148](https://github.com/isle-project/isle-editor/issues/1148)
+- Data Display in Data Explorer [\#1138](https://github.com/isle-project/isle-editor/issues/1138)
+- Box Select in Histogram not highlighting correctly [\#1137](https://github.com/isle-project/isle-editor/issues/1137)
+- Update Lesson Not Working [\#1136](https://github.com/isle-project/isle-editor/issues/1136)
+- Tabs component not working [\#1131](https://github.com/isle-project/isle-editor/issues/1131)
 
 ## [v0.58.0](https://github.com/isle-project/isle-editor/tree/v0.58.0) (2020-07-13)
 
