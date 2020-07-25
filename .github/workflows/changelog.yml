@@ -3,6 +3,7 @@ name: Changelog
 on:
   push:
     tags: v[0-9]+.[0-9]+.[0-9]+
+  workflow_dispatch:
 
 jobs:
   create_changelog:
