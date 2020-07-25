@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Table from 'components/table';
@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
+import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -29,13 +30,17 @@ const SORT_OPTS = {
 
 // FUNCTIONS //
 
-const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPlaces ) => {
+const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) => {
 	const freqs = {};
+	const relFreqs = {};
 	const rowValues = data[ rowVar ];
 	const colValues = data[ colVar ];
 	const nobs = rowValues.length;
 	const rowFreqs = countBy( rowValues, identity );
 	const colFreqs = countBy( colValues, identity );
+
+	const displayRowPercent = contains( display, 'Row Percent' );
+	const displayColPercent = contains( display, 'Column Percent' );
 
 	let rowKeys;
 	if ( rowVar.categories ) {
@@ -64,18 +69,33 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 					size += 1;
 				}
 			}
-			freqs[ key1 + '-' + key2 ] = !relativeFreqs ? size : size / nobs;
+			freqs[ key1 + '-' + key2 ] = size;
+			relFreqs[ key1 + '-' + key2 ] = size / nobs;
 		}
 	}
 	let columnTotals = [];
 	for ( let key in colFreqs ) {
 		if ( hasOwnProp( colFreqs, key ) ) {
 			let colfreq = colFreqs[ key ];
+			let rowPercent = null;
+			if ( displayRowPercent && !relativeFreqs ) {
+				rowPercent = <Fragment>
+					<br />
+					({(colfreq / nobs).toFixed( nDecimalPlaces )})
+				</Fragment>;
+			}
 			if ( relativeFreqs ) {
 				colfreq /= nobs;
 				colfreq = colfreq.toFixed( nDecimalPlaces );
 			}
-			columnTotals.push( <td>{colfreq}</td> );
+			columnTotals.push( <td>
+				{colfreq}
+				{rowPercent}
+				{ displayColPercent ? <Fragment>
+					<br />
+					(1.0)
+				</Fragment> : null }
+			</td> );
 		}
 	}
 	let table = <Table bordered size="sm">
@@ -91,22 +111,58 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 				<th>{r}</th>
 				{colKeys.map( ( c, j ) => {
 					let freq = freqs[ r + '-' + c ];
-					if ( relativeFreqs ) {
-						freq = freq.toFixed( nDecimalPlaces );
-					}
-					return <td key={`${i}:${j}`}>{freq}</td>;
+					let relFreq = relFreqs[ r + '-' + c ];
+					return (
+						<td key={`${i}:${j}`}>
+							{relativeFreqs ? relFreq.toFixed( nDecimalPlaces ) : freq}
+							{displayRowPercent ?
+								<Fragment>
+									<br />
+									({(freq / rowFreqs[ r ]).toFixed( nDecimalPlaces )})
+								</Fragment> : null
+							}
+							{displayColPercent ?
+								<Fragment>
+									<br />
+									({(freq / colFreqs[ c ]).toFixed( nDecimalPlaces )})
+								</Fragment> : null
+							}
+						</td>
+					);
 				})}
-				<td>{ !relativeFreqs ?
-					rowFreqs[ r ] :
-					( rowFreqs[ r ]/nobs ).toFixed( nDecimalPlaces )
-				}</td>
+				<td>
+					{ !relativeFreqs ?
+						rowFreqs[ r ] :
+						( rowFreqs[ r ]/nobs ).toFixed( nDecimalPlaces )
+					}
+					{ displayRowPercent ? <Fragment>
+							<br />
+							(1.0)
+						</Fragment> : null
+					}
+					{ displayColPercent && !relativeFreqs ? <Fragment>
+							<br />
+							({(rowFreqs[ r ] / nobs ).toFixed( nDecimalPlaces )})
+						</Fragment> : null
+					}
+				</td>
 			</tr> ) )}
 		</tbody>
 		<tbody>
 			<tr>
 				<th>Column Totals</th>
 				{columnTotals}
-				<th>{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( nDecimalPlaces ) }</th>
+				<th>
+					{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( nDecimalPlaces ) }
+					{ displayRowPercent ? <Fragment>
+						<br />
+						(1.0)
+					</Fragment> : null }
+					{ displayColPercent ? <Fragment>
+						<br />
+						(1.0)
+					</Fragment> : null }
+				</th>
 			</tr>
 		</tbody>
 	</Table>;
@@ -162,7 +218,8 @@ class ContingencyTable extends Component {
 			colVar: props.defaultColVar || props.variables[ 1 ],
 			group: null, // eslint-disable-line react/no-unused-state
 			nDecimalPlaces: 3,
-			variables: props.variables
+			variables: props.variables,
+			display: []
 		};
 	}
 
@@ -180,7 +237,7 @@ class ContingencyTable extends Component {
 
 	generateContingencyTable() {
 		let output;
-		const { rowVar, colVar, group, relativeFreqs, nDecimalPlaces } = this.state;
+		const { rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display } = this.state;
 		if ( !rowVar || !colVar ) {
 			return this.props.session.addNotification({
 				title: 'Select Variables',
@@ -190,7 +247,7 @@ class ContingencyTable extends Component {
 			});
 		}
 		if ( !group ) {
-			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs, nDecimalPlaces );
+			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display );
 			output = {
 				variable: `${rowVar} by ${colVar}`,
 				type: 'Contingency Table',
@@ -255,7 +312,17 @@ class ContingencyTable extends Component {
 							});
 						}}
 					/>
-					{ this.state.relativeFreqs ? <p>Report relative frequencies to
+					<SelectInput
+						legend="Display:"
+						options={['Row Percent', 'Column Percent']}
+						multi
+						onChange={( display ) => {
+							this.setState({
+								display: display ? display : []
+							});
+						}}
+					/>
+					{ this.state.relativeFreqs || this.state.display.length > 0 ? <p>Report relative frequencies to
 						<NumberInput
 							inline
 							width={50}
