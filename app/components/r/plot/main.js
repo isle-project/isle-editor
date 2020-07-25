@@ -147,7 +147,7 @@ RPlot.defaultProps = {
 	width: 600,
 	height: 'auto',
 	draggable: false,
-	fileType: 'png',
+	fileType: 'svg',
 	libraries: [],
 	prependCode: '',
 	meta: null,
