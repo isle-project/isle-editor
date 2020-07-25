@@ -22,14 +22,14 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 function range( arr ) {
 	const len = arr.length;
 	if ( len === 0 ) {
-		return [ NaN, NaN ];
+		return [ NaN, NaN, NaN ];
 	}
 	let min = arr[ 0 ];
 	let max = min;
 	for ( let i = 1; i < len; i++ ) {
 		let x = arr[ i ];
 		if ( !isNumber( x ) ) {
-			return [ NaN, NaN ];
+			return [ NaN, NaN, NaN ];
 		}
 		if ( x < min ) {
 			min = x;
