@@ -792,19 +792,25 @@ class DataExplorer extends Component {
 	}
 
 	onHistogramSelection = ( name, selected ) => {
-		const newFilters = this.state.filters.filter(
-			x => x.id !== name
-		);
-		newFilters.push({
-			id: name,
-			value: {
-				min: selected.range.x[ 0 ],
-				max: selected.range.x[ 1 ]
-			}
-		});
-		this.setState({
-			filters: newFilters
-		});
+		if ( selected.points && selected.points[ 0 ] ) {
+			const first = selected.points[ 0 ];
+			const binSize = first.fullData.xbins.size;
+			const last = selected.points[ selected.points.length-1 ];
+			const newFilters = this.state.filters.filter(
+				x => x.id !== name
+			);
+
+			newFilters.push({
+				id: name,
+				value: {
+					min: first.x - binSize/2,
+					max: last.x + binSize/2
+				}
+			});
+			this.setState({
+				filters: newFilters
+			});
+		}
 	}
 
 	/**
