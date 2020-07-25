@@ -16,11 +16,17 @@ import QuestionButton from './question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables. You may select as many variables as you wish. In the two-variable case the first variable selected will be the columns and the second variable will the rows conditioned on the columns. If colors are shown, blue means there are more observations than we would expect if no relationship is present and red indicates that there are less observations than we would expect if no relationship is present.';
+const AXIS_OPTIONS = [
+	'parallel to the axis',
+	'horizontal',
+	'perpendicular to the axis',
+	'vertical'
+];
 
 
 // FUNCTIONS //
 
-export function generateMosaicPlotCode({ data, vars, showColors }) {
+export function generateMosaicPlotCode({ data, vars, showColors, axisLabels }) {
 	const counts = {};
 	const nObs = data[ vars[ 0 ] ].length;
 	for ( let i = 0; i < nObs; i++ ) {
@@ -50,11 +56,14 @@ export function generateMosaicPlotCode({ data, vars, showColors }) {
 			varArr[ i ].push( `'${names[ i ]}'` );
 		}
 	}
-
-	let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
+	let las = 0;
+	if ( axisLabels ) {
+		las = AXIS_OPTIONS.indexOf( axisLabels );
+	}
+	const code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
 		xytable = xtabs( counts ~ ., data = dat )
 		mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
-		cex=1, las=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
+		cex=1, las=${las}, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 	return code;
 }
 
@@ -66,7 +75,7 @@ class MosaicPlot extends Component {
 		super( props );
 	}
 
-	generateMosaicPlot( vars, showColors ) {
+	generateMosaicPlot( vars, showColors, axisLabels ) {
 		if ( !vars || vars.length < 2 ) {
 			return this.props.session.addNotification({
 				title: 'Select Variables',
@@ -75,7 +84,7 @@ class MosaicPlot extends Component {
 				position: 'tr'
 			});
 		}
-		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors });
+		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors, axisLabels });
 		const plotId = randomstring( 6 );
 		const action = {
 			vars, showColors, plotId
@@ -127,6 +136,10 @@ class MosaicPlot extends Component {
 				<CheckboxInput
 					legend="Show Colors"
 					defaultValue={false}
+				/>
+				<SelectInput
+					legend="Axis Labels"
+					options={AXIS_OPTIONS}
 				/>
 			</Dashboard>
 		);
