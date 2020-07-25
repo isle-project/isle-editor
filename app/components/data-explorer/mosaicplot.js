@@ -54,7 +54,7 @@ export function generateMosaicPlotCode({ data, vars, showColors }) {
 	let code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
 		xytable = xtabs( counts ~ ., data = dat )
 		mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
-		cex=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
+		cex=1, las=1, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 	return code;
 }
 
@@ -90,8 +90,9 @@ class MosaicPlot extends Component {
 				meta={action}
 				libraries={[ 'MASS' ]}
 				onDone={this.props.onPlotDone}
-				width="90%"
-				height="auto"
+				width="auto"
+				height="300px"
+				className="center"
 				onShare={() => {
 					this.props.session.addNotification({
 						title: 'Plot shared.',
