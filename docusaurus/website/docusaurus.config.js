@@ -55,6 +55,9 @@ const siteConfig = {
 			backgroundColor: '#fafbfc', // Defaults to `#fff`
 			textColor: '#091E42' // Defaults to `#000`
 		},
+		colorMode: {
+			disableSwitch: true
+		},
 		footer: {
 			logo: {
 				alt: 'ISLE Logo',
@@ -112,7 +115,7 @@ const siteConfig = {
 				src: 'img/isle_logo_bare.png'
 			},
 			hideOnScroll: true,
-			links: [
+			items: [
 				{ to: 'docs/overview/intro', label: 'Docs' },
 				{ to: 'help', label: 'Help' },
 				{ to: 'blog', label: 'Blog' },
@@ -122,14 +125,12 @@ const siteConfig = {
 				},
 				{
 					href: 'https://discourse.isledocs.com',
-					label: 'Forum',
-					target: '_self'
+					label: 'Forum'
 				}
 			]
 		},
 		image: 'img/docusaurus.png',
 		sidebarCollapsible: true,
-		disableDarkMode: true,
 		algolia: {
 			apiKey: '79d8a88e3298cd96be31662732f18703',
 			indexName: 'isledocs',
