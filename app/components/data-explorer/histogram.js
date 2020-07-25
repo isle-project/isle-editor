@@ -36,7 +36,8 @@ const DESCRIPTION = 'A histogram allows one to visualize the distribution of a q
 const SETTINGS = {
 	yaxis: {
 		tickformat: '-,.4r'
-	}
+	},
+	selectdirection: 'h'
 };
 
 
