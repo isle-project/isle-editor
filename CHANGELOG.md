@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.59.0](https://github.com/isle-project/isle-editor/tree/v0.59.0) (2020-07-25)
+
+**Implemented enhancements:**
+
+- Group related icons together [\#1155](https://github.com/isle-project/isle-editor/issues/1155)
+- consistent ordering of levels in frequency tables grouped by [\#1146](https://github.com/isle-project/isle-editor/issues/1146)
+- accept multiple numerical answers [\#1144](https://github.com/isle-project/isle-editor/issues/1144)
+- Add styling to accordion [\#1142](https://github.com/isle-project/isle-editor/issues/1142)
+- Alternative way to set binnng of histogram  [\#1139](https://github.com/isle-project/isle-editor/issues/1139)
+
+**Fixed bugs:**
+
+- Unable to click on last two buttons on Plotly modebar  [\#1154](https://github.com/isle-project/isle-editor/issues/1154)
+- mosaic plot left side levels not fitting \(since written vertical\) [\#1148](https://github.com/isle-project/isle-editor/issues/1148)
+
 ## [v0.58.0](https://github.com/isle-project/isle-editor/tree/v0.58.0) (2020-07-13)
 
 ## [v0.57.1](https://github.com/isle-project/isle-editor/tree/v0.57.1) (2020-07-09)
