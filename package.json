@@ -288,7 +288,7 @@
     "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^4.0.0",
     "pdfjs-dist": "^2.4.456",
-    "pdfmake": "^0.1.66",
+    "pdfmake": "^0.1.67",
     "plotly.js": "^1.54.7",
     "preload-webpack-plugin": "^3.0.0-beta.4",
     "react-draggable": "^4.4.3",
