@@ -145,7 +145,6 @@ class ComponentConfigurator extends Component {
 		const isRequired = {};
 		const defaultStrings = {};
 		value = removePlaceholderMarkup( value );
-		let regexpString = '(';
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
 			const { name, type, defaultValue } = p;
@@ -154,12 +153,6 @@ class ComponentConfigurator extends Component {
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
 			propActive[ name ] = RE_KEY_AROUND_WHITESPACE.test( value );
 			isRequired[ name ] = contains( type, '(required)' );
-			regexpString += name;
-			if ( i < docProps.length - 1 ) {
-				regexpString += '|';
-			} else {
-				regexpString += ')';
-			}
 			defaultStrings[ name ] = generateDefaultString( defaultValue, contains( type, 'function' ) );
 		}
 		this.state = {
@@ -177,14 +170,10 @@ class ComponentConfigurator extends Component {
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
 
 		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|\\/>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|\\/>)', 'i' );
 		} else {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *= *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=|>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|>)', 'i' );
 		}
-		if ( regexpString === '(' ) {
-			regexpString += ')';
-		}
-		this.RE_BOOLEAN_SHORTHAND = new RegExp( '(^\\s*<'+name+'\\s[^>]*)\\s'+regexpString+'\\s' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -223,7 +212,6 @@ class ComponentConfigurator extends Component {
 		}
 		let value = this.state.value;
 		value = replace( value, RE_BEFORE_TAG, '' );
-		value = replace( value, this.RE_BOOLEAN_SHORTHAND, '$1 $2={true} ' );
 		do {
 			let propName;
 			match = this.RE_PROPERTY.exec( value );
