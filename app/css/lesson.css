@@ -595,17 +595,6 @@ mark {
 	max-width: 1200px;
 }
 
-.Presentation > ol,
-.Presentation > .line-wrapper > ol,
-.Presentation > .line-wrapper > .line-wrapper > ol,
-.Presentation > ul,
-.Presentation > .line-wrapper > ul,
-.Presentation > .line-wrapper > .line-wrapper > ul {
-	text-align: left;
-	font-size: 2rem;
-	padding-left: 1em;
-}
-
 .Lesson table,
 .Presentation table {
 	margin-left: auto;

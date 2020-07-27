@@ -133,3 +133,18 @@
 	width: 100%;
 	flex: 1 1 70%;
 }
+
+.spectacle-content ol,
+.spectacle-content ul {
+	font-size: 2rem;
+}
+
+.spectacle-content > ol,
+.spectacle-content > .line-wrapper > ol,
+.spectacle-content > .line-wrapper > .line-wrapper > ol,
+.spectacle-content > ul,
+.spectacle-content > .line-wrapper > ul,
+.spectacle-content > .line-wrapper > .line-wrapper > ul {
+	text-align: left;
+	padding-left: 1em;
+}
