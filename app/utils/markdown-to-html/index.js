@@ -26,9 +26,18 @@ function toMarkdown( str, { filePath, addEmptySpans = false, lineNumber = 1, add
 	// Make all relative file paths in code absolute to path of source file:
 	if ( filePath ) {
 		const dir = dirname( filePath );
-		str = replace( str, RE_SRC, ( match, p1, p2 ) => {
-			return `${p1}="${join( dir, p2 )}"`;
-		});
+		if ( process.platform === 'win32' ) {
+			str = replace( str, RE_SRC, ( match, p1, p2 ) => {
+				let fpath = join( dir, p2 );
+				fpath = replace( fpath, '\\', '\\\\' );
+				return `${p1}="${fpath}"`;
+			});
+		} else {
+			str = replace( str, RE_SRC, ( match, p1, p2 ) => {
+				const fpath = join( dir, p2 );
+				return `${p1}="${fpath}"`;
+			});
+		}
 	}
 	return tokenizer.parse( str );
 }
