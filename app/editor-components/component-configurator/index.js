@@ -411,9 +411,9 @@ class ComponentConfigurator extends Component {
 	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
-			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)( +|\\t|\\r?\\n)(?=[a-zA-Z]+=?|\\/>)' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)([ \\t\\r\\n]*)(?=[a-zA-Z]+=?|\\/>)' );
 		} else {
-			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)( +|\\t|\\r?\\n)(?=[a-zA-Z]+=?|>)' );
+			RE_FULL_KEY = new RegExp( '[ \\t]*' + key + '(?:=["{]`?[\\s\\S]*?`?["}]|)([ \\t\\r\\n]*)(?=[a-zA-Z]+=?|>)' );
 		}
 		const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${key}\\s*=?` );
 		return () => {
