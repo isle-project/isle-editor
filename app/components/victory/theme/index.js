@@ -1,6 +1,6 @@
 // MODULES //
 
-import { VictoryTheme } from 'victory-core';
+import { VictoryTheme } from 'victory';
 
 
 // EXPORTS //

@@ -32,7 +32,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import isFunction from '@stdlib/assert/is-function';
-import { VictoryAnimation } from 'victory-core';
+import { VictoryAnimation } from 'victory';
 import findIndex from 'lodash/findIndex';
 import { SpectacleContext } from '../utils/context';
 
