@@ -1027,7 +1027,9 @@ class Editor extends Component {
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( imgDir, name );
 			copyFileSync( path, destPath );
-			const src = './' + relative( destDir, destPath );
+			let fpath = relative( destDir, destPath );
+			fpath = replace( fpath, '\\', '/' );
+			const src = './' + fpath;
 			const text = `<Image src="${src}" alt="Enter description" width="50%" height="auto" />`;
 			if ( placeCursor ) {
 				const selection = new this.monaco.Selection( coords[0], coords[1], coords[0], coords[1] );
@@ -1055,7 +1057,9 @@ class Editor extends Component {
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( videoDir, name );
 			copyFileSync( path, destPath );
-			const src = './' + relative( destDir, destPath );
+			let fpath = relative( destDir, destPath );
+			fpath = replace( fpath, '\\', '/' );
+			const src = './' + fpath;
 			const text = `<VideoPlayer url="${src}" />`;
 			if ( placeCursor ) {
 				const selection = new this.monaco.Selection(coords[0], coords[1], coords[0], coords[1]);
@@ -1098,9 +1102,6 @@ class Editor extends Component {
 				else {
 					const ext = extname( url.parse( text ).pathname );
 					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
-						text = text.replace( /\\/g, '/' );
-						console.log( 'TEXT: ');
-						console.log( text );
 						text = `<Image src="${text}" alt="Enter description" width="50%" height="auto" />`;
 					}
 				}
