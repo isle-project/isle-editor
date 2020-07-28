@@ -25,7 +25,8 @@ const plotSpec = {
 		return [ 'div',
 			{
 				class: 'img-container',
-				'data-plot-id': node.attrs.plotID
+				'data-plot-id': node.attrs.plotID,
+				align: node.attrs.align
 			},
 			[ 'img',
 				{
