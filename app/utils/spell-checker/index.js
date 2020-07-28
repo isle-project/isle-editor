@@ -3,6 +3,7 @@
 import Typo from 'typo-js';
 import contains from '@stdlib/assert/contains';
 import isWhitespace from '@stdlib/assert/is-whitespace';
+import startsWith from '@stdlib/string/starts-with';
 
 
 // VARIABLES //
@@ -20,7 +21,7 @@ const DIC_URL_PT = 'https://unpkg.com/dictionary-pt@2.0.0/index.dic';
 const AFF_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.aff';
 const DIC_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.dic';
 const RE_NEWLINE = /\r?\n/;
-const RX_WORD = '!\'"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ';
+const RX_WORD = '!\'"#$%&()*+,-./:;=>?@[\\]^_`{|}~ '; // does not include `<` to not flag tag names...
 const RE_CAMELCASE = /[A-Z]/;
 const RE_DIGITS = /\d+/;
 
@@ -77,14 +78,13 @@ function SpellChecker( text, options ) {
 	if ( !SpellChecker.affLoading ) {
 		SpellChecker.affLoading = true;
 		const xhrAFF = new XMLHttpRequest();
-		xhrAFF.open('GET', AFF_URL, true);
+		xhrAFF.open( 'GET', AFF_URL, true );
 		xhrAFF.onload = function onLoad() {
-			if ( xhrAFF.readyState === 4 && xhrAFF.status === 200) {
+			if ( xhrAFF.readyState === 4 && xhrAFF.status === 200 ) {
 				SpellChecker.affData = xhrAFF.responseText;
-				SpellChecker.numLoaded++;
-
+				SpellChecker.numLoaded += 1;
 				if ( SpellChecker.numLoaded === 2 ) {
-					SpellChecker.typo = new Typo('en_US', SpellChecker.affData, SpellChecker.dicData, {
+					SpellChecker.typo = new Typo( 'en_US', SpellChecker.affData, SpellChecker.dicData, {
 						platform: 'any'
 					});
 				}
@@ -115,7 +115,6 @@ function SpellChecker( text, options ) {
 		let word = '';
 		let line = 1;
 		let col = 0;
-		let startColumn = 0;
 		let inEquation = false;
 		if ( !contains( RX_WORD, text[ 0 ] ) ) {
 			word += text[ 0 ];
@@ -155,12 +154,14 @@ function SpellChecker( text, options ) {
 				}
 			}
 			if ( ( isWhitespace( ch ) || ch === '=' ) && !inEquation ) {
-				// Do not flag strings containing digits:
-				if ( RE_DIGITS.test( word ) ) {
-					word = '';
-				}
-				// Assume that unknown capitalized words inside a sentence refer to proper nouns for English...
-				else if ( language === 'en-US' && RE_CAMELCASE.test( word ) ) {
+				if (
+					// Do not flag strings containing digits:
+					RE_DIGITS.test( word ) ||
+					// Do not flag tag names:
+					startsWith( word, '<' ) ||
+					// Assume that unknown capitalized words inside a sentence refer to proper nouns for English...
+					( language === 'en-US' && RE_CAMELCASE.test( word ) )
+				) {
 					word = '';
 				}
 				else {
@@ -168,7 +169,7 @@ function SpellChecker( text, options ) {
 					if ( !res ) {
 						errs.push({
 							startLineNumber: line,
-							startColumn: startColumn,
+							startColumn: col - word.length - 1,
 							endLineNumber: line,
 							endColumn: col - 1,
 							code: word,
@@ -177,7 +178,6 @@ function SpellChecker( text, options ) {
 						});
 					}
 				}
-				startColumn = col;
 				word = '';
 			}
 			const isEndOfLine = RE_NEWLINE.test( ch );
