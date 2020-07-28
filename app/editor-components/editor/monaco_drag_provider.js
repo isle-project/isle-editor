@@ -18,33 +18,33 @@ class MonacoDragNDropProvider {
 			this.onDropHandler( e, this.dragTarget, this.editor );
 		}
 		this.removeMouseDownWidget();
-	};
+	}
 
 	onDragOver = ( e ) => {
 		const ins = this.editor;
 		if ( ins ) {
-			this.displayMouseDropPosition( ins, ins.getTargetAtClientPoint(e.clientX, e.clientY) );
+			this.displayMouseDropPosition( ins, ins.getTargetAtClientPoint( e.clientX, e.clientY ) );
 		}
 		e.preventDefault();
-	};
+	}
 
 	removeMouseDownWidget = () => {
 		const instance = this.editor;
-		if (instance && this.mouseDropWidget && this.domNode) {
-			instance.removeContentWidget(this.mouseDropWidget);
+		if ( instance && this.mouseDropWidget && this.domNode ) {
+			instance.removeContentWidget( this.mouseDropWidget );
 			this.mouseDropWidget = null;
 		}
-	};
+	}
 
 	props = {
 		onDragOver: this.onDragOver,
 		onDropCapture: this.onDrop,
 		onDragLeaveCapture: this.removeMouseDownWidget
-	};
+	}
 
 	buildMouseDropWidget = () => {
 		if ( !this.domNode ) {
-			this.domNode = document.createElement('div');
+			this.domNode = document.createElement( 'div' );
 			this.domNode.className = this.dropClassName;
 			this.domNode.style.pointerEvents = 'none';
 			this.domNode.style.borderLeft = '2px solid #ccc';
@@ -59,17 +59,17 @@ class MonacoDragNDropProvider {
 				preference: [ ContentWidgetPositionPreference.EXACT, ContentWidgetPositionPreference.EXACT]
 			})
 		};
-	};
+	}
 
 	displayMouseDropPosition = ( instance, target ) => {
 		this.dragTarget = target;
-		if (this.mouseDropWidget) {
-			instance.layoutContentWidget(this.mouseDropWidget);
+		if ( this.mouseDropWidget ) {
+			instance.layoutContentWidget( this.mouseDropWidget );
 		} else {
 			this.mouseDropWidget = this.buildMouseDropWidget();
-			instance.addContentWidget(this.mouseDropWidget);
+			instance.addContentWidget( this.mouseDropWidget );
 		}
-	};
+	}
 }
 
 

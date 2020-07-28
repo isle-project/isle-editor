@@ -124,6 +124,9 @@ class Editor extends Component {
 			sourceFiles: {}
 		};
 		this.decorations = [];
+		this.dragProvider = {
+			props: {}
+		};
 	}
 
 	async componentDidMount() {
@@ -1096,6 +1099,8 @@ class Editor extends Component {
 					const ext = extname( url.parse( text ).pathname );
 					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
 						text = text.replace( /\\/g, '/' );
+						console.log( 'TEXT: ');
+						console.log( text );
 						text = `<Image src="${text}" alt="Enter description" width="50%" height="auto" />`;
 					}
 				}
@@ -1192,19 +1197,19 @@ class Editor extends Component {
 		this.editor = editor;
 		this.monaco = monaco;
 
+		this.dragProvider = new MonacoDragNDropProvider( this.handleDrop, editor, monaco );
 		this.editor.onMouseDown( ( e ) => {
 			const target = e.target;
 			if ( target && target.element && target.element.classList.contains( 'glyph-icon' ) ) {
 				this.triggerConfiguratorViaGlyph();
 			}
 		});
+		this.forceUpdate();
 	}
 
 	render() {
 		MONACO_OPTIONS.fontSize = this.props.splitPos !== 1 ? this.props.fontSize : 4;
 		debug( 'Re-rendering monaco editor...' );
-
-		const dragProvider = new MonacoDragNDropProvider( this.handleDrop, this.editor, this.monaco );
 		let outerStyle;
 		if ( this.props.splitPos === 1 ) {
 			// Need to place Monaco editor outside of split pane hidden from view since we cannot set its width to zero as this causes a crash and there is no headless mode but we need to interact with the editor.
@@ -1225,7 +1230,7 @@ class Editor extends Component {
 						return { context: 'editor' };
 					}}
 				>
-					<div {...dragProvider.props}>
+					<div {...this.dragProvider.props} >
 						<MonacoEditor
 							height={this.props.height}
 							width={max( window.innerWidth * ( 1.0 - this.props.splitPos ), 300 )}
