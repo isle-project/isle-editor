@@ -6,7 +6,6 @@ import { withTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
-import isArray from '@stdlib/assert/is-array';
 import isLineButtons from 'utils/is-line-buttons';
 import closeHintButtons from 'utils/close-hint-buttons';
 import NextArrow from './next_arrow';
@@ -35,11 +34,13 @@ import './slick.min.css';
 class DefaultSlider extends Component {
 	constructor( props ) {
 		super( props );
+		let nChildren = 0;
 		const childDivs = props.children && props.children.length > 0 ?
 			React.Children.map( props.children, ( child ) => {
 				if ( isLineButtons( child ) ) {
 					return null;
 				}
+				nChildren += 1;
 				return ( <div> {child} </div> );
 			}) : <div></div>;
 		const settings = {
@@ -62,6 +63,7 @@ class DefaultSlider extends Component {
 		}
 
 		this.state = {
+			nChildren,
 			childDivs,
 			settings,
 			currentSlide: 1
@@ -76,15 +78,18 @@ class DefaultSlider extends Component {
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.children !== prevProps.children ) {
+			let nChildren = 0;
 			const childDivs = this.props.children && this.props.children.length > 0 ?
 				React.Children.map( this.props.children, ( child ) => {
 					if ( isLineButtons( child ) ) {
 						return null;
 					}
+					nChildren += 1;
 					return <div> {child} </div>;
 				}) : <div></div>;
 			this.setState({
-				childDivs
+				childDivs,
+				nChildren
 			});
 		}
 		if ( this.props.goto !== prevProps.goto && this.slider ) {
@@ -107,7 +112,7 @@ class DefaultSlider extends Component {
 	}
 
 	render() {
-		if ( !isArray( this.props.children ) ) {
+		if ( this.state.nChildren <= 1 ) {
 			return <Alert variant="danger" >{this.props.t('missing-children')}</Alert>;
 		}
 		return (
