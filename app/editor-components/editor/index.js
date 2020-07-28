@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { EOL } from 'os';
 import { ipcRenderer } from 'electron';
 import axios from 'axios';
-import { basename, dirname, relative, resolve, join, extname, normalize } from 'path';
+import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
 import { spawn } from 'child_process';
 import https from 'https';
@@ -1093,9 +1093,9 @@ class Editor extends Component {
 					text = `<VideoPlayer url="${text}" />`;
 				}
 				else {
-					text = normalize( text );
 					const ext = extname( url.parse( text ).pathname );
 					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
+						text = text.replace( /\\/g, '/' );
 						text = `<Image src="${text}" alt="Enter description" width="50%" height="auto" />`;
 					}
 				}
