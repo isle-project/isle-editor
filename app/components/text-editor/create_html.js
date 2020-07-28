@@ -125,6 +125,7 @@ const createHTML = ( title, body ) => `<!doctype html>
 				background-color: lightgray;
 				color: black;
 				border-radius: 5px;
+				text-align: left;
 				opacity: 0;
 				padding: 15px;
 				position: fixed;
