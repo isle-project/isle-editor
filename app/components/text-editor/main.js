@@ -59,6 +59,27 @@ const md = markdownit({
 let savedOverflow;
 
 
+// FUNCTIONS //
+
+const blobToBase64 = ( blob ) => {
+	const { FileReader } = window;
+	const reader = new FileReader();
+	reader.readAsDataURL( blob );
+	return new Promise(resolve => {
+		reader.onloadend = () => {
+			resolve(reader.result);
+		};
+	});
+};
+
+async function toDataURL( url ){
+	const res = await fetch( url )
+		.then( response => response.blob() )
+		.then( blobToBase64 );
+	return res;
+}
+
+
 // MAIN //
 
 /**
@@ -186,13 +207,19 @@ class TextEditor extends Component {
 				content: icons.pdf,
 				run: ( state, dispatch ) => {
 					this.togglePDFModal();
-					this.exportPDF = ( config ) => {
+					this.exportPDF = async ( config ) => {
 						const title = document.title || 'provisoric';
 						let doc;
 						try {
 							const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 							const tmp = document.createElement( 'div' );
 							tmp.appendChild( domNode );
+							const images = tmp.getElementsByTagName( 'img' );
+							for ( let i = 0; i < images.length; i++ ) {
+								const img = images[ i ];
+								img.crossOrigin = 'Anonymous';
+								img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+							}
 							const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
 							doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
 						} catch ( err ) {
