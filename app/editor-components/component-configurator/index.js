@@ -139,6 +139,13 @@ class ComponentConfigurator extends Component {
 			defaultValue: '',
 			description: 'Component identifier. Has to begin with a letter followed by letters, digits, hyphens ( - ), underscores ( _ ), colons ( : ), and periods ( . ).'
 		});
+
+		this.selfClosing = endsWith( rtrim( value ), '/>' );
+		if ( this.selfClosing ) {
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|\\/>)', 'i' );
+		} else {
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|>)', 'i' );
+		}
 		const propValues = {};
 		const propActive = {};
 		const propertyTypes = {};
@@ -161,19 +168,22 @@ class ComponentConfigurator extends Component {
 			propActive,
 			...propValues
 		};
+		if ( !this.selfClosing ) {
+			docProps.unshift({
+				name: 'children',
+				type: '(string|node)',
+				defaultValue: '',
+				description: 'Content between opening and closing tag'
+			});
+			this.RE_CHILDREN = new RegExp( '^\\s*<'+name+'\\s*>'+EOL+'?([\\s\\S]*?)'+EOL+'?</'+name+'>' );
+			isRequired[ 'children' ] = true;
+		}
 		this.propertyTypes = propertyTypes;
 		this.isRequired = isRequired;
 		this.defaultStrings = defaultStrings;
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
 		this.description = md.render( doc.description || 'Component description is missing.' );
-		this.selfClosing = endsWith( rtrim( value ), '/>' );
-
-		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|\\/>)', 'i' );
-		} else {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`?([\\s\\S]*?)`?}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|>)', 'i' );
-		}
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -249,6 +259,13 @@ class ComponentConfigurator extends Component {
 				newActive[ propName ] = true;
 			}
 		} while ( match );
+		if ( !this.selfClosing ) {
+			const match = value.match( this.RE_CHILDREN );
+			if ( match[ 1 ] ) {
+				newValues[ 'prop:children' ] = match[ 1 ];
+				newActive[ 'children' ] = true;
+			}
+		}
 		this.setState({
 			...newValues,
 			propActive: newActive
@@ -257,7 +274,8 @@ class ComponentConfigurator extends Component {
 			for ( let i = 0; i < requiredKeys.length; i++ ) {
 				if (
 					this.isRequired[ requiredKeys[ i ] ] &&
-					!newActive[ requiredKeys[ i ] ]
+					!newActive[ requiredKeys[ i ] ] &&
+					requiredKeys[ i ] !== 'children'
 				) {
 					debug( `Should insert ${requiredKeys[ i ]} attribute...` );
 					this.insertAttribute( requiredKeys[ i ] );
@@ -287,6 +305,28 @@ class ComponentConfigurator extends Component {
 		this.setState({
 			value: removePlaceholderMarkup( this.props.component.value )
 		}, this.calculateValuesFromText );
+	}
+
+	replaceChildrenFactory = () => {
+		let oldValue;
+		const debouncedValueUpdate = debounce( ( newValue ) => {
+			let { value, name } = this.state;
+			value = replace( value, new RegExp( oldValue+'('+EOL+'?)</'+name+'>' ), newValue+'$1</'+name+'>' );
+			this.setState({
+				value
+			});
+			oldValue = null;
+		}, 300 );
+		return ( newValue ) => {
+			if ( !oldValue ) {
+				oldValue = this.state[ 'prop:children' ];
+			}
+			this.setState({
+				'prop:children': newValue
+			}, () => {
+				debouncedValueUpdate( newValue );
+			});
+		};
 	}
 
 	replaceStringFactory = ( key ) => {
@@ -441,60 +481,73 @@ class ComponentConfigurator extends Component {
 			let input;
 			const propValue = this.state[ 'prop:'+name ];
 			const propType = this.propertyTypes[ name ];
-			switch ( propType ) {
-				case 'number':
-					input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
-					break;
-				case 'string':
-					input = <TextArea
-						value={propValue}
-						rows={2}
-						placeholder={`Enter ${name}...`}
-						onChange={this.replaceStringFactory(name)}
-					/>;
-					break;
-				case 'boolean':
-					input = <Checkbox
-						value={propValue}
-						onChange={this.replaceNumberOrBooleanFactory(name)}
-					/>;
-					break;
-				case 'array':
-				case 'object': {
-					if ( isString( propValue ) ) {
-						// Case: Array or object contains JSX or other non-standard code
+			if ( name === 'children' ) {
+				input = <TextArea
+					value={propValue}
+					rows={3}
+					placeholder="Enter content..."
+					onChange={this.replaceChildrenFactory()}
+					resizable="vertical"
+				/>;
+			} else {
+				switch ( propType ) {
+					case 'number':
+						input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
+						break;
+					case 'string':
+						input = <TextArea
+							value={propValue}
+							rows={2}
+							placeholder={`Enter ${name}...`}
+							onChange={this.replaceStringFactory(name)}
+							resizable="vertical"
+						/>;
+						break;
+					case 'boolean':
+						input = <Checkbox
+							value={propValue}
+							onChange={this.replaceNumberOrBooleanFactory(name)}
+						/>;
+						break;
+					case 'array':
+					case 'object': {
+						if ( isString( propValue ) ) {
+							// Case: Array or object contains JSX or other non-standard code
+							input = <TextArea
+								value={propValue}
+								rows={3}
+								placeholder={`Enter ${name}...`}
+								onChange={this.replaceObjectFactory(name)}
+								resizable="vertical"
+							/>;
+						} else {
+							if ( !propValue ) {
+								propValue = ( propType === 'array' ) ? [] : {};
+							}
+							const changeHandler = this.handleJSONChangeFactory( name );
+							input = <ReactJson
+								name={false}
+								src={propValue}
+								onAdd={changeHandler}
+								onEdit={changeHandler}
+								onDelete={changeHandler}
+								enableClipboard={false}
+								displayDataTypes={false}
+								displayObjectSize={false}
+							/>;
+						}
+						break;
+					}
+					case 'function':
+					default:
 						input = <TextArea
 							value={propValue}
 							rows={3}
-							placeholder={`Enter ${name}...`}
 							onChange={this.replaceObjectFactory(name)}
+							placeholder={`Enter ${name}...`}
+							resizable="vertical"
 						/>;
-					} else {
-						if ( !propValue ) {
-							propValue = ( propType === 'array' ) ? [] : {};
-						}
-						const changeHandler = this.handleJSONChangeFactory( name );
-						input = <ReactJson
-							name={false}
-							src={propValue}
-							onAdd={changeHandler}
-							onEdit={changeHandler}
-							onDelete={changeHandler}
-							enableClipboard={false}
-							displayDataTypes={false}
-							displayObjectSize={false}
-						/>;
-					}
-					break;
 				}
-				case 'function':
-				default:
-					input = <TextArea
-						value={propValue}
-						rows={3}
-						onChange={this.replaceObjectFactory(name)}
-						placeholder={`Enter ${name}...`}
-					/>;
 			}
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 				<td>

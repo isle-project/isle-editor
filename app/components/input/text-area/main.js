@@ -24,7 +24,7 @@ const uid = generateUID( 'text-area' );
 * @property {boolean} disabled - controls whether the text area shall be disabled
 * @property {string} legend - legend text
 * @property {string} placeholder - placeholder text
-* @property {boolean} resizable - controls whether the text area shall be resizable
+* @property {string} resizable - controls whether the text area shall be resizable (can be either `both`, `horizontal`, `vertical`, or `none`)
 * @property {number} rows - number of rows
 * @property {Object} style - CSS inline styles
 * @property {Function} onBlur - callback function invoked when the text area loses focus
@@ -97,7 +97,7 @@ class TextArea extends Component {
 					onBlur={this.props.onBlur}
 					onChange={this.handleChange}
 					style={{
-						resize: this.props.resizable ? 'both' : 'none',
+						resize: this.props.resizable,
 						...this.props.style
 					}}
 					rows={this.props.rows}
@@ -120,7 +120,7 @@ TextArea.defaultProps = {
 	onBlur() {},
 	onChange() {},
 	placeholder: 'Enter text',
-	resizable: false,
+	resizable: 'none',
 	rows: 5,
 	style: {}
 };
