@@ -535,17 +535,19 @@ class Editor extends Component {
 		const model = this.editor.getModel();
 		this.monaco.editor.setModelMarkers( model, 'eslint', errs );
 
-		const preamble = model.findNextMatch( '---([\\S\\s\\n]*?)---', 0, true, false, null, false );
-		if ( preamble && preamble.range ) {
-			this.editor.deltaDecorations( this.decorations, [
-				{
-					range: preamble.range,
-					options: {
-						isWholeLine: true,
-						className: 'preamble_content'
+		if ( model ) {
+			const preamble = model.findNextMatch( '---([\\S\\s\\n]*?)---', 0, true, false, null, false );
+			if ( preamble && preamble.range ) {
+				this.editor.deltaDecorations( this.decorations, [
+					{
+						range: preamble.range,
+						options: {
+							isWholeLine: true,
+							className: 'preamble_content'
+						}
 					}
-				}
-			]);
+				]);
+			}
 		}
 		const node = this.editor.getContainerDomNode();
 		node.addEventListener( 'dblclick', () => {
