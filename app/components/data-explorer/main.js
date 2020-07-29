@@ -299,12 +299,12 @@ class DataExplorer extends Component {
 
 	restoreTransformations = ( actions ) => {
 		let state = this.state;
-		console.log( 'Restoring transformations...' );
+		debug( 'Restoring transformations...' );
 		for ( let i = actions.length - 1; i >= 0; i-- ) {
 			const action = actions[ i ];
 			switch ( action.type ) {
 				case DATA_EXPLORER_VARIABLE_TRANSFORMER:
-					console.log( `Should add transformed variable ${action.value.name}` );
+					debug( `Should add transformed variable ${action.value.name}` );
 					if ( !hasProp( this.props.data, action.value.name ) ) {
 						const values = valuesFromFormula( action.value.code, state.data );
 						state = this.transformVariable( action.value.name, values, state );
@@ -312,7 +312,7 @@ class DataExplorer extends Component {
 				break;
 				case DATA_EXPLORER_BIN_TRANSFORMER: {
 					const { name, variable, breaks, catNames } = action.value;
-					console.log( `Should add binned variable ${name}` );
+					debug( `Should add binned variable ${name}` );
 					if ( !hasProp( this.props.data, name ) ) {
 						const rawData = state.data[ variable ];
 						const values = retrieveBinnedValues( rawData, catNames, breaks );
@@ -322,7 +322,7 @@ class DataExplorer extends Component {
 				break;
 				case DATA_EXPLORER_CAT_TRANSFORMER: {
 					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
-					console.log( `Should add recoded variable ${name}` );
+					debug( `Should add recoded variable ${name}` );
 					if ( !hasProp( this.props.data, name ) ) {
 						if ( state.data[ firstVar ]) {
 							const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
@@ -1396,9 +1396,10 @@ class DataExplorer extends Component {
 			}
 		</Tab.Content>;
 		const hasQuestions = isArray( this.props.questions ) && this.props.questions.length > 0;
+		const pagesHeight = this.props.style.height || ( window.innerHeight*0.9 ) - 165;
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
-			<Col xs={6} md={6}>
-				<Card>
+			<Col xs={6} md={6} >
+				<Card style={{ height: this.props.style.height, minHeight: this.props.style.height || window.innerHeight*0.9, padding: 0 }} >
 					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 						<Nav>
 							{ hasQuestions ? <Nav.Item className="explorer-data-nav">
@@ -1431,10 +1432,10 @@ class DataExplorer extends Component {
 							onClick={this.toggleToolbox}
 						>{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
 					</Navbar>
-					<Card.Body>
-						{ hasQuestions ?<Pages
+					<Card.Body style={{ overflowY: 'auto' }}>
+						{ hasQuestions ? <Pages
 							id={this.id + '_questions'}
-							height={( window.innerHeight*0.9 ) - 165}
+							height={pagesHeight}
 							size="small"
 							className="data-explorer-questions"
 							style={{
@@ -1513,7 +1514,7 @@ class DataExplorer extends Component {
 				</Card>
 			</Col>
 			<Col xs={6} md={6}>
-				<div className="card card-default" style={{ minHeight: window.innerHeight*0.9, padding: 0 }}>
+				<div className="card card-default" style={{ height: this.props.style.height, minHeight: this.props.style.height || window.innerHeight*0.9, padding: 0 }} >
 					<div className="card-header clearfix">
 						<h3 className="data-explorer-output-header">Output</h3>
 						<Gate owner>
