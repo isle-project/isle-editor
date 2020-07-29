@@ -42,10 +42,10 @@ const uid = generateUID( 'image-upload-editor' );
 
 // FUNCTIONS //
 
-function uploadImage(file) {
+function uploadImage( file ) {
 	return new Promise((resolve, reject) => {
 		const { FileReader } = window;
-		if (FileReader) {
+		if ( FileReader ) {
 			const reader = new FileReader();
 			reader.onload = event => {
 				// base64 encoded url.
@@ -87,20 +87,20 @@ class ImageUploadEditor extends React.PureComponent {
 
 	_onSelectFile = ( event ) => {
 		const file = event.target.files && event.target.files[0];
-		if (file && typeof file === 'object') {
+		if ( file && typeof file === 'object' ) {
 			this._upload(file);
 		}
 	}
 
-	_onSuccess = (image) => {
-		if (this._unmounted) {
+	_onSuccess = ( image ) => {
+		if ( this._unmounted ) {
 			return;
 		}
-		this.props.close(image);
+		this.props.close( image );
 	}
 
-	_onError = (error) => {
-		if (this._unmounted) {
+	_onError = ( error ) => {
+		if ( this._unmounted ) {
 			return;
 		}
 		this.setState({
@@ -110,10 +110,10 @@ class ImageUploadEditor extends React.PureComponent {
 		});
 	}
 
-	_upload = async (file) => {
+	_upload = async ( file ) => {
 		try {
 			this.setState({ pending: true, error: null });
-			const image = await uploadImage(file);
+			const image = await uploadImage( file );
 			this._onSuccess( image );
 		} catch ( ex ) {
 			this._onError(ex);
