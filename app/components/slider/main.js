@@ -13,6 +13,7 @@ import PrevArrow from './previous_arrow';
 import './load_translations.js';
 import './slick-theme.min.css';
 import './slick.min.css';
+import './slider.css';
 
 
 // MAIN //
