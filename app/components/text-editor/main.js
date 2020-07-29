@@ -463,7 +463,7 @@ class TextEditor extends Component {
 		}, clbk );
 	}
 
-	submitReport = ( additionalRecipientObj = null, message = null ) => {
+	submitReport = async ( additionalRecipientObj = null, message = null ) => {
 		const session = this.context;
 		if ( session.anonymous ) {
 			return session.addNotification({
@@ -476,6 +476,12 @@ class TextEditor extends Component {
 		let domNode = DOMSerializer.fromSchema( schema ).serializeFragment( this.editorState.doc.content );
 		let tmp = document.createElement( 'div' );
 		tmp.appendChild( domNode );
+		const images = tmp.getElementsByTagName( 'img' );
+		for ( let i = 0; i < images.length; i++ ) {
+			const img = images[ i ];
+			img.crossOrigin = 'Anonymous';
+			img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+		}
 		const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
 		const title = document.title || 'provisoric';
 		const html = createHTML( title, innerHTML );
