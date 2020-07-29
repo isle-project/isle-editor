@@ -1980,7 +1980,7 @@ class Session {
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
-		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.user.token );
+		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.jwt.token );
 		xhr.onreadystatechange = () => {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
