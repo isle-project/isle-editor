@@ -19,6 +19,7 @@ import replace from '@stdlib/string/replace';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
+import blobToBase64 from 'utils/blob-to-base64';
 import SessionContext from 'session/context.js';
 const PeerSubmitModal = Loadable( () => import( './peer_submit_modal.js' ) );
 const SubmitModal = Loadable( () => import( './submit_modal.js' ) );
@@ -60,17 +61,6 @@ let savedOverflow;
 
 
 // FUNCTIONS //
-
-const blobToBase64 = ( blob ) => {
-	const { FileReader } = window;
-	const reader = new FileReader();
-	reader.readAsDataURL( blob );
-	return new Promise(resolve => {
-		reader.onloadend = () => {
-			resolve(reader.result);
-		};
-	});
-};
 
 async function toDataURL( url ){
 	const res = await fetch( url )
