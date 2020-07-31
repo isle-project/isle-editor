@@ -306,7 +306,7 @@
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0",
     "vex-js": "^4.1.0",
-    "victory": "35.0.7",
+    "victory": "35.0.8",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "xterm-addon-search": "^0.7.0",
