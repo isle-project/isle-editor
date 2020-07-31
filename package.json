@@ -233,7 +233,7 @@
     "react-slick": "0.27.1",
     "react-sortable-tree": "^2.7.1",
     "react-split-pane": "0.1.91",
-    "react-table": "6.11.5",
+    "react-table": "7.3.3",
     "react-transition-group": "^4.4.1",
     "react-viewer": "^3.2.2",
     "react-virtualized": "^9.19.1",
