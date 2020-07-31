@@ -2644,6 +2644,7 @@ class Sketchpad extends Component {
 			};
 		}
 		const canvas = <canvas
+			id={`${this.id}-canvas`}
 			className="sketch-canvas"
 			width={this.state.canvasWidth * DPR}
 			height={this.state.canvasHeight * DPR}
