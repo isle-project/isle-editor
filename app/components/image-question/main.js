@@ -12,8 +12,10 @@ import ResponseVisualizer from 'components/response-visualizer';
 import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ChatButton from 'components/chat-button';
+import Sketchpad from 'components/sketchpad';
 import FeedbackButtons from 'components/feedback';
 import SessionContext from 'session/context.js';
+import blobToBase64 from 'utils/blob-to-base64';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './load_translations.js';
 import './image_question.css';
@@ -35,6 +37,7 @@ const debug = logger( 'isle:image-question' );
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; sketchpad will not be rendered if set to `null`
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -80,11 +83,27 @@ class ImageQuestion extends Component {
 		this.setState({
 			submitted: true
 		});
-		session.log({
-			id: this.id,
-			type: IMAGE_QUESTION_SUBMISSION,
-			value: this.state.src
-		});
+		if ( this.state.src ) {
+			session.log({
+				id: this.id,
+				type: IMAGE_QUESTION_SUBMISSION,
+				value: this.state.src
+			});
+		} else {
+			const canvas = document.getElementById( this.id+'-canvas' );
+			canvas.toBlob( ( blob ) => {
+				blobToBase64( blob ).then( src => {
+					session.log({
+						id: this.id,
+						type: IMAGE_QUESTION_SUBMISSION,
+						value: src
+					});
+					this.setState({
+						src
+					});
+				});
+			});
+		}
 	}
 
 	/**
@@ -142,7 +161,11 @@ class ImageQuestion extends Component {
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					{ this.state.src ?
-						<Image className="image-question-image" alt={this.props.t('upload')} src={this.state.src} /> :
+						<Image
+							className="image-question-image center"
+							alt={this.props.t('upload')}
+							src={this.state.src}
+						/> :
 						<Fragment>
 							<div
 								className="image-question-dropzone"
@@ -162,6 +185,13 @@ class ImageQuestion extends Component {
 								ref={fileUpload => {
 									this.fileUpload = fileUpload;
 								}}
+							/>
+							<p className="center">{this.props.t('or')}</p>
+							<Sketchpad
+								id={this.id}
+								hideNavigationButtons hideSaveButtons hideTransmitButtons
+								canvasWidth={900}
+								canvasHeight={600}
 							/>
 						</Fragment>
 					}
@@ -191,7 +221,6 @@ class ImageQuestion extends Component {
 						}}>{this.props.t('reset')}</Button> : null }
 						<TimedButton
 							className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}
-							disabled={!this.state.src}
 						>
 							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 						</TimedButton>
@@ -217,6 +246,7 @@ ImageQuestion.defaultProps = {
 	chat: false,
 	disableSubmitNotification: false,
 	className: '',
+	sketchpad: {},
 	style: {},
 	onSubmit() {}
 };
@@ -231,6 +261,7 @@ ImageQuestion.propTypes = {
 	chat: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,
 	className: PropTypes.string,
+	sketchpad: PropTypes.object,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

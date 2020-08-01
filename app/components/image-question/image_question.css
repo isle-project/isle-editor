@@ -1,11 +1,11 @@
 .image-question {
-	max-width: 600px;
+	max-width: 1200px;
 	margin: 0 auto 10px;
 }
 
 .image-question-image {
-	width: 400px;
-	height: auto;
+	width: auto;
+	height: 600px;
 }
 
 .image-question-toolbar {
@@ -16,8 +16,8 @@
 }
 
 .image-question-dropzone {
-	min-height: 150px;
-	width: 50%;
+	min-height: 50px;
+	width: 25%;
 	margin: 0 auto;
 	border: 1px solid blue;
 	padding: 10px;
