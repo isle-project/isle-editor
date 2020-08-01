@@ -187,12 +187,13 @@ class ImageQuestion extends Component {
 								}}
 							/>
 							<p className="center">{this.props.t('or')}</p>
-							<Sketchpad
+							{this.props.sketchpad ? <Sketchpad
 								id={this.id}
 								hideNavigationButtons hideSaveButtons hideTransmitButtons
 								canvasWidth={900}
 								canvasHeight={600}
-							/>
+								{...this.props.sketchpad}
+							/> : null}
 						</Fragment>
 					}
 					{ this.props.feedback ? <FeedbackButtons vertical
