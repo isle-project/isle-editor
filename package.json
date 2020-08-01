@@ -219,7 +219,7 @@
     "react-innertext": "^1.1.5",
     "react-input-range": "^1.2.1",
     "react-joyride": "2.2.1",
-    "react-json-tree": "^0.11.2",
+    "react-json-tree": "^0.12.0",
     "react-json-view": "^1.19.1",
     "react-live": "^2.2.2",
     "react-notification-system": "^0.4.0",
