@@ -86,7 +86,7 @@ function createOption( label ) {
 	};
 }
 
-function byWithCount( arr, factor, funs, groups ) {
+function byWithCount( arr, factor, funs, group ) {
 	let table = {};
 	for ( let i = 0; i < arr.length; i++ ) {
 		if ( !isArray( table[ factor[ i ] ]) ) {
@@ -94,11 +94,51 @@ function byWithCount( arr, factor, funs, groups ) {
 		}
 		table[ factor[ i ] ].push( arr[ i ]);
 	}
-	let keys;
-	if ( groups ) {
-		keys = groups;
+	let keys = objectKeys( table );
+	if ( group.length === 2 ) {
+		const cat1 = group[ 0 ].categories;
+		const cat2 = group[ 1 ].categories;
+		if ( cat1 && cat2 ) {
+			keys.sort( ( a, b ) => {
+				const as = a.split( ':' );
+				const bs = b.split( ':' );
+				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
+				if ( diff !== 0 ) {
+					return diff;
+				}
+				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
+				return diff;
+			});
+		}
+		else if ( cat1 ) {
+			keys.sort( ( a, b ) => {
+				const as = a.split( ':' );
+				const bs = b.split( ':' );
+				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
+				if ( diff !== 0 ) {
+					return diff;
+				}
+				return as[ 1 ].localeCompare( bs[ 1 ], void 0, SORT_OPTS );
+			});
+		}
+		else if ( cat2 ) {
+			keys.sort( ( a, b ) => {
+				const as = a.split( ':' );
+				const bs = b.split( ':' );
+				let diff = as[ 0 ].localeCompare( bs[ 0 ], void 0, SORT_OPTS );
+				if ( diff !== 0 ) {
+					return diff;
+				}
+				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
+				return diff;
+			});
+		}
+		else {
+			keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+		}
+	} else if ( group.length === 1 && group[ 0 ].categories ) {
+		keys = group[ 0 ].categories;
 	} else {
-		keys = objectKeys( table );
 		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
 	}
 	const out = {};
@@ -162,13 +202,13 @@ class SummaryStatistics extends Component {
 			quantiles: [],
 			omit: false
 		};
-
 		this.statistics = props.statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ));
 	}
 
 	generateStatistics = () => {
 		const { data } = this.props;
 		let { selectedStats, variables, secondVariable, group, omit } = this.state;
+		group = group ? group.map( x => x.value ) : null;
 		const funs = [];
 		const statLabels = [];
 		for ( let i = 0; i < selectedStats.length; i++ ) {
@@ -211,7 +251,10 @@ class SummaryStatistics extends Component {
 							) {
 								x.push( first[ i ] );
 								y.push( second[ i ] );
-								groupData.push( data[ group ][ i ] );
+								const groupLabel = group.map( g => {
+									return data[ g ][ i ];
+								}).join( ':' );
+								groupData.push( groupLabel );
 							}
 						}
 					} else {
@@ -219,20 +262,33 @@ class SummaryStatistics extends Component {
 						for ( let i = 0; i < first.length; i++ ) {
 							if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
 								x.push( first[ i ] );
-								groupData.push( data[ group ][ i ] );
+								const groupLabel = group.map( g => {
+									return data[ g ][ i ];
+								}).join( ':' );
+								groupData.push( groupLabel );
 							}
 						}
 					}
 				} else {
-					// Case: grouping variable selected, do not omit missing values
+					// Case: grouping variable(s) selected, do not omit missing values
 					x = data[ variable ];
 					y = data[ secondVariable ];
-					groupData = data[ group ];
+					if ( group.length === 2 ) {
+						groupData = [];
+						for ( let i = 0; i < data[ variable ].length; i++ ) {
+							const groupLabel = group.map( g => {
+								return data[ g ][ i ];
+							}).join( ':' );
+							groupData.push( groupLabel );
+						}
+					} else {
+						groupData = data[ group[ 0 ] ];
+					}
 				}
 				if ( statLabels[ 0 ] === 'Correlation' ) {
-					const groups = group.categories;
-					res = by2WithCount( x, y, groupData, funs, groups );
-					const keys = groups || objectKeys( res );
+					const groupCats = group.length === 1 ? group[ 0 ].categories : null;
+					res = by2WithCount( x, y, groupData, funs, groupCats );
+					const keys = groupCats || objectKeys( res );
 					for ( let i = 0; i < keys.length; i++ ) {
 						const key = keys[ i ];
 
@@ -241,8 +297,7 @@ class SummaryStatistics extends Component {
 					}
 					variable = `${variable} vs. ${secondVariable}`;
 				} else {
-					const groups = group.categories;
-					res = byWithCount( x, groupData, funs, groups );
+					res = byWithCount( x, groupData, funs, group );
 				}
 			} else {
 				// Case: no grouping variable selected
@@ -365,7 +420,7 @@ class SummaryStatistics extends Component {
 						options={variables}
 						onChange={( value ) => {
 							this.setState({
-								variables: value
+								variables: value || []
 							});
 						}}
 						tooltip="Quantitative variable for which to compute statistic(s)"
@@ -411,19 +466,26 @@ class SummaryStatistics extends Component {
 						tooltip="Second variable for computing bivariate statistic"
 					/>
 					{ groupingVariables.length > 0 ?
-						<SelectInput
-							legend="Group By:"
-							options={groupingVariables}
-							clearable={true}
-							defaultValue={this.state.group}
-							menuPlacement="top"
-							onChange={( value ) => {
-								this.setState({
-									group: value
-								});
-							}}
-							tooltip="Calculate the statistic(s) separately for observations from each category of a chosen grouping variable"
-						/> : null
+						<FormGroup controlId="stats-form-group">
+							<Tooltip tooltip="Calculate the statistic(s) separately for observations from each category of either one or two grouping variable(s)">
+								<FormLabel>Group By:</FormLabel>
+							</Tooltip>
+							<Select
+								value={this.state.group}
+								options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}
+								isClearable
+								isMulti
+								onChange={( value ) => {
+									if ( !value || value.length <= 2 ) {
+										this.setState({
+											group: value
+										});
+									}
+								}}
+								styles={customStyles}
+								menuPortalTarget={document.body}
+							/>
+						</FormGroup> : null
 					}
 					<CheckboxInput
 						legend="Omit missing values"

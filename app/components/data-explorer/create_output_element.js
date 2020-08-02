@@ -191,11 +191,12 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	}
 	else if ( e.type === 'Statistics' ) {
 		if ( e.group ) {
+			const variables = entries( e.result );
 			let header;
 			if ( e.statistics.length === 1 && e.statistics[0] === 'Range' ) {
 				header = <tr>
 					<th className="not-sortable" >Variable</th>
-					<th>{e.group}</th>
+					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
 					<th>Range</th>
 					<th>Min</th>
 					<th>Max</th>
@@ -204,7 +205,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			} else if ( e.statistics.length === 1 && e.statistics[0] === 'Interquartile Range' ) {
 				header = <tr>
 					<th className="not-sortable" >Variable</th>
-					<th>{e.group}</th>
+					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
 					<th>IQR</th>
 					<th>Lower</th>
 					<th>Upper</th>
@@ -212,8 +213,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 				</tr>;
 			} else {
 				header = <tr>
-					<th className="not-sortable" >Variable</th>
-					<th>{e.group}</th>
+					<th className="not-sortable" >{variables.length > 1 ? 'Variable' : variables[ 0 ][ 0 ]}</th>
+					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
 					{e.statistics.map( ( name, i ) => {
 						return <th key={i}>{name}</th>;
 					})}
@@ -225,13 +226,21 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 					{header}
 				</thead>
 				<tbody>
-					{entries( e.result ).map( ( res, variableIndex ) => {
+					{variables.map( ( res ) => {
 						let grouped = entries( res[ 1 ] );
 						grouped = grouped.map( ( arr, groupIndex ) => {
+							let cats;
+							if ( e.group.length > 1 ) {
+								cats = arr[ 0 ].split( ':' ).map( ( x, i ) => {
+									return <td key={i} >{x}</td>;
+								});
+							} else {
+								cats = <td>{arr[ 0 ][ 0 ]}</td>;
+							}
 							return (
 								<tr key={groupIndex} >
-									<td>{res[ 0 ]}</td>
-									<td>{arr[ 0 ]}</td>
+									<td>{variables.length > 1 ? res[ 0 ] : ''}</td>
+									{cats}
 									{arr[ 1 ].value.map( ( v, groupIndex ) => {
 										if ( isArray( v ) ) {
 											if ( e.statistics.length === 1 ) {
