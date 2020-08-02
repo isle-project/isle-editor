@@ -154,7 +154,7 @@ class SummaryStatistics extends Component {
 				value: statistic( selectedStat ),
 				label: selectedStat
 			}],
-			variable: props.defaultX || props.variables[ 0 ],
+			variables: [ props.defaultX || props.variables[ 0 ] ],
 			secondVariable: props.defaultY || props.variables[ 1 ],
 			group: null,
 			showSecondVarSelect: false,
@@ -168,7 +168,7 @@ class SummaryStatistics extends Component {
 
 	generateStatistics = () => {
 		const { data } = this.props;
-		let { selectedStats, variable, secondVariable, group, omit } = this.state;
+		let { selectedStats, variables, secondVariable, group, omit } = this.state;
 		const funs = [];
 		const statLabels = [];
 		for ( let i = 0; i < selectedStats.length; i++ ) {
@@ -188,115 +188,119 @@ class SummaryStatistics extends Component {
 				statLabels.push( stat.label );
 			}
 		}
-		let groupData;
-		let res;
-		let x;
-		let y;
-
-		if ( group ) {
-			if ( omit ) {
-				// Case: grouping variable selected, omit missing values
-				x = [];
-				y = [];
-				groupData = [];
-				if ( variable && this.state.showSecondVarSelect ) {
-					let first = data[ variable ];
-					let second = data[ secondVariable ];
-					for ( let i = 0; i < first.length; i++ ) {
-						if (
-							( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
-							( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
-						) {
-							x.push( first[ i ] );
-							y.push( second[ i ] );
-							groupData.push( data[ group ][ i ] );
+		const result = {};
+		for ( let i = 0; i < variables.length; i++ ) {
+			let groupData;
+			let res;
+			let x;
+			let y;
+			const variable = variables[ i ];
+			if ( group ) {
+				if ( omit ) {
+					// Case: grouping variable selected, omit missing values
+					x = [];
+					y = [];
+					groupData = [];
+					if ( variable && this.state.showSecondVarSelect ) {
+						let first = data[ variable ];
+						let second = data[ secondVariable ];
+						for ( let i = 0; i < first.length; i++ ) {
+							if (
+								( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
+								( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
+							) {
+								x.push( first[ i ] );
+								y.push( second[ i ] );
+								groupData.push( data[ group ][ i ] );
+							}
+						}
+					} else {
+						let first = data[ variable ];
+						for ( let i = 0; i < first.length; i++ ) {
+							if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
+								x.push( first[ i ] );
+								groupData.push( data[ group ][ i ] );
+							}
 						}
 					}
 				} else {
-					let first = data[ variable ];
-					for ( let i = 0; i < first.length; i++ ) {
-						if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
-							x.push( first[ i ] );
-							groupData.push( data[ group ][ i ] );
-						}
+					// Case: grouping variable selected, do not omit missing values
+					x = data[ variable ];
+					y = data[ secondVariable ];
+					groupData = data[ group ];
+				}
+				if ( statLabels[ 0 ] === 'Correlation' ) {
+					const groups = group.categories;
+					res = by2WithCount( x, y, groupData, funs, groups );
+					const keys = groups || objectKeys( res );
+					for ( let i = 0; i < keys.length; i++ ) {
+						const key = keys[ i ];
+
+						// Extract correlation coefficient from correlation matrix:
+						res[ key ].value = res[ key ].value[ 0 ][ 1 ];
 					}
+					variable = `${variable} vs. ${secondVariable}`;
+				} else {
+					const groups = group.categories;
+					res = byWithCount( x, groupData, funs, groups );
 				}
 			} else {
-				// Case: grouping variable selected, do not omit missing values
-				x = data[ variable ];
-				y = data[ secondVariable ];
-				groupData = data[ group ];
-			}
-			if ( statLabels[ 0 ] === 'Correlation' ) {
-				const groups = group.categories;
-				res = by2WithCount( x, y, groupData, funs, groups );
-				const keys = groups || objectKeys( res );
-				for ( let i = 0; i < keys.length; i++ ) {
-					const key = keys[ i ];
-
+				// Case: no grouping variable selected
+				if ( omit ) {
+					x = [];
+					y = [];
+					if ( variable && this.state.showSecondVarSelect ) {
+						let first = data[ variable ];
+						let second = data[ secondVariable ];
+						for ( let i = 0; i < first.length; i++ ) {
+							if (
+								( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
+								( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
+							) {
+								x.push( first[ i ] );
+								y.push( second[ i ] );
+							}
+						}
+					} else {
+						let first = data[ variable ];
+						for ( let i = 0; i < first.length; i++ ) {
+							if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
+								x.push( first[ i ] );
+							}
+						}
+					}
+				} else {
+					x = data[ variable ];
+					y = data[ secondVariable ];
+				}
+				if ( statLabels[ 0 ] === 'Correlation' ) {
+					res = funs.map( f => f( x, y ) );
 					// Extract correlation coefficient from correlation matrix:
-					res[ key ].value = res[ key ].value[ 0 ][ 1 ];
+					res = {
+						value: res[ 0 ][ 1 ],
+						size: x.length
+					};
+					variable = `${variable} vs. ${secondVariable}`;
 				}
-				variable = `${variable} vs. ${secondVariable}`;
-			} else {
-				const groups = group.categories;
-				res = byWithCount( x, groupData, funs, groups );
-			}
-		} else {
-			// Case: no grouping variable selected
-			if ( omit ) {
-				x = [];
-				y = [];
-				if ( variable && this.state.showSecondVarSelect ) {
-					let first = data[ variable ];
-					let second = data[ secondVariable ];
-					for ( let i = 0; i < first.length; i++ ) {
-						if (
-							( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
-							( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
-						) {
-							x.push( first[ i ] );
-							y.push( second[ i ] );
-						}
-					}
-				} else {
-					let first = data[ variable ];
-					for ( let i = 0; i < first.length; i++ ) {
-						if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
-							x.push( first[ i ] );
-						}
-					}
+				else {
+					res = {
+						value: funs.map( f => f( x ) ),
+						size: x.length
+					};
 				}
-			} else {
-				x = data[ variable ];
-				y = data[ secondVariable ];
 			}
-			if ( statLabels[ 0 ] === 'Correlation' ) {
-				res = funs.map( f => f( x, y ) );
-				// Extract correlation coefficient from correlation matrix:
-				res = {
-					value: res[ 0 ][ 1 ],
-					size: x.length
-				};
-				variable = `${variable} vs. ${secondVariable}`;
-			}
-			else {
-				res = {
-					value: funs.map( f => f( x ) ),
-					size: x.length
-				};
-			}
+			result[ variable ] = res;
 		}
 		const output = {
-			variable: variable,
+			variables: variables,
 			statistics: statLabels,
 			type: 'Statistics',
-			result: res,
+			result,
 			group
 		};
 		this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
 			statistic: statLabels,
-			variable,
+			variables,
 			secondVariable: statLabels[ 0 ] === 'Correlation' ? secondVariable : null,
 			group
 		});
@@ -355,12 +359,13 @@ class SummaryStatistics extends Component {
 						/>
 					</FormGroup>
 					<SelectInput
-						legend="Variable:"
-						defaultValue={this.state.variable}
+						legend="Variable(s):"
+						defaultValue={this.state.variables}
+						multi
 						options={variables}
 						onChange={( value ) => {
 							this.setState({
-								variable: value
+								variables: value
 							});
 						}}
 						tooltip="Quantitative variable for which to compute statistic(s)"
@@ -384,6 +389,8 @@ class SummaryStatistics extends Component {
 										quantiles: value
 									});
 								}}
+								styles={customStyles}
+								menuPortalTarget={document.body}
 							/>
 						</FormGroup>:
 						null
