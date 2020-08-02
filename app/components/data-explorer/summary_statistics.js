@@ -12,7 +12,10 @@ import Tooltip from 'components/tooltip';
 import statistic from 'utils/statistic';
 import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
+import papplyRight from '@stdlib/utils/papply-right';
+import round from '@stdlib/math/base/special/round';
 import CheckboxInput from 'components/input/checkbox';
+import CreatableSelect from 'react-select/creatable';
 import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -71,9 +74,17 @@ const customStyles = {
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
+const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 
 
 // FUNCTIONS //
+
+function createOption( label ) {
+	return {
+		label,
+		value: label
+	};
+}
 
 function byWithCount( arr, factor, funs, groups ) {
 	let table = {};
@@ -147,15 +158,36 @@ class SummaryStatistics extends Component {
 			secondVariable: props.defaultY || props.variables[ 1 ],
 			group: null,
 			showSecondVarSelect: false,
+			showQuantiles: false,
+			quantiles: [],
 			omit: false
 		};
+
+		this.statistics = props.statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ));
 	}
 
 	generateStatistics = () => {
 		const { data } = this.props;
 		let { selectedStats, variable, secondVariable, group, omit } = this.state;
-		const funs = selectedStats.map( x => x.value );
-		selectedStats = selectedStats.map( x => x.label );
+		const funs = [];
+		const statLabels = [];
+		for ( let i = 0; i < selectedStats.length; i++ ) {
+			const stat = selectedStats[ i ];
+			if ( stat.label === 'Quantile' ) {
+				for ( let j = 0; j < this.state.quantiles.length; j++ ) {
+					const quantile = this.state.quantiles[ j ].value;
+					funs.push(
+						papplyRight( stat.value, quantile, 5 )
+					);
+					statLabels.push(
+						`${round( quantile*100 )}% Quantile`
+					);
+				}
+			} else {
+				funs.push( stat.value );
+				statLabels.push( stat.label );
+			}
+		}
 		let groupData;
 		let res;
 		let x;
@@ -195,7 +227,7 @@ class SummaryStatistics extends Component {
 				y = data[ secondVariable ];
 				groupData = data[ group ];
 			}
-			if ( selectedStats[ 0 ] === 'Correlation' ) {
+			if ( statLabels[ 0 ] === 'Correlation' ) {
 				const groups = group.categories;
 				res = by2WithCount( x, y, groupData, funs, groups );
 				const keys = groups || objectKeys( res );
@@ -239,7 +271,7 @@ class SummaryStatistics extends Component {
 				x = data[ variable ];
 				y = data[ secondVariable ];
 			}
-			if ( selectedStats[ 0 ] === 'Correlation' ) {
+			if ( statLabels[ 0 ] === 'Correlation' ) {
 				res = funs.map( f => f( x, y ) );
 				// Extract correlation coefficient from correlation matrix:
 				res = {
@@ -257,15 +289,15 @@ class SummaryStatistics extends Component {
 		}
 		const output = {
 			variable: variable,
-			statistics: selectedStats,
+			statistics: statLabels,
 			type: 'Statistics',
 			result: res,
 			group
 		};
 		this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
-			statistic: selectedStats,
+			statistic: statLabels,
 			variable,
-			secondVariable: selectedStats[ 0 ] === 'Correlation' ? secondVariable : null,
+			secondVariable: statLabels[ 0 ] === 'Correlation' ? secondVariable : null,
 			group
 		});
 		this.props.onCreated( output );
@@ -273,7 +305,6 @@ class SummaryStatistics extends Component {
 
 	render() {
 		let {
-			statistics,
 			variables,
 			groupingVariables
 		} = this.props;
@@ -294,11 +325,12 @@ class SummaryStatistics extends Component {
 						</Tooltip>
 						<Select
 							value={selectedStats}
-							options={statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ))}
+							options={this.statistics}
 							isMulti
 							onChange={( value ) => {
+								let labels;
 								if ( isArray( value ) && value.length > 0 ) {
-									const labels = value.map( x => x.label );
+									labels = value.map( x => x.label );
 									if ( labels[ labels.length-1 ] === 'Correlation' ) {
 										return this.setState({
 											selectedStats: [{
@@ -314,7 +346,8 @@ class SummaryStatistics extends Component {
 								}
 								this.setState({
 									selectedStats: value,
-									showSecondVarSelect: false
+									showSecondVarSelect: false,
+									showQuantiles: labels && labels.includes( 'Quantile' )
 								});
 							}}
 							styles={customStyles}
@@ -332,6 +365,29 @@ class SummaryStatistics extends Component {
 						}}
 						tooltip="Quantitative variable for which to compute statistic(s)"
 					/>
+					{ this.state.showQuantiles ?
+						<FormGroup controlId="quantiles-form-group" >
+							<Tooltip
+								tooltip="Enter any numbers between zero and one"
+								placement="right"
+							>
+								<FormLabel>Quantile(s):</FormLabel>
+							</Tooltip>
+							<CreatableSelect
+								defaultValue={[]}
+								options={QUANTILE_OPTIONS}
+								isClearable
+								isMulti
+								placeholder="Enter quantiles to compute..."
+								onChange={( value ) => {
+									this.setState({
+										quantiles: value
+									});
+								}}
+							/>
+						</FormGroup>:
+						null
+					}
 					<SelectInput
 						legend="Second Variable:"
 						defaultValue={this.state.secondVariable}
@@ -403,7 +459,10 @@ SummaryStatistics.defaultProps = {
 		'Variance',
 		'Correlation',
 		'Skewness',
-		'Excess Kurtosis'
+		'Excess Kurtosis',
+		'First Quartile',
+		'Third Quartile',
+		'Quantile'
 	]
 };
 

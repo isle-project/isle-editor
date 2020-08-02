@@ -1649,7 +1649,10 @@ DataExplorer.defaultProps = {
 		'Variance',
 		'Correlation',
 		'Skewness',
-		'Excess Kurtosis'
+		'Excess Kurtosis',
+		'First Quartile',
+		'Third Quartile',
+		'Quantile'
 	],
 	plots: [
 		'Bar Chart',
