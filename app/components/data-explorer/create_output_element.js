@@ -230,7 +230,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 						grouped = grouped.map( ( arr, groupIndex ) => {
 							return (
 								<tr key={groupIndex} >
-									<td>{ groupIndex === 0 ? res[ 0 ] : '' }</td>
+									<td>{res[ 0 ]}</td>
 									<td>{arr[ 0 ]}</td>
 									{arr[ 1 ].value.map( ( v, groupIndex ) => {
 										if ( isArray( v ) ) {
