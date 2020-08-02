@@ -1,5 +1,6 @@
 // MODULES //
 
+import papplyRight from '@stdlib/utils/papply-right';
 import kurtosis from './kurtosis.js';
 import skewness from './skewness.js';
 import quantile from './quantile.js';
@@ -12,6 +13,12 @@ import mean from './mean.js';
 import min from './min.js';
 import max from './max.js';
 import sum from './sum.js';
+
+
+// VARIABLES //
+
+const firstQuartile = papplyRight( quantile, 0.25, 5 );
+const thirdQuartile = papplyRight( quantile, 0.75, 5 );
 
 
 // MAIN //
@@ -48,6 +55,9 @@ function statistic( statName ) {
 	case 'Max':
 		fun = max;
 		break;
+	case 'Quantile':
+		fun = quantile;
+		break;
 	case 'Range':
 		fun = range;
 		break;
@@ -65,6 +75,12 @@ function statistic( statName ) {
 		break;
 	case 'Excess Kurtosis':
 		fun = kurtosis;
+		break;
+	case 'First Quartile':
+		fun = firstQuartile;
+		break;
+	case 'Third Quartile':
+		fun = thirdQuartile;
 		break;
 	default:
 		fun = function noop() {};
