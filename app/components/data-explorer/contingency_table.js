@@ -169,7 +169,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 	return table;
 };
 
-const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces ) => {
+const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display ) => {
 	const groupedData = {};
 	for ( let i = 0; i < data[ group ].length; i++ ) {
 		const v = data[ group ][ i ];
@@ -186,7 +186,7 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 	const keys = group.categories || objectKeys( groupedData );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
-		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces ) );
+		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) );
 	}
 
 	const output = {
@@ -254,7 +254,7 @@ class ContingencyTable extends Component {
 				value: table
 			};
 		} else {
-			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces );
+			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display );
 		}
 		this.props.logAction( DATA_EXPLORER_CONTINGENCY_TABLE, {
 			rowVar, colVar, group, relativeFreqs
