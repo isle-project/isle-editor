@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
+import Overlay from 'react-bootstrap/Overlay';
 import NumberInput from 'components/input/number';
 import Button from 'react-bootstrap/Button';
 import round from '@stdlib/math/base/special/round';
@@ -46,7 +47,9 @@ class FilterInputRange extends Component {
 
 	render() {
 		const { currentValue } = this.state;
-		return ( <div className="input-range-wrapper" >
+		return ( <div className="input-range-wrapper" ref={( div ) => {
+			this.inputRange = div;
+		}} >
 			<InputRange
 				allowSameValues
 				maxValue={this.props.maxValue}
@@ -69,44 +72,59 @@ class FilterInputRange extends Component {
 				}}
 				style={{ float: 'left' }}
 			/>
-			{ this.state.showRangeInput ? <div>
-				<NumberInput
-					inline value={currentValue.min}
-					min={this.props.minValue}
-					max={currentValue.max}
-					onChange={( v ) => {
-						const newValue = {
-							min: Number( v ),
-							max: this.state.currentValue.max
-						};
-						this.setState({
-							currentValue: newValue
-						});
-					}}
-					step={0.1}
-				/>
-				<NumberInput
-					inline value={currentValue.max}
-					min={currentValue.min}
-					max={this.props.maxValue}
-					onChange={( v ) => {
-						const newValue = {
-							min: this.state.currentValue.min,
-							max: Number( v )
-						};
-						this.setState({
-							currentValue: newValue
-						});
-					}}
-					step={0.1}
-				/>
-				<Button
-					variant="outline-secondary" size="sm"
-					onClick={this.hideRangeInput}
-				>
-					<i className="fas fa-times"></i>
-				</Button>
-			</div> : null}
+			<Overlay
+				show={this.state.showRangeInput}
+				target={this.inputRange}
+			>
+				{({ placement, scheduleUpdate, arrowProps, outOfBoundaries, show, ...props }) => {
+					return (
+						<div className="input-range-number-entry"
+							{...props}
+							style={{
+								...props.style
+							}}
+						>
+							<NumberInput
+								inline
+								value={currentValue.min}
+								min={this.props.minValue}
+								max={currentValue.max}
+								onChange={( v ) => {
+									const newValue = {
+										min: Number( v ),
+										max: this.state.currentValue.max
+									};
+									this.setState({
+										currentValue: newValue
+									});
+								}}
+								step={0.1}
+							/>
+							<NumberInput
+								inline value={currentValue.max}
+								min={currentValue.min}
+								max={this.props.maxValue}
+								onChange={( v ) => {
+									const newValue = {
+										min: this.state.currentValue.min,
+										max: Number( v )
+									};
+									this.setState({
+										currentValue: newValue
+									});
+								}}
+								step={0.1}
+							/>
+							<Button
+								variant="outline-secondary" size="sm"
+								onClick={this.hideRangeInput}
+							>
+								<i className="fas fa-times"></i>
+							</Button>
+						</div>
+					);
+				}}
+			</Overlay>
 		</div> );
 	}
 }

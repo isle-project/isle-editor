@@ -6,6 +6,13 @@
 	margin-top: 4px;
 }
 
+.input-range-number-entry {
+	border: 1px solid black;
+	background: white;
+	padding: 8px;
+	margin-bottom: 20px;
+}
+
 .input-range__slider {
 	appearance: none;
 	background: #3f51b5;
