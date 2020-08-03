@@ -30,6 +30,7 @@ const showResult = ( res ) => {
 * @property {string} code - R code used to evaluate
 * @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
 * @property {(string|Array<string>)} prependCode - R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating
+* @property {Function} onResult - callback invoked with `error` (`null` if operation was successful) and `result` holding R output
 */
 class ROutput extends Component {
 	constructor( props ) {
@@ -73,12 +74,14 @@ class ROutput extends Component {
 						result: error,
 						running: false
 					});
+					this.props.onResult( error );
 				},
 				onResult: ( err, res, body ) => {
 					this.setState({
 						result: body,
 						running: false
 					});
+					this.props.onResult( err, body );
 				}
 			});
 		}
@@ -126,13 +129,15 @@ ROutput.propTypes = {
 	prependCode: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.array
-	])
+	]),
+	onResult: PropTypes.func
 };
 
 ROutput.defaultProps = {
 	code: '',
 	libraries: [],
-	prependCode: ''
+	prependCode: '',
+	onResult() {}
 };
 
 ROutput.contextType = SessionContext;
