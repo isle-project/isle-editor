@@ -101,23 +101,16 @@ class Deck extends Component {
 
 	updateRoute = ( action ) => {
 		const { location, slideCount } = action;
-		const slideHash = location.pathname.replace(/\//g, '');
-		let slide;
-
-		if ( isNaN( parseInt( slide, 10 ) ) ) {
-			slide = slideHash;
-		} else {
-			const proposedSlideIndex = parseInt(
-				location.pathname.replace( /\//g, '' ), 10
-			);
-			const isWithinBounds =
-				proposedSlideIndex < slideCount && proposedSlideIndex >= 0;
-			slide = isWithinBounds ? proposedSlideIndex : 0;
-		}
+		let proposedSlideIndex = parseInt(
+			location.pathname.replace( /\//g, '' ), 10
+		);
+		const isWithinBounds =
+			proposedSlideIndex < slideCount && proposedSlideIndex >= 0;
+		const slide = isWithinBounds ? proposedSlideIndex : 0;
 		return this.setState({
 			route: {
 				slide,
-				params: location.search.replace('?', '').split('&'),
+				params: location.search.replace( '?', '' ).split( '&' ),
 				previousSlide: this.state.route.slide || slide
 			}
 		});
