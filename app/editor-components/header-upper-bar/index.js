@@ -6,6 +6,7 @@ import { ipcRenderer } from 'electron';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import round from '@stdlib/math/base/special/round';
 import Tooltip from 'components/tooltip';
 import './header_upper_bar.css';
 
@@ -22,7 +23,7 @@ const HeaderUpperBar = ( props ) => {
 			break;
 		case 'downloading':
 			if ( props.updateDownloadPercent ) {
-				updateMsg = `Download in progress: ${props.updateDownloadPercent}% (${props.updateInfo.version}).`;
+				updateMsg = `Download in progress: ${round( props.updateDownloadPercent )}% (${props.updateInfo.version}).`;
 			} else {
 				updateMsg = `Download in progress... (${props.updateInfo.version}).`;
 			}
