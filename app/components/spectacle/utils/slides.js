@@ -48,7 +48,7 @@ export const getNotesForSlide = slide => {
 export const getSlideByIndex = ( children, slideReference, index ) => {
 	children = Children.toArray(children);
 	let slide;
-	const reference = slideReference[index];
+	const reference = slideReference[ index ];
 	if ( reference ) {
 		if (!isUndefined(reference.magicIndex)) {
 			slide = cloneElement(children[reference.rootIndex], {
@@ -72,9 +72,9 @@ export const getSlideByIndex = ( children, slideReference, index ) => {
 export const countSlides = children => {
 	return reduce(
 		Children.toArray(children),
-		(count, child) => {
+		( count, child ) => {
 			count += child.props.hasSlideChildren ?
-				Children.toArray(child.props.children).length :
+				Children.toArray( child.props.children ).length :
 				1;
 			return count;
 		},
