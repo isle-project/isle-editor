@@ -69,16 +69,6 @@ export const getSlideByIndex = ( children, slideReference, index ) => {
 	return slide;
 };
 
-export const getRootIndex = (slideReference, index) => {
-	const reference = slideReference[index];
-	return reference.rootIndex;
-};
-
-export const isMagicSlide = (slideReference, index) => {
-	const reference = slideReference[index];
-	return !isUndefined(reference.magicIndex);
-};
-
 export const countSlides = children => {
 	return reduce(
 		Children.toArray(children),
