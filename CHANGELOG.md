@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.60.0](https://github.com/isle-project/isle-editor/tree/v0.60.0) (2020-08-03)
+
 ## [v0.59.0](https://github.com/isle-project/isle-editor/tree/v0.59.0) (2020-07-25)
 
 **Implemented enhancements:**
