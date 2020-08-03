@@ -452,7 +452,13 @@ class DataTable extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		debug( 'Component has updated...' );
 		let newState = {};
-		if ( this.props.filters && this.props.filters !== prevProps.filters ) {
+		if (
+			this.props.filters &&
+			(
+				this.props.filters !== prevProps.filters ||
+				this.props.filters.length !== prevProps.filters.length
+			)
+		) {
 			newState.filtered = this.props.filters;
 		}
 		if (

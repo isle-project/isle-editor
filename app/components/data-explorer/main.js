@@ -52,7 +52,7 @@ const DataTable = Loadable( () => import( 'components/data-table' ) );
 import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
 import createOutputElement from './create_output_element.js';
-import formatFilters from './format_filters.js';
+import FilterList from './filter_list.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
@@ -460,9 +460,7 @@ class DataExplorer extends Component {
 	onFilters = ( newFilters ) => {
 		this.setState({
 			filters: newFilters
-		}, () => {
-			this.onFilterCreate();
-		});
+		}, this.onFilterCreate );
 	}
 
 	/**
@@ -1480,22 +1478,39 @@ class DataExplorer extends Component {
 												</OverlayTrigger> : null
 											}
 									</Col>
-									<Col md={4} >
-										{ this.state.subsetFilters ? <pre className="data-explorer-subset-filter-display">
-											{formatFilters( this.state.subsetFilters )}
-										</pre> : null }
-									</Col>
-									<Col md={4} >
-										{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
-											<Button
-												onClick={this.onRestoreData}
-												variant="secondary"
-												size="xsmall"
-												style={{ float: 'right' }}
-											>
-												Restore original dataset
-											</Button>
-										</OverlayTrigger> : null }
+									<Col md={8} >
+										{ this.state.subsetFilters ? <div className="data-explorer-subset-filter-display">
+											<p>
+												<span style={{ color: 'white', paddingLeft: 2 }} >Filtered:</span>
+												{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
+													<Button
+														onClick={this.onRestoreData}
+														variant="secondary"
+														size="small"
+														style={{ float: 'right' }}
+													>
+														Restore original dataset
+													</Button>
+												</OverlayTrigger> : null }
+											</p>
+											<FilterList
+												filters={this.state.subsetFilters}
+												removeButtons
+												onRemove={( idx ) => {
+													const newSubsetFilters = this.state.subsetFilters.slice();
+													newSubsetFilters.splice( idx, 1 );
+													console.log( newSubsetFilters );
+													if ( newSubsetFilters.length > 0 ) {
+														this.setState({
+															data: this.state.oldData,
+															filters: newSubsetFilters
+														}, this.onFilterCreate );
+													} else {
+														this.onRestoreData();
+													}
+												}}
+											/>
+										</div> : null }
 									</Col>
 								</Row>
 						</div>

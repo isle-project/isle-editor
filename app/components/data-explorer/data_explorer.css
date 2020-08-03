@@ -37,6 +37,7 @@
 .data-explorer-subset-filter-display {
 	background: lightcoral;
 	width: 100%;
+	padding: 4px;
 }
 
 .data-explorer-toolbox {

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import noop from '@stdlib/utils/noop';
 import Tooltip from 'components/tooltip';
-import formatFilters from './format_filters.js';
+import FilterList from './filter_list.js';
 
 
 // MAIN //
@@ -57,7 +57,6 @@ class DatasetButton extends Component {
 						const style = {
 							backgroundColor: 'lightcoral',
 							padding: '10px 10px',
-							color: 'white',
 							marginRight: '5px',
 							borderRadius: 3,
 							zIndex: 1002,
@@ -78,7 +77,7 @@ class DatasetButton extends Component {
 								{...props}
 								style={style}
 							>
-								{formatFilters( this.props.filters )}
+								<FilterList filters={this.props.filters} />
 								{ this.props.restoreButton ? <Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
 									<Button
 										size="sm"
