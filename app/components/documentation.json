@@ -720,7 +720,10 @@
           "Variance",
           "Correlation",
           "Skewness",
-          "Excess Kurtosis"
+          "Excess Kurtosis",
+          "First Quartile",
+          "Third Quartile",
+          "Quantile"
         ]
       },
       {
@@ -1705,6 +1708,12 @@
         "defaultValue": ""
       },
       {
+        "name": "sketchpad",
+        "type": "object",
+        "description": "properties to be passed to <Sketchpad /> component; sketchpad will not be rendered if set to `null`",
+        "defaultValue": {}
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -2235,8 +2244,8 @@
       {
         "name": "resizable",
         "type": "boolean",
-        "description": "controls whether the text area shall be resizable",
-        "defaultValue": false
+        "description": "controls whether the text area shall be resizable (can be either `both`, `horizontal`, `vertical`, or `none`)",
+        "defaultValue": "none"
       },
       {
         "name": "rows",
@@ -4778,6 +4787,12 @@
         "type": "(string|array)",
         "description": "R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating",
         "defaultValue": ""
+      },
+      {
+        "name": "onResult",
+        "type": "function",
+        "description": "callback invoked with `error` (`null` if operation was successful) and `result` holding R output",
+        "defaultValue": "function onResult() {}"
       }
     ],
     "description": "Component for rendering R output inside an ISLE lesson."
