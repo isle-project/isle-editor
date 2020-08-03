@@ -269,12 +269,12 @@ export class Manager extends Component {
 
 	_toggleOverviewMode = () => {
 		const suffix =
-			this.context.route.params.indexOf('overview') !== -1 ? '' : '?overview';
-		this.context.history.replace(`/${this.context.route.slide}${suffix}`);
+			this.context.route.params.indexOf( 'overview' ) !== -1 ? '' : '?overview';
+		this.context.history.replace( `/${this.context.route.slide}${suffix}` );
 	}
 
 	_togglePresenterMode = () => {
-		const presenting = this.context.route.params.indexOf('presenter') !== -1;
+		const presenting = this.context.route.params.indexOf( 'presenter' ) !== -1;
 		const suffix = presenting ? '' : '?presenter';
 		const originalLocation = location.href;
 		this.context.history.replace(`/${this.context.route.slide}${suffix}`);
@@ -312,12 +312,12 @@ export class Manager extends Component {
 		return '';
 	}
 
-	_goToSlide = (e) => {
+	_goToSlide = ( e ) => {
 		let data = null;
 		let canNavigate = true;
 		let offset = 0;
-		if (e.key === 'spectacle-slide') {
-			data = JSON.parse(e.newValue);
+		if ( e.key === 'spectacle-slide' ) {
+			data = JSON.parse( e.newValue );
 			canNavigate = this._checkFragments(this.context.route.slide, data.forward);
 		} else if (e.slide) {
 			data = e;
@@ -333,9 +333,8 @@ export class Manager extends Component {
 				forward: false,
 				time: Date.now()
 			});
-			localStorage.setItem('spectacle-slide', msgData);
-
-			if (this.presentationConnection) {
+			localStorage.setItem( 'spectacle-slide', msgData );
+			if ( this.presentationConnection ) {
 				this.presentationConnection.send(msgData);
 			}
 		} else {
@@ -364,10 +363,10 @@ export class Manager extends Component {
 		this.setState({
 			lastSlideIndex: slideIndex
 		});
-		this.viewedIndexes.delete(slideIndex);
+		this.viewedIndexes.delete( slideIndex );
 		if (
-			this._checkFragments(this.context.route.slide, false) ||
-			this.context.route.params.indexOf('overview') !== -1
+			this._checkFragments( this.context.route.slide, false ) ||
+			this.context.route.params.indexOf( 'overview' ) !== -1
 		) {
 			if (slideIndex > 0) {
 				this.context.history.replace(
@@ -496,17 +495,17 @@ export class Manager extends Component {
 		console.log( 'Checking fragments...' );
 		console.log( fragments );
 		if ( slide in fragments ) {
-			const currentSlideFragments = fragments[slide];
+			const currentSlideFragments = fragments[ slide ];
 			const count = size(currentSlideFragments);
 			const fullyAnimated = filter(currentSlideFragments, frag =>
-				frag.animations.every(anim => anim === true)
+				frag.animations.every( anim => anim === true )
 			);
 			const notFullyAnimated = filter(
 				currentSlideFragments,
 				frag => !frag.animations.every(anim => anim === true)
 			);
 
-			if (forward === true && fullyAnimated.length !== count) {
+			if ( forward === true && fullyAnimated.length !== count ) {
 				const target = notFullyAnimated[0];
 				target.animations[target.animations.indexOf(false)] = true;
 				this._updateFragment({
@@ -515,7 +514,7 @@ export class Manager extends Component {
 				});
 				return false;
 			}
-			if (forward === false) {
+			if ( forward === false ) {
 				if (
 					notFullyAnimated.length === count &&
 					notFullyAnimated.every(frag =>
@@ -625,8 +624,9 @@ export class Manager extends Component {
 
 	_getSlideIndex = () => {
 		let index = parseInt( this.context.route.slide, 10 );
+		console.log( index );
 		if ( !Number.isFinite( index ) ) {
-			const foundIndex = findIndex(this.state.slideReference, reference => {
+			const foundIndex = findIndex( this.state.slideReference, reference => {
 				return this.context.route.slide === reference.id;
 			});
 			index = foundIndex >= 0 ? foundIndex : 0;

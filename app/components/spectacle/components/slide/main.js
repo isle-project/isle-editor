@@ -109,9 +109,9 @@ class Slide extends React.PureComponent {
 	componentDidUpdate() {
 		const { steps, slideIndex } = this.stepCounter.getSteps();
 		const stepFunc = this.props.getAnimStep;
-		if (stepFunc ) {
+		if ( stepFunc ) {
 			if ( slideIndex === this.props.slideIndex ) {
-				stepFunc(steps);
+				stepFunc( steps );
 			}
 		}
 	}

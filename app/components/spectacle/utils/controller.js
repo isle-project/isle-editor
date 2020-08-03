@@ -50,7 +50,7 @@ class Controller extends Component {
 	componentDidMount() {
 		this.unlisten = this.history.listen( this._updateRoute );
 		const location = this.history.location;
-		const slideCount = countSlides(this.props.children.props.children);
+		const slideCount = countSlides( this.props.children.props.children );
 		this.props.updateRoute({
 			location,
 			slideCount
