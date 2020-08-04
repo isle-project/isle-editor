@@ -75,7 +75,6 @@ class Accordion extends Component {
 		for ( let i = 0; i < this.props.children.length; i++ ) {
 			const child = this.props.children[ i ];
 			if ( !isLineButtons( child ) ) {
-				count += 1;
 				const style = {
 					boxShadow: '0 0 -4px rgba(92, 92, 92, 0.5)'
 				};
@@ -90,7 +89,7 @@ class Accordion extends Component {
 					<Collapse
 						key={i}
 						visible={i === this.state.active}
-						header={headers[ i ] || `Header ${count}`}
+						header={headers[ count ] || `Header ${count}`}
 						headerClassName={this.props.headerClassName}
 						headerStyle={{
 							...style,
@@ -101,8 +100,9 @@ class Accordion extends Component {
 						{child}
 					</Collapse>
 				);
+				count += 1;
 				out.push( elem );
-				}
+			}
 		}
 		return (
 			<div
