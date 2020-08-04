@@ -23,6 +23,12 @@ class Generator extends Component {
 		};
 	}
 
+	componentWillMount() {
+		if ( this.props.autoStart ) {
+			this.handleClick();
+		}
+	}
+
 	handleClick = () => {
 		const out = this.props.onGenerate();
 		this.setState({
@@ -44,6 +50,7 @@ class Generator extends Component {
 // PROPERTIES //
 
 Generator.propTypes = {
+	autoStart: PropTypes.bool,
 	buttonLabel: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
@@ -52,6 +59,7 @@ Generator.propTypes = {
 };
 
 Generator.defaultProps = {
+	autoStart: true,
 	buttonLabel: 'Generate'
 };
 
