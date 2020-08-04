@@ -31,6 +31,7 @@ const showResult = ( res ) => {
 * @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
 * @property {(string|Array<string>)} prependCode - R code (or `array` of code blocks) to be prepended to the code stored in `code` when evaluating
 * @property {Function} onResult - callback invoked with `error` (`null` if operation was successful) and `result` holding R output
+* @property {Function} onPlots - callback invoked with any generated plots
 */
 class ROutput extends Component {
 	constructor( props ) {
@@ -76,6 +77,7 @@ class ROutput extends Component {
 					});
 					this.props.onResult( error );
 				},
+				onPlots: this.props.onPlots,
 				onResult: ( err, res, body ) => {
 					this.setState({
 						result: body,
@@ -130,6 +132,7 @@ ROutput.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	]),
+	onPlots: PropTypes.func,
 	onResult: PropTypes.func
 };
 
@@ -137,6 +140,7 @@ ROutput.defaultProps = {
 	code: '',
 	libraries: [],
 	prependCode: '',
+	onPlots() {},
 	onResult() {}
 };
 
