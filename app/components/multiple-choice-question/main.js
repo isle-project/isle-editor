@@ -173,10 +173,10 @@ class MultipleChoiceQuestion extends Component {
 
 	sendSubmitNotification = () => {
 		const session = this.context;
-		let isCorrect = false;
+		let isCorrect = true;
 		for ( let i = 0; i < this.state.correct.length; i++ ) {
-			if ( this.state.correct[ i ] === true ) {
-				isCorrect = true;
+			if ( this.state.correct[ i ] === false ) {
+				isCorrect = false;
 				break;
 			}
 		}
@@ -232,10 +232,6 @@ class MultipleChoiceQuestion extends Component {
 					} else {
 						newCorrect[ i ] = false;
 					}
-				} else if ( contains( sol, i ) ) {
-					newCorrect[ i ] = false;
-				} else {
-					newCorrect[ i ] = true;
 				}
 			}
 			let active = new Array( this.props.answers.length );
