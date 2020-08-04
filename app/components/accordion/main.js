@@ -119,7 +119,7 @@ class Accordion extends Component {
 // PROPERTIES //
 
 Accordion.defaultProps = {
-	active: 0,
+	active: null,
 	canCloseAll: false,
 	headers: null,
 	headerClassName: null,
