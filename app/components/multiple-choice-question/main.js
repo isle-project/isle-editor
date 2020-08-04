@@ -232,6 +232,10 @@ class MultipleChoiceQuestion extends Component {
 					} else {
 						newCorrect[ i ] = false;
 					}
+				} else if ( contains( sol, i ) ) {
+					newCorrect[ i ] = false;
+				} else {
+					newCorrect[ i ] = true;
 				}
 			}
 			let active = new Array( this.props.answers.length );
