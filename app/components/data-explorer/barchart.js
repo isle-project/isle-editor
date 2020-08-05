@@ -95,18 +95,18 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	} else {
 		let freqs;
 		if ( mode === MODES[ 1 ] ) {
-			freqs = by2( data[ variable ], data[ yvar ], data[ group ], ( labels, vals ) => {
+			freqs = by2( data[ group ], data[ yvar ], data[ variable ], ( labels, vals ) => {
 				return by( vals, labels, statistic( summary ) );
 			});
 		} else {
-			freqs = by( data[ variable ], data[ group ], arr => {
+			freqs = by( data[ group ], data[ variable ], arr => {
 				return countBy( arr, identity );
 			});
 		}
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
 		if ( relative ) {
-			const catCounts = countBy( data[ variable ], identity );
+			const catCounts = countBy( data[ group ], identity );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];
@@ -117,7 +117,6 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 					counts[ i ] = val[ categories[ i ] ] / catCounts[ categories[ i ] ];
 				}
 				if ( totalPercent ) {
-					// faster than map
 					for ( let i = 0; i < counts.length; i++ ) {
 						counts[ i ] = counts[ i ] / nObs;
 					}
@@ -177,19 +176,35 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			}
 		}
 	}
+	let xaxis;
+	let yaxis;
+	if ( horiz ) {
+		xaxis = {
+			title: totalPercent ? 'Percentage' : 'Count'
+		};
+		yaxis = {
+			title: group ? group : variable,
+			tickmode: 'array',
+			tickvals: Array.from( allCats ),
+			ticktext: Array.from( allCats )
+		};
+	} else {
+		xaxis = {
+			title: group ? group : variable,
+			tickmode: 'array',
+			tickvals: Array.from( allCats ),
+			ticktext: Array.from( allCats )
+		};
+		yaxis = {
+			title: totalPercent ? 'Percentage' : 'Count'
+		};
+	}
 	return {
 		data: traces,
 		layout: {
 			barmode: stackBars ? 'stack' : null,
-			xaxis: {
-				title: variable,
-				tickmode: 'array',
-				tickvals: Array.from( allCats ),
-				ticktext: Array.from( allCats )
-			},
-			yaxis: {
-				title: totalPercent ? 'Percentage' : 'Count'
-			},
+			xaxis,
+			yaxis,
 			title: group ? `${variable} given ${group}` : variable
 		}
 	};
@@ -333,22 +348,22 @@ class Barchart extends Component {
 					<Row>
 						<Col>
 							{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
-								legend="Display Percentages"
+								legend="Total Percentages"
 								defaultValue={this.state.totalPercent}
 								onChange={( value )=>{
 									this.setState({
 										totalPercent: value
 									});
 								}}
-								disabled={this.state.stackBars && this.state.relative}
+								disabled={this.state.relative}
 								style={{
-									opacity: this.state.stackBars && this.state.relative ? 0.2 : 1
+									opacity: this.state.relative ? 0.2 : 1
 								}}
 							/> : null }
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Horizontal Alignment"
+								legend="Flip Coordinates"
 								defaultValue={this.state.horiz}
 								onChange={( value )=>{
 									this.setState({
@@ -377,16 +392,16 @@ class Barchart extends Component {
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Relative frequencies for each bar"
+								legend="Relative frequencies inside each group"
 								defaultValue={this.state.relative}
+								disabled={!this.state.groupVar || this.state.totalPercent}
 								onChange={( value )=>{
 									this.setState({
 										relative: value
 									});
 								}}
-								disabled={(!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent)}
 								style={{
-									opacity: (!this.state.stackBars) || (this.state.stackBars && this.state.totalPercent) ? 0.2 : 1
+									opacity: (!this.state.groupVar || this.state.totalPercent) ? 0.2 : 1
 								}}
 							/>
 						</Col>
