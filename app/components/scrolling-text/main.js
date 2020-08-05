@@ -9,16 +9,17 @@ import './ticker.css';
 // MAIN //
 
 /**
-* A dynamic background component that changes a background image at a specified interval.
+* A dynamic background component that cycles through a list of texts  at a specified interval.
 *
-* @property {Array} list - list of image URLs to be displayed
+* @property {Array} list - list of texts to be displayed
 * @property {boolean} loop - indicates whether the process shall be displayed infinitely
 * @property {string} direction - the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)
 * @property {number} still - the time the text remains still (in seconds)
 * @property {number} interval - the interval between the calls (in seconds)
 * @property {number} inTime - time of the entrance effect (in seconds)
 * @property {number} outTime - time of the exit effect (in seconds)
-* @property {Object} style - style definition of the text
+* @property {string} className - class name
+* @property {Object} style - CSS styles of the text
 */
 class ScrollingText extends Component {
 	constructor( props ) {
@@ -116,10 +117,14 @@ class ScrollingText extends Component {
 		const animationStyle = {
 			animation: ani
 		};
-		const obj = Object.assign( animationStyle, this.props.style );
+		const style = Object.assign( animationStyle, this.props.style );
 		const key = rdunif( 0, 100 );
 		return (
-			<div key={key} className="Ticker" id={this.id} style={obj}>{ this.props.list[this.state.ct] }</div>
+			<div
+				key={key}
+				className={this.props.className}
+				style={style}
+			>{ this.props.list[this.state.ct] }</div>
 		);
 	}
 }
@@ -135,6 +140,7 @@ ScrollingText.propTypes = {
 	interval: PropTypes.number,
 	inTime: PropTypes.number,
 	outTime: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -146,6 +152,7 @@ ScrollingText.defaultProps = {
 	interval: 15,
 	inTime: 0.6,
 	outTime: 1,
+	className: '',
 	style: {}
 };
 
