@@ -113,11 +113,10 @@ class ScrollingText extends Component {
 	}
 
 	render() {
-		const ani = this.getAnimation();
-		const animationStyle = {
-			animation: ani
+		const style = {
+			animation: this.getAnimation(),
+			...this.props.style
 		};
-		const style = Object.assign( animationStyle, this.props.style );
 		const key = rdunif( 0, 100 );
 		return (
 			<div
