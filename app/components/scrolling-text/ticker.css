@@ -1,24 +1,3 @@
-.scrolling-text-wrapper {
-	position: fixed;
-	width: 100%;
-	height: 100vw;
-	background: transparent;
-	pointer-events: none;
-	overflow: hidden;
-	z-index: 999;
-}
-
-.ticker {
-	position: fixed;
-	left: 0;
-	width: 100%;
-	font-size: 3vw;
-	font-family: Oswald;
-	height: 5vw;
-	color: black;
-	text-align: center;
-}
-
 /**
  * ----------------------------------------
  * animation slide-in-left
