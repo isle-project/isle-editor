@@ -603,7 +603,8 @@ class DataTable extends Component {
 
 	saveCSV = () => {
 		const session = this.context;
-		import( 'csv-stringify' ).then( stringify => {
+		import( 'csv-stringify' ).then( main => {
+			const stringify = main.default;
 			stringify( this.state.rows, {
 				header: true
 			}, ( err, output ) => {
@@ -621,9 +622,9 @@ class DataTable extends Component {
 				const dataInfo = this.props.dataInfo;
 				let name;
 				if ( !dataInfo || !dataInfo.name ) {
-					name = 'dataset.json';
+					name = 'dataset.csv';
 				} else {
-					name = dataInfo.name;
+					name = `${dataInfo.name}.csv`;
 				}
 				saveAs( blob, name );
 			});
