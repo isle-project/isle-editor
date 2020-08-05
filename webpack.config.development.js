@@ -5,6 +5,7 @@
 import path from 'path';
 import { spawn } from 'child_process';
 import webpack from 'webpack';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
@@ -26,9 +27,6 @@ const config = smp.wrap({
 	devtool: 'eval',
 
 	entry: [
-		...(process.env.PLAIN_HMR ? [] : [ 'react-hot-loader/patch' ]), // eslint-disable-line no-process-env
-		`webpack-dev-server/client?http://localhost:${port}/`,
-		'webpack/hot/only-dev-server',
 		path.join( __dirname, './app/index.js' )
 	],
 
@@ -62,6 +60,7 @@ const config = smp.wrap({
 
 	plugins: [
 		...baseConfig.plugins,
+		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: true
 		}),
