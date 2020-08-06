@@ -24,24 +24,28 @@ class LineWrapper extends Component {
 	}
 
 	componentDidMount() {
-		window.requestIdleCallback( () => {
-			const node = findDOMNode( this );
-			const child = node.lastChild;
-			if ( child ) {
-				const style = window.getComputedStyle( child, null );
-				if ( style.position === 'fixed' || style.position === 'absolute' ) {
-					this.setState({
-						style: {
-							position: style.position,
-							top: style.top,
-							left: style.left,
-							bottom: style.bottom,
-							right: style.right
-						}
-					});
-				}
+		window.requestIdleCallback( this.retrievePositioning );
+	}
+
+	retrievePositioning = () => {
+		const node = findDOMNode( this );
+		const child = node.lastChild;
+		if ( child && child.className !== 'isle-loadable' ) {
+			const style = window.getComputedStyle( child, null );
+			if ( style.position === 'fixed' || style.position === 'absolute' ) {
+				this.setState({
+					style: {
+						position: style.position,
+						top: style.top,
+						left: style.left,
+						bottom: style.bottom,
+						right: style.right
+					}
+				});
 			}
-		});
+		} else {
+			window.requestIdleCallback( this.requestIdleCallback );
+		}
 	}
 
 	handleDoubleClick = ( event ) => {

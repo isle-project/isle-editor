@@ -15,7 +15,7 @@ const Loading = ( props ) => {
 			<button onClick={props.retry}>Retry</button>
 		</span> );
 	} else if ( props.pastDelay ) {
-		const spinner = <span className="sk-cube-grid">
+		const spinner = <span className="isle-loadable sk-cube-grid" >
 			<span className="sk-cube sk-cube1"></span>
 			<span className="sk-cube sk-cube2"></span>
 			<span className="sk-cube sk-cube3"></span>
