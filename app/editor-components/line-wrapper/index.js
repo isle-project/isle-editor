@@ -2,11 +2,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import vex from 'vex-js';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:line-wrapper' );
 
 
 // MAIN //
@@ -28,6 +34,7 @@ class LineWrapper extends Component {
 	}
 
 	retrievePositioning = () => {
+		debug( 'Retrieve positioning...' );
 		const node = findDOMNode( this );
 		const child = node.lastChild;
 		if ( child && child.className !== 'isle-loadable' ) {
@@ -44,7 +51,7 @@ class LineWrapper extends Component {
 				});
 			}
 		} else {
-			window.requestIdleCallback( this.requestIdleCallback );
+			window.requestIdleCallback( this.retrievePositioning );
 		}
 	}
 
