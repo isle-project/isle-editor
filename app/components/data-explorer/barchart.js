@@ -180,7 +180,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	let yaxis;
 	if ( horiz ) {
 		xaxis = {
-			title: totalPercent ? 'Percentage' : 'Count'
+			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
 		};
 		yaxis = {
 			title: group ? group : variable,
@@ -200,7 +200,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			tickcolor: 'white'
 		};
 		yaxis = {
-			title: totalPercent ? 'Percentage' : 'Count'
+			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
 		};
 	}
 	return {
