@@ -186,14 +186,18 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			title: group ? group : variable,
 			tickmode: 'array',
 			tickvals: Array.from( allCats ),
-			ticktext: Array.from( allCats )
+			ticktext: Array.from( allCats ),
+			ticklen: 15,
+			tickcolor: 'white'
 		};
 	} else {
 		xaxis = {
 			title: group ? group : variable,
 			tickmode: 'array',
 			tickvals: Array.from( allCats ),
-			ticktext: Array.from( allCats )
+			ticktext: Array.from( allCats ),
+			ticklen: 15,
+			tickcolor: 'white'
 		};
 		yaxis = {
 			title: totalPercent ? 'Percentage' : 'Count'
