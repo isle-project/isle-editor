@@ -165,7 +165,7 @@
     "html-to-pdfmake": "^2.0.9",
     "html-webpack-plugin": "4.3.0",
     "i18next": "^19.6.2",
-    "i18next-browser-languagedetector": "^5.0.0",
+    "i18next-browser-languagedetector": "^5.0.1",
     "ieee754": "^1.1.13",
     "is-extendable": "^1.0.1",
     "is-touch-device": "^1.0.1",
