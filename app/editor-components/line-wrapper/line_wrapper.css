@@ -13,7 +13,7 @@
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	z-index: 1051;
+	z-index: 10000;
 	border-bottom-left-radius: 10px;
 	padding-left: 6px;
 	padding-bottom: 2px;

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { findDOMNode } from 'react-dom';
 import vex from 'vex-js';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
@@ -16,6 +17,31 @@ import './line_wrapper.css';
 class LineWrapper extends Component {
 	constructor( props ) {
 		super( props );
+
+		this.state = {
+			style: {}
+		};
+	}
+
+	componentDidMount() {
+		window.requestIdleCallback( () => {
+			const node = findDOMNode( this );
+			const child = node.lastChild;
+			if ( child ) {
+				const style = window.getComputedStyle( child, null );
+				if ( style.position === 'fixed' || style.position === 'absolute' ) {
+					this.setState({
+						style: {
+							position: style.position,
+							top: style.top,
+							left: style.left,
+							bottom: style.bottom,
+							right: style.right
+						}
+					});
+				}
+			}
+		});
 	}
 
 	handleDoubleClick = ( event ) => {
@@ -65,8 +91,9 @@ class LineWrapper extends Component {
 				className="line-wrapper"
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
+				style={this.state.style}
 			>
-				<div className="line-wrapper-bar">
+				<div className="line-wrapper-bar" >
 					<span className="line-wrapper-tagname" >{tagName}</span>
 					<span
 						role="button" tabIndex={0}
