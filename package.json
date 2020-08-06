@@ -112,7 +112,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.5",
-    "@babel/runtime": "^7.11.1",
+    "@babel/runtime": "^7.11.2",
     "@iktakahiro/markdown-it-katex": "^4.0.0",
     "@stdlib/stdlib": "0.0.92",
     "acorn": "^7.4.0",
