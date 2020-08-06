@@ -1,38 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders feedback buttons (horizontal format) 1`] = `
-<span
-  className="sk-cube-grid"
->
-  <span
-    className="sk-cube sk-cube1"
-  />
-  <span
-    className="sk-cube sk-cube2"
-  />
-  <span
-    className="sk-cube sk-cube3"
-  />
-  <span
-    className="sk-cube sk-cube4"
-  />
-  <span
-    className="sk-cube sk-cube5"
-  />
-  <span
-    className="sk-cube sk-cube6"
-  />
-  <span
-    className="sk-cube sk-cube7"
-  />
-  <span
-    className="sk-cube sk-cube8"
-  />
-  <span
-    className="sk-cube sk-cube9"
-  />
-</span>
-`;
+exports[`renders feedback buttons (horizontal format) 1`] = `null`;
 
 exports[`renders feedback buttons (vertical format) 1`] = `
 <div
