@@ -30,11 +30,19 @@ class LineWrapper extends Component {
 	}
 
 	componentDidMount() {
+		this.__unmounted = false;
 		window.requestIdleCallback( this.retrievePositioning );
+	}
+
+	componentWillUnmount() {
+		this._unmounted = true;
 	}
 
 	retrievePositioning = () => {
 		debug( 'Retrieve positioning...' );
+		if ( this._unmounted ) {
+			return;
+		}
 		const node = findDOMNode( this );
 		const child = node.lastChild;
 		if ( child && child.className !== 'isle-loadable' ) {
