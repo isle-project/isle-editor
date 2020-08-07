@@ -235,7 +235,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 									return <td key={i} >{x}</td>;
 								});
 							} else {
-								cats = <td>{arr[ 0 ][ 0 ]}</td>;
+								cats = <td>{arr[ 0 ]}</td>;
 							}
 							return (
 								<tr key={groupIndex} >
