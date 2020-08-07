@@ -6,6 +6,9 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import FormLabel from 'react-bootstrap/FormLabel';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Select, { components } from 'react-select';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
 import CheckboxInput from 'components/input/checkbox';
@@ -16,6 +19,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import statistic from 'utils/statistic';
+import selectStyles from './select_styles.js';
 import by2 from './by2.js';
 import by from './by.js';
 
@@ -34,27 +38,28 @@ const MODES = [
 	'Counts of distinct values',
 	'Function evaluated for a variable'
 ];
+const Option = props => (
+	<components.Option {...props} >
+		{props.data.label}
+		<br />
+		<span style={{ fontVariant: 'small-caps' }} >{props.data.description}</span>
+	</components.Option>
+);
+const ORDER_OPTIONS = [
+	{ label: 'Total', value: 'total', description: 'by total count of each category' },
+	{ label: 'Alphabetically', value: 'category', description: 'by category name' },
+	{ label: 'Min', value: 'min', description: 'by minimum count inside each category' },
+	{ label: 'Max', value: 'max', description: 'by maximum count inside each category' },
+	{ label: 'Mean', value: 'mean', description: 'by mean count inside each category' },
+	{ label: 'Median', value: 'median', description: 'by median count inside each category' }
+];
 
 
 // FUNCTIONS //
 
 
-export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, mode, stackBars, relative, totalPercent, xOrder }) {
+export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, mode, stackBars, relative, totalPercent, xOrder, direction }) {
 	let traces;
-	let transforms;
-	if ( xOrder ) {
-		let order;
-		if ( xOrder === 'in ascending order' ) {
-			order = 'ascending';
-		} else {
-			order = 'descending';
-		}
-		transforms = [{
-			type: 'sort',
-			target: horiz ? 'x' : 'y',
-			order: order
-		}];
-	}
 	const nObs = data[ variable ].length;
 	const allCats = new Set();
 	if ( !group ) {
@@ -65,8 +70,10 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			freqs = countBy( data[ variable ], identity );
 		}
 		const categories = variable.categories || objectKeys( freqs );
-		categories.forEach( allCats.add, allCats );
-
+		for ( let i = 0; i < categories.length; i++ ) {
+			categories[ i ] = String( categories[ i ] );
+			allCats.add( categories[ i ] );
+		}
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
@@ -81,15 +88,13 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				y: categories,
 				x: counts,
 				type: 'bar',
-				orientation: 'h',
-				transforms: transforms
+				orientation: 'h'
 			} ];
 		} else {
 			traces = [ {
 				y: counts,
 				x: categories,
-				type: 'bar',
-				transforms: transforms
+				type: 'bar'
 			} ];
 		}
 	} else {
@@ -127,16 +132,14 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h',
-						transforms: transforms
+						orientation: 'h'
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key,
-						transforms: transforms
+						name: key
 					});
 				}
 			}
@@ -161,16 +164,14 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h',
-						transforms: transforms
+						orientation: 'h'
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key,
-						transforms: transforms
+						name: key
 					});
 				}
 			}
@@ -184,6 +185,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		};
 		yaxis = {
 			title: group ? group : variable,
+			categoryorder: xOrder ? xOrder + ' ' + direction : null,
+			type: 'category',
 			tickmode: 'array',
 			tickvals: Array.from( allCats ),
 			ticktext: Array.from( allCats ),
@@ -193,6 +196,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	} else {
 		xaxis = {
 			title: group ? group : variable,
+			categoryorder: xOrder ? xOrder + ' ' + direction : null,
+			type: 'category',
 			tickmode: 'array',
 			tickvals: Array.from( allCats ),
 			ticktext: Array.from( allCats ),
@@ -203,6 +208,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
 		};
 	}
+	console.log( xaxis );
+	console.log( yaxis );
 	return {
 		data: traces,
 		layout: {
@@ -232,6 +239,7 @@ class Barchart extends Component {
 			relative: false,
 			totalPercent: false,
 			xOrder: null,
+			direction: 'ascending',
 			mode: MODES[ 0 ]
 		};
 	}
@@ -337,18 +345,45 @@ class Barchart extends Component {
 							});
 						}}
 					/>
-					<SelectInput
-						legend="Order bars by frequency (optional)"
-						defaultValue={this.state.xOrder}
-						options={[ 'in ascending order', 'in descending order']}
-						clearable={true}
-						menuPlacement="top"
-						onChange={( value )=>{
-							this.setState({
-								xOrder: value
-							});
-						}}
-					/>
+					<Row>
+						<Col>
+							<FormGroup controlId="barchart-order-select">
+								<FormLabel>Order x-axis:</FormLabel>
+								<Select
+									defaultValue={this.state.xOrder}
+									options={ORDER_OPTIONS}
+									components={{ Option }}
+									clearable={true}
+									menuPlacement="top"
+									onChange={( elem ) => {
+										this.setState({
+											xOrder: elem.value
+										});
+									}}
+									styles={selectStyles}
+								/>
+							</FormGroup>
+						</Col>
+						<Col>
+							<SelectInput
+								legend="Order direction:"
+								defaultValue={this.state.direction}
+								options={[
+									'ascending',
+									'descending'
+								]}
+								menuPlacement="top"
+								onChange={( value ) => {
+									this.setState({
+										direction: value
+									});
+								}}
+								style={{
+									display: this.state.xOrder ? 'inherit' : 'none'
+								}}
+							/>
+						</Col>
+					</Row>
 					<Row>
 						<Col>
 							{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
