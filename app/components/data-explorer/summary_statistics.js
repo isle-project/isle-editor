@@ -39,7 +39,9 @@ const Option = props => {
 		<PopoverContent>{props.data.description}</PopoverContent>
 	</Popover>;
 	return ( <components.Option {...props} >
-		{props.data.label}
+		<span style={{
+			opacity: props.isSelected ? 0.5 : 1
+		}}>{props.data.label}</span>
 		<OverlayTrigger trigger={['hover', 'focus']} placement="right" rootClose overlay={popover} >
 			<Button
 				size="sm"
@@ -165,12 +167,12 @@ class SummaryStatistics extends Component {
 	constructor( props ) {
 		super( props );
 
-		const selectedStat = props.defaultStatistic || props.statistics[ 0 ];
+		const selectedStat = props.defaultStatistic;
 		this.state = {
-			selectedStats: [{
+			selectedStats: selectedStat ? [{
 				value: statistic( selectedStat ),
 				label: selectedStat
-			}],
+			}] : null,
 			variables: [ props.defaultX || props.variables[ 0 ] ],
 			secondVariable: props.defaultY || props.variables[ 1 ],
 			group: null,
@@ -419,6 +421,7 @@ class SummaryStatistics extends Component {
 							options={this.statistics}
 							isMulti
 							components={{ Option }}
+							hideSelectedOptions={false}
 							onChange={( value ) => {
 								let labels;
 								if ( isArray( value ) && value.length > 0 ) {
@@ -548,7 +551,7 @@ SummaryStatistics.defaultProps = {
 	groupingVariables: [],
 	defaultX: null,
 	defaultY: null,
-	defaultStatistic: 'Mean',
+	defaultStatistic: null,
 	logAction() {},
 	statistics: [
 		'Mean',
