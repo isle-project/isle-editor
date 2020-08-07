@@ -13,7 +13,6 @@ import isObject from '@stdlib/assert/is-object';
 import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
 import generateUID from 'utils/uid';
-import './select.css';
 
 
 // VARIABLES //
@@ -223,12 +222,10 @@ class SelectInput extends Input {
 			style = {
 				width: '180px',
 				display: 'inline-block',
-				fontWeight: 600,
 				...this.props.style
 			};
 		} else {
 			style = {
-				fontWeight: 600,
 				...this.props.style
 			};
 		}
@@ -248,7 +245,6 @@ class SelectInput extends Input {
 						<Select
 							id={this.id}
 							name="form-field-name"
-							className="select-field"
 							{...this.props}
 							value={value}
 							options={this.state.options}
