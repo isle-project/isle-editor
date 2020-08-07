@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Select, { components } from 'react-select';
-import SelectInput from 'components/input/select';
+import SelectInput, { selectStyles } from 'components/input/select';
 import Plotly from 'components/plotly';
 import CheckboxInput from 'components/input/checkbox';
 import objectKeys from '@stdlib/utils/keys';
@@ -19,7 +19,6 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import statistic from 'utils/statistic';
-import selectStyles from './select_styles.js';
 import by2 from './by2.js';
 import by from './by.js';
 

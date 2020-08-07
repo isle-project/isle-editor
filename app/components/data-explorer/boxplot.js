@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import SelectInput from 'components/input/select';
+import SelectInput, { selectStyles } from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
@@ -22,52 +22,6 @@ import by from './by.js';
 // VARIABLES //
 
 const DESCRIPTION = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. The whiskers extend to the lower fence at the smallest value in the sample that is smaller than Q1 but greater than (Q1 - 1.5*IQR) and to analogously defined upper fence.';
-const customStyles = {
-	control: ( base, state ) => {
-		if ( state.isDisabled ) {
-			return {
-				...base,
-				background: 'none',
-				color: '#aaa',
-				opacity: 0.5
-			};
-		}
-		return {
-			...base,
-			background: 'rgba(186, 204, 234, 0.15)',
-			boxShadow: 'none',
-			cursor: 'pointer'
-		};
-	},
-	placeholder: ( base, state ) => {
-		return {
-			...base,
-			color: 'rgb(112, 112, 112)'
-		};
-	},
-	option: ( base, state ) => {
-		let backgroundColor = '#fff';
-		let color = '#666666';
-		if ( state.isFocused ) {
-			backgroundColor = 'rgba(204,88,0, 0.16)';
-			color = '#333';
-		}
-		else if ( state.isSelected ) {
-			backgroundColor = '#f5faff';
-			color = '#333';
-		}
-		return {
-			...base,
-			boxSizing: 'border-box',
-			backgroundColor: backgroundColor,
-			color: color,
-			cursor: 'pointer',
-			display: 'block',
-			padding: '8px 10px'
-		};
-	},
-	menuPortal: base => ({ ...base, zIndex: 1010 })
-};
 
 
 // FUNCTIONS //
@@ -275,7 +229,7 @@ class Boxplot extends Component {
 									});
 								}
 							}}
-							styles={customStyles}
+							styles={selectStyles}
 							menuPortalTarget={document.body}
 						/>
 					</FormGroup>

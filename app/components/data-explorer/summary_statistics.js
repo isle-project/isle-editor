@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import SelectInput from 'components/input/select';
+import SelectInput, { selectStyles } from 'components/input/select';
 import Tooltip from 'components/tooltip';
 import statistic from 'utils/statistic';
 import objectKeys from '@stdlib/utils/keys';
@@ -20,7 +20,6 @@ import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
-import selectStyles from './select_styles.js';
 
 
 // VARIABLES //

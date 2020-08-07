@@ -19,7 +19,7 @@ import generateUID from 'utils/uid';
 
 const debug = logger( 'isle:select-input' );
 const uid = generateUID( 'select-input' );
-const customStyles = {
+export const selectStyles = {
 	control: ( base, state ) => {
 		if ( state.isDisabled ) {
 			return {
@@ -251,7 +251,7 @@ class SelectInput extends Input {
 							onChange={this.handleChange}
 							placeholder={this.props.placeholder}
 							isMulti={this.props.multi}
-							styles={customStyles}
+							styles={selectStyles}
 							isClearable={clearable}
 							isDisabled={this.props.disabled}
 							menuPlacement={this.props.menuPlacement}
