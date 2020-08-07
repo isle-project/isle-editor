@@ -176,7 +176,7 @@ Deck.propTypes = {
 	disableTouchControls: PropTypes.bool,
 	history: PropTypes.object,
 	onStateChange: PropTypes.func,
-	progress: PropTypes.oneOf(['bar', 'number', 'none']),
+	progress: PropTypes.oneOf([ 'bar', 'number', 'none' ]),
 	showFullscreenControl: PropTypes.bool,
 	transition: PropTypes.array,
 	transitionDuration: PropTypes.number
