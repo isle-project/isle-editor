@@ -20,57 +20,12 @@ import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
+import selectStyles from './select_styles.js';
 
 
 // VARIABLES //
 
 const DESCRIPTION = <span>Compute various statistics of interest, i.e. summary measures of the <i>quantitative</i> variables in the data set.</span>;
-const customStyles = {
-	control: ( base, state ) => {
-		if ( state.isDisabled ) {
-			return {
-				...base,
-				background: 'none',
-				color: '#aaa',
-				opacity: 0.5
-			};
-		}
-		return {
-			...base,
-			background: 'rgba(186, 204, 234, 0.15)',
-			boxShadow: 'none',
-			cursor: 'pointer'
-		};
-	},
-	placeholder: ( base, state ) => {
-		return {
-			...base,
-			color: 'rgb(112, 112, 112)'
-		};
-	},
-	option: ( base, state ) => {
-		let backgroundColor = '#fff';
-		let color = '#666666';
-		if ( state.isFocused ) {
-			backgroundColor = 'rgba(204,88,0, 0.16)';
-			color = '#333';
-		}
-		else if ( state.isSelected ) {
-			backgroundColor = '#f5faff';
-			color = '#333';
-		}
-		return {
-			...base,
-			boxSizing: 'border-box',
-			backgroundColor: backgroundColor,
-			color: color,
-			cursor: 'pointer',
-			display: 'block',
-			padding: '8px 10px'
-		};
-	},
-	menuPortal: base => ({ ...base, zIndex: 1010 })
-};
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
@@ -409,7 +364,7 @@ class SummaryStatistics extends Component {
 									showQuantiles: labels && labels.includes( 'Quantile' )
 								});
 							}}
-							styles={customStyles}
+							styles={selectStyles}
 							menuPortalTarget={document.body}
 						/>
 					</FormGroup>
@@ -444,7 +399,7 @@ class SummaryStatistics extends Component {
 										quantiles: value
 									});
 								}}
-								styles={customStyles}
+								styles={selectStyles}
 								menuPortalTarget={document.body}
 							/>
 						</FormGroup>:
@@ -482,7 +437,7 @@ class SummaryStatistics extends Component {
 										});
 									}
 								}}
-								styles={customStyles}
+								styles={selectStyles}
 								menuPortalTarget={document.body}
 							/>
 						</FormGroup> : null
@@ -500,7 +455,7 @@ class SummaryStatistics extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.generateStatistics}
-						disabled={!selectedStats}
+						disabled={!selectedStats || this.state.variables.length === 0}
 					>Calculate</Button>
 				</Card.Body>
 			</Card>
