@@ -2,11 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import SelectInput from 'components/input/select';
 import selectStyles from 'components/input/select/styles';
 import Tooltip from 'components/tooltip';
@@ -21,6 +24,7 @@ import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
+import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 
 
 // VARIABLES //
@@ -30,6 +34,24 @@ const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
+const Option = props => {
+	const popover = <Popover id={`${props.data.label}-popover`}>
+		<PopoverContent>{props.data.description}</PopoverContent>
+	</Popover>;
+	return ( <components.Option {...props} >
+		{props.data.label}
+		<OverlayTrigger trigger={['hover', 'focus']} placement="right" rootClose overlay={popover} >
+			<Button
+				size="sm"
+				variant="outline-secondary"
+				className="question-button"
+				style={{ float: 'right', fontSize: 14 }}
+			>
+				<span className="fa fa-question" />
+			</Button>
+		</OverlayTrigger>
+	</components.Option> );
+};
 
 
 // FUNCTIONS //
@@ -167,27 +189,27 @@ class SummaryStatistics extends Component {
 			switch ( e ) {
 				case 'Mean':
 				case 'Median':
-					central.push({ 'label': e, 'value': statistic( e ) });
+					central.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'First Quartile':
 				case 'Third Quartile':
 				case 'Quantile':
 				case 'Min':
 				case 'Max':
-					location.push({ 'label': e, 'value': statistic( e ) });
+					location.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Range':
 				case 'Interquartile Range':
 				case 'Standard Deviation':
 				case 'Variance':
-					variation.push({ 'label': e, 'value': statistic( e ) });
+					variation.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Correlation':
-					relationship.push({ 'label': e, 'value': statistic( e ) });
+					relationship.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Skewness':
 				case 'Excess Kurtosis':
-					shape.push({ 'label': e, 'value': statistic( e ) })
+					shape.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 			}
 		}
@@ -396,6 +418,7 @@ class SummaryStatistics extends Component {
 							value={selectedStats}
 							options={this.statistics}
 							isMulti
+							components={{ Option }}
 							onChange={( value ) => {
 								let labels;
 								if ( isArray( value ) && value.length > 0 ) {
