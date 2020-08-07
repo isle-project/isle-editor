@@ -11,7 +11,7 @@ A select question component.
 ```jsx live
 <SelectQuestion
     question="The usual t-test is"
-    solution="two-sided"
+    solution={2}
     options={[
         'left-sided',
         'right-sided',
