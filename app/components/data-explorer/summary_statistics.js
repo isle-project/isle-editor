@@ -157,7 +157,62 @@ class SummaryStatistics extends Component {
 			quantiles: [],
 			omit: false
 		};
-		this.statistics = props.statistics.map( e => ( { 'label': e, 'value': statistic( e ) } ));
+		const central = [];
+		const location = [];
+		const variation = [];
+		const relationship = [];
+		const shape = [];
+		for ( let i = 0; i < props.statistics.length; i++ ) {
+			const e = props.statistics[ i ];
+			switch ( e ) {
+				case 'Mean':
+				case 'Median':
+					central.push({ 'label': e, 'value': statistic( e ) });
+					break;
+				case 'First Quartile':
+				case 'Third Quartile':
+				case 'Quantile':
+				case 'Min':
+				case 'Max':
+					location.push({ 'label': e, 'value': statistic( e ) });
+					break;
+				case 'Range':
+				case 'Interquartile Range':
+				case 'Standard Deviation':
+				case 'Variance':
+					variation.push({ 'label': e, 'value': statistic( e ) });
+					break;
+				case 'Correlation':
+					relationship.push({ 'label': e, 'value': statistic( e ) });
+					break;
+				case 'Skewness':
+				case 'Excess Kurtosis':
+					shape.push({ 'label': e, 'value': statistic( e ) })
+					break;
+			}
+		}
+		this.statistics = [
+			{
+				label: 'Central Tendency Measures',
+				options: central
+			},
+			{
+				label: 'Variation Measures',
+				options: variation
+			},
+			{
+				label: 'Other Location Measures',
+				options: location
+			},
+			{
+				label: 'Relationship Measures',
+				options: relationship
+			},
+			{
+				label: 'Shape Measures',
+				options: shape
+			}
+		];
 	}
 
 	generateStatistics = () => {
