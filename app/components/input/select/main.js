@@ -13,58 +13,13 @@ import isObject from '@stdlib/assert/is-object';
 import Tooltip from 'components/tooltip';
 import Input from 'components/input/base';
 import generateUID from 'utils/uid';
+import customStyles from './styles.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:select-input' );
 const uid = generateUID( 'select-input' );
-export const selectStyles = {
-	control: ( base, state ) => {
-		if ( state.isDisabled ) {
-			return {
-				...base,
-				background: 'none',
-				color: '#aaa',
-				opacity: 0.5
-			};
-		}
-		return {
-			...base,
-			background: 'rgba(186, 204, 234, 0.15)',
-			boxShadow: 'none',
-			cursor: 'pointer'
-		};
-	},
-	placeholder: ( base, state ) => {
-		return {
-			...base,
-			color: 'rgb(112, 112, 112)'
-		};
-	},
-	option: ( base, state ) => {
-		let backgroundColor = '#fff';
-		let color = '#666666';
-		if ( state.isFocused ) {
-			backgroundColor = 'rgba(204,88,0, 0.16)';
-			color = '#333';
-		}
-		else if ( state.isSelected ) {
-			backgroundColor = '#f5faff';
-			color = '#333';
-		}
-		return {
-			...base,
-			boxSizing: 'border-box',
-			backgroundColor: backgroundColor,
-			color: color,
-			cursor: 'pointer',
-			display: 'block',
-			padding: '8px 10px'
-		};
-	},
-	menuPortal: base => ({ ...base, zIndex: 1060 })
-};
 
 
 // FUNCTIONS //
@@ -251,7 +206,7 @@ class SelectInput extends Input {
 							onChange={this.handleChange}
 							placeholder={this.props.placeholder}
 							isMulti={this.props.multi}
-							styles={selectStyles}
+							styles={customStyles}
 							isClearable={clearable}
 							isDisabled={this.props.disabled}
 							menuPlacement={this.props.menuPlacement}

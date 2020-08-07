@@ -9,7 +9,8 @@ import Col from 'react-bootstrap/Col';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Select, { components } from 'react-select';
-import SelectInput, { selectStyles } from 'components/input/select';
+import SelectInput from 'components/input/select';
+import selectStyles from 'components/input/select/styles';
 import Plotly from 'components/plotly';
 import CheckboxInput from 'components/input/checkbox';
 import objectKeys from '@stdlib/utils/keys';
@@ -207,8 +208,6 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
 		};
 	}
-	console.log( xaxis );
-	console.log( yaxis );
 	return {
 		data: traces,
 		layout: {
@@ -282,6 +281,11 @@ class Barchart extends Component {
 	}
 
 	render() {
+		const hideRelativeFrequencies = (
+			!this.state.groupVar || // not used without grouping
+			this.state.totalPercent || // overall percent
+			this.state.mode === MODES[ 1 ] // when evaluating a function
+		);
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -352,11 +356,11 @@ class Barchart extends Component {
 									defaultValue={this.state.xOrder}
 									options={ORDER_OPTIONS}
 									components={{ Option }}
-									clearable={true}
+									isClearable={true}
 									menuPlacement="top"
 									onChange={( elem ) => {
 										this.setState({
-											xOrder: elem.value
+											xOrder: elem ? elem.value : null
 										});
 									}}
 									styles={selectStyles}
@@ -432,14 +436,14 @@ class Barchart extends Component {
 							<CheckboxInput
 								legend="Relative frequencies inside each group"
 								defaultValue={this.state.relative}
-								disabled={!this.state.groupVar || this.state.totalPercent}
+								disabled={hideRelativeFrequencies}
 								onChange={( value )=>{
 									this.setState({
 										relative: value
 									});
 								}}
 								style={{
-									opacity: (!this.state.groupVar || this.state.totalPercent) ? 0.2 : 1
+									opacity: hideRelativeFrequencies ? 0.2 : 1
 								}}
 							/>
 						</Col>
