@@ -3,12 +3,14 @@
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import logger from 'debug';
+import objectKeys from '@stdlib/utils/keys';
 import './ui/collaborative_cursor.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:text-editor' );
+const PLACEHOLDER_ID = 'cursor-widget';
 
 
 // MAIN //
@@ -20,33 +22,33 @@ const collaborativeCursorPlugin = new Plugin({
 		},
 		apply( tr, set ) {
 			const action = tr.getMeta( this );
-			const users = new Set();
-			if ( action ) {
-				for ( let i = action.clientIDs.length - 1; i >= 0; i-- ) {
-					const id = action.clientIDs[ i ];
-					if ( !users.has( id ) ) {
-						users.add( id );
-						const widget = document.createElement( 'span' );
-						widget.className = 'editor-collaborative-cursor';
-						const line = document.createElement( 'span' );
-						line.className = 'editor-collaborative-cursor-line';
-						widget.appendChild( line );
+			if ( action && action.cursors ) {
+				const users = objectKeys( action.cursors );
 
-						const text = document.createElement( 'span' );
-						text.innerHTML = id;
-						text.className = 'editor-collaborative-cursor-text';
-						widget.appendChild( text );
-
-						// Remove any existing decorations:
-						set = set.remove( set.find( null, null, spec => spec.id === id ) );
-
-						const to = action.steps[ i ].to + 1;
-						debug( 'Should display cursor at position: '+to );
-						const deco = Decoration.widget( to, widget, {
-							id
-						});
-						set = set.add( tr.doc, [ deco ] );
+				// Reset any existing decorations:
+				set = DecorationSet.empty;
+				for ( let i = 0; i < users.length; i++ ) {
+					const id = users[ i ];
+					if ( id === action.clientID ) {
+						continue;
 					}
+					const widget = document.createElement( 'span' );
+					widget.className = 'editor-collaborative-cursor';
+					const line = document.createElement( 'span' );
+					line.className = 'editor-collaborative-cursor-line';
+					widget.appendChild( line );
+
+					const text = document.createElement( 'span' );
+					text.innerHTML = id;
+					text.className = 'editor-collaborative-cursor-text';
+					widget.appendChild( text );
+
+					const from = action.cursors[ id ].from - 1;
+					debug( 'Should display cursor at position: '+from );
+					const deco = Decoration.widget( from, widget, {
+						PLACEHOLDER_ID
+					});
+					set = set.add( tr.doc, [ deco ] );
 				}
 			}
 			return set;
