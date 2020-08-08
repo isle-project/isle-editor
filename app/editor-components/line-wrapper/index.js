@@ -32,7 +32,7 @@ class LineWrapper extends Component {
 		super( props );
 
 		this.state = {
-			style: {}
+			style: null
 		};
 	}
 
@@ -47,13 +47,13 @@ class LineWrapper extends Component {
 
 	retrievePositioning = () => {
 		debug( 'Retrieve positioning...' );
-		if ( this._unmounted ) {
+		if ( this._unmounted || this.state.style ) {
 			return;
 		}
 		const node = findDOMNode( this );
 		const child = node.lastChild;
-		if ( isDOMElement( child ) && child.className !== 'isle-loadable' ) {
-			const style = window.getComputedStyle( child, null );
+		if ( child && child.className !== 'isle-loadable' ) {
+			const style = isDOMElement( child ) ? window.getComputedStyle( child, null ) : {};
 			if ( style.position === 'fixed' || style.position === 'absolute' ) {
 				this.setState({
 					style: {
