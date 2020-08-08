@@ -84,6 +84,10 @@ class ProseMirrorCollaborative extends Component {
 		this.doc = isJSON( props.defaultValue ) ? props.defaultValue :
 			parser( props.defaultValue ).toJSON();
 		this.nUsers = null;
+		this.lastCursor = {
+			from: null,
+			to: null
+		};
 	}
 
 	componentDidMount() {
@@ -241,9 +245,11 @@ class ProseMirrorCollaborative extends Component {
 
 	poll() {
 		const commentState = commentPlugin.getState( this.dispatchState.edit );
+		const cursorState = collaborativeCursorPlugin.getState( this.dispatchState.edit );
 		const status = {
 			version: getVersion( this.dispatchState.edit ),
-			commentVersion: commentState.version
+			commentVersion: commentState.version,
+			cursorVersion: cursorState.version
 		};
 		debug( 'Ask for collaborative editing events '+JSON.stringify( status )+'[comm='+this.dispatchState.comm+']' );
 		this.props.session.pollCollaborativeEditingEvents( this.props.id, status );
@@ -257,19 +263,20 @@ class ProseMirrorCollaborative extends Component {
 	}
 
 	// Send the given steps to the server
-	send( editState, { steps, comments }) {
+	send = ( editState, { steps, comments, cursor }) => {
 		debug( 'Send current actions to server...' );
 		const json = {
 			version: getVersion( editState ),
 			steps: steps ? steps.steps.map( s => s.toJSON()) : [],
-			clientID: steps ? steps.clientID : 0,
+			cursor,
+			clientID: this.props.session.user.name || this.props.session.anonymousIdentifier,
 			comment: comments || []
 		};
 		this.props.session.sendCollaborativeEvents( this.props.id, json );
 	}
 
 	handleSendResponse( data ) {
-		console.log( data );
+		debug( 'Handle send response...' );
 		if ( data === 'invalid version' ) {
 			debug( 'Went out of sync, trying to restart... ' );
 			this.dispatch({ type: 'restart' });
@@ -312,7 +319,7 @@ class ProseMirrorCollaborative extends Component {
 			this.dispatch({ type: 'recover' });
 		} else {
 			debug( `Received response for version: ${data.version} and commentVersion: ${data.commentVersion}` );
-			if ( data.steps && ( data.steps.length || data.comment.length ) ) {
+			if ( data.steps ) {
 				let tr = receiveTransaction(
 					this.dispatchState.edit,
 					data.steps.map( j => Step.fromJSON( schema, j ) ),
@@ -320,8 +327,8 @@ class ProseMirrorCollaborative extends Component {
 					RECEIVE_OPTS
 				);
 				tr.setMeta( collaborativeCursorPlugin, {
-					steps: data.steps,
-					clientIDs: data.clientIDs
+					cursors: data.cursors,
+					clientID: this.props.session.user.name || this.props.session.anonymousIdentifier
 				});
 				this.dispatch({
 					type: 'transaction', transaction: tr, requestDone: true
@@ -337,11 +344,24 @@ class ProseMirrorCollaborative extends Component {
 
 	// eslint-disable-next-line
 	sendable( editState ) {
-		let steps = sendableSteps( editState );
-		let comments = commentPlugin.getState( editState ).unsentEvents();
-		if ( steps || comments.length ) {
-			return { steps, comments };
+		const steps = sendableSteps( editState );
+		let selection = editState.selection;
+		selection = selection.toJSON();
+		const cursor = {
+			from: selection.head,
+			to: selection.anchor
+		};
+		const comments = commentPlugin.getState( editState ).unsentEvents();
+		if (
+			steps ||
+			comments.length ||
+			cursor.from !== this.lastCursor.from ||
+			cursor.to !== this.lastCursor.to
+		) {
+			this.lastCursor = cursor;
+			return { steps, comments, cursor };
 		}
+		return null;
 	}
 
 	handleStart( data ) {
