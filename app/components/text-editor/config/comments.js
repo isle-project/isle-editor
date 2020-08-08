@@ -127,7 +127,7 @@ class CommentState {
 
 	static init( config ) {
 		let decos = config.comments.comments.map( c => deco( c.from, c.to, new Comment(c.text, c.id) ) );
-		return new CommentState( config.comments.version, DecorationSet.create(config.doc, decos), []);
+		return new CommentState( config.comments.version, DecorationSet.create( config.doc, decos ), []);
 	}
 }
 
@@ -135,7 +135,7 @@ export const commentPlugin = new Plugin({
 	state: {
 		init: CommentState.init,
 		apply( tr, prev ) {
-			return prev.apply(tr);
+			return prev.apply( tr );
 		}
 	},
 	props: {
@@ -191,7 +191,7 @@ function commentTooltip(state, dispatch) {
 		return null;
 	}
 	return DecorationSet.create( state.doc, [
-		Decoration.widget(sel.from, renderComments(comments, dispatch, state))
+		Decoration.widget( sel.from, renderComments(comments, dispatch, state ) )
 	]);
 }
 

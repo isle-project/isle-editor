@@ -46,21 +46,21 @@ const SPEC = {
 			return DecorationSet.empty;
 		},
 		apply( tr, set ) {
-			set = set.map(tr.mapping, tr.doc);
-			const action = tr.getMeta(this);
-			if (!action) {
+			set = set.map( tr.mapping, tr.doc );
+			const action = tr.getMeta( this );
+			if ( !action ) {
 				return set;
 			}
-			if (action.add) {
-				const widget = document.createElement('editor-cursor-placeholder');
+			if ( action.add ) {
+				const widget = document.createElement( 'editor-cursor-placeholder');
 				widget.className = 'editor-cursor-placeholder';
 				const deco = Decoration.widget(action.add.pos, widget, {
 					id: PLACE_HOLDER_ID
 				});
-				set = set.add(tr.doc, [deco]);
-			} else if (action.remove) {
-				const found = set.find(null, null, specFinder);
-				set = set.remove(found);
+				set = set.add( tr.doc, [deco] );
+			} else if ( action.remove ) {
+				const found = set.find( null, null, specFinder );
+				set = set.remove( found );
 			}
 			return set;
 		}
@@ -68,7 +68,7 @@ const SPEC = {
 	props: {
 		decorations: state => {
 			const plugin = singletonInstance;
-			return plugin ? plugin.getState(state) : null;
+			return plugin ? plugin.getState( state ) : null;
 		}
 	}
 };
@@ -78,35 +78,35 @@ const SPEC = {
 
 class CursorPlaceholderPlugin extends Plugin {
 	constructor() {
-		super(SPEC);
-		if (singletonInstance) {
+		super( SPEC );
+		if ( singletonInstance ) {
 			return singletonInstance;
 		}
 		singletonInstance = this; // eslint-disable-line consistent-this
 	}
 }
 
-function specFinder(spec) {
+function specFinder( spec ) {
 	return spec.id === PLACE_HOLDER_ID;
 }
 
-function findCursorPlaceholderPos(state) {
-	if (!singletonInstance) {
+function findCursorPlaceholderPos( state ) {
+	if ( !singletonInstance ) {
 		return null;
 	}
-	const decos = singletonInstance.getState(state);
-	const found = decos.find(null, null, specFinder);
+	const decos = singletonInstance.getState( state );
+	const found = decos.find( null, null, specFinder );
 	const pos = found.length ? found[0].from : null;
 	return pos || null;
 }
 
-export function showCursorPlaceholder(state) {
+export function showCursorPlaceholder( state ) {
 	const plugin = singletonInstance;
 	let { tr } = state;
-	if (!plugin || !tr.selection) {
+	if ( !plugin || !tr.selection ) {
 		return tr;
 	}
-	const pos = findCursorPlaceholderPos(state);
+	const pos = findCursorPlaceholderPos( state );
 	if ( pos === null ) {
 		if ( !tr.selection.empty ) {
 			// Replace the selection with a placeholder.
@@ -118,20 +118,18 @@ export function showCursorPlaceholder(state) {
 			}
 		});
 	}
-
 	return tr;
 }
 
 export function hideCursorPlaceholder( state ) {
 	const plugin = singletonInstance;
 	let { tr } = state;
-	if (!plugin) {
+	if ( !plugin ) {
 		return tr;
 	}
-
-	const pos = findCursorPlaceholderPos(state);
+	const pos = findCursorPlaceholderPos( state );
 	if ( pos !== null ) {
-		tr = tr.setMeta(plugin, {
+		tr = tr.setMeta( plugin, {
 			remove: {}
 		});
 	}

@@ -67,9 +67,9 @@ function findImageUploadPlaceholder(
 	state,
 	id
 ) {
-	const decos = placeholderPlugin.getState(state);
-	const found = decos.find(null, null, spec => spec.id === id);
-	return found.length ? found[0].from : null;
+	const decos = placeholderPlugin.getState( state );
+	const found = decos.find( null, null, spec => spec.id === id );
+	return found.length ? found[ 0 ].from : null;
 }
 
 function defer(fn) {
@@ -79,7 +79,7 @@ function defer(fn) {
 }
 
 function uploadImage( file ) {
-	return new Promise( (resolve, reject) => {
+	return new Promise( ( resolve, reject ) => {
 		const { FileReader } = window;
 		if ( FileReader ) {
 			const reader = new FileReader();
@@ -116,7 +116,7 @@ export function uploadImageFiles(
 	if ( !imageFiles.length ) {
 		return false;
 	}
-	const placeholderPlugin = plugins.find(isImageUploadPlaceholderPlugin);
+	const placeholderPlugin = plugins.find( isImageUploadPlaceholderPlugin );
 	if ( !placeholderPlugin ) {
 		return false;
 	}
@@ -152,7 +152,7 @@ export function uploadImageFiles(
 		}
 		uploadImage( ff )
 			.then( done )
-			.catch( done.bind(null, { src: null }));
+			.catch( done.bind( null, { src: null }) );
 	});
 
 	uploadNext();
@@ -212,13 +212,13 @@ class ImageUploadPlaceholderPlugin extends Plugin {
 						el.className = 'editor-image-upload-placeholder';
 						el.innerHTML = INNER_HTML;
 
-						const deco = Decoration.widget(action.add.pos, el, {
+						const deco = Decoration.widget( action.add.pos, el, {
 							id: action.add.id
 						});
 						set = set.add( tr.doc, [deco] );
 					} else if ( action && action.remove ) {
 						const finder = spec => spec.id === action.remove.id;
-						set = set.remove(set.find(null, null, finder));
+						set = set.remove( set.find( null, null, finder ) );
 					}
 					return set;
 				}
