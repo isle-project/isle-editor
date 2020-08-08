@@ -15,6 +15,13 @@ import './line_wrapper.css';
 const debug = logger( 'isle:line-wrapper' );
 
 
+// FUNCTIONS //
+
+function isDOMElement( elem ) {
+	return elem instanceof Element || elem instanceof HTMLDocument;
+}
+
+
 // MAIN //
 
 /**
@@ -45,7 +52,7 @@ class LineWrapper extends Component {
 		}
 		const node = findDOMNode( this );
 		const child = node.lastChild;
-		if ( child && child.className !== 'isle-loadable' ) {
+		if ( isDOMElement( child ) && child.className !== 'isle-loadable' ) {
 			const style = window.getComputedStyle( child, null );
 			if ( style.position === 'fixed' || style.position === 'absolute' ) {
 				this.setState({
