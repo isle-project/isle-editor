@@ -95,8 +95,8 @@ class CommentState {
 				if (found) set = set.remove([ found ]);
 			} else if ( !this.findComment( event.id ) ) {
 				// type === 'create'
-				set = set.add(doc, [
-					deco(event.from, event.to, new Comment( event.text, event.id ))
+				set = set.add( doc, [
+					deco( event.from, event.to, new Comment( event.text, event.id ) )
 				]);
 			}
 		}
@@ -181,7 +181,7 @@ export const commentUI = (dispatch ) => {
 	});
 };
 
-function commentTooltip(state, dispatch) {
+function commentTooltip( state, dispatch ) {
 	let sel = state.selection;
 	if ( !sel.empty ) {
 		return null;
