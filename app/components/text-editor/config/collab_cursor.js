@@ -18,15 +18,19 @@ const PLACEHOLDER_ID = 'cursor-widget';
 const collaborativeCursorPlugin = new Plugin({
 	state: {
 		init() {
-			return DecorationSet.empty;
+			return {
+				decorations: DecorationSet.empty,
+				version: 0
+			};
 		},
 		apply( tr, set ) {
 			const action = tr.getMeta( this );
+			let decorations;
 			if ( action && action.cursors ) {
 				const users = objectKeys( action.cursors );
 
 				// Reset any existing decorations:
-				set = DecorationSet.empty;
+				decorations = DecorationSet.empty;
 				for ( let i = 0; i < users.length; i++ ) {
 					const id = users[ i ];
 					if ( id === action.clientID ) {
@@ -43,20 +47,40 @@ const collaborativeCursorPlugin = new Plugin({
 					text.className = 'editor-collaborative-cursor-text';
 					widget.appendChild( text );
 
-					const from = action.cursors[ id ].from - 1;
+					const cursor = action.cursors[ id ];
+					let from = cursor.from;
+					let to = cursor.to;
 					debug( 'Should display cursor at position: '+from );
 					const deco = Decoration.widget( from, widget, {
 						PLACEHOLDER_ID
 					});
-					set = set.add( tr.doc, [ deco ] );
+					const arr = [ deco ];
+					if ( from !== to ) {
+						if ( from > to ) {
+							const tmp = to;
+							to = from;
+							from = tmp;
+						}
+						arr.push(
+							Decoration.inline(
+								from, to,
+								{ class: 'editor-collaborative-cursor-selection' }
+							)
+						);
+					}
+					decorations = decorations.add( tr.doc, arr );
 				}
+				return {
+					decorations,
+					version: set.version + 1
+				};
 			}
 			return set;
 		}
 	},
 	props: {
 		decorations( state ) {
-			return this.getState( state );
+			return this.getState( state ).decorations;
 		}
 	}
 });
