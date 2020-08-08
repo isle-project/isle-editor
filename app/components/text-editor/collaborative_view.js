@@ -12,6 +12,7 @@ import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
 import { commentPlugin, commentUI } from './config/comments.js';
+import collaborativeCursorPlugin from './config/collab_cursor.js';
 import FootnoteView from './views/footnote.js';
 import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
@@ -138,9 +139,13 @@ class ProseMirrorCollaborative extends Component {
 				doc: action.doc,
 				schema,
 				plugins: plugins.concat([
-					collab({ version: action.version }),
+					collab({
+						version: action.version,
+						clientID: this.props.session.user.name || this.props.session.anonymousIdentifier
+					}),
 					commentPlugin,
-					commentUI( transaction => this.dispatch({ type: 'transaction', transaction }))
+					commentUI( transaction => this.dispatch({ type: 'transaction', transaction })),
+					collaborativeCursorPlugin
 				]),
 				comments: action.comments
 			});
@@ -173,7 +178,7 @@ class ProseMirrorCollaborative extends Component {
 				}
 				this.dispatchState = new State( newEditState, 'detached' );
 			} else if (
-				(this.dispatchState.comm === 'listening' || action.requestDone) &&
+				( this.dispatchState.comm === 'listening' || action.requestDone ) &&
 				( sendable = this.sendable( newEditState ) )
 			) {
 				this.dispatchState = new State( newEditState, 'send' );
@@ -252,6 +257,7 @@ class ProseMirrorCollaborative extends Component {
 	}
 
 	handleSendResponse( data ) {
+		console.log( data );
 		if ( data === 'invalid version' ) {
 			debug( 'Went out of sync, trying to restart... ' );
 			this.dispatch({ type: 'restart' });
@@ -297,15 +303,13 @@ class ProseMirrorCollaborative extends Component {
 			if ( data.steps && ( data.steps.length || data.comment.length ) ) {
 				let tr = receiveTransaction(
 					this.dispatchState.edit,
-					data.steps.map(j => Step.fromJSON(schema, j)),
+					data.steps.map( j => Step.fromJSON( schema, j ) ),
 					data.clientIDs,
 					RECEIVE_OPTS
 				);
-				tr.setMeta( commentPlugin, {
-					type: 'receive',
-					version: data.commentVersion,
-					events: data.comment,
-					sent: 0
+				tr.setMeta( collaborativeCursorPlugin, {
+					steps: data.steps,
+					clientIDs: data.clientIDs
 				});
 				this.dispatch({
 					type: 'transaction', transaction: tr, requestDone: true
