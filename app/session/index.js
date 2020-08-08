@@ -780,12 +780,17 @@ class Session {
 	* Joins collaborative editing of document.
 	*
 	* @param {string} name - document identifier
+	* @param {string} [doc] - default document
 	*/
-	joinCollaborativeEditing( name ) {
+	joinCollaborativeEditing( name, doc ) {
 		name = `${this.namespaceName}-${this.lessonName}-${name}`;
 		if ( this.socket ) {
 			debug( 'Join collaborative editing for '+name );
-			this.socket.emit( 'join_collaborative_editing', name );
+			if ( doc ) {
+				this.socket.emit( 'join_collaborative_editing', name, doc );
+			} else {
+				this.socket.emit( 'join_collaborative_editing', name );
+			}
 		}
 	}
 

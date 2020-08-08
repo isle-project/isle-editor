@@ -4,10 +4,12 @@ import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import { collab, receiveTransaction, sendableSteps, getVersion } from 'prosemirror-collab';
+import { DOMParser as ProseMirrorParser } from 'prosemirror-model';
 import { Step } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
+import isJSON from '@stdlib/assert/is-json';
 import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
@@ -66,6 +68,12 @@ const StatusBar = ( props ) => {
 	</div> );
 };
 
+const parser = ( content ) => {
+	const domNode = document.createElement( 'div' );
+	domNode.innerHTML = content;
+	return ProseMirrorParser.fromSchema( schema ).parse( domNode );
+};
+
 
 // MAIN //
 
@@ -73,6 +81,8 @@ class ProseMirrorCollaborative extends Component {
 	constructor( props ) {
 		super( props );
 
+		this.doc = isJSON( props.defaultValue ) ? props.defaultValue :
+			parser( props.defaultValue ).toJSON();
 		this.nUsers = null;
 	}
 
@@ -83,7 +93,7 @@ class ProseMirrorCollaborative extends Component {
 			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {
 					// Load the document from the server and start up:
-					this.props.session.joinCollaborativeEditing( this.props.id );
+					this.props.session.joinCollaborativeEditing( this.props.id, this.doc );
 				}
 			}
 			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === this.docID ) {
@@ -110,15 +120,17 @@ class ProseMirrorCollaborative extends Component {
 
 		if ( !this.dispatchState ) {
 			// Load the document from the server and start up:
-			this.props.session.joinCollaborativeEditing( this.props.id );
+			this.props.session.joinCollaborativeEditing( this.props.id, this.doc );
 		}
 	}
 
 	componentDidUpdate( prevProps ) {
 		const session = this.props.session;
-		if ( this.props.id !== prevProps.id ) {
+		if (
+			this.props.id !== prevProps.id
+		) {
 			this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
-			session.joinCollaborativeEditing( this.props.id );
+			session.joinCollaborativeEditing( this.props.id, this.doc );
 		}
 	}
 
@@ -402,6 +414,7 @@ class ProseMirrorCollaborative extends Component {
 // PROPERTIES //
 
 ProseMirrorCollaborative.propTypes = {
+	defaultValue: PropTypes.string.isRequired,
 	fullscreen: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
 	showColorPicker: PropTypes.bool.isRequired,
