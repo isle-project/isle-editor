@@ -204,7 +204,7 @@ class Revealer extends Component {
 					</select>
 				</Panel>
 			</Gate>
-				{this.state.showChildren ? this.props.children : header}
+			{this.state.showChildren ? this.props.children : header}
 		</Fragment> );
 	}
 }
