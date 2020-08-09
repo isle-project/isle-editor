@@ -5,7 +5,7 @@
         "name": "active",
         "type": "number",
         "description": "index of slider to be opened at the beginning",
-        "defaultValue": 0
+        "defaultValue": null
       },
       {
         "name": "canCloseAll",
@@ -1395,6 +1395,11 @@
   },
   "Generator": {
     "props": [
+      {
+        "name": "autoStart",
+        "type": "boolean",
+        "defaultValue": true
+      },
       {
         "name": "buttonLabel",
         "type": "(string|node)",
@@ -4789,6 +4794,12 @@
         "defaultValue": ""
       },
       {
+        "name": "onPlots",
+        "type": "function",
+        "description": "callback invoked with any generated plots",
+        "defaultValue": "function onPlots() {}"
+      },
+      {
         "name": "onResult",
         "type": "function",
         "description": "callback invoked with `error` (`null` if operation was successful) and `result` holding R output",
@@ -5218,7 +5229,7 @@
       {
         "name": "list",
         "type": "array<string>",
-        "description": "list of image URLs to be displayed",
+        "description": "list of texts to be displayed",
         "defaultValue": []
       },
       {
@@ -5258,13 +5269,19 @@
         "defaultValue": 1
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
         "name": "style",
         "type": "object",
-        "description": "style definition of the text",
+        "description": "CSS styles of the text",
         "defaultValue": {}
       }
     ],
-    "description": "A dynamic background component that changes a background image at a specified interval."
+    "description": "A dynamic background component that cycles through a list of texts  at a specified interval."
   },
   "Seal": {
     "props": [
@@ -5353,6 +5370,7 @@
       {
         "name": "question",
         "type": "(string|node)",
+        "description": "question to be displayed at the top of the select question matrix",
         "defaultValue": ""
       },
       {
@@ -5363,61 +5381,79 @@
       {
         "name": "cols",
         "type": "array",
+        "description": "column labels",
         "defaultValue": []
       },
       {
         "name": "options",
         "type": "object",
+        "description": "object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being arrays of the possible answer choices for the individual select questions",
         "defaultValue": {}
       },
       {
         "name": "solution",
         "type": "object",
+        "description": "solution object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being the index of the correct answer element from the respective `options` array",
         "defaultValue": {}
       },
       {
         "name": "hints",
         "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
         "defaultValue": []
       },
       {
         "name": "hintPlacement",
         "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
         "defaultValue": "bottom"
       },
       {
         "name": "feedback",
         "type": "boolean",
+        "description": "controls whether to display feedback buttons",
         "defaultValue": true
       },
       {
         "name": "provideFeedback",
         "type": "string",
+        "description": "whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions",
         "defaultValue": "individual"
       },
       {
         "name": "failureMsg",
         "type": "string",
+        "description": "notification text displayed upon submitting incorrect answers",
         "defaultValue": null
       },
       {
         "name": "successMsg",
         "type": "string",
+        "description": "notification text displayed upon submitting correct answers",
         "defaultValue": null
       },
       {
         "name": "chat",
         "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
         "defaultValue": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
       },
       {
         "name": "style",
         "type": "object",
+        "description": "CSS inline styles",
         "defaultValue": {}
       },
       {
         "name": "onSubmit",
         "type": "function",
+        "description": "callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter",
         "defaultValue": "function onSubmit() {}"
       }
     ],

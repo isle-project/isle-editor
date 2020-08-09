@@ -36,6 +36,21 @@ const uid = generateUID( 'select-question-matrix' );
 
 /**
 * A question with an answer consisting of multiple select boxes.
+*
+* @param {(node|string)} question - question to be displayed at the top of the select question matrix
+* @param {Array} cols - column labels
+* @param {Object} options - object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being arrays of the possible answer choices for the individual select questions
+* @param {Object} solution - solution object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being the index of the correct answer element from the respective `options` array
+* @property {Array<(string|node)>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} provideFeedback - whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions
+* @property {string} failureMsg - notification text displayed upon submitting incorrect answers
+* @property {string} successMsg - notification text displayed upon submitting correct answers
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
+* @property {Function} onSubmit - callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter
 */
 class SelectQuestionMatrix extends Component {
 	constructor( props ) {
@@ -216,7 +231,7 @@ class SelectQuestionMatrix extends Component {
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
 		return (
-			<Card id={this.id} border={this.state.answerState} className="select-question-matrix" style={this.props.style} body >
+			<Card id={this.id} border={this.state.answerState} className={`select-question-matrix ${this.props.className}`} style={this.props.style} body >
 				{ this.props.question ? <label>{this.props.question}</label> : null }
 				{this.renderColumnNames()}
 				{this.renderRows()}
@@ -272,6 +287,7 @@ SelectQuestionMatrix.defaultProps = {
 	failureMsg: null,
 	successMsg: null,
 	chat: false,
+	className: '',
 	style: {},
 	onSubmit() {}
 };
@@ -294,6 +310,7 @@ SelectQuestionMatrix.propTypes = {
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	chat: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
