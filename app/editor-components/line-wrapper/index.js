@@ -53,6 +53,11 @@ class LineWrapper extends Component {
 		const node = findDOMNode( this );
 		const child = node.lastChild;
 		if ( child && child.className !== 'isle-loadable' ) {
+			if ( child.className === 'react-contextmenu' ) {
+				return this.setState({
+					style: {}
+				});
+			}
 			const style = isDOMElement( child ) ? window.getComputedStyle( child, null ) : {};
 			if ( style.position === 'fixed' || style.position === 'absolute' ) {
 				this.setState({
