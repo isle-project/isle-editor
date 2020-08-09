@@ -12,6 +12,7 @@ import './ui/collaborative_cursor.css';
 
 const debug = logger( 'isle:text-editor' );
 const PLACEHOLDER_ID = 'cursor-widget';
+const NUM_COLORS = CAT20.length;
 
 
 // MAIN //
@@ -41,13 +42,13 @@ const collaborativeCursorPlugin = new Plugin({
 					widget.className = 'editor-collaborative-cursor';
 					const line = document.createElement( 'span' );
 					line.className = 'editor-collaborative-cursor-line';
-					line.style = `background-color: ${CAT20[ i ]}`;
+					line.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`;
 					widget.appendChild( line );
 
 					const text = document.createElement( 'span' );
 					text.innerHTML = id;
 					text.className = 'editor-collaborative-cursor-text';
-					text.style = `background-color: ${CAT20[ i ]}`;
+					text.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`;
 					widget.appendChild( text );
 
 					const cursor = action.cursors[ id ];
@@ -66,7 +67,7 @@ const collaborativeCursorPlugin = new Plugin({
 							}),
 							Decoration.inline(
 								from, to,
-								{ style: `background-color: ${CAT20_FADED[ i ]};` }
+								{ style: `background-color: ${CAT20_FADED[ i % NUM_COLORS ]};` }
 							)
 						]);
 					} else {

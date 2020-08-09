@@ -69,7 +69,7 @@ const StatusBar = ( props ) => {
 							<span
 								className="prose-statusbar-user-badge"
 								style={{
-									backgroundColor: CAT20[ idx ]
+									backgroundColor: CAT20[ idx % CAT20.length ]
 								}}
 							></span>
 						</Tooltip> );
