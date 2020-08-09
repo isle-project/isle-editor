@@ -7,9 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 import indexOf from '@stdlib/utils/index-of';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -78,8 +78,11 @@ class SelectQuestion extends Component {
 
 	handleSubmit = () => {
 		const session = this.context;
-		let correct = this.props.solution === indexOf( this.props.options, this.state.value );
-		if ( this.props.provideFeedback ) {
+		let correct;
+		let answerState;
+		if ( !isUndefinedOrNull( this.props.solution ) && this.props.provideFeedback ) {
+			correct = this.props.solution === indexOf( this.props.options, this.state.value );
+			answerState = correct ? 'success' : 'danger';
 			if ( correct ) {
 				session.addNotification({
 					title: this.props.t('correct'),
@@ -94,6 +97,7 @@ class SelectQuestion extends Component {
 				});
 			}
 		} else {
+			answerState = 'info';
 			session.addNotification({
 				title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
 				message: this.state.submitted ?
@@ -109,7 +113,7 @@ class SelectQuestion extends Component {
 		});
 		this.props.onSubmit( this.state.value, correct );
 		this.setState({
-			answerState: correct ? 'success' : 'danger',
+			answerState,
 			submitted: true
 		});
 	}
@@ -129,6 +133,7 @@ class SelectQuestion extends Component {
 				levels: this.props.options,
 				question: this.props.question
 			}}
+			inline={this.props.inline}
 		/>;
 		if ( this.props.inline ) {
 			return (
@@ -138,10 +143,9 @@ class SelectQuestion extends Component {
 						...this.props.style
 					}}
 				>
-					<InputGroup style={{ display: 'inherit' }}>
+					<span style={{ display: 'inherit' }}>
 						<FormControl
 							value={this.state.value}
-							defaultValue={this.props.options[ this.props.preselected ]}
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
@@ -157,7 +161,7 @@ class SelectQuestion extends Component {
 						<Button size="small" variant={`outline-${this.state.answerState}`} disabled={isValid} style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
 							<i className="fa fa-check-square"></i>
 						</Button>
-					</InputGroup>
+					</span>
 					{responseVisualizer}
 				</span>
 			);
@@ -172,7 +176,6 @@ class SelectQuestion extends Component {
 						}
 						<FormControl
 							value={this.state.value}
-							defaultValue={this.props.options[ this.props.preselected ]}
 							as="select"
 							placeholder="select"
 							onChange={this.handleChange}
