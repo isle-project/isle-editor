@@ -459,7 +459,10 @@ class ResponseVisualizer extends Component {
 		focusRate *= 100.0;
 		const buttonLabel = this.props.buttonLabel || this.props.t('actions');
 		return (
-			<div id={`${this.props.id}_response_visualizer`} >
+			<div
+				id={`${this.props.id}_response_visualizer`}
+				style={{ display: this.props.inline ? 'inline' : 'inherit' }}
+			>
 				<Gate owner>
 				{this.renderFullscreenModal()}
 					<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
@@ -516,6 +519,7 @@ ResponseVisualizer.propTypes = {
 	success: PropTypes.string,
 	danger: PropTypes.string,
 	info: PropTypes.string,
+	inline: PropTypes.bool,
 	style: PropTypes.object,
 	variant: PropTypes.oneOf([
 		'primary', 'secondary', 'light', 'dark'
@@ -533,6 +537,7 @@ ResponseVisualizer.defaultProps = {
 	success: null,
 	danger: null,
 	info: null,
+	inline: false,
 	style: {},
 	variant: 'secondary',
 	noSessionRegistration: false
