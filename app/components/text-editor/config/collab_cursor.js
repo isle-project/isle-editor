@@ -51,24 +51,28 @@ const collaborativeCursorPlugin = new Plugin({
 					let from = cursor.from;
 					let to = cursor.to;
 					debug( 'Should display cursor at position: '+from );
-					const deco = Decoration.widget( from, widget, {
-						PLACEHOLDER_ID
-					});
-					const arr = [ deco ];
 					if ( from !== to ) {
 						if ( from > to ) {
 							const tmp = to;
 							to = from;
 							from = tmp;
 						}
-						arr.push(
+						decorations = decorations.add( tr.doc, [
+							Decoration.widget( from, widget, {
+								PLACEHOLDER_ID
+							}),
 							Decoration.inline(
 								from, to,
 								{ class: 'editor-collaborative-cursor-selection' }
 							)
-						);
+						]);
+					} else {
+						decorations = decorations.add( tr.doc, [
+							Decoration.widget( from, widget, {
+								PLACEHOLDER_ID
+							})
+						]);
 					}
-					decorations = decorations.add( tr.doc, arr );
 				}
 				return {
 					decorations,
