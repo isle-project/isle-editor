@@ -340,6 +340,9 @@ class ProseMirrorCollaborative extends Component {
 		} else {
 			debug( `Received response for version: ${data.version} and commentVersion: ${data.commentVersion}` );
 			if ( data.steps ) {
+				const cursorState = collaborativeCursorPlugin.getState( this.dispatchState.edit );
+				const oldCursorVersion = cursorState.version;
+
 				let tr = receiveTransaction(
 					this.dispatchState.edit,
 					data.steps.map( j => Step.fromJSON( schema, j ) ),
@@ -348,20 +351,21 @@ class ProseMirrorCollaborative extends Component {
 				);
 				tr.setMeta( collaborativeCursorPlugin, {
 					cursors: data.cursors,
+					version: data.cursorVersion,
 					clientID: this.props.session.user.name || this.props.session.anonymousIdentifier
 				});
 				this.dispatch({
 					type: 'transaction', transaction: tr, requestDone: true
 				});
+				if ( data.cursorVersion !== oldCursorVersion ) {
+					this.setState({
+						nUsers: data.users,
+						userList: objectKeys( data.cursors )
+					});
+				}
 			} else {
 				this.dispatchTransaction({
 					type: 'listening'
-				});
-			}
-			if ( this.state.nUsers !== data.users ) {
-				this.setState({
-					nUsers: data.users,
-					userList: objectKeys( data.cursors )
 				});
 			}
 		}

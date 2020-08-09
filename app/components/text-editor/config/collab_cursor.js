@@ -79,7 +79,7 @@ const collaborativeCursorPlugin = new Plugin({
 				}
 				return {
 					decorations,
-					version: set.version + 1
+					version: action.version || set.version + 1
 				};
 			}
 			return set;
