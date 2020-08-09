@@ -63,6 +63,11 @@ exports[`renders feedback buttons (vertical format) 1`] = `
     </button>
     <div
       id="feedback-3_response_visualizer"
+      style={
+        Object {
+          "display": "inherit",
+        }
+      }
     />
   </div>
   <div
@@ -132,6 +137,11 @@ exports[`renders feedback buttons with custom messages 1`] = `
     </button>
     <div
       id="feedback-5_response_visualizer"
+      style={
+        Object {
+          "display": "inherit",
+        }
+      }
     />
   </div>
   <div
@@ -186,6 +196,11 @@ exports[`renders feedback buttons without option to supply custom feedback 1`] =
     </button>
     <div
       id="feedback-4_response_visualizer"
+      style={
+        Object {
+          "display": "inherit",
+        }
+      }
     />
   </div>
   <div
