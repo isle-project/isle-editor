@@ -10,6 +10,9 @@ import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
 import isJSON from '@stdlib/assert/is-json';
+import objectKeys from '@stdlib/utils/keys';
+import Tooltip from 'components/tooltip';
+import { CAT20 } from 'constants/colors';
 import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
@@ -51,7 +54,7 @@ class State {
 }
 
 function userString( n ) {
-	return '(' + n + ' user' + ( n === 1 ? '' : 's') + ')';
+	return '' + n + ' user' + ( n === 1 ? '' : 's') + ':';
 }
 
 const StatusBar = ( props ) => {
@@ -59,8 +62,19 @@ const StatusBar = ( props ) => {
 		{ props.nUsers && props.docname ? <span className="docinfo">
 			Connected to:
 			<span className="connected" style={{ marginLeft: 5 }} >
-				<span className="docname">{props.docname}</span>
-				<span className="users" style={{ marginLeft: 5 }} >{userString( props.nUsers )}</span>
+				<span className="docname">{props.docname}, </span>
+				<span className="users" style={{ marginLeft: 5 }} >{userString( props.nUsers )}{
+					props.userList.map( ( user, idx ) => {
+						return ( <Tooltip key={idx} tooltip={user} >
+							<span
+								className="prose-statusbar-user-badge"
+								style={{
+									backgroundColor: CAT20[ idx ]
+								}}
+							></span>
+						</Tooltip> );
+					})
+				}</span>
 			</span>
 		</span> : null }
 		{ props.nWords ? <span>words: {props.nWords}</span> : null }
@@ -166,6 +180,8 @@ class ProseMirrorCollaborative extends Component {
 				comments: action.comments
 			});
 			this.nUsers = action.users;
+			console.log( action );
+			this.userList = objectKeys( action.cursors );
 			this.dispatchState = new State( editState, 'listening' );
 		} else if ( action.type === 'restart' ) {
 			this.dispatchState = new State( null, 'start' );
@@ -338,7 +354,10 @@ class ProseMirrorCollaborative extends Component {
 					type: 'listening'
 				});
 			}
-			this.nUsers = data.users;
+			if ( this.nUsers !== data.users ) {
+				this.nUsers = data.users;
+				this.userList = objectKeys( data.cursors );
+			}
 		}
 	}
 
@@ -374,6 +393,7 @@ class ProseMirrorCollaborative extends Component {
 			doc: schema.nodeFromJSON( data.doc ),
 			version: data.version,
 			users: data.users,
+			cursors: data.cursors,
 			comments: {
 				version: data.commentVersion,
 				comments: data.comments
@@ -424,6 +444,7 @@ class ProseMirrorCollaborative extends Component {
 				nWords={this.nWords}
 				nChars={this.nChars}
 				nUsers={this.nUsers}
+				userList={this.userList}
 				docname={this.props.id}
 			/>
 		</Fragment> );

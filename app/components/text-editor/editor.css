@@ -71,6 +71,13 @@
 	float: left;
 }
 
+.prose-statusbar-user-badge {
+	display: inline-block;
+	width: 14px;
+	margin-left: 2px;
+	margin-bottom: -1px;
+}
+
 .ProseMirror h1 {
 	color: #2e4468;
 	font-size: 26pt;
