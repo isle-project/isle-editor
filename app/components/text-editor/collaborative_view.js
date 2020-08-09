@@ -65,7 +65,7 @@ const StatusBar = ( props ) => {
 				<span className="docname">{props.docname}, </span>
 				<span className="users" style={{ marginLeft: 5 }} >{userString( props.nUsers )}{
 					props.userList.map( ( user, idx ) => {
-						return ( <Tooltip key={idx} tooltip={user} placement="top" >
+						return ( <Tooltip key={`${user}-${idx}`} tooltip={user} placement="top" >
 							<span
 								className="prose-statusbar-user-badge"
 								style={{
