@@ -73,9 +73,10 @@
 
 .prose-statusbar-user-badge {
 	display: inline-block;
+	height: 14px;
 	width: 14px;
-	margin-left: 2px;
-	margin-bottom: -1px;
+	margin-left: 4px;
+	margin-bottom: -3px;
 }
 
 .ProseMirror h1 {

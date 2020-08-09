@@ -65,7 +65,7 @@ const StatusBar = ( props ) => {
 				<span className="docname">{props.docname}, </span>
 				<span className="users" style={{ marginLeft: 5 }} >{userString( props.nUsers )}{
 					props.userList.map( ( user, idx ) => {
-						return ( <Tooltip key={idx} tooltip={user} >
+						return ( <Tooltip key={idx} tooltip={user} placement="top" >
 							<span
 								className="prose-statusbar-user-badge"
 								style={{
@@ -97,10 +97,13 @@ class ProseMirrorCollaborative extends Component {
 
 		this.doc = isJSON( props.defaultValue ) ? props.defaultValue :
 			parser( props.defaultValue ).toJSON();
-		this.nUsers = null;
 		this.lastCursor = {
 			from: null,
 			to: null
+		};
+		this.state = {
+			nUsers: null,
+			userList: []
 		};
 	}
 
@@ -179,10 +182,11 @@ class ProseMirrorCollaborative extends Component {
 				]),
 				comments: action.comments
 			});
-			this.nUsers = action.users;
-			console.log( action );
-			this.userList = objectKeys( action.cursors );
 			this.dispatchState = new State( editState, 'listening' );
+			this.setState({
+				nUsers: action.users,
+				userList: objectKeys( action.cursors )
+			});
 		} else if ( action.type === 'restart' ) {
 			this.dispatchState = new State( null, 'start' );
 			this.props.session.joinCollaborativeEditing( this.props.id );
@@ -354,9 +358,11 @@ class ProseMirrorCollaborative extends Component {
 					type: 'listening'
 				});
 			}
-			if ( this.nUsers !== data.users ) {
-				this.nUsers = data.users;
-				this.userList = objectKeys( data.cursors );
+			if ( this.state.nUsers !== data.users ) {
+				this.setState({
+					nUsers: data.users,
+					userList: objectKeys( data.cursors )
+				});
 			}
 		}
 	}
@@ -443,8 +449,8 @@ class ProseMirrorCollaborative extends Component {
 			<StatusBar
 				nWords={this.nWords}
 				nChars={this.nChars}
-				nUsers={this.nUsers}
-				userList={this.userList}
+				nUsers={this.state.nUsers}
+				userList={this.state.userList}
 				docname={this.props.id}
 			/>
 		</Fragment> );
