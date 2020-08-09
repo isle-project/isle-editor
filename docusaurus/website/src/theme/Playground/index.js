@@ -31,7 +31,13 @@ function Playground({ children, theme, transformCode, ...props }) {
 				)}>
 				Live Editor
 			</div>
-			<LiveEditor className={styles.playgroundEditor} />
+			<LiveEditor
+				className={styles.playgroundEditor}
+				onKeyDown={( event ) => {
+					// Prevent propagation to avoid triggering Algolia when typing `/`:
+					event.stopPropagation();
+				}}
+			/>
 			<div
 				className={clsx(
 					styles.playgroundHeader,
