@@ -4,6 +4,7 @@ import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
+import { CAT20, CAT20_FADED } from 'constants/colors';
 import './ui/collaborative_cursor.css';
 
 
@@ -40,11 +41,13 @@ const collaborativeCursorPlugin = new Plugin({
 					widget.className = 'editor-collaborative-cursor';
 					const line = document.createElement( 'span' );
 					line.className = 'editor-collaborative-cursor-line';
+					line.style = `background-color: ${CAT20[ i ]}`;
 					widget.appendChild( line );
 
 					const text = document.createElement( 'span' );
 					text.innerHTML = id;
 					text.className = 'editor-collaborative-cursor-text';
+					text.style = `background-color: ${CAT20[ i ]}`;
 					widget.appendChild( text );
 
 					const cursor = action.cursors[ id ];
@@ -63,7 +66,7 @@ const collaborativeCursorPlugin = new Plugin({
 							}),
 							Decoration.inline(
 								from, to,
-								{ class: 'editor-collaborative-cursor-selection' }
+								{ style: `background-color: ${CAT20_FADED[ i ]};` }
 							)
 						]);
 					} else {

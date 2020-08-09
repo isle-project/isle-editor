@@ -31,7 +31,6 @@
 }
 
 .editor-collaborative-cursor-line {
-	background-color: rgba(75, 168, 255, 0.8);
 	bottom: 0;
 	height: 1.2em;
 	left: -1px;
@@ -45,10 +44,5 @@
 	position: absolute;
 	font-size: 12px;
 	width: max-content;
-	background-color: rgba(75, 168, 255, 0.8);
 	color: white;
-}
-
-.editor-collaborative-cursor-selection {
-	background-color: rgba(143, 201, 255, 0.8);
 }
