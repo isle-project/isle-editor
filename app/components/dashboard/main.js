@@ -59,7 +59,7 @@ class Dashboard extends Component {
 				}
 				if ( hasOwnProperty( elem.props, 'defaultValue' ) ) {
 					initialState[ this.nArgs ] = elem.props.defaultValue;
-					this.nArgs +=1;
+					this.nArgs += 1;
 				}
 				if ( hasOwnProperty( elem.props, 'children' ) ) {
 					walk( elem.props.children );
