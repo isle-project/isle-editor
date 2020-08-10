@@ -272,20 +272,18 @@ class ImageViewBody extends React.PureComponent {
 		const error = !loading && !originalSize.complete;
 
 		let { width, height } = attrs;
-		if (loading) {
+		if ( loading ) {
 			width = width || IMAGE_PLACEHOLDER_SIZE;
 			height = height || IMAGE_PLACEHOLDER_SIZE;
 		}
-
-		if (width && !height) {
+		if ( width && !height ) {
 			height = width / aspectRatio;
-		} else if (height && !width) {
+		} else if ( height && !width ) {
 			width = height * aspectRatio;
-		} else if (!width && !height) {
+		} else if ( !width && !height ) {
 			width = originalSize.width;
 			height = originalSize.height;
 		}
-
 		let scale = 1;
 		if ( width > maxSize.width && ( !crop || crop.width > maxSize.width ) ) {
 			// Scale image to fit its containing space.
