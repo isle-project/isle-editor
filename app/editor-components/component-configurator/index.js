@@ -228,7 +228,7 @@ class ComponentConfigurator extends Component {
 			if ( match ) {
 				propName = match[ 1 ];
 				let val = match[ 2 ] || match[ 3 ] || match[ 4 ] || '';
-				value = replace( value, new RegExp( match[ 1 ]+'(?:=["{\']`?'+rescape( val )+'`?["}\']| )', 'i' ), '' );
+				value = replace( value, new RegExp( match[ 1 ]+'(?:=["{\']`?'+rescape( val )+'`?["}\']|\\s)', 'i' ), '' );
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
