@@ -1,9 +1,11 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Pagination from 'react-bootstrap/Pagination';
 import Card from 'react-bootstrap/Card';
-import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
@@ -16,6 +18,7 @@ import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE
 import isLineButtons from 'utils/is-line-buttons';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
+import './load_translations.js';
 import './pages.css';
 
 
@@ -137,7 +140,7 @@ class Pages extends Component {
 
 	render() {
 		if ( !this.props.children ) {
-			return null;
+			return <Alert variant="danger" >{this.props.t('missing-children')}</Alert>;
 		}
 		let children;
 		if ( isElectron ) {
@@ -225,7 +228,7 @@ class Pages extends Component {
 					items={children.length || 1}
 				>
 					<Tooltip
-						placement="top" tooltip="Go to previous page"
+						placement="top" tooltip={this.props.t('previous-page')}
 						show={!this.props.disabled && ( this.state.activePage !== 1 )}
 					>
 						<Pagination.Prev
@@ -236,7 +239,7 @@ class Pages extends Component {
 					</Tooltip>
 					{items}
 					<Tooltip
-						placement="top" tooltip="Go to next page"
+						placement="top" tooltip={this.props.t('next-page')}
 						show={!this.props.disabled && ( this.state.activePage !== children.length )}
 					>
 						<Pagination.Next
@@ -308,4 +311,4 @@ Pages.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Pages;
+export default withTranslation( 'pages' )( Pages );

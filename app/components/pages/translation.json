@@ -1,0 +1,14 @@
+{
+	"DE": {
+		"missing-children": "Für die Seitenkomponente müssen mindestens zwei Kind-Elemente gerendert werden.",
+		"next-page": "Weiter zur nächsten Seite",
+		"previous-page": "Gehe zur vorherigen Seite"
+	},
+	"EN": {
+		"missing-children": "The pages component requires at least two child elements to be rendered.",
+		"next-page": "Go to next page",
+		"previous-page": "Go to previous page"
+	},
+	"ES": {
+	}
+}
