@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
 import isArray from '@stdlib/assert/is-array';
 import ztest from '@stdlib/stats/ztest';
@@ -32,118 +33,148 @@ class PropTest extends Component {
 
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			const vals = props.data[ props.categorical[ 0 ] ];
-			if ( vals ) {
-				categories = vals.slice();
+			const values = props.data[ props.categorical[ 0 ] ];
+			if ( values ) {
+				categories = values.slice();
 				unique( categories );
 			}
 		} else {
 			categories = [];
 		}
 		this.state = {
+			variable: props.categorical[ 0 ],
+			success: categories[ 0 ],
+			p0: 0.5,
+			direction: 'two-sided',
+			alpha: 0.05,
 			categories: categories
 		};
+	}
 
-		this.calculatePropTest = ( variable, success, p0, direction, alpha ) => {
-			const { data } = this.props;
-			const x = data[ variable ];
-			const binary = x.map( x => x === success ? 1 : 0 );
-			const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
-				'alpha': alpha,
-				'alternative': direction,
-				'mu': p0
-			});
-			let arrow = '\\ne';
-			if ( direction === 'less' ) {
-				arrow = '<';
-			} else if ( direction === 'greater' ){
-				arrow = '>';
-			}
-			let printout = result.print({
-				decision: this.props.showDecision
-			});
-			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
-			printout = replace( printout, RE_ONESIDED_GREATER, '' );
-			const output = {
-				variable: `One-Sample Proportion Test for ${variable}`,
-				type: 'Test',
-				value: <div style={{ overflowX: 'auto', width: '100%' }}>
-					<label>Hypothesis test for {variable}:</label>
-					<p>
-						Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
-					</p>
-					<span>
-						We test
-					</span>
-					<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
-					<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
-					<pre>
-						{printout}
-					</pre>
-				</div>
-			};
-			this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
-				variable, success, p0, direction, alpha
-			});
-			this.props.onCreated( output );
+	calculatePropTest = () => {
+		const { variable, success, p0, direction, alpha } = this.state;
+		const { data } = this.props;
+		const x = data[ variable ];
+		const binary = x.map( x => x === success ? 1 : 0 );
+		const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
+			'alpha': alpha,
+			'alternative': direction,
+			'mu': p0
+		});
+		let arrow = '\\ne';
+		if ( direction === 'less' ) {
+			arrow = '<';
+		} else if ( direction === 'greater' ){
+			arrow = '>';
+		}
+		let printout = result.print({
+			decision: this.props.showDecision
+		});
+		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
+		printout = replace( printout, RE_ONESIDED_GREATER, '' );
+		const output = {
+			variable: `One-Sample Proportion Test for ${variable}`,
+			type: 'Test',
+			value: <div style={{ overflowX: 'auto', width: '100%' }}>
+				<label>Hypothesis test for {variable}:</label>
+				<p>
+					Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
+				</p>
+				<span>
+					We test
+				</span>
+				<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
+				<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
+				<pre>
+					{printout}
+				</pre>
+			</div>
 		};
+		this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
+			variable, success, p0, direction, alpha
+		});
+		this.props.onCreated( output );
 	}
 
 	render() {
 		const { categorical } = this.props;
 		return (
-			<Dashboard
-				title={
-					<span>
-						One-Sample Proportion Test
-						<QuestionButton title="One-Sample Proportion Test" content={DESCRIPTION} />
-					</span>
-				}
-				label="Calculate"
-				autoStart={false}
-				onGenerate={this.calculatePropTest}
+			<Card
+				style={{ fontSize: '14px' }}
 			>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={categorical[ 0 ]}
-					options={categorical}
-					onChange={( val ) => {
-						const vals = this.props.data[ val ];
-						let categories;
-						if ( vals ) {
-							categories = vals.slice();
-							unique( categories );
-						}
-						this.setState({
-							categories
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Success:"
-					defaultValue={this.state.categories[ 0 ]}
-					options={this.state.categories}
-				/>
-				<NumberInput
-					legend={<TeX raw="p_0" />}
-					defaultValue={0.5}
-					min={0.001}
-					max={0.999}
-					step="any"
-				/>
-				<SelectInput
-					legend="Direction:"
-					defaultValue="two-sided"
-					options={[ 'less', 'greater', 'two-sided' ]}
-				/>
-				<NumberInput
-					legend={<span>Significance level <TeX raw="\alpha" /></span>}
-					defaultValue={0.05}
-					min={0.0}
-					max={1.0}
-					step="any"
-				/>
-			</Dashboard>
+				<Card.Header as="h4">
+					One-Sample Proportion Test
+					<QuestionButton title="One-Sample Proportion Test" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<SelectInput
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={categorical}
+						onChange={( variable ) => {
+							const values = this.props.data[ variable ];
+							let categories;
+							if ( values ) {
+								categories = values.slice();
+								unique( categories );
+							}
+							this.setState({
+								categories,
+								variable,
+								success: categories[ 0 ]
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Success:"
+						defaultValue={this.state.success}
+						options={this.state.categories}
+						onChange={( value ) => {
+							this.setState({
+								success: value
+							});
+						}}
+					/>
+					<NumberInput
+						legend={<TeX raw="p_0" />}
+						defaultValue={this.state.p0}
+						min={0.001}
+						max={0.999}
+						step="any"
+						onChange={( value ) => {
+							this.setState({
+								p0: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Direction:"
+						defaultValue={this.state.direction}
+						options={[ 'less', 'greater', 'two-sided' ]}
+						onChange={( value ) => {
+							this.setState({
+								direction: value
+							});
+						}}
+					/>
+					<NumberInput
+						legend={<span>Significance level <TeX raw="\alpha" /></span>}
+						defaultValue={this.state.alpha}
+						min={0.0}
+						max={1.0}
+						step="any"
+						onChange={( value ) => {
+							this.setState({
+								alpha: value
+							});
+						}}
+					/>
+					<Button
+						variant="primary" block
+						onClick={this.calculatePropTest}
+					>Calculate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
