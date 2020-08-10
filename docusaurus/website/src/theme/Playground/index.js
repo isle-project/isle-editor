@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 /**
 * Copyright (c) Facebook, Inc. and its affiliates.
 *
@@ -11,6 +13,14 @@ import * as React from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+
+
+// FUNCTIONS //
+
+function preventPropagation( event ) {
+	// Prevent propagation to avoid triggering Algolia when typing `/`:
+	event.stopPropagation();
+}
 
 
 // MAIN //
@@ -33,10 +43,7 @@ function Playground({ children, theme, transformCode, ...props }) {
 			</div>
 			<LiveEditor
 				className={styles.playgroundEditor}
-				onKeyDown={( event ) => {
-					// Prevent propagation to avoid triggering Algolia when typing `/`:
-					event.stopPropagation();
-				}}
+				onKeyDown={preventPropagation}
 			/>
 			<div
 				className={clsx(
@@ -45,7 +52,7 @@ function Playground({ children, theme, transformCode, ...props }) {
 				)}>
 				Result
 			</div>
-			<div className={styles.playgroundPreview}>
+			<div className={styles.playgroundPreview} onKeyDown={preventPropagation} >
 				<LivePreview />
 				<LiveError />
 			</div>
