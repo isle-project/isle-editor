@@ -298,19 +298,24 @@ class MultipleChoiceQuestion extends Component {
 					return this.state.submitted;
 				}
 				return this.state.submitted || !this.state.answerSelected;
-			case 'incremental':
+			case 'incremental': {
 				if ( isNull( this.state.active ) ) {
 					return true;
 				}
 				if ( !this.state.submitted ) {
 					return false;
 				}
+				let missed = this.props.solution.length;
 				for ( let i = 0; i < this.state.correct.length; i++ ) {
 					if ( this.state.correct[ i ] === true ) {
-						return true;
+						missed -= 1;
 					}
 				}
+				if ( missed === 0 ) {
+					return true;
+				}
 				return false;
+			}
 		}
 		return false;
 	}
@@ -369,9 +374,13 @@ class MultipleChoiceQuestion extends Component {
 				}
 			}
 		};
-		return ( <AnswerOptionWithFeedback
-			{...props}
-		/> );
+		return this.props.provideFeedback === 'full' ?
+			<AnswerOptionWithFeedback
+				{...props}
+			/> :
+			<AnswerOptionIncrFeedback
+				{...props}
+			/>;
 	}
 
 	renderAnswerOptionsSingle = ( key, id ) => {
