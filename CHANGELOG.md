@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.61.0](https://github.com/isle-project/isle-editor/tree/v0.61.0) (2020-08-10)
+
+**Fixed bugs:**
+
+- Issue with One Sample Proportion Hypothesis Test [\#1231](https://github.com/isle-project/isle-editor/issues/1231)
+- download data not working? [\#1220](https://github.com/isle-project/isle-editor/issues/1220)
+
 ## [v0.60.1](https://github.com/isle-project/isle-editor/tree/v0.60.1) (2020-08-03)
 
 **Implemented enhancements:**
