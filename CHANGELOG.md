@@ -2,7 +2,12 @@
 
 ## [v0.61.2](https://github.com/isle-project/isle-editor/releases/tag/v0.61.2) (2020-08-10)
 
-## [v0.61.1](https://github.com/isle-project/isle-editor/releases/tag/v0.61.1) (2020-08-10)
+## [v0.61.0](https://github.com/isle-project/isle-editor/releases/tag/v0.61.0) (2020-08-10)
+
+**Fixed bugs:**
+
+- Issue with One Sample Proportion Hypothesis Test [\#1231](https://github.com/isle-project/isle-editor/issues/1231)
+- download data not working? [\#1220](https://github.com/isle-project/isle-editor/issues/1220)
 
 ## [v0.60.1](https://github.com/isle-project/isle-editor/releases/tag/v0.60.1) (2020-08-03)
 
@@ -10,8 +15,6 @@
 
 - Filter Options \(removal of individual vs restore original dataset\) [\#1168](https://github.com/isle-project/isle-editor/issues/1168)
 - Additional summary statistics for numerical variables [\#1164](https://github.com/isle-project/isle-editor/issues/1164)
-
-## [v0.60.0](https://github.com/isle-project/isle-editor/releases/tag/v0.60.0) (2020-08-03)
 
 ## [v0.59.0](https://github.com/isle-project/isle-editor/releases/tag/v0.59.0) (2020-07-25)
 
