@@ -64,16 +64,16 @@ import './data_explorer.css';
 
 // MODEL COMPONENTS //
 
-import DecisionTree from 'components/data-explorer/decision_tree.js';
-import LassoRegression from 'components/data-explorer/lasso_regression.js';
-import LogisticRegression from 'components/data-explorer/logistic_regression';
-import MultipleLinearRegression from 'components/data-explorer/multiple_linear_regression';
-import RandomForest from 'components/data-explorer/random_forest.js';
-import SimpleLinearRegression from 'components/data-explorer/simple_linear_regression';
-import PrincipalComponentAnalysis from 'components/data-explorer/principal_component_analysis';
-import HierarchicalClustering from 'components/data-explorer/hierarchical_clustering.js';
-import KMeans from 'components/data-explorer/kmeans';
-import NaiveBayes from 'components/data-explorer/naive_bayes.js';
+const DecisionTree = Loadable( () => import( 'components/data-explorer/decision_tree.js' ) );
+const LassoRegression = Loadable( () => import( 'components/data-explorer/lasso_regression.js' ) );
+const LogisticRegression = Loadable( () => import( 'components/data-explorer/logistic_regression' ) );
+const MultipleLinearRegression = Loadable( () => import( 'components/data-explorer/multiple_linear_regression' ) );
+const RandomForest = Loadable( () => import( 'components/data-explorer/random_forest.js' ) );
+const SimpleLinearRegression = Loadable( () => import( 'components/data-explorer/simple_linear_regression' ) );
+const PrincipalComponentAnalysis = Loadable( () => import( 'components/data-explorer/principal_component_analysis' ) );
+const HierarchicalClustering = Loadable( () => import( 'components/data-explorer/hierarchical_clustering.js' ) );
+const KMeans = Loadable( () => import( 'components/data-explorer/kmeans' ) );
+const NaiveBayes = Loadable( () => import( 'components/data-explorer/naive_bayes.js' ) );
 
 
 // PLOT COMPONENTS //
@@ -94,14 +94,14 @@ import ContourChart, { generateContourChart } from 'components/data-explorer/con
 
 // TEST COMPONENTS //
 
-import MeanTest from 'components/data-explorer/meantest';
-import MeanTest2 from 'components/data-explorer/meantest2';
-import CorrTest from 'components/data-explorer/corrtest';
-import Chi2Test from 'components/data-explorer/chi2';
-import PropTest from 'components/data-explorer/proptest';
-import PropTest2 from 'components/data-explorer/proptest2';
-import Anova from 'components/data-explorer/anova';
-import Kruskal from 'components/data-explorer/kruskal';
+const MeanTest = Loadable( () => import( 'components/data-explorer/meantest' ) );
+const MeanTest2 = Loadable( () => import( 'components/data-explorer/meantest2' ) );
+const CorrTest = Loadable( () => import( 'components/data-explorer/corrtest' ) );
+const Chi2Test = Loadable( () => import( 'components/data-explorer/chi2' ) );
+const PropTest = Loadable( () => import( 'components/data-explorer/proptest' ) );
+const PropTest2 = Loadable( () => import( 'components/data-explorer/proptest2' ) );
+const Anova = Loadable( () => import( 'components/data-explorer/anova' ) );
+const Kruskal = Loadable( () => import( 'components/data-explorer/kruskal' ) );
 
 
 // VARIABLES //
