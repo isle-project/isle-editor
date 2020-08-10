@@ -18,6 +18,10 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         sinceTag: v0.57.0
+        author: false
+        excludeTags: v0.61.0, v0.61.1
+        stripGeneratorNotice: true
+        releaseUrl: https://github.com/isle-project/isle-editor/releases/tag/%s
     - name: Update Changelog
       run: |
         git config user.name "$GITHUB_ACTOR"
