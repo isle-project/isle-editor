@@ -3,7 +3,7 @@
 import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Pages from 'components/pages/main.js';
+import { PurePages as Pages } from 'components/pages/main.js';
 
 
 // VARIABLES //
@@ -15,12 +15,12 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe( '<Pages />', function test() {
 	it( 'does not render any elements if no children are present', () => {
-		const wrapper = shallow( <Pages></Pages> );
-		expect( wrapper.html() ).toBeNull();
+		const wrapper = shallow( <Pages t={key => key} ></Pages> );
+		expect( wrapper ).toHaveLength( 1 );
 	});
 
 	it( 'renders a user-supplied `title`', () => {
-		const wrapper = shallow( <Pages title="A Title" >
+		const wrapper = shallow( <Pages t={key => key} title="A Title" >
 			<div>ONE</div>
 			<div>TWO</div>
 		</Pages> );
@@ -31,7 +31,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'the `jumpTo` method allows one to call up a certain page', () => {
-		const wrapper = mount(<Pages>
+		const wrapper = mount(<Pages t={key => key}>
 			<p>ONE</p>
 			<p>TWO</p>
 			<p>THREE</p>
@@ -54,7 +54,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'the `jumpTo` method stays at the current age if supplied a page outside the allowed range', () => {
-		const wrapper = mount(<Pages>
+		const wrapper = mount(<Pages t={key => key} >
 			<p>ONE</p>
 			<p>TWO</p>
 			<p>THREE</p>
@@ -93,7 +93,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'the `nextPage` method allows one to call the next page externally', () => {
-		const wrapper = mount(<Pages>
+		const wrapper = mount(<Pages t={key => key} >
 			<p>ONE</p>
 			<p>TWO</p>
 			<p>THREE</p>
@@ -120,7 +120,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'the `prevPage` method allows one to call the previous page externally', () => {
-		const wrapper = mount(<Pages>
+		const wrapper = mount(<Pages t={key => key} >
 			<div>ONE</div>
 			<div>TWO</div>
 			<div>THREE</div>
@@ -147,7 +147,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'when clicked, the component moves to the next or previous page', done => {
-		const wrapper = mount(<Pages activePage={3}>
+		const wrapper = mount(<Pages activePage={3} t={key => key} >
 			<div>ONE</div>
 			<div>TWO</div>
 			<div>THREE</div>
@@ -170,7 +170,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'allows one to set the `height` of the container', () => {
-		const wrapper = mount(<Pages height="300px" >
+		const wrapper = mount(<Pages height="300px" t={key => key} >
 			<div>ONE</div>
 			<div>TWO</div>
 			<div>THREE</div>
@@ -181,7 +181,7 @@ describe( '<Pages />', function test() {
 	});
 
 	it( 'triggers the `onSelect` event when the active page is changed', () => {
-		const wrapper = shallow( <Pages onSelect={onSelect}>
+		const wrapper = shallow( <Pages onSelect={onSelect} t={key => key} >
 			<p>ONE</p>
 			<p>TWO</p>
 			<p>THREE</p>
