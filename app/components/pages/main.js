@@ -311,4 +311,6 @@ Pages.contextType = SessionContext;
 
 // EXPORTS //
 
+export const PurePages = Pages;
+
 export default withTranslation( 'pages' )( Pages );
