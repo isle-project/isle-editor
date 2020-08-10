@@ -351,7 +351,7 @@ class Barchart extends Component {
 					<Row>
 						<Col>
 							<FormGroup controlId="barchart-order-select">
-								<FormLabel>Order x-axis:</FormLabel>
+								<FormLabel>{this.state.groupVar ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
 								<Select
 									defaultValue={this.state.xOrder}
 									options={ORDER_OPTIONS}
