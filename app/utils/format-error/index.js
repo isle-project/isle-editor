@@ -1,13 +1,14 @@
 // MODULES //
 
 import repeat from '@stdlib/string/repeat';
+import max from '@stdlib/math/base/special/max';
 
 
 // VARIABLES //
 
 const RE_ANSI = /[\u001B\u009B][[\]()#;?]*(?:(?:(?:[a-zA-Z\d]*(?:;[a-zA-Z\d]*)*)?\u0007)|(?:(?:\d{1,4}(?:;\d{0,4})*)?[\dA-PR-TZcf-ntqry=><~]))/g; // eslint-disable-line no-control-regex
 const RE_DIGIT_COLON = /\((\d+):/;
-const RE_LINE_DIGIT = /( *)(\d*) \|/g;
+const RE_LINE_DIGIT = /(\n *)(\d*) \|/g;
 const RE_LINE_WRAPPER_OPENING = /<LineWrapper tagName="[a-zA-Z0-9]+" startLineNumber=\{\d+\} endLineNumber=\{\d+\} >/g;
 const RE_LINE_WRAPPER_CLOSING = /<\/LineWrapper>/g;
 const RE_FRAGMENT = /<\/?React.Fragment>/g;
@@ -27,7 +28,7 @@ const formatError = ( msg ) => {
 	});
 	msg = msg.replace( RE_LINE_DIGIT, ( match, p1, p2 ) => {
 		const line = p2 ? String( parseInt( p2, 10 )-NUM_WRAPPER_LINES ) : '';
-		const spaces = repeat( ' ', p2.length - line.length );
+		const spaces = repeat( ' ', max( p2.length - line.length, 0 ) );
 		return p1 + spaces + line + ' |';
 	});
 	msg = msg.replace( RE_LINE_WRAPPER_OPENING, '' );
