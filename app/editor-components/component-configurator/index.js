@@ -227,8 +227,12 @@ class ComponentConfigurator extends Component {
 			match = this.RE_PROPERTY.exec( value );
 			if ( match ) {
 				propName = match[ 1 ];
+				debug( 'Handling property '+propName );
 				let val = match[ 2 ] || match[ 3 ] || match[ 4 ] || '';
-				value = replace( value, new RegExp( match[ 1 ]+'(?:=["{\']`?'+rescape( val )+'`?["}\']|\\s)', 'i' ), '' );
+				const RE_ATTR = new RegExp( '(\\s)'+match[ 1 ]+'(?:=["{\']`?'+rescape( val )+'`?["}\']|\\s)', 'g' );
+				value = replace( value, RE_ATTR, '$1' );
+				debug( 'Current value: ' );
+				debug( value );
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
