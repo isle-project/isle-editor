@@ -56,6 +56,12 @@ pre {
 	border-radius: 4px;
 }
 
+pre code {
+	font-size: 87.5%;
+	color: #e83e8c;
+	word-break: break-word;
+}
+
 .Lesson > p,
 .Lesson > .line-wrapper > p,
 .Lesson > .line-wrapper > .line-wrapper > p {
