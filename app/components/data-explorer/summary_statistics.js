@@ -42,7 +42,7 @@ const Option = props => {
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
 		}}>{props.data.label}</span>
-		<OverlayTrigger trigger={['hover', 'focus']} placement="right" rootClose overlay={popover} >
+		{ props.showDefinitions ? <OverlayTrigger trigger={['hover', 'focus']} placement="right" rootClose overlay={popover} >
 			<Button
 				size="sm"
 				variant="outline-secondary"
@@ -51,7 +51,7 @@ const Option = props => {
 			>
 				<span className="fa fa-question" />
 			</Button>
-		</OverlayTrigger>
+		</OverlayTrigger> : null }
 	</components.Option> );
 };
 
@@ -173,8 +173,8 @@ class SummaryStatistics extends Component {
 				value: statistic( selectedStat ),
 				label: selectedStat
 			}] : null,
-			variables: [ props.defaultX || props.variables[ 0 ] ],
-			secondVariable: props.defaultY || props.variables[ 1 ],
+			variables: props.defaultX ? [ props.defaultX ] : [],
+			secondVariable: props.defaultY,
 			group: null,
 			showSecondVarSelect: false,
 			showQuantiles: false,
