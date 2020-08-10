@@ -647,7 +647,7 @@ class ComponentConfigurator extends Component {
 										let out = markdownToHTML( code );
 										out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
 											const raw = replace( p1, '\\', '\\\\' );
-											return `String.raw({ raw: '${raw}' })`;
+											return `String.raw({ raw: \`${raw}\` })`;
 										});
 										return out;
 									} catch ( err ) {
