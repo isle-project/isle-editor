@@ -38,7 +38,7 @@ const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
-const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^-\d ][\s\S]+(\r?\n|$))/g;
+const RE_DIGIT = /\d/;
 
 const md = markdownit({
 	html: true,
@@ -169,10 +169,6 @@ function tagName( str, pos ) {
 	return out;
 }
 
-function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, '$1' );
-}
-
 function isPreviousChar( buffer, pos, char ) {
 	pos -= 1;
 	while ( isWhitespace( buffer[ pos ] ) ) {
@@ -198,20 +194,20 @@ function isWhitespace( c ) {
 }
 
 class Tokenizer {
-	constructor( opts ) {
+	constructor( opts = {} ) {
 		debug( 'Create tokenizer: '+JSON.stringify( opts ) );
 		if ( opts && opts.lineNumber ) {
 			this.initialLineNumber = opts.lineNumber;
 		} else {
 			this.initialLineNumber = 1;
 		}
-		if ( opts ) {
-			this.inline = opts.inline ? true : false;
-			this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
-			this.lineNumber = this.initialLineNumber;
-			this.outer = opts.outer ? true : false;
-			this.addLineWrappers = opts.addLineWrappers;
-		}
+		this.inline = opts.inline ? true : false;
+		this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
+		this.lineNumber = this.initialLineNumber;
+		this.columnNumber = 0;
+		this.outer = opts.outer ? true : false;
+		this.addLineWrappers = opts.addLineWrappers;
+		this.trimLineStarts = opts.trimLineStarts ? true : false;
 	}
 
 	setup( str ) {
@@ -228,6 +224,7 @@ class Tokenizer {
 
 		this._startLineNumber = null;
 		this._endLineNumber = null;
+		this._startColumn = null;
 		this.pos = 0;
 		this.placeholderHash = {};
 		this.inBetweenEquation = false;
@@ -259,6 +256,7 @@ class Tokenizer {
 			this._level += 1;
 			this._startTagNamePos = 0;
 			this._startLineNumber = this.lineNumber;
+			this._startColumn = this.columnNumber;
 		}
 		else if ( char === '$' ) {
 			this._eqnChar = char;
@@ -391,10 +389,11 @@ class Tokenizer {
 						inline: isInner,
 						lineNumber: this._betweenLineNumber,
 						addLineWrappers: this.addLineWrappers && !RE_NO_WRAPPER_TAGS.test( this._openingTagName ),
-						addEmptySpans: this.addEmptySpans
+						addEmptySpans: this.addEmptySpans,
+						trimLineStarts: true
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
-						let str = tokenizer.parse( trimLineStarts( this.betweenStr ) );
+						let str = tokenizer.parse( this.betweenStr );
 						str = replace( str, '<span />', '' );
 						this._current += EOL + str + '<';
 					} else {
@@ -428,12 +427,13 @@ class Tokenizer {
 				this._current = replace( this._current, '</a>', '</Link>' );
 			}
 			this._endLineNumber = this.lineNumber;
+			this._endColumn = this.columnNumber + 1;
 			if (
 				this.addLineWrappers && !isInline &&
 				!RE_INNER_TAGS.test( this._openingTagName ) &&
 				!RE_FLEX_TAGS.test( this._openingTagName )
 			) {
-				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'}>' + this._current + '</LineWrapper>';
 			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'" data-lines="'+(this._endLineNumber - this._startLineNumber)+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
@@ -478,7 +478,7 @@ class Tokenizer {
 				const isInner = RE_INNER_TAGS.test( this._openingTagName ) ||
 					RE_INLINE_TAGS.test( this._openingTagName );
 				if ( this.addLineWrappers && !isInner ) {
-					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} >' + this._current + '</LineWrapper>';
+					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} >' + this._current + '</LineWrapper>';
 				}
 				this._level -= 1;
 				if ( this._level === 0 ) {
@@ -770,6 +770,9 @@ class Tokenizer {
 			if ( isWhitespace( char ) ) {
 				if ( char === '\n' ) {
 					this.lineNumber += 1;
+					this.columnNumber = 0;
+				} else {
+					this.columnNumber += 1;
 				}
 			} else {
 				idx = i;
@@ -806,8 +809,25 @@ class Tokenizer {
 		this.setup( str );
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
+			this.columnNumber += 1;
 			if ( char === '\n' ) {
 				this.lineNumber += 1;
+				this.columnNumber = 0;
+				if ( this.trimLineStarts ) {
+					const originalPos = this.pos;
+					let nWhitespace = 0;
+					let nextChar = str.charAt( this.pos + 1 );
+					while ( nextChar === ' ' || nextChar === '\t' ) {
+						this.pos += 1;
+						nWhitespace += 1;
+						nextChar = str.charAt( this.pos + 1 );
+					}
+					if ( nextChar === '-' || RE_DIGIT.test( nextChar ) ) {
+						this.pos = originalPos;
+					} else {
+						this.columnNumber += nWhitespace;
+					}
+				}
 			}
 			switch ( this._state ) {
 			case IN_BASE:
