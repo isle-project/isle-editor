@@ -3,7 +3,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import 'v8-compile-cache';
-import 'highlight.js/styles/github.css';
 import App from './app.js';
 import 'css/lesson.css';
 

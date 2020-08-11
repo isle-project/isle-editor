@@ -24,7 +24,6 @@ const EXTERNALS = [
 	'eslint', // needs to be external for CLI Engine to work for linting
 	'form-data',
 	'fsevents',
-	'highlight.js',
 	'html-webpack-plugin', // must be external due to errors otherwise
 	'markdown-it',
 	'@iktakahiro/markdown-it-katex',
