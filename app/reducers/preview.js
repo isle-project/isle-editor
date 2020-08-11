@@ -9,7 +9,7 @@ import * as types from 'constants/editor_actions.js';
 const config = new Store( 'ISLE' );
 const initialState = {
 	autoUpdatePreview: true,
-	showLineButtons: false,
+	showLineButtons: true,
 	renderInterval: config.get( 'renderInterval' ) || 2000
 };
 
