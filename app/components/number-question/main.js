@@ -266,7 +266,7 @@ class NumberQuestion extends Component {
 		return (
 			<Panel
 				id={this.id} className="number-question" style={this.props.style} fullscreen
-				bodyStyle={{ width: this.props.feedback ? 'calc(100% - 60px)' : '100%', display: 'inline-block', marginBottom: 6 }}
+				bodyStyle={{ display: 'inline-block', marginBottom: 6 }}
 			>
 				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
 				<div className="number-question-input-wrapper">
