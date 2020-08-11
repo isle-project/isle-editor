@@ -138,7 +138,9 @@ export default function markdown( state = initialState, action ) {
 			...state,
 			elementRange: {
 				startLineNumber: action.payload.startLineNumber,
-				endLineNumber: action.payload.endLineNumber
+				endLineNumber: action.payload.endLineNumber,
+				startColumn: action.payload.startColumn,
+				endColumn: action.payload.endColumn
 			},
 			elementRangeVersion: state.elementRangeVersion + 1,
 			elementRangeAction: action.payload.elementRangeAction

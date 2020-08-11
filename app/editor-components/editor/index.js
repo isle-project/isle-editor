@@ -555,7 +555,7 @@ class Editor extends Component {
 			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
 			const lineNumber = selection.startLineNumber;
 			scrollIntoView( lineNumber );
-			const elem = document.getElementById( 'line-'+selection.startLineNumber );
+			const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+(selection.startColumn-1) );
 			if ( elem ) {
 				const event = new MouseEvent( 'dblclick', {
 					'view': window,
@@ -611,11 +611,7 @@ class Editor extends Component {
 				const id = { major: 1, minor: 1 };
 				const op = {
 					identifier: id,
-					range: {
-						...this.props.elementRange,
-						startColumn: 1,
-						endColumn: Infinity
-					},
+					range: this.props.elementRange,
 					text: '',
 					forceMoveMarkers: true
 				};
@@ -645,7 +641,7 @@ class Editor extends Component {
 					{
 						range: this.props.elementRange,
 						options: {
-							isWholeLine: true,
+							isWholeLine: false,
 							className: 'highlighted_content',
 							glyphMarginClassName: 'configurator_glyph',
 							glyphMarginHoverMessage: {
@@ -1172,9 +1168,11 @@ class Editor extends Component {
 		}
 		const range = {
 			startLineNumber: elementRange.startLineNumber,
-			endLineNumber: elementRange.endLineNumber + 1
+			startColumn: elementRange.startColumn,
+			endColumn: elementRange.endColumn,
+			endLineNumber: elementRange.endLineNumber
 		};
-		const selection = new this.monaco.Selection( range.startLineNumber, 0, range.endLineNumber, 0 );
+		const selection = new this.monaco.Selection( range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn );
 
 		this.editor.setSelection( selection );
 		let content = model.getValueInRange( range );

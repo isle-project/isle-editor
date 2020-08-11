@@ -6,6 +6,7 @@ import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import vex from 'vex-js';
+import PINF from '@stdlib/constants/math/float64-pinf';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
@@ -84,6 +85,8 @@ class LineWrapper extends Component {
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
+			startColumn: this.props.startColumn,
+			endColumn: this.props.endColumn,
 			elementRangeAction: null
 		});
 	}
@@ -92,6 +95,8 @@ class LineWrapper extends Component {
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
+			startColumn: this.props.startColumn,
+			endColumn: this.props.endColumn,
 			elementRangeAction: 'trigger_configurator'
 		});
 	}
@@ -104,6 +109,8 @@ class LineWrapper extends Component {
 					this.props.jumpToElementInEditor({
 						startLineNumber: this.props.startLineNumber,
 						endLineNumber: this.props.endLineNumber,
+						startColumn: this.props.startColumn,
+						endColumn: this.props.endColumn,
 						elementRangeAction: 'delete'
 					});
 				}
@@ -112,7 +119,7 @@ class LineWrapper extends Component {
 	}
 
 	render() {
-		const { tagName, startLineNumber, endLineNumber } = this.props;
+		const { tagName, startLineNumber, endLineNumber, startColumn } = this.props;
 		let outerTitle = `Double-click to highlight source code for <${tagName} />`;
 		if ( startLineNumber === endLineNumber ) {
 			outerTitle += ` (L${startLineNumber})`;
@@ -122,7 +129,7 @@ class LineWrapper extends Component {
 		}
 		return (
 			<div
-				id={`line-${startLineNumber}`}
+				id={`line-${startLineNumber}-${startColumn}`}
 				className="line-wrapper"
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
@@ -155,6 +162,8 @@ class LineWrapper extends Component {
 // PROPERTIES //
 
 LineWrapper.defaultProps = {
+	startColumn: 1,
+	endColumn: PINF,
 	tagName: null
 };
 
@@ -162,6 +171,8 @@ LineWrapper.propTypes = {
 	jumpToElementInEditor: PropTypes.func.isRequired,
 	endLineNumber: PropTypes.number.isRequired,
 	startLineNumber: PropTypes.number.isRequired,
+	startColumn: PropTypes.number,
+	endColumn: PropTypes.number,
 	tagName: PropTypes.string
 };
 

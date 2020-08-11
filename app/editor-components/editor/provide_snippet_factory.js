@@ -20,7 +20,7 @@ function factory( monaco ) {
 	function provideCompletionItems( model, position ) {
 		const lastLine = model.getValueInRange({
 			startLineNumber: position.lineNumber,
-			startColumn: 0,
+			startColumn: 1,
 			endLineNumber: position.lineNumber,
 			endColumn: position.column
 		});

@@ -1,5 +1,6 @@
 // MODULES //
 
+import PINF from '@stdlib/constants/math/float64-pinf';
 import * as types from 'constants/editor_actions.js';
 
 
@@ -76,12 +77,14 @@ export function resetError() {
 	};
 }
 
-export function jumpToElementInEditor({ startLineNumber, endLineNumber, elementRangeAction }) {
+export function jumpToElementInEditor({ startLineNumber, endLineNumber, startColumn = 0, endColumn = PINF, elementRangeAction }) {
 	return {
 		type: types.JUMP_TO_ELEMENT_IN_EDITOR,
 		payload: {
 			startLineNumber,
 			endLineNumber,
+			startColumn,
+			endColumn,
 			elementRangeAction
 		}
 	};
