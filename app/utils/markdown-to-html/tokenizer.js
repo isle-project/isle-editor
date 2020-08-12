@@ -36,7 +36,9 @@ const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
-const RE_DIGIT = /\d/;
+const RE_SRC_URL = /\s(src|url)=['"]$/;
+const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^-\d ][\s\S]+(\r?\n|$))/g;
+
 
 const md = markdownit({
 	html: true,
@@ -161,6 +163,10 @@ function isPreviousChar( buffer, pos, char ) {
 	return buffer.charAt( pos ) === char;
 }
 
+function trimLineStarts( str ) {
+	return replace( str, RE_LINE_BEGINNING, '$1' );
+}
+
 /**
 * Tests whether character is whitespace.
 *
@@ -188,10 +194,11 @@ class Tokenizer {
 		this.inline = opts.inline ? true : false;
 		this.addEmptySpans = opts.addEmptySpans && !this.inline ? true : false;
 		this.lineNumber = this.initialLineNumber;
-		this.columnNumber = 0;
+		this.columnNumber = opts.columnNumber ? opts.columnNumber : 0;
 		this.outer = opts.outer ? true : false;
 		this.addLineWrappers = opts.addLineWrappers;
 		this.trimLineStarts = opts.trimLineStarts ? true : false;
+		this.fileDirectory = opts.fileDirectory;
 	}
 
 	setup( str ) {
@@ -374,7 +381,9 @@ class Tokenizer {
 						lineNumber: this._betweenLineNumber,
 						addLineWrappers: this.addLineWrappers && !RE_NO_WRAPPER_TAGS.test( this._openingTagName ),
 						addEmptySpans: this.addEmptySpans,
-						trimLineStarts: true
+						trimLineStarts: true,
+						columnNumber: this._betweenColumnNumber,
+						fileDirectory: this.fileDirectory
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
 						let str = tokenizer.parse( this.betweenStr );
@@ -481,11 +490,13 @@ class Tokenizer {
 					debug( 'IN_OPENING_TAG: IN_BETWEEN_TAGS' );
 					this._state = IN_BETWEEN_TAGS;
 					this._betweenLineNumber = this.lineNumber;
+					this._betweenColumnNumber = this.columnNumber;
 				}
 			} else {
 				debug( 'IN_OPENING_TAG -> IN_BETWEEN_TAGS' );
 				this._state = IN_BETWEEN_TAGS;
 				this._betweenLineNumber = this.lineNumber;
+				this._betweenColumnNumber = this.columnNumber;
 			}
 		} else if ( isQuotationMark( char ) ) {
 			this._stringOpener = char;
@@ -495,6 +506,16 @@ class Tokenizer {
 					this._current = this._current.slice( 0, -1 ) + '{String.raw`';
 					this.rawEscaping = true;
 				}
+			}
+			else if (
+				this.fileDirectory &&
+				RE_SRC_URL.test( this._current ) &&
+				this._buffer.charAt( this.pos + 1 ) === '.'
+			) {
+				// Change relative to absolute file paths:
+				this._filePathStart = this._current.length - 1;
+				this._current += this.fileDirectory;
+				this.pos += 1; // skip over forward slash
 			}
 			this._state = IN_STRING_ATTRIBUTE;
 		}
@@ -507,6 +528,10 @@ class Tokenizer {
 			if ( this.rawEscaping ) {
 				this._current = this._current.slice( 0, -1 ) + '`}';
 				this.rawEscaping = false;
+			}
+			if ( this._filePathStart ) {
+				const beforePath = this._current.substring( 0, this._filePathStart );
+				this._current = beforePath + replace( this._current.substring( this._filePathStart ), '\\', '\\' );
 			}
 			this._state = IN_OPENING_TAG;
 		}
@@ -597,7 +622,8 @@ class Tokenizer {
 							inline: isInner,
 							lineNumber: startLineNumber,
 							addLineWrappers: this.addLineWrappers,
-							addEmptySpans: this.addEmptySpans
+							addEmptySpans: this.addEmptySpans,
+							fileDirectory: this.fileDirectory
 						});
 						this._current += tokenizer.parse( current );
 						current = '';
@@ -612,7 +638,8 @@ class Tokenizer {
 						inline: isInner,
 						lineNumber: startLineNumber,
 						addLineWrappers: this.addLineWrappers,
-						addEmptySpans: this.addEmptySpans
+						addEmptySpans: this.addEmptySpans,
+						fileDirectory: this.fileDirectory
 					});
 					this._current += tokenizer.parse( current );
 					current = '';
@@ -712,7 +739,8 @@ class Tokenizer {
 				inline: isInner,
 				lineNumber: this._jsxStartLine,
 				addLineWrappers: this.addLineWrappers,
-				addEmptySpans: this.addEmptySpans
+				addEmptySpans: this.addEmptySpans,
+				fileDirectory: this.fileDirectory
 			});
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
@@ -815,21 +843,6 @@ class Tokenizer {
 			if ( char === '\n' ) {
 				this.lineNumber += 1;
 				this.columnNumber = 0;
-				if ( this.trimLineStarts ) {
-					const originalPos = this.pos;
-					let nWhitespace = 0;
-					let nextChar = str.charAt( this.pos + 1 );
-					while ( nextChar === ' ' || nextChar === '\t' ) {
-						this.pos += 1;
-						nWhitespace += 1;
-						nextChar = str.charAt( this.pos + 1 );
-					}
-					if ( nextChar === '-' || RE_DIGIT.test( nextChar ) ) {
-						this.pos = originalPos;
-					} else {
-						this.columnNumber += nWhitespace;
-					}
-				}
 			}
 			switch ( this._state ) {
 			case IN_BASE:
@@ -896,6 +909,9 @@ class Tokenizer {
 			outer: this.outer,
 			addLineWrappers: this.addLineWrappers
 		};
+		if ( this.trimLineStarts ) {
+			out = trimLineStarts( out );
+		}
 		out = this.inline ? md.renderInline( out, env ) : md.render( out, env );
 		for ( let key in this.placeholderHash ) {
 			if ( hasOwnProp( this.placeholderHash, key ) ) {
