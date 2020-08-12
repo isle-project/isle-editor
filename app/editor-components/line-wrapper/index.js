@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { connect } from 'react-redux';
@@ -82,6 +82,7 @@ class LineWrapper extends Component {
 
 	handleDoubleClick = ( event ) => {
 		event.stopPropagation();
+		console.log( this.props );
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
@@ -127,6 +128,39 @@ class LineWrapper extends Component {
 		else {
 			outerTitle += ` (L${startLineNumber}-${endLineNumber})`;
 		}
+		const wrapperBar = <Fragment>
+			<span className="line-wrapper-tagname" >{tagName}</span>
+			<span
+				role="button" tabIndex={0}
+				className="line-wrapper-delete fa fa-trash"
+				title={`Delete <${tagName} /> from lesson`}
+				onClick={this.deleteElement}
+				onKeyPress={this.deleteElement}
+			></span>
+			<span
+				role="button" tabIndex={0}
+				className="line-wrapper-open-configurator fa fa-cogs"
+				title={`Click to open configurator menu for <${tagName} />`}
+				onClick={this.handleConfiguratorTrigger}
+				onKeyPress={this.handleConfiguratorTrigger}
+			></span>
+		</Fragment>;
+		if ( this.props.inline ) {
+			return (
+				<span
+					id={`line-${startLineNumber}-${startColumn}`}
+					className="line-wrapper"
+					onDoubleClick={this.handleDoubleClick}
+					title={outerTitle}
+					style={this.state.style}
+				>
+					<span className="line-wrapper-bar" >
+						{wrapperBar}
+					</span>
+					{this.props.children}
+				</span>
+			);
+		}
 		return (
 			<div
 				id={`line-${startLineNumber}-${startColumn}`}
@@ -136,21 +170,7 @@ class LineWrapper extends Component {
 				style={this.state.style}
 			>
 				<div className="line-wrapper-bar" >
-					<span className="line-wrapper-tagname" >{tagName}</span>
-					<span
-						role="button" tabIndex={0}
-						className="line-wrapper-delete fa fa-trash"
-						title={`Delete <${tagName} /> from lesson`}
-						onClick={this.deleteElement}
-						onKeyPress={this.deleteElement}
-					></span>
-					<span
-						role="button" tabIndex={0}
-						className="line-wrapper-open-configurator fa fa-cogs"
-						title={`Click to open configurator menu for <${tagName} />`}
-						onClick={this.handleConfiguratorTrigger}
-						onKeyPress={this.handleConfiguratorTrigger}
-					></span>
+					{wrapperBar}
 				</div>
 				{this.props.children}
 			</div>
@@ -162,12 +182,14 @@ class LineWrapper extends Component {
 // PROPERTIES //
 
 LineWrapper.defaultProps = {
+	inline: false,
 	startColumn: 1,
 	endColumn: PINF,
 	tagName: null
 };
 
 LineWrapper.propTypes = {
+	inline: PropTypes.bool,
 	jumpToElementInEditor: PropTypes.func.isRequired,
 	endLineNumber: PropTypes.number.isRequired,
 	startLineNumber: PropTypes.number.isRequired,
