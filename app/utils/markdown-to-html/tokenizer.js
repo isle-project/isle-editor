@@ -4,7 +4,6 @@ import logger from 'debug';
 import { EOL } from 'os';
 import markdownit from 'markdown-it';
 import replace from '@stdlib/string/replace';
-import startsWith from '@stdlib/string/starts-with';
 import removeFirst from '@stdlib/string/remove-first';
 import trim from '@stdlib/string/trim';
 import endsWith from '@stdlib/string/ends-with';
@@ -37,7 +36,6 @@ const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
-const RE_RAW_ATTRIBUTE = /<(TeX|Text)([^>]*?)raw *= *("[^"]*"|{`[^`]*`})/g;
 const RE_DIGIT = /\d/;
 
 const md = markdownit({
@@ -126,20 +124,6 @@ function isSlideDelimiter( token ) {
 		token.children[ 0 ].content === '==='
 	);
 }
-
-/**
-* Escapes raw attribute tags of TeX and Text components.
-*/
-const rawEscaper = ( match, p1, p2, p3 ) => {
-	if ( startsWith( p3, '{`' ) ) {
-		p3 = '{String.raw`' + p3.substring( 2 );
-		return '<'+p1+' '+p2+' raw='+p3;
-	} else if ( startsWith( p3, '"' ) ) {
-		p3 = '{String.raw`' + p3.substring( 1, p3.length-1 );
-		return '<'+p1+' '+p2+' raw='+p3+'`}';
-	}
-	return match;
-};
 
 /**
 * Tests whether character is a quotation mark.
@@ -429,11 +413,11 @@ class Tokenizer {
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
 			if (
-				this.addLineWrappers && !isInline &&
+				this.addLineWrappers &&
 				!RE_INNER_TAGS.test( this._openingTagName ) &&
 				!RE_FLEX_TAGS.test( this._openingTagName )
 			) {
-				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'}>' + this._current + '</LineWrapper>';
+				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} inline={'+isInline+'}>' + this._current + '</LineWrapper>';
 			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'" data-lines="'+(this._endLineNumber - this._startLineNumber)+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
@@ -474,11 +458,15 @@ class Tokenizer {
 		else if ( char === '>' ) {
 			this._openTagEnd = this._current.length;
 			this._endLineNumber = this.lineNumber;
+			this._endColumn = this.columnNumber + 1;
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
-				const isInner = RE_INNER_TAGS.test( this._openingTagName ) ||
-					RE_INLINE_TAGS.test( this._openingTagName );
-				if ( this.addLineWrappers && !isInner ) {
-					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} >' + this._current + '</LineWrapper>';
+				if (
+					this.addLineWrappers &&
+					!RE_INNER_TAGS.test( this._openingTagName ) &&
+					!RE_FLEX_TAGS.test( this._openingTagName )
+				) {
+					const isInline = RE_INLINE_TAGS.test( this._openingTagName );
+					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} inline={'+isInline+'} >' + this._current + '</LineWrapper>';
 				}
 				this._level -= 1;
 				if ( this._level === 0 ) {
@@ -502,6 +490,12 @@ class Tokenizer {
 		} else if ( isQuotationMark( char ) ) {
 			this._stringOpener = char;
 			debug( 'IN_OPENING_TAG -> IN_STRING_ATTRIBUTE' );
+			if ( this._openingTagName === 'Text' || this._openingTagName === 'TeX' ) {
+				if ( endsWith( this._current, 'raw='+char ) ) {
+					this._current = this._current.slice( 0, -1 ) + '{String.raw`';
+					this.rawEscaping = true;
+				}
+			}
 			this._state = IN_STRING_ATTRIBUTE;
 		}
 	}
@@ -510,6 +504,10 @@ class Tokenizer {
 		this._current += char;
 		if ( char === this._stringOpener && this._buffer.charAt( this.pos-1 ) !== '/' ) {
 			debug( 'IN_STRING_ATTRIBUTE -> IN_OPENING_TAG' );
+			if ( this.rawEscaping ) {
+				this._current = this._current.slice( 0, -1 ) + '`}';
+				this.rawEscaping = false;
+			}
 			this._state = IN_OPENING_TAG;
 		}
 	}
@@ -736,6 +734,11 @@ class Tokenizer {
 		this._current += char;
 		if ( char === '`' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
+			if ( this._openingTagName === 'Text' || this._openingTagName === 'TeX' ) {
+				if ( endsWith( this._current, 'raw={`' ) ) {
+					this._current = this._current.slice( 0, -1 ) + 'String.raw`';
+				}
+			}
 			this._state = IN_JSX_STRING;
 		}
 		else if ( char === '{' ) {
@@ -802,7 +805,6 @@ class Tokenizer {
 		debug( '---' );
 		debug( str );
 		debug( '---' );
-		str = replace( str, RE_RAW_ATTRIBUTE, rawEscaper );
 		if ( this.inline ) {
 			str = this.leftTrim( str );
 		}
