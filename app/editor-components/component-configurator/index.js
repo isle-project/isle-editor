@@ -132,7 +132,7 @@ class ComponentConfigurator extends Component {
 		super( props );
 		let { name, value } = props.component;
 		const doc = COMPONENT_DOCS[ name ] || {};
-		const docProps = doc.props.slice() || [];
+		const docProps = doc.props ? doc.props.slice() : [];
 		docProps.push({
 			name: 'id',
 			type: 'string',
@@ -265,7 +265,7 @@ class ComponentConfigurator extends Component {
 		} while ( match );
 		if ( !this.selfClosing ) {
 			const match = value.match( this.RE_CHILDREN );
-			if ( match[ 1 ] ) {
+			if ( match && match[ 1 ] ) {
 				newValues[ 'prop:children' ] = match[ 1 ];
 				newActive[ 'children' ] = true;
 			}
