@@ -459,7 +459,7 @@ BinomialProps.propTypes = {
 };
 
 BinomialProps.defaultProps = {
-	hideCDF: PropTypes.bool,
+	hideCDF: false,
 	step: 0.01,
 	style: {}
 };
