@@ -63,7 +63,7 @@ const loadSyncRequires = ( libs, filePath ) => {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
 				let lib = libs[ key ];
-				if ( isURI( lib ) ) {
+				if ( isURI( encodeURI( lib ) ) ) {
 					continue;
 				}
 				if ( isAbsolutePath( lib ) || /\.(\/|\\)/.test( lib ) ) {
@@ -89,7 +89,7 @@ const prepareAsyncRequires = ( libs ) => {
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
-				let lib = libs[ key ];
+				let lib = encodeURI( libs[ key ] );
 				if ( isURI( lib ) ) {
 					asyncOps.resources.push( lib );
 					asyncOps.keys.push( key );
