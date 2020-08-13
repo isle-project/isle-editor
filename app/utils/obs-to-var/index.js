@@ -1,11 +1,12 @@
 // MODULES //
 
 import trim from '@stdlib/string/trim';
+import objectKeys from '@stdlib/utils/keys';
 
 
 // VARIABLES //
 
-const RE_NUMBER = /^[+-]?[\d.]+e?[+-]?\d*$/;
+const RE_NUMBER = /^\s*[+-]?[\d.]+e?[+-]?\d*\s*$/;
 
 
 // MAIN //
@@ -23,7 +24,7 @@ const RE_NUMBER = /^[+-]?[\d.]+e?[+-]?\d*$/;
 function obsToVar( arr ) {
 	const data = {};
 	const keymap = {};
-	const columnNames = Object.keys( arr[ 0 ] ).filter( x => x !== '' );
+	const columnNames = objectKeys( arr[ 0 ] ).filter( x => x !== '' );
 	for ( let i = 0; i < columnNames.length; i++ ) {
 		const col = trim( columnNames[ i ] );
 		keymap[ columnNames[ i ] ] = col;
