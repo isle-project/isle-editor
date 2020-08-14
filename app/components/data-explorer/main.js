@@ -1056,6 +1056,7 @@ class DataExplorer extends Component {
 				case 'Line Plot':
 					content = <Lineplot
 						{...quantitativeProps}
+						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context}
 					/>;

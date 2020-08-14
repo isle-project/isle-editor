@@ -2,9 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import FormGroup from 'react-bootstrap/FormGroup';
+import FormLabel from 'react-bootstrap/FormLabel';
 import SelectInput from 'components/input/select';
+import selectStyles from 'components/input/select/styles';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
@@ -20,6 +24,13 @@ const DESCRIPTION = 'A line plot can be used to display one quantitative variabl
 
 
 // FUNCTIONS //
+
+function createOption( label ) {
+	return {
+		label,
+		value: label
+	};
+}
 
 export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) {
 	let traces;
@@ -128,7 +139,7 @@ class LinePlot extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { categorical, variables, groupingVariables } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -136,16 +147,31 @@ class LinePlot extends Component {
 					<QuestionButton title="Line Plot" content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
-					<SelectInput
-						legend="x-axis:"
-						defaultValue={null}
-						options={variables}
-						onChange={( xvar ) => {
-							this.setState({ xvar });
-						}}
-						placeholder="Select... (optional)"
-						clearable
-					/>
+					<FormGroup controlId="lineplot-form-select">
+						<FormLabel>x-axis:</FormLabel>
+						<Select
+							legend="x-axis:"
+							defaultValue={null}
+							options={[
+								{
+									label: 'Quantitative',
+									options: variables.map( createOption )
+								},
+								{
+									label: 'Categorical',
+									options: categorical.map( createOption )
+								}
+							]}
+							onChange={( elem ) => {
+								this.setState({
+									xvar: elem ? elem.value : null
+								});
+							}}
+							placeholder="Select... (optional)"
+							isClearable
+							styles={selectStyles}
+						/>
+					</FormGroup>
 					<SelectInput
 						legend="y-axis:"
 						defaultValue={this.state.yvar}
@@ -200,6 +226,7 @@ LinePlot.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
 	session: PropTypes.object,
+	categorical: PropTypes.array.isRequired,
 	variables: PropTypes.array.isRequired
 };
 
