@@ -799,39 +799,42 @@ class Editor extends Component {
 			}
 			else if ( startsWith( selectedText, '<img' ) || startsWith( selectedText, '<Image' ) ) {
 				const model = this.editor.getModel();
-				const { matches, range } = model.findNextMatch( RE_IMG_SRC, 0, true, false, null, true );
-				range.startColumn += 5; // handles leading src="
-				range.endColumn -= 1; // handles trailing "
-				if ( matches ) {
-					const imgURL = matches[ 1 ];
-					const ext = extname( url.parse( imgURL ).pathname );
-					if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
-						if ( isURI( imgURL ) ) {
-							actions.push({
-								command: {
-									id: this.copyToLocal,
-									title: 'Copy image to local location',
-									arguments: [ imgURL, 'img', ext, range ]
-								},
-								title: 'Copy image to local location'
-							});
-						}
-						else if ( isRelativePath( imgURL ) ) {
-							const destDir = dirname( this.props.filePath );
-							const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
-							const isleDir = join( destDir, `${fileName}-resources` );
-							const manifestPath = join( isleDir, 'manifest.json' );
-							const manifest = readJSON.sync( manifestPath );
-							const entry = manifest.resources[ basename( imgURL ) ];
-							if ( entry ) {
+				const result = model.findNextMatch( RE_IMG_SRC, 0, true, false, null, true );
+				if ( result ) {
+					const { matches, range } = result;
+					range.startColumn += 5; // handles leading src="
+					range.endColumn -= 1; // handles trailing "
+					if ( matches ) {
+						const imgURL = matches[ 1 ];
+						const ext = extname( url.parse( imgURL ).pathname );
+						if ( contains( IMAGE_EXTENSIONS, lowercase( ext ) ) ) {
+							if ( isURI( imgURL ) ) {
 								actions.push({
 									command: {
-										id: this.changeToRemote,
-										title: 'Replace local resource by remote file',
-										arguments: [ imgURL, entry, range ]
+										id: this.copyToLocal,
+										title: 'Copy image to local location',
+										arguments: [ imgURL, 'img', ext, range ]
 									},
-									title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+									title: 'Copy image to local location'
 								});
+							}
+							else if ( isRelativePath( imgURL ) ) {
+								const destDir = dirname( this.props.filePath );
+								const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
+								const isleDir = join( destDir, `${fileName}-resources` );
+								const manifestPath = join( isleDir, 'manifest.json' );
+								const manifest = readJSON.sync( manifestPath );
+								const entry = manifest.resources[ basename( imgURL ) ];
+								if ( entry ) {
+									actions.push({
+										command: {
+											id: this.changeToRemote,
+											title: 'Replace local resource by remote file',
+											arguments: [ imgURL, entry, range ]
+										},
+										title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+									});
+								}
 							}
 						}
 					}
