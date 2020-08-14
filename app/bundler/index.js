@@ -331,7 +331,7 @@ function writeIndexFile({
 
 	debug( `Resolve packages relative to ${basePath}...` );
 	let fileDir;
-	let isleDir;
+	let resourceDirectory;
 	let fileName;
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
@@ -340,8 +340,8 @@ function writeIndexFile({
 	if ( filePath ) {
 		fileDir = dirname( filePath );
 		fileName = basename( filePath, extname( filePath ) );
-		isleDir = join( fileDir, `${fileName}-resources` );
-		modulePaths.push( resolve( join( isleDir, 'node_modules' ) ) );
+		resourceDirectory = join( fileDir, `${fileName}-resources` );
+		modulePaths.push( resolve( join( resourceDirectory, 'node_modules' ) ) );
 	}
 	const plugins = [
 		new HtmlWebpackPlugin({
@@ -609,9 +609,11 @@ function writeIndexFile({
 	}
 
 	// Copy asset directories:
+	const resourceDirName = `${fileName}-resources`;
+	mkdirSync( join( appDir, `${fileName}-resources` ) );
 	if ( filePath ) {
-		copy( join( fileDir, isleDir, 'img' ), join( appDir, isleDir, 'img' ) ).catch( debug );
-		copy( join( fileDir, isleDir, 'video' ), join( appDir, isleDir, 'video' ) ).catch( debug );
+		copy( join( resourceDirectory, 'img' ), join( appDir, resourceDirName, 'img' ) ).catch( debug );
+		copy( join( resourceDirectory, 'video' ), join( appDir, resourceDirName, 'video' ) ).catch( debug );
 	}
 
 	let imgPath = join( basePath, 'app', 'img' );
