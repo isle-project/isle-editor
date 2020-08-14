@@ -111,7 +111,7 @@ class Presenter extends Component {
 				appearOff: true
 			})
 		) : (
-			<h1 className="spectacle-end-header">END</h1>
+			<p className="spectacle-end-header">END</p>
 		);
 	}
 
