@@ -255,6 +255,10 @@ class Barchart extends Component {
 		const action = {
 			variable, groupVar, plotId
 		};
+		if ( this.state.mode === MODES[ 1 ] ) {
+			action.summary = this.state.summary;
+			action.yvar = this.state.yvar;
+		}
 		const output = {
 			variable,
 			type: 'Chart',
