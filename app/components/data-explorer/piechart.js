@@ -231,6 +231,7 @@ PieChart.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	session: PropTypes.object,
+	quantitative: PropTypes.array.isRequired,
 	variables: PropTypes.array.isRequired
 };
 
