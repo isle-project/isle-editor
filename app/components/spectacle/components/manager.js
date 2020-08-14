@@ -732,8 +732,7 @@ export class Manager extends Component {
 		const showControls =
 			!this.state.fullscreen &&
 			!this.state.mobile &&
-			this.context.route.params.indexOf('overview') === -1 &&
-			this.context.route.params.indexOf('presenter') === -1;
+			this.context.route.params.indexOf('overview') === -1;
 
 		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
