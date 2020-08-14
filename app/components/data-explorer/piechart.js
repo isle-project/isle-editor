@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
 import objectKeys from '@stdlib/utils/keys';
@@ -11,6 +12,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
+import sum from 'utils/statistic/sum';
 import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -19,15 +21,24 @@ import by from './by.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.';
+const MODES = [
+	'Counts of unique values',
+	'Values from a second variable'
+];
 
 
 // FUNCTIONS //
 
-export function generatePiechartConfig({ data, variable, group }) {
+export function generatePiechartConfig({ data, variable, group, mode, summaryVariable }) {
 	let annotations;
 	let traces;
 	if ( !group ) {
-		const freqs = countBy( data[ variable ], identity );
+		let freqs;
+		if ( mode === MODES[ 1 ] ) {
+			freqs = by( data[ summaryVariable ], data[ variable ], sum );
+		} else {
+			freqs = countBy( data[ variable ], identity );
+		}
 		const categories = variable.categories || objectKeys( freqs );
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
@@ -96,14 +107,31 @@ export function generatePiechartConfig({ data, variable, group }) {
 class PieChart extends Component {
 	constructor( props ) {
 		super( props );
+
+		const { variables, defaultValue, quantitative } = props;
+		this.state = {
+			variable: defaultValue || variables[ 0 ],
+			summaryVariable: quantitative[ 0 ],
+			groupVar: null,
+			mode: MODES[ 0 ]
+		};
 	}
 
-	generatePiechart( variable, group ) {
-		const config = generatePiechartConfig({ data: this.props.data, variable, group });
+	generatePiechart = () => {
+		const { variable, groupVar } = this.state;
+		const config = generatePiechartConfig({
+			data: this.props.data,
+			variable,
+			group: groupVar,
+			...this.state
+		});
 		const plotId = randomstring( 6 );
 		const action = {
-			variable, group, plotId
+			variable, groupVar, plotId
 		};
+		if ( this.state.mode === MODES[ 1 ] ) {
+			action.summaryVariable = this.state.summaryVariable;
+		}
 		const output = {
 			variable: variable,
 			type: 'Chart',
@@ -131,31 +159,63 @@ class PieChart extends Component {
 	}
 
 	render() {
-		const { variables, defaultValue, groupingVariables } = this.props;
 		return (
-			<Dashboard
-				title={<span>Pie Chart<QuestionButton title="Pie Chart" content={DESCRIPTION} /></span>}
-				autoStart={false}
-				onGenerate={this.generatePiechart.bind( this )}
-			>
-				<SelectInput
-					legend="Variable:"
-					defaultValue={defaultValue || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend="Group By:"
-					options={groupingVariables}
-					clearable={true}
-					menuPlacement="top"
-				/>
-			</Dashboard>
+			<Card>
+				<Card.Header as="h4">
+					Pie Chart
+					<QuestionButton title="Pie Chart" content={DESCRIPTION} />
+				</Card.Header>
+				<Card.Body>
+					<SelectInput
+						legend="Pie sizes represent:"
+						defaultValue={this.state.mode}
+						options={MODES}
+						onChange={( value )=>{
+							this.setState({
+								mode: value
+							});
+						}}
+					/>
+					<SelectInput
+						legend="Variable:"
+						defaultValue={this.state.variable}
+						options={this.props.variables}
+						onChange={( value )=>{
+							this.setState({
+								variable: value
+							});
+						}}
+					/>
+					{ this.state.mode === MODES[ 1 ] ?
+						<SelectInput
+							legend="Set slice sizes to sum of summary variable:"
+							defaultValue={this.state.summaryVariable}
+							options={this.props.quantitative}
+							onChange={( summaryVariable ) => {
+								this.setState({ summaryVariable });
+							}}
+						/> : null }
+					<SelectInput
+						legend="Group By:"
+						defaultValue={this.state.groupVar}
+						options={this.props.groupingVariables}
+						clearable={true}
+						menuPlacement="top"
+						onChange={( value )=>{
+							this.setState({
+								groupVar: value
+							});
+						}}
+					/>
+					<Button variant="primary" block onClick={this.generatePiechart}>Generate</Button>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 PieChart.defaultProps = {
 	defaultValue: null,
@@ -163,9 +223,6 @@ PieChart.defaultProps = {
 	logAction() {},
 	session: {}
 };
-
-
-// PROPERTIES //
 
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,

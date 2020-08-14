@@ -1070,6 +1070,7 @@ class DataExplorer extends Component {
 				case 'Pie Chart':
 					content = <Piechart
 						{...categoricalProps}
+						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						session={this.context}
 					/>;
