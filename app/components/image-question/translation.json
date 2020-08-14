@@ -1,7 +1,7 @@
 {
 	"DE": {
 		"answer-submitted": "Antwort eingereicht.",
-		"drop-file": "Datei hier ablegen",
+		"drop-image": "Bild hier ablegen",
 		"or": "oder",
 		"reset": "Zurücksetzen",
 		"resubmit": "Erneut einreichen",
@@ -11,7 +11,7 @@
 	},
 	"EN": {
 		"answer-submitted": "You have successfully submitted your answer.",
-		"drop-file": "Drop file here",
+		"drop-image": "Drop image here",
 		"or": "or",
 		"reset": "Reset",
 		"resubmit": "Resubmit",

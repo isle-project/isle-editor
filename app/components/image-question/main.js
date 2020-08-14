@@ -6,6 +6,7 @@ import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import Image from 'components/image';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -25,6 +26,7 @@ import './image_question.css';
 
 const uid = generateUID( 'image-question' );
 const debug = logger( 'isle:image-question' );
+const RE_IMAGE_SRC = /src="([^"]*)"/;
 
 
 // MAIN //
@@ -37,7 +39,7 @@ const debug = logger( 'isle:image-question' );
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
-* @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; sketchpad will not be rendered if set to `null`
+* @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -68,7 +70,7 @@ class ImageQuestion extends Component {
 	sendSubmitNotification = () => {
 		const session = this.context;
 		session.addNotification({
-			title: this.props.t('sunmitted'),
+			title: this.props.t('submitted'),
 			message: this.props.t('answer-submitted'),
 			level: 'info'
 		});
@@ -127,23 +129,43 @@ class ImageQuestion extends Component {
 	/**
 	* Event handler invoked when user drags file onto the upload area.
 	*/
-	onFileDrop = ( evt ) => {
+	onDrop = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
 		const dt = evt.dataTransfer;
 		const reader = new FileReader();
 		let file = null;
-		if ( dt.items ) {
-			if ( dt.items[ 0 ].kind === 'file' ) {
-				file = dt.items[ 0 ].getAsFile();
+		if ( dt.items && dt.items.length > 0 ) {
+			const item = dt.items[ 0 ];
+			if ( item.kind === 'file' ) {
+				file = item.getAsFile();
 			}
-		} else {
+			else if ( item.kind === 'string' ) {
+				item.getAsString( ( str ) => {
+					if ( contains( str, '<img' ) ) {
+						const match = str.match( RE_IMAGE_SRC );
+						if ( match ) {
+							this.setState({
+								src: match[ 1 ]
+							});
+						}
+					} else {
+						this.setState({
+							src: str
+						});
+					}
+				});
+			}
+		}
+		else if ( dt.files && dt.files.length > 0 ) {
 			file = dt.files[ 0 ];
 		}
-		this.mimeType = file.type;
 		if ( file ) {
-			reader.addEventListener( 'load', this.onFileRead, false );
-			reader.readAsDataURL( file );
+			this.mimeType = file.type;
+			if ( file ) {
+				reader.addEventListener( 'load', this.onFileRead, false );
+				reader.readAsDataURL( file );
+			}
 		}
 	}
 
@@ -161,19 +183,21 @@ class ImageQuestion extends Component {
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					{ this.state.src ?
-						<Image
-							className="image-question-image center"
-							alt={this.props.t('upload')}
-							src={this.state.src}
-						/> :
+						<div className="center" style={{ maxWidth: 600 }}>
+							<Image
+								alt={this.props.t('upload')}
+								src={this.state.src}
+								width="100%" height="auto"
+							/>
+						</div>:
 						<Fragment>
 							<div
 								className="image-question-dropzone"
-								onDrop={this.onFileDrop}
+								onDrop={this.onDrop}
 								onDragOver={this.ignoreDrag}
 								onDragEnd={this.ignoreDrag}
 							>
-								<span>{this.props.t('drop-file')}</span>
+								<span>{this.props.t('drop-image')}</span>
 							</div>
 							<p className="center">{this.props.t('or')}</p>
 							<input
@@ -186,14 +210,17 @@ class ImageQuestion extends Component {
 									this.fileUpload = fileUpload;
 								}}
 							/>
-							<p className="center">{this.props.t('or')}</p>
-							{this.props.sketchpad ? <Sketchpad
-								id={this.id}
-								hideNavigationButtons hideSaveButtons hideTransmitButtons
-								canvasWidth={900}
-								canvasHeight={600}
-								{...this.props.sketchpad}
-							/> : null}
+							{this.props.sketchpad ?
+							<Fragment>
+								<p className="center">{this.props.t('or')}</p>
+								<Sketchpad
+									id={this.id}
+									hideNavigationButtons hideSaveButtons hideTransmitButtons
+									canvasWidth={900}
+									canvasHeight={600}
+									{...this.props.sketchpad}
+								/>
+							</Fragment> : null}
 						</Fragment>
 					}
 					{ this.props.feedback ? <FeedbackButtons vertical
@@ -247,7 +274,7 @@ ImageQuestion.defaultProps = {
 	chat: false,
 	disableSubmitNotification: false,
 	className: '',
-	sketchpad: {},
+	sketchpad: null,
 	style: {},
 	onSubmit() {}
 };
