@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import unique from 'uniq';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
@@ -170,7 +171,7 @@ class RandomForest extends Component {
 					/>
 					<SelectInput
 						legend="Predictors (X):" multi
-						options={quantitative.concat( categorical )}
+						options={unique( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => {
 							this.setState({

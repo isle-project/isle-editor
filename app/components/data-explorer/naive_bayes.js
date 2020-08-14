@@ -212,7 +212,7 @@ class NaiveBayes extends Component {
 					/>
 					<SelectInput
 						legend="Predictors (X):" multi
-						options={quantitative.concat( categorical )}
+						options={uniq( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
 					/>

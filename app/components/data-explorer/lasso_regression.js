@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import unique from 'uniq';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import objectKeys from '@stdlib/utils/keys';
@@ -210,7 +211,7 @@ class LassoRegression extends Component {
 				/>
 				<SelectInput
 					legend="Predictors (X):" multi
-					options={quantitative.concat( categorical )}
+					options={unique( quantitative.concat( categorical ) )}
 					defaultValue={quantitative[ 1 ]}
 					closeMenuOnSelect={false}
 				/>

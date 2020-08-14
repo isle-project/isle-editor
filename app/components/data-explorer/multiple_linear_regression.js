@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import MLR from 'ml-regression-multivariate-linear';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import unique from 'uniq';
 import copy from '@stdlib/utils/copy';
 import abs from '@stdlib/math/base/special/abs';
 import pow from '@stdlib/math/base/special/pow';
@@ -234,7 +235,7 @@ class MultipleLinearRegression extends Component {
 				/>
 				<SelectInput
 					legend="Predictors (X):" multi
-					options={quantitative.concat( categorical )}
+					options={unique( quantitative.concat( categorical ) )}
 					defaultValue={quantitative[ 1 ]}
 					closeMenuOnSelect={false}
 				/>
