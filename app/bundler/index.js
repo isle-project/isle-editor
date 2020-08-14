@@ -613,6 +613,7 @@ function writeIndexFile({
 	mkdirSync( join( appDir, `${fileName}-resources` ) );
 	if ( filePath ) {
 		copy( join( resourceDirectory, 'img' ), join( appDir, resourceDirName, 'img' ) ).catch( debug );
+		copy( join( resourceDirectory, 'pdf' ), join( appDir, resourceDirName, 'pdf' ) ).catch( debug );
 		copy( join( resourceDirectory, 'video' ), join( appDir, resourceDirName, 'video' ) ).catch( debug );
 	}
 

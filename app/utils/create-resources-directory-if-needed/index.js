@@ -10,6 +10,7 @@ import exists from '@stdlib/fs/exists';
 function createResourcesDirectoryIfNeeded( dir, fileName ) {
 	if ( !exists.sync( dir ) ) {
 		mkdirSync( dir );
+		mkdirSync( join( dir, 'pdf' ) );
 		mkdirSync( join( dir, 'img' ) );
 		mkdirSync( join( dir, 'video' ) );
 		mkdirSync( join( dir, 'include' ) );

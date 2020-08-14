@@ -1013,6 +1013,36 @@ class Editor extends Component {
 		}
 	}
 
+	insertSketchpadAtPos = (
+		file,
+		coords = [0, 0],
+		placeCursor= false
+	) => {
+		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
+		if ( this.props.filePath ) {
+			const destDir = dirname( this.props.filePath );
+			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
+			const { name, path } = file;
+			const isleDir = join( destDir, `${fileName}-resources` );
+			const pdf = join( isleDir, 'pdf' );
+			createResourcesDirectoryIfNeeded( isleDir, fileName );
+			const destPath = join( pdf, name );
+			copyFileSync( path, destPath );
+			let fpath = relative( destDir, destPath );
+			fpath = replace( fpath, '\\', '/' );
+			const src = './' + fpath;
+			const text = `<Sketchpad pdf="${src}" />`;
+			if ( placeCursor ) {
+				const selection = new this.monaco.Selection( coords[0], coords[1], coords[0], coords[1] );
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }], [ selection ] );
+				this.editor.focus();
+			} else {
+				this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }]);
+			}
+			this.editor.pushUndoStop();
+		}
+	}
+
 	insertImgAtPos = (
 		file,
 		coords = [0, 0],
@@ -1158,6 +1188,9 @@ class Editor extends Component {
 				}
 				else if ( startsWith( file.type, 'video' ) ) {
 					this.insertVideoAtPos( file, [ target.position.lineNumber, target.position.column ], true );
+				}
+				else if ( file.type === 'application/pdf' ) {
+					this.insertSketchpadAtPos( file, [ target.position.lineNumber, target.position.column ], true );
 				}
 			}
 		}
