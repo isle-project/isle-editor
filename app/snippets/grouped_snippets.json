@@ -91,6 +91,10 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
+      "name": "ImageQuestion",
+      "value": "<ImageQuestion\n  question=\"${1:Enter question}\"\n/>\n"
+    },
+    {
       "name": "Joyride",
       "value": "<Joyride\n  run={${1:true}}\n  steps={${2:[]}}\n/>\n"
     },

@@ -1715,8 +1715,14 @@
       {
         "name": "sketchpad",
         "type": "object",
-        "description": "properties to be passed to <Sketchpad /> component; sketchpad will not be rendered if set to `null`",
-        "defaultValue": {}
+        "description": "properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`",
+        "defaultValue": null
+      },
+      {
+        "name": "solution",
+        "type": "string",
+        "description": "image URL of model solution",
+        "defaultValue": null
       },
       {
         "name": "style",
@@ -2860,7 +2866,7 @@
         "name": "hideCDF",
         "type": "boolean",
         "description": "controls whether to hide the CDF display",
-        "defaultValue": "boolean"
+        "defaultValue": false
       },
       {
         "name": "step",
@@ -4060,6 +4066,12 @@
         "type": "boolean",
         "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
         "defaultValue": true
+      },
+      {
+        "name": "nTries",
+        "type": "number",
+        "description": "after how many tries feedback should be supplied (if `provideFeedback` is `true`)",
+        "defaultValue": 1
       },
       {
         "name": "disableSubmitNotification",
