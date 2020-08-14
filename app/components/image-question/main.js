@@ -10,6 +10,7 @@ import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import Image from 'components/image';
 import ResponseVisualizer from 'components/response-visualizer';
+import SolutionButton from 'components/solution-button';
 import TimedButton from 'components/timed-button';
 import HintButton from 'components/hint-button';
 import ChatButton from 'components/chat-button';
@@ -40,6 +41,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`
+* @property {string} solution - image URL of model solution
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -53,7 +55,9 @@ class ImageQuestion extends Component {
 		// Initialize state variables...
 		this.state = {
 			submitted: false,
-			src: null
+			src: null,
+			exhaustedHints: props.hints.length === 0,
+			displaySolution: false
 		};
 	}
 
@@ -176,19 +180,39 @@ class ImageQuestion extends Component {
 		});
 	}
 
+	handleSolutionClick = () => {
+		this.setState({
+			displaySolution: !this.state.displaySolution
+		});
+	}
+
 	render() {
 		const nHints = this.props.hints.length;
+		const solutionButton = <SolutionButton
+			disabled={!this.state.submitted || !this.state.exhaustedHints}
+			onClick={this.handleSolutionClick}
+			hasHints={this.props.hints.length > 0}
+		/>;
 		return (
 			<Card id={this.id} className={`image-question ${this.props.className}`} style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					{ this.state.src ?
 						<div className="center" style={{ maxWidth: 600 }}>
-							<Image
-								alt={this.props.t('upload')}
-								src={this.state.src}
-								width="100%" height="auto"
-							/>
+							{this.state.displaySolution ?
+								<Image
+									alt={this.props.t('model-solution')}
+									src={this.props.solution}
+									width="100%" height="auto"
+									style={{
+										border: 'solid 1px gold'
+									}}
+								/> : <Image
+									alt={this.props.t('upload')}
+									src={this.state.src}
+									width="100%" height="auto"
+								/>
+							}
 						</div>:
 						<Fragment>
 							<div
@@ -241,7 +265,14 @@ class ImageQuestion extends Component {
 					/>
 					<div className="image-question-toolbar">
 						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
+							<HintButton
+								onClick={this.logHint}
+								hints={this.props.hints}
+								placement={this.props.hintPlacement}
+								onFinished={() => {
+									this.setState({ exhaustedHints: true });
+								}}
+							/> :
 							null
 						}
 						{ this.state.src ? <Button size="sm" variant="warning" onClick={() => {
@@ -252,6 +283,7 @@ class ImageQuestion extends Component {
 						>
 							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 						</TimedButton>
+						{this.props.solution ? solutionButton : null}
 						{
 							this.props.chat ?
 								<ChatButton for={this.id} /> : null
@@ -275,6 +307,7 @@ ImageQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	className: '',
 	sketchpad: null,
+	solution: null,
 	style: {},
 	onSubmit() {}
 };
@@ -290,6 +323,7 @@ ImageQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	className: PropTypes.string,
 	sketchpad: PropTypes.object,
+	solution: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

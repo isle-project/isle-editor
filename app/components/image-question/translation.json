@@ -2,6 +2,7 @@
 	"DE": {
 		"answer-submitted": "Antwort eingereicht.",
 		"drop-image": "Bild hier ablegen",
+		"model-solution": "Modell-Lösung",
 		"or": "oder",
 		"reset": "Zurücksetzen",
 		"resubmit": "Erneut einreichen",
@@ -12,6 +13,7 @@
 	"EN": {
 		"answer-submitted": "You have successfully submitted your answer.",
 		"drop-image": "Drop image here",
+		"model-solution": "Model Solution",
 		"or": "or",
 		"reset": "Reset",
 		"resubmit": "Resubmit",
