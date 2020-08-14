@@ -24,6 +24,7 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Alert from 'react-bootstrap/Alert';
 import Table from 'components/table';
+import Image from 'components/image';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
@@ -606,12 +607,17 @@ class FullscreenActionDisplay extends Component {
 		debug( `Rendering item at position ${index}...` );
 		const elem = this.state.filtered[ index ];
 		const value = generateValueLabel({ value: elem.value, ...this.props.data });
-		const highlighter = isString( value ) ? <Highlighter
-			className="response-visualizer-text"
-			searchWords={this.state.searchwords}
-			autoEscape={true}
-			textToHighlight={wordWrap( String( value ) )}
-		/> : value;
+		let highlighter;
+		if ( this.props.data.type === 'image' ) {
+			highlighter = <Image src={value} width="50%" />;
+		} else {
+			highlighter = isString( value ) ? <Highlighter
+				className="response-visualizer-text"
+				searchWords={this.state.searchwords}
+				autoEscape={true}
+				textToHighlight={wordWrap( String( value ) )}
+			/> : value;
+		}
 		const name = elem.name;
 		const style = {
 			padding: '0.75rem'
@@ -660,6 +666,7 @@ class FullscreenActionDisplay extends Component {
 				/>
 			</ButtonGroup> : null }
 			<ButtonGroup className="action-display-button-group">
+			{ this.props.data.type !== 'image' ?
 				<Button
 					variant="outline-secondary"
 					size="sm"
@@ -667,7 +674,9 @@ class FullscreenActionDisplay extends Component {
 					aria-label={this.props.t('fullscreen-view')}
 				>
 					<span className="fa fa-search-plus" />
-				</Button>
+				</Button> :
+				null
+			}
 			{ this.props.showExtended ?
 					<Button
 						variant="outline-danger"
@@ -764,6 +773,9 @@ class FullscreenActionDisplay extends Component {
 				plot = this.renderRanges();
 				break;
 		}
+		if ( !plot ) {
+			return null;
+		}
 		const label = removeLast( lowercase( this.props.actionLabel ) );
 		return ( <div>
 			{plot}
@@ -827,7 +839,7 @@ class FullscreenActionDisplay extends Component {
 										initialIndex={0}
 										itemRenderer={this.renderListGroupItem}
 										length={this.state.filtered.length}
-										type="variable"
+										type={this.props.data.type === 'image' ? 'uniform' : 'variable'}
 										pageSize={50}
 										minSize={10}
 										itemSizeGetter={this.itemSizeGetter}
@@ -860,8 +872,11 @@ class FullscreenActionDisplay extends Component {
 			</Modal>
 			<SingleActionModal
 				show={this.state.showModal} onHide={this.hideModal}
-				modalContent={this.state.modalContent} actionLabel={this.props.actionLabel}
-				showExtended={this.state.showExtended} t={this.props.t}
+				modalContent={this.state.modalContent}
+				actionLabel={this.props.actionLabel}
+				dataType={this.props.data.type}
+				showExtended={this.state.showExtended}
+				t={this.props.t}
 			/>
 		</Fragment> );
 	}
