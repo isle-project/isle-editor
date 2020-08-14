@@ -11,6 +11,9 @@
 		"solution": "Lösung",
 		"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
 		"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
+		"submission-try-again": "Deine Antwort ist leider nicht richtig. Bitte versuche es noch einmal",
+		"tries": "noh {{count}} Versuch",
+		"tries_plural": "noch {{count}} Versuche",
 		"submission-message": "Deine Antwort wurde aufgezeichnet",
 		"submit": "Abschicken",
 		"your-answer": "Deine Antwort"
@@ -28,6 +31,9 @@
 		"solution": "Solution",
 		"submission-correct": "Congratulations, that is correct!",
 		"submission-incorrect": "Not quite. Compare your answer with the solution.",
+		"submission-try-again": "Your answer is incorrect. Please try again",
+		"tries": "{{count}} try left",
+		"tries_plural": "{{count}} tries left",
 		"submission-message": "Your answer has been submitted.",
 		"submit": "Submit",
 		"your-answer": "Your answer"
