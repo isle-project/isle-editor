@@ -151,7 +151,7 @@ class Presenter extends Component {
 							right: '410px'
 						}}
 					/>
-					<Time timer={this.props.timer} />
+					<Time />
 				</div>
 				<div className="spectacle-content-container" >
 					<div className="spectacle-preview-pane" >
@@ -179,8 +179,7 @@ Presenter.propTypes = {
 	lastSlideIndex: PropTypes.number,
 	slideIndex: PropTypes.number,
 	slideReference: PropTypes.array,
-	slides: PropTypes.array,
-	timer: PropTypes.bool
+	slides: PropTypes.array
 };
 
 Presenter.contextType = SpectacleContext;

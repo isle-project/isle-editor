@@ -35,41 +35,27 @@ import { SpectacleContext } from '../utils/context';
 class AutoplayControls extends Component {
 	render() {
 		const pauseBtn = (
-			<button
+			<div
+				role="button" tabIndex={0}
 				className="spectacle-autoplay-button"
 				key="pause"
 				onClick={this.props.onPause}
+				onKeyPress={this.props.onPause}
 			>
-				<svg
-					style={this.context.styles.autoplay.pauseIcon}
-					xmlns="http://www.w3.org/2000/svg"
-					width="30px"
-					height="30px"
-					viewBox="0 0 30 30"
-				>
-					<path d="M23.5,4V26h-6V4ZM6.5,26h6V4h-6Z" />
-				</svg>
-			</button>
+				<i className="fas fa-pause"></i>
+			</div>
 		);
-
 		const playBtn = (
-			<button
+			<div
+				role="button" tabIndex={0}
 				className="spectacle-autoplay-button"
 				key="play"
 				onClick={this.props.onPlay}
+				onKeyPress={this.props.onPlay}
 			>
-				<svg
-					style={this.context.styles.autoplay.playIcon}
-					xmlns="http://www.w3.org/2000/svg"
-					width="30px"
-					height="30px"
-					viewBox="0 0 30 30"
-				>
-					<path d="M26,15,6,25V5Z" />
-				</svg>
-			</button>
+				<i className="fas fa-play"></i>
+			</div>
 		);
-
 		return this.props.autoplaying ? pauseBtn : playBtn;
 	}
 }

@@ -134,15 +134,15 @@ export class Manager extends Component {
 			lastSlideIndex: slideIndex
 		});
 		this._attachEvents();
-		if (autoplayOnStart) {
+		if ( autoplayOnStart ) {
 			this._startAutoplay();
 		}
 	}
 
 	componentWillUnmount() {
 		this._detachEvents();
-		if (this.autoplayInterval) {
-			clearInterval(this.autoplayInterval);
+		if ( this.autoplayTimeout ) {
+			clearTimeout( this.autoplayTimeout );
 		}
 	}
 
@@ -176,17 +176,28 @@ export class Manager extends Component {
 		window.removeEventListener( 'resize', this._handleScreenChange );
 	}
 
-	_startAutoplay = () => {
-		clearInterval( this.autoplayInterval );
-		this.setState({ autoplaying: true });
-		this.autoplayInterval = setInterval(() => {
+	_createNextSlideTimeout = () => {
+		const slideIndex = this._getSlideIndex();
+		const slide = this._getSlideByIndex( slideIndex );
+		let duration = slide.props.duration * 1000;
+		if ( !duration ) {
+			duration = this.props.autoplayDuration;
+		}
+		this.autoplayTimeout = setTimeout(() => {
 			this._nextSlide();
-		}, this.props.autoplayDuration);
+			this._createNextSlideTimeout();
+		}, duration );
+	}
+
+	_startAutoplay = () => {
+		clearTimeout( this.autoplayTimeout );
+		this.setState({ autoplaying: true });
+		this._createNextSlideTimeout();
 	}
 
 	_stopAutoplay = () => {
 		this.setState({ autoplaying: false });
-		clearInterval(this.autoplayInterval);
+		clearTimeout(this.autoplayTimeout);
 	}
 
 	_toggleAutoplaying = () => {
@@ -230,13 +241,6 @@ export class Manager extends Component {
 			!event.metaKey
 		) {
 			this._togglePresenterMode();
-		} else if (
-			event.altKey &&
-			event.keyCode === 84 && // 't'
-			!event.ctrlKey &&
-			!event.metaKey
-		) {
-			this._toggleTimerMode();
 		} else if (
 			event.altKey &&
 			event.keyCode === 65 && // 'a'
@@ -302,18 +306,9 @@ export class Manager extends Component {
 		}
 	}
 
-	_toggleTimerMode = () => {
-		const isTimer =
-			this.context.route.params.indexOf( 'presenter' ) !== -1 &&
-			this.context.route.params.indexOf( 'timer' ) !== -1;
-		const suffix = isTimer ? '?presenter' : '?presenter&timer';
-		this.context.history.replace(`/${this.context.route.slide+1}${suffix}`);
-	}
-
 	_getSuffix = () => {
-		if ( this.context.route.params.indexOf('presenter') !== -1 ) {
-			const isTimerMode = this.context.route.params.indexOf('timer') !== -1;
-			return isTimerMode ? '?presenter&timer' : '?presenter';
+		if ( this.context.route.params.indexOf( 'presenter') !== -1 ) {
+			return '?presenter';
 		} else if ( this.context.route.params.indexOf('overview') !== -1 ) {
 			return '?overview';
 		}
@@ -455,17 +450,14 @@ export class Manager extends Component {
 				this.context.history.replace(
 					`/${this._getHash( slideIndex + offset ) + this._getSuffix()}`
 				);
-
 				const msgData = JSON.stringify({
 					slide: this._getHash( slideIndex + offset ),
 					forward: true,
 					time: Date.now()
 				});
-
-				localStorage.setItem('spectacle-slide', msgData);
-
-				if (this.presentationConnection) {
-					this.presentationConnection.send(msgData);
+				localStorage.setItem( 'spectacle-slide', msgData );
+				if ( this.presentationConnection ) {
+					this.presentationConnection.send( msgData );
 				}
 			}
 		} else if ( slideIndex < slideReference.length ) {
@@ -678,9 +670,8 @@ export class Manager extends Component {
 
 	_getControlStyles = () => {
 		const slideIndex = this._getSlideIndex();
-		const slide = this._getSlideByIndex(slideIndex);
-
-		if (slide && slide.props.controlColor) {
+		const slide = this._getSlideByIndex( slideIndex );
+		if ( slide && slide.props.controlColor ) {
 			return slide.props.controlColor;
 		}
 		return null;
@@ -692,8 +683,7 @@ export class Manager extends Component {
 		}
 		let componentToRender;
 		const children = Children.toArray( this.props.children );
-		if (this.context.route.params.indexOf('presenter') !== -1) {
-			const isTimerMode = this.context.route.params.indexOf('timer') !== -1;
+		if ( this.context.route.params.indexOf('presenter') !== -1 ) {
 			componentToRender = (
 				<Presenter
 					slides={children}
@@ -702,7 +692,6 @@ export class Manager extends Component {
 					hash={this.context.route.slide}
 					route={this.context.route}
 					lastSlideIndex={this.state.lastSlideIndex}
-					timer={isTimerMode}
 					totalDuration={this.props.totalDuration}
 				/>
 			);
