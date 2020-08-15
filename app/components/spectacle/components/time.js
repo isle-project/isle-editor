@@ -27,28 +27,15 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import Clock from './clock';
-import Timer from './timer';
 import './time.css';
 
 
 // MAIN //
 
-function Time({ timer }) {
-	return <div className="spectacle-time-container" >{timer ? <Timer /> : <Clock />}</div>;
+function Time() {
+	return <div className="spectacle-time-container" ><Clock /></div>;
 }
-
-
-// PROPERTIES //
-
-Time.propTypes = {
-	timer: PropTypes.bool
-};
-
-Time.defaultProps = {
-	timer: null
-};
 
 
 // EXPORTS //
