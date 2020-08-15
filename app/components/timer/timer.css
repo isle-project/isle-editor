@@ -6,9 +6,17 @@
 	margin-right: 25px;
 	z-index: 9999;
 	font-size: 24px;
-	color: white;
-	background-color: #383D48;
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 3px;
+}
+
+.timer-info {
+	background-color: #383D48;
+	color: white;
+}
+
+.timer-danger {
+	background-color: #f87c87;
+	color: #591801;
 }

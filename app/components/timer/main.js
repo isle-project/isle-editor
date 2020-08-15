@@ -10,13 +10,13 @@ import './timer.css';
 // FUNCTIONS //
 
 /**
-* Formats time in the format `minutes:seconds`.
+* Formats a positive time in the format `minutes:seconds`.
 *
 * @private
-* @param {number} time - time in minutes
+* @param {number} time - time in seconds
 * @returns {string} formatted time string of the format `minutes:seconds`
 */
-function fmtTime( time ) {
+function fmtPositiveTime( time ) {
 	let minutes = floor( time / 60 );
 	let seconds = time - minutes * 60;
 
@@ -24,6 +24,24 @@ function fmtTime( time ) {
 	minutes = minutes < 10 ? `0${minutes}` : minutes;
 	seconds = seconds < 10 ? `0${seconds}` : seconds;
 	return `${minutes}:${seconds}`;
+}
+
+/**
+* Formats a negative time in the format `minutes:seconds`.
+*
+* @private
+* @param {number} time - time in minutes
+* @returns {string} formatted time string of the format `minutes:seconds`
+*/
+function fmtNegativeTime( time ) {
+	time *= -1;
+	let minutes = floor( time / 60 );
+	let seconds = time - minutes * 60;
+
+	// Pad minutes and seconds with zeroes:
+	minutes = minutes < 10 ? `0${minutes}` : minutes;
+	seconds = seconds < 10 ? `0${seconds}` : seconds;
+	return `-${minutes}:${seconds}`;
 }
 
 
@@ -35,6 +53,7 @@ function fmtTime( time ) {
 * @property {boolean} active - flag that can be toggled to start or pause the timer
 * @property {number} duration - duration in seconds for the timer
 * @property {boolean} invisible - controls whether the timer should be hidden
+* @property {boolean} belowZero - controls whether timer continues counting after the duration is exhausted
 * @property {string} id - the unique `string` ID for the timer. If an ID is set, the timer component is persistent over page refreshes
 * @property {string} legend - text displayed in front of the timer
 * @property {Object} style - CSS inline styles
@@ -46,12 +65,15 @@ class Timer extends Component {
 		const storedTimeLeft = localStorage.getItem( this.getTimerId() );
 		this.state = {
 			timeLeft: storedTimeLeft || props.duration,
-			duration: props.duration
+			duration: props.duration,
+			finished: false
 		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.duration !== prevState.duration ) {
+		if (
+			nextProps.duration !== prevState.duration
+		) {
 			const newState = {};
 			newState.duration = nextProps.duration;
 			newState.timeLeft = nextProps.duration;
@@ -95,18 +117,20 @@ class Timer extends Component {
 		const countdown = setInterval( () => {
 			// Decrement the time by 1:
 			this.setState({
-				timeLeft: max( 0, this.state.timeLeft - 1 )
+				timeLeft: this.state.timeLeft - 1
 			});
 			const id = this.getTimerId();
 			if ( id ) {
 				localStorage.setItem( id, this.state.timeLeft );
 			}
-
-			// Call the callback when the time left is 0:
-			if ( this.state.timeLeft <= 0 ) {
-				clearInterval( countdown );
-				// Calls the callback...
+			if ( !this.state.finished && this.state.timeLeft <= 0 ) {
+				if ( !this.props.belowZero ) {
+					clearInterval( countdown );
+				}
 				this.props.onTimeUp();
+				this.setState({
+					finished: true
+				});
 			}
 		}, 1000 );
 
@@ -118,10 +142,11 @@ class Timer extends Component {
 		if ( this.props.invisible ) {
 			return null;
 		}
+		const format = this.state.timeLeft > 0 ? fmtPositiveTime : fmtNegativeTime;
 		return (
-			<div style={this.props.style} className="timer-div">
+			<div style={this.props.style} className={`timer-div ${this.state.timeLeft < 0 ? 'timer-danger' : 'timer-info'}`}>
 				{this.props.legend}
-				{fmtTime( this.state.timeLeft )}
+				{format( this.props.belowZero ? this.state.timeLeft : max( this.state.timeLeft, 0 ) )}
 			</div>
 		);
 	}
