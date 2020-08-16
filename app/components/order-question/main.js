@@ -91,7 +91,8 @@ class OrderQuestion extends Component {
 		this.props.onChange( cards, correct );
 		this.setState({
 			cards,
-			correct
+			correct,
+			submitted: false
 		});
 	}
 
@@ -152,13 +153,20 @@ class OrderQuestion extends Component {
 			<Card id={this.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
-					<DraggableList shuffle data={this.state.options} onChange={this.handleChange} />
+					<DraggableList
+						shuffle data={this.state.options} onChange={this.handleChange}
+						disabled={this.state.submitted && this.state.correct}
+					/>
 					<div className="order-question-toolbar">
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
 						}
-						<TimedButton className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}>
+						<TimedButton
+							className="submit-button" variant="primary" size="sm"
+							onClick={this.handleSubmit}
+							disabled={this.state.submitted && this.state.correct}
+						>
 							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 						</TimedButton>
 						{

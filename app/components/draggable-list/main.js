@@ -7,6 +7,7 @@ import { DndProvider } from 'react-dnd';
 import isTouchDevice from 'is-touch-device';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
+import noop from '@stdlib/utils/noop';
 import Card from './card.js';
 
 
@@ -25,6 +26,7 @@ const DnDBackend = hasTouch ? TouchBackend : HTML5Backend;
 * @property {Function} onChange - callback invoked with newly ordered data array on each change
 * @property {Function} onInit - callback function invoked after mounting of component
 * @property {boolean} shuffle - controls whether data elements should be shuffled in initial display
+* @property {boolean} disabled - controls whether elements can be dragged or not
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
@@ -65,12 +67,15 @@ class DraggableList extends Component {
 					...this.props.style
 				}}>
 					{cards.map( ( card, i ) => {
+						if ( !card ) {
+							return null;
+						}
 						return (
 							<Card key={card.id}
 								index={i}
 								id={card.id}
 								text={card.text}
-								moveCard={this.moveCard}
+								moveCard={this.props.disabled ? noop : this.moveCard}
 							/>
 						);
 					})}
@@ -87,6 +92,7 @@ DraggableList.defaultProps = {
 	onChange(){},
 	onInit(){},
 	shuffle: false,
+	disabled: false,
 	className: '',
 	style: {}
 };
@@ -96,6 +102,7 @@ DraggableList.propTypes = {
 	onChange: PropTypes.func,
 	onInit: PropTypes.func,
 	shuffle: PropTypes.bool,
+	disabled: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
