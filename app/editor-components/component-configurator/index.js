@@ -142,9 +142,9 @@ class ComponentConfigurator extends Component {
 
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
 		if ( this.selfClosing ) {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{[`[]([\\s\\S]*?)[`\\]]}|{([\\s\\S]*?)}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|\\/>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`([\\s\\S]*?)`}|{(\\[[\\s\\S]*?\\])}|{([\\s\\S]*?)}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|\\/>)', 'i' );
 		} else {
-			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{[`[]([\\s\\S]*?)[`\\]]}|{([\\s\\S]*?)}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|>)', 'i' );
+			this.RE_PROPERTY = new RegExp( '^\\s*<'+name+'\\s+(?:[ \\t]*)([a-z]+) *=? *(?:{`([\\s\\S]*?)`}|{(\\[[\\s\\S]*?\\])}|{([\\s\\S]*?)}|"([\\s\\S]*?)"|\'([\\s\\S]*?)\')?\\s*( +|\\t|\\r?\\n)?(?=[a-z]+=?|>)', 'i' );
 		}
 		const propValues = {};
 		const propActive = {};
@@ -228,8 +228,8 @@ class ComponentConfigurator extends Component {
 			if ( match ) {
 				propName = match[ 1 ];
 				debug( 'Handling property '+propName );
-				let val = match[ 2 ] || match[ 3 ] || match[ 4 ] || match[ 5 ] || '';
-				const RE_ATTR = new RegExp( '(\\s)'+match[ 1 ]+'(?:=["{\'][`[]?'+rescape( val )+'[`\\]]?["}\']|\\s)', 'g' );
+				let val = match[ 2 ] || match[ 3 ] || match[ 4 ] || match[ 5 ] || match[ 6 ] || '';
+				const RE_ATTR = new RegExp( '(\\s)'+match[ 1 ]+'(?:=["{\'][`[]?'+rescape( val )+'[`\\]]?["}\']|\\s)', 'gm' );
 				const oldValue = value;
 				value = replace( value, RE_ATTR, '$1' );
 				if ( value === oldValue ) {
