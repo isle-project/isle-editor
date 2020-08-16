@@ -12,7 +12,7 @@
 * GNU Affero General Public License for more details.
 *
 * You should have received a copy of the GNU Affero General Public License
-* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 export const OPEN_CPU_DEFAULT_SERVER = 'https://phd-serv5.heinz.cmu.edu';
