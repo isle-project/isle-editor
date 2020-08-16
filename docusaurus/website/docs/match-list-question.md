@@ -10,11 +10,14 @@ An ISLE component that renders a question in which the learner has to match elem
 
 ```jsx live
 <MatchListQuestion
-    question="Please match the correct surnames and first names."
+    question="Please match the correct surnames and first names of three statisticians."
     elements={[
         { a: 'Ronald', b: 'Fisher' },
         { a: 'Florence', b: 'Nightingale' },
         { a: 'Karl', b: 'Pearson' },
+        { a: 'Sofia' },
+        { a: 'Cari' },
+        { b: 'Coppola' }
     ]}
     onSubmit={ ( answers ) => {
         
