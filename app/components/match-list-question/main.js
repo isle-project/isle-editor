@@ -50,7 +50,7 @@ function createColorScale( length ) {
 * An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way.
 *
 * @property {string} question - question to be displayed at the top of the match list question component
-* @property {Array} elements - an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties
+* @property {Array} elements - an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties; supply elements with only `a` or `b` properties to add distractor answers
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} provideFeedback - indicates whether the solution should be accessible after learners submit their answers
@@ -119,13 +119,13 @@ class MatchListQuestion extends Component {
 			session.addNotification({
 				title: this.props.t('answer-resubmitted'),
 				message: this.props.resubmissionMsg,
-				level: 'success'
+				level: 'info'
 			});
 		} else {
 			session.addNotification({
 				title: this.props.t('answer-submitted'),
 				message: this.props.submissionMsg,
-				level: 'success'
+				level: 'info'
 			});
 		}
 	}
@@ -161,6 +161,9 @@ class MatchListQuestion extends Component {
 		if ( !this.state.userAnswers ) {
 			const userAnswers = this.state.answers;
 			const answers = elements.map( ( q, i ) => {
+				if ( !q.a || !q.b ) {
+					return q;
+				}
 				return Object.assign({}, q, { color: colorScale[ i ] });
 			});
 			this.setState({ answers, userAnswers });
@@ -189,21 +192,32 @@ class MatchListQuestion extends Component {
 		const onSelectA = this.onSelect.bind( this, 'selectedA' );
 		const onSelectB = this.onSelect.bind( this, 'selectedB' );
 		const solutionButton = <SolutionButton onClick={this.toggleSolution} disabled={!this.state.submitted} />;
-		const unfinished = answers.length !== elements.length;
+		const optionsA = [];
+		const optionsB = [];
+		let nComplete = 0;
+		for ( let i = 0; i < elements.length; i++ ) {
+			const { a, b } = elements[ i ];
+			optionsA.push( a || null );
+			optionsB.push( b || null );
+			if ( a && b ) {
+				nComplete += 1;
+			}
+		}
+		const unfinished = answers.length !== nComplete;
 		return (
 			<div id={this.id} className={`match-list-question-container ${this.props.className}`} style={this.props.style} >
 				{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
-				<i style={{ fontSize: '0.8rem' }}>{this.props.t('instructions')}</i>
+				<i style={{ fontSize: '0.8rem' }}>{this.props.t('instructions', { complete: nComplete })}</i>
 				<div className="match-list-question-lists">
 					<OptionsList
-						options={elements.map( q => q.a )}
+						options={optionsA}
 						onSelect={onSelectA}
 						answers={answers}
 						active={this.state.selectedA}
 						shuffle={this.props.shuffle === 'left' || this.props.shuffle === 'both'}
 					/>
 					<OptionsList
-						options={elements.map( q => q.b )}
+						options={optionsB}
 						onSelect={onSelectB}
 						answers={answers}
 						active={this.state.selectedB}

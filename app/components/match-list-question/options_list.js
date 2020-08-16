@@ -33,6 +33,9 @@ class OptionsList extends Component {
 			<ul style={{ flex: 1, listStyleType: 'none', padding: 0 }}>
 				{
 					this.options.map( ( q, i ) => {
+						if ( !q ) {
+							return null;
+						}
 						let style = ( q === active ) ? selected : optionStyle;
 						const match = answers.filter( answer => {
 							return answer.a === q || answer.b === q;
