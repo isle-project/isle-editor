@@ -35,7 +35,9 @@ const RE_ALPHACHAR = /[A-Z]/i;
 const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
-const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SelectQuestion|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
+const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
+const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
 const RE_SRC_URL = /\s(src|url|pdf)=['"]$/;
 const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^-\d ][\s\S]+(\r?\n|$))/g;
 
@@ -110,6 +112,10 @@ md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
 };
 md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
 	const { content } = tokens[ idx ];
+	const match = content.match( /data-lines="(\d+)"/ );
+	if ( match && match[ 1 ] ) {
+		env.lineAdjustment += Number( match[ 1 ] );
+	}
 	if ( content.includes( '<LineButtons' ) ) {
 		env.lineAdjustment -= 2;
 	}
@@ -482,7 +488,8 @@ class Tokenizer {
 					!RE_INNER_TAGS.test( this._openingTagName ) &&
 					!RE_FLEX_TAGS.test( this._openingTagName )
 				) {
-					const isInline = RE_INLINE_TAGS.test( this._openingTagName );
+					const isInline = ( RE_INLINE_TAGS.test( this._openingTagName ) ||
+						RE_INLINE_ATTR.test( this._current ) ) && !RE_DISPLAY_MODE.test( this._current );
 					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} inline={'+isInline+'} >' + this._current + '</LineWrapper>';
 				}
 				this._level -= 1;
