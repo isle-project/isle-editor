@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.62.0](https://github.com/isle-project/isle-editor/releases/tag/v0.62.0) (2020-08-16)
+
+This release includes improvements to the new visual editing capabilities, bug fixes, and enhancements of various components such as the data explorer.
+
+
+
+**Implemented enhancements:**
+
+- Enable unequal number of responses on sides of MatchList Question [\#1254](https://github.com/isle-project/isle-editor/issues/1254)
+- additional options for contingency table [\#1147](https://github.com/isle-project/isle-editor/issues/1147)
+- Horizontal Alignment Wording [\#128](https://github.com/isle-project/isle-editor/issues/128)
+
+**Fixed bugs:**
+
+- Binning Num to Cat - error when NAs present [\#1257](https://github.com/isle-project/isle-editor/issues/1257)
+
 ## [v0.61.2](https://github.com/isle-project/isle-editor/releases/tag/v0.61.2) (2020-08-10)
 
 ## [v0.61.0](https://github.com/isle-project/isle-editor/releases/tag/v0.61.0) (2020-08-10)
