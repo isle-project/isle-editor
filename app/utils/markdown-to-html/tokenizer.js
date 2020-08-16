@@ -314,8 +314,9 @@ class Tokenizer {
 			}
 			let str = '<TeX raw={String.raw`' + eqn + '`} />';
 			str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={true} >' + str + '</LineWrapper>';
-			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
-			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+			const placeholder = '<div id="placeholder_'+this.pos+'" data-lines="'+(this.lineNumber - this._startLineNumber)+'" />';
+			this.placeholderHash[ placeholder ] = str;
+			this.tokens.push( placeholder );
 			debug( 'IN_EQUATION -> IN_BASE' );
 			this._current = '';
 			this._state = IN_BASE;
@@ -339,8 +340,9 @@ class Tokenizer {
 			const eqn = this._current.substring( 1, this._current.length-1 );
 			let str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
 			str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={false} >' + str + '</LineWrapper>';
-			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
-			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
+			const placeholder = '<div id="placeholder_'+this.pos+'" data-lines="'+(this.lineNumber - this._startLineNumber)+'" />';
+			this.placeholderHash[ placeholder ] = str;
+			this.tokens.push( placeholder );
 			debug( 'IN_DISPLAY_EQUATION -> IN_BASE' );
 			this._current = '';
 			this._state = IN_BASE;
@@ -908,6 +910,7 @@ class Tokenizer {
 				this.tokens.push( this._current );
 			}
 		}
+		console.log( this.tokens );
 		let out = this.tokens.join( '' );
 		const env = {
 			initialLineNumber: this.initialLineNumber,
