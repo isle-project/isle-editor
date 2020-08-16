@@ -116,7 +116,7 @@
     "@iktakahiro/markdown-it-katex": "^4.0.0",
     "@stdlib/stdlib": "0.0.92",
     "acorn": "^8.0.1",
-    "ajv": "^6.12.2",
+    "ajv": "^6.12.4",
     "ajv-errors": "^1.0.1",
     "ansi-to-react": "6.0.7",
     "archiver": "^5.0.0",
