@@ -31,5 +31,6 @@ A list of draggable elements that can be re-ordered by the students.
 * __onChange__ | `function`: callback invoked with newly ordered data array on each change. Default: `onChange(){}`.
 * __onInit__ | `function`: callback function invoked after mounting of component. Default: `onInit(){}`.
 * __shuffle__ | `boolean`: controls whether data elements should be shuffled in initial display. Default: `false`.
+* __disabled__ | `boolean`: controls whether elements can be dragged or not. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

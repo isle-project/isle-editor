@@ -2,47 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
+import fmtPositiveTime from './positive_time.js';
+import fmtNegativeTime from './negative_time.js';
 import './timer.css';
-
-
-// FUNCTIONS //
-
-/**
-* Formats a positive time in the format `minutes:seconds`.
-*
-* @private
-* @param {number} time - time in seconds
-* @returns {string} formatted time string of the format `minutes:seconds`
-*/
-function fmtPositiveTime( time ) {
-	let minutes = floor( time / 60 );
-	let seconds = time - minutes * 60;
-
-	// Pad minutes and seconds with zeroes:
-	minutes = minutes < 10 ? `0${minutes}` : minutes;
-	seconds = seconds < 10 ? `0${seconds}` : seconds;
-	return `${minutes}:${seconds}`;
-}
-
-/**
-* Formats a negative time in the format `minutes:seconds`.
-*
-* @private
-* @param {number} time - time in minutes
-* @returns {string} formatted time string of the format `minutes:seconds`
-*/
-function fmtNegativeTime( time ) {
-	time *= -1;
-	let minutes = floor( time / 60 );
-	let seconds = time - minutes * 60;
-
-	// Pad minutes and seconds with zeroes:
-	minutes = minutes < 10 ? `0${minutes}` : minutes;
-	seconds = seconds < 10 ? `0${seconds}` : seconds;
-	return `-${minutes}:${seconds}`;
-}
 
 
 // MAIN //
@@ -158,6 +121,7 @@ class Timer extends Component {
 Timer.propTypes = {
 	id: PropTypes.string,
 	active: PropTypes.bool.isRequired,
+	belowZero: PropTypes.bool,
 	duration: PropTypes.number.isRequired,
 	invisible: PropTypes.bool,
 	legend: PropTypes.string,
@@ -167,6 +131,7 @@ Timer.propTypes = {
 
 Timer.defaultProps = {
 	id: null,
+	belowZero: false,
 	invisible: false,
 	legend: '',
 	style: {},

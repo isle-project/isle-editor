@@ -981,6 +981,12 @@
         "defaultValue": false
       },
       {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether elements can be dragged or not",
+        "defaultValue": false
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",
@@ -3551,7 +3557,7 @@
       {
         "name": "elements",
         "type": "array<{a,b}>",
-        "description": "an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties",
+        "description": "an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties; supply elements with only `a` or `b` properties to add distractor answers",
         "defaultValue": []
       },
       {
@@ -6533,6 +6539,12 @@
         "description": "flag that can be toggled to start or pause the timer"
       },
       {
+        "name": "belowZero",
+        "type": "boolean",
+        "description": "controls whether timer continues counting after the duration is exhausted",
+        "defaultValue": false
+      },
+      {
         "name": "duration",
         "type": "number (required)",
         "description": "duration in seconds for the timer"
@@ -6562,7 +6574,7 @@
         "defaultValue": "function onTimeUp() {}"
       }
     ],
-    "description": "Formats time in the format `minutes:seconds`."
+    "description": "Displays a timer that will trigger a predefined callback when the time is up. An example use case is the timing of quizzes."
   },
   "Tooltip": {
     "props": [
