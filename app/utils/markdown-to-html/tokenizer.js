@@ -259,6 +259,8 @@ class Tokenizer {
 			) {
 				debug( 'IN_BASE -> IN_DISPLAY_EQUATION' );
 				this._state = IN_DISPLAY_EQUATION;
+				this._startLineNumber = this.lineNumber;
+				this._startColumn = this.columnNumber;
 				this.pos += 1; // skip the next opening `$` character
 			}
 			else if (
@@ -266,6 +268,8 @@ class Tokenizer {
 				( prevChar === '\\' && nextChar === '(' )
 			) {
 				debug( 'IN_BASE -> IN_EQUATION' );
+				this._startLineNumber = this.lineNumber;
+				this._startColumn = this.columnNumber;
 				this._state = IN_EQUATION;
 			}
 		}
@@ -308,7 +312,8 @@ class Tokenizer {
 			if ( this._eqnChar === '\\' ) {
 				eqn = removeLast( eqn );
 			}
-			const str = '<TeX raw={String.raw`' + eqn + '`} />';
+			let str = '<TeX raw={String.raw`' + eqn + '`} />';
+			str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={true} >' + str + '</LineWrapper>';
 			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			debug( 'IN_EQUATION -> IN_BASE' );
@@ -332,7 +337,8 @@ class Tokenizer {
 			( this._eqnChar === '\\' && char === ']' && prevChar === '\\' )
 		) {
 			const eqn = this._current.substring( 1, this._current.length-1 );
-			const str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
+			let str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
+			str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={false} >' + str + '</LineWrapper>';
 			this.placeholderHash[ '<div id="placeholder_'+this.pos+'"/>' ] = str;
 			this.tokens.push( '<div id="placeholder_'+this.pos+'"/>' );
 			debug( 'IN_DISPLAY_EQUATION -> IN_BASE' );
