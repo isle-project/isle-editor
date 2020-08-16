@@ -546,7 +546,12 @@ class Tokenizer {
 			}
 			if ( this._filePathStart ) {
 				const beforePath = this._current.substring( 0, this._filePathStart );
-				this._current = beforePath + replace( this._current.substring( this._filePathStart ), '\\', '\\' );
+				const filePath = this._current.substring( this._filePathStart );
+				if ( process.platform === 'win32' ) {
+					this._current = beforePath + replace( filePath, '\\', '\\\\' );
+				} else {
+					this._current = beforePath + filePath;
+				}
 			}
 			this._state = IN_OPENING_TAG;
 		}
