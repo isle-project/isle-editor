@@ -555,7 +555,8 @@ class Editor extends Component {
 			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
 			const lineNumber = selection.startLineNumber;
 			scrollIntoView( lineNumber );
-			const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+(selection.startColumn-1) );
+			const startColumn = max( selection.startColumn - 1, 1 );
+			const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+startColumn );
 			if ( elem ) {
 				const event = new MouseEvent( 'dblclick', {
 					'view': window,
