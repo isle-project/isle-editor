@@ -16,7 +16,7 @@ An ISLE component that renders a question in which the learner has to match elem
         { a: 'Florence', b: 'Nightingale' },
         { a: 'Karl', b: 'Pearson' },
         { a: 'Sofia' },
-        { a: 'Cari' },
+        { a: 'Carrie' },
         { b: 'Coppola' }
     ]}
     onSubmit={ ( answers ) => {
