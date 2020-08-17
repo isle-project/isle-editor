@@ -53,9 +53,12 @@ const HTML_ELEMENTS = {
 	'components/html/h5': 'h5',
 	'components/html/h6': 'h6',
 	'components/html/hr': 'hr',
+	'components/html/li': 'li',
+	'components/html/ol': 'ol',
 	'components/html/p': 'p',
 	'components/html/pre': 'pre',
-	'components/html/span': 'span'
+	'components/html/span': 'span',
+	'components/html/ul': 'ul'
 };
 const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS );
 

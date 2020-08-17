@@ -66,6 +66,9 @@ function groupIndicator( v ) {
 		if ( RE_HEADING.test( v.name ) ) {
 			return 'basicHeadings';
 		}
+		if ( v.name === 'ul' || v.name === 'ol' || v.name === 'li' ) {
+			return 'basicLists';
+		}
 		return 'basic';
 	}
 	return 'general';

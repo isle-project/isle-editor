@@ -91,6 +91,10 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
+      "name": "li",
+      "value": "<li>${1:}</li>\n${2:}"
+    },
+    {
       "name": "ImageQuestion",
       "value": "<ImageQuestion\n  question=\"${1:Enter question}\"\n/>\n"
     },
@@ -397,6 +401,16 @@
     {
       "name": "TeX",
       "value": "<TeX raw=\"${1:}\" />\n"
+    }
+  ],
+  "basicLists": [
+    {
+      "name": "ol",
+      "value": "<ol>\n  <li>${1:}</li>\n  ${2:}\n</ol>${3:}"
+    },
+    {
+      "name": "ul",
+      "value": "<ul>\n  <li>${1:}</li>\n  ${2:}\n</ul>${3:}"
     }
   ],
   "layout": [

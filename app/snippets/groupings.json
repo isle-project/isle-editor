@@ -11,9 +11,11 @@
 		"hr",
 		"Image",
 		"Link",
+		"ol",
 		"p",
 		"pre",
 		"span",
+		"ul",
 		"TeX"
 	],
 	"DISPLAY": [
