@@ -91,10 +91,6 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
-      "name": "li",
-      "value": "<li>${1:}</li>\n${2:}"
-    },
-    {
       "name": "ImageQuestion",
       "value": "<ImageQuestion\n  question=\"${1:Enter question}\"\n/>\n"
     },
@@ -404,6 +400,10 @@
     }
   ],
   "basicLists": [
+    {
+      "name": "li",
+      "value": "<li>${1:}</li>\n${2:}"
+    },
     {
       "name": "ol",
       "value": "<ol>\n  <li>${1:}</li>\n  ${2:}\n</ol>${3:}"

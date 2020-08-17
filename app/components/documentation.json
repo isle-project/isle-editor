@@ -1601,7 +1601,8 @@
       {
         "name": "reversed",
         "type": "boolean",
-        "description": "indicates whether the items of the list are in reverse order"
+        "description": "indicates whether the items of the list are in reverse order",
+        "defaultValue": false
       },
       {
         "name": "start",
