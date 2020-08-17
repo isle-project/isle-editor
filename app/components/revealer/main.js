@@ -24,9 +24,9 @@ const uid = generateUID( 'revealer' );
 // MAIN //
 
 /**
-* An ISLE component that instructors may use to selectively reveal or hide children content to all users.
+* An ISLE component that instructors may use to selectively reveal or hide children content to all students during class.
 *
-* @property {string} message - message to be displayed when content is hidden
+* @property {(string|node)} message - message to be displayed when content is hidden
 * @property {boolean} show - controls whether to initially display child elements
 */
 class Revealer extends Component {
@@ -218,7 +218,10 @@ Revealer.defaultProps = {
 };
 
 Revealer.propTypes = {
-	message: PropTypes.string,
+	message: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	show: PropTypes.bool
 };
 
