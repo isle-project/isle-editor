@@ -36,4 +36,4 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __inputStyle__ | `object`: CSS inline styles for input element. Default: `{}`.
 * __value__ | `number`: number value (for controlled component). Default: `none`.
 * __tooltip__ | `string`: tooltip string (if not set, the tooltip is automatically generated). Default: `none`.
-* __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'right'`.
+* __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
