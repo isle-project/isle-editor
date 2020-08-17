@@ -221,9 +221,7 @@ class SliderInput extends Input {
 					}}
 				>
 					{ legend ?
-						<label style={{
-							marginLeft: '8px'
-						}}>{legend}:</label> :
+						<label>{legend}:</label> :
 						null
 					}
 					<br />

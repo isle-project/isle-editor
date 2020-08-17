@@ -246,14 +246,14 @@ class NumberInput extends Input {
 		}}>
 			{ this.props.legend ?
 				<span>
-					<label htmlFor={this.id} style={{ padding: '3px', minWidth: 200 }} >
+					<label htmlFor={this.id} >
 						{isString( this.props.legend ) ?
 							this.props.legend+':' :
 							this.props.legend
 						}
 					</label>
 					{ this.props.description ?
-						<span style={{ minWidth: 200 }}> {this.props.description}</span> :
+						<span> {this.props.description}</span> :
 						null
 					}
 				</span> : null
@@ -261,7 +261,7 @@ class NumberInput extends Input {
 			<Tooltip
 				id="number-input-tooltip" placement={this.props.tooltipPlacement}
 				tooltip={this.state.tooltip}
-			><span className="input" style={this.props.inputStyle} >{input}</span></Tooltip>
+			><span className="number-input-span" style={this.props.inputStyle} >{input}</span></Tooltip>
 		</div> );
 	}
 }
@@ -288,7 +288,7 @@ NumberInput.defaultProps = {
 	inputStyle: {},
 	value: null,
 	tooltip: null,
-	tooltipPlacement: 'right'
+	tooltipPlacement: 'left'
 };
 
 NumberInput.propTypes = {
