@@ -1599,6 +1599,22 @@
   "ol": {
     "props": [
       {
+        "name": "reversed",
+        "type": "boolean",
+        "description": "indicates whether the items of the list are in reverse order"
+      },
+      {
+        "name": "start",
+        "type": "number",
+        "description": "integer to start counting from for the list items (has to be supplied as an Arabic numeral)"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "numbering type (`a` for lowercase`, `A` for uppercase, `i` for lowercase and `I` for uppercase Roman numerals, `1` for numbers)",
+        "defaultValue": "1"
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",

@@ -30,6 +30,7 @@ li.propTypes = {
 /**
 * List item
 *
+* @param {number} value - integer indicating the current ordinal value of the list item (following list items will continue numbering from the specified value)
 * @param {string} className - class name
 * @param {Object} style - CSS inline styles
 */
