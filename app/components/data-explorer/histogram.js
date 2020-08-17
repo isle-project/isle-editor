@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -18,6 +20,7 @@ import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import ceil from '@stdlib/math/base/special/ceil';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
@@ -103,7 +106,7 @@ function calculateDensityValues( vals, densityType ) {
 	return [ x, y ];
 }
 
-export function generateHistogramConfig({ data, variable, group, overlayDensity, densityType, binStrategy, nBins, xbins = {}}) {
+export function generateHistogramConfig({ data, variable, group, groupMode, nCols, overlayDensity, densityType, binStrategy, nBins, xbins = {}}) {
 	let traces;
 	let layout;
 
@@ -156,35 +159,73 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 		});
 		traces = [];
 		const keys = group.categories || objectKeys( freqs );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const key = keys[ i ];
-			let vals = freqs[ key ];
-			if ( overlayDensity ) {
-				const config = {
-					x: vals,
-					type: 'histogram',
-					histnorm: 'probability density',
-					name: key+':histogram',
-					opacity: 0.5
-				};
-				setBins( config, vals, binStrategy, nBins, xbins );
-				traces.push( config );
-				const [ x, y ] = calculateDensityValues( vals, densityType );
-				traces.push({
-					x: x,
-					y: y,
-					type: 'lines',
-					name: key+':density'
-				});
-			} else {
-				const config = {
-					x: vals,
-					type: 'histogram',
-					name: key,
-					opacity: 0.5
-				};
-				setBins( config, vals, binStrategy, nBins, xbins );
-				traces.push( config );
+		const nPlots = keys.length;
+		const nRows = ceil( nPlots / nCols );
+		if ( groupMode === 'Facets' ) {
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				let vals = freqs[ key ];
+				if ( overlayDensity ) {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						histnorm: 'probability density',
+						name: key+':histogram'
+					};
+					setBins( config, vals, binStrategy, nBins, xbins );
+					traces.push( config );
+					const [ x, y ] = calculateDensityValues( vals, densityType );
+					traces.push({
+						x: x,
+						y: y,
+						type: 'lines',
+						name: key+':density',
+						xaxis: 'x'+(i+1),
+						yaxis: 'y'+(i+1)
+					});
+				} else {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						name: key,
+						xaxis: 'x'+(i+1),
+						yaxis: 'y'+(i+1)
+					};
+					setBins( config, vals, binStrategy, nBins, xbins );
+					traces.push( config );
+				}
+			}
+		} else {
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				let vals = freqs[ key ];
+				if ( overlayDensity ) {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						histnorm: 'probability density',
+						name: key+':histogram',
+						opacity: 0.5
+					};
+					setBins( config, vals, binStrategy, nBins, xbins );
+					traces.push( config );
+					const [ x, y ] = calculateDensityValues( vals, densityType );
+					traces.push({
+						x: x,
+						y: y,
+						type: 'lines',
+						name: key+':density'
+					});
+				} else {
+					const config = {
+						x: vals,
+						type: 'histogram',
+						name: key,
+						opacity: 0.5
+					};
+					setBins( config, vals, binStrategy, nBins, xbins );
+					traces.push( config );
+				}
 			}
 		}
 		layout = {
@@ -196,7 +237,11 @@ export function generateHistogramConfig({ data, variable, group, overlayDensity,
 			title: `${variable} given ${group}`,
 			...SETTINGS
 		};
-		layout.barmode = 'overlay';
+		if ( groupMode === 'Facets' ) {
+			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
+		} else {
+			layout.barmode = 'overlay';
+		}
 	}
 	return {
 		data: traces,
@@ -216,6 +261,8 @@ class Histogram extends Component {
 			overlayDensity: false,
 			variable: props.defaultValue || props.variables[ 0 ],
 			group: null, // eslint-disable-line react/no-unused-state
+			groupMode: 'Overlay',
+			nCols: 2,
 			nBins: 10,
 			densityType: 'Data-driven',
 			xbins: {
@@ -273,19 +320,55 @@ class Histogram extends Component {
 							});
 						}}
 					/>
-					<SelectInput
-						legend="Group By:"
-						options={groupingVariables}
-						clearable={true}
-						onChange={( value )=>{
-							this.setState({
-								group: value // eslint-disable-line react/no-unused-state
-							});
-						}}
-					/>
+					<Row>
+						<Col md={5} >
+							<SelectInput
+								legend="Group By:"
+								options={groupingVariables}
+								clearable={true}
+								onChange={( value )=>{
+									this.setState({
+										group: value // eslint-disable-line react/no-unused-state
+									});
+								}}
+							/>
+						</Col>
+						<Col md={4} >
+							{ this.state.group ? <SelectInput
+								legend="Mode:"
+								defaultValue={this.state.groupMode}
+								options={[ 'Overlay', 'Facets' ]}
+								onChange={( value )=>{
+									this.setState({
+										groupMode: value // eslint-disable-line react/no-unused-state
+									});
+								}}
+							/> : null }
+						</Col>
+						<Col md={3} >
+							{ this.state.group && this.state.groupMode === 'Facets' ? <NumberInput
+								legend="Columns"
+								defaultValue={2}
+								min={1}
+								onChange={( value )=>{
+									this.setState({
+										nCols: value
+									});
+								}}
+								style={{
+									marginTop: 0
+								}}
+								inputStyle={{
+									width: 70,
+									marginLeft: 0,
+									marginTop: 2
+								}}
+							/> : null }
+						</Col>
+					</Row>
 					<div>
 						<SelectInput
-							legend="Binning Strategy"
+							legend="Binning Strategy:"
 							options={[
 								'Automatic',
 								'Select # of bins',
