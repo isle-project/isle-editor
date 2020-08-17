@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.62.1](https://github.com/isle-project/isle-editor/releases/tag/v0.62.1) (2020-08-17)
+
 ## [v0.62.0](https://github.com/isle-project/isle-editor/releases/tag/v0.62.0) (2020-08-16)
 
 This release includes improvements to the new visual editing capabilities, bug fixes, and enhancements of various components such as the data explorer.
