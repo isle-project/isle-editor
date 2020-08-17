@@ -37,7 +37,7 @@ const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
 const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
 const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
-const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|CheckboxInput|Citation|Clock|Input|Link|Nav\.Link|NavLink|NumberInput|RHelp|SelectInput|SliderInput|Text|TeX|TextArea|TextInput|Typewriter)$/;
+const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|Citation|Clock|Input|Link|Nav\.Link|NavLink|RHelp|Text|TeX|Typewriter)$/;
 const RE_SRC_URL = /\s(src|url|pdf)=['"]$/;
 const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^-\d ][\s\S]+(\r?\n|$))/g;
 
