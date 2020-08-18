@@ -21,7 +21,7 @@ const debug = logger( 'isle:reaction' );
 * Shows different components depending on user actions.
 *
 * @property {string} actionID - ID of component to watch
-* @property {(Object|Function)} show - hash table of components to display given the different responses or function that returns a component to display (sole argument of function is the latest result)
+* @property {(Object|Function)} show - hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result)
 */
 class Reaction extends Component {
 	constructor( props ) {
@@ -57,7 +57,7 @@ class Reaction extends Component {
 					actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
 					const lastAction = actions[ actions.length-1 ];
 					if ( isObject( this.props.show ) ) {
-						return this.props.show[ lastAction.value ] || null;
+						return this.props.show[ lastAction.value ] || this.props.show[ 'default' ] || null;
 					}
 					if ( isFunction( this.props.show ) ) {
 						return this.props.show( lastAction.value ) || null;

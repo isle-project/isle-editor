@@ -5205,7 +5205,7 @@
       {
         "name": "show",
         "type": "(object|function)",
-        "description": "hash table of components to display given the different responses or function that returns a component to display (sole argument of function is the latest result)",
+        "description": "hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result)",
         "defaultValue": {}
       }
     ],
@@ -5274,7 +5274,7 @@
     "props": [
       {
         "name": "message",
-        "type": "string",
+        "type": "(string|node)",
         "description": "message to be displayed when content is hidden",
         "defaultValue": null
       },
@@ -5285,7 +5285,7 @@
         "defaultValue": false
       }
     ],
-    "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all users."
+    "description": "An ISLE component that instructors may use to selectively reveal or hide children content to all students during class."
   },
   "Runner": {
     "props": [
