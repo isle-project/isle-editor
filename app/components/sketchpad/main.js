@@ -83,7 +83,6 @@ const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal',
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
-const RE_DIGITS = /^[0-9]+$/;
 const MIN_SWIPE_X = 45;
 const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
