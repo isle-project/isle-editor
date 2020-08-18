@@ -36,6 +36,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import noop from '@stdlib/utils/noop';
 import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
+import replace from '@stdlib/string/replace';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
@@ -1856,16 +1857,28 @@ class Sketchpad extends Component {
 
 	readURL = () => {
 		const hash = window.location.hash;
-		const pageNo = hash.slice( 2 );
-		if ( RE_DIGITS.test( pageNo ) ) {
-			return Number( pageNo );
+		const id = encodeURI( this.id );
+		const RE = new RegExp( id+'=(\\d+)' );
+		const match = hash.match( RE );
+		if ( match ) {
+			return match[ 1 ];
 		}
 		return 0;
 	}
 
 	updateURL = ( pageNo ) => {
+		const hash = String( window.location.hash );
 		if ( this.props.useHashSign ) {
-			window.location.hash = '#/'+(pageNo+1);
+			const id = encodeURI( this.id );
+			if ( !hash ) {
+				window.location.hash = `#/?${id}=${pageNo+1}`;
+			}
+			else if ( hash.includes( id ) ) {
+				const RE = new RegExp( '('+id+')=\\d+' );
+				window.location.hash = replace( hash, RE, `$1=${pageNo+1}` );
+			} else {
+				window.location.hash += `&${id}=${pageNo+1}`;
+			}
 		}
 	}
 
