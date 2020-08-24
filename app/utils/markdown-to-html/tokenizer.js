@@ -926,7 +926,6 @@ class Tokenizer {
 				this.tokens.push( this._current );
 			}
 		}
-		console.log( this.tokens );
 		let out = this.tokens.join( '' );
 		const env = {
 			initialLineNumber: this.initialLineNumber,

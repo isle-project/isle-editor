@@ -14,6 +14,9 @@ import './line_wrapper.css';
 // VARIABLES //
 
 const debug = logger( 'isle:line-wrapper' );
+const RE_LOADABLE = /(\s|^)isle-loadable(\s|$)/;
+const RE_LINE_WRAPPER_BAR = /(\s|^)line-wrapper-bar(\s|$)/;
+const RE_CONTEXT_MENU = /(\s|^)react-contextmenu(\s|$)/;
 
 
 // FUNCTIONS //
@@ -55,10 +58,10 @@ class LineWrapper extends Component {
 		const child = node.lastChild;
 		if (
 			child &&
-			child.className !== 'isle-loadable' &&
-			child.className !== 'line-wrapper-bar'
+			!RE_LOADABLE.test( child.className ) &&
+			!RE_LINE_WRAPPER_BAR.test( child.className )
 		) {
-			if ( child.className === 'react-contextmenu' ) {
+			if ( RE_CONTEXT_MENU.test( child.className ) ) {
 				return this.setState({
 					style: {}
 				});
@@ -82,7 +85,6 @@ class LineWrapper extends Component {
 
 	handleDoubleClick = ( event ) => {
 		event.stopPropagation();
-		console.log( this.props );
 		this.props.jumpToElementInEditor({
 			startLineNumber: this.props.startLineNumber,
 			endLineNumber: this.props.endLineNumber,
