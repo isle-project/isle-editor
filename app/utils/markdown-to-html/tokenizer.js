@@ -521,7 +521,7 @@ class Tokenizer {
 			this._stringOpener = char;
 			debug( 'IN_OPENING_TAG -> IN_STRING_ATTRIBUTE' );
 			if ( this._openingTagName === 'Text' || this._openingTagName === 'TeX' ) {
-				if ( endsWith( this._current, 'raw='+char ) ) {
+				if ( this._buffer.charAt( this.pos-1 ) === '=' && endsWith( this._current, 'raw='+char ) ) {
 					this._current = this._current.slice( 0, -1 ) + '{String.raw`';
 					this.rawEscaping = true;
 				}
@@ -725,7 +725,20 @@ class Tokenizer {
 
 	_inJSXOther( char ) {
 		this._current += char;
-		if ( char === '{' ) {
+		if ( char === '`' && endsWith( this._current, 'raw={`' ) ) {
+			this._current = this._current.slice( 0, -1 ) + 'String.raw`';
+		}
+		else if ( isQuotationMark( char ) ) {
+			if ( endsWith( this._current, 'raw='+char ) ) {
+				this._current = this._current.slice( 0, -1 ) + '{String.raw`';
+				this._rawQuote = char;
+			}
+			else if ( char === this._rawQuote ) {
+				this._current = this._current.slice( 0, -1 ) + '`}';
+				this._rawQuote = null;
+			}
+		}
+		else if ( char === '{' ) {
 			this._braceLevel += 1;
 		}
 		else if ( char === '}' ) {
@@ -787,7 +800,7 @@ class Tokenizer {
 		if ( char === '`' ) {
 			debug( 'IN_JSX_ATTRIBUTE -> IN_JSX_STRING' );
 			if ( this._openingTagName === 'Text' || this._openingTagName === 'TeX' ) {
-				if ( endsWith( this._current, 'raw={`' ) ) {
+				if ( char === '`' && endsWith( this._current, 'raw={`' ) ) {
 					this._current = this._current.slice( 0, -1 ) + 'String.raw`';
 				}
 			}
