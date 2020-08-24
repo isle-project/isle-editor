@@ -2,7 +2,6 @@
 
 import logger from 'debug';
 import { EOL } from 'os';
-import markdownit from 'markdown-it';
 import replace from '@stdlib/string/replace';
 import removeFirst from '@stdlib/string/remove-first';
 import trim from '@stdlib/string/trim';
@@ -10,6 +9,12 @@ import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isLowercase from '@stdlib/assert/is-lowercase';
+import isQuotationMark from './is_quotation_mark.js';
+import isPreviousChar from './is_previous_char.js';
+import trimLineStarts from './trim_line_starts.js';
+import isWhitespace from './is_whitespace.js';
+import tagName from './tagname.js';
+import md from './markdownit.js';
 
 
 // VARIABLES //
@@ -30,7 +35,6 @@ const IN_JSX_EXPRESSION = 11;
 const IN_JSX_OTHER = 12;
 const IN_BETWEEN_TAGS = 13;
 const IN_ANGLE_LINK = 14;
-const RE_ALPHANUMERIC = /[A-Z0-9.]/i;
 const RE_ALPHACHAR = /[A-Z]/i;
 const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
@@ -39,155 +43,9 @@ const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
 const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|Citation|Clock|Input|Link|Nav\.Link|NavLink|RHelp|Text|TeX|Typewriter)$/;
 const RE_SRC_URL = /\s(src|url|pdf)=['"]$/;
-const RE_LINE_BEGINNING = /(^|\r\n|\n)[ \t]+(?=[^-\d ][\s\S]+(\r?\n|$))/g;
 
 
-const md = markdownit({
-	html: true,
-	xhtmlOut: true,
-	breaks: true,
-	typographer: false
-});
-md.disable( 'code' );
-md.renderer.rules.link_open = function onLinkOpen( tokens, idx, options, env, renderer ) {
-	// If you are sure other plugins can't add `target` - drop check below
-	const token = tokens[ idx ];
-	const aIndex = token.attrIndex( 'target' );
-	token.tag = 'Link';
-	if ( aIndex < 0 ) {
-		token.attrPush( [ 'target', '_blank' ] ); // add new attribute...
-	} else {
-		token.attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
-	}
-	// Pass token to default renderer:
-	return renderer.renderToken( tokens, idx, options );
-};
-md.renderer.rules.link_close = function onLinkClose( tokens, idx, options, env, renderer ) {
-	tokens[ idx ].tag = 'Link';
-	return renderer.renderToken( tokens, idx, options );
-};
-md.renderer.rules.image = function onImage( tokens, idx, options, env, renderer ) {
-	const token = tokens[ idx ];
-	token.attrs[ token.attrIndex('alt') ][ 1 ] = renderer.renderInlineAsText( token.children, options, env );
-	token.tag = 'Image';
-	return renderer.renderToken( tokens, idx, options );
-};
-md.renderer.rules.heading_open = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers ) {
-		return renderer.renderToken( tokens, idx, options );
-	}
-	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
-	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${renderer.renderToken( tokens, idx, options )}`;
-};
-md.renderer.rules.heading_close = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers ) {
-		return renderer.renderToken( tokens, idx, options );
-	}
-	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
-};
-md.renderer.rules.paragraph_open = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers || !env.outer || isSlideDelimiter( tokens[ idx+1 ] ) ) {
-		return renderer.renderToken( tokens, idx, options );
-	}
-	const line = env.initialLineNumber + env.lineAdjustment + tokens[ idx ].map[ 0 ];
-	const content = renderer.renderToken( tokens, idx, options );
-	return `<LineWrapper tagName="${tokens[ idx ].tag}" startLineNumber={${line}} endLineNumber={${line}} >${content}`;
-};
-md.renderer.rules.paragraph_close = ( tokens, idx, options, env, renderer ) => {
-	if ( !env.addLineWrappers || !env.outer || isSlideDelimiter( tokens[ idx-1 ] ) ) {
-		return renderer.renderToken( tokens, idx, options );
-	}
-	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
-};
-md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
-	const { content } = tokens[ idx ];
-	const match = content.match( /data-lines="(\d+)"/ );
-	if ( match && match[ 1 ] ) {
-		env.lineAdjustment += Number( match[ 1 ] );
-	}
-	if ( content.includes( '<LineButtons' ) ) {
-		env.lineAdjustment -= 2;
-	}
-	return content;
-};
-md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
-	const { content } = tokens[ idx ];
-	const match = content.match( /data-lines="(\d+)"/ );
-	if ( match && match[ 1 ] ) {
-		env.lineAdjustment += Number( match[ 1 ] );
-	}
-	if ( content.includes( '<LineButtons' ) ) {
-		env.lineAdjustment -= 2;
-	}
-	return content;
-};
-
-
-// FUNCTIONS //
-
-function isSlideDelimiter( token ) {
-	return (
-		token.type === 'inline' &&
-		token.children.length &&
-		token.children[ 0 ].content === '==='
-	);
-}
-
-/**
-* Tests whether character is a quotation mark.
-*
-* @param {string} c - input character
-* @returns {boolean} boolean indicating whether character is a quotation mark
-*/
-function isQuotationMark( c ) {
-	return (
-		c === '\'' ||
-		c === '"'
-	);
-}
-
-function tagName( str, pos ) {
-	let out = '';
-	let char = str.charAt( pos );
-	if ( char === '/' ) {
-		pos += 1;
-		char = str.charAt( pos );
-	}
-	while ( RE_ALPHANUMERIC.test( char ) ) {
-		out += char;
-		pos += 1;
-		char = str.charAt( pos );
-	}
-	return out;
-}
-
-function isPreviousChar( buffer, pos, char ) {
-	pos -= 1;
-	while ( isWhitespace( buffer[ pos ] ) ) {
-		pos -= 1;
-	}
-	return buffer.charAt( pos ) === char;
-}
-
-function trimLineStarts( str ) {
-	return replace( str, RE_LINE_BEGINNING, '$1' );
-}
-
-/**
-* Tests whether character is whitespace.
-*
-* @param {string} c - input character
-* @returns {boolean} boolean indicating whether character is whitespace
-*/
-function isWhitespace( c ) {
-	return (
-		c === ' ' ||
-		c === '\n' ||
-		c === '\t' ||
-		c === '\f' ||
-		c === '\r'
-	);
-}
+// MAIN //
 
 class Tokenizer {
 	constructor( opts = {} ) {

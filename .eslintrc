@@ -347,6 +347,7 @@
           "pdfmake",
           "png",
           "polaroid",
+          "pos",
           "popup",
           "pre",
           "precached",
