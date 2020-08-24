@@ -8,12 +8,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
-import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import keys from '@stdlib/utils/keys';
 import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
 import Tooltip from 'components/tooltip';
+import isUserInCohort from 'utils/is-user-in-cohort';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
 	SELECTED_COHORT, USER_FINALLY_REMOVED, 	USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
@@ -187,7 +187,7 @@ class UserList extends Component {
 			{session.userList.filter( user => {
 				if (
 					session.selectedCohort &&
-					!contains( session.selectedCohort.members, user.email )
+					!isUserInCohort( session.selectedCohort, user.email )
 				) {
 					return false;
 				}

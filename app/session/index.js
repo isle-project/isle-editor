@@ -1308,13 +1308,10 @@ class Session {
 	* Retrieves cohort information for course owners.
 	*/
 	getCohorts = () => {
-		const url = this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID, memberFields: 'email' });
+		const url = this.server+'/get_cohorts?'+qs.stringify({ namespaceID: this.namespaceID, memberFields: 'email name picture' });
 		axios.get( url ).then( response => {
 			const data = response.data;
 			const cohorts = data.cohorts;
-			cohorts.forEach( cohort => {
-				cohort.members = pluck( cohort.members, 'email' );
-			});
 			this.cohorts = cohorts.sort( titleCompare );
 			this.update( RETRIEVED_COHORTS, this.cohorts );
 		})
@@ -1335,7 +1332,7 @@ class Session {
 			if ( cohorts[ i ].title === title ) {
 				cohort = cohorts[ i ];
 				const emails = this.userList.map( x => x.email );
-				activeCohortMembers = cohort.members.filter( x => contains( emails, x ) );
+				activeCohortMembers = cohort.members.filter( x => contains( emails, x.email ) );
 				break;
 			}
 		}

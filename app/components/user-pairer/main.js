@@ -7,7 +7,6 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import isArray from '@stdlib/assert/is-array';
-import contains from '@stdlib/assert/contains';
 import shuffle from '@stdlib/random/shuffle';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import Gate from 'components/gate';
@@ -15,6 +14,7 @@ import SessionContext from 'session/context.js';
 import AssignmentModal from './assignment_modal.js';
 import { ASSIGNMENT_CLEARED, USERS_ASSIGNED, INDIVIDUAL_ASSIGNED, REMOVE_ASSIGNMENT } from 'constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_USERS, RETRIEVED_COHORTS, USER_JOINED, USER_LEFT } from 'constants/events.js';
+import isUserInCohort from 'utils/is-user-in-cohort';
 import './user_pairer.css';
 
 
@@ -145,7 +145,7 @@ class UserPairer extends Component {
 				.filter( user => {
 					if (
 						this.state.selectedCohort &&
-						!contains( this.state.selectedCohort.members, user.email )
+						!isUserInCohort( this.state.selectedCohort, user.email )
 					) {
 						return false;
 					}
@@ -249,7 +249,7 @@ class UserPairer extends Component {
 			.filter( user => {
 				if (
 					this.state.selectedCohort &&
-					!contains( this.state.selectedCohort.members, user.email )
+					!isUserInCohort( this.state.selectedCohort, user.email )
 				) {
 					return false;
 				}

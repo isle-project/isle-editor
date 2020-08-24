@@ -18,6 +18,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
+import isUserInCohort from 'utils/is-user-in-cohort';
 import SessionContext from 'session/context.js';
 import { LOGGED_OUT, MEMBER_ACTION, RETRIEVED_USER_ACTIONS, SELECTED_COHORT } from 'constants/events.js';
 import ActionList from './list.js';
@@ -182,7 +183,7 @@ class ActionLog extends Component {
 				let action = session.socketActions[ i ];
 				if (
 					session.selectedCohort &&
-					!contains( session.selectedCohort.members, action.email )
+					!isUserInCohort( session.selectedCohort, action.email )
 				) {
 					continue;
 				}

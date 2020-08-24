@@ -17,6 +17,7 @@ import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import isUserInCohort from 'utils/is-user-in-cohort';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
 	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
@@ -119,7 +120,7 @@ class ResponseVisualizer extends Component {
 					) {
 						if (
 							session.selectedCohort &&
-							!contains( session.selectedCohort.members, action.email )
+							!isUserInCohort( session.selectedCohort, action.email )
 						) {
 							return;
 						}
@@ -258,7 +259,7 @@ class ResponseVisualizer extends Component {
 				action = extractValue( action );
 				if (
 					session.selectedCohort &&
-					!contains( session.selectedCohort.members, action.email )
+					!isUserInCohort( session.selectedCohort, action.email )
 				) {
 					continue;
 				}

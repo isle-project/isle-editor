@@ -34,6 +34,7 @@ import CohortSelect from './../cohort_select.js';
 import names from './names.json';
 import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION, SELECTED_COHORT, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import { GROUP_MODE_END } from 'constants/actions.js';
+import isUserInCohort from 'utils/is-user-in-cohort';
 import './group_manager.css';
 
 
@@ -75,11 +76,10 @@ function selectUsers( userList, selectedCohort ) {
 	if ( !selectedCohort ) {
 		return users.filter( x => !x.owner && !x.exitTime && contains( x.email, '@' ) );
 	}
-	const members = selectedCohort.members;
 	const out = [];
 	for ( let i = 0; i < users.length; i++ ) {
 		const user = users[ i ];
-		if ( !user.owner && contains( members, user.email ) ) {
+		if ( !user.owner && isUserInCohort( selectedCohort, user.email ) ) {
 			out.push( user );
 		}
 	}
@@ -96,13 +96,12 @@ function countStudents( userList, selectedCohort ) {
 			}
 		}
 	} else {
-		const members = selectedCohort.members;
 		for ( let i = 0; i < userList.length; i++ ) {
 			const user = userList[ i ];
 			if (
 				!user.owner &&
 				!user.exitTime &&
-				contains( members, user.email )
+				isUserInCohort( selectedCohort, user.email )
 			) {
 				out += 1;
 			}
