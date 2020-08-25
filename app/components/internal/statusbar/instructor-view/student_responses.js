@@ -245,9 +245,9 @@ class StudentResponses extends Component {
 						components={{ Option: SelectOption, SingleValue }}
 						placeholder="Solutions or user..."
 						options={users} styles={selectStyles}
-						onChange={({ value = null }) => {
+						onChange={( option ) => {
 							this.setState({
-								rightUser: value
+								rightUser: option ? option.value : null
 							});
 						}}
 						isClearable
