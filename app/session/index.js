@@ -33,7 +33,6 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import countBy from '@stdlib/utils/count-by';
-import pluck from '@stdlib/utils/pluck';
 import identity from '@stdlib/utils/identity-function';
 import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
