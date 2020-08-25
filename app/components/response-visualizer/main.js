@@ -11,7 +11,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
-import contains from '@stdlib/assert/contains';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
@@ -514,7 +513,9 @@ ResponseVisualizer.propTypes = {
 		type: PropTypes.oneOf([
 			'factor', 'image', 'text', 'number', 'matches', 'matrix', 'range', 'tensor'
 		]),
-		levels: PropTypes.array
+		levels: PropTypes.array,
+		question: PropTypes.oneOfType([ PropTypes.node, PropTypes.string ]),
+		solution: PropTypes.any
 	}),
 	showID: PropTypes.bool,
 	success: PropTypes.string,

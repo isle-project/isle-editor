@@ -224,7 +224,8 @@ class MultipleChoiceMatrix extends Component {
 							data={{
 								type: 'matrix',
 								rows: this.props.questions,
-								cols: this.props.answers
+								cols: this.props.answers,
+								solution: this.props.solution
 							}}
 							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
 						/>

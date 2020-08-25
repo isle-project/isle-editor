@@ -131,7 +131,8 @@ class SelectQuestion extends Component {
 			data={{
 				type: 'factor',
 				levels: this.props.options,
-				question: this.props.question
+				question: this.props.question,
+				solution: this.props.solution
 			}}
 			inline={this.props.inline}
 		/>;

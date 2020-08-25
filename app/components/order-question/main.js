@@ -179,7 +179,8 @@ class OrderQuestion extends Component {
 						data={{
 							type: 'factor',
 							levels: this.state.permutations.map( x => x.join( ' -> ' ) ),
-							question: this.props.question
+							question: this.props.question,
+							solution: this.props.options
 						}}
 						info="ORDER_QUESTION_SUBMISSION"
 					/>

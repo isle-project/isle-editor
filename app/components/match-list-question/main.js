@@ -260,7 +260,9 @@ class MatchListQuestion extends Component {
 						data={{
 							type: 'matches',
 							left: this.props.elements.map( x => x.a ),
-							right: this.props.elements.map( x => x.b )
+							right: this.props.elements.map( x => x.b ),
+							question: this.props.question,
+							solution: this.props.solution
 						}}
 					/>
 				</div>

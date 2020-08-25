@@ -278,7 +278,8 @@ class FreeTextQuestion extends Component {
 					buttonLabel={this.props.t('answers')} id={this.id}
 					info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
 					data={{
-						question: this.props.question
+						question: this.props.question,
+						solution: this.props.solution
 					}}
 					style={{ float: 'left' }}
 				/>

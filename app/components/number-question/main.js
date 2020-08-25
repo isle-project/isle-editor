@@ -317,7 +317,11 @@ class NumberQuestion extends Component {
 				</div>
 				<ResponseVisualizer
 					buttonLabel={this.props.t('answers')} id={this.id}
-					data={{ type: 'number', question: this.props.question }} info="NUMBER_QUESTION_SUBMISSION"
+					data={{
+						type: 'number',
+						question: this.props.question,
+						solution: this.props.solution
+					}} info="NUMBER_QUESTION_SUBMISSION"
 					style={{
 						position: 'absolute',
 						left: 120,

@@ -257,7 +257,8 @@ class SelectQuestionMatrix extends Component {
 							type: 'tensor',
 							rows: this.props.rows,
 							cols: this.props.cols,
-							question: this.props.question
+							question: this.props.question,
+							solution: this.props.solution
 						}}
 						info={SELECT_QUESTION_MATRIX_SUBMISSION}
 					/>

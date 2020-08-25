@@ -281,7 +281,8 @@ class RangeQuestion extends Component {
 						id={this.id}
 						data={{
 							type: 'range',
-							question: this.props.question
+							question: this.props.question,
+							solution: this.props.solution
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 						style={{ marginLeft: '6px' }}
