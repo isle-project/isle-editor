@@ -155,7 +155,7 @@ class StudentResponses extends Component {
 	}
 
 	render() {
-		console.log( 'Render student responses...' );
+		debug( 'Render student responses...' );
 		const session = this.props.session;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
@@ -207,7 +207,7 @@ class StudentResponses extends Component {
 					<Col className="student-responses-first-col" >
 						<Switch active={actionsLeft.length > 1} style={{
 							width: '100%', paddingTop: 14
-						}} tooltip="Click to cycle through submitted answers" >
+						}} tooltip={this.props.t('cycle-through-answers')} >
 							{actionsLeft.map( ( x, idx ) => ( <span key={idx} >
 								<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
 								{formatAnswer( x.value, viz )}
@@ -218,7 +218,7 @@ class StudentResponses extends Component {
 						{ this.state.rightUser ?
 							<Switch active={actionsRight.length > 1} style={{
 								width: '100%', paddingTop: 14
-							}} tooltip="Click to cycle through submitted answers" >
+							}} tooltip={this.props.t('cycle-through-answers')} >
 								{actionsRight.map( ( x, idx ) => ( <span key={idx} >
 									<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
 									{formatAnswer( x.value, viz )}
@@ -235,7 +235,7 @@ class StudentResponses extends Component {
 			const src = session.server + '/thumbnail/' + user.picture;
 			return (
 				<components.Option {...props} >
-					<img alt="User Avatar" src={src} width="32px" height="32px" />
+					<img alt={this.props.t('profile-pic')} src={src} width="32px" height="32px" />
 					<Tooltip tooltip={user.email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{user.name}</span>
 					</Tooltip>
@@ -247,7 +247,7 @@ class StudentResponses extends Component {
 			const src = session.server + '/thumbnail/' + user.picture;
 			return (
 				<components.SingleValue {...props}>
-					<img alt="User Avatar" src={src} width="32px" height="32px" />
+					<img alt={this.props.t('profile-pic')} src={src} width="32px" height="32px" />
 					<Tooltip tooltip={user.email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{user.name}</span>
 					</Tooltip>
@@ -261,7 +261,7 @@ class StudentResponses extends Component {
 				<Col>
 					<Select
 						components={{ Option: SelectOption, SingleValue }}
-						placeholder="Select user..."
+						placeholder={this.props.t('select-enrolled-student')}
 						options={users} styles={selectStyles}
 						onChange={({ value }) => {
 							this.setState({
@@ -273,7 +273,7 @@ class StudentResponses extends Component {
 				<Col>
 					<Select
 						components={{ Option: SelectOption, SingleValue }}
-						placeholder="Solutions or user..."
+						placeholder={this.props.t('solutions-or-student')}
 						options={users} styles={selectStyles}
 						onChange={( option ) => {
 							this.setState({
