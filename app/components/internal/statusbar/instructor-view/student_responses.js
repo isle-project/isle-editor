@@ -245,7 +245,7 @@ class StudentResponses extends Component {
 						components={{ Option: SelectOption, SingleValue }}
 						placeholder="Solutions or user..."
 						options={users} styles={selectStyles}
-						onChange={({ value }) => {
+						onChange={({ value = null }) => {
 							this.setState({
 								rightUser: value
 							});
