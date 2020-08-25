@@ -21,7 +21,8 @@ function _createWindow( options ) {
 			show: false,
 			webPreferences: {
 				nodeIntegration: true,
-				webviewTag: true
+				webviewTag: true,
+				enableRemoteModule: true
 			}
 		},
 		...options
