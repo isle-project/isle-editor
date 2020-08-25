@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
-import noop from '@stdlib/utils/noop';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from 'components/tooltip';
 import './switch.css';
@@ -60,12 +59,19 @@ class Switch extends Component {
 		if ( this.props.className ) {
 			className += ' '+this.props.className;
 		}
-		const onClick = this.props.active ? this.handleClick : noop;
+		if ( !this.props.active ) {
+			return ( <span
+				className={this.props.className}
+				style={this.props.style}
+			>
+				{children}
+			</span> );
+		}
 		const content =
 			<span
 				role="button" tabIndex={0}
 				className={this.props.active ? className : this.props.className}
-				onClick={onClick} onKeyPress={onClick}
+				onClick={this.handleClick} onKeyPress={this.handleClick}
 				style={this.props.style}
 			>
 				{children}
