@@ -13,11 +13,12 @@ import Tooltip from 'components/tooltip';
 import Switch from 'components/switch';
 import selectStyles from 'components/input/select/styles.js';
 import { SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
+import './student_responses.css';
 
 
 // VARIABLES //
 
-const debug = logger( 'isle:statusbar:instructor-view' );
+const debug = logger( 'isle:statusbar:student-responses' );
 
 
 // FUNCTIONS //
@@ -55,6 +56,11 @@ function formatAnswer( value, visualizer ) {
 		out = value;
 	}
 	return out;
+}
+
+function formatTime( time ) {
+	const out = new Date( time );
+	return `${out.toLocaleDateString()} ${out.toLocaleTimeString()}`;
 }
 
 
@@ -173,9 +179,7 @@ class StudentResponses extends Component {
 			list[ i ] = (
 				<Row
 					key={i}
-					style={{
-						padding: '0.1rem'
-					}}
+					className="student-responses-row"
 				>
 					<Tooltip tooltip={question} placement="left" >
 						<Col onClick={this.highlightFactory( id )} style={{
@@ -185,15 +189,23 @@ class StudentResponses extends Component {
 							{id}
 						</Col>
 					</Tooltip>
-					<Col style={{ background: 'lightblue' }}>
+					<Col style={{ background: 'rgba(173, 216, 230, 0.6)' }}>
 						<Switch active={actionsLeft.length > 1} style={{ width: '100%' }} >
-							{actionsLeft.map( ( x, idx ) => <span key={idx} >{formatAnswer( x.value, viz )}</span> )}
+							{actionsLeft.map( ( x, idx ) => ( <span key={idx} >
+								{formatAnswer( x.value, viz )}
+								<br />
+								<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
+							</span> ) )}
 						</Switch>
 					</Col>
-					<Col style={{ background: this.state.rightUser ? 'lightblue' : '#fff2e5' }} >
+					<Col style={{ background: this.state.rightUser ? 'rgba(173, 216, 230, 0.4)' : '#fff2e5' }} >
 						{ this.state.rightUser ?
 							<Switch active={actionsRight.length > 1} style={{ width: '100%' }} >
-								{actionsRight.map( ( x, idx ) => <span key={idx} >{formatAnswer( x.value, viz )}</span> )}
+								{actionsRight.map( ( x, idx ) => ( <span key={idx} >
+									{formatAnswer( x.value, viz )}
+									<br />
+									<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
+								</span> ) )}
 							</Switch> :
 							<span>{formatAnswer( solution, viz )}</span>
 						}
@@ -232,6 +244,7 @@ class StudentResponses extends Component {
 				<Col>
 					<Select
 						components={{ Option: SelectOption, SingleValue }}
+						placeholder="Select user..."
 						options={users} styles={selectStyles}
 						onChange={({ value }) => {
 							this.setState({
