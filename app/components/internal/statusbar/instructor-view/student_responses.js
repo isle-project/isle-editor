@@ -192,7 +192,7 @@ class StudentResponses extends Component {
 					<Col className="student-responses-first-col" >
 						<Switch active={actionsLeft.length > 1} style={{
 							width: '100%', paddingTop: 14
-						}} >
+						}} tooltip="Click to cycle through submitted answers" >
 							{actionsLeft.map( ( x, idx ) => ( <span key={idx} >
 								<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
 								{formatAnswer( x.value, viz )}
@@ -203,7 +203,7 @@ class StudentResponses extends Component {
 						{ this.state.rightUser ?
 							<Switch active={actionsRight.length > 1} style={{
 								width: '100%', paddingTop: 14
-							}} >
+							}} tooltip="Click to cycle through submitted answers" >
 								{actionsRight.map( ( x, idx ) => ( <span key={idx} >
 									<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
 									{formatAnswer( x.value, viz )}
