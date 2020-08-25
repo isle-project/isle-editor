@@ -55,13 +55,13 @@ class Switch extends Component {
 
 	render() {
 		let children = React.Children.map( this.props.children, this.makeVisible.bind( this ) );
-		let className = 'switch';
+		let className = this.props.active ? 'switch active' : 'switch';
 		if ( this.props.className ) {
 			className += ' '+this.props.className;
 		}
 		if ( !this.props.active ) {
 			return ( <span
-				className={this.props.className}
+				className={className}
 				style={this.props.style}
 			>
 				{children}
@@ -70,7 +70,7 @@ class Switch extends Component {
 		const content =
 			<span
 				role="button" tabIndex={0}
-				className={this.props.active ? className : this.props.className}
+				className={className}
 				onClick={this.handleClick} onKeyPress={this.handleClick}
 				style={this.props.style}
 			>

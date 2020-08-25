@@ -2,7 +2,7 @@
 	font-variant-caps: petite-caps;
 	font-size: 0.75em;
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	right: 4px;
 	color: rgb(100, 100, 100);
 }
@@ -14,5 +14,8 @@
 .student-responses-row .col {
 	padding-left: 8px;
 	padding-right: 8px;
-	padding-bottom: 18px;
+}
+
+.student-responses-first-col {
+	background-color: rgba(173, 216, 230, 0.6);
 }

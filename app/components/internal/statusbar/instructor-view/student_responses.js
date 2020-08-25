@@ -189,22 +189,24 @@ class StudentResponses extends Component {
 							{id}
 						</Col>
 					</Tooltip>
-					<Col style={{ background: 'rgba(173, 216, 230, 0.6)' }}>
-						<Switch active={actionsLeft.length > 1} style={{ width: '100%' }} >
+					<Col className="student-responses-first-col" >
+						<Switch active={actionsLeft.length > 1} style={{
+							width: '100%', paddingTop: 14
+						}} >
 							{actionsLeft.map( ( x, idx ) => ( <span key={idx} >
-								{formatAnswer( x.value, viz )}
-								<br />
 								<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
+								{formatAnswer( x.value, viz )}
 							</span> ) )}
 						</Switch>
 					</Col>
 					<Col style={{ background: this.state.rightUser ? 'rgba(173, 216, 230, 0.4)' : '#fff2e5' }} >
 						{ this.state.rightUser ?
-							<Switch active={actionsRight.length > 1} style={{ width: '100%' }} >
+							<Switch active={actionsRight.length > 1} style={{
+								width: '100%', paddingTop: 14
+							}} >
 								{actionsRight.map( ( x, idx ) => ( <span key={idx} >
-									{formatAnswer( x.value, viz )}
-									<br />
 									<span className="student-responses-time" >{formatTime( x.absoluteTime )}</span>
+									{formatAnswer( x.value, viz )}
 								</span> ) )}
 							</Switch> :
 							<span>{formatAnswer( solution, viz )}</span>

@@ -1,12 +1,15 @@
 .switch {
-	transition: all 0.2s ease-in-out;
-	cursor: pointer;
 	display: inline-block;
 	height: auto;
 	width: auto;
 }
 
-.switch:hover {
+.switch.active {
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+.switch.active:hover {
 	transform: scale(1.05);
 	color: #ca5800;
 }
