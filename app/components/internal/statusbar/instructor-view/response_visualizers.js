@@ -193,7 +193,7 @@ class ResponseVisualizers extends Component {
 				<ListGroupItem
 					key={i}
 					style={{
-						background: this.state.selected === id ? '#e0a800' : 'lightgrey',
+						background: this.state.selected === id ? 'gold' : 'lightgrey',
 						padding: '0.4rem 1rem',
 						cursor: 'pointer'
 					}}

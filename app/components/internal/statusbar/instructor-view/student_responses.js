@@ -134,7 +134,7 @@ class StudentResponses extends Component {
 	}
 
 	render() {
-		debug( 'Render response visualizer statistics...' );
+		console.log( 'Render student responses...' );
 		const session = this.props.session;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
@@ -180,7 +180,7 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={question} placement="left" >
 						<Col onClick={this.highlightFactory( id )} style={{
 							cursor: 'pointer',
-							background: this.state.selected === id ? '#e0a800' : 'lightgrey'
+							background: this.state.selected === id ? 'gold' : 'lightgrey'
 						}} >
 							{id}
 						</Col>
