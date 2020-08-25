@@ -229,7 +229,6 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			}
 		}
 		layout = {
-			xaxis: { title: variable },
 			yaxis: {
 				title: overlayDensity ? 'Density' : 'Count',
 				fixedrange: true
@@ -241,6 +240,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
 		} else {
 			layout.barmode = 'overlay';
+			layout.xaxis = { title: variable };
 		}
 	}
 	return {
