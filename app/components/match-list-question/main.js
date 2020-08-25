@@ -262,7 +262,7 @@ class MatchListQuestion extends Component {
 							left: this.props.elements.map( x => x.a ),
 							right: this.props.elements.map( x => x.b ),
 							question: this.props.question,
-							solution: this.props.solution
+							solution: this.props.elements
 						}}
 					/>
 				</div>

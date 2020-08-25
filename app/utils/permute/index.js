@@ -8,7 +8,8 @@
 */
 function permute( arr ) {
 	const len = arr.length;
-	const out = [ arr.slice() ];
+	arr = arr.slice();
+	const out = [ arr ];
 	const c = new Array( len ).fill( 0 );
 	let i = 1;
 	while ( i < len ) {

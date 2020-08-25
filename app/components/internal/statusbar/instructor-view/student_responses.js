@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from 'components/tooltip';
 import Switch from 'components/switch';
@@ -27,7 +28,7 @@ function isHidden( el ) {
 	return el.offsetParent === null;
 }
 
-function removeGlowElems() {
+function removeGlowElements() {
 	// Remove glow effect from previously highlighted elements:
 	const focused = document.getElementsByClassName( 'focus-glow' );
 	while ( focused.length ) {
@@ -45,15 +46,29 @@ function formatAnswer( value, visualizer ) {
 	if ( isUndefinedOrNull( value ) ) {
 		return '';
 	}
-	if ( dataType === 'factor' ) {
-		let levels = visualizer.ref.props.data.levels;
-		if ( isArray( value ) ) {
-			out = value.map( x => levels[ x ] ).join( ', ' );
-		} else {
-			out = levels[ value ];
-		}
-	} else {
-		out = value;
+	switch ( dataType ) {
+		case 'factor': {
+				let levels = visualizer.ref.props.data.levels;
+				if ( isArray( value ) ) {
+					out = value.map( x => isNumber( x ) ? levels[ x ] : x ).join( ', ' );
+				} else {
+					out = levels[ value ];
+				}
+			}
+			break;
+		case 'range':
+			out = `lower: ${value[ 0 ]}, upper: ${value[ 1 ]}`;
+			break;
+		case 'number':
+			out = String( value );
+			break;
+		case 'image':
+			break;
+		case 'matrix':
+		case 'tensor':
+		case 'matches':
+			out = JSON.stringify( value, null, 2 );
+			break;
 	}
 	return out;
 }
@@ -91,7 +106,7 @@ class StudentResponses extends Component {
 	}
 
 	componentWillUnmount() {
-		removeGlowElems();
+		removeGlowElements();
 		this.unsubscribe();
 	}
 
@@ -104,7 +119,7 @@ class StudentResponses extends Component {
 
 	highlightFactory = ( id ) => {
 		return () => {
-			removeGlowElems();
+			removeGlowElements();
 			if ( this.state.selected === id ) {
 				return this.setState({
 					selected: null
