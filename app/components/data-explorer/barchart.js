@@ -109,13 +109,13 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			});
 		}
 		traces = [];
-		const keys = group.categories || objectKeys( freqs );
+		const keys = variable.categories || objectKeys( freqs );
 		if ( relative ) {
 			const catCounts = countBy( data[ group ], identity );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];
-				const categories = variable.categories || objectKeys( val );
+				const categories = group.categories || objectKeys( val );
 				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
@@ -147,7 +147,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];
-				const categories = variable.categories || objectKeys( val );
+				const categories = group.categories || objectKeys( val );
 				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
