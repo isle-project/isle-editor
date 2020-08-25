@@ -315,34 +315,30 @@ class NumberQuestion extends Component {
 						null
 					}
 				</div>
-				<ResponseVisualizer
-					buttonLabel={this.props.t('answers')} id={this.id}
-					data={{
-						type: 'number',
-						question: this.props.question,
-						solution: this.props.solution
-					}} info="NUMBER_QUESTION_SUBMISSION"
-					style={{
-						position: 'absolute',
-						left: 120,
-						bottom: '0.75rem'
-					}}
-				/>
 				<ButtonToolbar className="number-question-toolbar">
+					<ResponseVisualizer
+						buttonLabel={this.props.t('answers')} id={this.id}
+						data={{
+							type: 'number',
+							question: this.props.question,
+							solution: this.props.solution
+						}} info="NUMBER_QUESTION_SUBMISSION"
+						style={{ marginLeft: 3, marginRight: 3 }}
+					/>
 					{ nHints > 0 ?
 						<HintButton
 							onClick={this.logHint}
 							hints={this.props.hints}
 							placement={this.props.hintPlacement}
 							style={{
-								marginRight: '4px'
+								marginLeft: 3
 							}}
 						/> :
 						null
 					}
 					{
 						this.props.chat ?
-							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+							<div style={{ display: 'inline-block', marginLeft: 3 }}>
 								<ChatButton for={this.id} />
 							</div> : null
 					}
@@ -352,6 +348,9 @@ class NumberQuestion extends Component {
 						size="sm"
 						disabled={isDisabled}
 						onClick={this.submitHandler}
+						style={{
+							marginLeft: 3
+						}}
 					>
 						{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
 					</TimedButton>

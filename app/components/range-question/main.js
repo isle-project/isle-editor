@@ -255,6 +255,17 @@ class RangeQuestion extends Component {
 						}
 					</div>
 					<ButtonToolbar className="range-question-toolbar" >
+						<ResponseVisualizer
+							buttonLabel={this.props.t('answers')}
+							id={this.id}
+							data={{
+								type: 'range',
+								question: this.props.question,
+								solution: this.props.solution
+							}}
+							info={RANGE_QUESTION_SUBMIT_ANSWER}
+							style={{ marginLeft: '3px', marginRight: '3px' }}
+						/>
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
@@ -266,27 +277,16 @@ class RangeQuestion extends Component {
 								</div> : null
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
+						<TimedButton
+							className="submit-button"
+							variant="primary"
+							size="sm"
+							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
+							onClick={this.submitHandler}
+						>
+							{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
+						</TimedButton>
 					</ButtonToolbar>
-					<TimedButton
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-						onClick={this.submitHandler}
-					>
-						{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
-					</TimedButton>
-					<ResponseVisualizer
-						buttonLabel={this.props.t('answers')}
-						id={this.id}
-						data={{
-							type: 'range',
-							question: this.props.question,
-							solution: this.props.solution
-						}}
-						info={RANGE_QUESTION_SUBMIT_ANSWER}
-						style={{ marginLeft: '6px' }}
-					/>
 					{ this.props.feedback ? <FeedbackButtons
 						id={this.id+'_feedback'}
 						style={{ marginRight: 5, marginTop: -5 }}
