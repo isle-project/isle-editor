@@ -17,6 +17,7 @@ import SessionContext from 'session/context.js';
 import { RECEIVED_USERS, SELECTED_COHORT, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT } from 'constants/events.js';
 import UserList from './user_list.js';
 import ResponseVisualizers from './response_visualizers.js';
+import StudentResponses from './student_responses.js';
 import CohortSelect from './../cohort_select.js';
 import './instructor_view.css';
 
@@ -126,7 +127,7 @@ class InstructorView extends Component {
 					});
 				}}
 			>
-				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={this.props.t( 'responses' )} >
+				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={this.props.t( 'activity' )} >
 					<ResponseVisualizers
 						selectedCohort={session.selectedCohort}
 						session={session}
@@ -137,6 +138,13 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
+						t={this.props.t}
+					/>
+				</Tab> : null }
+				{ hasResponseVisualizers ?<Tab eventKey="student_responses" title={this.props.t( 'responses' )} >
+					<StudentResponses
+						selectedCohort={session.selectedCohort}
+						session={session}
 						t={this.props.t}
 					/>
 				</Tab> : null }
