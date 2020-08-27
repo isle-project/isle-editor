@@ -53,6 +53,7 @@ import InputButtons from './input_buttons.js';
 import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
 import Loadable from 'components/internal/loadable';
 import closeHintButtons from 'utils/close-hint-buttons';
+import isElectron from 'utils/is-electron';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
@@ -149,11 +150,10 @@ function setDashedLines( ctx ) {
 * @property {number} fontSize - font size
 * @property {Object} nodes - components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components
 * @property {number} noPages - initial number of pages
-* @property {string} pdf - Link to PDF file for baked-in page backgrounds
+* @property {string} pdf - link to PDF file for baked-in page backgrounds
 * @property {boolean} showTutorial - show a tutorial for the sketchpad
 * @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
 * @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
-* @property {boolean} useHashSign - controls whether to read/write to the hash mark of the URL of the lesson
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever a new line element is drawn
@@ -180,7 +180,7 @@ class Sketchpad extends Component {
 		this.ctx = null;
 		this.id = props.id || uid( props );
 
-		const loc = this.props.useHashSign ? this.readURL() : 0;
+		const loc = !isElectron ? this.readURL() : 0;
 		this.state = {
 			color: props.color,
 			brushSize: props.brushSize,
@@ -549,7 +549,7 @@ class Sketchpad extends Component {
 		if ( this.props.fullscreen ) {
 			document.body.addEventListener( 'gesturestart', preventGesture );
 		}
-		if ( this.props.useHashSign ) {
+		if ( !isElectron ) {
 			window.addEventListener( 'hashchange', this.handleHashChange );
 		}
 	}
@@ -592,7 +592,7 @@ class Sketchpad extends Component {
 			this.unsubscribe();
 		}
 		window.removeEventListener( 'resize', this.handleResize );
-		if ( this.props.useHashSign ) {
+		if ( !isElectron ) {
 			window.removeEventListener( 'hashchange', this.handleHashChange );
 		}
 		window.removeEventListener( 'unload', this.save );
@@ -659,7 +659,7 @@ class Sketchpad extends Component {
 				const { page } = data.state.insertedPages[ i ];
 				this.backgrounds.splice( page, 0, null );
 			}
-			const page = this.props.useHashSign ? this.readURL() : 0;
+			const page = !isElectron ? this.readURL() : 0;
 			debug( 'Go to page '+page );
 			if ( page > 0 ) {
 				data.state.currentPage = page - 1;
@@ -1867,7 +1867,7 @@ class Sketchpad extends Component {
 
 	updateURL = ( pageNo ) => {
 		const hash = String( window.location.hash );
-		if ( this.props.useHashSign ) {
+		if ( !isElectron ) {
 			const id = encodeURI( this.id );
 			if ( !hash ) {
 				window.location.hash = `#/?${id}=${pageNo+1}`;
@@ -2044,7 +2044,7 @@ class Sketchpad extends Component {
 				this.sharedElements = sharedElements;
 				this.nUndos = nUndos;
 				this.setState({
-					currentPage: 0,
+					currentPage: !isElectron ? this.readURL() : 0,
 					noPages
 				}, () => {
 					if ( this.state.hasRetrievedData ) {
@@ -2849,7 +2849,6 @@ Sketchpad.defaultProps = {
 	dynamicallyHideButtons: false,
 	transmitOwner: true,
 	groupMode: false,
-	useHashSign: true,
 	voiceID: null,
 	style: {},
 	onChange() {}
@@ -2879,7 +2878,6 @@ Sketchpad.propTypes = {
 	dynamicallyHideButtons: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	groupMode: PropTypes.bool,
-	useHashSign: PropTypes.bool,
 	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
