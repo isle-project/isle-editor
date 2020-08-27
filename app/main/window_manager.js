@@ -22,7 +22,9 @@ function _createWindow( options ) {
 			webPreferences: {
 				nodeIntegration: true,
 				webviewTag: true,
-				enableRemoteModule: true
+				enableRemoteModule: true,
+				worldSafeExecuteJavaScript: true,
+				allowRunningInsecureContent: true
 			}
 		},
 		...options
