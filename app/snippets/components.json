@@ -37,7 +37,7 @@
 	},
 	{
 		"name": "DataSampler",
-		"value": "<DataSampler data={${1:}}>\n  {( sample ) => \n    ${2:}\n  }\n</DataSampler>"
+		"value": "<DataSampler data={${1:}}>\n  {( sample ) => {\n    ${2:}\n  }}\n</DataSampler>"
 	},
 	{
 		"name": "DataTable",
