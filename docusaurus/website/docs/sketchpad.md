@@ -32,12 +32,11 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __fontSize__ | `number`: font size. Default: `24`.
 * __nodes__ | `object`: components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components. Default: `{}`.
 * __noPages__ | `number`: initial number of pages. Default: `1`.
-* __pdf__ | `string`: Link to PDF file for baked-in page backgrounds. Default: `none`.
+* __pdf__ | `string`: link to PDF file for baked-in page backgrounds. Default: `none`.
 * __showTutorial__ | `boolean`: show a tutorial for the sketchpad. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: controls whether to start hiding buttons when toolbar width is not sufficient (otherwise a new line will be started). Default: `false`.
 * __transmitOwner__ | `boolean`: whether owner actions should be transmitted to other users in real-time. Default: `true`.
 * __groupMode__ | `boolean`: controls whether all user's actions are transmitted to everyone else. Default: `false`.
-* __useHashSign__ | `boolean`: controls whether to read/write to the hash mark of the URL of the lesson. Default: `true`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked whenever a new line element is drawn. Default: `onChange() {}`.

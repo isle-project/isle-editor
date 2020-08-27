@@ -5832,7 +5832,7 @@
       {
         "name": "pdf",
         "type": "string",
-        "description": "Link to PDF file for baked-in page backgrounds",
+        "description": "link to PDF file for baked-in page backgrounds",
         "defaultValue": null
       },
       {
@@ -5858,12 +5858,6 @@
         "type": "boolean",
         "description": "controls whether all user's actions are transmitted to everyone else",
         "defaultValue": false
-      },
-      {
-        "name": "useHashSign",
-        "type": "boolean",
-        "description": "controls whether to read/write to the hash mark of the URL of the lesson",
-        "defaultValue": true
       },
       {
         "name": "voiceID",
