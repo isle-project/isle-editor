@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.63.1](https://github.com/isle-project/isle-editor/releases/tag/v0.63.1) (2020-08-27)
+
+This patch fixes two errors:
+- the sketchpad going blank in the editor when changing pages
+- hypothesis testing questions causing tokenization to fail
+
 ## [v0.63.0](https://github.com/isle-project/isle-editor/releases/tag/v0.63.0) (2020-08-25)
 
 This release includes fixes for bugs in the editor due to the new visual editing capabilities, various enhancements of the data explorer, as well as a new summary view of submitted answers on a per student basis in the instructor panel.
