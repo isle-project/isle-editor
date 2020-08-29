@@ -439,6 +439,8 @@ class GroupManager extends Component {
 					options={this.state.notAssigned}
 					styles={customSelectStyles}
 					menuPlacement="bottom"
+					menuPortalTarget={document.body}
+					menuShouldScrollIntoView={false}
 					onChange={( _, action ) => {
 						if ( action.action === 'remove-value' ) {
 							const notAssigned = this.state.notAssigned.slice();

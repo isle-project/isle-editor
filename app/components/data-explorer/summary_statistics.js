@@ -446,7 +446,9 @@ class SummaryStatistics extends Component {
 								});
 							}}
 							styles={selectStyles}
+							menuPlacement="auto"
 							menuPortalTarget={document.body}
+							menuShouldScrollIntoView={false}
 						/>
 					</FormGroup>
 					<SelectInput
@@ -482,6 +484,8 @@ class SummaryStatistics extends Component {
 								}}
 								styles={selectStyles}
 								menuPortalTarget={document.body}
+								menuPlacement="auto"
+								menuShouldScrollIntoView={false}
 							/>
 						</FormGroup>:
 						null
@@ -520,6 +524,8 @@ class SummaryStatistics extends Component {
 								}}
 								styles={selectStyles}
 								menuPortalTarget={document.body}
+								menuPlacement="auto"
+								menuShouldScrollIntoView={false}
 							/>
 						</FormGroup> : null
 					}
