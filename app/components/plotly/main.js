@@ -274,10 +274,13 @@ class Wrapper extends Component {
 		const style = {
 			width: this.state.layout.width ? this.props.layout.width : '100%',
 			height: this.state.layout.height ? this.props.layout.height : '100%',
-			zIndex: 1,
+			zIndex: 1
+		};
+		const outerStyle = {
+			...style,
 			...this.props.style
 		};
-		let plot = <div className="plotly-container" style={style} >
+		let plot = <div className="plotly-container" style={outerStyle} >
 			{draggableBar}
 			<Plot
 				className={this.props.draggable ? 'plotly-draggable' : null}
