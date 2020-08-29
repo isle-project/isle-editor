@@ -207,7 +207,10 @@ class PieChart extends Component {
 							});
 						}}
 					/>
-					<Button variant="primary" block onClick={this.generatePiechart}>Generate</Button>
+					<Button
+						variant="primary" block
+						onClick={this.generatePiechart}
+					>Generate</Button>
 				</Card.Body>
 			</Card>
 		);
