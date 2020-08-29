@@ -37,6 +37,7 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isNull from '@stdlib/assert/is-null';
 import objectKeys from '@stdlib/utils/keys';
 import min from 'utils/statistic/min';
@@ -233,7 +234,12 @@ function createColumns( props, state ) {
 			} else {
 				vals = vals.filter( x => !isNull( x ) && x !== '' && x !== 'NA' );
 				uniqueValues = unique( vals );
-				isNumColumn = isNumberArray( vals ) && uniqueValues.length > 2;
+				const activeFilter = props.filters.filter( x => x.id === key )[ 0 ];
+				if ( activeFilter && isNumber( activeFilter.value.min ) && isNumber( activeFilter.value.max ) ) {
+					isNumColumn = true;
+				} else {
+					isNumColumn = isNumberArray( vals ) && uniqueValues.length > 2;
+				}
 			}
 			if ( isNumColumn ) {
 				out[ 'filterMethod' ] = filterMethodNumbers;
