@@ -465,6 +465,7 @@ class DataTable extends Component {
 				this.props.filters.length !== prevProps.filters.length
 			)
 		) {
+			debug( `Data table now has ${this.props.filters.length} filters...` );
 			newState.filtered = this.props.filters;
 		}
 		if (
