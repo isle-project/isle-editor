@@ -19,7 +19,7 @@ const FilterList = ( props ) => {
 		if ( isArray( filter.value ) ) {
 			value = filter.value.map( ( x, i ) => <Badge variant="secondary" key={i} style={{ marginRight: 4 }} >{x}</Badge> );
 		}
-		else if (isPlainObject( filter.value ) ) {
+		else if ( isPlainObject( filter.value ) ) {
 			const keys = objectKeys( filter.value );
 			value = new Array( keys.length );
 			for ( let i = 0; i < keys.length; i++ ) {

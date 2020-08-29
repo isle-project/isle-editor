@@ -483,26 +483,26 @@ class DataExplorer extends Component {
 	}
 
 	transformVariable = ( name, values, varState ) => {
-		let newquantitative;
+		let newQuantitative;
 		let newCategorical;
 		let groupVars;
 		let newData;
 		if ( !varState ) {
 			newData = copy( this.state.data, 1 );
-			newquantitative = this.state.quantitative.slice();
+			newQuantitative = this.state.quantitative.slice();
 			newCategorical = this.state.categorical.slice();
 			groupVars = this.state.groupVars.slice();
 		} else {
 			newData = copy( varState.data, 1 );
-			newquantitative = varState.quantitative.slice();
+			newQuantitative = varState.quantitative.slice();
 			newCategorical = varState.categorical.slice();
 			groupVars = varState.groupVars.slice();
 		}
 		newData[ name ] = values;
 		let previous;
 		if ( isNumberArray( values ) ) {
-			if ( !contains( newquantitative, name ) ) {
-				newquantitative.push( name );
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
 				previous = newCategorical.indexOf( name );
 				if ( previous > 0 ) {
 					newCategorical.splice( previous, 1 );
@@ -512,9 +512,9 @@ class DataExplorer extends Component {
 		} else {
 			if ( !contains( newCategorical, name ) ) {
 				newCategorical.push( name );
-				previous = newquantitative.indexOf( name );
+				previous = newQuantitative.indexOf( name );
 				if ( previous > 0 ) {
-					newquantitative.splice( previous, 1 );
+					newQuantitative.splice( previous, 1 );
 				}
 			}
 			groupVars = newCategorical.slice();
@@ -522,7 +522,7 @@ class DataExplorer extends Component {
 		const newVarState = {
 			data: newData,
 			categorical: newCategorical,
-			quantitative: newquantitative,
+			quantitative: newQuantitative,
 			groupVars: groupVars
 		};
 		return newVarState;
@@ -674,7 +674,7 @@ class DataExplorer extends Component {
 			if ( contains( this.state.quantitative, filter.id ) ) {
 				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
-					if ( col[ z ] < filter.value.min || col[ z ] > filter.value.max ) {
+					if ( !( col[ z ] >= filter.value.min && col[ z ] <= filter.value.max ) ) {
 						indices.add( z );
 					}
 				}
@@ -709,11 +709,12 @@ class DataExplorer extends Component {
 			}
 		}
 		newData[ 'id' ] = ids;
-		this.setState({
+		const newState = {
 			data: newData,
 			oldData: this.state.data,
 			subsetFilters: this.state.filters
-		});
+		};
+		this.setState( newState );
 	}
 
 	onRestoreData = () => {
@@ -1499,9 +1500,9 @@ class DataExplorer extends Component {
 												filters={this.state.subsetFilters}
 												removeButtons
 												onRemove={( idx ) => {
+													debug( 'Removing filter at position '+idx );
 													const newSubsetFilters = this.state.subsetFilters.slice();
 													newSubsetFilters.splice( idx, 1 );
-													console.log( newSubsetFilters );
 													if ( newSubsetFilters.length > 0 ) {
 														this.setState({
 															data: this.state.oldData,
