@@ -271,7 +271,13 @@ class Wrapper extends Component {
 				}}
 			>{this.props.t('drag-plot')}</div>;
 		}
-		let plot = <div className="plotly-container" >
+		const style = {
+			width: this.state.layout.width ? this.props.layout.width : '100%',
+			height: this.state.layout.height ? this.props.layout.height : '100%',
+			zIndex: 1,
+			...this.props.style
+		};
+		let plot = <div className="plotly-container" style={style} >
 			{draggableBar}
 			<Plot
 				className={this.props.draggable ? 'plotly-draggable' : null}
@@ -287,12 +293,7 @@ class Wrapper extends Component {
 				onRelayout={this.props.onRelayout}
 				onLegendClick={this.props.onLegendClick}
 				onLegendDoubleClick={this.props.onLegendDoubleClick}
-				style={{
-					width: this.state.layout.width ? this.props.layout.width : '100%',
-					height: this.state.layout.height ? this.props.layout.height : '100%',
-					zIndex: 1,
-					...this.props.style
-				}}
+				style={style}
 				revision={this.props.revision}
 			/>
 		</div>;
