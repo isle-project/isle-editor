@@ -224,6 +224,7 @@ mark {
 
 #App .Lesson {
 	min-height: 100vh;
+	max-height: 100vh;
 }
 
 .Lesson {
@@ -424,8 +425,7 @@ mark {
 	}
 }
 
-.Lesson h1,
-.Presentation h1 {
+h1 {
 	color: #2e4468;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
@@ -487,8 +487,7 @@ mark {
 	background: linear-gradient(to right, transparent, var(--primarylight) 12%, var(--quartarylight) 48%, var(--primarylight) 52%, transparent 92%); /* Standard syntax */
 }
 
-.Lesson h2,
-.Presentation h2 {
+h2 {
 	color: #3c763d;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
@@ -500,8 +499,7 @@ mark {
 	font-size: 36px;
 }
 
-.Lesson h3,
-.Presentation h3 {
+h3 {
 	color: #2e4468;
 	font-weight: 700;
 	font-family: Open Sans Condensed;
@@ -516,8 +514,7 @@ mark {
 	color: var(--tertiarylight);
 }
 
-.Lesson h4,
-.Presentation h4 {
+h4 {
 	color: #ca5800;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
@@ -537,10 +534,8 @@ mark {
 	padding: 5px;
 }
 
-.Lesson .nav-link,
-.Presentation .nav-link,
-.Lesson .dropdown-item,
-.Presentation .dropdown-item {
+.nav-link,
+.dropdown-item {
 	color: #2e4468;
 }
 
@@ -548,23 +543,18 @@ mark {
 	color: rgba(0, 0, 0, 0.54);
 }
 
-.Lesson .dropdown-item.active,
-.Lesson .dropdown-item:active,
-.Presentation .dropdown-item.active,
-.Presentation .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
 	background-color: var(--tertiarylight);
 }
 
-.Lesson .dropdown-item.disabled,
-.Lesson .dropdown-item:disabled,
-.Presentation .dropdown-item.disabled,
-.Presentation .dropdown-item:disabled {
+.dropdown-item:disabled,
+.dropdown-item.disabled {
 	color: #6c757d;
 	background-color: transparent;
 }
 
-.Lesson a,
-.Presentation a {
+a {
 	color: #007bff;
 }
 

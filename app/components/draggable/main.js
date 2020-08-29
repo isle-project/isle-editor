@@ -78,7 +78,7 @@ class Draggable extends Component {
 		const dndProps = omit( this.props, [ 'onStop', 'onEscape' ]);
 		return (
 			<Portal
-				node={document && document.getElementById( 'Lesson' )}
+				node={document.body}
 			>
 				<Rnd
 					{...dndProps}
