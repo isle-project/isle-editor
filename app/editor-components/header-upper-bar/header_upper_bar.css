@@ -9,6 +9,12 @@
 	justify-content: space-between;
 }
 
+#header-upper-bar h3 {
+	font-family: Open Sans Condensed;
+	color: white;
+	font-weight: normal;
+}
+
 #link-back-to-editor {
 	color: silver;
 	font-size: 18px;
