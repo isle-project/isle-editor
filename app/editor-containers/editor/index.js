@@ -29,6 +29,7 @@ const ComponentConfigurator = Loadable( () => import( 'editor-components/compone
 
 let yaml;
 const debug = logger( 'isle-editor' );
+const RE_PREAMBLE = /^(?:\s*)---([\S\s]*?)---/;
 
 
 // FUNCTIONS //
@@ -127,7 +128,7 @@ class App extends Component {
 	}
 
 	handlePreambleChange = ( text ) => {
-		let preamble = text.match( /^(?:\s*)---([\S\s]*?)---/ );
+		let preamble = text.match( RE_PREAMBLE );
 		if ( preamble ) {
 			// Extract the capture group:
 			preamble = preamble[ 1 ];
@@ -290,6 +291,7 @@ class App extends Component {
 					}}
 					onChange={this.handleHorizontalSplit}
 					minSize={0}
+					maxSize={window.innerHeight}
 				>
 					<TerminalGrid
 						height={this.state.horizontalSplit}
