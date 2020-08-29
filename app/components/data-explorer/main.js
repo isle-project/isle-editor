@@ -721,7 +721,13 @@ class DataExplorer extends Component {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
 		const data = copy( this.props.data, 1 );
-		const originalVariables = this.props.quantitative.concat( this.props.categorical );
+		const originalVariables = [];
+		for ( let i = 0; i < this.props.quantitative.length; i++ ) {
+			originalVariables.push( String( this.props.quantitative[ i ] ) );
+		}
+		for ( let i = 0; i < this.props.categorical.length; i++ ) {
+			originalVariables.push( String( this.props.categorical[ i ] ) );
+		}
 		const ids = this.state.data.id;
 		const nOriginal = this.props.data[ oldVars[ 0 ] ].length;
 		const oldIds = this.state.oldData.id || incrspace( 1, nOriginal+1, 1 );
@@ -738,6 +744,7 @@ class DataExplorer extends Component {
 		for ( let i = 0; i < newVars.length; i++ ) {
 			const name = newVars[ i ];
 			if ( name !== 'id' && !contains( originalVariables, name ) ) {
+				debug( 'Handle inserted variable: '+name );
 				if ( !data[ name ] ) {
 					data[ name ] = new Array( nOriginal ).fill( null );
 				}

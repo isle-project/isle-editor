@@ -24,7 +24,7 @@ const FilterList = ( props ) => {
 			value = new Array( keys.length );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
-				value[ i ] = <Badge variant="secondary" style={{ marginRight: 4 }} >
+				value[ i ] = <Badge key={key} variant="secondary" style={{ marginRight: 4 }} >
 					<b>{key}: </b>
 					{filter.value[ key ]}
 				</Badge>;
