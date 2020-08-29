@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import logger from 'debug';
@@ -271,7 +271,7 @@ class Wrapper extends Component {
 				}}
 			>{this.props.t('drag-plot')}</div>;
 		}
-		let plot = <Fragment>
+		let plot = <div className="plotly-container" >
 			{draggableBar}
 			<Plot
 				className={this.props.draggable ? 'plotly-draggable' : null}
@@ -295,7 +295,7 @@ class Wrapper extends Component {
 				}}
 				revision={this.props.revision}
 			/>
-		</Fragment>;
+		</div>;
 		if ( fullscreen ) {
 			return (
 				<Modal

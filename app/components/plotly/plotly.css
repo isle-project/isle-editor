@@ -25,3 +25,7 @@
 .plotly-draggable * .modebar {
 	left: 130px;
 }
+
+.plotly-container {
+	position: relative;
+}
