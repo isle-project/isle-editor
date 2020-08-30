@@ -4,7 +4,7 @@ exports[`renders a basic calculator 1`] = `null`;
 
 exports[`renders an expandable calculator 1`] = `
 <div
-  node={null}
+  node={<body />}
 >
   <div
     className="react-draggable"
