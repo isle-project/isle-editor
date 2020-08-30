@@ -10,8 +10,6 @@ In the [Setting Up](https://isledocs.com/docs/tutorials/getting-started) tutoria
 
 ![Edit Cohort](/img/edit_cohort.png)
 
-As an additional note, the option to prevent students from enrolling is useful for creating "scratch work" courses that allow you to post lessons and experiment with ISLE without the material available to students.
-
 ## Announcements
 
 ISLE also provides the ability to make announcements to students in your class. To create a new announcement, click the **Course Data** button in the dashboard bar, then enter a title and message under **New Announcement**. When you are ready to post, click **Create**. 
@@ -19,7 +17,6 @@ ISLE also provides the ability to make announcements to students in your class. 
 ![Course Announcement](/img/course_announcement.png)
 
 Posted announcements will appear on the left, where you can edit and delete them. Students will see course announcements under **Messages** on their course profile page:
-
 
 ![Announcement Student View](/img/announcement_student_view.png)
 
@@ -35,10 +32,18 @@ As an instructor, you can track student progress in the **Progress** tab of the 
 
 By default, the **Progress** tab will show the progress of all students. If you wish to find a specific student, you can filter by their name, email, or cohort.
 
+:::note
+The progress bars in the table are editable. Clicking on them will reveal an input field, which can be used to override the automatically calculated progress, e.g. in case of excused student absences.
+:::
+
 ## Course Files
 
-The **Files** tab of the **Course Data** section allows you to see all files that have been uploaded by the instructor, or submitted by students.
+The **Owner Files** tab of the **Course Data** section allows you to see all files that have been uploaded by the instructor. Clicking on the green "Upload File" button allows you to upload files, which can then for example be used when building lessons in the ISLE editor. 
 
-![Files](/img/course_files.png)
+![Files](/img/owner_files.png)
 
-When students submit a file, such as a project report, HTML and PDF versions will appear in the course files. These can be viewed with the **Open** button next to the file name. To see only the files for a specific student or lesson, you can filter by student name or lesson name. Instructors may also find it useful to post files to ISLE, for example to upload data for a lesson. To upload a file as an instructor, use the **Upload file** button.
+When students submit a file, such as a project report, HTML and PDF versions will appear in the **Student files** tab. These can be viewed with the **Open** button next to the file name. To see only the files for a specific student or lesson, you can filter by student name or lesson name. Instructors may also find it useful to post files to ISLE, for example to upload data for a lesson. To upload a file as an instructor, use the **Upload file** button.
+
+:::info
+The CSV and JSON buttons in top-right of the navigation bar allow one to download the information in the tables in a convenient format for further processing.
+:::

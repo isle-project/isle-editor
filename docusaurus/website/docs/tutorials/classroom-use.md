@@ -32,6 +32,8 @@ The bar under the **Answers** button displays student progress on that question.
 
 ![Answers Progress](/img/answers_progress.png)
 
+For feedback buttons, red and green bars indicate the proportion of students who have indicated that they have understood the question or are confused.
+
 Tracking progress on all questions at once can be done with the **Instructor Panel**. To access the instructor panel, click the orange arrow on the right of the screen. 
 
 ![Panel](/gifs/instructor_panel.gif)
@@ -40,12 +42,13 @@ The instructor panel provides information about the lesson as a whole:
 
 * The **Active Users** tab shows the users that are currently accessing the lab.
 
-* The **Responses** tab allows you to track the progress of students on each question. It shows what fraction of active users have answered each question:
+* The **Activity** tab allows you to track the progress of students on each question. It shows what fraction of active users have answered each question:
 
-![Responses](/img/instructor_panel_responses.png)
+![Activity](/img/instructor_panel_activity.png)
 
-For the **Responses** tab to be useful, you need to add `id` tags to each question, to provide a way to reference the questions. Here is an example of a question with an `id` tag:
+You may add custom `id` tags to each question so they will be used in the **Activity** tab. Here is an example of a question with an `id` tag:
 
+```jsx
     <MultipleChoiceQuestion
         id="mc1"
         solution={1}
@@ -55,4 +58,22 @@ For the **Responses** tab to be useful, you need to add `id` tags to each questi
         ]}
         question={<span>Course: <i>Course Respondent was Enrolled in</i></span>}
     />
-    
+```
+
+If no custom `id` is supplied, an automatically generated one will be used composed of the question type and a number representing the index of the respective instance in the list of all questions of said type in the lesson. 
+
+:::caution
+For lessons in which components are programmatically inserted, it is encouraged to assign `id` manually as the generated ones will not be deterministic in this case.
+:::
+
+* The **Responses** tab allows one to display all answers of a single student and compare them to the solutions, if supplied to the respective question components, or to the answers of another selected student.
+
+![Responses](/img/instructor_panel_responses.png)
+
+In case a student has submitted multiple answers for a given question, clicking on their answer allows you to cycle through their different answers. The time stamp of each submission is displayed in the upper-right corner of each answer.
+
+* The **Active Users** tab displays the list of currently active users. The progress bar next to the user's profile picture displays the percentage of questions in the lesson the student has answered. Next to it are buttons to initiate a text or video chat with the student. When the user is interacting with an element on the page, a button with the identifier of the component the student has in focus in displayed to the right. Clicking on it will scroll the lesson to reveal the component into view. Last but not least, clicking on the thumbnail picture of a user jumps to the user's actions in the **Action Log**.
+
+* The **Action Log** displays all actions by all users that were collected over time. They can be filtered by time or any of the other attributes via clicking on the respective value labels. The current selection of actions, optionally restricted further to only instructor, student (i.e., users enrolled in the class), or guest data can be exported optionally with artificially generated email addresses and names (when selecting "Anonymized") as a CSV or JSON file.
+
+* The **Instructor Notes** tab contains a text editor for instructors and teaching assistants of the class to leave notes and instructions for each other.
