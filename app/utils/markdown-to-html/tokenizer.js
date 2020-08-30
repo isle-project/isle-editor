@@ -468,7 +468,10 @@ class Tokenizer {
 				}
 				current += char;
 			}
-			if ( isQuotationMark( char ) && prevChar !== '\\' ) {
+			if (
+				( isQuotationMark( char ) || char === '`' ) &&
+				prevChar !== '\\'
+			) {
 				if ( !inString ) {
 					this._stringOpener = char;
 					inString = true;
