@@ -25,6 +25,6 @@
 	},
 	{
 		"target": ".sketch-save-buttons",
-		"content": "Your notes are autosaved to the local storage of your web browser at regular intervals. However, to make sure the latest changes are saved, you are advised to click the \"Save in browser\" button before closing the page."
+		"content": "Your notes are autosaved in the cloud and will be accessible when opening the lesson again in the future. However, to make sure the latest changes are saved, you are advised to click the \"Save in browser\" button before closing the page."
 	}
 ]
