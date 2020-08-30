@@ -83,6 +83,11 @@ h6 {
 	font-family: 'Libre Franklin', sans-serif;
 }
 
+.alert--warning h5,
+.alert--info h5 {
+	color: white;
+}
+
 .nav-footer {
 	background-color: #5d6064;
 }
