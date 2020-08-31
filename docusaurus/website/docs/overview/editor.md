@@ -28,6 +28,16 @@ For the custom ISLE elements, the editor comes with snippets that allow you to q
 
 ![Snippets GIF](/gifs/snippets.gif)
 
+## Using the Context Menu to Insert Components
+
+Right-clicking in the editor brings up a context menu, from which one may select a component from the list of available components to be inserted at the respective position by clicking on the respective name.
+
+![Contextmenu](/img/contextmenu.png)
+
+Clicking on the cogs icon to the right of a component will bring up the configuration wizard, which displays all the available attributes of the respective components and allows one to configure the component either through the synced table of attributes or the integrated code editor. 
+
+![Configuration](/img/configuration_wizard.png)
+
 ### Collapsing
 
 The contents in-between a tag can be collapsed when they span multiple lines. This can help one to maintain oversight of a larger lesson. To expand or collapse the contents of a tag, simply click on the arrows next to the line numbers on the left of the editor window.

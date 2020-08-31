@@ -81,7 +81,7 @@ For example, `<TeX raw="\frac{1}{\sqrt{2\pi}\sigma^2} e^{-\frac{1}{2\sigma^2}(x 
 
 <img src="http://latex.codecogs.com/gif.latex?\frac{1}{\sqrt{2\pi}\sigma^2} e^{-\frac{1}{2\sigma^2}(x - \mu)^2}" />
 
-Alternatively, inline LaTeX can be written with `$ $` and display-mode LaTeX equations can also be written with `$$ $$` or `\[ \]` rather than the `TeX` tag. For example, the same equation as above can be created by
+Alternatively, inline LaTeX can be written with `$ $` (or `\( \)`) and display-mode LaTeX equations can also be written with `$$ $$` (or `\[ \]`) rather than the `TeX` tag. For example, the same equation as above can be created by
 
     \[\frac{1}{\sqrt{2\pi}\sigma^2} e^{-\frac{1}{2\sigma^2}(x - \mu)^2}\]
 

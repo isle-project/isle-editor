@@ -44,13 +44,15 @@ When adding `solution` or `hints`, new buttons appear on the R Shell, which allo
 
 Let's now intercept the answer of the learner and provide a notification in case it is correct.
 
-``` html
+```jsx
 ### Create 100 random draws from a Uniform(0,1) distribution
 
 <RShell 
-	hints={["Use the runif function"]}
+	hints={[
+		'Use the runif function'
+	]}
 	solution="runif(100)"
-	onEvaluate={ ( str ) => {
+	onEvaluate={( str ) => {
 		if ( /runif\(100/.test( str ) ) {
 			session.addNotification({
 				title: 'Correct.',
@@ -70,6 +72,6 @@ Let's now intercept the answer of the learner and provide a notification in case
 />
 ```
 
-The `addNotification` method of the lesson comes from the [react-notification-system](https://github.com/igorprado/react-notification-system).
+The `addNotification` method attached to the `session` object comes from the [react-notification-system](https://github.com/igorprado/react-notification-system) library and supports all its options.
 
 There are many other ISLE components to use. The `ISLE Components` section of the documentation contains examples for all of them along with detailed descriptions of their APIs.

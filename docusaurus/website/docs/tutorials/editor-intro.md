@@ -16,7 +16,9 @@ If you have previously used the ISLE editor, it will instead open the last docum
 
 ## Anatomy of the Editor
 
-The editor is divided into two panes. On the left is the raw text that gets compiled into exportable ISLE lessons which you can upload to your course, and on the right is a live preview of the compiled lesson. Note that you can interact with the live preview just as you will with the exported ISLE lesson. The syntax for writing in ISLE uses HTML and Markdown, and supports LaTeX equations. By default, all standard HTML tags are supported, but in addition it is also possible to insert custom ISLE tags which insert highly interactive and customizable elements into the lesson.  An overview of writing text in ISLE can be found in the Text tutorial.
+The editor is divided into two panes. On the left is the raw text that gets compiled into exportable ISLE lessons which you can upload to your course, and on the right is a live preview of the compiled lesson. Note that you can interact with the live preview just as you will with the exported ISLE lesson. 
+
+The syntax for writing in ISLE uses HTML and Markdown, and supports LaTeX equations. By default, all standard HTML tags are supported, but in addition it is also possible to insert custom ISLE tags which insert highly interactive and customizable elements into the lesson. An overview of writing text in ISLE can be found in the Text tutorial.
 
 ## File Preamble
 
@@ -44,11 +46,16 @@ Once you've written a lesson, you can export it. To upload the lesson to your co
 2. Under **Upload Lesson**, select the course.
 3. Enter a name for the lesson.
 4. Decide whether to **minify** code. The final version that students will use should have this option checked, as it will help the lesson load and run quickly. We recommend keeping this checked by default.
-5. Click **Upload**.
+5. Decide whether to **Load ISLE resources from CDN**. This option should be kept checked so that resources may be shared across various lessons.
+6. Click **Upload**.
 
 Don't worry if it takes a little bit for the lesson to upload, and bigger lessons will take longer to upload. To return to editing the file, click **Return to Editor** (in the top right).
 
-**Note on saving:** it is possible to upload a lesson without saving the ISLE file. Remember to save your work as well as upload!
+:::info
+**Note on saving:** it is possible to upload a lesson without saving the ISLE file. Remember to save your work as well as upload! 
+
+In case the file contains unsaved changed, a grey circle will be displayed next to the filename in the upper-left corner of the editor.
+:::
 
 ![Upload GIF](/gifs/upload.gif)
 

@@ -10,5 +10,19 @@ Any ISLE lesson should start with a preamble holding meta-information on the les
 
 ## Global State
 
-Inside the preamble, the `state` field is an object of all global variables that the learning components inside the lesson should have access to. It is possible to define arrays, numbers, strings inside the `state`. Properties of the store object can be accessed in the code of ISLE components using `this.state.<name of state variable>`. ISLE components can change their appearance depending on the global state or on the other hand change state variables themselves, which enables one to author complex and interactive lessons that react to user inputs. To change the value
-of a state variable, use `this.setState({ <name of state variable>: <new value> })`.
+Inside the preamble, the `state` field is an object of all global variables that the learning components inside the lesson should have access to. It is possible to define arrays, numbers, strings inside the `state`. Properties of the store object can be accessed in the code of ISLE components using `lesson.state.<name of state variable>`. ISLE components can change their appearance depending on the global state or on the other hand change state variables themselves, which enables one to author complex and interactive lessons that react to user inputs. To change the value
+of a state variable, use 
+
+```jsx
+lesson.setState({ <name of state variable>: <new value> });
+```
+
+To change multiple state variables at once, use
+
+```jsx
+lesson.setState({ 
+    name1: value1,
+    name2: value2,
+    ...
+});
+```
