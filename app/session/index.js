@@ -67,7 +67,8 @@ const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
 let initializedProgress = false;
-let updateTime = new Date().getTime();
+const currentTime = new Date().getTime();
+let updateTime = currentTime;
 let addedScore = 0;
 
 const PRIVATE_VARS = {
@@ -77,8 +78,22 @@ const PRIVATE_VARS = {
 	feedbacks: 0,
 	addedChatMessages: 0,
 	addedActionTypes: [],
-	active: true
+	active: true,
+	startTime: currentTime,
+	endTime: null,
+	duration: null
 };
+let LISTENERS = null;
+let VIDEO_CHATS = null;
+let TEXT_CHATS = null;
+let ALL_GROUPS = null;
+let ASSIGNED_GROUP = null;
+
+// JSON Web Token for user authentication:
+let JWT = null;
+
+// Jitsi web token + server address:
+let JITSI = null;
 
 
 // FUNCTIONS //
@@ -101,7 +116,7 @@ class Session {
 		this._offline = offline || false;
 
 		// Array of subscribed components listening for session updates:
-		this.listeners = [];
+		LISTENERS = [];
 
 		// Address in local storage for user information:
 		this.userVal = 'ISLE_USER_' + this.server;
@@ -130,7 +145,7 @@ class Session {
 
 		// Authenticate requests:
 		axios.interceptors.request.use( ( config ) => {
-			const token = this.jwt.token;
+			const token = JWT.token;
 			if ( token && startsWith( config.url, this.server ) ) {
 				config.headers.Authorization = `JWT ${token}`;
 			}
@@ -141,10 +156,10 @@ class Session {
 			// If user object is available in local storage, login to server:
 			item = localStorage.getItem( this.userVal );
 			if ( item ) {
-				this.jwt = JSON.parse( item );
-				this.handleLogin( this.jwt, true );
+				JWT = JSON.parse( item );
+				this.handleLogin( JWT, true );
 			} else {
-				this.jwt = {};
+				JWT = {};
 
 				// Connect via WebSockets to other users as an anonymous user...
 				if ( this.server && !this._offline && !this.socket ) {
@@ -185,10 +200,10 @@ class Session {
 		this.userProgress = {};
 
 		// Assigned user group:
-		this.group = null;
+		ASSIGNED_GROUP = null;
 
 		// Available user groups:
-		this.allGroups = [];
+		ALL_GROUPS = [];
 
 		this.selectedCohort = null;
 		this.activeCohortMembers = null;
@@ -196,9 +211,9 @@ class Session {
 		// Keep track of whether an owner is present in the session:
 		this.hasOwner = false;
 
-		// Array of open chats:
-		this.chats = [];
-		this.videoChats = [];
+		// Arrays of open text and video chats:
+		TEXT_CHATS = [];
+		VIDEO_CHATS = [];
 
 		// State variables of the given lesson:
 		this.state = config.state;
@@ -206,16 +221,8 @@ class Session {
 		// Register speech interface:
 		this.speechInterface = new SpeechInterface();
 
-		// Time variables:
-		this.startTime = new Date().getTime();
-		this.endTime = null;
-		this.duration = 0;
-
 		// YAML configuration object:
 		this.config = config;
-
-		// Jitsi web token + server address:
-		this.jitsi = null;
 
 		// Whether voice control is active or not:
 		this.VoiceRecordingStatus = false;
@@ -265,6 +272,40 @@ class Session {
 			window.addEventListener( 'online', this.onlineListener );
 			window.addEventListener( 'offline', this.offlineListener );
 		}
+	}
+
+	get startTime() {
+		return PRIVATE_VARS[ 'startTime' ];
+	}
+
+	get endTime() {
+		return PRIVATE_VARS[ 'endTime' ];
+	}
+
+	get duration() {
+		return PRIVATE_VARS[ 'duration' ];
+	}
+
+	get videoChats() {
+		return VIDEO_CHATS;
+	}
+
+	get chats() {
+		return TEXT_CHATS;
+	}
+
+	get group() {
+		return ASSIGNED_GROUP;
+	}
+
+	get allGroups() {
+		return ALL_GROUPS;
+	}
+
+	get jitsi() {
+		return {
+			...JITSI
+		};
 	}
 
 	/**
@@ -367,9 +408,9 @@ class Session {
 	* @returns {Function} unsubscribe function to remove the `listener`
 	*/
 	subscribe = ( listener ) => {
-		this.listeners.push( listener );
+		LISTENERS.push( listener );
 		return () => {
-			this.listeners = this.listeners.filter( l => l !== listener );
+			LISTENERS = LISTENERS.filter( l => l !== listener );
 		};
 	}
 
@@ -581,11 +622,11 @@ class Session {
 		url += qs.stringify({ namespaceID: this.namespaceID });
 		axios.get( url )
 		.then( response => {
-			this.jitsi = response.data;
+			JITSI = response.data;
 			this.update( RECEIVED_JITSI_TOKEN );
 		})
 		.catch( err => {
-			this.jitsi = null;
+			JITSI = null;
 			debug( 'Encountered an error '+err.message );
 		});
 	}
@@ -708,13 +749,13 @@ class Session {
 	joinChat({ name, canLeave = true, anonymousSubmissions = false }) {
 		if ( this.socket ) {
 			let found = false;
-			for ( let i = 0; i < this.chats.length; i++ ) {
-				if ( this.chats[ i ].name === name ) {
+			for ( let i = 0; i < TEXT_CHATS.length; i++ ) {
+				if ( TEXT_CHATS[ i ].name === name ) {
 					found = true;
 				}
 			}
 			if ( !found ) {
-				this.chats.push({
+				TEXT_CHATS.push({
 					name, messages: [], members: [], canLeave, anonymousSubmissions
 				});
 				this.socket.emit( 'join_chat', name );
@@ -731,13 +772,13 @@ class Session {
 	*/
 	joinVideoChat({ name, subject }) {
 		let found = false;
-		for ( let i = 0; i < this.videoChats.length; i++ ) {
-			if ( this.videoChats[ i ].name === name ) {
+		for ( let i = 0; i < VIDEO_CHATS.length; i++ ) {
+			if ( VIDEO_CHATS[ i ].name === name ) {
 				found = true;
 			}
 		}
 		if ( !found ) {
-			this.videoChats.push({
+			VIDEO_CHATS.push({
 				name,
 				subject
 			});
@@ -883,8 +924,8 @@ class Session {
 	*/
 	getChat( name ) {
 		name = this.stripChatName( name );
-		for ( let i = 0; i < this.chats.length; i++ ) {
-			let chat = this.chats[ i ];
+		for ( let i = 0; i < TEXT_CHATS.length; i++ ) {
+			let chat = TEXT_CHATS[ i ];
 			if ( chat.name === name ) {
 				return chat;
 			}
@@ -914,9 +955,9 @@ class Session {
 	removeChat = ( name ) => {
 		name = this.stripChatName( name );
 		debug( `Remove the "${name}" chat from the list of chats` );
-		for ( let i = this.chats.length - 1; i >= 0; i-- ) {
-			if ( this.chats[ i ].name === name ) {
-				this.chats.splice( i, 1 );
+		for ( let i = TEXT_CHATS.length - 1; i >= 0; i-- ) {
+			if ( TEXT_CHATS[ i ].name === name ) {
+				TEXT_CHATS.splice( i, 1 );
 			}
 		}
 		this.update( REMOVED_CHAT, name );
@@ -943,9 +984,9 @@ class Session {
 	*/
 	leaveVideoChat( name ) {
 		debug( `Closing video chat with name ${name}` );
-		for ( let i = this.videoChats.length - 1; i >= 0; i-- ) {
-			if ( this.videoChats[ i ].name === name ) {
-				this.videoChats.splice( i, 1 );
+		for ( let i = VIDEO_CHATS.length - 1; i >= 0; i-- ) {
+			if ( VIDEO_CHATS[ i ].name === name ) {
+				VIDEO_CHATS.splice( i, 1 );
 			}
 		}
 		this.update( VIDEO_CHAT_ENDED, name );
@@ -964,8 +1005,8 @@ class Session {
 	* Emits the `delete_groups` event and closes all group chats upon finishing group mode.
 	*/
 	deleteGroups = () => {
-		for ( let i = 0; i < this.allGroups.length; i++ ) {
-			this.closeChatForAll( this.allGroups[ i ].name );
+		for ( let i = 0; i < ALL_GROUPS.length; i++ ) {
+			this.closeChatForAll( ALL_GROUPS[ i ].name );
 		}
 		this.socket.emit( 'delete_groups' );
 	}
@@ -1146,7 +1187,7 @@ class Session {
 			if ( !chat ) {
 				name = this.stripChatName( name );
 				chat = { name, messages, members };
-				this.chats.push( chat );
+				TEXT_CHATS.push( chat );
 			} else {
 				chat.messages = messages;
 				chat.members = members;
@@ -1163,7 +1204,7 @@ class Session {
 				this.update( MEMBER_HAS_JOINED_CHAT, chat );
 			} else if ( member.email === this.user.email ) {
 				chat = { name: name, messages: [], members: []};
-				this.chats.push( chat );
+				TEXT_CHATS.push( chat );
 				this.socket.emit( 'join_chat', name );
 				this.update( SELF_HAS_JOINED_CHAT, chat );
 			}
@@ -1228,10 +1269,10 @@ class Session {
 		});
 
 		socket.on( 'created_groups', ( groups ) => {
-			this.allGroups = groups;
-			this.group = retrieveUserGroup( groups, this.user );
-			this.update( CREATED_GROUPS, this.group );
-			if ( this.group && !this.isOwner() ) {
+			ALL_GROUPS = groups;
+			ASSIGNED_GROUP = retrieveUserGroup( groups, this.user );
+			this.update( CREATED_GROUPS, ASSIGNED_GROUP );
+			if ( ASSIGNED_GROUP && !this.isOwner() ) {
 				this.joinChat({
 					name: this.group.name,
 					canLeave: false
@@ -1240,9 +1281,9 @@ class Session {
 		});
 
 		socket.on( 'deleted_groups', () => {
-			this.group = null;
-			const lastGroups = this.allGroups;
-			this.allGroups = [];
+			ASSIGNED_GROUP = null;
+			const lastGroups = ALL_GROUPS;
+			ALL_GROUPS = [];
 			this.update( DELETED_GROUPS, lastGroups );
 		});
 
@@ -1389,7 +1430,7 @@ class Session {
 	* @param {*} data - event data
 	*/
 	update( type, data ) {
-		this.listeners.forEach( listener => listener( type, data ) );
+		LISTENERS.forEach( listener => listener( type, data ) );
 	}
 
 	/**
@@ -1465,8 +1506,8 @@ class Session {
 	* @returns {void}
 	*/
 	reset() {
-		this.chats = [];
-		this.videoChats = [];
+		TEXT_CHATS = [];
+		VIDEO_CHATS = [];
 		this.actions = [];
 		this.socketActions = [];
 		this.currentUserActions = null;
@@ -1488,13 +1529,13 @@ class Session {
 		.then( response => {
 			const { token, id, message } = response.data;
 
-			this.jwt = {
+			JWT = {
 				token,
 				id
 			};
 
 			// Save user token to local storage:
-			localStorage.setItem( this.userVal, JSON.stringify( this.jwt ) );
+			localStorage.setItem( this.userVal, JSON.stringify( JWT ) );
 			if ( message === 'ok' ) {
 				this.handleLogin({ token, id });
 			}
@@ -1561,6 +1602,9 @@ class Session {
 				this.lessonID = data.lessonID;
 				this.namespaceID = data.namespaceID;
 				PRIVATE_VARS[ 'active' ] = ( data.active === void 0 ) ? true : data.active;
+				if ( data.time ) {
+					PRIVATE_VARS[ 'startTime' ] = data.time;
+				}
 				debug( '[2] Retrieve user rights for said lesson and its namespace' );
 				this.update( RECEIVED_LESSON_INFO, data );
 				this.getUserRights();
@@ -1642,8 +1686,8 @@ class Session {
 	* @returns {void}
 	*/
 	finalize() {
-		this.endTime = new Date().getTime();
-		this.duration = this.endTime - this.startTime;
+		PRIVATE_VARS[ 'endTime' ] = new Date().getTime();
+		PRIVATE_VARS[ 'duration' ] = PRIVATE_VARS[ 'endTime' ] - PRIVATE_VARS[ 'startTime' ];
 		this.finished = true;
 		if ( this.anonymous === false ) {
 			this.updateDatabase();
@@ -1817,7 +1861,7 @@ class Session {
 	logToDatabase( type, data, clbk ) {
 		debug( `Logging ${type} to database...` );
 		const obj = {
-			startTime: this.startTime,
+			startTime: PRIVATE_VARS[ 'startTime' ],
 			userID: this.user.id,
 			lessonID: this.lessonID,
 			type,
@@ -1981,7 +2025,7 @@ class Session {
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
-		xhr.setRequestHeader( 'Authorization', 'JWT ' + this.jwt.token );
+		xhr.setRequestHeader( 'Authorization', 'JWT ' + JWT.token );
 		xhr.onreadystatechange = () => {
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
