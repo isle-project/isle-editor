@@ -72,6 +72,13 @@ class VideoChat extends Component {
 			// Case: User is not an owner
 			INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'raisehand' );
 		}
+		if ( this.videoChatContainer ) {
+			this.initialize();
+		}
+	}
+
+	initialize() {
+		const session = this.context;
 		const options = {
 			roomName: this.props.roomName,
 			width: '100%',
@@ -154,7 +161,10 @@ class VideoChat extends Component {
 			<div
 				className="video-chat-iframe"
 				ref={( div ) => {
-					this.videoChatContainer = div;
+					if ( !this.videoChatContainer ) {
+						this.videoChatContainer = div;
+						this.initialize();
+					}
 				}}
 				style={containerStyle}
 			></div>
