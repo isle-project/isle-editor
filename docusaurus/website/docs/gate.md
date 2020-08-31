@@ -27,6 +27,8 @@ An ISLE component that allows to display its children only to reserved audiences
 * __notEnrolled__ | `boolean`: when set the gated content is **not** displayed to the students enrolled in the course. Default: `false`.
 * __owner__ | `boolean`: when set the gated content is displayed to the owner of the course (usually the instructor). Default: `false`.
 * __notOwner__ | `boolean`: when set the gated content is **not** displayed to the owner of the course (usually the instructor). Default: `false`.
+* __after__ | `Date`: time after which the contents of the gate should become visible. Default: `none`.
+* __until__ | `Date`: time until the contents of the gate should remain visible. Default: `none`.
 * __banner__ | `node`: a message which is visible to the visitors lacking the gate privilege. Default: `none`.
 * __disabled__ | `boolean`: if a gate is disabled, the banner will be displayed no matter what. Default: `false`.
 * __check__ | `function`: callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive. Default: `none`.

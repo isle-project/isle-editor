@@ -35,6 +35,11 @@ PropTypes.objectOf = function objectOf( str ) {
 	out.isRequired = out+' (required)';
 	return out;
 };
+PropTypes.instanceOf = function instanceOf( constructor ) {
+	const out = new String( constructor.name );
+	out.isRequired = out+' (required)';
+	return out;
+};
 PropTypes.shape = function shape( obj ) {
 	const out = new String( `{${objectKeys( obj ).join( ',' )}}` );
 	out.isRequired = out+' (required)';

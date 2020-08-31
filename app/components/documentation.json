@@ -340,6 +340,12 @@
   "ColorPicker": {
     "props": [
       {
+        "name": "variant",
+        "type": "string",
+        "description": "color picker variant (one of `Compact`, `Sketch`, `Material`, or `Block`)",
+        "defaultValue": "Sketch"
+      },
+      {
         "name": "color",
         "type": "(string|object)",
         "description": "`string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one",
@@ -1377,6 +1383,18 @@
         "type": "boolean",
         "description": "when set the gated content is **not** displayed to the owner of the course (usually the instructor)",
         "defaultValue": false
+      },
+      {
+        "name": "after",
+        "type": "Date",
+        "description": "time after which the contents of the gate should become visible",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until the contents of the gate should remain visible",
+        "defaultValue": null
       },
       {
         "name": "banner",
