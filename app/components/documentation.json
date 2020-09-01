@@ -4735,6 +4735,12 @@
         "defaultValue": 8
       },
       {
+        "name": "showText",
+        "type": "boolean",
+        "description": "boolean determining whether to show the text encoded in the QR code",
+        "defaultValue": false
+      },
+      {
         "name": "center",
         "type": "boolean",
         "description": "boolean controlling whether to center the QR code",
@@ -6984,14 +6990,26 @@
       {
         "name": "onPause",
         "type": "function",
-        "description": "callback invoked once the video pauses",
+        "description": "callback invoked when the video pauses",
         "defaultValue": "function onPause() {}"
       },
       {
         "name": "onPlay",
         "type": "function",
-        "description": "callback invoked once the video starts or resumes playing after pausing",
+        "description": "callback invoked when the video starts or resumes playing after pausing",
         "defaultValue": "function onPlay() {}"
+      },
+      {
+        "name": "onStart",
+        "type": "function",
+        "description": "callback invoked once the video pauses",
+        "defaultValue": "function onStart() {}"
+      },
+      {
+        "name": "onSeek",
+        "type": "function",
+        "description": "callback when media seeks called with `seconds` parameter",
+        "defaultValue": "function onSeek() {}"
       }
     ],
     "description": "A component for playing media files and content from YouTube, SoundCloud, and Vimeo."

@@ -39,8 +39,10 @@ const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID' ];
 * @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onEnded - callback invoked once the video ends
-* @property {Function} onPause - callback invoked once the video pauses
-* @property {Function} onPlay - callback invoked once the video starts or resumes playing after pausing
+* @property {Function} onPause - callback invoked when the video pauses
+* @property {Function} onPlay - callback invoked when the video starts or resumes playing after pausing
+* @property {Function} onStart - callback invoked once the video pauses
+* @property {Function} onSeek - callback when media seeks called with `seconds` parameter
 */
 class Video extends Component {
 	constructor( props ) {
@@ -89,7 +91,7 @@ class Video extends Component {
 			type: VIDEO_SEEK,
 			value: seconds
 		});
-		this.props.onSeek();
+		this.props.onSeek( seconds );
 	}
 
 	handleReady = ( player ) => {

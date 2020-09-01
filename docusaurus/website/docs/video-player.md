@@ -31,5 +31,7 @@ A component for playing media files and content from YouTube, SoundCloud, and Vi
 * __startTime__ | `number`: number of seconds at which to start the video, or fraction if value is between 0 and 1. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onEnded__ | `function`: callback invoked once the video ends. Default: `onEnded() {}`.
-* __onPause__ | `function`: callback invoked once the video pauses. Default: `onPause() {}`.
-* __onPlay__ | `function`: callback invoked once the video starts or resumes playing after pausing. Default: `onPlay() {}`.
+* __onPause__ | `function`: callback invoked when the video pauses. Default: `onPause() {}`.
+* __onPlay__ | `function`: callback invoked when the video starts or resumes playing after pausing. Default: `onPlay() {}`.
+* __onStart__ | `function`: callback invoked once the video pauses. Default: `onStart() {}`.
+* __onSeek__ | `function`: callback when media seeks called with `seconds` parameter. Default: `onSeek() {}`.
