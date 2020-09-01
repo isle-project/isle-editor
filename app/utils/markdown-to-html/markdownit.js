@@ -3,6 +3,11 @@
 import markdownit from 'markdown-it';
 
 
+// VARIABLES //
+
+const RE_TRAILING_MARKDOWN = /(>\r?\n)([a-z0-9-#][\s\S]*)$/i;
+
+
 // FUNCTIONS //
 
 function isSlideDelimiter( token ) {
@@ -74,7 +79,7 @@ md.renderer.rules.paragraph_close = ( tokens, idx, options, env, renderer ) => {
 	return `${renderer.renderToken( tokens, idx, options )}</LineWrapper>`;
 };
 md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
-	const { content } = tokens[ idx ];
+	let { content } = tokens[ idx ];
 	const match = content.match( /data-lines="(\d+)"/ );
 	if ( match && match[ 1 ] ) {
 		env.lineAdjustment += Number( match[ 1 ] );
@@ -82,6 +87,14 @@ md.renderer.rules.html_block = ( tokens, idx, options, env, renderer ) => {
 	if ( content.includes( '<LineButtons' ) ) {
 		env.lineAdjustment -= 2;
 	}
+	content = content.replace( RE_TRAILING_MARKDOWN, ( _, p1, p2 ) => {
+		return p1 + md.render( p2, {
+			initialLineNumber: env.initialLineNumber,
+			lineAdjustment: (-1) * ( env.lineAdjustment + 1 ),
+			outer: env.outer,
+			addLineWrappers: env.addLineWrappers
+		});
+	});
 	return content;
 };
 md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
