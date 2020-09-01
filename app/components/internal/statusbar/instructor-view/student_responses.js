@@ -69,6 +69,8 @@ function formatAnswer( value, visualizer ) {
 		case 'matches':
 			out = JSON.stringify( value, null, 2 );
 			break;
+		default:
+			out = String( value );
 	}
 	return out;
 }
