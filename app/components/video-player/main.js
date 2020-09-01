@@ -11,7 +11,7 @@ import generateUID from 'utils/uid';
 import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
-import { VIDEO_END, VIDEO_PLAY, VIDEO_PAUSE } from 'constants/actions.js';
+import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
@@ -52,6 +52,16 @@ class Video extends Component {
 		};
 	}
 
+	handleStart = () => {
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: VIDEO_START,
+			value: this.state.progress.playedSeconds
+		});
+		this.props.onStart();
+	}
+
 	handlePlay = () => {
 		const session = this.context;
 		session.log({
@@ -70,6 +80,16 @@ class Video extends Component {
 			value: this.state.progress.playedSeconds
 		});
 		this.props.onPause();
+	}
+
+	handleSeek = ( seconds ) => {
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: VIDEO_SEEK,
+			value: seconds
+		});
+		this.props.onSeek();
 	}
 
 	handleReady = ( player ) => {
@@ -182,11 +202,13 @@ class Video extends Component {
 				this.renderError() :
 				<ReactPlayer
 					{...props}
+					onStart={this.handleStart}
 					onPlay={this.handlePlay}
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
 					onProgress={this.handleProgress}
 					onReady={this.handleReady}
+					onSeek={this.handleSeek}
 					onError={this.handleError}
 					progressInterval={1000}
 					config={config}
@@ -220,7 +242,9 @@ Video.propTypes = {
 	style: PropTypes.object,
 	onEnded: PropTypes.func,
 	onPause: PropTypes.func,
-	onPlay: PropTypes.func
+	onPlay: PropTypes.func,
+	onStart: PropTypes.func,
+	onSeek: PropTypes.func
 };
 
 Video.defaultProps = {
@@ -237,7 +261,9 @@ Video.defaultProps = {
 	style: {},
 	onEnded() {},
 	onPause() {},
-	onPlay() {}
+	onPlay() {},
+	onStart() {},
+	onSeek() {}
 };
 
 Video.contextType = SessionContext;
