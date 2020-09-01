@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.64.0](https://github.com/isle-project/isle-editor/releases/tag/v0.64.0) (2020-09-01)
+
+This release contains fixes for reading the location of sketchpads from the location hash, an error occurring when creating filtered datasets in the data explorer, and others. 
+
+**Fixed bugs:**
+
+- Number question embedded in table, configurator menu opens for paragraph element, not number question [\#1284](https://github.com/isle-project/isle-editor/issues/1284)
+- Removing Filter Corrupting Data Frame [\#1278](https://github.com/isle-project/isle-editor/issues/1278)
+- bug in editor 0.62.1 \(windows\) [\#1273](https://github.com/isle-project/isle-editor/issues/1273)
+
 ## [v0.63.1](https://github.com/isle-project/isle-editor/releases/tag/v0.63.1) (2020-08-27)
 
 This patch fixes two errors:
