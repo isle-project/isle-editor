@@ -270,6 +270,7 @@ class StudentResponses extends Component {
 								leftUser: value
 							});
 						}}
+						isClearable
 					/>
 				</Col>
 				<Col>
