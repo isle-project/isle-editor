@@ -184,7 +184,7 @@ class Sketchpad extends Component {
 		this.state = {
 			color: props.color,
 			brushSize: props.brushSize,
-			currentPage: loc ? loc - 1 : 0,
+			currentPage: loc,
 			fill: props.fill,
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
@@ -613,7 +613,7 @@ class Sketchpad extends Component {
 	handleHashChange = () => {
 		const page = this.readURL();
 		if ( page > 0 ) {
-			this.gotoPage( page-1 );
+			this.gotoPage( page );
 		}
 	}
 
@@ -661,11 +661,7 @@ class Sketchpad extends Component {
 			}
 			const page = !isElectron ? this.readURL() : 0;
 			debug( 'Go to page '+page );
-			if ( page > 0 ) {
-				data.state.currentPage = page - 1;
-			} else {
-				data.state.currentPage = 0;
-			}
+			data.state.currentPage = page;
 			data.state.noPages = this.backgrounds.length;
 			data.state = omit( data.state, OMITTED_KEYS );
 			data.state.hasRetrievedData = true;
@@ -1860,7 +1856,7 @@ class Sketchpad extends Component {
 		const RE = new RegExp( id+'=(\\d+)' );
 		const match = hash.match( RE );
 		if ( match ) {
-			return Number( match[ 1 ] );
+			return max( Number( match[ 1 ] ) - 1, 0 );
 		}
 		return 0;
 	}
