@@ -181,6 +181,7 @@ class Video extends Component {
 			{ this.state.encounteredError ?
 				this.renderError() :
 				<ReactPlayer
+					{...props}
 					onPlay={this.handlePlay}
 					onPause={this.handlePause}
 					onEnded={this.handleEnded}
@@ -189,7 +190,6 @@ class Video extends Component {
 					onError={this.handleError}
 					progressInterval={1000}
 					config={config}
-					{...props}
 				/>
 			}
 		</div>;
