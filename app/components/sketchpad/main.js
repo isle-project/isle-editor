@@ -1860,7 +1860,7 @@ class Sketchpad extends Component {
 		const RE = new RegExp( id+'=(\\d+)' );
 		const match = hash.match( RE );
 		if ( match ) {
-			return match[ 1 ];
+			return Number( match[ 1 ] );
 		}
 		return 0;
 	}
