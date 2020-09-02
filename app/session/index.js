@@ -689,7 +689,7 @@ class Session {
 				this.update( RECEIVED_USER_RIGHTS, userRights );
 
 				// Retrieve Jitsi token for video chat:
-				if ( !this.jitsi ) {
+				if ( !JITSI ) {
 					this.getJitsiToken();
 				}
 			})
