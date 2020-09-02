@@ -625,6 +625,7 @@ class Session {
 		url += qs.stringify({ namespaceID: this.namespaceID });
 		axios.get( url )
 		.then( response => {
+			debug( 'Retrieved JITSI token: '+JSON.stringify( response.data ) );
 			JITSI = response.data;
 			this.update( RECEIVED_JITSI_TOKEN );
 		})
