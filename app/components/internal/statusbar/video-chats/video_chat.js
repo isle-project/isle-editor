@@ -72,9 +72,6 @@ class VideoChat extends Component {
 			// Case: User is not an owner
 			INTERFACE_CONFIG.TOOLBAR_BUTTONS.push( 'raisehand' );
 		}
-		if ( this.videoChatContainer ) {
-			this.initialize();
-		}
 	}
 
 	initialize() {
