@@ -9,6 +9,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
 import isFunction from '@stdlib/assert/is-function';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import keys from '@stdlib/utils/keys';
 import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
@@ -236,6 +237,13 @@ class UserList extends Component {
 				const showInteractionButtons =
 					session.user.email !== user.email &&
 					!user.inactive;
+				const joinTime = isString( user.joinTime ) ? user.joinTime : new Date( user.joinTime ).toLocaleTimeString();
+				let exitTime;
+				if ( user.exitTime === null ) {
+					exitTime = '';
+				} else {
+					exitTime = isString( user.exitTime ) ? user.exitTime : new Date( user.exitTime ).toLocaleTimeString();
+				}
 				return (
 					<ListGroupItem
 						className="user-list-item"
@@ -268,7 +276,7 @@ class UserList extends Component {
 							/> : null }
 						</div>
 						<div style={{ width: '100%', color }} >
-							{user.name} ({user.email}) | {user.joinTime} - {user.exitTime}
+							{user.name} ({user.email}) | {joinTime} - {exitTime}
 							{ focusedID ? <Tooltip placement="left" tooltip={this.props.t( 'element-interacted-with' )} >
 								<Button
 									className="user-list-active-button"
