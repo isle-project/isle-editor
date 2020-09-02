@@ -1089,6 +1089,33 @@ class Session {
 		return axios.get( url ).then( res => res.data );
 	}
 
+	updateMetadata = ( type, key, value ) => {
+		if ( !this.isOwner() ) {
+			return null;
+		}
+		const query = {
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID,
+			type,
+			key,
+			value
+		};
+		axios.post( this.server+'/update_metadata', query )
+			.then( res => {
+				if ( res.data.metadata ) {
+					this.metadata = res.data.metadata;
+				}
+			})
+			.catch( error => {
+				this.addNotification({
+					title: 'Error encountered',
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
+	}
+
 	/**
 	* Establishes socket connection with other users.
 	*

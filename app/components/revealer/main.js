@@ -11,7 +11,7 @@ import Gate from 'components/gate';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
-import { MEMBER_ACTION, RETRIEVED_COHORTS, USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from 'constants/events.js';
 import './load_translations.js';
 
 
@@ -56,9 +56,13 @@ class Revealer extends Component {
 		debug( `Component ${this.id} did mount...` );
 		const session = this.context;
 		if ( session ) {
+			this.readMetadata();
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === RETRIEVED_COHORTS ) {
 					this.forceUpdate();
+				}
+				else if ( type === RECEIVED_LESSON_INFO ) {
+					this.readMetadata();
 				}
 				else if ( type === MEMBER_ACTION ) {
 					if ( action.id === this.id ) {
@@ -95,31 +99,6 @@ class Revealer extends Component {
 						}
 					}
 				}
-				else if (
-					type === USER_JOINED && // User has joined and needs to receive Revealer state
-					session.user.email !== action.email && // Skip for own actions
-					( session.isOwner() || action.owner )
-				) {
-					debug( `Update ${this.id} revealer state for ${action.email}` );
-					const session = this.context;
-
-					// Send reveal and hide action to joined user from instructor:
-					if ( this.state.showChildren ) {
-						session.log({
-							id: this.id,
-							type: REVEAL_CONTENT,
-							value: this.state.selectedCohort,
-							noSave: true
-						}, action.email );
-					} else {
-						session.log({
-							id: this.id,
-							type: HIDE_CONTENT,
-							value: this.state.selectedCohort,
-							noSave: true
-						}, action.email );
-					}
-				}
 			});
 		}
 	}
@@ -131,24 +110,46 @@ class Revealer extends Component {
 		}
 	}
 
+	readMetadata = () => {
+		const session = this.context;
+		if (
+			session &&
+			session.metadata &&
+			session.metadata.revealer &&
+			session.metadata.revealer[ this.id ]
+		) {
+			const show = session.metadata.revealer[ this.id ][ session.cohort || 'all' ];
+			if ( show === true || show === false ) {
+				this.setState({
+					showChildren: show
+				});
+			}
+		}
+	}
+
 	toggleContent = () => {
 		this.setState({
 			showChildren: !this.state.showChildren
 		}, () => {
 			// Send message to other users:
 			const session = this.context;
+			const status = session.metadata.revealer[ this.id ] || {};
 			if ( this.state.showChildren ) {
 				session.log({
 					id: this.id,
 					type: REVEAL_CONTENT,
 					value: this.state.selectedCohort
 				}, 'members' );
+				status[ this.state.selectedCohort || 'all' ] = true;
+				session.updateMetadata( 'revealer', this.id, status );
 			} else {
 				session.log({
 					id: this.id,
 					type: HIDE_CONTENT,
 					value: this.state.selectedCohort
 				}, 'members' );
+				status[ this.state.selectedCohort || 'all' ] = false;
+				session.updateMetadata( 'revealer', this.id, status );
 			}
 		});
 	}
