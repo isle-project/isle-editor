@@ -53,7 +53,7 @@ class Revealer extends Component {
 	}
 
 	componentDidMount() {
-		debug( 'Component did mount...' );
+		debug( `Component ${this.id} did mount...` );
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
@@ -69,25 +69,25 @@ class Revealer extends Component {
 							( session.cohort && session.cohort === cohortName )
 						) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( 'Reveal content...' );
+								debug( `Reveal content for ${this.id}...` );
 								this.setState({
 									showChildren: true
 								});
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( 'Hide content...' );
+								debug( `Hide content for ${this.id}...` );
 								this.setState({
 									showChildren: false
 								});
 							}
 						}
-						if ( this.state.selectedCohort === cohortName ) {
+						else if ( this.state.selectedCohort === cohortName ) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( 'Reveal content...' );
+								debug( `Reveal content of ${this.id} for cohort ${cohortName}...` );
 								this.setState({
 									showChildren: true
 								});
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( 'Hide content...' );
+								debug( `Hide content of ${this.id} for cohort ${cohortName}...` );
 								this.setState({
 									showChildren: false
 								});
@@ -96,12 +96,14 @@ class Revealer extends Component {
 					}
 				}
 				else if (
-					type === USER_JOINED &&
-					session.user.email !== action.email &&
+					type === USER_JOINED && // User has joined and needs to receive Revealer state
+					session.user.email !== action.email && // Skip for own actions
 					( session.isOwner() || action.owner )
 				) {
-					debug( `Update revealer state for ${action.email}` );
+					debug( `Update ${this.id} revealer state for ${action.email}` );
 					const session = this.context;
+
+					// Send reveal and hide action to joined user from instructor:
 					if ( this.state.showChildren ) {
 						session.log({
 							id: this.id,
@@ -123,7 +125,7 @@ class Revealer extends Component {
 	}
 
 	componentWillUnmount() {
-		debug( 'Component will unmount...' );
+		debug( `Component ${this.id} will unmount...` );
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}

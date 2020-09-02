@@ -125,7 +125,7 @@ class Session {
 		this.anonymous = true;
 
 		// Assign unique ID to anonymous user:
-		const anonStorageID = 'ISLE_ANONYMOUS_' + config.server;
+		const anonStorageID = 'ISLE_ANONYMOUS_' + this.server;
 		let item;
 		if ( localStorage ) {
 			item = localStorage.getItem( anonStorageID );
@@ -230,6 +230,9 @@ class Session {
 		// IDs in the database:
 		this.lessonID = null;
 		this.namespaceID = null;
+
+		// Lesson metadata:
+		this.metadata = {};
 
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
@@ -1605,7 +1608,11 @@ class Session {
 				if ( data.time ) {
 					PRIVATE_VARS[ 'startTime' ] = data.time;
 				}
-				debug( '[2] Retrieve user rights for said lesson and its namespace' );
+				if ( data.metadata ) {
+					this.metadata = data.metadata;
+				}
+				debug( '[2] Retrieve user rights and data for said lesson and its namespace' );
+				debug( JSON.stringify( data ) );
 				this.update( RECEIVED_LESSON_INFO, data );
 				this.getUserRights();
 			})
