@@ -30,6 +30,18 @@
 		"upload-file": "Upload File"
 	},
 	"ES": {
-
+		"audio": "Audio",
+		"cam": "Cam",
+		"clear-file": "Archivo limpio",
+		"download-file": "Archivo de descarga",
+		"encountered-error": "Encontré un error",
+		"failed-to-capture-camera": "Fallo en la captura de la cámara (error: {{msg}})",
+		"failed-to-capture-microphone": "Fallo en la captura de su micrófono (error: {{msg}})",
+		"failed-to-capture-screen": "Fallo en la captura de la pantalla (error: {{msg}})",
+		"open-link": "Enlace abierto",
+		"recording-uploaded": "Grabación cargada",
+		"recording-uploaded-message": "Su grabación ha sido cargada con éxito y puede accederse a ella en:",
+		"screen": "Screen",
+		"upload-file": "Subir archivo"
 	}
 }

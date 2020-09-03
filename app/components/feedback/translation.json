@@ -38,6 +38,22 @@
 		"thank-you": "Thank you!"
 	},
 	"ES": {
-
+		"cancel": "Cancelar",
+		"cannot-follow": "No puedo seguir la lógica.",
+		"enter-text": "Entrar texto",
+		"feedback": "Retroalimentación",
+		"give-custom-feedback": "Dar retroalimentación personalizada",
+		"have-feedback": "Tengo retroalimentación.",
+		"makes-sense": "Tiene sentido.",
+		"needs-detailed-explanation": "Necesita una explicación más detallada.",
+		"no-understanding": "No entiendo nada de esto.",
+		"not-clear": "Esto no está claro para mí.",
+		"responses": "Respuestas",
+		"submit": "Presentar",
+		"submit-confused-message": "Lamentamos oír eso. Sus comentarios nos ayudan a mejorar el material.",
+		"submit-custom-message": "Gracias por tomarse el tiempo de enviarnos sus comentarios.",
+		"submit-understood-message": "¡Me alegro de oír eso! Gracias por su retroalimentación",
+		"textarea-legend": "Tengo los siguientes comentarios (opcional):",
+		"thank-you": "¡Gracias!"
 	}
 }
