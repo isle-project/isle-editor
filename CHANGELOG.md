@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.65.1](https://github.com/isle-project/isle-editor/releases/tag/v0.65.1) (2020-09-03)
+
 ## [v0.65.0](https://github.com/isle-project/isle-editor/releases/tag/v0.65.0) (2020-09-03)
 
 ## [v0.64.0](https://github.com/isle-project/isle-editor/releases/tag/v0.64.0) (2020-09-01)
