@@ -19,6 +19,13 @@
 		"submit-tooltip": "You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side"
 	},
 	"ES": {
-
+		"answers": "Respuestas",
+		"answer-resubmitted": "Respuesta presentada de nuevo.",
+		"answer-submitted": "Respuesta presentada.",
+		"instructions": "Coincidir {{complete}} los elementos de la izquierda con los elementos correspondientes de la derecha haciendo clic en ellos.",
+		"resubmit": "Volver a presentar",
+		"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+		"submit": "Enviar",
+		"submit-tooltip": "Puede someterse después de haber emparejado todos los elementos del lado izquierdo con los elementos correspondientes del lado derecho"
 	}
 }
