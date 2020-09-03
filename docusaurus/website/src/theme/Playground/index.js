@@ -13,6 +13,7 @@ import * as React from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import './load_datasets.js';
 
 
 // FUNCTIONS //
