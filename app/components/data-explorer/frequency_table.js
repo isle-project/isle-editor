@@ -65,11 +65,12 @@ const frequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 			</thead>
 			<tbody>
 				{freqs.map( ( elem, id ) => {
-					nTotal += elem.count;
+					const count = elem.count || 0;
+					nTotal += count;
 					return ( <tr key={id}>
 						<td></td>
 						<td>{elem.category}</td>
-						<td>{relative ? elem.count.toFixed( nDecimalPlaces ) : elem.count}</td>
+						<td>{relative ? count.toFixed( nDecimalPlaces ) : count}</td>
 					</tr> );
 				})}
 			</tbody>
@@ -96,16 +97,18 @@ const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 				if ( !relative ) {
 					let nTotal = 0;
 					counts = arr[ 1 ].map( ( x, j ) => {
-						nTotal += x.count;
+						const count = x.count || 0;
+						nTotal += count;
 						return ( <td key={j}>
-							{ x.count }
+							{ count }
 						</td> );
 					});
 					counts.push( <td key="total">{nTotal}</td> );
 				} else {
 					counts = arr[ 1 ].map( ( x, j ) => {
+						const count = x.count || 0;
 						return ( <td key={j}>
-							{ x.count.toFixed( nDecimalPlaces ) }
+							{ count.toFixed( nDecimalPlaces ) }
 						</td> );
 					});
 				}
@@ -158,7 +161,9 @@ class FrequencyTable extends Component {
 				// Create new object with different insertion order:
 				const tmp = {};
 				for ( let i = 0; i < group.categories.length; i++ ) {
-					tmp[ group.categories[ i ] ] = freqs[ group.categories[ i ] ];
+					if ( freqs[ group.categories[ i ] ] ) {
+						tmp[ group.categories[ i ] ] = freqs[ group.categories[ i ] ];
+					}
 				}
 				freqs = tmp;
 			}
