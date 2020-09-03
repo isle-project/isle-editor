@@ -277,7 +277,7 @@ class UserList extends Component {
 						</div>
 						<div style={{ width: '100%', color }} >
 							{user.name} ({user.email}) | {joinTime} - {exitTime}
-							{ focusedID ? <Tooltip placement="left" tooltip={this.props.t( 'element-interacted-with' )} >
+							{ focusedID ? <Tooltip placement="left" tooltip={this.props.t( 'element-interacting-with' )} >
 								<Button
 									className="user-list-active-button"
 									variant="outline-secondary"
