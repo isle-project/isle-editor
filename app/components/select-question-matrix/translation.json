@@ -20,6 +20,13 @@
 		"submit-message": "Your answer has been submitted."
 	},
 	"ES": {
-
+		"answer-resubmitted": "Respuesta presentada de nuevo.",
+		"answer-submitted": "Respuesta presentada.",
+		"success-message": "¡Esa es la respuesta correcta!",
+		"failure-message": "No del todo, ¡intenta de nuevo!",
+		"resubmit": "Volver a presentar",
+		"resubmit-message": "Ha vuelto a enviar su respuesta con éxito",
+		"submit": "Presentar",
+		"submit-message": "Su respuesta ha sido presentada."
 	}
 }
