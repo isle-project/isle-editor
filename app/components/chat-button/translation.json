@@ -14,5 +14,10 @@
 		"toggle-chat": "Toggle Chat"
 	},
 	"ES": {
+		"join-chat": "Unirse chat",
+		"join-chat-id": "Unirse al chat con ID {{id}}",
+		"leave-chat-id": "Dejar charla con ID {{id}}",
+		"leave-chat": "Dejar la charla",
+		"toggle-chat": "Toggle al chat"
 	}
 }

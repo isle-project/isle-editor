@@ -50,6 +50,28 @@
 		"variables": "Variables"
 	},
 	"ES": {
-
+		"data": "Datos",
+		"description": "Descripción",
+		"download-data": "Descargar datos",
+		"download-data-body": "Descargar el conjunto de datos actuales en los formatos de archivo CSV o JSON.",
+		"error-encountered": "Error encontrado",
+		"error-csv": "Encontré un error al crear CSV: ",
+		"name": "Nombre",
+		"no-data": "Sin datos.",
+		"number-rows": "Número de filas",
+		"open-description": "Descripción abierta del conjunto de datos",
+		"remove": "Remover",
+		"remove-variable": "Eliminar variable",
+		"rename-variable": "Renombrar variable",
+		"reset-display": "Restablecer la pantalla de la mesa",
+		"reset-display-tooltip": "Reiniciar filtros y clasificación",
+		"save-csv": "Salvar CSV",
+		"save-json": "Salvar JSON",
+		"select-others": "Selecciona todos los demás",
+		"show-all": "Mostrar todo",
+		"total": "total",
+		"variable-descriptions": "Descripciones variables",
+		"variable-descriptions-tooltip": "Abrir descripciones de variable",
+		"variables": "Variables"
 	}
 }
