@@ -288,7 +288,7 @@ class UploadLesson extends Component {
 			return null;
 		}
 		return (
-			<Modal show={this.state.showConfirmModal}>
+			<Modal show={this.state.showConfirmModal} onHide={this.closeConfirmModal} >
 				<Modal.Header>
 					<Modal.Title>Overwrite Lesson?</Modal.Title>
 				</Modal.Header>
