@@ -16,6 +16,11 @@
 		"toggle": "Toggle Video Chat"
 	},
 	"ES": {
-
+		"disabled": "Video chat para discapacitados",
+		"join": "Únete el video",
+		"join-id": "Únete al video chat con ID {{id}}",
+		"leave": "Dejar el video",
+		"leave-id": "Deje el video chat con ID {{id}}",
+		"toggle": "Toggle video chat"
 	}
 }
