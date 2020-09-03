@@ -350,7 +350,8 @@ function writeIndexFile({
 			preventScaleGestures: meta.preventScaleGestures,
 			template: resolve( basePath, './app/bundler/index.html' ),
 			templateParameters: {
-				meta
+				meta,
+				loadFromCDN
 			},
 			minify: false
 		}),
