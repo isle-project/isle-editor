@@ -27,6 +27,17 @@
 		"upper": "Upper"
 	},
 	"ES": {
-
+		"answers": "Respuestas",
+		"answer-resubmitted": "Respuesta presentada de nuevo.",
+		"answer-submitted": "Respuesta presentada.",
+		"lower": "Inferior",
+		"resubmit": "Volver a presentar",
+		"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+		"solution": "Solución",
+		"submission-correct": "¡Felicidades, eso es correcto!",
+		"submission-incorrect": "No del todo. Compare su respuesta con la solución.",
+		"submission-message": "Su respuesta ha sido presentada.",
+		"submit": "Presentar",
+		"upper": "Superior"
 	}
 }
