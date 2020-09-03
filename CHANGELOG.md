@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.65.0](https://github.com/isle-project/isle-editor/releases/tag/v0.65.0) (2020-09-03)
+
 ## [v0.64.0](https://github.com/isle-project/isle-editor/releases/tag/v0.64.0) (2020-09-01)
 
 This release contains fixes for reading the location of sketchpads from the location hash, an error occurring when creating filtered datasets in the data explorer, and others. 
