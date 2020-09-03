@@ -1,5 +1,8 @@
-import { json } from 'd3';
+// MODULES //
 
-json( 'https://isle.heinz.cmu.edu/data-explorers_heartdisease.json' ).then( res => {
-	global.heartdisease = res;
-});
+import heartdisease from './heartdisease.json';
+
+
+// MAIN //
+
+global.heartdisease = heartdisease;
