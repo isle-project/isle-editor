@@ -10,7 +10,7 @@ Markdown syntax can be used to embed images in ISLE lessons, which takes the gen
 
     ![Alt text](path "optional title")
 
-To embed an image in an ISLE lesson, the image must be hosted online (since ISLE users will not have access to your local files). So for example, to include a picture of Paul the octopus from the 2010 World Cup, we could do
+This way, we can easily embed images that are hosted online in an ISLE lesson. for example, to include a picture of Paul the octopus from the 2010 World Cup, we could do
 
     ![Paul the octopus](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG "Paul the octopus")
 
@@ -20,25 +20,27 @@ which renders to
 
 (hover over the image to see the title provided).
 
-Alternatively, images can be included with custom `<Image />` tags. Since Markdown [does not currently](https://daringfireball.net/projects/markdown/syntax#img) support specifying image dimensions, you can use HTML `<Image />` syntax to include an image and change the dimension. For example, to specify dimensions for the picture of Paul the octopus:
+Alternatively, images can be included with custom `<Image />` tags. Since Markdown [does not](https://daringfireball.net/projects/markdown/syntax#img) support specifying image dimensions, you can use HTML `<Image />` syntax to include an image and customize its width and height. For example, to specify dimensions for the picture of Paul the octopus:
 
-    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG" width="200" height="200" />
+    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG" width="200px" height="200px" />
 
 which becomes
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Oktopus-Orakel_Paul_mit_Schuh.JPG/1280px-Oktopus-Orakel_Paul_mit_Schuh.JPG" width="200" height="200" />
 
+Most commonly, you want to only set either the width or the height and set the other one to `auto` to not stretch the image and preserve its original aspect ratio. Common ways of setting the dimensions is as pixels (e.g.,`200px`) or in percent of the containing block (e.g., `20%`).
+
 ### Uploading Images to Course Files
 
-**But what if we want to use an image we've created locally, rather than one hosted on the web?** Well, the image will still need to be hosted, but we can do that easily by just uploading it to the ISLE course dashboard. Suppose we have the following plot that we want to embed in our lesson:
+**But what if we want to use an image we've created locally, rather than one hosted on the web?** The ISLE course dashboard provides an easy to to upload files. Suppose we have the following plot that we want to embed in our lesson:
 
 ![histograms](https://isle.heinz.cmu.edu/Demo_histograms.png)
 
 1. Go to your ISLE dashboard and select the course.
 2. Click the blue **Course Data** button (pie-chart symbol) in the top bar.
-3. Click **Files**.
-4. Click **Upload file**; select the file you wish to upload.
-5. To see the uploaded file and get the url, click **Open** next to the file name.
+3. Click **Owner Files**.
+4. Click the green **Upload file** button; select the file you wish to upload.
+5. To see the uploaded file and get the url, click **Open** next to the file name or use the button to directly copy the URL into your clipboard.
 
 ![Add Owner](/gifs/upload_file.gif)
 
