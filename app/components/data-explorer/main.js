@@ -136,10 +136,11 @@ function checkVariables( data, variables ) {
 * @property {(Object|Array)} data - data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. If you wish to allow students the ability to import a `.csv` file, set the `data` option to be `false`
 * @property {Object} dataInfo - object containing the keys \'name\', whose value is a string, \'info\', whose value is an array of strings in which each element in the array is a new line and \'variables\', an object with keys as variable names and values as variable descriptions
 * @property {boolean} editor - boolean indicating whether to show the editor to the user
-* @property {Object} editorProps - object to be passed to `TextEditor` indicating properties to be used
+* @property {Object} editorProps - object of properties to be passed to the `TextEditor` (see documentation for <TextEditor />)
 * @property {string} editorTitle - string indicating the title of the explorer to be displayed
 * @property {string} reportMode - controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)
 * @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
+* @property {Object} dataTableProps - properties passed to the data table component (see documentation for <DataTable />)
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
 * @property {string} opened - page opened at startup
@@ -1457,6 +1458,7 @@ class DataExplorer extends Component {
 						>
 								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '80px', zIndex: 2 }}>Clear Data</Button> : null }
 								<DataTable
+									{...this.props.dataTableProps}
 									data={this.state.data}
 									dataInfo={this.props.dataInfo}
 									undeletableVars={objectKeys( this.props.data )}
@@ -1660,6 +1662,7 @@ DataExplorer.defaultProps = {
 		'showOnStartup': false
 	},
 	dataTable: true,
+	dataTableProps: {},
 	tabs: [],
 	questions: [],
 	transformer: true,
@@ -1740,6 +1743,7 @@ DataExplorer.propTypes = {
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
 	dataTable: PropTypes.bool,
+	dataTableProps: {},
 	reportMode: PropTypes.oneOf([ 'individual', 'group', 'collaborative' ]),
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
