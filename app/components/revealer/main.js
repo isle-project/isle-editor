@@ -217,7 +217,10 @@ class Revealer extends Component {
 					</select>
 				</Panel>
 			</Gate>
-			{this.state.showChildren ? this.props.children : header}
+			{!this.state.showChildren ? header : null}
+			<div className="line-wrapper" style={{
+				display: this.state.showChildren ? 'inherit' : 'none'
+			}}>{this.props.children}</div>
 		</Fragment> );
 	}
 }

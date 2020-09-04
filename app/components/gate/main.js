@@ -113,6 +113,20 @@ class Gate extends Component {
 		return this.props.after < session.startTime;
 	}
 
+	renderChildren( authenticated ) {
+		return (
+			<div
+				className="line-wrapper"
+				style={{
+					display: authenticated ? 'inherit' : 'none'
+				}}
+			>
+				{!authenticated ? this.props.banner : null}
+				{this.props.children}
+			</div>
+		);
+	}
+
 	render() {
 		const session = this.context;
 		return ( <RoleContext.Consumer>
@@ -128,10 +142,10 @@ class Gate extends Component {
 					notOwner && isOwner ||
 					notEnrolled && isEnrolled
 				) {
-					return this.props.banner;
+					return this.renderChildren( false );
 				}
-				if ( !this.isTimeActive() ) {
-					return this.props.banner;
+				else if ( !this.isTimeActive() ) {
+					return this.renderChildren( false );
 				}
 				if ( user && isUser ) {
 					authenticated = true;
@@ -145,10 +159,7 @@ class Gate extends Component {
 				else if ( !user && !owner && !enrolled ) {
 					authenticated = true;
 				}
-				if ( authenticated ) {
-					return <Fragment>{this.props.children}</Fragment>;
-				}
-				return this.props.banner;
+				return this.renderChildren( authenticated );
 			}}
 		</RoleContext.Consumer> );
 	}
