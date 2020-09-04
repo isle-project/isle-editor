@@ -9,29 +9,30 @@ import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
 import template from 'constants/templates/generic.js';
 import PREAMBLE from 'constants/preamble.js';
+import rendererStore from 'store/electron.js';
 import today from 'utils/today';
 
 
 // VARIABLES //
 
-const config = new Store( 'ISLE' );
+const mainStore = new Store( 'isle-main' );
 const debug = logger( 'isle-editor:reducers' );
-let filePath = config.get( 'mostRecentFilePath' );
+let filePath = mainStore.get( 'mostRecentFilePath' );
 if ( !exists.sync( filePath ) ) {
 	filePath = null;
 }
 let preambleText;
 let preamble;
 let fileName;
-let md = config.get( 'mostRecentFileData' );
-const preambleTemplate = config.get( 'preambleTemplate' ) || PREAMBLE;
+let md = mainStore.get( 'mostRecentFileData' );
+const preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
 if ( filePath ) {
 	if ( !md ) {
 		debug( `Reading file at ${filePath}` );
 		md = readFileSync( filePath, 'utf-8' );
 	}
-	preamble = config.get( 'mostRecentPreamble' );
-	preambleText = config.get( 'mostRecentPreambleText' );
+	preamble = mainStore.get( 'mostRecentPreamble' );
+	preambleText = mainStore.get( 'mostRecentPreambleText' );
 	fileName = basename( filePath );
 }
 else {
@@ -56,9 +57,9 @@ const initialState = {
 	currentRole: 'user',
 	currentMode: 'offline',
 	namespaceName: null,
-	splitPos: parseFloat( localStorage.getItem( 'splitPos' ) ) || 0.5,
+	splitPos: parseFloat( rendererStore.get( 'splitPos' ) ) || 0.5,
 	error: null,
-	fontSize: config.get( 'fontSize' ) || 14,
+	fontSize: mainStore.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
 	unsaved: false
@@ -156,13 +157,13 @@ export default function markdown( state = initialState, action ) {
 			hideToolbar: !state.hideToolbar
 		};
 	case types.FONT_SIZE_CHANGED:
-		config.set( 'fontSize', action.payload.fontSize );
+		mainStore.set( 'fontSize', action.payload.fontSize );
 		return {
 			...state,
 			fontSize: action.payload.fontSize
 		};
 	case types.PREAMBLE_TEMPLATE_CHANGED:
-		config.set( 'preambleTemplate', action.payload.preambleTemplate );
+		mainStore.set( 'preambleTemplate', action.payload.preambleTemplate );
 		return {
 			...state,
 			preambleTemplate: action.payload.preambleTemplate

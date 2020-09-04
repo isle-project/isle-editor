@@ -25,6 +25,7 @@ import removeLast from '@stdlib/string/remove-last';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
 import KeyControls from 'components/key-controls';
+import rendererStore from 'store/electron.js';
 
 
 // VARIABLES //
@@ -51,8 +52,8 @@ class UploadLesson extends Component {
 			loadFromCDN: true,
 			lessonName,
 			dirname: randomstring( 16, 65, 90 ),
-			server: localStorage.getItem( 'server' ),
-			token: localStorage.getItem( 'token' ),
+			server: rendererStore.get( 'server' ),
+			token: rendererStore.get( 'token' ),
 			showResponseModal: false,
 			showConfirmModal: false,
 			invalidLessonName: false

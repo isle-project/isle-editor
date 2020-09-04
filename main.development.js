@@ -16,7 +16,7 @@ import addCustomTemplates from './app/main/add_custom_templates.js';
 
 // VARIABLES //
 
-const config = new Store( 'ISLE' );
+const mainConfig = new Store( 'isle-main' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 
@@ -25,8 +25,8 @@ const len = IS_PACKAGED ? 1 : 2;
 if ( process.env.NODE_ENV === 'production' && process.argv[ len ] ) {
 	pathToOpen = process.argv[ len ];
 }
-else if ( config.has( 'mostRecentFilePath' ) ) {
-	pathToOpen = config.get( 'mostRecentFilePath' );
+else if ( mainConfig.has( 'mostRecentFilePath' ) ) {
+	pathToOpen = mainConfig.get( 'mostRecentFilePath' );
 }
 autoUpdater.allowPrerelease = true;
 autoUpdater.autoDownload = false;
@@ -104,7 +104,7 @@ app.on( 'ready', onReady );
 
 // Quit when all windows are closed.
 app.on( 'window-all-closed', () => {
-	config.set( 'mostRecentFileData', null );
+	mainConfig.set( 'mostRecentFileData', null );
 
 	// On OS X it is common for applications and their menu bar to stay active until the user quits explicitly with Cmd + Q
 	if ( process.platform !== 'darwin' ) {

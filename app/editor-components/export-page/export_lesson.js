@@ -14,6 +14,7 @@ import { remote, shell } from 'electron';
 import exists from '@stdlib/fs/exists';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
+import rendererStore from 'store/electron.js';
 import './export_page.css';
 
 
@@ -74,7 +75,7 @@ class ExportLesson extends Component {
 		const value = target.value;
 		const name = target.name;
 
-		localStorage.setItem( name, value );
+		rendererStore.set( name, value );
 		this.setState({
 			[ name ]: value
 		});

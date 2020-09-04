@@ -39,6 +39,7 @@ import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-i
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
 import formatError from 'utils/format-error';
+import rendererStore from 'store/electron.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
@@ -109,8 +110,8 @@ const mapErrors = e => {
 		severity: e.severity
 	};
 };
-const ISLE_SERVER = localStorage.getItem( 'server' );
-const ISLE_SERVER_TOKEN = localStorage.getItem( 'token' );
+const ISLE_SERVER = rendererStore.get( 'server' );
+const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
 let overlayInstallWidget = null;
 
 

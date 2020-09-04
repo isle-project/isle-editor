@@ -10,6 +10,7 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
+import rendererStore from 'store/electron.js';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
@@ -35,7 +36,7 @@ const RE_PREAMBLE = /^(?:\s*)---([\S\s]*?)---/;
 // FUNCTIONS //
 
 const updateSplitPos = ( size ) => {
-	localStorage.setItem( 'splitPos', size );
+	rendererStore.set( 'splitPos', size );
 };
 
 
@@ -264,7 +265,7 @@ class App extends Component {
 						onPreview={() => {
 							let splitPos;
 							if ( this.props.splitPos === 1 ) {
-								splitPos = localStorage.getItem( 'splitPos' ) || 0.5;
+								splitPos = rendererStore.get( 'splitPos' ) || 0.5;
 							} else {
 								splitPos = 1;
 							}

@@ -10,13 +10,13 @@ const AnimationHelp = Loadable( () => import( 'editor-components/components-cont
 const MarkdownHelp = Loadable( () => import( 'editor-components/components-contextmenu/markdown-help' ) );
 import { LANGUAGES } from 'constants/deepl';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
-
+import rendererStore from 'store/electron.js';
 
 // VARIABLES //
 
 const debug = logger( 'isle:editor:context-menu' );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
-const ISLE_SERVER_TOKEN = localStorage.getItem( 'token' );
+const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
 
 
 // MAIN //

@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import FormLabel from 'react-bootstrap/FormLabel';
 import startsWith from '@stdlib/string/starts-with';
 import trim from '@stdlib/string/trim';
+import rendererStore from 'store/electron.js';
 
 
 // MAIN //
@@ -19,9 +20,9 @@ class SettingsLogin extends Component {
 		super( props );
 
 		this.state = {
-			server: localStorage.getItem( 'server' ) || '',
-			email: localStorage.getItem( 'email' ) || '',
-			password: localStorage.getItem( 'password' ) || '',
+			server: rendererStore.get( 'server' ) || '',
+			email: rendererStore.get( 'email' ) || '',
+			password: rendererStore.get( 'password' ) || '',
 			encounteredError: null
 		};
 	}
@@ -33,13 +34,13 @@ class SettingsLogin extends Component {
 		this.setState({
 			[ name ]: value
 		}, () => {
-			// Update server, email, or password in localStorage:
-			localStorage.setItem( name, value );
+			// Update server, email, or password in store:
+			rendererStore.set( name, value );
 		});
 	}
 
 	unlink = () => {
-		localStorage.removeItem( 'token' );
+		rendererStore.delete( 'token' );
 		this.forceUpdate();
 	}
 
@@ -66,7 +67,7 @@ class SettingsLogin extends Component {
 					});
 				}
 				body = JSON.parse( body );
-				localStorage.setItem( 'token', body.token );
+				rendererStore.set( 'token', body.token );
 				this.forceUpdate();
 			} catch ( error ) {
 				this.setState({
@@ -98,7 +99,7 @@ class SettingsLogin extends Component {
 					Connect to ISLE server
 				</Card.Header>
 				<Card.Body>
-					{ localStorage.getItem( 'token' ) === null ?
+					{ rendererStore.get( 'token' ) === void 0 ?
 						<Form>
 							<FormGroup>
 								<FormLabel>Server Address</FormLabel>
