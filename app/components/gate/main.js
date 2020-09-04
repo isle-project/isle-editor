@@ -13,8 +13,8 @@ import RoleContext from 'session/role_context.js';
 /**
 * An ISLE component that allows to display its children only to reserved audiences.
 *
-* @property {boolean} user - when set the gated content is displayed to subscribed users
-* @property {boolean} notUser - when set the gated content is **not** displayed to subscribed users
+* @property {boolean} user - when set the gated content is displayed to users
+* @property {boolean} notUser - when set the gated content is **not** displayed to users
 * @property {boolean} enrolled - when set the gated content is displayed to the students enrolled in the course
 * @property {boolean} notEnrolled - when set the gated content is **not** displayed to the students enrolled in the course
 * @property {boolean} owner - when set the gated content is displayed to the owner of the course (usually the instructor)
