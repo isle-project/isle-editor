@@ -38,6 +38,7 @@ import innerText from 'react-innertext';
 import Highlighter from 'react-highlight-words';
 import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
+import TextClustering from 'components/internal/text-clustering';
 import Checkbox from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import Switch from 'components/switch';
@@ -47,7 +48,6 @@ import { CAT20 as COLORS } from 'constants/colors';
 import Search from './search.js';
 import SingleActionModal from './single_action_modal.js';
 import FullscreenHeader from './fullscreen_header';
-import TextClustering from './text-clustering';
 import './fullscreen_action_display.css';
 
 
