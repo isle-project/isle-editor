@@ -344,6 +344,7 @@ function createColumns( props, state ) {
 * @property {Array<string>} undeletableVars - array of variable names of columns which may not be deleted
 * @property {boolean} filterable - controls whether columns are filterable
 * @property {boolean} showRemove - indicates whether to display checkboxes for rows to be removed
+* @property {boolean} disableDownload - whether to hide the button to download the data as a CSV or JSON file
 * @property {boolean} showIdColumn - controls whether to show an ID column
 * @property {string} className - class name
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
@@ -757,8 +758,8 @@ class DataTable extends Component {
 			resizable: false,
 			width: 30
 		});
-		const saveButton = <Tooltip placement="bottom" tooltip={this.props.t('download-data')} >
-			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} >
+		const saveButton = <Tooltip placement="bottom" tooltip={this.props.disableDownload ? this.props.t('download-disabled') : this.props.t('download-data')} >
+			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} disabled={this.props.disableDownload} >
 				<i className="fas fa-download"></i>
 			</Button>
 		</Tooltip>;
@@ -907,6 +908,7 @@ DataTable.defaultProps = {
 	filters: [],
 	showRemove: false,
 	showIdColumn: true,
+	disableDownload: false,
 	className: '',
 	style: {}
 };
@@ -933,6 +935,7 @@ DataTable.propTypes = {
 	onFilteredChange: PropTypes.func,
 	showRemove: PropTypes.bool,
 	showIdColumn: PropTypes.bool,
+	disableDownload: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
