@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from 'constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
