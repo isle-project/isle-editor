@@ -133,7 +133,17 @@ class Revealer extends Component {
 		}, () => {
 			// Send message to other users:
 			const session = this.context;
-			const status = session.metadata.revealer[ this.id ] || {};
+			let status;
+			if (
+				session &&
+				session.metadata &&
+				session.metadata.revealer &&
+				session.metadata.revealer[ this.id ]
+			) {
+				status = session.metadata.revealer[ this.id ];
+			} else {
+				status = {};
+			}
 			if ( this.state.showChildren ) {
 				session.log({
 					id: this.id,
