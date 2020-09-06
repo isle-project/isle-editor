@@ -2,7 +2,9 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { remote, shell } from 'electron';
 import path from 'path';
+import jsyaml from 'js-yaml';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -10,7 +12,8 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
-import { remote, shell } from 'electron';
+import replace from '@stdlib/string/replace';
+import isArray from '@stdlib/assert/is-array';
 import exists from '@stdlib/fs/exists';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
@@ -23,6 +26,7 @@ import './export_page.css';
 const { dialog } = remote;
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const RE_PREAMBLE = /^---([\S\s]*?)---/;
 
 
 // MAIN //
@@ -92,13 +96,21 @@ class ExportLesson extends Component {
 				finished: false,
 				spinning: true
 			});
+			const content = this.props.content;
+			let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
+			yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
+			const meta = jsyaml.load( yamlStr );
+			if ( isArray( meta.author ) ) {
+				meta.author = meta.author.join( ', ' );
+			}
 			import( 'bundler' ).then( main => {
 				const bundler = main.default;
 				bundler({
 					outputPath: outputPath,
 					filePath: this.props.filePath,
 					basePath: IS_PACKAGED ? process.resourcesPath : '.',
-					content: this.props.content,
+					content,
+					meta,
 					outputDir,
 					minify,
 					loadFromCDN,

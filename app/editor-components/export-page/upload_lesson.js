@@ -11,6 +11,7 @@ import os from 'os';
 import { resolve } from 'url';
 import qs from 'querystring';
 import FormData from 'form-data';
+import jsyaml from 'js-yaml';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -22,6 +23,9 @@ import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
 import removeLast from '@stdlib/string/remove-last';
+import isArray from '@stdlib/assert/is-array';
+import pick from '@stdlib/utils/pick';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
 import KeyControls from 'components/key-controls';
@@ -32,6 +36,8 @@ import rendererStore from 'store/electron.js';
 
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const METADATA_KEYS = [ 'author', 'date', 'keywords', 'license', 'hideProgressBar', 'language', 'presentation' ];
+const RE_PREAMBLE = /^---([\S\s]*?)---/;
 const debug = logger( 'isle-editor:export-page' );
 
 
@@ -144,7 +150,7 @@ class UploadLesson extends Component {
 		});
 	};
 
-	upstreamData = ({ outputPath, outputDir }) => {
+	upstreamData = ({ outputPath, outputDir, meta }) => {
 		let { lessonName } = this.state;
 		let { namespaceName } = this.props;
 
@@ -152,6 +158,13 @@ class UploadLesson extends Component {
 		const form = new FormData();
 		form.append( 'namespaceName', namespaceName );
 		form.append( 'lessonName', lessonName );
+		if ( meta.description ) {
+			form.append( 'description', meta.description );
+		}
+		const metadata = pick( meta, METADATA_KEYS );
+		if ( !isEmptyObject( metadata ) ) {
+			form.append( 'metadata', JSON.stringify( metadata ) );
+		}
 		const zipPath = join( outputPath, outputDir+'.zip' );
 		form.append( 'zipped', createReadStream( zipPath ) );
 
@@ -240,11 +253,20 @@ class UploadLesson extends Component {
 			spinning: true,
 			error: null
 		});
+
+		const content = this.props.content;
+		let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
+		yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
+		const meta = jsyaml.load( yamlStr );
+		if ( isArray( meta.author ) ) {
+			meta.author = meta.author.join( ', ' );
+		}
 		const settings = {
 			outputPath: os.tmpdir(),
 			filePath: this.props.filePath,
 			basePath: IS_PACKAGED ? process.resourcesPath : '.',
-			content: this.props.content,
+			content: content,
+			meta: meta,
 			outputDir: this.state.dirname,
 			minify: this.state.minify,
 			loadFromCDN: this.state.loadFromCDN

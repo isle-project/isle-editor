@@ -3,7 +3,6 @@
 import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { copy, removeSync } from 'fs-extra';
 import { basename, dirname, extname, resolve, join } from 'path';
-import jsyaml from 'js-yaml';
 import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -16,7 +15,6 @@ import WebpackCdnPlugin from './webpack_cdn_plugin.js';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
-import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import replace from '@stdlib/string/replace';
@@ -298,6 +296,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 * @param {string} options.outputPath - file path of output directory
 * @param {string} options.basePath - file path of ISLE editor
 * @param {string} options.content - ISLE lesson file content
+* @param {string} options.meta - ISLE lesson meta information
 * @param {string} options.outputDir - name of output directory
 * @param {string} options.yamlStr - lesson meta data in YAML format
 * @param {boolean} options.minify - boolean indicating whether code should be minified
@@ -310,18 +309,16 @@ function writeIndexFile({
 	outputPath,
 	basePath,
 	content,
+	meta,
 	outputDir,
 	minify,
 	loadFromCDN,
 	writeStats
 }, clbk ) {
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
-	let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
-	yamlStr = replace( yamlStr, '\t', '    ' ); // Replace tabs with spaces as YAML may not contain the former...
-	const meta = jsyaml.load( yamlStr );
-	if ( isArray( meta.author ) ) {
-		meta.author = meta.author.join( ', ' );
-	}
+
+	console.log( 'BUNDLER');
+	console.log( meta );
 
 	const appDir = join( outputPath, outputDir );
 	const indexPath = join( appDir, 'index.js' );
