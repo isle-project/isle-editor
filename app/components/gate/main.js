@@ -118,7 +118,7 @@ class Gate extends Component {
 			<div
 				className="gate outer-element"
 				style={{
-					display: authenticated ? 'inherit' : 'none'
+					display: authenticated ? 'inline' : 'none'
 				}}
 			>
 				{!authenticated ? this.props.banner : null}
