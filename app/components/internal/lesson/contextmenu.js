@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
 import { ContextMenu, MenuItem } from 'react-contextmenu';
 import replace from '@stdlib/string/replace';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
@@ -236,4 +235,4 @@ LessonContextMenu.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation()( LessonContextMenu );
+export default LessonContextMenu;

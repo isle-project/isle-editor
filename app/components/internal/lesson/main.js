@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
+import { withTranslation } from 'react-i18next';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import i18next from './i18n.js';
 import LanguageSwitcher from 'components/internal/language-switcher';
@@ -53,11 +54,11 @@ const NOTIFICATION_STYLE = {
 * The main lesson component holding all other components.
 */
 class Lesson extends Component {
-	constructor( props ) {
+	constructor( props, session ) {
 		super( props );
 
 		this.state = {
-			visible: true,
+			visible: session.lessonID ? ( session.isActive() || session.isOwner() ) : true,
 			notes: []
 		};
 	}
@@ -160,7 +161,7 @@ class Lesson extends Component {
 
 	render() {
 		if ( !this.state.visible ) {
-			return <Forbidden />;
+			return <Forbidden t={this.props.t} />;
 		}
 		return (
 			<Fragment>
@@ -185,6 +186,7 @@ class Lesson extends Component {
 				<LessonContextMenu
 					addNote={this.addNote}
 					session={this.context}
+					t={this.props.t}
 				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
@@ -216,4 +218,4 @@ Lesson.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Lesson;
+export default withTranslation()( Lesson );

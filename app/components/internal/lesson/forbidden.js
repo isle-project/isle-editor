@@ -6,10 +6,10 @@ import './forbidden.css';
 
 // MAIN //
 
-const Forbidden = () => {
+const Forbidden = ( props ) => {
 	return (
 		<div className="forbidden-wrapper" >
-			<h3 className="forbidden-header" >Lesson not available (yet)</h3>
+			<h3 className="forbidden-header" >{props.t('not-available-yet')}</h3>
 		</div>
 	);
 };
