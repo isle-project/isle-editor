@@ -103,6 +103,7 @@ function isHTMLConfig( elem ) {
 * @property {boolean} provideFeedback - controls whether to show students feedback on correctness of their answers after quiz completion
 * @property {boolean} active - controls whether the timer for the quiz is active
 * @property {number} duration - duration of the quiz (in minutes); once time is up, the summary page will be displayed
+* @property {boolean} downloadButton - controls whether to display a button for downloading the responses
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
 * @property {Function} onSubmit - callback invoked when user submits an answer
 */
@@ -453,9 +454,9 @@ class Quiz extends Component {
 					})}
 				</tbody>
 			</table>
-			<Button onClick={this.downloadResponsesFactory( answers )} >
+			{this.props.downloadButton ? <Button onClick={this.downloadResponsesFactory( answers )} >
 				{this.props.t('download-pdf')}
-			</Button>
+			</Button> : null}
 		</div> );
 	}
 
@@ -711,6 +712,7 @@ Quiz.propTypes = {
 	provideFeedback: PropTypes.bool,
 	showFinishButton: PropTypes.bool,
 	finishLabel: PropTypes.string,
+	downloadButton: PropTypes.bool,
 	onFinished: PropTypes.func,
 	onSubmit: PropTypes.func
 };
@@ -727,6 +729,7 @@ Quiz.defaultProps = {
 	provideFeedback: true,
 	showFinishButton: false,
 	finishLabel: null,
+	downloadButton: true,
 	onFinished() {},
 	onSubmit() {}
 };
