@@ -342,15 +342,22 @@ class Toolbar extends Component {
 				</ButtonGroup>
 				<Engagement session={this.context} onHide={this.toggleEngagement} />
 				{this.state.sketchpad ?
-					<Draggable resizable onResize={( event, direction, ref ) => {
-						this.setState({
-							sketchpadWidth: pixelsToNumber( ref.style.width ) - 50,
-							sketchpadHeight: pixelsToNumber( ref.style.height ) - 150
-						});
-					}} default={{
-						width: this.state.sketchpadWidth + 50,
-						height: this.state.sketchpadHeight + 150
-					}} minWidth={510} minHeight={300} cancel=".textLayer,.btn" >
+					<Draggable
+						resizable
+						onResize={( event, direction, ref ) => {
+							this.setState({
+								sketchpadWidth: pixelsToNumber( ref.style.width ) - 50,
+								sketchpadHeight: pixelsToNumber( ref.style.height ) - 150
+							});
+						}}
+						default={{
+							width: this.state.sketchpadWidth + 50,
+							height: this.state.sketchpadHeight + 150
+						}}
+						minWidth={510}
+						minHeight={300}
+						cancel=".textLayer,.btn"
+					>
 						<Panel
 							title={this.props.t( 'sketchpad' )}
 							style={{ maxWidth: 'none' }}
