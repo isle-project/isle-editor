@@ -3,6 +3,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import './action.css';
@@ -36,6 +37,21 @@ const Action = ( props ) => {
 					{value}
 				</span>
 			</div>
+			<Button
+				variant="outline-danger"
+				size="sm"
+				onClick={() => {
+					props.onDelete( props.sessiondataID );
+				}}
+				aria-label={props.t('delete')}
+				style={{
+					position: 'absolute',
+					top: 6,
+					right: 6
+				}}
+			>
+				<span className="fa fa-trash" />
+			</Button>
 		</ListGroupItem>
 	);
 };

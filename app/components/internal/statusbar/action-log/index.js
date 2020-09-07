@@ -337,6 +337,7 @@ class ActionLog extends Component {
 					});
 				}} />
 				<ActionList
+					session={session}
 					actions={this.state.actions}
 					period={this.state.period}
 					filter={this.state.filter}

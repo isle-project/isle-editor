@@ -2,10 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import logger from 'debug';
 import ReactList from 'react-list';
 import copy from '@stdlib/utils/copy';
 import isObjectLike from '@stdlib/assert/is-object-like';
+import DeleteModal from 'components/internal/delete-modal';
 import Action from './action.js';
 import createFilters from './create_filters';
 
@@ -25,7 +27,9 @@ class ActionList extends Component {
 		super( props );
 
 		this.state = {
-			actions: props.actions
+			actions: props.actions,
+			showDeleteModal: false,
+			deleteModelActionID: null
 		};
 	}
 
@@ -70,6 +74,34 @@ class ActionList extends Component {
 		return lines;
 	}
 
+	openDeleteModal = ( id ) => {
+		console.log( 'Open delete modal for action with id '+id );
+		this.setState({
+			showDeleteModal: !this.state.showDeleteModal,
+			deleteModelActionID: id
+		});
+	}
+
+	closeDeleteModal = () => {
+		console.log( 'Close delete modal...' );
+		this.setState({
+			showDeleteModal: false
+		});
+	}
+
+	deleteAction = () => {
+		const id = this.state.deleteModelActionID;
+
+		debug( 'Should delete action with id: '+id );
+		const session = this.props.session;
+		session.removeSessionElementFromDB( id, ( err ) => {
+			if ( err ) {
+				debug( 'Encountered an error: '+err.message );
+			}
+			this.closeDeleteModal();
+		});
+	}
+
 	renderItem = ( index, key ) => {
 		debug( `Render ${index}th item` );
 		const action = this.state.actions[ index ];
@@ -86,6 +118,7 @@ class ActionList extends Component {
 				backgroundColor={backgroundColor}
 				color={color}
 				clickFactory={this.clickFactory}
+				onDelete={this.openDeleteModal}
 				{...action}
 			/>
 		);
@@ -109,13 +142,18 @@ class ActionList extends Component {
 		return (
 			<div style={{ overflowY: 'scroll', height: height }}>
 				{list}
+				<DeleteModal
+					show={this.state.showDeleteModal}
+					onDelete={this.deleteAction}
+					onClose={this.closeDeleteModal}
+				/>
 			</div>
 		);
 	}
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
 ActionList.defaultProps = {
 	actions: [],
@@ -137,10 +175,11 @@ ActionList.propTypes = {
 			from: PropTypes.object,
 			to: PropTypes.object
 		}
-	).isRequired
+	).isRequired,
+	session: PropTypes.object.isRequired
 };
 
 
 // EXPORTS //
 
-export default ActionList;
+export default withTranslation()( ActionList );

@@ -9,12 +9,12 @@ import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Modal from 'react-bootstrap/Modal';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import Gate from 'components/gate';
 import OverlayTrigger from 'components/overlay-trigger';
 import Tooltip from 'components/tooltip';
+import DeleteModal from 'components/internal/delete-modal';
 import SessionContext from 'session/context.js';
 import isUserInCohort from 'utils/is-user-in-cohort';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from 'constants/actions.js';
@@ -387,30 +387,6 @@ class ResponseVisualizer extends Component {
 		return tooltip;
 	}
 
-	renderDeleteModal() {
-		return ( <Modal
-			show={this.state.showDeleteModal}
-			style={{ zIndex: 2000 }}
-			backdropClassName="modal-backdrop-second-order"
-		>
-			<Modal.Header>
-				<Modal.Title>{this.props.t('delete-title')}</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				{this.props.t('delete-body')}
-			</Modal.Body>
-			<Modal.Footer>
-				<Button onClick={this.closeDeleteModal}>{this.props.t('cancel')}</Button>
-				<Button
-					variant="warning"
-					onClick={this.deleteSelectedAction}
-				>
-					{this.props.t('delete')}
-				</Button>
-			</Modal.Footer>
-		</Modal> );
-	}
-
 	renderFullscreenModal() {
 		const optionalProps = {};
 		if ( this.props.buttonLabel ) {
@@ -497,7 +473,11 @@ class ResponseVisualizer extends Component {
 						</OverlayTrigger>
 					</ButtonGroup>
 				</Gate>
-				{this.renderDeleteModal()}
+				<DeleteModal
+					show={this.state.showDeleteModal}
+					onDelete={this.deleteSelectedAction}
+					onClose={this.closeDeleteModal}
+				/>
 			</div>
 		);
 	}
