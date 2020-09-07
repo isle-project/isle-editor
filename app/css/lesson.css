@@ -64,7 +64,8 @@ pre code {
 
 .Lesson > p,
 .Lesson > .outer-element > p,
-.Lesson > .outer-element > .outer-element > p {
+.Lesson > .outer-element > .outer-element > p,
+.Lesson > .outer-element > .outer-element > .outer-element > p {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
@@ -439,21 +440,27 @@ h1 {
 .Lesson > h1,
 .Lesson > .outer-element > h1,
 .Lesson > .outer-element > .outer-element > h1,
+.Lesson > .outer-element > .outer-element > .outer-element > h1,
 .Lesson > h2,
 .Lesson > .outer-element > h2,
 .Lesson > .outer-element > .outer-element > h2,
+.Lesson > .outer-element > .outer-element > .outer-element > h2,
 .Lesson > h3,
 .Lesson > .outer-element > h3,
 .Lesson > .outer-element > .outer-element > h3,
+.Lesson > .outer-element > .outer-element > .outer-element > h3,
 .Lesson > h4,
 .Lesson > .outer-element > h4,
 .Lesson > .outer-element > .outer-element > h4,
+.Lesson > .outer-element > .outer-element > .outer-element > h4,
 .Lesson > h5,
 .Lesson > .outer-element > h5,
 .Lesson > .outer-element > .outer-element > h5,
+.Lesson > .outer-element > .outer-element > .outer-element > h5,
 .Lesson > h6,
 .Lesson > .outer-element > h6,
-.Lesson > .outer-element > .outer-element > h6 {
+.Lesson > .outer-element > .outer-element > h6,
+.Lesson > .outer-element > .outer-element > .outer-element > h6 {
 	text-align: center;
 	max-width: 1200px;
 	margin-left: auto;
@@ -463,9 +470,11 @@ h1 {
 .Lesson > p,
 .Lesson > .outer-element > p,
 .Lesson > .outer-element > .outer-element > p,
+.Lesson > .outer-element > .outer-element > .outer-element > p,
 .Lesson > pre,
 .Lesson > .outer-element > pre,
-.Lesson > .outer-element > .outer-element > pre {
+.Lesson > .outer-element > .outer-element > pre,
+.Lesson > .outer-element > .outer-element > .outer-element > pre {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -474,7 +483,8 @@ h1 {
 .Lesson > img,
 .Lesson > p > img,
 .Lesson > .outer-element > img,
-.Lesson > .outer-element > .outer-element > img {
+.Lesson > .outer-element > .outer-element > img,
+.Lesson > .outer-element > .outer-element > .outer-element > img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -575,7 +585,8 @@ a {
 
 .Lesson > ul,
 .Lesson > .outer-element > ul,
-.Lesson > .outer-element > .outer-element > ul {
+.Lesson > .outer-element > .outer-element > ul,
+.Lesson > .outer-element > .outer-element > .outer-element > ul {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
@@ -584,7 +595,8 @@ a {
 
 .Lesson > ol,
 .Lesson > .outer-element > ol,
-.Lesson > .outer-element > .outer-element > ol {
+.Lesson > .outer-element > .outer-element > ol,
+.Lesson > .outer-element > .outer-element > .outer-element > ol {
 	list-style-position: outside !important;
 	margin-left: auto;
 	margin-right: auto;
@@ -623,6 +635,7 @@ a {
 .Lesson > blockquote,
 .Lesson > .outer-element > blockquote,
 .Lesson > .outer-element > .outer-element > blockquote,
+.Lesson > .outer-element > .outer-element > .outer-element > blockquote,
 .Presentation blockquote {
 	font-size: 1.4em;
 	width: 60%;
@@ -639,6 +652,7 @@ a {
 .Lesson > blockquote::before,
 .Lesson > .outer-element > blockquote::before,
 .Lesson > .outer-element > .outer-element > blockquote::before,
+.Lesson > .outer-element > .outer-element > .outer-element > blockquote::before,
 .Presentation blockquote::before {
 	font-family: Arial;
 	content: "\201C";
@@ -652,6 +666,7 @@ a {
 .Lesson > blockquote::after,
 .Lesson > .outer-element > blockquote::after,
 .Lesson > .outer-element > .outer-element > blockquote::after,
+.Lesson > .outer-element > .outer-element > .outer-element > blockquote::after,
 .Presentation blockquote::after {
 	font-family: Arial;
 	content: "\201D";
@@ -664,7 +679,8 @@ a {
 
 .Lesson > .alert,
 .Lesson > .outer-element > .alert,
-.Lesson > .outer-element > .outer-element > .alert {
+.Lesson > .outer-element > .outer-element > .alert,
+.Lesson > .outer-element > .outer-element >  .outer-element > .alert {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
