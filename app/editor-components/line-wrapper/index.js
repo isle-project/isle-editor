@@ -151,7 +151,7 @@ class LineWrapper extends Component {
 			return (
 				<span
 					id={`line-${startLineNumber}-${startColumn}`}
-					className="line-wrapper"
+					className="line-wrapper outer-element"
 					onDoubleClick={this.handleDoubleClick}
 					title={outerTitle}
 					style={this.state.style}
@@ -166,7 +166,7 @@ class LineWrapper extends Component {
 		return (
 			<div
 				id={`line-${startLineNumber}-${startColumn}`}
-				className="line-wrapper"
+				className="line-wrapper outer-element"
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
 				style={this.state.style}

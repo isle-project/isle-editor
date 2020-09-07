@@ -116,7 +116,7 @@ class Gate extends Component {
 	renderChildren( authenticated ) {
 		return (
 			<div
-				className="line-wrapper"
+				className="gate outer-element"
 				style={{
 					display: authenticated ? 'inherit' : 'none'
 				}}
