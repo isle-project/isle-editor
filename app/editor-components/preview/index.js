@@ -29,7 +29,11 @@ import './preview.css';
 // VARIABLES //
 
 const OPTS = {
-	plugins: [ pluginTransformJSX ]
+	plugins: [ pluginTransformJSX ],
+	retainLines: false,
+	sourceMaps: false,
+	ast: false,
+	comments: false
 };
 const debug = logger( 'isle-editor:preview' );
 const RE_LINES = /\r?\n/g;
