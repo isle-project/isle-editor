@@ -460,7 +460,7 @@ class ResponseVisualizer extends Component {
 							</Button>
 						</Tooltip>
 						<OverlayTrigger
-							trigger="hover"
+							trigger={['hover', 'focus']}
 							placement="top"
 							overlay={this.renderTooltip()}
 						>
