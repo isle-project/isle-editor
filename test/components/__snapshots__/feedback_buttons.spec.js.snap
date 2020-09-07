@@ -70,7 +70,7 @@ exports[`renders feedback buttons (vertical format) 1`] = `
       }
     >
       <div
-        className="line-wrapper"
+        className="gate outer-element"
         style={
           Object {
             "display": "none",
@@ -124,6 +124,8 @@ exports[`renders feedback buttons (vertical format) 1`] = `
           </button>
           <div
             className="progress"
+            onBlur={[Function]}
+            onFocus={[Function]}
             onMouseOut={[Function]}
             onMouseOver={[Function]}
             style={
@@ -262,7 +264,7 @@ exports[`renders feedback buttons with custom messages 1`] = `
       }
     >
       <div
-        className="line-wrapper"
+        className="gate outer-element"
         style={
           Object {
             "display": "none",
@@ -316,6 +318,8 @@ exports[`renders feedback buttons with custom messages 1`] = `
           </button>
           <div
             className="progress"
+            onBlur={[Function]}
+            onFocus={[Function]}
             onMouseOut={[Function]}
             onMouseOver={[Function]}
             style={
@@ -439,7 +443,7 @@ exports[`renders feedback buttons without option to supply custom feedback 1`] =
       }
     >
       <div
-        className="line-wrapper"
+        className="gate outer-element"
         style={
           Object {
             "display": "none",
@@ -493,6 +497,8 @@ exports[`renders feedback buttons without option to supply custom feedback 1`] =
           </button>
           <div
             className="progress"
+            onBlur={[Function]}
+            onFocus={[Function]}
             onMouseOut={[Function]}
             onMouseOver={[Function]}
             style={
