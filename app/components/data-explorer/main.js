@@ -488,6 +488,7 @@ class DataExplorer extends Component {
 		let newCategorical;
 		let groupVars;
 		let newData;
+		debug( `Attach transformed variable ${name} to data...` );
 		if ( !varState ) {
 			newData = copy( this.state.data, 1 );
 			newQuantitative = this.state.quantitative.slice();

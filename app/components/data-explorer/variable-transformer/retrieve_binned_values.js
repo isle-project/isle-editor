@@ -1,6 +1,6 @@
 // MODULES //
 
-import isNull from '@stdlib/assert/is-null';
+import isUndefined from '@stdlib/assert/is-undefined';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 
@@ -19,25 +19,27 @@ function retrieveBinnedValues( rawData, catNames, xBreaks ) {
 	const newVar = [];
 	let hasMissing = false;
 	for ( let i = 0; i < rawData.length; i++ ) {
-		let newLabel = null;
+		let newLabel = void 0;
 		const val = rawData[ i ];
 		if ( isNumber( val ) && !isnan( val ) ) {
 			let breakInd = 0;
-			while ( isNull( newLabel) ) {
-				if ( breakInd >= catNames.length ) {
-					newLabel = catNames[ catNames.length - 1 ];
-				} else if ( val < xBreaks[ breakInd ] ) {
+			while ( isUndefined( newLabel ) ) {
+				if (
+					breakInd >= xBreaks.length || // exhausted all break points
+					val < xBreaks[ breakInd ] // value is smaller than current break point
+				) {
 					newLabel = catNames[ breakInd ];
 				} else {
 					breakInd += 1;
 				}
 			}
 		} else {
+			newLabel = null;
 			hasMissing = true;
 		}
 		newVar.push( newLabel );
 	}
-	if ( hasMissing ) {
+	if ( hasMissing && !catNames.includes( null ) ) {
 		catNames.push( null );
 	}
 	return newVar;
