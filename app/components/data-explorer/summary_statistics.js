@@ -24,6 +24,7 @@ import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 
 
@@ -116,7 +117,7 @@ function byWithCount( arr, factor, funs, group ) {
 			keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
 		}
 	} else if ( group.length === 1 && group[ 0 ].categories ) {
-		keys = group[ 0 ].categories;
+		keys = extractUsedCategories( table, group[ 0 ] );
 	} else {
 		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
 	}
@@ -131,8 +132,8 @@ function byWithCount( arr, factor, funs, group ) {
 	return out;
 }
 
-function by2WithCount( arr1, arr2, factor, funs, groups ) {
-	let out = {};
+function by2WithCount( arr1, arr2, factor, funs, group ) {
+	let result = {};
 	let ret1 = {};
 	let ret2 = {};
 	for ( let i = 0; i < factor.length; i++ ) {
@@ -144,20 +145,20 @@ function by2WithCount( arr1, arr2, factor, funs, groups ) {
 		ret2[ factor[ i ] ].push( arr2[ i ]);
 	}
 	let keys;
-	if ( groups ) {
-		keys = groups;
+	if ( group.length === 1 ) {
+		keys = extractUsedCategories( ret1, group[ 0 ] );
 	} else {
 		keys = objectKeys( ret1 );
 		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
 	}
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
-		out[ key ] = {
+		result[ key ] = {
 			value: funs.map( f => f( ret1[ key ], ret2[ key ]) ),
 			size: ret1[ key ].length
 		};
 	}
-	return out;
+	return { keys, result };
 }
 
 
@@ -320,9 +321,9 @@ class SummaryStatistics extends Component {
 					}
 				}
 				if ( statLabels[ 0 ] === 'Correlation' ) {
-					const groupCats = group.length === 1 ? group[ 0 ].categories : null;
-					res = by2WithCount( x, y, groupData, funs, groupCats );
-					const keys = groupCats || objectKeys( res );
+					const out = by2WithCount( x, y, groupData, funs, group );
+					res = out.result;
+					const keys = out.keys;
 					for ( let i = 0; i < keys.length; i++ ) {
 						const key = keys[ i ];
 
