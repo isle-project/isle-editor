@@ -12,7 +12,6 @@ import selectStyles from 'components/input/select/styles';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import objectKeys from '@stdlib/utils/keys';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
