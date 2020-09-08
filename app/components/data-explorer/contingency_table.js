@@ -14,7 +14,6 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import { DATA_EXPLORER_CONTINGENCY_TABLE } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
@@ -74,29 +73,28 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 		}
 	}
 	let columnTotals = [];
-	for ( let key in colFreqs ) {
-		if ( hasOwnProp( colFreqs, key ) ) {
-			let colfreq = colFreqs[ key ];
-			let rowPercent = null;
-			if ( displayRowPercent && !relativeFreqs ) {
-				rowPercent = <Fragment>
-					<br />
-					({(colfreq / nobs).toFixed( nDecimalPlaces )})
-				</Fragment>;
-			}
-			if ( relativeFreqs ) {
-				colfreq /= nobs;
-				colfreq = colfreq.toFixed( nDecimalPlaces );
-			}
-			columnTotals.push( <td>
-				{colfreq}
-				{rowPercent}
-				{ displayColPercent ? <Fragment>
-					<br />
-					(1.0)
-				</Fragment> : null }
-			</td> );
+	for ( let i = 0; i < colKeys.length; i++ ) {
+		const key = colKeys[ i ];
+		let colfreq = colFreqs[ key ];
+		let rowPercent = null;
+		if ( displayRowPercent && !relativeFreqs ) {
+			rowPercent = <Fragment>
+				<br />
+				({(colfreq / nobs).toFixed( nDecimalPlaces )})
+			</Fragment>;
 		}
+		if ( relativeFreqs ) {
+			colfreq /= nobs;
+			colfreq = colfreq.toFixed( nDecimalPlaces );
+		}
+		columnTotals.push( <td>
+			{colfreq}
+			{rowPercent}
+			{ displayColPercent ? <Fragment>
+				<br />
+				(1.0)
+			</Fragment> : null }
+		</td> );
 	}
 	let table = <Table bordered size="sm">
 		<thead>
