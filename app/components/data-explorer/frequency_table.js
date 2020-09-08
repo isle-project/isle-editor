@@ -13,6 +13,7 @@ import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import { DATA_EXPLORER_FREQUENCY_TABLE } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import by from './by.js';
 import QuestionButton from './question_button.js';
 
@@ -31,7 +32,7 @@ function getFrequencies( variable, x, relativeFreqs ) {
 	const counts = countBy( x, identity );
 	let keys;
 	if ( variable.categories ) {
-		keys = variable.categories;
+		keys = extractUsedCategories( counts, variable );
 	} else {
 		keys = objectKeys( counts );
 		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );

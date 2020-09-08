@@ -13,11 +13,11 @@ import SelectInput from 'components/input/select';
 import selectStyles from 'components/input/select/styles';
 import Plotly from 'components/plotly';
 import CheckboxInput from 'components/input/checkbox';
-import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import randomstring from 'utils/randomstring/alphanumeric';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
 import statistic from 'utils/statistic';
 import by2 from './by2.js';
@@ -69,7 +69,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		} else {
 			freqs = countBy( data[ variable ], identity );
 		}
-		const categories = variable.categories || objectKeys( freqs );
+		const categories = extractUsedCategories( freqs, variable );
 		for ( let i = 0; i < categories.length; i++ ) {
 			categories[ i ] = String( categories[ i ] );
 			allCats.add( categories[ i ] );
@@ -109,13 +109,13 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			});
 		}
 		traces = [];
-		const keys = variable.categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, variable );
 		if ( relative ) {
 			const catCounts = countBy( data[ group ], identity );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];
-				const categories = group.categories || objectKeys( val );
+				const categories = extractUsedCategories( val, group );
 				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
@@ -147,7 +147,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const val = freqs[ key ];
-				const categories = group.categories || objectKeys( val );
+				const categories = extractUsedCategories( val, group );
 				categories.forEach( allCats.add, allCats );
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {

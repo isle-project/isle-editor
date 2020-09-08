@@ -12,7 +12,6 @@ import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import objectKeys from '@stdlib/utils/keys';
 import linspace from '@stdlib/math/utils/linspace';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
@@ -27,6 +26,7 @@ import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import iqr from 'utils/statistic/iqr';
 import { DATA_EXPLORER_SHARE_HISTOGRAM, DATA_EXPLORER_HISTOGRAM } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import kernelSmoothDensity from './kernel_smooth_density.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -158,7 +158,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			return nonmissing;
 		});
 		traces = [];
-		const keys = group.categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / nCols );
 		if ( groupMode === 'Facets' ) {

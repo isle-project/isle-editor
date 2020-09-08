@@ -7,13 +7,13 @@ import Button from 'react-bootstrap/Button';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import sum from 'utils/statistic/sum';
 import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -39,7 +39,7 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 		} else {
 			freqs = countBy( data[ variable ], identity );
 		}
-		const categories = variable.categories || objectKeys( freqs );
+		const categories = extractUsedCategories( freqs, variable );
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
@@ -53,7 +53,7 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 		const freqs = by( data[ variable ], data[ group ], arr => {
 			return countBy( arr, identity );
 		});
-		const keys = group.categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / 2 );
 		const nCols = 2;
@@ -65,7 +65,7 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 			const row = floor( i / nCols );
 			const col = i - ( row*nCols );
 			const val = freqs[ key ];
-			const categories = variable.categories || objectKeys( val );
+			const categories = extractUsedCategories( val, variable.categories );
 			const counts = new Array( categories.length );
 			for ( let i = 0; i < categories.length; i++ ) {
 				counts[ i ] = val[ categories[ i ] ];

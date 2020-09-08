@@ -12,7 +12,7 @@ import selectStyles from 'components/input/select/styles';
 import CheckboxInput from 'components/input/checkbox';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import objectKeys from '@stdlib/utils/keys';
+import extractUsedCategories from './extract_used_categories.js';
 import { DATA_EXPLORER_SHARE_LINEPLOT, DATA_EXPLORER_LINEPLOT } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -59,7 +59,7 @@ export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) 
 			return arr;
 		});
 		traces = [];
-		const keys = group.categories || objectKeys( ygrouped );
+		const keys = extractUsedCategories( ygrouped, group );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			traces.push({

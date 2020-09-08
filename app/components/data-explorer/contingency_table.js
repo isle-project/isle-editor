@@ -14,6 +14,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
+import extractUsedCategories from './extract_used_categories.js';
 import { DATA_EXPLORER_CONTINGENCY_TABLE } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
@@ -43,14 +44,14 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 
 	let rowKeys;
 	if ( rowVar.categories ) {
-		rowKeys = rowVar.categories;
+		rowKeys = extractUsedCategories( rowFreqs, rowVar );
 	} else {
 		rowKeys = objectKeys( rowFreqs );
 		rowKeys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
 	}
 	let colKeys;
 	if ( colVar.categories ) {
-		colKeys = colVar.categories;
+		colKeys = extractUsedCategories( colFreqs, colVar );
 	} else {
 		colKeys = objectKeys( colFreqs );
 		colKeys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
@@ -181,7 +182,8 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 		groupedData[ v ][ colVar ].push( data[ colVar ][ i ]);
 	}
 	let table = [];
-	const keys = group.categories || objectKeys( groupedData );
+	const keys = extractUsedCategories( groupedData, group );
+
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) );

@@ -16,6 +16,7 @@ import objectKeys from '@stdlib/utils/keys';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -58,7 +59,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 			return arr;
 		});
 		traces = [];
-		const keys = group[ 0 ].categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, group[ 0 ] );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const values = freqs[ key ];
@@ -89,7 +90,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 			return arr;
 		});
 		traces = [];
-		const keys = group.categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, group );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			let x;

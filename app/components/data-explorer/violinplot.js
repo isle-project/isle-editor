@@ -7,8 +7,8 @@ import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
 import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
-import objectKeys from '@stdlib/utils/keys';
 import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from 'constants/actions.js';
+import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
 
@@ -37,7 +37,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 			return arr;
 		});
 		traces = [];
-		const keys = group.categories || objectKeys( freqs );
+		const keys = extractUsedCategories( freqs, group );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const val = freqs[ key ];
