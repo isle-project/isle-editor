@@ -581,6 +581,13 @@ class Sketchpad extends Component {
 		) {
 			this.redraw();
 		}
+		if (
+			this.props.fill !== prevProps.fill
+		) {
+			this.setState({
+				fill: this.props.fill
+			}, this.redraw );
+		}
 	}
 
 	componentWillUnmount() {
@@ -2719,6 +2726,7 @@ class Sketchpad extends Component {
 							width: this.state.canvasWidth,
 							height: this.state.canvasHeight
 						}}
+						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
 						ref={( div ) => { this.canvasWrapper = div; }}
 					>
 						{this.renderHTMLOverlays()}
