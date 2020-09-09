@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import MLR from 'ml-regression-multivariate-linear';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import isnan from '@stdlib/assert/is-nan';
 import unique from 'uniq';
 import copy from '@stdlib/utils/copy';
 import abs from '@stdlib/math/base/special/abs';
@@ -23,8 +26,8 @@ import { generateQQPlotConfig } from './qqplot.js';
 import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import mean from 'utils/statistic/mean';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import QuestionButton from './question_button.js';
-import uniqueNonMissing from './unique_nonmissing.js';
 
 
 // VARIABLES //
@@ -35,7 +38,16 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-function designMatrix( x, data, quantitative, intercept ) {
+
+function isMissing( x ) {
+	return isnan( x ) || isUndefinedOrNull( x );
+}
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
+function designMatrix( x, y, data, quantitative, intercept ) {
 	const matrix = [];
 	const predictors = [];
 	const hash = {};
@@ -45,7 +57,7 @@ function designMatrix( x, data, quantitative, intercept ) {
 		if ( contains( quantitative, x[ j ] ) ) {
 			predictors.push( x[ j ] );
 		} else {
-			const categories = x[ j ].categories || uniqueNonMissing( values );
+			const categories = extractCategoriesFromValues( values, x[ j ] );
 			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
 				predictors.push( `${x[ j ]}_${categories[ k ]}` );
 			}
@@ -68,7 +80,57 @@ function designMatrix( x, data, quantitative, intercept ) {
 		}
 		matrix.push( row );
 	}
-	return { matrix, predictors };
+	const yvalues = data[ y ].map( x => [ x ]);
+	return { matrix, predictors, yvalues, nobs };
+}
+
+function designMatrixMissing( x, y, data, quantitative, intercept ) {
+	const matrix = [];
+	const predictors = [];
+	const hash = {};
+	const nobs = data[ x[ 0 ] ].length;
+	const yvalues = [];
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = extractCategoriesFromValues( values, x[ j ] );
+			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	for ( let i = 0; i < nobs; i++ ) {
+		const row = [];
+		let missing = false;
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				if ( isNonMissingNumber( values[ i ] ) ) {
+					row.push( values[ i ] );
+				} else {
+					missing = true;
+				}
+			} else {
+				const val = values[ i ];
+				if ( isMissing( val ) ) {
+					missing = true;
+				} else {
+					const categories = hash[ x[ j ] ];
+					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+						row.push( ( val === categories[ k ] ) ? 1 : 0 );
+					}
+				}
+			}
+		}
+		if ( !missing ) {
+			matrix.push( row );
+			yvalues.push( [ data[ y ][ i ] ] );
+		}
+	}
+	return { matrix, predictors, yvalues, nobs };
 }
 
 const summaryTable = ( y, x, nobs, result ) => {
@@ -116,14 +178,13 @@ class MultipleLinearRegression extends Component {
 		super( props );
 	}
 
-	compute = ( y, x, intercept ) => {
+	compute = ( y, x, intercept, omitMissing ) => {
 		COUNTER += 1;
-		let yvalues = this.props.data[ y ].map( v => [ v ]);
-		const n = yvalues.length;
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
+		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, this.props.data, this.props.quantitative, intercept );
 		const result = new MLR( matrix, yvalues, {
 			intercept
 		});
@@ -133,7 +194,7 @@ class MultipleLinearRegression extends Component {
 		for ( let i = 0; i < yhat.length; i++ ) {
 			mss += pow( yhat[ i ] - avgFitted, 2 );
 		}
-		const resid = subtract( yhat, this.props.data[ y ] );
+		const resid = subtract( yhat, yvalues );
 		let rss = 0;
 		for ( let i = 0; i < resid.length; i++ ) {
 			rss += pow( resid[ i ], 2 );
@@ -144,17 +205,17 @@ class MultipleLinearRegression extends Component {
 		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, action );
 		const p = predictors.length;
 		const rSquared = mss / ( mss + rss );
-		const adjRSquared = 1 - ( 1 - rSquared ) * ( n - 1 ) / ( n - p - 1 );
-		const fScore = ( mss / p ) / ( rss / ( n - p - 1 ) );
+		const adjRSquared = 1 - ( 1 - rSquared ) * ( nobs - 1 ) / ( nobs - p - 1 );
+		const fScore = ( mss / p ) / ( rss / ( nobs - p - 1 ) );
 		const output = {
 			variable: 'Regression Summary',
 			type: 'Multiple Linear Regression',
 			value: <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {y} (model id: lm{COUNTER})</span>
-				{summaryTable( y, predictors, n, result )}
+				{summaryTable( y, predictors, nobs, result )}
 				<p>Residual standard error: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
-				<p>F-statistic: {fScore.toFixed( 3 )} (df: {n-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, n-p-1 )).toFixed( 6 )}</p>
+				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				<Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {
 						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
@@ -242,6 +303,10 @@ class MultipleLinearRegression extends Component {
 				<CheckboxInput
 					legend="Include intercept?"
 					defaultValue={true}
+				/>
+				<CheckboxInput
+					legend="Omit missing values"
+					defaultValue={false}
 				/>
 			</Dashboard>
 		);
