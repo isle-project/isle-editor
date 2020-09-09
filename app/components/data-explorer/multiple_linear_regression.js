@@ -110,11 +110,13 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 					row.push( values[ i ] );
 				} else {
 					missing = true;
+					break;
 				}
 			} else {
 				const val = values[ i ];
 				if ( isMissing( val ) ) {
 					missing = true;
+					break;
 				} else {
 					const categories = hash[ x[ j ] ];
 					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
