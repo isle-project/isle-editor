@@ -15,6 +15,9 @@ import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import isnan from '@stdlib/assert/is-nan';
 import roundn from '@stdlib/math/base/special/roundn';
 import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
@@ -25,6 +28,7 @@ import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import QuestionButton from './question_button.js';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import irls from './glm/logistic_regression.js';
 
 
@@ -36,7 +40,15 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-function designMatrix( x, data, quantitative, intercept ) {
+function isMissing( x ) {
+	return isnan( x ) || isUndefinedOrNull( x );
+}
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
+function designMatrix( x, y, data, quantitative, intercept, success ) {
 	const predictors = [];
 	const hash = {};
 	const nobs = data[ x[ 0 ] ].length;
@@ -45,7 +57,7 @@ function designMatrix( x, data, quantitative, intercept ) {
 		if ( contains( quantitative, x[ j ] ) ) {
 			predictors.push( x[ j ] );
 		} else {
-			const categories = x[ j ].categories || uniq( values.slice() );
+			const categories = extractCategoriesFromValues( values, x[ j ] );
 			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
 				predictors.push( `${x[ j ]}_${categories[ k ]}` );
 			}
@@ -76,7 +88,65 @@ function designMatrix( x, data, quantitative, intercept ) {
 	const matrix = ndarray( buffer, {
 		shape: [ nobs, predictors.length+1 ]
 	});
-	return { matrix, predictors };
+	const yvalues = data[ y ].map( v => {
+		return v === success ? 1 : 0;
+	});
+	return { matrix, predictors, yvalues, nobs };
+}
+
+function designMatrixMissing( x, y, data, quantitative, intercept, success ) {
+	const predictors = [];
+	const hash = {};
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = extractCategoriesFromValues( values, x[ j ] );
+			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	let buffer = [];
+	const yvalues = [];
+	for ( let i = 0; i < data[ x[ 0 ] ].length; i++ ) {
+		let missing = false;
+		const row = [];
+		if ( intercept ) {
+			row.push( 1 );
+		}
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				if ( isNonMissingNumber( values[ i ] ) ) {
+					row.push( values[ i ] );
+				} else {
+					missing = true;
+				}
+			} else {
+				const val = values[ i ];
+				if ( isMissing( val ) ) {
+					missing = true;
+				} else {
+					const categories = hash[ x[ j ] ];
+					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
+						row.push( ( val === categories[ k ] ) ? 1 : 0 );
+					}
+				}
+			}
+		}
+		if ( !missing ) {
+			buffer = buffer.concat( row );
+			yvalues.push( data[ y ][ i ] === success ? 1 : 0 );
+		}
+	}
+	const nobs = yvalues.length;
+	const matrix = ndarray( buffer, {
+		shape: [ nobs, predictors.length+1 ]
+	});
+	return { matrix, predictors, yvalues, nobs };
 }
 
 const summaryTable = ( x, intercept, result ) => {
@@ -130,15 +200,7 @@ class LogisticRegression extends Component {
 		let success;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
 			y = props.categorical[ 0 ];
-			if ( y.categories ) {
-				categories = y.categories;
-			} else {
-				const values = props.data[ y ];
-				if ( values ) {
-					categories = values.slice();
-					uniq( categories );
-				}
-			}
+			categories = extractCategoriesFromValues( props.data[ y ], y );
 			success = categories[ categories.length-1 ];
 		} else {
 			categories = [];
@@ -150,22 +212,20 @@ class LogisticRegression extends Component {
 			success,
 			x: props.quantitative[ 0 ],
 			intercept: true,
-			probabilityThreshold: 0.5
+			probabilityThreshold: 0.5,
+			omitMissing: false
 		};
 	}
 
 	compute = () => {
 		COUNTER += 1;
-		let { y, success, x, intercept } = this.state;
-		const yvalues = this.props.data[ y ].map( v => {
-			return v === success ? 1 : 0;
-		});
-		const n = yvalues.length;
+		let { y, success, x, intercept, omitMissing } = this.state;
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
-		const results = irls( matrix, yvalues, n );
+		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
+		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, this.props.data, this.props.quantitative, intercept, success );
+		const results = irls( matrix, yvalues, nobs );
 		this.props.logAction( DATA_EXPLORER_LOGISTIC_REGRESSION, {
 			y, x, intercept
 		});
@@ -285,6 +345,11 @@ class LogisticRegression extends Component {
 						legend="Include intercept?"
 						defaultValue={intercept}
 						onChange={( intercept ) => this.setState({ intercept })}
+					/>
+					<CheckboxInput
+						legend="Omit missing values"
+						defaultValue={false}
+						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
