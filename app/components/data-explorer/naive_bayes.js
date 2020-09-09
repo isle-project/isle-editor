@@ -10,11 +10,16 @@ import ndarray from '@stdlib/ndarray/array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import isnan from '@stdlib/assert/is-nan';
 import exp from '@stdlib/math/base/special/exp';
 import SelectInput from 'components/input/select';
+import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import { gaussian } from './naive-bayes';
 
 
@@ -26,7 +31,15 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-function designMatrix( x, data, quantitative ) {
+function isMissing( x ) {
+	return isnan( x ) || isUndefinedOrNull( x );
+}
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
+function designMatrix( x, y, data, quantitative ) {
 	let matrix = [];
 	const predictors = [];
 	const hash = {};
@@ -35,7 +48,7 @@ function designMatrix( x, data, quantitative ) {
 		if ( contains( quantitative, x[ j ] ) ) {
 			predictors.push( x[ j ] );
 		} else {
-			const categories = x[ j ].categories || uniq( values.slice() );
+			const categories = extractCategoriesFromValues( values, x[ j ] );
 			for ( let k = 0; k < categories.length; k++ ) {
 				predictors.push( `${x[ j ]}_${categories[ k ]}` );
 			}
@@ -60,7 +73,61 @@ function designMatrix( x, data, quantitative ) {
 		matrix.push( row );
 	}
 	matrix = ndarray( matrix );
-	return { matrix, predictors };
+	const yvalues = data[ y ];
+	return { matrix, predictors, yvalues };
+}
+
+function designMatrixMissing( x, y, data, quantitative ) {
+	let matrix = [];
+	const predictors = [];
+	const hash = {};
+	for ( let j = 0; j < x.length; j++ ) {
+		const values = data[ x[ j ] ];
+		if ( contains( quantitative, x[ j ] ) ) {
+			predictors.push( x[ j ] );
+		} else {
+			const categories = extractCategoriesFromValues( values, x[ j ] );
+			for ( let k = 0; k < categories.length; k++ ) {
+				predictors.push( `${x[ j ]}_${categories[ k ]}` );
+			}
+			hash[ x[ j ] ] = categories;
+		}
+	}
+	const nobs = data[ x[ 0 ] ].length;
+	const yvalues = [];
+	for ( let i = 0; i < nobs; i++ ) {
+		const row = [];
+		let missing = false;
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				if ( isNonMissingNumber( values[ i ] ) ) {
+					row.push( values[ i ] );
+				} else {
+					missing = true;
+				}
+			} else {
+				const categories = hash[ x[ j ] ];
+				const val = values[ i ];
+				if ( isMissing( val ) ) {
+					missing = true;
+				} else {
+					for ( let k = 0; k < categories.length; k++ ) {
+						row.push( ( val === categories[ k ] ) ? 1 : 0 );
+					}
+				}
+			}
+		}
+		if ( isMissing( data[ y ][ i ] ) ) {
+			missing = true;
+		}
+		if ( !missing ) {
+			matrix.push( row );
+			yvalues.push( data[ y ][ i ] );
+		}
+	}
+	matrix = ndarray( matrix );
+	return { matrix, predictors, yvalues };
 }
 
 const summaryTable = ( predictors, result, quantitative ) => {
@@ -141,18 +208,19 @@ class NaiveBayes extends Component {
 
 		this.state = {
 			y: props.categorical[ 0 ],
-			x: props.quantitative[ 0 ]
+			x: props.quantitative[ 0 ],
+			omitMissing: false
 		};
 	}
 
 	compute = () => {
 		COUNTER += 1;
-		let { y, x } = this.state;
-		const yvalues = this.props.data[ y ];
+		let { y, x, omitMissing } = this.state;
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		const { matrix, predictors } = designMatrix( x, this.props.data, this.props.quantitative );
+		const designM = omitMissing ? designMatrixMissing : designMatrix;
+		const { matrix, predictors, yvalues } = designM( x, y, this.props.data, this.props.quantitative );
 		const results = gaussian( matrix, yvalues );
 
 		this.props.logAction( DATA_EXPLORER_NAIVE_BAYES, {
@@ -215,6 +283,11 @@ class NaiveBayes extends Component {
 						options={uniq( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
+					/>
+					<CheckboxInput
+						legend="Omit missing values"
+						defaultValue={false}
+						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
 				</Card.Body>
