@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import kmeans from 'ml-kmeans';
 import contains from '@stdlib/assert/contains';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import copy from '@stdlib/utils/copy';
 import incrspace from '@stdlib/math/utils/incrspace';
 import Table from 'components/table';
@@ -22,6 +24,10 @@ const DESCRIPTION = 'Algorithm to partition observations into k clusters by iter
 
 
 // FUNCTIONS //
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
 
 const summaryTable = ( variables, centroids ) => {
 	return (
@@ -65,10 +71,19 @@ class KMeans extends Component {
 		const n = this.props.data[ variables[ 0 ] ].length;
 		for ( let i = 0; i < n; i++ ) {
 			const row = [];
+			let missing = false;
 			for ( let j = 0; j < variables.length; j++ ) {
-				row[ j ] = this.props.data[ variables[ j ] ][ i ];
+				const val = this.props.data[ variables[ j ] ][ i ];
+				if ( isNonMissingNumber( val ) ) {
+					row.push( val );
+				} else {
+					missing = true;
+					break;
+				}
 			}
-			matrix.push( row );
+			if ( !missing ) {
+				matrix.push( row );
+			}
 		}
 		const result = kmeans( matrix, K, {
 			initialization
