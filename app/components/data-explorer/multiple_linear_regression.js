@@ -38,7 +38,6 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-
 function isMissing( x ) {
 	return isnan( x ) || isUndefinedOrNull( x );
 }
