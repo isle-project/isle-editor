@@ -87,8 +87,8 @@ function configureIpcRenderer( store ) {
 				template = DATA_EXPLORER_TEMPLATE;
 				preambleAdditions = {
 					require: {
-						dataFile: '',
-						dataInfoFile: ''
+						dataFile: 'https://isle.stat.cmu.edu/data-explorers_forestfires.json',
+						dataInfoFile: 'https://isle.stat.cmu.edu/data-explorers_forestfires_info.json'
 					}
 				};
 			break;
