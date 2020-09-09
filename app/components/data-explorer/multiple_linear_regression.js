@@ -88,7 +88,6 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 	const matrix = [];
 	const predictors = [];
 	const hash = {};
-	const nobs = data[ x[ 0 ] ].length;
 	const yvalues = [];
 	for ( let j = 0; j < x.length; j++ ) {
 		const values = data[ x[ j ] ];
@@ -102,7 +101,7 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 			hash[ x[ j ] ] = categories;
 		}
 	}
-	for ( let i = 0; i < nobs; i++ ) {
+	for ( let i = 0; i < data[ x[ 0 ] ].length; i++ ) {
 		const row = [];
 		let missing = false;
 		for ( let j = 0; j < x.length; j++ ) {
@@ -130,6 +129,7 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 			yvalues.push( [ data[ y ][ i ] ] );
 		}
 	}
+	const nobs = yvalues.length;
 	return { matrix, predictors, yvalues, nobs };
 }
 
