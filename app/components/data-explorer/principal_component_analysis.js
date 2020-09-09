@@ -7,6 +7,8 @@ import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import Table from 'components/table';
 import incrspace from '@stdlib/math/utils/incrspace';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import Plotly from 'components/plotly';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -17,6 +19,10 @@ import QuestionButton from './question_button.js';
 
 
 // FUNCTIONS //
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
 
 const summaryTable = ( stdev, variance, cumVariance ) => {
 	return (
@@ -63,10 +69,19 @@ class PrincipalComponentAnalysis extends Component {
 		const n = this.props.data[ variables[ 0 ] ].length;
 		for ( let i = 0; i < n; i++ ) {
 			const row = [];
+			let missing = false;
 			for ( let j = 0; j < variables.length; j++ ) {
-				row[ j ] = this.props.data[ variables[ j ] ][ i ];
+				const val = this.props.data[ variables[ j ] ][ i ];
+				if ( isNonMissingNumber( val ) ) {
+					row.push( val );
+				} else {
+					missing = true;
+					break;
+				}
 			}
-			matrix.push( row );
+			if ( !missing ) {
+				matrix.push( row );
+			}
 		}
 		const pca = new PCA( matrix, {
 			center,
