@@ -12,8 +12,8 @@ function isHidden( el ) {
 
 // MAIN //
 
-function scrollIntoView( lineNumber ) {
-	const elem = document.getElementById( 'line-'+lineNumber );
+function scrollIntoView( lineNumber, startColumn ) {
+	const elem = document.getElementById( 'line-'+lineNumber+'-'+startColumn );
 	if ( elem ) {
 		if ( isHidden( elem ) ) {
 			vex.dialog.alert( 'The component is not displayed.' );

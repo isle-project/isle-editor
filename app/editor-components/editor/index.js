@@ -69,7 +69,7 @@ const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
 const NUM_WRAPPER_LINES = 8;
-const RE_TAG_START = /^(?:\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
+const RE_TAG_START = /^(\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
 	glyphMargin: true,
@@ -391,8 +391,9 @@ class Editor extends Component {
 			}, 5000 );
 		});
 
-		this.scrollIntoViewInPreview = this.editor.addCommand( 'scroll-into-view', ( _, line ) => {
-			scrollIntoView( line );
+		this.scrollIntoViewInPreview = this.editor.addCommand( 'scroll-into-view', ( _, line, startColumn ) => {
+			debug( `Scroll line ${line} and column ${startColumn} into view...` );
+			scrollIntoView( line, startColumn );
 		});
 
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
@@ -555,8 +556,8 @@ class Editor extends Component {
 			const selection = this.editor.getSelection();
 			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
 			const lineNumber = selection.startLineNumber;
-			scrollIntoView( lineNumber );
 			const startColumn = max( selection.startColumn - 1, 1 );
+			scrollIntoView( lineNumber, startColumn );
 			const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+startColumn );
 			if ( elem ) {
 				const event = new MouseEvent( 'dblclick', {
@@ -888,12 +889,14 @@ class Editor extends Component {
 					}
 				}
 			}
-			if ( RE_TAG_START.test( line ) ) {
+			const match = RE_TAG_START.exec( line );
+			if ( match ) {
+				const startColumn = match[ 1 ].length + 1;
 				actions.push({
 					command: {
 						id: this.scrollIntoViewInPreview,
 						title: 'Scroll component into view (double-click)',
-						arguments: [ selection.startLineNumber ]
+						arguments: [ selection.startLineNumber, startColumn ]
 					},
 					title: 'Scroll component into view (double-click)'
 				});
