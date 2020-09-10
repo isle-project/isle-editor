@@ -632,7 +632,7 @@
       {
         "name": "editorProps",
         "type": "object",
-        "description": "object to be passed to `TextEditor` indicating properties to be used",
+        "description": "object of properties to be passed to the `TextEditor` (see documentation for <TextEditor />)",
         "defaultValue": null
       },
       {
@@ -646,6 +646,12 @@
         "type": "boolean",
         "description": "boolean value indicating whether to hide the data table from view",
         "defaultValue": true
+      },
+      {
+        "name": "dataTableProps",
+        "type": {},
+        "description": "properties passed to the data table component (see documentation for <DataTable />)",
+        "defaultValue": {}
       },
       {
         "name": "reportMode",
@@ -918,6 +924,12 @@
         "type": "boolean",
         "description": "controls whether to show an ID column",
         "defaultValue": true
+      },
+      {
+        "name": "disableDownload",
+        "type": "boolean",
+        "description": "whether to hide the button to download the data as a CSV or JSON file",
+        "defaultValue": false
       },
       {
         "name": "className",
@@ -1351,13 +1363,13 @@
       {
         "name": "user",
         "type": "boolean",
-        "description": "when set the gated content is displayed to subscribed users",
+        "description": "when set the gated content is displayed to users",
         "defaultValue": false
       },
       {
         "name": "notUser",
         "type": "boolean",
-        "description": "when set the gated content is **not** displayed to subscribed users",
+        "description": "when set the gated content is **not** displayed to users",
         "defaultValue": false
       },
       {
@@ -4844,6 +4856,12 @@
         "type": "string",
         "description": "label of button to finish quiz",
         "defaultValue": null
+      },
+      {
+        "name": "downloadButton",
+        "type": "boolean",
+        "description": "controls whether to display a button for downloading the responses",
+        "defaultValue": true
       },
       {
         "name": "onFinished",

@@ -46,5 +46,6 @@ column, and the table instance). Default: `none`.
 * __onFilteredChange__ | `function`: function invoked with the current filters after data has been filtered by user. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.
 * __showIdColumn__ | `boolean`: controls whether to show an ID column. Default: `true`.
+* __disableDownload__ | `boolean`: whether to hide the button to download the data as a CSV or JSON file. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object. Default: `{}`.

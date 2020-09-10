@@ -21,8 +21,8 @@ An ISLE component that allows to display its children only to reserved audiences
 
 ## Options
 
-* __user__ | `boolean`: when set the gated content is displayed to subscribed users. Default: `false`.
-* __notUser__ | `boolean`: when set the gated content is **not** displayed to subscribed users. Default: `false`.
+* __user__ | `boolean`: when set the gated content is displayed to users. Default: `false`.
+* __notUser__ | `boolean`: when set the gated content is **not** displayed to users. Default: `false`.
 * __enrolled__ | `boolean`: when set the gated content is displayed to the students enrolled in the course. Default: `false`.
 * __notEnrolled__ | `boolean`: when set the gated content is **not** displayed to the students enrolled in the course. Default: `false`.
 * __owner__ | `boolean`: when set the gated content is displayed to the owner of the course (usually the instructor). Default: `false`.

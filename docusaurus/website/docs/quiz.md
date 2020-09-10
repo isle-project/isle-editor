@@ -39,5 +39,6 @@ A quiz component displaying a sequence of question components.
 * __provideFeedback__ | `boolean`: controls whether to show students feedback on correctness of their answers after quiz completion. Default: `true`.
 * __showFinishButton__ | `boolean`: controls whether to display button to finish quiz and jump directly to results page. Default: `false`.
 * __finishLabel__ | `string`: label of button to finish quiz. Default: `none`.
+* __downloadButton__ | `boolean`: controls whether to display a button for downloading the responses. Default: `true`.
 * __onFinished__ | `function`: callback invoked when the quiz is finished and the results page is displayed. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer. Default: `onSubmit() {}`.
