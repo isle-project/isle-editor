@@ -149,7 +149,6 @@ class OrderQuestion extends Component {
 
 	render() {
 		const nHints = this.props.hints.length;
-		console.log( this.props.options );
 		return (
 			<Card id={this.id} className="order-question" style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >

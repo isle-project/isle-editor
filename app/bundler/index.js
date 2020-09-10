@@ -319,9 +319,6 @@ function writeIndexFile({
 }, clbk ) {
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
 
-	console.log( 'BUNDLER');
-	console.log( meta );
-
 	const appDir = join( outputPath, outputDir );
 	const indexPath = join( appDir, 'index.js' );
 	const statsFile = join( appDir, 'stats.json' );

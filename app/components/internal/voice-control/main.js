@@ -17,7 +17,6 @@ import './load_translations.js';
 
 const createTooltip = ( commands, t ) => {
 	if ( commands ) {
-		console.log( i18next.language );
 		const rows = commands.map( ( elem, idx ) => {
 			return ( <tr key={idx} >
 				<td>{ isArray( elem.trigger ) ? elem.trigger.join( ', ' ) : elem.trigger}</td>
