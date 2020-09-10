@@ -115,6 +115,7 @@ import { render } from 'react-dom';
 import { extname } from 'path';
 import * as serviceWorker from 'bundler/service_worker.js';
 import { UpdateNotification } from 'bundler/service_worker.js';
+import TextClustering from 'components/internal/text-clustering';
 import Lesson from 'components/internal/lesson';
 import Provider from 'components/provider';
 import factor from 'utils/factor-variable';
@@ -132,6 +133,7 @@ const getComponents = ( arr ) => {
 
 const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500 ) => `
 global.session = new Session( preamble );
+global.TextClustering = TextClustering;
 
 class LessonWrapper extends Component {
 	constructor() {

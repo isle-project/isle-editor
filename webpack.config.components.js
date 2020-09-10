@@ -174,7 +174,7 @@ const config = {
 		path: join( __dirname, 'dll', 'components' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.41/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.42/'
 	},
 	optimization: {
 		minimize: true,
@@ -215,7 +215,8 @@ const config = {
 		'socket.io-client': 'io',
 		'js-yaml': 'jsyaml',
 		'markdown-it': 'markdownit',
-		'lodash': '_'
+		'lodash': '_',
+		'components/internal/text-clustering': 'TextClustering'
 	}
 };
 
