@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.66.0](https://github.com/isle-project/isle-editor/releases/tag/v0.66.0) (2020-09-10)
+
+This release contains improvements of the preview rendering performance, fixes when working with ordered factor variables in the data explorer, and improvements for the revealer and gate components. It also restores the "scroll into view" behavior when double-clicking on a component in the source editor view as well as text clustering of free-text responses.
+
+**Fixed bugs:**
+
+- Contingency Table - Columns Total not correct \(showing under wrong column\) [\#1294](https://github.com/isle-project/isle-editor/issues/1294)
+- Unable to generate plots for filtered data frame [\#1292](https://github.com/isle-project/isle-editor/issues/1292)
+
 ## [v0.65.2](https://github.com/isle-project/isle-editor/releases/tag/v0.65.2) (2020-09-03)
 
 ## [v0.64.0](https://github.com/isle-project/isle-editor/releases/tag/v0.64.0) (2020-09-01)
