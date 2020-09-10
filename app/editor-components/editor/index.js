@@ -1229,7 +1229,7 @@ class Editor extends Component {
 		const { match, content } = this.extractComponentFromSelection();
 		if ( match ) {
 			this.toggleComponentConfigurator({
-				name: match[ 1 ],
+				name: match[ 2 ],
 				value: content
 			});
 		}
