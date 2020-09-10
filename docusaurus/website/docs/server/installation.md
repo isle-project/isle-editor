@@ -13,7 +13,7 @@ This tutorial will walk you through the steps to set up an instance of the ISLE 
 Running the server requires the following software tools:
 
 * [git][git]: version control
-* [Node.js][node-js]: JavaScript runtime (version `>= 10.0`)ee: 
+* [Node.js][node-js]: JavaScript runtime (version `>= 10.0`)
 * [MongoDB][mongodb]: NoSQL document database
 
 The ISLE server should run on a POSIX-based system (preferably a Linux distribution). For this guide, we assume that you are on the latest Ubuntu LTS release. The steps will be similar for other distributions (e.g., Debian or CentOS), but might need to be slightly adapted.
@@ -238,6 +238,7 @@ Afterwards, you will want to install the [isle-dashboard][isle-dashboard] on you
 [isle-dashboard]: https://github.com/isle-project/isle-dashboard
 [lets-encrypt]: https://letsencrypt.org/
 [nginx]: https://www.nginx.com/
+[transcrypt]: https://github.com/elasticdog/transcrypt
 [install-java8]: https://tecadmin.net/install-oracle-java-8-ubuntu-via-ppa/
 [isle-dashboard]: https://github.com/isle-project/isle-dashboard
 [isle-editor]: https://github.com/isle-project/isle-editor
