@@ -52,6 +52,7 @@ const uid = generateUID( 'range-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
 * @property {strings} voiceID - voice control identifier
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {Object} style - CSS inline styles
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
@@ -207,6 +208,24 @@ class RangeQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		return (
+			<TimedButton
+				className="submit-button"
+				variant="primary"
+				size="sm"
+				disabled={this.state.submitted && !this.props.allowMultipleAnswers}
+				onClick={this.submitHandler}
+			>
+				{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
+			</TimedButton>
+		);
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -277,15 +296,7 @@ class RangeQuestion extends Component {
 								</div> : null
 						}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-						<TimedButton
-							className="submit-button"
-							variant="primary"
-							size="sm"
-							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-							onClick={this.submitHandler}
-						>
-							{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
-						</TimedButton>
+						{this.renderSubmitButton()}
 					</ButtonToolbar>
 					{ this.props.feedback ? <FeedbackButtons
 						id={this.id+'_feedback'}
@@ -313,6 +324,7 @@ RangeQuestion.defaultProps = {
 	provideFeedback: true,
 	allowMultipleAnswers: false,
 	voiceID: null,
+	until: null,
 	style: {},
 	onChangeUpper() {},
 	onChangeLower() {},
@@ -334,6 +346,7 @@ RangeQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	allowMultipleAnswers: PropTypes.bool,
 	voiceID: PropTypes.string,
+	until: PropTypes.instanceOf( Date ),
 	style: PropTypes.object,
 	onChangeLower: PropTypes.func,
 	onChangeUpper: PropTypes.func,
