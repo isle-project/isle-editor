@@ -92,6 +92,7 @@ function formatArraySolution( solution, t ) {
 * @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is `true`)
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -274,6 +275,29 @@ class NumberQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		const solutionPresent = this.props.solution !== null;
+		const isDisabled = this.state.submitted && solutionPresent && this.state.numSubmissions >= this.props.nTries;
+		return (
+			<TimedButton
+				className="submit-button"
+				variant="primary"
+				size="sm"
+				disabled={isDisabled}
+				onClick={this.submitHandler}
+				style={{
+					marginLeft: 3
+				}}
+			>
+				{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
+			</TimedButton>
+		);
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -342,18 +366,7 @@ class NumberQuestion extends Component {
 								<ChatButton for={this.id} />
 							</div> : null
 					}
-					<TimedButton
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						disabled={isDisabled}
-						onClick={this.submitHandler}
-						style={{
-							marginLeft: 3
-						}}
-					>
-						{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
-					</TimedButton>
+					{this.renderSubmitButton()}
 				</ButtonToolbar>
 				{ this.props.feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
@@ -381,6 +394,7 @@ NumberQuestion.defaultProps = {
 	nTries: 1,
 	disableSubmitNotification: false,
 	chat: false,
+	until: null,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -408,6 +422,7 @@ NumberQuestion.propTypes = {
 	nTries: PropTypes.number,
 	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
+	until: PropTypes.instanceOf( Date ),
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
