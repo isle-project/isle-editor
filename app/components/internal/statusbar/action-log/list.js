@@ -75,7 +75,7 @@ class ActionList extends Component {
 	}
 
 	openDeleteModal = ( id ) => {
-		console.log( 'Open delete modal for action with id '+id );
+		debug( 'Open delete modal for action with id '+id );
 		this.setState({
 			showDeleteModal: !this.state.showDeleteModal,
 			deleteModelActionID: id
@@ -83,7 +83,7 @@ class ActionList extends Component {
 	}
 
 	closeDeleteModal = () => {
-		console.log( 'Close delete modal...' );
+		debug( 'Close delete modal...' );
 		this.setState({
 			showDeleteModal: false
 		});
