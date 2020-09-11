@@ -62,6 +62,7 @@ function createColorScale( length ) {
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {number} maxlength - maximum allowed number of characters
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked when students submits an answer
@@ -185,6 +186,31 @@ class MatchListQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton( unfinished ) {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		return (
+			<Tooltip id={`${this.id}_tooltip`} tooltip={this.props.t('submit-tooltip')} >
+				<div style={{ display: 'inline-block' }}>
+					<Button
+						className="submit-button"
+						variant="primary"
+						size="sm"
+						onClick={this.handleSubmit}
+						style={{
+							pointerEvents: unfinished ? 'none' : null
+						}}
+						disabled={unfinished}
+					>
+						{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }
+					</Button>
+				</div>
+			</Tooltip>
+		);
+	}
+
 	render() {
 		const { question, elements, hints } = this.props;
 		const { answers } = this.state;
@@ -226,22 +252,7 @@ class MatchListQuestion extends Component {
 					/>
 				</div>
 				<div className="match-list-question-controls">
-					<Tooltip id={`${this.id}_tooltip`} tooltip={this.props.t('submit-tooltip')} >
-						<div style={{ display: 'inline-block' }}>
-							<Button
-								className="submit-button"
-								variant="primary"
-								size="sm"
-								onClick={this.handleSubmit}
-								style={{
-									pointerEvents: unfinished ? 'none' : null
-								}}
-								disabled={unfinished}
-							>
-								{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }
-							</Button>
-						</div>
-					</Tooltip>
+					{this.renderSubmitButton( unfinished )}
 					{ this.props.provideFeedback ? solutionButton : null }
 					{ nHints > 0 ?
 						<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -291,6 +302,7 @@ MatchListQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
+	until: null,
 	className: '',
 	style: {},
 	onSubmit() {}
@@ -317,6 +329,7 @@ MatchListQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
+	until: PropTypes.instanceOf( Date ),
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
