@@ -22,7 +22,8 @@ import isUserInCohort from 'utils/is-user-in-cohort';
 import SessionContext from 'session/context.js';
 import { LOGGED_OUT, MEMBER_ACTION, RETRIEVED_USER_ACTIONS, SELECTED_COHORT } from 'constants/events.js';
 import ActionList from './list.js';
-import createFilters from './create_filters';
+import createFilters from './create_filters.js';
+import CustomFilter from './custom_filter.js';
 
 
 // VARIABLES //
@@ -209,7 +210,7 @@ class ActionLog extends Component {
 			for ( let key in this.state.filter ) {
 				if ( hasOwnProp( this.state.filter, key ) ) {
 					let val = this.state.filter[ key ];
-					if ( action[ key ] !== val ) {
+					if ( !String( action[ key ] ).includes( val ) ) {
 						markedForRemoval = true;
 					}
 				}
@@ -335,7 +336,22 @@ class ActionLog extends Component {
 					this.setState({
 						period: newPeriod
 					});
+				}} style={{ float: 'left' }} />
+				<CustomFilter style={{ float: 'left' }} t={this.props.t} onSubmit={( type, value ) => {
+					const newFilter = this.state.filter ? copy( this.state.filter ) : {};
+					newFilter[ type ] = value;
+					const newFilters = createFilters( newFilter, ( newFilter, newFilters ) =>{
+						this.setState({
+							filter: newFilter,
+							filters: newFilters
+						});
+					});
+					this.setState({
+						filter: newFilter,
+						filters: newFilters
+					});
 				}} />
+				<br style={{ clear: 'both' }} />
 				<ActionList
 					session={session}
 					actions={this.state.actions}
