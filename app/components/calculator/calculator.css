@@ -45,6 +45,8 @@
 .input-button-small {
 	width: calc(25% - 4px);
 	margin: 2px;
+	font-size: 1em;
+	padding: 4px;
 }
 
 .half-button {
@@ -55,6 +57,8 @@
 .input-button-full {
 	width: calc(100% / 7 - 4px);
 	margin: 2px;
+	font-size: 1em;
+	padding: 4px;
 }
 
 .solve-button {
