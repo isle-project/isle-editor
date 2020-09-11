@@ -30,6 +30,7 @@ import './formula_transformer.css';
 
 const DIGITS = incrspace( 0, 10, 1 );
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
+const RE_DIGITS_START = /^[0-9]/;
 
 
 // FUNCTIONS //
@@ -121,7 +122,10 @@ class FormulaTransformer extends Component {
 		return () => {
 			let newCode = this.state.code.substring( 0, this.state.selection );
 			let replacement = 'datum';
-			const literal = !contains( name, ' ' ) && !contains( name, '.' );
+			const literal =
+				!contains( name, ' ' ) &&
+				!contains( name, '.' ) &&
+				!RE_DIGITS_START.test( name );
 			replacement += literal ? `.${name}` : `['${name}']`;
 			newCode += replacement;
 			newCode += this.state.code.substring( this.state.selection );
