@@ -1285,6 +1285,12 @@
         "defaultValue": null
       },
       {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",
@@ -1826,6 +1832,12 @@
         "name": "solution",
         "type": "string",
         "description": "image URL of model solution",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
         "defaultValue": null
       },
       {
@@ -3719,6 +3731,12 @@
         "defaultValue": "You have successfully re-submitted your answer."
       },
       {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",
@@ -4007,6 +4025,12 @@
         "defaultValue": null
       },
       {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4190,6 +4214,12 @@
         "defaultValue": false
       },
       {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4311,6 +4341,12 @@
         "type": "boolean",
         "description": "controls whether to disable submission notifications",
         "defaultValue": false
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
       },
       {
         "name": "style",
@@ -5208,6 +5244,12 @@
         "name": "voiceID",
         "type": "string",
         "description": "voice control identifier",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
         "defaultValue": null
       },
       {

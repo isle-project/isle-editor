@@ -39,6 +39,7 @@ An ISLE component that renders a question in which the learner has to match elem
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
+* __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: callback invoked when students submits an answer. Default: `onSubmit() {}`.
