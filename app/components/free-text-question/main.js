@@ -58,6 +58,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {number} maxlength - maximum allowed number of characters
 * @property {string} voiceID - voice control identifier
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
@@ -231,6 +232,46 @@ class FreeTextQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		if ( this.state.value.length >= 1 && !this.state.solutionDisplayed ) {
+			return ( <TimedButton
+				className="submit-button"
+				variant="primary"
+				size="sm"
+				onClick={this.submitHandler}
+				duration={5}
+				style={{ marginLeft: '4px' }}
+			>{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }</TimedButton> );
+		}
+		return (
+			<OverlayTrigger
+				placement="top"
+				positionLeft={100}
+				overlay={<Tooltip id="submitTooltip">
+					{this.props.t('submit-tooltip')}
+				</Tooltip>}
+				rootClose={true}
+			>
+				<div style={{ display: 'inline-block' }}>
+					<Button
+						className="submit-button"
+						variant="primary"
+						size="sm"
+						style={{
+							pointerEvents: 'none',
+							marginLeft: '4px'
+						}}
+						disabled
+					>{this.props.t('submit')}</Button>
+				</div>
+			</OverlayTrigger>
+		);
+	}
+
 	/*
 	* React component render method.
 	*/
@@ -308,38 +349,7 @@ class FreeTextQuestion extends Component {
 								<ChatButton for={this.id} />
 							</div> : null
 					}
-					{
-						this.state.value.length >= 1 && !this.state.solutionDisplayed ?
-							<TimedButton
-								className="submit-button"
-								variant="primary"
-								size="sm"
-								onClick={this.submitHandler}
-								duration={5}
-								style={{ marginLeft: '4px' }}
-							>{ !this.state.submitted ? this.props.t('submit') : this.props.t('resubmit') }</TimedButton> :
-							<OverlayTrigger
-								placement="top"
-								positionLeft={100}
-								overlay={<Tooltip id="submitTooltip">
-									{this.props.t('submit-tooltip')}
-								</Tooltip>}
-								rootClose={true}
-							>
-								<div style={{ display: 'inline-block' }}>
-									<Button
-										className="submit-button"
-										variant="primary"
-										size="sm"
-										style={{
-											pointerEvents: 'none',
-											marginLeft: '4px'
-										}}
-										disabled
-									>{this.props.t('submit')}</Button>
-								</div>
-							</OverlayTrigger>
-					}
+					{this.renderSubmitButton()}
 				</ButtonToolbar>
 				{ this.props.feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
@@ -370,6 +380,7 @@ FreeTextQuestion.defaultProps = {
 	provideFeedback: true,
 	maxlength: 2500,
 	voiceID: null,
+	until: null,
 	className: '',
 	style: {},
 	onChange() {},
@@ -401,6 +412,7 @@ FreeTextQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	maxlength: PropTypes.number,
 	voiceID: PropTypes.string,
+	until: PropTypes.instanceOf( Date ),
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
