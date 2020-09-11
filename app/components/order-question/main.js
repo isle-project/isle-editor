@@ -40,6 +40,7 @@ const debug = logger( 'isle:order-question' );
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} failureMsg - message to be displayed when student submits a wrong answer
 * @property {string} successMsg - message to be displayed when student submits the correct answer
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -147,6 +148,22 @@ class OrderQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		return (
+			<TimedButton
+				className="submit-button" variant="primary" size="sm"
+				onClick={this.handleSubmit}
+				disabled={this.state.submitted && this.state.correct}
+			>
+				{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
+			</TimedButton>
+		);
+	}
+
 	render() {
 		const nHints = this.props.hints.length;
 		return (
@@ -162,13 +179,7 @@ class OrderQuestion extends Component {
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
 							null
 						}
-						<TimedButton
-							className="submit-button" variant="primary" size="sm"
-							onClick={this.handleSubmit}
-							disabled={this.state.submitted && this.state.correct}
-						>
-							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
-						</TimedButton>
+						{this.renderSubmitButton()}
 						{
 							this.props.chat ?
 								<ChatButton for={this.id} /> : null
@@ -206,6 +217,7 @@ OrderQuestion.defaultProps = {
 	failureMsg: null,
 	successMsg: null,
 	disableSubmitNotification: false,
+	until: null,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -224,6 +236,7 @@ OrderQuestion.propTypes = {
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	disableSubmitNotification: PropTypes.bool,
+	until: PropTypes.instanceOf( Date ),
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

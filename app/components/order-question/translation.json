@@ -2,6 +2,7 @@
 	"DE": {
 		"correct": "Correct",
 		"incorrect": "Incorrect",
+		"question-closed": "Frage ist nun geschlossen.",
 		"resubmit": "Erneut einreichen",
 		"submission-correct": "Das ist die richtige Reihenfolge!",
 		"submission-incorrect": "Nicht ganz, versuche es noch einmal!",
@@ -12,6 +13,7 @@
 	"EN": {
 		"correct": "Correct",
 		"incorrect": "Incorrect",
+		"question-closed": "Question is now closed.",
 		"resubmit": "Resubmit",
 		"resubmission-message": "You have successfully re-submitted your answer.",
 		"submission-correct": "That's the correct ordering!",
@@ -23,6 +25,7 @@
 	"ES": {
 		"correct": "Correcto",
 		"incorrect": "Incorrecto",
+		"question-closed": "La pregunta está ahora cerrada.",
 		"resubmit": "Volver a presentar",
 		"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
 		"submission-correct": "¡Es el orden correcto!",
