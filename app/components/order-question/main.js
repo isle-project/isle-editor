@@ -171,7 +171,9 @@ class OrderQuestion extends Component {
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
 					<DraggableList
-						shuffle data={this.state.options} onChange={this.handleChange}
+						shuffle data={this.state.options}
+						onChange={this.handleChange}
+						onInit={this.handleChange}
 						disabled={this.state.submitted && this.state.correct}
 					/>
 					<div className="order-question-toolbar">
