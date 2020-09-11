@@ -180,7 +180,7 @@
     },
     {
       "name": "TextEditor",
-      "value": "<TextEditor ${1:voiceControl} />\n"
+      "value": "<TextEditor />\n"
     },
     {
       "name": "FeedbackButtons",
@@ -282,7 +282,7 @@
     },
     {
       "name": "MultipleChoiceQuestion",
-      "value": "<MultipleChoiceQuestion\n  solution={${1:0}}\n  answers={[\n    {content:\"${2:}\", explanation:\"${3:}\"}\n  ]}\n  question=\"${4:}\"\n/>\n"
+      "value": "<MultipleChoiceQuestion\n  solution={${1:0}}\n  answers={[\n    {content:\"${2:}\", explanation:\"${3:}\"},\n{content:\"${4:}\", explanation:\"${5:}\"}\n  ]}\n  question=\"${6:}\"\n/>\n"
     },
     {
       "name": "NumberQuestion",

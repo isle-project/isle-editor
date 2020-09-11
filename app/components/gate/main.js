@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from 'constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
@@ -21,7 +21,7 @@ import RoleContext from 'session/role_context.js';
 * @property {boolean} notOwner - when set the gated content is **not** displayed to the owner of the course (usually the instructor)
 * @property {Date} until - time until the contents of the gate should remain visible
 * @property {Date} after - time after which the contents of the gate should become visible
-* @property {Node} banner - a message which is visible to the visitors lacking the gate privilege
+* @property {Node} banner - a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges
 * @property {boolean} disabled - if a gate is disabled, the banner will be displayed no matter what
 * @property {Function} check - callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive
 */
@@ -115,15 +115,17 @@ class Gate extends Component {
 
 	renderChildren( authenticated ) {
 		return (
-			<div
-				className="gate outer-element"
-				style={{
-					display: authenticated ? 'inline' : 'none'
-				}}
-			>
+			<Fragment>
 				{!authenticated ? this.props.banner : null}
-				{this.props.children}
-			</div>
+				<div
+					className="gate outer-element"
+					style={{
+						display: authenticated ? 'inline' : 'none'
+					}}
+				>
+					{this.props.children}
+				</div>
+			</Fragment>
 		);
 	}
 
