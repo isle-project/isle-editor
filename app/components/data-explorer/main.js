@@ -1744,7 +1744,7 @@ DataExplorer.propTypes = {
 	editorProps: PropTypes.object,
 	editorTitle: PropTypes.string,
 	dataTable: PropTypes.bool,
-	dataTableProps: {},
+	dataTableProps: PropTypes.object,
 	reportMode: PropTypes.oneOf([ 'individual', 'group', 'collaborative' ]),
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,

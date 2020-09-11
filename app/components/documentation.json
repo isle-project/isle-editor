@@ -649,7 +649,7 @@
       },
       {
         "name": "dataTableProps",
-        "type": {},
+        "type": "object",
         "description": "properties passed to the data table component (see documentation for <DataTable />)",
         "defaultValue": {}
       },
