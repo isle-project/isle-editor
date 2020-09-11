@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.66.1](https://github.com/isle-project/isle-editor/releases/tag/v0.66.1) (2020-09-11)
+
+This patch restores the attribute table display in the component configuration menu, which was broken in the last version. It also adds `until` attributes to various questions to only accept answers up to a specified date and allows one to use custom filters in the action log of the instructor panel.
+
 ## [v0.66.0](https://github.com/isle-project/isle-editor/releases/tag/v0.66.0) (2020-09-10)
 
 This release contains improvements of the preview rendering performance, fixes when working with ordered factor variables in the data explorer, and improvements for the revealer and gate components. It also restores the "scroll into view" behavior when double-clicking on a component in the source editor view as well as text clustering of free-text responses.
