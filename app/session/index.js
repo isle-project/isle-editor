@@ -1963,7 +1963,12 @@ class Session {
 	log( action, to ) {
 		const onLogged = ( err, res ) => {
 			if ( err ) {
-				return debug( 'Encountered an error: '+err.message );
+				return this.addNotification({
+					title: 'Error encountered',
+					message: err.message,
+					level: 'danger',
+					position: 'tl'
+				});
 			}
 			// Attach received action ID:
 			action.sessiondataID = res.id;
