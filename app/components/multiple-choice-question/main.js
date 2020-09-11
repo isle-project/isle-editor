@@ -65,6 +65,7 @@ const hasExplanations = ( answers ) => {
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
 * @property {strings} voiceID - voice control identifier
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type "Choose all that apply")
 * @property {Function} onSubmit - callback invoked after an answer is submitted
@@ -433,16 +434,10 @@ class MultipleChoiceQuestion extends Component {
 			/>;
 	}
 
-	render() {
-		const { answers, hints, chat, hintPlacement, question } = this.props;
-		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
-		const nHints = hints.length;
-		let bodyStyle = {};
-		if ( this.props.feedback ) {
-			bodyStyle.width = 'calc(100%-60px)';
-			bodyStyle.display = 'inline-block';
-		} else {
-			bodyStyle.width = '100%';
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
 		}
 		let submitLabel;
 		if ( this.state.submitted ) {
@@ -462,6 +457,28 @@ class MultipleChoiceQuestion extends Component {
 			submitLabel = this.props.t('submit');
 		}
 		return (
+			<Button
+				className="submit-button"
+				size="small"
+				onClick={this.submitQuestion}
+				disabled={this.checkDisabledStatus()}
+				block
+			>{submitLabel}</Button>
+		);
+	}
+
+	render() {
+		const { answers, hints, chat, hintPlacement, question } = this.props;
+		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
+		const nHints = hints.length;
+		let bodyStyle = {};
+		if ( this.props.feedback ) {
+			bodyStyle.width = 'calc(100%-60px)';
+			bodyStyle.display = 'inline-block';
+		} else {
+			bodyStyle.width = '100%';
+		}
+		return (
 			<Card id={this.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
 					<Question
@@ -475,13 +492,7 @@ class MultipleChoiceQuestion extends Component {
 						}
 					</ListGroup>
 					<div className="multiple-choice-question-toolbar">
-						<Button
-							className="submit-button"
-							size="small"
-							onClick={this.submitQuestion}
-							disabled={this.checkDisabledStatus()}
-							block
-						>{submitLabel}</Button>
+						{this.renderSubmitButton()}
 						{ nHints > 0 ?
 							<HintButton size="small" onClick={this.logHint} hints={hints} placement={hintPlacement} /> :
 							null
@@ -531,6 +542,7 @@ MultipleChoiceQuestion.defaultProps = {
 	provideFeedback: 'incremental',
 	disableSubmitNotification: false,
 	voiceID: null,
+	until: null,
 	style: {},
 	onChange(){},
 	onSubmit(){}
@@ -557,6 +569,7 @@ MultipleChoiceQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	displaySolution: PropTypes.bool,
 	voiceID: PropTypes.string,
+	until: PropTypes.instanceOf( Date ),
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
