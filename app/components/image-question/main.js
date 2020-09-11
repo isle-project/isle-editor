@@ -42,6 +42,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`
 * @property {string} solution - image URL of model solution
+* @property {Date} until - time until students should be allowed to submit answers
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -186,6 +187,20 @@ class ImageQuestion extends Component {
 		});
 	}
 
+	renderSubmitButton() {
+		const session = this.context;
+		if ( this.props.until && session.startTime > this.props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		}
+		return (
+			<TimedButton
+				className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}
+			>
+				{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
+			</TimedButton>
+		);
+	}
+
 	render() {
 		const nHints = this.props.hints.length;
 		const solutionButton = <SolutionButton
@@ -278,11 +293,7 @@ class ImageQuestion extends Component {
 						{ this.state.src ? <Button size="sm" variant="warning" onClick={() => {
 							this.setState({ src: null });
 						}}>{this.props.t('reset')}</Button> : null }
-						<TimedButton
-							className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}
-						>
-							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
-						</TimedButton>
+						{this.renderSubmitButton()}
 						{this.props.solution ? solutionButton : null}
 						{
 							this.props.chat ?
@@ -308,6 +319,7 @@ ImageQuestion.defaultProps = {
 	className: '',
 	sketchpad: null,
 	solution: null,
+	until: null,
 	style: {},
 	onSubmit() {}
 };
@@ -324,6 +336,7 @@ ImageQuestion.propTypes = {
 	className: PropTypes.string,
 	sketchpad: PropTypes.object,
 	solution: PropTypes.string,
+	until: PropTypes.instanceOf( Date ),
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };
