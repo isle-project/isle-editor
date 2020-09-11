@@ -1966,7 +1966,7 @@ class Session {
 				return this.addNotification({
 					title: 'Error encountered',
 					message: err.message,
-					level: 'danger',
+					level: 'error',
 					position: 'tl'
 				});
 			}
