@@ -1587,6 +1587,9 @@ class Sketchpad extends Component {
 	}
 
 	insertPage = ( idx, from ) => {
+		if ( this.state.mode === 'text' ) {
+			this.insertTextFromInput();
+		}
 		this.elements.splice( idx, 0, []);
 		this.backgrounds.splice( idx, 0, null );
 		this.sharedElements.splice( idx, 0, 0 );
@@ -1622,42 +1625,46 @@ class Sketchpad extends Component {
 		});
 	}
 
-	handleEnter = ( event ) => {
-		debug( 'Check if user hit ENTER...' );
+	insertTextFromInput = () => {
 		const x = parseInt( this.textInput.style.left, 10 ) - this.leftMargin;
 		const y = parseInt( this.textInput.style.top, 10 ) - ( this.state.fontSize * 1.2 );
+		const value = this.textInput.value;
+		this.textInput.value = '';
+		this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + ( this.state.fontSize * 1.2 ) ) + 'px';
+		const session = this.context;
+		const username = session.user.email || session.anonymousIdentifier;
+		const currentPage = this.state.currentPage;
+		const text = {
+			value: value,
+			x: x / ( this.canvas.width / DPR ),
+			y: y / ( this.canvas.height / DPR ),
+			color: this.state.color,
+			fontSize: this.state.fontSize,
+			fontFamily: this.state.fontFamily,
+			time: this.time,
+			type: 'text',
+			page: currentPage,
+			user: username,
+			drawID: randomstring( 6 )
+		};
+		this.drawText( text );
+		const elems = this.elements[ currentPage ];
+		const nUndos = this.nUndos[ currentPage ];
+		if ( nUndos > 0 ) {
+			elems.splice( elems.length-nUndos );
+			debug( `Page ${currentPage} now has ${elems.length} elements` );
+			this.nUndos[ currentPage ] = 0;
+		}
+		// Prevent future logging when redrawing element:
+		text.shouldLog = false;
+		elems.push( text );
+		this.props.onChange( elems );
+	}
+
+	handleEnter = ( event ) => {
+		debug( 'Check if user hit ENTER...' );
 		if ( event.keyCode === 13 ) {
-			const value = this.textInput.value;
-			this.textInput.value = '';
-			this.textInput.style.top = String( parseInt( this.textInput.style.top, 10 ) + ( this.state.fontSize * 1.2 ) ) + 'px';
-			const session = this.context;
-			const username = session.user.email || session.anonymousIdentifier;
-			const currentPage = this.state.currentPage;
-			const text = {
-				value: value,
-				x: x / ( this.canvas.width / DPR ),
-				y: y / ( this.canvas.height / DPR ),
-				color: this.state.color,
-				fontSize: this.state.fontSize,
-				fontFamily: this.state.fontFamily,
-				time: this.time,
-				type: 'text',
-				page: currentPage,
-				user: username,
-				drawID: randomstring( 6 )
-			};
-			this.drawText( text );
-			const elems = this.elements[ currentPage ];
-			const nUndos = this.nUndos[ currentPage ];
-			if ( nUndos > 0 ) {
-				elems.splice( elems.length-nUndos );
-				debug( `Page ${currentPage} now has ${elems.length} elements` );
-				this.nUndos[ currentPage ] = 0;
-			}
-			// Prevent future logging when redrawing element:
-			text.shouldLog = false;
-			elems.push( text );
-			this.props.onChange( elems );
+			this.insertTextFromInput();
 		}
 	}
 
@@ -1895,6 +1902,9 @@ class Sketchpad extends Component {
 			if ( this.props.nodes[ this.state.currentPage ] ) {
 				closeHintButtons( this.canvasWrapper );
 			}
+			if ( this.state.mode === 'text' ) {
+				this.insertTextFromInput();
+			}
 			this.setState({
 				currentPage
 			}, () => {
@@ -1920,6 +1930,9 @@ class Sketchpad extends Component {
 			}
 			if ( this.props.nodes[ this.state.currentPage ] ) {
 				closeHintButtons( this.canvasWrapper );
+			}
+			if ( this.state.mode === 'text' ) {
+				this.insertTextFromInput();
 			}
 			this.setState({
 				currentPage
@@ -1949,6 +1962,9 @@ class Sketchpad extends Component {
 			}
 			if ( this.props.nodes[ this.state.currentPage ] ) {
 				closeHintButtons( this.canvasWrapper );
+			}
+			if ( this.state.mode === 'text' ) {
+				this.insertTextFromInput();
 			}
 			this.setState({
 				currentPage: idx,
@@ -2183,6 +2199,8 @@ class Sketchpad extends Component {
 				if ( this.state.mode === 'drag' && mode !== 'drag' ) {
 					this.deselectElements();
 					this.onlyRedrawElements();
+				} else if ( this.state.mode === 'text' ) {
+					this.insertTextFromInput();
 				}
 				this.setState({ mode });
 				if ( mode !== 'pointer' ) {
@@ -2193,18 +2211,33 @@ class Sketchpad extends Component {
 			}}
 			onColorChange={( color ) => { this.setState({ color }); }}
 			onBrushSelect={( event ) => {
+				if ( this.state.mode === 'drag' ) {
+					this.deselectElements();
+					this.onlyRedrawElements();
+				}
+				if ( this.state.mode === 'text' ) {
+					this.insertTextFromInput();
+				}
 				this.setState({
 					brushSize: event.target.value,
 					mode: 'drawing'
 				});
 			}}
-			onFontFamilySelect={(val) => {
+			onFontFamilySelect={( val ) => {
+				if ( this.state.mode === 'drag' ) {
+					this.deselectElements();
+					this.onlyRedrawElements();
+				}
 				this.setState({
 					fontFamily: val,
 					mode: 'text'
 				});
 			}}
 			onFontSizeSelect={( event ) => {
+				if ( this.state.mode === 'drag' ) {
+					this.deselectElements();
+					this.onlyRedrawElements();
+				}
 				this.setState({
 					fontSize: Number( event.target.value ),
 					mode: 'text'
