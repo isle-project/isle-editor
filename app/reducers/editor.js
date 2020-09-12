@@ -146,6 +146,26 @@ export default function markdown( state = initialState, action ) {
 			elementRangeVersion: state.elementRangeVersion + 1,
 			elementRangeAction: action.payload.elementRangeAction
 		};
+	case types.SWITCH_WITH_NEXT:
+		return {
+			...state,
+			elementRange: {
+				next: action.payload.next,
+				current: action.payload.current
+			},
+			elementRangeVersion: state.elementRangeVersion + 1,
+			elementRangeAction: action.payload.elementRangeAction
+		};
+	case types.SWITCH_WITH_PREVIOUS:
+		return {
+			...state,
+			elementRange: {
+				previous: action.payload.previous,
+				current: action.payload.current
+			},
+			elementRangeVersion: state.elementRangeVersion + 1,
+			elementRangeAction: action.payload.elementRangeAction
+		};
 	case types.TOGGLE_SCROLLING:
 		return {
 			...state,

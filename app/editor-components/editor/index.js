@@ -198,10 +198,8 @@ class Editor extends Component {
 		}
 		this.editTextCommand = this.editor.addCommand( 'fix-spelling', ( _, text, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-			const id = { major: 1, minor: 1 };
 			const fix = {
 				title: `Change to ${text}`,
-				identifier: id,
 				range,
 				text: String( text )
 			};
@@ -210,10 +208,8 @@ class Editor extends Component {
 
 		this.changeToRemote = this.editor.addCommand( 'change-to-remote', ( _, resURL, entry, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-			const id = { major: 1, minor: 1 };
 			const fix = {
 				title: 'Change to remote',
-				identifier: id,
 				range,
 				text: entry.origin
 			};
@@ -222,10 +218,8 @@ class Editor extends Component {
 
 		this.changeToCurrentDate = this.editor.addCommand( 'change-to-current-date', ( _, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-			const id = { major: 1, minor: 1 };
 			const fix = {
 				title: 'Change to current date',
-				identifier: id,
 				range,
 				text: `date: ${today()}`
 			};
@@ -234,10 +228,8 @@ class Editor extends Component {
 
 		this.addAuthor = this.editor.addCommand( 'add-author', ( _, otherAuthors, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-			const id = { major: 1, minor: 1 };
 			const fix = {
 				title: 'Add to authors',
-				identifier: id,
 				range,
 				text: `author: ${this.props.author}, ${otherAuthors}`
 			};
@@ -430,10 +422,8 @@ class Editor extends Component {
 						return debug( err );
 					}
 					const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-					const id = { major: 1, minor: 1 };
 					const fix = {
 						title: 'Copy to local',
-						identifier: id,
 						range,
 						text: './' + relative( destDir, destFilePath ) + ( search || '' )
 					};
@@ -445,7 +435,6 @@ class Editor extends Component {
 
 		this.copyIncludeToLocal = this.editor.addCommand( 'copy-include-to-local', ( _, url, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
-			const id = { major: 1, minor: 1 };
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
 			const isleDir = join( destDir, `${fileName}-resources` );
@@ -483,7 +472,6 @@ class Editor extends Component {
 						writeFileSync( outPath, res );
 						const fix = {
 							title: 'Copy to local',
-							identifier: id,
 							range,
 							text: localPath
 						};
@@ -507,7 +495,6 @@ class Editor extends Component {
 									writeFileSync( outPath, res );
 									const fix = {
 										title: 'Copy to local',
-										identifier: id,
 										range,
 										text: localPath
 									};
@@ -599,9 +586,7 @@ class Editor extends Component {
 		if ( this.props.insertionText && !prevProps.insertionText ) {
 			const selection = this.editor.getSelection();
 			const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
-			const id = { major: 1, minor: 1 };
 			const op = {
-				identifier: id,
 				range: range,
 				text: String( this.props.insertionText ),
 				forceMoveMarkers: true
@@ -611,15 +596,47 @@ class Editor extends Component {
 		}
 		if ( this.props.elementRangeVersion !== prevProps.elementRangeVersion ) {
 			if ( this.props.elementRangeAction === 'delete' ) {
-				const id = { major: 1, minor: 1 };
 				const op = {
-					identifier: id,
 					range: this.props.elementRange,
 					text: '',
 					forceMoveMarkers: true
 				};
 				this.immediateUpdate = true;
 				this.editor.executeEdits( 'my-source', [ op ] );
+			}
+			else if ( this.props.elementRangeAction === 'switch_previous' ) {
+				const model = this.editor.getModel();
+				const currentContent = model.getValueInRange( this.props.elementRange.current );
+				const previousContent = model.getValueInRange( this.props.elementRange.previous );
+				const op1 = {
+					range: this.props.elementRange.current,
+					text: previousContent,
+					forceMoveMarkers: true
+				};
+				const op2 = {
+					range: this.props.elementRange.previous,
+					text: currentContent,
+					forceMoveMarkers: true
+				};
+				this.immediateUpdate = true;
+				this.hasHighlight = false;
+				this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+			}
+			else if ( this.props.elementRangeAction === 'switch_next' ) {
+				const model = this.editor.getModel();
+				const currentContent = model.getValueInRange( this.props.elementRange.current );
+				const nextContent = model.getValueInRange( this.props.elementRange.next );
+				const op1 = {
+					range: this.props.elementRange.current,
+					text: nextContent
+				};
+				const op2 = {
+					range: this.props.elementRange.next,
+					text: currentContent
+				};
+				this.immediateUpdate = true;
+				this.hasHighlight = false;
+				this.editor.executeEdits( 'my-source', [ op1, op2 ] );
 			}
 			else if ( this.props.elementRangeAction === 'reveal' ) {
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
@@ -639,6 +656,7 @@ class Editor extends Component {
 				this.editor.setPosition({ lineNumber: range.startLineNumber, column: Infinity });
 			}
 			else {
+				console.log( this.props.elementRange );
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
 				this.decorations = this.editor.deltaDecorations( this.decorations, [
 					{

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
-import { jumpToElementInEditor, toggleConfigurator } from 'actions';
+import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
 
@@ -121,6 +121,65 @@ class LineWrapper extends Component {
 		});
 	}
 
+	switchWithPrevious = () => {
+		const el = this.lineWrapper;
+		const elements = document.getElementsByClassName( 'line-wrapper' );
+		let previous;
+		for ( let i = 1; i < elements.length; i++ ){
+			if ( elements[ i ] === el ) {
+				previous = elements[ i - 1 ];
+				break;
+			}
+		}
+		if ( previous && previous.dataset.startLineNumber ) {
+			this.props.switchWithPrevious({
+				current: {
+					startLineNumber: this.props.startLineNumber,
+					endLineNumber: this.props.endLineNumber,
+					startColumn: this.props.startColumn,
+					endColumn: this.props.endColumn
+				},
+				previous: {
+					startLineNumber: Number( previous.dataset.startLineNumber ),
+					endLineNumber: Number( previous.dataset.endLineNumber ),
+					startColumn: Number( previous.dataset.startColumn ),
+					endColumn: Number( previous.dataset.endColumn )
+				},
+				elementRangeAction: 'switch_previous'
+			});
+		}
+	}
+
+	switchWithNext = () => {
+		const el = this.lineWrapper;
+		const elements = document.getElementsByClassName( 'line-wrapper' );
+		let next;
+		for ( let i = 0; i < elements.length - 1; i++ ){
+			if ( elements[ i ] === el ) {
+				next = elements[ i + 1 ];
+				break;
+			}
+		}
+		console.log( next );
+		if ( next && next.dataset.startLineNumber ) {
+			this.props.switchWithNext({
+				current: {
+					startLineNumber: this.props.startLineNumber,
+					endLineNumber: this.props.endLineNumber,
+					startColumn: this.props.startColumn,
+					endColumn: this.props.endColumn
+				},
+				next: {
+					startLineNumber: Number( next.dataset.startLineNumber ),
+					endLineNumber: Number( next.dataset.endLineNumber ),
+					startColumn: Number( next.dataset.startColumn ),
+					endColumn: Number( next.dataset.endColumn )
+				},
+				elementRangeAction: 'switch_next'
+			});
+		}
+	}
+
 	render() {
 		const { tagName, startLineNumber, endLineNumber, startColumn } = this.props;
 		let outerTitle = `Double-click to highlight source code for <${tagName} />`;
@@ -132,6 +191,20 @@ class LineWrapper extends Component {
 		}
 		const wrapperBar = <Fragment>
 			<span className="line-wrapper-tagname" >{tagName}</span>
+			<span
+				role="button" tabIndex={0}
+				className="line-wrapper-delete fa fa-caret-up"
+				title={`Switch <${tagName} /> with previous element`}
+				onClick={this.switchWithPrevious}
+				onKeyPress={this.switchWithPrevious}
+			></span>
+			<span
+				role="button" tabIndex={0}
+				className="line-wrapper-delete fa fa-caret-down"
+				title={`Switch <${tagName} /> with next element`}
+				onClick={this.switchWithNext}
+				onKeyPress={this.switchWithNext}
+			></span>
 			<span
 				role="button" tabIndex={0}
 				className="line-wrapper-delete fa fa-trash"
@@ -155,6 +228,9 @@ class LineWrapper extends Component {
 					onDoubleClick={this.handleDoubleClick}
 					title={outerTitle}
 					style={this.state.style}
+					ref={span => {
+						this.lineWrapper = span;
+					}}
 				>
 					<span className="line-wrapper-bar" >
 						{wrapperBar}
@@ -166,10 +242,17 @@ class LineWrapper extends Component {
 		return (
 			<div
 				id={`line-${startLineNumber}-${startColumn}`}
+				data-start-line-number={startLineNumber}
+				data-start-column={startColumn}
+				data-end-column={this.props.endColumn}
+				data-end-line-number={this.props.endLineNumber}
 				className="line-wrapper outer-element"
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
 				style={this.state.style}
+				ref={div => {
+					this.lineWrapper = div;
+				}}
 			>
 				<div className="line-wrapper-bar" >
 					{wrapperBar}
@@ -196,6 +279,8 @@ LineWrapper.propTypes = {
 	endLineNumber: PropTypes.number.isRequired,
 	startLineNumber: PropTypes.number.isRequired,
 	startColumn: PropTypes.number,
+	switchWithNext: PropTypes.func.isRequired,
+	switchWithPrevious: PropTypes.func.isRequired,
 	endColumn: PropTypes.number,
 	tagName: PropTypes.string
 };
@@ -204,7 +289,7 @@ LineWrapper.propTypes = {
 // EXPORTS //
 
 export default connect( mapStateToProps, {
-	jumpToElementInEditor, toggleConfigurator
+	jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator
 })( LineWrapper );
 
 function mapStateToProps() {

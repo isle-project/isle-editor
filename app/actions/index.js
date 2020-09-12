@@ -90,6 +90,28 @@ export function jumpToElementInEditor({ startLineNumber, endLineNumber, startCol
 	};
 }
 
+export function switchWithNext({ current, next, elementRangeAction }) {
+	return {
+		type: types.SWITCH_WITH_NEXT,
+		payload: {
+			current,
+			next,
+			elementRangeAction
+		}
+	};
+}
+
+export function switchWithPrevious({ current, previous, elementRangeAction }) {
+	return {
+		type: types.SWITCH_WITH_PREVIOUS,
+		payload: {
+			current,
+			previous,
+			elementRangeAction
+		}
+	};
+}
+
 export function toggleConfigurator( opened ) {
 	return {
 		type: types.TOGGLE_CONFIGURATOR,
