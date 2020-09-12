@@ -123,12 +123,29 @@ class LineWrapper extends Component {
 
 	switchWithPrevious = () => {
 		const el = this.lineWrapper;
-		const elements = document.getElementsByClassName( 'line-wrapper' );
+
 		let previous;
-		for ( let i = 1; i < elements.length; i++ ){
-			if ( elements[ i ] === el ) {
-				previous = elements[ i - 1 ];
+		let sibling = el.previousElementSibling;
+		while ( sibling ) {
+			if ( sibling.classList && sibling.classList.contains( 'line-wrapper' ) ) {
+				previous = sibling;
 				break;
+			}
+			sibling = sibling.previousElementSibling;
+		}
+		console.log( 'SIBLING: ');
+		console.log( sibling );
+		if ( !previous ) {
+			const elements = document.getElementsByClassName( 'line-wrapper' );
+			for ( let i = 1; i < elements.length; i++ ){
+				if ( elements[ i ] === el ) {
+					previous = elements[ i - 1 ];
+					while ( previous.contains( el ) && i > 0 ) {
+						previous = elements[ i - 1 ];
+						i -= 1;
+					}
+					break;
+				}
 			}
 		}
 		if ( previous && previous.dataset.startLineNumber ) {
@@ -154,13 +171,22 @@ class LineWrapper extends Component {
 		const el = this.lineWrapper;
 		const elements = document.getElementsByClassName( 'line-wrapper' );
 		let next;
-		for ( let i = 0; i < elements.length - 1; i++ ){
-			if ( elements[ i ] === el ) {
-				next = elements[ i + 1 ];
+		let sibling = el.nextElementSibling;
+		while ( sibling ) {
+			if ( sibling.classList && sibling.classList.contains( 'line-wrapper' ) ) {
+				next = sibling;
 				break;
 			}
+			sibling = sibling.nextElementSibling;
 		}
-		console.log( next );
+		if ( !next ) {
+			for ( let i = 0; i < elements.length - 1; i++ ){
+				if ( elements[ i ] === el ) {
+					next = elements[ i + 1 ];
+					break;
+				}
+			}
+		}
 		if ( next && next.dataset.startLineNumber ) {
 			this.props.switchWithNext({
 				current: {

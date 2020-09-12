@@ -606,37 +606,43 @@ class Editor extends Component {
 			}
 			else if ( this.props.elementRangeAction === 'switch_previous' ) {
 				const model = this.editor.getModel();
-				const currentContent = model.getValueInRange( this.props.elementRange.current );
-				const previousContent = model.getValueInRange( this.props.elementRange.previous );
-				const op1 = {
-					range: this.props.elementRange.current,
-					text: previousContent,
-					forceMoveMarkers: true
-				};
-				const op2 = {
-					range: this.props.elementRange.previous,
-					text: currentContent,
-					forceMoveMarkers: true
-				};
-				this.immediateUpdate = true;
-				this.hasHighlight = false;
-				this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+				const { current, previous } = this.props.elementRange;
+				if ( current.endLineNumber > previous.endLineNumber ) {
+					const currentContent = model.getValueInRange( current );
+					const previousContent = model.getValueInRange( previous );
+					const op1 = {
+						range: current,
+						text: previousContent,
+					};
+					const op2 = {
+						range: previous,
+						text: currentContent,
+						forceMoveMarkers: true
+					};
+					this.immediateUpdate = true;
+					this.hasHighlight = false;
+					this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+				}
 			}
 			else if ( this.props.elementRangeAction === 'switch_next' ) {
 				const model = this.editor.getModel();
-				const currentContent = model.getValueInRange( this.props.elementRange.current );
-				const nextContent = model.getValueInRange( this.props.elementRange.next );
-				const op1 = {
-					range: this.props.elementRange.current,
-					text: nextContent
-				};
-				const op2 = {
-					range: this.props.elementRange.next,
-					text: currentContent
-				};
-				this.immediateUpdate = true;
-				this.hasHighlight = false;
-				this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+				const { current, next } = this.props.elementRange;
+				if ( next.endLineNumber > current.endLineNumber ) {
+					const currentContent = model.getValueInRange( current );
+					const nextContent = model.getValueInRange( next );
+					const op1 = {
+						range: current,
+						text: nextContent
+					};
+					const op2 = {
+						range: next,
+						text: currentContent,
+						forceMoveMarkers: true
+					};
+					this.immediateUpdate = true;
+					this.hasHighlight = false;
+					this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+				}
 			}
 			else if ( this.props.elementRangeAction === 'reveal' ) {
 				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
