@@ -3,8 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Button from 'react-bootstrap/Button';
+import { withTranslation } from 'react-i18next';
 import ReactPlayer from 'react-player';
+import Button from 'react-bootstrap/Button';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
@@ -119,10 +120,10 @@ class Video extends Component {
 		let encounteredError;
 		switch ( errorCode ) {
 			case 150:
-				encounteredError = 'Playback on other websites has been disabled by the video owner.';
+				encounteredError = this.props.t('playback-disabled');
 				break;
 			default:
-				encounteredError = 'Video could not be loaded.';
+				encounteredError = this.props.t('video-not-loaded');
 				break;
 		}
 		this.setState({
@@ -273,4 +274,4 @@ Video.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Video;
+export default withTranslation( 'video-player' )( Video );

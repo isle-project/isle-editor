@@ -1,0 +1,14 @@
+{
+	"DE": {
+		"playback-disabled": "Die Wiedergabe auf anderen Websites wurde vom Videobesitzer deaktiviert.",
+		"video-not-loaded": "Video konnte nicht geladen werden."
+	},
+	"EN": {
+		"playback-disabled": "Playback on other websites has been disabled by the video owner.",
+		"video-not-loaded": "Video could not be loaded."
+	},
+	"ES": {
+		"playback-disabled": "La reproducción en otros sitios web ha sido desactivada por el propietario del video.",
+		"video-not-loaded": "El video no pudo ser cargado."
+	}
+}
