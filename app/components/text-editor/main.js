@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
+import { withTranslation } from 'react-i18next';
 import Loadable from 'components/internal/loadable';
 import VoiceInput from 'components/input/voice';
 import Gate from 'components/gate';
@@ -43,6 +44,7 @@ import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constan
 import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -120,8 +122,8 @@ class TextEditor extends Component {
 
 		this.menu = copy( menu, 2 );
 		this.menu.tableEdits.unshift({
-			title: 'Insert table',
-			content: 'Insert table',
+			title: this.props.t('insert-table'),
+			content: this.props.t('insert-table'),
 			enable: canInsert( schema.nodes.table ),
 			run: ( state, dispatch ) => {
 				this.toggleTableModal();
@@ -178,7 +180,7 @@ class TextEditor extends Component {
 		});
 		this.menu.addons = [
 			{
-				title: 'Save HTML',
+				title: this.props.t('save-html'),
 				content: icons.save,
 				run: ( state, dispatch ) => {
 					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
@@ -193,7 +195,7 @@ class TextEditor extends Component {
 				}
 			},
 			{
-				title: 'Export PDF',
+				title: this.props.t('export-pdf'),
 				content: icons.pdf,
 				run: ( state, dispatch ) => {
 					this.togglePDFModal();
@@ -215,8 +217,8 @@ class TextEditor extends Component {
 						} catch ( err ) {
 							const session = this.context;
 							session.addNotification({
-								title: 'Encountered an error while serializing HTML',
-								message: `${err.message}. Please check the syntax of your report.`,
+								title: this.props.t('error-serializing-html'),
+								message: `${err.message}. ${this.props.t('check-syntax')}`,
 								level: 'error',
 								position: 'tr'
 							});
@@ -227,8 +229,8 @@ class TextEditor extends Component {
 							} catch ( err ) {
 								const session = this.context;
 								session.addNotification({
-									title: 'Encountered an error while generating PDF',
-									message: `${err}. Please check the syntax of your report.`,
+									title: this.props.t('error-generating-pdf'),
+									message: `${err}. ${this.props.t('check-syntax')}`,
 									level: 'error',
 									position: 'tr'
 								});
@@ -241,7 +243,7 @@ class TextEditor extends Component {
 		];
 		if ( this.props.canLoadHTML ) {
 			this.menu.addons.unshift({
-				title: 'Open HTML',
+				title: this.props.t('open-html'),
 				run: ( state, dispatch ) => {
 					const input = document.createElement( 'input' );
 					input.type = 'file';
@@ -255,7 +257,7 @@ class TextEditor extends Component {
 		}
 		if ( this.props.allowSubmissions ) {
 			this.menu.addons.push({
-				title: 'Submit',
+				title: this.props.t('submit'),
 				content: icons.submit,
 				run: ( state, dispatch ) => {
 					this.editorState = state;
@@ -266,7 +268,7 @@ class TextEditor extends Component {
 		}
 		this.menu.addons = this.menu.addons.concat([
 			{
-				title: 'Toggle fullscreen',
+				title: this.props.t('toggle-fullscreen'),
 				run: () => {
 					if ( !/fullscreen/.test( this.editorWrapper.className ) ) {
 						this.editorWrapper.className += ' fullscreen';
@@ -297,14 +299,14 @@ class TextEditor extends Component {
 				/>
 			},
 			{
-				title: 'Open tutorials',
+				title: this.props.t('open-tutorials'),
 				run: this.toggleGuides,
 				content: icons.guides
 			}
 		]);
 		if ( this.props.mode === 'group' || this.props.mode === 'collaborative' ) {
 			this.menu.addons.push({
-				title: 'Add an annotation',
+				title: this.props.t('add-annotation'),
 				content: icons.annotation,
 				run: addAnnotation
 			});
@@ -316,7 +318,7 @@ class TextEditor extends Component {
 			if ( resetModal && resetModal.tooltip ) {
 				tooltip = resetModal.tooltip;
 			} else {
-				tooltip = 'Reset to default value';
+				tooltip = this.props.t('reset-to-default');
 			}
 			if ( resetModal && resetModal.icon ) {
 				icon = resetModal.icon;
@@ -457,8 +459,8 @@ class TextEditor extends Component {
 		const session = this.context;
 		if ( session.anonymous ) {
 			return session.addNotification({
-				title: 'Sign in',
-				message: 'You have to sign in before you can submit your report',
+				title: this.props.t('sign-in'),
+				message: this.props.t('sign-in-required'),
 				level: 'warning',
 				position: 'tr'
 			});
@@ -490,8 +492,10 @@ class TextEditor extends Component {
 		pdfDocGenerator.getBase64( ( pdf ) => {
 			if ( this.props.sendSubmissionEmails ) {
 				const msg = {
-					text: `Dear ${session.user.name}, your report has been successfully recorded. For your convenience, your report and the generated HTML file are attached to this email.`,
-					subject: 'Report submitted',
+					text: this.props.t('report-submitted-message', {
+						name: session.user.name
+					}),
+					subject: this.props.t('report-submitted'),
 					attachments: [
 						{
 							filename: 'report.html',
@@ -537,8 +541,8 @@ class TextEditor extends Component {
 			session.uploadFile({ formData: htmlForm, showNotification: false });
 			session.uploadFile({ formData: pdfForm, showNotification: false });
 			session.addNotification({
-				title: 'Submitted',
-				message: 'Your report has been successfully submitted',
+				title: this.props.t('submitted'),
+				message: this.props.t('submitted-msg'),
 				level: 'success',
 				position: 'tr'
 			});
@@ -553,8 +557,8 @@ class TextEditor extends Component {
 	addPeerReportNotification = ( report ) => {
 		const session = this.context;
 		this.peerReportNotification = session.addNotification({
-			title: 'Peer report ready for review',
-			message: 'You have been sent a report for peer review! Please confirm to load it into the Markdown editor',
+			title: this.props.t('peer-report-ready'),
+			message: this.props.t('peer-report-ready-msg'),
 			level: 'success',
 			position: 'tr',
 			dismissible: 'none',
@@ -563,8 +567,8 @@ class TextEditor extends Component {
 				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
 					if ( !this.state.submittedToPeer ) {
 						return session.addNotification({
-							title: 'Submit first',
-							message: 'Submit your report first before opening the report you got sent for review',
+							title: this.props.t('submit-first'),
+							message: this.props.t('submit-first-ready-msg'),
 							level: 'warning',
 							position: 'tr'
 						});
@@ -575,7 +579,7 @@ class TextEditor extends Component {
 						value: report,
 						displayPeerReport: true
 					});
-				}}>Open Report</Button>
+				}}>{this.props.t('open-report')}</Button>
 			</div>
 		});
 	}
@@ -583,8 +587,8 @@ class TextEditor extends Component {
 	addPeerComments = ( comments ) => {
 		const session = this.context;
 		this.peerCommentsNotification = session.addNotification({
-			title: 'Peer review comments received',
-			message: 'You have received comments from your peer reviewer! Please confirm to load it into the Markdown editor',
+			title: this.props.t('peer-review-comments-received'),
+			message: this.props.t('peer-review-comments-received-msg'),
 			level: 'success',
 			position: 'tr',
 			dismissible: 'none',
@@ -593,8 +597,8 @@ class TextEditor extends Component {
 				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
 					if ( !this.state.submittedPeerComments ) {
 						return session.addNotification({
-							title: 'Submit first',
-							message: 'First send back the comments you wrote before opening your annotated report',
+							title: this.props.t('submit-first'),
+							message: this.props.t('submit-first-comments-msg'),
 							level: 'warning',
 							position: 'tr'
 						});
@@ -605,7 +609,7 @@ class TextEditor extends Component {
 						value: comments,
 						displayPeerReport: false
 					});
-				}}>Open Comments</Button>
+				}}>{this.props.t('open-comments')}</Button>
 			</div>
 		});
 	}
@@ -628,8 +632,8 @@ class TextEditor extends Component {
 			newState.peer = assignment;
 			this.setState( newState, () => {
 				this.context.addNotification({
-					title: 'Pairing established',
-					message: 'You have been successfully paired with other students!',
+					title: this.props.t('pairing-established'),
+					message: this.props.t('pairing-established-msg'),
 					level: 'success',
 					position: 'tr'
 				});
@@ -660,8 +664,8 @@ class TextEditor extends Component {
 		}, () => {
 			this.editorDiv.firstChild.style.background = '#fff';
 			this.context.addNotification({
-				title: 'Pairing ended',
-				message: 'The peer review pairings were ended.',
+				title: this.props.t('pairing-ended'),
+				message: this.props.t('pairing-ended-msg'),
 				level: 'info',
 				position: 'tr'
 			});
@@ -685,7 +689,7 @@ class TextEditor extends Component {
 		if ( resetModal && resetModal.notification ) {
 			message = resetModal.notification;
 		} else {
-			message = 'Your report has been successfully deleted and the editor reset to its default value';
+			message = this.props.t('report-deleted-msg');
 		}
 		this.context.addNotification({
 			title,
@@ -698,13 +702,13 @@ class TextEditor extends Component {
 	render() {
 		const session = this.context;
 		if ( this.props.mode === 'group' && !this.state.group ) {
-			return <h3 style={this.props.style} >Activity will become available once you are part of a group</h3>;
+			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
 		return (
 			<Fragment>
 				{ this.props.mode === 'group' ? <Gate owner >
 					<SelectInput
-						legend="Select group"
+						legend={this.props.t('select-group')}
 						options={this.state.allGroups}
 						value={this.state.group}
 						onChange={( group ) => {
@@ -734,6 +738,7 @@ class TextEditor extends Component {
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
+							t={this.props.t}
 						/> :
 						<ProseMirrorEditorView
 							defaultValue={this.state.value}
@@ -759,6 +764,7 @@ class TextEditor extends Component {
 								this.editorState = editorState;
 							}}
 							docId={this.state.docId}
+							t={this.props.t}
 						/>
 					}
 				</div>
@@ -821,25 +827,30 @@ class TextEditor extends Component {
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
 					onSubmit={this.resetEditor}
+					t={this.props.t}
 					{...this.props.resetModal}
 				/>
 				<SubmitModal
 					show={this.state.showSubmitModal && !this.props.peerReview}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
+					t={this.props.t}
 				/>
 				<TableSelect
 					show={this.state.showTableModal}
 					onHide={this.toggleTableModal}
+					t={this.props.t}
 				/>
 				<Guides
 					show={this.state.showGuides}
 					onHide={this.toggleGuides}
+					t={this.props.t}
 				/>
 				<PDFModal
 					show={this.state.showPDFModal}
 					onHide={this.togglePDFModal}
 					exportPDF={this.exportPDF}
+					t={this.props.t}
 				/>
 			</Fragment>
 		);
@@ -896,4 +907,4 @@ TextEditor.contextType = SessionContext;
 
 // EXPORTS //
 
-export default TextEditor;
+export default withTranslation( 'text-editor' )( TextEditor );

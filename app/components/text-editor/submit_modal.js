@@ -25,13 +25,13 @@ class SubmitModal extends Component {
 			size="small"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Submit Report</Modal.Title>
+				<Modal.Title>{this.props.t('submit-report')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Click the button to submit your report. This action cannot be undone, although additional versions of the report may be submitted.
+				{this.props.t('submit-report-msg')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" onClick={this.handleSubmission} block>Submit</Button>
+				<Button variant="success" onClick={this.handleSubmission} block>{this.props.t('submit')}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}

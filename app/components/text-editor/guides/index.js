@@ -48,12 +48,12 @@ class Guides extends Component {
 	renderCancelPanel() {
 		return (
 			<Card body>
-				<span className="title">Cancel Tour</span>
+				<span className="title">{this.props.t('cancel-tour')}</span>
 				<p>
-					You are currently in a tour on the functionality of the editor. You will only be able to start a new tour if you cancel the current one. Do you wish to cancel it?
+					{this.props.t('cancel-tour-msg')}
 				</p>
 				<ButtonToolbar>
-					<Button variant="warning" onClick={this.handleStartClick} >Cancel</Button>
+					<Button variant="warning" onClick={this.handleStartClick} >{this.props.t('cancel')}</Button>
 				</ButtonToolbar>
 			</Card>
 		);
@@ -62,12 +62,12 @@ class Guides extends Component {
 	renderSelectionPanel() {
 		return (
 			<Card body>
-				<span className="title">Select a Tour</span>
+				<span className="title">{this.props.t('select-tour')}</span>
 				<Form>
 					<FormGroup>
 						<Form.Check
 							type="radio"
-							label="Editor Overview"
+							label={this.props.t('editor-overview')}
 							name="overview"
 							value="overview"
 							onChange={this.handleOptionChange}
@@ -75,7 +75,7 @@ class Guides extends Component {
 						/>
 						<Form.Check
 							type="radio"
-							label="Saving Progress"
+							label={this.props.t('saving-progress')}
 							name="saving"
 							value="saving"
 							onChange={this.handleOptionChange}
@@ -83,7 +83,7 @@ class Guides extends Component {
 						/>
 						<Form.Check
 							type="radio"
-							label="Creating a Poster"
+							label={this.props.t('creating-poster')}
 							name="poster"
 							value="poster"
 							onChange={this.handleOptionChange}
@@ -92,7 +92,7 @@ class Guides extends Component {
 					</FormGroup>
 				</Form>
 				<ButtonToolbar>
-					<Button variant="success" onClick={this.handleStartClick} >Start Tour</Button>
+					<Button variant="success" onClick={this.handleStartClick} >{this.props.t('start-tour')}</Button>
 				</ButtonToolbar>
 			</Card>
 		);
@@ -184,7 +184,7 @@ class Guides extends Component {
 					</Container>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.clickHide} >Close</Button>
+					<Button onClick={this.clickHide} >{this.props.t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 		);
@@ -241,7 +241,7 @@ class Guides extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 Guides.propTypes = {
 	onHide: PropTypes.func,

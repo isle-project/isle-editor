@@ -60,7 +60,7 @@ function userString( n ) {
 const StatusBar = ( props ) => {
 	return ( <div className="prose-statusbar">
 		{ props.nUsers && props.docname ? <span className="docinfo">
-			Connected to:
+			{props.t('connected-to')}:
 			<span className="connected" style={{ marginLeft: 5 }} >
 				<span className="docname">{props.docname}, </span>
 				<span className="users" style={{ marginLeft: 5 }} >{userString( props.nUsers )}{
@@ -77,8 +77,8 @@ const StatusBar = ( props ) => {
 				}</span>
 			</span>
 		</span> : null }
-		{ props.nWords ? <span>words: {props.nWords}</span> : null }
-		{ props.nChars ? <span style={{ marginLeft: 5 }}>characters: {props.nChars}</span> : null }
+		{ props.nWords ? <span>{props.t('words')}: {props.nWords}</span> : null }
+		{ props.nChars ? <span style={{ marginLeft: 5 }}>{props.t('characters')}: {props.nChars}</span> : null }
 	</div> );
 };
 
@@ -456,6 +456,7 @@ class ProseMirrorCollaborative extends Component {
 				nUsers={this.state.nUsers}
 				userList={this.state.userList}
 				docname={this.props.id}
+				t={this.props.t}
 			/>
 		</Fragment> );
 	}

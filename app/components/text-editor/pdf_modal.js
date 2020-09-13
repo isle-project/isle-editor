@@ -85,14 +85,14 @@ class SaveModal extends Component {
 			id="save-modal"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Export as PDF</Modal.Title>
+				<Modal.Title>{this.props.t('pdf-modal-title')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Card border="primary" id="export-pdf-panel" >
 					<Card.Body>
 						<Row className="predefined-letter-button">
 							<SelectInput
-								legend="Pick a predefined value"
+								legend={this.props.t('pick-predefined-value')}
 								defaultValue={this.state.pageSize}
 								options={['LETTER', 'LEGAL', 'A4', 'B5', 'TABLOID', 'EXECUTIVE', 'POSTER', 'CUSTOM']}
 								onChange={( value )=>{
@@ -117,7 +117,7 @@ class SaveModal extends Component {
 						</Row>
 						<Row className="dimension-select">
 							<NumberInput
-								legend="Pick the width (Inches)"
+								legend={this.props.t('pick-width')}
 								defaultValue={this.state.visibleWidth}
 								min={1}
 								max={50}
@@ -133,7 +133,7 @@ class SaveModal extends Component {
 								}}
 							/>
 							<NumberInput
-								legend="Pick the height (Inches)"
+								legend={this.props.t('pick-height')}
 								defaultValue={this.state.visibleHeight}
 								min={1}
 								max={50}
@@ -151,7 +151,7 @@ class SaveModal extends Component {
 						<Row className="showDimensions">
 							<Col xs={6} md={6}>
 								<SelectInput
-									legend="Orientation"
+									legend={this.props.t('orientation')}
 									defaultValue={this.state.pageOrientation}
 									options={['portrait', 'landscape']}
 									onChange={( value )=>{
@@ -170,7 +170,7 @@ class SaveModal extends Component {
 								/>
 							</Col>
 						</Row>
-						<Button onClick={this.savePDF} block>Save</Button>
+						<Button onClick={this.savePDF} block>{this.props.t('save')}</Button>
 					</Card.Body>
 				</Card>
 			</Modal.Body>

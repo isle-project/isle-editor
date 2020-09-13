@@ -28,8 +28,8 @@ const debug = logger( 'isle:text-editor' );
 
 const StatusBar = ( props ) => {
 	return ( <div className="prose-statusbar">
-		<span>words: {props.nWords}</span>
-		<span style={{ marginLeft: 5 }}>characters: {props.nChars}</span>
+		<span>{props.t('words')}: {props.nWords}</span>
+		<span style={{ marginLeft: 5 }}>{props.t('characters')}: {props.nChars}</span>
 	</div> );
 };
 
@@ -166,7 +166,7 @@ class ProseMirror extends Component {
 				ref={this._createEditorView}
 			/>
 			{this.props.showStatusBar ?
-				<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} /> :
+				<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} t={this.props.t} /> :
 				null
 			}
 		</Fragment> );

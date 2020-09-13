@@ -77,9 +77,9 @@ class TableSelect extends Component {
 		const header = new Array( 9 );
 		for ( let z = 0; z < header.length; z++ ) {
 			if ( z <= this.state.cols - 1 ) {
-				header[z] = <th key={z} className="selected_cols">Col{z + 1}</th>;
+				header[z] = <th key={z} className="selected_cols">{z + 1}</th>;
 			} else {
-				header[z] = <th key={z} className="un_selected_cols">Col{z + 1}</th>;
+				header[z] = <th key={z} className="un_selected_cols">{z + 1}</th>;
 			}
 		}
 		return (
@@ -109,8 +109,8 @@ class TableSelect extends Component {
 			>
 				<Modal.Header closeButton>
 					<Modal.Title as="h5">
-						Choose Table Dimensions:
-						Row: {this.state.hoverRow} Col: {this.state.hoverCol}
+						{this.props.t('choose-dimensions')}
+						{this.props.t('row')}: {this.state.hoverRow} {this.props.t('col')}: {this.state.hoverCol}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -123,7 +123,10 @@ class TableSelect extends Component {
 							align="center"
 							onClick={this.insertTable}
 						>
-							Insert {this.state.rows} x {this.state.cols} table
+							{this.props.t( 'insert-table-spec', {
+								rows: this.state.rows,
+								cols: this.state.cols
+							})}
 						</Button>
 					</div>
 				</Modal.Body>
