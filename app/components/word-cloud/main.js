@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
@@ -29,6 +30,7 @@ import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
 import Tooltip from 'components/tooltip';
 import { svgString2Image, getSVGString } from 'utils/svg';
+import './load_translations.js';
 
 
 // VARIABLES //
@@ -328,13 +330,13 @@ class Wrapper extends Component {
 
 	render() {
 		return ( <div style={{ width: this.props.width, position: 'relative', ...this.props.style }} >
-			{ this.props.saveButton && this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip="Save Word Cloud" >
+			{ this.props.saveButton && this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip={this.props.t('save-word-cloud')} >
 				<Button size="sm" variant="light" onClick={this.saveToPNG} style={{
 					position: 'absolute',
 					right: -12,
 					top: -12,
 					zIndex: 2
-				}} aria-label="Save Word Cloud" >
+				}} aria-label={this.props.t('save-word-cloud')} >
 					<div className="fa fa-save" />
 				</Button>
 			</Tooltip> : null }
@@ -397,4 +399,4 @@ Wrapper.propTypes = {
 
 // EXPORTS //
 
-export default Wrapper;
+export default withTranslation( 'word-cloud' )( Wrapper );
