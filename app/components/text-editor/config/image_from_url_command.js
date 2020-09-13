@@ -34,9 +34,8 @@ import ImageURLEditor from './ui/image_url_editor.js';
 // MAIN //
 
 class ImageFromURLCommand extends ImageSourceCommand {
-	title = 'Insert image from URL';
-
-	content = 'Insert image from URL';
+	title = 'insert-image-url';
+	content = 'insert-image-url';
 
 	// eslint-disable-next-line class-methods-use-this
 	getEditor() {

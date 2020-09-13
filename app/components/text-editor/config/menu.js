@@ -312,23 +312,23 @@ export const history = [
 
 export const tableEdits = [
 	{
-		title: 'Insert column before',
-		content: 'Insert column before',
+		title: 'insert-column-before',
+		content: 'insert-column-before',
 		run: addColumnBefore
 	},
 	{
-		title: 'Insert column after',
-		content: 'Insert column after',
+		title: 'insert-column-after',
+		content: 'insert-column-after',
 		run: addColumnAfter
 	},
 	{
-		title: 'Insert row before',
-		content: 'Insert row before',
+		title: 'insert-row-before',
+		content: 'insert-row-before',
 		run: addRowBefore
 	},
 	{
-		title: 'Insert row after',
-		content: 'Insert row after',
+		title: 'insert-row-after',
+		content: 'insert-row-after',
 		run: addRowAfter
 	},
 	{
@@ -342,23 +342,23 @@ export const tableEdits = [
 		run: deleteRow
 	},
 	{
-		title: 'Merge cells',
-		content: 'Merge cells',
+		title: 'merge-cells',
+		content: 'merge-cells',
 		run: mergeCells
 	},
 	{
-		title: 'Split cells',
-		content: 'Split cells',
+		title: 'split-cells',
+		content: 'split-cells',
 		run: splitCell
 	},
 	{
-		title: 'Toggle header column',
-		content: 'Toggle header column',
+		title: 'toggle-header-column',
+		content: 'toggle-header-column',
 		run: toggleHeaderColumn
 	},
 	{
-		title: 'Toggle header row',
-		content: 'Toggle header row',
+		title: 'toggle-header-row',
+		content: 'toggle-header-row',
 		run: toggleHeaderRow
 	},
 	{

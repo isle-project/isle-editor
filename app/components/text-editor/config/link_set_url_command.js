@@ -47,7 +47,7 @@ const MARK_LINK = 'link';
 class LinkSetURLCommand extends UICommand {
 	_popUp = null;
 
-	title = 'Apply link';
+	title = 'apply-link';
 	content = icons.link;
 
 	enable = (state) => {

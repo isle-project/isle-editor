@@ -117,7 +117,7 @@ const isActiveFactory = ( alignment ) => {
 
 const alignment = [
 	{
-		title: 'Align left',
+		title: 'align-left',
 		content: icons.alignLeft,
 		enable: isEnabled,
 		active: isActiveFactory( 'left' ),
@@ -135,7 +135,7 @@ const alignment = [
 		}
 	},
 	{
-		title: 'Align center',
+		title: 'align-center',
 		content: icons.alignCenter,
 		enable: isEnabled,
 		active: isActiveFactory( 'center' ),
@@ -153,7 +153,7 @@ const alignment = [
 		}
 	},
 	{
-		title: 'Align right',
+		title: 'align-right',
 		content: icons.alignRight,
 		enable: isEnabled,
 		active: isActiveFactory( 'right' ),
@@ -171,7 +171,7 @@ const alignment = [
 		}
 	},
 	{
-		title: 'Justified',
+		title: 'justified',
 		content: icons.alignJustify,
 		enable: isEnabled,
 		active: isActiveFactory( 'justify' ),

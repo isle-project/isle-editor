@@ -34,9 +34,8 @@ import ImageUploadEditor from './ui/image_upload_editor.js';
 // MAIN //
 
 class ImageUploadCommand extends ImageSourceCommand {
-	title = 'Upload image';
-
-	content = 'Upload image';
+	title = 'upload-image';
+	content = 'upload-image';
 
 	// eslint-disable-next-line class-methods-use-this
 	getEditor() {

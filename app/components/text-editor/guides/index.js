@@ -169,7 +169,7 @@ class Guides extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<Container>
-						<span className="title">Markdown Cheatsheet</span>
+						<span className="title">{this.props.t('markdown-cheatsheet')}</span>
 						<Row>
 							<Col sm={9}>
 								<Row>
