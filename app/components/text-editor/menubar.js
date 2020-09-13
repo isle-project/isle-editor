@@ -8,6 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import DropdownToggle from 'react-bootstrap/DropdownToggle';
 import DropdownItem from 'react-bootstrap/DropdownItem';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Tooltip from 'components/tooltip';
 import icons from './config/icons';
 import findActiveFontSize from './config/find_active_font_size.js';
@@ -35,25 +36,25 @@ const Button = ( props ) => {
 				}}
 				disabled={true}
 				className="menu-item"
-				aria-label={props.title}
+				aria-label={props.t( props.title )}
 			>{props.children}</button>
 		);
 	}
 	return (
-		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={props.title} placement="bottom" >
+		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={props.t( props.title )} placement="bottom" >
 			<button onMouseDown={props.onMouseDown}
 				style={{
 					active: props.active,
 					color: props.active ? 'black' : BUTTON_INACTIVE_COLOR
 				}}
 				className="menu-item"
-				aria-label={props.title}
+				aria-label={props.t( props.title )}
 			>{props.children}</button>
 		</Tooltip>
 	);
 };
 
-const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice }) => {
+const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, t }) => {
 	const onMenuMouseDown = ( item ) => e => {
 		e.preventDefault();
 		if ( item.run ) {
@@ -68,10 +69,11 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			type="button"
 			active={item.active && state ? item.active( state ) : false}
 			disabled={item.enable && state ? !item.enable( state ) : false}
-			title={typeof item.title === 'string' ? item.title : ''}
+			title={typeof item.title === 'string' ? t( item.title ) : ''}
 			onMouseDown={onMenuMouseDown(item)}
+			t={t}
 		>
-			{item.content}
+			{isString( item.content ) ? t( item.content ) : item.content}
 		</Button>
 	);
 	const createDropdownButtons = ( item, itemKey ) => {
@@ -80,14 +82,14 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				<DropdownItem
 					key={`dropdown-item-${itemKey}`}
 					disabled
-				>{item.content}</DropdownItem>
+				>{isString( item.content ) ? t( item.content ) : item.content}</DropdownItem>
 			);
 		}
 		return (
 			<DropdownItem
 				key={`dropdown-item-${itemKey}`}
 				onMouseDown={onMenuMouseDown(item)}
-			>{item.content}</DropdownItem>
+			>{isString( item.content ) ? t( item.content ) : item.content}</DropdownItem>
 		);
 	};
 	const createFontButtons = ( item, itemKey ) => (

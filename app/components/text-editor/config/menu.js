@@ -104,14 +104,14 @@ const activeHeadingFactory = ( level ) => {
 
 export const marks = [
 	{
-		title: 'Strong',
+		title: 'strong',
 		content: icons.strong,
 		enable: isEnabled,
 		active: markActive( schema.marks.strong ),
 		run: toggleMark( schema.marks.strong )
 	},
 	{
-		title: 'Emphasis',
+		title: 'emphasis',
 		content: icons.em,
 		enable: isEnabled,
 		active: markActive( schema.marks.em ),
@@ -122,35 +122,35 @@ export const marks = [
 
 export const extraMarks = [
 	{
-		title: 'Underline',
+		title: 'underline',
 		content: icons.underline,
 		enable: isEnabled,
 		active: markActive( schema.marks.underline ),
 		run: toggleMark( schema.marks.underline )
 	},
 	{
-		title: 'Strikethrough',
+		title: 'strikethrough',
 		content: icons.strikethrough,
 		enable: isEnabled,
 		active: markActive( schema.marks.strikethrough ),
 		run: toggleMark( schema.marks.strikethrough )
 	},
 	{
-		title: 'Code',
+		title: 'code',
 		content: icons.code,
 		enable: isEnabled,
 		active: markActive( schema.marks.code ),
 		run: toggleMark( schema.marks.code )
 	},
 	{
-		title: 'Subscript',
+		title: 'subscript',
 		content: icons.subscript,
 		enable: isEnabled,
 		active: markActive( schema.marks.subscript ),
 		run: toggleMark( schema.marks.subscript )
 	},
 	{
-		title: 'Superscript',
+		title: 'superscript',
 		content: icons.superscript,
 		enable: isEnabled,
 		active: markActive( schema.marks.superscript ),
@@ -160,21 +160,21 @@ export const extraMarks = [
 
 export const blocks = [
 	{
-		title: 'Change to paragraph',
+		title: 'change-paragraph',
 		content: icons.paragraph,
 		active: blockActive( schema.nodes.paragraph ),
 		enable: setBlockType( schema.nodes.paragraph ),
 		run: setBlockType( schema.nodes.paragraph )
 	},
 	{
-		title: 'Change to heading 1',
+		title: 'change-heading-1',
 		content: 'H1',
 		active: activeHeadingFactory( 1 ),
 		enable: setBlockType( schema.nodes.heading, { level: 1 } ),
 		run: setBlockType( schema.nodes.heading, { level: 1 } )
 	},
 	{
-		title: 'Change to heading 2',
+		title: 'change-heading-2',
 		content: 'H2',
 		active: activeHeadingFactory( 2 ),
 		enable: setBlockType( schema.nodes.heading, { level: 2 } ),
@@ -184,19 +184,19 @@ export const blocks = [
 
 export const headers = [
 	{
-		title: 'Change to heading 3',
+		title: 'change-heading-3',
 		content: 'Heading 3',
 		enable: setBlockType( schema.nodes.heading, { level: 3 } ),
 		run: setBlockType( schema.nodes.heading, { level: 3 } )
 	},
 	{
-		title: 'Change to heading 4',
+		title: 'change-heading-4',
 		content: 'Heading 4',
 		enable: setBlockType( schema.nodes.heading, { level: 4 } ),
 		run: setBlockType( schema.nodes.heading, { level: 4 } )
 	},
 	{
-		title: 'Change to heading 5',
+		title: 'change-heading-5',
 		content: 'Heading 5',
 		enable: setBlockType( schema.nodes.heading, { level: 5 } ),
 		run: setBlockType( schema.nodes.heading, { level: 5 } )
@@ -205,21 +205,21 @@ export const headers = [
 
 export const wraps = [
 	{
-		title: 'Wrap in block quote',
+		title: 'wrap-block-quote',
 		content: icons.blockquote,
 		active: blockActive( schema.nodes.blockquote ),
 		enable: wrapIn( schema.nodes.blockquote ),
 		run: wrapIn( schema.nodes.blockquote )
 	},
 	{
-		title: 'Wrap in bullet list',
+		title: 'wrap-bullet-list',
 		content: icons.bullet_list,
 		active: blockActive( schema.nodes.bullet_list ),
 		enable: wrapInList( schema.nodes.bullet_list ),
 		run: wrapInList( schema.nodes.bullet_list )
 	},
 	{
-		title: 'Wrap in ordered list',
+		title: 'wrap-ordered-list',
 		content: icons.ordered_list,
 		active: blockActive( schema.nodes.ordered_list ),
 		enable: wrapInList( schema.nodes.ordered_list ),
@@ -229,20 +229,20 @@ export const wraps = [
 
 export const actions = [
 	{
-		title: 'Lift out of enclosing block',
-		content: 'Lift out of enclosing block',
+		title: 'lift-out-enclosing',
+		content: 'lift-out-enclosing',
 		enable: lift,
 		run: lift
 	},
 	{
-		title: 'Join with above block',
-		content: 'Join with above block',
+		title: 'join-with-above',
+		content: 'join-with-above',
 		enable: joinUp,
 		run: joinUp
 	},
 	{
-		title: 'Join with below block',
-		content: 'Join with below block',
+		title: 'join-with-below',
+		content: 'join-with-below',
 		enable: joinDown,
 		run: joinDown
 	}
@@ -252,8 +252,8 @@ export const insert = [
 	new ImageFromURLCommand(),
 	new ImageUploadCommand(),
 	{
-		title: 'Insert footnote',
-		content: 'Insert footnote',
+		title: 'insert-footnote',
+		content: 'insert-footnote',
 		enable: canInsert( schema.nodes.footnote ),
 		run: ( state, dispatch ) => {
 			const footnote = schema.nodes.footnote.create();
@@ -261,8 +261,8 @@ export const insert = [
 		}
 	},
 	{
-		title: 'Insert figure caption',
-		content: 'Insert figure caption',
+		title: 'insert-figure-caption',
+		content: 'insert-figure-caption',
 		enable: isEmptySelectionForInsertion,
 		run: ( state, dispatch ) => {
 			const figureCaption = schema.nodes.figureCaption.create();
@@ -270,8 +270,8 @@ export const insert = [
 		}
 	},
 	{
-		title: 'Insert table caption',
-		content: 'Insert table caption',
+		title: 'insert-table-caption',
+		content: 'insert-table-caption',
 		enable: isEmptySelectionForInsertion,
 		run: ( state, dispatch ) => {
 			const tableCaption = schema.nodes.tableCaption.create();
@@ -279,8 +279,8 @@ export const insert = [
 		}
 	},
 	{
-		title: 'Insert code block',
-		content: 'Insert code block',
+		title: 'insert-code-block',
+		content: 'insert-code-block',
 		enable: canInsert( schema.nodes.code_block ),
 		run: ( state, dispatch ) => {
 			const footnote = schema.nodes.code_block.create();
@@ -291,19 +291,19 @@ export const insert = [
 
 export const history = [
 	{
-		title: 'Undo last change',
+		title: 'undo-last-change',
 		content: icons.undo,
 		enable: undo,
 		run: undo
 	},
 	{
-		title: 'Redo last undone change',
+		title: 'redo-last-undone-change',
 		content: icons.redo,
 		enable: redo,
 		run: redo
 	},
 	{
-		title: 'Select parent node',
+		title: 'select-parent-node',
 		content: icons.selectParent,
 		run: selectParentNode,
 		select: state => selectParentNode( state )
@@ -332,13 +332,13 @@ export const tableEdits = [
 		run: addRowAfter
 	},
 	{
-		title: 'Delete column',
-		content: 'Delete column',
+		title: 'delete-column',
+		content: 'delete-column',
 		run: deleteColumn
 	},
 	{
-		title: 'Delete row',
-		content: 'Delete row',
+		title: 'delete-row',
+		content: 'delete-row',
 		run: deleteRow
 	},
 	{
@@ -362,8 +362,8 @@ export const tableEdits = [
 		run: toggleHeaderRow
 	},
 	{
-		title: 'Delete table',
-		content: 'Delete table',
+		title: 'delete-table',
+		content: 'delete-table',
 		run: deleteTable
 	}
 ];

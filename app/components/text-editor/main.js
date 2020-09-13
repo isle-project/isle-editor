@@ -122,7 +122,7 @@ class TextEditor extends Component {
 
 		this.menu = copy( menu, 2 );
 		this.menu.tableEdits.unshift({
-			title: this.props.t('insert-table'),
+			title: 'insert-table',
 			content: this.props.t('insert-table'),
 			enable: canInsert( schema.nodes.table ),
 			run: ( state, dispatch ) => {
@@ -148,7 +148,7 @@ class TextEditor extends Component {
 			}
 		});
 		this.menu.marks.push({
-			title: 'Font color',
+			title: 'font-color',
 			content: icons.color,
 			enable: ( state ) => {
 				return isTextStyleMarkCommandEnabled( state, 'textColor' );
@@ -180,7 +180,7 @@ class TextEditor extends Component {
 		});
 		this.menu.addons = [
 			{
-				title: this.props.t('save-html'),
+				title: 'save-html',
 				content: icons.save,
 				run: ( state, dispatch ) => {
 					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
@@ -195,7 +195,7 @@ class TextEditor extends Component {
 				}
 			},
 			{
-				title: this.props.t('export-pdf'),
+				title: 'export-pdf',
 				content: icons.pdf,
 				run: ( state, dispatch ) => {
 					this.togglePDFModal();
@@ -243,7 +243,7 @@ class TextEditor extends Component {
 		];
 		if ( this.props.canLoadHTML ) {
 			this.menu.addons.unshift({
-				title: this.props.t('open-html'),
+				title: 'open-html',
 				run: ( state, dispatch ) => {
 					const input = document.createElement( 'input' );
 					input.type = 'file';
@@ -257,7 +257,7 @@ class TextEditor extends Component {
 		}
 		if ( this.props.allowSubmissions ) {
 			this.menu.addons.push({
-				title: this.props.t('submit'),
+				title: 'submit',
 				content: icons.submit,
 				run: ( state, dispatch ) => {
 					this.editorState = state;
@@ -268,7 +268,7 @@ class TextEditor extends Component {
 		}
 		this.menu.addons = this.menu.addons.concat([
 			{
-				title: this.props.t('toggle-fullscreen'),
+				title: 'toggle-fullscreen',
 				run: () => {
 					if ( !/fullscreen/.test( this.editorWrapper.className ) ) {
 						this.editorWrapper.className += ' fullscreen';
@@ -299,14 +299,14 @@ class TextEditor extends Component {
 				/>
 			},
 			{
-				title: this.props.t('open-tutorials'),
+				title: 'open-tutorials',
 				run: this.toggleGuides,
 				content: icons.guides
 			}
 		]);
 		if ( this.props.mode === 'group' || this.props.mode === 'collaborative' ) {
 			this.menu.addons.push({
-				title: this.props.t('add-annotation'),
+				title: 'add-annotation',
 				content: icons.annotation,
 				run: addAnnotation
 			});
@@ -318,7 +318,7 @@ class TextEditor extends Component {
 			if ( resetModal && resetModal.tooltip ) {
 				tooltip = resetModal.tooltip;
 			} else {
-				tooltip = this.props.t('reset-to-default');
+				tooltip = 'reset-to-default';
 			}
 			if ( resetModal && resetModal.icon ) {
 				icon = resetModal.icon;

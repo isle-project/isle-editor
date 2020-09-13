@@ -160,6 +160,7 @@ class ProseMirror extends Component {
 				fullscreen={this.props.fullscreen}
 				showColorPicker={this.props.showColorPicker}
 				onColorChoice={this.props.onColorChoice}
+				t={this.props.t}
 			/>
 			<div
 				className={this.props.className}
