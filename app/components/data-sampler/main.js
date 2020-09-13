@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Panel from 'components/panel';
 import NumberInput from 'components/input/number';
@@ -13,6 +14,7 @@ import isFunction from '@stdlib/assert/is-function';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import './load_translations.js';
 
 
 // MAIN //
@@ -100,14 +102,14 @@ class DataSampler extends Component {
 			<div>
 				<Panel style={{ maxWidth: 900 }}>
 					<NumberInput
-						legend="Sample size"
+						legend={this.props.t('sample-size')}
 						defaultValue={this.state.sampleSize}
 						min={this.props.minSampleSize}
 						max={this.props.maxSampleSize || this.state.nobs}
 						step={1}
 						onChange={this.handleNumberChange}
 					/>
-					<Button onClick={this.drawSample}>Draw Sample</Button>
+					<Button onClick={this.drawSample}>{this.props.t('draw-sample')}</Button>
 				</Panel>
 				{this.state.children}
 			</div>
@@ -135,4 +137,4 @@ DataSampler.defaultProps = {
 
 // EXPORTS //
 
-export default DataSampler;
+export default withTranslation( 'data-sampler' )( DataSampler );

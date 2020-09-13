@@ -1,0 +1,14 @@
+{
+	"DE": {
+		"draw-sample": "Stichprobe ziehen",
+		"sample-size": "Stichprobengröße"
+	},
+	"EN": {
+		"draw-sample": "Draw Sample",
+		"sample-size": "Sample size"
+	},
+	"ES": {
+		"draw-sample": "Dibujar la muestra",
+		"sample-size": "Tamaño de la muestra"
+	}
+}
