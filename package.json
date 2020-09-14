@@ -282,7 +282,7 @@
     "js-yaml": "^3.13.0",
     "katex": "0.12.0",
     "localforage": "^1.9.0",
-    "moment": "2.27.0",
+    "moment": "2.28.0",
     "monaco-editor": "0.20.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "null-loader": "^4.0.0",
