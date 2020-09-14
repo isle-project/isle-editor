@@ -4,11 +4,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
+import { toJpeg } from 'html-to-image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
 import generateUID from 'utils/uid';
 import Image from 'components/image';
+import Spinner from 'components/internal/spinner';
 import ResponseVisualizer from 'components/response-visualizer';
 import SolutionButton from 'components/solution-button';
 import TimedButton from 'components/timed-button';
@@ -58,7 +60,8 @@ class ImageQuestion extends Component {
 			submitted: false,
 			src: null,
 			exhaustedHints: props.hints.length === 0,
-			displaySolution: false
+			displaySolution: false,
+			isProcessing: false
 		};
 	}
 
@@ -131,32 +134,69 @@ class ImageQuestion extends Component {
 		reader.readAsDataURL( selectedFile );
 	}
 
+	toggleSpinner = () => {
+		this.setState({
+			isProcessing: !this.state.isProcessing
+		});
+	}
+
 	/**
 	* Event handler invoked when user drags file onto the upload area.
 	*/
 	onDrop = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
+		this.toggleSpinner();
 		const dt = evt.dataTransfer;
 		const reader = new FileReader();
 		let file = null;
 		if ( dt.items && dt.items.length > 0 ) {
 			const item = dt.items[ 0 ];
+			console.log( item );
+			console.log( item.kind );
 			if ( item.kind === 'file' ) {
 				file = item.getAsFile();
 			}
 			else if ( item.kind === 'string' ) {
 				item.getAsString( ( str ) => {
+					console.log( str );
 					if ( contains( str, '<img' ) ) {
 						const match = str.match( RE_IMAGE_SRC );
 						if ( match ) {
 							this.setState({
 								src: match[ 1 ]
-							});
+							}, this.toggleSpinner );
 						}
+					} else if ( contains( str, '<thead' ) ) {
+						const node = document.createElement( 'table' );
+						node.innerHTML = str;
+						document.body.appendChild( node );
+						toJpeg( node, {
+							backgroundColor: 'white',
+							style: {
+								fontSize: 12
+							},
+							width: 600
+						}).then( data => {
+							this.setState({
+								src: data
+							}, this.toggleSpinner );
+							node.remove();
+						});
 					} else {
-						this.setState({
-							src: str
+						const node = document.createElement( 'pre' );
+						node.innerHTML = str;
+						document.body.appendChild( node );
+						toJpeg( node, {
+							backgroundColor: 'white',
+							style: {
+								fontSize: 14
+							}
+						}).then( data => {
+							this.setState({
+								src: data
+							}, this.toggleSpinner );
+							node.remove();
 						});
 					}
 				});
@@ -208,60 +248,66 @@ class ImageQuestion extends Component {
 			onClick={this.handleSolutionClick}
 			hasHints={this.props.hints.length > 0}
 		/>;
+
+
+		let content;
+		if ( !this.state.isProcessing ) {
+			content = this.state.src ?
+			<div className="center" style={{ maxWidth: 600 }}>
+				{this.state.displaySolution ?
+					<Image
+						alt={this.props.t('model-solution')}
+						src={this.props.solution}
+						width="100%" height="auto"
+						style={{
+							border: 'solid 1px gold'
+						}}
+					/> : <Image
+						alt={this.props.t('upload')}
+						src={this.state.src}
+						width="100%" height="auto"
+					/>
+				}
+			</div>:
+			<Fragment>
+				<div
+					className="image-question-dropzone"
+					onDrop={this.onDrop}
+					onDragOver={this.ignoreDrag}
+					onDragEnd={this.ignoreDrag}
+				>
+					<span>{this.props.t('drop-image')}</span>
+				</div>
+				<p className="center">{this.props.t('or')}</p>
+				<input
+					id={this.id+'-upload'}
+					className="image-question-upload center"
+					type="file"
+					accept="image/*"
+					onChange={this.handleFileUpload}
+					ref={fileUpload => {
+						this.fileUpload = fileUpload;
+					}}
+				/>
+				{this.props.sketchpad ?
+				<Fragment>
+					<p className="center">{this.props.t('or')}</p>
+					<Sketchpad
+						id={this.id}
+						hideNavigationButtons hideSaveButtons hideTransmitButtons
+						canvasWidth={900}
+						canvasHeight={600}
+						{...this.props.sketchpad}
+					/>
+				</Fragment> : null}
+			</Fragment>;
+		}
 		return (
 			<Card id={this.id} className={`image-question ${this.props.className}`} style={this.props.style} >
 				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 					<label>{this.props.question}</label>
-					{ this.state.src ?
-						<div className="center" style={{ maxWidth: 600 }}>
-							{this.state.displaySolution ?
-								<Image
-									alt={this.props.t('model-solution')}
-									src={this.props.solution}
-									width="100%" height="auto"
-									style={{
-										border: 'solid 1px gold'
-									}}
-								/> : <Image
-									alt={this.props.t('upload')}
-									src={this.state.src}
-									width="100%" height="auto"
-								/>
-							}
-						</div>:
-						<Fragment>
-							<div
-								className="image-question-dropzone"
-								onDrop={this.onDrop}
-								onDragOver={this.ignoreDrag}
-								onDragEnd={this.ignoreDrag}
-							>
-								<span>{this.props.t('drop-image')}</span>
-							</div>
-							<p className="center">{this.props.t('or')}</p>
-							<input
-								id={this.id+'-upload'}
-								className="image-question-upload center"
-								type="file"
-								accept="image/*"
-								onChange={this.handleFileUpload}
-								ref={fileUpload => {
-									this.fileUpload = fileUpload;
-								}}
-							/>
-							{this.props.sketchpad ?
-							<Fragment>
-								<p className="center">{this.props.t('or')}</p>
-								<Sketchpad
-									id={this.id}
-									hideNavigationButtons hideSaveButtons hideTransmitButtons
-									canvasWidth={900}
-									canvasHeight={600}
-									{...this.props.sketchpad}
-								/>
-							</Fragment> : null}
-						</Fragment>
-					}
+					<Spinner running={this.state.isProcessing} width={256} height={128} />
+					{content}
 					{ this.props.feedback ? <FeedbackButtons vertical
 						id={this.id+'_feedback'}
 						style={{
