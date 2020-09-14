@@ -612,7 +612,7 @@ class Editor extends Component {
 					const previousContent = model.getValueInRange( previous );
 					const op1 = {
 						range: current,
-						text: previousContent,
+						text: previousContent
 					};
 					const op2 = {
 						range: previous,
