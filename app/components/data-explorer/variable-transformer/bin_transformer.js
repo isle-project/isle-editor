@@ -306,7 +306,7 @@ class BinTransformer extends Component {
 		inputs.push(
 			<Row key={`div-${len}`}>
 				<Col md={7}>
-					<TeX raw="x >" />
+					<TeX raw="x \ge" />
 					<NumberInput
 						inline
 						onChange={this.changeFactory( len-1 )}
