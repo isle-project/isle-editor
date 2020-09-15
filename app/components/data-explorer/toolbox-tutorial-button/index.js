@@ -42,7 +42,9 @@ class Tutorial extends Component {
 			<Fragment>
 				<OverlayTrigger
 					placement="left"
-					overlay={<Tooltip>{this.state.running ? 'Close Tutorial' : 'Show Tutorial' }</Tooltip>}
+					overlay={<Tooltip>
+						{this.props.t( this.state.running ? 'close-tutorial' : 'show-tutorial' )}
+					</Tooltip>}
 				>
 					<Button
 						variant="secondary" size="sm"

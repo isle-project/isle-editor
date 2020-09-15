@@ -5,6 +5,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
@@ -59,6 +60,7 @@ import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
+import './load_translations.js';
 import './data_explorer.css';
 
 
@@ -534,15 +536,17 @@ class DataExplorer extends Component {
 		const session = this.context;
 		if ( hasProp( this.props.data, name ) ) {
 			return session.addNotification({
-				title: 'Variable exists',
-				message: 'The original variables of the data set cannot be overwritten.',
+				title: this.props.t('variable-exists'),
+				message: this.props.t('variable-exists-msg'),
 				level: 'error',
 				position: 'tr'
 			});
 		}
 		session.addNotification({
-			title: 'Variable created',
-			message: `The variable with the name ${name} has been successfully generated`,
+			title: this.props.t('variable-created'),
+			message: this.props.t('variable-created-msg', {
+				name
+			}),
 			level: 'success',
 			position: 'tr'
 		});
@@ -554,8 +558,10 @@ class DataExplorer extends Component {
 		const session = this.context;
 		this.logAction( DATA_EXPLORER_DELETE_VARIABLE, variable );
 		session.addNotification({
-			title: 'Variable removed',
-			message: `The variable with the name ${variable} has been successfully removed`,
+			title: this.props.t('variable-removed'),
+			message: this.props.t('variable-removed-msg', {
+				variable
+			}),
 			level: 'success',
 			position: 'tr'
 		});
@@ -829,7 +835,7 @@ class DataExplorer extends Component {
 		if ( !this.state.data ) {
 			return (
 				<SpreadsheetUpload
-					title="Data Explorer"
+					title={this.props.t('data-explorer')}
 					onUpload={this.onFileUpload}
 				/>
 			);
@@ -838,12 +844,12 @@ class DataExplorer extends Component {
 			const variableNames = objectKeys( this.state.data );
 			return ( <Card>
 				<Card.Header as="h3">
-					Data Explorer
+					{this.props.t('data-explorer')}
 				</Card.Header>
 				<Card.Body>
-					<h4>Please select which variables should be treated as numeric and which ones as categorical:</h4>
+					<h4>{this.props.t('select-quantitative-categorical')}:</h4>
 					<SelectInput
-						legend="quantitative:"
+						legend={`${this.props.t('quantitative')}:`}
 						options={variableNames}
 						defaultValue={this.state.quantitative}
 						multi
@@ -852,7 +858,7 @@ class DataExplorer extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Categorical:"
+						legend={`${this.props.t('categorical')}:`}
 						options={variableNames}
 						defaultValue={this.state.categorical}
 						multi
@@ -871,13 +877,13 @@ class DataExplorer extends Component {
 							session.store.setItem( this.id+'_quantitative', this.state.quantitative, debug );
 							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
 						});
-					}}>Submit</Button>
+					}}>{this.props.t('submit')}</Button>
 					<DataTable data={this.state.data} id={this.id + '_table'} />
 				</Card.Body>
 			</Card> );
 		}
 		if ( isEmptyObject( this.state.data ) ) {
-			return <Alert variant="danger">Data set is empty.</Alert>;
+			return <Alert variant="danger">{this.props.t('data-empty')}</Alert>;
 		}
 		if ( !this.state.validVariables ) {
 			return <Alert variant="danger">The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.</Alert>;
@@ -910,16 +916,18 @@ class DataExplorer extends Component {
 		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
 				<Nav.Item className="nav-statistics" >
-					<Nav.Link eventKey="1">Statistics</Nav.Link>
+					<Nav.Link eventKey="1">{this.props.t('statistics')}</Nav.Link>
 				</Nav.Item> : null
 			}
 			{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
 				<NavDropdown
-					title="Tables"
+					title={this.props.t('tables')}
 					className="nav-tables"
 				>
 					{ this.props.tables.map(
-						( e, i ) => <DropdownItem key={i} eventKey={`2.${i+1}`}>{e}</DropdownItem>
+						( e, i ) => ( <DropdownItem key={i} eventKey={`2.${i+1}`} >
+							{this.props.t( e )}
+						</DropdownItem> )
 					) }
 				</NavDropdown> : null
 			}
@@ -929,7 +937,7 @@ class DataExplorer extends Component {
 					className="nav-plots"
 				>
 					{ this.props.plots.map( ( e, i ) => {
-						const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{e}</DropdownItem>;
+						const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{this.props.t( e )}</DropdownItem>;
 						if (
 							e === 'Histogram' && this.props.plots[ i-1 ] === 'Mosaic Plot' ||
 							e === 'Line Plot' && this.props.plots[ i-1 ] === 'Box Plot'
@@ -945,7 +953,7 @@ class DataExplorer extends Component {
 			}
 			{ this.props.tests.length > 0 ?
 				<NavDropdown
-					title="Tests"
+					title={this.props.t('tests')}
 					className="nav-tests"
 				>
 					{ this.props.tests.map( ( e, i ) => {
@@ -965,7 +973,7 @@ class DataExplorer extends Component {
 			}
 			{ this.props.models.length > 0 ?
 				<NavDropdown
-					title="Models"
+					title={this.props.t('models')}
 					className="nav-models"
 				>
 					{this.props.models.map( ( e, i ) => {
@@ -985,7 +993,7 @@ class DataExplorer extends Component {
 			}
 			{ this.props.transformer ?
 				<Nav.Item className="nav-transform" >
-					<Nav.Link eventKey="6">Transform</Nav.Link>
+					<Nav.Link eventKey="6">{this.props.t('transform')}</Nav.Link>
 				</Nav.Item> : null
 			}
 		</Nav>;
@@ -1413,10 +1421,14 @@ class DataExplorer extends Component {
 					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 						<Nav>
 							{ hasQuestions ? <Nav.Item className="explorer-data-nav">
-								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>Questions</Nav.Link>
+								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>
+									{this.props.t('questions')}
+								</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
-								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>Data</Nav.Link>
+								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>
+									{this.props.t('data')}
+								</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.editor ?
 								<Nav.Item className="explorer-editor-nav">
@@ -1440,7 +1452,7 @@ class DataExplorer extends Component {
 						<Button
 							variant="secondary" size="sm" className="hide-toolbox-button"
 							onClick={this.toggleToolbox}
-						>{this.state.showToolbox ? 'Hide Toolbox' : 'Show Toolbox' }</Button>
+						>{this.props.t( this.state.showToolbox ? 'hide-toolbox' : 'show-toolbox' )}</Button>
 					</Navbar>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						{ hasQuestions ? <Pages
@@ -1457,7 +1469,10 @@ class DataExplorer extends Component {
 								display: this.state.openedNav !== 'data' ? 'none' : null
 							}}
 						>
-								{ !this.props.data ? <Button size="small" onClick={this.resetStorage} style={{ position: 'absolute', top: '80px', zIndex: 2 }}>Clear Data</Button> : null }
+								{ !this.props.data ? <Button
+									size="small" onClick={this.resetStorage}
+									style={{ position: 'absolute', top: '80px', zIndex: 2 }}
+								>{this.props.t('clear-data')}</Button> : null }
 								<DataTable
 									{...this.props.dataTableProps}
 									data={this.state.data}
@@ -1479,30 +1494,32 @@ class DataExplorer extends Component {
 								<Row>
 									<Col md={4} >
 										{ this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
-											<OverlayTrigger placement="top" overlay={<Tooltip>Create new dataset from currently active filters</Tooltip>} >
+											<OverlayTrigger placement="top" overlay={<Tooltip>{this.props.t('create-filtered-dataset-tooltip')}</Tooltip>} >
 												<Button
 													onClick={this.onFilterCreate}
 													variant="secondary"
 													size="xsmall"
 													style={{ float: 'left' }}
 												>
-													Create filtered dataset
-													</Button>
-												</OverlayTrigger> : null
-											}
+													{this.props.t('create-filtered-dataset')}
+												</Button>
+											</OverlayTrigger> : null
+										}
 									</Col>
 									<Col md={8} >
 										{ this.state.subsetFilters ? <div className="data-explorer-subset-filter-display">
 											<p>
-												<span style={{ color: 'white', paddingLeft: 2 }} >Filtered:</span>
-												{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>Restore original dataset with all observations</Tooltip>} >
+												<span style={{ color: 'white', paddingLeft: 2 }} >{this.props.t('filtered')}:</span>
+												{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>
+													{this.props.t('restore-original-dataset-tooltip')}
+												</Tooltip>} >
 													<Button
 														onClick={this.onRestoreData}
 														variant="secondary"
 														size="small"
 														style={{ float: 'right' }}
 													>
-														Restore original dataset
+														{this.props.t('restore-original-dataset')}
 													</Button>
 												</OverlayTrigger> : null }
 											</p>
@@ -1528,11 +1545,13 @@ class DataExplorer extends Component {
 								</Row>
 						</div>
 						{ this.props.editor ?
-						<TextEditor {...this.props.editorProps}
-							mode={this.props.reportMode}
-							id={this.id + '_editor'}
-							style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
-							submitButton /> : null
+							<TextEditor
+								{...this.props.editorProps}
+								mode={this.props.reportMode}
+								id={this.id + '_editor'}
+								style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
+								submitButton
+							/> : null
 						}
 						{this.props.tabs.map( ( e, i ) => {
 							return ( this.state.openedNav === e.title ?
@@ -1544,7 +1563,7 @@ class DataExplorer extends Component {
 			<Col xs={6} md={6}>
 				<div className="card card-default" style={{ height: this.props.style.height, minHeight: this.props.style.height || window.innerHeight*0.9, padding: 0 }} >
 					<div className="card-header clearfix">
-						<h3 className="data-explorer-output-header">Output</h3>
+						<h3 className="data-explorer-output-header">{this.props.t('output')}</h3>
 						<Gate owner>
 							<Modal
 								show={this.state.showStudentPlots}
@@ -1552,7 +1571,7 @@ class DataExplorer extends Component {
 								dialogClassName="modal-100w"
 							>
 								<Modal.Header closeButton >
-									<Modal.Title>Plots</Modal.Title>
+									<Modal.Title>{this.props.t('plots')}</Modal.Title>
 								</Modal.Header>
 								<Modal.Body style={{ height: 0.80 * window.innerHeight, overflowY: 'scroll' }}>
 									{ this.state.studentPlots.length > 0 ?
@@ -1574,23 +1593,31 @@ class DataExplorer extends Component {
 																/>
 														}
 														<span>
-															<b>Count: </b>{elem.count}
+															<b>{this.props.t('count')}: </b>{elem.count}
 														</span>
 													</div>
 												);
 											})}
 										</GridLayout> :
 										<Card body className="bg-light">
-											No plots have been created yet...
+											{this.props.t('no-plots-yet')}
 										</Card>
 									}
 								</Modal.Body>
 								<Modal.Footer>
-									<Button variant="danger" onClick={this.clearPlots}>Clear Plots</Button>
-									<Button onClick={this.toggleStudentPlots}>Close</Button>
+									<Button variant="danger" onClick={this.clearPlots}>
+										{this.props.t('clear-plots')}
+									</Button>
+									<Button onClick={this.toggleStudentPlots}>
+										{this.props.t('close')}
+									</Button>
 								</Modal.Footer>
 							</Modal>
-							<Button variant="secondary" size="sm" style={{ float: 'right' }} onClick={this.toggleStudentPlots} >Open Shared Plots</Button>
+							<Button
+								variant="secondary" size="sm"
+								style={{ float: 'right' }}
+								onClick={this.toggleStudentPlots}
+							>{this.props.t('open-shared-plots')}</Button>
 							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
 						</Gate>
 					</div>
@@ -1599,7 +1626,7 @@ class DataExplorer extends Component {
 					}} />
 					<Button size="sm" variant="outline-danger" block onClick={() => {
 						this.setState({ output: []});
-					}}>Clear All</Button>
+					}}>{this.props.t('clear-all')}</Button>
 				</div>
 			</Col>
 		</Row>;
@@ -1620,7 +1647,11 @@ class DataExplorer extends Component {
 						role="button" tabIndex={0}
 					>
 						<Card.Header className="data-explorer-toolbox-header" >
-							<Card.Title as="h3" unselectable="on" className="data-explorer-toolbox-title" >Toolbox</Card.Title>
+							<Card.Title
+								as="h3" unselectable="on" className="data-explorer-toolbox-title"
+							>
+								{this.props.t('toolbox')}
+							</Card.Title>
 							<ToolboxTutorialButton
 								onTutorialStart={() => {
 									this.setState({
@@ -1635,8 +1666,14 @@ class DataExplorer extends Component {
 									this.props.onTutorialCompletion();
 								}}
 								id={`${this.id}-toolbox`}
+								t={this.props.t}
 							/>
-							<Button variant="secondary" size="sm" style={{ position: 'absolute', right: '20px' }}onClick={this.toggleToolbox} >Hide Toolbox</Button>
+							<Button
+								variant="secondary"
+								size="sm"
+								style={{ position: 'absolute', right: '20px' }}
+								onClick={this.toggleToolbox}
+							>{this.props.t('hide-toolbox')}</Button>
 						</Card.Header>
 						<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
 							<Tab.Container defaultActiveKey={defaultActiveKey}>
@@ -1767,4 +1804,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default DataExplorer;
+export default withTranslation( 'data-explorer' )( DataExplorer );
