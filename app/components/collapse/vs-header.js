@@ -18,9 +18,7 @@ class VSHeader extends Component {
 				className={`vertical-slider-header ${this.props.className}`}
 				style={this.props.style}
 			>
-				<h3>
-					{this.props.children}
-				</h3>
+				{this.props.children}
 			</button>
 		);
 	}
