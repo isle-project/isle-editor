@@ -1,5 +1,6 @@
 {
 	"DE": {
+		"close-tutorial": "Tutorial schließen",
 		"data": "Daten",
 		"description": "Beschreibung",
 		"download-data": "Daten herunterladen",
@@ -20,12 +21,14 @@
 		"save-json": "JSON speichern",
 		"select-others": "Alle anderen auswählen",
 		"show-all": "Alle anzeigen",
+		"show-tutorial": "Tutorial anzeigen",
 		"total": "insgesamt",
 		"variable-descriptions": "Variablen-Beschreibungen",
 		"variable-descriptions-tooltip": "Variablen-Beschreibungen öffnen",
 		"variables": "Variablen"
 	},
 	"EN": {
+		"close-tutorial": "Close Tutorial",
 		"data": "Data",
 		"description": "Description",
 		"download-data": "Download Data",
@@ -46,12 +49,14 @@
 		"save-json": "Save JSON",
 		"select-others": "Select all others",
 		"show-all": "Show all",
+		"show-tutorial": "Show Tutorial",
 		"total": "total",
 		"variable-descriptions": "Variable Descriptions",
 		"variable-descriptions-tooltip": "Open variable descriptions",
 		"variables": "Variables"
 	},
 	"ES": {
+		"close-tutorial": "Cerrar Tutorial",
 		"data": "Datos",
 		"description": "Descripción",
 		"download-data": "Descargar datos",
@@ -72,6 +77,7 @@
 		"save-json": "Salvar JSON",
 		"select-others": "Selecciona todos los demás",
 		"show-all": "Mostrar todo",
+		"show-tutorial": "Mostrar Tutorial",
 		"total": "total",
 		"variable-descriptions": "Descripciones variables",
 		"variable-descriptions-tooltip": "Abrir descripciones de variable",

@@ -783,7 +783,12 @@ class DataTable extends Component {
 							</Button>
 						</Tooltip>
 						{saveButton}
-						<TutorialButton id={this.id} session={this.context} onTutorialCompletion={this.props.onTutorialCompletion} />
+						<TutorialButton
+							id={this.id}
+							session={this.context}
+							onTutorialCompletion={this.props.onTutorialCompletion}
+							t={this.props.t}
+						/>
 					</div>
 					<ButtonToolbar className="data-table-header-toolbar">
 						{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('variable-descriptions-tooltip')} ><Button
@@ -851,7 +856,9 @@ class DataTable extends Component {
 							return out;
 						}}
 					/>
-					<label className="label-number-rows"><i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i></label>
+					<label className="label-number-rows">
+						<i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i>
+					</label>
 				</div>
 				{modal}
 				{this.state.showSaveModal ?
