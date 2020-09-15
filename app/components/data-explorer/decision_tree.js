@@ -167,7 +167,7 @@ class DecisionTree extends Component {
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
-					<Collapse header="Change tree features..." >
+					<Collapse header="Change tree features..." headerStyle={{ fontSize: '1rem' }} >
 						<NumberInput legend="Score threshold for split"
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
