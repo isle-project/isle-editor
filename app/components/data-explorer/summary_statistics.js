@@ -192,27 +192,27 @@ class SummaryStatistics extends Component {
 			switch ( e ) {
 				case 'Mean':
 				case 'Median':
-					central.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					central.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'First Quartile':
 				case 'Third Quartile':
 				case 'Quantile':
 				case 'Min':
 				case 'Max':
-					location.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					location.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Range':
 				case 'Interquartile Range':
 				case 'Standard Deviation':
 				case 'Variance':
-					variation.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					variation.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Correlation':
-					relationship.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					relationship.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 				case 'Skewness':
 				case 'Excess Kurtosis':
-					shape.push({ 'label': e, 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					shape.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
 					break;
 			}
 		}
@@ -531,7 +531,7 @@ class SummaryStatistics extends Component {
 						</FormGroup> : null
 					}
 					<CheckboxInput
-						legend="Omit missing values"
+						legend={this.props.t('omit-missing')}
 						tooltip="If not ticked, result will be null if variable contains missing values"
 						defaultValue={this.state.omit}
 						onChange={( value ) => {
@@ -544,7 +544,7 @@ class SummaryStatistics extends Component {
 						variant="primary" block
 						onClick={this.generateStatistics}
 						disabled={!selectedStats || this.state.variables.length === 0}
-					>Calculate</Button>
+					>{this.props.t('calculate')}</Button>
 				</Card.Body>
 			</Card>
 		);

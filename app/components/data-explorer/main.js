@@ -957,7 +957,7 @@ class DataExplorer extends Component {
 					className="nav-tests"
 				>
 					{ this.props.tests.map( ( e, i ) => {
-						const item = <DropdownItem key={i} eventKey={`4.${i+1}`}>{e}</DropdownItem>;
+						const item = <DropdownItem key={i} eventKey={`4.${i+1}`}>{this.props.t( e )}</DropdownItem>;
 						if (
 							e === 'One-Sample Proportion Test' && this.props.tests[ i-1 ] === 'One-Way ANOVA' ||
 							e === 'Correlation Test' && this.props.tests[ i-1 ] === 'Two-Sample Proportion Test'
@@ -977,7 +977,7 @@ class DataExplorer extends Component {
 					className="nav-models"
 				>
 					{this.props.models.map( ( e, i ) => {
-						const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{e}</DropdownItem>;
+						const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{this.props.t( e )}</DropdownItem>;
 						if (
 							e === 'Decision Tree' && this.props.models[ i-1 ] === 'LASSO' ||
 							e === 'PCA' && this.props.models[ i-1 ] === 'Naive Bayes'
@@ -1004,6 +1004,7 @@ class DataExplorer extends Component {
 					{...quantitativeProps}
 					statistics={this.props.statistics}
 					logAction={this.logAction}
+					t={this.props.t}
 				/>
 			</Tab.Pane>
 			{this.props.tables.map( ( e, i ) => {
