@@ -21,7 +21,7 @@ const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 // FUNCTIONS //
 
 const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilters ) => {
-	return ( <ButtonGroup style={{ float: 'right', top: '-4px' }}>
+	return ( <ButtonGroup style={{ float: 'right', top: '-4px', zIndex: 2 }}>
 		<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
 		<FullscreenButton header={header} body={table} />
 		<ClearButton onClick={() => {
@@ -123,7 +123,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			e.value.props.meta.filters = subsetFilters;
 		}
 		return ( <div key={idx}>
-			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', zIndex: 1 }}>
+			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', zIndex: 2 }}>
 				<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
 				<ClearButton
 					onClick={() => { clearOutput( idx ); }}
@@ -171,7 +171,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Hierarchical Clustering'
 	) {
 		const elem = <pre key={idx}>
-			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', top: '-1px' }} >
+			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', top: '-1px', zIndex: 2 }} >
 				<DatasetButton
 					filters={subsetFilters} onActivateFilters={onFilters}
 					style={{
