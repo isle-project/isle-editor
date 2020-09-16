@@ -362,8 +362,8 @@ class FullscreenActionDisplay extends Component {
 						this.setState({ removeQuestionWords: value });
 					}}
 					style={{
-						right: '20px',
-						bottom: '35px',
+						left: '5px',
+						bottom: '85px',
 						position: 'absolute'
 					}}
 				/>
