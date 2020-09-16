@@ -19,6 +19,8 @@ const debug = logger( 'isle:qrcode' );
 *
 * @property {string} text - text to encode in QR code (defaults to lesson URL if not set)
 * @property {number} scale - number of pixels per modules (black dots)
+* @property {number} width - width in pixels; takes precedence over `scale` property
+* @property {number} height - height in pixels; takes precedence over `scale` property
 * @property {boolean} center - boolean controlling whether to center the QR code
 * @property {boolean} showText - boolean determining whether to show the text encoded in the QR code
 * @property {Object} style - CSS inline styles
@@ -38,7 +40,9 @@ class Qrcode extends Component {
 	componentDidUpdate( prevProps ) {
 		if (
 			this.props.text !== prevProps.text ||
-			this.props.scale !== prevProps.scale
+			this.props.scale !== prevProps.scale ||
+			this.props.width !== prevProps.width ||
+			this.props.height !== prevProps.height
 		) {
 			this.renderCode();
 		}
@@ -60,14 +64,15 @@ class Qrcode extends Component {
 		const text = this.props.text || window.location.href;
 		debug( `Display '${text}' as QR code...` );
 		QRCode.toCanvas( this.canvas, text, {
-			scale: this.props.scale
+			scale: this.props.scale,
+			width: this.props.width,
+			height: this.props.height
 		}, debug );
 	}
 
 	render() {
 		const canvas = <canvas
 			className={`qrcode-canvas ${this.props.center ? 'center' : ''}`}
-			width={this.props.width}
 			ref={( canvas ) => {
 				if ( canvas ) {
 					this.canvas = canvas;
@@ -77,9 +82,13 @@ class Qrcode extends Component {
 		/>;
 		if ( this.props.showText ) {
 			const text = this.props.text || window.location.href;
+			const divStyle = {};
+			if ( this.props.center ) {
+				divStyle.textAlign = 'center';
+			}
 			return ( <Fragment>
 				{canvas}
-				<span className="title">{text}</span>
+				<div className="title" style={divStyle} >{text}</div>
 			</Fragment> );
 		}
 		return canvas;
