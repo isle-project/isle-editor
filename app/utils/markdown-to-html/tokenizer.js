@@ -294,6 +294,9 @@ class Tokenizer {
 			if ( this._openingTagName === 'a' ) {
 				this._current = replace( this._current, '<a ', '<Link ' );
 				this._current = replace( this._current, '</a>', '</Link>' );
+			} else if ( this._openingTagName === 'Card.Link' ) {
+				this._current = replace( this._current, '<Card.Link ', '<Link className="card-link" ' );
+				this._current = replace( this._current, '</Card.Link>', '</Link>' );
 			}
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
