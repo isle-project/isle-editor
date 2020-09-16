@@ -308,20 +308,20 @@ class Editor extends Component {
 				return;
 			}
 			let npmPath;
-			let PATH = process.env.PATH; // eslint-disable-line no-process-env
+			let PATH = process.env.PATH || ''; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
 				npmPath = join( process.resourcesPath, 'node_modules', '.bin', 'npm' );
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
 				PATH = PATH.concat( ':', bin );
 				PATH = PATH.concat( ':', '/usr/local/bin' );
 			} else {
-				if ( !PATH ) {
-					PATH = [ resolve( '.', 'node_modules', '.bin' ) ];
+				if ( PATH === '' ) {
+					PATH = resolve( '.', 'node_modules', '.bin' );
 				}
 				npmPath = IS_WINDOWS ? 'npm.cmd' : 'npm';
 			}
-			console.log( 'Running install command for '+npmPath+' from working directory '+isleDir );
-			console.log( 'PATH environment variable: '+PATH );
+			debug( 'Running install command for '+npmPath+' from working directory '+isleDir );
+			debug( 'PATH environment variable: '+PATH );
 			const npm = spawn( npmPath, [ 'install', deps, '--no-audit', '--no-save' ], {
 				env: {
 					'npm_config_loglevel': 'error',
