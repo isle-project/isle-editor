@@ -42,6 +42,7 @@ import formatError from 'utils/format-error';
 import rendererStore from 'store/electron.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
+import IS_WINDOWS from '@stdlib/assert/is-windows';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
 import loadRequires from '../preview/load_requires.js';
@@ -314,8 +315,13 @@ class Editor extends Component {
 				PATH = PATH.concat( ':', bin );
 				PATH = PATH.concat( ':', '/usr/local/bin' );
 			} else {
-				npmPath = 'npm';
+				if ( !PATH ) {
+					PATH = [ resolve( '.', 'node_modules', '.bin' ) ];
+				}
+				npmPath = IS_WINDOWS ? 'npm.cmd' : 'npm';
 			}
+			console.log( 'Running install command for '+npmPath+' from working directory '+isleDir );
+			console.log( 'PATH environment variable: '+PATH );
 			const npm = spawn( npmPath, [ 'install', deps, '--no-audit', '--no-save' ], {
 				env: {
 					'npm_config_loglevel': 'error',
