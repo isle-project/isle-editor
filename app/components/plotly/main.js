@@ -76,6 +76,7 @@ Plotly.setPlotConfig({
 * @property {Object} style - CSS inline styles
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
 * @property {Function} onClick - callback function invoked when any element is clicked
+* @property {Function} onInitialized - callback invoked once plot is initialized; called with figure (object with three keys corresponding to input props: `data`, `layout`, and `frames`) and the DOM node `graphDiv`
 * @property {Function} onRelayout - callback function invoked when relayout is triggered
 * @property {Function} onLegendClick - callback function invoked when legend item is clicked
 * @property {Function} onLegendDoubleClick - callback function invoked when legend item is double-clicked
@@ -150,9 +151,10 @@ class Wrapper extends Component {
 		return null;
 	}
 
-	onInitialized = ( figure ) => {
+	onInitialized = ( figure, gd ) => {
 		this.figure = figure;
 		this.drawPlot();
+		this.props.onInitialized( figure, gd );
 	}
 
 	handleUpdate = () => {
@@ -343,6 +345,7 @@ Wrapper.defaultProps = {
 	style: {},
 	onAfterPlot() {},
 	onClick() {},
+	onInitialized() {},
 	onLegendClick() {},
 	onLegendDoubleClick() {},
 	onRelayout() {},
@@ -365,6 +368,7 @@ Wrapper.propTypes = {
 	style: PropTypes.object,
 	onAfterPlot: PropTypes.func,
 	onClick: PropTypes.func,
+	onInitialized: PropTypes.func,
 	onLegendClick: PropTypes.func,
 	onLegendDoubleClick: PropTypes.func,
 	onRelayout: PropTypes.func,
