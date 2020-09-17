@@ -515,7 +515,9 @@ class DataTable extends Component {
 	renderCheckboxRemovable = ( cellInfo ) => {
 		return (
 			<input
-				id="checkBox" type="checkbox"
+				id="checkBox"
+				type="checkbox"
+				key={`${cellInfo.index}-${cellInfo.column.id}-${this.state.rows.length}`}
 				onClick={e => {
 					const rows = [ ...this.state.rows ];
 					rows[ cellInfo.index ][ cellInfo.column.id ] = e.target.checked;
