@@ -38,6 +38,8 @@
 		"survey-not-anonymous": "Daten werden nicht anonym erhoben",
 		"survey-not-started": "Die Umfrage wurde noch nicht begonnen.",
 		"toggle-details": "Details umschalten",
+		"show-toolbar": "Werkzeugleiste anzeigen",
+		"hide-toolbar": "Werkzeugleiste verbergen",
 		"yes-no": "Ja / Nein"
 	},
 	"EN": {
@@ -79,6 +81,8 @@
 		"survey-not-anonymous": "Data are not collected anonymously.",
 		"survey-not-started": "The survey has not been started yet.",
 		"toggle-details": "Toggle Details",
+		"show-toolbar": "Show toolbar",
+		"hide-toolbar": "Hide toolbar",
 		"yes-no": "Yes / No"
 	},
 	"ES": {
@@ -120,6 +124,8 @@
 		"survey-not-anonymous": "Los datos no se recogen de forma anónima.",
 		"survey-not-started": "La encuesta no se ha iniciado todavía.",
 		"toggle-details": "Alternar detalles",
+		"show-toolbar": "Mostrar barra de herramientas",
+		"hide-toolbar": "Esconder barra de herramientas",
 		"yes-no": "Sí / No"
 	}
 }

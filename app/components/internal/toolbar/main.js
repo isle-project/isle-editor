@@ -172,8 +172,8 @@ class Toolbar extends Component {
 	renderEngagementButtons = ( props ) => {
 		const session = this.context;
 		return (
-			<ButtonGroup className="toolbar-engagement-buttons" {...props} >
-				<Tooltip tooltip={this.props.t( 'yes-no' )} placement="bottom" >
+			<ButtonGroup vertical className="toolbar-engagement-buttons" {...props} >
+				<Tooltip tooltip={this.props.t( 'yes-no' )} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -190,7 +190,7 @@ class Toolbar extends Component {
 						<span className="fa fa-lg fa-check toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={this.props.t( 'slow-fast' )} placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'slow-fast' )} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -207,7 +207,7 @@ class Toolbar extends Component {
 						<span className="fa fa-lg fa-tachometer-alt toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={this.props.t( 'like-dislike' )} placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'like-dislike' )} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -224,7 +224,7 @@ class Toolbar extends Component {
 						<span className="fa fa-lg fa-thumbs-up toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={this.props.t( 'survey' )} placement="bottom" >
+				<Tooltip tooltip={this.props.t( 'survey' )} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -245,6 +245,12 @@ class Toolbar extends Component {
 		);
 	}
 
+	toggleToolbar = () => {
+		this.setState({
+			showToolbar: !this.state.showToolbar
+		});
+	}
+
 	render() {
 		const session = this.context;
 		const { t } = this.props;
@@ -252,18 +258,40 @@ class Toolbar extends Component {
 		const open = t( 'open' );
 		return (
 			<Fragment>
-				<ButtonGroup vertical className="toolbar-buttongroup" style={{
+				<Tooltip tooltip={t('show-toolbar')} placement="top" >
+					<Button
+						variant="warning"
+						className="toolbar-buttongroup"
+						onClick={this.toggleToolbar}
+						onKeyPress={this.toggleToolbar}
+						style={{
+							display: this.state.showToolbar ? 'none' : 'inherit'
+						}}
+					>
+						<i className="fas fa-chevron-right"></i>
+					</Button>
+				</Tooltip>
+				<ButtonGroup className="toolbar-buttongroup" style={{
 					display: this.state.showToolbar ? 'inherit' : 'none'
 				}} >
+					<Tooltip tooltip={t('hide-toolbar')} placement="top" >
+						<Button
+							variant="secondary"
+							onClick={this.toggleToolbar}
+							onKeyPress={this.toggleToolbar}
+						>
+							<i className="fas fa-chevron-left"></i>
+						</Button>
+					</Tooltip>
 					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
-					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} (F2)`} placement="right" >
+					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} (F2)`} placement="top" >
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
 							className="toolbar-button"
 							onClick={this.toggleCalculator}
 							onKeyPress={this.toggleCalculator}
 							style={{
-								display: !this.state.hideCalculator ? 'inherit' : 'none'
+								display: !this.state.hideCalculator ? 'inline-block' : 'none'
 							}}
 							aria-label={`${this.state.calculator ? close : open} ${t( 'calculator' )}`}
 						>
@@ -276,11 +304,11 @@ class Toolbar extends Component {
 							className="toolbar-button"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
 							style={{
-								display: !this.state.hideQueue ? 'inherit' : 'none'
+								display: !this.state.hideQueue ? 'inline-block' : 'none'
 							}}
 							aria-label={`${this.state.queue ? close : open} ${t( 'help-queue' )}`}
 						>
-							<Tooltip tooltip={`${this.state.queue ? close : open} ${t( 'help-queue' )}`} placement="right" >
+							<Tooltip tooltip={`${this.state.queue ? close : open} ${t( 'help-queue' )}`} placement="top" >
 								<span className="fa fa-lg fa-question-circle toolbar-icon" />
 							</Tooltip>
 							<Tooltip placement="right" tooltip={t( 'num-open-questions' )} >
@@ -288,10 +316,35 @@ class Toolbar extends Component {
 							</Tooltip>
 						</Button> : null
 					}
-					<Gate owner >
+					<Tooltip tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`} placement="top" >
+						<Button
+							variant={this.state.sketchpad ? 'success' : 'light'}
+							className="toolbar-button"
+							onClick={this.toggleSketchpad}
+							onKeyPress={this.toggleSketchpad}
+							style={{
+								display: !this.state.hideSketchpad ? 'inline-block' : 'none'
+							}}
+							aria-label={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`}
+						>
+							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
+						</Button>
+					</Tooltip>
+					<Tooltip tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`} placement="top" >
+						<Button
+							variant={this.state.help ? 'success' : 'light'}
+							className="toolbar-button"
+							onClick={this.toggleHelp}
+							onKeyPress={this.toggleHelp}
+							aria-label={`${this.state.help ? close : open} ${t( 'documentation' )}`}
+						>
+							<span className="fa fa-lg fa-book toolbar-icon" />
+						</Button>
+					</Tooltip>
+					<Gate owner inline >
 						<Tooltip
 							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
-							placement={this.state.engagementInProgress ? 'right' : 'top'}
+							placement="top"
 						>
 							<Button
 								variant={this.state.engagementInProgress ? 'warning' : ( this.state.engagementMenu ? 'success' : 'light' )}
@@ -314,31 +367,6 @@ class Toolbar extends Component {
 							{this.renderEngagementButtons()}
 						</Overlay>
 					</Gate>
-					<Tooltip tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`} placement="right" >
-						<Button
-							variant={this.state.sketchpad ? 'success' : 'light'}
-							className="toolbar-button"
-							onClick={this.toggleSketchpad}
-							onKeyPress={this.toggleSketchpad}
-							style={{
-								display: !this.state.hideSketchpad ? 'inherit' : 'none'
-							}}
-							aria-label={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`}
-						>
-							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
-						</Button>
-					</Tooltip>
-					<Tooltip tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`} placement="right" >
-						<Button
-							variant={this.state.help ? 'success' : 'light'}
-							className="toolbar-button"
-							onClick={this.toggleHelp}
-							onKeyPress={this.toggleHelp}
-							aria-label={`${this.state.help ? close : open} ${t( 'documentation' )}`}
-						>
-							<span className="fa fa-lg fa-book toolbar-icon" />
-						</Button>
-					</Tooltip>
 				</ButtonGroup>
 				<Engagement session={this.context} onHide={this.toggleEngagement} />
 				{this.state.sketchpad ?
@@ -411,7 +439,7 @@ class Toolbar extends Component {
 						<div className="toolbar-outer-element" >
 							<div className="toolbar-inner-element" tabIndex={0} role="button" >
 								<elem.type {...elem.props} style={{
-									position: 'inherit',
+									position: 'inline-block',
 									margin: '0px'
 								}} >
 									{elem.props.children}

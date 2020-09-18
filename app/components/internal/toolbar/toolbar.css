@@ -5,7 +5,6 @@
 	z-index: 1003;
 	box-shadow: 0 0 5px darkslategray;
 	opacity: 0.6;
-	width: 50px;
 }
 
 .toolbar-buttongroup:hover {
