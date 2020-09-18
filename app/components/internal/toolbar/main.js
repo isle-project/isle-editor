@@ -341,7 +341,7 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Gate owner inline >
+					<Gate owner inline showOwnerInPresentationMode >
 						<Tooltip
 							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
 							placement="top"
@@ -350,7 +350,7 @@ class Toolbar extends Component {
 								variant={this.state.engagementInProgress ? 'warning' : ( this.state.engagementMenu ? 'success' : 'light' )}
 								className="toolbar-button"
 								onClick={this.toggleEngagement}
-								ref={div => {
+								ref={( div ) => {
 									this.engagementButton = div;
 								}}
 								aria-label={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'open-poll-menu' )}

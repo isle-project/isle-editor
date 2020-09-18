@@ -22,6 +22,7 @@ import RoleContext from 'session/role_context.js';
 * @property {Date} until - time until the contents of the gate should remain visible
 * @property {Date} after - time after which the contents of the gate should become visible
 * @property {Node} banner - a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges
+* @property {boolean} showOwnerInPresentationMode - controls whether to show gate contents in presentation mode when gate is visible for `owner`s
 * @property {boolean} disabled - if a gate is disabled, the banner will be displayed no matter what
 * @property {Function} check - callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive
 */
@@ -155,7 +156,13 @@ class Gate extends Component {
 				else if ( enrolled && isEnrolled ) {
 					authenticated = true;
 				}
-				else if ( owner && !this.state.presentationMode && isOwner ) {
+				else if (
+					owner && isOwner &&
+					(
+						this.props.showOwnerInPresentationMode ||
+						!this.state.presentationMode
+					)
+				) {
 					authenticated = true;
 				}
 				else if ( !user && !owner && !enrolled ) {
@@ -181,6 +188,7 @@ Gate.defaultProps = {
 	until: null,
 	banner: null,
 	disabled: false,
+	showOwnerInPresentationMode: false,
 	check: null
 };
 
@@ -195,6 +203,7 @@ Gate.propTypes = {
 	until: PropTypes.instanceOf( Date ),
 	banner: PropTypes.node,
 	disabled: PropTypes.bool,
+	showOwnerInPresentationMode: PropTypes.bool,
 	check: PropTypes.func
 };
 
