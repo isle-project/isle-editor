@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
 import contains from '@stdlib/assert/contains';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -81,7 +82,8 @@ class MultipleChoiceQuestion extends Component {
 		this.state = {
 			correct: new Array( props.answers.length ),
 			answerSelected: false,
-			question: props.question
+			question: props.question,
+			isSolved: false
 		};
 		if ( props.displaySolution ) {
 			this.state.submitted = true;
@@ -136,7 +138,10 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		if ( prevProps.solution !== this.props.solution ) {
+		if (
+			prevProps.solution !== this.props.solution ||
+			prevProps.answers.length !== this.props.answers.length
+		) {
 			const active = isArray( this.props.solution ) ?
 				new Array( this.props.answers.length ) :
 				null;
@@ -172,40 +177,32 @@ class MultipleChoiceQuestion extends Component {
 		});
 	}
 
-	sendSubmitNotification = () => {
+	sendSubmitNotification = ( isSolved, nCorrectAnswers, nActiveAnswers ) => {
 		const session = this.context;
 		const { solution } = this.props;
 		const hasSolution = !isNull( solution );
-		let isCorrect;
-		if ( hasSolution && isArray( solution ) ) {
-			isCorrect = true;
-			for ( let i = 0; i < solution.length; i++ ) {
-				if ( !this.state.correct[ solution[ i ] ] ) {
-					isCorrect = false;
-					break;
-				}
-			}
-		} else {
-			isCorrect = false;
-			for ( let i = 0; i < this.state.correct.length; i++ ) {
-				if ( this.state.correct[ i ] === true ) {
-					isCorrect = true;
-					break;
-				}
-			}
-		}
+		const hasMultipleSolutions = hasSolution && isArray( solution );
 		let msg;
 		let level = 'success';
 		if ( this.props.provideFeedback === 'incremental' && hasSolution ) {
-			if ( isCorrect ) {
+			if ( isSolved ) {
 				msg = this.props.t('answer-correct');
 			} else {
-				msg = this.props.t('answer-incorrect-incremental');
 				level = 'error';
+				if ( nCorrectAnswers === 0 || !hasMultipleSolutions ) {
+					msg = this.props.t('answer-incorrect-incremental');
+				} else if ( nActiveAnswers < solution.length ) {
+					msg = this.props.t('answer-incorrect-incremental-missing');
+				} else if ( nActiveAnswers === solution.length ) {
+					msg = this.props.t('answer-incorrect-incremental-equal');
+				}
+				else {
+					msg = this.props.t('answer-incorrect-incremental-extra');
+				}
 			}
 		}
 		else if ( this.props.provideFeedback === 'full' && hasSolution ) {
-			if ( isCorrect ) {
+			if ( isSolved ) {
 				msg = this.props.t('answer-correct');
 			} else {
 				msg = this.props.t('answer-incorrect-full');
@@ -237,6 +234,7 @@ class MultipleChoiceQuestion extends Component {
 			type: MULTIPLE_CHOICE_SUBMISSION,
 			value: this.state.active
 		});
+		let isSolved = false;
 		if ( isArray( sol ) ) {
 			for ( let i = 0; i < this.state.active.length; i++ ) {
 				if ( this.state.active[ i ] === true ) {
@@ -247,36 +245,56 @@ class MultipleChoiceQuestion extends Component {
 					}
 				}
 			}
+			let nActiveAnswers = 0;
+			let nCorrectAnswers = 0;
+			for ( let i = 0; i < newCorrect.length; i++ ) {
+				if ( isBoolean( newCorrect[ i ] ) ) {
+					nActiveAnswers += 1;
+					if ( newCorrect[ i ] ) {
+						nCorrectAnswers += 1;
+					}
+				}
+			}
+			if (
+				nCorrectAnswers < sol.length ||
+				nActiveAnswers > sol.length
+			) {
+				isSolved = false;
+			} else {
+				isSolved = true;
+			}
 			let active = new Array( this.props.answers.length );
+			if ( !this.props.disableSubmitNotification ) {
+				this.sendSubmitNotification( isSolved, nCorrectAnswers, nActiveAnswers );
+			}
 			this.setState({
 				correct: newCorrect,
 				submitted: true,
+				isSolved,
 				active
-			}, () => {
-				if ( !this.props.disableSubmitNotification ) {
-					this.sendSubmitNotification();
-				}
 			});
 		}
 		else {
+			// Case: `sol` is a number
 			for ( let i = 0; i < newCorrect.length; i++ ) {
 				if ( this.state.active === i ) {
 					if ( i === sol || noSolution ) {
 						newCorrect[ i ] = true;
+						isSolved = true;
 					} else {
 						newCorrect[ i ] = false;
 					}
 				}
 			}
 			let active = null;
+			if ( !this.props.disableSubmitNotification ) {
+				this.sendSubmitNotification( isSolved );
+			}
 			this.setState({
 				correct: newCorrect,
 				submitted: true,
-				active
-			}, () => {
-				if ( !this.props.disableSubmitNotification ) {
-					this.sendSubmitNotification();
-				}
+				active,
+				isSolved
 			});
 		}
 		this.props.onSubmit( this.state.active );
@@ -306,16 +324,7 @@ class MultipleChoiceQuestion extends Component {
 				if ( !this.state.submitted ) {
 					return false;
 				}
-				let missed = this.props.solution.length;
-				for ( let i = 0; i < this.state.correct.length; i++ ) {
-					if ( this.state.correct[ i ] === true ) {
-						missed -= 1;
-					}
-				}
-				if ( missed === 0 ) {
-					return true;
-				}
-				return false;
+				return this.state.isSolved;
 			}
 		}
 		return false;
@@ -335,7 +344,7 @@ class MultipleChoiceQuestion extends Component {
 		if ( this.props.provideFeedback === 'none' || isNull( this.props.solution ) ) {
 			return (
 				<AnswerOption
-					key={key.content}
+					key={`${key.content}-${id}`}
 					answerContent={key.content}
 					active={this.state.active[ id ]}
 					correct={this.state.correct[ id ]}
@@ -354,7 +363,7 @@ class MultipleChoiceQuestion extends Component {
 		}
 		const isSolution = contains( this.props.solution, id );
 		const props = {
-			key: key.content,
+			key: `${key.content}-${id}`,
 			no: id,
 			answerContent: key.content,
 			answerExplanation: key.explanation,
@@ -363,12 +372,19 @@ class MultipleChoiceQuestion extends Component {
 			disabled: this.props.disabled,
 			submitted: this.state.submitted,
 			solution: isSolution,
+			isSolved: this.state.isSolved,
 			onAnswerSelected: () => {
 				this.triggerFocusEvent();
 				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
-					let newActive = this.state.active.slice();
-					newActive[ id ] = !newActive[ id ];
+					const newActive = this.state.active.slice();
+					const newCorrect = this.state.correct.slice();
+					if ( this.state.correct[ id ] === false ) {
+						newCorrect[ id ] = void 0;
+					} else {
+						newActive[ id ] = !newActive[ id ];
+					}
 					this.setState({
+						correct: newCorrect,
 						active: newActive
 					});
 					this.props.onChange( newActive );
@@ -404,21 +420,26 @@ class MultipleChoiceQuestion extends Component {
 		}
 		const isSolution = this.props.solution === id;
 		const props = {
-			key: id,
+			key: `${key.content}-${id}`,
 			no: id,
 			answerContent: key.content,
 			answerExplanation: key.explanation,
 			active: this.state.active === id,
 			correct: this.state.correct[ id ],
-			provideFeedback: this.props.provideFeedback,
 			disabled: this.props.disabled,
 			submitted: this.state.submitted,
 			solution: isSolution,
+			isSolved: this.state.isSolved,
 			onAnswerSelected: () => {
 				this.triggerFocusEvent();
 				if ( !this.state.submitted || this.props.provideFeedback === 'incremental' ) {
+					const newCorrect = this.state.correct.slice();
+					if ( this.state.correct[ id ] === false ) {
+						newCorrect[ id ] = void 0;
+					}
 					this.setState({
 						active: id,
+						correct: newCorrect,
 						answerSelected: true
 					});
 					this.props.onChange( id );

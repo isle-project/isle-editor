@@ -45,7 +45,7 @@ const AnswerOption = ( props ) => {
 			</ListGroupItem>
 		);
 	}
-	else if ( isBoolean( props.correct ) ) {
+	else if ( isBoolean( props.correct ) || props.isSolved ) {
 		const popover =
 		<Popover id={props.no}>
 			<strong>{props.solution ? 'Correct answer' : 'Incorrect answer'}{props.answerExplanation ? ': ' : ''}</strong>
