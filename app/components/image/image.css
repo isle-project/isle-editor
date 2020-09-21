@@ -8,3 +8,7 @@
 	box-shadow: 3px 3px 1px lightcoral;
 	transition: box-shadow 0.2s linear;
 }
+
+.react-viewer-canvas {
+	background-color: white;
+}
