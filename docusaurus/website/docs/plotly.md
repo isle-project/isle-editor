@@ -33,6 +33,7 @@ Plotly visualization.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onAfterPlot__ | `function`: callback function invoked each time a chart is plotted. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: callback function invoked when any element is clicked. Default: `onClick() {}`.
+* __onInitialized__ | `function`: callback invoked once plot is initialized; called with figure (object with three keys corresponding to input props: `data`, `layout`, and `frames`) and the DOM node `graphDiv`. Default: `onInitialized() {}`.
 * __onLegendClick__ | `function`: callback function invoked when legend item is clicked. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: callback function invoked when legend item is double-clicked. Default: `onLegendDoubleClick() {}`.
 * __onRelayout__ | `function`: callback function invoked when relayout is triggered. Default: `onRelayout() {}`.

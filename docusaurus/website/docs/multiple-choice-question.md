@@ -9,16 +9,28 @@ An ISLE component that renders a multiple choice question. It supports the case 
 ## Example
 
 ```jsx live
-<MultipleChoiceQuestion
-    solution={1}
-    answers={[
-        {content:"There's a 0.7% chance that average birthweights are the same among smoking and non-smoking mothers", explanation:""},
-        {content:"If the null were true, the probability of observing this large a difference in average birthweights in our data is 0.7%", explanation:""},
-        {content:"The probability that the confidence interval does not contain the true mean difference is 0.7%", explanation:""},
-        {content:"Average birthweights are 0.7% higher among babies born to non-smoking mothers", explanation:""}
-    ]}
-    question="4. Which of the following is an accurate interpretation of the p-value?"
-/>
+<div>
+    <MultipleChoiceQuestion
+        solution={1}
+        answers={[
+            {content:"There's a 0.7% chance that average birthweights are the same among smoking and non-smoking mothers", explanation:""},
+            {content:"If the null were true, the probability of observing this large a difference in average birthweights in our data is 0.7%", explanation:""},
+            {content:"The probability that the confidence interval does not contain the true mean difference is 0.7%", explanation:""},
+            {content:"Average birthweights are 0.7% higher among babies born to non-smoking mothers", explanation:""}
+        ]}
+        question="Which of the following is an accurate interpretation of the p-value?"
+    />
+    <MultipleChoiceQuestion
+        solution={[ 0, 3 ]}
+        answers={[
+            {content:"Hierarchical Clustering", explanation:""},
+            {content:"LASSO", explanation:""},
+            {content:"Multiple regression", explanation:""},
+            {content:"kmeans", explanation:""}
+        ]}
+        question="Which of the following methods are used for clustering?"
+    />
+</div>
 ```
 
 ## Options
