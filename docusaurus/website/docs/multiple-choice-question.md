@@ -10,6 +10,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
 
 ```jsx live
 <div>
+    <h3>Select correct answer:</h3>
     <MultipleChoiceQuestion
         solution={1}
         answers={[
@@ -20,6 +21,7 @@ An ISLE component that renders a multiple choice question. It supports the case 
         ]}
         question="Which of the following is an accurate interpretation of the p-value?"
     />
+    <h3>Select all that apply:</h3>
     <MultipleChoiceQuestion
         solution={[ 0, 3 ]}
         answers={[
