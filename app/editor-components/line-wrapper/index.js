@@ -244,7 +244,7 @@ class LineWrapper extends Component {
 				onKeyPress={this.handleConfiguratorTrigger}
 			></span>
 		</Fragment>;
-		if ( this.props.inline ) {
+		if ( this.props.isInline ) {
 			return (
 				<span
 					id={`line-${startLineNumber}-${startColumn}`}
@@ -291,14 +291,14 @@ class LineWrapper extends Component {
 // PROPERTIES //
 
 LineWrapper.defaultProps = {
-	inline: false,
+	isInline: false,
 	startColumn: 1,
 	endColumn: PINF,
 	tagName: null
 };
 
 LineWrapper.propTypes = {
-	inline: PropTypes.bool,
+	isInline: PropTypes.bool,
 	jumpToElementInEditor: PropTypes.func.isRequired,
 	endLineNumber: PropTypes.number.isRequired,
 	startLineNumber: PropTypes.number.isRequired,

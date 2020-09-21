@@ -178,7 +178,7 @@ class Tokenizer {
 			}
 			let str = '<TeX raw={String.raw`' + eqn + '`} />';
 			if ( this.addLineWrappers ) {
-				str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={true} >' + str + '</LineWrapper>';
+				str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} isInline={true} >' + str + '</LineWrapper>';
 			}
 			const placeholder = '<div id="placeholder_'+this.pos+'" data-lines="'+(this.lineNumber - this._startLineNumber)+'" />';
 			this.placeholderHash[ placeholder ] = str;
@@ -206,7 +206,7 @@ class Tokenizer {
 			const eqn = this._current.substring( 1, this._current.length-1 );
 			let str = '<TeX raw={String.raw`' + eqn + '`} displayMode />';
 			if ( this.addLineWrappers ) {
-				str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} inline={false} >' + str + '</LineWrapper>';
+				str = '<LineWrapper tagName="TeX" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this.lineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+(this.columnNumber+1)+'} isInline={false} >' + str + '</LineWrapper>';
 			}
 			const placeholder = '<div id="placeholder_'+this.pos+'" data-lines="'+(this.lineNumber - this._startLineNumber)+'" />';
 			this.placeholderHash[ placeholder ] = str;
@@ -305,7 +305,7 @@ class Tokenizer {
 				!RE_INNER_TAGS.test( this._openingTagName ) &&
 				!RE_FLEX_TAGS.test( this._openingTagName )
 			) {
-				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} inline={'+isInline+'}>' + this._current + '</LineWrapper>';
+				this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} isInline={'+isInline+'}>' + this._current + '</LineWrapper>';
 			}
 			const placeholder = isInline ? 'PLACEHOLDER_'+this.pos : '<div id="placeholder_'+this.pos+'" data-lines="'+(this._endLineNumber - this._startLineNumber)+'"/>';
 			this.placeholderHash[ placeholder ] = this._current;
@@ -348,6 +348,7 @@ class Tokenizer {
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
+				// Case: self-closing tag
 				if (
 					this.addLineWrappers &&
 					!RE_INNER_TAGS.test( this._openingTagName ) &&
@@ -355,7 +356,7 @@ class Tokenizer {
 				) {
 					const isInline = ( RE_INLINE_TAGS.test( this._openingTagName ) ||
 						RE_INLINE_ATTR.test( this._current ) ) && !RE_DISPLAY_MODE.test( this._current );
-					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} inline={'+isInline+'} >' + this._current + '</LineWrapper>';
+					this._current = '<LineWrapper tagName="'+this._openingTagName+'" startLineNumber={'+this._startLineNumber+'} endLineNumber={'+this._endLineNumber+'} startColumn={'+this._startColumn+'} endColumn={'+this._endColumn+'} isInline={'+isInline+'} >' + this._current + '</LineWrapper>';
 				}
 				this._level -= 1;
 				if ( this._level === 0 ) {
