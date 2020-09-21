@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.67.0](https://github.com/isle-project/isle-editor/releases/tag/v0.67.0) (2020-09-21)
+
+This release changes the display of the toolbar to a horizontal, collapsible format. It improves behavior for multiple-choice questions, which now have more descriptive notifications, and adds the ability to drag tables as answers into image questions. Finally, the editor preview now comes with additional buttons in the component wrappers that allow one to re-arrange components in the preview.
+
+**Implemented enhancements:**
+
+- request force light background when clicking images [\#1324](https://github.com/isle-project/isle-editor/issues/1324)
+- Option to Create a frequency table with counts and relative frequency [\#1311](https://github.com/isle-project/isle-editor/issues/1311)
+
+**Fixed bugs:**
+
+- buttons in lower left overlap text [\#1322](https://github.com/isle-project/isle-editor/issues/1322)
+- Binning - Last Field is Greater than or Equal - but symbol is only Greater Than [\#1310](https://github.com/isle-project/isle-editor/issues/1310)
+
 ## [v0.66.1](https://github.com/isle-project/isle-editor/releases/tag/v0.66.1) (2020-09-11)
 
 This patch restores the attribute table display in the component configuration menu, which was broken in the last version. It also adds `until` attributes to various questions to only accept answers up to a specified date and allows one to use custom filters in the action log of the instructor panel.
