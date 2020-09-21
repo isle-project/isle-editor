@@ -12,3 +12,7 @@
 .react-viewer-canvas {
 	background-color: white;
 }
+
+.react-viewer-attribute {
+	color: black;
+}
