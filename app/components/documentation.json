@@ -1417,13 +1417,19 @@
       {
         "name": "banner",
         "type": "node",
-        "description": "a message which is visible to the visitors lacking the gate privilege",
+        "description": "a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges",
         "defaultValue": null
       },
       {
         "name": "disabled",
         "type": "boolean",
         "description": "if a gate is disabled, the banner will be displayed no matter what",
+        "defaultValue": false
+      },
+      {
+        "name": "showOwnerInPresentationMode",
+        "type": "boolean",
+        "description": "controls whether to show gate contents in presentation mode when gate is visible for `owner`s",
         "defaultValue": false
       },
       {
@@ -1815,11 +1821,13 @@
       {
         "name": "disableSubmitNotification",
         "type": "boolean",
+        "description": "controls whether a notification should be displayed after submitting an image",
         "defaultValue": false
       },
       {
         "name": "className",
         "type": "string",
+        "description": "class name",
         "defaultValue": ""
       },
       {
@@ -4558,6 +4566,12 @@
         "type": "function",
         "description": "callback function invoked when any element is clicked",
         "defaultValue": "function onClick() {}"
+      },
+      {
+        "name": "onInitialized",
+        "type": "function",
+        "description": "callback invoked once plot is initialized; called with figure (object with three keys corresponding to input props: `data`, `layout`, and `frames`) and the DOM node `graphDiv`",
+        "defaultValue": "function onInitialized() {}"
       },
       {
         "name": "onLegendClick",
