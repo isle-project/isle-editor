@@ -45,6 +45,8 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {Object} sketchpad - properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`
 * @property {string} solution - image URL of model solution
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {boolean} disableSubmitNotification - controls whether a notification should be displayed after submitting an image
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -152,14 +154,11 @@ class ImageQuestion extends Component {
 		let file = null;
 		if ( dt.items && dt.items.length > 0 ) {
 			const item = dt.items[ 0 ];
-			console.log( item );
-			console.log( item.kind );
 			if ( item.kind === 'file' ) {
 				file = item.getAsFile();
 			}
 			else if ( item.kind === 'string' ) {
 				item.getAsString( ( str ) => {
-					console.log( str );
 					if ( contains( str, '<img' ) ) {
 						const match = str.match( RE_IMAGE_SRC );
 						if ( match ) {

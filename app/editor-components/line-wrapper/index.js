@@ -133,8 +133,6 @@ class LineWrapper extends Component {
 			}
 			sibling = sibling.previousElementSibling;
 		}
-		console.log( 'SIBLING: ');
-		console.log( sibling );
 		if ( !previous ) {
 			const elements = document.getElementsByClassName( 'line-wrapper' );
 			for ( let i = 1; i < elements.length; i++ ){
