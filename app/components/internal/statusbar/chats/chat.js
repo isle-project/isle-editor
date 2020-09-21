@@ -262,14 +262,15 @@ class Chat extends Component {
 							this.sendMessage();
 						}
 					}}
+					t={this.props.t}
 				/>
 				<Button
-					size="sm" variant="default"
+					size="sm" variant="light"
 					onClick={this.sendMessage}
 					style={{ float: 'left' }}
 				>{this.props.t( 'send-message' )}</Button>
 				{this.props.chat.anonymousSubmissions ? <Button
-					size="sm" variant="default"
+					size="sm" variant="light"
 					onClick={this.sendAnonymousChatMessage}
 					style={{ float: 'left', marginLeft: '4px' }}
 				>{this.props.t( 'send-anonymously' )}</Button> : null}
