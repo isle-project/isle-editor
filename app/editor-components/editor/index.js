@@ -544,9 +544,9 @@ class Editor extends Component {
 				]);
 			}
 		}
-		const node = this.editor.getContainerDomNode();
-		node.addEventListener( 'dblclick', () => {
-			const selection = this.editor.getSelection();
+
+		this.editor.onDidChangeCursorSelection( ( event ) => {
+			const selection = event.selection;
 			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
 			const lineNumber = selection.startLineNumber;
 			const startColumn = max( selection.startColumn - 1, 1 );
