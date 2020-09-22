@@ -140,10 +140,11 @@ class Gate extends Component {
 				const isUser = ( session && !session.anonymous ) || currentRole !== 'anonymous';
 				let authenticated = false;
 				if (
-					disabled || !this.state.validCheck ||
-					notUser && isUser ||
-					notOwner && isOwner ||
-					notEnrolled && isEnrolled
+					disabled ||
+					!this.state.validCheck ||
+					( notUser && isUser ) ||
+					( notOwner && isOwner ) ||
+					( notEnrolled && isEnrolled )
 				) {
 					return this.renderChildren( false );
 				}
