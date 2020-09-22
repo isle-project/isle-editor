@@ -8,6 +8,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
 import SessionContext from 'session/context.js';
 import LinkContextMenu from './contextmenu.js';
+import { OPEN_LINK } from 'constants/actions.js';
 import './load_translations.js';
 
 
@@ -69,6 +70,14 @@ class Link extends Component {
 						href={this.state.url}
 						target={this.state.target}
 						style={this.props.style}
+						onClick={() => {
+							const session = this.context;
+							session.log({
+								id: this.state.url,
+								type: OPEN_LINK,
+								value: 'click'
+							});
+						}}
 					>
 						{this.props.children}
 					</a>
