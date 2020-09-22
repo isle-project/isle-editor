@@ -547,18 +547,20 @@ class Editor extends Component {
 
 		this.editor.onDidChangeCursorSelection( ( event ) => {
 			const selection = event.selection;
-			this.decorations = this.editor.deltaDecorations( this.decorations, [] );
-			const lineNumber = selection.startLineNumber;
-			const startColumn = max( selection.startColumn - 1, 1 );
-			scrollIntoView( lineNumber, startColumn );
-			const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+startColumn );
-			if ( elem ) {
-				const event = new MouseEvent( 'dblclick', {
-					'view': window,
-					'bubbles': true,
-					'cancelable': true
-				});
-				elem.dispatchEvent( event );
+			if ( selection.startColumn !== selection.endColumn ) {
+				this.decorations = this.editor.deltaDecorations( this.decorations, [] );
+				const lineNumber = selection.startLineNumber;
+				const startColumn = max( selection.startColumn - 1, 1 );
+				scrollIntoView( lineNumber, startColumn );
+				const elem = document.getElementById( 'line-'+selection.startLineNumber+'-'+startColumn );
+				if ( elem ) {
+					const event = new MouseEvent( 'dblclick', {
+						'view': window,
+						'bubbles': true,
+						'cancelable': true
+					});
+					elem.dispatchEvent( event );
+				}
 			}
 		});
 	}
