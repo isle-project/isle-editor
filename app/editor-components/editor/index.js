@@ -670,8 +670,7 @@ class Editor extends Component {
 				this.editor.setPosition({ lineNumber: range.startLineNumber, column: Infinity });
 			}
 			else {
-				console.log( this.props.elementRange );
-				this.editor.revealLineInCenter( this.props.elementRange.startLineNumber );
+				this.editor.revealLine( this.props.elementRange.startLineNumber );
 				this.decorations = this.editor.deltaDecorations( this.decorations, [
 					{
 						range: this.props.elementRange,
