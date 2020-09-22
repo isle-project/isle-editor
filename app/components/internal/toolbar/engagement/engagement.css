@@ -40,3 +40,8 @@
 	z-index: 100;
 	cursor: grab;
 }
+
+.survey-generator .card-header,
+.engagement-meter-panel .card-header {
+	cursor: move;
+}

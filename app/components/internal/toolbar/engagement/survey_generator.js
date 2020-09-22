@@ -78,6 +78,7 @@ class SurveyGenerator extends Component {
 	}
 
 	setQuestion = ( text ) => {
+		debug( 'Set the question text...' );
 		let disabled = true;
 		if (
 			text.length > 3 &&
@@ -227,7 +228,7 @@ class SurveyGenerator extends Component {
 			</Gate>;
 		}
 		const session = this.props.session;
-		return ( <Draggable handle=".card-header" >
+		return ( <Draggable dragHandleClassName="card-header" >
 			<Panel
 				header={this.props.t( 'survey' )} minimizable
 				className="survey-generator"

@@ -12,7 +12,7 @@ import ChatButton from 'components/chat-button';
 // MAIN //
 
 const ResponsesTable = ( props ) => {
-	const responsesPanel = <Draggable>
+	const responsesPanel = <Draggable dragHandleClassName="card-header" >
 		<Panel className="engagement-meter-panel" header={props.t( 'poll-responses')} onHide={props.onHide}
 			minimizable style={{ width: 400 }}
 		>

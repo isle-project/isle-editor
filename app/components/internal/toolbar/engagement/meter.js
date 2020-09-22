@@ -93,33 +93,35 @@ class EngagementMeter extends Component {
 
 	render() {
 		return (
-			<Gate owner>
-				<Draggable>
-					<Panel header={this.props.t( 'poll' )} hideTooltip={this.props.t( 'finish-poll' )} onHide={this.props.onHide}
-						className="engagement-meter-panel" minimizable
-					>
-						<div className="score-bottom" >
-							{this.state.mean ?
-								<Fragment>
-									<ProgressBar style={{ marginTop: 23 }}>
-										<ProgressBar animated variant="success" now={this.state.mean} />
-										<ProgressBar animated variant="danger" now={100-this.state.mean} />
-									</ProgressBar>
-								</Fragment> : null }
-						</div>
-						{this.state.mean ?
-							<p>{this.props.t( 'mean' )}: {roundn( this.state.mean, -2 )} (n: {this.state.responses.length})</p> : null
-						}
-						{this.state.range ?
-							<p>{this.props.t( 'range' )}: {roundn( this.state.range, -2 )}</p> : null
-						}
-						<Button
-							variant="link"
-							onClick={this.toggleResponses}
+			<Fragment>
+				<Draggable dragHandleClassName="card-header" >
+					<Gate owner>
+						<Panel header={this.props.t( 'poll' )} hideTooltip={this.props.t( 'finish-poll' )} onHide={this.props.onHide}
+							className="engagement-meter-panel" minimizable
 						>
-							<small>{this.props.t( 'toggle-details' )}</small>
-						</Button>
-					</Panel>
+							<div className="score-bottom" >
+								{this.state.mean ?
+									<Fragment>
+										<ProgressBar style={{ marginTop: 23 }}>
+											<ProgressBar animated variant="success" now={this.state.mean} />
+											<ProgressBar animated variant="danger" now={100-this.state.mean} />
+										</ProgressBar>
+									</Fragment> : null }
+							</div>
+							{this.state.mean ?
+								<p>{this.props.t( 'mean' )}: {roundn( this.state.mean, -2 )} (n: {this.state.responses.length})</p> : null
+							}
+							{this.state.range ?
+								<p>{this.props.t( 'range' )}: {roundn( this.state.range, -2 )}</p> : null
+							}
+							<Button
+								variant="link"
+								onClick={this.toggleResponses}
+							>
+								<small>{this.props.t( 'toggle-details' )}</small>
+							</Button>
+						</Panel>
+					</Gate>
 				</Draggable>
 				{this.state.showResponses ? <ResponsesTable
 					responses={this.state.responses}
@@ -129,7 +131,7 @@ class EngagementMeter extends Component {
 						return row.value;
 					}}
 				/> : null}
-			</Gate>
+			</Fragment>
 		);
 	}
 }

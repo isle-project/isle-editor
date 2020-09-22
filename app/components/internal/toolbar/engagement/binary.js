@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
@@ -148,33 +148,45 @@ class EngagementBinary extends Component {
 			break;
 		}
 		const { t } = this.props;
+		const table = <Table bordered size="sm">
+			<thead>
+				<tr>
+					<th><i className={leftButton}></i></th>
+					<th><i className={rightButton}></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{this.state.nLeft}</td>
+					<td>{this.state.nRight}</td>
+				</tr>
+			</tbody>
+		</Table>;
 		return (
-			<Gate owner>
-				<Draggable>
-					<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={this.props.onHide}
-						className="engagement-meter-panel" minimizable
-					>
-						<Table bordered size="sm">
-							<thead>
-								<tr>
-									<th><i className={leftButton}></i></th>
-									<th><i className={rightButton}></i></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>{this.state.nLeft}</td>
-									<td>{this.state.nRight}</td>
-								</tr>
-							</tbody>
-						</Table>
-						<Button
-							variant="link"
-							onClick={this.toggleResponses}
+			<Fragment>
+				<Draggable dragHandleClassName="card-header" >
+					<Gate owner >
+						<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={this.props.onHide}
+							className="engagement-meter-panel" minimizable
 						>
-							<small>{t('toggle-details')}</small>
-						</Button>
-					</Panel>
+							{table}
+							<Button
+								variant="link"
+								onClick={this.toggleResponses}
+							>
+								<small>{t('toggle-details')}</small>
+							</Button>
+						</Panel>
+					</Gate>
+					<Gate user notOwner header={t('poll')} >
+						<Panel
+							header={t('poll')}
+							className="engagement-meter-panel"
+							minimizable
+						>
+							{table}
+						</Panel>
+					</Gate>
 				</Draggable>
 				{this.state.showResponses ? <ResponsesTable
 					responses={this.state.responses}
@@ -187,7 +199,7 @@ class EngagementBinary extends Component {
 						);
 					}}
 				/> : null}
-			</Gate>
+			</Fragment>
 		);
 	}
 }
