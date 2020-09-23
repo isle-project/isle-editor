@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 import Card from 'react-bootstrap/Card';
@@ -37,23 +38,32 @@ const SORT_OPTS = {
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 const Option = props => {
 	const popover = <Popover id={`${props.data.label}-popover`}>
-		<PopoverContent>{props.data.description}</PopoverContent>
+		<PopoverContent>{STAT_DESCRIPTIONS[ i18next.language ][ props.data.label]}</PopoverContent>
 	</Popover>;
 	return ( <components.Option {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
-		}}>{props.data.label}</span>
-		{ props.showDefinitions ? <OverlayTrigger trigger={['hover', 'focus']} placement="right" rootClose overlay={popover} >
+		}}>{i18next.t( 'data-explorer:'+props.data.label )}</span>
+		<OverlayTrigger
+			trigger={['hover', 'click']}
+			placement="right" rootClose overlay={popover}
+		>
 			<Button
 				size="sm"
 				variant="outline-secondary"
 				className="question-button"
 				style={{ float: 'right', fontSize: 14 }}
+				onClick={( event ) => event.stopPropagation()}
 			>
 				<span className="fa fa-question" />
 			</Button>
-		</OverlayTrigger> : null }
+		</OverlayTrigger>
 	</components.Option> );
+};
+const GroupHeading = props => {
+	props = { ...props };
+	props.children = i18next.t( 'data-explorer:'+props.children );
+	return <components.GroupHeading {...props} />;
 };
 
 
@@ -182,59 +192,63 @@ class SummaryStatistics extends Component {
 			quantiles: [],
 			omit: false
 		};
+		this.createStatisticsOptions();
+	}
+
+	createStatisticsOptions = () => {
 		const central = [];
 		const location = [];
 		const variation = [];
 		const relationship = [];
 		const shape = [];
-		for ( let i = 0; i < props.statistics.length; i++ ) {
-			const e = props.statistics[ i ];
+		for ( let i = 0; i < this.props.statistics.length; i++ ) {
+			const e = this.props.statistics[ i ];
 			switch ( e ) {
 				case 'Mean':
 				case 'Median':
-					central.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					central.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'First Quartile':
 				case 'Third Quartile':
 				case 'Quantile':
 				case 'Min':
 				case 'Max':
-					location.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					location.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'Range':
 				case 'Interquartile Range':
 				case 'Standard Deviation':
 				case 'Variance':
-					variation.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					variation.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'Correlation':
-					relationship.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					relationship.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'Skewness':
 				case 'Excess Kurtosis':
-					shape.push({ 'label': props.t( e ), 'value': statistic( e ), 'description': STAT_DESCRIPTIONS[ e ] });
+					shape.push({ 'label': e, 'value': statistic( e ) });
 					break;
 			}
 		}
 		this.statistics = [
 			{
-				label: 'Central Tendency Measures',
+				label: 'central-tendency-measures',
 				options: central
 			},
 			{
-				label: 'Variation Measures',
+				label: 'variation-measures',
 				options: variation
 			},
 			{
-				label: 'Other Location Measures',
+				label: 'other-location-measures',
 				options: location
 			},
 			{
-				label: 'Relationship Measures',
+				label: 'relationship-measures',
 				options: relationship
 			},
 			{
-				label: 'Shape Measures',
+				label: 'shape-measures',
 				options: shape
 			}
 		];
@@ -421,7 +435,7 @@ class SummaryStatistics extends Component {
 							value={selectedStats}
 							options={this.statistics}
 							isMulti
-							components={{ Option }}
+							components={{ Option, GroupHeading }}
 							hideSelectedOptions={false}
 							onChange={( value ) => {
 								let labels;
