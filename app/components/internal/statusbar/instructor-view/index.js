@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
@@ -45,7 +45,6 @@ class InstructorView extends Component {
 	}
 
 	componentDidMount() {
-		this.addResizeListener();
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
@@ -61,23 +60,7 @@ class InstructorView extends Component {
 	}
 
 	componentWillUnmount() {
-		this.removeResizeListener();
 		this.unsubscribe();
-	}
-
-	windowResize = () => {
-		debug( 'Process a `window.resize` event...' );
-		this.setState({
-			rightPos: -max( window.innerWidth * 0.45, 400 )
-		});
-	}
-
-	addResizeListener = () => {
-		window.addEventListener( 'resize', this.windowResize );
-	}
-
-	removeResizeListener = () => {
-		window.removeEventListener( 'resize', this.windowResize );
 	}
 
 	toggleBar = () => {
@@ -87,14 +70,12 @@ class InstructorView extends Component {
 			this.setState({
 				hidden: false
 			});
-			this.addResizeListener();
 		} else {
 			animatePosition( this.instructorView, 'right', this.state.rightPos, 400 );
 			this.handler.style.opacity = 0.7;
 			this.setState({
 				hidden: true
 			});
-			this.removeResizeListener();
 		}
 	}
 
@@ -177,27 +158,29 @@ class InstructorView extends Component {
 
 	render() {
 		return (
-			<div
-				className="instructor-view unselectable"
-				ref={( instructorView ) => { this.instructorView = instructorView; }}
-				style={{
-					right: this.state.rightPos
-				}}
-			>
-				<div className="instructor-view-top">
-					<h3 style={{ marginTop: '20px' }}>{this.props.t( 'instructor-panel' )}</h3>
-					<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
+			<Fragment>
+				<div
+					className="instructor-view unselectable"
+					ref={( instructorView ) => { this.instructorView = instructorView; }}
+					style={{
+						right: this.state.rightPos
+					}}
+				>
+					<div className="instructor-view-top">
+						<h3 style={{ marginTop: '20px' }}>{this.props.t( 'instructor-panel' )}</h3>
+						<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
+					</div>
+					<div className="instructor-view-middle">
+						{this.renderTabs()}
+						<CohortSelect
+							id="instructor-view-cohort-select"
+							label={this.props.t( 'only-show-users-from')}
+							session={this.context}
+							t={this.props.t}
+						/>
+					</div>
+					<div className="instructor-view-bottom"></div>
 				</div>
-				<div className="instructor-view-middle">
-					{this.renderTabs()}
-					<CohortSelect
-						id="instructor-view-cohort-select"
-						label={this.props.t( 'only-show-users-from')}
-						session={this.context}
-						t={this.props.t}
-					/>
-				</div>
-				<div className="instructor-view-bottom"></div>
 				<Tooltip tooltip={this.state.hidden ? this.props.t( 'instructor-panel-open' ) : this.props.t( 'instructor-panel-close' )} placement="left" >
 					<div className="instructor-view-handler"
 						role="button" tabIndex={0}
@@ -207,14 +190,14 @@ class InstructorView extends Component {
 						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
 						ref={( handler ) => { this.handler = handler; }}
 						style={{
-							right: this.state.hidden ? '102%' : '100%',
+							right: EDITOR_OFFSET + 12,
 							borderWidth: this.state.hidden ? '15px 26px 15px 0' : '15px 0 15px 26px',
-							borderColor: this.state.hidden ? 'transparent #fa9417 transparent transparent' : 'transparent transparent transparent #fa9417'
+							borderColor: this.state.hidden ? 'transparent #c95d0a transparent transparent' : 'transparent transparent transparent #c95d0a'
 						}}
 					>
 					</div>
 				</Tooltip>
-			</div>
+			</Fragment>
 		);
 	}
 }

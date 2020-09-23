@@ -43,13 +43,14 @@
 }
 
 .instructor-view-handler {
-	position: absolute;
+	position: fixed;
 	opacity: 0.7;
 	cursor: pointer;
-	top: 1%;
+	top: 20px;
 	width: 0;
 	height: 0;
 	border-style: solid;
+	z-index: 1005;
 }
 
 .panel-notes {
