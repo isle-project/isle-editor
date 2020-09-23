@@ -24,6 +24,7 @@ import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
 import recodeCategorical from './recode_categorical';
+import extractUsedCategories from './../extract_used_categories.js';
 import './categorical_transformer.css';
 
 
@@ -62,7 +63,7 @@ class CategoricalTransformer extends Component {
 		const firstVar = props.categorical[ 0 ];
 		const firstValues = props.data[ firstVar ];
 		const firstFreqs = countBy( firstValues, identity );
-		const keys = firstVar.categories || objectKeys( firstFreqs );
+		const keys = extractUsedCategories( firstFreqs, firstVar );
 		const nameMappings = {};
 		for ( let i = 0; i < keys.length; i++ ) {
 			nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
@@ -85,7 +86,7 @@ class CategoricalTransformer extends Component {
 		if ( !this.state.secondVar ) {
 			const firstValues = this.props.data[ variable ];
 			firstFreqs = countBy( firstValues, identity );
-			const keys = variable.categories || objectKeys( firstFreqs );
+			const keys = extractUsedCategories( firstFreqs, variable );
 			for ( let i = 0; i < keys.length; i++ ) {
 				nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
 			}
@@ -94,8 +95,8 @@ class CategoricalTransformer extends Component {
 			const secondVar = this.state.secondVar;
 			const firstValues = this.props.data[ firstVar ];
 			firstFreqs = countBy( firstValues, identity );
-			const firstKeys = firstVar.categories || objectKeys( firstFreqs );
-			const secondKeys = secondVar.categories || objectKeys( this.state.secondFreqs );
+			const firstKeys = extractUsedCategories( firstFreqs, firstVar );
+			const secondKeys = extractUsedCategories( this.state.secondFreqs, secondVar );
 			for ( let i = 0; i < firstKeys.length; i++ ) {
 				for ( let j = 0; j < secondKeys.length; j++ ) {
 					const label = firstKeys[ i ] + '-' + secondKeys[ j ];
@@ -116,7 +117,7 @@ class CategoricalTransformer extends Component {
 		if ( !secondVar ) {
 			// Case: Resetting the second variable...
 			const firstVar = this.state.firstVar;
-			const keys = firstVar.categories || objectKeys( this.state.firstFreqs );
+			const keys = extractUsedCategories( this.state.firstFreqs, firstVar );
 			const nameMappings = {};
 			for ( let i = 0; i < keys.length; i++ ) {
 				nameMappings[ escapeDots( keys[ i ] ) ] = keys[ i ];
@@ -131,8 +132,8 @@ class CategoricalTransformer extends Component {
 		const firstVar = this.state.firstVar;
 		const secondValues = this.props.data[ secondVar ];
 		const secondFreqs = countBy( secondValues, identity );
-		const firstKeys = firstVar.categories || objectKeys( this.state.firstFreqs );
-		const secondKeys = secondVar.categories || objectKeys( secondFreqs );
+		const firstKeys = extractUsedCategories( this.state.firstFreqs, firstVar );
+		const secondKeys = extractUsedCategories( secondFreqs, secondVar );
 		for ( let i = 0; i < firstKeys.length; i++ ) {
 			for ( let j = 0; j < secondKeys.length; j++ ) {
 				const label = firstKeys[ i ] + '-' + secondKeys[ j ];
@@ -156,7 +157,7 @@ class CategoricalTransformer extends Component {
 
 	renderTable() {
 		if ( this.state.firstVar && this.state.secondVar ) {
-			return this.renderContigencyTable();
+			return this.renderContingencyTable();
 		}
 		if ( this.state.firstVar || this.state.secondVar ) {
 			return this.renderFrequencyTable();
@@ -211,7 +212,7 @@ class CategoricalTransformer extends Component {
 		const variable = this.state.firstVar;
 		const values = this.props.data[ variable ];
 		const varFreqs = countBy( values, identity );
-		const keys = variable.categories || objectKeys( varFreqs );
+		const keys = extractUsedCategories( varFreqs, variable );
 		return (
 			<Table bordered style={{ margin: 8 }} >
 				<thead>
@@ -248,15 +249,15 @@ class CategoricalTransformer extends Component {
 		);
 	}
 
-	renderContigencyTable = () => {
+	renderContingencyTable = () => {
 		const rowVar = this.state.secondVar;
 		const colVar = this.state.firstVar;
 		const rowValues = this.props.data[ rowVar ];
 		const colValues = this.props.data[ colVar ];
 		const rowFreqs = countBy( rowValues, identity );
 		const colFreqs = countBy( colValues, identity );
-		const rowKeys = rowVar.categories || objectKeys( rowFreqs );
-		const colKeys = colVar.categories || objectKeys( colFreqs );
+		const rowKeys = extractUsedCategories( rowFreqs, rowVar );
+		const colKeys = extractUsedCategories( colFreqs, colVar );
 		return (
 			<Table bordered style={{ margin: 8 }}>
 				<tr>
