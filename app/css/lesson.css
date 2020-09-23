@@ -733,7 +733,7 @@ a {
 	user-select: none;
 	-webkit-user-drag: none;
 	-webkit-touch-callout: none;
-	cursor: default;
+	cursor: inherit;
 }
 
 .modal-100w {
