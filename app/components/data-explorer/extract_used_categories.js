@@ -15,6 +15,10 @@ function extractUsedCategories( freqs, group ) {
 			keys.push( key );
 		}
 	}
+	// Handle missing value category not present in group categories:
+	if ( freqs[ 'null' ] ) {
+		keys.push( 'null' );
+	}
 	return keys;
 }
 
