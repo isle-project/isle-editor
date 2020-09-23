@@ -675,10 +675,20 @@ class DataExplorer extends Component {
 	}
 
 	onFilterCreate = () => {
+		const newData = this.filterCreate( this.state.data );
+		const newState = {
+			data: newData,
+			oldData: this.state.data,
+			subsetFilters: this.state.filters
+		};
+		this.setState( newState );
+	}
+
+	filterCreate = ( data ) => {
 		let indices = new Set();
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
 			const filter = this.state.filters[ i ];
-			const col = this.state.data[ filter.id ];
+			const col = data[ filter.id ];
 			if ( contains( this.state.quantitative, filter.id ) ) {
 				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
@@ -695,9 +705,9 @@ class DataExplorer extends Component {
 				}
 			}
 		}
-		const vars = objectKeys( this.state.data );
+		const vars = objectKeys( data );
 		const newData = {};
-		const nOriginal = this.state.data[ vars[0] ].length;
+		const nOriginal = data[ vars[0] ].length;
 		for ( let c = 0; c < vars.length; c++ ) {
 			const varName = vars[ c ];
 			newData[ varName ] = [];
@@ -707,25 +717,31 @@ class DataExplorer extends Component {
 			if ( !indices.has( j ) ) {
 				for ( let colInd = 0; colInd < vars.length; colInd++ ) {
 					let varName = vars[ colInd ];
-					newData[ varName ].push( this.state.data[ varName ][ j ] );
+					newData[ varName ].push( data[ varName ][ j ] );
 				}
-				if ( this.state.data[ 'id' ] ) {
-					ids.push( this.state.data[ 'id' ][ j ] );
+				if ( data[ 'id' ] ) {
+					ids.push( data[ 'id' ][ j ] );
 				} else {
 					ids.push( j+1 );
 				}
 			}
 		}
 		newData[ 'id' ] = ids;
+		return newData;
+	}
+
+	onFilterAdd = () => {
+		const data = this.restoreData();
+		const newData = this.filterCreate( data );
 		const newState = {
 			data: newData,
-			oldData: this.state.data,
+			oldData: data,
 			subsetFilters: this.state.filters
 		};
 		this.setState( newState );
 	}
 
-	onRestoreData = () => {
+	restoreData = () => {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
 		const data = copy( this.props.data, 1 );
@@ -762,6 +778,11 @@ class DataExplorer extends Component {
 				}
 			}
 		}
+		return data;
+	}
+
+	onRestoreData = () => {
+		const data = this.restoreData();
 		this.setState({
 			data,
 			subsetFilters: null,
@@ -1497,7 +1518,14 @@ class DataExplorer extends Component {
 										{ this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
 											<OverlayTrigger placement="top" overlay={<Tooltip>{this.props.t('create-filtered-dataset-tooltip')}</Tooltip>} >
 												<Button
-													onClick={this.onFilterCreate}
+													onClick={() => {
+														if ( this.state.subsetFilters ) {
+															// Case: Dataset is already filtered
+															this.onFilterAdd();
+														} else {
+															this.onFilterCreate();
+														}
+													}}
 													variant="secondary"
 													size="xsmall"
 													style={{ float: 'left' }}
