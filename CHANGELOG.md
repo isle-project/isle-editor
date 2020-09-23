@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.67.1](https://github.com/isle-project/isle-editor/releases/tag/v0.67.1) (2020-09-23)
+
+This patch release contains fixes for handling of filtered datasets in the data explorer and improvements for the editor and preview syncing.
+
 ## [v0.67.0](https://github.com/isle-project/isle-editor/releases/tag/v0.67.0) (2020-09-21)
 
 This release changes the display of the toolbar to a horizontal, collapsible format. It improves behavior for multiple-choice questions, which now have more descriptive notifications, and adds the ability to drag tables as answers into image questions. Finally, the editor preview now comes with additional buttons in the component wrappers that allow one to re-arrange components in the preview.
