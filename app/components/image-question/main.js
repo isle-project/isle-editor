@@ -248,7 +248,6 @@ class ImageQuestion extends Component {
 			hasHints={this.props.hints.length > 0}
 		/>;
 
-
 		let content;
 		if ( !this.state.isProcessing ) {
 			content = this.state.src ?

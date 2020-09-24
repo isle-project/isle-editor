@@ -60,7 +60,7 @@ class Reaction extends Component {
 						return this.props.show[ lastAction.value ] || this.props.show[ 'default' ] || null;
 					}
 					if ( isFunction( this.props.show ) ) {
-						return this.props.show( lastAction.value ) || null;
+						return this.props.show( lastAction.value, lastAction ) || null;
 					}
 				}
 				return null;
