@@ -23,7 +23,7 @@ function animatePosition( element, prop, to, duration ) {
 	setTimeout( function onTimeout() {
 		const newVal = pixelsToNumber( element.style[ prop ] ) + perTick;
 		element.style[ prop ] = `${newVal}px`;
-		if ( element.style[ prop ] === to ) {
+		if ( newVal === to ) {
 			return;
 		}
 		animatePosition( element, prop, to, duration - 10.0 );
