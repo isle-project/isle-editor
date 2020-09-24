@@ -332,6 +332,9 @@ class StatusBar extends Component {
 			const first = unfinished[ 0 ];
 			if ( first ) {
 				const elem = document.getElementById( first );
+				if ( !elem ) {
+					return;
+				}
 				if ( isHidden( elem ) ) {
 					const clone = elem.cloneNode( true );
 					const newDiv = document.createElement( 'div' );
