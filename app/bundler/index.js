@@ -411,7 +411,7 @@ function writeIndexFile({
 				{
 					test: /\.js$/,
 					exclude: [
-						/node_modules(?:\/|\\)(?!debug|@iktakahiro(?:\/|\\)markdown-it-katex)/,
+						/node_modules(?:\/|\\)(?!@iktakahiro(?:\/|\\)markdown-it-katex)/,
 						/fonts\.js$/
 					],
 					loader: 'babel-loader',
@@ -441,7 +441,6 @@ function writeIndexFile({
 						cacheDirectory: true,
 						overrides: [{
 							test: [
-								resolve( basePath, './node_modules/debug/**/*.js' ),
 								resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' )
 							],
 							presets: [
