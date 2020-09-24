@@ -1773,7 +1773,7 @@ class Session {
 			this.logSession();
 			initializedProgress = true;
 		}
-		if ( id ) {
+		else if ( id ) {
 			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];
