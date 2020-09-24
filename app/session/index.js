@@ -43,7 +43,7 @@ import retrieveUserGroup from 'utils/retrieve-user-group';
 import beforeUnload from 'utils/before-unload';
 import SpeechInterface from './speech_interface.js';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
-import { TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
+import { LESSON_CONNECTED, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
 import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
 	CREATED_GROUPS, DELETED_GROUPS, DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
@@ -1139,6 +1139,13 @@ class Session {
 
 		socket.on( 'connect', () => {
 			debug( 'I am connected...' );
+
+			// Log action for loading lesson:
+			this.log({
+				type: LESSON_CONNECTED,
+				value: socket.id,
+				id: this.lessonName
+			});
 			this.stopPingServer();
 		});
 
@@ -1150,6 +1157,7 @@ class Session {
 			userEmail: this.user.email || this.anonymousIdentifier
 		};
 		socket.emit( 'join', config );
+
 		socket.on( 'console', function onConsole( msg ) {
 			debug( msg );
 		});
@@ -1862,6 +1870,10 @@ class Session {
 		let timeDiff = now - updateTime;
 		updateTime = now;
 
+		const addedActionTypes = this.get( 'addedActionTypes' );
+		if ( addedActionTypes.length === 0 ) {
+			return debug( 'Do not update user session when user is idle...' );
+		}
 		debug( 'Updates session object in database...' );
 		const currentSession = {
 			elapsed: timeDiff,
@@ -1870,7 +1882,7 @@ class Session {
 			vars: this.vars,
 			lessonID: this.lessonID,
 			progress: this.get( 'progress' ),
-			addedActionTypes: countBy( this.get( 'addedActionTypes' ), identity )
+			addedActionTypes: countBy( addedActionTypes, identity )
 		};
 		addedScore = 0;
 		PRIVATE_VARS[ 'addedChatMessages' ] = 0;
