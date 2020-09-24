@@ -29,27 +29,28 @@ const pkgPath = join( __dirname, '..', 'dll', 'session', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
-	oldVersion = replace( match, RE_VERSION, '$1.$2' );
+	oldVersion = replace( match, RE_VERSION, '$1.$2.$3' );
 	if ( type === 'major' ) {
-		newVersion = `${Number( p1 ) + 1}.${p2}`;
-		return `${newVersion}.0`;
+		newVersion = `${Number( p1 ) + 1}.${p2}.${p3}`;
 	}
-	if ( type === 'minor' ) {
-		newVersion = `${p1}.${Number( p2 ) + 1}`;
-		return `${newVersion}.0`;
+	else if ( type === 'minor' ) {
+		newVersion = `${p1}.${Number( p2 ) + 1}.${p3}`;
+	} else {
+		newVersion = `${p1}.${p2}.${Number( p3 ) + 1}`;
 	}
-	return `${p1}.${p2}.${Number( p3 ) + 1}`;
+	return newVersion;
 });
 fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ) );
 
-// Only update `index.html` and `webpack` configuration when major or minor version is increased:
-if ( type === 'major' || type === 'minor' ) {
+if ( type === 'major' || type === 'minor'|| type === 'patch' ) {
 	const configPath = join( __dirname, '..', 'webpack.config.session.js' );
 	const config = fs.readFileSync( configPath, 'utf8' );
 
+	console.log( `Replacing ${oldVersion} with ${newVersion} in webpack configuration...` );
 	let out = replace( config, oldVersion, newVersion );
 	fs.writeFileSync( configPath, out );
 
+	console.log( `Replacing ${oldVersion} with ${newVersion} in index.html...` );
 	const htmlPath = join( __dirname, '..', 'app', 'bundler', 'index.html' );
 	const html = fs.readFileSync( htmlPath, 'utf8' );
 
