@@ -63,19 +63,21 @@ class InstructorView extends Component {
 		this.unsubscribe();
 	}
 
+	toggleHidden = () => {
+		this.setState({
+			hidden: !this.state.hidden
+		});
+	}
+
 	toggleBar = () => {
 		if ( this.state.hidden ) {
+			this.toggleHidden();
 			animatePosition( this.instructorView, 'right', EDITOR_OFFSET, 400 );
 			this.handler.style.opacity = 0.7;
-			this.setState({
-				hidden: false
-			});
 		} else {
-			animatePosition( this.instructorView, 'right', this.state.rightPos, 400 );
+			animatePosition( this.instructorView, 'right', this.state.rightPos, 400, this.toggleHidden );
+			setTimeout( this.toggleHidden, 400 );
 			this.handler.style.opacity = 0.7;
-			this.setState({
-				hidden: true
-			});
 		}
 	}
 
@@ -163,7 +165,8 @@ class InstructorView extends Component {
 					className="instructor-view unselectable"
 					ref={( instructorView ) => { this.instructorView = instructorView; }}
 					style={{
-						right: this.state.rightPos
+						right: this.state.rightPos,
+						display: this.state.hidden ? 'none' : 'inherit'
 					}}
 				>
 					<div className="instructor-view-top">
