@@ -20,7 +20,7 @@ import VOICE_COMMANDS from './voice_commands.json';
 
 const uid = generateUID( 'video-player' );
 const debug = logger( 'isle:video-player' );
-const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID' ];
+const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID', 't' ];
 
 
 // MAIN //
