@@ -123,7 +123,8 @@ class Editor extends Component {
 		super( props );
 
 		this.state = {
-			sourceFiles: {}
+			sourceFiles: {},
+			value: props.value
 		};
 		this.decorations = [];
 		this.dragProvider = {
@@ -1005,6 +1006,9 @@ class Editor extends Component {
 		}
 		this.props.onChange( newValue, this.immediateUpdate );
 		this.immediateUpdate = false;
+		this.setState({
+			value: newValue
+		});
 	}
 
 	toggleComponentConfigurator = ( data ) => {
@@ -1042,7 +1046,7 @@ class Editor extends Component {
 		try {
 			const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
 				target_lang: language,
-				text: this.props.value
+				text: this.state.value
 			}, {
 				headers: {
 					'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
@@ -1317,7 +1321,7 @@ class Editor extends Component {
 							height={this.props.height}
 							width={max( window.innerWidth * ( 1.0 - this.props.splitPos ), 300 )}
 							language="javascript"
-							value={this.props.value}
+							value={this.state.value}
 							options={MONACO_OPTIONS}
 							onChange={this.handleChange}
 							editorDidMount={this.onEditorMount}
