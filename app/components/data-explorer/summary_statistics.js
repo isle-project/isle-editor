@@ -342,7 +342,7 @@ class SummaryStatistics extends Component {
 						const key = keys[ i ];
 
 						// Extract correlation coefficient from correlation matrix:
-						res[ key ].value = res[ key ].value[ 0 ][ 1 ];
+						res[ key ].value = res[ key ].value.map( mat => mat[ 0 ][ 1 ] );
 					}
 					variable = `${variable} vs. ${secondVariable}`;
 				} else {
@@ -378,10 +378,14 @@ class SummaryStatistics extends Component {
 					y = data[ secondVariable ];
 				}
 				if ( statLabels[ 0 ] === 'Correlation' ) {
-					res = funs.map( f => f( x, y ) );
+					const value = funs.map( f => {
+						const r = f( x, y );
+						return r[ 0 ][ 1 ];
+					});
+
 					// Extract correlation coefficient from correlation matrix:
 					res = {
-						value: res[ 0 ][ 1 ],
+						value,
 						size: x.length
 					};
 					variable = `${variable} vs. ${secondVariable}`;
