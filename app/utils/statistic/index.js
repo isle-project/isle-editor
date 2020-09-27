@@ -33,6 +33,7 @@ function statistic( statName ) {
 	let fun;
 	switch ( statName ) {
 	case 'Correlation':
+	case 'Correlation Matrix':
 		fun = pcorr;
 		break;
 	case 'Interquartile Range':

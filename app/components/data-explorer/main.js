@@ -1743,6 +1743,7 @@ DataExplorer.defaultProps = {
 		'Standard Deviation',
 		'Variance',
 		'Correlation',
+		'Correlation Matrix',
 		'Skewness',
 		'Excess Kurtosis',
 		'First Quartile',

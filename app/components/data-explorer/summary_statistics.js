@@ -222,6 +222,7 @@ class SummaryStatistics extends Component {
 					variation.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'Correlation':
+				case 'Correlation Matrix':
 					relationship.push({ 'label': e, 'value': statistic( e ) });
 					break;
 				case 'Skewness':
@@ -276,6 +277,28 @@ class SummaryStatistics extends Component {
 				funs.push( stat.value );
 				statLabels.push( stat.label );
 			}
+		}
+
+		if ( statLabels[ 0 ] === 'Correlation Matrix' ) {
+			const arrs = variables.map( x => data[ x ] );
+			const value = funs.map( f => f.apply( null, arrs ) );
+			const result = {
+				value: value[ 0 ],
+				size: arrs[ 0 ].length
+			};
+			const output = {
+				variables: variables,
+				statistics: statLabels,
+				type: 'Statistics',
+				result,
+				group
+			};
+			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
+				statistic: statLabels,
+				variables,
+				group
+			});
+			return this.props.onCreated( output );
 		}
 		const result = {};
 		for ( let i = 0; i < variables.length; i++ ) {
@@ -445,16 +468,23 @@ class SummaryStatistics extends Component {
 								let labels;
 								if ( isArray( value ) && value.length > 0 ) {
 									labels = value.map( x => x.label );
-									if ( labels[ labels.length-1 ] === 'Correlation' ) {
+									const lastLabel = labels[ labels.length-1 ];
+									if (
+										lastLabel === 'Correlation' ||
+										lastLabel === 'Correlation Matrix'
+									) {
 										return this.setState({
 											selectedStats: [{
-												label: 'Correlation',
-												value: statistic( 'Correlation' )
+												label: lastLabel,
+												value: statistic( lastLabel )
 											}],
-											showSecondVarSelect: true
+											showSecondVarSelect: lastLabel === 'Correlation'
 										});
 									}
-									else if ( labels[ 0 ] === 'Correlation' ) {
+									else if (
+										labels[ 0 ] === 'Correlation' ||
+										labels[ 0 ] === 'Correlation Matrix'
+									) {
 										value.shift();
 									}
 								}
@@ -588,6 +618,7 @@ SummaryStatistics.defaultProps = {
 		'Standard Deviation',
 		'Variance',
 		'Correlation',
+		'Correlation Matrix',
 		'Skewness',
 		'Excess Kurtosis',
 		'First Quartile',

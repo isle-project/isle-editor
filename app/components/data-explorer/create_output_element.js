@@ -114,6 +114,33 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 	</pre> );
 };
 
+const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+	const thead = <thead>
+		<tr>
+			<th>Correlation Matrix (N={e.result.size})</th>
+			{e.variables.map( ( x, i ) => <th key={i}>{x}</th> )}
+		</tr>
+	</thead>;
+	const tbody = <tbody>
+		{e.variables.map( ( x, i ) => {
+			return (
+				<tr key={i}>
+					<th>{x}</th>
+					{e.result.value[ i ].map( ( y, j ) => <td key={j}>{y.toFixed( 3 )}</td> )}
+				</tr>
+			);
+		})}
+	</tbody>;
+	const table = <Table bordered size="sm">
+		{thead}
+		{tbody}
+	</Table>;
+	return ( <pre key={idx}>
+		{createButtons( 'Correlation Matrix', table, clearOutput, idx, subsetFilters, onFilters )}
+		{makeDraggable( table )}
+	</pre> );
+};
+
 
 // MAIN //
 
@@ -273,6 +300,9 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			}
 			if ( e.statistics[0] === 'Interquartile Range' ) {
 				return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters );
+			}
+			if ( e.statistics[0] === 'Correlation Matrix' ) {
+				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters );
 			}
 		}
 		const table = <Table bordered size="sm">
