@@ -80,6 +80,10 @@ class EditorContextMenu extends Component {
 		this.props.onTranslate( data.language );
 	}
 
+	handleTranslateSelectionClick = ( _, data ) => {
+		this.props.onSelectionTranslate( data.language );
+	}
+
 	render() {
 		return (
 			<Fragment>
@@ -152,6 +156,20 @@ class EditorContextMenu extends Component {
 										language: LANGUAGES[ name ]
 									}}
 									onClick={this.handleTranslateClick}
+								>
+									{name}
+								</MenuItem>
+							);
+						})}
+					</SubMenu> : null}
+					{ISLE_SERVER_TOKEN ? <SubMenu title="Translate selection to" >
+						{LANGUAGE_NAMES.map( ( name, idx ) => {
+							return (
+								<MenuItem
+									key={idx} data={{
+										language: LANGUAGES[ name ]
+									}}
+									onClick={this.handleTranslateSelectionClick}
 								>
 									{name}
 								</MenuItem>
