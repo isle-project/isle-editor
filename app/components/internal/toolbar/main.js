@@ -159,9 +159,6 @@ class Toolbar extends Component {
 					className="toolbar-button"
 					onClick={toggleElement}
 					onKeyPress={toggleElement}
-					style={{
-						display: 'inherit'
-					}}
 				>
 					<span className={`fa fa-lg fa-${elem.icon} toolbar-icon`} />
 				</Button>
