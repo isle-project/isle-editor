@@ -154,7 +154,7 @@ const generateValueLabel = ({ value, type, levels, rows, cols }) => {
 				str += '-';
 				str += isString( cv ) && !isEmptyString( cv ) ? cv : j;
 				str += ': ';
-				str += value[ i+':'+j ] + '; ';
+				str += ( value ? value[ i+':'+j ] : 'NA' ) + '; ';
 			}
 		}
 		value = str || 'None';
