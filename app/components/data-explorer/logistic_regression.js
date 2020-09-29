@@ -240,11 +240,8 @@ class LogisticRegression extends Component {
 				<ButtonGroup>
 					<Tooltip tooltip="Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table">
 						<Button variant="secondary" size="sm" onClick={() => {
-							const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+							const { matrix, yvalues } = designMatrix( x, y, this.props.data, this.props.quantitative, intercept, success );
 							const probs = results.predict( matrix );
-							const yvalues = this.props.data[ y ].map( v => {
-								return v === success ? 1 : 0;
-							});
 							const resid = subtract( probs, yvalues );
 							const newData = copy( this.props.data, 1 );
 							const newQuantitative = this.props.quantitative.slice();
