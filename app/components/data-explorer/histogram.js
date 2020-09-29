@@ -106,7 +106,7 @@ function calculateDensityValues( vals, densityType ) {
 	return [ x, y ];
 }
 
-export function generateHistogramConfig({ data, variable, group, groupMode, nCols, overlayDensity, densityType, binStrategy, nBins, xbins = {}}) {
+export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins = {}}) {
 	let traces;
 	let layout;
 
@@ -126,20 +126,22 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			name: 'histogram'
 		} ];
 		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );
-		if ( overlayDensity ) {
-			const [ x, y ] = calculateDensityValues( vals, densityType );
-			traces.push({
-				x: x,
-				y: y,
-				type: 'lines',
-				name: densityType+' density'
-			});
+		if ( displayDensity ) {
+			if ( densityType ) {
+				const [ x, y ] = calculateDensityValues( vals, densityType );
+				traces.push({
+					x: x,
+					y: y,
+					type: 'lines',
+					name: densityType+' density'
+				});
+			}
 			traces[ 0 ][ 'histnorm' ] = 'probability density';
 		}
 		layout = {
 			xaxis: { title: variable },
 			yaxis: {
-				title: overlayDensity ? 'Density' : 'Count',
+				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
 			reversescale: true,
@@ -165,24 +167,28 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				let vals = freqs[ key ];
-				if ( overlayDensity ) {
+				if ( displayDensity ) {
 					const config = {
 						x: vals,
 						type: 'histogram',
 						histnorm: 'probability density',
-						name: key+':histogram'
+						name: densityType ? key+':histogram' : key,
+						xaxis: 'x'+(i+1),
+						yaxis: 'y'+(i+1)
 					};
 					setBins( config, vals, binStrategy, nBins, xbins );
 					traces.push( config );
-					const [ x, y ] = calculateDensityValues( vals, densityType );
-					traces.push({
-						x: x,
-						y: y,
-						type: 'lines',
-						name: key+':density',
-						xaxis: 'x'+(i+1),
-						yaxis: 'y'+(i+1)
-					});
+					if ( densityType ) {
+						const [ x, y ] = calculateDensityValues( vals, densityType );
+						traces.push({
+							x: x,
+							y: y,
+							type: 'lines',
+							name: key+':density',
+							xaxis: 'x'+(i+1),
+							yaxis: 'y'+(i+1)
+						});
+					}
 				} else {
 					const config = {
 						x: vals,
@@ -199,23 +205,25 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				let vals = freqs[ key ];
-				if ( overlayDensity ) {
+				if ( displayDensity ) {
 					const config = {
 						x: vals,
 						type: 'histogram',
 						histnorm: 'probability density',
-						name: key+':histogram',
+						name: densityType ? key+':histogram' : key,
 						opacity: 0.5
 					};
 					setBins( config, vals, binStrategy, nBins, xbins );
 					traces.push( config );
-					const [ x, y ] = calculateDensityValues( vals, densityType );
-					traces.push({
-						x: x,
-						y: y,
-						type: 'lines',
-						name: key+':density'
-					});
+					if ( densityType ) {
+						const [ x, y ] = calculateDensityValues( vals, densityType );
+						traces.push({
+							x: x,
+							y: y,
+							type: 'lines',
+							name: key+':density'
+						});
+					}
 				} else {
 					const config = {
 						x: vals,
@@ -230,7 +238,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 		}
 		layout = {
 			yaxis: {
-				title: overlayDensity ? 'Density' : 'Count',
+				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
 			title: `${variable} given ${group}`,
@@ -258,13 +266,13 @@ class Histogram extends Component {
 
 		this.state = {
 			chooseBins: false,
-			overlayDensity: false,
+			displayDensity: false,
 			variable: props.defaultValue || props.variables[ 0 ],
 			group: null, // eslint-disable-line react/no-unused-state
 			groupMode: 'Overlay',
 			nCols: 2,
 			nBins: 10,
-			densityType: 'Data-driven',
+			densityType: null,
 			xbins: {
 				start: null,
 				size: 100,
@@ -456,19 +464,20 @@ class Histogram extends Component {
 					{ this.props.showDensityOption ?
 						<div>
 							<CheckboxInput
-								legend="Overlay Density"
-								defaultValue={this.state.overlayDensity}
+								legend="Display density instead of counts"
+								defaultValue={this.state.displayDensity}
 								onChange={()=>{
 									this.setState({
-										overlayDensity: !this.state.overlayDensity
+										displayDensity: !this.state.displayDensity
 									});
 								}}
 							/>
 							<SelectInput
-								legend="Type:"
+								legend="Overlay density line:"
 								options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
-								disabled={!this.state.overlayDensity}
+								disabled={!this.state.displayDensity}
 								defaultValue={this.state.densityType}
+								clearable
 								menuPlacement="top"
 								onChange={( value )=>{
 									this.setState({
