@@ -10,9 +10,17 @@
 }
 
 .react-viewer-canvas {
-	background-color: white;
+	background: white;
 }
 
 .react-viewer-attribute {
 	color: black;
+}
+
+.isle-image-picker {
+	top: 2px;
+	left: 10px;
+	position: absolute;
+	z-index: 9999;
+	background-color: white;
 }

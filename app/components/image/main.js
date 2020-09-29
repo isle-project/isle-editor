@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import ColorPicker from 'components/color-picker';
 import randomstring from 'utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
 import './load_translations.js';
@@ -32,7 +33,8 @@ class Image extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			showModal: false
+			showModal: false,
+			showPicker: false
 		};
 	}
 
@@ -63,6 +65,13 @@ class Image extends Component {
 								this.forceUpdate();
 							}
 						}} ></div>
+						{ this.state.showPicker ? <ColorPicker
+							variant="Compact"className="isle-image-picker"
+							onChangeComplete={( value ) => {
+								const div = document.getElementsByClassName( 'react-viewer-canvas' )[ 0 ];
+								div.style.backgroundColor = value.hex;
+							}}
+						/> : null }
 						{ this.containerDiv ? <Viewer
 							container={this.containerDiv}
 							visible={this.state.showModal}
@@ -72,8 +81,23 @@ class Image extends Component {
 									alt: this.props.alt
 								}
 							]}
-							noNavbar noClose showTotal={false} downloadable={false}
-							changeable={false} zoomSpeed={0.1}
+							noNavbar noClose showTotal={false}
+							downloadable={false}
+							changeable={false}
+							zoomSpeed={0.1}
+							customToolbar={( toolbars ) => {
+								return toolbars.concat([
+									{
+										key: 'Background',
+										render: <i className="fas fa-tint"></i>,
+										onClick: () => {
+											this.setState({
+												showPicker: !this.state.showPicker
+											});
+										}
+									}
+								]);
+							}}
 						/> : null }
 					</Modal.Body>
 					<Modal.Footer>
