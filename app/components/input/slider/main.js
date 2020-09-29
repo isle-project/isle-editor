@@ -48,6 +48,7 @@ function createTooltip( props ) {
 * @property {boolean} inline - controls whether to place the slider inline with text or outside
 * @property {number} precision - rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001
 * @property {boolean} disabled - controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit grayed-out
+* @property {boolean} hideTooltip - controls whether to hide tooltip
 * @property {Object} style - CSS inline styles
 * @property {Object} numberInputStyle - CSS inline styles for number input component
 * @property {Object} rangeInputStyle - CSS inline style for range input component
@@ -209,8 +210,9 @@ class SliderInput extends Input {
 		}
 		return (
 			<Tooltip
-				id="inlineTooltip"
+				id="sliderTooltip"
 				placement="top"
+				show={!this.props.hideTooltip}
 				tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 			>
 				<div
@@ -247,6 +249,7 @@ SliderInput.defaultProps = {
 	onChange() {},
 	precision: 10,
 	disabled: false,
+	hideTooltip: false,
 	style: {},
 	numberInputStyle: {},
 	rangeInputStyle: {}
@@ -268,6 +271,7 @@ SliderInput.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	hideTooltip: PropTypes.bool,
 	style: PropTypes.object,
 	numberInputStyle: PropTypes.object,
 	rangeInputStyle: PropTypes.object
