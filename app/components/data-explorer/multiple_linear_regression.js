@@ -219,7 +219,7 @@ class MultipleLinearRegression extends Component {
 				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				<Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {
-						const { matrix } = designMatrix( x, this.props.data, this.props.quantitative, intercept );
+						const { matrix } = designMatrix( x, y, this.props.data, this.props.quantitative, intercept );
 						const yhat = result.predict( matrix ).map( v => v[ 0 ] );
 						const resid = subtract( yhat, this.props.data[ y ] );
 						const newData = copy( this.props.data, 1 );
