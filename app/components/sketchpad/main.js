@@ -84,6 +84,8 @@ const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal',
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
 ];
+const RE_URL = /(https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*))/g;
+const RE_EMAIL = /([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})/gi;
 const MIN_SWIPE_X = 45;
 const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
@@ -796,6 +798,11 @@ class Sketchpad extends Component {
 					container: textLayer,
 					viewport,
 					textDivs: []
+				}).promise.then(() => {
+					const innerHTML = textLayer.innerHTML;
+					let html = replace( innerHTML, RE_URL, '<a href="$1">$1</a>' );
+					html = replace( html, RE_EMAIL, '<a href="mailto:$1">$1</a>' );
+					textLayer.innerHTML = html;
 				});
 			});
 			this.renderingTask = page.render( renderContext );
@@ -2551,8 +2558,7 @@ class Sketchpad extends Component {
 					if ( keys[ i ] === String( page+1 ) ) {
 						className = 'sketch-node-container-basic';
 					}
-					divs.push(
-					<div
+					divs.push( <div
 						key={i} style={node.style} className={className}
 						onKeyDown={stopPropagation}
 					>{node.component}</div> );
