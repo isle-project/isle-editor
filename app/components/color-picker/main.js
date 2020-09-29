@@ -19,6 +19,7 @@ const BlockPicker = Loadable( () => import( 'react-color/lib/Block.js' ) );
 * @property {boolean} disableAlpha - controls whether to remove alpha slider and options
 * @property {Array<string>} presetColors - HeX `strings` specifying the default colors at the bottom of the colorpicker
 * @property {number} width - width of the color picker (in px)
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time color is changed
 * @property {Function} onChangeComplete - callback invoked once a color change is complete
@@ -42,7 +43,7 @@ class ColorPicker extends Component {
 				break;
 		}
 		return (
-			<div style={{ width: '50%', margin: '0 auto', ...this.props.style }}>
+			<div className={this.props.className} style={{ width: 'fit-content', margin: '0 auto', ...this.props.style }}>
 				{colorPicker}
 			</div>
 		);
@@ -63,6 +64,7 @@ ColorPicker.propTypes = {
 	disableAlpha: PropTypes.bool,
 	presetColors: PropTypes.arrayOf( PropTypes.string ),
 	width: PropTypes.number,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onChangeComplete: PropTypes.func
@@ -74,6 +76,7 @@ ColorPicker.defaultProps = {
 	disableAlpha: false,
 	presetColors: [ '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF' ],
 	width: 200,
+	className: '',
 	style: {},
 	onChange() {},
 	onChangeComplete() {}
