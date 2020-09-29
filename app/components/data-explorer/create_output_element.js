@@ -4,6 +4,7 @@ import React, { Fragment } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Table from 'components/table';
 import logger from 'debug';
+import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
 import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
@@ -114,27 +115,50 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 	</pre> );
 };
 
-const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+const CorrelationTable = ( props ) => {
+	const title = props.group ? props.group : 'Correlation Matrix';
 	const thead = <thead>
 		<tr>
-			<th>Correlation Matrix (N={e.result.size})</th>
-			{e.variables.map( ( x, i ) => <th key={i}>{x}</th> )}
+			<th>{title} (N={props.result.size})</th>
+			{props.variables.map( ( x, i ) => <th key={i}>{x}</th> )}
 		</tr>
 	</thead>;
 	const tbody = <tbody>
-		{e.variables.map( ( x, i ) => {
+		{props.variables.map( ( x, i ) => {
 			return (
 				<tr key={i}>
 					<th>{x}</th>
-					{e.result.value[ i ].map( ( y, j ) => <td key={j}>{y.toFixed( 3 )}</td> )}
+					{props.result.value[ i ].map( ( y, j ) => <td key={j}>{y.toFixed( 3 )}</td> )}
 				</tr>
 			);
 		})}
 	</tbody>;
-	const table = <Table bordered size="sm">
+	return ( <Table bordered size="sm" {...props} >
 		{thead}
 		{tbody}
-	</Table>;
+	</Table> );
+};
+
+const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+	if ( e.group ) {
+		const tables = [];
+		const keys = objectKeys( e.result );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const table = <CorrelationTable
+				key={key}
+				group={key}
+				result={e.result[ key ]}
+				variables={e.variables}
+			/>;
+			tables.push( table );
+		}
+		return ( <pre key={idx}>
+			{createButtons( 'Correlation Matrix', tables, clearOutput, idx, subsetFilters, onFilters )}
+			{makeDraggable( tables )}
+		</pre> );
+	}
+	const table = <CorrelationTable result={e.result} variables={e.variables} />;
 	return ( <pre key={idx}>
 		{createButtons( 'Correlation Matrix', table, clearOutput, idx, subsetFilters, onFilters )}
 		{makeDraggable( table )}
@@ -218,6 +242,9 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	}
 	else if ( e.type === 'Statistics' ) {
 		if ( e.group ) {
+			if ( e.statistics.length === 1 && e.statistics[0] === 'Correlation Matrix' ) {
+				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters );
+			}
 			const variables = entries( e.result );
 			let header;
 			if ( e.statistics.length === 1 && e.statistics[0] === 'Range' ) {

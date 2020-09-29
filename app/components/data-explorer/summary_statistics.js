@@ -171,6 +171,85 @@ function by2WithCount( arr1, arr2, factor, funs, group ) {
 	return { keys, result };
 }
 
+function groupedCompleteCases( arrs, groupData ) {
+	const indices = [];
+	const len = arrs[ 0 ].length;
+	for ( let j = 0; j < len; j++ ) {
+		let complete = true;
+		for ( let i = 0; i < arrs.length; i++ ) {
+			const x = arrs[ i ][ j ];
+			if ( !isNumber( x ) || isnan( x ) ) {
+				complete = false;
+				break;
+			}
+		}
+		if ( complete ) {
+			indices.push( j );
+		}
+	}
+	const out = {};
+	for ( let i = 0; i < arrs.length; i++ ) {
+		for ( let j = 0; j < indices.length; j++ ) {
+			const group = groupData[ indices[ j ] ];
+			if ( !out[ group ] ) {
+				out[ group ] = new Array( arrs.length );
+				for ( let k = 0; k < arrs.length; k++ ) {
+					out[ group ][ k ] = [];
+				}
+			}
+			const idx = indices[ j ];
+			out[ group ][ i ].push( arrs[ i ][ idx ] );
+		}
+	}
+	return out;
+}
+
+function groupedCases( arrs, groupData ) {
+	const out = {};
+	const len = arrs[ 0 ].length;
+	for ( let i = 0; i < arrs.length; i++ ) {
+		for ( let j = 0; j < len; j++ ) {
+			const group = groupData[ j ];
+			if ( !out[ group ] ) {
+				out[ group ] = new Array( arrs.length );
+				for ( let k = 0; k < arrs.length; k++ ) {
+					out[ group ][ k ] = [];
+				}
+			}
+			out[ group ][ i ].push( arrs[ i ][ j ] );
+		}
+	}
+	return out;
+}
+
+function completeCases( arrs ) {
+	const indices = [];
+	const len = arrs[ 0 ].length;
+	for ( let j = 0; j < len; j++ ) {
+		let complete = true;
+		for ( let i = 0; i < arrs.length; i++ ) {
+			const x = arrs[ i ][ j ];
+			if ( !isNumber( x ) || isnan( x ) ) {
+				complete = false;
+				break;
+			}
+		}
+		if ( complete ) {
+			indices.push( j );
+		}
+	}
+	const out = new Array( arrs.length );
+	for ( let i = 0; i < arrs.length; i++ ) {
+		const arr = new Array( indices.length );
+		for ( let j = 0; j < indices.length; j++ ) {
+			const idx = indices[ j ];
+			arr[ j ] = arrs[ i ][ idx ];
+		}
+		out[ i ] = arr;
+	}
+	return out;
+}
+
 
 // MAIN //
 
@@ -280,12 +359,45 @@ class SummaryStatistics extends Component {
 		}
 
 		if ( statLabels[ 0 ] === 'Correlation Matrix' ) {
-			const arrs = variables.map( x => data[ x ] );
-			const value = funs.map( f => f.apply( null, arrs ) );
-			const result = {
-				value: value[ 0 ],
-				size: arrs[ 0 ].length
-			};
+			let arrs = variables.map( x => data[ x ] );
+			if ( group ) {
+				let groupData;
+				if ( group.length === 2 ) {
+					groupData = [];
+					for ( let i = 0; i < arrs[ 0 ].length; i++ ) {
+						const groupLabel = group.map( g => {
+							return data[ g ][ i ];
+						}).join( ':' );
+						groupData.push( groupLabel );
+					}
+				} else {
+					groupData = data[ group[ 0 ] ];
+				}
+				if ( omit ) {
+					arrs = groupedCompleteCases( arrs, groupData );
+				} else {
+					arrs = groupedCases( arrs, groupData );
+				}
+			} else if ( omit ) {
+				arrs = completeCases( arrs );
+			}
+			let result;
+			if ( group ) {
+				result = {};
+				const keys = objectKeys( arrs );
+				for ( let i = 0; i < keys.length; i++ ) {
+					result[ keys[ i ] ] = {
+						value: funs.map( f => f.apply( null, arrs[ keys[ i ] ] ) )[ 0 ],
+						size: arrs[ keys[ i ] ][ 0 ].length
+					};
+				}
+			} else {
+				const value = funs.map( f => f.apply( null, arrs ) );
+				result = {
+					value: value[ 0 ],
+					size: arrs[ 0 ].length
+				};
+			}
 			const output = {
 				variables: variables,
 				statistics: statLabels,
