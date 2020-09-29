@@ -66,7 +66,8 @@ class SelectQuestionMatrix extends Component {
 			submitted: false,
 			answerState: null,
 			completed: false,
-			numbSubmissions: 0
+			numbSubmissions: 0,
+			submittedAnswers: null
 		};
 	}
 
@@ -109,7 +110,6 @@ class SelectQuestionMatrix extends Component {
 		const session = this.context;
 		let correct = true;
 		const labels = keys( this.props.solution );
-		this.submittedAnswers = copy( this.state.answers );
 		for ( let i = 0; i < labels.length; i++ ) {
 			const key = labels[ i ];
 			const sol = this.props.solution[ key ];
@@ -162,11 +162,14 @@ class SelectQuestionMatrix extends Component {
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
 		const numbSubmissions = this.state.numbSubmissions + 1;
+		console.log( 'ARGH:')
+		console.log( numbSubmissions >= this.props.nTries );
 		this.setState({
 			submitted: true,
 			answerState,
+			submittedAnswers: copy( this.state.answers ),
 			numbSubmissions,
-			completed: ( answerState === 'success' || numbSubmissions >= this.props.nTries ) && nAnswers === nInputs
+			completed: numbSubmissions >= this.props.nTries || ( answerState === 'success' && nAnswers === nInputs )
 		});
 	}
 
@@ -178,12 +181,12 @@ class SelectQuestionMatrix extends Component {
 		});
 		let valueColor;
 		const displayFeedback = ( this.props.provideFeedback === 'overall' && this.state.submitted ) ||
-			( this.props.provideFeedback === 'individual' && this.state.submitted && this.submittedAnswers[ label ] );
+			( this.props.provideFeedback === 'individual' && this.state.submitted && this.state.submittedAnswers[ label ] );
 		if (
 			displayFeedback &&
 			this.props.solution[ label ]
 		) {
-			valueColor = this.submittedAnswers[ label ] === this.props.solution[ label ] ? 'green' : 'red';
+			valueColor = this.state.submittedAnswers[ label ] === this.props.solution[ label ] ? 'green' : 'red';
 		}
 		const select = <Select
 			name="form-field-name"
