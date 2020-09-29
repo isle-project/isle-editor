@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
+import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -14,6 +15,8 @@ import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import generateUID from 'utils/uid';
 import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
@@ -44,7 +47,9 @@ const uid = generateUID( 'select-question-matrix' );
 * @property {Array<(string|node)>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
-* @property {boolean} provideFeedback - whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions
+* @property {string} provideFeedback - whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions
+* @property {boolean} allowIncomplete - whether to allow submissions without a selection made in each select box
+* @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is not `none`)
 * @property {string} failureMsg - notification text displayed upon submitting incorrect answers
 * @property {string} successMsg - notification text displayed upon submitting correct answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
@@ -59,7 +64,9 @@ class SelectQuestionMatrix extends Component {
 		this.state = {
 			answers: {},
 			submitted: false,
-			answerState: null
+			answerState: null,
+			completed: false,
+			numbSubmissions: 0
 		};
 	}
 
@@ -107,16 +114,19 @@ class SelectQuestionMatrix extends Component {
 			const key = labels[ i ];
 			const sol = this.props.solution[ key ];
 			const answer = this.state.answers[ key ];
-			if ( isArray( sol ) ) {
-				if ( !contains( sol, answer ) ) {
+			if ( isNumber( answer ) ) {
+				if ( isArray( sol ) ) {
+					if ( !contains( sol, answer ) ) {
+						correct = false;
+					}
+				}
+				else if ( sol !== answer ) {
 					correct = false;
 				}
 			}
-			else if ( sol !== answer ) {
-				correct = false;
-			}
 		}
-		if ( this.props.provideFeedback !== 'none' ) {
+		const hasSolution = !isEmptyObject( this.props.solution );
+		if ( this.props.provideFeedback !== 'none' && hasSolution ) {
 			if ( correct ) {
 				session.addNotification({
 					title: 'Correct',
@@ -146,12 +156,17 @@ class SelectQuestionMatrix extends Component {
 		});
 		this.props.onSubmit( this.state.answers, correct );
 		let answerState = null;
-		if ( this.props.provideFeedback ) {
+		if ( this.props.provideFeedback && hasSolution ) {
 			answerState = correct ? 'success' : 'danger';
 		}
+		const nAnswers = keys( this.state.answers ).length;
+		const nInputs = keys( this.props.options ).length;
+		const numbSubmissions = this.state.numbSubmissions + 1;
 		this.setState({
 			submitted: true,
-			answerState
+			answerState,
+			numbSubmissions,
+			completed: ( answerState === 'success' || numbSubmissions >= this.props.nTries ) && nAnswers === nInputs
 		});
 	}
 
@@ -162,31 +177,40 @@ class SelectQuestionMatrix extends Component {
 			return { 'label': e, 'value': i };
 		});
 		let valueColor;
-		if ( this.props.provideFeedback === 'individual' && this.state.submitted ) {
+		const displayFeedback = ( this.props.provideFeedback === 'overall' && this.state.submitted ) ||
+			( this.props.provideFeedback === 'individual' && this.state.submitted && this.submittedAnswers[ label ] );
+		if (
+			displayFeedback &&
+			this.props.solution[ label ]
+		) {
 			valueColor = this.submittedAnswers[ label ] === this.props.solution[ label ] ? 'green' : 'red';
 		}
-		return (
-			<Select
-				name="form-field-name"
-				className="select-field"
-				isDisabled={this.state.submitted && this.state.answerState === 'success'}
-				isSearchable={false}
-				options={options}
-				onChange={this.handleChangeFactory( label )}
-				menuPlacement="top"
-				menuPortalTarget={document.body}
-				styles={{
-					menuPortal: base => ({
-						...base,
-						zIndex: 1010
-					}),
-					singleValue: ( base ) => ({
-						...base,
-						color: valueColor
-					})
-				}}
-			/>
-		);
+		const select = <Select
+			name="form-field-name"
+			className="select-field"
+			isDisabled={this.state.completed}
+			isSearchable={false}
+			options={options}
+			key={`select-${row}-${i}`}
+			onChange={this.handleChangeFactory( label )}
+			menuPlacement="top"
+			menuPortalTarget={document.body}
+			styles={{
+				menuPortal: base => ({
+					...base,
+					zIndex: 1010
+				}),
+				singleValue: ( base ) => ({
+					...base,
+					color: valueColor
+				})
+			}}
+		/>;
+		const correctAnswer = this.props.options[ label ][ this.props.solution[ label ] ];
+		return ( <Fragment>
+			{select}
+			{displayFeedback && this.state.completed ? <Badge variant={valueColor === 'green' ? 'success' : 'danger'}>{this.props.t('correct-answer')}: {correctAnswer}</Badge> : null}
+		</Fragment> );
 	}
 
 	renderRowSelects( row ) {
@@ -230,6 +254,9 @@ class SelectQuestionMatrix extends Component {
 		const nHints = this.props.hints.length;
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
+		const disabled = ( nAnswers === 0 ) ||
+			( nAnswers < nInputs && !this.props.allowIncomplete ) ||
+			this.state.completed;
 		return (
 			<Card id={this.id} border={this.state.answerState} className={`select-question-matrix ${this.props.className}`} style={this.props.style} body >
 				{ this.props.question ? <label>{this.props.question}</label> : null }
@@ -238,7 +265,7 @@ class SelectQuestionMatrix extends Component {
 				<div className="select-question-matrix-toolbar">
 					<Button className="submit-button"
 						variant="primary" size="sm" onClick={this.handleSubmit}
-						disabled={nAnswers < nInputs || this.state.submitted && this.state.answerState === 'success'}
+						disabled={disabled}
 					>
 						{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
 					</Button>
@@ -285,6 +312,8 @@ SelectQuestionMatrix.defaultProps = {
 	hintPlacement: 'bottom',
 	feedback: true,
 	provideFeedback: 'individual',
+	allowIncomplete: false,
+	nTries: 1,
 	failureMsg: null,
 	successMsg: null,
 	chat: false,
@@ -308,6 +337,8 @@ SelectQuestionMatrix.propTypes = {
 	hintPlacement: PropTypes.string,
 	feedback: PropTypes.bool,
 	provideFeedback: PropTypes.oneOf([ 'none', 'overall', 'individual' ]),
+	allowIncomplete: PropTypes.bool,
+	nTries: PropTypes.number,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
 	chat: PropTypes.bool,
