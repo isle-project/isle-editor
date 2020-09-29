@@ -162,8 +162,6 @@ class SelectQuestionMatrix extends Component {
 		const nAnswers = keys( this.state.answers ).length;
 		const nInputs = keys( this.props.options ).length;
 		const numbSubmissions = this.state.numbSubmissions + 1;
-		console.log( 'ARGH:')
-		console.log( numbSubmissions >= this.props.nTries );
 		this.setState({
 			submitted: true,
 			answerState,
