@@ -13,6 +13,11 @@
 	position: relative;
 }
 
+.sketchpad-overlays {
+	float: left;
+	position: relative;
+}
+
 .sketch-canvas {
 	position: fixed;
 	overflow: hidden;

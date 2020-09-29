@@ -127,6 +127,47 @@ function setDashedLines( ctx ) {
 	ctx.shadowBlur = 0;
 }
 
+const Overlays = ( props ) => {
+	debug( 'Rendering overlays...' );
+	const keys = objectKeys( props.nodes );
+	const divs = [];
+	const page = props.toOriginalPage( props.currentPage );
+	for ( let i = 0; i < keys.length; i++ ) {
+		let node = props.nodes[ keys[ i ] ];
+		let className = 'invisible-page';
+		if ( keys[ i ] === String( page+1 ) ) {
+			className = 'sketch-node-container';
+		}
+		if ( isObject( node ) && node.component ) {
+			/* eslint-disable jsx-a11y/no-static-element-interactions */
+			if ( node.style ) {
+				if ( keys[ i ] === String( page+1 ) ) {
+					className = 'sketch-node-container-basic';
+				}
+				divs.push( <div
+					key={i} style={node.style} className={className}
+					onKeyDown={stopPropagation}
+				>{node.component}</div> );
+			} else {
+				divs.push( <div
+					key={i} className={className}
+					onKeyDown={stopPropagation}
+				>
+					{node.component}
+				</div> );
+			}
+		} else {
+			divs.push( <div
+				key={i}
+				className={className}
+				onKeyDown={stopPropagation}
+			>{node}</div> );
+		}
+		// eslint-enable jsx-a11y/no-static-element-interactions
+	}
+	return <div className="sketchpad-overlays" >{divs}</div>;
+};
+
 
 // MAIN //
 
@@ -557,6 +598,7 @@ class Sketchpad extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
+		debug( 'Component did update...' );
 		if ( prevProps.noPages !== this.props.noPages ) {
 			this.elements = new Array( this.props.noPages );
 			this.backgrounds = new Array( this.props.noPages );
@@ -2542,46 +2584,6 @@ class Sketchpad extends Component {
 		}
 	}
 
-	renderHTMLOverlays() {
-		const keys = objectKeys( this.props.nodes );
-		const divs = [];
-		const page = this.toOriginalPage( this.state.currentPage );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const node = this.props.nodes[ keys[ i ] ];
-			let className = 'invisible-page';
-			if ( keys[ i ] === String( page+1 ) ) {
-				className = 'sketch-node-container';
-			}
-			if ( isObject( node ) && node.component ) {
-				/* eslint-disable jsx-a11y/no-static-element-interactions */
-				if ( node.style ) {
-					if ( keys[ i ] === String( page+1 ) ) {
-						className = 'sketch-node-container-basic';
-					}
-					divs.push( <div
-						key={i} style={node.style} className={className}
-						onKeyDown={stopPropagation}
-					>{node.component}</div> );
-				} else {
-					divs.push( <div
-						key={i} className={className}
-						onKeyDown={stopPropagation}
-					>
-						{node.component}
-					</div> );
-				}
-			} else {
-				divs.push( <div
-					key={i}
-					className={className}
-					onKeyDown={stopPropagation}
-				>{node}</div> );
-			}
-			// eslint-enable jsx-a11y/no-static-element-interactions
-		}
-		return divs;
-	}
-
 	renderFeedbackButtons() {
 		const page = this.toOriginalPage( this.state.currentPage );
 		if ( !this.props.feedbackButtons || isNull( page ) ) {
@@ -2760,6 +2762,12 @@ class Sketchpad extends Component {
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{this.renderFeedbackButtons()}
+					<Overlays
+						nodes={this.props.nodes}
+						currentPage={this.state.currentPage}
+						toOriginalPage={this.toOriginalPage}
+						key="overlays"
+					/>
 					<div className="canvas-wrapper"
 						style={{
 							width: this.state.canvasWidth,
@@ -2768,7 +2776,6 @@ class Sketchpad extends Component {
 						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
 						ref={( div ) => { this.canvasWrapper = div; }}
 					>
-						{this.renderHTMLOverlays()}
 						{canvas}
 						{mangnifyingGlass}
 						<div
