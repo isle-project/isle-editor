@@ -49,7 +49,7 @@ const uid = generateUID( 'select-question-matrix' );
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {string} provideFeedback - whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions
 * @property {boolean} allowIncomplete - whether to allow submissions without a selection made in each select box
-* @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is not `none`)
+* @property {number} nTries - after how many tries no further answers are accepted (if `provideFeedback` is not `none`)
 * @property {string} failureMsg - notification text displayed upon submitting incorrect answers
 * @property {string} successMsg - notification text displayed upon submitting correct answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
@@ -167,7 +167,10 @@ class SelectQuestionMatrix extends Component {
 			answerState,
 			submittedAnswers: copy( this.state.answers ),
 			numbSubmissions,
-			completed: numbSubmissions >= this.props.nTries || ( answerState === 'success' && nAnswers === nInputs )
+			completed: (
+				numbSubmissions >= this.props.nTries ||
+				( answerState === 'success' && nAnswers === nInputs )
+			) && this.props.provideFeedback !== 'none' && hasSolution
 		});
 	}
 
