@@ -220,9 +220,10 @@ class Video extends Component {
 			style.marginRight = 'auto';
 		}
 		props = omit( props, OMITTED_PROPS );
+		const hidden = isHidden( this.videoPlayer );
 		let player;
 		if (
-			( this.state.inViewport && !isHidden( this.videoPlayer ) ) ||
+			( this.state.inViewport && !hidden ) ||
 			this.player // Keep video player in case it was ready before...
 		) {
 			let config = {};
@@ -236,6 +237,9 @@ class Video extends Component {
 						}
 					}
 				};
+			}
+			if ( hidden ) {
+				props.playing = false;
 			}
 			player = <Fragment>
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
