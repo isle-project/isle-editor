@@ -67,14 +67,17 @@ const eslintOpts = {
 				'beforeSelfClosing': 'always'
 			}],
 			'react/jsx-uses-react': 2,
-			'react/jsx-uses-vars': 2
+			'react/jsx-uses-vars': 2,
+			'enforce-ids-in-jsx/missing-ids': 0,
+			'enforce-ids-in-jsx/unique-ids': 2
 		},
 		'extends': [
 			'plugin:jsx-a11y/recommended'
 		],
 		'plugins': [
 			'react',
-			'jsx-a11y'
+			'jsx-a11y',
+			'enforce-ids-in-jsx'
 		],
 		'settings': {
 			'react': {
