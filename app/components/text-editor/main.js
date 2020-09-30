@@ -17,6 +17,7 @@ import repeat from '@stdlib/string/repeat';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import replace from '@stdlib/string/replace';
+import startsWith from '@stdlib/string/starts-with';
 import generateUID from 'utils/uid';
 import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
@@ -42,6 +43,7 @@ import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_e
 import generatePDF from './generate_pdf.js';
 import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
+import imgToStr from 'utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
 import './load_translations.js';
@@ -210,9 +212,15 @@ class TextEditor extends Component {
 							for ( let i = 0; i < images.length; i++ ) {
 								const img = images[ i ];
 								img.crossOrigin = 'Anonymous';
-								img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+								if ( startsWith( img.src, 'data:image/svg+xml' ) ) {
+									debug( 'Convert from SVG to PNG...' );
+									img.src = imgToStr( img, img.naturalWidth, img.naturalHeight ); // eslint-disable-line no-await-in-loop
+								}
+								else if ( !startsWith( img.src, 'data:' ) ) {
+									img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+								}
 							}
-							const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
+							const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>' ); // replace empty paragraph node to not break pdfmake
 							doc = generatePDF( innerHTML, config, 16, this.editorDiv.clientWidth );
 						} catch ( err ) {
 							const session = this.context;
@@ -472,7 +480,13 @@ class TextEditor extends Component {
 		for ( let i = 0; i < images.length; i++ ) {
 			const img = images[ i ];
 			img.crossOrigin = 'Anonymous';
-			img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+			if ( startsWith( img.src, 'data:image/svg+xml' ) ) {
+				debug( 'Convert from SVG to PNG...' );
+				img.src = imgToStr( img, img.naturalWidth, img.naturalHeight ); // eslint-disable-line no-await-in-loop
+			}
+			else if ( !startsWith( img.src, 'data:' ) ) {
+				img.src = await toDataURL( img.src ); // eslint-disable-line no-await-in-loop
+			}
 		}
 		const innerHTML = replace( tmp.innerHTML, '<p></p>', '<p> </p>'); // replace empty paragraph node to not break pdfmake
 		const title = document.title || 'provisoric';
