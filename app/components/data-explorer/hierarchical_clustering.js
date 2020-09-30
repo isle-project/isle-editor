@@ -104,7 +104,7 @@ class HierarchicalClustering extends Component {
 							const width = 650;
 							const height = 375;
 							const svgString = getSVGString( this.svg );
-							svgString2Image( svgString, 2.0*width, 2.0*height, 'png', ( dataBlob ) => {
+							svgString2Image( svgString, 2.0*width, 2.0*height, ( dataBlob ) => {
 								const value = `<img src="${dataBlob}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`;
 								this.plotKey = `<!--IMAGE_LOG:${randomstring( 6 )}_${randomstring( 6 )}-->`;
 								this.plotValue = value;

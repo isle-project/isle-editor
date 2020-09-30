@@ -315,7 +315,7 @@ class Wrapper extends Component {
 	saveToPNG = () => {
 		const { width, height } = this.props;
 		const svgString = getSVGString( this.svg.node() );
-		svgString2Image( svgString, 2.0*width, 2.0*height, 'png', save );
+		svgString2Image( svgString, 2.0*width, 2.0*height, save );
 
 		let name;
 		if ( this.props.id ) {

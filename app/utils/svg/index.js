@@ -88,9 +88,7 @@ function getSVGString( svgNode ) {
 	return svgString;
 }
 
-function svgString2Image( svgString, width, height, format, callback ) {
-	format = format ? format : 'png';
-
+function svgString2Image( svgString, width, height, callback ) {
 	const imgsrc = 'data:image/svg+xml;base64,'+ btoa( unescape( encodeURIComponent( svgString ) ) ); // Convert SVG string to data URL
 
 	const canvas = document.createElement( 'canvas' );

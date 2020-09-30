@@ -18,7 +18,7 @@ class VictoryWrapper extends Component {
 		height = height || 250;
 		const svgs = this.victoryWrapper.getElementsByTagName( 'svg' );
 		const svgString = getSVGString( svgs[ 0 ] );
-		svgString2Image( svgString, 2.0*width, 2.0*height, 'png', save );
+		svgString2Image( svgString, 2.0*width, 2.0*height, save );
 
 		let name;
 		if ( this.props.id ) {
