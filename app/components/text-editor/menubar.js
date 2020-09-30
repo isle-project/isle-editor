@@ -118,10 +118,11 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				<DropdownButton
 					title=""
 					variant="outline-secondary"
-					size="sm" style={{ display: 'inline-block', marginRight: 4 }}
+					size="sm"
+					style={{ display: 'inline-block', marginRight: 4 }}
 					aria-label="Headers"
 				>
-					{renderMenuGroupButtons( menu.headers )}
+					{menu.headers.map( createDropdownButtons )}
 				</DropdownButton>
 				<i className="prose-separator">|</i>
 			</Fragment>: null }
