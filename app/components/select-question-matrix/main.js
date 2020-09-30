@@ -176,7 +176,7 @@ class SelectQuestionMatrix extends Component {
 
 	renderSelectInput( row, i ) {
 		const label = row + ':' + i;
-		let options = this.props.options[ label ];
+		let options = this.props.options[ label ] || [];
 		options = options.map( ( e, i ) => {
 			return { 'label': e, 'value': i };
 		});
@@ -210,10 +210,14 @@ class SelectQuestionMatrix extends Component {
 				})
 			}}
 		/>;
-		const correctAnswer = this.props.options[ label ][ this.props.solution[ label ] ];
+		const cellLabel = this.props.cellLabels[ label ];
 		return ( <Fragment>
-			{select}
-			{displayFeedback && this.state.completed ? <Badge variant={valueColor === 'green' ? 'success' : 'danger'}>{this.props.t('correct-answer')}: {correctAnswer}</Badge> : null}
+			{cellLabel ? <span className="select-question-matrix-cell-label" >{cellLabel}</span> : null }{select}
+			{displayFeedback && this.state.completed ?
+				<Badge variant={valueColor === 'green' ? 'success' : 'danger'}>
+					{this.props.t('correct-answer')}:
+					{this.props.options[ label ][ this.props.solution[ label ] ]}
+				</Badge> : null}
 		</Fragment> );
 	}
 
@@ -320,6 +324,7 @@ SelectQuestionMatrix.defaultProps = {
 	nTries: 1,
 	failureMsg: null,
 	successMsg: null,
+	cellLabels: {},
 	chat: false,
 	className: '',
 	style: {},
@@ -345,6 +350,7 @@ SelectQuestionMatrix.propTypes = {
 	nTries: PropTypes.number,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
+	cellLabels: PropTypes.object,
 	chat: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object,

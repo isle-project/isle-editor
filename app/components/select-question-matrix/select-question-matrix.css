@@ -13,3 +13,9 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
+
+.select-question-matrix-cell-label {
+	margin-top: 6px;
+	margin-right: 6px;
+	float: left;
+}
