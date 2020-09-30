@@ -170,8 +170,9 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 
 function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	if ( e.type === 'Chart' ) {
-		if ( e.value.props.meta && !e.value.props.meta.filters ) {
-			e.value.props.meta.filters = subsetFilters;
+		const props = e.value.props;
+		if ( props.meta && !props.meta.filters ) {
+			props.meta.filters = subsetFilters;
 		}
 		return ( <div key={idx}>
 			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', zIndex: 2 }}>
@@ -182,7 +183,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			</ButtonGroup>
 			<div style={{
 				position: 'relative',
-				height: 300,
+				height: ( props.layout && props.layout.height ) ? props.layout.height : 300,
 				marginTop: 0,
 				marginBottom: 40,
 				marginRight: 25

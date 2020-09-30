@@ -246,6 +246,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 		};
 		if ( groupMode === 'Facets' ) {
 			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
+			layout.height = 300 + ( ( nRows - 1 ) * 150 );
 		} else {
 			layout.barmode = 'overlay';
 			layout.xaxis = { title: variable };
