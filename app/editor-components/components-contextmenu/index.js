@@ -5,16 +5,15 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
-import Loadable from 'components/internal/loadable';
-const AnimationHelp = Loadable( () => import( 'editor-components/components-contextmenu/animation-help' ) );
-const MarkdownHelp = Loadable( () => import( 'editor-components/components-contextmenu/markdown-help' ) );
 import { LANGUAGES } from 'constants/deepl';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
 import rendererStore from 'store/electron.js';
 
+
 // VARIABLES //
 
 const debug = logger( 'isle:editor:context-menu' );
+console.log( LANGUAGES );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
 
@@ -24,11 +23,6 @@ const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
 class EditorContextMenu extends Component {
 	constructor( props ) {
 		super( props );
-
-		this.state = {
-			showAnimationHelp: false,
-			showMarkdownHelp: false
-		};
 	}
 
 	renderMenuItem = ( obj, idx ) => {
@@ -53,18 +47,6 @@ class EditorContextMenu extends Component {
 		);
 	}
 
-	toggleAnimationHelp = () => {
-		this.setState({
-			showAnimationHelp: !this.state.showAnimationHelp
-		});
-	}
-
-	toggleMarkdownHelp = () => {
-		this.setState({
-			showMarkdownHelp: !this.state.showMarkdownHelp
-		});
-	}
-
 	handleContextMenuClick = ( _, data ) => {
 		this.props.onContextMenuClick( this.customClick, data );
 		this.customClick = false;
@@ -74,10 +56,6 @@ class EditorContextMenu extends Component {
 		debug( 'Clicked top open configuration menu...' );
 		this.customClick = true;
 		// Propagate to `handleContextMenuClick`...
-	}
-
-	handleTranslateClick = ( _, data ) => {
-		this.props.onTranslate( data.language );
 	}
 
 	handleTranslateSelectionClick = ( _, data ) => {
@@ -142,26 +120,6 @@ class EditorContextMenu extends Component {
 							{GROUPED_SNIPPETS.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
-					<MenuItem
-						onClick={this.toggleAnimationHelp}>Animation Help
-					</MenuItem>
-					<MenuItem
-						onClick={this.toggleMarkdownHelp}>Markdown Help
-					</MenuItem>
-					{ISLE_SERVER_TOKEN ? <SubMenu title="Translate entire lesson to" >
-						{LANGUAGE_NAMES.map( ( name, idx ) => {
-							return (
-								<MenuItem
-									key={idx} data={{
-										language: LANGUAGES[ name ]
-									}}
-									onClick={this.handleTranslateClick}
-								>
-									{name}
-								</MenuItem>
-							);
-						})}
-					</SubMenu> : null}
 					{ISLE_SERVER_TOKEN ? <SubMenu title="Translate selection to" >
 						{LANGUAGE_NAMES.map( ( name, idx ) => {
 							return (
@@ -177,8 +135,6 @@ class EditorContextMenu extends Component {
 						})}
 					</SubMenu> : null}
 				</ContextMenu>
-				{ this.state.showAnimationHelp ? <AnimationHelp onHide={this.toggleAnimationHelp} /> : null }
-				{ this.state.showMarkdownHelp ? <MarkdownHelp onHide={this.toggleMarkdownHelp} /> : null }
 			</Fragment>
 		);
 	}
