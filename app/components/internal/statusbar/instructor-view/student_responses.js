@@ -13,6 +13,7 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from 'components/tooltip';
 import Switch from 'components/switch';
 import selectStyles from 'components/input/select/styles.js';
+import isHidden from 'utils/is-hidden';
 import { SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 import './student_responses.css';
 
@@ -23,10 +24,6 @@ const debug = logger( 'isle:statusbar:student-responses' );
 
 
 // FUNCTIONS //
-
-function isHidden( el ) {
-	return el.offsetParent === null;
-}
 
 function removeGlowElements() {
 	// Remove glow effect from previously highlighted elements:

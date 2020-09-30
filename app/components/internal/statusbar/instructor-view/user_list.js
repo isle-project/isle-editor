@@ -15,6 +15,7 @@ import ChatButton from 'components/chat-button';
 import VideoChatButton from 'components/video-chat-button';
 import Tooltip from 'components/tooltip';
 import isUserInCohort from 'utils/is-user-in-cohort';
+import isHidden from 'utils/is-hidden';
 import { CAT20 } from 'constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
 	SELECTED_COHORT, USER_FINALLY_REMOVED, 	USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
@@ -28,10 +29,6 @@ const IDs = []; // array of IDs for lesson elements
 
 
 // FUNCTIONS //
-
-function isHidden( el ) {
-	return el.offsetParent === null;
-}
 
 function removeGlowElems() {
 	// Remove glow effect from previously highlighted elements:

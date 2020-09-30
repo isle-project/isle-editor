@@ -14,6 +14,7 @@ import contains from '@stdlib/assert/contains';
 import round from '@stdlib/math/base/special/round';
 import incrmean from '@stdlib/stats/incr/mean';
 import formatTime from 'utils/format-time';
+import isHidden from 'utils/is-hidden';
 import { MEMBER_ACTION, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 
 
@@ -23,10 +24,6 @@ const debug = logger( 'isle:statusbar:instructor-view' );
 
 
 // FUNCTIONS //
-
-function isHidden( el ) {
-	return el.offsetParent === null;
-}
 
 function removeGlowElems() {
 	// Remove glow effect from previously highlighted elements:

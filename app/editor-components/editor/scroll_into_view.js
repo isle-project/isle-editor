@@ -1,13 +1,7 @@
 // MODULES //
 
 import vex from 'vex-js';
-
-
-// FUNCTIONS //
-
-function isHidden( el ) {
-	return el.offsetParent === null;
-}
+import isHidden from 'utils/is-hidden';
 
 
 // MAIN //

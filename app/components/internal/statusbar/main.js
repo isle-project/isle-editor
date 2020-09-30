@@ -22,6 +22,7 @@ import SessionContext from 'session/context.js';
 import VideoChats from './video-chats';
 import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';
+import isHidden from 'utils/is-hidden';
 import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
 import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
@@ -47,10 +48,6 @@ function getDuration( session ) {
 	let dur = new Date().getTime() - session.startTime;
 	dur = round( dur / (1000 * 60) );
 	return dur;
-}
-
-function isHidden( el ) {
-	return el.offsetParent === null;
 }
 
 function preventPropagation( event ) {
