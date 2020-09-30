@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ import generateUID from 'utils/uid';
 import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
+import isHidden from 'utils/is-hidden';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
@@ -21,6 +22,21 @@ import VOICE_COMMANDS from './voice_commands.json';
 const uid = generateUID( 'video-player' );
 const debug = logger( 'isle:video-player' );
 const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID', 't' ];
+
+
+// FUNCTIONS //
+
+function respondToVisibility( element, callback ) {
+	const options = {
+		root: document.documentElement
+	};
+	const observer = new IntersectionObserver(( entries, observer ) => {
+		entries.forEach( entry => {
+			callback( entry.intersectionRatio > 0 );
+		});
+	}, options );
+	observer.observe( element );
+}
 
 
 // MAIN //
@@ -51,9 +67,30 @@ class Video extends Component {
 		this.id = props.id || uid( props );
 		this.state = {
 			encounteredError: null,
-			progress: {}
+			progress: {},
+			inViewport: true
 		};
 	}
+
+	componentDidMount() {
+		const lesson = document.getElementById( 'Lesson' );
+		lesson.addEventListener( 'scroll', this.isInViewport );
+	}
+
+	componentWillUnmount() {
+		const lesson = document.getElementById( 'Lesson' );
+		lesson.removeEventListener( 'scroll', this.isInViewport );
+	}
+
+	isInViewport = () => {
+		if ( !this.videoPlayer ) {
+			return false;
+		}
+		const top = this.videoPlayer.getBoundingClientRect().top;
+		this.setState({
+			inViewport: top >= 0 && top <= window.innerHeight
+		});
+	};
 
 	handleStart = () => {
 		const session = this.context;
@@ -183,40 +220,57 @@ class Video extends Component {
 			style.marginRight = 'auto';
 		}
 		props = omit( props, OMITTED_PROPS );
-		let config = {};
-		if ( contains( props.url, 'yout' ) ) {
-			config = {
-				youtube: {
-					playerVars: {
-						showinfo: 0,
-						rel: 0,
-						modestbranding: 1
+		let player;
+		if (
+			( this.state.inViewport && !isHidden( this.videoPlayer ) ) ||
+			this.player // Keep video player in case it was ready before...
+		) {
+			let config = {};
+			if ( contains( props.url, 'yout' ) ) {
+				config = {
+					youtube: {
+						playerVars: {
+							showinfo: 0,
+							rel: 0,
+							modestbranding: 1
+						}
 					}
+				};
+			}
+			player = <Fragment>
+				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
+				{ this.state.encounteredError ?
+					this.renderError() :
+					<ReactPlayer
+						{...props}
+						onStart={this.handleStart}
+						onPlay={this.handlePlay}
+						onPause={this.handlePause}
+						onEnded={this.handleEnded}
+						onProgress={this.handleProgress}
+						onReady={this.handleReady}
+						onSeek={this.handleSeek}
+						onError={this.handleError}
+						progressInterval={1000}
+						config={config}
+					/>
 				}
-			};
+			</Fragment>;
+		} else {
+			player = null;
 		}
 		const out = <div
 			id={this.id}
 			style={style}
 			className="video"
+			ref={( el ) => {
+				if ( !this.videoPlayer ) {
+					this.videoPlayer = el;
+					respondToVisibility( this.videoPlayer, this.isInViewport );
+				}
+			}}
 		>
-			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-			{ this.state.encounteredError ?
-				this.renderError() :
-				<ReactPlayer
-					{...props}
-					onStart={this.handleStart}
-					onPlay={this.handlePlay}
-					onPause={this.handlePause}
-					onEnded={this.handleEnded}
-					onProgress={this.handleProgress}
-					onReady={this.handleReady}
-					onSeek={this.handleSeek}
-					onError={this.handleError}
-					progressInterval={1000}
-					config={config}
-				/>
-			}
+			{player}
 		</div>;
 		return out;
 	}
