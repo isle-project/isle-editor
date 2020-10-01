@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Panel from 'components/panel';
 import './markdown_help.css';
 
 
@@ -87,17 +88,18 @@ class MarkdownHelp extends Component {
 		</Col>;
 		return (
 			<ReactDraggable cancel=".cancel" >
-				<div className="markdown-helper" >
-					<button onClick={this.props.onHide} className="exit">x</button>
-					<h1>Markdown Cheatsheet</h1>
-					<hr />
+				<Panel
+					header="Markdown Cheatsheet"
+					className="markdown-helper"
+					onHide={this.props.onHide}
+				>
 					<Container>
 						<Row>
 							{leftColumn}
 							{rightColumn}
 						</Row>
 					</Container>
-				</div>
+				</Panel>
 			</ReactDraggable>
 		);
 	}

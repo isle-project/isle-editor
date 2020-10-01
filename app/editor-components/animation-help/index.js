@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
+import Panel from 'components/panel';
 import Principles from './principles.js';
 import Shorthand from './shorthand.js';
 import TextEffects from './text-effects.js';
@@ -217,16 +218,13 @@ class AnimationHelp extends Component {
 	render() {
 		return (
 			<ReactDraggable cancel=".animation-help" >
-				<div className="animation-helper" >
-					<button onClick={this.props.onHide} className="exit">x</button>
-					<h1>Animation Help</h1>
-					<hr />
-					{ this.renderMenu() }
+				<Panel className="animation-helper" header="Animation Help" onHide={this.props.onHide} >
+					{this.renderMenu()}
 					<hr />
 					<div className="animation-help">
-					{ this.renderContent() }
+						{this.renderContent()}
 					</div>
-				</div>
+				</Panel>
 			</ReactDraggable>
 		);
 	}

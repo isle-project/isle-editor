@@ -1,11 +1,7 @@
 .markdown-helper {
-	z-index: 100;
 	position: fixed;
-	padding: 10px;
 	box-shadow: 0 0 4px black;
-	background: white;
 	width: 40%;
-	height: 650px;
 	left: 58%;
 	top: 14%;
 }
@@ -14,20 +10,4 @@
 	font-family: Open Sans Condensed;
 	font-weight: 800;
 	margin-bottom: 10px;
-}
-
-.markdown-helper .exit {
-	position: absolute;
-	right: 8px;
-	top: 4px;
-	width: 20px;
-	height: 20px;
-	font-size: 20px;
-	border: none;
-	background: none;
-}
-
-.markdown-helper .exit:hover {
-	cursor: pointer;
-	color: red;
 }

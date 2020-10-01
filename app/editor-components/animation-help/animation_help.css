@@ -1,12 +1,9 @@
 .animation-helper {
-	z-index: 100;
 	position: fixed;
-	padding: 10px;
 	box-shadow: 0 0 4px black;
-	background: white;
 	width: 40%;
-	height: 84%;
 	left: 58%;
+	height: 75%;
 	top: 14%;
 }
 
