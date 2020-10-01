@@ -116,6 +116,7 @@ class EditorFooter extends Component {
 						</Tooltip>
 					</ContextMenuTrigger> : null }
 				<ContextMenu id="language-menu" title="Translate entire lesson to" >
+					<span style={{ marginLeft: 6 }}>Translate entire lesson to</span>
 					{LANGUAGE_NAMES.map( ( name, idx ) => {
 						return (
 							<MenuItem
@@ -123,6 +124,7 @@ class EditorFooter extends Component {
 									language: LANGUAGES[ name ]
 								}}
 								onClick={this.handleTranslateClick}
+								divider={idx === 0}
 							>
 								{name}
 							</MenuItem>
