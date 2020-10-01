@@ -17,8 +17,6 @@ import markdownit from 'markdown-it';
 import vex from 'vex-js';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import logger from 'debug';
-import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
 import isRelativePath from '@stdlib/assert/is-relative-path';
@@ -36,7 +34,6 @@ import readFile from '@stdlib/fs/read-file';
 import max from '@stdlib/math/base/special/max';
 import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/internal/loadable';
-import Tooltip from 'components/tooltip';
 import MonacoEditor from 'react-monaco-editor';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
@@ -50,6 +47,7 @@ import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
 import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
+import EditorFooter from './footer.js';
 import './editor.css';
 
 
@@ -1364,45 +1362,16 @@ class Editor extends Component {
 							onChange={this.handleChange}
 							editorDidMount={this.onEditorMount}
 						/>
-						<div className="editor-footer" >
-							<Tooltip tooltip="Click to cycle through errors" >
-								<Button
-									variant="light" size="sm" className="editor-lint-error-button"
-									onClick={() => {
-										this.editor.focus();
-										const evt = document.createEvent( 'KeyboardEvent' );
-
-										// Chromium Hack
-										Object.defineProperty(evt, 'keyCode', {
-											get() {
-												return this.keyCodeVal;
-											}
-										});
-										Object.defineProperty(evt, 'which', {
-											get() {
-												return this.keyCodeVal;
-											}
-										});
-										if ( evt.initKeyboardEvent ) {
-											evt.initKeyboardEvent( 'keydown', true, true, document.defaultView, 119, 119, '', '', false, '' );
-										} else {
-											evt.initKeyEvent( 'keydown', true, true, document.defaultView, false, false, false, false, 119, 0 );
-										}
-										evt.keyCodeVal = 119;
-										const div = document.getElementsByClassName( 'monaco-mouse-cursor-text' )[ 0 ];
-										div.dispatchEvent( evt );
-									}}
-								>
-									Lint errors: <Badge variant="secondary">{this.props.lintErrors.length}</Badge>
-								</Button>
-							</Tooltip>
-						</div>
+						<EditorFooter
+							editor={this.editor}
+							lintErrors={this.props.lintErrors}
+							onTranslate={this.translateLesson}
+						/>
 					</div>
 				</ContextMenuTrigger>
 				<EditorContextMenu
 					id="editor-context-menu"
 					onContextMenuClick={this.handleContextMenuClick}
-					onTranslate={this.translateLesson}
 					onSelectionTranslate={this.translateSelection}
 				/>
 			</div>
