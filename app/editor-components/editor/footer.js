@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
@@ -58,7 +59,7 @@ class EditorFooter extends Component {
 	render() {
 		return (
 			<div className="editor-footer" >
-				<Tooltip tooltip="Click to cycle through lint error messages" placement="top" >
+				<Tooltip tooltip="Click to cycle through lint error and spelling error messages" placement="top" >
 					<Button
 						variant="light" size="sm" className="editor-footer-button" style={{ marginRight: 18 }}
 						onClick={() => {
@@ -86,7 +87,7 @@ class EditorFooter extends Component {
 							div.dispatchEvent( evt );
 						}}
 					>
-						Lint messages: <Badge variant="secondary">{this.props.lintErrors.length}</Badge>
+						Linting and Spelling: <Badge variant="secondary">{this.props.nErrors}</Badge>
 					</Button>
 				</Tooltip>
 				<Tooltip tooltip="Keyboard Shortcuts" placement="top">
@@ -138,6 +139,17 @@ class EditorFooter extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+EditorFooter.propTypes = {
+	nErrors: PropTypes.number
+};
+
+EditorFooter.defaultProps = {
+	nErrors: 0
+};
 
 
 // EXPORTS //
