@@ -1,6 +1,7 @@
 .keyboard-helper {
 	position: fixed;
 	width: 40%;
+	height: 80%;
 	left: 58%;
 	top: 14%;
 	box-shadow: 0 0 4px black;
