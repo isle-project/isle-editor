@@ -1,0 +1,13 @@
+.keyboard-helper {
+	position: fixed;
+	width: 40%;
+	left: 58%;
+	top: 14%;
+	box-shadow: 0 0 4px black;
+}
+
+.keyboard-helper h1 {
+	font-family: Open Sans Condensed;
+	font-weight: 800;
+	margin-bottom: 10px;
+}
