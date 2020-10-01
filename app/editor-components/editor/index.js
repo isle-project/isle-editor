@@ -114,7 +114,8 @@ class Editor extends Component {
 
 		this.state = {
 			sourceFiles: {},
-			value: props.value
+			value: props.value,
+			hasSelection: false
 		};
 		this.decorations = [];
 		this.dragProvider = {
@@ -563,6 +564,13 @@ class Editor extends Component {
 						elem.dispatchEvent( event );
 					}
 				}
+				this.setState({
+					hasSelection: true
+				});
+			} else {
+				this.setState({
+					hasSelection: false
+				});
 			}
 		});
 	}
@@ -577,7 +585,8 @@ class Editor extends Component {
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.height !== prevProps.height ||
 			this.props.insertionText !== prevProps.insertionText ||
-			this.state.sourceFiles !== prevState.sourceFiles
+			this.state.sourceFiles !== prevState.sourceFiles ||
+			this.state.hasSelection !== prevState.hasSelection
 		) {
 			return true;
 		}
@@ -1055,39 +1064,6 @@ class Editor extends Component {
 		}
 	}
 
-	translateSelection = async ( language ) => {
-		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
-		editorDiv.style.opacity = 0.4;
-		this.editor.updateOptions({ readOnly: true });
-		const selection = this.editor.getSelection();
-		const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
-		const model = this.editor.getModel();
-		const value = model.getValueInRange( range );
-		try {
-			const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
-				target_lang: language,
-				text: value
-			}, {
-				headers: {
-					'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
-				}
-			});
-			editorDiv.style.opacity = 1.0;
-			this.editor.updateOptions({ readOnly: false });
-			const op = {
-				range: range,
-				text: res.data.text,
-				forceMoveMarkers: true
-			};
-			this.immediateUpdate = true;
-			this.editor.executeEdits( 'my-source', [ op ] );
-		} catch ( err ) {
-			this.editor.updateOptions({ readOnly: false });
-			editorDiv.style.opacity = 1.0;
-			vex.dialog.alert( 'Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: '+err.message );
-		}
-	}
-
 	insertSketchpadAtPos = (
 		file,
 		coords = [0, 0],
@@ -1362,7 +1338,8 @@ class Editor extends Component {
 				<EditorContextMenu
 					id="editor-context-menu"
 					onContextMenuClick={this.handleContextMenuClick}
-					onSelectionTranslate={this.translateSelection}
+					editor={this.editor}
+					hasSelection={this.state.hasSelection}
 				/>
 			</div>
 		);
