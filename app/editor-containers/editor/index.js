@@ -32,7 +32,7 @@ const ComponentConfigurator = Loadable( () => import( 'editor-components/compone
 let yaml;
 const debug = logger( 'isle-editor' );
 const RE_PREAMBLE = /^(?:\s*)---([\S\s]*?)---/;
-const LINTING_INTERVAL = 10 * 1000;
+const LINTING_INTERVAL = 5 * 1000;
 const NUM_WRAPPER_LINES = 8;
 
 
