@@ -13,7 +13,6 @@ import rendererStore from 'store/electron.js';
 // VARIABLES //
 
 const debug = logger( 'isle:editor:context-menu' );
-console.log( LANGUAGES );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
 
