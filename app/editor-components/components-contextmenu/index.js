@@ -65,7 +65,9 @@ class EditorContextMenu extends Component {
 		return (
 			<Fragment>
 				<ContextMenu id={this.props.id} >
-					<SubMenu title="Main">
+					<span style={{ marginLeft: 6 }} >Select Component to Insert</span>
+					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+					<SubMenu title="Main" >
 						{GROUPED_SNIPPETS.main.map( this.renderMenuItem )}
 					</SubMenu>
 					<SubMenu title="Basic">
@@ -119,6 +121,7 @@ class EditorContextMenu extends Component {
 							{GROUPED_SNIPPETS.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
+					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{ISLE_SERVER_TOKEN ? <SubMenu title="Translate selection to" >
 						{LANGUAGE_NAMES.map( ( name, idx ) => {
 							return (
@@ -132,7 +135,7 @@ class EditorContextMenu extends Component {
 								</MenuItem>
 							);
 						})}
-					</SubMenu> : null}
+					</SubMenu> : <span style={{ marginLeft: 6 }} >Translation service not available</span>}
 				</ContextMenu>
 			</Fragment>
 		);
@@ -143,7 +146,7 @@ class EditorContextMenu extends Component {
 // PROPERTIES //
 
 EditorContextMenu.propTypes = {
-	onTranslate: PropTypes.func.isRequired,
+	onSelectionTranslate: PropTypes.func.isRequired,
 	onContextMenuClick: PropTypes.func.isRequired
 };
 
