@@ -79,6 +79,7 @@ const MONACO_OPTIONS = {
 	minimap: {
 		enabled: false
 	},
+	multiCursorModifier: 'ctrlCmd',
 	lightbulb: {
 		enabled: true
 	},
@@ -556,10 +557,13 @@ class Editor extends Component {
 				this.decorations = this.editor.deltaDecorations( this.decorations, [] );
 				const { startLineNumber, endLineNumber } = selection;
 				const startColumn = max( selection.startColumn - 1, 1 );
+
+				debug( `Select element starting in line ${startLineNumber} at column ${startColumn}...` );
 				const elem = document.getElementById( 'line-'+startLineNumber+'-'+startColumn );
 				if ( elem ) {
 					const elemEndLineNumber = Number( elem.dataset.endLineNumber );
 					if (
+						startLineNumber === endLineNumber ||
 						endLineNumber === elemEndLineNumber ||
 						endLineNumber === elemEndLineNumber + 1
 					) {
