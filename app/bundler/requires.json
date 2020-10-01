@@ -15,6 +15,7 @@
 	"Col": "react-bootstrap/Col",
 	"Form": "react-bootstrap/Form",
 	"Joyride": "components/joyride",
+	"LearnCausalityDiagram": "components/learn/causality-diagram",
 	"LearnCrossValidation": "components/learn/cross-validation",
 	"LearnDiceThrowing": "components/learn/dice-throwing",
 	"LearnBetaDistribution": "components/learn/distribution-beta",

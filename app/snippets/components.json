@@ -456,6 +456,10 @@
 		"value": "<LearnBinomialDistribution />\n"
 	},
 	{
+		"name": "LearnCausalityDiagram",
+		"value": "<LearnCausalityDiagram />\n"
+	},
+	{
 		"name": "LearnChisquareDistribution",
 		"value": "<LearnChisquareDistribution />\n"
 	},

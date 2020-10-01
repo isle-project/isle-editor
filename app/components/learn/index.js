@@ -1,5 +1,6 @@
 // MODULES //
 
+import CausalityDiagram from 'components/learn/causality-diagram';
 import ContinuousCLT from 'components/learn/clt-continuous';
 import DiscreteCLT from 'components/learn/clt-discrete';
 import SampleCLT from 'components/learn/clt-sample';
@@ -25,6 +26,7 @@ import ImagePixelPicker from 'components/learn/image-pixel-picker';
 // EXPORTS //
 
 export default {
+	CausalityDiagram,
 	ConditionalProbability,
 	ContinuousCLT,
 	DiceThrowing,

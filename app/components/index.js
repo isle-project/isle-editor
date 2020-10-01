@@ -44,6 +44,7 @@ import Joyride from 'components/joyride';
 import JSShell from 'components/js-shell';
 import KeyControls from 'components/key-controls';
 import Lesson from 'components/internal/lesson';
+import LearnCausalityDiagram from 'components/learn/causality-diagram';
 import LearnCrossValidation from 'components/learn/cross-validation';
 import LearnDiceThrowing from 'components/learn/dice-throwing';
 import LearnBetaDistribution from 'components/learn/distribution-beta';
@@ -225,6 +226,7 @@ const scope = {
 	JSShell,
 	KeyControls,
 	Lesson,
+	LearnCausalityDiagram,
 	LearnCrossValidation,
 	LearnDiceThrowing,
 	LearnBetaDistribution,
