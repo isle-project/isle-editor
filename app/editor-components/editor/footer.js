@@ -86,6 +86,7 @@ class EditorFooter extends Component {
 							const div = document.getElementsByClassName( 'monaco-mouse-cursor-text' )[ 0 ];
 							div.dispatchEvent( evt );
 						}}
+						disabled={this.props.nErrors === 0}
 					>
 						Linting and Spelling: <Badge variant="secondary">{this.props.nErrors}</Badge>
 					</Button>
