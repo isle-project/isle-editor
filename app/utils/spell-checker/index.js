@@ -3,7 +3,6 @@
 import Typo from 'typo-js';
 import contains from '@stdlib/assert/contains';
 import isWhitespace from '@stdlib/assert/is-whitespace';
-import startsWith from '@stdlib/string/starts-with';
 
 
 // VARIABLES //
@@ -21,7 +20,8 @@ const DIC_URL_PT = 'https://unpkg.com/dictionary-pt@2.0.0/index.dic';
 const AFF_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.aff';
 const DIC_URL_SV = 'https://unpkg.com/dictionary-sv@2.0.0/index.dic';
 const RE_NEWLINE = /\r?\n/;
-const RX_WORD = '!\'"#$%&()*+,-./:;=>?@[\\]^_`{|}~ '; // does not include `<` to not flag tag names...
+const RX_WORD = '!"#$%()*+,-./:;=>?@[\\]^_`{|}~ '; // does not include `<` to not flag tag names...
+const RX_SKIP = /[<&']/;
 const RE_CAMELCASE = /[A-Z]/;
 const RE_DIGITS = /\d+/;
 
@@ -155,10 +155,12 @@ function SpellChecker( text, options ) {
 			}
 			if ( ( isWhitespace( ch ) || ch === '=' ) && !inEquation ) {
 				if (
+					// Do not flag one letter abbreviations, Unicode symbols etc.
+					word.length === 1 ||
 					// Do not flag strings containing digits:
 					RE_DIGITS.test( word ) ||
-					// Do not flag tag names:
-					startsWith( word, '<' ) ||
+					// Do not flag tag names, HTML entities, and contracted words:
+					RX_SKIP.test( word ) ||
 					// Assume that unknown capitalized words inside a sentence refer to proper nouns for English...
 					( language === 'en-US' && RE_CAMELCASE.test( word ) )
 				) {
