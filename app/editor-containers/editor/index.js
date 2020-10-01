@@ -11,6 +11,7 @@ import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
 import rendererStore from 'store/electron.js';
+import formatError from 'utils/format-error';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
@@ -31,12 +32,25 @@ const ComponentConfigurator = Loadable( () => import( 'editor-components/compone
 let yaml;
 const debug = logger( 'isle-editor' );
 const RE_PREAMBLE = /^(?:\s*)---([\S\s]*?)---/;
+const LINTING_INTERVAL = 10 * 1000;
+const NUM_WRAPPER_LINES = 8;
 
 
 // FUNCTIONS //
 
 const updateSplitPos = ( size ) => {
 	rendererStore.set( 'splitPos', size );
+};
+
+const mapErrors = e => {
+	return {
+		startLineNumber: e.line - NUM_WRAPPER_LINES,
+		startColumn: 1,
+		endLineNumber: e.line - NUM_WRAPPER_LINES,
+		endColumn: e.column,
+		message: formatError( e.message ),
+		severity: e.severity
+	};
 };
 
 
@@ -51,6 +65,7 @@ class App extends Component {
 			innerWidth: window.innerWidth,
 			version: 0
 		};
+		this.debouncedLinting = debounce( this.lintCode, LINTING_INTERVAL );
 	}
 
 	async componentDidMount() {
@@ -175,10 +190,9 @@ class App extends Component {
 	lintCode = ( code ) => {
 		if ( this.cliEngine ) {
 			const { results } = this.cliEngine.executeOnText( code, this.props.fileName );
-			const errs = results[ 0 ].messages;
-			if ( errs.length !== this.props.lintErrors.length ) {
-				this.props.saveLintErrors( errs );
-			}
+			let errs = results[ 0 ].messages;
+			errs = errs.map( mapErrors );
+			this.props.saveLintErrors( errs );
 		}
 	}
 
@@ -236,7 +250,7 @@ class App extends Component {
 				preamble={this.props.preamble}
 				currentRole={currentRole}
 				currentMode={currentMode}
-				onCode={this.lintCode}
+				onCode={this.debouncedLinting}
 				encounteredError={this.props.encounteredError}
 				preambleText={this.props.preambleText}
 				updatePreamble={this.props.updatePreamble}

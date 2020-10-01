@@ -38,7 +38,6 @@ import MonacoEditor from 'react-monaco-editor';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
-import formatError from 'utils/format-error';
 import rendererStore from 'store/electron.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
@@ -70,7 +69,6 @@ const RE_EXPORT = /export = [a-z0-9]+/;
 const RE_IMG_SRC = /src="([^"]+)"/;
 const RE_INCLUDE = /<!-- #include "([^"]+)"/;
 const RE_RELATIVE_FILE = /\.\.?\/[^\n"?:*<>|]+\.[a-z0-9]+/gi;
-const NUM_WRAPPER_LINES = 8;
 const RE_TAG_START = /^(\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
 const MONACO_OPTIONS = {
 	contextmenu: false,
@@ -102,16 +100,6 @@ const MONACO_OPTIONS = {
 		horizontalScrollbarSize: 12,
 		arrowSize: 15
 	}
-};
-const mapErrors = e => {
-	return {
-		startLineNumber: e.line - NUM_WRAPPER_LINES,
-		startColumn: 1,
-		endLineNumber: e.line - NUM_WRAPPER_LINES,
-		endColumn: e.column,
-		message: formatError( e.message ),
-		severity: e.severity
-	};
 };
 const ISLE_SERVER = rendererStore.get( 'server' );
 const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
@@ -529,9 +517,8 @@ class Editor extends Component {
 				path: join( destDir, lessonPath )
 			});
 		});
-		const errs = this.props.lintErrors.map( mapErrors );
 		const model = this.editor.getModel();
-		this.monaco.editor.setModelMarkers( model, 'eslint', errs );
+		this.monaco.editor.setModelMarkers( model, 'eslint', this.props.lintErrors );
 
 		if ( model ) {
 			const preamble = model.findNextMatch( '---([\\S\\s\\n]*?)---', 0, true, false, null, false );
@@ -585,8 +572,8 @@ class Editor extends Component {
 			this.props.filePath !== prevProps.filePath ||
 			this.props.elementRangeVersion !== prevProps.elementRangeVersion ||
 			this.props.preamble.title !== prevProps.preamble.title ||
-			this.props.lintErrors.length !== prevProps.lintErrors.length ||
-			this.props.spellingErrors.length !== prevProps.spellingErrors.length ||
+			this.props.lintErrors.revision !== prevProps.lintErrors.revision ||
+			this.props.spellingErrors.revision !== prevProps.spellingErrors.revision ||
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.height !== prevProps.height ||
 			this.props.insertionText !== prevProps.insertionText ||
@@ -714,15 +701,14 @@ class Editor extends Component {
 				}
 			}
 		}
-		if ( this.props.spellingErrors.length !== prevProps.spellingErrors.length ) {
+		if ( this.props.spellingErrors.revision !== prevProps.spellingErrors.revision ) {
 			const errs = this.props.spellingErrors;
 			const model = this.editor.getModel();
 			this.monaco.editor.setModelMarkers( model, 'spelling', errs );
 		}
-		if ( this.props.lintErrors.length !== prevProps.lintErrors.length ) {
-			const errs = this.props.lintErrors.map( mapErrors );
+		if ( this.props.lintErrors.revision !== prevProps.lintErrors.revision ) {
 			const model = this.editor.getModel();
-			this.monaco.editor.setModelMarkers( model, 'eslint', errs );
+			this.monaco.editor.setModelMarkers( model, 'eslint', this.props.lintErrors );
 		}
 		if ( !this.newRequires || !this.oldRequires ) {
 			this.newRequires = objectKeys( this.props.preamble.require );
@@ -1368,7 +1354,7 @@ class Editor extends Component {
 						/>
 						<EditorFooter
 							editor={this.editor}
-							lintErrors={this.props.lintErrors}
+							nErrors={this.props.lintErrors.length + this.props.spellingErrors.length}
 							onTranslate={this.translateLesson}
 						/>
 					</div>
