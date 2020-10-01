@@ -58,7 +58,7 @@ class EditorFooter extends Component {
 	render() {
 		return (
 			<div className="editor-footer" >
-				<Tooltip tooltip="Click to cycle through errors" placement="top" >
+				<Tooltip tooltip="Click to cycle through lint error messages" placement="top" >
 					<Button
 						variant="light" size="sm" className="editor-footer-button" style={{ marginRight: 18 }}
 						onClick={() => {
@@ -86,7 +86,7 @@ class EditorFooter extends Component {
 							div.dispatchEvent( evt );
 						}}
 					>
-						Lint errors: <Badge variant="secondary">{this.props.lintErrors.length}</Badge>
+						Lint messages: <Badge variant="secondary">{this.props.lintErrors.length}</Badge>
 					</Button>
 				</Tooltip>
 				<Tooltip tooltip="Keyboard Shortcuts" placement="top">
