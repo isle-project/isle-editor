@@ -1039,6 +1039,35 @@ class Editor extends Component {
 		}
 	}
 
+	translateSelection = async ( language ) => {
+		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
+		const selection = this.editor.getSelection();
+		const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+		const model = this.editor.getModel();
+		const value = model.getValueInRange( range );
+		try {
+			const res = await axios.post( ISLE_SERVER+'/translate_lesson', {
+				target_lang: language,
+				text: value
+			}, {
+				headers: {
+					'Authorization': 'JWT ' + ISLE_SERVER_TOKEN
+				}
+			});
+			const op = {
+				range: range,
+				text: res.data.text,
+				forceMoveMarkers: true
+			};
+			this.immediateUpdate = true;
+			this.editor.executeEdits( 'my-source', [ op ] );
+		} catch ( err ) {
+			this.editor.updateOptions({ readOnly: false });
+			editorDiv.style.opacity = 1.0;
+			vex.dialog.alert( 'Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: '+err.message );
+		}
+	}
+
 	translateLesson = async ( language ) => {
 		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
 		editorDiv.style.opacity = 0.4;
@@ -1338,7 +1367,7 @@ class Editor extends Component {
 				<EditorContextMenu
 					id="editor-context-menu"
 					onContextMenuClick={this.handleContextMenuClick}
-					editor={this.editor}
+					onTranslateSelection={this.translateSelection}
 					hasSelection={this.state.hasSelection}
 				/>
 			</div>
