@@ -119,6 +119,7 @@ class EditorFooter extends Component {
 					</ContextMenuTrigger> : null }
 				<ContextMenu id="language-menu" title="Translate entire lesson to" >
 					<span style={{ marginLeft: 6 }}>Translate entire lesson to</span>
+					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{LANGUAGE_NAMES.map( ( name, idx ) => {
 						return (
 							<MenuItem
@@ -126,7 +127,6 @@ class EditorFooter extends Component {
 									language: LANGUAGES[ name ]
 								}}
 								onClick={this.handleTranslateClick}
-								divider={idx === 0}
 							>
 								{name}
 							</MenuItem>
