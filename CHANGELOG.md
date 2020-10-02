@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.68.1](https://github.com/isle-project/isle-editor/releases/tag/v0.68.1) (2020-10-02)
+
+This patch fixed an issue that caused lesson uploads to break on Windows.
+
+**Implemented enhancements:**
+
+- Annotation in Sketchpad Not Affixed in Place in PDF [\#1156](https://github.com/isle-project/isle-editor/issues/1156)
+
 ## [v0.68.0](https://github.com/isle-project/isle-editor/releases/tag/v0.68.0) (2020-10-02)
 
 This release contains editor improvements such as better syncing between editor and preview pane and a new footer bar of the editor window. The video player has been refactored so that autoplay via the `playing` attribute will only be triggered once the video player has entered the viewport and becomes visible.
