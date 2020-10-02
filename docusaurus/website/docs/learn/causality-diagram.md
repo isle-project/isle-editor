@@ -9,7 +9,7 @@ A learning component illustrating the impact of a confounding variable when asse
 ## Example
 
 ```jsx live
-<LearnCausalityDiagram />
+<LearnCausalityDiagram x="X" y="Y" z="Z" />
 ```
 
 ## Options
