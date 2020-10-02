@@ -62,8 +62,7 @@ class App extends Component {
 
 		this.state = {
 			horizontalSplit: 0,
-			innerWidth: window.innerWidth,
-			version: 0
+			innerWidth: window.innerWidth
 		};
 		this.debouncedLinting = debounce( this.lintCode, LINTING_INTERVAL );
 	}
