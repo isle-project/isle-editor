@@ -65,6 +65,7 @@
 		"Well"
 	],
 	"LEARNING": [
+		"LearnCausalityDiagram",
 		"LearnConditionalProbability",
 		"LearnContinuousCLT",
 		"LearnDiceThrowing",
