@@ -127,10 +127,6 @@
       "value": "<SortableTree treeData={[\n  {title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3' }] }]}\n/>"
     },
     {
-      "name": "LearnCausalityDiagram",
-      "value": "<LearnCausalityDiagram />\n"
-    },
-    {
       "name": "Bibliography",
       "value": "<Bibliography />"
     },
@@ -507,6 +503,10 @@
     {
       "name": "LearnMeanVSMedian",
       "value": "<LearnMeanVSMedian />\n"
+    },
+    {
+      "name": "LearnCausalityDiagram",
+      "value": "<LearnCausalityDiagram />\n"
     },
     {
       "name": "LearnStandardize",
