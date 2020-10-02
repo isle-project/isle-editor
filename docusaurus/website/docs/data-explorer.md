@@ -95,6 +95,7 @@ We will include the explorer with the following code:
   'Standard Deviation',
   'Variance',
   'Correlation',
+  'Correlation Matrix',
   'Skewness',
   'Excess Kurtosis',
   'First Quartile',

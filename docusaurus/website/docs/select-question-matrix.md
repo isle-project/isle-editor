@@ -28,8 +28,11 @@ A question with an answer consisting of multiple select boxes.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __provideFeedback__ | `string`: whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions. Default: `'individual'`.
+* __allowIncomplete__ | `boolean`: whether to allow submissions without a selection made in each select box. Default: `false`.
+* __nTries__ | `number`: after how many tries no further answers are accepted (if `provideFeedback` is not `none`). Default: `1`.
 * __failureMsg__ | `string`: notification text displayed upon submitting incorrect answers. Default: `none`.
 * __successMsg__ | `string`: notification text displayed upon submitting correct answers. Default: `none`.
+* __cellLabels__ | `object`: undefined. Default: `{}`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

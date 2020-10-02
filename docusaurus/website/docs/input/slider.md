@@ -31,6 +31,7 @@ A slider input component. Can be used as part of an ISLE dashboard or standalone
 * __onChange__ | `function`: callback invoked with the new value when the slider value changes. Default: `onChange() {}`.
 * __precision__ | `number`: rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001. Default: `10`.
 * __step__ | `(number|string)`: step size of the slider. Default: `1`.
+* __hideTooltip__ | `boolean`: controls whether to hide tooltip. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __numberInputStyle__ | `object`: CSS inline styles for number input component. Default: `{}`.
 * __rangeInputStyle__ | `object`: CSS inline style for range input component. Default: `{}`.

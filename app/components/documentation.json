@@ -386,6 +386,12 @@
         "defaultValue": 200
       },
       {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -731,6 +737,7 @@
           "Standard Deviation",
           "Variance",
           "Correlation",
+          "Correlation Matrix",
           "Skewness",
           "Excess Kurtosis",
           "First Quartile",
@@ -2312,6 +2319,12 @@
         "defaultValue": 1
       },
       {
+        "name": "hideTooltip",
+        "type": "boolean",
+        "description": "controls whether to hide tooltip",
+        "defaultValue": false
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -2792,6 +2805,29 @@
       }
     ],
     "description": "Keyboard controls."
+  },
+  "LearnCausalityDiagram": {
+    "props": [
+      {
+        "name": "x",
+        "type": "(string|node)",
+        "description": "name of explanatory variable",
+        "defaultValue": "Lights at Night"
+      },
+      {
+        "name": "y",
+        "type": "(string|node)",
+        "description": "name of response variable",
+        "defaultValue": "Child Myopia"
+      },
+      {
+        "name": "z",
+        "type": "(string|node)",
+        "description": "name of confounding variable",
+        "defaultValue": "Parental Myopia"
+      }
+    ],
+    "description": "A learning component illustrating the impact of a confounding variable when assessing a causal relationship between two variables and of randomization."
   },
   "LearnContinuousCLT": {
     "props": [
@@ -5605,6 +5641,18 @@
         "defaultValue": "individual"
       },
       {
+        "name": "allowIncomplete",
+        "type": "boolean",
+        "description": "whether to allow submissions without a selection made in each select box",
+        "defaultValue": false
+      },
+      {
+        "name": "nTries",
+        "type": "number",
+        "description": "after how many tries no further answers are accepted (if `provideFeedback` is not `none`)",
+        "defaultValue": 1
+      },
+      {
         "name": "failureMsg",
         "type": "string",
         "description": "notification text displayed upon submitting incorrect answers",
@@ -5615,6 +5663,11 @@
         "type": "string",
         "description": "notification text displayed upon submitting correct answers",
         "defaultValue": null
+      },
+      {
+        "name": "cellLabels",
+        "type": "object",
+        "defaultValue": {}
       },
       {
         "name": "chat",

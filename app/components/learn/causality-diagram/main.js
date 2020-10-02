@@ -14,6 +14,13 @@ import CheckboxInput from 'components/input/checkbox';
 
 // MAIN //
 
+/**
+* A learning component illustrating the impact of a confounding variable when assessing a causal relationship between two variables and of randomization.
+*
+* @property {(string|node)} x - name of explanatory variable
+* @property {(string|node)} y - name of response variable
+* @property {(string|node)} z - name of confounding variable
+*/
 class LearnCausalityDiagram extends Component {
 	constructor( props ) {
 		super( props );

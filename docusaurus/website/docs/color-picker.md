@@ -47,6 +47,7 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
   '#FFFFFF'
 ]`.
 * __width__ | `number`: width of the color picker (in px). Default: `200`.
+* __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.
