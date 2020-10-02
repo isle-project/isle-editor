@@ -13,7 +13,7 @@ import Loadable from 'components/internal/loadable';
 import rendererStore from 'store/electron.js';
 import formatError from 'utils/format-error';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
-	clearInsertion, pasteInsertion, setConfiguratorComponent,
+	clearInsertion, incrementDocumentVersion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
 	updateDownloading, updatePreamble, encounteredError, resetError, saveLintErrors,
 	saveSpellingErrors, changeSplitPos } from 'actions';
@@ -206,12 +206,6 @@ class App extends Component {
 		}
 	}
 
-	incrementVersion = () => {
-		this.setState({
-			version: this.state.version + 1
-		});
-	}
-
 	hideConfigurator = () => {
 		this.props.toggleConfigurator( false );
 	}
@@ -256,7 +250,7 @@ class App extends Component {
 				updatePreamble={this.props.updatePreamble}
 				unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
 				resetError={this.resetError}
-				version={this.state.version}
+				version={this.props.documentVersion}
 			/>
 		</ErrorBoundary>;
 
@@ -271,7 +265,7 @@ class App extends Component {
 						onSelectMode={changeMode}
 						mode={currentMode}
 						unsaved={unsaved}
-						triggerUpdate={this.incrementVersion}
+						triggerUpdate={this.props.incrementDocumentVersion}
 						autoUpdatePreview={autoUpdatePreview}
 						changeAutoUpdate={changeAutoUpdate}
 						toggleLineButtons={toggleLineButtons}
@@ -345,6 +339,7 @@ class App extends Component {
 								elementRangeAction={this.props.elementRangeAction}
 								elementRangeVersion={this.props.elementRangeVersion}
 								toggleConfigurator={this.props.toggleConfigurator}
+								triggerUpdate={this.props.incrementDocumentVersion}
 								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
 							/>
 						</SplitPanel>
@@ -453,6 +448,7 @@ export default connect( mapStateToProps, {
 	saveLintErrors,
 	saveSpellingErrors,
 	encounteredError,
+	incrementDocumentVersion,
 	resetError,
 	changeView,
 	changeMode,

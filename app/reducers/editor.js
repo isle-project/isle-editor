@@ -62,7 +62,8 @@ const initialState = {
 	fontSize: mainStore.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
-	unsaved: false
+	unsaved: false,
+	documentVersion: 0
 };
 
 
@@ -94,6 +95,11 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			error: action.payload.error
+		};
+	case types.INCREMENT_DOCUMENT_VERSION:
+		return {
+			...state,
+			documentVersion: state.documentVersion + 1
 		};
 	case types.RESET_ERROR:
 		return {

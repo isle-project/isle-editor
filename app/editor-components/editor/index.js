@@ -622,6 +622,7 @@ class Editor extends Component {
 				};
 				this.immediateUpdate = true;
 				this.editor.executeEdits( 'my-source', [ op ] );
+				this.props.triggerUpdate();
 			}
 			else if ( this.props.elementRangeAction === 'switch_previous' ) {
 				const model = this.editor.getModel();
@@ -641,6 +642,7 @@ class Editor extends Component {
 					this.immediateUpdate = true;
 					this.hasHighlight = false;
 					this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+					this.props.triggerUpdate();
 				}
 			}
 			else if ( this.props.elementRangeAction === 'switch_next' ) {
@@ -661,6 +663,7 @@ class Editor extends Component {
 					this.immediateUpdate = true;
 					this.hasHighlight = false;
 					this.editor.executeEdits( 'my-source', [ op1, op2 ] );
+					this.props.triggerUpdate();
 				}
 			}
 			else if ( this.props.elementRangeAction === 'reveal' ) {
@@ -1406,6 +1409,8 @@ Editor.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]).isRequired,
+	toggleConfigurator: PropTypes.func.isRequired,
+	triggerUpdate: PropTypes.func.isRequired,
 	height: PropTypes.number.isRequired
 };
 

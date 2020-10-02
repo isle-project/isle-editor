@@ -278,3 +278,9 @@ export function updateAvailable( info ) {
 		}
 	};
 }
+
+export function incrementDocumentVersion() {
+	return {
+		type: types.INCREMENT_DOCUMENT_VERSION
+	};
+}
