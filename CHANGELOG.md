@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.68.0](https://github.com/isle-project/isle-editor/releases/tag/v0.68.0) (2020-10-02)
+
+This release contains editor improvements such as better syncing between editor and preview pane and a new footer bar of the editor window. The video player has been refactored so that autoplay via the `playing` attribute will only be triggered once the video player has entered the viewport and becomes visible.
+
+**Implemented enhancements:**
+
+- Enable incomplete answers in SelectQuestionMatrix [\#1339](https://github.com/isle-project/isle-editor/issues/1339)
+- Overlay histogram - counts vs density [\#1338](https://github.com/isle-project/isle-editor/issues/1338)
+- enhancement: background color picker on image popup [\#1326](https://github.com/isle-project/isle-editor/issues/1326)
+- Add a text field to all question types including SelectQuestionMatrix [\#1255](https://github.com/isle-project/isle-editor/issues/1255)
+
+**Fixed bugs:**
+
+- faceted histogram axis labels overlap graphs below [\#1350](https://github.com/isle-project/isle-editor/issues/1350)
+
 ## [v0.67.1](https://github.com/isle-project/isle-editor/releases/tag/v0.67.1) (2020-09-23)
 
 This patch release contains fixes for handling of filtered datasets in the data explorer and improvements for the editor and preview syncing.
