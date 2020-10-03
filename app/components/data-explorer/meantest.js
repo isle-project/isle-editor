@@ -50,17 +50,26 @@ class MeanTest extends Component {
 	constructor( props ) {
 		super( props );
 
-		const variable = props.quantitative[ 0 ];
-		const xvalues = extractValues( props.data, variable );
 		this.state = {
 			type: 'T Test',
-			variable,
+			variable: null,
 			mu0: 0,
 			direction: 'two-sided',
 			alpha: 0.05,
-			xstdev: roundn( stdev( xvalues ), -6 ),
-			xvalues
+			xstdev: null,
+			xvalues: null
 		};
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.data !== prevProps.data && this.state.variable ) {
+			const xvalues = extractValues( this.props.data, this.state.variable );
+			const xstdev = roundn( stdev( xvalues ), -6 );
+			this.setState({
+				xstdev,
+				xvalues
+			});
+		}
 	}
 
 	calculateMeanTest = () => {
@@ -124,7 +133,7 @@ class MeanTest extends Component {
 				/>
 				<SelectInput
 					legend="Variable:"
-					defaultValue={this.state.variable}
+					defaultValue={null}
 					options={quantitative}
 					onChange={( variable ) => {
 						const xvalues = extractValues( this.props.data, variable );
@@ -206,7 +215,10 @@ class MeanTest extends Component {
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}
-					<Button variant="primary" block onClick={this.calculateMeanTest}>Calculate</Button>
+					<Button
+						variant="primary" block onClick={this.calculateMeanTest}
+						disabled={!this.state.variable}
+					>Calculate</Button>
 				</Card.Body>
 			</Card>
 		);
