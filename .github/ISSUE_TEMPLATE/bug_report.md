@@ -22,6 +22,16 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**Link to ISLE lesson**
+If applicable, add a link to an ISLE lesson demonstrating the problem.
+
+**ISLE Code**
+If applicable, paste the code of the problematic component below:
+
+```jsx
+
+```
+
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari]
