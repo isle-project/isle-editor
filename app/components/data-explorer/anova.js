@@ -22,38 +22,38 @@ const DESCRIPTION = 'A one-way analysis of variance tests for equality of means 
 class Anova extends Component {
 	constructor( props ) {
 		super( props );
+	}
 
-		this.calculateANOVA = ( variable, grouping ) => {
-			const { data, showDecision } = this.props;
-			const vals = data[ variable ];
-			const groups = data[ grouping ];
-			const groupsFiltered = [];
-			const valsFiltered = [];
-			for ( let i = 0; i < vals.length; i++ ) {
-				if (
-					( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
-					( !isNull( groups[i] ) && groups[i] !== '' )
-				) {
-					valsFiltered.push( vals[ i ] );
-					groupsFiltered.push( `"${groups[i]}"` );
-				}
+	calculateANOVA = ( variable, grouping ) => {
+		const { data, showDecision } = this.props;
+		const vals = data[ variable ];
+		const groups = data[ grouping ];
+		const groupsFiltered = [];
+		const valsFiltered = [];
+		for ( let i = 0; i < vals.length; i++ ) {
+			if (
+				( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
+				( !isNull( groups[i] ) && groups[i] !== '' )
+			) {
+				valsFiltered.push( vals[ i ] );
+				groupsFiltered.push( `"${groups[i]}"` );
 			}
-			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>ANOVA for {variable} between {grouping}</label>
-				<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
-					decision: showDecision
-				})}</pre>
-			</div>;
-			const output = {
-				variable: 'One-way ANOVA',
-				type: 'Test',
-				value: value
-			};
-			this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
-				variable, grouping
-			});
-			this.props.onCreated( output );
+		}
+		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
+			<label>ANOVA for {variable} between {grouping}</label>
+			<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
+				decision: showDecision
+			})}</pre>
+		</div>;
+		const output = {
+			variable: 'One-way ANOVA',
+			type: 'Test',
+			value: value
 		};
+		this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
+			variable, grouping
+		});
+		this.props.onCreated( output );
 	}
 
 	render() {

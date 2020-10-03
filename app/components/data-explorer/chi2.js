@@ -19,29 +19,29 @@ const DESCRIPTION = 'A test determining if there is a significant association be
 class Chi2Test extends Component {
 	constructor( props ) {
 		super( props );
+	}
 
-		this.calculateChisquareTest = ( var1, var2 ) => {
-			const { data } = this.props;
-			const x = data[ var1 ].map( x => `"${x}"` );
-			const y = data[ var2 ].map( x => `"${x}"` );
-			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Hypothesis test for independence between {var1} and {var2}:</label>
-				<ROutput code={`
-					\`${var1}\` = c(${x})
-					\`${var2}\` = c(${y})
-					chisq.test( \`${var1}\`, \`${var2}\` )`}
-				/>
-			</div>;
-			const output = {
-				variable: 'Chisquare Test for Independence',
-				type: 'Test',
-				value: value
-			};
-			this.props.logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
-				var1, var2
-			});
-			this.props.onCreated( output );
+	calculateChisquareTest = ( var1, var2 ) => {
+		const { data } = this.props;
+		const x = data[ var1 ].map( x => `"${x}"` );
+		const y = data[ var2 ].map( x => `"${x}"` );
+		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
+			<label>Hypothesis test for independence between {var1} and {var2}:</label>
+			<ROutput code={`
+				\`${var1}\` = c(${x})
+				\`${var2}\` = c(${y})
+				chisq.test( \`${var1}\`, \`${var2}\` )`}
+			/>
+		</div>;
+		const output = {
+			variable: 'Chisquare Test for Independence',
+			type: 'Test',
+			value: value
 		};
+		this.props.logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
+			var1, var2
+		});
+		this.props.onCreated( output );
 	}
 
 	render() {
