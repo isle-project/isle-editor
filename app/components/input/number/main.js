@@ -261,7 +261,7 @@ class NumberInput extends Input {
 			<Tooltip
 				id="number-input-tooltip" placement={this.props.tooltipPlacement}
 				tooltip={this.state.tooltip}
-			><span className="number-input-span" style={this.props.inputStyle} >{input}</span></Tooltip>
+			><span className="number-input-span" >{input}</span></Tooltip>
 		</div> );
 	}
 }
