@@ -22,38 +22,38 @@ const DESCRIPTION = 'The Kruskal-Wallis rank sum test evaluates for multiple sam
 class Kruskal extends Component {
 	constructor( props ) {
 		super( props );
+	}
 
-		this.calculateTest = ( variable, grouping ) => {
-			const { data, showDecision } = this.props;
-			const vals = data[ variable ];
-			const groups = data[ grouping ];
-			const groupsFiltered = [];
-			const valsFiltered = [];
-			for ( let i = 0; i < vals.length; i++ ) {
-				if (
-					( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
-					( !isNull( groups[i] ) && groups[i] !== '' )
-				) {
-					valsFiltered.push( vals[ i ] );
-					groupsFiltered.push( `"${groups[i]}"` );
-				}
+	calculateTest = ( variable, grouping ) => {
+		const { data, showDecision } = this.props;
+		const vals = data[ variable ];
+		const groups = data[ grouping ];
+		const groupsFiltered = [];
+		const valsFiltered = [];
+		for ( let i = 0; i < vals.length; i++ ) {
+			if (
+				( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
+				( !isNull( groups[i] ) && groups[i] !== '' )
+			) {
+				valsFiltered.push( vals[ i ] );
+				groupsFiltered.push( `"${groups[i]}"` );
 			}
-			const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Kruskal Wallis Test of {variable} between {grouping}</label>
-				<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
-					decision: showDecision
-				})}</pre>
-			</div>;
-			const output = {
-				variable: 'Kruskal-Wallis Test',
-				type: 'Test',
-				value: value
-			};
-			this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
-				variable, grouping
-			});
-			this.props.onCreated( output );
+		}
+		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
+			<label>Kruskal Wallis Test of {variable} between {grouping}</label>
+			<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
+				decision: showDecision
+			})}</pre>
+		</div>;
+		const output = {
+			variable: 'Kruskal-Wallis Test',
+			type: 'Test',
+			value: value
 		};
+		this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
+			variable, grouping
+		});
+		this.props.onCreated( output );
 	}
 
 	render() {
