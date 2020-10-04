@@ -1,12 +1,11 @@
 // MODULES //
 
-import Store from 'electron-store';
 import * as types from 'constants/editor_actions.js';
+import config from 'store/main.js';
 
 
 // VARIABLES //
 
-const config = new Store( 'ISLE' );
 const initialState = {
 	autoUpdatePreview: true,
 	showLineButtons: true,

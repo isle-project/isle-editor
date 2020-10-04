@@ -1,14 +1,13 @@
 // MODULES //
 
 import { Menu, MenuItem } from 'electron';
-import Store from 'electron-store';
 import { basename } from 'path';
 import * as actions from './actions.js';
+import config from './../store/main.js';
 
 
 // VARIABLES //
 
-const config = new Store( 'ISLE' );
 const recentFiles = config.get( 'recentFiles' ) || [];
 
 

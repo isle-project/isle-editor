@@ -3,7 +3,6 @@
 import * as actions from 'actions';
 import logger from 'debug';
 import { ipcRenderer } from 'electron';
-import Store from 'electron-store';
 import vex from 'vex-js';
 import vexDialog from 'vex-dialog';
 import isArray from '@stdlib/assert/is-array';
@@ -16,6 +15,7 @@ import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
 import PRESENTATION_TEMPLATE from 'constants/templates/presentation.js';
 import PREAMBLE from 'constants/preamble.js';
 import mergePrambles from 'utils/merge-preambles';
+import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
 
@@ -25,7 +25,6 @@ import 'vex-js/dist/css/vex-theme-plain.css';
 const debug = logger( 'isle-editor' );
 vex.registerPlugin( vexDialog );
 vex.defaultOptions.className = 'vex-theme-plain';
-const config = new Store( 'ISLE' );
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
 
 

@@ -1,14 +1,13 @@
 // MODULES //
 
 import { Menu, MenuItem } from 'electron';
-import Store from 'electron-store';
 import objectKeys from '@stdlib/utils/keys';
 import * as actions from './actions.js';
+import config from './../store/main.js';
 
 
 // VARIABLES //
 
-const config = new Store( 'ISLE' );
 const SUPPLIED_TEMPLATES = [{
 	label: 'Data Explorer',
 	click: ( menuItem, browserWindow ) => {
