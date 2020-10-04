@@ -209,6 +209,10 @@ export function createTemplate({ browserWindow, includePreamble }) {
 	});
 }
 
+export function importTemplatesFromGist({ browserWindow }) {
+	browserWindow.webContents.send( 'import-templates-from-gist' );
+}
+
 export function showDialog({ browserWindow, message }) {
 	browserWindow.webContents.send( 'show-dialog', {
 		message

@@ -14,7 +14,8 @@ import electronStore from 'store/electron.js';
 */
 async function getGist( id ) {
 	const accessToken = electronStore.get( 'githubAccessToken' );
-	const res = await axios.get( `https://api.github.com/gists/${id}`,
+	const url = `https://api.github.com/gists/${id}`;
+	const res = await axios.get( url,
 	{
 		headers: {
 			'Accept': 'application/vnd.github.v3+json',

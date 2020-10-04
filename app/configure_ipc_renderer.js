@@ -3,11 +3,13 @@
 import * as actions from 'actions';
 import logger from 'debug';
 import { ipcRenderer } from 'electron';
+import { basename, extname } from 'path';
 import vex from 'vex-js';
 import vexDialog from 'vex-dialog';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
+import objectKeys from '@stdlib/utils/keys';
 import trim from '@stdlib/string/trim';
 import VIDEO_LECTURE_TEMPLATE from 'constants/templates/video_lecture.js';
 import LECTURE_SLIDES_TEMPLATE from 'constants/templates/lecture_slides.js';
@@ -15,6 +17,7 @@ import DATA_EXPLORER_TEMPLATE from 'constants/templates/data_explorer.js';
 import PRESENTATION_TEMPLATE from 'constants/templates/presentation.js';
 import PREAMBLE from 'constants/preamble.js';
 import mergePrambles from 'utils/merge-preambles';
+import getGist from 'utils/gist/get';
 import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
@@ -124,6 +127,28 @@ function configureIpcRenderer( store ) {
 		});
 	});
 
+	ipcRenderer.on( 'import-templates-from-gist', ( e ) => {
+		vex.dialog.prompt({
+			message: 'Please enter Gist URL',
+			placeholder: 'GitHub Gist URL',
+			callback: async ( value ) => {
+				if ( value ) {
+					const res = await getGist( value );
+					const files = res.data.files;
+					const keys = objectKeys( files );
+					for ( let i = 0; i < keys.length; i++ ) {
+						const key = keys[ i ];
+						const { content } = files[ key ];
+						const name = `templates.${basename( key, extname( key ) )}`;
+						config.set( name, content );
+					}
+					vex.dialog.alert( 'Templates successfully loaded!' );
+					ipcRenderer.send( 'redraw-templates-menu' );
+				}
+			}
+		});
+	});
+
 	ipcRenderer.on( 'open-template-dialog', ( e, { name } ) => {
 		vex.dialog.open({
 			message: 'Please confirm that you want to create a new file with the chosen template',
@@ -133,9 +158,7 @@ function configureIpcRenderer( store ) {
 					text: 'Confirm',
 					className: 'vex-dialog-button-primary',
 					click() {
-						ipcRenderer.send( 'create-from-user-template', {
-							name
-						});
+						ipcRenderer.send( 'create-from-user-template', name );
 					}
 				},
 				{

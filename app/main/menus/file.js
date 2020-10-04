@@ -59,6 +59,12 @@ export default {
 				click: ( menuItem, browserWindow ) => {
 					actions.createTemplate({ browserWindow, includePreamble: false });
 				}
+			},
+			{
+				label: 'Import Templates from Gist',
+				click: ( menuItem, browserWindow ) => {
+					actions.importTemplatesFromGist({ browserWindow });
+				}
 			}
 		]
 	},
