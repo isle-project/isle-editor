@@ -4,8 +4,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { EOL } from 'os';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
@@ -15,8 +16,9 @@ import http from 'http';
 import url from 'url';
 import markdownit from 'markdown-it';
 import vex from 'vex-js';
+import { toBlob } from 'html-to-image';
 import { ContextMenuTrigger } from 'react-contextmenu';
-import logger from 'debug';
+import MonacoEditor from 'react-monaco-editor';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
 import isRelativePath from '@stdlib/assert/is-relative-path';
@@ -34,11 +36,13 @@ import readFile from '@stdlib/fs/read-file';
 import max from '@stdlib/math/base/special/max';
 import readJSON from '@stdlib/fs/read-json';
 import Loadable from 'components/internal/loadable';
-import MonacoEditor from 'react-monaco-editor';
+import bugTemplate from 'constants/github-templates/bug.js';
+import featureRequestTemplate from 'constants/github-templates/feature_request.js';
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
 import rendererStore from 'store/electron.js';
+import uploadBugImage from './upload_bug_image.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
 import IS_WINDOWS from '@stdlib/assert/is-windows';
@@ -384,6 +388,46 @@ class Editor extends Component {
 		this.scrollIntoViewInPreview = this.editor.addCommand( 'scroll-into-view', ( _, line, startColumn ) => {
 			debug( `Scroll line ${line} and column ${startColumn} into view...` );
 			scrollIntoView( line, startColumn );
+		});
+
+		this.reportGitHub = this.editor.addCommand( 'report-github', async ( _, elementRange, match, type, includeScreenshot ) => {
+			const model = this.editor.getModel();
+			const code = model.getValueInRange( elementRange );
+			let labels;
+			let title;
+			let body;
+			if ( type === 'bug' ) {
+				title = `Issue with ${match[ 2 ]} component`;
+				labels = 'bug';
+				body = bugTemplate;
+				body = replace( body, '<code>', code );
+				if ( includeScreenshot ) {
+					const elem = document.getElementById( 'line-'+elementRange.startLineNumber+'-'+elementRange.startColumn );
+					const imgData = await toBlob( elem, {
+						backgroundColor: 'white',
+						style: {
+							fontSize: 22
+						}
+					});
+					const imgURL = await uploadBugImage( imgData );
+					body = replace( body, '<screenshot>', `![Screenshot](${imgURL})` );
+				} else {
+					body = replace( body, '<screenshot>', '' );
+				}
+			} else {
+				title = `Feature Request for ${match[ 2 ]} component`;
+				labels = 'enhancement';
+				body = featureRequestTemplate;
+			}
+			const issueWindow = new remote.BrowserWindow({
+				width: window.innerWidth * 0.7,
+				height: window.innerHeight * 0.9,
+				show: true
+			});
+			body = encodeURIComponent( body );
+			issueWindow.removeMenu();
+			const url = `https://github.com/isle-project/isle-editor/issues/new?title=${title}&body=${body}&labels=${labels}`;
+			issueWindow.loadURL( url );
 		});
 
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
@@ -760,7 +804,7 @@ class Editor extends Component {
 	}
 
 	provideCodeActions = ( textModel, range, context ) => {
-		const actions = [];
+		let actions = [];
 		context.markers
 			.filter( marker => marker.owner === 'spelling' )
 			.forEach( problem => {
@@ -936,14 +980,40 @@ class Editor extends Component {
 			const match = RE_TAG_START.exec( line );
 			if ( match ) {
 				const startColumn = match[ 1 ].length + 1;
-				actions.push({
-					command: {
-						id: this.scrollIntoViewInPreview,
-						title: 'Scroll component into view (double-click)',
-						arguments: [ selection.startLineNumber, startColumn ]
+				actions = actions.concat([
+					{
+						command: {
+							id: this.scrollIntoViewInPreview,
+							title: 'Scroll component into view (double-click)',
+							arguments: [ selection.startLineNumber, startColumn ]
+						},
+						title: 'Scroll component into view (double-click)'
 					},
-					title: 'Scroll component into view (double-click)'
-				});
+					{
+						command: {
+							id: this.reportGitHub,
+							title: 'Report issue on GitHub',
+							arguments: [ this.props.elementRange, match, 'bug', false ]
+						},
+						title: 'Report issue on GitHub'
+					},
+					{
+						command: {
+							id: this.reportGitHub,
+							title: 'Report issue on GitHub (include screenshot)',
+							arguments: [ this.props.elementRange, match, 'bug', true ]
+						},
+						title: 'Report issue on GitHub (include screenshot)'
+					},
+					{
+						command: {
+							id: this.reportGitHub,
+							title: 'Report issue on GitHub (include screenshot)',
+							arguments: [ this.props.elementRange, match, 'feature-request', false ]
+						},
+						title: 'File Feature Request on GitHub'
+					}
+				]);
 			}
 		}
 		return {
