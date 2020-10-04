@@ -1,13 +1,13 @@
 // MODULES //
 
 import axios from 'axios';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 
 
 // VARIABLES //
 
-const ISLE_SERVER = rendererStore.get( 'server' );
-const ISLE_TOKEN = rendererStore.get( 'token' );
+const ISLE_SERVER = electronStore.get( 'server' );
+const ISLE_TOKEN = electronStore.get( 'token' );
 
 
 // MAIN //

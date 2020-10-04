@@ -8,7 +8,7 @@ import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
 import Tooltip from 'components/tooltip';
 import Loadable from 'components/internal/loadable';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 import { LANGUAGES } from 'constants/deepl';
 const AnimationHelp = Loadable( () => import( 'editor-components/animation-help' ) );
 const MarkdownHelp = Loadable( () => import( 'editor-components/markdown-help' ) );
@@ -18,7 +18,7 @@ const KeyboardHelp = Loadable( () => import( 'editor-components/keyboard-help' )
 // VARIABLES //
 
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
-const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
+const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 
 
 // MAIN //

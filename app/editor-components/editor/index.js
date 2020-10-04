@@ -41,7 +41,7 @@ import featureRequestTemplate from 'constants/github-templates/feature_request.j
 import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from 'utils/spell-checker';
 import today from 'utils/today';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 import uploadBugImage from './upload_bug_image.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
@@ -105,8 +105,8 @@ const MONACO_OPTIONS = {
 		arrowSize: 15
 	}
 };
-const ISLE_SERVER = rendererStore.get( 'server' );
-const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
+const ISLE_SERVER = electronStore.get( 'server' );
+const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 let overlayInstallWidget = null;
 
 
@@ -980,6 +980,7 @@ class Editor extends Component {
 			const match = RE_TAG_START.exec( line );
 			if ( match ) {
 				const startColumn = match[ 1 ].length + 1;
+				const disabled = !ISLE_SERVER;
 				actions = actions.concat([
 					{
 						command: {
@@ -995,6 +996,7 @@ class Editor extends Component {
 							title: 'Report issue on GitHub',
 							arguments: [ this.props.elementRange, match, 'bug', false ]
 						},
+						disabled,
 						title: 'Report issue on GitHub'
 					},
 					{
@@ -1003,6 +1005,7 @@ class Editor extends Component {
 							title: 'Report issue on GitHub (include screenshot)',
 							arguments: [ this.props.elementRange, match, 'bug', true ]
 						},
+						disabled,
 						title: 'Report issue on GitHub (include screenshot)'
 					},
 					{
@@ -1011,6 +1014,7 @@ class Editor extends Component {
 							title: 'Report issue on GitHub (include screenshot)',
 							arguments: [ this.props.elementRange, match, 'feature-request', false ]
 						},
+						disabled,
 						title: 'File Feature Request on GitHub'
 					}
 				]);

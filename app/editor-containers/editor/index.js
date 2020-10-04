@@ -10,7 +10,7 @@ import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from 'components/internal/loadable';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 import formatError from 'utils/format-error';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, incrementDocumentVersion, pasteInsertion, setConfiguratorComponent,
@@ -39,7 +39,7 @@ const NUM_WRAPPER_LINES = 8;
 // FUNCTIONS //
 
 const updateSplitPos = ( size ) => {
-	rendererStore.set( 'splitPos', size );
+	electronStore.set( 'splitPos', size );
 };
 
 const mapErrors = e => {
@@ -272,7 +272,7 @@ class App extends Component {
 						onPreview={() => {
 							let splitPos;
 							if ( this.props.splitPos === 1 ) {
-								splitPos = rendererStore.get( 'splitPos' ) || 0.5;
+								splitPos = electronStore.get( 'splitPos' ) || 0.5;
 							} else {
 								splitPos = 1;
 							}

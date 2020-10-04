@@ -9,7 +9,7 @@ import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
 import template from 'constants/templates/generic.js';
 import PREAMBLE from 'constants/preamble.js';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 import today from 'utils/today';
 
 
@@ -57,7 +57,7 @@ const initialState = {
 	currentRole: 'user',
 	currentMode: 'offline',
 	namespaceName: null,
-	splitPos: parseFloat( rendererStore.get( 'splitPos' ) ) || 0.5,
+	splitPos: parseFloat( electronStore.get( 'splitPos' ) ) || 0.5,
 	error: null,
 	fontSize: mainStore.get( 'fontSize' ) || 14,
 	preambleTemplate: preambleTemplate,

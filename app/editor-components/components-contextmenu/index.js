@@ -7,14 +7,14 @@ import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
 import { LANGUAGES } from 'constants/deepl';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:editor:context-menu' );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
-const ISLE_SERVER_TOKEN = rendererStore.get( 'token' );
+const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 
 
 // MAIN //

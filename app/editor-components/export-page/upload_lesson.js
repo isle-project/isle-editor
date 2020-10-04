@@ -29,7 +29,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import CheckboxInput from 'components/input/checkbox';
 import Spinner from 'components/internal/spinner';
 import KeyControls from 'components/key-controls';
-import rendererStore from 'store/electron.js';
+import electronStore from 'store/electron.js';
 
 
 // VARIABLES //
@@ -58,8 +58,8 @@ class UploadLesson extends Component {
 			loadFromCDN: true,
 			lessonName,
 			dirname: randomstring( 16, 65, 90 ),
-			server: rendererStore.get( 'server' ),
-			token: rendererStore.get( 'token' ),
+			server: electronStore.get( 'server' ),
+			token: electronStore.get( 'token' ),
 			showResponseModal: false,
 			showConfirmModal: false,
 			invalidLessonName: false
