@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { APIXU_BASE_URL, APIXU_AUTH_KEY } from 'constants/apixu';
+import axios from 'axios';
 import VoiceControl from 'components/internal/voice-control';
 import SessionContext from 'session/context.js';
 import Description from './description.js';
@@ -36,7 +36,6 @@ const VOICE_COMMANDS = [
 *
 * @property {string} location - location name
 * @property {string} language - language identifier
-* @property {string} key - APIXU key
 * @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 */
@@ -101,19 +100,11 @@ class Weather extends Component {
 	}
 
 	getData = ( location ) => {
-		if ( location ) {
-			const json = '/current.json';
-			const q = location;
-			const url = APIXU_BASE_URL + json + '?key=' + this.props.key + '&q=' + q;
-			debug( 'GET request: '+url );
-			fetch( url )
+		const session = this.context;
+		if ( location && session.server ) {
+			axios.get( `${session.server}/apixu_weather?location=${location}` )
 				.then( response => {
-					debug( 'Status code: '+response.status );
-					return response.json();
-				})
-				.then( ( json ) => {
-					debug( json );
-					this.setWeatherData( json );
+					this.setWeatherData( response.data );
 				})
 				.catch( ( err ) => {
 					debug( 'Encountered an error: '+err.message );
@@ -131,7 +122,7 @@ class Weather extends Component {
 	}
 
 	changeTemperatureType = () => {
-		let temperature = this.state.temperature === 'celsius' ?
+		const temperature = this.state.temperature === 'celsius' ?
 			'fahrenheit' :
 			'celsius';
 		this.setState({
@@ -225,7 +216,6 @@ class Weather extends Component {
 // PROPERTIES //
 
 Weather.propTypes = {
-	key: PropTypes.string,
 	language: PropTypes.string,
 	location: PropTypes.string,
 	voiceID: PropTypes.string,
@@ -233,7 +223,6 @@ Weather.propTypes = {
 };
 
 Weather.defaultProps = {
-	key: APIXU_AUTH_KEY,
 	language: 'en-US',
 	location: null,
 	voiceID: null,
