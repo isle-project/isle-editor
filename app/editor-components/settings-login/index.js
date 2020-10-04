@@ -111,10 +111,6 @@ class SettingsLogin extends Component {
 			const rawCode = /code=([^&]*)/.exec( url ) || null;
 			const code = rawCode && rawCode.length > 1 ? rawCode[ 1 ] : null;
 			const error = /\?error=(.+)$/.exec( url );
-
-			if ( code || error ) {
-				authWindow.destroy();
-			}
 			if ( code ) {
 				this.getGitHubToken( code );
 			} else if ( error ) {
@@ -126,9 +122,19 @@ class SettingsLogin extends Component {
 		authWindow.removeMenu();
 		const authResult = await axios.get( this.state.server+'/github_oauth_url' );
 		authWindow.loadURL( authResult.data );
+
+		authWindow.webContents.on( 'will-navigate', ( event, url ) => {
+			event.preventDefault();
+			if ( url.includes( 'oauth-callback' ) ) {
+				handleGitHubCallback( url );
+				authWindow.destroy();
+			}
+		});
+
 		authWindow.webContents.on( 'will-redirect', ( event, url ) => {
 			event.preventDefault();
 			handleGitHubCallback( url );
+			authWindow.destroy();
 		});
 	}
 
