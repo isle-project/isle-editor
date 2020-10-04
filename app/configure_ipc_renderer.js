@@ -18,9 +18,11 @@ import PRESENTATION_TEMPLATE from 'constants/templates/presentation.js';
 import PREAMBLE from 'constants/preamble.js';
 import mergePrambles from 'utils/merge-preambles';
 import getGist from 'utils/gist/get';
+import uploadGist from 'utils/gist/upload';
 import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
+import { template } from '@babel/core';
 
 
 // VARIABLES //
@@ -146,6 +148,20 @@ function configureIpcRenderer( store ) {
 					ipcRenderer.send( 'redraw-templates-menu' );
 				}
 			}
+		});
+	});
+
+	ipcRenderer.on( 'upload-custom-templates', async ( e, { templates } ) => {
+		const keys = objectKeys( templates);
+		const files = {};
+		for ( let i = 0; i < keys.length; i++ ) {
+			files[ `${keys[ i ]}.isle` ] = {
+				content: templates[ keys[ i ] ]
+			};
+		}
+		const result = await uploadGist( files );
+		vex.dialog.alert({
+			unsafeMessage: `Templates successfully uploaded. <a href="${result.data.html_url}">Open Link</a>.`
 		});
 	});
 

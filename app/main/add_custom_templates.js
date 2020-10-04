@@ -89,6 +89,20 @@ function addCustomTemplates() {
 			});
 			customTemplates.submenu.append( item );
 		}
+
+		customTemplates.submenu.append( new MenuItem({
+			type: 'separator'
+		}) );
+		const item = new MenuItem({
+			label: 'Upload custom templates to Gist',
+			click: ( _, browserWindow ) => {
+				browserWindow.webContents.send( 'upload-custom-templates', {
+					templates
+				});
+			}
+		});
+		customTemplates.submenu.append( item );
+
 		Menu.setApplicationMenu( currentMenu );
 	}
 }
