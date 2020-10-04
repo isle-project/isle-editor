@@ -5,18 +5,17 @@ import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
 import { autoUpdater } from 'electron-updater';
-import Store from 'electron-store';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
 import window from './window_manager.js';
 import addCustomTemplates from './add_custom_templates.js';
 import { exec } from 'child_process';
+import config from './../store/main.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle-editor:main' );
-const config = new Store( 'ISLE' );
 
 
 // MAIN //
