@@ -22,7 +22,6 @@ import uploadGist from 'utils/gist/upload';
 import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
-import { template } from '@babel/core';
 
 
 // VARIABLES //

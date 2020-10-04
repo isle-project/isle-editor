@@ -31,5 +31,3 @@ async function uploadBugImage( blob ) {
 // EXPORTS //
 
 export default uploadBugImage;
-
-
