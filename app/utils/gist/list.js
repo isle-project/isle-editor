@@ -1,7 +1,7 @@
 // MODULES //
 
 import axios from 'axios';
-import mainStore from 'store/main.js';
+import electronStore from 'store/electron.js';
 
 
 // MAIN //
@@ -12,7 +12,7 @@ import mainStore from 'store/main.js';
 * @returns {Object} GET request result
 */
 async function listGists( page = 0 ) {
-	const accessToken = mainStore.get( 'githubAccessToken' );
+	const accessToken = electronStore.get( 'githubAccessToken' );
 	const res = await axios.get( 'https://api.github.com/gists', {
 		per_page: 100,
 		page: page

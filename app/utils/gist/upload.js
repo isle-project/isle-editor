@@ -1,7 +1,7 @@
 // MODULES //
 
 import axios from 'axios';
-import mainStore from 'store/main.js';
+import electronStore from 'store/electron.js';
 
 
 // MAIN //
@@ -13,7 +13,7 @@ import mainStore from 'store/main.js';
 * @returns {Object} POST request result
 */
 async function uploadGist( files ) {
-	const accessToken = mainStore.get( 'githubAccessToken' );
+	const accessToken = electronStore.get( 'githubAccessToken' );
 	const res = await axios.post( 'https://api.github.com/gists', {
 		files
 	}, {
