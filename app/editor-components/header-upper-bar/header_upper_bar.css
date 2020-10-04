@@ -20,29 +20,34 @@
 	font-size: 18px;
 	font-weight: 800;
 	margin-right: 15px;
+	cursor: pointer;
 }
 
 #link-export {
 	color: silver;
 	font-size: 18px;
 	margin-right: 15px;
+	cursor: pointer;
 }
 
 #link-settings {
 	color: silver;
 	font-size: 18px;
 	margin-right: 15px;
+	cursor: pointer;
 }
 
 #link-dashboard {
 	color: silver;
 	font-size: 18px;
 	margin-right: 15px;
+	cursor: pointer;
 }
 
 #link-docs {
 	color: silver;
 	font-size: 18px;
+	cursor: pointer;
 }
 
 #update-indicator-badge {
