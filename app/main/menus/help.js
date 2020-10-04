@@ -12,10 +12,17 @@ export default {
 	label: 'Help',
 	submenu: [
 		{
-			label: 'Report issue',
+			label: 'Report bug',
 			accelerator: '',
 			click: () => {
-				actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new' );
+				actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=bug_report.md' );
+			}
+		},
+		{
+			label: 'Request new feature',
+			accelerator: '',
+			click: () => {
+				actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=feature_request.md' );
 			}
 		},
 		{
