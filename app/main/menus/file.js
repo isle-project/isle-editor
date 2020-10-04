@@ -1,6 +1,7 @@
 // MODULES //
 
 import * as actions from './../actions';
+import electronStore from './../../store/electron.js';
 
 
 // EXPORTS //
@@ -63,6 +64,13 @@ export default {
 			{
 				label: 'Import Templates from Gist',
 				click: ( menuItem, browserWindow ) => {
+					const hasToken = electronStore.has( 'githubAccessToken' );
+					if ( !hasToken ) {
+						return actions.showDialog({
+							browserWindow,
+							message: 'Please link to your GitHub account in order to use this feature,'
+						});
+					}
 					actions.importTemplatesFromGist({ browserWindow });
 				}
 			}

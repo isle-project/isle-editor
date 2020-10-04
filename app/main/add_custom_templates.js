@@ -4,6 +4,7 @@ import { Menu, MenuItem } from 'electron';
 import objectKeys from '@stdlib/utils/keys';
 import * as actions from './actions.js';
 import config from './../store/main.js';
+import electronStore from './../store/electron.js';
 
 
 // VARIABLES //
@@ -96,6 +97,13 @@ function addCustomTemplates() {
 		const item = new MenuItem({
 			label: 'Upload custom templates to Gist',
 			click: ( _, browserWindow ) => {
+				const hasToken = electronStore.has( 'githubAccessToken' );
+				if ( !hasToken ) {
+					return actions.showDialog({
+						browserWindow,
+						message: 'Please link to your GitHub account in order to use this feature,'
+					});
+				}
 				browserWindow.webContents.send( 'upload-custom-templates', {
 					templates
 				});
