@@ -145,8 +145,14 @@ function configureIpcRenderer( store ) {
 					for ( let i = 0; i < keys.length; i++ ) {
 						const key = keys[ i ];
 						const { content } = files[ key ];
-						const name = `templates.${basename( key, extname( key ) )}`;
-						config.set( name, content );
+						let name = `templates.${basename( key, extname( key ) )}`;
+						let freeName = name;
+						let idx = 2;
+						while ( config.has( freeName ) ) {
+							freeName = `${name}_${idx}`;
+							idx += 1;
+						}
+						config.set( freeName, content );
 					}
 					vex.dialog.alert( 'Templates successfully loaded!' );
 					ipcRenderer.send( 'redraw-templates-menu' );
