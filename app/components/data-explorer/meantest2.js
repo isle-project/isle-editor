@@ -37,6 +37,30 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
+function retrieveGroupedValues( data, xvar, grouping ) {
+	debug( 'Updating the variable when supplying groups...' );
+	const categories = data[ grouping ];
+	let firstCategory = categories[ 0 ];
+	let secondCategory;
+	for ( let i = 1; i < categories.length; i++ ) {
+		if ( categories[ i ] !== firstCategory ) {
+			secondCategory = categories[ i ];
+			break;
+		}
+	}
+	const splitted = bifurcateBy( data[ xvar ], function splitter( x, idx ) {
+		return categories[ idx ] === firstCategory;
+	});
+	const xvalues = splitted[ 0 ];
+	const yvalues = splitted[ 1 ];
+	return {
+		xvalues,
+		yvalues,
+		firstCategory,
+		secondCategory
+	};
+}
+
 
 // MAIN //
 
@@ -44,9 +68,8 @@ class MeanTest2 extends Component {
 	constructor( props ) {
 		super( props );
 
-		const xvar = props.quantitative[ 0 ];
 		this.state = {
-			xvar,
+			xvar: null,
 			grouping: null,
 			yvar: null,
 			diff: 0,
@@ -54,19 +77,25 @@ class MeanTest2 extends Component {
 			alpha: 0.05,
 			type: 'T Test',
 			xstdev: null,
-			ystdev: null,
-			xvalues: props.data[ xvar ],
-			yvalues: null,
-			firstCategory: null,
-			secondCategory: null
+			ystdev: null
 		};
 	}
 
 	calculateTwoSampleZTest = () => {
-		const { xvar, grouping, yvar, diff, direction, alpha, type, xstdev, ystdev, firstCategory, secondCategory } = this.state;
+		let { xvar, grouping, yvar, diff, direction, alpha, type, xstdev, ystdev } = this.state;
 		const { showDecision } = this.props;
-		const x = this.state.xvalues;
-		const y = this.state.yvalues;
+
+		let out;
+		if ( grouping ) {
+			out = retrieveGroupedValues( this.props.data, xvar, grouping );
+		} else {
+			out = {
+				xvalues: this.props.data[ xvar ],
+				yvalues: this.props.data[ yvar ]
+			};
+		}
+		const x = out.xvalues;
+		const y = out.yvalues;
 		const xvals = [];
 		const yvals = [];
 		for ( let i = 0; i < x.length; i++ ) {
@@ -83,6 +112,8 @@ class MeanTest2 extends Component {
 		if ( grouping ) {
 			let result;
 			if ( type === 'Z Test' ) {
+				xstdev = xstdev ? xstdev : stdev( xvals );
+				ystdev = ystdev ? ystdev : stdev( yvals );
 				result = ztest2( xvals, yvals, xstdev, ystdev, {
 					'alpha': alpha,
 					'alternative': direction,
@@ -110,21 +141,21 @@ class MeanTest2 extends Component {
 				<span className="title" >Hypothesis test for {xvar} between {grouping}:</span>
 				<TeX
 					displayMode
-					raw={`H_0: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
+					raw={`H_0: \\mu_{\\text{${grouping}:${out.firstCategory}}} - \\mu_{\\text{${grouping}:${out.secondCategory}}} = ${diff}`}
 					tag=""
 				/>
 				<span> vs. </span>
 				<TeX
 					displayMode
-					raw={`H_1: \\mu_{\\text{${grouping}:${firstCategory}}} - \\mu_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
+					raw={`H_1: \\mu_{\\text{${grouping}:${out.firstCategory}}} - \\mu_{\\text{${grouping}:${out.secondCategory}}} ${arrow} ${diff}`}
 					tag=""
 				/>
 				<pre>
 					{printout}
 					<br />
-					Sample mean in group &quot;{firstCategory}&quot;: {roundn( result.xmean, -3 )}
+					Sample mean in group &quot;{out.firstCategory}&quot;: {roundn( result.xmean, -3 )}
 					<br />
-					Sample mean in group &quot;{secondCategory}&quot;: {roundn( result.ymean, -3 )}
+					Sample mean in group &quot;{out.secondCategory}&quot;: {roundn( result.ymean, -3 )}
 				</pre>
 			</div>;
 		} else if ( yvar ) {
@@ -214,51 +245,9 @@ class MeanTest2 extends Component {
 				defaultValue={this.state.xvar}
 				options={quantitative}
 				onChange={( xvar ) => {
-					if ( this.state.grouping ) {
-						debug( 'Updating the variable when supplying groups...' );
-						const categories = data[ this.state.grouping ];
-						let firstCategory = categories[ 0 ];
-						let secondCategory;
-						for ( let i = 1; i < categories.length; i++ ) {
-							if ( categories[ i ] !== firstCategory ) {
-								secondCategory = categories[ i ];
-								break;
-							}
-						}
-						const splitted = bifurcateBy( data[ xvar ], function splitter( x, idx ) {
-							return categories[ idx ] === firstCategory;
-						});
-						const xvalues = splitted[ 0 ];
-						const yvalues = splitted[ 1 ];
-						this.setState({
-							xvar,
-							yvar: null,
-							xvalues,
-							yvalues,
-							firstCategory,
-							secondCategory,
-							xstdev: stdev( xvalues ),
-							ystdev: stdev( yvalues )
-						});
-					}
-					else if ( this.state.yvar ) {
-						debug( 'Updating the first variable when supplying two variables...' );
-						const x = data[ xvar ];
-						const y = data[ this.state.yvar ];
-						this.setState({
-							xvalues: x,
-							yvalues: y,
-							xvar,
-							grouping: null,
-							xstdev: stdev( x ),
-							ystdev: stdev( y )
-						});
-					}
-					else {
-						this.setState({
-							xvar
-						});
-					}
+					this.setState({
+						xvar
+					});
 				}}
 			/>
 			<Row>
@@ -269,35 +258,9 @@ class MeanTest2 extends Component {
 						defaultValue={this.state.grouping}
 						clearable
 						onChange={( grouping ) => {
-							if ( !grouping ) {
-								return this.setState({
-									yvar: null,
-									grouping
-								});
-							}
-							const categories = data[ grouping ];
-							let firstCategory = categories[ 0 ];
-							let secondCategory;
-							for ( let i = 1; i < categories.length; i++ ) {
-								if ( categories[ i ] !== firstCategory ) {
-									secondCategory = categories[ i ];
-									break;
-								}
-							}
-							const splitted = bifurcateBy( data[ this.state.xvar ], function splitter( x, idx ) {
-								return categories[ idx ] === firstCategory;
-							});
-							const xvalues = splitted[ 0 ];
-							const yvalues = splitted[ 1 ];
-							this.setState({
-								grouping,
+							return this.setState({
 								yvar: null,
-								xvalues,
-								yvalues,
-								firstCategory,
-								secondCategory,
-								xstdev: stdev( xvalues ),
-								ystdev: stdev( yvalues )
+								grouping
 							});
 						}}
 					/>
@@ -312,21 +275,9 @@ class MeanTest2 extends Component {
 						defaultValue={this.state.yvar}
 						clearable
 						onChange={( yvar ) => {
-							if ( !yvar ) {
-								return this.setState({
-									yvar,
-									grouping: null
-								});
-							}
-							const x = data[ this.state.xvar ];
-							const y = data[ yvar ];
-							this.setState({
-								xvalues: x,
-								yvalues: y,
+							return this.setState({
 								yvar,
-								grouping: null,
-								xstdev: stdev( x ),
-								ystdev: stdev( y )
+								grouping: null
 							});
 						}}
 					/>
@@ -420,7 +371,7 @@ class MeanTest2 extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.calculateTwoSampleZTest}
-						disabled={!this.state.grouping && !this.state.yvar}
+						disabled={(!this.state.grouping && !this.state.yvar) || !this.state.xvar}
 					>
 						Calculate
 					</Button>
