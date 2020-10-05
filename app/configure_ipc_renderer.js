@@ -121,9 +121,22 @@ function configureIpcRenderer( store ) {
 					if ( !includePreamble ) {
 						text = replace( text, RE_PREAMBLE, '---\n<preamble>\n---' );
 					}
-					config.set( `templates.${value}`, text );
-					vex.dialog.alert( 'Template successfully created!' );
-					ipcRenderer.send( 'redraw-templates-menu' );
+					if ( config.has( `templates.${value}` ) ) {
+						vex.dialog.confirm({
+							message: 'A template with the chosen name already exists. Do you wish to proceed and overwrite the existing template?',
+							callback( bool ) {
+								if ( bool ) {
+									config.set( `templates.${value}`, text );
+									vex.dialog.alert( 'Template successfully created!' );
+									ipcRenderer.send( 'redraw-templates-menu' );
+								}
+							}
+						});
+					} else {
+						config.set( `templates.${value}`, text );
+						vex.dialog.alert( 'Template successfully created!' );
+						ipcRenderer.send( 'redraw-templates-menu' );
+					}
 				}
 			}
 		});
