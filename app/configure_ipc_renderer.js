@@ -183,6 +183,28 @@ function configureIpcRenderer( store ) {
 				},
 				{
 					type: 'text',
+					text: 'Rename',
+					className: 'vex-dialog-button-secondary',
+					click() {
+						vex.dialog.prompt({
+							unsafeMessage: `<p>Please enter new name for template <b>${name}</b></p>`,
+							placeholder: 'New template name',
+							callback( value ) {
+								if ( value ) {
+									const oldName = 'templates.'+name;
+									const tmp = config.get( oldName );
+									config.delete( oldName );
+									const newName = 'templates.'+value;
+									config.set( newName, tmp );
+									vex.dialog.alert( 'Template successfully renamed.' );
+									ipcRenderer.send( 'redraw-templates-menu' );
+								}
+							}
+						});
+					}
+				},
+				{
+					type: 'text',
 					text: 'Cancel',
 					className: 'vex-dialog-button-secondary'
 				},
