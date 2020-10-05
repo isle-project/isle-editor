@@ -7,13 +7,12 @@ import Button from 'react-bootstrap/Button';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
-import isArray from '@stdlib/assert/is-array';
 import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
-import unique from 'uniq';
 import mean from 'utils/statistic/mean';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 
@@ -31,23 +30,13 @@ class PropTest extends Component {
 	constructor( props ) {
 		super( props );
 
-		let categories;
-		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			const values = props.data[ props.categorical[ 0 ] ];
-			if ( values ) {
-				categories = values.slice();
-				unique( categories );
-			}
-		} else {
-			categories = [];
-		}
 		this.state = {
-			variable: props.categorical[ 0 ],
-			success: categories[ 0 ],
+			variable: null,
+			success: null,
 			p0: 0.5,
 			direction: 'two-sided',
 			alpha: 0.05,
-			categories: categories
+			categories: null
 		};
 	}
 
@@ -113,11 +102,7 @@ class PropTest extends Component {
 						options={categorical}
 						onChange={( variable ) => {
 							const values = this.props.data[ variable ];
-							let categories;
-							if ( values ) {
-								categories = values.slice();
-								unique( categories );
-							}
+							const categories = extractCategoriesFromValues( values, variable );
 							this.setState({
 								categories,
 								variable,
@@ -125,7 +110,7 @@ class PropTest extends Component {
 							});
 						}}
 					/>
-					<SelectInput
+					{ this.state.categories ? <SelectInput
 						legend="Success:"
 						defaultValue={this.state.success}
 						options={this.state.categories}
@@ -134,7 +119,7 @@ class PropTest extends Component {
 								success: value
 							});
 						}}
-					/>
+					/> : null }
 					<NumberInput
 						legend={<TeX raw="p_0" />}
 						defaultValue={this.state.p0}
@@ -172,6 +157,7 @@ class PropTest extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.calculatePropTest}
+						disabled={!this.state.variable}
 					>Calculate</Button>
 				</Card.Body>
 			</Card>
