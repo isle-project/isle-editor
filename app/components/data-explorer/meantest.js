@@ -56,25 +56,22 @@ class MeanTest extends Component {
 			mu0: 0,
 			direction: 'two-sided',
 			alpha: 0.05,
-			xstdev: null,
-			xvalues: null
+			xstdev: null
 		};
-	}
-
-	componentDidUpdate( prevProps ) {
-		if ( this.props.data !== prevProps.data && this.state.variable ) {
-			const xvalues = extractValues( this.props.data, this.state.variable );
-			const xstdev = roundn( stdev( xvalues ), -6 );
-			this.setState({
-				xstdev,
-				xvalues
-			});
-		}
 	}
 
 	calculateMeanTest = () => {
 		const { showDecision } = this.props;
-		const { variable, type, mu0, direction, alpha, xvalues, xstdev } = this.state;
+		const { variable, type, mu0, direction, alpha } = this.state;
+
+		const xvalues = extractValues( this.props.data, this.state.variable );
+		let xstdev;
+		if ( type === 'Z Test' && this.state.xstdev ) {
+			xstdev = this.state.xstdev;
+		} else {
+			xstdev = roundn( stdev( xvalues ), -6 );
+		}
+
 		let result;
 		if ( type === 'Z Test' ) {
 			result = ztest( xvalues, xstdev, {
@@ -136,11 +133,8 @@ class MeanTest extends Component {
 					defaultValue={null}
 					options={quantitative}
 					onChange={( variable ) => {
-						const xvalues = extractValues( this.props.data, variable );
 						this.setState({
-							variable,
-							xvalues,
-							xstdev: roundn( stdev( xvalues ), -6 )
+							variable
 						});
 					}}
 				/>
