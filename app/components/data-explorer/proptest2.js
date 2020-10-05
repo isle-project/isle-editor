@@ -19,6 +19,7 @@ import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import getBinaryVars from './get_binary_vars.js';
@@ -37,12 +38,12 @@ class PropTest2 extends Component {
 	constructor( props ) {
 		super( props );
 
+		const var1 = props.categorical[ 0 ];
 		let categories;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			const vals = props.data[ props.categorical[ 0 ] ];
+			const vals = props.data[ var1 ];
 			if ( vals ) {
-				categories = vals.slice();
-				unique( categories );
+				categories = extractCategoriesFromValues( vals, var1 );
 			} else {
 				categories = [];
 			}
@@ -50,8 +51,8 @@ class PropTest2 extends Component {
 			categories = [];
 		}
 		this.state = {
-			categories: categories,
-			var1: props.categorical[ 0 ],
+			categories,
+			var1,
 			success: categories[ 0 ],
 			grouping: null,
 			var2: null,
@@ -232,12 +233,14 @@ class PropTest2 extends Component {
 								legend="Variable:"
 								defaultValue={categorical[ 0 ]}
 								options={categorical}
-								onChange={( val ) => {
-									let categories = this.props.data[ val ].slice();
+								onChange={( variable ) => {
+									const values = this.props.data[ variable ];
+									const categories = extractCategoriesFromValues( values, variable );
 									unique( categories );
 									this.setState({
+										var1: variable,
 										categories,
-										var1: val
+										success: categories[ 0 ]
 									});
 								}}
 							/>
@@ -323,6 +326,7 @@ class PropTest2 extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.calculateTwoSamplePropTest}
+						disabled={!this.state.var2 && !this.state.grouping}
 					>Calculate</Button>
 				</Card.Body>
 			</Card>
