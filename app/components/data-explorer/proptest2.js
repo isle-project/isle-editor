@@ -19,6 +19,7 @@ import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import escapeLatex from 'utils/escape-latex';
 import extractCategoriesFromValues from './extract_categories_from_values.js';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
@@ -122,20 +123,23 @@ class PropTest2 extends Component {
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
 			const title = `Hypothesis test for equality of ${var1} proportion by ${grouping}`;
+			const c1Label = escapeLatex( firstCategory );
+			const c2Label = escapeLatex( secondCategory );
+			const gLabel = escapeLatex( grouping );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<span>
-					Let <TeX raw={`p_{${firstCategory}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, <br />
-					and <TeX raw={`p_{${secondCategory}}`} /> the probability in the second group, respectively. We test
+					Let <TeX raw={`p_{${c1Label}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, <br />
+					and <TeX raw={`p_{${c2Label}}`} /> the probability in the second group, respectively. We test
 				</span>
 				<TeX
 					displayMode
-					raw={`H_0: p_{\\text{${grouping}:${firstCategory}}} - p_{\\text{${grouping}:${secondCategory}}} = ${diff}`}
+					raw={`H_0: p_{\\text{${gLabel}:${c1Label}}} - p_{\\text{${gLabel}:${c2Label}}} = ${diff}`}
 					tag="" />
 				<span> vs. </span>
 				<TeX
 					displayMode
-					raw={`H_1: p_{\\text{${grouping}:${firstCategory}}} - p_{\\text{${grouping}:${secondCategory}}} ${arrow} ${diff}`}
+					raw={`H_1: p_{\\text{${gLabel}:${c1Label}}} - p_{\\text{${gLabel}:${c2Label}}} ${arrow} ${diff}`}
 					tag=""
 				/>
 				<pre>
@@ -175,15 +179,17 @@ class PropTest2 extends Component {
 				arrow = '>';
 			}
 			const title = `Hypothesis test for equality of proportion ${var1} against proportion ${var2}`;
+			const evar1 = escapeLatex( var1 );
+			const evar2 = escapeLatex( var2 );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>{title}</label><br />
 				<p>
-					Let <TeX raw={`p_{${var1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, <br />
-					and <TeX raw={`p_{${var2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
+					Let <TeX raw={`p_{${evar1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, <br />
+					and <TeX raw={`p_{${evar2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
 				</p>
-				<TeX displayMode raw={`H_0: p_{${var1}} - p_{${var2}} = ${diff}`} tag="" />
+				<TeX displayMode raw={`H_0: p_{${evar1}} - p_{${evar2}} = ${diff}`} tag="" />
 				<span> vs. </span>
-				<TeX displayMode raw={`H_1: p_{${var1}} - p_{${var2}} ${arrow} ${diff}`} tag="" />
+				<TeX displayMode raw={`H_1: p_{${evar1}} - p_{${evar2}} ${arrow} ${diff}`} tag="" />
 				<pre style={{ fontSize: '11px' }}>
 					{result.print({
 						decision: showDecision
