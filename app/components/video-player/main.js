@@ -73,16 +73,15 @@ class Video extends Component {
 	}
 
 	componentDidMount() {
-		const lesson = document.getElementById( 'Lesson' );
-		lesson.addEventListener( 'scroll', this.isInViewport );
+		document.addEventListener( 'scroll', this.isInViewport );
 	}
 
 	componentWillUnmount() {
-		const lesson = document.getElementById( 'Lesson' );
-		lesson.removeEventListener( 'scroll', this.isInViewport );
+		document.removeEventListener( 'scroll', this.isInViewport );
 	}
 
 	isInViewport = () => {
+		debug( 'Check whether video player is in viewport...' );
 		if ( !this.videoPlayer ) {
 			return false;
 		}
