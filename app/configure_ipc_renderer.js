@@ -30,6 +30,7 @@ const debug = logger( 'isle-editor' );
 vex.registerPlugin( vexDialog );
 vex.defaultOptions.className = 'vex-theme-plain';
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
+const RE_GIST_URL = /gist\.github\.com\/?[^/]*?\/([\s\S]+)$/;
 
 
 // MAIN //
@@ -134,6 +135,10 @@ function configureIpcRenderer( store ) {
 			placeholder: 'GitHub Gist URL',
 			callback: async ( value ) => {
 				if ( value ) {
+					const match = RE_GIST_URL.exec( value );
+					if ( match && match[ 1 ] ) {
+						value = match[ 1 ];
+					}
 					const res = await getGist( value );
 					const files = res.data.files;
 					const keys = objectKeys( files );
