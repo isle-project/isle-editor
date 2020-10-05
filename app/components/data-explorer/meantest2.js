@@ -18,6 +18,7 @@ import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
+import escapeLatex from 'utils/escape-latex';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import getBinaryVars from './get_binary_vars.js';
@@ -137,17 +138,20 @@ class MeanTest2 extends Component {
 			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
+			const egrouping = escapeLatex( grouping );
+			const ecat1 = escapeLatex( out.firstCategory );
+			const ecat2 = escapeLatex( out.secondCategory );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Hypothesis test for {xvar} between {grouping}:</span>
 				<TeX
 					displayMode
-					raw={`H_0: \\mu_{\\text{${grouping}:${out.firstCategory}}} - \\mu_{\\text{${grouping}:${out.secondCategory}}} = ${diff}`}
+					raw={`H_0: \\mu_{\\text{${egrouping}:${ecat1}}} - \\mu_{\\text{${egrouping}:${ecat2}}} = ${diff}`}
 					tag=""
 				/>
 				<span> vs. </span>
 				<TeX
 					displayMode
-					raw={`H_1: \\mu_{\\text{${grouping}:${out.firstCategory}}} - \\mu_{\\text{${grouping}:${out.secondCategory}}} ${arrow} ${diff}`}
+					raw={`H_1: \\mu_{\\text{${egrouping}:${ecat1}}} - \\mu_{\\text{${egrouping}:${ecat2}}} ${arrow} ${diff}`}
 					tag=""
 				/>
 				<pre>
@@ -184,17 +188,19 @@ class MeanTest2 extends Component {
 			});
 			printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 			printout = replace( printout, RE_ONESIDED_GREATER, '' );
+			const exvar = escapeLatex( xvar );
+			const eyvar = escapeLatex( yvar );
 			value = <div style={{ overflowX: 'auto', width: '100%' }}>
 				<label>Hypothesis test for {xvar} against {yvar}:</label>
 				<TeX
 					displayMode
-					raw={`H_0: \\mu_{${xvar}} - \\mu_{${yvar}} = ${diff}`}
+					raw={`H_0: \\mu_{${exvar}} - \\mu_{${eyvar}} = ${diff}`}
 					tag=""
 				/>
 				<span>vs.</span>
 				<TeX
 					displayMode
-					raw={`\\; H_1: \\mu_{${xvar}} - \\mu_{${yvar}} ${arrow} ${diff}`}
+					raw={`\\; H_1: \\mu_{${exvar}} - \\mu_{${eyvar}} ${arrow} ${diff}`}
 					tag=""
 				/>
 				<pre>
