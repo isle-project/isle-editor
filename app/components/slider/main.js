@@ -12,7 +12,7 @@ import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './load_translations.js';
 import './slick-theme.min.css';
-import './slick.min.css';
+import './slick.css';
 import './slider.css';
 
 
@@ -44,29 +44,9 @@ class DefaultSlider extends Component {
 				nChildren += 1;
 				return ( <div> {child} </div> );
 			}) : <div></div>;
-		const settings = {
-			className: 'centered',
-			speed: 1000,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			prevArrow: <PrevArrow onClick={props.onClick} />,
-			nextArrow: <NextArrow onClick={props.onClick} />,
-			...props,
-			beforeChange: ( oldIndex, newIndex ) => {
-				this.setState({ currentSlide: newIndex+1 });
-				closeHintButtons( this.slider );
-			}
-		};
-
-		if ( props.interval ) {
-			settings.autoplay = true;
-			settings.autoplaySpeed = props.interval;
-		}
-
 		this.state = {
 			nChildren,
 			childDivs,
-			settings,
 			currentSlide: 1
 		};
 	}
@@ -116,23 +96,39 @@ class DefaultSlider extends Component {
 		if ( this.state.nChildren <= 1 ) {
 			return <Alert variant="danger" >{this.props.t('missing-children')}</Alert>;
 		}
+		const settings = {
+			className: 'centered',
+			speed: 1000,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			prevArrow: <PrevArrow onClick={this.props.onClick} />,
+			nextArrow: <NextArrow onClick={this.props.onClick} />,
+			...this.props,
+			beforeChange: ( oldIndex, newIndex ) => {
+				this.setState({ currentSlide: newIndex+1 });
+				closeHintButtons( this.slider );
+			},
+			style: {
+				userSelect: this.props.draggable ? 'none' : 'inherit'
+			}
+		};
+		if ( this.props.interval ) {
+			settings.autoplay = true;
+			settings.autoplaySpeed = this.props.interval;
+		}
 		return (
 			<Card
 				size="large"
-				style={{
-					marginLeft: 'auto',
-					marginRight: 'auto',
-					marginTop: '20px',
-					marginBottom: '20px',
-					maxWidth: '1200px',
-					width: '100%',
-					...this.props.style
-				}}
+				className="slider-card"
+				style={this.props.style}
 			>
 				{this.renderTitle()}
 				<Card.Body style={{ paddingBottom: '40px' }}>
-					<Slider ref={( slider ) => { this.slider = slider; }} {...this.state.settings} >
-						{ this.state.childDivs }
+					<Slider
+						ref={( slider ) => { this.slider = slider; }}
+						{...settings}
+					>
+						{this.state.childDivs}
 					</Slider>
 				</Card.Body>
 			</Card>
@@ -147,7 +143,7 @@ DefaultSlider.defaultProps = {
 	title: '',
 	dots: true,
 	fade: false,
-	draggable: true,
+	draggable: false,
 	goto: 0,
 	infinite: false,
 	interval: null,
