@@ -13,6 +13,7 @@ import VoiceControl from 'components/internal/voice-control';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
 import isHidden from 'utils/is-hidden';
+import isElectron from 'utils/is-electron';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
@@ -73,11 +74,13 @@ class Video extends Component {
 	}
 
 	componentDidMount() {
-		document.addEventListener( 'scroll', this.isInViewport );
+		const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+		node.addEventListener( 'scroll', this.isInViewport );
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener( 'scroll', this.isInViewport );
+		const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+		node.removeEventListener( 'scroll', this.isInViewport );
 	}
 
 	isInViewport = () => {
