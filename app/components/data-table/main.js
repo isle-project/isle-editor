@@ -420,7 +420,6 @@ class DataTable extends Component {
 				newState.keys = keys;
 				newState.filtered = nextProps.filters;
 				newState.showTooltip = false;
-				newState.selectedRows = rows.length;
 				newState.data = nextProps.data;
 				newState.columns = createColumns( nextProps, newState );
 			}
@@ -448,7 +447,6 @@ class DataTable extends Component {
 			const thead = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 0 ];
 			const theadControls = findDOMNode( this.table ).getElementsByClassName( 'rt-thead' )[ 1 ];
 			const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
-
 			tbody.addEventListener( 'scroll', () => {
 				thead.scrollLeft = tbody.scrollLeft;
 				theadControls.scrollLeft = tbody.scrollLeft;
@@ -482,11 +480,7 @@ class DataTable extends Component {
 		}
 		if ( !isEmptyObject( newState ) ) {
 			debug( 'Trigger a state change after update...' );
-			this.setState( newState, () => {
-				this.setState({
-					selectedRows: this.table.getResolvedState().sortedData.length
-				});
-			});
+			this.setState( newState );
 		}
 	}
 
@@ -531,7 +525,6 @@ class DataTable extends Component {
 	handleFilterChange = ( filtered, column ) => {
 		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
 		tbody.scrollTop = 0;
-		const selectedRows = this.table.getResolvedState().sortedData.length;
 		const session = this.context;
 		session.log({
 			id: this.id,
@@ -539,7 +532,6 @@ class DataTable extends Component {
 			value: column.id
 		});
 		this.setState({
-			selectedRows,
 			filtered
 		}, () => {
 			this.props.onFilteredChange( this.state.filtered.filter( x => !isNull( x.value ) ) );
@@ -547,7 +539,6 @@ class DataTable extends Component {
 	}
 
 	handleSortedChange = ( sorted, column ) => {
-		const selectedRows = this.table.getResolvedState().sortedData.length;
 		const session = this.context;
 		session.log({
 			id: this.id,
@@ -555,7 +546,6 @@ class DataTable extends Component {
 			value: column.id
 		});
 		this.setState({
-			selectedRows,
 			sorted
 		});
 	}
@@ -578,9 +568,6 @@ class DataTable extends Component {
 			sorted: []
 		}, () => {
 			this.props.onFilteredChange( this.state.filtered );
-			this.setState({
-				selectedRows: this.table.getResolvedState().sortedData.length
-			});
 		});
 	}
 
@@ -644,7 +631,7 @@ class DataTable extends Component {
 
 	render() {
 		debug( 'Rendering component' );
-		let { selectedRows, rows, dataInfo } = this.state;
+		let { rows, dataInfo } = this.state;
 		if ( !rows ) {
 			return <Alert variant="danger">{this.props.t('no-data')}</Alert>;
 		}
@@ -792,35 +779,8 @@ class DataTable extends Component {
 							t={this.props.t}
 						/>
 					</div>
-					<ButtonToolbar className="data-table-header-toolbar">
-						{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('variable-descriptions-tooltip')} ><Button
-							onClick={this.showDescriptions}
-							variant="light"
-							size="xsmall"
-							className="variable-descriptions-button"
-						>
-							{this.props.t('variable-descriptions')}
-						</Button></Tooltip> : null }
-						{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
-						<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
-							<Button
-								onClick={this.reset}
-								variant="light"
-								size="xsmall"
-								className="reset-button"
-							>
-								{this.props.t('reset-display')}
-							</Button>
-						</Tooltip> : null }
-					</ButtonToolbar>
 					<ReactTable
 						id={this.id}
-						ref={( table ) => {
-							if ( table ) {
-								this.table = table;
-								this.frozenElems = findDOMNode( this.table ).getElementsByClassName( 'frozen' );
-							}
-						}}
 						data={rows}
 						columns={cols}
 						showPagination={true}
@@ -857,10 +817,45 @@ class DataTable extends Component {
 							out.style.width = 'max-content !important';
 							return out;
 						}}
-					/>
-					<label className="label-number-rows">
-						<i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i>
-					</label>
+					>
+						{( state, makeTable, instance ) => {
+							const selectedRows = state.sortedData.length;
+							return (
+								<div ref={( table ) => {
+									if ( table ) {
+										this.table = table;
+										this.frozenElems = findDOMNode( this.table ).getElementsByClassName( 'frozen' );
+									}
+								}} >
+									<ButtonToolbar className="data-table-header-toolbar">
+										{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('variable-descriptions-tooltip')} ><Button
+											onClick={this.showDescriptions}
+											variant="light"
+											size="xsmall"
+											className="variable-descriptions-button"
+										>
+											{this.props.t('variable-descriptions')}
+										</Button></Tooltip> : null }
+										{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
+										<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
+											<Button
+												onClick={this.reset}
+												variant="light"
+												size="xsmall"
+												className="reset-button"
+											>
+												{this.props.t('reset-display')}
+											</Button>
+										</Tooltip> : null }
+									</ButtonToolbar>
+									{makeTable()}
+									<label className="label-number-rows">
+										<i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i>
+									</label>
+								</div>
+							);
+						}}
+					</ReactTable>
 				</div>
 				{modal}
 				{this.state.showSaveModal ?
