@@ -17,7 +17,6 @@ import isnan from '@stdlib/assert/is-nan';
 */
 function retrieveBinnedValues( rawData, catNames, xBreaks ) {
 	const newVar = [];
-	let hasMissing = false;
 	for ( let i = 0; i < rawData.length; i++ ) {
 		let newLabel = void 0;
 		const val = rawData[ i ];
@@ -35,12 +34,8 @@ function retrieveBinnedValues( rawData, catNames, xBreaks ) {
 			}
 		} else {
 			newLabel = null;
-			hasMissing = true;
 		}
 		newVar.push( newLabel );
-	}
-	if ( hasMissing && !catNames.includes( null ) ) {
-		catNames.push( null );
 	}
 	return newVar;
 }
