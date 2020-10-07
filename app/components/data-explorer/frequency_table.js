@@ -152,32 +152,47 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 	);
 };
 
-const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
+const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
 			{entries( freqs ).map( ( arr, i ) => {
-				const categories = arr[ 1 ].map(
-					( x, j ) => <td key={j}>{x.category}</td>
+				const relativeFreqs = arr[ 1 ].relativeFreqs;
+				const absoluteFreqs = arr[ 1 ].absoluteFreqs;
+				const categories = arr[ 1 ].keys.map(
+					( x, j ) => <td key={j}>{x}</td>
 				);
 				let counts;
-				if ( !relative ) {
+				if ( absoluteFreqs && !relativeFreqs ) {
 					let nTotal = 0;
-					counts = arr[ 1 ].map( ( x, j ) => {
-						const count = x.count || 0;
+					counts = absoluteFreqs.map( ( x, j ) => {
+						const count = x || 0;
 						nTotal += count;
 						return ( <td key={j}>
 							{ count }
 						</td> );
 					});
 					counts.push( <td key="total">{nTotal}</td> );
-				} else {
-					counts = arr[ 1 ].map( ( x, j ) => {
-						const count = x.count || 0;
+				}
+				else if ( !absoluteFreqs && relativeFreqs ) {
+					counts = relativeFreqs.map( ( x, j ) => {
+						const count = x || 0;
 						return ( <td key={j}>
 							{ count.toFixed( nDecimalPlaces ) }
 						</td> );
 					});
+					counts.push( <td key="total">1.0</td> );
+				}
+				else if ( absoluteFreqs && relativeFreqs ) {
+					let nTotal = 0;
+					counts = absoluteFreqs.map( ( x, j ) => {
+						const count = x || 0;
+						nTotal += count;
+						return ( <td key={j}>
+							{count} ({relativeFreqs[ j ].toFixed( nDecimalPlaces )})
+						</td> );
+					});
+					counts.push( <td key="total">{nTotal} (1.0)</td> );
 				}
 				return ( <div key={i} >
 					<label>{arr[ 0 ]}: </label>
@@ -186,11 +201,11 @@ const groupedFrequencyTable = ( variable, freqs, relative, nDecimalPlaces ) => {
 							<tr>
 								<th>Category</th>
 								{categories}
-								{ !relative ? <th>Total</th> : null }
+								<th>Total</th>
 							</tr>
 						</thead>
 						<tbody>
-							<th>{ relative ? 'Relative' : 'Count' }</th>
+							<th>{ relativeFreqs && !absoluteFreqs ? 'Relative' : 'Count' }</th>
 							{counts}
 						</tbody>
 					</Table>
@@ -223,7 +238,7 @@ class FrequencyTable extends Component {
 			freqs = getFrequencies( variable, this.props.data[ variable ], calculateCounts, calculateRelative );
 		} else {
 			freqs = by( this.props.data[ variable ], this.props.data[ group ], ( arr ) => {
-				return getFrequencies( variable, arr, calculateRelative );
+				return getFrequencies( variable, arr, calculateCounts, calculateRelative );
 			});
 			if ( group.categories ) {
 				// Create new object with different insertion order:
