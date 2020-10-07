@@ -90,6 +90,7 @@ import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mos
 import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
 import QQPlot, { generateQQPlotConfig } from 'components/data-explorer/qqplot';
 import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
+import ScatterplotMatrix, { generateScatterplotMatrixConfig } from 'components/data-explorer/scatterplot_matrix.js';
 import Violinplot, { generateViolinplotConfig } from 'components/data-explorer/violinplot';
 import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
 
@@ -433,6 +434,9 @@ class DataExplorer extends Component {
 			break;
 		case 'DATA_EXPLORER_SHARE_SCATTERPLOT':
 			config = generateScatterplotConfig({ data: this.state.data, ...value });
+			break;
+		case 'DATA_EXPLORER_SHARE_SPLOM':
+			config = generateScatterplotMatrixConfig({ data: this.state.data, ...value });
 			break;
 		case 'DATA_EXPLORER_SHARE_VIOLINPLOT':
 			config = generateViolinplotConfig({ data: this.state.data, ...value });
@@ -1131,6 +1135,14 @@ class DataExplorer extends Component {
 						onSelected={this.on2dSelection}
 					/>;
 					break;
+				case 'Scatterplot Matrix':
+					content = <ScatterplotMatrix
+						{...quantitativeProps}
+						logAction={this.logAction}
+						session={this.context}
+						onSelected={this.on2dSelection}
+					/>;
+					break;
 				case 'Violin Plot':
 					content = <Violinplot
 						{...quantitativeProps}
@@ -1758,6 +1770,7 @@ DataExplorer.defaultProps = {
 		'Box Plot',
 		'Line Plot',
 		'Scatterplot',
+		'Scatterplot Matrix',
 		'Heat Map',
 		'Contour Chart',
 		'QQ Plot'
