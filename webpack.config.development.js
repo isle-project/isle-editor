@@ -24,7 +24,7 @@ const publicPath = `http://localhost:${port}/dist`;
 
 const config = smp.wrap({
 	...baseConfig,
-	devtool: 'eval',
+	devtool: 'eval-cheap-source-map',
 
 	entry: [
 		path.join( __dirname, './app/index.js' )
