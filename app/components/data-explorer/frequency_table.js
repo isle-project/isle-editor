@@ -205,8 +205,10 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 							</tr>
 						</thead>
 						<tbody>
-							<th>{ relativeFreqs && !absoluteFreqs ? 'Relative' : 'Count' }</th>
-							{counts}
+							<tr>
+								<th>{ relativeFreqs && !absoluteFreqs ? 'Relative' : 'Count' }</th>
+								{counts}
+							</tr>
 						</tbody>
 					</Table>
 				</div> );
