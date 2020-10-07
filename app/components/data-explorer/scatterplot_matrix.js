@@ -10,6 +10,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import SelectInput from 'components/input/select';
 import Plotly from 'components/plotly';
 import { DATA_EXPLORER_SHARE_SPLOM, DATA_EXPLORER_SPLOM } from 'constants/actions.js';
+import { CAT20 } from 'constants/colors';
 import QuestionButton from './question_button.js';
 
 
@@ -28,7 +29,22 @@ const axis = () => ({
 	ticklen: 4
 });
 
-export function generateScatterplotMatrixConfig({ data, variables }) {
+const colors = ( values ) => {
+	const mapping = {};
+	const out = new Array( values.length );
+	let nKeys = 0;
+	for ( let i = 0; i < values.length; i++ ) {
+		const v = values[ i ];
+		if ( !mapping[ v ] ) {
+			mapping[ v ] = CAT20[ nKeys ];
+			nKeys += 1;
+		}
+		out[ i ] = mapping[ v ];
+	}
+	return out;
+};
+
+export function generateScatterplotMatrixConfig({ data, variables, color }) {
 	const traces = [{
 		type: 'splom',
 		dimensions: variables.map( x => {
@@ -38,6 +54,12 @@ export function generateScatterplotMatrixConfig({ data, variables }) {
 			};
 		})
 	}];
+	if ( color ) {
+		traces[ 0 ].text = data[ color ];
+		traces[ 0 ].marker = {
+			color: colors( data[ color ] )
+		};
+	}
 	const layout = {
 		hovermode: 'closest',
 		dragmode: 'select',
@@ -63,7 +85,8 @@ class ScatterplotMatrix extends Component {
 		super( props );
 
 		this.state = {
-			displayedVariables: null
+			displayedVariables: null,
+			color: null
 		};
 	}
 
@@ -71,6 +94,7 @@ class ScatterplotMatrix extends Component {
 		const variables = this.state.displayedVariables;
 		const config = generateScatterplotMatrixConfig({
 			data: this.props.data,
+			color: this.state.color,
 			variables
 		});
 		const plotId = randomstring( 6 );
@@ -140,6 +164,16 @@ class ScatterplotMatrix extends Component {
 							});
 						}}
 					/>
+					<SelectInput
+						legend="Color:"
+						options={this.props.groupingVariables}
+						clearable={true}
+						onChange={( value ) => {
+							this.setState({
+								color: value
+							});
+						}}
+					/>
 					<Button
 						variant="primary" block
 						onClick={this.generate}
@@ -155,6 +189,7 @@ class ScatterplotMatrix extends Component {
 // PROPERTIES //
 
 ScatterplotMatrix.defaultProps = {
+	groupingVariables: null,
 	logAction() {},
 	onSelected() {},
 	session: {}
@@ -162,6 +197,7 @@ ScatterplotMatrix.defaultProps = {
 
 ScatterplotMatrix.propTypes = {
 	data: PropTypes.object.isRequired,
+	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
