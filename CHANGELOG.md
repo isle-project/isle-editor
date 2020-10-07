@@ -1,5 +1,22 @@
 # Changelog
 
+## [v0.69.0](https://github.com/isle-project/isle-editor/releases/tag/v0.69.0) (2020-10-07)
+
+This update fixes a few bugs due to new features in the data explorer: the binning transformer tool, as well as correct handling of ordered categories in boxplots and tables. The new editor version also comes with features to make filing bug reports and feature requests easier. When clicking on the light bulb that shows up when placing the cursor inside a component, one can now directly file a (pre-filled) bug report or feature request for the respective component:
+
+![image](https://user-images.githubusercontent.com/1913638/95394616-dbdc5c80-08ca-11eb-9fba-5d5b1e426e98.png)
+
+One can also connect the editor to one's GitHub account on the Settings page, which enables one to upload/import lesson templates from GitHub Gists.
+
+
+**Implemented enhancements:**
+
+- scatterplot and correlation matrix [\#1368](https://github.com/isle-project/isle-editor/issues/1368)
+
+**Fixed bugs:**
+
+- box plot; factors lose order when a second group by variable is added [\#1369](https://github.com/isle-project/isle-editor/issues/1369)
+
 ## [v0.68.1](https://github.com/isle-project/isle-editor/releases/tag/v0.68.1) (2020-10-02)
 
 This patch fixed an issue that caused lesson uploads to break on Windows.
