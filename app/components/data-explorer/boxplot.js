@@ -15,6 +15,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/actions.js';
+import extractCategoriesFromValues from './extract_categories_from_values.js';
 import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
 import by from './by.js';
@@ -32,6 +33,7 @@ function isNonMissingNumber( x ) {
 }
 
 export function generateBoxplotConfig({ data, variable, group, orientation, overlayPoints }) {
+	let categoryarray;
 	let traces;
 	if ( group.length === 0 ) {
 		const values = data[ variable ];
@@ -54,7 +56,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		traces = [ trace ];
 	}
 	else if ( group.length === 1 ) {
-		let freqs = by( data[ variable ], data[ group[0] ], arr => {
+		const freqs = by( data[ variable ], data[ group[0] ], arr => {
 			return arr;
 		});
 		traces = [];
@@ -82,14 +84,16 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		}
 	}
 	else if ( group.length === 2 ) {
-		let freqs = by( data[ variable ], data[ group[0] ], arr => {
+		const freqs = by( data[ variable ], data[ group[0] ], arr => {
 			return arr;
 		});
-		let cats = by( data[ group[1] ], data[ group[0] ], arr => {
+		const cats = by( data[ group[1] ], data[ group[0] ], arr => {
 			return arr;
 		});
 		traces = [];
-		const keys = extractUsedCategories( freqs, group );
+		const keys = extractUsedCategories( freqs, group[ 0 ] );
+		const catKeys = extractCategoriesFromValues( data[ group[1] ], group[ 1 ] );
+		categoryarray = catKeys;
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			let x;
@@ -125,21 +129,31 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 			trace.jitter = 0.5;
 		}
 	}
+	const layout = {
+		title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
+		xaxis: {
+			title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
+			type: orientation === 'vertical' ? 'category' : null,
+			showticklabels: ( group.length > 0 || orientation === 'horizontal' )
+		},
+		yaxis: {
+			title: orientation === 'horizontal' && group.length === 2 ? group[ 1 ] : '',
+			type: orientation === 'horizontal' ? 'category' : null,
+			showticklabels: ( group.length > 0 || orientation === 'vertical' )
+		}
+	};
+	if ( categoryarray ) {
+		if ( orientation === 'horizontal' ) {
+			layout.yaxis.categoryorder = 'array';
+			layout.yaxis.categoryarray = categoryarray;
+		} else {
+			layout.xaxis.categoryorder = 'array';
+			layout.xaxis.categoryarray = categoryarray;
+		}
+	}
 	const config = {
 		data: traces,
-		layout: {
-			title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
-			xaxis: {
-				title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
-				type: orientation === 'vertical' ? 'category' : null,
-				showticklabels: ( group.length > 0 || orientation === 'horizontal' )
-			},
-			yaxis: {
-				title: orientation === 'horizontal' && group.length === 2 ? group[ 1 ] : '',
-				type: orientation === 'horizontal' ? 'category' : null,
-				showticklabels: ( group.length > 0 || orientation === 'vertical' )
-			}
-		}
+		layout
 	};
 	if ( group.length === 2 ) {
 		config.layout.boxmode = 'group';
