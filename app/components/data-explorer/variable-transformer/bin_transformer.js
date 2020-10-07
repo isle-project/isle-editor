@@ -139,13 +139,13 @@ class BinTransformer extends Component {
 	handleVariableChange = ( value ) => {
 		debug( 'Change variable to bin...' );
 		const histConfigSettings = {
-			'data': this.props.data,
-			'variable': value,
-			'group': null,
-			'overlayDensity': true,
-			'densityType': 'Data-driven',
-			'chooseBins': false,
-			'nBins': null
+			data: this.props.data,
+			variable: value,
+			group: null,
+			displayDensity: true,
+			densityType: 'Data-driven',
+			chooseBins: false,
+			nBins: null
 		};
 		const configHist = generateHistogramConfig( histConfigSettings );
 		configHist.layout.yaxis = {
