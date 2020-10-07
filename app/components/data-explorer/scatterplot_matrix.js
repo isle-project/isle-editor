@@ -28,8 +28,7 @@ const axis = () => ({
 	ticklen: 4
 });
 
-
-function generateScatterplotMatrixConfig({ data, variables }) {
+export function generateScatterplotMatrixConfig({ data, variables }) {
 	const traces = [{
 		type: 'splom',
 		dimensions: variables.map( x => {
