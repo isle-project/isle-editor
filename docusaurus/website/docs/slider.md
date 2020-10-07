@@ -22,7 +22,7 @@ A component which displays its children in a slideshow or carousel.
 * __title__ | `string`: title for the slideshow / carousel to be displayed at its top. Default: `''`.
 * __dots__ | `boolean`: display dots at the bottom for quickly navigating to any slide. Default: `true`.
 * __fade__ | `boolean`: controls whether fading is used for transitioning between the slides. Default: `false`.
-* __draggable__ | `boolean`: controls whether users can drag the slides to navigate between them. Default: `true`.
+* __draggable__ | `boolean`: controls whether users can drag the slides to navigate between them. Default: `false`.
 * __goto__ | `number`: If property is changed, the component jumps to the slide with the selected index. Default: `0`.
 * __infinite__ | `boolean`: controls whether the slideshow wraps around it's contents. Default: `false`.
 * __interval__ | `number`: sets a time interval for an automatic slide change. Default: `none`.

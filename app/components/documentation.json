@@ -706,6 +706,7 @@
           "Box Plot",
           "Line Plot",
           "Scatterplot",
+          "Scatterplot Matrix",
           "Heat Map",
           "Contour Chart",
           "QQ Plot"
@@ -6055,7 +6056,7 @@
         "name": "draggable",
         "type": "boolean",
         "description": "controls whether users can drag the slides to navigate between them",
-        "defaultValue": true
+        "defaultValue": false
       },
       {
         "name": "goto",
@@ -7143,12 +7144,6 @@
   },
   "Weather": {
     "props": [
-      {
-        "name": "key",
-        "type": "string",
-        "description": "APIXU key",
-        "defaultValue": "<number>"
-      },
       {
         "name": "language",
         "type": "string",

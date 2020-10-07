@@ -79,6 +79,7 @@ We will include the explorer with the following code:
   'Box Plot',
   'Line Plot',
   'Scatterplot',
+  'Scatterplot Matrix',
   'Heat Map',
   'Contour Chart',
   'QQ Plot'
