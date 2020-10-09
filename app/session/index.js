@@ -25,6 +25,7 @@ import axios from 'axios';
 import localforage from 'localforage';
 import { basename } from 'path';
 import io from 'socket.io-client';
+import debounce from 'lodash.debounce';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
@@ -66,7 +67,6 @@ const GRAPHICS_REGEX = /\/ocpu\/tmp\/[^/]+\/graphics\/[^\n]*/g;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
 let userRights = null;
-let initializedProgress = false;
 const currentTime = new Date().getTime();
 let updateTime = currentTime;
 let addedScore = 0;
@@ -267,6 +267,9 @@ class Session {
 			debug( '[1] Retrieve lesson information:' );
 			this.getLessonInfo();
 		}
+
+		// Initialize progress after a response visualizer hasn't registered for at least five seconds:
+		this.debouncedInitializeProgress = debounce( this.initializeProgress, 5000 );
 
 		if ( !isElectron && !offline ) {
 			document.addEventListener( 'focusin', this.focusInListener );
@@ -1738,6 +1741,45 @@ class Session {
 	}
 
 	/**
+	* Initialize progress after response visualizer has mounted.
+	*/
+	initializeProgress() {
+		if (
+			this.anonymous ||
+			isEmptyObject( this.currentUserActions ) ||
+			( userRights && userRights.owner )
+		) {
+			return;
+		}
+		debug( 'Set initial progress...' );
+		let progress = 0;
+		const ids = this.responseVisualizerIds;
+		this.unfinished = ids.slice();
+		for ( let i = ids.length - 1; i >= 0; i-- ) {
+			const key = ids[ i ];
+			const actions = this.currentUserActions[ key ];
+			const ref = this.responseVisualizers[ key ];
+			if ( !ref ) {
+				continue;
+			}
+			const type = ref.type;
+			if ( actions ) {
+				for ( let j = 0; j < actions.length; j++ ) {
+					if ( actions[ j ].type === type ) {
+						this.unfinished.splice( i, 1 );
+						progress += 1.0 / ids.length;
+						break;
+					}
+				}
+			}
+		}
+		PRIVATE_VARS[ 'progress' ] = clamp( progress, 0, 1 );
+		debug( 'Initial progress: '+progress );
+		this.update( SELF_INITIAL_PROGRESS, progress );
+		this.socket.emit( 'progress', progress );
+	}
+
+	/**
 	* Sets the user's progress for the lesson.
 	*
 	* @param {string} [id] - action id
@@ -1751,37 +1793,7 @@ class Session {
 			return;
 		}
 		const ids = this.responseVisualizerIds;
-		if ( !this.unfinished ) {
-			this.unfinished = ids.slice();
-		}
-		if ( !initializedProgress ) {
-			debug( 'Set initial progress...' );
-			let progress = 0;
-			for ( let i = ids.length - 1; i >= 0; i-- ) {
-				const key = ids[ i ];
-				const actions = this.currentUserActions[ key ];
-				const ref = this.responseVisualizers[ key ];
-				if ( !ref ) {
-					continue;
-				}
-				const type = ref.type;
-				if ( actions ) {
-					for ( let j = 0; j < actions.length; j++ ) {
-						if ( actions[ j ].type === type ) {
-							this.unfinished.splice( i, 1 );
-							progress += 1.0 / ids.length;
-							break;
-						}
-					}
-				}
-			}
-			PRIVATE_VARS[ 'progress' ] = clamp( progress, 0, 1 );
-			this.update( SELF_INITIAL_PROGRESS, progress );
-			this.socket.emit( 'progress', progress );
-			this.logSession();
-			initializedProgress = true;
-		}
-		else if ( id ) {
+		if ( id ) {
 			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];

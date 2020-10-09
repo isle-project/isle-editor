@@ -154,6 +154,7 @@ class ResponseVisualizer extends Component {
 			};
 			const ids = session.responseVisualizerIds;
 			ids.push( props.id );
+			session.debouncedInitializeProgress();
 			ids.sort( ( a, b ) => {
 				a = document.getElementById( `${a}_response_visualizer` );
 				b = document.getElementById( `${b}_response_visualizer` );
