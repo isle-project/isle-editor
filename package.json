@@ -286,7 +286,7 @@
     "moment": "2.29.1",
     "monaco-editor": "0.21.2",
     "monaco-editor-webpack-plugin": "^2.0.0",
-    "null-loader": "^4.0.0",
+    "null-loader": "^4.0.1",
     "pdfjs-dist": "2.4.456",
     "pdfmake": "^0.1.68",
     "plotly.js": "1.56.0",
