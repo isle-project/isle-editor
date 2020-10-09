@@ -268,8 +268,8 @@ class Session {
 			this.getLessonInfo();
 		}
 
-		// Initialize progress after a response visualizer hasn't registered for at least five seconds:
-		this.debouncedInitializeProgress = debounce( this.initializeProgress, 5000 );
+		// Initialize progress after a response visualizer hasn't registered for at least three seconds:
+		this.debouncedInitializeProgress = debounce( this.initializeProgress, 3000 );
 
 		if ( !isElectron && !offline ) {
 			document.addEventListener( 'focusin', this.focusInListener );
