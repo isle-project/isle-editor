@@ -4,15 +4,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Select, { components } from 'react-select';
+import innerText from 'react-innertext';
+import stringify from 'csv-stringify';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from 'components/tooltip';
 import Switch from 'components/switch';
 import selectStyles from 'components/input/select/styles.js';
+import saveAs from 'utils/file-saver';
 import isHidden from 'utils/is-hidden';
 import { SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 import './student_responses.css';
@@ -88,7 +95,8 @@ class StudentResponses extends Component {
 		this.state = {
 			selected: null,
 			leftUser: null,
-			rightUser: null
+			rightUser: null,
+			anonymized: false
 		};
 	}
 
@@ -107,13 +115,6 @@ class StudentResponses extends Component {
 	componentWillUnmount() {
 		removeGlowElements();
 		this.unsubscribe();
-	}
-
-	thumbnailClickFactory = ( id ) => {
-		return ( event ) => {
-			event.stopPropagation();
-			this.props.onThumbnailClick( id );
-		};
 	}
 
 	highlightFactory = ( id ) => {
@@ -151,6 +152,92 @@ class StudentResponses extends Component {
 				selected: id
 			});
 		};
+	}
+
+	handleRadioChange = () => {
+		this.setState({
+			anonymized: !this.state.anonymized
+		});
+	}
+
+	prepareQuestionsForExport = ( hash ) => {
+		let out = [];
+		const session = this.props.session;
+		const ids = session.responseVisualizerIds;
+		const visualizers = session.responseVisualizers;
+		for ( let i = 0; i < ids.length; i++ ) {
+			const viz = visualizers[ ids[ i ] ];
+			const question = viz.ref.props.data.question;
+			const solution = viz.ref.props.data.solution;
+			let actions = viz.ref.state.actions;
+			actions = actions.map( x => {
+				return {
+					id: x.id,
+					type: x.type,
+					value: x.value,
+					absoluteTime: formatTime( x.absoluteTime ),
+					time: x.time,
+					email: this.state.anonymized ? hash.email[ x.email ] : x.email,
+					name: this.state.anonymized ? hash.name[ x.name ] : x.name,
+					question: React.isValidElement( question ) ? innerText( question ) : String( question ),
+					solution: React.isValidElement( solution ) ? innerText( solution ) : solution
+				};
+			});
+			out = out.concat( actions );
+		}
+		return out;
+	}
+
+	saveJSON = () => {
+		const session = this.props.session;
+		session.getFakeUsers( ( err, hash ) => {
+			if ( err ) {
+				return session.addNotification({
+					title: this.props.t( 'error-encountered' ),
+					message: this.props.t( 'error-fake-users' )+err.message,
+					level: 'error',
+					position: 'tl'
+				});
+			}
+			const questions = this.prepareQuestionsForExport( hash );
+			const blob = new Blob([ JSON.stringify( questions ) ], {
+				type: 'application/json'
+			});
+			const name = `questions_${session.namespaceName}_${session.lessonName}.json`;
+			saveAs( blob, name );
+		});
+	}
+
+	saveCSV = () => {
+		const session = this.props.session;
+		session.getFakeUsers( ( err, hash ) => {
+			if ( err ) {
+				return session.addNotification({
+					title: this.props.t( 'error-encountered' ),
+					message: this.props.t( 'error-fake-users' )+err.message,
+					level: 'error',
+					position: 'tl'
+				});
+			}
+			const questions = this.prepareQuestionsForExport( hash );
+			stringify( questions, {
+				header: true
+			}, ( err, output ) => {
+				if ( err ) {
+					return session.addNotification({
+						title: this.props.t( 'error-encountered' ),
+						message: this.props.t( 'error-csv' )+err.message,
+						level: 'error',
+						position: 'tl'
+					});
+				}
+				const blob = new Blob([ output ], {
+					type: 'text/plain'
+				});
+				const name = `questions_${session.namespaceName}_${session.lessonName}.csv`;
+				saveAs( blob, name );
+			});
+		});
 	}
 
 	render() {
@@ -290,6 +377,37 @@ class StudentResponses extends Component {
 			}} >
 				{list}
 			</Container>
+			<ToggleButtonGroup
+				name="options"
+				onChange={this.handleRadioChange}
+				type="radio"
+				size="small"
+				value={this.state.anonymized}
+				style={{ marginRight: '5px' }}
+			>
+				<ToggleButton
+					size="sm"
+					variant="light"
+					value={false}
+					style={{
+						fontSize: '12px',
+						color: this.state.anonymized ? '#A9A9A9' : 'black'
+					}}
+				>{this.props.t( 'original' )}</ToggleButton>
+				<ToggleButton
+					size="sm"
+					variant="light"
+					value={true}
+					style={{
+						fontSize: '12px',
+						color: this.state.anonymized ? 'black' : '#A9A9A9'
+					}}
+				>{this.props.t( 'anonymized' )}</ToggleButton>
+			</ToggleButtonGroup>
+			<ButtonGroup size="sm">
+				<Button variant="primary" onClick={this.saveJSON} >{this.props.t( 'save-json' )}</Button>
+				<Button variant="primary" onClick={this.saveCSV} >{this.props.t( 'save-csv' )}</Button>
+			</ButtonGroup>
 		</div> );
 	}
 }
@@ -298,7 +416,6 @@ class StudentResponses extends Component {
 // PROPERTIES //
 
 StudentResponses.propTypes = {
-	onThumbnailClick: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
 };
 
