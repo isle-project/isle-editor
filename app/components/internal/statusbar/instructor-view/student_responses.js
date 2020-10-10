@@ -170,8 +170,10 @@ class StudentResponses extends Component {
 			const question = viz.ref.props.data.question;
 			const solution = viz.ref.props.data.solution;
 			let actions = viz.ref.state.actions;
-			actions = actions.map( x => {
-				return {
+			const arr = [];
+			for ( let j = 0; j < actions.length; j++ ) {
+				const x = actions[ j ];
+				arr.push({
 					id: x.id,
 					type: x.type,
 					value: x.value,
@@ -181,9 +183,9 @@ class StudentResponses extends Component {
 					name: this.state.anonymized ? hash.name[ x.name ] : x.name,
 					question: React.isValidElement( question ) ? innerText( question ) : String( question ),
 					solution: React.isValidElement( solution ) ? innerText( solution ) : solution
-				};
-			});
-			out = out.concat( actions );
+				});
+			}
+			out = out.concat( arr );
 		}
 		return out;
 	}
@@ -247,8 +249,19 @@ class StudentResponses extends Component {
 		const ids = session.responseVisualizerIds;
 		const users = [];
 		if ( session.cohorts ) {
-			for ( let i = 0; i < session.cohorts.length; i++ ) {
-				const cohort = session.cohorts[ i ];
+			if ( !session.selectedCohort ) {
+				for ( let i = 0; i < session.cohorts.length; i++ ) {
+					const cohort = session.cohorts[ i ];
+					for ( let j = 0; j < cohort.members.length; j++ ) {
+						const member = cohort.members[ j ];
+						users.push({
+							value: cohort.members[ j ],
+							label: `${member.name} (${member.email})`
+						});
+					}
+				}
+			} else {
+				const cohort = session.selectedCohort;
 				for ( let j = 0; j < cohort.members.length; j++ ) {
 					const member = cohort.members[ j ];
 					users.push({
