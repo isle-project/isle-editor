@@ -66,6 +66,7 @@ const STDOUT_REGEX = /\/ocpu\/tmp\/[^/]+\/stdout/;
 const GRAPHICS_REGEX = /\/ocpu\/tmp\/[^/]+\/graphics\/[^\n]*/g;
 const ERR_REGEX = /\nIn call:[\s\S]*$/gm;
 const HELP_PATH_REGEX = /\/(?:site-)?library\/([^/]*)\/help\/([^/"]*)/;
+const LOG_SESSION_INTERVAL = 5 * 60000; // every five minutes
 let userRights = null;
 const currentTime = new Date().getTime();
 let updateTime = currentTime;
@@ -321,7 +322,7 @@ class Session {
 		debug( 'Lesson has mounted...' );
 		if ( !this.anonymous && !isEmptyObject( this.currentUserActions ) ) {
 			// Log session data to database in regular interval:
-			setInterval( this.logSession, 5*60000 );
+			this.logSessionInterval = setInterval( this.interval, LOG_SESSION_INTERVAL );
 		}
 	}
 
@@ -351,11 +352,14 @@ class Session {
 	*/
 	visibilityChangeListener = () => {
 		if ( document.hidden ) {
+			this.logSession();
 			this.stopPingServer();
+			clearInterval( this.logSessionInterval );
 		} else {
 			this.startPingServer();
+			updateTime = new Date().getTime();
+			this.logSessionInterval = setInterval( this.logSession, LOG_SESSION_INTERVAL );
 		}
-		this.logSession();
 	}
 
 	/**
