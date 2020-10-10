@@ -1781,6 +1781,7 @@ class Session {
 		debug( 'Initial progress: '+progress );
 		this.update( SELF_INITIAL_PROGRESS, progress );
 		this.socket.emit( 'progress', progress );
+		this.logSession();
 	}
 
 	/**
