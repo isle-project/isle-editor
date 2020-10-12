@@ -253,7 +253,7 @@ function completeCases( arrs ) {
 
 // MAIN //
 
-class SummaryStatistics extends Component {
+class SummaryStatisticsMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -714,7 +714,7 @@ class SummaryStatistics extends Component {
 
 // PROPERTIES //
 
-SummaryStatistics.defaultProps = {
+SummaryStatisticsMenu.defaultProps = {
 	groupingVariables: [],
 	defaultX: null,
 	defaultY: null,
@@ -739,7 +739,7 @@ SummaryStatistics.defaultProps = {
 	]
 };
 
-SummaryStatistics.propTypes = {
+SummaryStatisticsMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultStatistic: PropTypes.string,
 	defaultX: PropTypes.string,
@@ -754,4 +754,4 @@ SummaryStatistics.propTypes = {
 
 // EXPORTS //
 
-export default SummaryStatistics;
+export default SummaryStatisticsMenu;
