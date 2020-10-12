@@ -78,71 +78,76 @@ export function generateScatterplotMatrixConfig({ data, variables, color }) {
 	};
 }
 
+export function ScatterplotMatrix( props ) {
+	const config = generateScatterplotMatrixConfig( props );
+	return (
+		<Plotly
+			editable
+			draggable
+			id={props.id}
+			fit
+			meta={props.action}
+			data={config.data}
+			layout={config.layout}
+			onShare={props.onShare}
+			onSelected={( selected ) => {
+				const keys = objectKeys( selected.range );
+				const range = {};
+				const names = {};
+				let match = RE_AXIS_IDX.exec( keys[ 0 ] );
+				let idx = 0;
+				if ( match && match[ 1 ] ) {
+					idx = Number( match[ 1 ] ) - 1;
+				}
+				names.x = props.variables[ idx ];
+				range.x = selected.range[ keys[ 0 ] ];
+				match = RE_AXIS_IDX.exec( keys[ 1 ] );
+				idx = 0;
+				if ( match && match[ 1 ] ) {
+					idx = Number( match[ 1 ] ) - 1;
+				}
+				names.y = props.variables[ idx ];
+				range.y = selected.range[ keys[ 1 ] ];
+				this.props.onSelected( names, { range });
+			}}
+		/>
+	);
+}
+
+
 // MAIN //
 
-class ScatterplotMatrix extends Component {
+class ScatterplotMatrixMenu extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			displayedVariables: null,
+			variables: null,
 			color: null
 		};
 	}
 
 	generate = () => {
-		const variables = this.state.displayedVariables;
-		const config = generateScatterplotMatrixConfig({
-			data: this.props.data,
-			color: this.state.color,
-			variables
-		});
 		const plotId = randomstring( 6 );
 		const action = {
-			variables, plotId
+			...this.state, plotId
 		};
-		const output = {
-			variable: variables,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				id={plotId}
-				fit
-				meta={action}
-				data={config.data}
-				layout={config.layout}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
-				}}
-				onSelected={( selected ) => {
-					const keys = objectKeys( selected.range );
-					const range = {};
-					const names = {};
-					let match = RE_AXIS_IDX.exec( keys[ 0 ] );
-					let idx = 0;
-					if ( match && match[ 1 ] ) {
-						idx = Number( match[ 1 ] ) - 1;
-					}
-					names.x = variables[ idx ];
-					range.x = selected.range[ keys[ 0 ] ];
-					match = RE_AXIS_IDX.exec( keys[ 1 ] );
-					idx = 0;
-					if ( match && match[ 1 ] ) {
-						idx = Number( match[ 1 ] ) - 1;
-					}
-					names.y = variables[ idx ];
-					range.y = selected.range[ keys[ 1 ] ];
-					this.props.onSelected( names, { range });
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
 		};
+		const output = <ScatterplotMatrix
+			id={plotId}
+			data={this.props.data}
+			{...this.state}
+			action={action}
+			onShare={onShare}
+		/>;
 		this.props.logAction( DATA_EXPLORER_SPLOM, action );
 		this.props.onCreated( output );
 	}
@@ -160,7 +165,7 @@ class ScatterplotMatrix extends Component {
 						multi
 						onChange={( vars ) => {
 							this.setState({
-								displayedVariables: vars
+								variables: vars
 							});
 						}}
 					/>
@@ -177,7 +182,7 @@ class ScatterplotMatrix extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.generate}
-						disabled={!this.state.displayedVariables || this.state.displayedVariables.length < 2}
+						disabled={!this.state.variables || this.state.variables.length < 2}
 					>Generate</Button>
 				</Card.Body>
 			</Card>
@@ -188,14 +193,14 @@ class ScatterplotMatrix extends Component {
 
 // PROPERTIES //
 
-ScatterplotMatrix.defaultProps = {
+ScatterplotMatrixMenu.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	onSelected() {},
 	session: {}
 };
 
-ScatterplotMatrix.propTypes = {
+ScatterplotMatrixMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
@@ -208,4 +213,4 @@ ScatterplotMatrix.propTypes = {
 
 // EXPORTS //
 
-export default ScatterplotMatrix;
+export default ScatterplotMatrixMenu;
