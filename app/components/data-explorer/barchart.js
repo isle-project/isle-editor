@@ -218,7 +218,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	};
 }
 
-export function Barchart( props ) {
+export function BarChart( props ) {
 	const config = generateBarchartConfig( props );
 	return (
 		<Plotly
@@ -231,7 +231,7 @@ export function Barchart( props ) {
 			meta={props.action}
 			onShare={props.onShare}
 			onSelected={( selected ) => {
-				this.props.onSelected( props.variable, selected );
+				props.onSelected( props.variable, selected );
 			}}
 		/>
 	);
@@ -279,7 +279,7 @@ class BarchartMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 		};
-		const output = <Barchart {...this.state} {...this.props} id={plotId} action={action} onShare={onShare} />;
+		const output = <BarChart {...this.state} {...this.props} id={plotId} action={action} onShare={onShare} />;
 		this.props.logAction( DATA_EXPLORER_BARCHART, action );
 		this.props.onCreated( output );
 	}
