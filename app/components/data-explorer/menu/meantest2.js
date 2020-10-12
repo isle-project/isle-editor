@@ -10,7 +10,7 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
 import MeanTest2 from 'components/tests/meantest2';
-import { DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST } from 'constants/actions.js';
+import { DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
 
@@ -50,13 +50,13 @@ class MeanTest2Menu extends Component {
 				position: 'tr'
 			});
 		}
-		const output = <MeanTest2 
+		const output = <MeanTest2
 			xvar={xvar} grouping={grouping} yvar={yvar} diff={diff} direction={direction}
 			alpha={alpha} type={type} xstdev={xstdev} ystdev={ystdev}
 			data={data} showDecision={showDecision}
 		/>;
-		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_ZTEST, {
-			xvar, grouping, yvar, diff, direction, alpha
+		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN, {
+			xvar, grouping, yvar, diff, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
