@@ -28,7 +28,8 @@ import { PieChart } from './../piechart.js';
 import { QQPlot } from './../qqplot.js';
 import { ScatterPlotMatrix } from './../scatterplot_matrix.js';
 import { ScatterPlot } from './../scatterplot.js';
-import { generateFrequencyTable } from './../frequency_table.js';
+import { FrequencyTable } from './../frequency_table.js';
+import { ContingencyTable } from './../contingency_table.js';
 
 
 // FUNCTIONS //
@@ -202,7 +203,7 @@ class HistoryPanel extends Component {
 				case 'DATA_EXPLORER_LINEPLOT':
 					output = <LinePlot {...params} />;
 					break;
-				case 'DATA_EXPLORER_MOSAICPLOT':
+				case 'DATA_EXPLORER_MOSAIC':
 					output = <MosaicPlot {...params} />;
 					break;
 				case 'DATA_EXPLORER_PIECHART':
@@ -218,7 +219,10 @@ class HistoryPanel extends Component {
 					output = <ScatterPlotMatrix {...params} />;
 					break;
 				case 'DATA_EXPLORER_FREQUENCY_TABLE':
-					output = generateFrequencyTable;
+					output = <FrequencyTable {...params} />;
+					break;
+				case 'DATA_EXPLORER_CONTINGENCY_TABLE':
+					output = <ContingencyTable {...params} />;
 					break;
 			}
 			this.props.onCreated( output );

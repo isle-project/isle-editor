@@ -189,6 +189,8 @@ import { PieChart } from 'components/data-explorer/piechart.js';
 import { QQPlot } from 'components/data-explorer/qqplot.js';
 import { ScatterPlotMatrix } from 'components/data-explorer/scatterplot_matrix.js';
 import { ScatterPlot } from 'components/data-explorer/scatterplot.js';
+import { ContingencyTable } from 'components/data-explorer/contingency_table.js';
+import { FrequencyTable } from 'components/data-explorer/frequency_table.js';
 
 
 // EXPORTS //
@@ -382,7 +384,10 @@ const scope = {
 	PieChart,
 	QQPlot,
 	ScatterPlotMatrix,
-	ScatterPlot
+	ScatterPlot,
+
+	ContingencyTable,
+	FrequencyTable
 };
 
 

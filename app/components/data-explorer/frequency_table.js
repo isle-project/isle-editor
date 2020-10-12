@@ -217,10 +217,35 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 	);
 };
 
+export function FrequencyTable({ data, variable, group, calculateCounts, calculateRelative, nDecimalPlaces }) {
+	let freqs;
+	if ( !group ) {
+		freqs = getFrequencies( variable, data[ variable ], calculateCounts, calculateRelative );
+	} else {
+		freqs = by( data[ variable ], data[ group ], ( arr ) => {
+			return getFrequencies( variable, arr, calculateCounts, calculateRelative );
+		});
+		if ( group.categories ) {
+			// Create new object with different insertion order:
+			const tmp = {};
+			for ( let i = 0; i < group.categories.length; i++ ) {
+				if ( freqs[ group.categories[ i ] ] ) {
+					tmp[ group.categories[ i ] ] = freqs[ group.categories[ i ] ];
+				}
+			}
+			freqs = tmp;
+		}
+	}
+	if ( !group ) {
+		return frequencyTable( variable, freqs, nDecimalPlaces );
+	}
+	return groupedFrequencyTable( variable, freqs, nDecimalPlaces );
+}
+
 
 // MAIN //
 
-class FrequencyTable extends Component {
+class FrequencyTableMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -235,36 +260,16 @@ class FrequencyTable extends Component {
 
 	generateFrequencyTable() {
 		const { variable, group, calculateCounts, calculateRelative, nDecimalPlaces } = this.state;
-		let freqs;
-		if ( !group ) {
-			freqs = getFrequencies( variable, this.props.data[ variable ], calculateCounts, calculateRelative );
-		} else {
-			freqs = by( this.props.data[ variable ], this.props.data[ group ], ( arr ) => {
-				return getFrequencies( variable, arr, calculateCounts, calculateRelative );
-			});
-			if ( group.categories ) {
-				// Create new object with different insertion order:
-				const tmp = {};
-				for ( let i = 0; i < group.categories.length; i++ ) {
-					if ( freqs[ group.categories[ i ] ] ) {
-						tmp[ group.categories[ i ] ] = freqs[ group.categories[ i ] ];
-					}
-				}
-				freqs = tmp;
-			}
-		}
-		const output = {
-			variable: !group ? variable : `${variable} by ${group}`,
-			type: !group ? 'Frequency Table' : 'Grouped Frequency Table',
-			relative: calculateRelative
-		};
-		if ( !group ) {
-			output.value = frequencyTable( output.variable, freqs, nDecimalPlaces );
-		} else {
-			output.value = groupedFrequencyTable( output.variable, freqs, nDecimalPlaces );
-		}
+		const output = <FrequencyTable
+			variable={variable}
+			group={group}
+			calculateCounts={calculateCounts}
+			calculateRelative={calculateRelative}
+			nDecimalPlaces={nDecimalPlaces}
+			data={this.props.data}
+		/>;
 		this.props.logAction( DATA_EXPLORER_FREQUENCY_TABLE, {
-			variable, group, calculateRelative
+			variable, group, calculateRelative, calculateCounts, nDecimalPlaces
 		});
 		this.props.onCreated( output );
 	}
@@ -352,18 +357,15 @@ class FrequencyTable extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-FrequencyTable.defaultProps = {
+FrequencyTableMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {}
 };
 
-
-// PROPERTIES //
-
-FrequencyTable.propTypes = {
+FrequencyTableMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -375,4 +377,4 @@ FrequencyTable.propTypes = {
 
 // EXPORTS //
 
-export default FrequencyTable;
+export default FrequencyTableMenu;

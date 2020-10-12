@@ -8,6 +8,19 @@ import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
 import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
+import { ContingencyTable } from './contingency_table.js';
+import { FrequencyTable } from './frequency_table.js';
+import { BoxPlot } from './boxplot.js';
+import { BarChart } from './barchart.js';
+import { ContourChart } from './contour.js';
+import { HeatMap } from './heatmap.js';
+import { Histogram } from './histogram.js';
+import { LinePlot } from './lineplot.js';
+import { MosaicPlot } from './mosaicplot.js';
+import { PieChart } from './piechart.js';
+import { QQPlot } from './qqplot.js';
+import { ScatterPlotMatrix } from './scatterplot_matrix.js';
+import { ScatterPlot } from './scatterplot.js';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
 import DatasetButton from './dataset_button.js';
@@ -169,7 +182,20 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 // MAIN //
 
 function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
-	if ( React.isValidElement( e ) ) {
+	console.log( e.type );
+	if (
+		e.type === BoxPlot ||
+		e.type === BarChart ||
+		e.type === ContourChart ||
+		e.type === HeatMap ||
+		e.type === Histogram ||
+		e.type === LinePlot ||
+		e.type === MosaicPlot ||
+		e.type === PieChart ||
+		e.type === QQPlot ||
+		e.type === ScatterPlot ||
+		e.type === ScatterPlotMatrix
+	) {
 		const props = e.props;
 		if ( props.meta && !props.meta.filters ) {
 			props.meta.filters = subsetFilters;
@@ -200,9 +226,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		return elem;
 	}
 	else if (
-		e.type === 'Contingency Table' ||
-		e.type === 'Frequency Table' ||
-		e.type === 'Grouped Frequency Table' ||
+		e.type === ContingencyTable ||
+		e.type === FrequencyTable ||
 		e.type === 'Simple Linear Regression' ||
 		e.type === 'Multiple Linear Regression' ||
 		e.type === 'LASSO Regression' ||
@@ -213,8 +238,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === 'Random Forest'
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}
-			{makeDraggable( e.value )}
+			{createButtons( e.type.name, e, clearOutput, idx, subsetFilters, onFilters )}
+			{makeDraggable( e )}
 		</pre>;
 		return elem;
 	}

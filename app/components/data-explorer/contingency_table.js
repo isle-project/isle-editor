@@ -189,10 +189,8 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) );
 	}
 
-	const output = {
-		variable: `${rowVar} by ${colVar}`,
-		type: 'Contingency Table',
-		value: <div style={{ overflowX: 'auto', width: '100%' }}>
+	return (
+		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{`Grouped by ${group}:`}</label>
 			{table.map( ( x, i ) => {
 				return ( <div key={i}>
@@ -201,14 +199,23 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 				</div> );
 			})}
 		</div>
-	};
-	return output;
+	);
 };
+
+export function ContingencyTable({ data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display }) {
+	let table;
+	if ( !group ) {
+		table = createContingencyTable( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display );
+	} else {
+		table = createGroupedContingencyTable( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display );
+	}
+	return table;
+}
 
 
 // MAIN //
 
-class ContingencyTable extends Component {
+class ContingencyTableMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -236,7 +243,6 @@ class ContingencyTable extends Component {
 	}
 
 	generateContingencyTable() {
-		let output;
 		const { rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display } = this.state;
 		if ( !rowVar || !colVar ) {
 			return this.props.session.addNotification({
@@ -246,18 +252,17 @@ class ContingencyTable extends Component {
 				position: 'tr'
 			});
 		}
-		if ( !group ) {
-			let table = createContingencyTable( this.props.data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display );
-			output = {
-				variable: `${rowVar} by ${colVar}`,
-				type: 'Contingency Table',
-				value: table
-			};
-		} else {
-			output = createGroupedContingencyTable( this.props.data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display );
-		}
+		const output = <ContingencyTable
+			rowVar={rowVar}
+			colVar={colVar}
+			group={group}
+			relativeFreqs={relativeFreqs}
+			nDecimalPlaces={nDecimalPlaces}
+			display={display}
+			data={this.props.data}
+		/>;
 		this.props.logAction( DATA_EXPLORER_CONTINGENCY_TABLE, {
-			rowVar, colVar, group, relativeFreqs
+			rowVar, colVar, group, relativeFreqs, display
 		});
 		this.props.onCreated( output );
 	}
@@ -345,9 +350,9 @@ class ContingencyTable extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-ContingencyTable.defaultProps = {
+ContingencyTableMenu.defaultProps = {
 	defaultRowVar: null,
 	defaultColVar: null,
 	groupingVariables: null,
@@ -355,10 +360,7 @@ ContingencyTable.defaultProps = {
 	session: {}
 };
 
-
-// PROPERTIES //
-
-ContingencyTable.propTypes = {
+ContingencyTableMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultColVar: PropTypes.string,
 	defaultRowVar: PropTypes.string,
@@ -372,4 +374,4 @@ ContingencyTable.propTypes = {
 
 // EXPORTS //
 
-export default ContingencyTable;
+export default ContingencyTableMenu;
