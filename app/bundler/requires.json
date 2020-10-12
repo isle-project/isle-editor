@@ -183,5 +183,18 @@
 	"VictoryWrapper": "components/victory/wrapper",
 	"VideoLecture": "components/video-lecture",
 	"VideoPlayer": "components/video-player",
-	"WordCloud": "components/word-cloud"
+	"WordCloud": "components/word-cloud",
+	"BarChart": "components/plots/barchart",
+	"BoxPlot": "components/plots/boxplot",
+	"ContourChart": "components/plots/contourchart",
+	"HeatMap": "components/plots/heatmap",
+	"Histogram": "components/plots/histogram",
+	"LinePlot": "components/plots/lineplot",
+	"Map": "components/plots/map",
+	"MosaicPlot": "components/plots/mosaic-plot",
+	"PieChart": "components/plots/piechart",
+	"QQPlot": "components/plots/qqplot",
+	"ScatterPlot": "components/plots/scatterplot",
+	"ScatterPlotMatrix": "components/plots/scatterplot-matrix",
+	"ViolinPlot": "components/plots/violinplot"
 }

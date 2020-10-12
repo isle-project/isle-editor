@@ -178,17 +178,19 @@ import Deck from 'components/spectacle/components/deck';
 import SlideNotes from 'components/spectacle/components/notes';
 import Slide from 'components/spectacle/components/slide';
 
-import { BarChart } from 'components/data-explorer/barchart.js';
-import { BoxPlot } from 'components/data-explorer/boxplot.js';
-import { ContourChart } from 'components/data-explorer/contour.js';
-import { HeatMap } from 'components/data-explorer/heatmap.js';
-import { Histogram } from 'components/data-explorer/histogram.js';
-import { LinePlot } from 'components/data-explorer/lineplot.js';
-import { MosaicPlot } from 'components/data-explorer/mosaicplot.js';
-import { PieChart } from 'components/data-explorer/piechart.js';
-import { QQPlot } from 'components/data-explorer/qqplot.js';
-import { ScatterPlotMatrix } from 'components/data-explorer/scatterplot_matrix.js';
-import { ScatterPlot } from 'components/data-explorer/scatterplot.js';
+import BarChart from 'components/plots/barchart';
+import BoxPlot from 'components/plots/boxplot';
+import ContourChart from 'components/plots/contourchart';
+import HeatMap from 'components/plots/heatmap';
+import Histogram from 'components/plots/histogram';
+import LinePlot from 'components/plots/lineplot';
+import Map from 'components/plots/map';
+import MosaicPlot from 'components/plots/mosaicplot';
+import PieChart from 'components/plots/piechart';
+import QQPlot from 'components/plots/qqplot';
+import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
+import ScatterPlot from 'components/plots/scatterplot';
+import ViolinPlot from 'components/plots/violinplot';
 import { ContingencyTable } from 'components/data-explorer/contingency_table.js';
 import { FrequencyTable } from 'components/data-explorer/frequency_table.js';
 
@@ -380,11 +382,13 @@ const scope = {
 	HeatMap,
 	Histogram,
 	LinePlot,
+	Map,
 	MosaicPlot,
 	PieChart,
 	QQPlot,
 	ScatterPlotMatrix,
 	ScatterPlot,
+	ViolinPlot,
 
 	ContingencyTable,
 	FrequencyTable
