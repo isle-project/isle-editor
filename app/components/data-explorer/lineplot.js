@@ -86,10 +86,26 @@ export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) 
 	return config;
 }
 
+export function LinePlot({ data, xvar, yvar, group, showPoints, id, action, onShare }) {
+	const config = generateLineplotConfig({
+		data,
+		xvar,
+		yvar,
+		group,
+		showPoints
+	});
+	return ( <Plotly
+		editable draggable id={id} fit
+		data={config.data} layout={config.layout}
+		meta={action}
+		onShare={onShare} />
+	);
+}
+
 
 // MAIN //
 
-class LinePlot extends Component {
+class LinePlotMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -103,13 +119,6 @@ class LinePlot extends Component {
 
 	generateLinePlot = () => {
 		const { xvar, yvar, group, showPoints } = this.state;
-		const config = generateLineplotConfig({
-			data: this.props.data,
-			xvar,
-			yvar,
-			group,
-			showPoints
-		});
 		const plotId = randomstring( 6 );
 		const action = {
 			xvar,
@@ -117,23 +126,20 @@ class LinePlot extends Component {
 			group,
 			plotId
 		};
-		const output = {
-			variable: `${xvar} against ${yvar}`,
-			type: 'Chart',
-			value: <Plotly
-				editable draggable id={plotId} fit
-				data={config.data} layout={config.layout}
-				meta={action}
-				onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
-			}} />
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
 		};
+		const output = <LinePlot
+			data={this.props.data} xvar={xvar} yvar={yvar}
+			group={group} showPoints={showPoints}
+			onShare={onShare} action={action} id={plotId}
+		/>;
 		this.props.logAction( DATA_EXPLORER_LINEPLOT, action );
 		this.props.onCreated( output );
 	}
@@ -211,7 +217,7 @@ class LinePlot extends Component {
 
 // PROPERTIES //
 
-LinePlot.defaultProps = {
+LinePlotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
@@ -219,7 +225,7 @@ LinePlot.defaultProps = {
 	session: {}
 };
 
-LinePlot.propTypes = {
+LinePlotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -233,4 +239,4 @@ LinePlot.propTypes = {
 
 // EXPORTS //
 
-export default LinePlot;
+export default LinePlotMenu;
