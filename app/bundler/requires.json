@@ -196,5 +196,7 @@
 	"QQPlot": "components/plots/qqplot",
 	"ScatterPlot": "components/plots/scatterplot",
 	"ScatterPlotMatrix": "components/plots/scatterplot-matrix",
-	"ViolinPlot": "components/plots/violinplot"
+	"ViolinPlot": "components/plots/violinplot",
+	"ContingencyTable": "components/tables/contingency-table",
+	"FrequencyTable": "components/tables/frequency-table"
 }

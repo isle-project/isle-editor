@@ -30,8 +30,8 @@ import QQPlot from 'components/plots/qqplot';
 import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
 import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
-import { FrequencyTable } from './../frequency_table.js';
-import { ContingencyTable } from './../contingency_table.js';
+import FrequencyTable from 'components/tables/frequency-table';
+import ContingencyTable from 'components/tables/contingency-table';
 
 
 // FUNCTIONS //

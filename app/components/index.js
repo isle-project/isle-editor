@@ -191,8 +191,8 @@ import QQPlot from 'components/plots/qqplot';
 import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
 import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
-import { ContingencyTable } from 'components/data-explorer/contingency_table.js';
-import { FrequencyTable } from 'components/data-explorer/frequency_table.js';
+import ContingencyTable from 'components/tables/contingency-table';
+import FrequencyTable from 'components/tables/frequency-table';
 
 
 // EXPORTS //
