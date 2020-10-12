@@ -30,6 +30,16 @@ import MeanTest from 'components/tests/meantest';
 import MeanTest2 from 'components/tests/meantest2';
 import PropTest from 'components/tests/proptest';
 import PropTest2 from 'components/tests/proptest2';
+import DecisionTree from 'components/models/decision-tree';
+import LassoRegression from 'components/models/lasso-regression';
+import LogisticRegression from 'components/models/logistic-regression';
+import MultipleLinearRegression from 'components/models/multiple-linear-regression';
+import RandomForest from 'components/models/random-forest';
+import SimpleLinearRegression from 'components/models/simple-linear-regression';
+import PrincipalComponentAnalysis from 'components/models/principal-component-analysis';
+import HierarchicalClustering from 'components/models/hierarchical-clustering';
+import KMeans from 'components/models/kmeans';
+import NaiveBayes from 'components/models/naive-bayes';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
 import DatasetButton from './dataset_button.js';
@@ -246,14 +256,14 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 	else if (
 		e.type === ContingencyTable ||
 		e.type === FrequencyTable ||
-		e.type === 'Simple Linear Regression' ||
-		e.type === 'Multiple Linear Regression' ||
-		e.type === 'LASSO Regression' ||
-		e.type === 'Logistic Regression' ||
-		e.type === 'PCA' ||
-		e.type === 'kmeans' ||
-		e.type === 'Naive Bayes' ||
-		e.type === 'Random Forest'
+		e.type === SimpleLinearRegression ||
+		e.type === MultipleLinearRegression ||
+		e.type === LassoRegression ||
+		e.type === LogisticRegression ||
+		e.type === PrincipalComponentAnalysis ||
+		e.type === KMeans ||
+		e.type === NaiveBayes ||
+		e.type === RandomForest
 	) {
 		const elem = <pre key={idx} >
 			{createButtons( e.type.name, e, clearOutput, idx, subsetFilters, onFilters )}
@@ -262,8 +272,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		return elem;
 	}
 	else if (
-		e.type === 'Decision Tree' ||
-		e.type === 'Hierarchical Clustering'
+		e.type === DecisionTree ||
+		e.type === HierarchicalClustering
 	) {
 		const elem = <pre key={idx}>
 			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', top: '-1px', zIndex: 2 }} >
