@@ -39,7 +39,7 @@ class PropTestMenu extends Component {
 		const { data, showDecision } = this.props;
 		const output = <PropTest data={data} variable={variable} success={success} p0={p0} direction={direction} alpha={alpha} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
-			variable, success, p0, direction, alpha
+			variable, success, p0, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
