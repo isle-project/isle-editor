@@ -19,15 +19,16 @@ import SearchBar from './search.js';
 import TextSelect from './text_select.js';
 import { BoxPlot } from './../boxplot.js';
 import { BarChart } from './../barchart.js';
+import { ContourChart } from './../contour.js';
 import { HeatMap } from './../heatmap.js';
 import { Histogram } from './../histogram.js';
 import { LinePlot } from './../lineplot.js';
-import { ScatterPlotMatrix } from './../scatterplot_matrix.js';
-import { ScatterPlot } from './../scatterplot.js';
-import { ContourChart } from './../contour.js';
-import { generateFrequencyTable } from './../frequency_table.js';
+import { MosaicPlot } from './../mosaicplot.js';
 import { PieChart } from './../piechart.js';
 import { QQPlot } from './../qqplot.js';
+import { ScatterPlotMatrix } from './../scatterplot_matrix.js';
+import { ScatterPlot } from './../scatterplot.js';
+import { generateFrequencyTable } from './../frequency_table.js';
 
 
 // FUNCTIONS //
@@ -189,7 +190,7 @@ class HistoryPanel extends Component {
 				case 'DATA_EXPLORER_BOXPLOT':
 					output = <BoxPlot {...params} />;
 					break;
-				case 'DATA_EXPLORER_CONTOURCHART':
+				case 'DATA_EXPLORER_CONTOURPLOT':
 					output = <ContourChart {...params} />;
 					break;
 				case 'DATA_EXPLORER_HISTOGRAM':
@@ -200,6 +201,9 @@ class HistoryPanel extends Component {
 					break;
 				case 'DATA_EXPLORER_LINEPLOT':
 					output = <LinePlot {...params} />;
+					break;
+				case 'DATA_EXPLORER_MOSAICPLOT':
+					output = <MosaicPlot {...params} />;
 					break;
 				case 'DATA_EXPLORER_PIECHART':
 					output = <PieChart {...params} />;
