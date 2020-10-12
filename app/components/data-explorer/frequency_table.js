@@ -16,7 +16,7 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import { DATA_EXPLORER_FREQUENCY_TABLE } from 'constants/actions.js';
 import extractUsedCategories from './extract_used_categories.js';
-import by from './by.js';
+import by from 'utils/by';
 import QuestionButton from './question_button.js';
 
 

@@ -22,7 +22,7 @@ import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
 import Tooltip from 'components/tooltip';
 import Plotly from 'components/plotly';
-import { generateQQPlotConfig } from './qqplot.js';
+import { generateQQPlotConfig } from 'components/plots/qqplot';
 import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
 import mean from 'utils/statistic/mean';

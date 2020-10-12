@@ -10,7 +10,7 @@ import randomstring from 'utils/randomstring/alphanumeric';
 import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from 'constants/actions.js';
 import extractUsedCategories from './extract_used_categories.js';
 import QuestionButton from './question_button.js';
-import by from './by.js';
+import by from 'utils/by';
 
 
 // VARIABLES //
@@ -65,7 +65,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 
 // MAIN //
 
-class Violinplot extends Component {
+class ViolinPlotMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -132,9 +132,9 @@ class Violinplot extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-Violinplot.defaultProps = {
+ViolinPlotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
@@ -142,10 +142,7 @@ Violinplot.defaultProps = {
 	session: {}
 };
 
-
-// PROPERTIES //
-
-Violinplot.propTypes = {
+ViolinPlotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -158,4 +155,4 @@ Violinplot.propTypes = {
 
 // EXPORTS //
 
-export default Violinplot;
+export default ViolinPlotMenu;

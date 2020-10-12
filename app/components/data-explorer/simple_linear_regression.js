@@ -21,11 +21,11 @@ import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import mean from 'utils/statistic/mean';
 import Plotly from 'components/plotly';
-import { generateQQPlotConfig } from './qqplot.js';
+import { generateQQPlotConfig } from 'components/plots/qqplot';
 import { DATA_EXPLORER_LINEAR_REGRESSION } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
-import by2 from './by2.js';
-import by from './by.js';
+import by2 from 'utils/by2';
+import by from 'utils/by';
 
 
 // VARIABLES //
