@@ -67,10 +67,28 @@ export function generateMosaicPlotCode({ data, vars, showColors, axisLabels }) {
 	return code;
 }
 
+export function MosaicPlot({ data, id, vars, showColors, axisLabels, action, onShare, onPlotDone }) {
+	const code = generateMosaicPlotCode({ data, vars, showColors, axisLabels });
+	return (
+		<RPlot
+			code={code}
+			id={id}
+			draggable
+			meta={action}
+			libraries={[ 'MASS' ]}
+			onDone={onPlotDone}
+			width="auto"
+			height="300px"
+			className="center"
+			onShare={onShare}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class MosaicPlot extends Component {
+class MosaicPlotMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
@@ -84,37 +102,31 @@ class MosaicPlot extends Component {
 				position: 'tr'
 			});
 		}
-		const code = generateMosaicPlotCode({ data: this.props.data, vars, showColors, axisLabels });
 		const plotId = randomstring( 6 );
 		const action = {
 			vars, showColors, plotId
 		};
-		const output ={
-			variable: 'Mosaic Plot',
-			type: 'Chart',
-			value: <RPlot
-				code={code}
-				id={plotId}
-				draggable
-				meta={action}
-				libraries={[ 'MASS' ]}
-				onDone={this.props.onPlotDone}
-				width="auto"
-				height="300px"
-				className="center"
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_MOSAIC, {
-						vars, showColors, plotId
-					});
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_MOSAIC, {
+				vars, showColors, plotId
+			});
 		};
+		const output = <MosaicPlot
+			data={this.props.data}
+			vars={vars}
+			showColors={showColors}
+			axisLabels={axisLabels}
+			id={plotId}
+			action={action}
+			onShare={onShare}
+			onPlotDone={this.props.onPlotDone}
+		/>;
 		this.props.logAction( DATA_EXPLORER_MOSAIC, action );
 		this.props.onCreated( output );
 	}
@@ -147,18 +159,15 @@ class MosaicPlot extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-MosaicPlot.defaultProps = {
+MosaicPlotMenu.defaultProps = {
 	logAction() {},
 	onPlotDone() {},
 	session: {}
 };
 
-
-// PROPERTIES //
-
-MosaicPlot.propTypes = {
+MosaicPlotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
@@ -170,4 +179,4 @@ MosaicPlot.propTypes = {
 
 // EXPORTS //
 
-export default MosaicPlot;
+export default MosaicPlotMenu;
