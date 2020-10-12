@@ -1,0 +1,201 @@
+/**
+* Tree styling adapted from MIT-licensed code:
+*
+* The MIT License (MIT)
+*
+* Copyright (c) 2013 Yurii Lahodiuk
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy of
+* this software and associated documentation files (the "Software"), to deal in
+* the Software without restriction, including without limitation the rights to
+* use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+* the Software, and to permit persons to whom the Software is furnished to do so,
+* subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+* FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+* COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+* IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+* CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+/*
+ Transforming nested lists to pretty tree
+
+ <div class="decision-tree">
+	<ul>
+		<li>
+			<ul>
+			...
+			</ul>
+		</li>
+		...
+	</ul>
+ </div>
+
+Source: http://thecodeplayer.com/walkthrough/css3-family-tree
+
+Some other advices about displaying trees: http://stackoverflow.com/questions/1695115/how-do-i-draw-the-lines-of-a-family-tree-using-html-css
+*/
+
+.decision-tree-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.decision-tree-draggable-bar {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	z-index: 2;
+	width: 130px;
+	height: 26px;
+	background-color: rgba(200, 200, 200, 0.5);
+	opacity: 0.6;
+	color: black;
+	letter-spacing: 4px;
+	text-align: center;
+	cursor: move;
+	padding: 0.1rem 0.3rem;
+}
+
+.decision-tree-draggable-bar:hover {
+	background-color: rgba(22, 8, 8, 0.8);
+	color: white;
+	opacity: 0.9;
+}
+
+.decision-tree {
+	margin: 0;
+	padding: 0;
+	width: max-content;
+}
+
+.decision-tree ul {
+	padding-top: 10px;
+	position: relative;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.decision-tree-fullscreen li span {
+	font-size: 18px;
+}
+
+.decision-tree:not(.decision-tree-fullscreen) li span {
+	font-size: 11px;
+}
+
+.decision-tree li {
+	white-space: nowrap;
+	float: left;
+	text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 10px 5px 0 5px;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+/* We will use ::before and ::after to draw the connectors */
+.decision-tree li::before,
+.decision-tree li::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 50%;
+	border-top: 1px solid #ccc;
+	width: 50%;
+	height: 10px;
+}
+
+.decision-tree li::after {
+	right: auto;
+	left: 50%;
+	border-left: 1px solid #ccc;
+}
+
+/* We need to remove left-right connectors from elements without any siblings */
+.decision-tree li:only-child::after,
+.decision-tree li:only-child::before {
+	display: none;
+}
+
+/* Remove space from the top of single children */
+.decision-tree li:only-child {
+	padding-top: 0;
+}
+
+/* Remove left connector from first child and
+ right connector from last child */
+.decision-tree li:first-child::before,
+.decision-tree li:last-child::after {
+	border: 0 none;
+}
+
+/* Adding back the vertical connector to the last nodes */
+.decision-tree li:last-child::before {
+	border-right: 1px solid #ccc;
+	border-radius: 0 5px 0 0;
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+}
+
+.decision-tree li:first-child::after {
+	border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+}
+
+/* Time to add downward connectors from parents */
+.decision-tree ul ul::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	border-left: 1px solid #ccc;
+	width: 0;
+	height: 10px;
+}
+
+.decision-tree li span {
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: #666;
+	font-family: arial, verdana, tahoma;
+	display: inline-block;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.decision-tree-leaf {
+	border: 1px solid #ca5800 !important;
+	background: #c8e4f8;
+}
+
+/* We will apply the hover effect the the lineage of the element */
+.decision-tree li span:hover,
+.decision-tree li span:hover + ul li span {
+	background: #c8e4f8;
+	color: #000;
+	border: 1px solid #94a0b4;
+}
+
+/* Connector styles on hover */
+.decision-tree li span:hover + ul li::after,
+.decision-tree li span:hover + ul li::before,
+.decision-tree li span:hover + ul::before,
+.decision-tree li span:hover + ul ul::before {
+	border-color: #94a0b4;
+}
