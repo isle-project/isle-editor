@@ -52,6 +52,7 @@ const RPlot = Loadable( () => import( 'components/r/plot' ) );
 const DataTable = Loadable( () => import( 'components/data-table' ) );
 import SessionContext from 'session/context.js';
 import OutputPanel from './output_panel.js';
+import History from './history';
 import createOutputElement from './create_output_element.js';
 import FilterList from './filter_list.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
@@ -1472,6 +1473,16 @@ class DataExplorer extends Component {
 									>{this.props.editorTitle}</Nav.Link>
 								</Nav.Item> : null
 							}
+							{
+								<Nav.Item className="explorer-editor-nav">
+									<Nav.Link
+										active={this.state.openedNav === 'history'}
+										eventKey="history"
+									>
+										History
+									</Nav.Link>
+								</Nav.Item>
+							}
 							{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
 								return (
 									<Nav.Item key={i} className="explorer-tabs-nav">
@@ -1594,6 +1605,14 @@ class DataExplorer extends Component {
 								submitButton
 							/> : null
 						}
+						<History
+							actions={this.context.currentUserActions[ this.id ]}
+							style={{ display: this.state.openedNav !== 'history' ? 'none' : null }}
+							onCreated={this.addToOutputs}
+							logAction={this.logAction}
+							session={this.context}
+							data={this.state.data}
+						/>
 						{this.props.tabs.map( ( e, i ) => {
 							return ( this.state.openedNav === e.title ?
 								e.content : null );
