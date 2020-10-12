@@ -161,10 +161,30 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 	return config;
 }
 
+export function Boxplot({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) {
+	const config = generateBoxplotConfig({
+		data,
+		variable,
+		group,
+		orientation,
+		overlayPoints
+	});
+	return ( <Plotly
+		editable
+		draggable
+		id={id}
+		fit
+		data={config.data}
+		layout={config.layout}
+		meta={action}
+		onShare={onShare}
+	/> );
+}
+
 
 // MAIN //
 
-class Boxplot extends Component {
+class BoxplotMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -178,13 +198,6 @@ class Boxplot extends Component {
 
 	generateBoxplot = () => {
 		let group = ( this.state.group || [] ).map( e => e.value );
-		const config = generateBoxplotConfig({
-			data: this.props.data,
-			variable: this.state.variable,
-			group,
-			orientation: this.state.orientation,
-			overlayPoints: this.state.overlayPoints
-		});
 		let { variable } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
@@ -192,23 +205,16 @@ class Boxplot extends Component {
 			group,
 			plotId
 		};
-		const output = {
-			variable: variable,
-			type: 'Chart',
-			value: <Plotly
-				editable draggable id={plotId} fit
-				data={config.data} layout={config.layout}
-				meta={action}
-				onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
-			}} />
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
 		};
+		const output = <Boxplot id={plotId} onShare={onShare} action={action} {...this.props} {...this.state} />;
 		this.props.logAction( DATA_EXPLORER_BOXPLOT, action );
 		this.props.onCreated( output );
 	}
@@ -274,7 +280,7 @@ class Boxplot extends Component {
 
 // PROPERTIES //
 
-Boxplot.defaultProps = {
+BoxplotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
@@ -282,7 +288,7 @@ Boxplot.defaultProps = {
 	session: {}
 };
 
-Boxplot.propTypes = {
+BoxplotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -295,4 +301,4 @@ Boxplot.propTypes = {
 
 // EXPORTS //
 
-export default Boxplot;
+export default BoxplotMenu;
