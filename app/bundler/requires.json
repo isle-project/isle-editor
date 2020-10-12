@@ -198,5 +198,13 @@
 	"ScatterPlotMatrix": "components/plots/scatterplot-matrix",
 	"ViolinPlot": "components/plots/violinplot",
 	"ContingencyTable": "components/tables/contingency-table",
-	"FrequencyTable": "components/tables/frequency-table"
+	"FrequencyTable": "components/tables/frequency-table",
+	"Anova": "components/tests/anova",
+	"Chi2Test": "components/tests/chi2",
+	"CorrTest": "components/tests/corrtest",
+	"Kruskal": "components/tests/kruskal",
+	"MeanTest": "components/tests/meantest",
+	"MeanTest2": "components/tests/meantest2",
+	"PropTest": "components/tests/proptest",
+	"PropTest2": "components/tests/proptest2"
 }

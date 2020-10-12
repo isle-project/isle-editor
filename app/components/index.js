@@ -193,6 +193,14 @@ import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
 import ContingencyTable from 'components/tables/contingency-table';
 import FrequencyTable from 'components/tables/frequency-table';
+import Anova from 'components/tests/anova';
+import Chi2Test from 'components/tests/chi2';
+import CorrTest from 'components/tests/corrtest';
+import Kruskal from 'components/tests/kruskal';
+import MeanTest from 'components/tests/meantest';
+import MeanTest2 from 'components/tests/meantest2';
+import PropTest from 'components/tests/proptest';
+import PropTest2 from 'components/tests/proptest2';
 
 
 // EXPORTS //
@@ -391,7 +399,16 @@ const scope = {
 	ViolinPlot,
 
 	ContingencyTable,
-	FrequencyTable
+	FrequencyTable,
+
+	Anova,
+	Chi2Test,
+	CorrTest,
+	Kruskal,
+	MeanTest,
+	MeanTest2,
+	PropTest,
+	PropTest2
 };
 
 
