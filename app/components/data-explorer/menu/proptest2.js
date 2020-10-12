@@ -79,7 +79,7 @@ class PropTest2Menu extends Component {
 			diff={diff} direction={direction} alpha={alpha} success={success}
 		/>;
 		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST, {
-			var1, grouping, var2, success, diff, direction, alpha
+			var1, grouping, var2, success, diff, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
