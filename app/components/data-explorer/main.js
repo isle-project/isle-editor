@@ -81,19 +81,32 @@ const NaiveBayes = Loadable( () => import( 'components/data-explorer/naive_bayes
 
 // PLOT COMPONENTS //
 
-import Barchart, { generateBarchartConfig } from 'components/data-explorer/barchart';
-import Boxplot, { generateBoxplotConfig } from 'components/data-explorer/boxplot';
-import Heatmap, { generateHeatmapConfig } from 'components/data-explorer/heatmap';
-import Histogram, { generateHistogramConfig } from 'components/data-explorer/histogram';
-import Lineplot, { generateLineplotConfig } from 'components/data-explorer/lineplot';
-import Map, { generateMapConfig } from 'components/data-explorer/map';
-import MosaicPlot, { generateMosaicPlotCode } from 'components/data-explorer/mosaicplot';
-import Piechart, { generatePiechartConfig } from 'components/data-explorer/piechart';
-import QQPlot, { generateQQPlotConfig } from 'components/data-explorer/qqplot';
-import Scatterplot, { generateScatterplotConfig } from 'components/data-explorer/scatterplot';
-import ScatterplotMatrix, { generateScatterplotMatrixConfig } from 'components/data-explorer/scatterplot_matrix.js';
-import Violinplot, { generateViolinplotConfig } from 'components/data-explorer/violinplot';
-import ContourChart, { generateContourChart } from 'components/data-explorer/contour.js';
+import Barchart from 'components/data-explorer/menu/barchart';
+import { generateBarchartConfig } from 'components/plots/barchart';
+import Boxplot from 'components/data-explorer/menu/boxplot';
+import { generateBoxplotConfig } from 'components/plots/boxplot';
+import Heatmap from 'components/data-explorer/menu/heatmap';
+import { generateHeatmapConfig } from 'components/plots/heatmap';
+import Histogram from 'components/data-explorer/menu/histogram';
+import { generateHistogramConfig } from 'components/plots/histogram';
+import Lineplot from 'components/data-explorer/menu/lineplot';
+import { generateLineplotConfig } from 'components/plots/lineplot';
+import Map from 'components/data-explorer/menu/map';
+import { generateMapConfig } from 'components/plots/map';
+import MosaicPlot from 'components/data-explorer/menu/mosaicplot';
+import { generateMosaicPlotCode } from 'components/plots/mosaicplot';
+import Piechart from 'components/data-explorer/menu/piechart';
+import { generatePiechartConfig } from 'components/plots/piechart';
+import QQPlot from 'components/data-explorer/menu/qqplot';
+import { generateQQPlotConfig } from 'components/plots/qqplot';
+import Scatterplot from 'components/data-explorer/menu/scatterplot';
+import { generateScatterplotConfig } from 'components/plots/scatterplot';
+import ScatterplotMatrix from 'components/data-explorer/menu/scatterplot_matrix';
+import { generateScatterplotMatrixConfig } from 'components/plots/scatterplot-matrix';
+import Violinplot from 'components/data-explorer/menu/violinplot';
+import { generateViolinplotConfig } from 'components/plots/violinplot';
+import ContourChart from 'components/data-explorer/menu/contourchart.js';
+import { generateContourChart } from 'components/plots/contourchart';
 
 
 // TEST COMPONENTS //

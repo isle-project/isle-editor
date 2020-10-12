@@ -5,62 +5,15 @@ import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Dashboard from 'components/dashboard';
-import Plotly from 'components/plotly';
 import randomstring from 'utils/randomstring/alphanumeric';
+import ViolinPlot from 'components/plots/violinplot';
 import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from 'constants/actions.js';
-import extractUsedCategories from './extract_used_categories.js';
-import QuestionButton from './question_button.js';
-import by from 'utils/by';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
 
 const DESCRIPTION = '';
-
-
-// FUNCTIONS //
-
-export function generateViolinplotConfig({ data, variable, group, showBox }) {
-	let traces;
-	if ( !group ) {
-		let values = data[ variable ];
-		traces = [ {
-			y: values,
-			type: 'violin',
-			name: variable,
-			box: {
-				visible: showBox
-			}
-		} ];
-	} else {
-		let freqs = by( data[ variable ], data[ group ], arr => {
-			return arr;
-		});
-		traces = [];
-		const keys = extractUsedCategories( freqs, group );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const key = keys[ i ];
-			const val = freqs[ key ];
-			traces.push({
-				y: val,
-				name: key,
-				type: 'violin',
-				box: {
-					visible: showBox
-				}
-			});
-		}
-	}
-	return {
-		data: traces,
-		layout: {
-			title: group ? `${variable} given ${group}` : variable,
-			xaxis: {
-				type: 'category'
-			}
-		}
-	};
-}
 
 
 // MAIN //
@@ -75,26 +28,26 @@ class ViolinPlotMenu extends Component {
 	}
 
 	generateViolinplot( variable, group ) {
-		const config = generateViolinplotConfig({ data: this.props.data, variable, group, showBox: this.state.showBox });
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
 			group,
 			plotId
 		};
-		const output = {
-			variable: variable,
-			type: 'Chart',
-			value: <Plotly editable id={plotId} fit draggable data={config.data} layout={config.layout} onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
-			}} />
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
 		};
+		const output = <ViolinPlot
+			id={plotId} variable={variable} group={group}
+			data={this.props.data} onShare={onShare} action={action}
+			showBox={this.state.showBox}
+		/>;
 		this.props.logAction( DATA_EXPLORER_VIOLINPLOT, action );
 		this.props.onCreated( output );
 	}

@@ -10,17 +10,18 @@ import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
 import { ContingencyTable } from './contingency_table.js';
 import { FrequencyTable } from './frequency_table.js';
-import { BoxPlot } from './boxplot.js';
-import { BarChart } from './barchart.js';
-import { ContourChart } from './contour.js';
-import { HeatMap } from './heatmap.js';
-import { Histogram } from './histogram.js';
-import { LinePlot } from './lineplot.js';
-import { MosaicPlot } from './mosaicplot.js';
-import { PieChart } from './piechart.js';
-import { QQPlot } from './qqplot.js';
-import { ScatterPlotMatrix } from './scatterplot_matrix.js';
-import { ScatterPlot } from './scatterplot.js';
+import BoxPlot from 'components/plots/boxplot';
+import BarChart from 'components/plots/barchart';
+import ContourChart from 'components/plots/contourchart';
+import HeatMap from 'components/plots/heatmap';
+import Histogram from 'components/plots/histogram';
+import LinePlot from 'components/plots/lineplot';
+import MosaicPlot from 'components/plots/mosaicplot';
+import PieChart from 'components/plots/piechart';
+import QQPlot from 'components/plots/qqplot';
+import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
+import ScatterPlot from 'components/plots/scatterplot';
+import ViolinPlot from 'components/plots/violinplot';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
 import DatasetButton from './dataset_button.js';
@@ -182,7 +183,6 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 // MAIN //
 
 function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
-	console.log( e.type );
 	if (
 		e.type === BoxPlot ||
 		e.type === BarChart ||
@@ -194,7 +194,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === PieChart ||
 		e.type === QQPlot ||
 		e.type === ScatterPlot ||
-		e.type === ScatterPlotMatrix
+		e.type === ScatterPlotMatrix ||
+		e.type === ViolinPlot
 	) {
 		const props = e.props;
 		if ( props.meta && !props.meta.filters ) {

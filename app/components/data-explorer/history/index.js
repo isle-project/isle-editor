@@ -17,17 +17,19 @@ import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPlainObject from '@stdlib/assert/is-plain-object';
 import SearchBar from './search.js';
 import TextSelect from './text_select.js';
-import { BoxPlot } from './../boxplot.js';
-import { BarChart } from './../barchart.js';
-import { ContourChart } from './../contour.js';
-import { HeatMap } from './../heatmap.js';
-import { Histogram } from './../histogram.js';
-import { LinePlot } from './../lineplot.js';
-import { MosaicPlot } from './../mosaicplot.js';
-import { PieChart } from './../piechart.js';
-import { QQPlot } from './../qqplot.js';
-import { ScatterPlotMatrix } from './../scatterplot_matrix.js';
-import { ScatterPlot } from './../scatterplot.js';
+import BoxPlot from 'components/plots/boxplot';
+import BarChart from 'components/plots/barchart';
+import ContourChart from 'components/plots/contourchart';
+import HeatMap from 'components/plots/heatmap';
+import Histogram from 'components/plots/histogram';
+import LinePlot from 'components/plots/lineplot';
+import Map from 'components/plots/map';
+import MosaicPlot from 'components/plots/mosaicplot';
+import PieChart from 'components/plots/piechart';
+import QQPlot from 'components/plots/qqplot';
+import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
+import ScatterPlot from 'components/plots/scatterplot';
+import ViolinPlot from 'components/plots/violinplot';
 import { FrequencyTable } from './../frequency_table.js';
 import { ContingencyTable } from './../contingency_table.js';
 
@@ -203,6 +205,9 @@ class HistoryPanel extends Component {
 				case 'DATA_EXPLORER_LINEPLOT':
 					output = <LinePlot {...params} />;
 					break;
+				case 'DATA_EXPLORER_MAP':
+					output = <Map {...params} />;
+					break;
 				case 'DATA_EXPLORER_MOSAIC':
 					output = <MosaicPlot {...params} />;
 					break;
@@ -217,6 +222,9 @@ class HistoryPanel extends Component {
 					break;
 				case 'DATA_EXPLORER_SPLOM':
 					output = <ScatterPlotMatrix {...params} />;
+					break;
+				case 'DATA_EXPLORER_VIOLINPLOT':
+					output = <ViolinPlot {...params} />;
 					break;
 				case 'DATA_EXPLORER_FREQUENCY_TABLE':
 					output = <FrequencyTable {...params} />;
