@@ -27,6 +27,7 @@ import { ScatterPlot } from './../scatterplot.js';
 import { ContourChart } from './../contour.js';
 import { generateFrequencyTable } from './../frequency_table.js';
 import { PieChart } from './../piechart.js';
+import { QQPlot } from './../qqplot.js';
 
 
 // FUNCTIONS //
@@ -202,6 +203,9 @@ class HistoryPanel extends Component {
 					break;
 				case 'DATA_EXPLORER_PIECHART':
 					output = <PieChart {...params} />;
+					break;
+				case 'DATA_EXPLORER_QQPLOT':
+					output = <QQPlot {...params} />;
 					break;
 				case 'DATA_EXPLORER_SCATTERPLOT':
 					output = <ScatterPlot {...params} />;
