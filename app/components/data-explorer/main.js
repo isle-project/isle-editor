@@ -67,16 +67,16 @@ import './data_explorer.css';
 
 // MODEL COMPONENTS //
 
-const DecisionTree = Loadable( () => import( 'components/data-explorer/decision_tree.js' ) );
-const LassoRegression = Loadable( () => import( 'components/data-explorer/lasso_regression.js' ) );
-const LogisticRegression = Loadable( () => import( 'components/data-explorer/logistic_regression' ) );
-const MultipleLinearRegression = Loadable( () => import( 'components/data-explorer/multiple_linear_regression' ) );
-const RandomForest = Loadable( () => import( 'components/data-explorer/random_forest.js' ) );
-const SimpleLinearRegression = Loadable( () => import( 'components/data-explorer/simple_linear_regression' ) );
-const PrincipalComponentAnalysis = Loadable( () => import( 'components/data-explorer/principal_component_analysis' ) );
-const HierarchicalClustering = Loadable( () => import( 'components/data-explorer/hierarchical_clustering.js' ) );
-const KMeans = Loadable( () => import( 'components/data-explorer/kmeans' ) );
-const NaiveBayes = Loadable( () => import( 'components/data-explorer/naive_bayes.js' ) );
+const DecisionTree = Loadable( () => import( 'components/data-explorer/menu/decision_tree.js' ) );
+const LassoRegression = Loadable( () => import( 'components/data-explorer/menu/lasso_regression.js' ) );
+const LogisticRegression = Loadable( () => import( 'components/data-explorer/menu/logistic_regression' ) );
+const MultipleLinearRegression = Loadable( () => import( 'components/data-explorer/menu/multiple_linear_regression' ) );
+const RandomForest = Loadable( () => import( 'components/data-explorer/menu/random_forest.js' ) );
+const SimpleLinearRegression = Loadable( () => import( 'components/data-explorer/menu/simple_linear_regression' ) );
+const PrincipalComponentAnalysis = Loadable( () => import( 'components/data-explorer/menu/principal_component_analysis' ) );
+const HierarchicalClustering = Loadable( () => import( 'components/data-explorer/menu/hierarchical_clustering.js' ) );
+const KMeans = Loadable( () => import( 'components/data-explorer/menu/kmeans' ) );
+const NaiveBayes = Loadable( () => import( 'components/data-explorer/menu/naive_bayes.js' ) );
 
 
 // PLOT COMPONENTS //
