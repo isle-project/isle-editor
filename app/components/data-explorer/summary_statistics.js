@@ -25,7 +25,7 @@ import QuestionButton from './question_button.js';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from 'constants/actions.js';
-import extractUsedCategories from './extract_used_categories.js';
+import extractUsedCategories from 'utils/extract-used-categories';
 import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 
 

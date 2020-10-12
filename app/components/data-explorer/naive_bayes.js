@@ -18,8 +18,8 @@ import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
+import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 import QuestionButton from './question_button.js';
-import extractCategoriesFromValues from './extract_categories_from_values.js';
 import { gaussian } from './naive-bayes';
 
 

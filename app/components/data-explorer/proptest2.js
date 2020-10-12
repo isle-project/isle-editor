@@ -20,7 +20,7 @@ import unique from 'uniq';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
 import escapeLatex from 'utils/escape-latex';
-import extractCategoriesFromValues from './extract_categories_from_values.js';
+import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 import getBinaryVars from './get_binary_vars.js';

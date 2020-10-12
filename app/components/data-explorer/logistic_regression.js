@@ -27,8 +27,8 @@ import TeX from 'components/tex';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
 import subtract from 'utils/subtract';
+import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 import QuestionButton from './question_button.js';
-import extractCategoriesFromValues from './extract_categories_from_values.js';
 import irls from './glm/logistic_regression.js';
 
 

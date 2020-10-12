@@ -24,7 +24,7 @@ import CheckboxInput from 'components/input/checkbox';
 import Tooltip from 'components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
 import recodeCategorical from './recode_categorical';
-import extractUsedCategories from './../extract_used_categories.js';
+import extractUsedCategories from 'utils/extract-used-categories';
 import './categorical_transformer.css';
 
 

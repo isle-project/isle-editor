@@ -12,7 +12,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import mean from 'utils/statistic/mean';
-import extractCategoriesFromValues from './extract_categories_from_values.js';
+import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 

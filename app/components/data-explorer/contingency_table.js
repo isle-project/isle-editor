@@ -14,7 +14,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
-import extractUsedCategories from './extract_used_categories.js';
+import extractUsedCategories from 'utils/extract-used-categories';
 import { DATA_EXPLORER_CONTINGENCY_TABLE } from 'constants/actions.js';
 import QuestionButton from './question_button.js';
 

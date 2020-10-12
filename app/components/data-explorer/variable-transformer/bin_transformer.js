@@ -30,7 +30,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import factor from 'utils/factor-variable';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
-import { generateHistogramConfig } from '../histogram.js';
+import { generateHistogramConfig } from 'components/plots/histogram';
 import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
 import './bin_transformer.css';
