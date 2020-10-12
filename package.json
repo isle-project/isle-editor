@@ -174,7 +174,7 @@
     "mini-css-extract-plugin": "^1.0.0",
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
-    "ml-matrix": "^6.5.2",
+    "ml-matrix": "^6.5.3",
     "ml-pca": "4.0.1",
     "ml-regression-multivariate-linear": "^2.0.2",
     "murmurhash3js": "^3.0.1",
