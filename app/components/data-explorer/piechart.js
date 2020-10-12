@@ -101,10 +101,30 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 	};
 }
 
+export function Piechart({ variable, group, data, mode, summaryVariable, id, action, onShare }) {
+	const config = generatePiechartConfig({
+		data,
+		variable,
+		group,
+		mode,
+		summaryVariable
+	});
+	return ( <Plotly
+		editable
+		draggable
+		id={id}
+		fit
+		meta={action}
+		data={config.data}
+		layout={config.layout}
+		onShare={onShare}
+	/> );
+}
+
 
 // MAIN //
 
-class PieChart extends Component {
+class PieChartMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -112,48 +132,36 @@ class PieChart extends Component {
 		this.state = {
 			variable: defaultValue || variables[ 0 ],
 			summaryVariable: quantitative[ 0 ],
-			groupVar: null,
+			group: null,
 			mode: MODES[ 0 ]
 		};
 	}
 
-	generatePiechart = () => {
-		const { variable, groupVar } = this.state;
-		const config = generatePiechartConfig({
-			data: this.props.data,
-			variable,
-			group: groupVar,
-			...this.state
-		});
+	handleGenerate = () => {
+		const { variable, group, mode, summaryVariable } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
-			variable, groupVar, plotId
+			variable, group, plotId
 		};
-		if ( this.state.mode === MODES[ 1 ] ) {
-			action.summaryVariable = this.state.summaryVariable;
+		if ( mode === MODES[ 1 ] ) {
+			action.summaryVariable = summaryVariable;
 		}
-		const output = {
-			variable: variable,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				id={plotId}
-				fit
-				meta={action}
-				data={config.data}
-				layout={config.layout}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
 		};
+		const output= <Piechart
+			id={plotId}
+			{...this.state}
+			{...this.props}
+			action={action}
+			onShare={onShare}
+		/>;
 		this.props.logAction( DATA_EXPLORER_PIECHART, action );
 		this.props.onCreated( output );
 	}
@@ -197,19 +205,19 @@ class PieChart extends Component {
 						/> : null }
 					<SelectInput
 						legend="Group By:"
-						defaultValue={this.state.groupVar}
+						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}
 						menuPlacement="top"
 						onChange={( value )=>{
 							this.setState({
-								groupVar: value
+								group: value
 							});
 						}}
 					/>
 					<Button
 						variant="primary" block
-						onClick={this.generatePiechart}
+						onClick={this.handleGenerate}
 					>Generate</Button>
 				</Card.Body>
 			</Card>
@@ -220,14 +228,14 @@ class PieChart extends Component {
 
 // PROPERTIES //
 
-PieChart.defaultProps = {
+PieChartMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
 	session: {}
 };
 
-PieChart.propTypes = {
+PieChartMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -241,4 +249,4 @@ PieChart.propTypes = {
 
 // EXPORTS //
 
-export default PieChart;
+export default PieChartMenu;
