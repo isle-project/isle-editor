@@ -6,11 +6,9 @@ import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
 import TeX from 'components/tex';
-import pcorrtest from '@stdlib/stats/pcorrtest';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
+import CorrTest from 'components/tests/corrtest';
 import { DATA_EXPLORER_TESTS_CORRTEST } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
@@ -20,50 +18,14 @@ const DESCRIPTION = 'A test used to evaluate the Pearson correlation between two
 
 // MAIN //
 
-class CorrTest extends Component {
+class CorrTestMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
 		const { data, showDecision } = this.props;
-		const x = data[ var1 ];
-		const y = data[ var2 ];
-		const xFiltered = [];
-		const yFiltered = [];
-		for ( let i = 0; i < x.length; i++ ) {
-			if (
-				( isNumber( x[i] ) && !isnan( x[i] ) ) &&
-				( isNumber( y[i] ) && !isnan( y[i] ) )
-			) {
-				xFiltered.push( x[i] );
-				yFiltered.push( y[i] );
-			}
-		}
-		const result = pcorrtest( xFiltered, yFiltered, {
-			'alpha': alpha,
-			'alternative': direction,
-			'rho': rho0
-		});
-		let arrow = '\\ne';
-		if ( direction === 'less' ) {
-			arrow = '<';
-		} else if ( direction === 'greater' ){
-			arrow = '>';
-		}
-		const output = {
-			variable: `Test for correlation between ${var1} and ${var2}`,
-			type: 'Test',
-			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Correlation test between {var1} and {var2}:</label>
-				<TeX displayMode raw={`H_0: \\rho = ${rho0} \\; vs. \\; H_1: \\rho ${arrow} ${rho0}`} tag="" />
-				<pre>
-					{result.print({
-						decision: showDecision
-					})}
-				</pre>
-			</div>
-		};
+		const output = <CorrTest data={data} var1={var1} var2={var2} rho0={rho0} direction={direction} alpha={alpha} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
 			var1, var2, rho0, direction, alpha
 		});
@@ -121,7 +83,7 @@ class CorrTest extends Component {
 
 // PROPERTIES //
 
-CorrTest.propTypes = {
+CorrTestMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
@@ -129,7 +91,7 @@ CorrTest.propTypes = {
 	showDecision: PropTypes.bool
 };
 
-CorrTest.defaultProps = {
+CorrTestMenu.defaultProps = {
 	logAction() {},
 	showDecision: true
 };
@@ -137,4 +99,4 @@ CorrTest.defaultProps = {
 
 // EXPORTS //
 
-export default CorrTest;
+export default CorrTestMenu;

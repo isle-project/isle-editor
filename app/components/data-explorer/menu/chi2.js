@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
-import ROutput from 'components/r/output';
+import Chi2Test from 'components/tests/chi2';
 import { DATA_EXPLORER_TESTS_CHISQUARE } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
@@ -16,28 +16,14 @@ const DESCRIPTION = 'A test determining if there is a significant association be
 
 // MAIN //
 
-class Chi2Test extends Component {
+class Chi2TestMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	calculateChisquareTest = ( var1, var2 ) => {
 		const { data } = this.props;
-		const x = data[ var1 ].map( x => `"${x}"` );
-		const y = data[ var2 ].map( x => `"${x}"` );
-		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for independence between {var1} and {var2}:</label>
-			<ROutput code={`
-				\`${var1}\` = c(${x})
-				\`${var2}\` = c(${y})
-				chisq.test( \`${var1}\`, \`${var2}\` )`}
-			/>
-		</div>;
-		const output = {
-			variable: 'Chisquare Test for Independence',
-			type: 'Test',
-			value: value
-		};
+		const output = <Chi2Test data={data} var1={var1} var2={var2} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
 			var1, var2
 		});
@@ -76,18 +62,18 @@ class Chi2Test extends Component {
 
 // PROPERTIES //
 
-Chi2Test.propTypes = {
+Chi2TestMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired
 };
 
-Chi2Test.defaultProps = {
+Chi2TestMenu.defaultProps = {
 	logAction() {}
 };
 
 
 // EXPORTS //
 
-export default Chi2Test;
+export default Chi2TestMenu;

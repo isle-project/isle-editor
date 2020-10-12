@@ -2,14 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import anova1 from '@stdlib/stats/anova1';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
-import isNull from '@stdlib/assert/is-null';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import Anova from 'components/tests/anova';
 import { DATA_EXPLORER_TESTS_ANOVA } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
@@ -19,40 +16,17 @@ const DESCRIPTION = 'A one-way analysis of variance tests for equality of means 
 
 // MAIN //
 
-class Anova extends Component {
+class AnovaMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	calculateANOVA = ( variable, grouping ) => {
 		const { data, showDecision } = this.props;
-		const vals = data[ variable ];
-		const groups = data[ grouping ];
-		const groupsFiltered = [];
-		const valsFiltered = [];
-		for ( let i = 0; i < vals.length; i++ ) {
-			if (
-				( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
-				( !isNull( groups[i] ) && groups[i] !== '' )
-			) {
-				valsFiltered.push( vals[ i ] );
-				groupsFiltered.push( `"${groups[i]}"` );
-			}
-		}
-		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>ANOVA for {variable} between {grouping}</label>
-			<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
-				decision: showDecision
-			})}</pre>
-		</div>;
-		const output = {
-			variable: 'One-way ANOVA',
-			type: 'Test',
-			value: value
-		};
 		this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
 			variable, grouping
 		});
+		const output = <Anova data={data} variable={variable} grouping={grouping} showDecision={showDecision} />;
 		this.props.onCreated( output );
 	}
 
@@ -86,7 +60,7 @@ class Anova extends Component {
 
 // PROPERTIES //
 
-Anova.propTypes = {
+AnovaMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -95,7 +69,7 @@ Anova.propTypes = {
 	showDecision: PropTypes.bool
 };
 
-Anova.defaultProps = {
+AnovaMenu.defaultProps = {
 	logAction() {},
 	showDecision: true
 };
@@ -103,4 +77,4 @@ Anova.defaultProps = {
 
 // EXPORTS //
 
-export default Anova;
+export default AnovaMenu;

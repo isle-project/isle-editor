@@ -6,47 +6,22 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import ztest from '@stdlib/stats/ztest';
-import ttest from '@stdlib/stats/ttest';
-import roundn from '@stdlib/math/base/special/roundn';
-import replace from '@stdlib/string/replace';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
-import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
-import { DATA_EXPLORER_TESTS_ZTEST } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import MeanTest from 'components/tests/meantest';
+import { DATA_EXPLORER_TESTS_MEAN } from 'constants/actions.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
 
-const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
-const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 const DESCRIPTION = 'A test for the mean of a quantitative variable.';
-
-
-// FUNCTIONS //
-
-function extractValues( data, variable ) {
-	const x = data[ variable ];
-	const arr = [];
-	if ( !x ) {
-		return arr;
-	}
-	for ( let i = 0; i < x.length; i++ ) {
-		if ( isNumber( x[ i ] ) && !isnan( x[ i ] ) ) {
-			arr.push( x[ i ] );
-		}
-	}
-	return arr;
-}
 
 
 // MAIN //
 
-class MeanTest extends Component {
+class MeanTestMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -61,55 +36,20 @@ class MeanTest extends Component {
 	}
 
 	calculateMeanTest = () => {
-		const { showDecision } = this.props;
-		const { variable, type, mu0, direction, alpha } = this.state;
-
-		const xvalues = extractValues( this.props.data, this.state.variable );
-		let xstdev;
-		if ( type === 'Z Test' && this.state.xstdev ) {
-			xstdev = this.state.xstdev;
-		} else {
-			xstdev = roundn( stdev( xvalues ), -6 );
-		}
-
-		let result;
-		if ( type === 'Z Test' ) {
-			result = ztest( xvalues, xstdev, {
-				'alpha': alpha,
-				'alternative': direction,
-				'mu': mu0
-			});
-		} else {
-			result = ttest( xvalues, {
-				'alpha': alpha,
-				'alternative': direction,
-				'mu': mu0
-			});
-		}
-		let arrow = '\\ne';
-		if ( direction === 'less' ) {
-			arrow = '<';
-		} else if ( direction === 'greater' ){
-			arrow = '>';
-		}
-		let printout = result.print({
-			decision: showDecision
-		});
-		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
-		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const output = {
-			variable: `Test for ${variable}`,
-			type: 'Test',
-			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Hypothesis test for {variable}:</label>
-				<TeX displayMode raw={`H_0: \\mu = ${mu0} \\; vs. \\; H_1: \\mu ${arrow} ${mu0}`} tag="" />
-				<pre>
-					{printout}
-				</pre>
-			</div>
-		};
-		this.props.logAction( DATA_EXPLORER_TESTS_ZTEST, {
-			variable, mu0, direction, alpha
+		const { data, showDecision } = this.props;
+		const { variable, type, mu0, direction, alpha, xstdev } = this.state;
+		const output = <MeanTest
+			data={data}
+			variable={variable}
+			showDecision={showDecision}
+			mu0={mu0}
+			direction={direction}
+			xstdev={xstdev}
+			type={type}
+			alpha={alpha}
+		/>;
+		this.props.logAction( DATA_EXPLORER_TESTS_MEAN, {
+			variable, mu0, direction, alpha, type
 		});
 		this.props.onCreated( output );
 	}
@@ -219,17 +159,14 @@ class MeanTest extends Component {
 	}
 }
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-MeanTest.defaultProps = {
+MeanTestMenu.defaultProps = {
 	logAction() {},
 	showDecision: true
 };
 
-
-// PROPERTIES //
-
-MeanTest.propTypes = {
+MeanTestMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
@@ -240,4 +177,4 @@ MeanTest.propTypes = {
 
 // EXPORTS //
 
-export default MeanTest;
+export default MeanTestMenu;

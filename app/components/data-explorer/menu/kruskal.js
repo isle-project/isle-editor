@@ -2,14 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import kruskalTest from '@stdlib/stats/kruskal-test';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
-import isNull from '@stdlib/assert/is-null';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
+import Kruskal from 'components/tests/kruskal';
 import { DATA_EXPLORER_TESTS_KRUSKAL } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
@@ -19,37 +16,14 @@ const DESCRIPTION = 'The Kruskal-Wallis rank sum test evaluates for multiple sam
 
 // MAIN //
 
-class Kruskal extends Component {
+class KruskalMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	calculateTest = ( variable, grouping ) => {
 		const { data, showDecision } = this.props;
-		const vals = data[ variable ];
-		const groups = data[ grouping ];
-		const groupsFiltered = [];
-		const valsFiltered = [];
-		for ( let i = 0; i < vals.length; i++ ) {
-			if (
-				( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
-				( !isNull( groups[i] ) && groups[i] !== '' )
-			) {
-				valsFiltered.push( vals[ i ] );
-				groupsFiltered.push( `"${groups[i]}"` );
-			}
-		}
-		const value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Kruskal Wallis Test of {variable} between {grouping}</label>
-			<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
-				decision: showDecision
-			})}</pre>
-		</div>;
-		const output = {
-			variable: 'Kruskal-Wallis Test',
-			type: 'Test',
-			value: value
-		};
+		const output = <Kruskal data={data} variable={variable} grouping={grouping} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
 			variable, grouping
 		});
@@ -86,7 +60,7 @@ class Kruskal extends Component {
 
 // PROPERTIES //
 
-Kruskal.propTypes = {
+KruskalMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -95,7 +69,7 @@ Kruskal.propTypes = {
 	showDecision: PropTypes.bool
 };
 
-Kruskal.defaultProps = {
+KruskalMenu.defaultProps = {
 	logAction() {},
 	showDecision: true
 };
@@ -103,4 +77,4 @@ Kruskal.defaultProps = {
 
 // EXPORTS //
 
-export default Kruskal;
+export default KruskalMenu;

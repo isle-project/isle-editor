@@ -32,6 +32,14 @@ import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
 import FrequencyTable from 'components/tables/frequency-table';
 import ContingencyTable from 'components/tables/contingency-table';
+import Anova from 'components/tests/anova';
+import Chi2Test from 'components/tests/chi2';
+import CorrTest from 'components/tests/corrtest';
+import Kruskal from 'components/tests/kruskal';
+import MeanTest from 'components/tests/meantest';
+import MeanTest2 from 'components/tests/meantest2';
+import PropTest from 'components/tests/proptest';
+import PropTest2 from 'components/tests/proptest2';
 
 
 // FUNCTIONS //
@@ -231,6 +239,30 @@ class HistoryPanel extends Component {
 					break;
 				case 'DATA_EXPLORER_CONTINGENCY_TABLE':
 					output = <ContingencyTable {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_ANOVA':
+					output = <Anova {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_KRUSKAL':
+					output = <Kruskal {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_MEAN':
+					output = <MeanTest {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN':
+					output = <MeanTest2 {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_CHISQUARE':
+					output = <Chi2Test {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_CORRTEST':
+					output = <CorrTest {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_PROPTEST':
+					output = <PropTest {...params} />;
+					break;
+				case 'DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST':
+					output = <PropTest2 {...params} />;
 					break;
 			}
 			this.props.onCreated( output );

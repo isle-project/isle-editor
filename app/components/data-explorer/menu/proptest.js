@@ -7,26 +7,20 @@ import Button from 'react-bootstrap/Button';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
 import TeX from 'components/tex';
-import ztest from '@stdlib/stats/ztest';
-import sqrt from '@stdlib/math/base/special/sqrt';
-import roundn from '@stdlib/math/base/special/roundn';
-import replace from '@stdlib/string/replace';
-import mean from 'utils/statistic/mean';
+import PropTest from 'components/tests/proptest';
 import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
-import QuestionButton from './question_button.js';
+import QuestionButton from './../question_button.js';
 
 
 // VARIABLES //
 
 const DESCRIPTION = 'A test for the proportion of a selected category of a qualitative variable.';
-const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
-const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
 
 // MAIN //
 
-class PropTest extends Component {
+class PropTestMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -42,43 +36,8 @@ class PropTest extends Component {
 
 	calculatePropTest = () => {
 		const { variable, success, p0, direction, alpha } = this.state;
-		const { data } = this.props;
-		const x = data[ variable ];
-		const binary = x.map( x => x === success ? 1 : 0 );
-		const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
-			'alpha': alpha,
-			'alternative': direction,
-			'mu': p0
-		});
-		let arrow = '\\ne';
-		if ( direction === 'less' ) {
-			arrow = '<';
-		} else if ( direction === 'greater' ){
-			arrow = '>';
-		}
-		let printout = result.print({
-			decision: this.props.showDecision
-		});
-		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
-		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const output = {
-			variable: `One-Sample Proportion Test for ${variable}`,
-			type: 'Test',
-			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Hypothesis test for {variable}:</label>
-				<p>
-					Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
-				</p>
-				<span>
-					We test
-				</span>
-				<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
-				<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
-				<pre>
-					{printout}
-				</pre>
-			</div>
-		};
+		const { data, showDecision } = this.props;
+		const output = <PropTest data={data} variable={variable} success={success} p0={p0} direction={direction} alpha={alpha} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
 			variable, success, p0, direction, alpha
 		});
@@ -168,7 +127,7 @@ class PropTest extends Component {
 
 // PROPERTIES //
 
-PropTest.propTypes = {
+PropTestMenu.propTypes = {
 	categorical: PropTypes.array,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
@@ -176,7 +135,7 @@ PropTest.propTypes = {
 	showDecision: PropTypes.bool
 };
 
-PropTest.defaultProps = {
+PropTestMenu.defaultProps = {
 	categorical: null,
 	logAction() {},
 	showDecision: true
@@ -185,4 +144,4 @@ PropTest.defaultProps = {
 
 // EXPORTS //
 
-export default PropTest;
+export default PropTestMenu;

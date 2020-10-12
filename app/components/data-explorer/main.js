@@ -111,14 +111,14 @@ import { generateContourChart } from 'components/plots/contourchart';
 
 // TEST COMPONENTS //
 
-const MeanTest = Loadable( () => import( 'components/data-explorer/meantest' ) );
-const MeanTest2 = Loadable( () => import( 'components/data-explorer/meantest2' ) );
-const CorrTest = Loadable( () => import( 'components/data-explorer/corrtest' ) );
-const Chi2Test = Loadable( () => import( 'components/data-explorer/chi2' ) );
-const PropTest = Loadable( () => import( 'components/data-explorer/proptest' ) );
-const PropTest2 = Loadable( () => import( 'components/data-explorer/proptest2' ) );
-const Anova = Loadable( () => import( 'components/data-explorer/anova' ) );
-const Kruskal = Loadable( () => import( 'components/data-explorer/kruskal' ) );
+const Anova = Loadable( () => import( 'components/data-explorer/menu/anova' ) );
+const Chi2Test = Loadable( () => import( 'components/data-explorer/menu/chi2' ) );
+const CorrTest = Loadable( () => import( 'components/data-explorer/menu/corrtest' ) );
+const Kruskal = Loadable( () => import( 'components/data-explorer/menu/kruskal' ) );
+const MeanTest = Loadable( () => import( 'components/data-explorer/menu/meantest' ) );
+const MeanTest2 = Loadable( () => import( 'components/data-explorer/menu/meantest2' ) );
+const PropTest = Loadable( () => import( 'components/data-explorer/menu/proptest' ) );
+const PropTest2 = Loadable( () => import( 'components/data-explorer/menu/proptest2' ) );
 
 
 // VARIABLES //
