@@ -57,7 +57,6 @@ const ORDER_OPTIONS = [
 
 // FUNCTIONS //
 
-
 export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, mode, stackBars, relative, totalPercent, xOrder, direction }) {
 	let traces;
 	const nObs = data[ variable ].length;
@@ -219,10 +218,29 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	};
 }
 
+export function Barchart( props ) {
+	const config = generateBarchartConfig( props );
+	return (
+		<Plotly
+			editable
+			draggable
+			id={props.id}
+			fit
+			data={config.data}
+			layout={config.layout}
+			meta={props.action}
+			onShare={props.onShare}
+			onSelected={( selected ) => {
+				this.props.onSelected( props.variable, selected );
+			}}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class Barchart extends Component {
+class BarchartMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -244,13 +262,6 @@ class Barchart extends Component {
 
 	generateBarchart() {
 		const { variable, groupVar } = this.state;
-		const config = generateBarchartConfig(
-			{
-				data: this.props.data,
-				variable,
-				group: groupVar,
-				...this.state
-			});
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, groupVar, plotId
@@ -259,27 +270,16 @@ class Barchart extends Component {
 			action.summary = this.state.summary;
 			action.yvar = this.state.yvar;
 		}
-		const output = {
-			variable,
-			type: 'Chart',
-			value: <Plotly
-				editable draggable id={plotId} fit data={config.data}
-				layout={config.layout}
-				meta={action}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
-				}}
-				onSelected={( selected ) => {
-					this.props.onSelected( variable, selected );
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 		};
+		const output = <Barchart {...this.state} {...this.props} id={plotId} action={action} onShare={onShare} />;
 		this.props.logAction( DATA_EXPLORER_BARCHART, action );
 		this.props.onCreated( output );
 	}
@@ -462,7 +462,7 @@ class Barchart extends Component {
 
 // PROPERTIES //
 
-Barchart.defaultProps = {
+BarchartMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
@@ -471,7 +471,7 @@ Barchart.defaultProps = {
 	session: {}
 };
 
-Barchart.propTypes = {
+BarchartMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -485,4 +485,4 @@ Barchart.propTypes = {
 
 // EXPORTS //
 
-export default Barchart;
+export default BarchartMenu;
