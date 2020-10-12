@@ -396,10 +396,29 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	};
 }
 
+export function Scatterplot( props ) {
+	const config = generateScatterplotConfig( props );
+	return (
+		<Plotly
+			editable
+			draggable
+			fit
+			id={props.id}
+			meta={props.action}
+			data={config.data}
+			layout={config.layout}
+			onShare={props.onShare}
+			onSelected={( selected ) => {
+				this.props.onSelected({ x: props.xval, y: props.yval }, selected );
+			}}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class Scatterplot extends Component {
+class ScatterplotMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -419,36 +438,26 @@ class Scatterplot extends Component {
 	}
 
 	generateScatterplot = () => {
-		const config = generateScatterplotConfig({ data: this.props.data, ...this.state });
 		const plotId = randomstring( 6 );
-		const stateNew = { ...this.state };
-		stateNew.plotId = plotId;
-		const output = {
-			variable: `${this.state.xval} against ${this.state.yval}`,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				fit
-				id={plotId}
-				meta={stateNew}
-				data={config.data}
-				layout={config.layout}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, stateNew );
-				}}
-				onSelected={( selected ) => {
-					this.props.onSelected({ x: this.state.xval, y: this.state.yval }, selected );
-				}}
-			/>
+		const action = { ...this.state, plotId };
+
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, action );
 		};
-		this.props.logAction( DATA_EXPLORER_SCATTERPLOT, stateNew );
+		const output = <Scatterplot
+			data={this.props.data}
+			{...this.state}
+			id={plotId}
+			action={action}
+			onShare={onShare}
+		/>;
+		this.props.logAction( DATA_EXPLORER_SCATTERPLOT, action );
 		this.props.onCreated( output );
 	}
 
@@ -607,9 +616,9 @@ class Scatterplot extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-Scatterplot.defaultProps = {
+ScatterplotMenu.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	groupingVariables: null,
@@ -619,10 +628,7 @@ Scatterplot.defaultProps = {
 	showRegressionOption: true
 };
 
-
-// PROPERTIES //
-
-Scatterplot.propTypes = {
+ScatterplotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultX: PropTypes.string,
 	defaultY: PropTypes.string,
@@ -638,4 +644,4 @@ Scatterplot.propTypes = {
 
 // EXPORTS //
 
-export default Scatterplot;
+export default ScatterplotMenu;
