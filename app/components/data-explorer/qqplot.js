@@ -83,42 +83,45 @@ export function generateQQPlotConfig( y, variable ) {
 	};
 }
 
+export function QQPlot({ id, data, variable, action, onShare }) {
+	const config = generateQQPlotConfig( data[ variable ], variable );
+	return (
+		<Plotly
+			editable
+			draggable
+			id={id}
+			fit
+			meta={action}
+			data={config.data}
+			layout={config.layout}
+			onShare={onShare}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class QQPlot extends Component {
+class QQPlotMenu extends Component {
 	constructor( props ) {
 		super( props );
 	}
 
 	generateQQPlot( variable ) {
-		const config = generateQQPlotConfig( this.props.data[ variable ], variable );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, plotId
 		};
-		const output = {
-			variable: variable,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				id={plotId}
-				fit
-				meta={action}
-				data={config.data}
-				layout={config.layout}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
 		};
+		const output = <QQPlot data={this.props.data} variable={variable} id={plotId} action={action} onShare={onShare} />;
 		this.props.logAction( DATA_EXPLORER_QQPLOT, action );
 		this.props.onCreated( output );
 	}
@@ -144,13 +147,13 @@ class QQPlot extends Component {
 
 // PROPERTIES //
 
-QQPlot.defaultProps = {
+QQPlotMenu.defaultProps = {
 	defaultValue: null,
 	logAction() {},
 	session: {}
 };
 
-QQPlot.propTypes = {
+QQPlotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	logAction: PropTypes.func,
@@ -162,4 +165,4 @@ QQPlot.propTypes = {
 
 // EXPORTS //
 
-export default QQPlot;
+export default QQPlotMenu;
