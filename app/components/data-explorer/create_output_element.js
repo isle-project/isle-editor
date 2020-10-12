@@ -169,8 +169,8 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 // MAIN //
 
 function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
-	if ( e.type === 'Chart' ) {
-		const props = e.value.props;
+	if ( React.isValidElement( e ) ) {
+		const props = e.props;
 		if ( props.meta && !props.meta.filters ) {
 			props.meta.filters = subsetFilters;
 		}
@@ -188,7 +188,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 				marginBottom: 40,
 				marginRight: 25
 			}} >
-				{e.value}
+				{e}
 			</div>
 		</div> );
 	}
