@@ -27,7 +27,7 @@ class CorrTestMenu extends Component {
 		const { data, showDecision } = this.props;
 		const output = <CorrTest data={data} var1={var1} var2={var2} rho0={rho0} direction={direction} alpha={alpha} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
-			var1, var2, rho0, direction, alpha
+			var1, var2, rho0, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
