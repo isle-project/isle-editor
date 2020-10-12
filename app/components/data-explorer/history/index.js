@@ -40,6 +40,16 @@ import MeanTest from 'components/tests/meantest';
 import MeanTest2 from 'components/tests/meantest2';
 import PropTest from 'components/tests/proptest';
 import PropTest2 from 'components/tests/proptest2';
+import DecisionTree from 'components/models/decision-tree';
+import LassoRegression from 'components/models/lasso-regression';
+import LogisticRegression from 'components/models/logistic-regression';
+import MultipleLinearRegression from 'components/models/multiple-linear-regression';
+import RandomForest from 'components/models/random-forest';
+import SimpleLinearRegression from 'components/models/simple-linear-regression';
+import PrincipalComponentAnalysis from 'components/models/principal-component-analysis';
+import HierarchicalClustering from 'components/models/hierarchical-clustering';
+import KMeans from 'components/models/kmeans';
+import NaiveBayes from 'components/models/naive-bayes';
 
 
 // FUNCTIONS //
@@ -118,7 +128,7 @@ class HistoryPanel extends Component {
 		const value = elem.value;
 		const title = `${elem.type} | Time: ${date.toLocaleTimeString()} - ${date.toLocaleDateString()}`;
 		for ( let key in value ) {
-			if ( hasOwnProp( value, key ) ) {
+			if ( hasOwnProp( value, key ) && key !== 'showDecision' ) {
 				const val = value[ key ];
 				if ( !isUndefinedOrNull( val ) && key !== 'plotId' ) {
 					printout += `${key}: ${isPlainObject( val ) ? JSON.stringify( val ) : val}`;
@@ -168,6 +178,7 @@ class HistoryPanel extends Component {
 				</Alert> :
 				null
 			}
+			{ this.props.instructorFeedback ?
 				<OverlayTrigger trigger="click" placement="left" rootClose overlay={popover} >
 					<Button
 						variant="info"
@@ -176,15 +187,17 @@ class HistoryPanel extends Component {
 					>
 						<i className="fas fa-sticky-note"></i>
 					</Button>
-				</OverlayTrigger>
-				<Button
-					variant="success"
-					size="sm"
-					onClick={this.handleRecreationFactory( index )}
-					style={{ position: 'absolute', top: 5, right: 5 }}
-				>
-					<i className="fas fa-redo"></i>
-				</Button>
+				</OverlayTrigger> :
+				null
+			}
+			<Button
+				variant="success"
+				size="sm"
+				onClick={this.handleRecreationFactory( index )}
+				style={{ position: 'absolute', top: 5, right: 5 }}
+			>
+				<i className="fas fa-redo"></i>
+			</Button>
 		</ListGroupItem> );
 	}
 
@@ -264,6 +277,36 @@ class HistoryPanel extends Component {
 				case 'DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST':
 					output = <PropTest2 {...params} />;
 					break;
+				case 'DATA_EXPLORER_KMEANS':
+					output = <KMeans {...params} />;
+					break;
+				case 'DATA_EXPLORER_HIERARCHICAL_CLUSTERING':
+					output = <HierarchicalClustering {...params} />;
+					break;
+				case 'DATA_EXPLORER_DECISION_TREE':
+					output = <DecisionTree {...params} />;
+					break;
+				case 'DATA_EXPLORER_LASSO_REGRESSION':
+					output = <LassoRegression {...params} />;
+					break;
+				case 'DATA_EXPLORER_LINEAR_REGRESSION':
+					output = <SimpleLinearRegression {...params} />;
+					break;
+				case 'DATA_EXPLORER_LOGISTIC_REGRESSION':
+					output = <LogisticRegression {...params} />;
+					break;
+				case 'DATA_EXPLORER_MULTIPLE_REGRESSION':
+					output = <MultipleLinearRegression {...params} />;
+					break;
+				case 'DATA_EXPLORER_NAIVE_BAYES':
+					output = <NaiveBayes {...params} />;
+					break;
+				case 'DATA_EXPLORER_PCA':
+					output = <PrincipalComponentAnalysis {...params} />;
+					break;
+				case 'DATA_EXPLORER_RANDOM_FOREST':
+					output = <RandomForest {...params} />;
+					break;
 			}
 			this.props.onCreated( output );
 		};
@@ -305,11 +348,13 @@ class HistoryPanel extends Component {
 // PROPERTIES //
 
 HistoryPanel.propTypes = {
-	actions: PropTypes.array
+	actions: PropTypes.array,
+	instructorFeedback: PropTypes.bool
 };
 
 HistoryPanel.defaultProps = {
-	actions: []
+	actions: [],
+	instructorFeedback: false
 };
 
 
