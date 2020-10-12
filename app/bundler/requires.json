@@ -206,5 +206,15 @@
 	"MeanTest": "components/tests/meantest",
 	"MeanTest2": "components/tests/meantest2",
 	"PropTest": "components/tests/proptest",
-	"PropTest2": "components/tests/proptest2"
+	"PropTest2": "components/tests/proptest2",
+	"DecisionTree" : "components/models/decision-tree",
+	"LassoRegression" : "components/models/lasso-regression",
+	"LogisticRegression" : "components/models/logistic-regression",
+	"MultipleLinearRegression" : "components/models/multiple-linear-regression",
+	"RandomForest" : "components/models/random-forest",
+	"SimpleLinearRegression" : "components/models/simple-linear-regression",
+	"PrincipalComponentAnalysis" : "components/models/principal-component-analysis",
+	"HierarchicalClustering" : "components/models/hierarchical-clustering",
+	"KMeans" : "components/models/kmeans",
+	"NaiveBayes" : "components/models/naive-bayes"
 }
