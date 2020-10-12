@@ -22,6 +22,14 @@ import QQPlot from 'components/plots/qqplot';
 import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
 import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
+import Anova from 'components/tests/anova';
+import Chi2Test from 'components/tests/chi2';
+import CorrTest from 'components/tests/corrtest';
+import Kruskal from 'components/tests/kruskal';
+import MeanTest from 'components/tests/meantest';
+import MeanTest2 from 'components/tests/meantest2';
+import PropTest from 'components/tests/proptest';
+import PropTest2 from 'components/tests/proptest2';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
 import DatasetButton from './dataset_button.js';
@@ -219,10 +227,19 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			</div>
 		</div> );
 	}
-	else if ( e.type === 'Test' ) {
+	else if (
+		e.type === Anova ||
+		e.type === CorrTest ||
+		e.type === Chi2Test ||
+		e.type === Kruskal ||
+		e.type === MeanTest ||
+		e.type === MeanTest2 ||
+		e.type === PropTest ||
+		e.type === PropTest2
+	) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type, e.value, clearOutput, idx, subsetFilters, onFilters )}
-			{e.value}
+			{createButtons( e.type.name, e, clearOutput, idx, subsetFilters, onFilters )}
+			{e}
 		</pre>;
 		return elem;
 	}
