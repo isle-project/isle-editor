@@ -134,10 +134,29 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 	};
 }
 
+export function ContourChart({ id, data, xval, yval, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected }) {
+	const config = generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
+	return (
+		<Plotly
+			editable
+			draggable
+			fit
+			id={id}
+			meta={action}
+			data={config.data}
+			layout={config.layout}
+			onShare={onShare}
+			onSelected={( selected ) => {
+				onSelected({ x: xval, y: yval }, selected );
+			}}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class ContourChart extends Component {
+class ContourChartMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -152,36 +171,31 @@ class ContourChart extends Component {
 
 	generateContourChart = () => {
 		const { xval, yval, overlayPoints, regressionMethod, smoothSpan } = this.state;
-		const config = generateContourChart({ data: this.props.data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
 		const plotId = randomstring( 6 );
 		const action = {
-			xval, yval, overlayPoints, plotId
+			xval, yval, overlayPoints, regressionMethod, smoothSpan, plotId
 		};
-		const output = {
-			variable: `${xval} against ${yval}`,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				fit
-				id={plotId}
-				meta={action}
-				data={config.data}
-				layout={config.layout}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
-				}}
-				onSelected={( selected ) => {
-					this.props.onSelected({ x: xval, y: yval }, selected );
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
 		};
+		const output = <ContourChart
+			id={plotId}
+			action={action}
+			data={this.props.data}
+			onShare={onShare}
+			xval={xval}
+			yval={yval}
+			overlayPoints={overlayPoints}
+			regressionMethod={regressionMethod}
+			smoothSpan={smoothSpan}
+			onSelected={this.props.onSelected}
+		/>;
 		this.props.logAction( DATA_EXPLORER_CONTOURPLOT, action );
 		this.props.onCreated( output );
 	}
@@ -272,9 +286,9 @@ class ContourChart extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-ContourChart.defaultProps = {
+ContourChartMenu.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	logAction() {},
@@ -282,10 +296,7 @@ ContourChart.defaultProps = {
 	session: {}
 };
 
-
-// PROPERTIES //
-
-ContourChart.propTypes = {
+ContourChartMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultX: PropTypes.string,
 	defaultY: PropTypes.string,
@@ -299,4 +310,4 @@ ContourChart.propTypes = {
 
 // EXPORTS //
 
-export default ContourChart;
+export default ContourChartMenu;
