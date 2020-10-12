@@ -6,27 +6,24 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import unique from 'uniq';
 import contains from '@stdlib/assert/contains';
-import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
-import Tooltip from 'components/tooltip';
 import Collapse from 'components/collapse';
+import DecisionTree from 'components/models/decision-tree';
 import { DATA_EXPLORER_DECISION_TREE } from 'constants/actions.js';
 import subtract from 'utils/subtract';
-import QuestionButton from './question_button.js';
-import { RegressionTree, ClassificationTree, TreePlot } from './tree';
+import QuestionButton from '../question_button.js';
 
 
 // VARIABLES //
 
 const DESCRIPTION = 'Grow a decision tree for either a regression or classification problem. For quantitative responses, at each iteration of the algorithm the data are split by the variable which leads to splits with the greatest reduction in variance for the response. For categorical responses, the data are split on the feature which leads to the largest information gain (measured either in terms of the Gini index or entropy)';
-let COUNTER = 0;
 
 
 // MAIN //
 
-class DecisionTree extends Component {
+class DecisionTreeMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -43,84 +40,47 @@ class DecisionTree extends Component {
 
 	compute = () => {
 		let { y, x, type, impurityMeasure } = this.state;
-		COUNTER += 1;
-		let predictors;
-		if ( isArray( x ) ) {
-			predictors = x;
-		} else {
-			predictors = [ x ];
-		}
-
-		let tree;
-		if ( type === 'Classification' ) {
-			tree = new ClassificationTree({
-				response: y,
-				predictors,
-				data: this.props.data,
-				quantitative: this.props.quantitative,
-				criterion: impurityMeasure,
-				scoreThreshold: this.state.scoreThreshold,
-				maxTreeDepth: this.state.maxTreeDepth,
-				minItemsCount: this.state.minItemsCount
-			});
-		} else {
-			tree = new RegressionTree({
-				response: y,
-				predictors,
-				data: this.props.data,
-				quantitative: this.props.quantitative,
-				scoreThreshold: this.state.scoreThreshold,
-				maxTreeDepth: this.state.maxTreeDepth,
-				minItemsCount: this.state.minItemsCount
-			});
-		}
+		const output = <DecisionTree
+			x={x} y={y} type={type} impurityMeasure={impurityMeasure}
+			data={this.props.data}
+			onPredict={( tree, counter ) => {
+				const newData = copy( this.props.data, 1 );
+				if ( type === 'Classification' ) {
+					const newCategorical = this.props.categorical.slice();
+					const yhat = tree.predict( newData ).map( x => String( x ) );
+					let name = 'pred_tree' + counter;
+					newData[ name ] = yhat;
+					if ( !contains( newCategorical, name ) ) {
+						newCategorical.push( name );
+					}
+					name = 'correct_tree' + counter;
+					const yvalues = this.props.data[ y ];
+					newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+					if ( !contains( newCategorical, name ) ) {
+						newCategorical.push( name );
+					}
+					this.props.onGenerate( this.props.quantitative, newCategorical, newData );
+				}
+				else {
+					const newQuantitative = this.props.quantitative.slice();
+					const yhat = tree.predict( newData );
+					let name = 'pred_tree' + counter;
+					newData[ name ] = yhat;
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					name = 'resid_tree' + counter;
+					newData[ name ] = subtract( yhat, this.props.data[ y ] );
+					if ( !contains( newQuantitative, name ) ) {
+						newQuantitative.push( name );
+					}
+					this.props.onGenerate( newQuantitative, this.props.categorical, newData );
+				}
+			}}
+		/>;
 		this.props.logAction( DATA_EXPLORER_DECISION_TREE, {
 			y, x, type
 		});
-		const output = {
-			variable: 'Decision Tree',
-			type: 'Decision Tree',
-			value: <div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Decision Tree for {y} (model id: tree{COUNTER})</span>
-				<TreePlot tree={tree.root} />
-				<Tooltip tooltip="Predictions will be attached to data table">
-					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={() => {
-						const newData = copy( this.props.data, 1 );
-						if ( type === 'Classification' ) {
-							const newCategorical = this.props.categorical.slice();
-							const yhat = tree.predict( newData ).map( x => String( x ) );
-							let name = 'pred_tree' + COUNTER;
-							newData[ name ] = yhat;
-							if ( !contains( newCategorical, name ) ) {
-								newCategorical.push( name );
-							}
-							name = 'correct_tree' + COUNTER;
-							const yvalues = this.props.data[ y ];
-							newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
-							if ( !contains( newCategorical, name ) ) {
-								newCategorical.push( name );
-							}
-							this.props.onGenerate( this.props.quantitative, newCategorical, newData );
-						}
-						else {
-							const newQuantitative = this.props.quantitative.slice();
-							const yhat = tree.predict( newData );
-							let name = 'pred_tree' + COUNTER;
-							newData[ name ] = yhat;
-							if ( !contains( newQuantitative, name ) ) {
-								newQuantitative.push( name );
-							}
-							name = 'resid_tree' + COUNTER;
-							newData[ name ] = subtract( yhat, this.props.data[ y ] );
-							if ( !contains( newQuantitative, name ) ) {
-								newQuantitative.push( name );
-							}
-							this.props.onGenerate( newQuantitative, this.props.categorical, newData );
-						}
-					}}>Use this model to predict for currently selected data</Button>
-				</Tooltip>
-			</div>
-		};
 		this.props.onCreated( output );
 	}
 
@@ -192,11 +152,11 @@ class DecisionTree extends Component {
 
 // PROPERTIES //
 
-DecisionTree.defaultProps = {
+DecisionTreeMenu.defaultProps = {
 	logAction() {}
 };
 
-DecisionTree.propTypes = {
+DecisionTreeMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -208,4 +168,4 @@ DecisionTree.propTypes = {
 
 // EXPORTS //
 
-export default DecisionTree;
+export default DecisionTreeMenu;
