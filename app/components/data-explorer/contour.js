@@ -14,6 +14,7 @@ import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
+import noop from '@stdlib/utils/noop';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
@@ -134,7 +135,7 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 	};
 }
 
-export function ContourChart({ id, data, xval, yval, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected }) {
+export function ContourChart({ id, data, xval, yval, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected = noop }) {
 	const config = generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
 	return (
 		<Plotly
