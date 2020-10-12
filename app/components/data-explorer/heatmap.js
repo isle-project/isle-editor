@@ -280,10 +280,27 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 	};
 }
 
+export function HeatMap( props ) {
+	const config = generateHeatmapConfig( props );
+	return ( <Plotly
+		editable
+		draggable
+		fit
+		id={props.id}
+		data={config.data}
+		layout={config.layout}
+		meta={props.action}
+		onShare={props.onShare}
+		onSelected={( selected ) => {
+			this.props.onSelected({ x: props.xval, y: props.yval }, selected );
+		}}
+	/> );
+}
+
 
 // MAIN //
 
-class HeatMap extends Component {
+class HeatMapMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -303,39 +320,20 @@ class HeatMap extends Component {
 
 	generateHeatmap() {
 		const { xval, yval, overlayPoints, regressionMethod } = this.state;
-		const config = generateHeatmapConfig({
-			data: this.props.data,
-			...this.state
-		});
 		const plotId = randomstring( 6 );
 		const action = {
 			xval, yval, overlayPoints, regressionMethod, plotId
 		};
-		const output ={
-			variable: `${xval} against ${yval}`,
-			type: 'Chart',
-			value: <Plotly
-				editable
-				draggable
-				fit
-				id={plotId}
-				data={config.data}
-				layout={config.layout}
-				meta={action}
-				onShare={() => {
-					this.props.session.addNotification({
-						title: 'Plot shared.',
-						message: 'You have successfully shared your plot.',
-						level: 'success',
-						position: 'tr'
-					});
-					this.props.logAction( DATA_EXPLORER_SHARE_HEATMAP, action );
-				}}
-				onSelected={( selected ) => {
-					this.props.onSelected({ x: xval, y: yval }, selected );
-				}}
-			/>
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_HEATMAP, action );
 		};
+		const output = <HeatMap id={plotId} data={this.props.data} {...this.state} action={action} onShare={onShare} />;
 		this.props.logAction( DATA_EXPLORER_HEATMAP, action );
 		this.props.onCreated( output );
 	}
@@ -486,9 +484,9 @@ class HeatMap extends Component {
 }
 
 
-// DEFAULT PROPERTIES //
+// PROPERTIES //
 
-HeatMap.defaultProps = {
+HeatMapMenu.defaultProps = {
 	defaultX: null,
 	defaultY: null,
 	groupingVariables: null,
@@ -497,10 +495,7 @@ HeatMap.defaultProps = {
 	session: {}
 };
 
-
-// PROPERTIES //
-
-HeatMap.propTypes = {
+HeatMapMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultX: PropTypes.string,
 	defaultY: PropTypes.string,
@@ -515,4 +510,4 @@ HeatMap.propTypes = {
 
 // EXPORTS //
 
-export default HeatMap;
+export default HeatMapMenu;
