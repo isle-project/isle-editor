@@ -49,7 +49,7 @@ class MeanTestMenu extends Component {
 			alpha={alpha}
 		/>;
 		this.props.logAction( DATA_EXPLORER_TESTS_MEAN, {
-			variable, mu0, direction, alpha, type
+			variable, mu0, direction, alpha, type, showDecision
 		});
 		this.props.onCreated( output );
 	}
