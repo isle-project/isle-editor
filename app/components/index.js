@@ -201,6 +201,16 @@ import MeanTest from 'components/tests/meantest';
 import MeanTest2 from 'components/tests/meantest2';
 import PropTest from 'components/tests/proptest';
 import PropTest2 from 'components/tests/proptest2';
+import DecisionTree from 'components/models/decision-tree';
+import LassoRegression from 'components/models/lasso-regression';
+import LogisticRegression from 'components/models/logistic-regression';
+import MultipleLinearRegression from 'components/models/multiple-linear-regression';
+import RandomForest from 'components/models/random-forest';
+import SimpleLinearRegression from 'components/models/simple-linear-regression';
+import PrincipalComponentAnalysis from 'components/models/principal-component-analysis';
+import HierarchicalClustering from 'components/models/hierarchical-clustering';
+import KMeans from 'components/models/kmeans';
+import NaiveBayes from 'components/models/naive-bayes';
 
 
 // EXPORTS //
@@ -408,7 +418,18 @@ const scope = {
 	MeanTest,
 	MeanTest2,
 	PropTest,
-	PropTest2
+	PropTest2,
+
+	DecisionTree,
+	HierarchicalClustering,
+	LassoRegression,
+	LogisticRegression,
+	MultipleLinearRegression,
+	NaiveBayes,
+	PrincipalComponentAnalysis,
+	RandomForest,
+	SimpleLinearRegression,
+	KMeans
 };
 
 
