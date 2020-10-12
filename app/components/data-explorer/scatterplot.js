@@ -396,7 +396,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	};
 }
 
-export function Scatterplot( props ) {
+export function ScatterPlot( props ) {
 	const config = generateScatterplotConfig( props );
 	return (
 		<Plotly
@@ -450,7 +450,7 @@ class ScatterplotMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, action );
 		};
-		const output = <Scatterplot
+		const output = <ScatterPlot
 			data={this.props.data}
 			{...this.state}
 			id={plotId}

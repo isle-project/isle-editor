@@ -178,6 +178,18 @@ import Deck from 'components/spectacle/components/deck';
 import SlideNotes from 'components/spectacle/components/notes';
 import Slide from 'components/spectacle/components/slide';
 
+import { BarChart } from 'components/data-explorer/barchart.js';
+import { BoxPlot } from 'components/data-explorer/boxplot.js';
+import { ContourChart } from 'components/data-explorer/contour.js';
+import { HeatMap } from 'components/data-explorer/heatmap.js';
+import { Histogram } from 'components/data-explorer/histogram.js';
+import { LinePlot } from 'components/data-explorer/lineplot.js';
+import { MosaicPlot } from 'components/data-explorer/mosaicplot.js';
+import { PieChart } from 'components/data-explorer/piechart.js';
+import { QQPlot } from 'components/data-explorer/qqplot.js';
+import { ScatterPlotMatrix } from 'components/data-explorer/scatterplot_matrix.js';
+import { ScatterPlot } from 'components/data-explorer/scatterplot.js';
+
 
 // EXPORTS //
 
@@ -358,7 +370,19 @@ const scope = {
 	SlideAppear,
 	Deck,
 	SlideNotes,
-	Slide
+	Slide,
+
+	BarChart,
+	BoxPlot,
+	ContourChart,
+	HeatMap,
+	Histogram,
+	LinePlot,
+	MosaicPlot,
+	PieChart,
+	QQPlot,
+	ScatterPlotMatrix,
+	ScatterPlot
 };
 
 

@@ -78,7 +78,7 @@ export function generateScatterplotMatrixConfig({ data, variables, color }) {
 	};
 }
 
-export function ScatterplotMatrix( props ) {
+export function ScatterPlotMatrix( props ) {
 	const config = generateScatterplotMatrixConfig( props );
 	return (
 		<Plotly
@@ -141,7 +141,7 @@ class ScatterplotMatrixMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
 		};
-		const output = <ScatterplotMatrix
+		const output = <ScatterPlotMatrix
 			id={plotId}
 			data={this.props.data}
 			{...this.state}

@@ -161,7 +161,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 	return config;
 }
 
-export function Boxplot({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) {
+export function BoxPlot({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) {
 	const config = generateBoxplotConfig({
 		data,
 		variable,
@@ -214,7 +214,7 @@ class BoxplotMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
 		};
-		const output = <Boxplot id={plotId} onShare={onShare} action={action} {...this.props} {...this.state} />;
+		const output = <BoxPlot id={plotId} onShare={onShare} action={action} {...this.props} {...this.state} />;
 		this.props.logAction( DATA_EXPLORER_BOXPLOT, action );
 		this.props.onCreated( output );
 	}

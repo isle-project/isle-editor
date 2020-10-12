@@ -101,7 +101,7 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 	};
 }
 
-export function Piechart({ variable, group, data, mode, summaryVariable, id, action, onShare }) {
+export function PieChart({ variable, group, data, mode, summaryVariable, id, action, onShare }) {
 	const config = generatePiechartConfig({
 		data,
 		variable,
@@ -155,7 +155,7 @@ class PieChartMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
 		};
-		const output= <Piechart
+		const output= <PieChart
 			id={plotId}
 			{...this.state}
 			{...this.props}
