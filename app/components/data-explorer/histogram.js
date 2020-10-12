@@ -258,10 +258,29 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 	};
 }
 
+export function Histogram( props ) {
+	const config = generateHistogramConfig( props );
+	return (
+		<Plotly
+			editable
+			draggable
+			id={props.id}
+			fit
+			meta={props.action}
+			data={config.data}
+			layout={config.layout}
+			onShare={props.onShare}
+			onSelected={( selected ) => {
+				this.props.onSelected( props.variable, selected );
+			}}
+		/>
+	);
+}
+
 
 // MAIN //
 
-class Histogram extends Component {
+class HistogramMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -284,29 +303,20 @@ class Histogram extends Component {
 	}
 
 	generateHistogram() {
-		const config = generateHistogramConfig({
-			data: this.props.data, ...this.state
-		});
 		debug( `Generate a histogram with ${this.state.nBins} bins` );
 		const plotId = randomstring( 6 );
-		const stateNew = { ...this.state };
-		stateNew.plotId = plotId;
-		const output = {
-			variable: this.state.variable,
-			type: 'Chart',
-			value: <Plotly editable draggable id={plotId} fit meta={stateNew} data={config.data} layout={config.layout} onShare={() => {
-				this.props.session.addNotification({
-					title: 'Plot shared.',
-					message: 'You have successfully shared your plot.',
-					level: 'success',
-					position: 'tr'
-				});
-				this.props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, stateNew );
-			}} onSelected={( selected ) => {
-				this.props.onSelected( this.state.variable, selected );
-			}} />
+		const action = { ...this.state, plotId };
+		const onShare = () => {
+			this.props.session.addNotification({
+				title: 'Plot shared.',
+				message: 'You have successfully shared your plot.',
+				level: 'success',
+				position: 'tr'
+			});
+			this.props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, action );
 		};
-		this.props.logAction( DATA_EXPLORER_HISTOGRAM, stateNew );
+		const output = <Histogram data={this.props.data} {...this.state} id={plotId} action={action} onShare={onShare} />;
+		this.props.logAction( DATA_EXPLORER_HISTOGRAM, action );
 		this.props.onCreated( output );
 	}
 
@@ -497,7 +507,7 @@ class Histogram extends Component {
 
 // PROPERTIES //
 
-Histogram.defaultProps = {
+HistogramMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
@@ -506,7 +516,7 @@ Histogram.defaultProps = {
 	onSelected() {}
 };
 
-Histogram.propTypes = {
+HistogramMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
@@ -521,4 +531,4 @@ Histogram.propTypes = {
 
 // EXPORTS //
 
-export default Histogram;
+export default HistogramMenu;
