@@ -80,7 +80,7 @@ class LassoRegressionMenu extends Component {
 					min={1e-12}
 					max={1}
 					step="any"
-					rangeInputStyle={{ width: 320 }}
+					rangeInputStyle={{ width: 260 }}
 					numberInputStyle={{ width: 120 }}
 				/>
 				<CheckboxInput
