@@ -177,10 +177,10 @@ class MultipleLinearRegression extends Component {
 		}
 		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
 		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, data, quantitative, intercept );
-		const result = new MLR( matrix, yvalues, {
+		this.result = new MLR( matrix, yvalues, {
 			intercept
 		});
-		const yhat = result.predict( matrix ).map( v => v[ 0 ] );
+		const yhat = this.result.predict( matrix ).map( v => v[ 0 ] );
 		this.yhat = yhat;
 		const avgFitted = mean( yhat );
 		let mss = 0;
@@ -243,9 +243,10 @@ class MultipleLinearRegression extends Component {
 	}
 
 	handlePredict = () => {
-		const { matrix } = designMatrix( this.x, this.y, this.props.data, this.props.quantitative, this.props.intercept );
+		const { data, quantitative, intercept } = this.props;
+		const { matrix } = designMatrix( this.x, this.y, data, quantitative, intercept );
 		const yhat = this.result.predict( matrix ).map( v => v[ 0 ] );
-		const resid = subtract( yhat, this.props.data[ this.y ] );
+		const resid = subtract( yhat, data[ this.y ] );
 		this.props.onPredict( yhat, resid, COUNTER );
 	}
 
