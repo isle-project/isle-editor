@@ -170,7 +170,7 @@ class MultipleLinearRegression extends Component {
 	constructor( props ) {
 		super( props );
 
-		const { x, y, intercept, omitMissing, data, quantitative } = props;
+		let { x, y, intercept, omitMissing, data, quantitative } = props;
 		COUNTER += 1;
 		if ( !isArray( x ) ) {
 			x = [ x ];
