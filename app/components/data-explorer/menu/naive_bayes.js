@@ -39,6 +39,11 @@ class NaiveBayesMenu extends Component {
 			x = [ x ];
 		}
 		const output = <NaiveBayes
+			x={x} y={y}
+			omitMissing={omitMissing}
+			data={this.props.data}
+			quantitative={this.props.quantitative}
+			categorical={this.props.categorical}
 			onPredict={( results, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				const newQuantitative = this.props.quantitative.slice();
