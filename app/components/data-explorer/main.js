@@ -1610,6 +1610,16 @@ class DataExplorer extends Component {
 									</Col>
 								</Row>
 						</div>
+						{ this.props.history ?
+							<History
+								actions={this.context.currentUserActions[ this.id ]}
+								style={{ display: this.state.openedNav !== 'history' ? 'none' : null }}
+								onCreated={this.addToOutputs}
+								logAction={this.logAction}
+								session={this.context}
+								data={this.state.data}
+							/> : null
+						}
 						{ this.props.editor ?
 							<TextEditor
 								{...this.props.editorProps}
@@ -1619,14 +1629,6 @@ class DataExplorer extends Component {
 								submitButton
 							/> : null
 						}
-						<History
-							actions={this.context.currentUserActions[ this.id ]}
-							style={{ display: this.state.openedNav !== 'history' ? 'none' : null }}
-							onCreated={this.addToOutputs}
-							logAction={this.logAction}
-							session={this.context}
-							data={this.state.data}
-						/>
 						{this.props.tabs.map( ( e, i ) => {
 							return ( this.state.openedNav === e.title ?
 								e.content : null );
