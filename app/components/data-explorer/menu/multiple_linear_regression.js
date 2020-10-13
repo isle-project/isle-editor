@@ -28,7 +28,7 @@ class MultipleLinearRegressionMenu extends Component {
 	compute = ( y, x, intercept, omitMissing ) => {
 		const output = <MultipleLinearRegression
 			x={x} y={y} intercept={intercept} omitMissing={omitMissing}
-			data={this.props.data}
+			data={this.props.data} quantitative={this.props.quantitative}
 			onPredict={( yhat, resid, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				const newQuantitative = this.props.quantitative.slice();
