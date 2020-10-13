@@ -1618,6 +1618,8 @@ class DataExplorer extends Component {
 								logAction={this.logAction}
 								session={this.context}
 								data={this.state.data}
+								quantitative={this.state.quantitative}
+								categorical={this.state.categorical}
 							/> : null
 						}
 						{ this.props.editor ?
