@@ -22,6 +22,7 @@ import QQPlot from 'components/plots/qqplot';
 import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
 import ScatterPlot from 'components/plots/scatterplot';
 import ViolinPlot from 'components/plots/violinplot';
+import Plotly from 'components/plotly';
 import Anova from 'components/tests/anova';
 import Chi2Test from 'components/tests/chi2';
 import CorrTest from 'components/tests/corrtest';
@@ -213,7 +214,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === QQPlot ||
 		e.type === ScatterPlot ||
 		e.type === ScatterPlotMatrix ||
-		e.type === ViolinPlot
+		e.type === ViolinPlot ||
+		e.type === Plotly
 	) {
 		const props = e.props;
 		if ( props.meta && !props.meta.filters ) {
@@ -248,14 +250,22 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === PropTest2
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type.name, e, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Test Output', e, clearOutput, idx, subsetFilters, onFilters )}
 			{e}
 		</pre>;
 		return elem;
 	}
 	else if (
 		e.type === ContingencyTable ||
-		e.type === FrequencyTable ||
+		e.type === FrequencyTable
+	) {
+		const elem = <pre key={idx} >
+			{createButtons( 'Table Output', e, clearOutput, idx, subsetFilters, onFilters )}
+			{makeDraggable( e )}
+		</pre>;
+		return elem;
+	}
+	else if (
 		e.type === SimpleLinearRegression ||
 		e.type === MultipleLinearRegression ||
 		e.type === LassoRegression ||
@@ -266,7 +276,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === RandomForest
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type.name, e, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Model Output', e, clearOutput, idx, subsetFilters, onFilters )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
