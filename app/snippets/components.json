@@ -694,5 +694,137 @@
 	{
 		"name": "WordCloud",
 		"value": "<WordCloud data={[${1:'First document','Second document'}]} />"
+	},
+	{
+		"name": "BoxPlot",
+		"value": ""
+	},
+	{
+		"name": "BarChart",
+		"value": ""
+	},
+	{
+		"name": "ContourChart",
+		"value": ""
+	},
+	{
+		"name": "HeatMap",
+		"value": ""
+	},
+	{
+		"name": "Histogram",
+		"value": ""
+	},
+	{
+		"name": "LinePlot",
+		"value": ""
+	},
+	{
+		"name": "Map",
+		"value": ""
+	},
+	{
+		"name": "MosaicPlot",
+		"value": ""
+	},
+	{
+		"name": "PieChart",
+		"value": ""
+	},
+	{
+		"name": "QQPlot",
+		"value": ""
+	},
+	{
+		"name": "ScatterPlotMatrix",
+		"value": ""
+	},
+	{
+		"name": "ScatterPlot",
+		"value": ""
+	},
+	{
+		"name": "ViolinPlot",
+		"value": ""
+	},
+	{
+		"name": "FrequencyTable",
+		"value": ""
+	},
+	{
+		"name": "ContingencyTable",
+		"value": ""
+	},
+	{
+		"name": "Anova",
+		"value": ""
+	},
+	{
+		"name": "Chi2Test",
+		"value": ""
+	},
+	{
+		"name": "CorrTest",
+		"value": ""
+	},
+	{
+		"name": "Kruskal",
+		"value": ""
+	},
+	{
+		"name": "MeanTest",
+		"value": ""
+	},
+	{
+		"name": "MeanTest2",
+		"value": ""
+	},
+	{
+		"name": "PropTest",
+		"value": ""
+	},
+	{
+		"name": "PropTest2",
+		"value": ""
+	},
+	{
+		"name": "DecisionTree",
+		"value": ""
+	},
+	{
+		"name": "LassoRegression",
+		"value": ""
+	},
+	{
+		"name": "LogisticRegression",
+		"value": ""
+	},
+	{
+		"name": "MultipleLinearRegression",
+		"value": ""
+	},
+	{
+		"name": "RandomForest",
+		"value": ""
+	},
+	{
+		"name": "SimpleLinearRegression",
+		"value": ""
+	},
+	{
+		"name": "PrincipalComponentAnalysis",
+		"value": ""
+	},
+	{
+		"name": "HierarchicalClustering",
+		"value": ""
+	},
+	{
+		"name": "KMeans",
+		"value": ""
+	},
+	{
+		"name": "NaiveBayes",
+		"value": ""
 	}
 ]
