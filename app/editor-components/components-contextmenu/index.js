@@ -108,12 +108,23 @@ class EditorContextMenu extends Component {
 					</SubMenu>
 					<SubMenu title="General">
 						{GROUPED_SNIPPETS.general.map( this.renderMenuItem )}
-					</SubMenu>
-					<SubMenu title="Services">
-						{GROUPED_SNIPPETS.services.map( this.renderMenuItem )}
+						<SubMenu title="Services">
+							{GROUPED_SNIPPETS.services.map( this.renderMenuItem )}
+						</SubMenu>
 					</SubMenu>
 					<SubMenu title="Presentation">
 						{GROUPED_SNIPPETS.presentation.map( this.renderMenuItem )}
+					</SubMenu>
+					<SubMenu title="Data">
+						<SubMenu title="Models">
+							{GROUPED_SNIPPETS.models.map( this.renderMenuItem )}
+						</SubMenu>
+						<SubMenu title="Tables">
+							{GROUPED_SNIPPETS.tables.map( this.renderMenuItem )}
+						</SubMenu>
+						<SubMenu title="Tests">
+							{GROUPED_SNIPPETS.tests.map( this.renderMenuItem )}
+						</SubMenu>
 					</SubMenu>
 					<SubMenu title="Plots">
 						{GROUPED_SNIPPETS.plots.map( this.renderMenuItem )}

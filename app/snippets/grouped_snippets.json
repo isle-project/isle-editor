@@ -91,10 +91,6 @@
       "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
     },
     {
-      "name": "ImageQuestion",
-      "value": "<ImageQuestion\n  question=\"${1:Enter question}\"\n/>\n"
-    },
-    {
       "name": "Joyride",
       "value": "<Joyride\n  run={${1:true}}\n  steps={${2:[]}}\n/>\n"
     },
@@ -133,138 +129,6 @@
     {
       "name": "Citation",
       "value": "<Citation citeKey=\"${1:Enter key}\" />"
-    },
-    {
-      "name": "BoxPlot",
-      "value": ""
-    },
-    {
-      "name": "BarChart",
-      "value": ""
-    },
-    {
-      "name": "ContourChart",
-      "value": ""
-    },
-    {
-      "name": "HeatMap",
-      "value": ""
-    },
-    {
-      "name": "Histogram",
-      "value": ""
-    },
-    {
-      "name": "LinePlot",
-      "value": ""
-    },
-    {
-      "name": "Map",
-      "value": ""
-    },
-    {
-      "name": "MosaicPlot",
-      "value": ""
-    },
-    {
-      "name": "PieChart",
-      "value": ""
-    },
-    {
-      "name": "QQPlot",
-      "value": ""
-    },
-    {
-      "name": "ScatterPlotMatrix",
-      "value": ""
-    },
-    {
-      "name": "ScatterPlot",
-      "value": ""
-    },
-    {
-      "name": "ViolinPlot",
-      "value": ""
-    },
-    {
-      "name": "FrequencyTable",
-      "value": ""
-    },
-    {
-      "name": "ContingencyTable",
-      "value": ""
-    },
-    {
-      "name": "Anova",
-      "value": ""
-    },
-    {
-      "name": "Chi2Test",
-      "value": ""
-    },
-    {
-      "name": "CorrTest",
-      "value": ""
-    },
-    {
-      "name": "Kruskal",
-      "value": ""
-    },
-    {
-      "name": "MeanTest",
-      "value": ""
-    },
-    {
-      "name": "MeanTest2",
-      "value": ""
-    },
-    {
-      "name": "PropTest",
-      "value": ""
-    },
-    {
-      "name": "PropTest2",
-      "value": ""
-    },
-    {
-      "name": "DecisionTree",
-      "value": ""
-    },
-    {
-      "name": "LassoRegression",
-      "value": ""
-    },
-    {
-      "name": "LogisticRegression",
-      "value": ""
-    },
-    {
-      "name": "MultipleLinearRegression",
-      "value": ""
-    },
-    {
-      "name": "RandomForest",
-      "value": ""
-    },
-    {
-      "name": "SimpleLinearRegression",
-      "value": ""
-    },
-    {
-      "name": "PrincipalComponentAnalysis",
-      "value": ""
-    },
-    {
-      "name": "HierarchicalClustering",
-      "value": ""
-    },
-    {
-      "name": "KMeans",
-      "value": ""
-    },
-    {
-      "name": "NaiveBayes",
-      "value": ""
     }
   ],
   "inputs": [
@@ -355,6 +219,58 @@
     {
       "name": "WordCloud",
       "value": "<WordCloud data={[${1:'First document','Second document'}]} />"
+    },
+    {
+      "name": "BoxPlot",
+      "value": ""
+    },
+    {
+      "name": "BarChart",
+      "value": ""
+    },
+    {
+      "name": "ContourChart",
+      "value": ""
+    },
+    {
+      "name": "HeatMap",
+      "value": ""
+    },
+    {
+      "name": "Histogram",
+      "value": ""
+    },
+    {
+      "name": "LinePlot",
+      "value": ""
+    },
+    {
+      "name": "Map",
+      "value": ""
+    },
+    {
+      "name": "MosaicPlot",
+      "value": ""
+    },
+    {
+      "name": "PieChart",
+      "value": ""
+    },
+    {
+      "name": "QQPlot",
+      "value": ""
+    },
+    {
+      "name": "ScatterPlotMatrix",
+      "value": ""
+    },
+    {
+      "name": "ScatterPlot",
+      "value": ""
+    },
+    {
+      "name": "ViolinPlot",
+      "value": ""
     }
   ],
   "programmatic": [
@@ -403,6 +319,10 @@
     {
       "name": "FreeTextQuestion",
       "value": "<FreeTextQuestion\n  question=\"${1:Enter question}\"\n  solution=\"${2:Enter solution}\"\n/>\n"
+    },
+    {
+      "name": "ImageQuestion",
+      "value": "<ImageQuestion\n  question=\"${1:Enter question}\"\n/>\n"
     },
     {
       "name": "LikertScale",
@@ -861,6 +781,92 @@
     {
       "name": "VictoryWrapper",
       "value": "<VictoryWrapper />\n"
+    }
+  ],
+  "tables": [
+    {
+      "name": "FrequencyTable",
+      "value": ""
+    },
+    {
+      "name": "ContingencyTable",
+      "value": ""
+    }
+  ],
+  "tests": [
+    {
+      "name": "Anova",
+      "value": ""
+    },
+    {
+      "name": "Chi2Test",
+      "value": ""
+    },
+    {
+      "name": "CorrTest",
+      "value": ""
+    },
+    {
+      "name": "Kruskal",
+      "value": ""
+    },
+    {
+      "name": "MeanTest",
+      "value": ""
+    },
+    {
+      "name": "MeanTest2",
+      "value": ""
+    },
+    {
+      "name": "PropTest",
+      "value": ""
+    },
+    {
+      "name": "PropTest2",
+      "value": ""
+    }
+  ],
+  "models": [
+    {
+      "name": "DecisionTree",
+      "value": ""
+    },
+    {
+      "name": "LassoRegression",
+      "value": ""
+    },
+    {
+      "name": "LogisticRegression",
+      "value": ""
+    },
+    {
+      "name": "MultipleLinearRegression",
+      "value": ""
+    },
+    {
+      "name": "RandomForest",
+      "value": ""
+    },
+    {
+      "name": "SimpleLinearRegression",
+      "value": ""
+    },
+    {
+      "name": "PrincipalComponentAnalysis",
+      "value": ""
+    },
+    {
+      "name": "HierarchicalClustering",
+      "value": ""
+    },
+    {
+      "name": "KMeans",
+      "value": ""
+    },
+    {
+      "name": "NaiveBayes",
+      "value": ""
     }
   ]
 }

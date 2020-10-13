@@ -126,8 +126,35 @@
 		"Weather",
 		"Wikipedia"
 	],
+	"MODELS": [
+		"DecisionTree",
+		"LassoRegression",
+		"LogisticRegression",
+		"MultipleLinearRegression",
+		"RandomForest",
+		"SimpleLinearRegression",
+		"PrincipalComponentAnalysis",
+		"HierarchicalClustering",
+		"KMeans",
+		"NaiveBayes"
+	],
+	"TABLES": [
+		"ContingencyTable",
+		"FrequencyTable"
+	],
+	"TESTS": [
+		"Anova",
+		"Chi2Test",
+		"CorrTest",
+		"Kruskal",
+		"MeanTest",
+		"MeanTest2",
+		"PropTest",
+		"PropTest2"
+	],
 	"QUESTION": [
 		"FreeTextQuestion",
+		"ImageQuestion",
 		"MatchListQuestion",
 		"MultipleChoiceQuestion",
 		"NumberQuestion",
@@ -163,7 +190,20 @@
 		"DensityPlot",
 		"NetworkPlot",
 		"Sunburst",
-		"WordCloud"
+		"WordCloud",
+		"BarChart",
+		"BoxPlot",
+		"ContourChart",
+		"HeatMap",
+		"Histogram",
+		"LinePlot",
+		"Map",
+		"MosaicPlot",
+		"PieChart",
+		"QQPlot",
+		"ScatterPlot",
+		"ScatterPlotMatrix",
+		"ViolinPlot"
 	],
 	"VICTORY": [
 		"Bar",
