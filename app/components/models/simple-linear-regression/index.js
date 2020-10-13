@@ -303,41 +303,33 @@ class SimpleLinearRegression extends Component {
 						yhat[ i ] = yint + slope * x[ i ];
 						resid[ i ] = yhat[ i ] - y[ i ];
 					}
-					const qqPlot = {
-						variable: 'QQ Plot of Residuals',
-						type: 'Chart',
-						value: <Plotly
-							draggable
-							editable fit
-							{...generateQQPlotConfig( resid, 'residuals' )}
-							meta={{ type: 'qqplot of regression residuals', x, y }}
-						/>
-					};
-					const residualPlot = {
-						variable: 'Residuals vs. Fitted',
-						type: 'Chart',
-						value: <Plotly
-							draggable editable fit
-							data={[
-								{
-									x: yhat,
-									y: resid,
-									mode: 'markers',
-									type: yhat.length > 2000 ? 'scattergl' : 'scatter'
-								}
-							]}
-							layout={{
-								xaxis: {
-									title: 'Fitted Values'
-								},
-								yaxis: {
-									title: 'Residuals'
-								},
-								title: 'Residuals vs. Fitted'
-							}}
-							meta={{ type: 'regression residuals vs. fitted', x, y }}
-						/>
-					};
+					const qqPlot = <Plotly
+						draggable
+						editable fit
+						{...generateQQPlotConfig( resid, 'residuals' )}
+						meta={{ type: 'qqplot of regression residuals', x, y }}
+					/>;
+					const residualPlot = <Plotly
+						draggable editable fit
+						data={[
+							{
+								x: yhat,
+								y: resid,
+								mode: 'markers',
+								type: yhat.length > 2000 ? 'scattergl' : 'scatter'
+							}
+						]}
+						layout={{
+							xaxis: {
+								title: 'Fitted Values'
+							},
+							yaxis: {
+								title: 'Residuals'
+							},
+							title: 'Residuals vs. Fitted'
+						}}
+						meta={{ type: 'regression residuals vs. fitted', x, y }}
+					/>;
 					this.props.onDiagnostics([ qqPlot, residualPlot ]);
 				}} >
 					Model Diagnostics

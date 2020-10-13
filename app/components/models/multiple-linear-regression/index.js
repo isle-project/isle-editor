@@ -204,49 +204,47 @@ class MultipleLinearRegression extends Component {
 
 	handleDiagnostics = () => {
 		const { x, y, intercept } = this.props;
-		const qqPlot = {
-			variable: 'QQ Plot of Residuals',
-			type: 'Chart',
-			value: <Plotly
-				draggable
-				editable fit
-				{...generateQQPlotConfig( this.resid, 'residuals' )}
-				meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
-			/>
-		};
-		const residualPlot = {
-			variable: 'Residuals vs. Fitted',
-			type: 'Chart',
-			value: <Plotly
-				draggable editable fit
-				data={[
-					{
-						x: this.yhat,
-						y: this.resid,
-						mode: 'markers',
-						type: this.yhat.length > 2000 ? 'scattergl' : 'scatter'
-					}
-				]}
-				layout={{
-					xaxis: {
-						title: 'Fitted Values'
-					},
-					yaxis: {
-						title: 'Residuals'
-					},
-					title: 'Residuals vs. Fitted'
-				}}
-				meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
-			/>
-		};
+		const qqPlot = <Plotly
+			draggable
+			editable fit
+			{...generateQQPlotConfig( this.resid, 'residuals' )}
+			meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
+		/>;
+		const residualPlot = <Plotly
+			draggable editable fit
+			data={[
+				{
+					x: this.yhat,
+					y: this.resid,
+					mode: 'markers',
+					type: this.yhat.length > 2000 ? 'scattergl' : 'scatter'
+				}
+			]}
+			layout={{
+				xaxis: {
+					title: 'Fitted Values'
+				},
+				yaxis: {
+					title: 'Residuals'
+				},
+				title: 'Residuals vs. Fitted'
+			}}
+			meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
+		/>;
+		console.log( 'Generate diagnostic plots...' );
 		this.props.onDiagnostics([ qqPlot, residualPlot ]);
 	}
 
 	handlePredict = () => {
+		console.log( 'Generate predictions...' );
 		const { data, quantitative, intercept } = this.props;
-		const { matrix } = designMatrix( this.x, this.y, data, quantitative, intercept );
+		let { x, y } = this.props;
+		if ( !isArray( x ) ) {
+			x = [ x ];
+		}
+		const { matrix } = designMatrix( x, y, data, quantitative, intercept );
 		const yhat = this.result.predict( matrix ).map( v => v[ 0 ] );
-		const resid = subtract( yhat, data[ this.y ] );
+		const resid = subtract( yhat, data[ y ] );
 		this.props.onPredict( yhat, resid, COUNTER );
 	}
 
@@ -260,7 +258,7 @@ class MultipleLinearRegression extends Component {
 				<p>R&#178;: {this.rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
 				<p>F-statistic: {this.fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				{ this.props.onPredict ? <Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={this.props.handlePredict}>Use this model to predict for currently selected data</Button>
+					<Button variant="secondary" size="sm" onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
 				</Tooltip> : null }
 				{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={this.handleDiagnostics} >
 					Model Diagnostics
