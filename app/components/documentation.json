@@ -660,6 +660,12 @@
         "defaultValue": {}
       },
       {
+        "name": "history",
+        "type": "boolean",
+        "description": "controls whether to display a history log of carried out actions",
+        "defaultValue": false
+      },
+      {
         "name": "reportMode",
         "type": "string",
         "description": "controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)",
@@ -3888,6 +3894,110 @@
     ],
     "description": "Invisible component listening to incoming member actions and invoking a given callback."
   },
+  "DecisionTree": {
+    "props": [
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "HierarchicalClustering": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "KMeans": {
+    "props": [
+      {
+        "name": "onResult",
+        "type": "function",
+        "defaultValue": "function onResult() {}"
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "LassoRegression": {
+    "props": [
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "LogisticRegression": {
+    "props": [
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "MultipleLinearRegression": {
+    "props": [
+      {
+        "name": "onDiagnostics",
+        "type": "function",
+        "defaultValue": null
+      },
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "NaiveBayes": {
+    "props": [
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "PrincipalComponentAnalysis": {
+    "props": [
+      {
+        "name": "onResult",
+        "type": "function",
+        "defaultValue": "function onResult() {}"
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "RandomForest": {
+    "props": [
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
+  "SimpleLinearRegression": {
+    "props": [
+      {
+        "name": "onDiagnostics",
+        "type": "function",
+        "defaultValue": null
+      },
+      {
+        "name": "onPredict",
+        "type": "function",
+        "defaultValue": null
+      }
+    ],
+    "description": "Description is missing."
+  },
   "MultiCards": {
     "props": [
       {
@@ -4654,6 +4764,54 @@
       }
     ],
     "description": "Plotly visualization."
+  },
+  "BarChart": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "BoxPlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "ContourChart": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "HeatMap": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Histogram": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "LinePlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Map": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "PieChart": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "QQPlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "ScatterPlotMatrix": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "ScatterPlot": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "ViolinPlot": {
+    "props": [],
+    "description": "Description is missing."
   },
   "Polaroid": {
     "props": [
@@ -6507,6 +6665,46 @@
       }
     ],
     "description": "A basic bootstrap table."
+  },
+  "ContingencyTable": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "FrequencyTable": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Anova": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Chi2Test": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "CorrTest": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "Kruskal": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "MeanTest": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "MeanTest2": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "PropTest": {
+    "props": [],
+    "description": "Description is missing."
+  },
+  "PropTest2": {
+    "props": [],
+    "description": "Description is missing."
   },
   "TeX": {
     "props": [
