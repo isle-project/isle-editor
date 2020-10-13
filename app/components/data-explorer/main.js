@@ -158,6 +158,7 @@ function checkVariables( data, variables ) {
 * @property {string} reportMode - controls whether to sync editor changes for everyone (`collaborative`), across users in groups (`group`), or not (`individual`)
 * @property {boolean} dataTable - boolean value indicating whether to hide the data table from view
 * @property {Object} dataTableProps - properties passed to the data table component (see documentation for <DataTable />)
+* @property {boolean} history - controls whether to display a history log of carried out actions
 * @property {boolean} histogramDensities - boolean value indicating whether to display histogram densities
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
 * @property {string} opened - page opened at startup
@@ -1486,7 +1487,7 @@ class DataExplorer extends Component {
 									>{this.props.editorTitle}</Nav.Link>
 								</Nav.Item> : null
 							}
-							{
+							{ this.props.history ?
 								<Nav.Item className="explorer-editor-nav">
 									<Nav.Link
 										active={this.state.openedNav === 'history'}
@@ -1494,7 +1495,7 @@ class DataExplorer extends Component {
 									>
 										History
 									</Nav.Link>
-								</Nav.Item>
+								</Nav.Item> : null
 							}
 							{ this.props.tabs.length > 0 ? this.props.tabs.map( ( e, i ) => {
 								return (
@@ -1774,6 +1775,7 @@ DataExplorer.defaultProps = {
 	},
 	dataTable: true,
 	dataTableProps: {},
+	history: false,
 	tabs: [],
 	questions: [],
 	transformer: true,
@@ -1857,6 +1859,7 @@ DataExplorer.propTypes = {
 	editorTitle: PropTypes.string,
 	dataTable: PropTypes.bool,
 	dataTableProps: PropTypes.object,
+	history: PropTypes.bool,
 	reportMode: PropTypes.oneOf([ 'individual', 'group', 'collaborative' ]),
 	histogramDensities: PropTypes.bool,
 	models: PropTypes.array,
