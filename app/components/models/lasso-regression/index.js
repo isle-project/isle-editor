@@ -114,7 +114,7 @@ class LassoRegression extends Component {
 		super( props );
 
 		COUNTER += 1;
-		const { x, y, lambda, data, quantitative, intercept } = props;
+		let { x, y, lambda, data, quantitative, intercept } = props;
 		let yvalues = data[ y ];
 		yvalues = zScore( yvalues, false, true );
 		if ( !isArray( x ) ) {
