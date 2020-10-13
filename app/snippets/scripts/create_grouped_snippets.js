@@ -26,6 +26,15 @@ function groupIndicator( v ) {
 	if ( contains( GROUPINGS.PRESENTATION, v.name ) ) {
 		return 'presentation';
 	}
+	if ( contains( GROUPINGS.MODELS, v.name ) ) {
+		return 'models';
+	}
+	if ( contains( GROUPINGS.TABLES, v.name ) ) {
+		return 'tables';
+	}
+	if ( contains( GROUPINGS.TESTS, v.name ) ) {
+		return 'tests';
+	}
 	if ( contains( GROUPINGS.PLOTS, v.name ) ) {
 		return 'plots';
 	}

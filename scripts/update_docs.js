@@ -33,15 +33,13 @@ const SCOPE_KEYS = [
 	'PropTypes',
 	'noop',
 	'repeat',
-	'DEFAULT_VALUE',
-	'APIXU_AUTH_KEY'
+	'DEFAULT_VALUE'
 ];
 const SCOPE_VALUES = [
 	PropTypes,
 	noop,
 	repeat,
-	repeat( '\n', 15 ),
-	'<number>'
+	repeat( '\n', 15 )
 ];
 const HTML_ELEMENTS = {
 	'components/html/blockquote': 'blockquote',
