@@ -300,7 +300,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 					}}
 				/>
 			</ButtonGroup>
-			<div style={{ marginTop: 25 }}>{e.value}</div>
+			<div style={{ marginTop: 25 }}>{e}</div>
 		</pre>;
 		return elem;
 	}
