@@ -25,7 +25,7 @@ class KruskalMenu extends Component {
 		const { data, showDecision } = this.props;
 		const output = <Kruskal data={data} variable={variable} grouping={grouping} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
-			variable, grouping
+			variable, grouping, showDecision
 		});
 		this.props.onCreated( output );
 	}
