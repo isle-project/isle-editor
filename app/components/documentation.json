@@ -4786,8 +4786,37 @@
     "description": "Description is missing."
   },
   "LinePlot": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "x",
+        "type": "string",
+        "description": "x-axis variable",
+        "defaultValue": null
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "y-axis variable"
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "showPoints",
+        "type": "boolean",
+        "description": "controls whether to overlay points at each observation",
+        "defaultValue": false
+      }
+    ],
+    "description": "A line plot."
   },
   "Map": {
     "props": [],

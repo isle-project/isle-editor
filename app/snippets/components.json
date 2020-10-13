@@ -717,7 +717,7 @@
 	},
 	{
 		"name": "LinePlot",
-		"value": ""
+		"value": "<LinePlot data={${1:}} y=\"${2:}\" />"
 	},
 	{
 		"name": "Map",

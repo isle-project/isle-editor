@@ -38,19 +38,19 @@ class LinePlotMenu extends Component {
 		super( props );
 
 		this.state = {
-			xvar: null,
-			yvar: props.defaultValue || props.variables[ 0 ],
+			x: null,
+			y: props.defaultValue || props.variables[ 0 ],
 			group: null,
 			showPoints: false
 		};
 	}
 
 	generateLinePlot = () => {
-		const { xvar, yvar, group, showPoints } = this.state;
+		const { x, y, group, showPoints } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
-			xvar,
-			yvar,
+			x,
+			y,
 			group,
 			plotId
 		};
@@ -64,7 +64,7 @@ class LinePlotMenu extends Component {
 			this.props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
 		};
 		const output = <LinePlot
-			data={this.props.data} xvar={xvar} yvar={yvar}
+			data={this.props.data} x={x} y={y}
 			group={group} showPoints={showPoints}
 			onShare={onShare} action={action} id={plotId}
 		/>;
@@ -98,7 +98,7 @@ class LinePlotMenu extends Component {
 							]}
 							onChange={( elem ) => {
 								this.setState({
-									xvar: elem ? elem.value : null
+									x: elem ? elem.value : null
 								});
 							}}
 							placeholder="Select... (optional)"
@@ -108,10 +108,10 @@ class LinePlotMenu extends Component {
 					</FormGroup>
 					<SelectInput
 						legend="y-axis:"
-						defaultValue={this.state.yvar}
+						defaultValue={this.state.y}
 						options={variables}
-						onChange={( yvar ) => {
-							this.setState({ yvar });
+						onChange={( y ) => {
+							this.setState({ y });
 						}}
 					/>
 					<SelectInput

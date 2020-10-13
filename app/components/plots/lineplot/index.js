@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import extractUsedCategories from 'utils/extract-used-categories';
 import by from 'utils/by';
@@ -8,30 +9,30 @@ import by from 'utils/by';
 
 // FUNCTIONS //
 
-export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) {
+export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 	let traces;
-	const nobs = data[ yvar ].length;
+	const nobs = data[ y ].length;
 	const type = nobs > 2000 ? 'scattergl' : 'scatter';
 	const mode = showPoints ? 'lines+markers' : 'lines';
 	if ( !group ) {
 		traces = [
 			{
-				x: data[ xvar ],
-				y: data[ yvar ],
+				x: data[ x ],
+				y: data[ y ],
 				type,
 				mode
 			}
 		];
 	} else {
 		let xgrouped;
-		if ( xvar ) {
-			xgrouped = by( data[ xvar ], data[ group ], arr => {
+		if ( x ) {
+			xgrouped = by( data[ x ], data[ group ], arr => {
 				return arr;
 			});
 		} else {
 			xgrouped = {};
 		}
-		const ygrouped = by( data[ yvar ], data[ group ], arr => {
+		const ygrouped = by( data[ y ], data[ group ], arr => {
 			return arr;
 		});
 		traces = [];
@@ -50,12 +51,12 @@ export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) 
 	const config = {
 		data: traces,
 		layout: {
-			title: xvar ? `${yvar} against ${xvar}` : yvar,
+			title: x ? `${y} against ${x}` : y,
 			xaxis: {
-				title: xvar ? xvar : 'Index'
+				title: x ? x : 'Index'
 			},
 			yaxis: {
-				title: yvar
+				title: y
 			}
 		}
 	};
@@ -65,11 +66,11 @@ export function generateLineplotConfig({ data, xvar, yvar, group, showPoints }) 
 
 // MAIN //
 
-function LinePlot({ data, xvar, yvar, group, showPoints, id, action, onShare }) {
+const LinePlot = ({ data, x, y, group, showPoints, id, action, onShare }) => {
 	const config = generateLineplotConfig({
 		data,
-		xvar,
-		yvar,
+		x,
+		y,
 		group,
 		showPoints
 	});
@@ -79,9 +80,35 @@ function LinePlot({ data, xvar, yvar, group, showPoints, id, action, onShare }) 
 		meta={action}
 		onShare={onShare} />
 	);
-}
+};
+
+
+// PROPERTIES //
+
+LinePlot.defaultProps = {
+	x: null,
+	group: null,
+	showPoints: false
+};
+
+LinePlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	x: PropTypes.string,
+	y: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	showPoints: PropTypes.bool
+};
 
 
 // EXPORTS //
 
+/**
+* A line plot.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} x - x-axis variable
+* @property {string} y - y-axis variable
+* @property {string} group - grouping variable
+* @property {boolean} showPoints - controls whether to overlay points at each observation
+*/
 export default LinePlot;
