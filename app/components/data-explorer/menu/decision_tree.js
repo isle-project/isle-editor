@@ -39,10 +39,12 @@ class DecisionTreeMenu extends Component {
 	}
 
 	compute = () => {
-		let { y, x, type, impurityMeasure } = this.state;
+		let { y, x, type, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = this.state;
 		const output = <DecisionTree
 			x={x} y={y} type={type} impurityMeasure={impurityMeasure}
-			data={this.props.data}
+			data={this.props.data} quantitative={this.props.quantitative}
+			scoreThreshold={scoreThreshold} maxTreeDepth={maxTreeDepth}
+			minItemsCount={minItemsCount}
 			onPredict={( tree, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				if ( type === 'Classification' ) {

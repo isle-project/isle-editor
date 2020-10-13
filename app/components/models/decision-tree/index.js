@@ -31,22 +31,22 @@ class DecisionTree extends Component {
 			tree = new ClassificationTree({
 				response: props.y,
 				predictors,
-				data: this.props.data,
-				quantitative: this.props.quantitative,
+				data: props.data,
+				quantitative: props.quantitative,
 				criterion: props.impurityMeasure,
-				scoreThreshold: this.state.scoreThreshold,
-				maxTreeDepth: this.state.maxTreeDepth,
-				minItemsCount: this.state.minItemsCount
+				scoreThreshold: props.scoreThreshold,
+				maxTreeDepth: props.maxTreeDepth,
+				minItemsCount: props.minItemsCount
 			});
 		} else {
 			tree = new RegressionTree({
 				response: props.y,
 				predictors,
-				data: this.props.data,
-				quantitative: this.props.quantitative,
-				scoreThreshold: this.state.scoreThreshold,
-				maxTreeDepth: this.state.maxTreeDepth,
-				minItemsCount: this.state.minItemsCount
+				data: props.data,
+				quantitative: props.quantitative,
+				scoreThreshold: props.scoreThreshold,
+				maxTreeDepth: props.maxTreeDepth,
+				minItemsCount: props.minItemsCount
 			});
 		}
 		this.tree = tree;
