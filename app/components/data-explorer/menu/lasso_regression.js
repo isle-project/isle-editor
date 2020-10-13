@@ -29,6 +29,10 @@ class LassoRegressionMenu extends Component {
 
 	compute = ( y, x, lambda, intercept ) => {
 		const output = <LassoRegression
+			x={x} y={y}
+			lambda={lambda} intercept={intercept}
+			data={this.props.data}
+			quantitative={this.props.quantitative}
 			onPredict={( fitted, residuals, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				const newQuantitative = this.props.quantitative.slice();
