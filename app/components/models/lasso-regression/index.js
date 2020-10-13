@@ -147,6 +147,7 @@ class LassoRegression extends Component {
 				}
 			}
 		}
+		this.predictors = predictors;
 		this.result = result;
 		this.yvalues = yvalues;
 	}
@@ -162,11 +163,11 @@ class LassoRegression extends Component {
 	}
 
 	render() {
-		const { y, predictors, intercept, lambda, onPredict } = this.props;
+		const { y, intercept, lambda, onPredict } = this.props;
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >LASSO Regression for Response {y} (model id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
-				{summaryTable( predictors, intercept, this.result )}
+				{summaryTable( this.predictors, intercept, this.result )}
 				<p>Karush-Khun-Tucker (KKT) conditions for an optimal solution {this.result.testKKT() ? 'are' : 'are not'} satisfied</p>
 				{onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
