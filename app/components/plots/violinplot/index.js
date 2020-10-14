@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import extractUsedCategories from 'utils/extract-used-categories';
 import by from 'utils/by';
@@ -70,6 +71,29 @@ function ViolinPlot({ data, variable, id, group, showBox, action, onShare }) {
 }
 
 
+// PROPERTIES //
+
+ViolinPlot.defaultProps = {
+	group: null,
+	showBox: false
+};
+
+ViolinPlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	showBox: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* A violin plot.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {boolean} showBox - controls whether to display a box plot inside
+*/
 export default ViolinPlot;

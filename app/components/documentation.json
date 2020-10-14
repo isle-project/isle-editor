@@ -4931,8 +4931,31 @@
     "description": "Description is missing."
   },
   "ViolinPlot": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "variable to display"
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "showBox",
+        "type": "boolean",
+        "description": "controls whether to display a box plot inside",
+        "defaultValue": false
+      }
+    ],
+    "description": "A violin plot."
   },
   "Polaroid": {
     "props": [
