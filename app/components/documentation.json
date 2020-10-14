@@ -7476,8 +7476,48 @@
     "description": "Two-sample mean test."
   },
   "PropTest": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "name of variable"
+      },
+      {
+        "name": "success",
+        "type": "string (required)",
+        "description": "success category"
+      },
+      {
+        "name": "alpha",
+        "type": "number",
+        "description": "significance level",
+        "defaultValue": 0.05
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "defaultValue": "two-sided"
+      },
+      {
+        "name": "p0",
+        "type": "number",
+        "description": "proportion under the null hypothesis",
+        "defaultValue": 0.5
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
+        "defaultValue": false
+      }
+    ],
+    "description": "One-sample proportion test."
   },
   "PropTest2": {
     "props": [],

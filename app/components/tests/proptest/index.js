@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import TeX from 'components/tex';
 import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
@@ -55,6 +56,37 @@ function PropTest({ data, variable, alpha, direction, success, p0, showDecision 
 }
 
 
+// PROPERTIES //
+
+PropTest.defaultProps = {
+	alpha: 0.05,
+	direction: 'two-sided',
+	p0: 0.5,
+	showDecision: false
+};
+
+PropTest.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	success: PropTypes.string.isRequired,
+	alpha: PropTypes.number,
+	direction: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
+	p0: PropTypes.number,
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* One-sample proportion test.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - name of variable
+* @property {*} success - success category
+* @property {number} alpha - significance level
+* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {number} p0 - proportion under the null hypothesis
+* @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
+*/
 export default PropTest;
