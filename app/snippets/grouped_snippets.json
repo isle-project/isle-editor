@@ -804,27 +804,27 @@
     },
     {
       "name": "CorrTest",
-      "value": ""
+      "value": "<CorrTest data={${1:}} var1=\"${2:}\" var2=\"${3:}\" />"
     },
     {
       "name": "Kruskal",
-      "value": ""
+      "value": "<Kruskal data={${1:}} variable=\"${2:}\" />"
     },
     {
       "name": "MeanTest",
-      "value": ""
+      "value": "<MeanTest data={${1:}} variable=\"${2:}\" />"
     },
     {
       "name": "MeanTest2",
-      "value": ""
+      "value": "<MeanTest2\n  data={${1:}}\n  x=\"${2:}\"\n  ${3:} />"
     },
     {
       "name": "PropTest",
-      "value": ""
+      "value": "<PropTest\n  data={${1:}}\n  variable=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
     },
     {
       "name": "PropTest2",
-      "value": ""
+      "value": "<PropTest2\n  data={${1:}}\n  var1=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
     }
   ],
   "models": [
