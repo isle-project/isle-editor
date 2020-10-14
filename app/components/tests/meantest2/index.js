@@ -65,18 +65,18 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 			yvalues: data[ y ]
 		};
 	}
-	const x = out.xvalues;
-	const y = out.yvalues;
+	const xd = out.xvalues;
+	const yd = out.yvalues;
 	const xvals = [];
 	const yvals = [];
-	for ( let i = 0; i < x.length; i++ ) {
-		if ( isNonMissingNumber( x[ i ] ) ) {
-			xvals.push( x[ i ] );
+	for ( let i = 0; i < xd.length; i++ ) {
+		if ( isNonMissingNumber( xd[ i ] ) ) {
+			xvals.push( xd[ i ] );
 		}
 	}
-	for ( let i = 0; i < y.length; i++ ) {
-		if ( isNonMissingNumber( y[ i ] ) ) {
-			yvals.push( y[ i ] );
+	for ( let i = 0; i < yd.length; i++ ) {
+		if ( isNonMissingNumber( yd[ i ] ) ) {
+			yvals.push( yd[ i ] );
 		}
 	}
 	let value;
