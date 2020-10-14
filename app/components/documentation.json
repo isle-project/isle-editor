@@ -4770,8 +4770,37 @@
     "description": "Description is missing."
   },
   "BoxPlot": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "variable to display"
+      },
+      {
+        "name": "group",
+        "type": "array",
+        "description": "one or two grouping variables",
+        "defaultValue": null
+      },
+      {
+        "name": "orientation",
+        "type": "string",
+        "description": "`vertical` or `horizontal` orientation",
+        "defaultValue": "vertical"
+      },
+      {
+        "name": "overlayPoints",
+        "type": "boolean",
+        "description": "controls whether to overlay points",
+        "defaultValue": false
+      }
+    ],
+    "description": "A box plot."
   },
   "ContourChart": {
     "props": [

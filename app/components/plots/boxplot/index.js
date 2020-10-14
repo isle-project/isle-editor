@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -168,6 +169,32 @@ function BoxPlot({ data, variable, group = [], orientation, overlayPoints, id, a
 }
 
 
+// PROPERTIES //
+
+BoxPlot.defaultProps = {
+	group: null,
+	orientation: 'vertical',
+	overlayPoints: false
+};
+
+BoxPlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.array,
+	orientation: PropTypes.oneOf([ 'vertical', 'horizontal' ]),
+	overlayPoints: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* A box plot.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {Array<string>} group - one or two grouping variables
+* @property {string} orientation - `vertical` or `horizontal` orientation
+* @property {boolean} overlayPoints - controls whether to overlay points
+*/
 export default BoxPlot;
