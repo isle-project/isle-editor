@@ -46,7 +46,7 @@ class PropTest2Menu extends Component {
 			categories,
 			var1,
 			success: categories[ 0 ],
-			grouping: null,
+			group: null,
 			var2: null,
 			diff: 0,
 			direction: 'two-sided',
@@ -55,9 +55,9 @@ class PropTest2Menu extends Component {
 	}
 
 	calculateTwoSamplePropTest = () => {
-		const { var1, success, grouping, var2, diff, direction, alpha } = this.state;
+		const { var1, success, group, var2, diff, direction, alpha } = this.state;
 		const { data, showDecision } = this.props;
-		if ( var1 === grouping || var1 === var2 ) {
+		if ( var1 === group || var1 === var2 ) {
 			return this.props.session.addNotification({
 				title: 'Action required',
 				message: 'Please make sure that the group variable or second variable is not equal to your variable of interest.',
@@ -65,7 +65,7 @@ class PropTest2Menu extends Component {
 				position: 'tr'
 			});
 		}
-		if ( !grouping && !var2 ) {
+		if ( !group && !var2 ) {
 			this.props.session.addNotification({
 				title: 'Action required',
 				message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
@@ -75,11 +75,11 @@ class PropTest2Menu extends Component {
 		}
 		const output = <PropTest2
 			data={data} showDecision={showDecision}
-			var1={var1} var2={var2} grouping={grouping}
+			var1={var1} var2={var2} group={group}
 			diff={diff} direction={direction} alpha={alpha} success={success}
 		/>;
 		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST, {
-			var1, grouping, var2, success, diff, direction, alpha, showDecision
+			var1, group, var2, success, diff, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
@@ -135,7 +135,7 @@ class PropTest2Menu extends Component {
 								clearable
 								onChange={( value ) => {
 									this.setState({
-										grouping: value,
+										group: value,
 										var2: null
 									});
 								}}
@@ -151,7 +151,7 @@ class PropTest2Menu extends Component {
 								clearable
 								onChange={( value ) => {
 									this.setState({
-										grouping: null,
+										group: null,
 										var2: value
 									});
 								}}
@@ -195,7 +195,7 @@ class PropTest2Menu extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.calculateTwoSamplePropTest}
-						disabled={!this.state.var2 && !this.state.grouping}
+						disabled={!this.state.var2 && !this.state.group}
 					>Calculate</Button>
 				</Card.Body>
 			</Card>

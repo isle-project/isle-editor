@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ztest2 from '@stdlib/stats/ztest2';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -20,25 +21,25 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[-?\d.]+,Infinity\]/;
 
 // MAIN //
 
-function PropTest2({ data, var1, var2, grouping, alpha, direction, diff, showDecision, success }) {
+function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecision, success }) {
 	let firstCategory;
 	let secondCategory;
 	let value;
 	let x;
 	let y;
-	if ( grouping ) {
+	if ( group ) {
 		x = data[ var1 ];
 		const binary = [];
 		const categories = [];
 		for ( let i = 0; i < x.length; i++ ) {
 			const v = x[ i ];
-			const group = data[ grouping ][ i ];
+			const groups = data[ group ][ i ];
 			if (
 				!isUndefinedOrNull( v ) && v !== '' &&
-				!isUndefinedOrNull( group ) && group !== ''
+				!isUndefinedOrNull( groups ) && groups !== ''
 			) {
 				binary.push( v === success ? 1 : 0 );
-				categories.push( group );
+				categories.push( groups );
 			}
 		}
 		firstCategory = categories[ 0 ];
@@ -68,10 +69,10 @@ function PropTest2({ data, var1, var2, grouping, alpha, direction, diff, showDec
 		});
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const title = `Hypothesis test for equality of ${var1} proportion by ${grouping}`;
+		const title = `Hypothesis test for equality of ${var1} proportion by ${group}`;
 		const c1Label = escapeLatex( firstCategory );
 		const c2Label = escapeLatex( secondCategory );
-		const gLabel = escapeLatex( grouping );
+		const gLabel = escapeLatex( group );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{title}</label><br />
 			<span>
@@ -151,6 +152,43 @@ function PropTest2({ data, var1, var2, grouping, alpha, direction, diff, showDec
 }
 
 
+// PROPERTIES //
+
+PropTest2.defaultProps = {
+	var2: null,
+	group: null,
+	alpha: 0.05,
+	direction: 'two-sided',
+	diff: 0,
+	showDecision: false
+};
+
+PropTest2.propTypes = {
+	data: PropTypes.object.isRequired,
+	var1: PropTypes.string.isRequired,
+	success: PropTypes.string.isRequired,
+	var2: PropTypes.string,
+	group: PropTypes.string,
+	alpha: PropTypes.number,
+	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
+	diff: PropTypes.number,
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* Two-sample proportion test.
+*
+* @property {Object} data - object of value arrays
+* @property {string} var1 - name of first variable
+* @property {*} success - success category of `var1`
+* @property {string} var2 - name of second variable (either `var2` or `group` have to be supplied)
+* @property {string} group - name of grouping variable (either `var2` or `group` have to be supplied)
+* @property {number} alpha - significance level
+* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {number} diff - difference under H0
+* @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
+*/
 export default PropTest2;

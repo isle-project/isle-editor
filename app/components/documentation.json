@@ -7490,7 +7490,7 @@
       {
         "name": "success",
         "type": "string (required)",
-        "description": "success category"
+        "description": "success category of `variable`"
       },
       {
         "name": "alpha",
@@ -7520,8 +7520,60 @@
     "description": "One-sample proportion test."
   },
   "PropTest2": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "var1",
+        "type": "string (required)",
+        "description": "name of first variable"
+      },
+      {
+        "name": "success",
+        "type": "string (required)",
+        "description": "success category of `var1`"
+      },
+      {
+        "name": "var2",
+        "type": "string",
+        "description": "name of second variable (either `var2` or `group` have to be supplied)",
+        "defaultValue": null
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "name of grouping variable (either `var2` or `group` have to be supplied)",
+        "defaultValue": null
+      },
+      {
+        "name": "alpha",
+        "type": "number",
+        "description": "significance level",
+        "defaultValue": 0.05
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "defaultValue": "two-sided"
+      },
+      {
+        "name": "diff",
+        "type": "number",
+        "description": "difference under H0",
+        "defaultValue": 0
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
+        "defaultValue": false
+      }
+    ],
+    "description": "Two-sample proportion test."
   },
   "TeX": {
     "props": [
