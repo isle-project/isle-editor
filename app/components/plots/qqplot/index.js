@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import Plotly from 'components/plotly';
 import quantile from 'utils/statistic/quantile';
@@ -92,6 +93,22 @@ function QQPlot({ id, data, variable, action, onShare }) {
 }
 
 
+// PROPERTIES //
+
+QQPlot.defaultProps = {};
+
+QQPlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired
+};
+
+
 // EXPORTS //
 
+/**
+* A normal distribution QQ plot.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+*/
 export default QQPlot;

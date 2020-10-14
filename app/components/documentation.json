@@ -5127,8 +5127,19 @@
     "description": "A pie chart component that by default displays the counts of all categories from a chosen variable."
   },
   "QQPlot": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "variable to display"
+      }
+    ],
+    "description": "Comparator function used to sort values in ascending order."
   },
   "ScatterPlotMatrix": {
     "props": [],
