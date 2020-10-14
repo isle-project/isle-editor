@@ -28,8 +28,8 @@ class ContourChartMenu extends Component {
 		super( props );
 
 		this.state = {
-			xval: props.defaultX || props.variables[ 0 ],
-			yval: props.defaultY || props.variables[ 1 ],
+			x: props.defaultX || props.variables[ 0 ],
+			y: props.defaultY || props.variables[ 1 ],
 			overlayPoints: false,
 			regressionMethod: [],
 			smoothSpan: 0.66
@@ -37,10 +37,10 @@ class ContourChartMenu extends Component {
 	}
 
 	generateContourChart = () => {
-		const { xval, yval, overlayPoints, regressionMethod, smoothSpan } = this.state;
+		const { x, y, overlayPoints, regressionMethod, smoothSpan } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
-			xval, yval, overlayPoints, regressionMethod, smoothSpan, plotId
+			x, y, overlayPoints, regressionMethod, smoothSpan, plotId
 		};
 		const onShare = () => {
 			this.props.session.addNotification({
@@ -56,8 +56,8 @@ class ContourChartMenu extends Component {
 			action={action}
 			data={this.props.data}
 			onShare={onShare}
-			xval={xval}
-			yval={yval}
+			x={x}
+			y={y}
 			overlayPoints={overlayPoints}
 			regressionMethod={regressionMethod}
 			smoothSpan={smoothSpan}
@@ -79,11 +79,11 @@ class ContourChartMenu extends Component {
 						<Col>
 							<SelectInput
 								legend="Variable on x-axis:"
-								defaultValue={this.state.xval}
+								defaultValue={this.state.x}
 								options={variables}
 								onChange={( value ) => {
 									this.setState({
-										xval: value
+										x: value
 									});
 								}}
 							/>
@@ -91,12 +91,12 @@ class ContourChartMenu extends Component {
 						<Col>
 							<SelectInput
 								legend="Variable on y-axis:"
-								defaultValue={this.state.yval}
+								defaultValue={this.state.y}
 								options={variables}
 								menuPlacement="top"
 								onChange={( value ) => {
 									this.setState({
-										yval: value
+										y: value
 									});
 								}}
 							/>

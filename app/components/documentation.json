@@ -4774,8 +4774,48 @@
     "description": "Description is missing."
   },
   "ContourChart": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "x",
+        "type": "string (required)",
+        "description": "x-axis variable"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "y-axis variable"
+      },
+      {
+        "name": "overlayPoints",
+        "type": "boolean",
+        "description": "controls whether to overlay points for each observation",
+        "defaultValue": false
+      },
+      {
+        "name": "smoothSpan",
+        "type": "number",
+        "description": "smoothing span",
+        "defaultValue": 0.66
+      },
+      {
+        "name": "regressionMethod",
+        "type": "array<string>",
+        "description": "array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line",
+        "defaultValue": null
+      },
+      {
+        "name": "onSelected",
+        "type": "function",
+        "description": "callback invoked when points are selected with x, y values and the selected points",
+        "defaultValue": "function onSelected() {}"
+      }
+    ],
+    "description": "A contour chart."
   },
   "HeatMap": {
     "props": [],

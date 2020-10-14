@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -9,7 +10,6 @@ import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
-import noop from '@stdlib/utils/noop';
 import Plotly from 'components/plotly';
 import max from 'utils/statistic/max';
 import min from 'utils/statistic/min';
@@ -22,9 +22,9 @@ function calculateOpacity(nobs) {
 	return maxScalar( 0.05, 0.6 - floor( nobs / 500 ) );
 }
 
-export function generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan }) {
-	let xvals = data[ xval ];
-	let yvals = data[ yval ];
+export function generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan }) {
+	let xvals = data[ x ];
+	let yvals = data[ y ];
 	const trace1 = {
 		x: xvals,
 		y: yvals,
@@ -100,17 +100,17 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 			});
 		}
 	}
-	let layout = {
-		title: `${xval} vs. ${yval}`,
+	const layout = {
+		title: `${x} vs. ${y}`,
 		xaxis: {
 			showgrid: true,
 			zeroline: true,
-			title: xval
+			title: x
 		},
 		yaxis: {
 			showgrid: true,
 			zeroline: true,
-			title: yval
+			title: y
 		}
 	};
 	return {
@@ -122,8 +122,8 @@ export function generateContourChart({ data, xval, yval, overlayPoints, regressi
 
 // MAIN //
 
-function ContourChart({ id, data, xval, yval, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected = noop }) {
-	const config = generateContourChart({ data, xval, yval, overlayPoints, regressionMethod, smoothSpan });
+function ContourChart({ id, data, x, y, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected }) {
+	const config = generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan });
 	return (
 		<Plotly
 			editable
@@ -135,13 +135,44 @@ function ContourChart({ id, data, xval, yval, overlayPoints, smoothSpan, regress
 			layout={config.layout}
 			onShare={onShare}
 			onSelected={( selected ) => {
-				onSelected({ x: xval, y: yval }, selected );
+				onSelected({ x: x, y: y }, selected );
 			}}
 		/>
 	);
 }
 
 
+// PROPERTIES //
+
+ContourChart.defaultProps = {
+	overlayPoints: false,
+	smoothSpan: 0.66,
+	regressionMethod: null,
+	onSelected() {}
+};
+
+ContourChart.propTypes = {
+	data: PropTypes.object.isRequired,
+	x: PropTypes.string.isRequired,
+	y: PropTypes.string.isRequired,
+	overlayPoints: PropTypes.bool,
+	smoothSpan: PropTypes.number,
+	regressionMethod: PropTypes.arrayOf( PropTypes.oneOf( [ 'linear', 'smooth' ] ) ),
+	onSelected: PropTypes.func
+};
+
+
 // EXPORTS //
 
+/**
+* A contour chart.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} x - x-axis variable
+* @property {string} y - y-axis variable
+* @property {boolean} overlayPoints - controls whether to overlay points for each observation
+* @property {Array<string>} regressionMethod - array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line
+* @property {number} smoothSpan - smoothing span
+* @property {Function} onSelected - callback invoked when points are selected with x, y values and the selected points
+*/
 export default ContourChart;
