@@ -246,7 +246,7 @@
     },
     {
       "name": "Map",
-      "value": ""
+      "value": "<Map\n  data={${1:}}\n  ${2:} />"
     },
     {
       "name": "MosaicPlot",
@@ -258,15 +258,15 @@
     },
     {
       "name": "QQPlot",
-      "value": ""
+      "value": "<QQPlot data={${1:}} variable=\"${2:}\" />"
     },
     {
       "name": "ScatterPlotMatrix",
-      "value": ""
+      "value": "<ScatterPlotMatrix data={${1:}} variables={[${2:}]} />"
     },
     {
       "name": "ScatterPlot",
-      "value": ""
+      "value": "<ScatterPlot data={${1:}} xval=\"${2:}\" yval=\"${3:}\" />"
     },
     {
       "name": "ViolinPlot",
