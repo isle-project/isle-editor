@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -10,23 +11,15 @@ import by2 from 'utils/by2';
 import by from 'utils/by';
 
 
-// VARIABLES //
-
-const MODES = [
-	'Counts of distinct values',
-	'Function evaluated for a variable'
-];
-
-
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, mode, stackBars, relative, totalPercent, xOrder, direction }) {
+export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction }) {
 	let traces;
 	const nObs = data[ variable ].length;
 	const allCats = new Set();
 	if ( !group ) {
 		let freqs;
-		if ( mode === MODES[ 1 ] ) {
+		if ( yvar ) {
 			freqs = by( data[ yvar ], data[ variable ], statistic( summary ) );
 		} else {
 			freqs = countBy( data[ variable ], identity );
@@ -61,7 +54,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		}
 	} else {
 		let freqs;
-		if ( mode === MODES[ 1 ] ) {
+		if ( yvar ) {
 			freqs = by2( data[ group ], data[ yvar ], data[ variable ], ( labels, vals ) => {
 				return by( vals, labels, statistic( summary ) );
 			});
@@ -184,26 +177,71 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 
 // MAIN //
 
-const BarChart = ( props ) => {
-	const config = generateBarchartConfig( props );
+const BarChart = ({ id, data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
+	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction });
 	return (
 		<Plotly
 			editable
 			draggable
-			id={props.id}
+			id={id}
 			fit
 			data={config.data}
 			layout={config.layout}
-			meta={props.action}
-			onShare={props.onShare}
+			meta={action}
+			onShare={onShare}
 			onSelected={( selected ) => {
-				props.onSelected( props.variable, selected );
+				if ( onSelected ) {
+					onSelected( variable, selected );
+				}
 			}}
 		/>
 	);
 };
 
 
+// PROPERTIES //
+
+BarChart.defaultProps = {
+	group: null,
+	horiz: false,
+	stackBars: false,
+	relative: false,
+	totalPercent: false,
+	yvar: null,
+	summary: null,
+	xOrder: null,
+	direction: 'ascending'
+};
+
+BarChart.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.array,
+	yvar: PropTypes.string,
+	summary: PropTypes.oneOf([ 'Mean', 'Median', 'Min', 'Max', 'Sum' ]),
+	horiz: PropTypes.bool,
+	stackBars: PropTypes.bool,
+	relative: PropTypes.bool,
+	totalPercent: PropTypes.bool,
+	xOrder: PropTypes.oneOf([ 'total', 'category', 'min', 'max', 'mean', 'median' ]),
+	direction: PropTypes.oneOf([ 'ascending', 'descending' ])
+};
+
+
 // EXPORTS //
 
+/**
+* Bar chart.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {boolean} stackBars - when grouping, controls whether to stack bars on top of each other
+* @property {boolean} relative - whether to calculate relative frequencies inside each group
+* @property {boolean} totalPercent - whether to display overall bars as relative frequencies
+* @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category
+* @property {boolean} horiz - whether to display bars horizontally
+* @property {string} xOrder - one of `total`, `category`, `min`, `max`, `mean`, or `median`
+* @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
+*/
 export default BarChart;

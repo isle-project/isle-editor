@@ -4772,8 +4772,72 @@
     "description": "Plotly visualization."
   },
   "BarChart": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "variable to display"
+      },
+      {
+        "name": "group",
+        "type": "array",
+        "description": "grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "yvar",
+        "type": "string",
+        "defaultValue": null
+      },
+      {
+        "name": "summary",
+        "type": "string",
+        "description": "name of statistic to compute for `yvar` and to be displayed as bar height for each category",
+        "defaultValue": null
+      },
+      {
+        "name": "horiz",
+        "type": "boolean",
+        "description": "whether to display bars horizontally",
+        "defaultValue": false
+      },
+      {
+        "name": "stackBars",
+        "type": "boolean",
+        "description": "when grouping, controls whether to stack bars on top of each other",
+        "defaultValue": false
+      },
+      {
+        "name": "relative",
+        "type": "boolean",
+        "description": "whether to calculate relative frequencies inside each group",
+        "defaultValue": false
+      },
+      {
+        "name": "totalPercent",
+        "type": "boolean",
+        "description": "whether to display overall bars as relative frequencies",
+        "defaultValue": false
+      },
+      {
+        "name": "xOrder",
+        "type": "string",
+        "description": "one of `total`, `category`, `min`, `max`, `mean`, or `median`",
+        "defaultValue": null
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "how to order bars alongside x-axis (`ascending` or `descending`)",
+        "defaultValue": "ascending"
+      }
+    ],
+    "description": "Bar chart."
   },
   "BoxPlot": {
     "props": [
