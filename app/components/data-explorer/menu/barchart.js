@@ -60,7 +60,7 @@ class BarchartMenu extends Component {
 			variable: defaultValue || variables[ 0 ],
 			yvar: quantitative[ 0 ],
 			summary: STATS[ 0 ],
-			groupVar: null,
+			group: null,
 			horiz: false,
 			stackBars: false,
 			relative: false,
@@ -72,14 +72,18 @@ class BarchartMenu extends Component {
 	}
 
 	generateBarchart() {
-		const { variable, groupVar } = this.state;
+		let summary;
+		let yvar;
+		const { variable, group, relative, totalPercent, xOrder, direction, stackBars } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
-			variable, groupVar, plotId
+			variable, group, relative, totalPercent, xOrder, direction, stackBars, plotId
 		};
 		if ( this.state.mode === MODES[ 1 ] ) {
 			action.summary = this.state.summary;
+			summary = this.state.summary;
 			action.yvar = this.state.yvar;
+			yvar = this.state.yvar;
 		}
 		const onShare = () => {
 			this.props.session.addNotification({
@@ -90,14 +94,23 @@ class BarchartMenu extends Component {
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 		};
-		const output = <BarChart {...this.state} {...this.props} id={plotId} action={action} onShare={onShare} />;
+		const output = <BarChart
+			{...this.props}
+			variable={variable}
+			group={group}
+			relative={relative} totalPercent={totalPercent} xOrder={xOrder}
+			direction={direction} summary={summary} yvar={yvar} stackBars={stackBars}
+			id={plotId}
+			action={action}
+			onShare={onShare}
+		/>;
 		this.props.logAction( DATA_EXPLORER_BARCHART, action );
 		this.props.onCreated( output );
 	}
 
 	render() {
 		const hideRelativeFrequencies = (
-			!this.state.groupVar || // not used without grouping
+			!this.state.group || // not used without grouping
 			this.state.totalPercent || // overall percent
 			this.state.mode === MODES[ 1 ] // when evaluating a function
 		);
@@ -153,20 +166,20 @@ class BarchartMenu extends Component {
 						</Row> : null }
 					<SelectInput
 						legend="Group By:"
-						defaultValue={this.state.groupVar}
+						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}
 						menuPlacement="top"
 						onChange={( value )=>{
 							this.setState({
-								groupVar: value
+								group: value
 							});
 						}}
 					/>
 					<Row>
 						<Col>
 							<FormGroup controlId="barchart-order-select">
-								<FormLabel>{this.state.groupVar ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
+								<FormLabel>{this.state.group ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
 								<Select
 									defaultValue={this.state.xOrder}
 									options={ORDER_OPTIONS}
@@ -240,9 +253,9 @@ class BarchartMenu extends Component {
 										stackBars: value
 									});
 								}}
-								disabled={!this.state.groupVar}
+								disabled={!this.state.group}
 								style={{
-									opacity: this.state.groupVar ? 1.0 : 0.2
+									opacity: this.state.group ? 1.0 : 0.2
 								}}
 
 							/>

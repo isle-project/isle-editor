@@ -55,8 +55,10 @@ class PieChartMenu extends Component {
 		};
 		const output= <PieChart
 			id={plotId}
-			{...this.state}
 			{...this.props}
+			variable={variable}
+			group={group}
+			summaryVariable={mode === MODES[ 1 ] ? summaryVariable : null}
 			action={action}
 			onShare={onShare}
 		/>;
