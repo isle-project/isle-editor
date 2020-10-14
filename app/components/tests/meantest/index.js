@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import TeX from 'components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
@@ -8,7 +9,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
-import stdev from 'utils/statistic/stdev';
+import standardDeviation from 'utils/statistic/stdev';
 
 
 // VARIABLES //
@@ -36,13 +37,13 @@ function extractValues( data, variable ) {
 
 // MAIN //
 
-function MeanTest({ data, variable, type, xstdev, alpha, direction, mu0, showDecision }) {
+function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDecision }) {
 	const xvalues = extractValues( data, variable );
 	let sd;
-	if ( type === 'Z Test' && xstdev ) {
-		sd = xstdev;
+	if ( type === 'Z Test' && stdev ) {
+		sd = stdev;
 	} else {
-		sd = roundn( stdev( xvalues ), -6 );
+		sd = roundn( standardDeviation( xvalues ), -6 );
 	}
 	let result;
 	if ( type === 'Z Test' ) {
@@ -81,6 +82,41 @@ function MeanTest({ data, variable, type, xstdev, alpha, direction, mu0, showDec
 }
 
 
+// PROPERTIES //
+
+MeanTest.defaultProps = {
+	type: 'T Test',
+	stdev: null,
+	alpha: 0.05,
+	direction: 'two-sided',
+	mu0: 0,
+	showDecision: false
+};
+
+MeanTest.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	type: PropTypes.string,
+	stdev: PropTypes.number,
+	alpha: PropTypes.number,
+	direction: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
+	mu0: PropTypes.number,
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* One-sample mean test.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - name of variable
+* @property {string} type - type of test (`z-test` or `t-test`)
+* @property {number} stdev - standard deviation (for z-test)
+* @property {number} alpha - significance level
+* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {number} mu0 - mean under the null hypothesis
+* @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
+*/
 export default MeanTest;

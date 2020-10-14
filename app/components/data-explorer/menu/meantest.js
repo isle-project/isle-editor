@@ -31,25 +31,25 @@ class MeanTestMenu extends Component {
 			mu0: 0,
 			direction: 'two-sided',
 			alpha: 0.05,
-			xstdev: null
+			stdev: null
 		};
 	}
 
 	calculateMeanTest = () => {
 		const { data, showDecision } = this.props;
-		const { variable, type, mu0, direction, alpha, xstdev } = this.state;
+		const { variable, type, mu0, direction, alpha, stdev } = this.state;
 		const output = <MeanTest
 			data={data}
 			variable={variable}
 			showDecision={showDecision}
 			mu0={mu0}
 			direction={direction}
-			xstdev={xstdev}
+			stdev={stdev}
 			type={type}
 			alpha={alpha}
 		/>;
 		this.props.logAction( DATA_EXPLORER_TESTS_MEAN, {
-			variable, mu0, direction, alpha, type, showDecision
+			variable, mu0, direction, alpha, type, stdev, showDecision
 		});
 		this.props.onCreated( output );
 	}
@@ -81,12 +81,12 @@ class MeanTestMenu extends Component {
 				{ this.state.type === 'Z Test' ?
 					<NumberInput
 						legend="Standard Deviation"
-						defaultValue={this.state.xstdev}
+						defaultValue={this.state.stdev}
 						step="any"
 						min={0}
 						onChange={( value ) => {
 							this.setState({
-								xstdev: value
+								stdev: value
 							});
 						}}
 						inputStyle={{

@@ -7356,8 +7356,55 @@
     "description": "Kruskal-Wallis Test."
   },
   "MeanTest": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "name of variable"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "type of test (`z-test` or `t-test`)",
+        "defaultValue": "T Test"
+      },
+      {
+        "name": "stdev",
+        "type": "number",
+        "description": "standard deviation (for z-test)",
+        "defaultValue": null
+      },
+      {
+        "name": "alpha",
+        "type": "number",
+        "description": "significance level",
+        "defaultValue": 0.05
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "defaultValue": "two-sided"
+      },
+      {
+        "name": "mu0",
+        "type": "number",
+        "description": "mean under the null hypothesis",
+        "defaultValue": 0
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
+        "defaultValue": false
+      }
+    ],
+    "description": "One-sample mean test."
   },
   "MeanTest2": {
     "props": [],
