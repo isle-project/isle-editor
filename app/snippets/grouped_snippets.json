@@ -850,11 +850,11 @@
     },
     {
       "name": "SimpleLinearRegression",
-      "value": ""
+      "value": "<SimpleLinearRegression data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
     },
     {
       "name": "PrincipalComponentAnalysis",
-      "value": ""
+      "value": "<PrincipalComponentAnalysis data={${1:}} variables={[${2:}]} />"
     },
     {
       "name": "HierarchicalClustering",
@@ -862,7 +862,7 @@
     },
     {
       "name": "KMeans",
-      "value": ""
+      "value": "<KMeans data={${1:}} variables={[${2:}]} />"
     },
     {
       "name": "NaiveBayes",
