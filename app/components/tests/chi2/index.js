@@ -1,5 +1,7 @@
 // MODULES //
 
+import React from 'react';
+import PropTypes from 'prop-types';
 import ROutput from 'components/r/output';
 
 
@@ -21,6 +23,24 @@ function Chi2Test({ data, var1, var2 }) {
 }
 
 
+// PROPERTIES //
+
+Chi2Test.defaultProps = {};
+
+Chi2Test.propTypes = {
+	data: PropTypes.object.isRequired,
+	var1: PropTypes.string.isRequired,
+	var2: PropTypes.string.isRequired
+};
+
+
 // EXPORTS //
 
+/**
+* Chi-square independence test.
+*
+* @property {Object} data - object of value arrays
+* @property {string} var1 - name of first variable
+* @property {string} var2 - name of second variable
+*/
 export default Chi2Test;

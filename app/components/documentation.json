@@ -7265,8 +7265,24 @@
     "description": "Analysis of variance."
   },
   "Chi2Test": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "var1",
+        "type": "string (required)",
+        "description": "name of first variable"
+      },
+      {
+        "name": "var2",
+        "type": "string (required)",
+        "description": "name of second variable"
+      }
+    ],
+    "description": "Chi-square independence test."
   },
   "CorrTest": {
     "props": [],
