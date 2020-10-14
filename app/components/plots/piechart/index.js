@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -11,22 +12,14 @@ import sum from 'utils/statistic/sum';
 import by from 'utils/by';
 
 
-// VARIABLES //
-
-const MODES = [
-	'Counts of unique values',
-	'Values from a second variable'
-];
-
-
 // FUNCTIONS //
 
-export function generatePiechartConfig({ data, variable, group, mode, summaryVariable }) {
+export function generatePiechartConfig({ data, variable, group, summaryVariable }) {
 	let annotations;
 	let traces;
 	if ( !group ) {
 		let freqs;
-		if ( mode === MODES[ 1 ] ) {
+		if ( summaryVariable ) {
 			freqs = by( data[ summaryVariable ], data[ variable ], sum );
 		} else {
 			freqs = countBy( data[ variable ], identity );
@@ -96,12 +89,11 @@ export function generatePiechartConfig({ data, variable, group, mode, summaryVar
 
 // MAIN //
 
-function PieChart({ variable, group, data, mode, summaryVariable, id, action, onShare }) {
+function PieChart({ variable, group, data, summaryVariable, id, action, onShare }) {
 	const config = generatePiechartConfig({
 		data,
 		variable,
 		group,
-		mode,
 		summaryVariable
 	});
 	return ( <Plotly
@@ -117,6 +109,29 @@ function PieChart({ variable, group, data, mode, summaryVariable, id, action, on
 }
 
 
+// PROPERTIES //
+
+PieChart.defaultProps = {
+	group: null,
+	summaryVariable: null
+};
+
+PieChart.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	summaryVariable: PropTypes.string
+};
+
+
 // EXPORTS //
 
+/**
+* A pie chart component that by default displays the counts of all categories from a chosen variable.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {string} summaryVariable - optional variable whose sum to display for each `variable` category
+*/
 export default PieChart;

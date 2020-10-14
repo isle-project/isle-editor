@@ -729,7 +729,7 @@
 	},
 	{
 		"name": "PieChart",
-		"value": ""
+		"value": "<PieChart data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "QQPlot",
@@ -745,7 +745,7 @@
 	},
 	{
 		"name": "ViolinPlot",
-		"value": "<ViolinPlot  data={${1:}} variable=\"${2:}\" />"
+		"value": "<ViolinPlot data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "FrequencyTable",
