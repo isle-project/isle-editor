@@ -7285,7 +7285,40 @@
     "description": "Chi-square independence test."
   },
   "CorrTest": {
-    "props": [],
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)"
+      },
+      {
+        "name": "var1",
+        "type": "string (required)"
+      },
+      {
+        "name": "var2",
+        "type": "string (required)"
+      },
+      {
+        "name": "rho0",
+        "type": "number",
+        "defaultValue": 0
+      },
+      {
+        "name": "alpha",
+        "type": "number",
+        "defaultValue": 0.05
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "defaultValue": "two-sided"
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "defaultValue": false
+      }
+    ],
     "description": "Description is missing."
   },
   "Kruskal": {

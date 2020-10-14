@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import TeX from 'components/tex';
 import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -48,6 +49,38 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 }
 
 
+// PROPERTIES //
+
+CorrTest.defaultProps = {
+	rho0: 0,
+	alpha: 0.05,
+	direction: 'two-sided',
+	showDecision: false
+};
+
+CorrTest.propTypes = {
+	data: PropTypes.object.isRequired,
+	var1: PropTypes.string.isRequired,
+	var2: PropTypes.string.isRequired,
+	rho0: PropTypes.number,
+	alpha: PropTypes.number,
+	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
+
+/**
+* Correlation test
+*
+* @property {Object} data - object of value arrays
+* @property {string} var1 - name of first variable
+* @property {string} var2 - name of second variable
+* @property {number} alpha - significance level
+* @property {number} rho0 - correlation value under the null hypothesis
+* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
+*/
 
 export default CorrTest;
