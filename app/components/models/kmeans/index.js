@@ -46,6 +46,15 @@ const summaryTable = ( variables, centroids ) => {
 
 // MAIN //
 
+/**
+* K-means clustering.
+*
+* @property {Object} data - object of value arrays
+* @property {Array<string>} variables - names of variables used for clustering
+* @property {string} initialization - initialization method (`kmeans++`, `random`, or `mostDistant`)
+* @property {number} K - number of clusters
+* @property {Function} onResult - callback invoked with model object
+*/
 class KMeans extends Component {
 	constructor( props ) {
 		super( props );
@@ -89,10 +98,16 @@ class KMeans extends Component {
 // PROPERTIES //
 
 KMeans.defaultProps = {
+	K: 3,
+	initialization: 'kmeans++',
 	onResult() {}
 };
 
 KMeans.propTypes = {
+	data: PropTypes.object.isRequired,
+	variables: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	K: PropTypes.number,
+	initialization: PropTypes.oneOf([ 'kmeans++', 'random', 'mostDistant' ]),
 	onResult: PropTypes.func
 };
 

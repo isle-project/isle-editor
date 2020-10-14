@@ -3917,12 +3917,35 @@
   "KMeans": {
     "props": [
       {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variables",
+        "type": "array<string> (required)",
+        "description": "names of variables used for clustering"
+      },
+      {
+        "name": "K",
+        "type": "number",
+        "description": "number of clusters",
+        "defaultValue": 3
+      },
+      {
+        "name": "initialization",
+        "type": "string",
+        "description": "initialization method (`kmeans++`, `random`, or `mostDistant`)",
+        "defaultValue": "kmeans++"
+      },
+      {
         "name": "onResult",
         "type": "function",
+        "description": "callback invoked with model object",
         "defaultValue": "function onResult() {}"
       }
     ],
-    "description": "Description is missing."
+    "description": "K-means clustering."
   },
   "LassoRegression": {
     "props": [
