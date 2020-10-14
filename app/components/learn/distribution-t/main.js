@@ -13,6 +13,7 @@ import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } fro
 import roundn from '@stdlib/math/base/special/roundn';
 import dt from '@stdlib/stats/base/dists/t/pdf';
 import pt from '@stdlib/stats/base/dists/t/cdf';
+import qt from '@stdlib/stats/base/dists/t/quantile';
 import SliderInput from 'components/input/slider';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
@@ -32,7 +33,8 @@ class TProbs extends Component {
 		this.state = {
 			df: 1,
 			x0: -1,
-			x1: 1
+			x1: 1,
+			p: 0.5
 		};
 	}
 
@@ -48,8 +50,12 @@ class TProbs extends Component {
 		this.setState({ x1 });
 	}
 
+	handlePropChange = ( p ) => {
+		this.setState({ p });
+	}
+
 	renderInputs( type ) {
-		const { df, x0, x1 } = this.state;
+		const { df, x0, x1, p } = this.state;
 		return (
 			<Fragment>
 				<SliderInput
@@ -61,7 +67,7 @@ class TProbs extends Component {
 					max={25}
 					onChange={this.handleDFChange}
 				/>
-				<SliderInput
+				{ type !== 'quantile' ? <SliderInput
 					key={`${type}-x0`}
 					legend="x0"
 					defaultValue={x0}
@@ -69,7 +75,15 @@ class TProbs extends Component {
 					max={4}
 					step={this.props.step}
 					onChange={this.handleLowerChange}
-				/>
+				/> : <SliderInput
+					key={`${type}-p`}
+					legend="p"
+					defaultValue={p}
+					min={0}
+					max={1}
+					step={this.props.step}
+					onChange={this.handlePropChange}
+				/> }
 				{ type === 'range' ?
 					<SliderInput
 						legend="x1"
@@ -81,6 +95,63 @@ class TProbs extends Component {
 					/> :
 				null }
 			</Fragment>
+		);
+	}
+
+	renderQuantileTab() {
+		const { df, p } = this.state;
+		const quantile = qt( p, df );
+		return (
+			<Container>
+				<Row>
+					<Col md={4} >
+						<Panel>
+							{this.renderInputs( 'quantile' )}
+							<TeX raw={`F^{-1}(p) = ${roundn( quantile, -4 )}`} />
+						</Panel>
+					</Col>
+					<Col md={6} >
+						<VictoryChart
+							domain={{
+								x: [ 0.001, 0.999 ],
+								y: [ qt( 0.001, df ), qt( 0.999, df ) ]
+							}}
+							theme={VictoryTheme.material}
+						>
+							<VictoryAxis dependentAxis />
+							<VictoryAxis
+								label="Quantile Function" tickFormat={(x) => `${x}`} crossAxis={false}
+								style={{ axisLabel: { padding: 40 }}}
+							/>
+							<VictoryLine
+								samples={200}
+								animate={{ duration: 500, easing: 'linear' }}
+								y={( data ) =>
+									qt( data.x, df )
+								}
+							/>
+							<VictoryLine
+								data={[
+									{ x: p, y: 0 },
+									{ x: p, y: quantile }
+								]}
+								style={{
+									data: { stroke: 'steelblue', strokeWidth: 1, opacity: 0.5 }
+								}}
+							/>
+							<VictoryLine
+								data={[
+									{ x: 0, y: quantile },
+									{ x: p, y: quantile }
+								]}
+								style={{
+									data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
+								}}
+							/>
+						</VictoryChart>
+					</Col>
+				</Row>
+			</Container>
 		);
 	}
 
@@ -355,6 +426,9 @@ class TProbs extends Component {
 								</VictoryChart>
 							</Col>
 						</Row></Container>
+					</Tab>
+					<Tab eventKey={4} title="Quantile Function" >
+						{this.renderQuantileTab()}
 					</Tab>
 				</Tabs>
 			</Card.Body>
