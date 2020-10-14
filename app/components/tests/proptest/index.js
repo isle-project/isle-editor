@@ -83,7 +83,7 @@ PropTest.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of variable
-* @property {*} success - success category
+* @property {*} success - success category of `variable`
 * @property {number} alpha - significance level
 * @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
 * @property {number} p0 - proportion under the null hypothesis
