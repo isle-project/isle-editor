@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import linspace from '@stdlib/math/utils/linspace';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
@@ -247,26 +248,73 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-function Histogram( props ) {
-	const config = generateHistogramConfig( props );
+function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins, action, onShare, onSelected }) {
+	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins });
 	return (
 		<Plotly
 			editable
 			draggable
-			id={props.id}
+			id={id}
 			fit
-			meta={props.action}
+			meta={action}
 			data={config.data}
 			layout={config.layout}
-			onShare={props.onShare}
+			onShare={onShare}
 			onSelected={( selected ) => {
-				this.props.onSelected( props.variable, selected );
+				if ( onSelected ) {
+					onSelected( variable, selected );
+				}
 			}}
 		/>
 	);
 }
 
 
+// PROPERTIES //
+
+Histogram.defaultProps = {
+	group: null,
+	groupMode: 'Overlay',
+	displayDensity: false,
+	densityType: null,
+	binStrategy: 'Automatic',
+	nBins: null,
+	nCols: null,
+	xbins: {}
+};
+
+Histogram.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
+	displayDensity: PropTypes.bool,
+	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),
+	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
+	nBins: PropTypes.number,
+	nCols: PropTypes.number,
+	xbins: PropTypes.shape({
+		start: PropTypes.number,
+		size: PropTypes.number,
+		end: PropTypes.number
+	})
+};
+
+
 // EXPORTS //
 
+/**
+* A histogram.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
+* @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
+* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
+* @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
+* @property {number} nBins - custom number of bins
+* @property {number} nCols - number of columns when displaying a facetted grouped histogram
+* @property {Object} xbins - object with `start`, `size`, and `end` properties governing binning behavior
+*/
 export default Histogram;
