@@ -406,12 +406,14 @@
           "xmin",
           "xmax",
           "xsmall",
+          "xstdev",
           "yaml",
           "yhat",
           "ylab",
           "ymin",
           "ymax",
-          "ysmall"
+          "ysmall",
+          "ystdev"
         ],
         "skipIfMatch": [
           "Copyright",
