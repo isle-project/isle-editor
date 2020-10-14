@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Table from 'components/table';
 import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
@@ -235,6 +236,35 @@ function FrequencyTable({ data, variable, group, calculateCounts, calculateRelat
 }
 
 
+// PROPERTIES //
+
+FrequencyTable.defaultProps = {
+	calculateCounts: true,
+	calculateRelative: false,
+	nDecimalPlaces: 3,
+	group: null
+};
+
+FrequencyTable.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	calculateCounts: PropTypes.bool,
+	calculateRelative: PropTypes.bool,
+	group: PropTypes.string,
+	nDecimalPlaces: PropTypes.number
+};
+
+
 // EXPORTS //
 
+/**
+* A frequency tale.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - name of variable to be displayed
+* @property {string} group - name of grouping variable
+* @property {boolean} calculateCounts - controls whether to display absolute counts
+* @property {boolean} calculateRelative - controls whether to display relative frequencies
+* @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
+*/
 export default FrequencyTable;

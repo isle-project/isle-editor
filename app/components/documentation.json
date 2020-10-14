@@ -7159,8 +7159,43 @@
     "description": "Description is missing."
   },
   "FrequencyTable": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "name of variable to be displayed"
+      },
+      {
+        "name": "calculateCounts",
+        "type": "boolean",
+        "description": "controls whether to display absolute counts",
+        "defaultValue": true
+      },
+      {
+        "name": "calculateRelative",
+        "type": "boolean",
+        "description": "controls whether to display relative frequencies",
+        "defaultValue": false
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "name of grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "nDecimalPlaces",
+        "type": "number",
+        "description": "number of decimal places for relative frequencies displayed in table",
+        "defaultValue": 3
+      }
+    ],
+    "description": "A frequency tale."
   },
   "Anova": {
     "props": [],
