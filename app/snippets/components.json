@@ -813,7 +813,7 @@
 	},
 	{
 		"name": "PrincipalComponentAnalysis",
-		"value": ""
+		"value": "<PrincipalComponentAnalysis data={${1:}} variables={[${2:}]} />"
 	},
 	{
 		"name": "HierarchicalClustering",
@@ -821,7 +821,7 @@
 	},
 	{
 		"name": "KMeans",
-		"value": ""
+		"value": "<KMeans data={${1:}} variables={[${2:}]} />"
 	},
 	{
 		"name": "NaiveBayes",
