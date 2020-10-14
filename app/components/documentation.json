@@ -4026,17 +4026,46 @@
   "SimpleLinearRegression": {
     "props": [
       {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "x",
+        "type": "string (required)",
+        "description": "explanatory variable"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "response variable"
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "omitMissing",
+        "type": "boolean",
+        "description": "controls whether to omit missing values in model fitting",
+        "defaultValue": false
+      },
+      {
         "name": "onDiagnostics",
         "type": "function",
+        "description": "callback invoked with diagnostic plots",
         "defaultValue": null
       },
       {
         "name": "onPredict",
         "type": "function",
+        "description": "callback invoked with fitted values and residuals",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Simple linear regression."
   },
   "MultiCards": {
     "props": [

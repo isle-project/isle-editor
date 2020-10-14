@@ -56,38 +56,49 @@ function isNonMissingNumber( x ) {
 
 // MAIN //
 
+/**
+* Simple linear regression.
+*
+* @property {Object} data - object of value arrays
+* @property {string} x - explanatory variable
+* @property {string} y - response variable
+* @property {string} group - grouping variable
+* @property {boolean} omitMissing - controls whether to omit missing values in model fitting
+* @property {Function} onDiagnostics - callback invoked with diagnostic plots
+* @property {Function} onPredict - callback invoked with fitted values and residuals
+*/
 class SimpleLinearRegression extends Component {
 	constructor( props ) {
 		super( props );
 
-		const { xval, yval, data, group, omitMissing } = props;
-		const x = data[ xval ];
-		const y = data[ yval ];
+		const { x, yval, data, group, omitMissing } = props;
+		const xd = data[ x ];
+		const yd = data[ yval ];
 		const groups = data[ group ];
 		if ( omitMissing ) {
 			const xvals = [];
 			const yvals = [];
 			const groupvals = [];
 			if ( groups ) {
-				for ( let i = 0; i < x.length; i++ ) {
+				for ( let i = 0; i < xd.length; i++ ) {
 					if (
 						!isMissing( groups[ i ] ) &&
-						isNonMissingNumber( x[ i ] ) &&
-						isNonMissingNumber( y[ i ] )
+						isNonMissingNumber( xd[ i ] ) &&
+						isNonMissingNumber( yd[ i ] )
 					) {
-						xvals.push( x[ i ] );
-						yvals.push( y[ i ] );
+						xvals.push( xd[ i ] );
+						yvals.push( yd[ i ] );
 						groupvals.push( groups[ i ] );
 					}
 				}
 			} else {
-				for ( let i = 0; i < x.length; i++ ) {
+				for ( let i = 0; i < xd.length; i++ ) {
 					if (
-						isNonMissingNumber( x[ i ] ) &&
-						isNonMissingNumber( y[ i ] )
+						isNonMissingNumber( xd[ i ] ) &&
+						isNonMissingNumber( yd[ i ] )
 					) {
-						xvals.push( x[ i ] );
-						yvals.push( y[ i ] );
+						xvals.push( xd[ i ] );
+						yvals.push( yd[ i ] );
 					}
 				}
 			}
@@ -95,22 +106,22 @@ class SimpleLinearRegression extends Component {
 			this.y = yvals;
 			this.groups = groupvals;
 		} else {
-			this.x = x;
-			this.y = y;
+			this.x = xd;
+			this.y = yd;
 			this.groups = groups;
 		}
 		COUNTER += 1;
 	}
 
 	render() {
-		const { x, y, groups } = this;
-		const { xval, yval, group, data } = this.props;
+		const { xd, yd, groups } = this;
+		const { x, yval, group, data } = this.props;
 		let output;
 		if ( group ) {
-			const xmeans = by( x, groups, mean );
-			const res = by2( x, y, groups, calculateCoefficients );
+			const xmeans = by( xd, groups, mean );
+			const res = by2( xd, yd, groups, calculateCoefficients );
 			output = <div style={{ overflowX: 'auto', width: '100%' }}>
-				<label>Regression of {yval} on {xval}</label>
+				<label>Regression of {yval} on {x}</label>
 				<p>
 					<i>Grouped by {group}:</i>
 				</p>
@@ -119,17 +130,17 @@ class SimpleLinearRegression extends Component {
 					const resAcc = incrsumabs2();
 					const x2Acc = incrsumabs2();
 					const x2mmAcc = incrsumabs2();
-					const cdf = tCDF.factory( y.length - 2 );
-					for ( let i = 0; i < y.length; i++ ) {
-						const pred = yint + slope * x[ i ];
-						resAcc( pred - y[ i ] );
-						x2Acc( x[ i ] );
-						x2mmAcc( x[ i ] - xmeans[ key ] );
+					const cdf = tCDF.factory( yd.length - 2 );
+					for ( let i = 0; i < yd.length; i++ ) {
+						const pred = yint + slope * xd[ i ];
+						resAcc( pred - yd[ i ] );
+						x2Acc( xd[ i ] );
+						x2mmAcc( xd[ i ] - xmeans[ key ] );
 					}
-					const sigma2 = resAcc() / ( y.length - 2 );
+					const sigma2 = resAcc() / ( yd.length - 2 );
 					const slopeVar = sigma2 / x2mmAcc();
 					const slopeSE = sqrt( slopeVar );
-					const interceptVar = ( (1/y.length) * sigma2 * x2Acc() ) / x2mmAcc();
+					const interceptVar = ( (1/yd.length) * sigma2 * x2Acc() ) / x2mmAcc();
 					const interceptSE = sqrt( interceptVar );
 					const tSlope = slope / slopeSE;
 					const tIntercept = yint / interceptSE;
@@ -155,7 +166,7 @@ class SimpleLinearRegression extends Component {
 										<td>{2.0 * (1.0-cdf( abs( tIntercept ) ) ).toFixed( 4 )}</td>
 									</tr>
 									<tr>
-										<td>{xval}</td>
+										<td>{x}</td>
 										<td>{slope.toFixed( 4 )}</td>
 										<td>{slopeSE.toFixed( 4 )}</td>
 										<td>{tSlope.toFixed( 4 )}</td>
@@ -168,29 +179,29 @@ class SimpleLinearRegression extends Component {
 				}) )}
 				<Tooltip tooltip="Predictions and residuals will be attached to data table" >
 					<Button variant="secondary" size="sm" onClick={() => {
-						const x = data[ xval ];
-						const y = data[ yval ];
-						const yhat = new Float64Array( y.length );
-						const resid = new Float64Array( y.length );
+						const xd = data[ x ];
+						const yd = data[ yval ];
+						const yhat = new Float64Array( yd.length );
+						const resid = new Float64Array( yd.length );
 						const groups = data[ group ];
 						for ( let i = 0; i < yhat.length; i++ ) {
 							const [ yint, slope ] = res[ groups[ i ] ];
-							yhat[ i ] = yint + slope * x[ i ];
-							resid[ i ] = yhat[ i ] - y[ i ];
+							yhat[ i ] = yint + slope * xd[ i ];
+							resid[ i ] = yhat[ i ] - yd[ i ];
 						}
 						this.props.onPredict( yhat, resid, COUNTER );
 					}}>Use this model to predict for currently selected data</Button>
 				</Tooltip>
 				<Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
-					const x = this.props.data[ xval ];
-					const y = this.props.data[ yval ];
-					const yhat = new Float64Array( y.length );
-					const resid = new Float64Array( y.length );
+					const xd = this.props.data[ x ];
+					const yd = this.props.data[ yval ];
+					const yhat = new Float64Array( yd.length );
+					const resid = new Float64Array( yd.length );
 					const groups = this.props.data[ group ];
 					for ( let i = 0; i < yhat.length; i++ ) {
 						const [ yint, slope ] = res[ groups[ i ] ];
-						yhat[ i ] = yint + slope * x[ i ];
-						resid[ i ] = yhat[ i ] - y[ i ];
+						yhat[ i ] = yint + slope * xd[ i ];
+						resid[ i ] = yhat[ i ] - yd[ i ];
 					}
 					const qqPlot = {
 						variable: 'QQ Plot of Residuals',
@@ -199,7 +210,7 @@ class SimpleLinearRegression extends Component {
 							draggable
 							editable fit
 							{...generateQQPlotConfig( resid, 'residuals' )}
-							meta={{ type: 'qqplot of regression residuals', x, y }}
+							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 						/>
 					};
 					const residualPlot = {
@@ -223,7 +234,7 @@ class SimpleLinearRegression extends Component {
 								},
 								title: 'Residuals vs. Fitted'
 							}}
-							meta={{ type: 'regression residuals vs. fitted', x, y }}
+							meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 						/>
 					};
 					this.props.onDiagnostics([ qqPlot, residualPlot ]);
@@ -233,27 +244,27 @@ class SimpleLinearRegression extends Component {
 			</div>;
 		}
 		else {
-			const [ yint, slope ] = calculateCoefficients( x, y );
+			const [ yint, slope ] = calculateCoefficients( xd, yd );
 			const resAcc = incrsumabs2();
 			const x2Acc = incrsumabs2();
 			const x2mmAcc = incrsumabs2();
-			const xmean = mean( x );
-			const cdf = tCDF.factory( y.length - 2 );
-			for ( let i = 0; i < y.length; i++ ) {
-				const pred = yint + slope * x[ i ];
-				resAcc( pred - y[ i ] );
-				x2Acc( x[ i ] );
-				x2mmAcc( x[ i ] - xmean );
+			const xmean = mean( xd );
+			const cdf = tCDF.factory( yd.length - 2 );
+			for ( let i = 0; i < yd.length; i++ ) {
+				const pred = yint + slope * xd[ i ];
+				resAcc( pred - yd[ i ] );
+				x2Acc( xd[ i ] );
+				x2mmAcc( xd[ i ] - xmean );
 			}
-			const sigma2 = resAcc() / ( y.length - 2 );
+			const sigma2 = resAcc() / ( yd.length - 2 );
 			const slopeVar = sigma2 / x2mmAcc();
 			const slopeSE = sqrt( slopeVar );
-			const interceptVar = ( (1/y.length) * sigma2 * x2Acc() ) / x2mmAcc();
+			const interceptVar = ( (1/yd.length) * sigma2 * x2Acc() ) / x2mmAcc();
 			const interceptSE = sqrt( interceptVar );
 			const tSlope = slope / slopeSE;
 			const tIntercept = yint / interceptSE;
 			output = <div style={{ overflowX: 'auto', width: '100%' }} >
-				<label>Regression of {yval} on {xval} (model id: slm{COUNTER})</label>
+				<label>Regression of {yval} on {x} (model id: slm{COUNTER})</label>
 				<Table bordered size="sm" >
 					<thead>
 						<tr>
@@ -273,7 +284,7 @@ class SimpleLinearRegression extends Component {
 							<td>{2.0 * (1.0-cdf( abs( tIntercept ) ) ).toFixed( 4 )}</td>
 						</tr>
 						<tr>
-							<td>{xval}</td>
+							<td>{x}</td>
 							<td>{slope.toFixed( 4 )}</td>
 							<td>{slopeSE.toFixed( 4 )}</td>
 							<td>{tSlope.toFixed( 4 )}</td>
@@ -283,31 +294,31 @@ class SimpleLinearRegression extends Component {
 				</Table>
 				<Tooltip tooltip="Predictions and residuals will be attached to data table">
 					<Button variant="secondary" size="sm" onClick={() => {
-						const x = data[ xval ];
-						const y = data[ yval ];
-						const yhat = new Array( y.length );
-						const resid = new Array( y.length );
+						const xd = data[ x ];
+						const yd = data[ yval ];
+						const yhat = new Array( yd.length );
+						const resid = new Array( yd.length );
 						for ( let i = 0; i < yhat.length; i++ ) {
-							yhat[ i ] = yint + slope * x[ i ];
-							resid[ i ] = yhat[ i ] - y[ i ];
+							yhat[ i ] = yint + slope * xd[ i ];
+							resid[ i ] = yhat[ i ] - yd[ i ];
 						}
 						this.props.onPredict( yhat, resid, COUNTER );
 					}}>Use this model to predict for currently selected data</Button>
 				</Tooltip>
 				<Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
-					const x = this.props.data[ xval ];
-					const y = this.props.data[ yval ];
-					const yhat = new Array( y.length );
-					const resid = new Array( y.length );
+					const xd = this.props.data[ x ];
+					const yd = this.props.data[ yval ];
+					const yhat = new Array( yd.length );
+					const resid = new Array( yd.length );
 					for ( let i = 0; i < yhat.length; i++ ) {
-						yhat[ i ] = yint + slope * x[ i ];
-						resid[ i ] = yhat[ i ] - y[ i ];
+						yhat[ i ] = yint + slope * xd[ i ];
+						resid[ i ] = yhat[ i ] - yd[ i ];
 					}
 					const qqPlot = <Plotly
 						draggable
 						editable fit
 						{...generateQQPlotConfig( resid, 'residuals' )}
-						meta={{ type: 'qqplot of regression residuals', x, y }}
+						meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 					/>;
 					const residualPlot = <Plotly
 						draggable editable fit
@@ -328,7 +339,7 @@ class SimpleLinearRegression extends Component {
 							},
 							title: 'Residuals vs. Fitted'
 						}}
-						meta={{ type: 'regression residuals vs. fitted', x, y }}
+						meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 					/>;
 					this.props.onDiagnostics([ qqPlot, residualPlot ]);
 				}} >
@@ -344,11 +355,18 @@ class SimpleLinearRegression extends Component {
 // PROPERTIES //
 
 SimpleLinearRegression.defaultProps = {
+	group: null,
+	omitMissing: false,
 	onDiagnostics: null,
 	onPredict: null
 };
 
 SimpleLinearRegression.propTypes = {
+	data: PropTypes.object.isRequired,
+	x: PropTypes.string.isRequired,
+	y: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	omitMissing: PropTypes.bool,
 	onDiagnostics: PropTypes.func,
 	onPredict: PropTypes.func
 };

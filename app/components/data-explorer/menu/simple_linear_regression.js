@@ -24,9 +24,9 @@ class SimpleLinearRegressionMenu extends Component {
 		super( props );
 	}
 
-	fitRegression = ( yval, xval, group, omitMissing ) => {
+	fitRegression = ( y, x, group, omitMissing ) => {
 		const output = <SimpleLinearRegression
-			yval={yval} xval={xval}
+			y={y} x={x}
 			group={group} omitMissing={omitMissing}
 			data={this.props.data}
 			onPredict={( yhat, resid, counter ) => {
@@ -47,7 +47,7 @@ class SimpleLinearRegressionMenu extends Component {
 			onDiagnostics={this.props.onCreated}
 		/>;
 		this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
-			yval, xval, group, omitMissing
+			y, x, group, omitMissing
 		});
 		this.props.onCreated( output );
 	}
