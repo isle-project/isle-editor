@@ -72,7 +72,7 @@ CorrTest.propTypes = {
 // EXPORTS //
 
 /**
-* Correlation test
+* Correlation test.
 *
 * @property {Object} data - object of value arrays
 * @property {string} var1 - name of first variable
@@ -82,5 +82,4 @@ CorrTest.propTypes = {
 * @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-
 export default CorrTest;
