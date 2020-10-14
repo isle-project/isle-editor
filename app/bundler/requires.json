@@ -191,7 +191,7 @@
 	"Histogram": "components/plots/histogram",
 	"LinePlot": "components/plots/lineplot",
 	"Map": "components/plots/map",
-	"MosaicPlot": "components/plots/mosaic-plot",
+	"MosaicPlot": "components/plots/mosaicplot",
 	"PieChart": "components/plots/piechart",
 	"QQPlot": "components/plots/qqplot",
 	"ScatterPlot": "components/plots/scatterplot",
