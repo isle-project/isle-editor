@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import logger from 'debug';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
@@ -27,9 +28,9 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
-function retrieveGroupedValues( data, xvar, grouping ) {
+function retrieveGroupedValues( data, x, group ) {
 	debug( 'Updating the variable when supplying groups...' );
-	const categories = data[ grouping ];
+	const categories = data[ group ];
 	let firstCategory = categories[ 0 ];
 	let secondCategory;
 	for ( let i = 1; i < categories.length; i++ ) {
@@ -38,7 +39,7 @@ function retrieveGroupedValues( data, xvar, grouping ) {
 			break;
 		}
 	}
-	const splitted = bifurcateBy( data[ xvar ], function splitter( x, idx ) {
+	const splitted = bifurcateBy( data[ x ], function splitter( x, idx ) {
 		return categories[ idx ] === firstCategory;
 	});
 	const xvalues = splitted[ 0 ];
@@ -54,14 +55,14 @@ function retrieveGroupedValues( data, xvar, grouping ) {
 
 // MAIN //
 
-function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
+function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
 	let out;
-	if ( grouping ) {
-		out = retrieveGroupedValues( data, xvar, grouping );
+	if ( group ) {
+		out = retrieveGroupedValues( data, x, group );
 	} else {
 		out = {
-			xvalues: data[ xvar ],
-			yvalues: data[ yvar ]
+			xvalues: data[ x ],
+			yvalues: data[ y ]
 		};
 	}
 	const x = out.xvalues;
@@ -79,7 +80,7 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 		}
 	}
 	let value;
-	if ( grouping ) {
+	if ( group ) {
 		let result;
 		if ( type === 'Z Test' ) {
 			xstdev = xstdev ? xstdev : stdev( xvals );
@@ -107,11 +108,11 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 		});
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const egrouping = escapeLatex( grouping );
+		const egrouping = escapeLatex( group );
 		const ecat1 = escapeLatex( out.firstCategory );
 		const ecat2 = escapeLatex( out.secondCategory );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<span className="title" >Hypothesis test for {xvar} between {grouping}:</span>
+			<span className="title" >Hypothesis test for {x} between {group}:</span>
 			<TeX
 				displayMode
 				raw={`H_0: \\mu_{\\text{${egrouping}:${ecat1}}} - \\mu_{\\text{${egrouping}:${ecat2}}} = ${diff}`}
@@ -131,7 +132,7 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 				Sample mean in group &quot;{out.secondCategory}&quot;: {roundn( result.ymean, -3 )}
 			</pre>
 		</div>;
-	} else if ( yvar ) {
+	} else if ( y ) {
 		let result;
 		if ( type === 'Z Test' ) {
 			result = ztest2( xvals, yvals, xstdev, ystdev, {
@@ -157,10 +158,10 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 		});
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const exvar = escapeLatex( xvar );
-		const eyvar = escapeLatex( yvar );
+		const exvar = escapeLatex( x );
+		const eyvar = escapeLatex( y );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for {xvar} against {yvar}:</label>
+			<label>Hypothesis test for {x} against {y}:</label>
 			<TeX
 				displayMode
 				raw={`H_0: \\mu_{${exvar}} - \\mu_{${eyvar}} = ${diff}`}
@@ -175,9 +176,9 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 			<pre>
 				{printout}
 				<br />
-				Sample mean in group &quot;{xvar}&quot;: {roundn( result.xmean, -3 )}
+				Sample mean in group &quot;{x}&quot;: {roundn( result.xmean, -3 )}
 				<br />
-				Sample mean in group &quot;{yvar}&quot;: {roundn( result.ymean, -3 )}
+				Sample mean in group &quot;{y}&quot;: {roundn( result.ymean, -3 )}
 			</pre>
 		</div>;
 	}
@@ -185,6 +186,50 @@ function MeanTest2({ data, xvar, yvar, grouping, xstdev, ystdev, type, diff, dir
 }
 
 
+// PROPERTIES //
+
+MeanTest2.defaultProps = {
+	type: 'T Test',
+	y: null,
+	group: null,
+	xstdev: null,
+	ystdev: null,
+	alpha: 0.05,
+	direction: 'two-sided',
+	diff: 0,
+	showDecision: false
+};
+
+MeanTest2.propTypes = {
+	data: PropTypes.object.isRequired,
+	x: PropTypes.string.isRequired,
+	y: PropTypes.string,
+	group: PropTypes.string,
+	type: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
+	xstdev: PropTypes.number,
+	ystdev: PropTypes.number,
+	alpha: PropTypes.number,
+	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
+	diff: PropTypes.number,
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* Two-sample mean test.
+*
+* @property {Object} data - object of value arrays
+* @property {string} x - name of first variable
+* @property {string} y - name of second variable (either `y` or `group` have to be supplied)
+* @property {string} group - name of grouping variable (either `y` or `group` have to be supplied)
+* @property {string} type - type of test (`Z Test` or `T Test`)
+* @property {number} xstdev - first standard deviation (for `Z Test`)
+* @property {number} ystdev - second standard deviation (for `Z Test`)
+* @property {number} alpha - significance level
+* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {number} diff - difference under H0
+* @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
+*/
 export default MeanTest2;

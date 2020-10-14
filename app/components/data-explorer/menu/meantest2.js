@@ -27,9 +27,9 @@ class MeanTest2Menu extends Component {
 		super( props );
 
 		this.state = {
-			xvar: null,
-			grouping: null,
-			yvar: null,
+			x: null,
+			group: null,
+			y: null,
 			diff: 0,
 			direction: 'two-sided',
 			alpha: 0.05,
@@ -40,23 +40,23 @@ class MeanTest2Menu extends Component {
 	}
 
 	calculateTwoSampleZTest = () => {
-		let { xvar, grouping, yvar, diff, direction, alpha, type, xstdev, ystdev } = this.state;
+		let { x, group, y, diff, direction, alpha, type, xstdev, ystdev } = this.state;
 		const { data, showDecision } = this.props;
-		if ( !yvar && !grouping ) {
+		if ( !y && !group ) {
 			return this.props.session.addNotification({
 				title: 'Action required',
-				message: `Please select either a grouping variable or a second variable to compare ${xvar} against.`,
+				message: `Please select either a grouping variable or a second variable to compare ${x} against.`,
 				level: 'warning',
 				position: 'tr'
 			});
 		}
 		const output = <MeanTest2
-			xvar={xvar} grouping={grouping} yvar={yvar} diff={diff} direction={direction}
+			x={x} group={group} y={y} diff={diff} direction={direction}
 			alpha={alpha} type={type} xstdev={xstdev} ystdev={ystdev}
 			data={data} showDecision={showDecision}
 		/>;
 		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN, {
-			xvar, grouping, yvar, diff, direction, alpha, showDecision
+			x, group, y, diff, direction, alpha, showDecision
 		});
 		this.props.onCreated( output );
 	}
@@ -77,11 +77,11 @@ class MeanTest2Menu extends Component {
 			/>
 			<SelectInput
 				legend="Variable:"
-				defaultValue={this.state.xvar}
+				defaultValue={this.state.x}
 				options={quantitative}
-				onChange={( xvar ) => {
+				onChange={( x ) => {
 					this.setState({
-						xvar
+						x
 					});
 				}}
 			/>
@@ -90,12 +90,12 @@ class MeanTest2Menu extends Component {
 					<SelectInput
 						legend="Groups:"
 						options={binary}
-						defaultValue={this.state.grouping}
+						defaultValue={this.state.group}
 						clearable
-						onChange={( grouping ) => {
+						onChange={( group ) => {
 							return this.setState({
-								yvar: null,
-								grouping
+								y: null,
+								group
 							});
 						}}
 					/>
@@ -107,12 +107,12 @@ class MeanTest2Menu extends Component {
 					<SelectInput
 						legend="Second Variable:"
 						options={quantitative}
-						defaultValue={this.state.yvar}
+						defaultValue={this.state.y}
 						clearable
-						onChange={( yvar ) => {
+						onChange={( y ) => {
 							return this.setState({
-								yvar,
-								grouping: null
+								y,
+								group: null
 							});
 						}}
 					/>
@@ -206,7 +206,7 @@ class MeanTest2Menu extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.calculateTwoSampleZTest}
-						disabled={(!this.state.grouping && !this.state.yvar) || !this.state.xvar}
+						disabled={(!this.state.group && !this.state.y) || !this.state.x}
 					>
 						Calculate
 					</Button>

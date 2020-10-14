@@ -7370,7 +7370,7 @@
       {
         "name": "type",
         "type": "string",
-        "description": "type of test (`z-test` or `t-test`)",
+        "description": "type of test (`Z Test` or `T Test`)",
         "defaultValue": "T Test"
       },
       {
@@ -7407,8 +7407,73 @@
     "description": "One-sample mean test."
   },
   "MeanTest2": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "x",
+        "type": "string (required)",
+        "description": "name of first variable"
+      },
+      {
+        "name": "y",
+        "type": "string",
+        "description": "name of second variable (either `y` or `group` have to be supplied)",
+        "defaultValue": null
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "name of grouping variable (either `y` or `group` have to be supplied)",
+        "defaultValue": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "type of test (`Z Test` or `T Test`)",
+        "defaultValue": "T Test"
+      },
+      {
+        "name": "xstdev",
+        "type": "number",
+        "description": "first standard deviation (for `Z Test`)",
+        "defaultValue": null
+      },
+      {
+        "name": "ystdev",
+        "type": "number",
+        "description": "second standard deviation (for `Z Test`)",
+        "defaultValue": null
+      },
+      {
+        "name": "alpha",
+        "type": "number",
+        "description": "significance level",
+        "defaultValue": 0.05
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "defaultValue": "two-sided"
+      },
+      {
+        "name": "diff",
+        "type": "number",
+        "description": "difference under H0",
+        "defaultValue": 0
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
+        "defaultValue": false
+      }
+    ],
+    "description": "Two-sample mean test."
   },
   "PropTest": {
     "props": [],
