@@ -697,23 +697,23 @@
 	},
 	{
 		"name": "BoxPlot",
-		"value": ""
+		"value": "<BoxPlot data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "BarChart",
-		"value": ""
+		"value": "<BarChart data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "ContourChart",
-		"value": "<ContourChart  data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
+		"value": "<ContourChart data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "HeatMap",
-		"value": "<HeatMap  data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
+		"value": "<HeatMap data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "Histogram",
-		"value": ""
+		"value": "<Histogram data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "LinePlot",
@@ -725,7 +725,7 @@
 	},
 	{
 		"name": "MosaicPlot",
-		"value": ""
+		"value": "<MosaicPlot data={${1:}} variable={[${2:}]} />"
 	},
 	{
 		"name": "PieChart",
