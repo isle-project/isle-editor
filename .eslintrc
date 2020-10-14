@@ -378,6 +378,7 @@
           "skippable",
           "src",
           "str",
+          "stdev",
           "svg",
           "skewness",
           "strikethrough",
