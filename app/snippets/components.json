@@ -749,19 +749,19 @@
 	},
 	{
 		"name": "FrequencyTable",
-		"value": ""
+		"value": "<FrequencyTable data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "ContingencyTable",
-		"value": ""
+		"value": "<ContingencyTable data={${1:}} rowVar=\"${2:}\" colVar=\"${3:}\" />"
 	},
 	{
 		"name": "Anova",
-		"value": ""
+		"value": "<Anova data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "Chi2Test",
-		"value": ""
+		"value": "<Chi2Test data={${1:}} var1=\"${2:}\" var2=\"${3:}\" />"
 	},
 	{
 		"name": "CorrTest",
