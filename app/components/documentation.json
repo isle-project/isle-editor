@@ -5142,8 +5142,25 @@
     "description": "Comparator function used to sort values in ascending order."
   },
   "ScatterPlotMatrix": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "variables",
+        "type": "array (required)",
+        "description": "array of variables to display in matrix"
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "description": "categorical variable to map to color of points",
+        "defaultValue": null
+      }
+    ],
+    "description": "A scatter plot matrix."
   },
   "ScatterPlot": {
     "props": [],

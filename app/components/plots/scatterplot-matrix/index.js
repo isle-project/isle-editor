@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import floor from '@stdlib/math/base/special/floor';
 import objectKeys from '@stdlib/utils/keys';
 import Plotly from 'components/plotly';
@@ -70,19 +71,22 @@ export function generateScatterplotMatrixConfig({ data, variables, color }) {
 	};
 }
 
-function ScatterPlotMatrix( props ) {
-	const config = generateScatterplotMatrixConfig( props );
+function ScatterPlotMatrix({ id, data, variables, color, action, onShare, onSelected }) {
+	const config = generateScatterplotMatrixConfig({ data, variables, color });
 	return (
 		<Plotly
 			editable
 			draggable
-			id={props.id}
+			id={id}
 			fit
-			meta={props.action}
+			meta={action}
 			data={config.data}
 			layout={config.layout}
-			onShare={props.onShare}
+			onShare={onShare}
 			onSelected={( selected ) => {
+				if ( !onSelected ) {
+					return;
+				}
 				const keys = objectKeys( selected.range );
 				const range = {};
 				const names = {};
@@ -91,22 +95,42 @@ function ScatterPlotMatrix( props ) {
 				if ( match && match[ 1 ] ) {
 					idx = Number( match[ 1 ] ) - 1;
 				}
-				names.x = props.variables[ idx ];
+				names.x = variables[ idx ];
 				range.x = selected.range[ keys[ 0 ] ];
 				match = RE_AXIS_IDX.exec( keys[ 1 ] );
 				idx = 0;
 				if ( match && match[ 1 ] ) {
 					idx = Number( match[ 1 ] ) - 1;
 				}
-				names.y = props.variables[ idx ];
+				names.y = variables[ idx ];
 				range.y = selected.range[ keys[ 1 ] ];
-				this.props.onSelected( names, { range });
+				onSelected( names, { range });
 			}}
 		/>
 	);
 }
 
 
+// PROPERTIES //
+
+ScatterPlotMatrix.defaultProps = {
+	color: null
+};
+
+ScatterPlotMatrix.propTypes = {
+	data: PropTypes.object.isRequired,
+	variables: PropTypes.array.isRequired,
+	color: PropTypes.string
+};
+
+
 // EXPORTS //
 
+/**
+* A scatter plot matrix.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {Array<string>} variables - array of variables to display in matrix
+* @property {string} color - categorical variable to map to color of points
+*/
 export default ScatterPlotMatrix;
