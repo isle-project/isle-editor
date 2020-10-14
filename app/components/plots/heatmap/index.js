@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -40,14 +41,14 @@ function toArrayArray( arr ) {
 	return out;
 }
 
-export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan }) {
+export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan }) {
 	let annotations;
 	let traces;
 	let layout;
-	const x = data[ xval ];
-	const y = data[ yval ];
+	const xvals = data[ x ];
+	const yvals = data[ y ];
 	if ( !group ) {
-		const out = kde2d( x, y );
+		const out = kde2d( xvals, yvals );
 		traces = [
 			{
 				x: out.x,
@@ -61,24 +62,24 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 		];
 		if ( overlayPoints ) {
 			const points = {
-				x,
-				y,
+				x: xvals,
+				y: yvals,
 				mode: 'markers',
 				name: 'points',
 				marker: {
 					color: 'white',
-					opacity: calculateOpacity( x.length )
+					opacity: calculateOpacity( xvals.length )
 				},
-				type: x.length > 2000 ? 'scattergl' : 'scatter'
+				type: xvals.length > 2000 ? 'scattergl' : 'scatter'
 			};
 			traces.push( points );
 		}
 		if ( regressionMethod && regressionMethod.length > 0 ) {
 			let xc = [];
 			let yc = [];
-			for ( let j = 0; j < x.length; j++ ) {
-				let xval = x[ j ];
-				let yval = y[ j ];
+			for ( let j = 0; j < xvals.length; j++ ) {
+				let xval = xvals[ j ];
+				let yval = yvals[ j ];
 				if (
 					isNumber( xval ) && isNumber( yval ) &&
 					!isnan( xval ) && !isnan( yval )
@@ -117,22 +118,22 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 			}
 		}
 		layout = {
-			title: `${xval} vs. ${yval}`,
+			title: `${x} vs. ${y}`,
 			xaxis: {
 				showgrid: true,
 				zeroline: true,
-				title: xval
+				title: x
 			},
 			yaxis: {
 				showgrid: true,
 				zeroline: true,
-				title: yval
+				title: y
 			}
 		};
 	} else {
 		let xgrouped;
 		let ygrouped;
-		const densities = by2( x, y, data[ group ], kde2d );
+		const densities = by2( xvals, yvals, data[ group ], kde2d );
 		const keys = extractUsedCategories( densities, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / 2 );
@@ -145,10 +146,10 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 		}
 
 		if ( regressionMethod && regressionMethod.length > 0 ) {
-			xgrouped= by( x, data[ group ], arr => {
+			xgrouped= by( xvals, data[ group ], arr => {
 				return arr;
 			});
-			ygrouped = by( y, data[ group ], arr => {
+			ygrouped = by( yvals, data[ group ], arr => {
 				return arr;
 			});
 		}
@@ -253,7 +254,7 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 				subplots: subplots
 			},
 			annotations: annotations,
-			title: `${xval} vs. ${yval} given ${group}`
+			title: `${x} vs. ${y} given ${group}`
 		};
 	}
 	return {
@@ -265,24 +266,61 @@ export function generateHeatmapConfig({ data, xval, yval, overlayPoints, alterna
 
 // MAIN //
 
-function HeatMap( props ) {
-	const config = generateHeatmapConfig( props );
+function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan, action, onShare, onSelected }) {
+	const config = generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan });
 	return ( <Plotly
 		editable
 		draggable
 		fit
-		id={props.id}
+		id={id}
 		data={config.data}
 		layout={config.layout}
-		meta={props.action}
-		onShare={props.onShare}
+		meta={action}
+		onShare={onShare}
 		onSelected={( selected ) => {
-			this.props.onSelected({ x: props.xval, y: props.yval }, selected );
+			onSelected({ x, y }, selected );
 		}}
 	/> );
 }
 
 
+// PROPERTIES //
+
+HeatMap.defaultProps = {
+	overlayPoints: false,
+	smoothSpan: 0.66,
+	regressionMethod: null,
+	alternateColor: false,
+	commonXAxis: false,
+	commonYAxis: false
+};
+
+HeatMap.propTypes = {
+	data: PropTypes.object.isRequired,
+	x: PropTypes.string.isRequired,
+	y: PropTypes.string.isRequired,
+	overlayPoints: PropTypes.bool,
+	smoothSpan: PropTypes.number,
+	regressionMethod: PropTypes.arrayOf( PropTypes.oneOf( [ 'linear', 'smooth' ] ) ),
+	alternateColor: PropTypes.bool,
+	commonXAxis: PropTypes.bool,
+	commonYAxis: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* A heat map for visualizing a relationship between two variables.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} x - x-axis variable
+* @property {string} y - y-axis variable
+* @property {boolean} overlayPoints - controls whether to overlay points for each observation
+* @property {Array<string>} regressionMethod - array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line
+* @property {number} smoothSpan - smoothing span
+* @property {boolean} alternateColor - controls whether to use an alternative color scheme for the heat map
+* @property {boolean} commonXAxis - controls whether to use a common x-axis when creating multiple heat maps per value of a grouping variable
+* @property {boolean} commonYAxis - controls whether to use a common y-axis when creating multiple heat maps per value of a grouping variable
+*/
 export default HeatMap;

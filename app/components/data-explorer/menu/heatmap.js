@@ -30,8 +30,8 @@ class HeatMapMenu extends Component {
 
 		const { variables, defaultX, defaultY } = props;
 		this.state = {
-			xval: defaultX || variables[ 0 ],
-			yval: defaultY || variables[ 1 ],
+			x: defaultX || variables[ 0 ],
+			y: defaultY || variables[ 1 ],
 			group: null,
 			overlayPoints: false,
 			commonXAxis: false,
@@ -43,10 +43,10 @@ class HeatMapMenu extends Component {
 	}
 
 	generateHeatmap() {
-		const { xval, yval, overlayPoints, regressionMethod } = this.state;
+		const { x, y, overlayPoints, regressionMethod } = this.state;
 		const plotId = randomstring( 6 );
 		const action = {
-			xval, yval, overlayPoints, regressionMethod, plotId
+			x, y, overlayPoints, regressionMethod, plotId
 		};
 		const onShare = () => {
 			this.props.session.addNotification({
@@ -74,22 +74,22 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col><SelectInput
 							legend="Variable on x-axis:"
-							defaultValue={this.state.xval}
+							defaultValue={this.state.x}
 							options={variables}
 							onChange={( value )=>{
 								this.setState({
-									xval: value
+									x: value
 								});
 							}}
 						/>
 						</Col>
 						<Col><SelectInput
 							legend="Variable on y-axis:"
-							defaultValue={this.state.yval}
+							defaultValue={this.state.y}
 							options={variables}
 							onChange={( value )=>{
 								this.setState({
-									yval: value
+									y: value
 								});
 							}}
 						/></Col>

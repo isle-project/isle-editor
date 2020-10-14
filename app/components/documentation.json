@@ -4818,8 +4818,60 @@
     "description": "A contour chart."
   },
   "HeatMap": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "x",
+        "type": "string (required)",
+        "description": "x-axis variable"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "y-axis variable"
+      },
+      {
+        "name": "overlayPoints",
+        "type": "boolean",
+        "description": "controls whether to overlay points for each observation",
+        "defaultValue": false
+      },
+      {
+        "name": "smoothSpan",
+        "type": "number",
+        "description": "smoothing span",
+        "defaultValue": 0.66
+      },
+      {
+        "name": "regressionMethod",
+        "type": "array<string>",
+        "description": "array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line",
+        "defaultValue": null
+      },
+      {
+        "name": "alternateColor",
+        "type": "boolean",
+        "description": "controls whether to use an alternative color scheme for the heat map",
+        "defaultValue": false
+      },
+      {
+        "name": "commonXAxis",
+        "type": "boolean",
+        "description": "controls whether to use a common x-axis when creating multiple heat maps per value of a grouping variable",
+        "defaultValue": false
+      },
+      {
+        "name": "commonYAxis",
+        "type": "boolean",
+        "description": "controls whether to use a common y-axis when creating multiple heat maps per value of a grouping variable",
+        "defaultValue": false
+      }
+    ],
+    "description": "A heat map for visualizing a relationship between two variables."
   },
   "Histogram": {
     "props": [],
