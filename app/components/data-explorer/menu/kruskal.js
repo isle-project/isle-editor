@@ -21,11 +21,11 @@ class KruskalMenu extends Component {
 		super( props );
 	}
 
-	calculateTest = ( variable, grouping ) => {
+	calculateTest = ( variable, group ) => {
 		const { data, showDecision } = this.props;
-		const output = <Kruskal data={data} variable={variable} grouping={grouping} showDecision={showDecision} />;
+		const output = <Kruskal data={data} variable={variable} group={group} showDecision={showDecision} />;
 		this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
-			variable, grouping, showDecision
+			variable, group, showDecision
 		});
 		this.props.onCreated( output );
 	}

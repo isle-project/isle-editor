@@ -7288,42 +7288,72 @@
     "props": [
       {
         "name": "data",
-        "type": "object (required)"
+        "type": "object (required)",
+        "description": "object of value arrays"
       },
       {
         "name": "var1",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "name of first variable"
       },
       {
         "name": "var2",
-        "type": "string (required)"
+        "type": "string (required)",
+        "description": "name of second variable"
       },
       {
         "name": "rho0",
         "type": "number",
+        "description": "correlation value under the null hypothesis",
         "defaultValue": 0
       },
       {
         "name": "alpha",
         "type": "number",
+        "description": "significance level",
         "defaultValue": 0.05
       },
       {
         "name": "direction",
         "type": "string",
+        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
         "name": "showDecision",
         "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
         "defaultValue": false
       }
     ],
-    "description": "Description is missing."
+    "description": "Correlation test."
   },
   "Kruskal": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "variable name"
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display if the null hypothesis is rejected at the specified significance level",
+        "defaultValue": false
+      }
+    ],
+    "description": "Kruskal-Wallis Test."
   },
   "MeanTest": {
     "props": [],
