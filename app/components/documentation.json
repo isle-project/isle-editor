@@ -7238,8 +7238,31 @@
     "description": "A frequency table."
   },
   "Anova": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variable",
+        "type": "string (required)",
+        "description": "name of variable to be displayed"
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "name of grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "showDecision",
+        "type": "boolean",
+        "description": "controls whether to display the test decision",
+        "defaultValue": false
+      }
+    ],
+    "description": "Analysis of variance."
   },
   "Chi2Test": {
     "props": [],

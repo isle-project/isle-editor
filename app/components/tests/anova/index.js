@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import anova1 from '@stdlib/stats/anova1';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -9,9 +10,9 @@ import isNull from '@stdlib/assert/is-null';
 
 // MAIN //
 
-function Anova({ data, variable, grouping, showDecision }) {
+function Anova({ data, variable, group, showDecision }) {
 	const vals = data[ variable ];
-	const groups = data[ grouping ];
+	const groups = data[ group ];
 	const groupsFiltered = [];
 	const valsFiltered = [];
 	for ( let i = 0; i < vals.length; i++ ) {
@@ -25,7 +26,7 @@ function Anova({ data, variable, grouping, showDecision }) {
 	}
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>ANOVA for {variable} between {grouping}</label>
+			<label>ANOVA for {variable} between {group}</label>
 			<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
 				decision: showDecision
 			})}</pre>
@@ -34,6 +35,29 @@ function Anova({ data, variable, grouping, showDecision }) {
 }
 
 
+// PROPERTIES //
+
+Anova.defaultProps = {
+	group: null,
+	showDecision: false
+};
+
+Anova.propTypes = {
+	data: PropTypes.object.isRequired,
+	variable: PropTypes.string.isRequired,
+	group: PropTypes.string,
+	showDecision: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* Analysis of variance.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - name of variable to be displayed
+* @property {string} group - name of grouping variable
+* @property {boolean} showDecision - controls whether to display the test decision
+*/
 export default Anova;

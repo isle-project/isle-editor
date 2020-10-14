@@ -21,12 +21,12 @@ class AnovaMenu extends Component {
 		super( props );
 	}
 
-	calculateANOVA = ( variable, grouping ) => {
+	calculateANOVA = ( variable, group ) => {
 		const { data, showDecision } = this.props;
 		this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
-			variable, grouping, showDecision
+			variable, group, showDecision
 		});
-		const output = <Anova data={data} variable={variable} grouping={grouping} showDecision={showDecision} />;
+		const output = <Anova data={data} variable={variable} group={group} showDecision={showDecision} />;
 		this.props.onCreated( output );
 	}
 
