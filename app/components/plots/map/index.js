@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import startcase from '@stdlib/string/startcase';
 import Plotly from 'components/plotly';
 import mean from 'utils/statistic/mean';
@@ -31,12 +32,12 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 		traces.push({
 			type: 'scattermapbox',
 			mode: 'markers',
-			text: data[ variable],
+			text: data[ variable ],
 			marker: {
 				opacity: 0.6,
 				autocolorscale: false,
 				colorscale: PURPLE_SCALE,
-				color: data[ variable]
+				color: data[ variable ]
 			},
 			lon,
 			lat
@@ -118,6 +119,51 @@ function Map({ data, locationmode, longitude, latitude, locations, variable, sco
 }
 
 
+// PROPERTIES //
+
+Map.defaultProps = {
+	scope: 'world',
+	showLand: false,
+	locations: null,
+	longitude: null,
+	latitude: null,
+	locationmode: 'country names'
+};
+
+Map.propTypes = {
+	data: PropTypes.object.isRequired,
+	scope: PropTypes.oneOf([
+		'world',
+		'usa',
+		'europe',
+		'asia',
+		'africa',
+		'north america',
+		'south america'
+	]),
+	locations: PropTypes.string,
+	locationmode: PropTypes.oneOf([
+		'ISO-3',
+		'USA-states',
+		'country names'
+	]),
+	longitude: PropTypes.string,
+	latitude: PropTypes.string,
+	showLand: PropTypes.bool
+};
+
+
 // EXPORTS //
 
+/**
+* A geographic map which can be either supplied location names or longitude/latitude values.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} scope - scope of map to be displayed
+* @property {string} locations - name of variable in `data` holding location names
+* @property {string} locationmode - one of `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded
+* @property {string} longitude - name of variable in `data` holding longitude values
+* @property {string} latitude - name of variable in `data` holding latitude values
+* @property {boolean} showLand - whether to show geographic features on map
+*/
 export default Map;

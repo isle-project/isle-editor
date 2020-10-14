@@ -5069,8 +5069,50 @@
     "description": "A line plot."
   },
   "Map": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "scope",
+        "type": "string",
+        "description": "scope of map to be displayed",
+        "defaultValue": "world"
+      },
+      {
+        "name": "locations",
+        "type": "string",
+        "description": "name of variable in `data` holding location names",
+        "defaultValue": null
+      },
+      {
+        "name": "locationmode",
+        "type": "string",
+        "description": "one of `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded",
+        "defaultValue": "country names"
+      },
+      {
+        "name": "longitude",
+        "type": "string",
+        "description": "name of variable in `data` holding longitude values",
+        "defaultValue": null
+      },
+      {
+        "name": "latitude",
+        "type": "string",
+        "description": "name of variable in `data` holding latitude values",
+        "defaultValue": null
+      },
+      {
+        "name": "showLand",
+        "type": "boolean",
+        "description": "whether to show geographic features on map",
+        "defaultValue": false
+      }
+    ],
+    "description": "A geographic map which can be either supplied location names or longitude/latitude values."
   },
   "MosaicPlot": {
     "props": [
