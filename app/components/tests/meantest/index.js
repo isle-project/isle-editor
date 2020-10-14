@@ -96,7 +96,7 @@ MeanTest.defaultProps = {
 MeanTest.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	type: PropTypes.string,
+	type: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
 	stdev: PropTypes.number,
 	alpha: PropTypes.number,
 	direction: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
@@ -112,7 +112,7 @@ MeanTest.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of variable
-* @property {string} type - type of test (`z-test` or `t-test`)
+* @property {string} type - type of test (`Z Test` or `T Test`)
 * @property {number} stdev - standard deviation (for z-test)
 * @property {number} alpha - significance level
 * @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
