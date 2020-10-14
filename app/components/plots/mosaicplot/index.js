@@ -1,6 +1,8 @@
 // MODULES //
 
+import React from 'react';
 import RPlot from 'components/r/plot';
+import PropTypes from 'prop-types';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 
@@ -17,16 +19,16 @@ const AXIS_OPTIONS = [
 
 // FUNCTIONS //
 
-export function generateMosaicPlotCode({ data, vars, showColors, axisLabels }) {
+export function generateMosaicPlotCode({ data, variables, showColors, axisLabels }) {
 	const counts = {};
-	const nObs = data[ vars[ 0 ] ].length;
+	const nObs = data[ variables[ 0 ] ].length;
 	for ( let i = 0; i < nObs; i++ ) {
 		let key = '';
-		for ( let j = 0; j < vars.length; j++ ) {
-			let x = vars[ j ];
+		for ( let j = 0; j < variables.length; j++ ) {
+			let x = variables[ j ];
 			let datum = data[ x ][ i ];
 			key += datum;
-			if ( j < vars.length-1 ) {
+			if ( j < variables.length-1 ) {
 				key += ':';
 			}
 		}
@@ -37,7 +39,7 @@ export function generateMosaicPlotCode({ data, vars, showColors, axisLabels }) {
 		}
 	}
 	const varArr = [];
-	vars.forEach( () => {
+	variables.forEach( () => {
 		varArr.push([]);
 	});
 	const keys = Object.keys( counts );
@@ -51,15 +53,18 @@ export function generateMosaicPlotCode({ data, vars, showColors, axisLabels }) {
 	if ( axisLabels ) {
 		las = AXIS_OPTIONS.indexOf( axisLabels );
 	}
-	const code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${vars[ idx ]} = c( ${arr} )` ) })
+	const code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${variables[ idx ]} = c( ${arr} )` ) })
 		xytable = xtabs( counts ~ ., data = dat )
-		mosaicplot( xytable, main = "${`Mosaic Plot of ${vars.join( ', ' )}`}",
+		mosaicplot( xytable, main = "${`Mosaic Plot of ${variables.join( ', ' )}`}",
 		cex=1, las=${las}, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 	return code;
 }
 
-export function MosaicPlot({ data, id, vars, showColors, axisLabels, action, onShare, onPlotDone }) {
-	const code = generateMosaicPlotCode({ data, vars, showColors, axisLabels });
+
+// MAIN //
+
+function MosaicPlot({ data, id, variables, showColors, axisLabels, action, onShare, onPlotDone }) {
+	const code = generateMosaicPlotCode({ data, variables, showColors, axisLabels });
 	return (
 		<RPlot
 			code={code}
@@ -77,6 +82,29 @@ export function MosaicPlot({ data, id, vars, showColors, axisLabels, action, onS
 }
 
 
+// PROPERTIES //
+
+MosaicPlot.defaultProps = {
+	showColors: false,
+	axisLabels: 'parallel to the axis'
+};
+
+MosaicPlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	variables: PropTypes.array.isRequired,
+	showColors: PropTypes.bool,
+	axisLabels: PropTypes.oneOf([ 'parallel to the axis', 'horizontal', 'perpendicular to the axis', 'vertical' ])
+};
+
+
 // EXPORTS //
 
+/**
+* A mosaic plot.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {Array<string>} variables - array of variables to display
+* @property {boolean} showColors - controls whether to display colors showing significance
+* @property {string} axisLabels - grouping variable
+*/
 export default MosaicPlot;

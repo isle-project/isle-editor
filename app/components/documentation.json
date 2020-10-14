@@ -5072,6 +5072,33 @@
     "props": [],
     "description": "Description is missing."
   },
+  "MosaicPlot": {
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "variables",
+        "type": "array (required)",
+        "description": "array of variables to display"
+      },
+      {
+        "name": "showColors",
+        "type": "boolean",
+        "description": "controls whether to display colors showing significance",
+        "defaultValue": false
+      },
+      {
+        "name": "axisLabels",
+        "type": "string",
+        "description": "grouping variable",
+        "defaultValue": "parallel to the axis"
+      }
+    ],
+    "description": "A mosaic plot."
+  },
   "PieChart": {
     "props": [
       {

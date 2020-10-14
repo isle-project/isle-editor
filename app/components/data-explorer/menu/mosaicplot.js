@@ -29,8 +29,8 @@ class MosaicPlotMenu extends Component {
 		super( props );
 	}
 
-	generateMosaicPlot( vars, showColors, axisLabels ) {
-		if ( !vars || vars.length < 2 ) {
+	generateMosaicPlot( variables, showColors, axisLabels ) {
+		if ( !variables || variables.length < 2 ) {
 			return this.props.session.addNotification({
 				title: 'Select Variables',
 				message: 'You need to select at least two variables for the mosaic plot',
@@ -40,7 +40,7 @@ class MosaicPlotMenu extends Component {
 		}
 		const plotId = randomstring( 6 );
 		const action = {
-			vars, showColors, plotId
+			variables, showColors, plotId
 		};
 		const onShare = () => {
 			this.props.session.addNotification({
@@ -50,12 +50,12 @@ class MosaicPlotMenu extends Component {
 				position: 'tr'
 			});
 			this.props.logAction( DATA_EXPLORER_SHARE_MOSAIC, {
-				vars, showColors, plotId
+				variables, showColors, plotId
 			});
 		};
 		const output = <MosaicPlot
 			data={this.props.data}
-			vars={vars}
+			variables={variables}
 			showColors={showColors}
 			axisLabels={axisLabels}
 			id={plotId}
