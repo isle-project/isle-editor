@@ -5163,8 +5163,74 @@
     "description": "A scatter plot matrix."
   },
   "ScatterPlot": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays for each variable"
+      },
+      {
+        "name": "xval",
+        "type": "string (required)",
+        "description": "variable to display on the x-axis"
+      },
+      {
+        "name": "yval",
+        "type": "string (required)",
+        "description": "variable to display on the y-axis"
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "description": "texts to be displayed next to each point",
+        "defaultValue": null
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "description": "categorical variable to map to color of points",
+        "defaultValue": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "categorical variable to map to the displayed symbols",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "description": "quantitative variable to map to the size of the points",
+        "defaultValue": null
+      },
+      {
+        "name": "regressionLine",
+        "type": "boolean",
+        "description": "controls whether to overlay regression line(s)",
+        "defaultValue": false
+      },
+      {
+        "name": "regressionMethod",
+        "type": "array<string>",
+        "description": "`linear` and/or `smooth` to display linear regression and smoothed LOWESS regression line",
+        "defaultValue": [
+          "linear"
+        ]
+      },
+      {
+        "name": "lineBy",
+        "type": "string",
+        "description": "display separate regression line for each category of specified categorical variable",
+        "defaultValue": null
+      },
+      {
+        "name": "smoothSpan",
+        "type": "number",
+        "description": "smoothing span parameter for `smooth` regression line",
+        "defaultValue": 0.66
+      }
+    ],
+    "description": "Computes the minimum and maximum value of an array."
   },
   "ViolinPlot": {
     "props": [

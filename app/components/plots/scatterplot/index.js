@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Plotly from 'components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -388,26 +389,71 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 
 // MAIN //
 
-function ScatterPlot( props ) {
-	const config = generateScatterplotConfig( props );
+function ScatterPlot({ id, data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, action, onShare, onSelected }) {
+	const config = generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan });
 	return (
 		<Plotly
 			editable
 			draggable
 			fit
-			id={props.id}
-			meta={props.action}
+			id={id}
+			meta={action}
 			data={config.data}
 			layout={config.layout}
-			onShare={props.onShare}
+			onShare={onShare}
 			onSelected={( selected ) => {
-				this.props.onSelected({ x: props.xval, y: props.yval }, selected );
+				if ( onSelected ) {
+					onSelected({ x: xval, y: yval }, selected );
+				}
 			}}
 		/>
 	);
 }
 
 
+// PROPERTIES //
+
+ScatterPlot.defaultProps = {
+	text: null,
+	color: null,
+	type: null,
+	size: null,
+	lineBy: null,
+	regressionLine: false,
+	regressionMethod: [ 'linear' ],
+	smoothSpan: 0.66
+};
+
+ScatterPlot.propTypes = {
+	data: PropTypes.object.isRequired,
+	xval: PropTypes.string.isRequired,
+	yval: PropTypes.string.isRequired,
+	text: PropTypes.string,
+	color: PropTypes.string,
+	type: PropTypes.string,
+	size: PropTypes.string,
+	regressionLine: PropTypes.bool,
+	regressionMethod: PropTypes.arrayOf( PropTypes.oneOf([ 'linear', 'smooth' ]) ),
+	lineBy: PropTypes.string,
+	smoothSpan: PropTypes.number
+};
+
+
 // EXPORTS //
 
+/**
+* A scatter plot.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} xval - variable to display on the x-axis
+* @property {string} yval - variable to display on the y-axis
+* @property {string} text - texts to be displayed next to each point
+* @property {string} type - categorical variable to map to the displayed symbols
+* @property {string} size - quantitative variable to map to the size of the points
+* @property {string} color - categorical variable to map to color of points
+* @property {boolean} regressionLine - controls whether to overlay regression line(s)
+* @property {Array<string>} regressionMethod - `linear` and/or `smooth` to display linear regression and smoothed LOWESS regression line
+* @property {number} smoothSpan - smoothing span parameter for `smooth` regression line
+* @property {string} lineBy - display separate regression line for each category of specified categorical variable
+*/
 export default ScatterPlot;
