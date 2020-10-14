@@ -258,7 +258,7 @@ FrequencyTable.propTypes = {
 // EXPORTS //
 
 /**
-* A frequency tale.
+* A frequency table.
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of variable to be displayed
