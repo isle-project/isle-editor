@@ -705,11 +705,11 @@
 	},
 	{
 		"name": "ContourChart",
-		"value": ""
+		"value": "<ContourChart  data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "HeatMap",
-		"value": ""
+		"value": "<HeatMap  data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "Histogram",
@@ -745,7 +745,7 @@
 	},
 	{
 		"name": "ViolinPlot",
-		"value": ""
+		"value": "<ViolinPlot  data={${1:}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "FrequencyTable",
