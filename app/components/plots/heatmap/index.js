@@ -278,7 +278,9 @@ function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonX
 		meta={action}
 		onShare={onShare}
 		onSelected={( selected ) => {
-			onSelected({ x, y }, selected );
+			if ( onSelected ) {
+				onSelected({ x, y }, selected );
+			}
 		}}
 	/> );
 }

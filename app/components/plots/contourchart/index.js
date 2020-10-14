@@ -135,7 +135,9 @@ function ContourChart({ id, data, x, y, overlayPoints, smoothSpan, regressionMet
 			layout={config.layout}
 			onShare={onShare}
 			onSelected={( selected ) => {
-				onSelected({ x: x, y: y }, selected );
+				if ( onSelected ) {
+					onSelected({ x: x, y: y }, selected );
+				}
 			}}
 		/>
 	);
