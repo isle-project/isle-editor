@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Table from 'components/table';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
@@ -205,6 +206,37 @@ function ContingencyTable({ data, rowVar, colVar, group, relativeFreqs, nDecimal
 }
 
 
+// PROPERTIES //
+
+ContingencyTable.defaultProps = {
+	relativeFreqs: false,
+	nDecimalPlaces: 3,
+	group: null,
+	display: []
+};
+
+ContingencyTable.propTypes = {
+	data: PropTypes.object.isRequired,
+	rowVar: PropTypes.string.isRequired,
+	colVar: PropTypes.string.isRequired,
+	relativeFreqs: PropTypes.bool,
+	group: PropTypes.string,
+	display: PropTypes.arrayOf( PropTypes.oneOf( [ 'Row Percent', 'Column Percent' ] ) ),
+	nDecimalPlaces: PropTypes.number
+};
+
+
 // EXPORTS //
 
+/**
+* A contingency table.
+*
+* @property {Object} data - object of value arrays
+* @property {string} rowVar - row variable name
+* @property {string} colVar - column variable name
+* @property {string} group - name of grouping variable
+* @property {boolean} relativeFreqs - controls whether to display relative frequencies
+* @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`
+* @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
+*/
 export default ContingencyTable;

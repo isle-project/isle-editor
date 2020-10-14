@@ -7155,8 +7155,48 @@
     "description": "A basic bootstrap table."
   },
   "ContingencyTable": {
-    "props": [],
-    "description": "Description is missing."
+    "props": [
+      {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "rowVar",
+        "type": "string (required)",
+        "description": "row variable name"
+      },
+      {
+        "name": "colVar",
+        "type": "string (required)",
+        "description": "column variable name"
+      },
+      {
+        "name": "relativeFreqs",
+        "type": "boolean",
+        "description": "controls whether to display relative frequencies",
+        "defaultValue": false
+      },
+      {
+        "name": "group",
+        "type": "string",
+        "description": "name of grouping variable",
+        "defaultValue": null
+      },
+      {
+        "name": "display",
+        "type": "array<string>",
+        "description": "whether to display `Row Percent` and/or `Column Percent`",
+        "defaultValue": []
+      },
+      {
+        "name": "nDecimalPlaces",
+        "type": "number",
+        "description": "number of decimal places for relative frequencies displayed in table",
+        "defaultValue": 3
+      }
+    ],
+    "description": "A contingency table."
   },
   "FrequencyTable": {
     "props": [
@@ -7195,7 +7235,7 @@
         "defaultValue": 3
       }
     ],
-    "description": "A frequency tale."
+    "description": "A frequency table."
   },
   "Anova": {
     "props": [],
