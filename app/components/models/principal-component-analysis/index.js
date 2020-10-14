@@ -46,6 +46,13 @@ const summaryTable = ( stdev, variance, cumVariance ) => {
 
 // MAIN //
 
+/**
+* Principal component analysis.
+*
+* @property {Object} data - object of value arrays
+* @property {Array<string>} variables - names of variables used for clustering
+* @property {Function} onResult - callback invoked with model object and components
+*/
 class PrincipalComponentAnalysis extends Component {
 	constructor( props ) {
 		super( props );
@@ -112,6 +119,8 @@ PrincipalComponentAnalysis.defaultProps = {
 };
 
 PrincipalComponentAnalysis.propTypes = {
+	data: PropTypes.object.isRequired,
+	variables: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	onResult: PropTypes.func
 };
 

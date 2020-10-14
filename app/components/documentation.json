@@ -3995,12 +3995,23 @@
   "PrincipalComponentAnalysis": {
     "props": [
       {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "variables",
+        "type": "array<string> (required)",
+        "description": "names of variables used for clustering"
+      },
+      {
         "name": "onResult",
         "type": "function",
+        "description": "callback invoked with model object and components",
         "defaultValue": "function onResult() {}"
       }
     ],
-    "description": "Description is missing."
+    "description": "Principal component analysis."
   },
   "RandomForest": {
     "props": [
