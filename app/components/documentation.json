@@ -7376,7 +7376,7 @@
       {
         "name": "stdev",
         "type": "number",
-        "description": "standard deviation (for z-test)",
+        "description": "standard deviation (for `Z Test`)",
         "defaultValue": null
       },
       {

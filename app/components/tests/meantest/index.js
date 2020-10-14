@@ -113,7 +113,7 @@ MeanTest.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of variable
 * @property {string} type - type of test (`Z Test` or `T Test`)
-* @property {number} stdev - standard deviation (for z-test)
+* @property {number} stdev - standard deviation (for `Z Test`)
 * @property {number} alpha - significance level
 * @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
 * @property {number} mu0 - mean under the null hypothesis
