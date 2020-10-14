@@ -3320,6 +3320,12 @@
         "defaultValue": 0.01
       },
       {
+        "name": "quantile",
+        "type": "boolean",
+        "description": "whether to show tab for calculating distribution quantiles",
+        "defaultValue": false
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",

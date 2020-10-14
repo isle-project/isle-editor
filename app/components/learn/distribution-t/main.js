@@ -25,6 +25,7 @@ import TeX from 'components/tex';
 * A learning component for calculating probabilities of a Student's t distribution.
 *
 * @property {number} step - step size of the scroll input
+* @property {boolean} quantile - whether to show tab for calculating distribution quantiles
 * @property {Object} style - CSS inline styles
 */
 class TProbs extends Component {
@@ -427,9 +428,9 @@ class TProbs extends Component {
 							</Col>
 						</Row></Container>
 					</Tab>
-					<Tab eventKey={4} title="Quantile Function" >
+					{ this.props.quantile ? <Tab eventKey={4} title="Quantile Function" >
 						{this.renderQuantileTab()}
-					</Tab>
+					</Tab> : null }
 				</Tabs>
 			</Card.Body>
 		</Card> );
@@ -444,11 +445,13 @@ TProbs.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	quantile: PropTypes.bool,
 	style: PropTypes.object
 };
 
 TProbs.defaultProps = {
 	step: 0.01,
+	quantile: false,
 	style: {}
 };
 
