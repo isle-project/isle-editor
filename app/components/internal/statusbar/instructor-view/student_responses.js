@@ -154,13 +154,17 @@ class StudentResponses extends Component {
 		};
 	}
 
-	handleRadioChange = () => {
+	handleRadioChange = async () => {
+		const session = this.props.session;
+		if ( !this.userHash ) {
+			this.userHash = await session.getFakeUsers();
+		}
 		this.setState({
 			anonymized: !this.state.anonymized
 		});
 	}
 
-	prepareQuestionsForExport = ( hash ) => {
+	prepareQuestionsForExport = () => {
 		let out = [];
 		const session = this.props.session;
 		const ids = session.responseVisualizerIds;
@@ -179,8 +183,8 @@ class StudentResponses extends Component {
 					value: x.value,
 					absoluteTime: formatTime( x.absoluteTime ),
 					time: x.time,
-					email: this.state.anonymized ? hash.email[ x.email ] : x.email,
-					name: this.state.anonymized ? hash.name[ x.name ] : x.name,
+					email: this.state.anonymized ? this.userHash.email[ x.email ] : x.email,
+					name: this.state.anonymized ? this.userHash.name[ x.name ] : x.name,
 					question: React.isValidElement( question ) ? innerText( question ) : String( question ),
 					solution: React.isValidElement( solution ) ? innerText( solution ) : solution
 				});
@@ -192,62 +196,69 @@ class StudentResponses extends Component {
 
 	saveJSON = () => {
 		const session = this.props.session;
-		session.getFakeUsers( ( err, hash ) => {
-			if ( err ) {
-				return session.addNotification({
-					title: this.props.t( 'error-encountered' ),
-					message: this.props.t( 'error-fake-users' )+err.message,
-					level: 'error',
-					position: 'tl'
-				});
-			}
-			const questions = this.prepareQuestionsForExport( hash );
-			const blob = new Blob([ JSON.stringify( questions ) ], {
-				type: 'application/json'
-			});
-			const name = `questions_${session.namespaceName}_${session.lessonName}.json`;
-			saveAs( blob, name );
+		const questions = this.prepareQuestionsForExport();
+		const blob = new Blob([ JSON.stringify( questions ) ], {
+			type: 'application/json'
 		});
+		const name = `questions_${session.namespaceName}_${session.lessonName}.json`;
+		saveAs( blob, name );
 	}
 
 	saveCSV = () => {
 		const session = this.props.session;
-		session.getFakeUsers( ( err, hash ) => {
+		const questions = this.prepareQuestionsForExport();
+		stringify( questions, {
+			header: true
+		}, ( err, output ) => {
 			if ( err ) {
 				return session.addNotification({
 					title: this.props.t( 'error-encountered' ),
-					message: this.props.t( 'error-fake-users' )+err.message,
+					message: this.props.t( 'error-csv' )+err.message,
 					level: 'error',
 					position: 'tl'
 				});
 			}
-			const questions = this.prepareQuestionsForExport( hash );
-			stringify( questions, {
-				header: true
-			}, ( err, output ) => {
-				if ( err ) {
-					return session.addNotification({
-						title: this.props.t( 'error-encountered' ),
-						message: this.props.t( 'error-csv' )+err.message,
-						level: 'error',
-						position: 'tl'
-					});
-				}
-				const blob = new Blob([ output ], {
-					type: 'text/plain'
-				});
-				const name = `questions_${session.namespaceName}_${session.lessonName}.csv`;
-				saveAs( blob, name );
+			const blob = new Blob([ output ], {
+				type: 'text/plain'
 			});
+			const name = `questions_${session.namespaceName}_${session.lessonName}.csv`;
+			saveAs( blob, name );
 		});
 	}
 
-	render() {
-		debug( 'Render student responses...' );
+	assembleUserList = () => {
 		const session = this.props.session;
-		const visualizers = session.responseVisualizers;
-		const ids = session.responseVisualizerIds;
 		const users = [];
+		if ( this.state.anonymized ) {
+			const h = this.userHash;
+			const name = x => h.name[ x.name ] || x.name;
+			const email = x => h.email[ x.email ] || x.email;
+			if ( session.cohorts ) {
+				if ( !session.selectedCohort ) {
+					for ( let i = 0; i < session.cohorts.length; i++ ) {
+						const cohort = session.cohorts[ i ];
+						for ( let j = 0; j < cohort.members.length; j++ ) {
+							const member = cohort.members[ j ];
+							users.push({
+								value: cohort.members[ j ],
+								label: `${name( member )} (${email( member )})`
+							});
+						}
+					}
+				} else {
+					const cohort = session.selectedCohort;
+					for ( let j = 0; j < cohort.members.length; j++ ) {
+						const member = cohort.members[ j ];
+						users.push({
+							value: cohort.members[ j ],
+							label: `${name( member )} (${email( member )})`
+						});
+					}
+				}
+			}
+			console.log( users );
+			return users;
+		}
 		if ( session.cohorts ) {
 			if ( !session.selectedCohort ) {
 				for ( let i = 0; i < session.cohorts.length; i++ ) {
@@ -271,6 +282,15 @@ class StudentResponses extends Component {
 				}
 			}
 		}
+		return users;
+	}
+
+	render() {
+		debug( 'Render student responses...' );
+		const session = this.props.session;
+		const visualizers = session.responseVisualizers;
+		const ids = session.responseVisualizerIds;
+		const users = this.assembleUserList();
 		const list = new Array( ids.length );
 		for ( let i = 0; i < ids.length; i++ ) {
 			const viz = visualizers[ ids[ i ] ];
@@ -331,24 +351,46 @@ class StudentResponses extends Component {
 		}
 		const SelectOption = props => {
 			const user = props.data.value;
-			const src = session.server + '/thumbnail/' + user.picture;
+			let email;
+			let name;
+			let src;
+			if ( this.state.anonymized ) {
+				src = session.server + '/thumbnail/anonymous.jpg';
+				email = this.userHash.email[ user.email ] || user.email;
+				name = this.userHash.name[ user.name ] || user.name;
+			} else {
+				src = session.server + '/thumbnail/' + user.picture;
+				email = user.email;
+				name = user.name;
+			}
 			return (
 				<components.Option {...props} >
 					<img alt={this.props.t('profile-pic')} src={src} width="32px" height="32px" />
-					<Tooltip tooltip={user.email} placement="top" >
-						<span style={{ paddingLeft: 6 }} >{user.name}</span>
+					<Tooltip tooltip={email} placement="top" >
+						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
 				</components.Option>
 			);
 		};
 		const SingleValue = ( props ) => {
 			const user = props.data.value;
-			const src = session.server + '/thumbnail/' + user.picture;
+			let email;
+			let name;
+			let src;
+			if ( this.state.anonymized ) {
+				src = session.server + '/thumbnail/anonymous.jpg';
+				email = this.userHash.email[ user.email ] || user.email;
+				name = this.userHash.name[ user.name ] || user.name;
+			} else {
+				src = session.server + '/thumbnail/' + user.picture;
+				email = user.email;
+				name = user.name;
+			}
 			return (
 				<components.SingleValue {...props}>
 					<img alt={this.props.t('profile-pic')} src={src} width="32px" height="32px" />
-					<Tooltip tooltip={user.email} placement="top" >
-						<span style={{ paddingLeft: 6 }} >{user.name}</span>
+					<Tooltip tooltip={email} placement="top" >
+						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
 				</components.SingleValue>
 			);
