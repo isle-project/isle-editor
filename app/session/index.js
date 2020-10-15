@@ -1356,15 +1356,21 @@ class Session {
 	/**
 	* Retrieves all fake users.
 	*
-	* @param {Function} clbk - callback invoked with error (`null` if operation successful) and hash table of fake credentials for users of the namespace
 	*/
-	getFakeUsers = ( clbk ) => {
+	getFakeUsers = async () => {
 		let url = this.server+'/get_fake_users?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
-		axios.get( url ).then( response => {
-			return clbk( null, response.data );
-		})
-		.catch( error => clbk( error ) );
+		try {
+			const res = await axios.get( url );
+			return res.data;
+		} catch ( err ) {
+			return this.addNotification({
+				title: 'Request failed',
+				message: err.message,
+				level: 'error',
+				position: 'tl'
+			});
+		}
 	}
 
 	/**
