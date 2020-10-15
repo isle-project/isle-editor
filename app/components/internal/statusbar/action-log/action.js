@@ -17,13 +17,27 @@ const Action = ( props ) => {
 		value = value ? 'true' : 'false';
 	}
 	const date = new Date( props.absoluteTime );
+	let name;
+	let email;
+	if ( props.anonymized ) {
+		name = props.userHash.name[ props.name ] || props.name;
+		email = props.userHash.email[ props.email ] || props.email;
+	} else {
+		name = props.name;
+		email = props.email;
+	}
 	return (
 		<ListGroupItem style={{ background: props.backgroundColor, color: props.color, fontSize: 15, fontFamily: 'Open Sans', padding: '2px 1px 2px 1px', lineHeight: 1 }}>
 			<div className="actionNote">
+				<label htmlFor="action-email-button">{props.t( 'name' )}:&nbsp;</label>
+				<button id="action-name-button" className="empty-button" onClick={props.clickFactory( 'name', props.name )} >{name}</button>
+				{' | '}
+				<label htmlFor="action-email-button">{props.t( 'email' )}:&nbsp;</label>
+				<button id="action-email-button" className="empty-button" onClick={props.clickFactory( 'email', props.email )} >{email}</button>
+			</div>
+			<div className="actionNote">
 				<span className="title">{props.t( 'time' )}:&nbsp;</span>
-				{ date.toLocaleTimeString() } - { date.toLocaleDateString() }|
-				<label htmlFor="action-email-button">{props.t( 'user' )}:&nbsp;</label>
-				<button id="action-email-button" className="empty-button" onClick={props.clickFactory( 'email', props.email )} >{ props.email }</button>
+				{ date.toLocaleTimeString() } - { date.toLocaleDateString() }
 			</div>
 			<div className="actionNote">
 				<label htmlFor="action-id-button">{props.t( 'id')}:&nbsp;</label>
@@ -69,7 +83,9 @@ Action.propTypes = {
 	value: PropTypes.oneOfType([
 		PropTypes.object,
 		PropTypes.string
-	]).isRequired
+	]).isRequired,
+	anonymized: PropTypes.bool.isRequired,
+	userHash: PropTypes.object.isRequired
 };
 
 

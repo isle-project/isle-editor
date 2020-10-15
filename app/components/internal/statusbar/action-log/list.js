@@ -112,15 +112,6 @@ class ActionList extends Component {
 		} else {
 			color = 'black';
 		}
-		let name;
-		let email;
-		if ( this.props.anonymized ) {
-			name = this.props.userHash.name[ action.name ] || action.name;
-			email = this.props.userHash.email[ action.email ] || action.email;
-		} else {
-			name = action.name;
-			email = action.email;
-		}
 		return (
 			<Action
 				key={key}
@@ -129,14 +120,16 @@ class ActionList extends Component {
 				clickFactory={this.clickFactory}
 				onDelete={this.openDeleteModal}
 				value={action.value}
-				email={email}
+				email={action.email}
 				type={action.type}
-				name={name}
+				name={action.name}
 				owner={action.owner}
 				absoluteTime={action.absoluteTime}
 				time={action.time}
 				id={action.id}
 				sessiondataID={action.sessiondataID}
+				anonymized={this.props.anonymized}
+				userHash={this.props.userHash}
 			/>
 		);
 	}

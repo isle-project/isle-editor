@@ -15,7 +15,8 @@ class CustomFilter extends Component {
 		super( props );
 
 		this.options = [
-			{ value: 'email', label: this.props.t('user' ) },
+			{ value: 'email', label: this.props.t('email' ) },
+			{ value: 'name', label: this.props.t('name' ) },
 			{ value: 'type', label: this.props.t('type' ) },
 			{ value: 'id', label: this.props.t('id' ) },
 			{ value: 'value', label: this.props.t('value' ) }
