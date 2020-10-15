@@ -38,7 +38,7 @@ class ActionLog extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			anonymized: true,
+			anonymized: false,
 			includes: [ 'guests', 'owners', 'students' ],
 			filters: <span className="title">{this.props.t( 'filters' )}</span>,
 			period: {
@@ -174,6 +174,9 @@ class ActionLog extends Component {
 
 	buildActionsArray() {
 		let { from, to } = this.state.period;
+		const includeOwners = contains( this.state.includes, 'owners' );
+		const includeStudents = contains( this.state.includes, 'students' );
+		const includeGuests = contains( this.state.includes, 'guests' );
 		debug( 'Building action array...' );
 		if ( from && to ) {
 			from = from.toDate();
@@ -191,7 +194,22 @@ class ActionLog extends Component {
 				if (
 					action.absoluteTime > from && action.absoluteTime < to
 				) {
-					actions.push( action );
+					if ( action.owner ) {
+						// Case: Owner
+						if ( includeOwners ) {
+							actions.push( action );
+						}
+					}
+					else if ( action.email === action.name ) {
+						// Case: Guest
+						if ( includeGuests ) {
+							actions.push( action );
+						}
+					}
+					else if ( includeStudents ) {
+						// Case: Student
+						actions.push( action );
+					}
 				}
 			}
 			if ( this.state.filter ) {
@@ -221,21 +239,25 @@ class ActionLog extends Component {
 		}
 	}
 
-	handleRadioChange = ( val ) => {
+	handleRadioChange = async () => {
+		const session = this.context;
+		if ( !this.userHash ) {
+			this.userHash = await session.getFakeUsers();
+		}
 		this.setState({
 			anonymized: !this.state.anonymized
 		});
 	}
 
-	prepareActionsForExport( hash ) {
+	prepareActionsForExport() {
 		let actions;
 		const len = this.state.actions.length;
 		if ( this.state.anonymized ) {
 			actions = new Array( len );
 			for ( let i = 0; i < len; i++ ) {
 				const action = copy( this.state.actions[ i ] );
-				action.name = hash.name[ action.name ];
-				action.email = hash.email[ action.email ];
+				action.name = this.userHash.name[ action.name ] || action.name;
+				action.email = this.userHash.email[ action.email ] || action.email;
 				actions[ i ] = action;
 			}
 		}
@@ -243,80 +265,39 @@ class ActionLog extends Component {
 			actions = this.state.actions;
 		}
 		const out = [];
-		const includeOwners = contains( this.state.includes, 'owners' );
-		const includeStudents = contains( this.state.includes, 'students' );
-		const includeGuests = contains( this.state.includes, 'guests' );
-		for ( let i = 0; i < actions.length; i++ ) {
-			const val = actions[ i ];
-			if ( val.owner ) {
-				// Case: Owner
-				if ( includeOwners ) {
-					out.push( val );
-				}
-			}
-			else if ( val.email === val.name ) {
-				// Case: Guest
-				if ( includeGuests ) {
-					out.push( val );
-				}
-			}
-			else if ( includeStudents ) {
-				// Case: Student
-				out.push( val );
-			}
-		}
+
 		return out;
 	}
 
 	saveJSON = () => {
 		const session = this.context;
-		session.getFakeUsers( ( err, hash ) => {
-			if ( err ) {
-				return session.addNotification({
-					title: this.props.t( 'error-encountered' ),
-					message: this.props.t( 'error-fake-users' )+err.message,
-					level: 'error',
-					position: 'tl'
-				});
-			}
-			const actions = this.prepareActionsForExport( hash );
-			const blob = new Blob([ JSON.stringify( actions ) ], {
-				type: 'application/json'
-			});
-			const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
-			saveAs( blob, name );
+		const actions = this.prepareActionsForExport();
+		const blob = new Blob([ JSON.stringify( actions ) ], {
+			type: 'application/json'
 		});
+		const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
+		saveAs( blob, name );
 	}
 
 	saveCSV = () => {
 		const session = this.context;
-		session.getFakeUsers( ( err, hash ) => {
+		const actions = this.prepareActionsForExport();
+		stringify( actions, {
+			header: true
+		}, ( err, output ) => {
 			if ( err ) {
 				return session.addNotification({
 					title: this.props.t( 'error-encountered' ),
-					message: this.props.t( 'error-fake-users' )+err.message,
+					message: this.props.t( 'error-csv' )+err.message,
 					level: 'error',
 					position: 'tl'
 				});
 			}
-			const actions = this.prepareActionsForExport( hash );
-			stringify( actions, {
-				header: true
-			}, ( err, output ) => {
-				if ( err ) {
-					return session.addNotification({
-						title: this.props.t( 'error-encountered' ),
-						message: this.props.t( 'error-csv' )+err.message,
-						level: 'error',
-						position: 'tl'
-					});
-				}
-				const blob = new Blob([ output ], {
-					type: 'text/plain'
-				});
-				const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
-				saveAs( blob, name );
+			const blob = new Blob([ output ], {
+				type: 'text/plain'
 			});
+			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
+			saveAs( blob, name );
 		});
 	}
 
@@ -358,6 +339,8 @@ class ActionLog extends Component {
 					period={this.state.period}
 					filter={this.state.filter}
 					height={window.innerHeight / 2.0}
+					userHash={this.userHash}
+					anonymized={this.state.anonymized}
 					onFilterChange={( newFilter, newFilters ) => {
 						this.setState({
 							filter: newFilter,

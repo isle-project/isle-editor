@@ -112,6 +112,15 @@ class ActionList extends Component {
 		} else {
 			color = 'black';
 		}
+		let name;
+		let email;
+		if ( this.props.anonymized ) {
+			name = this.props.userHash.name[ action.name ] || action.name;
+			email = this.props.userHash.email[ action.email ] || action.email;
+		} else {
+			name = action.name;
+			email = action.email;
+		}
 		return (
 			<Action
 				key={key}
@@ -119,7 +128,15 @@ class ActionList extends Component {
 				color={color}
 				clickFactory={this.clickFactory}
 				onDelete={this.openDeleteModal}
-				{...action}
+				value={action.value}
+				email={email}
+				type={action.type}
+				name={name}
+				owner={action.owner}
+				absoluteTime={action.absoluteTime}
+				time={action.time}
+				id={action.id}
+				sessiondataID={action.sessiondataID}
 			/>
 		);
 	}
@@ -157,8 +174,10 @@ class ActionList extends Component {
 
 ActionList.defaultProps = {
 	actions: [],
+	anonymized: false,
 	filter: {},
 	height: null,
+	userHash: null,
 	onFilterChange() {}
 };
 
@@ -167,8 +186,10 @@ ActionList.defaultProps = {
 
 ActionList.propTypes = {
 	actions: PropTypes.array,
+	anonymized: PropTypes.bool,
 	filter: PropTypes.object,
 	height: PropTypes.number,
+	userHash: PropTypes.object,
 	onFilterChange: PropTypes.func,
 	period: PropTypes.shape(
 		{
