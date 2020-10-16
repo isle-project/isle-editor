@@ -109,6 +109,17 @@ function designMatrix( x, data, quantitative, intercept ) {
 
 // MAIN //
 
+/**
+* LASSO regression.
+*
+* @property {Object} data - object of value arrays
+* @property {string} y - outcome variable
+* @property {Array<string>} x - one or more predictor variables
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {number} lambda - regularization parameter
+* @property {boolean} intercept - controls whether to fit a model with an intercept term
+* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+*/
 class LassoRegression extends Component {
 	constructor( props ) {
 		super( props );
@@ -181,11 +192,17 @@ class LassoRegression extends Component {
 // PROPERTIES //
 
 LassoRegression.defaultProps = {
-	onPredict: null
+	lambda: 1e-3,
+	intercept: true
 };
 
 LassoRegression.propTypes = {
-	onPredict: PropTypes.func
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	lambda: PropTypes.number,
+	intercept: PropTypes.bool
 };
 
 

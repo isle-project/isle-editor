@@ -3950,12 +3950,39 @@
   "LassoRegression": {
     "props": [
       {
-        "name": "onPredict",
-        "type": "function",
-        "defaultValue": null
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "outcome variable"
+      },
+      {
+        "name": "x",
+        "type": "array<string> (required)",
+        "description": "one or more predictor variables"
+      },
+      {
+        "name": "quantitative",
+        "type": "array<string> (required)",
+        "description": "array of variables in `data` that are `quantitative`"
+      },
+      {
+        "name": "lambda",
+        "type": "number",
+        "description": "regularization parameter",
+        "defaultValue": 0.001
+      },
+      {
+        "name": "intercept",
+        "type": "boolean",
+        "description": "controls whether to fit a model with an intercept term",
+        "defaultValue": true
       }
     ],
-    "description": "Description is missing."
+    "description": "LASSO regression."
   },
   "LogisticRegression": {
     "props": [
@@ -3986,13 +4013,13 @@
       },
       {
         "name": "omitMissing",
-        "type": false,
+        "type": "boolean",
         "description": "controls whether to omit missing values",
         "defaultValue": false
       },
       {
         "name": "intercept",
-        "type": true,
+        "type": "boolean",
         "description": "controls whether to fit a model with an intercept term",
         "defaultValue": true
       },
