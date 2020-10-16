@@ -3914,7 +3914,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -3952,9 +3952,9 @@
         "defaultValue": 50
       },
       {
-        "name": "onResult",
+        "name": "onPredict",
         "type": "function",
-        "description": "callback invoked with model object",
+        "description": "callback invoked with model object when clicking on the predict button",
         "defaultValue": null
       }
     ],
@@ -4040,7 +4040,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -4082,7 +4082,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -4174,7 +4174,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -4250,7 +4250,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -4301,9 +4301,9 @@
         "defaultValue": 50
       },
       {
-        "name": "onResult",
+        "name": "onPredict",
         "type": "function",
-        "description": "callback invoked with model object",
+        "description": "callback invoked with model object when clicking on the predict button",
         "defaultValue": null
       }
     ],
