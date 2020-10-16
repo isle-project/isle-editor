@@ -27,6 +27,7 @@ let COUNTER = 0;
 * @property {number} scoreThreshold - score threshold for split
 * @property {number} maxTreeDepth - maximum tree depth
 * @property {number} minItemsCount - minimum # of observations in leaf nodes
+* @property {Function} onResult - callback invoked with model object
 */
 class DecisionTree extends Component {
 	constructor( props ) {
@@ -66,7 +67,7 @@ class DecisionTree extends Component {
 	}
 
 	handlePredict = () => {
-		this.props.onPredict( this.tree, COUNTER );
+		this.props.onResult( this.tree, COUNTER );
 	}
 
 	render() {
@@ -74,7 +75,7 @@ class DecisionTree extends Component {
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Decision Tree for {this.props.y} (model id: tree{COUNTER})</span>
 				<TreePlot tree={this.tree.root} />
-				{this.props.onPredict ? <Tooltip tooltip="Predictions will be attached to data table">
+				{this.props.onResult ? <Tooltip tooltip="Predictions will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
 				</Tooltip> : null}
 			</div>
@@ -90,7 +91,7 @@ DecisionTree.defaultProps = {
 	scoreThreshold: 0.0075,
 	maxTreeDepth: 5,
 	minItemsCount: 50,
-	onPredict: null
+	onResult: null
 };
 
 DecisionTree.propTypes = {
@@ -103,7 +104,7 @@ DecisionTree.propTypes = {
 	scoreThreshold: PropTypes.number,
 	maxTreeDepth: PropTypes.number,
 	minItemsCount: PropTypes.number,
-	onPredict: PropTypes.func
+	onResult: PropTypes.func
 };
 
 

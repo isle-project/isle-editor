@@ -66,7 +66,7 @@ class RandomForest extends Component {
 			maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
 			data={this.props.data}
-			onPredict={( forest, counter ) => {
+			onResult={( forest, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				if ( type === 'Classification' ) {
 					const newCategorical = this.props.categorical.slice();

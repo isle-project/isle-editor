@@ -45,7 +45,7 @@ class DecisionTreeMenu extends Component {
 			data={this.props.data} quantitative={this.props.quantitative}
 			scoreThreshold={scoreThreshold} maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
-			onPredict={( tree, counter ) => {
+			onResult={( tree, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				if ( type === 'Classification' ) {
 					const newCategorical = this.props.categorical.slice();
