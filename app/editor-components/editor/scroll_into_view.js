@@ -1,6 +1,5 @@
 // MODULES //
 
-import vex from 'vex-js';
 import isHidden from 'utils/is-hidden';
 
 
