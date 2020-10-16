@@ -3960,12 +3960,50 @@
   "LogisticRegression": {
     "props": [
       {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "outcome variable"
+      },
+      {
+        "name": "success",
+        "type": "any (required)",
+        "description": "success category of `y`"
+      },
+      {
+        "name": "x",
+        "type": "array<string> (required)",
+        "description": "one or more predictor variables"
+      },
+      {
+        "name": "quantitative",
+        "type": "array<string> (required)",
+        "description": "array of variables in `data` that are `quantitative`"
+      },
+      {
+        "name": "omitMissing",
+        "type": false,
+        "description": "controls whether to omit missing values",
+        "defaultValue": false
+      },
+      {
+        "name": "intercept",
+        "type": true,
+        "description": "controls whether to fit a model with an intercept term",
+        "defaultValue": true
+      },
+      {
         "name": "onPredict",
         "type": "function",
+        "description": "callback invoked with predictions and residuals after model fitting",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Multiple linear regression."
   },
   "MultipleLinearRegression": {
     "props": [

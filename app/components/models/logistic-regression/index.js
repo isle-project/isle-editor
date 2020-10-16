@@ -181,6 +181,18 @@ const summaryTable = ( x, intercept, result ) => {
 
 // MAIN //
 
+/**
+* Multiple linear regression.
+*
+* @property {Object} data - object of value arrays
+* @property {string} y - outcome variable
+* @property {*} success - success category of `y`
+* @property {Array<string>} x - one or more predictor variables
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {boolean} omitMissing - controls whether to omit missing values
+* @property {boolean} intercept - controls whether to fit a model with an intercept term
+* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+*/
 class LogisticRegression extends Component {
 	constructor( props ) {
 		COUNTER += 1;
@@ -246,10 +258,19 @@ class LogisticRegression extends Component {
 // PROPERTIES //
 
 LogisticRegression.defaultProps = {
+	omitMissing: false,
+	intercept: true,
 	onPredict: null
 };
 
 LogisticRegression.propTypes = {
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	success: PropTypes.any.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	omitMissing: false,
+	intercept: true,
 	onPredict: PropTypes.func
 };
 
