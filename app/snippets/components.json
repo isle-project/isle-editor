@@ -793,7 +793,7 @@
 	},
 	{
 		"name": "LassoRegression",
-		"value": "<LassoRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" lambda=\"${5:1e-3}\""
+		"value": "<LassoRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" lambda={${5:1e-3}} />"
 	},
 	{
 		"name": "LogisticRegression",
