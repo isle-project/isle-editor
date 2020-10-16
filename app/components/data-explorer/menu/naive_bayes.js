@@ -11,7 +11,8 @@ import isArray from '@stdlib/assert/is-array';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
-import NaiveBayes, { designMatrix } from 'components/models/naive-bayes';
+import NaiveBayes from 'components/models/naive-bayes';
+import { designMatrix } from 'components/models/naive-bayes/design_matrix.js';
 import QuestionButton from './../question_button.js';
 
 
