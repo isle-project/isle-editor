@@ -90,7 +90,7 @@ class HierarchicalClustering extends Component {
 			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
 		}
 		return (
-			<div style={{ overflowX: 'auto', width: '100%' }}>
+			<div style={{ overflowX: 'auto', width: '100%', position: 'relative' }}>
 				<span className="title" >Hierarchical Clustering Summary</span>
 				<div
 					className="decision-tree-draggable-bar"
