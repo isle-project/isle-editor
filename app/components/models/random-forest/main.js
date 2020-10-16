@@ -161,7 +161,10 @@ RandomForest.defaultProps = {
 RandomForest.propTypes = {
 	data: PropTypes.object.isRequired,
 	y: PropTypes.string.isRequired,
-	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	x: PropTypes.oneOfType([
+		PropTypes.arrayOf( PropTypes.string ),
+		PropTypes.string
+	]).isRequired,
 	type: PropTypes.oneOf([ 'Classification', 'Regression' ]),
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	nTrees: PropTypes.number,
