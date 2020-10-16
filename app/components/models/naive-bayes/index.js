@@ -193,6 +193,16 @@ const summaryTable = ( predictors, result, quantitative ) => {
 
 // MAIN //
 
+/**
+* Naive Bayes assuming that the predictors given the class membership follow a normal distribution.
+*
+* @property {Object} data - object of value arrays
+* @property {string} y - outcome variable
+* @property {Array<string>} x - one or more predictor variables
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {boolean} omitMissing - controls whether to omit missing values
+* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+*/
 class NaiveBayes extends Component {
 	constructor( props ) {
 		super( props );
@@ -225,10 +235,16 @@ class NaiveBayes extends Component {
 // PROPERTIES //
 
 NaiveBayes.defaultProps = {
+	omitMissing: false,
 	onPredict: null
 };
 
 NaiveBayes.propTypes = {
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	omitMissing: PropTypes.bool,
 	onPredict: PropTypes.func
 };
 
