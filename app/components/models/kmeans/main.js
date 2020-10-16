@@ -103,7 +103,8 @@ class KMeans extends Component {
 		const { K, variables, data, initialization } = props;
 		const result = fitModel({ K, variables, data, initialization });
 		this.state = {
-			result
+			result,
+			...props
 		};
 		if ( result ) {
 			props.onResult( result );
@@ -121,11 +122,8 @@ class KMeans extends Component {
 			const result = fitModel({ K, variables, data, initialization });
 			nextProps.onResult( result );
 			const newState = {
-				variables,
-				data,
-				K,
-				initialization,
-				result
+				result,
+				...nextProps
 			};
 			return newState;
 		}
