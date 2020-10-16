@@ -58,6 +58,7 @@ class LogisticRegressionMenu extends Component {
 			success={success}
 			intercept={intercept}
 			omitMissing={omitMissing}
+			quantitative={this.props.quantitative}
 			onPredict={( yhat, probs, resid, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				const newQuantitative = this.props.quantitative.slice();
