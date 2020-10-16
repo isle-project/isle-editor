@@ -846,7 +846,7 @@
     },
     {
       "name": "RandomForest",
-      "value": ""
+      "value": "<RandomForest data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
     },
     {
       "name": "SimpleLinearRegression",

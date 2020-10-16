@@ -243,12 +243,10 @@ class MultipleLinearRegression extends Component {
 			}}
 			meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
 		/>;
-		console.log( 'Generate diagnostic plots...' );
 		this.props.onDiagnostics([ qqPlot, residualPlot ]);
 	}
 
 	handlePredict = () => {
-		console.log( 'Generate predictions...' );
 		const { data, quantitative, intercept } = this.props;
 		let { x, y } = this.props;
 		if ( !isArray( x ) ) {

@@ -3952,8 +3952,9 @@
         "defaultValue": 50
       },
       {
-        "name": "onPredict",
+        "name": "onResult",
         "type": "function",
+        "description": "callback invoked with model object",
         "defaultValue": null
       }
     ],
@@ -4226,12 +4227,75 @@
   "RandomForest": {
     "props": [
       {
-        "name": "onPredict",
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "outcome variable"
+      },
+      {
+        "name": "x",
+        "type": "array<string> (required)",
+        "description": "one or more predictor variables"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "currently only `Classification` for categorical responses is supported",
+        "defaultValue": "Classification"
+      },
+      {
+        "name": "quantitative",
+        "type": "array<string> (required)",
+        "description": "array of variables in `data` that are `quantitative`"
+      },
+      {
+        "name": "nTrees",
+        "type": "number",
+        "description": "number of trees",
+        "defaultValue": 50
+      },
+      {
+        "name": "nTry",
+        "type": "number",
+        "description": "number of predictors to check at each split",
+        "defaultValue": 1
+      },
+      {
+        "name": "impurityMeasure",
+        "type": "string",
+        "description": "impurity measure (`gini` or `entropy`)",
+        "defaultValue": "gini"
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "description": "score threshold for split",
+        "defaultValue": 0.01
+      },
+      {
+        "name": "maxTreeDepth",
+        "type": "number",
+        "description": "maximum tree depth",
+        "defaultValue": 20
+      },
+      {
+        "name": "minItemsCount",
+        "type": "number",
+        "description": "minimum # of observations in leaf nodes",
+        "defaultValue": 50
+      },
+      {
+        "name": "onResult",
         "type": "function",
+        "description": "callback invoked with model object",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Regression and classification trees."
   },
   "SimpleLinearRegression": {
     "props": [

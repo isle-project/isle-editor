@@ -16,6 +16,22 @@ let COUNTER = 0;
 
 // MAIN //
 
+/**
+* Regression and classification trees.
+*
+* @property {Object} data - object of value arrays
+* @property {string} type - currently only `Classification` for categorical responses is supported
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {string} y - outcome variable
+* @property {Array<string>} x - one or more predictor variables
+* @property {string} impurityMeasure - impurity measure (`gini` or `entropy`)
+* @property {number} nTrees - number of trees
+* @property {number} nTry - number of predictors to check at each split
+* @property {number} scoreThreshold - score threshold for split
+* @property {number} maxTreeDepth - maximum tree depth
+* @property {number} minItemsCount - minimum # of observations in leaf nodes
+* @property {Function} onResult - callback invoked with model object
+*/
 class RandomForest extends Component {
 	constructor( props ) {
 		super( props );
@@ -53,7 +69,7 @@ class RandomForest extends Component {
 	}
 
 	handlePredict = () => {
-		this.props.onPredict( this.forest, COUNTER );
+		this.props.onResult( this.forest, COUNTER );
 	}
 
 	render() {
@@ -73,9 +89,9 @@ class RandomForest extends Component {
 						title: 'Importance'
 					}
 				}} />
-				<Tooltip tooltip="Predictions will be attached to data table">
+				{ this.props.onResult ? <Tooltip tooltip="Predictions will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
-				</Tooltip>
+				</Tooltip> : null }
 			</div>
 		);
 	}
@@ -85,11 +101,29 @@ class RandomForest extends Component {
 // PROPERTIES //
 
 RandomForest.defaultProps = {
-	onPredict: null
+	type: 'Classification',
+	nTrees: 50,
+	nTry: 1,
+	impurityMeasure: 'gini',
+	scoreThreshold: 0.01,
+	maxTreeDepth: 20,
+	minItemsCount: 50,
+	onResult: null
 };
 
 RandomForest.propTypes = {
-	onPredict: PropTypes.func
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	type: PropTypes.oneOf([ 'Classification', 'Regression' ]),
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	nTrees: PropTypes.number,
+	nTry: PropTypes.number,
+	impurityMeasure: PropTypes.oneOf([ 'gini', 'entropy' ]),
+	scoreThreshold: PropTypes.number,
+	maxTreeDepth: PropTypes.number,
+	minItemsCount: PropTypes.number,
+	onResult: PropTypes.func
 };
 
 
