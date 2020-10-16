@@ -166,6 +166,18 @@ const summaryTable = ( y, x, nobs, result ) => {
 
 // MAIN //
 
+/**
+* Multiple linear regression.
+*
+* @property {Object} data - object of value arrays
+* @property {string} y - outcome variable
+* @property {Array<string>} x - one or more predictor variables
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {boolean} omitMissing - controls whether to omit missing values
+* @property {boolean} intercept - controls whether to fit a model with an intercept term
+* @property {Function} onDiagnostics - callback invoked with diagnostic plots
+* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+*/
 class MultipleLinearRegression extends Component {
 	constructor( props ) {
 		super( props );
@@ -272,11 +284,19 @@ class MultipleLinearRegression extends Component {
 // PROPERTIES //
 
 MultipleLinearRegression.defaultProps = {
+	omitMissing: false,
+	intercept: true,
 	onDiagnostics: null,
 	onPredict: null
 };
 
 MultipleLinearRegression.propTypes = {
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	omitMissing: false,
+	intercept: true,
 	onDiagnostics: PropTypes.func,
 	onPredict: PropTypes.func
 };
