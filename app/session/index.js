@@ -1148,11 +1148,13 @@ class Session {
 			debug( 'I am connected...' );
 
 			// Log action for loading lesson:
-			this.log({
-				type: LESSON_CONNECTED,
-				value: socket.id,
-				id: this.lessonName
-			});
+			setTimeout( () => {
+				this.log({
+					type: LESSON_CONNECTED,
+					value: socket.id,
+					id: this.lessonName
+				});
+			}, 1000 );
 			this.stopPingServer();
 		});
 
