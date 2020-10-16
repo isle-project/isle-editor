@@ -13,6 +13,7 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import SelectInput from 'components/input/select';
 import NumberInput from 'components/input/number';
 import Collapse from 'components/collapse';
+import RandomForest from 'components/models/random-forest';
 import { DATA_EXPLORER_RANDOM_FOREST } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
@@ -40,7 +41,7 @@ function chooseTries( x, type ) {
 
 // MAIN //
 
-class RandomForest extends Component {
+class RandomForestMenu extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -65,6 +66,7 @@ class RandomForest extends Component {
 			scoreThreshold={scoreThreshold}
 			maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
+			quantitative={this.props.quantitative}
 			data={this.props.data}
 			onPredict={( forest, counter ) => {
 				const newData = copy( this.props.data, 1 );
@@ -182,11 +184,11 @@ class RandomForest extends Component {
 
 // PROPERTIES //
 
-RandomForest.defaultProps = {
+RandomForestMenu.defaultProps = {
 	logAction() {}
 };
 
-RandomForest.propTypes = {
+RandomForestMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
@@ -198,4 +200,4 @@ RandomForest.propTypes = {
 
 // EXPORTS //
 
-export default RandomForest;
+export default RandomForestMenu;
