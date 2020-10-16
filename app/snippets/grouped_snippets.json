@@ -842,7 +842,7 @@
     },
     {
       "name": "MultipleLinearRegression",
-      "value": ""
+      "value": "<MultipleLinearRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
     },
     {
       "name": "RandomForest",
@@ -866,7 +866,7 @@
     },
     {
       "name": "NaiveBayes",
-      "value": ""
+      "value": "<NaiveBayes data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
     }
   ]
 }
