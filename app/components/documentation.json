@@ -3903,12 +3903,61 @@
   "DecisionTree": {
     "props": [
       {
+        "name": "data",
+        "type": "object (required)",
+        "description": "object of value arrays"
+      },
+      {
+        "name": "y",
+        "type": "string (required)",
+        "description": "outcome variable"
+      },
+      {
+        "name": "x",
+        "type": "array<string> (required)",
+        "description": "one or more predictor variables"
+      },
+      {
+        "name": "type",
+        "type": "string (required)",
+        "description": "`Classification` for categorical or `Regression` for quantitative outcomes"
+      },
+      {
+        "name": "quantitative",
+        "type": "array<string> (required)",
+        "description": "array of variables in `data` that are `quantitative`"
+      },
+      {
+        "name": "impurityMeasure",
+        "type": "string",
+        "description": "impurity measure (`gini` or `entropy`)",
+        "defaultValue": "gini"
+      },
+      {
+        "name": "scoreThreshold",
+        "type": "number",
+        "description": "score threshold for split",
+        "defaultValue": 0.0075
+      },
+      {
+        "name": "maxTreeDepth",
+        "type": "number",
+        "description": "maximum tree depth",
+        "defaultValue": 5
+      },
+      {
+        "name": "minItemsCount",
+        "type": "number",
+        "description": "minimum # of observations in leaf nodes",
+        "defaultValue": 50
+      },
+      {
         "name": "onPredict",
         "type": "function",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Regression and classification trees."
   },
   "HierarchicalClustering": {
     "props": [

@@ -15,6 +15,19 @@ let COUNTER = 0;
 
 // MAIN //
 
+/**
+* Regression and classification trees.
+*
+* @property {Object} data - object of value arrays
+* @property {string} type - `Classification` for categorical or `Regression` for quantitative outcomes
+* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {string} y - outcome variable
+* @property {Array<string>} x - one or more predictor variables
+* @property {string} impurityMeasure - impurity measure (`gini` or `entropy`)
+* @property {number} scoreThreshold - score threshold for split
+* @property {number} maxTreeDepth - maximum tree depth
+* @property {number} minItemsCount - minimum # of observations in leaf nodes
+*/
 class DecisionTree extends Component {
 	constructor( props ) {
 		super( props );
@@ -73,10 +86,23 @@ class DecisionTree extends Component {
 // PROPERTIES //
 
 DecisionTree.defaultProps = {
+	impurityMeasure: 'gini',
+	scoreThreshold: 0.0075,
+	maxTreeDepth: 5,
+	minItemsCount: 50,
 	onPredict: null
 };
 
 DecisionTree.propTypes = {
+	data: PropTypes.object.isRequired,
+	y: PropTypes.string.isRequired,
+	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	type: PropTypes.oneOf([ 'Classification', 'Regression' ]).isRequired,
+	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	impurityMeasure: PropTypes.oneOf([ 'gini', 'entropy' ]),
+	scoreThreshold: PropTypes.number,
+	maxTreeDepth: PropTypes.number,
+	minItemsCount: PropTypes.number,
 	onPredict: PropTypes.func
 };
 

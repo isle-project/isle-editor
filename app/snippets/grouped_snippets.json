@@ -830,7 +830,7 @@
   "models": [
     {
       "name": "DecisionTree",
-      "value": ""
+      "value": "<DecisionTree data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
     },
     {
       "name": "LassoRegression",
