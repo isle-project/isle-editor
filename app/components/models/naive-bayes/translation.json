@@ -1,0 +1,11 @@
+{
+	"DE": {
+		"missing-attributes": "Modell konnte nicht geschätzt werden. Bitte überprüfen Sie, ob alle erforderlichen Attribute vorhanden sind."
+	},
+	"EN": {
+		"missing-attributes": "Model could not be estimated. Please check that all required attributes are supplied."
+	},
+	"ES": {
+		"missing-attributes": "El modelo no pudo ser estimado. Por favor, compruebe que se han suministrado todos los atributos necesarios."
+	}
+}
