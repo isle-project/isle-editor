@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -180,6 +181,22 @@ const summaryTable = ( x, intercept, result ) => {
 	);
 };
 
+const fitModel = ({ y, success, x, intercept, omitMissing, data, quantitative }) => {
+	try {
+		if ( !isArray( x ) ) {
+			x = [ x ];
+		}
+		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
+		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, data, quantitative, intercept, success );
+		return {
+			result: irls( matrix, yvalues, nobs ),
+			predictors: predictors
+		};
+	} catch ( _ ) {
+		return {};
+	}
+};
+
 
 // MAIN //
 
@@ -197,36 +214,53 @@ const summaryTable = ( x, intercept, result ) => {
 */
 class LogisticRegression extends Component {
 	constructor( props ) {
+		super( props );
 		COUNTER += 1;
-		let { y, success, x, intercept, omitMissing } = this.props;
-		if ( !isArray( x ) ) {
-			x = [ x ];
-		}
-		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
-		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, this.props.data, this.props.quantitative, intercept, success );
-		this.results = irls( matrix, yvalues, nobs );
-		this.predictors = predictors;
+		let { y, success, x, intercept, omitMissing, data, quantitative } = props;
+		const { result, predictors } = fitModel({ y, success, x, intercept, omitMissing, data, quantitative });
 		this.state = {
-			probabilityThreshold: 0.5
+			probabilityThreshold: 0.5,
+			result,
+			predictors
 		};
+	}
+
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if (
+			nextProps.data !== prevState.data ||
+			nextProps.quantitative !== prevState.quantitative ||
+			nextProps.x !== prevState.x ||
+			nextProps.y !== prevState.y ||
+			nextProps.success !== prevState.success ||
+			nextProps.omitMissing !== prevState.omitMissing
+		) {
+			const { y, success, x, intercept, omitMissing, data, quantitative } = nextProps;
+			const newState = fitModel({ y, success, x, intercept, omitMissing, data, quantitative });
+			return newState;
+		}
+		return null;
 	}
 
 	handlePredict = () => {
 		const { x, y, data, quantitative, intercept, success } = this.props;
 		const { matrix, yvalues } = designMatrix( x, y, data, quantitative, intercept, success );
-		const probs = this.results.predict( matrix );
+		const probs = this.state.result.predict( matrix );
 		const resid = subtract( probs, yvalues );
 		const yhat = probs.map( x => x > this.state.probabilityThreshold );
 		this.props.onPredict( yhat, probs, resid, COUNTER );
 	}
 
 	render() {
+		const { result } = this.state;
+		if ( !result ) {
+			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {this.props.y} (model id: logis{COUNTER})</span>
-				{summaryTable( this.predictors, this.props.intercept, this.results )}
-				<i>The algorithm {this.results.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {this.results.iterations} Fisher Scoring iterations</i>
-				<p>Akaike Information Criterion (AIC): {roundn( this.results.aic, -3 )}</p>
+				{summaryTable( this.state.predictors, this.props.intercept, result )}
+				<i>The algorithm {result.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {result.iterations} Fisher Scoring iterations</i>
+				<p>Akaike Information Criterion (AIC): {roundn( result.aic, -3 )}</p>
 				{this.props.onPredict ? <ButtonGroup>
 					<Tooltip tooltip="Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table">
 						<Button variant="secondary" size="sm" onClick={this.handlePredict} >
