@@ -250,7 +250,7 @@ class NaiveBayes extends Component {
 	}
 
 	handlePrediction = () => {
-		this.props.onPredict( this.results, COUNTER );
+		this.props.onPredict( this.state.results, COUNTER );
 	}
 
 	render() {
