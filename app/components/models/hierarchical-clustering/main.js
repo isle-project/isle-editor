@@ -83,7 +83,6 @@ class HierarchicalClustering extends Component {
 		return null;
 	}
 
-
 	render() {
 		const { result } = this.state;
 		if ( !result ) {
