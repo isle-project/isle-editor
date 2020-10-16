@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.70.0](https://github.com/isle-project/isle-editor/releases/tag/v0.70.0) (2020-10-16)
+
+This release exposes the history action log as a new tab of the data explorer:
+
+![image](https://user-images.githubusercontent.com/1913638/96274406-72c9a880-0f9e-11eb-98fd-a11c223dcc43.png)
+
+Currently, the history log is disabled by default. Setting the `history` attribute of the data explorer will enable it. Alongside this change, all plots, models, and tests can now be independently consumed as their own components aside from the data explorer.
+
+The release also fixes a bug which broke progress calculations.
+
+
+
 ## [v0.69.0](https://github.com/isle-project/isle-editor/releases/tag/v0.69.0) (2020-10-07)
 
 This update fixes a few bugs due to new features in the data explorer: the binning transformer tool, as well as correct handling of ordered categories in boxplots and tables. The new editor version also comes with features to make filing bug reports and feature requests easier. When clicking on the light bulb that shows up when placing the cursor inside a component, one can now directly file a (pre-filled) bug report or feature request for the respective component:
