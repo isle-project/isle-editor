@@ -246,7 +246,10 @@ class LogisticRegression extends Component {
 	}
 
 	handlePredict = () => {
-		const { x, y, data, quantitative, intercept, success } = this.props;
+		let { x, y, data, quantitative, intercept, success } = this.props;
+		if ( !isArray( x ) ) {
+			x = [ x ];
+		}
 		const { matrix, yvalues } = designMatrix( x, y, data, quantitative, intercept, success );
 		const probs = this.state.result.predict( matrix );
 		const resid = subtract( probs, yvalues );
@@ -307,7 +310,10 @@ LogisticRegression.propTypes = {
 	data: PropTypes.object.isRequired,
 	y: PropTypes.string.isRequired,
 	success: PropTypes.any.isRequired,
-	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	x: PropTypes.oneOfType([
+		PropTypes.arrayOf( PropTypes.string ),
+		PropTypes.string
+	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	omitMissing: PropTypes.bool,
 	intercept: PropTypes.bool,
