@@ -35,6 +35,7 @@ dist
 release
 /main.js
 /main.js.map
+/main.js.LICENSE.txt
 
 # Visual Studio #
 #################
