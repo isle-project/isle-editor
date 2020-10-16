@@ -57,7 +57,7 @@ function resolve( obj ) {
 }
 
 function render( loaded, props ) {
-	return React.createElement( resolve(loaded), props );
+	return React.createElement( resolve( loaded ), props );
 }
 
 function createLoadableComponent( loadFn, options ) {
@@ -140,9 +140,9 @@ function createLoadableComponent( loadFn, options ) {
 				if ( opts.delay === 0 ) {
 					this.setState({ pastDelay: true });
 				} else {
-					this._delay = setTimeout(() => {
+					this._delay = setTimeout( () => {
 						this.setState({ pastDelay: true });
-					}, opts.delay);
+					}, opts.delay );
 				}
 			}
 
@@ -156,19 +156,17 @@ function createLoadableComponent( loadFn, options ) {
 				if ( !this._mounted ) {
 					return;
 				}
-
 				this.setState({
 					error: res.error,
 					loaded: res.loaded,
 					loading: res.loading
 				});
-
 				this._clearTimeouts();
 			};
 
 			res.promise.then(() => {
 				update();
-			}).catch(err => {
+			}).catch( err => {
 				update();
 				throw err;
 			});
