@@ -17,7 +17,6 @@ import PropTypes from '../../../../scripts/prop_types.js';
 *
 * @property {Object} data - object of value arrays
 * @property {Array<string>} variables - names of variables used for clustering
-* @property {number} K - number of clusters
 * @property {string} linkage - either `complete` or `single`
 * @property {string} distance - used distance (`euclidean`, `chebyshev`, `cosine`, `hamming`, or `manhattan`)
 * @property {Function} onResult - callback invoked with model object
@@ -100,7 +99,6 @@ class HierarchicalClustering extends Component {
 // PROPERTIES //
 
 HierarchicalClustering.defaultProps = {
-	K: 3,
 	linkage: 'complete',
 	distance: 'euclidean',
 	onResult() {}
@@ -109,7 +107,6 @@ HierarchicalClustering.defaultProps = {
 HierarchicalClustering.propTypes = {
 	data: PropTypes.object.isRequired,
 	variables: PropTypes.arrayOf( PropTypes.string ).isRequired,
-	K: PropTypes.number,
 	linkage: PropTypes.oneOf([ 'complete', 'single' ]),
 	distance: PropTypes.oneOf([ 'euclidean', 'chebyshev', 'cosine', 'hamming', 'manhattan' ]),
 	onResult: PropTypes.func
