@@ -80,7 +80,8 @@ class DecisionTree extends Component {
 
 		const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = this.props;
 		this.state = {
-			tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount })
+			tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount }),
+			...props
 		};
 	}
 
@@ -98,7 +99,8 @@ class DecisionTree extends Component {
 		) {
 			const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = nextProps;
 			return {
-				tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount })
+				tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount }),
+				...nextProps
 			};
 		}
 		return null;
