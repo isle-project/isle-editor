@@ -198,8 +198,7 @@ const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
 		out.nobs = nobs;
 		out.predictors = predictors;
 		return out;
-	} catch ( error ) {
-		console.log( error );
+	} catch ( _ ) {
 		return out;
 	}
 };
@@ -255,17 +254,17 @@ class MultipleLinearRegression extends Component {
 		const qqPlot = <Plotly
 			draggable
 			editable fit
-			{...generateQQPlotConfig( this.resid, 'residuals' )}
+			{...generateQQPlotConfig( this.state.resid, 'residuals' )}
 			meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
 		/>;
 		const residualPlot = <Plotly
 			draggable editable fit
 			data={[
 				{
-					x: this.yhat,
-					y: this.resid,
+					x: this.state.yhat,
+					y: this.state.resid,
 					mode: 'markers',
-					type: this.yhat.length > 2000 ? 'scattergl' : 'scatter'
+					type: this.state.yhat.length > 2000 ? 'scattergl' : 'scatter'
 				}
 			]}
 			layout={{
