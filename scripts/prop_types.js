@@ -10,6 +10,8 @@ const objectKeys = require( '@stdlib/utils/keys' );
 // MAIN //
 
 const PropTypes = {};
+PropTypes.any = new String( 'any' );
+PropTypes.any.isRequired = 'any (required)';
 PropTypes.string = new String( 'string' );
 PropTypes.string.isRequired = 'string (required)';
 PropTypes.number = new String( 'number' );
