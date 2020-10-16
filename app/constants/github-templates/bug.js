@@ -1,7 +1,7 @@
 // MODULES //
 
 import os from 'os';
-import { version as currentVersion } from './../../../package.json';
+import pkg from './../../../package.json';
 
 
 // MAIN //
@@ -39,7 +39,7 @@ If applicable, paste the code of the problematic component below:
  - ${os.type()} ${os.arch()} ${os.release()}
 
 **Editor Version:**
- - ${currentVersion}
+ - ${pkg.version}
 
 **Additional context**
 Add any other context about the problem here.`;

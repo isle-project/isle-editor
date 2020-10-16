@@ -3,7 +3,7 @@
 import { net } from 'electron';
 import os from 'os';
 import * as actions from './../actions';
-import { version as currentVersion } from './../../../package.json';
+import pkg from './../../../package.json';
 
 
 // EXPORTS //
@@ -51,7 +51,7 @@ export default {
 					response.on( 'end', () => {
 						const json = JSON.parse( body );
 						const newVersion = json.version;
-						const updateAvailable = newVersion !== currentVersion;
+						const updateAvailable = newVersion !== pkg.version;
 						const msg = updateAvailable ?
 							`A new version (${newVersion}) is available for <a href="https://isledocs.com/docs/overview/install" target="_blank" >download</a>.` :
 							'There is currently no update available...';
@@ -74,7 +74,7 @@ export default {
 				const html = [
 					'<body>',
 						'<h1 style="font-family: Open Sans; color: rgb(46,68,104);">ISLE Editor</h1>',
-						`<p><b>Version:</b> ${currentVersion}</p>`,
+						`<p><b>Version:</b> ${pkg.version}</p>`,
 						`<p><b>Operating System:</b> ${os.type()} ${os.arch()} ${os.release()}</p>`,
 					'</body>'
 				].join( '' );
