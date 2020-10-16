@@ -624,7 +624,7 @@ class FullscreenActionDisplay extends Component {
 		};
 		if ( this.state.clusters.length > 0 ) {
 			const opacity = 0.1;
-			const col = COLORS[ this.state.clusters[ index ] % 20 ];
+			const col = COLORS[ this.state.clusters[ index ] % COLORS.length ] || '#D3D3D3';
 			let rgba = 'rgba(' + parseInt( col.substring( 1, 3 ), 16 ) + ','+ parseInt( col.substring( 3, 5 ), 16 );
 			rgba += ',' + parseInt( col.substring( 5, 7 ), 16 ) + ',' + opacity + ')';
 			style.background = rgba;
