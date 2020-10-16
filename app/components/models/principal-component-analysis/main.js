@@ -103,7 +103,8 @@ class PrincipalComponentAnalysis extends Component {
 		const { pca, components } = fitModel( { data, variables, scale, center, noComponents } );
 		this.state = {
 			pca,
-			components
+			components,
+			...props
 		};
 		if ( pca ) {
 			props.onResult( this.state.pca, this.state.components );
@@ -116,8 +117,11 @@ class PrincipalComponentAnalysis extends Component {
 			nextProps.variables !== prevState.variables
 		) {
 			const { data, variables, scale, center, noComponents } = nextProps;
-			const newState = fitModel( { data, variables, scale, center, noComponents } );
-			if ( newState ) {
+			const newState = {
+				...fitModel( { data, variables, scale, center, noComponents } ),
+				...nextProps
+			};
+			if ( newState.pca ) {
 				nextProps.onResult( newState.pca, newState.components );
 			}
 			return newState;
