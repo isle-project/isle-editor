@@ -5,6 +5,7 @@ import ndarray from '@stdlib/ndarray/array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
+import isArray from '@stdlib/assert/is-array';
 import extractCategoriesFromValues from 'utils/extract-categories-from-values';
 
 
@@ -25,6 +26,9 @@ export function designMatrix( x, y, data, quantitative ) {
 	let matrix = [];
 	const predictors = [];
 	const hash = {};
+	if ( !isArray( x ) ) {
+		x = [ x ];
+	}
 	for ( let j = 0; j < x.length; j++ ) {
 		const values = data[ x[ j ] ];
 		if ( contains( quantitative, x[ j ] ) ) {
@@ -63,6 +67,9 @@ export function designMatrixMissing( x, y, data, quantitative ) {
 	let matrix = [];
 	const predictors = [];
 	const hash = {};
+	if ( !isArray( x ) ) {
+		x = [ x ];
+	}
 	for ( let j = 0; j < x.length; j++ ) {
 		const values = data[ x[ j ] ];
 		if ( contains( quantitative, x[ j ] ) ) {

@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import isArray from '@stdlib/assert/is-array';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
 import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
@@ -36,9 +35,6 @@ class NaiveBayesMenu extends Component {
 
 	compute = () => {
 		let { y, x, omitMissing } = this.state;
-		if ( !isArray( x ) ) {
-			x = [ x ];
-		}
 		const output = <NaiveBayes
 			x={x} y={y}
 			omitMissing={omitMissing}
@@ -48,7 +44,7 @@ class NaiveBayesMenu extends Component {
 			onPredict={( results, counter ) => {
 				const newData = copy( this.props.data, 1 );
 				const newQuantitative = this.props.quantitative.slice();
-				const { matrix } = designMatrix( x, this.props.data, this.props.quantitative );
+				const { matrix } = designMatrix( x, y, this.props.data, this.props.quantitative );
 				const probs = results.predictProbs( matrix );
 				for ( let i = 0; i < results.classes.length; i++ ) {
 					const name = 'probs_' + results.classes[ i ] + '_bayes' + counter;
