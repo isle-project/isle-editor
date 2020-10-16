@@ -1355,22 +1355,22 @@ class Session {
 
 	/**
 	* Retrieves all fake users.
-	*
 	*/
-	getFakeUsers = async () => {
+	getFakeUsers = () => {
 		let url = this.server+'/get_fake_users?';
 		url += qs.stringify({ namespaceID: this.namespaceID });
-		try {
-			const res = await axios.get( url );
-			return res.data;
-		} catch ( err ) {
-			return this.addNotification({
-				title: 'Request failed',
-				message: err.message,
-				level: 'error',
-				position: 'tl'
+		return axios.get( url )
+			.then( res => {
+				return res.data;
+			})
+			.catch( err => {
+				return this.addNotification({
+					title: 'Request failed',
+					message: err.message,
+					level: 'error',
+					position: 'tl'
+				});
 			});
-		}
 	}
 
 	/**
