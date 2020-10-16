@@ -203,7 +203,6 @@ const fitModel = ({ x, y, data, quantitative, omitMissing }) => {
 			predictors
 		};
 	} catch ( error ) {
-		console.log( error );
 		return {};
 	}
 };
@@ -227,7 +226,10 @@ class NaiveBayes extends Component {
 
 		COUNTER += 1;
 		const { x, y, data, quantitative, omitMissing } = props;
-		this.state = fitModel({ x, y, data, quantitative, omitMissing });
+		this.state = {
+			...fitModel({ x, y, data, quantitative, omitMissing }),
+			...props
+		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -239,7 +241,10 @@ class NaiveBayes extends Component {
 			nextProps.omitMissing !== prevState.omitMissing
 		) {
 			const { x, y, data, quantitative, omitMissing } = nextProps;
-			return fitModel({ x, y, data, quantitative, omitMissing });
+			return {
+				...fitModel({ x, y, data, quantitative, omitMissing }),
+				...nextProps
+			};
 		}
 		return null;
 	}
