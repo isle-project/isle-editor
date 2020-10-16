@@ -221,7 +221,8 @@ class LogisticRegression extends Component {
 		this.state = {
 			probabilityThreshold: 0.5,
 			result,
-			predictors
+			predictors,
+			...props
 		};
 	}
 
@@ -235,7 +236,10 @@ class LogisticRegression extends Component {
 			nextProps.omitMissing !== prevState.omitMissing
 		) {
 			const { y, success, x, intercept, omitMissing, data, quantitative } = nextProps;
-			const newState = fitModel({ y, success, x, intercept, omitMissing, data, quantitative });
+			const newState = {
+				...fitModel({ y, success, x, intercept, omitMissing, data, quantitative }),
+				...nextProps
+			};
 			return newState;
 		}
 		return null;
