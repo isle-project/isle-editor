@@ -3973,12 +3973,6 @@
         "description": "names of variables used for clustering"
       },
       {
-        "name": "K",
-        "type": "number",
-        "description": "number of clusters",
-        "defaultValue": 3
-      },
-      {
         "name": "linkage",
         "type": "string",
         "description": "either `complete` or `single`",
@@ -4214,6 +4208,24 @@
         "name": "variables",
         "type": "array<string> (required)",
         "description": "names of variables used for clustering"
+      },
+      {
+        "name": "center",
+        "type": "boolean",
+        "description": "center values by subtracting the mean",
+        "defaultValue": true
+      },
+      {
+        "name": "scale",
+        "type": "boolean",
+        "description": "scale values by dividing with the standard deviation",
+        "defaultValue": false
+      },
+      {
+        "name": "noComponents",
+        "type": "number",
+        "description": "number of components supplied to the `onResult` callback",
+        "defaultValue": 0
       },
       {
         "name": "onResult",

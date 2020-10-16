@@ -858,7 +858,7 @@
     },
     {
       "name": "HierarchicalClustering",
-      "value": "<HierarchicalClustering data={${1:}} variables={[${2:}]} K={${3:3}} />"
+      "value": "<HierarchicalClustering data={${1:}} variables={[${2:}]} />"
     },
     {
       "name": "KMeans",
