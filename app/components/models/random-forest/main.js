@@ -74,7 +74,7 @@ const fitModel = ({ y, x, type, nTrees, nTry, impurityMeasure, data, quantitativ
 * @property {number} scoreThreshold - score threshold for split
 * @property {number} maxTreeDepth - maximum tree depth
 * @property {number} minItemsCount - minimum # of observations in leaf nodes
-* @property {Function} onResult - callback invoked with model object
+* @property {Function} onPredict - callback invoked with model object when clicking on the predict button
 */
 class RandomForest extends Component {
 	constructor( props ) {
@@ -112,7 +112,7 @@ class RandomForest extends Component {
 	}
 
 	handlePredict = () => {
-		this.props.onResult( this.state.forest, COUNTER );
+		this.props.onPredict( this.state.forest, COUNTER );
 	}
 
 	render() {
@@ -136,7 +136,7 @@ class RandomForest extends Component {
 						title: 'Importance'
 					}
 				}} />
-				{ this.props.onResult ? <Tooltip tooltip="Predictions will be attached to data table">
+				{ this.props.onPredict ? <Tooltip tooltip="Predictions will be attached to data table">
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
 				</Tooltip> : null }
 			</div>
@@ -155,7 +155,7 @@ RandomForest.defaultProps = {
 	scoreThreshold: 0.01,
 	maxTreeDepth: 20,
 	minItemsCount: 50,
-	onResult: null
+	onPredict: null
 };
 
 RandomForest.propTypes = {
@@ -170,7 +170,7 @@ RandomForest.propTypes = {
 	scoreThreshold: PropTypes.number,
 	maxTreeDepth: PropTypes.number,
 	minItemsCount: PropTypes.number,
-	onResult: PropTypes.func
+	onPredict: PropTypes.func
 };
 
 
