@@ -55,6 +55,9 @@ const summaryTable = ( x, intercept, result ) => {
 };
 
 function designMatrix( x, data, quantitative, intercept ) {
+	if ( !isArray( x ) ) {
+		x = [ x ];
+	}
 	const matrix = [];
 	const predictors = [];
 	const hash = {};
@@ -114,9 +117,6 @@ const fitModel = ({ x, y, lambda, data, quantitative, intercept }) => {
 	try {
 		let yvalues = data[ y ];
 		yvalues = zScore( yvalues, false, true );
-		if ( !isArray( x ) ) {
-			x = [ x ];
-		}
 		const { matrix, predictors, categoricalStats, standardized } = designMatrix( x, data, quantitative, intercept );
 		const result = new LASSO( matrix, yvalues, lambda );
 
@@ -241,7 +241,10 @@ LassoRegression.defaultProps = {
 LassoRegression.propTypes = {
 	data: PropTypes.object.isRequired,
 	y: PropTypes.string.isRequired,
-	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
+	x: PropTypes.oneOfType([
+		PropTypes.arrayOf( PropTypes.string ),
+		PropTypes.string
+	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	lambda: PropTypes.number,
 	intercept: PropTypes.bool

@@ -42,6 +42,9 @@ function isNonMissingNumber( x ) {
 }
 
 function designMatrix( x, y, data, quantitative, intercept ) {
+	if ( !isArray( x ) ) {
+		x = [ x ];
+	}
 	const matrix = [];
 	const predictors = [];
 	const hash = {};
@@ -79,6 +82,9 @@ function designMatrix( x, y, data, quantitative, intercept ) {
 }
 
 function designMatrixMissing( x, y, data, quantitative, intercept ) {
+	if ( !isArray( x ) ) {
+		x = [ x ];
+	}
 	const matrix = [];
 	const predictors = [];
 	const hash = {};
@@ -167,9 +173,6 @@ const summaryTable = ( y, x, nobs, result ) => {
 };
 
 const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
-	if ( !isArray( x ) ) {
-		x = [ x ];
-	}
 	const out = {};
 	try {
 		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
@@ -284,9 +287,6 @@ class MultipleLinearRegression extends Component {
 	handlePredict = () => {
 		const { data, quantitative, intercept } = this.props;
 		let { x, y } = this.props;
-		if ( !isArray( x ) ) {
-			x = [ x ];
-		}
 		const { matrix } = designMatrix( x, y, data, quantitative, intercept );
 		const yhat = this.state.result.predict( matrix ).map( v => v[ 0 ] );
 		const resid = subtract( yhat, data[ y ] );
