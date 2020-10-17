@@ -21,6 +21,7 @@ import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MOD
 import { MEMBER_ACTION, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
 import Engagement from './engagement';
+import Ticketing from './ticketing';
 import './load_translations.js';
 import './toolbar.css';
 
@@ -43,6 +44,7 @@ class Toolbar extends Component {
 			sketchpad: false,
 			engagementMenu: false,
 			engagementInProgress: false,
+			ticketing: false,
 			queueSize: 0,
 			elements: [],
 			showToolbar: true,
@@ -125,6 +127,12 @@ class Toolbar extends Component {
 	toggleSketchpad = () => {
 		this.setState({
 			sketchpad: !this.state.sketchpad
+		});
+	}
+
+	toggleTicketing = () => {
+		this.setState({
+			ticketing: !this.state.ticketing
 		});
 	}
 
@@ -338,6 +346,17 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
 					</Tooltip>
+					<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
+						<Button
+							variant={this.state.ticketing ? 'success' : 'light'}
+							className="toolbar-button"
+							onClick={this.toggleTicketing}
+							onKeyPress={this.toggleTicketing}
+							aria-label={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`}
+						>
+							<span className="fa fa-lg fa-medkit toolbar-icon" />
+						</Button>
+					</Tooltip>
 					<Gate owner inline showOwnerInPresentationMode >
 						<Tooltip
 							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
@@ -425,6 +444,12 @@ class Toolbar extends Component {
 							}
 						});
 					}}
+				/>
+				<Ticketing
+					show={this.state.ticketing}
+					onHide={this.toggleTicketing}
+					t={this.props.t}
+					session={this.context}
 				/>
 				{this.state.elements.filter( x => !!x.component ).map( ( x, key ) => {
 					const toggleElement = () => {

@@ -2134,6 +2134,18 @@ class Session {
 		xhr.send( formData );
 	}
 
+	createTicket({ title, description, platform }) {
+		axios.post( this.server + '/create_ticket', {
+			title,
+			description,
+			platform,
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID
+		}).catch( error =>
+			debug( 'Encountered an error: '+error.message )
+		);
+	}
+
 	/**
 	* Sends an email.
 	*
