@@ -53,7 +53,7 @@ class Ticketing extends Component {
 				version: platform.version,
 				product: platform.product,
 				manufacturer: platform.manufacturer,
-				od: platform.os,
+				os: platform.os,
 				description: platform.description
 			}
 		});
