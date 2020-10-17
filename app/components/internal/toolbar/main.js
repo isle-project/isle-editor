@@ -346,17 +346,19 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
-						<Button
-							variant={this.state.ticketing ? 'success' : 'light'}
-							className="toolbar-button"
-							onClick={this.toggleTicketing}
-							onKeyPress={this.toggleTicketing}
-							aria-label={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`}
-						>
-							<span className="fa fa-lg fa-medkit toolbar-icon" />
-						</Button>
-					</Tooltip>
+					<Gate user >
+						<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
+							<Button
+								variant={this.state.ticketing ? 'success' : 'light'}
+								className="toolbar-button"
+								onClick={this.toggleTicketing}
+								onKeyPress={this.toggleTicketing}
+								aria-label={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`}
+							>
+								<span className="fa fa-lg fa-medkit toolbar-icon" />
+							</Button>
+						</Tooltip>
+					</Gate>
 					<Gate owner inline showOwnerInPresentationMode >
 						<Tooltip
 							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
