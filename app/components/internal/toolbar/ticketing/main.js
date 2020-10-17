@@ -116,7 +116,8 @@ class Ticketing extends Component {
 						close={() => {
 							this.setState({
 								title: '',
-								description: ''
+								description: '',
+								showAlert: false
 							});
 							this.props.onHide();
 						}}

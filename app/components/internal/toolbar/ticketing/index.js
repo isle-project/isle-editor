@@ -5,9 +5,9 @@ import Loadable from 'components/internal/loadable';
 
 // MAIN //
 
-const Engagement = Loadable( () => import( './main.js' ) );
+const Ticketing = Loadable( () => import( './main.js' ) );
 
 
 // EXPORTS //
 
-export default Engagement;
+export default Ticketing;
