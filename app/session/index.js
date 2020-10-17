@@ -2135,7 +2135,7 @@ class Session {
 	}
 
 	createTicket({ title, description, platform }) {
-		axios.post( this.server + '/create_ticket', {
+		return axios.post( this.server + '/create_ticket', {
 			title,
 			description,
 			platform,
