@@ -2134,14 +2134,26 @@ class Session {
 		xhr.send( formData );
 	}
 
-	createTicket({ title, description, platform }) {
-		return axios.post( this.server + '/create_ticket', {
-			title,
-			description,
-			platform,
-			namespaceID: this.namespaceID,
-			lessonID: this.lessonID
-		}).catch( error =>
+	createTicket({ title, description, platform, files = []}) {
+		if ( files.length === 0 ) {
+			return axios.post( this.server + '/create_ticket', {
+				title,
+				description,
+				platform,
+				namespaceID: this.namespaceID,
+				lessonID: this.lessonID
+			}).catch( error =>
+				debug( 'Encountered an error: '+error.message )
+			);
+		}
+		const formData = new FormData();
+		for ( let i = 0; i < files.length; i++ ) {
+			formData.append( 'attachment', files[ i ] );
+		}
+		formData.append( 'title', title );
+		formData.append( 'description', description );
+		formData.append( 'platform', platform );
+		return axios.post( this.server + '/create_ticket', formData ).catch( error =>
 			debug( 'Encountered an error: '+error.message )
 		);
 	}
