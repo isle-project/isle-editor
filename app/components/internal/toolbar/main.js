@@ -346,7 +346,7 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Gate user >
+					<Gate disabled >
 						<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
 							<Button
 								variant={this.state.ticketing ? 'success' : 'light'}
