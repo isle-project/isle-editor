@@ -2152,7 +2152,9 @@ class Session {
 		}
 		formData.append( 'title', title );
 		formData.append( 'description', description );
-		formData.append( 'platform', platform );
+		formData.append( 'platform', JSON.stringify( platform ) );
+		formData.append( 'namespaceID', this.namespaceID );
+		formData.append( 'lessonID', this.lessonID );
 		return axios.post( this.server + '/create_ticket', formData ).catch( error =>
 			debug( 'Encountered an error: '+error.message )
 		);

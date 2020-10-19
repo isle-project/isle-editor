@@ -84,7 +84,7 @@ class Ticketing extends Component {
 				os: platform.os,
 				description: platform.description
 			},
-			file: this.state.files
+			files: this.state.files
 		});
 		promise.then( () => {
 			this.setState({
