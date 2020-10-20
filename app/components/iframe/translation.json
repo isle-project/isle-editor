@@ -1,0 +1,11 @@
+{
+	"DE": {
+		"alert-message": "Externe Inhalte können nicht angezeigt werden, vermutlich da die Einbettung der Website in Iframes deaktiviert ist."
+	},
+	"EN": {
+		"alert-message": "External content cannot be displayed likely due to site disabling embedding in iframes."
+	},
+	"ES": {
+		"alert-message": "El contenido externo no puede mostrarse probablemente debido a que el sitio deshabilita la incrustación en los iframes."
+	}
+}

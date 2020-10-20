@@ -1,8 +1,12 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
+import FullscreenButton from 'components/internal/fullscreen-button';
+import './load_translations.js';
 
 
 // MAIN //
@@ -23,7 +27,8 @@ class IFrame extends Component {
 		super( props );
 		this.state = {
 			width: props.width || window.innerWidth,
-			height: props.height || window.innerHeight
+			height: props.height || window.innerHeight,
+			loading: true
 		};
 	}
 
@@ -65,13 +70,39 @@ class IFrame extends Component {
 			};
 		}
 		return (
-			<Card id={this.props.id} className={this.props.className} style={style} >
+			<Card id={this.props.id} className={`center ${this.props.className}`} style={style} >
+				{!this.state.loading && !this.props.fullscreen ? <FullscreenButton
+					header={`${this.props.title}: ${this.props.src}`}
+					body={<iframe
+						src={this.props.src}
+						width="100%"
+						height="100%"
+						title={this.props.title}
+					/>}
+					className={this.props.className}
+					t={this.props.t}
+					style={{
+						left: 0
+					}}
+					wrapInCard={false}
+				/> : null}
 				<iframe
 					src={this.props.src}
 					width={this.state.width}
 					height={this.state.height}
+					style={{
+						display: this.state.loading ? 'none' : 'inherit'
+					}}
 					title={this.props.title}
+					onLoad={( event ) => {
+						this.setState({
+							loading: false
+						});
+					}}
 				/>
+				{this.state.loading ? <Alert variant="warning" style={{ margin: 0 }} >
+					{this.props.t('alert-message')}
+				</Alert> : null}
 			</Card>
 		);
 	}
@@ -99,9 +130,7 @@ IFrame.propTypes = {
 	style: PropTypes.object
 };
 
-IFrame.defaultProps = {};
-
 
 // EXPORTS //
 
-export default IFrame;
+export default withTranslation( 'iframe' )( IFrame );
