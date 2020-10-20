@@ -160,7 +160,7 @@ class Ticketing extends Component {
 								<FormLabel>{t('title')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder="Select title..."
+									placeholder={t('title-placeholder')}
 									onChange={this.handleTitleChange}
 								/>
 							</FormGroup>
@@ -168,7 +168,7 @@ class Ticketing extends Component {
 								legend={`${t('description')}:`}
 								value={this.state.description}
 								onChange={this.handleDescriptionChange}
-								placeholder="Enter description..."
+								placeholder={t('description-placeholder')}
 							/>
 							{this.renderAttachments()}
 							<Tooltip tooltip={t('attach-file')} >
