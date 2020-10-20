@@ -1,22 +1,13 @@
 {
 	"DE": {
-		"close": "Schließen",
-		"fullscreen-header": "Vollbildschirm-Anzeige",
-		"fullscreen-tooltip": "Vollbildansicht ein-/ausschalten",
 		"maximize": "Maximieren",
 		"minimize": "Minimieren"
 	},
 	"EN": {
-		"close": "Close",
-		"fullscreen-header": "Fullscreen Display",
-		"fullscreen-tooltip": "Toggle Fullscreen",
 		"maximize": "Maximize",
 		"minimize": "Minimize"
 	},
 	"ES": {
-		"close": "Cerrar",
-		"fullscreen-header": "Pantalla Completa",
-		"fullscreen-tooltip": "Activar/desactivar la vista de pantalla completa",
 		"maximize": "Maximizar",
 		"minimize": "Minimizar"
 	}

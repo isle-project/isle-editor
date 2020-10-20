@@ -1,12 +1,14 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'components/tooltip';
 import Gate from 'components/gate';
+import './load_translations.js';
 
 
 // MAIN //
@@ -29,7 +31,7 @@ class FullscreenButton extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Gate owner >
+				<Gate {...this.props} >
 					<Tooltip
 						id="fullscreen_tooltip"
 						placement="bottom"
@@ -43,14 +45,15 @@ class FullscreenButton extends Component {
 								position: 'absolute',
 								top: 0,
 								right: 0,
-								fontSize: 12
+								fontSize: 12,
+								...this.props.style
 							}}
 						>
 							<span className="fa fa-window-maximize" />
 						</Button>
 					</Tooltip>
 				</Gate>
-				<Modal
+				{this.state.fullscreen ? <Modal
 					show={this.state.fullscreen}
 					onHide={this.toggleFullscreen}
 					dialogClassName="modal-100w"
@@ -65,11 +68,11 @@ class FullscreenButton extends Component {
 							height: 0.75 * window.innerHeight
 						}}
 					>
-						<Card body
+						{this.props.wrapInCard ? <Card body
 							className={`${this.props.className} panel-fullscreen-view`}
 						>
 							{this.props.body}
-						</Card>
+						</Card> : this.props.body}
 					</Modal.Body>
 					<Modal.Footer>
 						{this.props.footer}
@@ -77,7 +80,7 @@ class FullscreenButton extends Component {
 							{this.props.t('close')}
 						</Button>
 					</Modal.Footer>
-				</Modal>
+				</Modal> : null}
 			</Fragment>
 		);
 	}
@@ -89,15 +92,19 @@ class FullscreenButton extends Component {
 FullscreenButton.propTypes = {
 	className: PropTypes.string,
 	header: PropTypes.string,
-	body: PropTypes.node.isRequired
+	body: PropTypes.node.isRequired,
+	wrapInCard: PropTypes.bool,
+	style: PropTypes.object
 };
 
 FullscreenButton.defaultProps = {
 	className: '',
-	header: null
+	header: null,
+	wrapInCard: true,
+	style: {}
 };
 
 
 // EXPORTS //
 
-export default FullscreenButton;
+export default withTranslation( 'fullscreen-button' )( FullscreenButton );

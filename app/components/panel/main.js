@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import Tooltip from 'components/tooltip';
 import Card from 'react-bootstrap/Card';
 import omit from '@stdlib/utils/omit';
-import FullscreenButton from './fullscreen_button.js';
+import Tooltip from 'components/tooltip';
+import FullscreenButton from 'components/internal/fullscreen-button';
 import './load_translations.js';
 import './panel.css';
 
@@ -75,6 +75,7 @@ class Wrapper extends Component {
 				footer={this.props.footer}
 				className={this.props.className}
 				t={this.props.t}
+				owner
 			/> : null }
 			{this.renderHeader()}
 			<Card.Body style={{
