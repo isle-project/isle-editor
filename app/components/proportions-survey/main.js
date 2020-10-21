@@ -227,7 +227,10 @@ ProportionsSurvey.propTypes = {
 	personalHeight: PropTypes.number,
 	personalInnerRadius: PropTypes.number,
 	precision: PropTypes.number,
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	step: PropTypes.number
 };
 

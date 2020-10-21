@@ -168,7 +168,10 @@ NumberSurvey.defaultProps = {
 };
 
 NumberSurvey.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	step: PropTypes.oneOfType([

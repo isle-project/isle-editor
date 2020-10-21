@@ -332,7 +332,10 @@ RangeQuestion.defaultProps = {
 };
 
 RangeQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	solution: PropTypes.arrayOf( PropTypes.number ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf(

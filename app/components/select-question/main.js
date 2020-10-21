@@ -231,7 +231,10 @@ SelectQuestion.defaultProps = {
 };
 
 SelectQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	options: PropTypes.array.isRequired,
 	solution: PropTypes.number.isRequired,
 	preselected: PropTypes.number,

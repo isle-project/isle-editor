@@ -122,7 +122,10 @@ class LikertScale extends Component {
 // PROPERTIES //
 
 LikertScale.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	options: PropTypes.array,
 	noMultipleResponses: PropTypes.bool,
 	disableSubmitNotification: PropTypes.bool,

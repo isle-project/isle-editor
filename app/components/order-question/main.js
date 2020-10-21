@@ -226,7 +226,10 @@ OrderQuestion.defaultProps = {
 };
 
 OrderQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	options: PropTypes.array.isRequired,
 	provideFeedback: PropTypes.bool,
 	hintPlacement: PropTypes.string,

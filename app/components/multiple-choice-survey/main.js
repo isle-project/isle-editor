@@ -247,7 +247,10 @@ MultipleChoiceSurvey.defaultProps = {
 };
 
 MultipleChoiceSurvey.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	allowMultipleAnswers: PropTypes.bool,
 	anonymous: PropTypes.bool,
 	answers: PropTypes.array,

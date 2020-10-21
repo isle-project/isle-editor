@@ -369,7 +369,10 @@ ImageQuestion.defaultProps = {
 };
 
 ImageQuestion.propTypes = {
-	question: PropTypes.string,
+	question: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf(
 		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
