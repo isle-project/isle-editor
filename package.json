@@ -148,7 +148,7 @@
     "debug": "4.1.0",
     "deep-object-diff": "^1.1.0",
     "detect-csv": "^1.1.0",
-    "dompurify": "^2.0.12",
+    "dompurify": "^2.2.0",
     "electron-prompt": "^1.6.0",
     "electron-store": "^6.0.1",
     "electron-updater": "^4.3.4",
