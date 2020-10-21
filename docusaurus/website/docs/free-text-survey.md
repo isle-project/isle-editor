@@ -17,7 +17,7 @@ An ISLE component for questions where the answers by the students should be supp
 
 ## Options
 
-* __question__ | `string`: the question to ask the students. Default: `''`.
+* __question__ | `(string|node)`: the question to ask the students. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controls whether one wishes to allow students to answer the survey multiple times. Default: `false`.
 * __anonymous__ | `boolean`: controls whether student answers are anonymously collected. Default: `false`.
 * __rows__ | `number`: number of text rows in the input field. Default: `4`.

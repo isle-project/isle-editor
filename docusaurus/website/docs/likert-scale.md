@@ -18,7 +18,7 @@ A component showing a question and a five-point scale for students to answer.
 
 ## Options
 
-* __question__ | `string`: question to be printed. Default: `''`.
+* __question__ | `(string|node)`: question to be printed. Default: `''`.
 * __options__ | `array`: an array of five elements holding the labels for the different scale levels. Default: `[
   'Strongly disagree',
   'Disagree',

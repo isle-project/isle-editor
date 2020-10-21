@@ -1335,7 +1335,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "the question to ask the students",
         "defaultValue": ""
       },
@@ -1804,7 +1804,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "question for which the student has to bring the available `options` into the correct order",
         "defaultValue": ""
       },
@@ -2398,7 +2398,7 @@
       },
       {
         "name": "resizable",
-        "type": "boolean",
+        "type": "string",
         "description": "controls whether the text area shall be resizable (can be either `both`, `horizontal`, `vertical`, or `none`)",
         "defaultValue": "none"
       },
@@ -3642,7 +3642,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "question to be printed",
         "defaultValue": ""
       },
@@ -4565,7 +4565,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "string indicating the question to ask the students",
         "defaultValue": ""
       },
@@ -4754,7 +4754,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "the question to be displayed",
         "defaultValue": ""
       },
@@ -4795,7 +4795,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "question for which the student has to bring the available `options` into the correct order",
         "defaultValue": ""
       },
@@ -5801,7 +5801,7 @@
       },
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "the question to be displayed",
         "defaultValue": ""
       },
@@ -6222,7 +6222,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "displayed question",
         "defaultValue": ""
       },
@@ -6696,7 +6696,7 @@
     "props": [
       {
         "name": "question",
-        "type": "string",
+        "type": "(string|node)",
         "description": "question for which the student has to select one of the available answer options",
         "defaultValue": ""
       },

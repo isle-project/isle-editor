@@ -18,7 +18,7 @@ A survey component in which the instructor may collect multiple-choice survey da
 
 ## Options
 
-* __question__ | `string`: string indicating the question to ask the students. Default: `''`.
+* __question__ | `(string|node)`: string indicating the question to ask the students. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controls whether one wishes to allow students to answer the survey multiple times. Default: `false`.
 * __anonymous__ | `boolean`: controls whether student answers are anonymized. Default: `false`.
 * __answers__ | `array`: array indicating answer choices for the students. Default: `[]`.

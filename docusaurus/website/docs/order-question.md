@@ -24,7 +24,7 @@ An order question component that asks student to bring a collection of elements 
 
 ## Options
 
-* __question__ | `string`: question for which the student has to bring the available `options` into the correct order. Default: `''`.
+* __question__ | `(string|node)`: question for which the student has to bring the available `options` into the correct order. Default: `''`.
 * __options__ | `array (required)`: an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order). Default: `none`.
 * __provideFeedback__ | `boolean`: controls whether to show a notification displaying whether the submitted answer is correct or not. Default: `true`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.

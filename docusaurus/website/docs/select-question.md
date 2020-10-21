@@ -22,7 +22,7 @@ A select question component.
 
 ## Options
 
-* __question__ | `string`: question for which the student has to select one of the available answer options. Default: `''`.
+* __question__ | `(string|node)`: question for which the student has to select one of the available answer options. Default: `''`.
 * __options__ | `array (required)`: available answer options from which the student can select. Default: `none`.
 * __solution__ | `number (required)`: index of solution element in `options`. Default: `none`.
 * __preselected__ | `number`: index of preselected answer option. Default: `0`.

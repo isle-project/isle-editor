@@ -51,5 +51,5 @@ Component that allows a group of people to vote on the weights and importance of
 * __personalHeight__ | `number`: proportions input height for individual student (in px). Default: `200`.
 * __personalInnerRadius__ | `number`: inner radius of proportions pie chart for individual student (in px). Default: `60`.
 * __precision__ | `number`: displayed precision of proportion values. Default: `2`.
-* __question__ | `string`: the question to be displayed. Default: `''`.
+* __question__ | `(string|node)`: the question to be displayed. Default: `''`.
 * __step__ | `number`: the step of the arrows seen when hovering the cursor above the input box. Default: `0.25`.

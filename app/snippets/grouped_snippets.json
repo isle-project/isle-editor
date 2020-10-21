@@ -18,7 +18,7 @@
     },
     {
       "name": "IFrame",
-      "value": "<IFrame src=\"${1:http://www.wikipedia.org}\" />\n"
+      "value": "<IFrame src=\"${1:https://www.wikipedia.org}\" />\n"
     },
     {
       "name": "Polaroid",

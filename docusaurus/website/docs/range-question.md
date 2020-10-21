@@ -17,7 +17,7 @@ A range question component that asks students to supply a lower and upper end po
 
 ## Options
 
-* __question__ | `string`: displayed question. Default: `''`.
+* __question__ | `(string|node)`: displayed question. Default: `''`.
 * __solution__ | `array<number>`: two-element array containing the endpoints of the correct range. Default: `none`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: hints providing guidance on how to answer the question. Default: `[]`.
