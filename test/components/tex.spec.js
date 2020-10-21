@@ -4,7 +4,7 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import TeX from 'components/tex/main.js';
 
 
