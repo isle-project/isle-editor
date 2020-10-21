@@ -23,7 +23,7 @@ const uid = generateUID( 'likert-scale' );
 /**
 * A component showing a question and a five-point scale for students to answer.
 *
-* @property {string} question - question to be printed
+* @property {(string|node)} question - question to be printed
 * @property {Array} options - an array of five elements holding the labels for the different scale levels
 * @property {boolean} noMultipleResponses - disallow multiple submissions from a single student
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications

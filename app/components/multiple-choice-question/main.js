@@ -54,7 +54,7 @@ const hasExplanations = ( answers ) => {
 /**
 * An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked.
 *
-* @property {string} question - the question displayed at the top of the multiple choice component
+* @property {(string|node)} question - the question displayed at the top of the multiple choice component
 * @property {number} solution - number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers
 * @property {Array} answers - an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect
 * @property {Array<string>} hints - hints providing guidance on how to answer the question

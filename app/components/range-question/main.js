@@ -40,7 +40,7 @@ const uid = generateUID( 'range-question' );
 /**
 * A range question component that asks students to supply a lower and upper end point.
 *
-* @property {string} question - displayed question
+* @property {(string|node)} question - displayed question
 * @property {Array<number>} solution - two-element array containing the endpoints of the correct range
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)

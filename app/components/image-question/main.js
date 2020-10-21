@@ -37,7 +37,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 /**
 * A question that asks the user to upload an image.
 *
-* @property {string} question - question for which the student has to bring the available `options` into the correct order
+* @property {(string|node)} question - question for which the student has to bring the available `options` into the correct order
 * @property {Array} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons

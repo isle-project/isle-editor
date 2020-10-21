@@ -32,7 +32,7 @@ const uid = generateUID( 'select-question' );
 /**
 * A select question component.
 *
-* @property {string} question - question for which the student has to select one of the available answer options
+* @property {(string|node)} question - question for which the student has to select one of the available answer options
 * @property {Array} options - available answer options from which the student can select
 * @property {integer} solution - index of solution element in `options`
 * @property {integer} preselected - index of preselected answer option

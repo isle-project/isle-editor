@@ -30,7 +30,7 @@ const debug = logger( 'isle:order-question' );
 /**
 * An order question component that asks student to bring a collection of elements into the correct order.
 *
-* @property {string} question - question for which the student has to bring the available `options` into the correct order
+* @property {(string|node)} question - question for which the student has to bring the available `options` into the correct order
 * @property {Array} options - an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order)
 * @property {boolean} provideFeedback - controls whether to show a notification displaying whether the submitted answer is correct or not
 * @property {Array} hints - hints providing guidance on how to answer the question

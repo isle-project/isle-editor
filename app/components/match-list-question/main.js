@@ -49,7 +49,7 @@ function createColorScale( length ) {
 /**
 * An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way.
 *
-* @property {string} question - question to be displayed at the top of the match list question component
+* @property {(string|node)} question - question to be displayed at the top of the match list question component
 * @property {Array} elements - an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties; supply elements with only `a` or `b` properties to add distractor answers
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)

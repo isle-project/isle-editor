@@ -79,7 +79,7 @@ function formatArraySolution( solution, t ) {
 /**
 * A number question component.
 *
-* @property {string} question - number question
+* @property {(string|node)} question - number question
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons

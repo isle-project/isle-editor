@@ -35,7 +35,7 @@ const uid = generateUID( 'number-survey' );
 /**
 * A survey component in which the instructor may collect numeric survey data from students in real-time.
 *
-* @property {string} question - the question to be displayed
+* @property {(string|node)} question - the question to be displayed
 * @property {boolean} allowMultipleAnswers - controls whether the same user (or session if anonymous) may submit multiple answers)
 * @property {boolean} anonymous - Allows for the students to submit data anonymously. Note that if this option is set to "true", then the instructors will be unable to see the ID of the submitting student
 * @property {(number|string)} step - A `string` or `numeric` value indicating the step of the arrows seen when hovering the cursor above the input box. If `'any'`, the step will be set to `1`
