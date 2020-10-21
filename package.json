@@ -157,7 +157,7 @@
     "eslint": "^7.11.0",
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react": "^7.21.5",
     "file-loader": "^6.1.1",
     "form-data": "^3.0.0",
     "history": "4.10.1",
