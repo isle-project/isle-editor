@@ -136,7 +136,7 @@ TextArea.propTypes = {
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
-	resizable: PropTypes.bool,
+	resizable: PropTypes.string,
 	rows: PropTypes.number,
 	style: PropTypes.object
 };
