@@ -1172,10 +1172,10 @@ class Editor extends Component {
 
 	insertSketchpadAtPos = (
 		file,
-		coords = [0, 0],
+		coords = [ 0, 0 ],
 		placeCursor= false
 	) => {
-		const range = new this.monaco.Range( coords[0], coords[1], coords[0], coords[1] );
+		const range = new this.monaco.Range( coords[ 0 ], coords[ 1 ], coords[ 0 ], coords[ 1 ] );
 		if ( this.props.filePath ) {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
