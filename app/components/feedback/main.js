@@ -229,7 +229,7 @@ class FeedbackButtons extends Component {
 							ref={( div ) => { this.textarea = div; }}
 							legend={this.props.t('textarea-legend')}
 							text={this.props.t('enter-text')}
-							resizable={false}
+							resizable="none"
 							rows={6}
 						/>
 					</Modal.Body>
