@@ -173,7 +173,7 @@ class FormulaTransformer extends Component {
 				<Panel
 					show={this.props.show}
 					onHide={this.props.onHide}
-					header="Create a new variable as a function of existing variables"
+					header={this.props.t('formula-transformer-header')}
 					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >{this.props.t('create-new-variable')}</Button>}
 					role="button" tabIndex={0}
 					bodyStyle={{

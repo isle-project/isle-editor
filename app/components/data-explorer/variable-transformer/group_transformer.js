@@ -125,7 +125,7 @@ class GroupTransformer extends Component {
 		return (
 			<Fragment>
 				{elems}
-				<p>Proportions must add up to one.</p>
+				<p>{this.props.t('proportions-sum-one')}</p>
 			</Fragment>
 		);
 	}
@@ -143,7 +143,7 @@ class GroupTransformer extends Component {
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}
-					header="Create group variables (e.g., for training/test set split or cross-validation)"
+					header={this.props.t('group-transformer-header')}
 					footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
 						{this.props.t('create-new-variable')}
 					</Button>}

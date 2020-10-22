@@ -328,7 +328,7 @@ class CategoricalTransformer extends Component {
 						{this.renderTable()}
 					</Row>
 					<Row>
-						<Tooltip tooltip="If the new values for all categories are numeric, you may tick this box to create a quantitative variable instead of a categorical one">
+						<Tooltip tooltip={this.props.t('treat-labels-as-numbers-tooltip')}>
 							<CheckboxInput
 								legend={this.props.t('treat-labels-as-numbers')}
 								defaultValue={false}
