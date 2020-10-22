@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import logger from 'debug';
 import { remote } from 'electron';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,6 +14,11 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import startsWith from '@stdlib/string/starts-with';
 import trim from '@stdlib/string/trim';
 import electronStore from 'store/electron.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:settings' );
 
 
 // FUNCTIONS //
@@ -108,8 +114,10 @@ class SettingsLogin extends Component {
 			show: true
 		});
 		const handleGitHubCallback = ( url ) => {
+			debug( 'Handle URL: "'+url+'"' );
 			const rawCode = /code=([^&]*)/.exec( url ) || null;
 			const code = rawCode && rawCode.length > 1 ? rawCode[ 1 ] : null;
+			debug( 'Extracted code from URL: '+code );
 			const error = /\?error=(.+)$/.exec( url );
 			if ( code ) {
 				this.getGitHubToken( code );
@@ -132,9 +140,12 @@ class SettingsLogin extends Component {
 		});
 
 		authWindow.webContents.on( 'will-redirect', ( event, url ) => {
+			debug( 'Redirecting GitHub URL...' );
 			event.preventDefault();
-			handleGitHubCallback( url );
-			authWindow.destroy();
+			if ( url.includes( 'oauth-callback' ) ) {
+				handleGitHubCallback( url );
+				authWindow.destroy();
+			}
 		});
 	}
 
@@ -273,7 +284,7 @@ class SettingsLogin extends Component {
 								>
 									Connect
 								</Button>
-								<ErrorCard server={server} error={encounteredError} />
+								{hasToken ? <ErrorCard server={server} error={encounteredError} /> : null}
 							</Fragment> :
 							<Card border="success">
 								<Card.Body>
