@@ -145,7 +145,7 @@ class GroupTransformer extends Component {
 					show={this.props.show}
 					header="Create group variables (e.g., for training/test set split or cross-validation)"
 					footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
-						Create new variable
+						{this.props.t('create-new-variable')}
 					</Button>}
 					role="button" tabIndex={0}
 					bodyStyle={{
@@ -157,7 +157,7 @@ class GroupTransformer extends Component {
 					<Row>
 						<Col>
 							<NumberInput
-								legend="Number of groups"
+								legend={this.props.t('number-of-groups')}
 								onChange={this.handleGroupNumberChange}
 								defaultValue={this.state.nGroups}
 								step={1}
@@ -169,15 +169,15 @@ class GroupTransformer extends Component {
 					{this.renderTable()}
 					<Row>
 						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>Name of new variable:</FormLabel>
+							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 							<FormControl
 								type="text"
-								placeholder="Select name..."
+								placeholder={this.props.t('select-name')}
 								onChange={this.handleGeneratedNameChange}
 								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
-								The new variable will be appended as a new column to the data table.
+								{this.props.t('new-variable-appended')}
 							</FormText>
 						</FormGroup>
 					</Row>

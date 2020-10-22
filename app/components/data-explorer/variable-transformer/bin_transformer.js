@@ -431,7 +431,7 @@ class BinTransformer extends Component {
 					<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
-						placeholder="Select name..."
+						placeholder={this.props.t('select-name')}
 						onChange={this.handleNameChange}
 						onKeyPress={this.handleKeyPress}
 					/>

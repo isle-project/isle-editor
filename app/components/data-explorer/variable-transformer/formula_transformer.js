@@ -174,7 +174,7 @@ class FormulaTransformer extends Component {
 					show={this.props.show}
 					onHide={this.props.onHide}
 					header="Create a new variable as a function of existing variables"
-					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >Create new variable</Button>}
+					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >{this.props.t('create-new-variable')}</Button>}
 					role="button" tabIndex={0}
 					bodyStyle={{
 						maxHeight: 'calc(100vh - 200px)',
@@ -294,15 +294,15 @@ class FormulaTransformer extends Component {
 							</Card.Body>
 						</Card>
 						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>Name of new variable:</FormLabel>
+							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 							<FormControl
 								type="text"
-								placeholder="Select name..."
+								placeholder={this.props.t('select-name')}
 								onChange={this.handleNameChange}
 								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
-								The new variable will be appended as a new column to the data table.
+								{this.props.t('new-variable-appended')}
 							</FormText>
 						</FormGroup>
 					</div>

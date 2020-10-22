@@ -217,7 +217,7 @@ class CategoricalTransformer extends Component {
 			<Table bordered style={{ margin: 8 }} >
 				<thead>
 					<tr>
-						<th>Old:</th>
+						<th>{this.props.t('old')}:</th>
 						{keys.map( ( val, idx ) => {
 							return <th key={`${variable}-${idx}-old`}>{val}</th>;
 						})}
@@ -225,7 +225,7 @@ class CategoricalTransformer extends Component {
 				</thead>
 				<tbody>
 					<tr>
-						<th>New:</th>
+						<th>{this.props.t('new')}:</th>
 						{keys.map( ( val, idx ) => {
 							return ( <th key={`${variable}-${idx}-new`}>
 								<input
@@ -238,7 +238,7 @@ class CategoricalTransformer extends Component {
 						})}
 					</tr>
 					<tr style={{ borderTop: '1px solid black' }}>
-						<th>Frequencies:</th>
+						<th>{this.props.t('frequencies')}:</th>
 						{keys.map( ( label, idx ) => {
 							const freq = this.state.firstFreqs[ label ];
 							return <td key={`${variable}-${idx}-freq`}>{freq}</td>;
@@ -294,9 +294,9 @@ class CategoricalTransformer extends Component {
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}
-					header="Create new variable by renaming or combining categories"
+					header={this.props.t('categorical-transformer-header')}
 					footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
-						Create new variable
+						{this.props.t('create-new-variable')}
 					</Button>}
 					bodyStyle={{
 						maxHeight: 'calc(100vh - 200px)',
@@ -308,7 +308,7 @@ class CategoricalTransformer extends Component {
 					<Row>
 						<Col md={4}>
 							<SelectInput
-								legend="First Variable:"
+								legend={`${this.props.t('first-variable')}:`}
 								defaultValue={this.state.firstVar || ''}
 								options={this.props.categorical}
 								onChange={this.handleFirstVariableChange}
@@ -317,7 +317,7 @@ class CategoricalTransformer extends Component {
 						<Col md={4}>
 							<SelectInput
 								clearable
-								legend="Second Variable (optional):"
+								legend={`${this.props.t('optional-second-variable')}:`}
 								defaultValue={this.state.secondVar || ''}
 								options={this.props.categorical}
 								onChange={this.handleSecondVariableChange}
@@ -330,7 +330,7 @@ class CategoricalTransformer extends Component {
 					<Row>
 						<Tooltip tooltip="If the new values for all categories are numeric, you may tick this box to create a quantitative variable instead of a categorical one">
 							<CheckboxInput
-								legend="Treat category labels as numbers (all new labels need to be digits)"
+								legend={this.props.t('treat-labels-as-numbers')}
 								defaultValue={false}
 								disabled={!this.state.onlyNumbers}
 								onChange={() => {
@@ -343,15 +343,15 @@ class CategoricalTransformer extends Component {
 					</Row>
 					<Row>
 						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>Name of new variable:</FormLabel>
+							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 							<FormControl
 								type="text"
-								placeholder="Select name..."
+								placeholder={this.props.t('select-name')}
 								onChange={this.handleGeneratedNameChange}
 								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
-								The new variable will be appended as a new column to the data table.
+								{this.props.t('new-variable-appended')}
 							</FormText>
 						</FormGroup>
 					</Row>
