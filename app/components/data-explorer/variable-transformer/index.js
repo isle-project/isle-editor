@@ -128,7 +128,7 @@ class Transformer extends Component {
 							block
 							style={{ fontSize: '1.2em' }}
 						>
-							Interactions, Transformations (e.g., sqrt), Functions
+							{this.props.t('interactions-functions')}
 						</Button>
 					</div>
 					<div style={{ padding: 12 }} >
@@ -139,7 +139,7 @@ class Transformer extends Component {
 							block
 							style={{ fontSize: '1.2em' }}
 						>
-							Bin quantitative variables into categorical
+							{this.props.t('bin-quantitative')}
 						</Button>
 					</div>
 					<div style={{ padding: 12 }} >
@@ -150,7 +150,7 @@ class Transformer extends Component {
 							block
 							style={{ fontSize: '1.2em' }}
 						>
-							Rename or combine categories
+							{this.props.t('rename-or-combine')}
 						</Button>
 					</div>
 					<div style={{ padding: 12 }} >
@@ -160,7 +160,7 @@ class Transformer extends Component {
 							block
 							style={{ fontSize: '1.2em' }}
 						>
-							Create groups (e.g., for training-test set split or cross-validation)
+							{this.props.t('create-groups')}
 						</Button>
 					</div>
 				</div>

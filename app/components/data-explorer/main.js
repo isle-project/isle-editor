@@ -1458,6 +1458,7 @@ class DataExplorer extends Component {
 								disableToolbarDragging: active
 							});
 						}}
+						t={this.props.t}
 					/>
 				</Tab.Pane> : null
 			}
