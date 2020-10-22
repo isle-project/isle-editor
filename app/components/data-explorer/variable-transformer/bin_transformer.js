@@ -384,7 +384,7 @@ class BinTransformer extends Component {
 	renderBody() {
 		const configHist = this.state.configHist;
 		const select = <SelectInput
-			legend="Variable to bin:"
+			legend={`${this.props.t('variable-to-bin')}:`}
 			defaultValue={this.state.activeVar}
 			options={this.props.quantitative}
 			onChange={this.handleVariableChange}
@@ -394,7 +394,7 @@ class BinTransformer extends Component {
 			return (
 				<Fragment>
 					{select}
-					<Alert variant="info">Please select a variable to bin...</Alert>
+					<Alert variant="info">{this.props.t('select-variable-bin')}</Alert>
 				</Fragment>
 			);
 		}
@@ -402,11 +402,11 @@ class BinTransformer extends Component {
 			<Fragment>
 				{select}
 				<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
-					Insert break line
+					{this.props.t('insert-break-line')}
 				</Button>
 				<p>
-					Drag the red vertical bar(s) to change breakpoints
-					(<NumberInput legend="digits after comma to snap to" min={0} max={9} inline defaultValue={this.state.snapDigits} onChange={this.handleSnapDigitsChange} />)
+					{this.props.t('drag-red-bars')}
+					(<NumberInput legend={this.props.t('digits-after-comma-snap')} min={0} max={9} inline defaultValue={this.state.snapDigits} onChange={this.handleSnapDigitsChange} />)
 				</p>
 				<div style={{ height: 250 }}>
 					<Plotly
@@ -421,14 +421,14 @@ class BinTransformer extends Component {
 				</div>
 				<div>
 					<Card className="mb-2" >
-						<Card.Header>Choose categorical labels for interval bins:</Card.Header>
+						<Card.Header>{this.props.t('choose-category-labels')}:</Card.Header>
 						<Card.Body>
 							{this.makeTextInputs()}
 						</Card.Body>
 					</Card>
 				</div>
 				<FormGroup style={{ width: 'fit-content' }} >
-					<FormLabel>Name of new variable:</FormLabel>
+					<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
 						placeholder="Select name..."
@@ -436,7 +436,7 @@ class BinTransformer extends Component {
 						onKeyPress={this.handleKeyPress}
 					/>
 					<FormText>
-						The new variable will be appended as a new column to the data table.
+						{this.props.t('new-variable-appended')}
 					</FormText>
 				</FormGroup>
 			</Fragment>
@@ -451,9 +451,9 @@ class BinTransformer extends Component {
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}
-					header="Create new variable by binning a quantitative variable into categories"
+					header={this.props.t('bin-transformer-header')}
 					footer={<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
-						Create new variable
+						{this.props.t('create-new-variable')}
 					</Button>}
 					bodyStyle={{
 						maxHeight: 'calc(100vh - 200px)',

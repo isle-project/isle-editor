@@ -35,6 +35,7 @@ class Transformer extends Component {
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				session={this.props.session}
+				t={this.props.t}
 			/>
 		);
 	}
@@ -52,6 +53,7 @@ class Transformer extends Component {
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
+				t={this.props.t}
 			/>
 		);
 	}
@@ -69,6 +71,7 @@ class Transformer extends Component {
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
+				t={this.props.t}
 			/>
 		);
 	}
@@ -85,6 +88,7 @@ class Transformer extends Component {
 				logAction={this.props.logAction}
 				onGenerate={this.props.onGenerate}
 				data={this.props.data}
+				t={this.props.t}
 			/>
 		);
 	}
