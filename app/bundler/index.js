@@ -227,11 +227,11 @@ render(
 serviceWorker.register();`;
 
 /**
- * Generates a list of components used in the lesson.
- *
- * @param {string} code - lesson code
- * @returns {Array} array of used components
- */
+* Generates a list of components used in the lesson.
+*
+* @param {string} code - lesson code
+* @returns {Array} array of used components
+*/
 const getComponentList = ( code ) => {
 	const ret = [];
 	let needVictoryTheme = false;
@@ -285,6 +285,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 
 	res += 'import Session from \'session\';';
 
+	res += `global.COMPONENT_LIST = ${JSON.stringify( components )};`;
 	res += getComponents( components );
 	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );
 	return res;
