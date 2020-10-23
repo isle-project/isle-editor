@@ -97,7 +97,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend="Group By:"
+								legend={`${this.props.t('group-by')}:`}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{
@@ -200,7 +200,9 @@ class HeatMapMenu extends Component {
 							/>
 						</Col>
 					</Row>
-					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

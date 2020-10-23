@@ -669,7 +669,7 @@ class SummaryStatisticsMenu extends Component {
 					{ groupingVariables.length > 0 ?
 						<FormGroup controlId="stats-form-group">
 							<Tooltip tooltip="Calculate the statistic(s) separately for observations from each category of either one or two grouping variable(s)">
-								<FormLabel>Group By:</FormLabel>
+								<FormLabel>{this.props.t('group-by')}:</FormLabel>
 							</Tooltip>
 							<Select
 								value={this.state.group}

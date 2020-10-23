@@ -70,7 +70,7 @@ class FrequencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Group By:"
+						legend={`${this.props.t('group-by')}:`}
 						options={groupingVariables}
 						clearable={true}
 						menuPlacement="top"
@@ -125,7 +125,9 @@ class FrequencyTableMenu extends Component {
 						block
 						onClick={this.generateFrequencyTable.bind( this )}
 						disabled={!this.state.calculateCounts && !this.state.calculateRelative}
-					>Generate</Button>
+					>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

@@ -39,7 +39,7 @@ class KruskalMenu extends Component {
 					Kruskal-Wallis Test
 					<QuestionButton title="Kruskal-Wallis Test" content={DESCRIPTION} />
 				</span>}
-				label="Calculate"
+				label={this.props.t('calculate')}
 				onGenerate={this.calculateTest}
 			>
 				<SelectInput

@@ -115,7 +115,7 @@ class LinePlotMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Group By:"
+						legend={`${this.props.t('group-by')}:`}
 						defaultValue={this.state.group}
 						options={groupingVariables}
 						clearable={true}
@@ -135,7 +135,9 @@ class LinePlotMenu extends Component {
 							});
 						}}
 					/>
-					<Button variant="primary" block onClick={this.generateLinePlot}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateLinePlot}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

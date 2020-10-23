@@ -86,7 +86,7 @@ class HistogramMenu extends Component {
 					<Row>
 						<Col md={5} >
 							<SelectInput
-								legend="Group By:"
+								legend={`${this.props.t('group-by')}:`}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{
@@ -241,7 +241,9 @@ class HistogramMenu extends Component {
 								}}
 							/>
 						</div> : null }
-					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

@@ -145,7 +145,9 @@ class ContourChartMenu extends Component {
 							/>
 						</Col>
 					</Row>
-					<Button variant="primary" block onClick={this.generateContourChart}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateContourChart}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

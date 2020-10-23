@@ -1054,6 +1054,7 @@ class DataExplorer extends Component {
 					content = <FrequencyTable
 						{...categoricalProps}
 						logAction={this.logAction}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Contingency Table':
@@ -1061,6 +1062,7 @@ class DataExplorer extends Component {
 						{...categoricalProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				}
@@ -1078,6 +1080,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.onBarchartSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Box Plot':
@@ -1085,6 +1088,7 @@ class DataExplorer extends Component {
 						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Contour Chart':
@@ -1093,6 +1097,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Heat Map':
@@ -1101,6 +1106,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Histogram':
@@ -1110,6 +1116,7 @@ class DataExplorer extends Component {
 						session={this.context}
 						showDensityOption={this.props.histogramDensities}
 						onSelected={this.onHistogramSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Line Plot':
@@ -1118,6 +1125,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Mosaic Plot':
@@ -1125,6 +1133,7 @@ class DataExplorer extends Component {
 						{...categoricalProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Pie Chart':
@@ -1133,6 +1142,7 @@ class DataExplorer extends Component {
 						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'QQ Plot':
@@ -1140,6 +1150,7 @@ class DataExplorer extends Component {
 						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Scatterplot':
@@ -1148,6 +1159,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Scatterplot Matrix':
@@ -1156,6 +1168,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						onSelected={this.on2dSelection}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Violin Plot':
@@ -1163,6 +1176,7 @@ class DataExplorer extends Component {
 						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Map':
@@ -1170,6 +1184,7 @@ class DataExplorer extends Component {
 						{...quantitativeProps}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				}
@@ -1187,6 +1202,7 @@ class DataExplorer extends Component {
 						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Two-Sample Mean Test':
@@ -1198,6 +1214,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'One-Sample Proportion Test':
@@ -1207,6 +1224,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Two-Sample Proportion Test':
@@ -1217,6 +1235,7 @@ class DataExplorer extends Component {
 						logAction={this.logAction}
 						session={this.context}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'One-Way ANOVA':
@@ -1227,6 +1246,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Correlation Test':
@@ -1236,6 +1256,7 @@ class DataExplorer extends Component {
 						quantitative={this.state.quantitative}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Chi-squared Independence Test':
@@ -1245,6 +1266,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Kruskal-Wallis Test':
@@ -1255,6 +1277,7 @@ class DataExplorer extends Component {
 						categorical={this.state.categorical}
 						logAction={this.logAction}
 						showDecision={this.props.showTestDecisions}
+						t={this.props.t}
 					/>;
 					break;
 				}
@@ -1279,6 +1302,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 				break;
 				case 'Decision Tree':
@@ -1297,6 +1321,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 				break;
 				case 'Random Forest':
@@ -1315,6 +1340,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 				break;
 				case 'LASSO':
@@ -1331,6 +1357,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 				break;
 				case 'Logistic Regression':
@@ -1349,6 +1376,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 				break;
 				case 'Simple Linear Regression':
@@ -1365,6 +1393,7 @@ class DataExplorer extends Component {
 								data
 							});
 						}}
+						t={this.props.t}
 					/>;
 					break;
 				case 'PCA':
@@ -1381,6 +1410,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'Hierarchical Clustering':
@@ -1400,6 +1430,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 				case 'kmeans':
@@ -1419,6 +1450,7 @@ class DataExplorer extends Component {
 						data={this.state.data}
 						logAction={this.logAction}
 						session={this.context}
+						t={this.props.t}
 					/>;
 					break;
 					case 'Naive Bayes':
@@ -1437,6 +1469,7 @@ class DataExplorer extends Component {
 									data
 								});
 							}}
+							t={this.props.t}
 						/>;
 					break;
 				}

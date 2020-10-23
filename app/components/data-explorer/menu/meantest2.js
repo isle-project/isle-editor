@@ -208,7 +208,7 @@ class MeanTest2Menu extends Component {
 						onClick={this.calculateTwoSampleZTest}
 						disabled={(!this.state.group && !this.state.y) || !this.state.x}
 					>
-						Calculate
+						{this.props.t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

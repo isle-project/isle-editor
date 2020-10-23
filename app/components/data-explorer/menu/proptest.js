@@ -117,7 +117,9 @@ class PropTestMenu extends Component {
 						variant="primary" block
 						onClick={this.calculatePropTest}
 						disabled={!this.state.variable}
-					>Calculate</Button>
+					>
+						{this.props.t('calculate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

@@ -152,7 +152,9 @@ class MeanTestMenu extends Component {
 					<Button
 						variant="primary" block onClick={this.calculateMeanTest}
 						disabled={!this.state.variable}
-					>Calculate</Button>
+					>
+						{this.props.t('calculate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

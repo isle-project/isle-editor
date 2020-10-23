@@ -84,7 +84,9 @@ class ScatterplotMatrixMenu extends Component {
 						variant="primary" block
 						onClick={this.generate}
 						disabled={!this.state.variables || this.state.variables.length < 2}
-					>Generate</Button>
+					>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

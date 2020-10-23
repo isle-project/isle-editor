@@ -165,7 +165,7 @@ class BarchartMenu extends Component {
 							</Col>
 						</Row> : null }
 					<SelectInput
-						legend="Group By:"
+						legend={`${this.props.t('group-by')}:`}
 						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}
@@ -257,7 +257,6 @@ class BarchartMenu extends Component {
 								style={{
 									opacity: this.state.group ? 1.0 : 0.2
 								}}
-
 							/>
 						</Col>
 						<Col>
@@ -276,7 +275,9 @@ class BarchartMenu extends Component {
 							/>
 						</Col>
 					</Row>
-					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

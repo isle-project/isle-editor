@@ -40,7 +40,7 @@ class Chi2TestMenu extends Component {
 						<QuestionButton title="Chi-square Independence Test" content={DESCRIPTION} />
 					</span>
 				}
-				label="Calculate"
+				label={this.props.t('calculate')}
 				autoStart={false}
 				onGenerate={this.calculateChisquareTest}
 			>

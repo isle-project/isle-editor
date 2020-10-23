@@ -68,7 +68,7 @@ class BoxplotMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Variable:"
+						legend={`${this.props.t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={variables}
 						onChange={( variable ) => {
@@ -76,7 +76,7 @@ class BoxplotMenu extends Component {
 						}}
 					/>
 					<FormGroup controlId="boxplot-form-select">
-						<FormLabel>Group By:</FormLabel>
+						<FormLabel>{this.props.t('group-by')}:</FormLabel>
 						<Select
 							value={this.state.group}
 							options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}
@@ -103,13 +103,15 @@ class BoxplotMenu extends Component {
 						}}
 					/>
 					<CheckboxInput
-						legend="Overlay Points?"
+						legend={this.props.t('overlay-points')}
 						defaultValue={false}
 						onChange={( overlayPoints ) => {
 							this.setState({ overlayPoints });
 						}}
 					/>
-					<Button variant="primary" block onClick={this.generateBoxplot}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateBoxplot}>
+						{this.props.t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

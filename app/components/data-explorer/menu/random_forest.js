@@ -174,7 +174,9 @@ class RandomForestMenu extends Component {
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
+					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
+						{this.props.t('calculate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

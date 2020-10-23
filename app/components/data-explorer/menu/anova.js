@@ -39,7 +39,7 @@ class AnovaMenu extends Component {
 					One-way ANOVA
 					<QuestionButton title="One-way ANOVA" content={DESCRIPTION} />
 				</span>}
-				label="Calculate"
+				label={this.props.t('calculate')}
 				onGenerate={this.calculateANOVA}
 			>
 				<SelectInput

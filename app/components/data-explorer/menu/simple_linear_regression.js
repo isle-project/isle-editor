@@ -71,7 +71,7 @@ class SimpleLinearRegressionMenu extends Component {
 					options={quantitative}
 				/>
 				<SelectInput
-					legend="Group By:"
+					legend={`${this.props.t('group-by')}:`}
 					options={categorical}
 					clearable={true}
 					menuPlacement="top"

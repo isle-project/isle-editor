@@ -42,7 +42,7 @@ class CorrTestMenu extends Component {
 						<QuestionButton title="Correlation Test" content={DESCRIPTION} />
 					</span>
 				}
-				label="Calculate"
+				label={this.props.t('calculate')}
 				autoStart={false}
 				onGenerate={this.calculateCorrTest}
 			>

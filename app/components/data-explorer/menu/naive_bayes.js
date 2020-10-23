@@ -98,7 +98,9 @@ class NaiveBayesMenu extends Component {
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>Calculate</Button>
+					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
+						{this.props.t('calculate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);
