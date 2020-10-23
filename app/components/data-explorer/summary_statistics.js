@@ -652,7 +652,7 @@ class SummaryStatisticsMenu extends Component {
 						null
 					}
 					<SelectInput
-						legend="Second Variable:"
+						legend={`${this.props.t('second-variable')}:`}
 						defaultValue={this.state.secondVariable}
 						options={variables}
 						style={{

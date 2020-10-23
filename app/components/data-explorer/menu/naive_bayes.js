@@ -94,7 +94,7 @@ class NaiveBayesMenu extends Component {
 						onChange={( x ) => this.setState({ x })}
 					/>
 					<CheckboxInput
-						legend="Omit missing values"
+						legend={this.props.t('omit-missing')}
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>

@@ -61,7 +61,7 @@ class ViolinPlotMenu extends Component {
 				onGenerate={this.generateViolinplot.bind( this )}
 			>
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('variable')}:`}
 					defaultValue={defaultValue || variables[ 0 ]}
 					options={variables}
 				/>

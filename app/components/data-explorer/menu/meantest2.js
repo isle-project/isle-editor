@@ -76,7 +76,7 @@ class MeanTest2Menu extends Component {
 				}}
 			/>
 			<SelectInput
-				legend="Variable:"
+				legend={`${this.props.t('variable')}:`}
 				defaultValue={this.state.x}
 				options={quantitative}
 				onChange={( x ) => {
@@ -105,7 +105,7 @@ class MeanTest2Menu extends Component {
 				</Col>
 				<Col md={5}>
 					<SelectInput
-						legend="Second Variable:"
+						legend={`${this.props.t('second-variable')}:`}
 						options={quantitative}
 						defaultValue={this.state.y}
 						clearable

@@ -43,12 +43,12 @@ class AnovaMenu extends Component {
 				onGenerate={this.calculateANOVA}
 			>
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('variable')}:`}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend="Grouping Variable:"
+					legend={`${this.props.t('grouping-variable')}:`}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>

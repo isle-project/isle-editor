@@ -77,7 +77,7 @@ class SimpleLinearRegressionMenu extends Component {
 					menuPlacement="top"
 				/>
 				<CheckboxInput
-					legend="Omit missing values"
+					legend={this.props.t('omit-missing')}
 					defaultValue={false}
 				/>
 			</Dashboard>

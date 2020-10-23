@@ -47,12 +47,12 @@ class CorrTestMenu extends Component {
 				onGenerate={this.calculateCorrTest}
 			>
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('variable')}:`}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('second-variable')}:`}
 					defaultValue={quantitative[ 1 ]}
 					options={quantitative}
 				/>

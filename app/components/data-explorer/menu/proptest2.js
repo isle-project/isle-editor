@@ -99,7 +99,7 @@ class PropTest2Menu extends Component {
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								legend="Variable:"
+								legend={`${this.props.t('variable')}:`}
 								defaultValue={categorical[ 0 ]}
 								options={categorical}
 								onChange={( variable ) => {
@@ -144,7 +144,7 @@ class PropTest2Menu extends Component {
 						<Col md={2}><p>OR</p></Col>
 						<Col md={5}>
 							<SelectInput
-								legend="Second Variable: "
+								legend={`${this.props.t('second-variable')}:`}
 								options={categorical.filter( elem =>
 									contains( this.state.categories, elem )
 								)}

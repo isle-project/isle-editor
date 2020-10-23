@@ -69,7 +69,7 @@ class MeanTestMenu extends Component {
 					}}
 				/>
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('variable')}:`}
 					defaultValue={null}
 					options={quantitative}
 					onChange={( variable ) => {

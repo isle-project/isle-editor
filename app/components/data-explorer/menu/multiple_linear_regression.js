@@ -77,7 +77,7 @@ class MultipleLinearRegressionMenu extends Component {
 					defaultValue={true}
 				/>
 				<CheckboxInput
-					legend="Omit missing values"
+					legend={this.props.t('omit-missing')}
 					defaultValue={false}
 				/>
 			</Dashboard>

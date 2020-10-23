@@ -141,7 +141,7 @@ class LogisticRegressionMenu extends Component {
 						onChange={( intercept ) => this.setState({ intercept })}
 					/>
 					<CheckboxInput
-						legend="Omit missing values"
+						legend={this.props.t('omit-missing')}
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>

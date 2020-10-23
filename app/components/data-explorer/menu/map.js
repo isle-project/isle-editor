@@ -128,7 +128,7 @@ class MapMenu extends Component {
 				</Row>
 				<hr />
 				<SelectInput
-					legend="Variable:"
+					legend={`${this.props.t('variable')}:`}
 					options={variables}
 					clearable
 				/>
