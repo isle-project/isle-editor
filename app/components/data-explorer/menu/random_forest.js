@@ -102,7 +102,7 @@ class RandomForestMenu extends Component {
 				style={{ fontSize: '14px', maxWidth: 600 }}
 			>
 				<Card.Header as="h4">
-					Random Forest<QuestionButton title="Random Forest" content={DESCRIPTION} />
+					{this.props.t('Random Forest')}<QuestionButton title={this.props.t('Random Forest')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

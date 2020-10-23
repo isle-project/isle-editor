@@ -55,8 +55,8 @@ class FrequencyTableMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-				Frequency Table
-					<QuestionButton title="Frequency Table" content={DESCRIPTION} />
+					{this.props.t('Frequency Table')}
+					<QuestionButton title={this.props.t('Frequency Table')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

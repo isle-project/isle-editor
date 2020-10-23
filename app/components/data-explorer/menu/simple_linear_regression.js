@@ -56,7 +56,7 @@ class SimpleLinearRegressionMenu extends Component {
 		const { quantitative, categorical } = this.props;
 		return (
 			<Dashboard
-				title={<span>Simple Linear Regression<QuestionButton title="Simple Linear Regression" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('Simple Linear Regression')}<QuestionButton title={this.props.t('Simple Linear Regression')} content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.fitRegression}
 			>

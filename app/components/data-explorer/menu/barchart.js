@@ -117,8 +117,8 @@ class BarchartMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Bar Chart
-					<QuestionButton title="Bar Chart" content={DESCRIPTION} />
+					{this.props.t('Bar Chart')}
+					<QuestionButton title={this.props.t('Bar Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

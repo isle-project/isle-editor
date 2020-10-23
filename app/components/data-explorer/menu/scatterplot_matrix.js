@@ -57,7 +57,7 @@ class ScatterplotMatrixMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4" >
-					Scatterplot Matrix<QuestionButton title="Scatterplot Matrix" content={DESCRIPTION} />
+					{this.props.t('Scatterplot Matrix')}<QuestionButton title={this.props.t('Scatterplot Matrix')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

@@ -95,7 +95,7 @@ class LogisticRegressionMenu extends Component {
 				style={{ fontSize: '14px', maxWidth: 500 }}
 			>
 				<Card.Header as="h4">
-					Logistic Regression<QuestionButton title="Logistic Regression" content={DESCRIPTION} />
+					{this.props.t('Logistic Regression')}<QuestionButton title={this.props.t('Logistic Regression')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>

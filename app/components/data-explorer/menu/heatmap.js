@@ -67,8 +67,8 @@ class HeatMapMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Heat Map
-					<QuestionButton title="Heat Map" content={DESCRIPTION} />
+					{this.props.t('Heat Map')}
+					<QuestionButton title={this.props.t('Heat Map')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>

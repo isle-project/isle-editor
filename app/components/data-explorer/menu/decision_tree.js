@@ -94,7 +94,8 @@ class DecisionTreeMenu extends Component {
 				style={{ fontSize: '14px', maxWidth: 600 }}
 			>
 				<Card.Header as="h4">
-					Decision Tree<QuestionButton title="Decision Tree" content={DESCRIPTION} />
+					{this.props.t('Decision Tree')}
+					<QuestionButton title={this.props.t('Decision Tree')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

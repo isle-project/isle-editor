@@ -57,7 +57,7 @@ class MultipleLinearRegressionMenu extends Component {
 		const { categorical, quantitative } = this.props;
 		return (
 			<Dashboard
-				title={<span>Multiple Linear Regression<QuestionButton title="Multiple Linear Regression" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('Multiple Linear Regression')}<QuestionButton title={this.props.t('Multiple Linear Regression')} content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>

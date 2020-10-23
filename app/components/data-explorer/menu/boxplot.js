@@ -63,8 +63,8 @@ class BoxplotMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Box Plot
-					<QuestionButton title="Box Plot" content={DESCRIPTION} />
+					{this.props.t('Box Plot')}
+					<QuestionButton title={this.props.t('Box Plot')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

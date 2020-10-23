@@ -38,8 +38,8 @@ class CorrTestMenu extends Component {
 			<Dashboard
 				title={
 					<span>
-						Correlation Test
-						<QuestionButton title="Correlation Test" content={DESCRIPTION} />
+						{this.props.t('Correlation Test')}
+						<QuestionButton title={this.props.t('Correlation Test')} content={DESCRIPTION} />
 					</span>
 				}
 				label={this.props.t('calculate')}

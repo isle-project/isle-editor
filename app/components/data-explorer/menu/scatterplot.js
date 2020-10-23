@@ -205,7 +205,8 @@ class ScatterplotMenu extends Component {
 		return (
 			<Card style={{ minWidth: 650 }} >
 				<Card.Header as="h4" >
-					Scatterplot<QuestionButton title="Scatterplot" content={DESCRIPTION} />
+					{this.props.t('Scatterplot')}
+					<QuestionButton title={this.props.t('Scatterplot')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}

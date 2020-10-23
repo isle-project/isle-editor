@@ -57,7 +57,7 @@ class KMeansMenu extends Component {
 		const { quantitative, originalQuantitative } = this.props;
 		return (
 			<Dashboard
-				title={<span>kmeans Clustering<QuestionButton title="kmeans Clustering" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('kmeans Clustering')}<QuestionButton title={this.props.t('kmeans Clustering')} content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>

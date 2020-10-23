@@ -78,8 +78,8 @@ class ContingencyTableMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Contingency Table
-					<QuestionButton title="Contingency Table" content={DESCRIPTION} />
+					{this.props.t('Contingency Table')}
+					<QuestionButton title={this.props.t('Contingency Table')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

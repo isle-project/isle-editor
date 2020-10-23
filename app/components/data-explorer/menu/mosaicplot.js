@@ -72,7 +72,7 @@ class MosaicPlotMenu extends Component {
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Mosaic Plot<QuestionButton title="Mosaic Plot" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('Mosaic Plot')}<QuestionButton title={this.props.t('Mosaic Plot')} content={DESCRIPTION} /></span>}
 				onGenerate={this.generateMosaicPlot.bind( this )}
 				style={{ minHeight: 380 }}
 			>

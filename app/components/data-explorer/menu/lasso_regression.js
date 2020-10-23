@@ -59,7 +59,7 @@ class LassoRegressionMenu extends Component {
 		const { categorical, quantitative } = this.props;
 		return (
 			<Dashboard
-				title={<span>LASSO Regression<QuestionButton title="LASSO Regression" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('LASSO Regression')}<QuestionButton title={this.props.t('LASSO Regression')} content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>

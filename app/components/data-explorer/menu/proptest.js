@@ -51,8 +51,8 @@ class PropTestMenu extends Component {
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					One-Sample Proportion Test
-					<QuestionButton title="One-Sample Proportion Test" content={DESCRIPTION} />
+					{this.props.t('One-Sample Proportion Test')}
+					<QuestionButton title={this.props.t('One-Sample Proportion Test')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

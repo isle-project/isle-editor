@@ -70,8 +70,8 @@ class PieChartMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Pie Chart
-					<QuestionButton title="Pie Chart" content={DESCRIPTION} />
+					{this.props.t('Pie Chart')}
+					<QuestionButton title={this.props.t('Pie Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

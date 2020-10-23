@@ -57,7 +57,7 @@ class ViolinPlotMenu extends Component {
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Violin Plot<QuestionButton title="Violin Plot" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('Violin Plot')}<QuestionButton title={this.props.t('Violin Plot')} content={DESCRIPTION} /></span>}
 				onGenerate={this.generateViolinplot.bind( this )}
 			>
 				<SelectInput

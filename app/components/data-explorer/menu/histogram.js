@@ -69,8 +69,8 @@ class HistogramMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Histogram
-					<QuestionButton title="Histogram" content={DESCRIPTION} />
+					{this.props.t('Histogram')}
+					<QuestionButton title={this.props.t('Histogram')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

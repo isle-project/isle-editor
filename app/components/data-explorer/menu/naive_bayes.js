@@ -78,7 +78,7 @@ class NaiveBayesMenu extends Component {
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					Naive Bayes<QuestionButton title="Naive Bayes" content={DESCRIPTION} />
+					{this.props.t('Naive Bayes')}<QuestionButton title={this.props.t('Naive Bayes')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput

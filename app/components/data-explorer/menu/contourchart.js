@@ -72,7 +72,7 @@ class ContourChartMenu extends Component {
 		return (
 			<Card style={{ minWidth: 650 }}>
 				<Card.Header as="h4" >
-					Contour Chart<QuestionButton title="Contour Chart" content={DESCRIPTION} />
+					{this.props.t('Contour Chart')}<QuestionButton title={this.props.t('Contour Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>

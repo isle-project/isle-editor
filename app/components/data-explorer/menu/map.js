@@ -74,7 +74,7 @@ class MapMenu extends Component {
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>Map<QuestionButton title="Map" content={DESCRIPTION} /></span>}
+				title={<span>{this.props.t('Map')}<QuestionButton title={this.props.t('Map')} content={DESCRIPTION} /></span>}
 				onGenerate={this.generateMap.bind( this )}
 			>
 				<Row>

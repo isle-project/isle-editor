@@ -36,8 +36,8 @@ class AnovaMenu extends Component {
 			<Dashboard
 				autoStart={false}
 				title={<span>
-					One-way ANOVA
-					<QuestionButton title="One-way ANOVA" content={DESCRIPTION} />
+					{this.props.t('One-Way ANOVA')}
+					<QuestionButton title={this.props.t('One-Way ANOVA')} content={DESCRIPTION} />
 				</span>}
 				label={this.props.t('calculate')}
 				onGenerate={this.calculateANOVA}
