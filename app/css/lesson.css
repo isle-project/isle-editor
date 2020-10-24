@@ -582,6 +582,12 @@ a {
 	font-weight: 600px;
 }
 
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+	color: black;
+	background-color: rgb(255, 242, 229);
+}
+
 .Lesson > ul,
 .Lesson > .outer-element > ul,
 .Lesson > .outer-element > .outer-element > ul,
