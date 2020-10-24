@@ -36,6 +36,7 @@ const uid = generateUID( 'pages' );
 * @property {string} size - size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {number} activePage - active page
+* @property {boolean} paginationBelow - controls whether to also display the pagination elements below the container and not only on top of
 * @property {boolean} disabled - controls whether the navigation bar is active or not
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
@@ -215,6 +216,32 @@ class Pages extends Component {
 				);
 			}
 		}
+		const pagination = <Pagination className="my-pagination"
+			size={this.props.size}
+			items={children.length || 1}
+		>
+			<Tooltip
+				placement="top" tooltip={this.props.t('previous-page')}
+				show={!this.props.disabled && ( this.state.activePage !== 1 )}
+			>
+				<Pagination.Prev
+					disabled={this.props.disabled || ( this.state.activePage === 1 )}
+					key="prev"
+					onClick={this.prevPage}
+				/>
+			</Tooltip>
+			{items}
+			<Tooltip
+				placement="top" tooltip={this.props.t('next-page')}
+				show={!this.props.disabled && ( this.state.activePage !== children.length )}
+			>
+				<Pagination.Next
+					disabled={this.props.disabled || ( this.state.activePage === children.length )}
+					key="next"
+					onClick={this.nextPage}
+				/>
+			</Tooltip>
+		</Pagination>;
 		return (
 			<Card
 				className="pages"
@@ -223,38 +250,14 @@ class Pages extends Component {
 			>
 				{ this.props.title ? header : null }
 				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-				<Pagination className="my-pagination"
-					size={this.props.size}
-					items={children.length || 1}
-				>
-					<Tooltip
-						placement="top" tooltip={this.props.t('previous-page')}
-						show={!this.props.disabled && ( this.state.activePage !== 1 )}
-					>
-						<Pagination.Prev
-							disabled={this.props.disabled || ( this.state.activePage === 1 )}
-							key="prev"
-							onClick={this.prevPage}
-						/>
-					</Tooltip>
-					{items}
-					<Tooltip
-						placement="top" tooltip={this.props.t('next-page')}
-						show={!this.props.disabled && ( this.state.activePage !== children.length )}
-					>
-						<Pagination.Next
-							disabled={this.props.disabled || ( this.state.activePage === children.length )}
-							key="next"
-							onClick={this.nextPage}
-						/>
-					</Tooltip>
-				</Pagination>
+				{pagination}
 				<div className="page-children-wrapper"
 					ref={( div ) => {
 						this.wrapper = div;
 					}}
 					style={{
 						height: this.props.height,
+						borderWidth: this.props.paginationBelow ? '1px 0px 1px 0px' : '1px 0px 0px 0px',
 						...this.props.style
 					}}
 				>
@@ -267,6 +270,7 @@ class Pages extends Component {
 						</div> );
 					}) : children }
 				</div>
+				{ this.props.paginationBelow ? pagination : null }
 			</Card>
 		);
 	}
@@ -279,6 +283,7 @@ Pages.propTypes = {
 	activePage: PropTypes.number,
 	disabled: PropTypes.bool,
 	title: PropTypes.string,
+	paginationBelow: PropTypes.bool,
 	size: PropTypes.oneOf([
 		'default',
 		'lg',
@@ -299,6 +304,7 @@ Pages.defaultProps = {
 	activePage: 1,
 	disabled: false,
 	title: '',
+	paginationBelow: false,
 	size: 'default',
 	height: null,
 	voiceID: null,
