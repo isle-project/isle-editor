@@ -9,6 +9,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
+import SelectInput from 'components/input/select';
 import Draggable from 'components/draggable';
 import TextArea from 'components/input/text-area';
 import Tooltip from 'components/tooltip';
@@ -20,6 +21,10 @@ import './ticketing.css';
 // VARIABLES //
 
 const debug = logger( 'isle:toolbar:ticketing' );
+let COMPONENTS = [ 'General' ];
+if ( global.COMPONENT_LIST ) {
+	COMPONENTS = COMPONENTS.concat( global.COMPONENT_LIST );
+}
 
 
 // MAIN //
@@ -31,6 +36,7 @@ class Ticketing extends Component {
 		this.state = {
 			title: '',
 			description: '',
+			component: null,
 			showAlert: false,
 			files: []
 		};
@@ -45,6 +51,12 @@ class Ticketing extends Component {
 	handleDescriptionChange = ( text ) => {
 		this.setState({
 			description: text
+		});
+	}
+
+	handleComponentChange = ( component ) => {
+		this.setState({
+			component
 		});
 	}
 
@@ -76,6 +88,7 @@ class Ticketing extends Component {
 		const promise = session.createTicket({
 			title: this.state.title,
 			description: this.state.description,
+			component: this.state.component,
 			platform: {
 				name: platform.name,
 				version: platform.version,
@@ -156,6 +169,11 @@ class Ticketing extends Component {
 							bodyStyle={{ maxHeight: '75vh' }}
 						>
 							<p>{t('ticketing-intro')}</p>
+							<SelectInput
+								legend={`${t('component')}:`}
+								options={COMPONENTS}
+								onChange={this.handleComponentChange}
+							/>
 							<FormGroup>
 								<FormLabel>{t('title')}:</FormLabel>
 								<FormControl
