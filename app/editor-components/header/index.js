@@ -13,6 +13,12 @@ import CheckboxInput from 'components/input/checkbox';
 import KeyControls from 'components/key-controls';
 import './header.css';
 
+// FUNCTIONS //
+
+function stopPropagation( event ) {
+	event.stopPropagation();
+}
+
 
 // MAIN //
 
@@ -56,6 +62,7 @@ class Header extends Component {
 	}
 
 	render() {
+		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
 			<div>
 				<HeaderUpperBar
@@ -113,31 +120,35 @@ class Header extends Component {
 							><i className="fas fa-sync"></i></Button>
 						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">Switch between offline and online mode</Tooltip>}>
-							<DropdownButton
-								title={this.props.mode}
-								id="bg-mode-dropdown"
-								size="sm"
-								variant="warning"
-								onSelect={this.handleModeSelection}
-								style={{ marginLeft: 25 }}
-							>
-								<DropdownItem eventKey="1">offline</DropdownItem>
-								<DropdownItem eventKey="2">online</DropdownItem>
-							</DropdownButton>
+							<div onClick={stopPropagation} >
+								<DropdownButton
+									title={this.props.mode}
+									id="bg-mode-dropdown"
+									size="sm"
+									variant="warning"
+									onSelect={this.handleModeSelection}
+									style={{ marginLeft: 25 }}
+								>
+									<DropdownItem eventKey="1">offline</DropdownItem>
+									<DropdownItem eventKey="2">online</DropdownItem>
+								</DropdownButton>
+							</div>
 						</OverlayTrigger>
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">Preview lesson as user with selected role</Tooltip>}>
-							<DropdownButton
-								title={this.props.role}
-								id="bg-user-dropdown"
-								size="sm"
-								variant="success"
-								onSelect={this.handleRoleSelection}
-							>
-								<DropdownItem eventKey="1">anonymous</DropdownItem>
-								<DropdownItem eventKey="2">user</DropdownItem>
-								<DropdownItem eventKey="3">enrolled</DropdownItem>
-								<DropdownItem eventKey="4">owner</DropdownItem>
-							</DropdownButton>
+							<div onClick={stopPropagation} >
+								<DropdownButton
+									title={this.props.role}
+									id="bg-user-dropdown"
+									size="sm"
+									variant="success"
+									onSelect={this.handleRoleSelection}
+								>
+									<DropdownItem eventKey="1">anonymous</DropdownItem>
+									<DropdownItem eventKey="2">user</DropdownItem>
+									<DropdownItem eventKey="3">enrolled</DropdownItem>
+									<DropdownItem eventKey="4">owner</DropdownItem>
+								</DropdownButton>
+							</div>
 						</OverlayTrigger>
 						<OverlayTrigger placement="bottom" overlay={<Tooltip id="preview-tooltip">Click to toggle fullscreen preview of lesson</Tooltip>}>
 							<Button variant="secondary" onClick={this.props.onPreview} style={{
@@ -156,6 +167,7 @@ class Header extends Component {
 				/>
 			</div>
 		);
+		/* eslint-enable jsx-a11y/no-static-element-interactions */
 	}
 }
 
