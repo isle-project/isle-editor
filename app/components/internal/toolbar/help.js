@@ -64,7 +64,7 @@ class HelpPage extends Component {
 		const session = this.props.session;
 		const hasStatusBar = !session.config.hideStatusBar && !session.config.removeStatusBar;
 		return (
-			<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1005 }}>
+			<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1006 }}>
 				<Tab.Container id="left-tabs-example" defaultActiveKey="zeroth">
 					<h3>Documentation</h3>
 					<div className="help-buttons" >
