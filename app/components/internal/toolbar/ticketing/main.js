@@ -85,7 +85,7 @@ class Ticketing extends Component {
 	handleSubmit = () => {
 		debug( 'Create ticket...' );
 		const { session, t } = this.props;
-		const promise = session.createTicket({
+		const ticket = {
 			title: this.state.title,
 			description: this.state.description,
 			component: this.state.component,
@@ -98,7 +98,8 @@ class Ticketing extends Component {
 				description: platform.description
 			},
 			files: this.state.files
-		});
+		};
+		const promise = session.createTicket( ticket );
 		promise.then( () => {
 			this.setState({
 				showAlert: true

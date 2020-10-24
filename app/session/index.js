@@ -2134,12 +2134,13 @@ class Session {
 		xhr.send( formData );
 	}
 
-	createTicket({ title, description, platform, files = []}) {
+	createTicket({ title, description, component, platform, files = []}) {
 		if ( files.length === 0 ) {
 			return axios.post( this.server + '/create_ticket', {
 				title,
 				description,
 				platform,
+				component,
 				namespaceID: this.namespaceID,
 				lessonID: this.lessonID
 			}).catch( error =>
