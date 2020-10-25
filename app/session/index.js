@@ -1837,7 +1837,7 @@ class Session {
 	adjustGrades = ( email, grades ) => {
 		let sumPoints = 0;
 		for ( let key in grades ) {
-			if ( hasOwnProp( grades, key ) ) {
+			if ( hasOwnProp( grades, key ) && key !== '_sumPoints' ) {
 				sumPoints += grades[ key ];
 			}
 		}
