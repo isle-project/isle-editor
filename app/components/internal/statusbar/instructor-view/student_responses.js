@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Overlay from 'react-bootstrap/Overlay';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
@@ -99,7 +100,10 @@ class StudentResponses extends Component {
 			leftUser: null,
 			rightUser: null,
 			anonymized: false,
-			grades: {}
+			grades: {},
+			showFeedbackEditor: false,
+			feedbackID: null,
+			feedbackText: ''
 		};
 	}
 
@@ -312,6 +316,27 @@ class StudentResponses extends Component {
 		return grades;
 	}
 
+	handleFeedbackFactory = ( id ) => {
+		return ( event ) => {
+			event.stopPropagation();
+			let showFeedbackEditor;
+			if ( id === this.state.feedbackID ) {
+				showFeedbackEditor = !this.state.showFeedbackEditor;
+			} else {
+				showFeedbackEditor = true;
+			}
+			this.setState({
+				showFeedbackEditor,
+				feedbackID: id,
+				feedbackText: ''
+			});
+		};
+	}
+
+	handleFeedbackSubmission = () => {
+		console.log( this.state.feedbackText );
+	}
+
 	render() {
 		debug( 'Render student responses...' );
 		const session = this.props.session;
@@ -352,7 +377,10 @@ class StudentResponses extends Component {
 							cursor: 'pointer',
 							background: this.state.selected === id ? 'gold' : 'lightgrey'
 						}} >
-							{id}
+							<div style={{ width: '80%' }}>{id}</div>
+							{ leftUser ? <button className="student-responses-note-button" onClick={this.handleFeedbackFactory( id )} >
+								<i className="far fa-sticky-note"></i>
+							</button> : null }
 						</Col>
 					</Tooltip>
 					<Col className="student-responses-first-col" >
@@ -488,7 +516,9 @@ class StudentResponses extends Component {
 		};
 		return ( <div style={{ marginLeft: '6px' }}>
 			<Row style={{ paddingTop: '3px', paddingBottom: '3px', paddingRight: '16px' }}>
-				<Col>
+				<Col ref={col => {
+					this.firstCol = col;
+				}} >
 				</Col>
 				<Col>
 					<Select
@@ -572,6 +602,56 @@ class StudentResponses extends Component {
 				<Button variant="primary" onClick={this.saveJSON} >{this.props.t( 'save-json' )}</Button>
 				<Button variant="primary" onClick={this.saveCSV} >{this.props.t( 'save-csv' )}</Button>
 			</ButtonGroup>
+			<Overlay target={this.firstCol} show={this.state.showFeedbackEditor} placement="left" >
+				{({ placement, arrowProps, show: _show, popper, ...props }) => (
+				<div
+					{...props}
+					style={{
+						backgroundColor: 'rgb(232, 232, 232)',
+						padding: '2px 10px',
+						color: 'darkslategrey',
+						borderRadius: 6,
+						border: '1px solid darkslategrey',
+						minWidth: '400px',
+						marginTop: '80px',
+						boxShadow: '0px 0px 4px darkslategrey',
+						...props.style
+					}}
+				>
+					<div style={{ marginTop: 6, marginBottom: 6 }}>
+						{this.state.feedbackID}
+						<Button variant="secondary" size="sm" onClick={() => {
+							this.setState({
+								showFeedbackEditor: false,
+								feedbackID: null,
+								feedbackText: ''
+							});
+						}} style={{ float: 'right', marginBottom: 4 }} >
+							<i className="fas fa-times"></i>
+						</Button>
+					</div>
+					<FormControl
+						key={`${this.state.feedbackID}-textarea`}
+						as="textarea"
+						rows={5}
+						placeholder={`Enter feedback for answer from ${leftUser.name}`}
+						style={{ marginBottom: 6 }}
+						onChange={( event ) => {
+							this.setState({
+								feedbackText: event.target.value
+							});
+						}}
+					/>
+					<Button
+						variant="primary" size="sm"
+						style={{ marginBottom: 6 }}
+						onClick={this.handleFeedbackSubmission}
+					>
+						Submit
+					</Button>
+				</div>
+				)}
+			</Overlay>
 		</div> );
 	}
 }
