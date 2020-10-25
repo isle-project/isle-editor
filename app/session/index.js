@@ -233,7 +233,10 @@ class Session {
 		this.namespaceID = null;
 
 		// Lesson metadata:
-		this.metadata = {};
+		this.metadata = {
+			revealer: {},
+			grades: {}
+		};
 
 		// Lesson grades for students:
 		this.lessonGrades = {};
@@ -1859,6 +1862,19 @@ class Session {
 	}
 
 	getLessonGrades = () => {
+		const ids = this.responseVisualizerIds;
+		let maxPoints = 0;
+		for ( let i = ids.length - 1; i >= 0; i-- ) {
+			const key = ids[ i ];
+			const { ref } = this.responseVisualizers[ key ];
+			if ( ref && ref.props && ref.props.points ) {
+				maxPoints += ref.props.points;
+			}
+		}
+		if ( this.metadata.grades && this.metadata.grades.maxPoints !== maxPoints ) {
+			this.metadata.grades.maxPoints = maxPoints;
+			this.updateMetadata( 'grades', 'maxPoints', maxPoints );
+		}
 		axios.get( this.server+'/get_lesson_grades?' + qs.stringify({
 			lessonID: this.lessonID,
 			namespaceID: this.namespaceID

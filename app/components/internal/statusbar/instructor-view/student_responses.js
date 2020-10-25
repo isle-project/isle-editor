@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import FormControl from 'react-bootstrap/FormControl';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
@@ -479,14 +480,20 @@ class StudentResponses extends Component {
 					/>
 				</Col>
 				<Col>
-					{ this.state.leftUser && !this.state.rightUser ? <Button
-						variant="warning" style={{ float: 'right' }}
-						onClick={() => {
-							session.adjustGrades( this.state.leftUser.email, this.state.grades );
-						}}
-					>
-						Save Grades
-					</Button> : null }
+					{ this.state.leftUser && !this.state.rightUser ?
+						<Fragment>
+							<Badge variant="secondary" style={{ verticalAlign: 'sub' }}>
+								Maximum points: {session.metadata.grades.maxPoints}
+							</Badge>
+							<Button
+								variant="warning" style={{ float: 'right' }}
+								onClick={() => {
+									session.adjustGrades( this.state.leftUser.email, this.state.grades );
+								}}
+							>
+								Save Grades
+							</Button>
+						</Fragment>: null }
 				</Col>
 			</Row>
 			<Container style={{
