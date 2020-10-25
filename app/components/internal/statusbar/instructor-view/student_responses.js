@@ -379,7 +379,6 @@ class StudentResponses extends Component {
 					<Col className="student-responses-first-col" >
 						{ leftUser && !rightUser && viz.ref.props.points ?
 							<Fragment>
-								Left:
 								<FormControl
 									key={`${leftUser.email}-points`}
 									className="student-responses-points-input"
@@ -393,7 +392,7 @@ class StudentResponses extends Component {
 										});
 									}}
 								/>
-								out of
+								{this.props.t('out-of')}
 								<FormControl
 									key={`${leftUser.email}-max-points`}
 									className="student-responses-points-input"
@@ -405,7 +404,7 @@ class StudentResponses extends Component {
 						}
 						{ leftUser && rightUser && viz.ref.props.points ?
 							<Fragment>
-								Left:
+								{this.props.t('left')}:
 								<FormControl
 									key={`${leftUser.email}-points`}
 									className="student-responses-points-input"
@@ -419,7 +418,7 @@ class StudentResponses extends Component {
 										});
 									}}
 								/>
-								Right:
+								{this.props.t('right')}:
 								<FormControl
 									key={`${rightUser.email}-points`}
 									className="student-responses-points-input"
@@ -523,7 +522,7 @@ class StudentResponses extends Component {
 								{this.props.t('maximum-points')}: {session.metadata.grades.maxPoints}
 							</Badge>
 							<Button
-								variant="warning" style={{ float: 'right' }}
+								variant="warning" style={{ float: 'right', fontVariant: 'small-caps' }}
 								onClick={() => {
 									session.adjustGrades( this.state.leftUser.email, this.state.grades );
 								}}
