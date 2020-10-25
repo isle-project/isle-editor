@@ -317,6 +317,7 @@ class StudentResponses extends Component {
 		const ids = session.responseVisualizerIds;
 		const users = this.assembleUserList();
 		const list = new Array( ids.length );
+		let invalidGrades = false;
 		for ( let i = 0; i < ids.length; i++ ) {
 			const viz = visualizers[ ids[ i ] ];
 			const question = viz.ref.props.data.question;
@@ -335,6 +336,9 @@ class StudentResponses extends Component {
 				actionsRight = [];
 			}
 			const id = ids[ i ];
+			if ( this.state.grades && isNaN( this.state.grades[ id ] ) ) {
+				invalidGrades = true;
+			}
 			list[ i ] = (
 				<Row
 					key={i}
@@ -490,6 +494,7 @@ class StudentResponses extends Component {
 								onClick={() => {
 									session.adjustGrades( this.state.leftUser.email, this.state.grades );
 								}}
+								disabled={invalidGrades}
 							>
 								Save Grades
 							</Button>
