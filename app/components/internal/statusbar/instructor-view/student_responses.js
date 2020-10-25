@@ -520,7 +520,7 @@ class StudentResponses extends Component {
 					{ this.state.leftUser ?
 						<Fragment>
 							<Badge variant="secondary" style={{ verticalAlign: 'sub' }}>
-								Maximum points: {session.metadata.grades.maxPoints}
+								{this.props.t('maximum-points')}: {session.metadata.grades.maxPoints}
 							</Badge>
 							<Button
 								variant="warning" style={{ float: 'right' }}
@@ -529,7 +529,7 @@ class StudentResponses extends Component {
 								}}
 								disabled={invalidGrades}
 							>
-								Save Grades
+								{this.props.t('save-grades')}
 							</Button>
 						</Fragment>: null }
 				</Col>
