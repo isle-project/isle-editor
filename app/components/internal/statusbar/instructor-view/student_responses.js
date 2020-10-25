@@ -190,7 +190,9 @@ class StudentResponses extends Component {
 					email: this.state.anonymized ? this.userHash.email[ x.email ] : x.email,
 					name: this.state.anonymized ? this.userHash.name[ x.name ] : x.name,
 					question: React.isValidElement( question ) ? innerText( question ) : String( question ),
-					solution: React.isValidElement( solution ) ? innerText( solution ) : solution
+					solution: React.isValidElement( solution ) ? innerText( solution ) : solution,
+					maximumPoints: viz.ref.props.points,
+					awardedPoints: session.lessonGrades[ x.email ] ? session.lessonGrades[ x.email ][ x.id ] : null
 				});
 			}
 			out = out.concat( arr );
