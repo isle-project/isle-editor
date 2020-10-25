@@ -9,6 +9,18 @@
 
 .student-responses-row {
 	padding: 0.1rem;
+	min-height: 48px;
+}
+
+.student-responses-note-button {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	border: none;
+}
+
+.student-responses-note-button:hover {
+	background: var(--yellow);
 }
 
 .student-responses-row .col {
