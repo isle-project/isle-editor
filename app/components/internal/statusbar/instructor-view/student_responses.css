@@ -19,3 +19,9 @@
 .student-responses-first-col {
 	background-color: rgba(173, 216, 230, 0.6);
 }
+
+.student-responses-points-input {
+	width: 60px;
+	display: inline;
+	margin: 5px;
+}

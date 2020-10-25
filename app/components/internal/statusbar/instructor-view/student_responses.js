@@ -1,12 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Select, { components } from 'react-select';
 import innerText from 'react-innertext';
 import stringify from 'csv-stringify';
 import Container from 'react-bootstrap/Container';
+import FormControl from 'react-bootstrap/FormControl';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -96,12 +97,14 @@ class StudentResponses extends Component {
 			selected: null,
 			leftUser: null,
 			rightUser: null,
-			anonymized: false
+			anonymized: false,
+			grades: {}
 		};
 	}
 
 	componentDidMount() {
 		const session = this.props.session;
+		session.getLessonGrades();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
 				type === UPDATED_VISUALIZER ||
@@ -256,7 +259,6 @@ class StudentResponses extends Component {
 					}
 				}
 			}
-			console.log( users );
 			return users;
 		}
 		if ( session.cohorts ) {
@@ -283,6 +285,28 @@ class StudentResponses extends Component {
 			}
 		}
 		return users;
+	}
+
+	assembleGrades = ( option ) => {
+		const session = this.props.session;
+		const grades = session.lessonGrades[ option.value.email ] || {};
+		const visualizers = session.responseVisualizers;
+		const ids = session.responseVisualizerIds;
+		for ( let i = 0; i < ids.length; i++ ) {
+			const id = ids[ i ];
+			const viz = visualizers[ id ];
+			const actions = viz.ref.state.actions;
+			const solution = viz.ref.props.data.solution;
+			const actionsLeft = actions.filter( x => x.email === option.value.email );
+			let numPoints;
+			if ( grades && isNumber( grades[ id ] ) ) {
+				numPoints = grades[ id ];
+			} else {
+				numPoints = actionsLeft[ 0 ] && actionsLeft[ 0 ].value === solution ? viz.ref.props.points : 0;
+			}
+			grades[ id ] = numPoints;
+		}
+		return grades;
 	}
 
 	render() {
@@ -346,6 +370,34 @@ class StudentResponses extends Component {
 							<span>{formatAnswer( solution, viz )}</span>
 						}
 					</Col>
+					<Col className="student-responses-first-col" >
+						{ this.state.leftUser && !this.state.rightUser && viz.ref.props.points ?
+							<Fragment>
+								<FormControl
+									key={`${this.state.leftUser.email}-points`}
+									className="student-responses-points-input"
+									type="text"
+									defaultValue={this.state.grades[ id ]}
+									onChange={( event ) => {
+										const newGrades = { ...this.state.grades };
+										newGrades[ id ] = Number( event.target.value );
+										this.setState({
+											grades: newGrades
+										});
+									}}
+								/>
+								out of
+								<FormControl
+									key={`${this.state.leftUser.email}-max-points`}
+									className="student-responses-points-input"
+									type="text"
+									disabled
+									defaultValue={viz.ref.props.points}
+								/>
+							</Fragment> :
+							null
+		}
+					</Col>
 				</Row>
 			);
 		}
@@ -406,7 +458,8 @@ class StudentResponses extends Component {
 						options={users} styles={selectStyles}
 						onChange={( option ) => {
 							this.setState({
-								leftUser: option ? option.value : null
+								leftUser: option ? option.value : null,
+								grades: option ? this.assembleGrades( option ) : null
 							});
 						}}
 						isClearable
@@ -424,6 +477,16 @@ class StudentResponses extends Component {
 						}}
 						isClearable
 					/>
+				</Col>
+				<Col>
+					{ this.state.leftUser && !this.state.rightUser ? <Button
+						variant="warning" style={{ float: 'right' }}
+						onClick={() => {
+							session.adjustGrades( this.state.leftUser.email, this.state.grades );
+						}}
+					>
+						Save Grades
+					</Button> : null }
 				</Col>
 			</Row>
 			<Container style={{
