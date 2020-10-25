@@ -30,7 +30,7 @@ class FeedbackRenderer extends Component {
 			return null;
 		}
 		return (
-			<div className="feedback-renderer-messages" >
+			<div className="grade-feedback-renderer-messages" >
 				{gradeMessages[ this.props.for ].map( ( msg, idx ) => {
 					return (
 						<div className="chat-message" key={idx} >
@@ -121,8 +121,9 @@ class FeedbackRenderer extends Component {
 					size="small"
 					variant="light"
 					style={{ marginLeft: 12 }}
+					className="grade-feedback-button"
 				>
-					<i className="far fa-envelope-open" ></i>
+					<i className="fas fa-envelope-open" ></i>
 				</Button>
 				{this.renderOverlay()}
 			</Fragment>
