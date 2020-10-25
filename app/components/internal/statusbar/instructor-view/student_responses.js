@@ -110,6 +110,7 @@ class StudentResponses extends Component {
 	componentDidMount() {
 		const session = this.props.session;
 		session.getLessonGrades();
+		session.getLessonGradeMessages();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
 				type === UPDATED_VISUALIZER ||

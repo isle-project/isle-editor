@@ -241,6 +241,9 @@ class Session {
 		// Lesson grades for students:
 		this.lessonGrades = {};
 
+		// Instructor-student communication regarding grades:
+		this.lessonGradeMessages = {};
+
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
 		this.lessonName = null;
@@ -1881,6 +1884,17 @@ class Session {
 		}) )
 			.then( res => {
 				this.lessonGrades = res.data.grades;
+			})
+			.catch( err => debug( 'Encountered an error: '+err.message ) );
+	}
+
+	getLessonGradeMessages = () => {
+		axios.get( this.server+'/get_lesson_grade_messages?' + qs.stringify({
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		}) )
+			.then( res => {
+				this.lessonGradeMessages = res.data.gradeMessages;
 			})
 			.catch( err => debug( 'Encountered an error: '+err.message ) );
 	}
