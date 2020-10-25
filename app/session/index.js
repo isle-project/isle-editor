@@ -235,6 +235,9 @@ class Session {
 		// Lesson metadata:
 		this.metadata = {};
 
+		// Lesson grades for students:
+		this.lessonGrades = {};
+
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
 		this.lessonName = null;
@@ -1829,6 +1832,41 @@ class Session {
 				}
 			}
 		}
+	}
+
+	adjustGrades = ( email, grades ) => {
+		let sumPoints = 0;
+		for ( let key in grades ) {
+			if ( hasOwnProp( grades, key ) ) {
+				sumPoints += grades[ key ];
+			}
+		}
+		grades[ '_sumPoints' ] = sumPoints;
+		this.lessonGrades[ email ] = grades;
+		axios.post( this.server+'/user_adjust_grades', {
+			email,
+			grades,
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		}).then( ( res ) => {
+			this.addNotification({
+				title: 'Grades saved',
+				message: res.data.message,
+				level: 'success',
+				position: 'tl'
+			});
+		});
+	}
+
+	getLessonGrades = () => {
+		axios.get( this.server+'/get_lesson_grades?' + qs.stringify({
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		}) )
+			.then( res => {
+				this.lessonGrades = res.data.grades;
+			})
+			.catch( err => debug( 'Encountered an error: '+err.message ) );
 	}
 
 	/**
