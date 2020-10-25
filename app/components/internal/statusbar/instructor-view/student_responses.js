@@ -317,6 +317,7 @@ class StudentResponses extends Component {
 		const ids = session.responseVisualizerIds;
 		const users = this.assembleUserList();
 		const list = new Array( ids.length );
+		const { leftUser, rightUser } = this.state;
 		let invalidGrades = false;
 		for ( let i = 0; i < ids.length; i++ ) {
 			const viz = visualizers[ ids[ i ] ];
@@ -325,13 +326,13 @@ class StudentResponses extends Component {
 			const solution = viz.ref.props.data.solution;
 			let actionsLeft;
 			let actionsRight;
-			if ( this.state.leftUser ) {
-				actionsLeft = actions.filter( x => x.email === this.state.leftUser.email );
+			if ( leftUser ) {
+				actionsLeft = actions.filter( x => x.email === leftUser.email );
 			} else {
 				actionsLeft = [];
 			}
-			if ( this.state.rightUser ) {
-				actionsRight = actions.filter( x => x.email === this.state.rightUser.email );
+			if ( rightUser ) {
+				actionsRight = actions.filter( x => x.email === rightUser.email );
 			} else {
 				actionsRight = [];
 			}
@@ -362,8 +363,8 @@ class StudentResponses extends Component {
 							</span> ) )}
 						</Switch>
 					</Col>
-					<Col style={{ background: this.state.rightUser ? 'rgba(173, 216, 230, 0.4)' : '#fff2e5' }} >
-						{ this.state.rightUser ?
+					<Col style={{ background: rightUser ? 'rgba(173, 216, 230, 0.4)' : '#fff2e5' }} >
+						{ rightUser ?
 							<Switch active={actionsRight.length > 1} style={{
 								width: '100%', paddingTop: 14
 							}} tooltip={this.props.t('cycle-through-answers')} >
@@ -376,10 +377,11 @@ class StudentResponses extends Component {
 						}
 					</Col>
 					<Col className="student-responses-first-col" >
-						{ this.state.leftUser && !this.state.rightUser && viz.ref.props.points ?
+						{ leftUser && !rightUser && viz.ref.props.points ?
 							<Fragment>
+								Left:
 								<FormControl
-									key={`${this.state.leftUser.email}-points`}
+									key={`${leftUser.email}-points`}
 									className="student-responses-points-input"
 									type="text"
 									defaultValue={this.state.grades[ id ]}
@@ -393,15 +395,40 @@ class StudentResponses extends Component {
 								/>
 								out of
 								<FormControl
-									key={`${this.state.leftUser.email}-max-points`}
+									key={`${leftUser.email}-max-points`}
 									className="student-responses-points-input"
 									type="text"
 									disabled
 									defaultValue={viz.ref.props.points}
 								/>
-							</Fragment> :
-							null
-		}
+							</Fragment> : null
+						}
+						{ leftUser && rightUser && viz.ref.props.points ?
+							<Fragment>
+								Left:
+								<FormControl
+									key={`${leftUser.email}-points`}
+									className="student-responses-points-input"
+									type="text"
+									defaultValue={this.state.grades[ id ]}
+									onChange={( event ) => {
+										const newGrades = { ...this.state.grades };
+										newGrades[ id ] = Number( event.target.value );
+										this.setState({
+											grades: newGrades
+										});
+									}}
+								/>
+								Right:
+								<FormControl
+									key={`${rightUser.email}-points`}
+									className="student-responses-points-input"
+									type="text"
+									disabled
+									defaultValue={session.lessonGrades[ rightUser.email ] ? session.lessonGrades[ this.state.rightUser.email ][ id ] : NaN}
+								/>
+							</Fragment> : null
+						}
 					</Col>
 				</Row>
 			);
@@ -426,6 +453,9 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
+					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" style={{ float: 'right' }}>
+						{session.lessonGrades[ email ]._sumPoints} / {session.metadata.grades.maxPoints}
+					</Badge> : null}
 				</components.Option>
 			);
 		};
@@ -449,6 +479,9 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
+					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" >
+						{session.lessonGrades[ email ]._sumPoints} / {session.metadata.grades.maxPoints}
+					</Badge> : null}
 				</components.SingleValue>
 			);
 		};
