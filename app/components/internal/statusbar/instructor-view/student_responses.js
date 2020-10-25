@@ -517,7 +517,7 @@ class StudentResponses extends Component {
 					/>
 				</Col>
 				<Col>
-					{ this.state.leftUser && !this.state.rightUser ?
+					{ this.state.leftUser ?
 						<Fragment>
 							<Badge variant="secondary" style={{ verticalAlign: 'sub' }}>
 								Maximum points: {session.metadata.grades.maxPoints}
