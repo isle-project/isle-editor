@@ -25,7 +25,7 @@ import { CHAT_MESSAGE, MARK_MESSAGES, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CH
 import EditorView from 'components/text-editor/view.js';
 import { marks, wraps, insert } from 'components/text-editor/config/menu.js';
 import 'components/text-editor/editor.css';
-import renderTime from './render_time.js';
+import renderTime from 'utils/render-time';
 import VOICE_COMMANDS from './voice_commands.json';
 import './chat.css';
 
