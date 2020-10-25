@@ -37,3 +37,8 @@
 	display: inline;
 	margin: 5px;
 }
+
+.student-responses-feedback-messages {
+	max-height: calc(45vh - 80px);
+	overflow-y: auto;
+}

@@ -31,6 +31,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
+import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import countBy from '@stdlib/utils/count-by';
@@ -1857,6 +1858,37 @@ class Session {
 		}).then( ( res ) => {
 			this.addNotification({
 				title: 'Grades saved',
+				message: res.data.message,
+				level: 'success',
+				position: 'tl'
+			});
+		});
+	}
+
+	appendGradeMessage = ( email, componentID, text ) => {
+		const message = {
+			time: new Date().getTime(),
+			user: this.user.name,
+			picture: basename( this.user.picture ),
+			content: text
+		};
+		if ( !this.lessonGradeMessages[ email ] ) {
+			this.lessonGradeMessages[ email ] = {};
+		}
+		if ( isArray( this.lessonGradeMessages[ email ][ componentID ] ) ) {
+			this.lessonGradeMessages[ email ][ componentID ].push( message );
+		} else {
+			this.lessonGradeMessages[ email ][ componentID ] = [ message ];
+		}
+		axios.post( this.server+'/user_append_grade_message', {
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID,
+			email,
+			componentID,
+			message
+		}).then( ( res ) => {
+			this.addNotification({
+				title: 'Message saved',
 				message: res.data.message,
 				level: 'success',
 				position: 'tl'

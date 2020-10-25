@@ -24,6 +24,7 @@ import Switch from 'components/switch';
 import selectStyles from 'components/input/select/styles.js';
 import saveAs from 'utils/file-saver';
 import isHidden from 'utils/is-hidden';
+import renderTime from 'utils/render-time';
 import { SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
 import './student_responses.css';
 
@@ -335,7 +336,114 @@ class StudentResponses extends Component {
 	}
 
 	handleFeedbackSubmission = () => {
-		console.log( this.state.feedbackText );
+		const session = this.props.session;
+		session.appendGradeMessage( this.state.leftUser.email, this.state.feedbackID, this.state.feedbackText );
+		this.setState({
+			feedbackText: ''
+		});
+	}
+
+	renderFeedbackMessages = () => {
+		const session = this.props.session;
+		const lessonGradeMessages = session.lessonGradeMessages;
+		if (
+			lessonGradeMessages[ this.state.leftUser.email ] &&
+			lessonGradeMessages[ this.state.leftUser.email ][ this.state.feedbackID ]
+		) {
+			const messages = lessonGradeMessages[ this.state.leftUser.email ][ this.state.feedbackID ];
+			return (
+				<div className="student-responses-feedback-messages" >
+					{messages.map( ( msg, idx ) => {
+						return (
+							<div className="chat-message" key={idx} >
+								<img
+									className="chat-picture unselectable"
+									src={session.server + '/thumbnail/' + msg.picture}
+									alt={this.props.t( 'profile-pic' )}
+								/>
+								<div className="chat-message-right" >
+									<span className="chat-user">
+										{msg.user}
+									</span>
+									{' - '}
+									<span className="chat-time">{renderTime( msg.time )}</span>
+									<br />
+									<span className="chat-message-content" >
+										{msg.content}
+									</span>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			);
+		}
+		return <p>No feedback supplied yet.</p>;
+	}
+
+	renderOverlay() {
+		if ( !this.state.showFeedbackEditor || !this.state.leftUser ) {
+			return null;
+		}
+		return (
+			<Overlay target={this.firstCol} show={this.state.showFeedbackEditor} placement="left" >
+				{({ placement, arrowProps, show: _show, popper, ...props }) => (
+				<div
+					{...props}
+					style={{
+						backgroundColor: 'rgb(232, 232, 232)',
+						padding: '2px 10px',
+						color: 'darkslategrey',
+						borderRadius: 6,
+						border: '1px solid darkslategrey',
+						width: '32%',
+						marginTop: '80px',
+						boxShadow: '0px 0px 4px darkslategrey',
+						...props.style
+					}}
+				>
+					<div style={{ marginTop: 6, marginBottom: 6 }}>
+						{this.state.feedbackID}
+						<Button variant="secondary" size="sm" onClick={() => {
+							this.setState({
+								showFeedbackEditor: false,
+								feedbackID: null,
+								feedbackText: ''
+							});
+						}} style={{ float: 'right', marginBottom: 4 }} >
+							<i className="fas fa-times"></i>
+						</Button>
+					</div>
+					<hr />
+					{this.renderFeedbackMessages()}
+					<hr />
+					<FormControl
+						key={`${this.state.feedbackID}-textarea`}
+						as="textarea"
+						rows={5}
+						placeholder={`Enter feedback for answer from ${this.state.leftUser.name}`}
+						style={{
+							marginBottom: 6,
+							resize: 'none',
+							height: '20vh'
+						}}
+						onChange={( event ) => {
+							this.setState({
+								feedbackText: event.target.value
+							});
+						}}
+					/>
+					<Button
+						variant="primary" size="sm"
+						style={{ marginBottom: 6 }}
+						onClick={this.handleFeedbackSubmission}
+					>
+						Submit
+					</Button>
+				</div>
+				)}
+			</Overlay>
+		);
 	}
 
 	render() {
@@ -529,7 +637,10 @@ class StudentResponses extends Component {
 						onChange={( option ) => {
 							this.setState({
 								leftUser: option ? option.value : null,
-								grades: option ? this.assembleGrades( option ) : null
+								grades: option ? this.assembleGrades( option ) : null,
+								feedbackText: '',
+								feedbackID: null,
+								showFeedbackEditor: false
 							});
 						}}
 						isClearable
@@ -603,56 +714,7 @@ class StudentResponses extends Component {
 				<Button variant="primary" onClick={this.saveJSON} >{this.props.t( 'save-json' )}</Button>
 				<Button variant="primary" onClick={this.saveCSV} >{this.props.t( 'save-csv' )}</Button>
 			</ButtonGroup>
-			<Overlay target={this.firstCol} show={this.state.showFeedbackEditor} placement="left" >
-				{({ placement, arrowProps, show: _show, popper, ...props }) => (
-				<div
-					{...props}
-					style={{
-						backgroundColor: 'rgb(232, 232, 232)',
-						padding: '2px 10px',
-						color: 'darkslategrey',
-						borderRadius: 6,
-						border: '1px solid darkslategrey',
-						minWidth: '400px',
-						marginTop: '80px',
-						boxShadow: '0px 0px 4px darkslategrey',
-						...props.style
-					}}
-				>
-					<div style={{ marginTop: 6, marginBottom: 6 }}>
-						{this.state.feedbackID}
-						<Button variant="secondary" size="sm" onClick={() => {
-							this.setState({
-								showFeedbackEditor: false,
-								feedbackID: null,
-								feedbackText: ''
-							});
-						}} style={{ float: 'right', marginBottom: 4 }} >
-							<i className="fas fa-times"></i>
-						</Button>
-					</div>
-					<FormControl
-						key={`${this.state.feedbackID}-textarea`}
-						as="textarea"
-						rows={5}
-						placeholder={`Enter feedback for answer from ${leftUser.name}`}
-						style={{ marginBottom: 6 }}
-						onChange={( event ) => {
-							this.setState({
-								feedbackText: event.target.value
-							});
-						}}
-					/>
-					<Button
-						variant="primary" size="sm"
-						style={{ marginBottom: 6 }}
-						onClick={this.handleFeedbackSubmission}
-					>
-						Submit
-					</Button>
-				</div>
-				)}
-			</Overlay>
+			{this.renderOverlay()}
 		</div> );
 	}
 }
