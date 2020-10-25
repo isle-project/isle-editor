@@ -479,7 +479,7 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
-					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" >
+					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" style={{ marginLeft: 6 }} >
 						{session.lessonGrades[ email ]._sumPoints} / {session.metadata.grades.maxPoints}
 					</Badge> : null}
 				</components.SingleValue>
