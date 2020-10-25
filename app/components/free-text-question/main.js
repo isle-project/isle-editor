@@ -21,6 +21,7 @@ import HintButton from 'components/hint-button';
 import VoiceControl from 'components/internal/voice-control';
 import OverlayTrigger from 'components/overlay-trigger';
 import FeedbackButtons from 'components/feedback';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import getLastAction from 'utils/get-last-action';
 import beforeUnload from 'utils/before-unload';
@@ -357,6 +358,7 @@ class FreeTextQuestion extends Component {
 					id={this.id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
+				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 			</Panel>
 		);
 	}

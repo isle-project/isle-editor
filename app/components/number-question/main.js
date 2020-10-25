@@ -20,6 +20,7 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput, { createTooltip } from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import getLastAction from 'utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
@@ -375,6 +376,7 @@ class NumberQuestion extends Component {
 					id={this.id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
+				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 			</Panel>
 		);
 	}
