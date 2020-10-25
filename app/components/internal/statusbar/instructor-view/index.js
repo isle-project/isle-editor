@@ -166,7 +166,8 @@ class InstructorView extends Component {
 					ref={( instructorView ) => { this.instructorView = instructorView; }}
 					style={{
 						right: this.state.rightPos,
-						display: this.state.hidden ? 'none' : 'inherit'
+						display: this.state.hidden ? 'none' : 'inherit',
+						width: this.state.activeTab === 'student_responses' ? '65%' : '45%'
 					}}
 				>
 					<div className="instructor-view-top">
