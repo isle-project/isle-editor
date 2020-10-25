@@ -63,6 +63,7 @@ function createColorScale( length ) {
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {number} maxlength - maximum allowed number of characters
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked when students submits an answer
@@ -275,6 +276,7 @@ class MatchListQuestion extends Component {
 							question: this.props.question,
 							solution: this.props.elements
 						}}
+						points={this.props.points}
 					/>
 				</div>
 				{ this.props.feedback ? <FeedbackButtons
@@ -303,6 +305,7 @@ MatchListQuestion.defaultProps = {
 	submissionMsg: 'You have successfully submitted your answer.',
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	until: null,
+	points: 10,
 	className: '',
 	style: {},
 	onSubmit() {}
@@ -330,6 +333,7 @@ MatchListQuestion.propTypes = {
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func

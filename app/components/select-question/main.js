@@ -44,6 +44,7 @@ const uid = generateUID( 'select-question' );
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {string} failureMsg - message to be displayed when student selects a wrong answer
 * @property {string} successMsg - message to be displayed when student selects the correct answer
+* @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the submit action
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -135,6 +136,7 @@ class SelectQuestion extends Component {
 				solution: this.props.solution
 			}}
 			inline={this.props.inline}
+			points={this.props.points}
 		/>;
 		if ( this.props.inline ) {
 			return (
@@ -225,6 +227,7 @@ SelectQuestion.defaultProps = {
 	provideFeedback: true,
 	failureMsg: 'Not quite, try again!',
 	successMsg: 'That\'s the correct answer!',
+	points: 10,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -248,6 +251,7 @@ SelectQuestion.propTypes = {
 	provideFeedback: PropTypes.bool,
 	failureMsg: PropTypes.string,
 	successMsg: PropTypes.string,
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

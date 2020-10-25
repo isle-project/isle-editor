@@ -41,6 +41,7 @@ const debug = logger( 'isle:order-question' );
 * @property {string} failureMsg - message to be displayed when student submits a wrong answer
 * @property {string} successMsg - message to be displayed when student submits the correct answer
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
@@ -196,6 +197,7 @@ class OrderQuestion extends Component {
 							solution: this.props.options
 						}}
 						info="ORDER_QUESTION_SUBMISSION"
+						points={this.props.points}
 					/>
 					{ this.props.feedback ? <FeedbackButtons
 						id={this.id+'_feedback'}
@@ -220,6 +222,7 @@ OrderQuestion.defaultProps = {
 	successMsg: null,
 	disableSubmitNotification: false,
 	until: null,
+	points: 10,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -242,6 +245,7 @@ OrderQuestion.propTypes = {
 	successMsg: PropTypes.string,
 	disableSubmitNotification: PropTypes.bool,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

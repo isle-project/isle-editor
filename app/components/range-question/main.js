@@ -53,6 +53,7 @@ const uid = generateUID( 'range-question' );
 * @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
 * @property {strings} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
@@ -284,6 +285,7 @@ class RangeQuestion extends Component {
 							}}
 							info={RANGE_QUESTION_SUBMIT_ANSWER}
 							style={{ marginLeft: '3px', marginRight: '3px' }}
+							points={this.props.points}
 						/>
 						{ nHints > 0 ?
 							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
@@ -325,6 +327,7 @@ RangeQuestion.defaultProps = {
 	allowMultipleAnswers: false,
 	voiceID: null,
 	until: null,
+	points: 10,
 	style: {},
 	onChangeUpper() {},
 	onChangeLower() {},
@@ -350,6 +353,7 @@ RangeQuestion.propTypes = {
 	allowMultipleAnswers: PropTypes.bool,
 	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onChangeLower: PropTypes.func,
 	onChangeUpper: PropTypes.func,

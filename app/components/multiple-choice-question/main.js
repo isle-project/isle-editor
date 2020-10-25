@@ -67,6 +67,7 @@ const hasExplanations = ( answers ) => {
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
 * @property {strings} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type "Choose all that apply")
 * @property {Function} onSubmit - callback invoked after an answer is submitted
@@ -537,6 +538,7 @@ class MultipleChoiceQuestion extends Component {
 								solution: this.props.solution
 							}}
 							info={MULTIPLE_CHOICE_SUBMISSION}
+							points={this.props.points}
 						/>
 						{ this.props.feedback ? <FeedbackButtons
 							id={this.id+'_feedback'}
@@ -564,6 +566,7 @@ MultipleChoiceQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	voiceID: null,
 	until: null,
+	points: 10,
 	style: {},
 	onChange(){},
 	onSubmit(){}
@@ -591,6 +594,7 @@ MultipleChoiceQuestion.propTypes = {
 	displaySolution: PropTypes.bool,
 	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func

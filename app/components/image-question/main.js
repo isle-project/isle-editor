@@ -46,6 +46,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {string} solution - image URL of model solution
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {boolean} disableSubmitNotification - controls whether a notification should be displayed after submitting an image
+* @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
@@ -321,6 +322,7 @@ class ImageQuestion extends Component {
 							question: this.props.question,
 							type: 'image'
 						}}
+						points={this.props.points}
 					/>
 					<div className="image-question-toolbar">
 						{ nHints > 0 ?
@@ -364,6 +366,7 @@ ImageQuestion.defaultProps = {
 	sketchpad: null,
 	solution: null,
 	until: null,
+	points: 10,
 	style: {},
 	onSubmit() {}
 };
@@ -384,6 +387,7 @@ ImageQuestion.propTypes = {
 	sketchpad: PropTypes.object,
 	solution: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
 };

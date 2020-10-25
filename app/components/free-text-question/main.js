@@ -59,6 +59,7 @@ const debug = logger( 'isle:free-text-question' );
 * @property {number} maxlength - maximum allowed number of characters
 * @property {string} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked every time the text area value changes; receives the current text as its sole argument
@@ -323,6 +324,7 @@ class FreeTextQuestion extends Component {
 						solution: this.props.solution
 					}}
 					style={{ float: 'left' }}
+					points={this.props.points}
 				/>
 				<ButtonToolbar className="free-text-question-toolbar" >
 					{ nHints > 0 ?
@@ -381,6 +383,7 @@ FreeTextQuestion.defaultProps = {
 	maxlength: 2500,
 	voiceID: null,
 	until: null,
+	points: 10,
 	className: '',
 	style: {},
 	onChange() {},
@@ -413,6 +416,7 @@ FreeTextQuestion.propTypes = {
 	maxlength: PropTypes.number,
 	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,

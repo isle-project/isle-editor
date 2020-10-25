@@ -93,6 +93,8 @@ function formatArraySolution( solution, t ) {
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading* @property {number} points - maximum number of points awarded in grading
+
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
@@ -348,6 +350,7 @@ class NumberQuestion extends Component {
 							solution: this.props.solution
 						}} info="NUMBER_QUESTION_SUBMISSION"
 						style={{ marginLeft: 3, marginRight: 3 }}
+						points={this.props.points}
 					/>
 					{ nHints > 0 ?
 						<HintButton
@@ -395,6 +398,7 @@ NumberQuestion.defaultProps = {
 	disableSubmitNotification: false,
 	chat: false,
 	until: null,
+	points: 10,
 	style: {},
 	onChange() {},
 	onSubmit() {}
@@ -423,6 +427,7 @@ NumberQuestion.propTypes = {
 	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
 	until: PropTypes.instanceOf( Date ),
+	points: PropTypes.number,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
