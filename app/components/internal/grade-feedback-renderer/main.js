@@ -7,6 +7,7 @@ import SessionContext from 'session/context.js';
 import Badge from 'react-bootstrap/Badge';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'components/tooltip';
 import renderTime from 'utils/render-time';
 import './grade_feedback_renderer.css';
 import './load_translations.js';
@@ -33,20 +34,20 @@ class FeedbackRenderer extends Component {
 			<div className="grade-feedback-renderer-messages" >
 				{gradeMessages[ this.props.for ].map( ( msg, idx ) => {
 					return (
-						<div className="chat-message" key={idx} >
+						<div className="grade-feedback-message" key={idx} >
 							<img
-								className="chat-picture unselectable"
+								className="grade-feedback-picture unselectable"
 								src={session.server + '/thumbnail/' + msg.picture}
 								alt={this.props.t( 'profile-pic' )}
 							/>
-							<div className="chat-message-right" >
-								<span className="chat-user">
+							<div className="grade-feedback-message-right" >
+								<span className="grade-feedback-user">
 									{msg.user}
 								</span>
 								{' - '}
-								<span className="chat-time">{renderTime( msg.time )}</span>
+								<span className="grade-feedback-time">{renderTime( msg.time )}</span>
 								<br />
-								<span className="chat-message-content" >
+								<span className="grade-feedback-message-content" >
 									{msg.content}
 								</span>
 							</div>
@@ -62,7 +63,7 @@ class FeedbackRenderer extends Component {
 			return null;
 		}
 		return (
-			<Overlay target={this.messagesButton} show={this.state.showMessages} placement="left" >
+			<Overlay target={this.messagesButton} show={this.state.showMessages} placement="right" >
 				{({ placement, arrowProps, show: _show, popper, ...props }) => (
 					<div
 						{...props}
@@ -111,23 +112,28 @@ class FeedbackRenderer extends Component {
 		if ( !grades || !grades[ this.props.for ] ) {
 			return null;
 		}
+		const gradeMessages = session.user.lessonGradeMessages[ session.lessonID ];
+		const hasMessages = gradeMessages && gradeMessages[ this.props.for ];
 		return (
 			<Fragment>
 				<Badge variant="success" style={{ fontSize: '1em' }} >
-					Your points for the question: {grades[ this.props.for ]} / {this.props.points}
+					{this.props.t('your-points')}: {grades[ this.props.for ]} / {this.props.points}
 				</Badge>
-				<Button
-					ref={( button ) => {
-						this.messagesButton = button;
-					}}
-					onClick={this.toggleMessages}
-					size="small"
-					variant="light"
-					style={{ marginLeft: 12 }}
-					className="grade-feedback-button"
-				>
-					<i className="fas fa-envelope-open" ></i>
-				</Button>
+				<Tooltip tooltip={this.props.t('display-instructor-feedback')} >
+					<Button
+						ref={( button ) => {
+							this.messagesButton = button;
+						}}
+						onClick={this.toggleMessages}
+						size="small"
+						variant="light"
+						style={{ marginLeft: 12 }}
+						className="grade-feedback-button"
+						disabled={!hasMessages}
+					>
+						<i className="fas fa-envelope-open" ></i>
+					</Button>
+				</Tooltip>
 				{this.renderOverlay()}
 			</Fragment>
 		);

@@ -1,10 +1,14 @@
 {
 	"DE": {
-
+		"display-instructor-feedback": "Klicke, um das Instruktor-Feedback anzuzeigen oder zu verbergen",
+		"your-points": "Deine Punkte für die Frage"
 	},
 	"EN": {
-
+		"display-instructor-feedback": "Click to display or hide instructor feedback",
+		"your-points": "Your points for the question"
 	},
 	"ES": {
+		"display-instructor-feedback": "Haga clic para mostrar u ocultar la información del instructor",
+		"your-points": "Sus puntos para la pregunta"
 	}
 }

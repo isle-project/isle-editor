@@ -42,3 +42,34 @@
 	max-height: calc(45vh - 80px);
 	overflow-y: auto;
 }
+
+.feedback-message {
+	white-space: pre-wrap;
+	font-family: Open Sans;
+	display: flex;
+}
+
+.feedback-message-right {
+	flex: 1 1 0;
+	padding-left: 8px;
+}
+
+.feedback-message-right img {
+	width: 50%;
+	height: auto;
+}
+
+.feedback-message-content {
+	word-wrap: break-word;
+}
+
+.feedback-picture {
+	width: 32px;
+	height: 32px;
+	border-radius: 3px;
+}
+
+.feedback-time {
+	font-size: 0.8em;
+	color: dimgray;
+}

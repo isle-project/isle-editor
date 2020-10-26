@@ -354,20 +354,20 @@ class StudentResponses extends Component {
 				<div className="student-responses-feedback-messages" >
 					{messages.map( ( msg, idx ) => {
 						return (
-							<div className="chat-message" key={idx} >
+							<div className="feedback-message" key={idx} >
 								<img
-									className="chat-picture unselectable"
+									className="feedback-picture unselectable"
 									src={session.server + '/thumbnail/' + msg.picture}
 									alt={this.props.t( 'profile-pic' )}
 								/>
-								<div className="chat-message-right" >
-									<span className="chat-user">
+								<div className="feedback-message-right" >
+									<span className="feedback-user">
 										{msg.user}
 									</span>
 									{' - '}
-									<span className="chat-time">{renderTime( msg.time )}</span>
+									<span className="feedback-time">{renderTime( msg.time )}</span>
 									<br />
-									<span className="chat-message-content" >
+									<span className="feedback-message-content" >
 										{msg.content}
 									</span>
 								</div>
@@ -377,7 +377,7 @@ class StudentResponses extends Component {
 				</div>
 			);
 		}
-		return <p>No feedback supplied yet.</p>;
+		return <p>{this.props.t('no-feedback-yet')}</p>;
 	}
 
 	renderOverlay() {
@@ -420,7 +420,7 @@ class StudentResponses extends Component {
 						key={`${this.state.feedbackID}-textarea`}
 						as="textarea"
 						rows={5}
-						placeholder={`Enter feedback for answer from ${this.state.leftUser.name}`}
+						placeholder={this.props.t('enter-feedback', { name: this.state.leftUser.name })}
 						style={{
 							marginBottom: 6,
 							resize: 'none',
@@ -437,7 +437,7 @@ class StudentResponses extends Component {
 						style={{ marginBottom: 6 }}
 						onClick={this.handleFeedbackSubmission}
 					>
-						Submit
+						{this.props.t('submit')}
 					</Button>
 				</div>
 				)}

@@ -17,3 +17,34 @@
 	border: solid 1px #ca5800;
 	fill: #ca5800;
 }
+
+.grade-feedback-message {
+	white-space: pre-wrap;
+	font-family: Open Sans;
+	display: flex;
+}
+
+.grade-feedback-message-right {
+	flex: 1 1 0;
+	padding-left: 8px;
+}
+
+.grade-feedback-message-right img {
+	width: 50%;
+	height: auto;
+}
+
+.grade-feedback-message-content {
+	word-wrap: break-word;
+}
+
+.grade-feedback-picture {
+	width: 32px;
+	height: 32px;
+	border-radius: 3px;
+}
+
+.grade-feedback-time {
+	font-size: 0.8em;
+	color: dimgray;
+}
