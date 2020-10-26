@@ -494,7 +494,7 @@ class StudentResponses extends Component {
 							{ leftUser ? <button className="student-responses-note-button" onClick={this.handleFeedbackFactory( id )} >
 								<i className="student-responses-note-icon far fa-sticky-note"></i>
 								<Badge className="student-responses-note-badge" pill variant="secondary" >
-									{( lessonGradeMessages[ leftUser.email ][ id ] || [] ).length}
+									{lessonGradeMessages[ leftUser.email ] ? ( lessonGradeMessages[ leftUser.email ][ id ] || [] ).length : 0}
 								</Badge>
 							</button> : null }
 						</Col>
