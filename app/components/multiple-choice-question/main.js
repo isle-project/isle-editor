@@ -17,6 +17,7 @@ import ChatButton from 'components/chat-button';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/internal/voice-control';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import toNumber from 'utils/to-number';
 import generateUID from 'utils/uid';
@@ -544,6 +545,7 @@ class MultipleChoiceQuestion extends Component {
 							id={this.id+'_feedback'}
 						/> : null }
 					</div> : null }
+					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 				</Card.Body>
 			</Card>
 		);

@@ -15,6 +15,7 @@ import HintButton from 'components/hint-button';
 import ResponseVisualizer from 'components/response-visualizer';
 import ChatButton from 'components/chat-button';
 import FeedbackButtons from 'components/feedback';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import generateUID from 'utils/uid';
 import SessionContext from 'session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from 'constants/actions.js';
@@ -208,6 +209,7 @@ class SelectQuestion extends Component {
 				{ this.props.feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
 				/> : null }
+				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 			</Card>
 		);
 	}

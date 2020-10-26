@@ -22,6 +22,7 @@ import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
 import VoiceControl from 'components/internal/voice-control';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
@@ -304,6 +305,7 @@ class RangeQuestion extends Component {
 						id={this.id+'_feedback'}
 						style={{ marginRight: 5, marginTop: -5 }}
 					/> : null }
+					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 				</Card.Body>
 			</Card>
 		);

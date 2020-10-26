@@ -16,6 +16,7 @@ import Tooltip from 'components/tooltip';
 import ResponseVisualizer from 'components/response-visualizer';
 import FeedbackButtons from 'components/feedback';
 import Text from 'components/text';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from 'constants/actions.js';
 import OptionsList from './options_list.js';
@@ -283,6 +284,7 @@ class MatchListQuestion extends Component {
 					style={{ marginTop: '5px', marginRight: '8px' }}
 					id={this.id+'_feedback'}
 				/> : null }
+				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 			</div>
 		);
 	}

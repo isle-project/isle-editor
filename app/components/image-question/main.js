@@ -18,6 +18,7 @@ import HintButton from 'components/hint-button';
 import ChatButton from 'components/chat-button';
 import Sketchpad from 'components/sketchpad';
 import FeedbackButtons from 'components/feedback';
+import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import blobToBase64 from 'utils/blob-to-base64';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
@@ -346,6 +347,7 @@ class ImageQuestion extends Component {
 								<ChatButton for={this.id} /> : null
 						}
 					</div>
+					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
 				</Card.Body>
 			</Card>
 		);
