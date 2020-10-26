@@ -398,6 +398,7 @@ class StudentResponses extends Component {
 						width: '32%',
 						marginTop: '80px',
 						boxShadow: '0px 0px 4px darkslategrey',
+						zIndex: 1006,
 						...props.style
 					}}
 				>
