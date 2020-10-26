@@ -18,7 +18,7 @@ import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import pixelsToNumber from 'utils/pixels-to-number';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { MEMBER_ACTION, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
 import Engagement from './engagement';
 import Ticketing from './ticketing';
@@ -86,7 +86,7 @@ class Toolbar extends Component {
 					showToolbar: !value
 				});
 			}
-			if ( type === RECEIVED_USERS || type === USER_JOINED ) {
+			if ( type === RECEIVED_USERS || type === USER_JOINED || type === RECEIVED_LESSON_INFO ) {
 				this.forceUpdate();
 			}
 			else if ( type === MEMBER_ACTION && value.id === 'engagement' ) {
@@ -346,7 +346,7 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Gate user >
+					<Gate user disabled={!session.enableTicketing} >
 						<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
 							<Button
 								variant={this.state.ticketing ? 'success' : 'light'}
