@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.71.0](https://github.com/isle-project/isle-editor/releases/tag/v0.71.0) (2020-10-26)
+
+**Fixed bugs:**
+
+- ISLE Crashing when Test - Two Sample Proportion Test [\#1402](https://github.com/isle-project/isle-editor/issues/1402)
+
 ## [v0.70.0](https://github.com/isle-project/isle-editor/releases/tag/v0.70.0) (2020-10-16)
 
 This release exposes the history action log as a new tab of the data explorer:
