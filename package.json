@@ -161,7 +161,7 @@
     "file-loader": "^6.1.1",
     "form-data": "^3.0.0",
     "history": "4.10.1",
-    "html-to-image": "^0.1.2",
+    "html-to-image": "^1.1.1",
     "html-to-pdfmake": "^2.1.0",
     "html-webpack-plugin": "4.5.0",
     "i18next": "^19.8.2",
