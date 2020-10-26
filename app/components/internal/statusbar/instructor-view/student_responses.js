@@ -436,6 +436,7 @@ class StudentResponses extends Component {
 						variant="primary" size="sm"
 						style={{ marginBottom: 6 }}
 						onClick={this.handleFeedbackSubmission}
+						disabled={this.state.feedbackText.length === 0}
 					>
 						{this.props.t('submit')}
 					</Button>
@@ -451,6 +452,7 @@ class StudentResponses extends Component {
 			return null;
 		}
 		const session = this.props.session;
+		const lessonGradeMessages = session.lessonGradeMessages;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
 		const users = this.assembleUserList();
@@ -490,7 +492,10 @@ class StudentResponses extends Component {
 						}} >
 							<div style={{ width: '80%' }}>{id}</div>
 							{ leftUser ? <button className="student-responses-note-button" onClick={this.handleFeedbackFactory( id )} >
-								<i className="far fa-sticky-note"></i>
+								<i className="student-responses-note-icon far fa-sticky-note"></i>
+								<Badge className="student-responses-note-badge" pill variant="secondary" >
+									{( lessonGradeMessages[ leftUser.email ][ id ] || [] ).length}
+								</Badge>
 							</button> : null }
 						</Col>
 					</Tooltip>

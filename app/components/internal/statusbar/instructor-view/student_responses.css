@@ -73,3 +73,13 @@
 	font-size: 0.8em;
 	color: dimgray;
 }
+
+.student-responses-note-icon {
+	margin-right: 26px;
+}
+
+.student-responses-note-badge {
+	top: 4px;
+	right: 2px;
+	position: absolute;
+}
