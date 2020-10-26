@@ -2,7 +2,7 @@
 
 ## [v0.71.2](https://github.com/isle-project/isle-editor/releases/tag/v0.71.2) (2020-10-26)
 
-This release adds a new error reporting system to the toolbar in case, which will be available in case ticketing is enabled for the respective course on the ISLE dashboard. It also augments the student responses tab on the instructor panel with grading capabilities.
+This release adds a new error reporting system to the toolbar, which will be available in case ticketing is enabled for the respective course on the ISLE dashboard. It also augments the student responses tab on the instructor panel with grading capabilities.
 
 ## [v0.71.1](https://github.com/isle-project/isle-editor/releases/tag/v0.71.1) (2020-10-26)
 
