@@ -400,7 +400,6 @@ class SampleCLT extends Component {
 						]}
 					}
 					removeButtons
-					toggleFullscreen={false}
 				/> :
 				<p>Please draw at least two samples.</p>
 			}
@@ -431,7 +430,6 @@ class SampleCLT extends Component {
 						{ x: this.state.values, type: 'histogram' }
 					]}
 					layout={{ width: 400, height: 300 }}
-					toggleFullscreen={false}
 					removeButtons
 				/>
 				<p>
