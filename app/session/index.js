@@ -232,6 +232,7 @@ class Session {
 		// IDs in the database:
 		this.lessonID = null;
 		this.namespaceID = null;
+		this.enableTicketing = false;
 
 		// Lesson metadata:
 		this.metadata = {
@@ -1665,6 +1666,9 @@ class Session {
 				const data = response.data;
 				this.lessonID = data.lessonID;
 				this.namespaceID = data.namespaceID;
+				if ( data.enableTicketing ) {
+					this.enableTicketing = data.enableTicketing;
+				}
 				PRIVATE_VARS[ 'active' ] = ( data.active === void 0 ) ? true : data.active;
 				if ( data.time ) {
 					PRIVATE_VARS[ 'startTime' ] = data.time;
