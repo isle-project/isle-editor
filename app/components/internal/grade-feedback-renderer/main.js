@@ -108,7 +108,7 @@ class FeedbackRenderer extends Component {
 			return null;
 		}
 		const grades = session.user.lessonGrades[ session.lessonID ];
-		if ( !grades[ this.props.for ] ) {
+		if ( !grades || !grades[ this.props.for ] ) {
 			return null;
 		}
 		return (
