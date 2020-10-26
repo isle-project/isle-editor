@@ -35,6 +35,7 @@ An ISLE component for questions where answers by students should be supplied in 
 * __maxlength__ | `number`: maximum allowed number of characters. Default: `2500`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
+* __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.

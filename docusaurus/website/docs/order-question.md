@@ -35,6 +35,7 @@ An order question component that asks student to bring a collection of elements 
 * __successMsg__ | `string`: message to be displayed when student submits the correct answer. Default: `none`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
+* __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order. Default: `onSubmit() {}`.

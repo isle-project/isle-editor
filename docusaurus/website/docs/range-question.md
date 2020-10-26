@@ -30,6 +30,7 @@ A range question component that asks students to supply a lower and upper end po
 * __allowMultipleAnswers__ | `boolean`: controls whether one can submit multiple answers. Default: `false`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
+* __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChangeLower__ | `function`: callback triggered after the lower bound is changed by the user. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback triggered after the upper bound is changed by the user. Default: `onChangeUpper() {}`.

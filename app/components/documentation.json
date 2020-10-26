@@ -1305,6 +1305,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",
@@ -1861,6 +1867,12 @@
         "type": "Date",
         "description": "time until students should be allowed to submit answers",
         "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
       },
       {
         "name": "style",
@@ -2890,6 +2902,13 @@
       {
         "name": "populationProbabilities",
         "type": "boolean",
+        "description": "whether to display equations for calculation of population probabilities",
+        "defaultValue": false
+      },
+      {
+        "name": "quantiles",
+        "type": "boolean",
+        "description": "whether to show tool for calculation of any quantiles",
         "defaultValue": false
       },
       {
@@ -3794,6 +3813,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name",
@@ -4541,6 +4566,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4730,6 +4761,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading* @property {number} points - maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4859,6 +4896,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -4898,6 +4941,12 @@
         "type": "string",
         "description": "displayed title of the pages container",
         "defaultValue": ""
+      },
+      {
+        "name": "paginationBelow",
+        "type": "boolean",
+        "description": "controls whether to also display the pagination elements below the container and not only on top of",
+        "defaultValue": false
       },
       {
         "name": "size",
@@ -6299,6 +6348,12 @@
         "defaultValue": null
       },
       {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
         "name": "style",
         "type": "object",
         "description": "CSS inline styles",
@@ -6763,6 +6818,12 @@
         "type": "string",
         "description": "message to be displayed when student selects the correct answer",
         "defaultValue": "That's the correct answer!"
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
       },
       {
         "name": "style",
