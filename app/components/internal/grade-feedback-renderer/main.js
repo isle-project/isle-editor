@@ -104,6 +104,9 @@ class FeedbackRenderer extends Component {
 
 	render() {
 		const session = this.context;
+		if ( !session.user || !session.user.lessonGrades ) {
+			return null;
+		}
 		const grades = session.user.lessonGrades[ session.lessonID ];
 		if ( !grades[ this.props.for ] ) {
 			return null;
