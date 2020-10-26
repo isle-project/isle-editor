@@ -28,6 +28,7 @@ import Plotly from 'components/plotly';
 import TeX from 'components/tex';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
+import quantile from 'utils/statistic/quantile';
 import iqr from 'utils/statistic/iqr';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
@@ -122,7 +123,8 @@ function renderHistogram( values ) {
 * @property {Array<string>} variables - names of variables that can be sampled from
 * @property {boolean} hidePopulationStdev - hide display of population standard deviation
 * @property {(Array<number>|number)} samples - array of numbers or a single numbers denoting the sample sizes that can be drawn
-* @property {boolean} populationProbabilities- whether to display equations for calculation of population probabilities
+* @property {boolean} populationProbabilities - whether to display equations for calculation of population probabilities
+* @property {boolean} quantiles - whether to show tool for calculation of any quantiles
 */
 class SampleCLT extends Component {
 	constructor( props ) {
@@ -141,7 +143,11 @@ class SampleCLT extends Component {
 			leftProb: 0,
 			rightProb: 1,
 			cutoffPop: 0,
-			cutoff: 0
+			cutoff: 0,
+			percentile: null,
+			samplePercentile: null,
+			p: 0.5,
+			phat: 0.5
 		};
 	}
 
@@ -288,7 +294,8 @@ class SampleCLT extends Component {
 			xbars,
 			enlarged,
 			avg_xbars: mean( xbars ),
-			stdev_xbars: stdev( xbars )
+			stdev_xbars: stdev( xbars ),
+			samplePercentile: quantile( xbars, this.state.phat )
 		});
 	}
 
@@ -328,7 +335,23 @@ class SampleCLT extends Component {
 			plots: [],
 			trueMean,
 			trueStdev,
-			categories
+			categories,
+			percentile: quantile( values, this.state.p ),
+			samplePercentile: null
+		});
+	}
+
+	onSamplePercentileChange = ( phat ) => {
+		this.setState({
+			samplePercentile: quantile( this.state.xbars, phat ),
+			phat
+		});
+	}
+
+	onPercentileChange = ( p ) => {
+		this.setState({
+			percentile: quantile( this.state.values, p ),
+			p
 		});
 	}
 
@@ -351,7 +374,7 @@ class SampleCLT extends Component {
 
 	onXChange = ( value ) => {
 		let leftProb = 0;
-		const values = this.props.data[ this.state.variable ].filter( x => x !== null && x !== '' );
+		const values = this.state.values;
 		for ( let i = 0; i < values.length; i++ ) {
 			if ( values[ i ] < value ) {
 				leftProb += 1;
@@ -519,19 +542,27 @@ class SampleCLT extends Component {
 									</Panel>
 								</div>
 							}
-							{this.state.type === 'numeric' ? <Card>
+							{this.state.type === 'numeric' ? <Card body >
 								<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={this.onXChange} />
 								<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 							</Card> : null}
+							{this.props.quantiles && this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body style={{ marginTop: 6 }} >
+								<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.p} legend={<span>Calculate percentiles for <TeX raw="X" /></span>} onChange={this.onPercentileChange} />
+								<TeX raw={roundn( this.state.percentile, -3 )} />
+							</Card> : null }
 						</Col>
 						<Col md={6}>
 							<div>
 								{this.renderMeanHistogram()}
-								{this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card>
+								{this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body>
 									<NumberInput step="any" legend={<span>Estimate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
 									<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
+								</Card> : null }
+								{this.props.quantiles && this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body style={{ marginTop: 6 }} >
+									<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.phat} legend={<span>Calculate percentiles for <TeX raw="\bar X" /></span>} onChange={this.onSamplePercentileChange} />
+									{ this.state.samplePercentile ? <TeX raw={roundn( this.state.samplePercentile, -3 )} /> : null }
 								</Card> : null }
 							</div>
 						</Col>
@@ -553,13 +584,15 @@ SampleCLT.propTypes = {
 	hidePopulationStdev: PropTypes.bool,
 	samples: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.number ]),
 	populationProbabilities: PropTypes.bool,
+	quantiles: PropTypes.bool,
 	variables: PropTypes.array.isRequired
 };
 
 SampleCLT.defaultProps = {
 	hidePopulationStdev: false,
 	samples: 25,
-	populationProbabilities: false
+	populationProbabilities: false,
+	quantiles: false
 };
 
 
