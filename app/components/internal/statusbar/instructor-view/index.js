@@ -124,11 +124,12 @@ class InstructorView extends Component {
 						t={this.props.t}
 					/>
 				</Tab> : null }
-				{ hasResponseVisualizers ?<Tab eventKey="student_responses" title={this.props.t( 'responses' )} >
+				{ hasResponseVisualizers ? <Tab eventKey="student_responses" title={this.props.t( 'responses' )} >
 					<StudentResponses
 						selectedCohort={session.selectedCohort}
 						session={session}
 						t={this.props.t}
+						activeTab={this.state.activeTab}
 					/>
 				</Tab> : null }
 					<Tab eventKey="active_users" title={<span>{this.props.t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>

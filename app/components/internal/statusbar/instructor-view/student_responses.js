@@ -319,8 +319,7 @@ class StudentResponses extends Component {
 	}
 
 	handleFeedbackFactory = ( id ) => {
-		return ( event ) => {
-			event.stopPropagation();
+		return () => {
 			let showFeedbackEditor;
 			if ( id === this.state.feedbackID ) {
 				showFeedbackEditor = !this.state.showFeedbackEditor;
@@ -448,6 +447,9 @@ class StudentResponses extends Component {
 
 	render() {
 		debug( 'Render student responses...' );
+		if ( this.props.activeTab !== 'student_responses' ) {
+			return null;
+		}
 		const session = this.props.session;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
