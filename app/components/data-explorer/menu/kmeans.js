@@ -54,10 +54,13 @@ class KMeansMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, originalQuantitative } = this.props;
+		const { quantitative, originalQuantitative, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('kmeans Clustering')}<QuestionButton title={this.props.t('kmeans Clustering')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('kmeans Clustering')}
+					<QuestionButton title={t('kmeans Clustering')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>
@@ -68,12 +71,12 @@ class KMeansMenu extends Component {
 					closeMenuOnSelect={false}
 				/>
 				<NumberInput
-					legend="Number of clusters"
+					legend={t('number-of-clusters')}
 					min={1}
 					defaultValue={3}
 				/>
 				<CheckboxInput
-					legend="Attach clusters to table?"
+					legend={t('attach-clusters-table')}
 					defaultValue={false}
 				/>
 				<SelectInput

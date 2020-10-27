@@ -51,16 +51,16 @@ class FrequencyTableMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Frequency Table')}
-					<QuestionButton title={this.props.t('Frequency Table')} content={DESCRIPTION} />
+					{t('Frequency Table')}
+					<QuestionButton title={t('Frequency Table')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={variables}
 						onChange={( value )=>{
@@ -70,7 +70,7 @@ class FrequencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('group-by')}:`}
+						legend={`${t('group-by')}:`}
 						options={groupingVariables}
 						clearable={true}
 						menuPlacement="top"
@@ -126,7 +126,7 @@ class FrequencyTableMenu extends Component {
 						onClick={this.generateFrequencyTable.bind( this )}
 						disabled={!this.state.calculateCounts && !this.state.calculateRelative}
 					>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

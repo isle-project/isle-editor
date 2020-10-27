@@ -62,12 +62,12 @@ class MultipleLinearRegressionMenu extends Component {
 				onGenerate={this.compute}
 			>
 				<SelectInput
-					legend="Outcome (Y):"
+					legend={this.props.t('outcome-y')}
 					options={quantitative}
 					defaultValue={quantitative[ 0 ]}
 				/>
 				<SelectInput
-					legend="Predictors (X):" multi
+					legend={this.props.t('predictors-x')} multi
 					options={unique( quantitative.concat( categorical ) )}
 					defaultValue={quantitative[ 1 ]}
 					closeMenuOnSelect={false}

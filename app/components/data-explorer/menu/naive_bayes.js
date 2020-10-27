@@ -71,35 +71,36 @@ class NaiveBayesMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative } = this.props;
+		const { categorical, quantitative, t } = this.props;
 		const { x, y } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					{this.props.t('Naive Bayes')}<QuestionButton title={this.props.t('Naive Bayes')} content={DESCRIPTION} />
+					{t('Naive Bayes')}
+					<QuestionButton title={t('Naive Bayes')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Outcome (Y):"
+						legend={t('outcome-y')}
 						options={categorical}
 						defaultValue={y}
 						onChange={( y ) => this.setState({ y })}
 					/>
 					<SelectInput
-						legend="Predictors (X):" multi
+						legend={t('predictors-x')} multi
 						options={uniq( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
 					/>
 					<CheckboxInput
-						legend={this.props.t('omit-missing')}
+						legend={t('omit-missing')}
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{this.props.t('calculate')}
+					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute} >
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

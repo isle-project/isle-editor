@@ -112,13 +112,13 @@ class DecisionTreeMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Outcome (Y):"
+						legend={this.props.t('outcome-y')}
 						options={type === 'Classification' ? categorical : quantitative}
 						defaultValue={y}
 						onChange={( y ) => this.setState({ y })}
 					/>
 					<SelectInput
-						legend="Predictors (X):" multi
+						legend={this.props.t('predictors-x')} multi
 						options={unique( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}

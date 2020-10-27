@@ -36,8 +36,8 @@ class KruskalMenu extends Component {
 			<Dashboard
 				autoStart={false}
 				title={<span>
-					Kruskal-Wallis Test
-					<QuestionButton title="Kruskal-Wallis Test" content={DESCRIPTION} />
+					{this.props.t('Kruskal-Wallis Test')}
+					<QuestionButton title={this.props.t('Kruskal-Wallis Test')} content={DESCRIPTION} />
 				</span>}
 				label={this.props.t('calculate')}
 				onGenerate={this.calculateTest}

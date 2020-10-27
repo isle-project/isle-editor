@@ -101,7 +101,7 @@ class LogisticRegressionMenu extends Component {
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								legend="Outcome (Y):"
+								legend={this.props.t('outcome-y')}
 								options={categorical}
 								defaultValue={y}
 								onChange={( y ) => {
@@ -128,7 +128,7 @@ class LogisticRegressionMenu extends Component {
 						</Col>
 					</Row>
 					<SelectInput
-						legend="Predictors (X):" multi
+						legend={this.props.t('predictors-x')} multi
 						options={uniq( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}

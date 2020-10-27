@@ -77,7 +77,7 @@ class MosaicPlotMenu extends Component {
 				style={{ minHeight: 380 }}
 			>
 				<SelectInput
-					legend="Variables"
+					legend={this.props.t('variables')}
 					options={variables}
 					multi
 				/>

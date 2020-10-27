@@ -61,7 +61,7 @@ class ScatterplotMatrixMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Variables"
+						legend={this.props.t('variables')}
 						options={this.props.variables}
 						multi
 						onChange={( vars ) => {
