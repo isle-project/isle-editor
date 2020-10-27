@@ -50,8 +50,8 @@ class HeatMapMenu extends Component {
 		};
 		const onShare = () => {
 			this.props.session.addNotification({
-				title: 'Plot shared.',
-				message: 'You have successfully shared your plot.',
+				title: this.props.t('plot-shared'),
+				message: this.props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
@@ -63,12 +63,12 @@ class HeatMapMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Heat Map')}
-					<QuestionButton title={this.props.t('Heat Map')} content={DESCRIPTION} />
+					{t('Heat Map')}
+					<QuestionButton title={t('Heat Map')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>
@@ -97,7 +97,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend={`${this.props.t('group-by')}:`}
+								legend={`${t('group-by')}:`}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{
@@ -186,7 +186,7 @@ class HeatMapMenu extends Component {
 						</Col>
 						<Col>
 							<SliderInput
-								legend="Smoothing Parameter"
+								legend={t('smoothing-parameter')}
 								disabled={!contains(this.state.regressionMethod, 'smooth')}
 								min={0.01}
 								max={1}
@@ -201,7 +201,7 @@ class HeatMapMenu extends Component {
 						</Col>
 					</Row>
 					<Button variant="primary" block onClick={this.generateHeatmap.bind( this )}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

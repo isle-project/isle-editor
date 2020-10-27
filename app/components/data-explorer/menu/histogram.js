@@ -52,8 +52,8 @@ class HistogramMenu extends Component {
 		const action = { ...this.state, plotId };
 		const onShare = () => {
 			this.props.session.addNotification({
-				title: 'Plot shared.',
-				message: 'You have successfully shared your plot.',
+				title: this.props.t('plot-shared'),
+				message: this.props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
@@ -65,16 +65,16 @@ class HistogramMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Histogram')}
-					<QuestionButton title={this.props.t('Histogram')} content={DESCRIPTION} />
+					{t('Histogram')}
+					<QuestionButton title={t('Histogram')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={variables}
 						onChange={( value )=>{
@@ -86,7 +86,7 @@ class HistogramMenu extends Component {
 					<Row>
 						<Col md={5} >
 							<SelectInput
-								legend={`${this.props.t('group-by')}:`}
+								legend={`${t('group-by')}:`}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{
@@ -131,7 +131,7 @@ class HistogramMenu extends Component {
 					</Row>
 					<div>
 						<SelectInput
-							legend="Binning Strategy:"
+							legend={`${t('binning-strategy')}:`}
 							options={[
 								'Automatic',
 								'Select # of bins',
@@ -219,7 +219,7 @@ class HistogramMenu extends Component {
 					{ this.props.showDensityOption ?
 						<div>
 							<CheckboxInput
-								legend="Display density instead of counts"
+								legend={t('display-density')}
 								defaultValue={this.state.displayDensity}
 								onChange={()=>{
 									this.setState({
@@ -228,7 +228,7 @@ class HistogramMenu extends Component {
 								}}
 							/>
 							<SelectInput
-								legend="Overlay density line:"
+								legend={t('overlay-density-line')}
 								options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
 								disabled={!this.state.displayDensity}
 								defaultValue={this.state.densityType}
@@ -242,7 +242,7 @@ class HistogramMenu extends Component {
 							/>
 						</div> : null }
 					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

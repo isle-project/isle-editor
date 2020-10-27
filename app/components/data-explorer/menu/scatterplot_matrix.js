@@ -35,8 +35,8 @@ class ScatterplotMatrixMenu extends Component {
 		};
 		const onShare = () => {
 			this.props.session.addNotification({
-				title: 'Plot shared.',
-				message: 'You have successfully shared your plot.',
+				title: this.props.t('plot-shared'),
+				message: this.props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
