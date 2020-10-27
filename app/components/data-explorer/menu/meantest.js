@@ -55,7 +55,7 @@ class MeanTestMenu extends Component {
 	}
 
 	renderInputs() {
-		const { quantitative } = this.props;
+		const { quantitative, t } = this.props;
 		return (
 			<Fragment>
 				<SelectInput
@@ -69,7 +69,7 @@ class MeanTestMenu extends Component {
 					}}
 				/>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={null}
 					options={quantitative}
 					onChange={( variable ) => {
@@ -80,7 +80,7 @@ class MeanTestMenu extends Component {
 				/>
 				{ this.state.type === 'Z Test' ?
 					<NumberInput
-						legend="Standard Deviation"
+						legend={t('Standard Deviation')}
 						defaultValue={this.state.stdev}
 						step="any"
 						min={0}
@@ -139,13 +139,14 @@ class MeanTestMenu extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					One-Sample Mean Test
-					<QuestionButton title="One-Sample Mean Test" content={DESCRIPTION} />
+					{t('One-Sample Mean Test')}
+					<QuestionButton title={t('One-Sample Mean Test')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}
@@ -153,7 +154,7 @@ class MeanTestMenu extends Component {
 						variant="primary" block onClick={this.calculateMeanTest}
 						disabled={!this.state.variable}
 					>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

@@ -56,7 +56,7 @@ class LassoRegressionMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative } = this.props;
+		const { categorical, quantitative, t } = this.props;
 		return (
 			<Dashboard
 				title={<span>{this.props.t('LASSO Regression')}<QuestionButton title={this.props.t('LASSO Regression')} content={DESCRIPTION} /></span>}
@@ -84,7 +84,7 @@ class LassoRegressionMenu extends Component {
 					numberInputStyle={{ width: 120 }}
 				/>
 				<CheckboxInput
-					legend="Include intercept?"
+					legend={t('include-intercept')}
 					defaultValue={true}
 				/>
 			</Dashboard>

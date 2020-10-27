@@ -170,7 +170,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend="Overlay regression line?"
+								legend={t('overlay-regression-line')}
 								defaultValue={this.state.regressionMethod}
 								multi={true}
 								options={[ 'linear', 'smooth' ]}

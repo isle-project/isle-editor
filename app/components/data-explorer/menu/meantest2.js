@@ -62,7 +62,7 @@ class MeanTest2Menu extends Component {
 	}
 
 	renderInputs() {
-		const { quantitative, categorical, data } = this.props;
+		const { quantitative, categorical, data, t } = this.props;
 		const binary = getBinaryVars( categorical, data );
 		return ( <Fragment>
 			<SelectInput
@@ -76,7 +76,7 @@ class MeanTest2Menu extends Component {
 				}}
 			/>
 			<SelectInput
-				legend={`${this.props.t('variable')}:`}
+				legend={`${t('variable')}:`}
 				defaultValue={this.state.x}
 				options={quantitative}
 				onChange={( x ) => {
@@ -105,7 +105,7 @@ class MeanTest2Menu extends Component {
 				</Col>
 				<Col md={5}>
 					<SelectInput
-						legend={`${this.props.t('second-variable')}:`}
+						legend={`${t('second-variable')}:`}
 						options={quantitative}
 						defaultValue={this.state.y}
 						clearable
@@ -152,7 +152,7 @@ class MeanTest2Menu extends Component {
 			<Row>
 				<Col>
 					<NumberInput
-						legend="Difference under H0"
+						legend={t('difference-h0')}
 						defaultValue={this.state.diff}
 						step="any"
 						onChange={( value ) => {
@@ -193,13 +193,14 @@ class MeanTest2Menu extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					Two-Sample Mean Test
-					<QuestionButton title="Two-Sample Mean Test" content={DESCRIPTION} />
+					{t('Two-Sample Mean Test')}
+					<QuestionButton title={t('Two-Sample Mean Test')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}
@@ -208,7 +209,7 @@ class MeanTest2Menu extends Component {
 						onClick={this.calculateTwoSampleZTest}
 						disabled={(!this.state.group && !this.state.y) || !this.state.x}
 					>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

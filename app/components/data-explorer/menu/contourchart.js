@@ -68,11 +68,11 @@ class ContourChartMenu extends Component {
 	}
 
 	render() {
-		const { variables } = this.props;
+		const { variables, t } = this.props;
 		return (
 			<Card style={{ minWidth: 650 }}>
 				<Card.Header as="h4" >
-					{this.props.t('Contour Chart')}<QuestionButton title={this.props.t('Contour Chart')} content={DESCRIPTION} />
+					{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>
@@ -118,7 +118,7 @@ class ContourChartMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend="Overlay regression line?"
+								legend={t('overlay-regression-line')}
 								defaultValue={this.state.regressionMethod}
 								multi={true}
 								options={[ 'linear', 'smooth' ]}
@@ -131,7 +131,7 @@ class ContourChartMenu extends Component {
 						</Col>
 						<Col>
 							<SliderInput
-								legend="Smoothing Parameter"
+								legend={t('smoothing-parameter')}
 								min={0.01}
 								max={1}
 								step={0.01}
@@ -146,7 +146,7 @@ class ContourChartMenu extends Component {
 						</Col>
 					</Row>
 					<Button variant="primary" block onClick={this.generateContourChart}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

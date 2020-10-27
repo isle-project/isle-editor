@@ -42,15 +42,15 @@ class QQPlotMenu extends Component {
 	}
 
 	render() {
-		const { variables, defaultValue } = this.props;
+		const { variables, defaultValue, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('QQ Plot')}<QuestionButton title={this.props.t('QQ Plot')} content={DESCRIPTION} /></span>}
+				title={<span>{t('QQ Plot')}<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} /></span>}
 				autoStart={false}
 				onGenerate={this.generateQQPlot.bind( this )}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={defaultValue || variables[ 0 ]}
 					options={variables}
 				/>

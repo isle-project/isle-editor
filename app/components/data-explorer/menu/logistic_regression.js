@@ -88,20 +88,21 @@ class LogisticRegressionMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative, data } = this.props;
+		const { categorical, quantitative, data, t } = this.props;
 		const { x, y, categories, success, intercept } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px', maxWidth: 500 }}
 			>
 				<Card.Header as="h4">
-					{this.props.t('Logistic Regression')}<QuestionButton title={this.props.t('Logistic Regression')} content={DESCRIPTION} />
+					{t('Logistic Regression')}
+					<QuestionButton title={t('Logistic Regression')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								legend={this.props.t('outcome-y')}
+								legend={t('outcome-y')}
 								options={categorical}
 								defaultValue={y}
 								onChange={( y ) => {
@@ -128,7 +129,7 @@ class LogisticRegressionMenu extends Component {
 						</Col>
 					</Row>
 					<SelectInput
-						legend={this.props.t('predictors-x')} multi
+						legend={t('predictors-x')} multi
 						options={uniq( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
@@ -136,17 +137,17 @@ class LogisticRegressionMenu extends Component {
 						selectAllOption
 					/>
 					<CheckboxInput
-						legend="Include intercept?"
+						legend={t('include-intercept')}
 						defaultValue={intercept}
 						onChange={( intercept ) => this.setState({ intercept })}
 					/>
 					<CheckboxInput
-						legend={this.props.t('omit-missing')}
+						legend={t('omit-missing')}
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

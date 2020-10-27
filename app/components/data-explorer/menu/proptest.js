@@ -45,18 +45,18 @@ class PropTestMenu extends Component {
 	}
 
 	render() {
-		const { categorical } = this.props;
+		const { categorical, t } = this.props;
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					{this.props.t('One-Sample Proportion Test')}
-					<QuestionButton title={this.props.t('One-Sample Proportion Test')} content={DESCRIPTION} />
+					{t('One-Sample Proportion Test')}
+					<QuestionButton title={t('One-Sample Proportion Test')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={categorical}
 						onChange={( variable ) => {
@@ -118,7 +118,7 @@ class PropTestMenu extends Component {
 						onClick={this.calculatePropTest}
 						disabled={!this.state.variable}
 					>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

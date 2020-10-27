@@ -54,30 +54,33 @@ class MultipleLinearRegressionMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative } = this.props;
+		const { categorical, quantitative, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('Multiple Linear Regression')}<QuestionButton title={this.props.t('Multiple Linear Regression')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('Multiple Linear Regression')}
+					<QuestionButton title={t('Multiple Linear Regression')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>
 				<SelectInput
-					legend={this.props.t('outcome-y')}
+					legend={t('outcome-y')}
 					options={quantitative}
 					defaultValue={quantitative[ 0 ]}
 				/>
 				<SelectInput
-					legend={this.props.t('predictors-x')} multi
+					legend={t('predictors-x')} multi
 					options={unique( quantitative.concat( categorical ) )}
 					defaultValue={quantitative[ 1 ]}
 					closeMenuOnSelect={false}
 				/>
 				<CheckboxInput
-					legend="Include intercept?"
+					legend={t('include-intercept')}
 					defaultValue={true}
 				/>
 				<CheckboxInput
-					legend={this.props.t('omit-missing')}
+					legend={t('omit-missing')}
 					defaultValue={false}
 				/>
 			</Dashboard>

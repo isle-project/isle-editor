@@ -85,21 +85,21 @@ class PropTest2Menu extends Component {
 	}
 
 	render() {
-		const { categorical, data } = this.props;
+		const { categorical, data, t } = this.props;
 		const binary = getBinaryVars( categorical, data );
 		return (
 			<Card
 				style={{ fontSize: '14px' }}
 			>
 				<Card.Header as="h4">
-					Two-Sample Proportion Test
-					<QuestionButton title="Two-Sample Proportion Test" content={DESCRIPTION} />
+					{t('Two-Sample Proportion Test')}
+					<QuestionButton title={t('Two-Sample Proportion Test')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								legend={`${this.props.t('variable')}:`}
+								legend={`${t('variable')}:`}
 								defaultValue={categorical[ 0 ]}
 								options={categorical}
 								onChange={( variable ) => {
@@ -144,7 +144,7 @@ class PropTest2Menu extends Component {
 						<Col md={2}><p>OR</p></Col>
 						<Col md={5}>
 							<SelectInput
-								legend={`${this.props.t('second-variable')}:`}
+								legend={`${t('second-variable')}:`}
 								options={categorical.filter( elem =>
 									contains( this.state.categories, elem )
 								)}
@@ -159,7 +159,7 @@ class PropTest2Menu extends Component {
 						</Col>
 					</Row>
 					<NumberInput
-						legend="Difference under H0"
+						legend={t('difference-h0')}
 						defaultValue={this.state.diff}
 						min={0}
 						max={1}
@@ -197,7 +197,7 @@ class PropTest2Menu extends Component {
 						onClick={this.calculateTwoSamplePropTest}
 						disabled={!this.state.var2 && !this.state.group}
 					>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

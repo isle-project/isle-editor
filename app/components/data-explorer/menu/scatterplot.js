@@ -185,7 +185,7 @@ class ScatterplotMenu extends Component {
 					}}
 				/>
 				<SliderInput
-					legend="Smoothing Parameter"
+					legend={t('smoothing-parameter')}
 					disabled={!contains(this.state.regressionMethod, 'smooth')}
 					min={0.01}
 					max={1}
@@ -202,11 +202,12 @@ class ScatterplotMenu extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card style={{ minWidth: 650 }} >
 				<Card.Header as="h4" >
-					{this.props.t('Scatterplot')}
-					<QuestionButton title={this.props.t('Scatterplot')} content={DESCRIPTION} />
+					{t('Scatterplot')}
+					<QuestionButton title={t('Scatterplot')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					{this.renderInputs()}
@@ -214,7 +215,7 @@ class ScatterplotMenu extends Component {
 					{this.renderRegressionLineOptions()}
 					<div style={{ clear: 'both' }}></div>
 					<Button variant="primary" block onClick={this.generateScatterplot}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>
