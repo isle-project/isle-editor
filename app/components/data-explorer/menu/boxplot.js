@@ -59,16 +59,16 @@ class BoxplotMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Box Plot')}
-					<QuestionButton title={this.props.t('Box Plot')} content={DESCRIPTION} />
+					{t('Box Plot')}
+					<QuestionButton title={t('Box Plot')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={variables}
 						onChange={( variable ) => {
@@ -76,7 +76,7 @@ class BoxplotMenu extends Component {
 						}}
 					/>
 					<FormGroup controlId="boxplot-form-select">
-						<FormLabel>{this.props.t('group-by')}:</FormLabel>
+						<FormLabel>{t('group-by')}:</FormLabel>
 						<Select
 							value={this.state.group}
 							options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}
@@ -103,14 +103,14 @@ class BoxplotMenu extends Component {
 						}}
 					/>
 					<CheckboxInput
-						legend={this.props.t('overlay-points')}
+						legend={t('overlay-points')}
 						defaultValue={false}
 						onChange={( overlayPoints ) => {
 							this.setState({ overlayPoints });
 						}}
 					/>
 					<Button variant="primary" block onClick={this.generateBoxplot}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

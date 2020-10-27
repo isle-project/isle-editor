@@ -74,12 +74,12 @@ class ContingencyTableMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Contingency Table')}
-					<QuestionButton title={this.props.t('Contingency Table')} content={DESCRIPTION} />
+					{t('Contingency Table')}
+					<QuestionButton title={t('Contingency Table')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
@@ -103,7 +103,7 @@ class ContingencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('group-by')}:`}
+						legend={`${t('group-by')}:`}
 						options={groupingVariables}
 						clearable={true}
 						menuPlacement="top"
@@ -115,7 +115,7 @@ class ContingencyTableMenu extends Component {
 						tooltip="Generate a contingency table for each category of a chosen grouping variable"
 					/>
 					<CheckboxInput
-						legend="Relative Frequency"
+						legend={t('relative-frequency')}
 						defaultValue={false}
 						onChange={() => {
 							this.setState({
@@ -148,7 +148,9 @@ class ContingencyTableMenu extends Component {
 						/>
 						decimal place(s).
 					</p> : null }
-					<Button variant="primary" block onClick={this.generateContingencyTable.bind( this )}>Generate</Button>
+					<Button variant="primary" block onClick={this.generateContingencyTable.bind( this )}>
+						{t('generate')}
+					</Button>
 				</Card.Body>
 			</Card>
 		);

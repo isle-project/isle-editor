@@ -65,7 +65,7 @@ class HierarchicalClusteringMenu extends Component {
 				onGenerate={this.compute}
 			>
 				<SelectInput
-					legend="Variables:" multi
+					legend={`${t('variables')}:`} multi
 					defaultValue={originalQuantitative}
 					options={quantitative}
 				/>

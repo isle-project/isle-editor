@@ -102,7 +102,7 @@ class PropTestMenu extends Component {
 						}}
 					/>
 					<NumberInput
-						legend={<span>Significance level <TeX raw="\alpha" /></span>}
+						legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
 						defaultValue={this.state.alpha}
 						min={0.0}
 						max={1.0}

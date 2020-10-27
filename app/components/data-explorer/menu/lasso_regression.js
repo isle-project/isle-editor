@@ -59,17 +59,20 @@ class LassoRegressionMenu extends Component {
 		const { categorical, quantitative, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('LASSO Regression')}<QuestionButton title={this.props.t('LASSO Regression')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('LASSO Regression')}
+					<QuestionButton title={t('LASSO Regression')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>
 				<SelectInput
-					legend={this.props.t('outcome-y')}
+					legend={t('outcome-y')}
 					options={quantitative}
 					defaultValue={quantitative[ 0 ]}
 				/>
 				<SelectInput
-					legend={this.props.t('predictors-x')} multi
+					legend={t('predictors-x')} multi
 					options={unique( quantitative.concat( categorical ) )}
 					defaultValue={quantitative[ 1 ]}
 					closeMenuOnSelect={false}

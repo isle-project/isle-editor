@@ -31,24 +31,24 @@ class KruskalMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, categorical } = this.props;
+		const { quantitative, categorical, t } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
 				title={<span>
-					{this.props.t('Kruskal-Wallis Test')}
-					<QuestionButton title={this.props.t('Kruskal-Wallis Test')} content={DESCRIPTION} />
+					{t('Kruskal-Wallis Test')}
+					<QuestionButton title={t('Kruskal-Wallis Test')} content={DESCRIPTION} />
 				</span>}
-				label={this.props.t('calculate')}
+				label={t('calculate')}
 				onGenerate={this.calculateTest}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${this.props.t('grouping-variable')}:`}
+					legend={`${t('grouping-variable')}:`}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>

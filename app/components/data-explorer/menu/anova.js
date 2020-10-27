@@ -31,24 +31,24 @@ class AnovaMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, categorical } = this.props;
+		const { quantitative, categorical, t } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
 				title={<span>
-					{this.props.t('One-Way ANOVA')}
-					<QuestionButton title={this.props.t('One-Way ANOVA')} content={DESCRIPTION} />
+					{t('One-Way ANOVA')}
+					<QuestionButton title={t('One-Way ANOVA')} content={DESCRIPTION} />
 				</span>}
-				label={this.props.t('calculate')}
+				label={t('calculate')}
 				onGenerate={this.calculateANOVA}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${this.props.t('grouping-variable')}:`}
+					legend={`${t('grouping-variable')}:`}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>

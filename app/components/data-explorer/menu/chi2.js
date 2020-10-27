@@ -31,26 +31,26 @@ class Chi2TestMenu extends Component {
 	}
 
 	render() {
-		const { categorical } = this.props;
+		const { categorical, t } = this.props;
 		return (
 			<Dashboard
 				title={
 					<span>
-						Chi-square Independence Test
-						<QuestionButton title="Chi-square Independence Test" content={DESCRIPTION} />
+						{t('Chi-square Independence Test')}
+						<QuestionButton title={t('Chi-square Independence Test')} content={DESCRIPTION} />
 					</span>
 				}
-				label={this.props.t('calculate')}
+				label={t('calculate')}
 				autoStart={false}
 				onGenerate={this.calculateChisquareTest}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>
 				<SelectInput
-					legend={`${this.props.t('second-variable')}:`}
+					legend={`${t('second-variable')}:`}
 					defaultValue={categorical[ 1 ]}
 					options={categorical}
 				/>

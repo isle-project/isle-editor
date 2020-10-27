@@ -33,26 +33,26 @@ class CorrTestMenu extends Component {
 	}
 
 	render() {
-		const { quantitative } = this.props;
+		const { quantitative, t } = this.props;
 		return (
 			<Dashboard
 				title={
 					<span>
-						{this.props.t('Correlation Test')}
-						<QuestionButton title={this.props.t('Correlation Test')} content={DESCRIPTION} />
+						{t('Correlation Test')}
+						<QuestionButton title={t('Correlation Test')} content={DESCRIPTION} />
 					</span>
 				}
-				label={this.props.t('calculate')}
+				label={t('calculate')}
 				autoStart={false}
 				onGenerate={this.calculateCorrTest}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${this.props.t('second-variable')}:`}
+					legend={`${t('second-variable')}:`}
 					defaultValue={quantitative[ 1 ]}
 					options={quantitative}
 				/>
@@ -69,7 +69,7 @@ class CorrTestMenu extends Component {
 					options={[ 'less', 'greater', 'two-sided' ]}
 				/>
 				<NumberInput
-					legend={<span>Significance level <TeX raw="\alpha" /></span>}
+					legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
 					defaultValue={0.05}
 					min={0.0}
 					max={1.0}

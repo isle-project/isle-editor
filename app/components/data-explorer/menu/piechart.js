@@ -67,11 +67,12 @@ class PieChartMenu extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Pie Chart')}
-					<QuestionButton title={this.props.t('Pie Chart')} content={DESCRIPTION} />
+					{t('Pie Chart')}
+					<QuestionButton title={t('Pie Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
@@ -85,7 +86,7 @@ class PieChartMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={this.props.variables}
 						onChange={( value )=>{
@@ -104,7 +105,7 @@ class PieChartMenu extends Component {
 							}}
 						/> : null }
 					<SelectInput
-						legend={`${this.props.t('group-by')}:`}
+						legend={`${t('group-by')}:`}
 						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}
@@ -118,7 +119,7 @@ class PieChartMenu extends Component {
 					<Button
 						variant="primary" block
 						onClick={this.handleGenerate}
-					>{this.props.t('generate')}</Button>
+					>{t('generate')}</Button>
 				</Card.Body>
 			</Card>
 		);

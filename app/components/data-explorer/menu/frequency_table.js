@@ -95,7 +95,7 @@ class FrequencyTableMenu extends Component {
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Relative Frequency"
+								legend={t('relative-frequency')}
 								defaultValue={this.state.calculateRelative}
 								onChange={() => {
 									this.setState({
