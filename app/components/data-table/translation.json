@@ -43,6 +43,7 @@
 		"download-disabled": "Download disabled",
 		"error-encountered": "Error encountered",
 		"error-csv": "Encountered an error while creating CSV: ",
+		"loading": "Loading...",
 		"name": "Name",
 		"next": "Next",
 		"no-data": "No data provided.",
