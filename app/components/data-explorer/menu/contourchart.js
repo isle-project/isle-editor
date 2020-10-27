@@ -105,7 +105,7 @@ class ContourChartMenu extends Component {
 					<Row>
 						<Col>
 							<CheckboxInput
-								legend="Overlay observations"
+								legend={t('overlay-observations')}
 								defaultValue={this.state.overlayPoints}
 								onChange={() => {
 									this.setState({

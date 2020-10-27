@@ -57,10 +57,13 @@ class PrincipalComponentAnalysisMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, originalQuantitative } = this.props;
+		const { quantitative, originalQuantitative, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('Principal Component Analysis')}<QuestionButton title={this.props.t('Principal Component Analysis')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('Principal Component Analysis')}
+					<QuestionButton title={t('Principal Component Analysis')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>

@@ -146,7 +146,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<CheckboxInput
-								legend="Overlay observations"
+								legend={t('overlay-observations')}
 								defaultValue={this.state.overlayPoints}
 								onChange={( value )=>{
 									this.setState({

@@ -142,6 +142,7 @@ class ScatterplotMenu extends Component {
 	}
 
 	renderRegressionLineOptions() {
+		const { t } = this.props;
 		return ( <div style={{
 			opacity: this.props.showRegressionOption ? 1.0 : 0.0
 		}}>

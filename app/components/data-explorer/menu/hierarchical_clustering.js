@@ -57,10 +57,13 @@ class HierarchicalClusteringMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, originalQuantitative } = this.props;
+		const { quantitative, originalQuantitative, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{this.props.t('Hierarchical Clustering')}<QuestionButton title={this.props.t('Hierarchical Clustering')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('Hierarchical Clustering')}
+					<QuestionButton title={t('Hierarchical Clustering')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.compute}
 			>
