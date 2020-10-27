@@ -817,6 +817,13 @@ class DataTable extends Component {
 							out.style.width = 'max-content !important';
 							return out;
 						}}
+						previousText={this.props.t('previous')}
+						nextText={this.props.t('next')}
+						loadingText={this.props.t('loading')}
+						noDataText={this.props.t('no-rows-found')}
+						pageText={this.props.t('page')}
+						ofText={this.props.t('of')}
+						rowsText={this.props.t('rows')}
 					>
 						{( state, makeTable, instance ) => {
 							const selectedRows = state.sortedData.length;
