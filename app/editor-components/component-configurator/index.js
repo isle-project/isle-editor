@@ -28,12 +28,14 @@ import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
+import lowercase from '@stdlib/string/lowercase';
 import contains from '@stdlib/assert/contains';
 import rescape from '@stdlib/utils/escape-regexp-string';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from 'components/documentation.json';
 import Session from 'session';
+import SearchBar from './searchbar.js';
 import './component_configurator.css';
 
 
@@ -165,6 +167,7 @@ class ComponentConfigurator extends Component {
 		this.state = {
 			name: name,
 			value,
+			searchValue: '',
 			propActive,
 			...propValues
 		};
@@ -183,7 +186,7 @@ class ComponentConfigurator extends Component {
 		this.defaultStrings = defaultStrings;
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
-		this.description = md.render( doc.description || 'Component description is missing.' );
+		this.description = md.renderInline( doc.description || 'Component description is missing.' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
@@ -476,6 +479,7 @@ class ComponentConfigurator extends Component {
 	renderPropertyControls() {
 		debug( 'Rendering property controls...' );
 		const props = this.docProps;
+		const { searchValue } = this.state;
 		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
 		}
@@ -483,6 +487,14 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < props.length; i++ ) {
 			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
+			if (
+				searchValue &&
+				!contains( lowercase( name ), searchValue ) &&
+				!contains( lowercase( description ), searchValue ) &&
+				!contains( type, searchValue )
+			) {
+				continue;
+			}
 			const isActive = this.state.propActive[ name ];
 			const isRequired = this.isRequired[ name ];
 			const className = isActive ? 'configurator-tr-active' : '';
@@ -586,7 +598,6 @@ class ComponentConfigurator extends Component {
 		}
 		return (
 			<Fragment>
-				<Card.Subtitle style={{ fontSize: '12px' }} className="mb-2 text-muted">Click on the box to toggle the respective options on and off and set their values:</Card.Subtitle>
 				<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 					<thead>
 						<tr>
@@ -624,47 +635,60 @@ class ComponentConfigurator extends Component {
 				<Modal.Header closeButton>
 					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={{ height: '80vh', overflowY: 'auto' }}>
-					<SplitPane
-						className="splitpane"
-						split="horizontal"
-						style={{ left: 0 }}
-						defaultSize={window.innerHeight / 2.25}
-					>
-						<div style={{ width: '100%', overflowY: 'scroll', padding: 10 }} >
-							{componentDescription}
-							{this.renderPropertyControls()}
-						</div>
-						<Provider session={this.session} currentRole={this.props.currentRole} >
-							<Playground
-								value={this.state.value}
-								scope={SCOPE}
-								onChange={this.handleChange}
-								editorProps={{
-									onMouseOut: this.handleMouseOut
-								}}
-								style={{
-									marginTop: '12px',
-									maxWidth: '100vw',
-									height: '100%',
-									overflowX: 'hidden'
-								}}
-								transformCode={( code ) => {
-									try {
-										code = replace( code, RE_BEFORE_TAG, '' );
-										let out = markdownToHTML( code );
-										out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
-											const raw = replace( p1, '\\', '\\\\' );
-											return `String.raw({ raw: \`${raw}\` })`;
-										});
-										return out;
-									} catch ( err ) {
-										return err;
-									}
-								}}
-							/>
-						</Provider>
-					</SplitPane>
+				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
+					<SearchBar
+						placeholder="Search for options..."
+						onChange={( event ) => {
+							this.setState({
+								searchValue: lowercase( event.target.value )
+							});
+						}}
+					/>
+					{componentDescription}
+					<Card.Subtitle style={{ fontSize: '12px', margin: 0 }} className="text-muted">
+						Click on the box to toggle the respective options on and off and set their values:
+					</Card.Subtitle>
+					<div style={{ position: 'relative', height: 'calc(100% - 40px)' }}>
+						<SplitPane
+							className="splitpane"
+							split="horizontal"
+							style={{ left: 0 }}
+							defaultSize={window.innerHeight / 2.5}
+						>
+							<div style={{ width: '100%', overflowY: 'scroll', padding: 10 }} >
+								{this.renderPropertyControls()}
+							</div>
+							<Provider session={this.session} currentRole={this.props.currentRole} >
+								<Playground
+									value={this.state.value}
+									scope={SCOPE}
+									onChange={this.handleChange}
+									editorProps={{
+										onMouseOut: this.handleMouseOut
+									}}
+									style={{
+										marginTop: '12px',
+										maxWidth: '100vw',
+										height: '100%',
+										overflowX: 'hidden'
+									}}
+									transformCode={( code ) => {
+										try {
+											code = replace( code, RE_BEFORE_TAG, '' );
+											let out = markdownToHTML( code );
+											out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+												const raw = replace( p1, '\\', '\\\\' );
+												return `String.raw({ raw: \`${raw}\` })`;
+											});
+											return out;
+										} catch ( err ) {
+											return err;
+										}
+									}}
+								/>
+							</Provider>
+						</SplitPane>
+					</div>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
