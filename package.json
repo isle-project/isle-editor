@@ -166,7 +166,7 @@
     "html-webpack-plugin": "4.5.0",
     "i18next": "^19.8.2",
     "i18next-browser-languagedetector": "^6.0.1",
-    "ieee754": "^1.1.13",
+    "ieee754": "^1.2.1",
     "is-extendable": "^1.0.1",
     "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
