@@ -119,7 +119,7 @@ class FeedbackRenderer extends Component {
 				<Badge variant="success" style={{ fontSize: '1em' }} >
 					{this.props.t('your-points')}: {grades[ this.props.for ]} / {this.props.points}
 				</Badge>
-				<Tooltip tooltip={this.props.t('display-instructor-feedback')} >
+				{hasMessages ? <Tooltip tooltip={this.props.t('display-instructor-feedback')} >
 					<Button
 						ref={( button ) => {
 							this.messagesButton = button;
@@ -129,11 +129,10 @@ class FeedbackRenderer extends Component {
 						variant="light"
 						style={{ marginLeft: 12 }}
 						className="grade-feedback-button"
-						disabled={!hasMessages}
 					>
 						<i className="fas fa-envelope-open" ></i>
 					</Button>
-				</Tooltip>
+				</Tooltip> : null}
 				{this.renderOverlay()}
 			</Fragment>
 		);
