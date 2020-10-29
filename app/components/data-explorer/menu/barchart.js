@@ -123,7 +123,7 @@ class BarchartMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Bars represent:"
+						legend={t('bars-represent')}
 						defaultValue={this.state.mode}
 						options={MODES}
 						onChange={( value )=>{
@@ -198,7 +198,7 @@ class BarchartMenu extends Component {
 						</Col>
 						<Col>
 							<SelectInput
-								legend="Order direction:"
+								legend={t('order-direction')}
 								defaultValue={this.state.direction}
 								options={[
 									'ascending',

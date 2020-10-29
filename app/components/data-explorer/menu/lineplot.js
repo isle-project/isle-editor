@@ -115,7 +115,7 @@ class LinePlotMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('group-by')}:`}
+						legend={this.props.t('group-by')}
 						defaultValue={this.state.group}
 						options={groupingVariables}
 						clearable={true}
@@ -127,7 +127,7 @@ class LinePlotMenu extends Component {
 						}}
 					/>
 					<CheckboxInput
-						legend="Show point markers?"
+						legend={t('show-point-markers')}
 						defaultValue={this.state.showPoints}
 						onChange={( value )=>{
 							this.setState({

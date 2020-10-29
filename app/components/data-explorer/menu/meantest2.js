@@ -105,7 +105,7 @@ class MeanTest2Menu extends Component {
 				</Col>
 				<Col md={5}>
 					<SelectInput
-						legend={{t('second-variable')}}
+						legend={t('second-variable')}
 						options={quantitative}
 						defaultValue={this.state.y}
 						clearable
@@ -122,7 +122,7 @@ class MeanTest2Menu extends Component {
 				<Row>
 					<Col>
 						<NumberInput
-							legend="1st Standard Deviation"
+							legend={t('1st-stdev')}
 							defaultValue={this.state.xstdev || 1}
 							step="any"
 							min={0}
@@ -135,7 +135,7 @@ class MeanTest2Menu extends Component {
 					</Col>
 					<Col>
 						<NumberInput
-							legend="2nd Standard Deviation"
+							legend={t('2nd-stdev')}
 							defaultValue={this.state.ystdev || 1}
 							step="any"
 							min={0}

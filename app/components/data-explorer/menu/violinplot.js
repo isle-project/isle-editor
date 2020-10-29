@@ -66,7 +66,7 @@ class ViolinPlotMenu extends Component {
 					options={variables}
 				/>
 				<SelectInput
-					legend={`${this.props.t('group-by')}:`}
+					legend={this.props.t('group-by')}
 					options={groupingVariables}
 					clearable={true}
 				/>
