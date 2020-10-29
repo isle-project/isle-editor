@@ -50,7 +50,7 @@ class Chi2TestMenu extends Component {
 					options={categorical}
 				/>
 				<SelectInput
-					legend={`${t('second-variable')}:`}
+					legend={t('second-variable')}
 					defaultValue={categorical[ 1 ]}
 					options={categorical}
 				/>

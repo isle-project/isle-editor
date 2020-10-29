@@ -130,7 +130,7 @@ class PropTest2Menu extends Component {
 					<Row>
 						<Col md={5}>
 							<SelectInput
-								legend="Groups:"
+								legend={t('groups')}
 								options={binary}
 								clearable
 								onChange={( value ) => {
@@ -144,7 +144,7 @@ class PropTest2Menu extends Component {
 						<Col md={2}><p>OR</p></Col>
 						<Col md={5}>
 							<SelectInput
-								legend={`${t('second-variable')}:`}
+								legend={t('second-variable')}
 								options={categorical.filter( elem =>
 									contains( this.state.categories, elem )
 								)}

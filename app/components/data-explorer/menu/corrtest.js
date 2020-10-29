@@ -52,7 +52,7 @@ class CorrTestMenu extends Component {
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${t('second-variable')}:`}
+					legend={t('second-variable')}
 					defaultValue={quantitative[ 1 ]}
 					options={quantitative}
 				/>

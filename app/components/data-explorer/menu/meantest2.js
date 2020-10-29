@@ -88,7 +88,7 @@ class MeanTest2Menu extends Component {
 			<Row>
 				<Col md={5}>
 					<SelectInput
-						legend="Groups:"
+						legend={t('groups')}
 						options={binary}
 						defaultValue={this.state.group}
 						clearable
@@ -105,7 +105,7 @@ class MeanTest2Menu extends Component {
 				</Col>
 				<Col md={5}>
 					<SelectInput
-						legend={`${t('second-variable')}:`}
+						legend={{t('second-variable')}}
 						options={quantitative}
 						defaultValue={this.state.y}
 						clearable

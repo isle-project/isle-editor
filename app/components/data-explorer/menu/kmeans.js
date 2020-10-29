@@ -65,7 +65,7 @@ class KMeansMenu extends Component {
 				onGenerate={this.compute}
 			>
 				<SelectInput
-					legend={`${t('variables')}:`} multi
+					legend={t('variables')} multi
 					defaultValue={originalQuantitative}
 					options={quantitative}
 					closeMenuOnSelect={false}

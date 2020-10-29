@@ -68,7 +68,7 @@ class MosaicPlotMenu extends Component {
 	}
 
 	render() {
-		const { variables } = this.props;
+		const { variables, t } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
@@ -77,12 +77,12 @@ class MosaicPlotMenu extends Component {
 				style={{ minHeight: 380 }}
 			>
 				<SelectInput
-					legend={this.props.t('variables')}
+					legend={t('variables')}
 					options={variables}
 					multi
 				/>
 				<CheckboxInput
-					legend="Show Colors"
+					legend={t('show-colors')}
 					defaultValue={false}
 				/>
 				<SelectInput
