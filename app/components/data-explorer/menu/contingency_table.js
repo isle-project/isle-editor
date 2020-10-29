@@ -133,7 +133,7 @@ class ContingencyTableMenu extends Component {
 							});
 						}}
 					/>
-					{ this.state.relativeFreqs || this.state.display.length > 0 ? <p>Report relative frequencies to
+					{ this.state.relativeFreqs || this.state.display.length > 0 ? <p>{t('report-relative-frequencies')}
 						<NumberInput
 							inline
 							width={50}
@@ -146,7 +146,7 @@ class ContingencyTableMenu extends Component {
 								});
 							}}
 						/>
-						decimal place(s).
+						{t('decimal-places')}
 					</p> : null }
 					<Button variant="primary" block onClick={this.generateContingencyTable.bind( this )}>
 						{t('generate')}

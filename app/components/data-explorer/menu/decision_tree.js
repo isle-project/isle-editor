@@ -99,7 +99,7 @@ class DecisionTreeMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Type"
+						legend={t('type')}
 						options={[ 'Classification', 'Regression' ]}
 						defaultValue={type}
 						onChange={( type ) => {
@@ -139,7 +139,7 @@ class DecisionTreeMenu extends Component {
 							min={1} max={50}
 							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
 						/>
-						<NumberInput legend="Minimum # of observations in leaf nodes"
+						<NumberInput legend={t('min-obs-leafs')}
 							min={1}
 							defaultValue={this.state.minItemsCount}
 							onChange={( minItemsCount ) => this.setState({ minItemsCount })}

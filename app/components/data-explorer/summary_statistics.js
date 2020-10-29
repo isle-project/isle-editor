@@ -614,7 +614,7 @@ class SummaryStatisticsMenu extends Component {
 						/>
 					</FormGroup>
 					<SelectInput
-						legend="Variable(s):"
+						legend={t('variable-s')}
 						defaultValue={this.state.variables}
 						multi
 						options={variables}
@@ -623,12 +623,12 @@ class SummaryStatisticsMenu extends Component {
 								variables: value || []
 							});
 						}}
-						tooltip="Quantitative variable for which to compute statistic(s)"
+						tooltip={t('variables-statistics-tooltip')}
 					/>
 					{ this.state.showQuantiles ?
 						<FormGroup controlId="quantiles-form-group" >
 							<Tooltip
-								tooltip="Enter any numbers between zero and one"
+								tooltip={t('quantiles-tooltip')}
 								placement="right"
 							>
 								<FormLabel>{t('quantiles')}</FormLabel>
@@ -638,7 +638,7 @@ class SummaryStatisticsMenu extends Component {
 								options={QUANTILE_OPTIONS}
 								isClearable
 								isMulti
-								placeholder="Enter quantiles to compute..."
+								placeholder={t('quantiles-placeholder')}
 								onChange={( value ) => {
 									this.setState({
 										quantiles: value
@@ -669,7 +669,7 @@ class SummaryStatisticsMenu extends Component {
 					/>
 					{ groupingVariables.length > 0 ?
 						<FormGroup controlId="stats-form-group">
-							<Tooltip tooltip="Calculate the statistic(s) separately for observations from each category of either one or two grouping variable(s)">
+							<Tooltip tooltip={t('group-by-statistics-tooltip')}>
 								<FormLabel>{t('group-by')}</FormLabel>
 							</Tooltip>
 							<Select

@@ -95,14 +95,15 @@ class RandomForestMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative } = this.props;
+		const { categorical, quantitative, t } = this.props;
 		const { x, y, type, nTrees, nTry } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px', maxWidth: 600 }}
 			>
 				<Card.Header as="h4">
-					{this.props.t('Random Forest')}<QuestionButton title={this.props.t('Random Forest')} content={DESCRIPTION} />
+					{t('Random Forest')}
+					<QuestionButton title={t('Random Forest')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
@@ -120,13 +121,13 @@ class RandomForestMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={this.props.t('outcome-y')}
+						legend={t('outcome-y')}
 						options={type === 'Classification' ? categorical : quantitative}
 						defaultValue={y}
 						onChange={( y ) => this.setState({ y })}
 					/>
 					<SelectInput
-						legend={this.props.t('predictors-x')} multi
+						legend={t('predictors-x')} multi
 						options={unique( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => {
@@ -137,7 +138,7 @@ class RandomForestMenu extends Component {
 						}}
 					/>
 					<NumberInput
-						legend="Number of trees"
+						legend={t('number-of-trees')}
 						defaultValue={nTrees}
 						inputStyle={{ float: 'right' }}
 						onChange={( nTrees) => this.setState({ nTrees })}
@@ -158,24 +159,24 @@ class RandomForestMenu extends Component {
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
 						/>
-						<NumberInput legend="Maximum tree depth"
+						<NumberInput legend={t('maximum-tre-depth')}
 							min={1} max={50}
 							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
 						/>
-						<NumberInput legend="Minimum # of observations in leaf nodes"
+						<NumberInput legend={t('min-obs-leafs')}
 							min={1}
 							defaultValue={this.state.minItemsCount}
 							onChange={( minItemsCount ) => this.setState({ minItemsCount })}
 						/>
 					</Collapse>
 					{ type === 'Classification' ? <SelectInput
-						legend="Impurity Measure"
+						legend={t('impurity-measure')}
 						defaultValue={this.state.impurityMeasure}
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

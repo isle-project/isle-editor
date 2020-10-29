@@ -105,7 +105,7 @@ class FrequencyTableMenu extends Component {
 							/>
 						</Col>
 					</Row>
-					{ this.state.relativeFreqs ? <p>Report relative frequencies to
+					{ this.state.relativeFreqs ? <p>{t('report-relative-frequencies')}
 						<NumberInput
 							inline
 							width={50}
@@ -118,7 +118,7 @@ class FrequencyTableMenu extends Component {
 								});
 							}}
 						/>
-						decimal place(s).
+						{t('decimal-places')}
 					</p> : null }
 					<Button
 						variant="primary"
