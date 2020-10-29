@@ -566,7 +566,7 @@ class SummaryStatisticsMenu extends Component {
 				<Card.Body>
 					<FormGroup controlId="statistics-form-select">
 						<Tooltip
-							tooltip="One or more statistics to compute for the variable of interest"
+							tooltip={t('statistics-tooltip')}
 							placement="right"
 						>
 							<FormLabel>{t('statistics')}:</FormLabel>
@@ -631,7 +631,7 @@ class SummaryStatisticsMenu extends Component {
 								tooltip="Enter any numbers between zero and one"
 								placement="right"
 							>
-								<FormLabel>Quantile(s):</FormLabel>
+								<FormLabel>{t('quantiles')}</FormLabel>
 							</Tooltip>
 							<CreatableSelect
 								defaultValue={[]}
@@ -665,7 +665,7 @@ class SummaryStatisticsMenu extends Component {
 								secondVariable: value
 							});
 						}}
-						tooltip="Second variable for computing bivariate statistic"
+						tooltip={t('second-variable-statistic-tooltip')}
 					/>
 					{ groupingVariables.length > 0 ?
 						<FormGroup controlId="stats-form-group">
@@ -693,7 +693,7 @@ class SummaryStatisticsMenu extends Component {
 					}
 					<CheckboxInput
 						legend={t('omit-missing')}
-						tooltip="If not ticked, result will be null if variable contains missing values"
+						tooltip={t('omit-missing-tooltip')}
 						defaultValue={this.state.omit}
 						onChange={( value ) => {
 							this.setState({

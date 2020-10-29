@@ -32,7 +32,7 @@ class DatasetButton extends Component {
 				<Tooltip
 					id="filter_info_tooltip"
 					placement="bottom"
-					tooltip="Show dataset info"
+					tooltip={this.props.t('show-dataset-info')}
 				>
 					<Button
 						variant="outline-danger"
@@ -78,7 +78,7 @@ class DatasetButton extends Component {
 								style={style}
 							>
 								<FilterList filters={this.props.filters} />
-								{ this.props.restoreButton ? <Tooltip tooltip="Restore dataset with the given filters in the data table" placement="right" >
+								{ this.props.restoreButton ? <Tooltip tooltip={this.props.t('restore-dataset-tooltip')} placement="right" >
 									<Button
 										size="sm"
 										variant="danger"
@@ -86,7 +86,7 @@ class DatasetButton extends Component {
 											this.props.onActivateFilters( this.props.filters );
 										}}
 										style={{ marginTop: 12 }}
-									>Restore dataset</Button>
+									>{this.props.t('restore-dataset')}</Button>
 								</Tooltip> : null }
 							</pre>
 						);

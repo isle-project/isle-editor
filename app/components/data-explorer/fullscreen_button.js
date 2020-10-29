@@ -48,7 +48,7 @@ class FullscreenButton extends Component {
 				>
 					<Modal.Header closeButton>
 						<Modal.Title as="h1">
-							{this.props.header}
+							{this.props.header ? this.props.header : t('fullscreen-display')}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
@@ -79,7 +79,7 @@ FullscreenButton.propTypes = {
 };
 
 FullscreenButton.defaultProps = {
-	header: 'Fullscreen Display'
+	header: null
 };
 
 
