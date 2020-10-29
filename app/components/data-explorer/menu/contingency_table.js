@@ -124,7 +124,7 @@ class ContingencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Display:"
+						legend={t('display')}
 						options={['Row Percent', 'Column Percent']}
 						multi
 						onChange={( display ) => {

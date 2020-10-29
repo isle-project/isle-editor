@@ -77,8 +77,8 @@ class LinePlotMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Line Plot
-					<QuestionButton title="Line Plot" content={DESCRIPTION} />
+					{t('Line Plot')}
+					<QuestionButton title={t('Line Plot')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="lineplot-form-select">

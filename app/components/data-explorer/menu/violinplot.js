@@ -53,25 +53,28 @@ class ViolinPlotMenu extends Component {
 	}
 
 	render() {
-		const { variables, defaultValue, groupingVariables } = this.props;
+		const { variables, defaultValue, groupingVariables, t } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>{this.props.t('Violin Plot')}<QuestionButton title={this.props.t('Violin Plot')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('Violin Plot')}
+					<QuestionButton title={t('Violin Plot')} content={DESCRIPTION} />
+				</span>}
 				onGenerate={this.generateViolinplot.bind( this )}
 			>
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={`${t('variable')}:`}
 					defaultValue={defaultValue || variables[ 0 ]}
 					options={variables}
 				/>
 				<SelectInput
-					legend={this.props.t('group-by')}
+					legend={t('group-by')}
 					options={groupingVariables}
 					clearable={true}
 				/>
 				<CheckboxInput
-					legend="Show Boxplot"
+					legend={t('show-boxplot')}
 					defaultValue={this.state.showBox}
 					onChange={()=>{
 						this.setState({

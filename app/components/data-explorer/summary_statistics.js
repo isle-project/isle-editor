@@ -553,14 +553,15 @@ class SummaryStatisticsMenu extends Component {
 	render() {
 		let {
 			variables,
-			groupingVariables
+			groupingVariables,
+			t
 		} = this.props;
 		const selectedStats = this.state.selectedStats;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					Summary Statistics
-					<QuestionButton title="Summary Statistics" content={DESCRIPTION} />
+					{t('Summary Statistics')}
+					<QuestionButton title={t('Summary Statistics')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="statistics-form-select">
@@ -568,7 +569,7 @@ class SummaryStatisticsMenu extends Component {
 							tooltip="One or more statistics to compute for the variable of interest"
 							placement="right"
 						>
-							<FormLabel>Statistic(s):</FormLabel>
+							<FormLabel>{t('statistics')}:</FormLabel>
 						</Tooltip>
 						<Select
 							value={selectedStats}
@@ -652,7 +653,7 @@ class SummaryStatisticsMenu extends Component {
 						null
 					}
 					<SelectInput
-						legend={`${this.props.t('second-variable')}:`}
+						legend={t('second-variable')}
 						defaultValue={this.state.secondVariable}
 						options={variables}
 						style={{
@@ -669,7 +670,7 @@ class SummaryStatisticsMenu extends Component {
 					{ groupingVariables.length > 0 ?
 						<FormGroup controlId="stats-form-group">
 							<Tooltip tooltip="Calculate the statistic(s) separately for observations from each category of either one or two grouping variable(s)">
-								<FormLabel>{this.props.t('group-by')}:</FormLabel>
+								<FormLabel>{t('group-by')}</FormLabel>
 							</Tooltip>
 							<Select
 								value={this.state.group}
@@ -691,7 +692,7 @@ class SummaryStatisticsMenu extends Component {
 						</FormGroup> : null
 					}
 					<CheckboxInput
-						legend={this.props.t('omit-missing')}
+						legend={t('omit-missing')}
 						tooltip="If not ticked, result will be null if variable contains missing values"
 						defaultValue={this.state.omit}
 						onChange={( value ) => {
@@ -704,7 +705,7 @@ class SummaryStatisticsMenu extends Component {
 						variant="primary" block
 						onClick={this.generateStatistics}
 						disabled={!selectedStats || this.state.variables.length === 0}
-					>{this.props.t('calculate')}</Button>
+					>{t('calculate')}</Button>
 				</Card.Body>
 			</Card>
 		);

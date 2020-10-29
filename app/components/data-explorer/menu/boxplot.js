@@ -94,7 +94,7 @@ class BoxplotMenu extends Component {
 						/>
 					</FormGroup>
 					<SelectInput
-						legend="Orientation:"
+						legend={t('orientation')}
 						options={[ 'vertical', 'horizontal' ]}
 						defaultValue="vertical"
 						menuPlacement="top"
