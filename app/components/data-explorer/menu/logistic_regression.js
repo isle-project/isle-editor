@@ -117,7 +117,7 @@ class LogisticRegressionMenu extends Component {
 						</Col>
 						<Col md={6}>
 							<SelectInput
-								legend="Success (Y = 1):"
+								legend={`${t('success')} (Y = 1):`}
 								defaultValue={success}
 								options={categories}
 								onChange={( value ) => {

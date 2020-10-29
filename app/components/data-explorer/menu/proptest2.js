@@ -116,7 +116,7 @@ class PropTest2Menu extends Component {
 						</Col>
 						<Col md={6}>
 							<SelectInput
-								legend="Success:"
+								legend={t('success')}
 								defaultValue={this.state.categories[ 0 ]}
 								options={this.state.categories}
 								onChange={( value ) => {

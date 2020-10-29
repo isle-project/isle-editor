@@ -384,7 +384,7 @@ class BinTransformer extends Component {
 	renderBody() {
 		const configHist = this.state.configHist;
 		const select = <SelectInput
-			legend={`${this.props.t('variable-to-bin')}:`}
+			legend={this.props.t('variable-to-bin')}
 			defaultValue={this.state.activeVar}
 			options={this.props.quantitative}
 			onChange={this.handleVariableChange}

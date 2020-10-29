@@ -171,7 +171,7 @@ class Ticketing extends Component {
 						>
 							<p>{t('ticketing-intro')}</p>
 							<SelectInput
-								legend={`${t('component')}:`}
+								legend={t('component')}
 								options={COMPONENTS}
 								onChange={this.handleComponentChange}
 							/>

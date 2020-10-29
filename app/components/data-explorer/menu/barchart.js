@@ -156,7 +156,7 @@ class BarchartMenu extends Component {
 							</Col>
 							<Col>
 								<SelectInput
-									legend="Summary function:"
+									legend={t('summary-function')}
 									defaultValue={this.state.summary}
 									options={STATS}
 									onChange={( summary ) => {
@@ -219,7 +219,7 @@ class BarchartMenu extends Component {
 					<Row>
 						<Col>
 							{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
-								legend="Total Percentages"
+								legend={t('total-percentages')}
 								defaultValue={this.state.totalPercent}
 								onChange={( value )=>{
 									this.setState({
@@ -234,7 +234,7 @@ class BarchartMenu extends Component {
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Flip Coordinates"
+								legend={t('flip-coordinates')}
 								defaultValue={this.state.horiz}
 								onChange={( value )=>{
 									this.setState({
@@ -247,7 +247,7 @@ class BarchartMenu extends Component {
 					<Row>
 						<Col>
 							<CheckboxInput
-								legend="Stack bars"
+								legend={t('stack-bars')}
 								defaultValue={this.state.stackBars}
 								onChange={( value )=>{
 									this.setState({
