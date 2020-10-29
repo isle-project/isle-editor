@@ -264,7 +264,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.1",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.1.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.2.0",
     "codecov": "^3.7.2",
     "concurrently": "^5.3.0",
     "doctrine": "^3.0.0",
@@ -308,7 +308,7 @@
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
     "vex-js": "^4.1.0",
-    "victory": "35.3.1",
+    "victory": "35.3.2",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "^3.11.0",
     "xterm-addon-search": "^0.7.0",
