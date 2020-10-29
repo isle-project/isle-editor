@@ -43,7 +43,7 @@ class AnovaMenu extends Component {
 				onGenerate={this.calculateANOVA}
 			>
 				<SelectInput
-					legend={`${t('variable')}:`}
+					legend={t('variable')}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>

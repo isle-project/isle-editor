@@ -83,7 +83,7 @@ class ContingencyTableMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Row Variable:"
+						legend={t('row-variable')}
 						defaultValue={this.state.rowVar}
 						options={variables}
 						onChange={( value )=>{
@@ -93,7 +93,7 @@ class ContingencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Column Variable:"
+						legend={t('column-variable')}
 						defaultValue={this.state.colVar}
 						options={variables}
 						onChange={( value )=>{

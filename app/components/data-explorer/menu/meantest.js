@@ -59,7 +59,7 @@ class MeanTestMenu extends Component {
 		return (
 			<Fragment>
 				<SelectInput
-					legend="Type of Test:"
+					legend={t('type-of-test')}
 					defaultValue={this.state.type}
 					options={[ 'T Test', 'Z Test' ]}
 					onChange={( value ) => {
@@ -69,7 +69,7 @@ class MeanTestMenu extends Component {
 					}}
 				/>
 				<SelectInput
-					legend={`${t('variable')}:`}
+					legend={t('variable')}
 					defaultValue={null}
 					options={quantitative}
 					onChange={( variable ) => {

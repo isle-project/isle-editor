@@ -87,15 +87,15 @@ class DecisionTreeMenu extends Component {
 	}
 
 	render() {
-		const { categorical, quantitative } = this.props;
+		const { categorical, quantitative, t } = this.props;
 		const { x, y, type } = this.state;
 		return (
 			<Card
 				style={{ fontSize: '14px', maxWidth: 600 }}
 			>
 				<Card.Header as="h4">
-					{this.props.t('Decision Tree')}
-					<QuestionButton title={this.props.t('Decision Tree')} content={DESCRIPTION} />
+					{t('Decision Tree')}
+					<QuestionButton title={t('Decision Tree')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
@@ -112,20 +112,20 @@ class DecisionTreeMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={this.props.t('outcome-y')}
+						legend={t('outcome-y')}
 						options={type === 'Classification' ? categorical : quantitative}
 						defaultValue={y}
 						onChange={( y ) => this.setState({ y })}
 					/>
 					<SelectInput
-						legend={this.props.t('predictors-x')} multi
+						legend={t('predictors-x')} multi
 						options={unique( quantitative.concat( categorical ) )}
 						defaultValue={x || ''}
 						onChange={( x ) => this.setState({ x })}
 						closeMenuOnSelect={false}
 					/>
 					{ type === 'Classification' ? <SelectInput
-						legend="Impurity Measure"
+						legend={t('impurity-measure')}
 						defaultValue={this.state.impurityMeasure}
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
@@ -146,7 +146,7 @@ class DecisionTreeMenu extends Component {
 						/>
 					</Collapse>
 					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{this.props.t('calculate')}
+						{t('calculate')}
 					</Button>
 				</Card.Body>
 			</Card>

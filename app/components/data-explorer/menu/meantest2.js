@@ -66,7 +66,7 @@ class MeanTest2Menu extends Component {
 		const binary = getBinaryVars( categorical, data );
 		return ( <Fragment>
 			<SelectInput
-				legend="Type of Test:"
+				legend={t('type-of-test')}
 				defaultValue={this.state.type}
 				options={[ 'T Test', 'Z Test' ]}
 				onChange={( value ) => {
@@ -76,7 +76,7 @@ class MeanTest2Menu extends Component {
 				}}
 			/>
 			<SelectInput
-				legend={`${t('variable')}:`}
+				legend={t('variable')}
 				defaultValue={this.state.x}
 				options={quantitative}
 				onChange={( x ) => {

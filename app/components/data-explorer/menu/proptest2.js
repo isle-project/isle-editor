@@ -99,7 +99,7 @@ class PropTest2Menu extends Component {
 					<Row>
 						<Col md={6}>
 							<SelectInput
-								legend={`${t('variable')}:`}
+								legend={t('variable')}
 								defaultValue={categorical[ 0 ]}
 								options={categorical}
 								onChange={( variable ) => {

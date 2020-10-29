@@ -133,7 +133,7 @@ class BarchartMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${t('variable')}:`}
+						legend={t('variable')}
 						defaultValue={this.state.variable}
 						options={this.props.variables}
 						onChange={( value )=>{

@@ -45,7 +45,7 @@ class Chi2TestMenu extends Component {
 				onGenerate={this.calculateChisquareTest}
 			>
 				<SelectInput
-					legend={`${t('variable')}:`}
+					legend={t('variable')}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>

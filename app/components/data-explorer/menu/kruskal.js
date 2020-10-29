@@ -43,7 +43,7 @@ class KruskalMenu extends Component {
 				onGenerate={this.calculateTest}
 			>
 				<SelectInput
-					legend={`${t('variable')}:`}
+					legend={t('variable')}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>

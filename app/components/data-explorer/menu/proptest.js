@@ -56,7 +56,7 @@ class PropTestMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend={`${t('variable')}:`}
+						legend={t('variable')}
 						defaultValue={this.state.variable}
 						options={categorical}
 						onChange={( variable ) => {

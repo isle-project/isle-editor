@@ -53,7 +53,7 @@ class QQPlotMenu extends Component {
 				onGenerate={this.generateQQPlot.bind( this )}
 			>
 				<SelectInput
-					legend={`${t('variable')}:`}
+					legend={t('variable')}
 					defaultValue={defaultValue || variables[ 0 ]}
 					options={variables}
 				/>
