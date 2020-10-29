@@ -48,7 +48,7 @@ class AnovaMenu extends Component {
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${t('grouping-variable')}:`}
+					legend={t('grouping-variable')}
 					defaultValue={categorical[ 0 ]}
 					options={categorical}
 				/>

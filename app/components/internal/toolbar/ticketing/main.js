@@ -184,7 +184,7 @@ class Ticketing extends Component {
 								/>
 							</FormGroup>
 							<TextArea
-								legend={`${t('description')}:`}
+								legend={t('description')}
 								value={this.state.description}
 								onChange={this.handleDescriptionChange}
 								placeholder={t('description-placeholder')}

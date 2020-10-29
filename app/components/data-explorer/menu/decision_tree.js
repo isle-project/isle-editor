@@ -130,12 +130,12 @@ class DecisionTreeMenu extends Component {
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
-					<Collapse header="Change tree features..." headerStyle={{ fontSize: '1rem' }} >
+					<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
 						<NumberInput legend="Score threshold for split"
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
 						/>
-						<NumberInput legend="Maximum tree depth"
+						<NumberInput legend={t('maximum-tree-depth')}
 							min={1} max={50}
 							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
 						/>

@@ -153,7 +153,7 @@ class RandomForestMenu extends Component {
 						min={1}
 						max={isArray( x ) ? x.length : 1}
 					/>
-					<Collapse header="Change tree features..." headerStyle={{ fontSize: '1rem' }} >
+					<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
 						<NumberInput legend="Score threshold for split"
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}

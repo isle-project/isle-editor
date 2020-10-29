@@ -287,6 +287,7 @@ class CategoricalTransformer extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Draggable cancel=".card-body" onDragStart={( event ) => {
 				event.stopPropagation();
@@ -294,9 +295,9 @@ class CategoricalTransformer extends Component {
 				<Panel
 					onHide={this.props.onHide}
 					show={this.props.show}
-					header={this.props.t('categorical-transformer-header')}
+					header={t('categorical-transformer-header')}
 					footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
-						{this.props.t('create-new-variable')}
+						{t('create-new-variable')}
 					</Button>}
 					bodyStyle={{
 						maxHeight: 'calc(100vh - 200px)',
@@ -308,7 +309,7 @@ class CategoricalTransformer extends Component {
 					<Row>
 						<Col md={4}>
 							<SelectInput
-								legend={`${this.props.t('first-variable')}:`}
+								legend={t('first-variable')}
 								defaultValue={this.state.firstVar || ''}
 								options={this.props.categorical}
 								onChange={this.handleFirstVariableChange}
@@ -317,7 +318,7 @@ class CategoricalTransformer extends Component {
 						<Col md={4}>
 							<SelectInput
 								clearable
-								legend={`${this.props.t('optional-second-variable')}:`}
+								legend={t('optional-second-variable')}
 								defaultValue={this.state.secondVar || ''}
 								options={this.props.categorical}
 								onChange={this.handleSecondVariableChange}
@@ -328,9 +329,9 @@ class CategoricalTransformer extends Component {
 						{this.renderTable()}
 					</Row>
 					<Row>
-						<Tooltip tooltip={this.props.t('treat-labels-as-numbers-tooltip')}>
+						<Tooltip tooltip={t('treat-labels-as-numbers-tooltip')}>
 							<CheckboxInput
-								legend={this.props.t('treat-labels-as-numbers')}
+								legend={t('treat-labels-as-numbers')}
 								defaultValue={false}
 								disabled={!this.state.onlyNumbers}
 								onChange={() => {
@@ -343,15 +344,15 @@ class CategoricalTransformer extends Component {
 					</Row>
 					<Row>
 						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
+							<FormLabel>{t('name-new-variable')}:</FormLabel>
 							<FormControl
 								type="text"
-								placeholder={this.props.t('select-name')}
+								placeholder={t('select-name')}
 								onChange={this.handleGeneratedNameChange}
 								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
-								{this.props.t('new-variable-appended')}
+								{t('new-variable-appended')}
 							</FormText>
 						</FormGroup>
 					</Row>

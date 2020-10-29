@@ -131,7 +131,7 @@ class HistogramMenu extends Component {
 					</Row>
 					<div>
 						<SelectInput
-							legend={`${t('binning-strategy')}:`}
+							legend={t('binning-strategy')}
 							options={[
 								'Automatic',
 								'Select # of bins',

@@ -75,13 +75,13 @@ class HierarchicalClusteringMenu extends Component {
 				<Row>
 					<Col>
 						<CheckboxInput
-							legend="Attach clusters to table?"
+							legend={t('attach-clusters-table')}
 							defaultValue={false}
 						/>
 					</Col>
 					<Col>
 						<NumberInput
-							legend="Number of clusters"
+							legend={t('number-of-clusters')}
 							min={1}
 							inline
 							defaultValue={3}

@@ -889,7 +889,7 @@ class DataExplorer extends Component {
 				<Card.Body>
 					<h4>{this.props.t('select-quantitative-categorical')}:</h4>
 					<SelectInput
-						legend={`${this.props.t('quantitative')}:`}
+						legend={this.props.t('quantitative')}
 						options={variableNames}
 						defaultValue={this.state.quantitative}
 						multi
@@ -898,7 +898,7 @@ class DataExplorer extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('categorical')}:`}
+						legend={this.props.t('categorical')}
 						options={variableNames}
 						defaultValue={this.state.categorical}
 						multi

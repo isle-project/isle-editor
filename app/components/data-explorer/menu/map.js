@@ -50,10 +50,11 @@ class MapMenu extends Component {
 			showLand,
 			plotId
 		};
+		const { t } = this.props;
 		const onShare = () => {
 			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
@@ -70,11 +71,11 @@ class MapMenu extends Component {
 	}
 
 	render() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>{this.props.t('Map')}<QuestionButton title={this.props.t('Map')} content={DESCRIPTION} /></span>}
+				title={<span>{t('Map')}<QuestionButton title={t('Map')} content={DESCRIPTION} /></span>}
 				onGenerate={this.generateMap.bind( this )}
 			>
 				<Row>
@@ -128,7 +129,7 @@ class MapMenu extends Component {
 				</Row>
 				<hr />
 				<SelectInput
-					legend={`${this.props.t('variable')}:`}
+					legend={t('variable')}
 					options={variables}
 					clearable
 				/>
