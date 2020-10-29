@@ -195,7 +195,7 @@ class Video extends Component {
 		if ( !this.state.encounteredError ) {
 			return null;
 		}
-		const button = <Tooltip tooltip="Retry">
+		const button = <Tooltip tooltip={this.props.t('retry')}>
 			<Button size="sm" variant="light-outline" onClick={() => {
 				this.setState({ encounteredError: null });
 			}} style={{ position: 'absolute', top: 5, right: 5 }}>

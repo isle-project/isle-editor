@@ -54,7 +54,7 @@ const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 
 // FUNCTIONS //
 
-const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilters ) => {
+const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilters, t ) => {
 	return ( <ButtonGroup style={{ float: 'right', top: '-4px', zIndex: 2 }}>
 		<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
 		<FullscreenButton header={header} body={table} />
@@ -90,7 +90,7 @@ const makeDraggable = ( div ) => {
 	);
 };
 
-const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
@@ -114,12 +114,12 @@ const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 		</tbody>
 	</Table>;
 	return ( <pre key={idx}>
-		{createButtons( 'Interquartile Range', table, clearOutput, idx, subsetFilters, onFilters )}
+		{createButtons( 'Interquartile Range', table, clearOutput, idx, subsetFilters, onFilters, t )}
 		{makeDraggable( table )}
 	</pre> );
 };
 
-const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
@@ -143,7 +143,7 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
 		</tbody>
 	</Table>;
 	return ( <pre key={idx}>
-		{createButtons( 'Range', table, clearOutput, idx, subsetFilters, onFilters )}
+		{createButtons( 'Range', table, clearOutput, idx, subsetFilters, onFilters, t )}
 		{makeDraggable( table )}
 	</pre> );
 };
@@ -172,7 +172,7 @@ const CorrelationTable = ( props ) => {
 	</Table> );
 };
 
-const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters ) => {
+const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
 	if ( e.group ) {
 		const tables = [];
 		const keys = objectKeys( e.result );
@@ -187,13 +187,13 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 			tables.push( table );
 		}
 		return ( <pre key={idx}>
-			{createButtons( 'Correlation Matrix', tables, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Correlation Matrix', tables, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( tables )}
 		</pre> );
 	}
 	const table = <CorrelationTable result={e.result} variables={e.variables} />;
 	return ( <pre key={idx}>
-		{createButtons( 'Correlation Matrix', table, clearOutput, idx, subsetFilters, onFilters )}
+		{createButtons( 'Correlation Matrix', table, clearOutput, idx, subsetFilters, onFilters, t )}
 		{makeDraggable( table )}
 	</pre> );
 };
@@ -201,7 +201,7 @@ const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters 
 
 // MAIN //
 
-function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
+function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t ) {
 	if (
 		e.type === BoxPlot ||
 		e.type === BarChart ||
@@ -223,7 +223,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		}
 		return ( <div key={idx}>
 			<ButtonGroup style={{ float: 'right', padding: '0.1rem 0.3rem', zIndex: 2 }}>
-				<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
+				<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} t={t} />
 				<ClearButton
 					onClick={() => { clearOutput( idx ); }}
 				/>
@@ -250,7 +250,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === PropTest2
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Test Output', e, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Test Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{e}
 		</pre>;
 		return elem;
@@ -260,7 +260,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === FrequencyTable
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Table Output', e, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Table Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
@@ -276,7 +276,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 		e.type === RandomForest
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Model Output', e, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( 'Model Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
@@ -380,20 +380,20 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 				</tbody>
 			</Table>;
 			const elem = <pre key={idx} >
-				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters, t )}
 				{makeDraggable( table )}
 			</pre>;
 			return elem;
 		}
 		if ( e.statistics.length === 1 ) {
 			if ( e.statistics[0] === 'Range' ) {
-				return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters );
+				return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters, t );
 			}
 			if ( e.statistics[0] === 'Interquartile Range' ) {
-				return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters );
+				return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters, t );
 			}
 			if ( e.statistics[0] === 'Correlation Matrix' ) {
-				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters );
+				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters, t );
 			}
 		}
 		const table = <Table bordered size="sm">
@@ -426,7 +426,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters ) {
 			</tbody>
 		</Table>;
 		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters )}
+			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( table )}
 		</pre>;
 		return elem;

@@ -492,11 +492,11 @@ class DataExplorer extends Component {
 		const newOutput = this.state.output.slice();
 		if ( isArray( val ) ) {
 			for ( let i = 0; i < val.length; i++ ) {
-				const element = createOutputElement( val[ i ], newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters );
+				const element = createOutputElement( val[ i ], newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
 				newOutput.push( element );
 			}
 		} else {
-			const element = createOutputElement( val, newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters );
+			const element = createOutputElement( val, newOutput.length, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
 			newOutput.push( element );
 		}
 		this.setState({

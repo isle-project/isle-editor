@@ -112,7 +112,7 @@ class ContingencyTableMenu extends Component {
 								group: value // eslint-disable-line react/no-unused-state
 							});
 						}}
-						tooltip="Generate a contingency table for each category of a chosen grouping variable"
+						tooltip={t('contingency-table-group-tooltip')}
 					/>
 					<CheckboxInput
 						legend={t('relative-frequency')}

@@ -76,7 +76,7 @@ class PieChartMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Pie sizes represent:"
+						legend={t('pie-sizes-represent')}
 						defaultValue={this.state.mode}
 						options={MODES}
 						onChange={( value )=>{

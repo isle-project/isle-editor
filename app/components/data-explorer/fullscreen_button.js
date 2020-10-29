@@ -25,12 +25,13 @@ class FullscreenButton extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<Tooltip
 					id="fullscreen_tooltip"
 					placement="bottom"
-					tooltip="Toggle FullScreen"
+					tooltip={t('toggle-fullscreen')}
 				>
 					<Button
 						variant="outline-danger"
@@ -59,7 +60,9 @@ class FullscreenButton extends Component {
 						{this.props.body}
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.toggleFullscreen}>Close</Button>
+						<Button onClick={this.toggleFullscreen}>
+							{t('close')}
+						</Button>
 					</Modal.Footer>
 				</Modal>
 			</Fragment>

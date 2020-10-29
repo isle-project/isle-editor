@@ -68,7 +68,7 @@ class DatasetButton extends Component {
 									{...props}
 									style={style}
 								>
-									Entire dataset used to create output.
+									{this.props.t('entire-dataset-used')}
 								</pre>
 							);
 						}
@@ -101,7 +101,6 @@ class DatasetButton extends Component {
 // PROPERTIES //
 
 DatasetButton.propTypes = {
-	header: PropTypes.string,
 	filters: PropTypes.array,
 	onActivateFilters: PropTypes.func,
 	restoreButton: PropTypes.bool,
@@ -109,7 +108,6 @@ DatasetButton.propTypes = {
 };
 
 DatasetButton.defaultProps = {
-	header: 'Show applied filters for used data',
 	filters: null,
 	onActivateFilters() {},
 	restoreButton: false,
