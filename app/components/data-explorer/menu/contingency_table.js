@@ -103,7 +103,7 @@ class ContingencyTableMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${t('group-by')}:`}
+						legend={t('group-by')}
 						options={groupingVariables}
 						clearable={true}
 						menuPlacement="top"

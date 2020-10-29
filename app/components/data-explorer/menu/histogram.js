@@ -86,7 +86,7 @@ class HistogramMenu extends Component {
 					<Row>
 						<Col md={5} >
 							<SelectInput
-								legend={`${t('group-by')}:`}
+								legend={t('group-by')}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{

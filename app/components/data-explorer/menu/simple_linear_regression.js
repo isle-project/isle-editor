@@ -53,7 +53,7 @@ class SimpleLinearRegressionMenu extends Component {
 	}
 
 	render() {
-		const { quantitative, categorical } = this.props;
+		const { quantitative, categorical, t } = this.props;
 		return (
 			<Dashboard
 				title={<span>{this.props.t('Simple Linear Regression')}<QuestionButton title={this.props.t('Simple Linear Regression')} content={DESCRIPTION} /></span>}
@@ -61,23 +61,23 @@ class SimpleLinearRegressionMenu extends Component {
 				onGenerate={this.fitRegression}
 			>
 				<SelectInput
-					legend="Response Variable (Y):"
+					legend={t('outcome-y')}
 					defaultValue={quantitative[ 0 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend="Explanatory Variable (X):"
+					legend={t('explanatory-variable')}
 					defaultValue={quantitative[ 1 ]}
 					options={quantitative}
 				/>
 				<SelectInput
-					legend={`${this.props.t('group-by')}:`}
+					legend={t('group-by')}
 					options={categorical}
 					clearable={true}
 					menuPlacement="top"
 				/>
 				<CheckboxInput
-					legend={this.props.t('omit-missing')}
+					legend={t('omit-missing')}
 					defaultValue={false}
 				/>
 			</Dashboard>

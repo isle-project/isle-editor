@@ -114,11 +114,12 @@ class BarchartMenu extends Component {
 			this.state.totalPercent || // overall percent
 			this.state.mode === MODES[ 1 ] // when evaluating a function
 		);
+		const { t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{this.props.t('Bar Chart')}
-					<QuestionButton title={this.props.t('Bar Chart')} content={DESCRIPTION} />
+					{t('Bar Chart')}
+					<QuestionButton title={t('Bar Chart')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
@@ -132,7 +133,7 @@ class BarchartMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend={`${this.props.t('variable')}:`}
+						legend={`${t('variable')}:`}
 						defaultValue={this.state.variable}
 						options={this.props.variables}
 						onChange={( value )=>{
@@ -145,7 +146,7 @@ class BarchartMenu extends Component {
 						<Row>
 							<Col>
 								<SelectInput
-									legend="y-axis:"
+									legend={t('y-axis')}
 									defaultValue={this.state.yvar}
 									options={this.props.quantitative}
 									onChange={( yvar ) => {
@@ -165,7 +166,7 @@ class BarchartMenu extends Component {
 							</Col>
 						</Row> : null }
 					<SelectInput
-						legend={`${this.props.t('group-by')}:`}
+						legend={t('group-by')}
 						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}
@@ -276,7 +277,7 @@ class BarchartMenu extends Component {
 						</Col>
 					</Row>
 					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>
-						{this.props.t('generate')}
+						{t('generate')}
 					</Button>
 				</Card.Body>
 			</Card>

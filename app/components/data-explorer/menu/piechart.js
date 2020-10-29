@@ -105,7 +105,7 @@ class PieChartMenu extends Component {
 							}}
 						/> : null }
 					<SelectInput
-						legend={`${t('group-by')}:`}
+						legend={t('group-by')}
 						defaultValue={this.state.group}
 						options={this.props.groupingVariables}
 						clearable={true}

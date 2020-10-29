@@ -73,7 +73,7 @@ class LinePlotMenu extends Component {
 	}
 
 	render() {
-		const { categorical, variables, groupingVariables } = this.props;
+		const { categorical, variables, groupingVariables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -82,9 +82,9 @@ class LinePlotMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="lineplot-form-select">
-						<FormLabel>x-axis:</FormLabel>
+						<FormLabel>{t('x-axis')}</FormLabel>
 						<Select
-							legend="x-axis:"
+							legend={t('x-axis')}
 							defaultValue={null}
 							options={[
 								{
@@ -107,7 +107,7 @@ class LinePlotMenu extends Component {
 						/>
 					</FormGroup>
 					<SelectInput
-						legend="y-axis:"
+						legend={t('y-axis')}
 						defaultValue={this.state.y}
 						options={variables}
 						onChange={( y ) => {

@@ -179,7 +179,7 @@ class MeanTest2Menu extends Component {
 				</Col>
 			</Row>
 			<SelectInput
-				legend="Direction:"
+				legend={t('direction')}
 				defaultValue={this.state.direction}
 				options={[ 'less', 'greater', 'two-sided' ]}
 				onChange={( value ) => {

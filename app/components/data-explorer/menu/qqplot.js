@@ -45,7 +45,10 @@ class QQPlotMenu extends Component {
 		const { variables, defaultValue, t } = this.props;
 		return (
 			<Dashboard
-				title={<span>{t('QQ Plot')}<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} /></span>}
+				title={<span>
+					{t('QQ Plot')}
+					<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} />
+				</span>}
 				autoStart={false}
 				onGenerate={this.generateQQPlot.bind( this )}
 			>

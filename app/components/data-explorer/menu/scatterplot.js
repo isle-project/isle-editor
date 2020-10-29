@@ -66,11 +66,11 @@ class ScatterplotMenu extends Component {
 	}
 
 	renderInputs() {
-		const { variables, groupingVariables } = this.props;
+		const { variables, groupingVariables, t } = this.props;
 		return ( <Fragment>
 			<div style={{ width: '100%' }}>
 				<SelectInput
-					legend="x-axis:"
+					legend={t('x-axis')}
 					defaultValue={this.state.xval}
 					options={variables}
 					style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
@@ -81,7 +81,7 @@ class ScatterplotMenu extends Component {
 					}}
 				/>
 				<SelectInput
-					legend="y-axis:"
+					legend={t('y-axis')}
 					defaultValue={this.state.yval}
 					style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
 					options={variables}

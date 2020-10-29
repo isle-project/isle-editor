@@ -97,7 +97,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend={`${t('group-by')}:`}
+								legend={t('group-by')}
 								options={groupingVariables}
 								clearable={true}
 								onChange={( value )=>{
@@ -112,7 +112,7 @@ class HeatMapMenu extends Component {
 					<Row>
 						<Col>
 							<CheckboxInput
-								legend="Common x-axis?"
+								legend={t('common-x-axis')}
 								defaultValue={this.state.commonXAxis}
 								onChange={( value )=>{
 									this.setState({
@@ -128,7 +128,7 @@ class HeatMapMenu extends Component {
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Common y-axis?"
+								legend={t('common-y-axis')}
 								defaultValue={this.state.commonYAxis}
 								onChange={( value )=>{
 									this.setState({

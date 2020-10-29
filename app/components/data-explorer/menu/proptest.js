@@ -92,7 +92,7 @@ class PropTestMenu extends Component {
 						}}
 					/>
 					<SelectInput
-						legend="Direction:"
+						legend={t('direction')}
 						defaultValue={this.state.direction}
 						options={[ 'less', 'greater', 'two-sided' ]}
 						onChange={( value ) => {

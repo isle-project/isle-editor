@@ -64,7 +64,7 @@ class CorrTestMenu extends Component {
 					max={1.0}
 				/>
 				<SelectInput
-					legend="Direction:"
+					legend={t('direction')}
 					defaultValue="two-sided"
 					options={[ 'less', 'greater', 'two-sided' ]}
 				/>
