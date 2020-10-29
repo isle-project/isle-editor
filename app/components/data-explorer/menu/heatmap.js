@@ -73,7 +73,7 @@ class HeatMapMenu extends Component {
 				<Card.Body>
 					<Row>
 						<Col><SelectInput
-							legend="Variable on x-axis:"
+							legend={t('x-axis-variable')}
 							defaultValue={this.state.x}
 							options={variables}
 							onChange={( value )=>{
@@ -84,7 +84,7 @@ class HeatMapMenu extends Component {
 						/>
 						</Col>
 						<Col><SelectInput
-							legend="Variable on y-axis:"
+							legend={t('y-axis-variable')}
 							defaultValue={this.state.y}
 							options={variables}
 							onChange={( value )=>{
@@ -157,7 +157,7 @@ class HeatMapMenu extends Component {
 						</Col>
 						<Col>
 							<CheckboxInput
-								legend="Alternate Color Scheme"
+								legend={t('alternate-color-scheme')}
 								defaultValue={this.state.alternateColor}
 								onChange={( value )=>{
 									this.setState({

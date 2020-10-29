@@ -1,5 +1,6 @@
 {
 	"DE": {
+		"alternate-color-scheme": "Alternatives Farbschem",
 		"attach-clusters-table": "Cluster an die Tabelle anhängen?",
 		"bin-quantitative": "Bündele quantitative Variablen in kategoriale",
 		"bin-transformer-header": "Neue Variable durch Binning einer quantitativen Variable in Kategorien erstellen",
@@ -95,6 +96,8 @@
 		"variable-removed-msg": "Die Variable mit dem Namen {{variable}} wurde erfolgreich entfernt.",
 		"variable-to-bin": "Variable zum Binnen",
 		"variation-measures": "Variationsmaße",
+		"x-axis-variable": "Variable auf der x-Achse:",
+		"y-axis-variable": "Variable auf der y-Achse:",
 		"Frequency Table": "Häufigkeitstabelle",
 		"Contingency Table": "Kontingenztabelle",
 		"Bar Chart": "Balkendiagramm",
@@ -141,6 +144,7 @@
 		"Quantile": "Quantil"
 	},
 	"EN": {
+		"alternate-color-scheme": "Alternate Color Scheme",
 		"attach-clusters-table": "Attach clusters to table?",
 		"bin-quantitative": "Bin quantitative variables into categorical",
 		"bin-transformer-header": "Create new variable by binning a quantitative variable into categories",
@@ -236,6 +240,8 @@
 		"variable-removed-msg": "The variable with the name {{variable}} has been successfully removed.",
 		"variable-to-bin": "Variable to bin",
 		"variation-measures": "Variation Measures",
+		"x-axis-variable": "Variable on x-axis:",
+		"y-axis-variable": "Variable on y-axis:",
 		"Frequency Table": "Frequency Table",
 		"Contingency Table": "Contingency Table",
 		"Bar Chart": "Bar Chart",
@@ -282,6 +288,7 @@
 		"Quantile": "Quantile"
 	},
 	"ES": {
+		"alternate-color-scheme": "Esquema de colores alternativos",
 		"attach-clusters-table": "¿Adjuntar grupos a la mesa?",
 		"bin-quantitative": "Agrupar las variables cuantitativas en categorías",
 		"bin-transformer-header": "Crear una nueva variable agrupando una variable cuantitativa en categorías",
@@ -377,6 +384,8 @@
 		"variable-removed-msg": "La variable con el nombre {{variable}} ha sido eliminada con éxito.",
 		"variation-measures": "Medidas de variación",
 		"variable-to-bin": "Variable a la basura",
+		"x-axis-variable": "Variable en el eje x:",
+		"y-axis-variable": "Variable en el eje y:",
 		"Frequency Table": "Tabla de frecuencias",
 		"Contingency Table": "Tabla de contingencia",
 		"Bar Chart": "Gráfico de barras",

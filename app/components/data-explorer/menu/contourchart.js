@@ -78,7 +78,7 @@ class ContourChartMenu extends Component {
 					<Row>
 						<Col>
 							<SelectInput
-								legend="Variable on x-axis:"
+								legend={t('x-axis-variable')}
 								defaultValue={this.state.x}
 								options={variables}
 								onChange={( value ) => {
@@ -90,7 +90,7 @@ class ContourChartMenu extends Component {
 						</Col>
 						<Col>
 							<SelectInput
-								legend="Variable on y-axis:"
+								legend={t('y-axis-variable')}
 								defaultValue={this.state.y}
 								options={variables}
 								menuPlacement="top"
