@@ -117,7 +117,6 @@ const config = {
 			'./app/components/provider',
 			'./app/components/qrcode',
 			'./app/components/question-form',
-			'./app/components/queue',
 			'./app/components/quiz',
 			'./app/components/r/help',
 			'./app/components/r/output',
