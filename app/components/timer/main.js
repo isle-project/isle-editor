@@ -1,11 +1,27 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import max from '@stdlib/math/base/special/max';
 import fmtPositiveTime from './positive_time.js';
 import fmtNegativeTime from './negative_time.js';
 import './timer.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:timer' );
+
+
+// FUNCTIONS //
+
+function timerID( id ) {
+	if ( !id ) {
+		return null;
+	}
+	return `timer::${id}`;
+}
 
 
 // MAIN //
@@ -22,98 +38,60 @@ import './timer.css';
 * @property {Object} style - CSS inline styles
 * @property {Function} onTimeUp - callback invoked when the timer runs out
 */
-class Timer extends Component {
-	constructor( props ) {
-		super( props );
-		const storedTimeLeft = localStorage.getItem( this.getTimerId() );
-		this.state = {
-			timeLeft: storedTimeLeft || props.duration,
-			duration: props.duration,
-			finished: false
-		};
+const Timer = ( props ) => {
+	const storedTimeLeft = localStorage.getItem( timerID( props.id ) );
+	const [ timeLeft, setTimeLeft ] = useState( storedTimeLeft || props.duration );
+	const [ prevDuration, setPrevDuration ] = useState( props.duration );
+	const [ finished, setFinished ] = useState( false );
+	const [ countdown, setCountdown ] = useState( null );
+
+	if ( props.duration !== prevDuration ) {
+		debug( 'Duration changed since last render...' );
+		setTimeLeft( props.duration );
+		setPrevDuration( props.duration );
 	}
 
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		if (
-			nextProps.duration !== prevState.duration
-		) {
-			const newState = {};
-			newState.duration = nextProps.duration;
-			newState.timeLeft = nextProps.duration;
-			return newState;
+	useEffect( () => {
+		if ( props.active && !countdown ) {
+			debug( 'Starting countdown...' );
+			const interval = setInterval( () => {
+				setTimeLeft( timeLeft => {
+					const newTimeLeft = timeLeft - 1;
+					const id = timerID( props.id );
+					if ( id ) {
+						localStorage.setItem( id, newTimeLeft );
+					}
+					if ( !finished && newTimeLeft <= 0 ) {
+						if ( !props.belowZero ) {
+							clearInterval( countdown );
+						}
+						props.onTimeUp();
+						setFinished( true );
+					}
+					return newTimeLeft;
+				});
+			}, 1000 );
+			setCountdown( interval );
 		}
+		return () => {
+			debug( 'Cancel the countdown on unmount of component...' );
+			if ( countdown ) {
+				clearInterval( countdown );
+			}
+		};
+	}, [ props.active ]);
+
+	if ( props.invisible ) {
 		return null;
 	}
-
-	componentDidMount() {
-		this.startCountdown();
-	}
-
-	componentDidUpdate( prevProps, prevState ) {
-		// Check if the clock should be active:
-		if (
-			this.props.active &&
-			!prevProps.active &&
-			!this.state.countdown
-		) {
-			this.startCountdown();
-		}
-	}
-
-	componentWillUnmount() {
-		const { countdown } = this.state;
-		// Cancel the countdown on unmount of component:
-		if ( countdown ) {
-			clearInterval( countdown );
-		}
-	}
-
-	getTimerId() {
-		const { id } = this.props;
-		if ( !id ) {
-			return null;
-		}
-		return `timer::${id}`;
-	}
-
-	startCountdown() {
-		const countdown = setInterval( () => {
-			// Decrement the time by 1:
-			this.setState({
-				timeLeft: this.state.timeLeft - 1
-			});
-			const id = this.getTimerId();
-			if ( id ) {
-				localStorage.setItem( id, this.state.timeLeft );
-			}
-			if ( !this.state.finished && this.state.timeLeft <= 0 ) {
-				if ( !this.props.belowZero ) {
-					clearInterval( countdown );
-				}
-				this.props.onTimeUp();
-				this.setState({
-					finished: true
-				});
-			}
-		}, 1000 );
-
-		// Store the countdown reference:
-		this.setState({ countdown });
-	}
-
-	render() {
-		if ( this.props.invisible ) {
-			return null;
-		}
-		const format = this.state.timeLeft > 0 ? fmtPositiveTime : fmtNegativeTime;
-		return (
-			<div style={this.props.style} className={`timer-div ${this.state.timeLeft < 0 ? 'timer-danger' : 'timer-info'}`}>
-				{this.props.legend}
-				{format( this.props.belowZero ? this.state.timeLeft : max( this.state.timeLeft, 0 ) )}
-			</div>
-		);
-	}
-}
+	const format = timeLeft > 0 ? fmtPositiveTime : fmtNegativeTime;
+	return (
+		<div style={props.style} className={`timer-div ${timeLeft < 0 ? 'timer-danger' : 'timer-info'}`}>
+			{props.legend}
+			{format( props.belowZero ? timeLeft : max( timeLeft, 0 ) )}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
