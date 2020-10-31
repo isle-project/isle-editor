@@ -90,6 +90,7 @@ let VIDEO_CHATS = null;
 let TEXT_CHATS = null;
 let ALL_GROUPS = null;
 let ASSIGNED_GROUP = null;
+let QUESTIONS = null;
 
 // JSON Web Token for user authentication:
 let JWT = null;
@@ -207,6 +208,9 @@ class Session {
 		// Available user groups:
 		ALL_GROUPS = [];
 
+		// Queue questions:
+		QUESTIONS = [];
+
 		this.selectedCohort = null;
 		this.activeCohortMembers = null;
 
@@ -318,6 +322,10 @@ class Session {
 
 	get allGroups() {
 		return ALL_GROUPS;
+	}
+
+	get questions() {
+		return QUESTIONS;
 	}
 
 	get jitsi() {
@@ -1024,6 +1032,34 @@ class Session {
 	}
 
 	/**
+	* Emits the `add_question` event with a new question from a student.
+	*
+	* @param {string} question - question text
+	*/
+	addQuestionToQueue( question ) {
+		const questionObject = {
+			name: this.user.name,
+			email: this.user.email,
+			question
+		};
+		this.socket.emit( 'add_question', questionObject );
+	}
+
+	/**
+	* Emits the `remove_question` event to remove the specified question from the queue.
+	*
+	* @param {string} question - question text
+	*/
+	removeQuestionFromQueue( question ) {
+		const questionObject = {
+			name: this.user.name,
+			email: this.user.email,
+			question
+		};
+		this.socket.emit( 'remove_question', questionObject );
+	}
+
+	/**
 	* Emits the `delete_groups` event and closes all group chats upon finishing group mode.
 	*/
 	deleteGroups = () => {
@@ -1344,6 +1380,11 @@ class Session {
 			const lastGroups = ALL_GROUPS;
 			ALL_GROUPS = [];
 			this.update( DELETED_GROUPS, lastGroups );
+		});
+
+		socket.on( 'queue_questions', ( questions ) => {
+			QUESTIONS = questions;
+			this.update( 'QUEUE_QUESTIONS', QUESTIONS );
 		});
 
 		socket.on( 'memberAction', this.saveAction );

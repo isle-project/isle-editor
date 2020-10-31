@@ -425,7 +425,7 @@ class Toolbar extends Component {
 					id="main_queue"
 					show={this.state.queue}
 					onHide={this.toggleQueue}
-					onQueueSize={( queueSize ) => {
+					onSize={( queueSize ) => {
 						this.setState({
 							queueSize
 						});
