@@ -6,19 +6,13 @@ import logger from 'debug';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { connect } from 'react-redux';
 import { jumpToElementInEditor, toggleConfigurator } from 'actions';
+import stopPropagation from 'utils/stop-propagation';
 import './line_buttons.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:line-buttons' );
-
-
-// FUNCTIONS //
-
-function stopPropagation( event ) {
-	event.stopPropagation();
-}
 
 
 // MAIN //

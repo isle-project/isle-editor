@@ -11,13 +11,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import CheckboxInput from 'components/input/checkbox';
 import KeyControls from 'components/key-controls';
+import stopPropagation from 'utils/stop-propagation';
 import './header.css';
-
-// FUNCTIONS //
-
-function stopPropagation( event ) {
-	event.stopPropagation();
-}
 
 
 // MAIN //
