@@ -54,6 +54,7 @@ import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
 import Loadable from 'components/internal/loadable';
 import closeHintButtons from 'utils/close-hint-buttons';
 import isElectron from 'utils/is-electron';
+import stopPropagation from 'utils/stop-propagation';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
@@ -100,11 +101,6 @@ if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 
 function preventGesture( e ) {
 	e.preventDefault();
-}
-
-function stopPropagation( e ) {
-	debug( 'Stop propagation...' );
-	e.stopPropagation();
 }
 
 function isAlreadyInserted( pos, insertedPages ) {

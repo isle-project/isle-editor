@@ -1,0 +1,16 @@
+.revealer-panel {
+	margin-bottom: 10px;
+	width: fit-content;
+}
+
+.revealer-button {
+	margin-right: 10px;
+}
+
+.revealer-select {
+	width: 150px;
+	background: #2e4468;
+	margin-left: 10px;
+	padding: 2px;
+	color: white;
+}

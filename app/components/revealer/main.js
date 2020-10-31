@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -9,10 +9,12 @@ import isNull from '@stdlib/assert/is-null';
 import Panel from 'components/panel';
 import Gate from 'components/gate';
 import generateUID from 'utils/uid';
+import stopPropagation from 'utils/stop-propagation';
 import SessionContext from 'session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from 'constants/actions.js';
 import { MEMBER_ACTION, RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from 'constants/events.js';
 import './load_translations.js';
+import './revealer.css';
 
 
 // VARIABLES //
@@ -29,43 +31,44 @@ const uid = generateUID( 'revealer' );
 * @property {(string|node)} message - message to be displayed when content is hidden
 * @property {boolean} show - controls whether to initially display child elements
 */
-class Revealer extends Component {
-	constructor( props ) {
-		super( props );
+const Revealer = ( props ) => {
+	const id = props.id || uid( props );
+	const session = useContext( SessionContext );
 
-		this.id = props.id || uid( props );
+	const [ showChildren, setShowChildren ] = useState( props.show );
+	const [ prevShow, setPrevShow ] = useState( props.show );
+	const [ selectedCohort, setSelectedCohort ] = useState( null );
 
-		this.state = {
-			showChildren: props.show,
-			selectedCohort: null,
-			showProp: props.show
-		};
+	if ( props.show !== prevShow ) {
+		setShowChildren( props.show );
+		setPrevShow( props.show );
 	}
-
-	static getDerivedStateFromProps( props, state ) {
-		if ( props.show !== state.showProp ) {
-			return {
-				showChildren: props.show,
-				showProp: props.show
-			};
+	const readMetadata = () => {
+		if (
+			session &&
+			session.metadata &&
+			session.metadata.revealer &&
+			session.metadata.revealer[ id ]
+		) {
+			const show = session.metadata.revealer[ id ][ session.cohort || 'all' ];
+			if ( show === true || show === false ) {
+				setShowChildren( show );
+			}
 		}
-		return null;
-	}
-
-	componentDidMount() {
-		debug( `Component ${this.id} did mount...` );
-		const session = this.context;
+	};
+	let unsubscribe;
+	useEffect(() => {
 		if ( session ) {
-			this.readMetadata();
-			this.unsubscribe = session.subscribe( ( type, action ) => {
+			readMetadata();
+			unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === RETRIEVED_COHORTS ) {
-					this.forceUpdate();
+					setSelectedCohort( null );
 				}
 				else if ( type === RECEIVED_LESSON_INFO ) {
-					this.readMetadata();
+					readMetadata();
 				}
 				else if ( type === MEMBER_ACTION ) {
-					if ( action.id === this.id ) {
+					if ( action.id === id ) {
 						const cohortName = action.value;
 						debug( `Received action for cohort ${cohortName}: ` );
 						if (
@@ -73,157 +76,113 @@ class Revealer extends Component {
 							( session.cohort && session.cohort === cohortName )
 						) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content for ${this.id}...` );
-								this.setState({
-									showChildren: true
-								});
+								debug( `Reveal content for ${id}...` );
+								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content for ${this.id}...` );
-								this.setState({
-									showChildren: false
-								});
+								debug( `Hide content for ${id}...` );
+								setShowChildren( false );
 							}
 						}
-						else if ( this.state.selectedCohort === cohortName ) {
+						else if ( selectedCohort === cohortName ) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content of ${this.id} for cohort ${cohortName}...` );
-								this.setState({
-									showChildren: true
-								});
+								debug( `Reveal content of ${id} for cohort ${cohortName}...` );
+								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content of ${this.id} for cohort ${cohortName}...` );
-								this.setState({
-									showChildren: false
-								});
+								debug( `Hide content of ${id} for cohort ${cohortName}...` );
+								setShowChildren( false );
 							}
 						}
 					}
 				}
 			});
 		}
-	}
+		return () => {
+			if ( unsubscribe ) {
+				unsubscribe();
+			}
+		};
+	}, [] );
 
-	componentWillUnmount() {
-		debug( `Component ${this.id} will unmount...` );
-		if ( this.unsubscribe ) {
-			this.unsubscribe();
+	const handleCohortChange = ( event ) => {
+		const value = event.target.value;
+		if (
+			value !== selectedCohort ||
+			( value === 'all' && isNull( selectedCohort ) )
+		) {
+			debug( 'Handle cohort change: '+value );
+			setSelectedCohort( value === 'all' ? null : value );
 		}
-	}
+	};
+	const toggleContent = () => {
+		const newShowChildren = !showChildren;
+		setShowChildren( newShowChildren );
 
-	readMetadata = () => {
-		const session = this.context;
+		// Send message to other users:
+		let status;
 		if (
 			session &&
 			session.metadata &&
 			session.metadata.revealer &&
-			session.metadata.revealer[ this.id ]
+			session.metadata.revealer[ id ]
 		) {
-			const show = session.metadata.revealer[ this.id ][ session.cohort || 'all' ];
-			if ( show === true || show === false ) {
-				this.setState({
-					showChildren: show
-				});
-			}
+			status = session.metadata.revealer[ id ];
+		} else {
+			status = {};
 		}
-	}
-
-	toggleContent = () => {
-		this.setState({
-			showChildren: !this.state.showChildren
-		}, () => {
-			// Send message to other users:
-			const session = this.context;
-			let status;
-			if (
-				session &&
-				session.metadata &&
-				session.metadata.revealer &&
-				session.metadata.revealer[ this.id ]
-			) {
-				status = session.metadata.revealer[ this.id ];
-			} else {
-				status = {};
-			}
-			if ( this.state.showChildren ) {
-				session.log({
-					id: this.id,
-					type: REVEAL_CONTENT,
-					value: this.state.selectedCohort
-				}, 'members' );
-				status[ this.state.selectedCohort || 'all' ] = true;
-				session.updateMetadata( 'revealer', this.id, status );
-			} else {
-				session.log({
-					id: this.id,
-					type: HIDE_CONTENT,
-					value: this.state.selectedCohort
-				}, 'members' );
-				status[ this.state.selectedCohort || 'all' ] = false;
-				session.updateMetadata( 'revealer', this.id, status );
-			}
-		});
-	}
-
-	handleCohortChange = ( event ) => {
-		const value = event.target.value;
-		if (
-			value !== this.state.selectedCohort ||
-			( value === 'all' && isNull( this.state.selectedCohort ) )
-		) {
-			debug( 'Handle cohort change: '+value );
-			this.setState({
-				selectedCohort: value === 'all' ? null : value
-			});
+		if ( newShowChildren ) {
+			session.log({
+				id: id,
+				type: REVEAL_CONTENT,
+				value: selectedCohort
+			}, 'members' );
+			status[ selectedCohort || 'all' ] = true;
+			session.updateMetadata( 'revealer', id, status );
+		} else {
+			session.log({
+				id: id,
+				type: HIDE_CONTENT,
+				value: selectedCohort
+			}, 'members' );
+			status[ selectedCohort || 'all' ] = false;
+			session.updateMetadata( 'revealer', id, status );
 		}
-	}
-
-	stopPropagation = ( event ) => {
-		event.stopPropagation();
-	}
-
-	render() {
-		const cohorts = this.context.cohorts || [];
-		const header = <h3 className="center" >{this.props.message || this.props.t('message')}</h3>;
-		return (<Fragment>
-			<Gate owner >
-				<Panel
-					className="center"
-					style={{
-						marginBottom: '10px',
-						width: 'fit-content'
-					}}
+	};
+	const cohorts = session.cohorts || [];
+	const header = <h3 className="center" >{props.message || props.t('message')}</h3>;
+	debug( 'showChildren: '+showChildren );
+	return (<Fragment>
+		<Gate owner >
+			<Panel className="center revealer-panel" >
+				<Button
+					className="revealer-button"
+					onClick={toggleContent}
+				>{showChildren ? props.t('hide') : props.t('reveal')}</Button>
+				{props.t('contents-of')}<i>{id}</i> {showChildren ? props.t('from') : props.t('to')}
+				<select
+					className="revealer-select"
+					onChange={handleCohortChange}
+					onBlur={handleCohortChange}
+					onClick={stopPropagation}
+					value={selectedCohort || 'all'}
 				>
-					<Button
-						onClick={this.toggleContent}
-						style={{ marginRight: 10 }}
-					>{this.state.showChildren ? this.props.t('hide') : this.props.t('reveal')}</Button>
-					{this.props.t('contents-of')}<i>{this.id}</i> {this.state.showChildren ? this.props.t('from') : this.props.t('to')}
-					<select
-						style={{ width: '150px', background: '#2e4468', marginLeft: '10px', padding: '2px', color: 'white' }}
-						onChange={this.handleCohortChange}
-						onBlur={this.handleCohortChange}
-						onClick={this.stopPropagation}
-						value={this.state.selectedCohort || 'all'}
-					>
-						<option value="all">{this.props.t('all-students')}</option>
-						{cohorts.map( ( v, key ) => {
-							return (
-								<option
-									key={key}
-									value={v.title}
-								>{v.title}</option>
-							);
-						})}
-					</select>
-				</Panel>
-			</Gate>
-			{!this.state.showChildren ? header : null}
-			<div className="revealer outer-element" style={{
-				display: this.state.showChildren ? 'inherit' : 'none'
-			}}>{this.props.children}</div>
-		</Fragment> );
-	}
-}
+					<option value="all">{props.t('all-students')}</option>
+					{cohorts.map( ( v, key ) => {
+						return (
+							<option
+								key={key}
+								value={v.title}
+							>{v.title}</option>
+						);
+					})}
+				</select>
+			</Panel>
+		</Gate>
+		{!showChildren ? header : null}
+		<div className="revealer outer-element" style={{
+			display: showChildren ? 'inherit' : 'none'
+		}}>{props.children}</div>
+	</Fragment> );
+};
 
 
 // PROPERTIES //
@@ -240,8 +199,6 @@ Revealer.propTypes = {
 	]),
 	show: PropTypes.bool
 };
-
-Revealer.contextType = SessionContext;
 
 
 // EXPORTS //
