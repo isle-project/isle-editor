@@ -19,6 +19,7 @@ import isTextStyleMarkCommandEnabled from './is_text_style_mark_command_enabled.
 import LinkSetURLCommand from './link_set_url_command.js';
 import ImageFromURLCommand from './image_from_url_command.js';
 import ImageUploadCommand from './image_upload_command.js';
+import TableInsertCommand from './table_insert_command.js';
 
 
 // FUNCTIONS //
@@ -311,6 +312,7 @@ export const history = [
 ];
 
 export const tableEdits = [
+	new TableInsertCommand(),
 	{
 		title: 'insert-column-before',
 		content: 'insert-column-before',

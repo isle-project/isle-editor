@@ -91,7 +91,7 @@ class UICommand {
 		view,
 		event
 	) => {
-		this.waitForUserInput(state, dispatch, view, event)
+		this.waitForUserInput( state, dispatch, view, event )
 			.then(inputs => {
 				this.executeWithUserInput(state, dispatch, view, inputs);
 			})

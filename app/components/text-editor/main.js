@@ -24,7 +24,6 @@ import blobToBase64 from 'utils/blob-to-base64';
 import SessionContext from 'session/context.js';
 const SubmitModal = Loadable( () => import( './submit_modal.js' ) );
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
-const TableSelect = Loadable( () => import( './table_select.js' ) );
 const Guides = Loadable( () => import( './guides' ) );
 const PDFModal = Loadable( () => import( './pdf_modal.js' ) );
 import menu from './config/menu';
@@ -34,7 +33,6 @@ import ProseMirrorCollaborativeView from './collaborative_view.js';
 import { addAnnotation } from './config/comments';
 import createHTML from './create_html.js';
 import schema from './config/schema';
-import canInsert from './config/can_insert.js';
 import applyMark from './config/apply_mark.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
@@ -102,7 +100,6 @@ class TextEditor extends Component {
 		this.state = {
 			showResetModal: false,
 			showSubmitModal: false,
-			showTableModal: false,
 			showPDFModal: false,
 			showColorPicker: false,
 			showGuides: false,
@@ -115,32 +112,6 @@ class TextEditor extends Component {
 		};
 
 		this.menu = copy( menu, 2 );
-		this.menu.tableEdits.unshift({
-			title: 'insert-table',
-			content: this.props.t('insert-table'),
-			enable: canInsert( schema.nodes.table ),
-			run: ( state, dispatch ) => {
-				this.toggleTableModal();
-				this.insertTable = ({ rowCount, colCount }) => {
-					const cells = [];
-					while ( colCount-- ) {
-						cells.push(
-							schema.nodes.table_cell.createAndFill(),
-						);
-					}
-					const rows = [];
-					while ( rowCount-- ) {
-						rows.push(schema.nodes.table_row.createAndFill(
-							void 0,
-							cells
-						));
-					}
-					const table = schema.nodes.table.createAndFill( void 0, rows);
-					dispatch( state.tr.replaceSelectionWith( table ) );
-				};
-				return false;
-			}
-		});
 		this.menu.marks.push({
 			title: 'font-color',
 			content: icons.color,
@@ -418,15 +389,6 @@ class TextEditor extends Component {
 		}, clbk );
 	}
 
-	toggleTableModal = ( inserted ) => {
-		if ( inserted ) {
-			this.insertTable( inserted );
-		}
-		this.setState({
-			showTableModal: !this.state.showTableModal
-		});
-	}
-
 	toggleGuides = () => {
 		this.setState({
 			showGuides: !this.state.showGuides
@@ -660,11 +622,6 @@ class TextEditor extends Component {
 					show={this.state.showSubmitModal}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
-					t={this.props.t}
-				/>
-				<TableSelect
-					show={this.state.showTableModal}
-					onHide={this.toggleTableModal}
 					t={this.props.t}
 				/>
 				<Guides

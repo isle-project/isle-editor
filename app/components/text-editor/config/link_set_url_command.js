@@ -50,7 +50,7 @@ class LinkSetURLCommand extends UICommand {
 	title = 'apply-link';
 	content = icons.link;
 
-	enable = (state) => {
+	enable = ( state ) => {
 		if (!(state.selection instanceof TextSelection)) {
 			// Could be a NodeSelection or CellSelection.
 			return false;
@@ -104,7 +104,7 @@ class LinkSetURLCommand extends UICommand {
 		view,
 		href
 	) => {
-		if (dispatch) {
+		if ( dispatch ) {
 			const { selection, schema } = state;
 			let { tr } = state;
 			tr = view ? hideSelectionPlaceholder(view.state) : tr;
@@ -119,7 +119,7 @@ class LinkSetURLCommand extends UICommand {
 					attrs,
 				);
 			}
-			dispatch(tr);
+			dispatch( tr );
 		}
 		if ( view ) {
 			view.focus();

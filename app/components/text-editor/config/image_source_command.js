@@ -44,7 +44,7 @@ const IMAGE = 'image';
 
 // FUNCTIONS //
 
-function insertImage(tr, schema, src) {
+function insertImage( tr, schema, src ) {
 	const { selection } = tr;
 	if (!selection) {
 		return tr;
@@ -53,20 +53,18 @@ function insertImage(tr, schema, src) {
 	if (from !== to) {
 		return tr;
 	}
-
 	const image = schema.nodes[IMAGE];
 	if (!image) {
 		return tr;
 	}
-
 	const attrs = {
 		src: src || '',
 		alt: '',
 		title: ''
 	};
-	const node = image.create(attrs, null, null);
-	const frag = Fragment.from(node);
-	tr = tr.insert(from, frag);
+	const node = image.create( attrs, null, null );
+	const frag = Fragment.from( node );
+	tr = tr.insert( from, frag );
 	return tr;
 }
 
@@ -97,7 +95,7 @@ class ImageSourceCommand extends UICommand {
 			this._popUp = createPopUp(this.getEditor(), props, {
 				modal: true,
 				onClose: val => {
-					if (this._popUp) {
+					if ( this._popUp ) {
 						this._popUp = null;
 						resolve(val);
 					}
