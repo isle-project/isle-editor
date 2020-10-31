@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import i18next from 'i18next';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import icons from './../icons.js';
@@ -26,7 +27,7 @@ class TableCellMenu extends React.PureComponent {
 		<DropdownItem
 			key={`dropdown-item-${itemKey}`}
 			onMouseDown={this.onMenuMouseDown(item)}
-		>{item.content}</DropdownItem>
+		>{i18next.t( `text-editor:${item.content}` )}</DropdownItem>
 	)
 
 	render() {
