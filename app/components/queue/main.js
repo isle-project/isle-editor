@@ -10,13 +10,15 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
+import isNull from '@stdlib/assert/is-null';
 import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import ChatButton from 'components/chat-button';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import SessionContext from 'session/context.js';
-import { ENTER_QUEUE, LEFT_QUEUE } from 'constants/actions.js';
+import { ENTER_QUEUE } from 'constants/actions.js';
+import { RECEIVED_QUEUE_QUESTIONS } from 'constants/events.js';
 import 'react-table/react-table.css';
 import './load_translations.js';
 import './queue.css';
@@ -35,21 +37,6 @@ const QueueTable = ( props ) => {
 		return <p>{props.t( 'no-questions' )}</p>;
 	}
 	const session = props.session;
-	const renderButtonRemovable = ( cellInfo ) => {
-		return (
-			<Tooltip placement="left" tooltip={props.t( 'mark-and-remove' )}>
-				<Button variant="secondary" size="sm" onClick={() => {
-					session.log({
-						id: props.for,
-						type: LEFT_QUEUE,
-						value: cellInfo.index + 1
-					}, 'members' );
-				}}>
-					<i className="fas fa-check" />
-				</Button>
-			</Tooltip>
-		);
-	};
 	return (
 		<ReactTable
 			className="queue-table"
@@ -109,7 +96,7 @@ const QueueTable = ( props ) => {
 				{
 					Header: props.t( 'question' ),
 					id: 'qCol',
-					accessor: 'question',
+					accessor: 'value',
 					width: 350,
 					style: { 'white-space': 'unset' }
 				},
@@ -123,7 +110,17 @@ const QueueTable = ( props ) => {
 				{
 					Header: '',
 					accessor: 'remove',
-					Cell: renderButtonRemovable,
+					Cell: ( row ) => {
+						return (
+							<Tooltip placement="left" tooltip={props.t( 'mark-and-remove' )}>
+								<Button variant="secondary" size="sm" onClick={() => {
+									session.removeQuestionFromQueue( row.original );
+								}}>
+									<i className="fas fa-check" />
+								</Button>
+							</Tooltip>
+						);
+					},
 					filterable: false,
 					width: 45
 				}
@@ -141,6 +138,7 @@ const Queue = ( props ) => {
 	const session = useContext( SessionContext );
 	const questions = session.questions;
 	const [ text, setText ] = useState( '' );
+	const [ spot, setSpot ] = useState( null );
 
 	const enter = () => {
 		debug( 'Send the signal to enter the queue...' );
@@ -149,10 +147,20 @@ const Queue = ( props ) => {
 			type: ENTER_QUEUE,
 			value: text
 		}, 'members' );
-		session.addQuestionToQueue( text );
+		const question = {
+			name: session.user.name,
+			email: session.user.email,
+			value: text
+		};
+		session.addQuestionToQueue( question );
 	};
 	const leave = () => {
-		session.removeQuestionFromQueue( text );
+		const question = {
+			name: session.user.name,
+			email: session.user.email,
+			value: text
+		};
+		session.removeQuestionFromQueue( question );
 	};
 	const handleEscape = ( event ) => {
 		if (
@@ -166,6 +174,17 @@ const Queue = ( props ) => {
 		if ( session ) {
 			debug( 'We have a session, subscribe the component...' );
 			unsubscribe = session.subscribe( ( type, action ) => {
+				if ( type === RECEIVED_QUEUE_QUESTIONS ) {
+					const questions = action;
+					let idx = null;
+					for ( let i = 0; i < questions.length; i++ ) {
+						if ( questions[ i ].email === session.user.email ) {
+							idx = i;
+							break;
+						}
+					}
+					setSpot( idx );
+				}
 				if ( action && action.id === id && action.type === ENTER_QUEUE ) {
 					if ( session.isOwner() ) {
 						props.onNewQuestion();
@@ -205,17 +224,14 @@ const Queue = ( props ) => {
 			}
 			return out;
 		}
-		let spot = null;
-		for ( let i = 0; i < questions.length; i++ ) {
-			if ( questions[ i ].email === session.user.email ) {
-				spot = i;
-				break;
-			}
-		}
-		if ( spot ) {
+		const handleHide = () => {
+			setText( '' );
+			props.onHide();
+		};
+		if ( !isNull( spot ) ) {
 			const chatID = 'Queue_'+session.user.name;
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
-				header={props.t( 'queue' )} onHide={props.onHide} minimizable >
+				header={props.t( 'queue' )} onHide={handleHide} minimizable >
 				<p>
 				<Trans i18nKey="queue-status" >
 					Your question: <i>{{ question: text }}</i><br />
@@ -241,7 +257,7 @@ const Queue = ( props ) => {
 		}
 		out = <Panel
 			className="queue-panel" tabIndex={0} role="button"
-			header={props.t( 'queue' )} onHide={props.onHide} minimizable
+			header={props.t( 'queue' )} onHide={handleHide} minimizable
 		>
 			<p>{props.t( 'queue-prompt' )}</p>
 			<FormGroup>
@@ -291,7 +307,6 @@ Queue.defaultProps = {
 	draggable: true,
 	show: true,
 	onHide() {},
-	onSize() {},
 	onNewQuestion() {}
 };
 
@@ -299,7 +314,6 @@ Queue.propTypes = {
 	draggable: PropTypes.bool,
 	show: PropTypes.bool,
 	onHide: PropTypes.func,
-	onSize: PropTypes.func,
 	onNewQuestion: PropTypes.func
 };
 

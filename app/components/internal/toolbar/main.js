@@ -18,7 +18,7 @@ import isElectron from 'utils/is-electron';
 import SessionContext from 'session/context.js';
 import pixelsToNumber from 'utils/pixels-to-number';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
-import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
+import { MEMBER_ACTION, RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from 'constants/events.js';
 import HelpPage from './help.js';
 import Engagement from './engagement';
 import Ticketing from './ticketing';
@@ -45,7 +45,6 @@ class Toolbar extends Component {
 			engagementMenu: false,
 			engagementInProgress: false,
 			ticketing: false,
-			queueSize: 0,
 			elements: [],
 			showToolbar: true,
 			sketchpadHeight: window.innerHeight * 0.6,
@@ -86,7 +85,10 @@ class Toolbar extends Component {
 					showToolbar: !value
 				});
 			}
-			if ( type === RECEIVED_USERS || type === USER_JOINED || type === RECEIVED_LESSON_INFO ) {
+			if (
+				type === RECEIVED_USERS || type === USER_JOINED ||
+				type === RECEIVED_LESSON_INFO || type === RECEIVED_QUEUE_QUESTIONS
+			) {
 				this.forceUpdate();
 			}
 			else if ( type === MEMBER_ACTION && value.id === 'engagement' ) {
@@ -317,7 +319,7 @@ class Toolbar extends Component {
 								<span className="fa fa-lg fa-question-circle toolbar-icon" />
 							</Tooltip>
 							<Tooltip placement="right" tooltip={t( 'num-open-questions' )} >
-								<span className="toolbar-queue-counter" >{`   ${this.state.queueSize}`}</span>
+								<span className="toolbar-queue-counter" >{`   ${session.questions.length}`}</span>
 							</Tooltip>
 						</Button> : null
 					}
@@ -425,11 +427,6 @@ class Toolbar extends Component {
 					id="main_queue"
 					show={this.state.queue}
 					onHide={this.toggleQueue}
-					onSize={( queueSize ) => {
-						this.setState({
-							queueSize
-						});
-					}}
 					onNewQuestion={() => {
 						session.addNotification({
 							title: t( 'queue' ),

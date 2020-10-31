@@ -50,7 +50,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	CREATED_GROUPS, DELETED_GROUPS, DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
 	OWN_CHAT_MESSAGE, POLLED_COLLABORATIVE_EDITING_EVENTS, RECEIVED_CHAT_HISTORY,
-	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
+	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_QUEUE_QUESTIONS, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
@@ -1034,29 +1034,19 @@ class Session {
 	/**
 	* Emits the `add_question` event with a new question from a student.
 	*
-	* @param {string} question - question text
+	* @param {Object} question - question object
 	*/
 	addQuestionToQueue( question ) {
-		const questionObject = {
-			name: this.user.name,
-			email: this.user.email,
-			question
-		};
-		this.socket.emit( 'add_question', questionObject );
+		this.socket.emit( 'add_question', question );
 	}
 
 	/**
 	* Emits the `remove_question` event to remove the specified question from the queue.
 	*
-	* @param {string} question - question text
+	* @param {Object} question - question object
 	*/
 	removeQuestionFromQueue( question ) {
-		const questionObject = {
-			name: this.user.name,
-			email: this.user.email,
-			question
-		};
-		this.socket.emit( 'remove_question', questionObject );
+		this.socket.emit( 'remove_question', question );
 	}
 
 	/**
@@ -1384,7 +1374,7 @@ class Session {
 
 		socket.on( 'queue_questions', ( questions ) => {
 			QUESTIONS = questions;
-			this.update( 'QUEUE_QUESTIONS', QUESTIONS );
+			this.update( RECEIVED_QUEUE_QUESTIONS, QUESTIONS );
 		});
 
 		socket.on( 'memberAction', this.saveAction );
