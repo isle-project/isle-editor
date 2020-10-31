@@ -592,10 +592,6 @@
 		"value": "<Collapse>\n  ${1:}\n</Collapse>\n"
 	},
 	{
-		"name": "UserPairer",
-		"value": "<UserPairer ${1:} />\n"
-	},
-	{
 		"name": "VictoryBar",
 		"value": "<VictoryBar />\n"
 	},

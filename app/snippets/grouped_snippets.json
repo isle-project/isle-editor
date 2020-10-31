@@ -309,10 +309,6 @@
     {
       "name": "Unveil",
       "value": "<Unveil active={true} delay={${1:1000}} >\n  ${2:Component to Display}\n</Unveil>\n"
-    },
-    {
-      "name": "UserPairer",
-      "value": "<UserPairer ${1:} />\n"
     }
   ],
   "questions": [

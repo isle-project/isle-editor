@@ -9,7 +9,6 @@ import Loadable from 'components/internal/loadable';
 import VoiceInput from 'components/input/voice';
 import Gate from 'components/gate';
 import SelectInput from 'components/input/select';
-import Button from 'react-bootstrap/Button';
 import ResponseVisualizer from 'components/response-visualizer';
 import logger from 'debug';
 import { DOMSerializer } from 'prosemirror-model';
@@ -23,13 +22,11 @@ import saveAs from 'utils/file-saver';
 import base64toBlob from 'utils/base64-to-blob';
 import blobToBase64 from 'utils/blob-to-base64';
 import SessionContext from 'session/context.js';
-const PeerSubmitModal = Loadable( () => import( './peer_submit_modal.js' ) );
 const SubmitModal = Loadable( () => import( './submit_modal.js' ) );
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const TableSelect = Loadable( () => import( './table_select.js' ) );
 const Guides = Loadable( () => import( './guides' ) );
 const PDFModal = Loadable( () => import( './pdf_modal.js' ) );
-import UserPairer from 'components/user-pairer';
 import menu from './config/menu';
 import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
@@ -41,7 +38,7 @@ import canInsert from './config/can_insert.js';
 import applyMark from './config/apply_mark.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
-import { EDITOR_PEER_COMMENTS, EDITOR_PEER_REPORT, EDITOR_SUBMIT } from 'constants/actions.js';
+import { EDITOR_SUBMIT } from 'constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS } from 'constants/events.js';
 import imgToStr from 'utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
@@ -84,7 +81,6 @@ async function toDataURL( url ){
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
 * @property {string} mode - controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`)
-* @property {Object} peerReview - if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa
 * @property {number} intervalTime - time between auto saves
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
 * @property {string} language - language identifier
@@ -113,10 +109,6 @@ class TextEditor extends Component {
 			isFullscreen: false,
 			value,
 			originalDefaultValue: props.defaultValue,
-			peer: null,
-			submittedToPeer: false,
-			submittedPeerComments: false,
-			displayPeerReport: false,
 			docId: 0,
 			group: null,
 			allGroups: null
@@ -374,16 +366,6 @@ class TextEditor extends Component {
 					allGroups: null
 				});
 			}
-			if ( action && action.id === this.id ) {
-				if ( action.type === EDITOR_PEER_REPORT ) {
-					localStorage.setItem( this.id+'_peer_report', action.value );
-					this.addPeerReportNotification( action.value );
-				}
-				else if ( action.type === EDITOR_PEER_COMMENTS ) {
-					localStorage.setItem( this.id+'_peer_comments', action.value );
-					this.addPeerComments( action.value );
-				}
-			}
 		});
 		window.addEventListener( 'unload', this.saveInBrowser );
 	}
@@ -568,124 +550,6 @@ class TextEditor extends Component {
 		});
 	}
 
-	addPeerReportNotification = ( report ) => {
-		const session = this.context;
-		this.peerReportNotification = session.addNotification({
-			title: this.props.t('peer-report-ready'),
-			message: this.props.t('peer-report-ready-msg'),
-			level: 'success',
-			position: 'tr',
-			dismissible: 'none',
-			autoDismiss: 0,
-			children: <div style={{ marginBottom: '30px' }}>
-				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
-					if ( !this.state.submittedToPeer ) {
-						return session.addNotification({
-							title: this.props.t('submit-first'),
-							message: this.props.t('submit-first-ready-msg'),
-							level: 'warning',
-							position: 'tr'
-						});
-					}
-					localStorage.removeItem( this.id+'_peer_report' );
-					session.removeNotification( this.peerReportNotification );
-					this.setState({
-						value: report,
-						displayPeerReport: true
-					});
-				}}>{this.props.t('open-report')}</Button>
-			</div>
-		});
-	}
-
-	addPeerComments = ( comments ) => {
-		const session = this.context;
-		this.peerCommentsNotification = session.addNotification({
-			title: this.props.t('peer-review-comments-received'),
-			message: this.props.t('peer-review-comments-received-msg'),
-			level: 'success',
-			position: 'tr',
-			dismissible: 'none',
-			autoDismiss: 0,
-			children: <div style={{ marginBottom: '30px' }}>
-				<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={() => {
-					if ( !this.state.submittedPeerComments ) {
-						return session.addNotification({
-							title: this.props.t('submit-first'),
-							message: this.props.t('submit-first-comments-msg'),
-							level: 'warning',
-							position: 'tr'
-						});
-					}
-					localStorage.removeItem( this.id+'_peer_comments' );
-					session.removeNotification( this.peerCommentsNotification );
-					this.setState({
-						value: comments,
-						displayPeerReport: false
-					});
-				}}>{this.props.t('open-comments')}</Button>
-			</div>
-		});
-	}
-
-	handlePeerAssignment = ( assignment ) => {
-		if ( this.props.peerReview ) {
-			const peerReport = localStorage.getItem( this.id+'_peer_report' );
-			if ( peerReport ) {
-				this.addPeerReportNotification( peerReport );
-			}
-			else {
-				const peerComments = localStorage.getItem( this.id+'_peer_comments' );
-				if ( peerComments ) {
-					this.addPeerComments( peerComments );
-				}
-			}
-			const newState = {};
-			newState.submittedToPeer = localStorage.getItem( this.id+'submitted_to_peer' ) || false;
-			newState.submittedPeerComments = localStorage.getItem( this.id+'submitted_comments' ) || false;
-			newState.peer = assignment;
-			this.setState( newState, () => {
-				this.context.addNotification({
-					title: this.props.t('pairing-established'),
-					message: this.props.t('pairing-established-msg'),
-					level: 'success',
-					position: 'tr'
-				});
-
-				// Set color of editor background to signal own report:
-				this.editorDiv.firstChild.style.background = 'rgba(154, 208, 248, 0.2)';
-			});
-		}
-	}
-
-	handlePeerCleanup = () => {
-		const session = this.context;
-		if ( this.peerReportNotification ) {
-			session.removeNotification( this.peerReportNotification );
-		}
-		if ( this.peerCommentsNotification ) {
-			session.removeNotification( this.peerCommentsNotification );
-		}
-		localStorage.removeItem( this.id+'submitted_to_peer' );
-		localStorage.removeItem( this.id+'submitted_comments' );
-		localStorage.removeItem( this.id+'_peer_report' );
-		localStorage.removeItem( this.id+'_peer_comments' );
-		this.setState({
-			peer: null,
-			submittedToPeer: false,
-			submittedPeerComments: false,
-			displayPeerReport: false
-		}, () => {
-			this.editorDiv.firstChild.style.background = '#fff';
-			this.context.addNotification({
-				title: this.props.t('pairing-ended'),
-				message: this.props.t('pairing-ended-msg'),
-				level: 'info',
-				position: 'tr'
-			});
-		});
-	}
-
 	resetEditor = () => {
 		localStorage.removeItem( this.id );
 		this.setState({
@@ -760,15 +624,6 @@ class TextEditor extends Component {
 							className="cancel"
 							onMount={( div ) => {
 								this.editorDiv = div;
-								if ( this.state.peer ) {
-									if ( this.state.displayPeerReport ) {
-										// Set color of editor background to signal that report belongs to someone else:
-										this.editorDiv.firstChild.style.background = 'rgba(146, 217, 183, 0.2)';
-									} else {
-										// Set color of editor background to signal own report:
-										this.editorDiv.firstChild.style.background = 'rgba(154, 208, 248, 0.2)';
-									}
-								}
 							}}
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
@@ -794,49 +649,6 @@ class TextEditor extends Component {
 						style={{ padding: 5 }}
 					/>
 				</div>: null }
-				{ this.props.peerReview ? <UserPairer
-					id={this.id+'_pairer'}
-					onAssignmentStudent={this.handlePeerAssignment}
-					onClearStudent={this.handlePeerCleanup}
-					filterOwners={this.props.peerReview.filterOwners}
-				/> : null }
-				{ this.props.peerReview ? <PeerSubmitModal
-					show={this.state.showSubmitModal}
-					onHide={this.toggleSubmitModal}
-					onSubmitToReviewer={() => {
-						this.context.log({
-							id: this.id,
-							type: EDITOR_PEER_REPORT,
-							value: JSON.stringify( this.editorState.doc.toJSON() ),
-							noSave: true
-						}, this.state.peer.to.email );
-						this.setState({
-							submittedToPeer: true
-						});
-						localStorage.setItem( this.id+'submitted_to_peer', true );
-						this.submitReport();
-					}}
-					onSubmitComments={() => {
-						this.context.log({
-							id: this.id,
-							type: EDITOR_PEER_COMMENTS,
-							value: JSON.stringify( this.editorState.doc.toJSON() ),
-							noSave: true
-						}, this.state.peer.from.email );
-						this.setState({
-							submittedPeerComments: true
-						});
-						localStorage.setItem( this.id+'submitted_comments', true );
-						this.submitReport();
-					}}
-					onFinalSubmit={this.submitReport}
-					submitButtonLabel={this.props.peerReview.submitButtonLabel}
-					reviewButtonLabel={this.props.peerReview.reviewButtonLabel}
-					finalButtonLabel={this.props.peerReview.finalButtonLabel}
-					disabledSubmitButton={!this.state.peer || this.state.submittedToPeer}
-					disabledReviewButton={!this.state.submittedToPeer || this.state.submittedPeerComments || !this.state.displayPeerReport}
-					disabledFinalButton={!this.state.submittedPeerComments || this.state.displayPeerReport}
-				/> : null }
 				<ResetModal
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
@@ -845,7 +657,7 @@ class TextEditor extends Component {
 					{...this.props.resetModal}
 				/>
 				<SubmitModal
-					show={this.state.showSubmitModal && !this.props.peerReview}
+					show={this.state.showSubmitModal}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
 					t={this.props.t}
@@ -883,12 +695,6 @@ TextEditor.propTypes= {
 		'group', 'collaborative', 'individual'
 	]),
 	intervalTime: PropTypes.number,
-	peerReview: PropTypes.shape({
-		submitButtonLabel: PropTypes.string,
-		reviewButtonLabel: PropTypes.string,
-		finalButtonLabel: PropTypes.string,
-		filterOwners: PropTypes.bool
-	}),
 	resetModal: PropTypes.shape({
 		title: PropTypes.string,
 		body: PropTypes.string,
@@ -909,7 +715,6 @@ TextEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
 	mode: 'individual',
 	intervalTime: 10000,
-	peerReview: null,
 	voiceTimeout: 5000,
 	language: 'en-US',
 	resetModal: null,
