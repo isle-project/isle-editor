@@ -6,7 +6,6 @@ import logger from 'debug';
 import { Trans } from 'react-i18next';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
