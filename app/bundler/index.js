@@ -251,10 +251,6 @@ const getComponentList = ( code ) => {
 	return ret;
 };
 
-const getISLEcode = ( config ) => {
-	return `const preamble = ${JSON.stringify( config )};`;
-};
-
 
 // MAIN //
 
@@ -281,7 +277,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 		className = 'Presentation';
 	}
 	res += '\n';
-	res += getISLEcode( meta );
+	res += `const preamble = ${JSON.stringify( meta )};`;
 
 	res += 'import Session from \'session\';';
 
