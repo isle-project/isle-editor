@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import logger from 'debug';
 import TextEditor from 'components/text-editor';
 import './instructor_notes.css';
@@ -9,37 +9,32 @@ import './instructor_notes.css';
 // VARIABLES //
 
 const debug = logger( 'isle:instructor-notes' );
+const TOOLBAR_CONFIG = [
+	'bold',
+	'italic',
+	'underline',
+	'heading',
+	'|',
+	'open_markdown',
+	'save',
+	'preview'
+];
 
 
 // MAIN //
 
-class InstructorNotes extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	render() {
-		debug( 'Rendering instructor notes...' );
-		return (
-			<TextEditor
-				id="instructor-notes"
-				className="instructor-notes"
-				mode="collaborative"
-				allowSubmissions={false}
-				toolbarConfig={[
-					'bold',
-					'italic',
-					'underline',
-					'heading',
-					'|',
-					'open_markdown',
-					'save',
-					'preview'
-				]}
-			/>
-		);
-	}
-}
+const InstructorNotes = () => {
+	debug( 'Rendering instructor notes...' );
+	return (
+		<TextEditor
+			id="instructor-notes"
+			className="instructor-notes"
+			mode="collaborative"
+			allowSubmissions={false}
+			toolbarConfig={TOOLBAR_CONFIG}
+		/>
+	);
+};
 
 
 // EXPORTS //
