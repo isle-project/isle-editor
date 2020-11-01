@@ -50,17 +50,18 @@ class ActionLog extends Component {
 	}
 
 	componentDidMount() {
+		/* eslint-disable react/no-did-mount-set-state */
 		const session = this.context;
 		if ( session.socketActions && session.socketActions.length > 0 ) {
 			debug( 'Initial construction of actions array...' );
-			this.setState({ // eslint-disable-line react/no-did-mount-set-state
+			this.setState({
 				actions: this.buildActionsArray()
 			});
 		}
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === LOGGED_OUT ) {
 				debug( 'Should reset the filters after user logout:' );
-				this.setState({ // eslint-disable-line react/no-did-mount-set-state
+				this.setState({
 					filters: <span className="title">{this.props.t( 'filters' )}</span>
 				});
 			}
@@ -69,17 +70,18 @@ class ActionLog extends Component {
 				type === MEMBER_ACTION ||
 				type === RETRIEVED_USER_ACTIONS
 			) {
-				this.setState({ // eslint-disable-line react/no-did-mount-set-state
+				this.setState({
 					actions: this.buildActionsArray()
 				});
 			}
 			if ( session.socketActions.length === 0 && this.state.filter !== null ) {
-				this.setState({ // eslint-disable-line react/no-did-mount-set-state
+				this.setState({
 					filter: {},
 					filters: <span className="title">{this.props.t( 'filters' )}</span>
 				});
 			}
 		});
+		/* eslint-enable react/no-did-mount-set-state */
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
