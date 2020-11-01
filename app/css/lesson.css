@@ -785,24 +785,6 @@ label {
 	color: #2e4468;
 }
 
-@media (min-width: 1200px) {
-	.container {
-		max-width: 1140px;
-	}
-}
-
-@media (min-width: 1920px) {
-	.container {
-		max-width: 1824px;
-	}
-}
-
-@media (min-width: 2560px) {
-	.container {
-		max-width: 2432px;
-	}
-}
-
 .multicard_memory {
 	position: abolute;
 	left: 0;

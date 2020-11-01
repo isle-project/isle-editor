@@ -5,16 +5,6 @@
 	width: 100%;
 }
 
-.queue-hide-button {
-	float: right;
-	border: none;
-	background: none;
-}
-
-.queue-hide-button:hover {
-	color: rgba(220, 53, 69, 0.6);
-}
-
 .queue-table {
 	font-family: Open Sans Condensed;
 }
