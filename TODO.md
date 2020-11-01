@@ -25,9 +25,5 @@ Fall 2020
 Long-Term
 ===
 * Mobile responsiveness
-* Data Explorer
-   - Remove any R dependencies for the mosaic plot
-   - Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
-* Surveys
-    - Handle ordered categories
-    - Don't show invalid axis labels before answers are submitted
+* Remove any R dependencies for the mosaic plot
+* Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
