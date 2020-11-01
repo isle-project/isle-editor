@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Card from 'react-bootstrap/Card';
@@ -31,6 +31,7 @@ import isnan from '@stdlib/assert/is-nan';
 import factor from 'utils/factor-variable';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from 'components/plots/histogram';
+import stopPropagation from 'utils/stop-propagation';
 import retrieveBinnedValues from './retrieve_binned_values.js';
 import ClearButton from '../clear_button.js';
 import './bin_transformer.css';
@@ -40,6 +41,13 @@ import './bin_transformer.css';
 
 const debug = logger( 'isle:data-explorer:variable-transformer' );
 const RE_SHAPE = /shapes\[(\d)\]\.x0/;
+const HISTOGRAM_SETTINGS = {
+	group: null,
+	displayDensity: true,
+	densityType: 'Data-driven',
+	chooseBins: false,
+	nBins: null
+};
 
 
 // FUNCTIONS //
@@ -59,14 +67,14 @@ function ascending( a, b ) {
 /**
 * Function to make shapes from breakpoints.
 */
-const makeShapes = ( xBreaks ) => {
+const makeShapes = ( breakpoints ) => {
 	const breakShapes = [];
-	for ( let i = 0; i < xBreaks.length; i++ ) {
+	for ( let i = 0; i < breakpoints.length; i++ ) {
 		breakShapes.push({
 			type: 'line',
-			x0: xBreaks[i],
+			x0: breakpoints[i],
 			y0: -100,
-			x1: xBreaks[i],
+			x1: breakpoints[i],
 			y1: 100,
 			line: {
 				color: 'red',
@@ -77,25 +85,32 @@ const makeShapes = ( xBreaks ) => {
 	return breakShapes;
 };
 
-const createCategoryNames = ( xBreaks, customNames ) => {
+/**
+* Creates an array of category names for created bins.
+*
+* @param {Array<number>} breakpoints - breakpoints
+* @param {Array<string>} customNames - custom category labels
+* @returns {Array<string>} array of bin labels
+*/
+const createCategoryNames = ( breakpoints, customNames ) => {
 	const out = new Array( customNames.length );
 	if ( customNames[ 0 ] ) {
 		out[ 0 ] = customNames[ 0 ];
 	} else {
-		out[ 0 ] = `(-\u221E,${xBreaks[0]})`;
+		out[ 0 ] = `(-\u221E,${breakpoints[0]})`;
 	}
 	for ( let i = 1; i < customNames.length; i++ ) {
 		if ( customNames[ i ] ) {
 			out[ i ] = customNames[ i ];
 		} else {
-			out[ i ] = `[${xBreaks[i-1]},${xBreaks[i]})`;
+			out[ i ] = `[${breakpoints[i-1]},${breakpoints[i]})`;
 		}
 	}
 	const last = customNames.length - 1;
 	if ( customNames[ last ] ) {
 		out[ last ] = customNames[ last ];
 	} else {
-		out[ last ] = `[${xBreaks[ xBreaks.length - 1 ]},\u221E)`;
+		out[ last ] = `[${breakpoints[ breakpoints.length - 1 ]},\u221E)`;
 	}
 	return out;
 };
@@ -103,49 +118,213 @@ const createCategoryNames = ( xBreaks, customNames ) => {
 
 // MAIN //
 
-class BinTransformer extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			activeVar: null,
-			configHist: null,
-			xBreaks: null,
-			name: '',
-			catNames: null,
-			customNames: null,
-			snapDigits: 0
+const BinTransformer = ( props ) => {
+	const [ name, setName ] = useState( '' );
+	const [ snapDigits, setSnapDigits ] = useState( 0 );
+	const [ state, setState ] = useState({
+		variable: null,
+		configHist: null,
+		breakpoints: null,
+		categories: null,
+		customNames: null
+	});
+	const invalidName = name.length < 2;
+	const makeNewVar = () => {
+		const { variable, categories, breakpoints } = state;
+		const rawData = props.data[ variable ];
+		const values = retrieveBinnedValues( rawData, categories, breakpoints );
+		props.logAction( DATA_EXPLORER_BIN_TRANSFORMER, {
+			name,
+			variable,
+			breaks: breakpoints,
+			categories
+		});
+		const newName = factor( name, categories );
+		props.onGenerate( newName, values );
+		props.onHide();
+	};
+	const handleKeyPress = ( event ) => {
+		// Handle "Return" key:
+		if ( event.charCode === 13 && !invalidName ) {
+			makeNewVar();
+		}
+	};
+	const handleNameChange = ( event ) => {
+		setName( event.target.value );
+	};
+	const changeFactory = ( ind ) => {
+		return ( value ) => {
+			debug( 'Change break point...' );
+			const newBreakpoints = state.breakpoints.slice();
+			newBreakpoints[ ind ] = roundn( value, -snapDigits );
+			newBreakpoints.sort( ascending );
+			const configHist = copy( state.configHist );
+			configHist.layout.shapes = makeShapes( newBreakpoints );
+			setState({
+				...state,
+				configHist,
+				breakpoints: newBreakpoints,
+				categories: createCategoryNames( newBreakpoints, state.customNames )
+			});
 		};
-	}
+	};
+	const categoryChangeFactory = ( ind ) => {
+		return ( value ) => {
+			const newCategories = state.categories.slice();
+			newCategories[ ind ] = value;
+			const newCustomNames = state.customNames.slice();
+			newCustomNames[ ind ] = value;
+			setState({
+				...state,
+				categories: newCategories,
+				customNames: newCustomNames
+			});
+		};
+	};
+	const deleteBreakpoint = ( ind ) => {
+		return () => {
+			const { breakpoints, categories, customNames } = state;
 
-	onChangeHistLine = ( data ) => {
+			// Remove the elements at the specified index:
+			breakpoints.splice( ind, 1 );
+			categories.splice( ind, 1 );
+			customNames.splice( ind, 1 );
+			const configHist = { ...state.configHist };
+			configHist.layout.shapes = makeShapes( breakpoints );
+			setState({
+				...state,
+				configHist,
+				categories,
+				customNames,
+				breakpoints
+			});
+		};
+	};
+	const makeTextInputs = () => {
+		const inputs = [];
+		const breakpoints = state.breakpoints;
+		const disableButton = breakpoints.length === 1;
+		inputs.push(
+			<Row key="div-0">
+				<Col md={7}>
+					<TeX
+						raw="x < "
+					/><NumberInput
+						inline
+						onBlur={changeFactory( 0 )}
+						defaultValue={breakpoints[0]}
+						step="any"
+					/>
+				</Col>
+				<Col md={4}>
+					<TextInput
+						key={0}
+						legend="Label 1"
+						defaultValue={state.categories[ 0 ]}
+						onChange={categoryChangeFactory( 0 )}
+						style={{ width: 200 }}
+					/>
+				</Col>
+				<Col md={1}></Col>
+			</Row>
+		);
+		if ( breakpoints.length > 1 ) {
+			for ( let i = 0; i < breakpoints.length - 1; i++ ) {
+				const changeFn = categoryChangeFactory( i+1 );
+				inputs.push(
+					<Row key={`div-${i+1}`}>
+						<Col md={7}>
+							<NumberInput
+								inline
+								onBlur={changeFactory( i )}
+								defaultValue={breakpoints[i]}
+								step="any"
+							/>
+							<TeX raw="\le x <" />
+							<NumberInput
+								inline
+								onBlur={changeFactory( i+1 )}
+								defaultValue={breakpoints[i+1]}
+								step="any"
+							/>
+						</Col>
+						<Col md={4}>
+							<TextInput
+								key={1+i}
+								legend={`Label ${i+2}`}
+								defaultValue={state.categories[ i+1 ]}
+								onChange={changeFn}
+								style={{ width: 200 }}
+							/>
+						</Col>
+						<Col md={1}>
+							<ClearButton
+								onClick={deleteBreakpoint(i)}
+								style={{ marginTop: '5px' }}
+								disabled={disableButton}
+								tooltipPlacement="right"
+							/>
+						</Col>
+					</Row>
+				);
+			}
+		}
+		const len = breakpoints.length;
+		inputs.push(
+			<Row key={`div-${len}`}>
+				<Col md={7}>
+					<TeX raw="x \ge" />
+					<NumberInput
+						inline
+						onChange={changeFactory( len-1 )}
+						defaultValue={breakpoints[ len-1 ]}
+						step="any"
+					/>
+				</Col>
+				<Col md={4}>
+					<TextInput
+						legend={`Label ${len+1}`}
+						defaultValue={state.categories[ len ]}
+						onChange={categoryChangeFactory( len )}
+						key={len}
+						style={{ width: 200 }}
+					/>
+				</Col>
+				<Col md={1}>
+					<ClearButton
+						onClick={deleteBreakpoint( len - 1 )}
+						style={{ marginTop: '5px' }}
+						disabled={disableButton}
+					/>
+				</Col>
+			</Row>
+		);
+		return inputs;
+	};
+	const onChangeHistLine = ( data ) => {
 		const keyUpdate = keys( data );
 		const matches = RE_SHAPE.exec( keyUpdate[ 0 ] );
 		if ( matches ) {
 			const ind = matches[ 1 ];
-			const xBreaks = copy( this.state.xBreaks );
-			xBreaks[ ind ] = roundn( data[ keyUpdate[0] ], -this.state.snapDigits );
-			xBreaks.sort( ascending );
-			const configHist = copy( this.state.configHist );
-			configHist.layout.shapes = makeShapes( xBreaks );
-			this.setState({
+			const newBreakpoints = state.breakpoints.slice();
+			newBreakpoints[ ind ] = roundn( data[ keyUpdate[0] ], -snapDigits );
+			newBreakpoints.sort( ascending );
+			const configHist = copy( state.configHist );
+			configHist.layout.shapes = makeShapes( newBreakpoints );
+			setState({
+				...state,
 				configHist,
-				xBreaks,
-				catNames: createCategoryNames( xBreaks, this.state.customNames )
+				breakpoints: newBreakpoints,
+				categories: createCategoryNames( newBreakpoints, state.customNames )
 			});
 		}
-	}
-
-	handleVariableChange = ( value ) => {
+	};
+	const handleVariableChange = ( value ) => {
 		debug( 'Change variable to bin...' );
 		const histConfigSettings = {
-			data: this.props.data,
+			data: props.data,
 			variable: value,
-			group: null,
-			displayDensity: true,
-			densityType: 'Data-driven',
-			chooseBins: false,
-			nBins: null
+			...HISTOGRAM_SETTINGS
 		};
 		const configHist = generateHistogramConfig( histConfigSettings );
 		configHist.layout.yaxis = {
@@ -158,255 +337,65 @@ class BinTransformer extends Component {
 		configHist.layout.xaxis = {
 			fixedrange: true
 		};
-		let values = this.props.data[ value ];
+		let values = props.data[ value ];
 		values = values.filter( x => isNumber( x ) && !isnan( x ) );
-		const xBreaks = [ roundn( mean( values ), -this.state.snapDigits ) ];
-		configHist.layout.shapes = makeShapes( xBreaks );
+		const breakpoints = [ roundn( mean( values ), -snapDigits ) ];
+		configHist.layout.shapes = makeShapes( breakpoints );
 		const customNames = [ false, false ];
-		const catNames = createCategoryNames( xBreaks, customNames );
-		this.setState({
-			activeVar: value,
+		setState({
+			variable: value,
 			configHist,
-			xBreaks,
-			catNames,
-			customNames
+			breakpoints,
+			customNames,
+			categories: createCategoryNames( breakpoints, customNames )
 		});
-	}
+	};
+	const addBreakpoint = () => {
+		const newBreakpoints = state.breakpoints.slice();
+		let values = props.data[ state.variable ];
+		values = values.filter( x => isNumber( x ) && !isnan( x ) );
+		const avg = runif( 0.8, 1.2 ) * mean( values );
+		newBreakpoints.push( roundn( avg, -snapDigits ) );
+		newBreakpoints.sort( ascending );
 
-	handleNameChange = ( event ) => {
-		this.setState({
-			name: event.target.value
-		});
-	}
+		const configHist = copy( state.configHist );
+		configHist.layout.shapes = makeShapes( newBreakpoints );
 
-	handleCatNamesFactory = ( ind ) => {
-		return ( value ) => {
-			const catNames = copy( this.state.catNames );
-			catNames[ ind ] = value;
-			const customNames = copy( this.state.customNames );
-			customNames[ ind ] = value;
-			this.setState({
-				catNames,
-				customNames
-			});
-		};
-	}
-
-	// factory method for an onClick for the clearButtons
-	deleteBreak = ( ind ) => {
-		return () => {
-			const xBreaks = this.state.xBreaks;
-			// remove the vars
-			xBreaks.splice( ind, 1 );
-
-			const catNames = this.state.catNames;
-			catNames.splice( ind, 1 );
-
-			const customNames = this.state.customNames;
-			customNames.splice( ind, 1 );
-
-			const configHist = copy( this.state.configHist );
-			configHist.layout.shapes = makeShapes( xBreaks );
-
-			this.setState({
-				configHist,
-				catNames,
-				customNames,
-				xBreaks
-			});
-		};
-	}
-
-	changeFactory( ind ) {
-		return ( value ) => {
-			debug( 'Change break point...' );
-			const xBreaks = copy( this.state.xBreaks );
-			xBreaks[ ind ] = roundn( value, -this.state.snapDigits );
-			xBreaks.sort( ascending );
-			const configHist = copy( this.state.configHist );
-			configHist.layout.shapes = makeShapes( xBreaks );
-			this.setState({
-				configHist,
-				xBreaks,
-				catNames: createCategoryNames( xBreaks, this.state.customNames )
-			});
-		};
-	}
-
-	makeTextInputs = () => {
-		const inputs = [];
-		const xBreaks = this.state.xBreaks;
-		const disableButton = xBreaks.length === 1;
-		inputs.push(
-			<Row key="div-0">
-				<Col md={7}>
-					<TeX
-						raw="x < "
-					/><NumberInput
-						inline
-						onBlur={this.changeFactory( 0 )}
-						defaultValue={xBreaks[0]}
-						step="any"
-					/>
-				</Col>
-				<Col md={4}>
-					<TextInput
-						key={0}
-						legend="Label 1"
-						defaultValue={this.state.catNames[ 0 ]}
-						onChange={this.handleCatNamesFactory( 0 )}
-						style={{ width: 200 }}
-					/>
-				</Col>
-				<Col md={1}></Col>
-			</Row>
-		);
-		if ( xBreaks.length > 1 ) {
-			for ( let i = 0; i < xBreaks.length - 1; i++ ) {
-				const changeFn = this.handleCatNamesFactory( i+1 );
-				inputs.push(
-					<Row key={`div-${i+1}`}>
-						<Col md={7}>
-							<NumberInput
-								inline
-								onBlur={this.changeFactory( i )}
-								defaultValue={xBreaks[i]}
-								step="any"
-							/>
-							<TeX raw="\le x <" />
-							<NumberInput
-								inline
-								onBlur={this.changeFactory( i+1 )}
-								defaultValue={xBreaks[i+1]}
-								step="any"
-							/>
-						</Col>
-						<Col md={4}>
-							<TextInput
-								key={1+i}
-								legend={`Label ${i+2}`}
-								defaultValue={this.state.catNames[ i+1 ]}
-								onChange={changeFn}
-								style={{ width: 200 }}
-							/>
-						</Col>
-						<Col md={1}>
-							<ClearButton
-								onClick={this.deleteBreak(i)}
-								style={{ marginTop: '5px' }}
-								disabled={disableButton}
-								tooltipPlacement="right"
-							/>
-						</Col>
-					</Row>
-				);
-			}
-		}
-		const len = xBreaks.length;
-		inputs.push(
-			<Row key={`div-${len}`}>
-				<Col md={7}>
-					<TeX raw="x \ge" />
-					<NumberInput
-						inline
-						onChange={this.changeFactory( len-1 )}
-						defaultValue={xBreaks[ len-1 ]}
-						step="any"
-					/>
-				</Col>
-				<Col md={4}>
-					<TextInput
-						legend={`Label ${len+1}`}
-						defaultValue={this.state.catNames[ len ]}
-						onChange={this.handleCatNamesFactory( len )}
-						key={len}
-						style={{ width: 200 }}
-					/>
-				</Col>
-				<Col md={1}>
-					<ClearButton
-						onClick={this.deleteBreak( len - 1 )}
-						style={{ marginTop: '5px' }}
-						disabled={disableButton}
-					/>
-				</Col>
-			</Row>
-		);
-		return inputs;
-	}
-
-	makeNewVar = () => {
-		let { name, activeVar, catNames, xBreaks } = this.state;
-		const rawData = this.props.data[ activeVar ];
-		const values = retrieveBinnedValues( rawData, catNames, xBreaks );
-		this.props.logAction( DATA_EXPLORER_BIN_TRANSFORMER, {
-			name,
-			variable: activeVar,
-			breaks: xBreaks,
-			catNames: catNames
-		});
-		name = factor( name, catNames );
-		this.props.onGenerate( name, values );
-		this.props.onHide();
-	}
-
-	addNewBreakPoint = () => {
-		const xBreaks = copy( this.state.xBreaks );
-		let vals = this.props.data[ this.state.activeVar ];
-		vals = vals.filter( x => isNumber( x ) && !isnan( x ) );
-		const avg = runif( 0.8, 1.2 ) * mean( vals );
-		xBreaks.push( roundn( avg, -this.state.snapDigits ) );
-		xBreaks.sort( ascending );
-
-		const configHist = copy( this.state.configHist );
-		configHist.layout.shapes = makeShapes( xBreaks );
-
-		const customNames = this.state.customNames;
+		const customNames = state.customNames;
 		customNames.push( false );
-
-		this.setState({
-			xBreaks,
+		setState({
+			...state,
+			breakpoints: newBreakpoints,
 			configHist,
-			catNames: createCategoryNames( xBreaks, customNames )
+			categories: createCategoryNames( newBreakpoints, customNames )
 		});
-	}
-
-	handleSnapDigitsChange = ( val ) => {
-		this.setState({ snapDigits: val });
-	}
-
-	handleKeyPress = ( event ) => {
-		if ( event.charCode === 13 && this.state.name.length >= 2 ) {
-			this.makeNewVar();
-		}
-	}
-
-	renderBody() {
-		const configHist = this.state.configHist;
+	};
+	const renderBody = () => {
+		const configHist = state.configHist;
 		const select = <SelectInput
-			legend={this.props.t('variable-to-bin')}
-			defaultValue={this.state.activeVar}
-			options={this.props.quantitative}
-			onChange={this.handleVariableChange}
+			legend={props.t('variable-to-bin')}
+			defaultValue={state.variable}
+			options={props.quantitative}
+			onChange={handleVariableChange}
 			style={{ maxWidth: 400 }}
 		/>;
 		if ( !configHist ) {
 			return (
 				<Fragment>
 					{select}
-					<Alert variant="info">{this.props.t('select-variable-bin')}</Alert>
+					<Alert variant="info">{props.t('select-variable-bin')}</Alert>
 				</Fragment>
 			);
 		}
 		return (
 			<Fragment>
 				{select}
-				<Button className="insert-line-button" onClick={this.addNewBreakPoint}>
-					{this.props.t('insert-break-line')}
+				<Button className="insert-line-button" onClick={addBreakpoint}>
+					{props.t('insert-break-line')}
 				</Button>
 				<p>
-					{this.props.t('drag-red-bars')}
-					(<NumberInput legend={this.props.t('digits-after-comma-snap')} min={0} max={9} inline defaultValue={this.state.snapDigits} onChange={this.handleSnapDigitsChange} />)
+					{props.t('drag-red-bars')}
+					(<NumberInput legend={props.t('digits-after-comma-snap')} min={0} max={9} inline defaultValue={snapDigits} onChange={setSnapDigits} />)
 				</p>
 				<div style={{ height: 250 }}>
 					<Plotly
@@ -416,58 +405,53 @@ class BinTransformer extends Component {
 						fit
 						removeButtons
 						legendButtons={false}
-						onRelayout={this.onChangeHistLine}
+						onRelayout={onChangeHistLine}
 					/>
 				</div>
 				<div>
 					<Card className="mb-2" >
-						<Card.Header>{this.props.t('choose-category-labels')}:</Card.Header>
+						<Card.Header>{props.t('choose-category-labels')}:</Card.Header>
 						<Card.Body>
-							{this.makeTextInputs()}
+							{makeTextInputs()}
 						</Card.Body>
 					</Card>
 				</div>
 				<FormGroup style={{ width: 'fit-content' }} >
-					<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
+					<FormLabel>{props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
-						placeholder={this.props.t('select-name')}
-						onChange={this.handleNameChange}
-						onKeyPress={this.handleKeyPress}
+						placeholder={props.t('select-name')}
+						onChange={handleNameChange}
+						onKeyPress={handleKeyPress}
 					/>
 					<FormText>
-						{this.props.t('new-variable-appended')}
+						{props.t('new-variable-appended')}
 					</FormText>
 				</FormGroup>
 			</Fragment>
 		);
-	}
-
-	render() {
-		return (
-			<Draggable cancel=".card-body" onDragStart={( event ) => {
-				event.stopPropagation();
-			}} style={{ zIndex: 1006 }} >
-				<Panel
-					onHide={this.props.onHide}
-					show={this.props.show}
-					header={this.props.t('bin-transformer-header')}
-					footer={<Button onClick={this.makeNewVar} disabled={this.state.name.length < 2}>
-						{this.props.t('create-new-variable')}
-					</Button>}
-					bodyStyle={{
-						maxHeight: 'calc(100vh - 200px)',
-						overflowY: 'auto',
-						position: 'relative'
-					}}
-					role="button" tabIndex={0}
-				>
-					{this.renderBody()}
-				</Panel>
-			</Draggable>
-		);
-	}
-}
+	};
+	return (
+		<Draggable cancel=".card-body" onDragStart={stopPropagation} style={{ zIndex: 1006 }} >
+			<Panel
+				onHide={props.onHide}
+				show={props.show}
+				header={props.t('bin-transformer-header')}
+				footer={<Button onClick={makeNewVar} disabled={invalidName} >
+					{props.t('create-new-variable')}
+				</Button>}
+				bodyStyle={{
+					maxHeight: 'calc(100vh - 200px)',
+					overflowY: 'auto',
+					position: 'relative'
+				}}
+				role="button" tabIndex={0}
+			>
+				{renderBody()}
+			</Panel>
+		</Draggable>
+	);
+};
 
 
 // PROPERTIES //
