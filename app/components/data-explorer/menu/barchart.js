@@ -71,7 +71,7 @@ class BarchartMenu extends Component {
 		};
 	}
 
-	generateBarchart() {
+	generateBarchart = () => {
 		let summary;
 		let yvar;
 		const { variable, group, relative, totalPercent, xOrder, direction, stackBars } = this.state;
@@ -276,7 +276,7 @@ class BarchartMenu extends Component {
 							/>
 						</Col>
 					</Row>
-					<Button variant="primary" block onClick={this.generateBarchart.bind( this )}>
+					<Button variant="primary" block onClick={this.generateBarchart}>
 						{t('generate')}
 					</Button>
 				</Card.Body>
