@@ -692,53 +692,49 @@ class FullscreenActionDisplay extends Component {
 		</ListGroupItem> );
 	}
 
-	renderRanges = () => {
+	renderRangePlot = () => {
 		const halfWidth = [];
 		const values = [];
-		const mids = [];
-		const inds = [];
+		const midpoints = [];
+		const indices = [];
 		const actions = this.getActions();
 		for ( let i = 0; i < actions.length; i++ ) {
 			values.push( JSON.parse( actions[ i ].value ) );
-
-			// Value is an array of length 2:
-			mids.push( 0.5 * ( values[ i ][ 0 ] + values[ i ][ 1 ] ) );
+			midpoints.push( 0.5 * ( values[ i ][ 0 ] + values[ i ][ 1 ] ) );
 			halfWidth.push( 0.5 * ( values[ i ][ 1 ] - values[ i ][ 0 ] ) );
-			inds.push( i );
+			indices.push( i );
 		}
-		return (
-			<div style={{ height: 0.75 * window.innerHeight }}>
-				<Plotly
-					data={[
-						{
-							y: mids,
-							x: inds,
-							text: inds.map( i => {
-								return `[${values[ i ][ 0 ]}, ${values[ i ][ 1 ]}]`;
-							}),
-							error_y: {
-								type: 'data',
-								array: halfWidth,
-								visible: true
-							},
-							type: 'scatter',
-							mode: 'markers',
-							orientation: 'h'
-						}
-					]}
-					fit editable
-					layout={{
-						xaxis: {
-							showticklabels: false,
-							showline: false
+		return ( <div style={{ height: 0.75 * window.innerHeight }}>
+			<Plotly
+				data={[
+					{
+						y: midpoints,
+						x: indices,
+						text: indices.map( i => {
+							return `[${values[ i ][ 0 ]}, ${values[ i ][ 1 ]}]`;
+						}),
+						error_y: {
+							type: 'data',
+							array: halfWidth,
+							visible: true
 						},
-						yaxis: {
-							title: this.props.t('value')
-						}
-					}}
-				/>
-			</div>
-		);
+						type: 'scatter',
+						mode: 'markers',
+						orientation: 'h'
+					}
+				]}
+				fit editable
+				layout={{
+					xaxis: {
+						showticklabels: false,
+						showline: false
+					},
+					yaxis: {
+						title: this.props.t('value')
+					}
+				}}
+			/>
+		</div> );
 	}
 
 	renderPlot() {
@@ -770,7 +766,7 @@ class FullscreenActionDisplay extends Component {
 				plot = this.renderSankeyDiagram();
 				break;
 			case 'range':
-				plot = this.renderRanges();
+				plot = this.renderRangePlot();
 				break;
 		}
 		if ( !plot ) {
