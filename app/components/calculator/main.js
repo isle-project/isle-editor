@@ -188,8 +188,8 @@ class Calculator extends Component {
 
 	handleEscape = ( event ) => {
 		if (
-			event.target.id === 'calc-panel' ||
-			event.target.id === 'calc-panel-full'
+			event.target.id === 'calculator-panel' ||
+			event.target.id === 'calculator-panel-full'
 		) {
 			this.props.onHide();
 		}
@@ -243,7 +243,7 @@ class Calculator extends Component {
 				cancel="#calc-text-area"
 				onEscape={this.handleEscape}
 			>
-				<Panel id="calc-panel-full" tabIndex={0} role="button"
+				<Panel id="calculator-panel-full" tabIndex={0} role="button"
 					header={this.props.t( 'calculator' )} onHide={this.props.onHide} minimizable
 					style={this.props.style}
 					className={this.props.className}
@@ -339,7 +339,7 @@ class Calculator extends Component {
 				onEscape={this.handleEscape}
 			>
 				<Panel
-					id="calc-panel"
+					id="calculator-panel"
 					tabIndex={0} role="button"
 					header={this.props.t( 'calculator' )}
 					onHide={this.props.onHide}
