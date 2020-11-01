@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -51,51 +51,40 @@ const ORDER_OPTIONS = [
 
 // MAIN //
 
-class BarchartMenu extends Component {
-	constructor( props ) {
-		super( props );
+const BarchartMenu = ( props ) => {
+	const { groupingVariables, variables, defaultValue, quantitative, t } = props;
+	const [ variable, setVariable ] = useState( defaultValue || variables[ 0 ] );
+	const [ yvar, setYVar ] = useState( quantitative[ 0 ] );
+	const [ direction, setDirection ] = useState( 'ascending' );
+	const [ summary, setSummary ] = useState( STATS[ 0 ] );
+	const [ group, setGroup ] = useState( null );
+	const [ horizontal, setHorizontal ] = useState( false );
+	const [ mode, setMode ] = useState( MODES[ 0 ] );
+	const [ relative, setRelative ] = useState( false );
+	const [ stackBars, setStackBars ] = useState( false );
+	const [ totalPercent, setTotalPercent ] = useState( false );
+	const [ xOrder, setXOrder ] = useState( null );
 
-		const { variables, defaultValue, quantitative } = props;
-		this.state = {
-			variable: defaultValue || variables[ 0 ],
-			yvar: quantitative[ 0 ],
-			direction: 'ascending',
-			summary: STATS[ 0 ],
-			group: null,
-			horizontal: false,
-			mode: MODES[ 0 ],
-			relative: false,
-			stackBars: false,
-			totalPercent: false,
-			xOrder: null
-		};
-	}
-
-	generateBarchart = () => {
-		let summary;
-		let yvar;
-		const { variable, group, relative, totalPercent, xOrder, direction, stackBars } = this.state;
+	const generateBarchart = () => {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, group, relative, totalPercent, xOrder, direction, stackBars, plotId
 		};
-		if ( this.state.mode === MODES[ 1 ] ) {
-			action.summary = this.state.summary;
-			summary = this.state.summary;
-			action.yvar = this.state.yvar;
-			yvar = this.state.yvar;
+		if ( mode === MODES[ 1 ] ) {
+			action.summary = summary;
+			action.yvar = yvar;
 		}
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: props.t('plot-shared'),
+				message: props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
+			props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 		};
 		const output = <BarChart
-			{...this.props}
+			{...props}
 			variable={variable}
 			group={group}
 			relative={relative} totalPercent={totalPercent} xOrder={xOrder}
@@ -104,180 +93,144 @@ class BarchartMenu extends Component {
 			action={action}
 			onShare={onShare}
 		/>;
-		this.props.logAction( DATA_EXPLORER_BARCHART, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const hideRelativeFrequencies = (
-			!this.state.group || // not used without grouping
-			this.state.totalPercent || // overall percent
-			this.state.mode === MODES[ 1 ] // when evaluating a function
-		);
-		const { groupingVariables, variables, t } = this.props;
-		return (
-			<Card>
-				<Card.Header as="h4">
-					{t('Bar Chart')}
-					<QuestionButton title={t('Bar Chart')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<SelectInput
-						legend={t('bars-represent')}
-						defaultValue={this.state.mode}
-						options={MODES}
-						onChange={( value ) => {
-							this.setState({ mode: value });
-						}}
-					/>
-					<SelectInput
-						legend={t('variable')}
-						defaultValue={this.state.variable}
-						options={variables}
-						onChange={( value ) => {
-							this.setState({ variable: value });
-						}}
-					/>
-					{ this.state.mode === MODES[ 1 ] ?
-						<Row>
-							<Col>
-								<SelectInput
-									legend={t('y-axis')}
-									defaultValue={this.state.yvar}
-									options={this.props.quantitative}
-									onChange={( yvar ) => {
-										this.setState({ yvar });
-									}}
-								/>
-							</Col>
-							<Col>
-								<SelectInput
-									legend={t('summary-function')}
-									defaultValue={this.state.summary}
-									options={STATS}
-									onChange={( summary ) => {
-										this.setState({ summary });
-									}}
-								/>
-							</Col>
-						</Row> : null }
-					<SelectInput
-						legend={t('group-by')}
-						clearable={true}
-						defaultValue={this.state.group}
-						options={groupingVariables}
-						menuPlacement="top"
-						onChange={( value ) => {
-							this.setState({ group: value });
-						}}
-					/>
+		props.logAction( DATA_EXPLORER_BARCHART, action );
+		props.onCreated( output );
+	};
+	const hideRelativeFrequencies = (
+		!group || // not used without grouping
+		totalPercent || // overall percent
+		mode === MODES[ 1 ] // when evaluating a function
+	);
+	return (
+		<Card>
+			<Card.Header as="h4">
+				{t('Bar Chart')}
+				<QuestionButton title={t('Bar Chart')} content={DESCRIPTION} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('bars-represent')}
+					defaultValue={mode}
+					options={MODES}
+					onChange={setMode}
+				/>
+				<SelectInput
+					legend={t('variable')}
+					defaultValue={variable}
+					options={variables}
+					onChange={setVariable}
+				/>
+				{ mode === MODES[ 1 ] ?
 					<Row>
 						<Col>
-							<FormGroup controlId="barchart-order-select">
-								<FormLabel>{this.state.group ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
-								<Select
-									defaultValue={this.state.xOrder}
-									options={ORDER_OPTIONS}
-									components={{ Option }}
-									isClearable={true}
-									menuPlacement="top"
-									onChange={( elem ) => {
-										this.setState({
-											xOrder: elem ? elem.value : null
-										});
-									}}
-									styles={selectStyles}
-								/>
-							</FormGroup>
+							<SelectInput
+								legend={t('y-axis')}
+								defaultValue={yvar}
+								options={props.quantitative}
+								onChange={setYVar}
+							/>
 						</Col>
 						<Col>
 							<SelectInput
-								legend={t('order-direction')}
-								defaultValue={this.state.direction}
-								options={[
-									'ascending',
-									'descending'
-								]}
+								legend={t('summary-function')}
+								defaultValue={summary}
+								options={STATS}
+								onChange={setSummary}
+							/>
+						</Col>
+					</Row> : null }
+				<SelectInput
+					legend={t('group-by')}
+					clearable={true}
+					defaultValue={group}
+					options={groupingVariables}
+					menuPlacement="top"
+					onChange={setGroup}
+				/>
+				<Row>
+					<Col>
+						<FormGroup controlId="barchart-order-select">
+							<FormLabel>{group ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
+							<Select
+								defaultValue={xOrder}
+								options={ORDER_OPTIONS}
+								components={{ Option }}
+								isClearable={true}
 								menuPlacement="top"
-								onChange={( value ) => {
-									this.setState({
-										direction: value
-									});
+								onChange={( elem ) => {
+									setXOrder( elem ? elem.value : null );
 								}}
-								style={{
-									display: this.state.xOrder ? 'inherit' : 'none'
-								}}
+								styles={selectStyles}
 							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							{ this.state.mode === MODES[ 0 ] ? <CheckboxInput
-								legend={t('total-percentages')}
-								defaultValue={this.state.totalPercent}
-								onChange={( value )=>{
-									this.setState({
-										totalPercent: value
-									});
-								}}
-								disabled={this.state.relative}
-								style={{
-									opacity: this.state.relative ? 0.2 : 1
-								}}
-							/> : null }
-						</Col>
-						<Col>
-							<CheckboxInput
-								legend={t('flip-coordinates')}
-								defaultValue={this.state.horizontal}
-								onChange={( value )=>{
-									this.setState({
-										horizontal: value
-									});
-								}}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<CheckboxInput
-								legend={t('stack-bars')}
-								defaultValue={this.state.stackBars}
-								onChange={( value )=>{
-									this.setState({
-										stackBars: value
-									});
-								}}
-								disabled={!this.state.group}
-								style={{
-									opacity: this.state.group ? 1.0 : 0.2
-								}}
-							/>
-						</Col>
-						<Col>
-							<CheckboxInput
-								legend="Relative frequencies inside each group"
-								defaultValue={this.state.relative}
-								disabled={hideRelativeFrequencies}
-								onChange={( value )=>{
-									this.setState({
-										relative: value
-									});
-								}}
-								style={{
-									opacity: hideRelativeFrequencies ? 0.2 : 1
-								}}
-							/>
-						</Col>
-					</Row>
-					<Button variant="primary" block onClick={this.generateBarchart}>
-						{t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+						</FormGroup>
+					</Col>
+					<Col>
+						<SelectInput
+							legend={t('order-direction')}
+							defaultValue={direction}
+							options={[
+								'ascending',
+								'descending'
+							]}
+							menuPlacement="top"
+							onChange={setDirection}
+							style={{
+								display: xOrder ? 'inherit' : 'none'
+							}}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						{ mode === MODES[ 0 ] ? <CheckboxInput
+							legend={t('total-percentages')}
+							defaultValue={totalPercent}
+							onChange={setTotalPercent}
+							disabled={relative}
+							style={{
+								opacity: relative ? 0.2 : 1
+							}}
+						/> : null }
+					</Col>
+					<Col>
+						<CheckboxInput
+							legend={t('flip-coordinates')}
+							defaultValue={horizontal}
+							onChange={setHorizontal}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<CheckboxInput
+							legend={t('stack-bars')}
+							defaultValue={stackBars}
+							onChange={setStackBars}
+							disabled={!group}
+							style={{
+								opacity: group ? 1.0 : 0.2
+							}}
+						/>
+					</Col>
+					<Col>
+						<CheckboxInput
+							legend="Relative frequencies inside each group"
+							defaultValue={relative}
+							disabled={hideRelativeFrequencies}
+							onChange={setRelative}
+							style={{
+								opacity: hideRelativeFrequencies ? 0.2 : 1
+							}}
+						/>
+					</Col>
+				</Row>
+				<Button variant="primary" block onClick={generateBarchart}>
+					{t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
