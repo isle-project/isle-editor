@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -11,91 +11,78 @@ import Checkbox from 'components/input/checkbox';
 
 // MAIN //
 
-class Search extends Component {
-	constructor() {
-		super();
+const Search = ( props ) => {
+	const [ search, setSearch ] = useState( '' );
+	const [ caseSensitive, setCaseSensitive ] = useState( false );
+	const [ exact, setExact ] = useState( false );
 
-		this.state = {
-			search: '',
-			caseSensitive: false,
-			exact: false
-		};
-	}
+	const handleSearch = ( event ) => {
+		setSearch( event.target.value );
+	};
 
-	componentDidUpdate( prevProps ) {
-		if ( this.props.extended !== prevProps.extended ) {
-			this.handleSubmit();
-		}
-	}
+	const handleSubmit = () => {
+		props.onClick( search, caseSensitive, exact );
+	};
+	useEffect( () => {
+		handleSubmit();
+	}, [ props.extended ]);
 
-	handleSearch = ( event ) => {
-		this.setState({
-			search: event.target.value
-		});
-	}
-
-	handleKeyPress = ( event ) => {
+	const handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
-			this.handleSubmit();
+			handleSubmit();
 		}
-	}
-
-	handleSubmit = () => {
-		// Need to get it back to the parent
-		this.props.onClick( this.state.search, this.state.caseSensitive, this.state.exact );
-	}
-
-	handleReset = () => {
-		this.setState({
-			search: ''
-		}, () => {
-			this.props.onClick( '' );
-		});
-	}
-
-	render() {
-		return (
-			<Fragment>
-				<FormGroup style={{ width: window.innerWidth * 0.3, padding: '0px', marginBottom: '0px' }} >
-					<InputGroup size="small" >
-						<FormControl
-							type="text"
-							placeholder={this.props.t('enter-text')}
-							onChange={this.handleSearch}
-							onKeyPress={this.handleKeyPress}
-							value={this.state.search}
-						/>
-						<Button
-							onClick={this.handleSubmit}
-						>
-							{this.props.t('search')}
-						</Button>
-						<Button style={{ float: 'left' }} size="small" onClick={this.handleReset} >
-							{this.props.t('reset')}
-						</Button>
-					</InputGroup>
-				</FormGroup>
-				<FormGroup style={{ float: 'left', margin: '4px' }} >
-					<Checkbox
-						tooltip={this.props.t('whole-word-tooltip')}
-						tooltipPlacement="top"
-						size="small" inline
-						legend={this.props.t('whole-word')}
-						style={{ fontSize: '0.9rem' }}
-						onChange={( value ) => this.setState({ exact: value }, this.handleSubmit )}
+	};
+	const handleReset = () => {
+		setSearch( '' );
+		props.onClick( '' );
+	};
+	return (
+		<Fragment>
+			<FormGroup style={{ width: window.innerWidth * 0.3, padding: '0px', marginBottom: '0px' }} >
+				<InputGroup size="small" >
+					<FormControl
+						type="text"
+						placeholder={props.t('enter-text')}
+						onChange={handleSearch}
+						onKeyPress={handleKeyPress}
+						value={search}
 					/>
-					<Checkbox
-						tooltip={this.props.t('toggle-sensitivity')} tooltipPlacement="top"
-						size="small" inline
-						legend={this.props.t('case-sensitive')}
-						style={{ fontSize: '0.9rem' }}
-						onChange={( value ) => this.setState({ caseSensitive: value }, this.handleSubmit )}
-					/>
-				</FormGroup>
-			</Fragment>
-		);
-	}
-}
+					<Button
+						onClick={handleSubmit}
+					>
+						{props.t('search')}
+					</Button>
+					<Button style={{ float: 'left' }} size="small" onClick={handleReset} >
+						{props.t('reset')}
+					</Button>
+				</InputGroup>
+			</FormGroup>
+			<FormGroup style={{ float: 'left', margin: '4px' }} >
+				<Checkbox
+					tooltip={props.t('whole-word-tooltip')}
+					tooltipPlacement="top"
+					size="small" inline
+					legend={props.t('whole-word')}
+					style={{ fontSize: '0.9rem' }}
+					onChange={( value ) => {
+						setExact( value );
+						props.onClick( search, caseSensitive, value );
+					}}
+				/>
+				<Checkbox
+					tooltip={props.t('toggle-sensitivity')} tooltipPlacement="top"
+					size="small" inline
+					legend={props.t('case-sensitive')}
+					style={{ fontSize: '0.9rem' }}
+					onChange={( value ) => {
+						setCaseSensitive( value );
+						props.onClick( search, value, exact );
+					}}
+				/>
+			</FormGroup>
+		</Fragment>
+	);
+};
 
 
 // PROPERTIES //
