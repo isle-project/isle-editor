@@ -42,7 +42,7 @@ release
 .vscode/
 jsconfig.json
 
-# public should be ignored
+# Public folder should be ignored as it is used during lesson upload
 public/
 
 dll/components/*.js
@@ -50,12 +50,5 @@ dll/components/*.LICENSE.txt
 dll/session/*.js
 dll/session/*.LICENSE.txt
 
-# Ignore custom build script for Frank's version of stdlib
-.build.sh
-
-# R history files
 .Rhistory
-
-# Ignore pdf
 *.pdf
-
