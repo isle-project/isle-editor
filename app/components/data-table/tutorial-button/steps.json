@@ -1,6 +1,6 @@
 [
 	{
-		"target": ".title-button",
+		"target": ".data-table-title-button",
 		"content": "On top of the data table you find the name of the data set. Clicking on it will open a modal window with a detailed description.",
 		"placement": "bottom",
 		"placementBeacon": "bottom"

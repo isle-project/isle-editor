@@ -4,7 +4,7 @@
 	display: inline-block;
 }
 
-.title-button {
+.data-table-title-button {
 	float: center;
 	background: rgba(0, 0, 0, 0.045);
 	box-shadow: none;
@@ -47,19 +47,18 @@
 }
 
 .label-number-rows {
-	font-size: 16px;
 	display: block;
+	font-size: 16px;
 	text-align: center;
 }
 
-.title-button-h4 {
+.data-table-title-button-h4 {
+	font-size: 21px;
 	text-align: center;
+	letter-spacing: 2.5px;
 	margin-top: 0px;
 	margin-bottom: 0px;
-	font-size: 21px;
-	letter-spacing: 2.5px;
 }
-
 
 .variable-descriptions-button {
 	background: rgba(0, 0, 0, 0.045);

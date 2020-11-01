@@ -761,12 +761,12 @@ class DataTable extends Component {
 								variant="light"
 								disabled={dataInfo.info.length === 0}
 								onClick={this.showInfo}
-								className='title-button'
+								className='data-table-title-button'
 								style={{
 									cursor: dataInfo.info.length > 0 ? 'pointer' : 'inherit'
 								}}
 							>
-								<h4 className='title-button-h4'>
+								<h4 className='data-table-title-button-h4'>
 									{dataInfo.name ? dataInfo.name : this.props.t('data')}
 								</h4>
 							</Button>
