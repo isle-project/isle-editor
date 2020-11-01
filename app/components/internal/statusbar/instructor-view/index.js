@@ -94,7 +94,6 @@ class InstructorView extends Component {
 	}
 
 	renderTabs = () => {
-		// This is the button that toggles it
 		const session = this.context;
 		if ( this.state.hidden ) {
 			return null;
