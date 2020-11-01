@@ -1,10 +1,6 @@
 TODO
 ====
 
-For various to-do items related to the `ISLE` project.
-
-Long-Term
-=====
 * Port equation menu from czi-prosemirror?
 * Build mosaic plot
 * Support LaTeX Equation in exported PDFs
