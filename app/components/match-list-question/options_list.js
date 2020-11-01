@@ -13,38 +13,25 @@ class OptionsList extends Component {
 	}
 
 	render() {
-		const optionStyle = {
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			padding: '10px 0px',
-			margin: '10px',
-			border: 'solid 1px gainsboro',
-			cursor: 'pointer',
-			backgroundColor: this.props.baseColor
-		};
-		const selected = Object.assign({}, optionStyle, {
-			backgroundColor: 'gainsboro'
-		});
 		const options = this.props.shuffle ? shuffle( this.props.options ) : this.props.options;
 		this.options = this.options || options;
 		const { active, onSelect, answers } = this.props;
 		return (
-			<ul style={{ flex: 1, listStyleType: 'none', padding: 0 }}>
+			<ul className="match-list-question-ul" >
 				{
 					this.options.map( ( q, i ) => {
 						if ( !q ) {
 							return null;
 						}
-						let style = ( q === active ) ? selected : optionStyle;
 						const match = answers.filter( answer => {
 							return answer.a === q || answer.b === q;
 						});
-						style = match[ 0 ] ?
-							Object.assign({}, style, {
-								backgroundColor: match[ 0 ].color
-							}) :
-							style;
+						const style = {};
+						if ( match[ 0 ] ) {
+							style.backgroundColor = match[ 0 ].color;
+						} else {
+							style.backgroundColor = ( q === active ) ? 'gainsboro' : this.props.baseColor;
+						}
 						const selectItem = () => onSelect( q );
 						return (
 							<div
@@ -53,7 +40,10 @@ class OptionsList extends Component {
 								onKeyPress={selectItem}
 								key={i}
 							>
-								<li style={style} >
+								<li
+									className="match-list-question-item"
+									style={style}
+								>
 									{q}
 								</li>
 							</div>

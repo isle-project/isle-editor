@@ -32,3 +32,19 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+.match-list-question-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0px;
+	margin: 10px;
+	border: solid 1px gainsboro;
+	cursor: pointer;
+}
+
+.match-list-question-ul {
+	flex: 1;
+	list-style-type: none;
+	padding: 0px;
+}
