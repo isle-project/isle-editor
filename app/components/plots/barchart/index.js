@@ -13,7 +13,7 @@ import by from 'utils/by';
 
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction }) {
+export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction }) {
 	let traces;
 	const nObs = data[ variable ].length;
 	const allCats = new Set();
@@ -38,7 +38,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				counts[ i ] = counts[ i ] / nObs;
 			}
 		}
-		if ( horiz ) {
+		if ( horizontal ) {
 			traces = [ {
 				y: categories,
 				x: counts,
@@ -81,7 +81,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						counts[ i ] = counts[ i ] / nObs;
 					}
 				}
-				if ( horiz ) {
+				if ( horizontal ) {
 					traces.push({
 						y: categories,
 						x: counts,
@@ -113,7 +113,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						counts[ i ] = counts[ i ] / nObs;
 					}
 				}
-				if ( horiz ) {
+				if ( horizontal ) {
 					traces.push({
 						y: categories,
 						x: counts,
@@ -134,7 +134,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	}
 	let xaxis;
 	let yaxis;
-	if ( horiz ) {
+	if ( horizontal ) {
 		xaxis = {
 			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
 		};
@@ -177,8 +177,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 
 // MAIN //
 
-const BarChart = ({ id, data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
-	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horiz, stackBars, relative, totalPercent, xOrder, direction });
+const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
+	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
 	return (
 		<Plotly
 			editable
@@ -203,7 +203,7 @@ const BarChart = ({ id, data, variable, yvar, summary, group, horiz, stackBars, 
 
 BarChart.defaultProps = {
 	group: null,
-	horiz: false,
+	horizontal: false,
 	stackBars: false,
 	relative: false,
 	totalPercent: false,
@@ -219,7 +219,7 @@ BarChart.propTypes = {
 	group: PropTypes.array,
 	yvar: PropTypes.string,
 	summary: PropTypes.oneOf([ 'Mean', 'Median', 'Min', 'Max', 'Sum' ]),
-	horiz: PropTypes.bool,
+	horizontal: PropTypes.bool,
 	stackBars: PropTypes.bool,
 	relative: PropTypes.bool,
 	totalPercent: PropTypes.bool,
@@ -240,7 +240,7 @@ BarChart.propTypes = {
 * @property {boolean} relative - whether to calculate relative frequencies inside each group
 * @property {boolean} totalPercent - whether to display overall bars as relative frequencies
 * @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category
-* @property {boolean} horiz - whether to display bars horizontally
+* @property {boolean} horizontal - whether to display bars horizontally
 * @property {string} xOrder - one of `total`, `category`, `min`, `max`, `mean`, or `median`
 * @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
 */

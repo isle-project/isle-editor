@@ -61,7 +61,7 @@ class BarchartMenu extends Component {
 			yvar: quantitative[ 0 ],
 			summary: STATS[ 0 ],
 			group: null,
-			horiz: false,
+			horizontal: false,
 			stackBars: false,
 			relative: false,
 			totalPercent: false,
@@ -235,10 +235,10 @@ class BarchartMenu extends Component {
 						<Col>
 							<CheckboxInput
 								legend={t('flip-coordinates')}
-								defaultValue={this.state.horiz}
+								defaultValue={this.state.horizontal}
 								onChange={( value )=>{
 									this.setState({
-										horiz: value
+										horizontal: value
 									});
 								}}
 							/>
