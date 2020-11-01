@@ -12,28 +12,28 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import FormText from 'react-bootstrap/FormText';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import runif from '@stdlib/random/base/uniform';
+import keys from '@stdlib/utils/keys';
+import roundn from '@stdlib/math/base/special/roundn';
+import copy from '@stdlib/utils/copy';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import Plotly from 'components/plotly';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import SelectInput from 'components/input/select';
 import TextInput from 'components/input/text';
 import NumberInput from 'components/input/number';
+import TeX from 'components/tex';
+import isnan from '@stdlib/assert/is-nan';
+import factor from 'utils/factor-variable';
 import mean from 'utils/statistic/mean.js';
 import min from 'utils/statistic/min.js';
 import max from 'utils/statistic/max.js';
-import TeX from 'components/tex';
-import runif from '@stdlib/random/base/uniform';
-import keys from '@stdlib/utils/keys';
-import roundn from '@stdlib/math/base/special/roundn';
-import copy from '@stdlib/utils/copy';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
-import factor from 'utils/factor-variable';
 import { DATA_EXPLORER_BIN_TRANSFORMER } from 'constants/actions.js';
 import { generateHistogramConfig } from 'components/plots/histogram';
 import stopPropagation from 'utils/stop-propagation';
 import retrieveBinnedValues from './retrieve_binned_values.js';
-import ClearButton from '../clear_button.js';
+import ClearButton from './../clear_button.js';
 import './bin_transformer.css';
 
 
@@ -118,7 +118,7 @@ const createCategoryNames = ( breakpoints, customNames ) => {
 
 // MAIN //
 
-const BinTransformer = ( props ) => {
+const BinningTransformer = ( props ) => {
 	const [ name, setName ] = useState( '' );
 	const [ snapDigits, setSnapDigits ] = useState( 0 );
 	const [ state, setState ] = useState({
@@ -204,101 +204,95 @@ const BinTransformer = ( props ) => {
 		const inputs = [];
 		const breakpoints = state.breakpoints;
 		const disableButton = breakpoints.length === 1;
-		inputs.push(
-			<Row key="div-0">
-				<Col md={7}>
-					<TeX
-						raw="x < "
-					/><NumberInput
-						inline
-						onBlur={changeFactory( 0 )}
-						defaultValue={breakpoints[0]}
-						step="any"
-					/>
-				</Col>
-				<Col md={4}>
-					<TextInput
-						key={0}
-						legend="Label 1"
-						defaultValue={state.categories[ 0 ]}
-						onChange={categoryChangeFactory( 0 )}
-						style={{ width: 200 }}
-					/>
-				</Col>
-				<Col md={1}></Col>
-			</Row>
-		);
+		inputs.push( <Row key="div-0">
+			<Col md={7}>
+				<TeX
+					raw="x < "
+				/><NumberInput
+					inline
+					onBlur={changeFactory( 0 )}
+					defaultValue={breakpoints[0]}
+					step="any"
+				/>
+			</Col>
+			<Col md={4}>
+				<TextInput
+					key={0}
+					legend="Label 1"
+					defaultValue={state.categories[ 0 ]}
+					onChange={categoryChangeFactory( 0 )}
+					style={{ width: 200 }}
+				/>
+			</Col>
+			<Col md={1}></Col>
+		</Row> );
 		if ( breakpoints.length > 1 ) {
 			for ( let i = 0; i < breakpoints.length - 1; i++ ) {
 				const changeFn = categoryChangeFactory( i+1 );
-				inputs.push(
-					<Row key={`div-${i+1}`}>
-						<Col md={7}>
-							<NumberInput
-								inline
-								onBlur={changeFactory( i )}
-								defaultValue={breakpoints[i]}
-								step="any"
-							/>
-							<TeX raw="\le x <" />
-							<NumberInput
-								inline
-								onBlur={changeFactory( i+1 )}
-								defaultValue={breakpoints[i+1]}
-								step="any"
-							/>
-						</Col>
-						<Col md={4}>
-							<TextInput
-								key={1+i}
-								legend={`Label ${i+2}`}
-								defaultValue={state.categories[ i+1 ]}
-								onChange={changeFn}
-								style={{ width: 200 }}
-							/>
-						</Col>
-						<Col md={1}>
-							<ClearButton
-								onClick={deleteBreakpoint(i)}
-								style={{ marginTop: '5px' }}
-								disabled={disableButton}
-								tooltipPlacement="right"
-							/>
-						</Col>
-					</Row>
-				);
+				inputs.push( <Row key={`div-${i+1}`}>
+					<Col md={7}>
+						<NumberInput
+							inline
+							onBlur={changeFactory( i )}
+							defaultValue={breakpoints[i]}
+							step="any"
+						/>
+						<TeX raw="\le x <" />
+						<NumberInput
+							inline
+							onBlur={changeFactory( i+1 )}
+							defaultValue={breakpoints[i+1]}
+							step="any"
+						/>
+					</Col>
+					<Col md={4}>
+						<TextInput
+							key={1+i}
+							legend={`Label ${i+2}`}
+							defaultValue={state.categories[ i+1 ]}
+							onChange={changeFn}
+							style={{ width: 200 }}
+						/>
+					</Col>
+					<Col md={1}>
+						<ClearButton
+							onClick={deleteBreakpoint(i)}
+							style={{ marginTop: '5px' }}
+							disabled={disableButton}
+							tooltipPlacement="right"
+						/>
+					</Col>
+				</Row> );
 			}
 		}
 		const len = breakpoints.length;
-		inputs.push(
-			<Row key={`div-${len}`}>
-				<Col md={7}>
-					<TeX raw="x \ge" />
-					<NumberInput
-						inline
-						onChange={changeFactory( len-1 )}
-						defaultValue={breakpoints[ len-1 ]}
-						step="any"
-					/>
-				</Col>
-				<Col md={4}>
-					<TextInput
-						legend={`Label ${len+1}`}
-						defaultValue={state.categories[ len ]}
-						onChange={categoryChangeFactory( len )}
-						key={len}
-						style={{ width: 200 }}
-					/>
-				</Col>
-				<Col md={1}>
-					<ClearButton
-						onClick={deleteBreakpoint( len - 1 )}
-						style={{ marginTop: '5px' }}
-						disabled={disableButton}
-					/>
-				</Col>
-			</Row>
-		);
+		inputs.push( <Row key={`div-${len}`}>
+			<Col md={7}>
+				<TeX raw="x \ge" />
+				<NumberInput
+					inline
+					onChange={changeFactory( len-1 )}
+					defaultValue={breakpoints[ len-1 ]}
+					step="any"
+				/>
+			</Col>
+			<Col md={4}>
+				<TextInput
+					legend={`Label ${len+1}`}
+					defaultValue={state.categories[ len ]}
+					onChange={categoryChangeFactory( len )}
+					key={len}
+					style={{ width: 200 }}
+				/>
+			</Col>
+			<Col md={1}>
+				<ClearButton
+					onClick={deleteBreakpoint( len - 1 )}
+					style={{ marginTop: '5px' }}
+					disabled={disableButton}
+				/>
+			</Col>
+		</Row> );
 		return inputs;
 	};
 	const onChangeHistLine = ( data ) => {
@@ -456,12 +450,12 @@ const BinTransformer = ( props ) => {
 
 // PROPERTIES //
 
-BinTransformer.defaultProps = {
+BinningTransformer.defaultProps = {
 	logAction() {},
 	onGenerate() {}
 };
 
-BinTransformer.propTypes = {
+BinningTransformer.propTypes = {
 	show: PropTypes.bool.isRequired,
 	data: PropTypes.object.isRequired,
 	quantitative: PropTypes.array.isRequired,
@@ -473,4 +467,4 @@ BinTransformer.propTypes = {
 
 // EXPORTS //
 
-export default BinTransformer;
+export default BinningTransformer;
