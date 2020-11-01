@@ -3,11 +3,11 @@ TODO
 
 For various to-do items related to the `ISLE` project.
 
-Fall 2020
+Long-Term
 =====
-* Insert equation menu similar to table select
+* Port equation menu from czi-prosemirror?
 * Build mosaic plot
-* LaTeX Equation in the explorer for the pdf
+* Support LaTeX Equation in exported PDFs
 * Ability to select multiple smoothing values / change them in real-time (similarly, for histogram ability to choose binwidth)
 * Ability to set font family for reports
 * "Undo" button for plots (investigate Plotly's capabilities in this regard)
@@ -21,9 +21,6 @@ Fall 2020
 * Allow expressions in number question input fields
 * Add option to toggle between counts or densities in histogram of data explorer
 * Add option for multiple correct answers to question types like number
-
-Long-Term
-===
 * Mobile responsiveness
 * Remove any R dependencies for the mosaic plot
 * Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
