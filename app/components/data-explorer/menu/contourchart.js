@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -23,22 +23,15 @@ const DESCRIPTION = 'A contour plot can be used to display the joint distributio
 
 // MAIN //
 
-class ContourChartMenu extends Component {
-	constructor( props ) {
-		super( props );
+const ContourChartMenu = ( props ) => {
+	const [ x, setX ] = useState( props.defaultX || props.variables[ 0 ] );
+	const [ y, setY ] = useState( props.defaultY || props.variables[ 1 ] );
+	const [ overlayPoints, setOverlayPoints ] = useState( false );
+	const [ regressionMethod, setRegressionMethod ] = useState( [] );
+	const [ smoothSpan, setSmoothSpan ] = useState( 0.66 );
 
-		this.state = {
-			x: props.defaultX || props.variables[ 0 ],
-			y: props.defaultY || props.variables[ 1 ],
-			overlayPoints: false,
-			regressionMethod: [],
-			smoothSpan: 0.66
-		};
-	}
-
-	generateContourChart = () => {
-		const { x, y, overlayPoints, regressionMethod, smoothSpan } = this.state;
-		const { data, onCreated, onSelected, logAction, session, t } = this.props;
+	const generateContourChart = () => {
+		const { data, onCreated, onSelected, logAction, session, t } = props;
 		const plotId = randomstring( 6 );
 		const action = {
 			x, y, overlayPoints, regressionMethod, smoothSpan, plotId
@@ -66,94 +59,73 @@ class ContourChartMenu extends Component {
 		/>;
 		logAction( DATA_EXPLORER_CONTOURPLOT, action );
 		onCreated( output );
-	}
-
-	render() {
-		const { variables, t } = this.props;
-		return (
-			<Card style={{ minWidth: 650 }}>
-				<Card.Header as="h4" >
-					{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<Row>
-						<Col>
-							<SelectInput
-								legend={t('x-axis-variable')}
-								defaultValue={this.state.x}
-								options={variables}
-								onChange={( value ) => {
-									this.setState({
-										x: value
-									});
-								}}
-							/>
-						</Col>
-						<Col>
-							<SelectInput
-								legend={t('y-axis-variable')}
-								defaultValue={this.state.y}
-								options={variables}
-								menuPlacement="top"
-								onChange={( value ) => {
-									this.setState({
-										y: value
-									});
-								}}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<CheckboxInput
-								legend={t('overlay-observations')}
-								defaultValue={this.state.overlayPoints}
-								onChange={() => {
-									this.setState({
-										overlayPoints: !this.state.overlayPoints
-									});
-								}}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<SelectInput
-								legend={t('overlay-regression-line')}
-								defaultValue={this.state.regressionMethod}
-								multi={true}
-								options={[ 'linear', 'smooth' ]}
-								onChange={( value ) => {
-									this.setState({
-										regressionMethod: value
-									});
-								}}
-							/>
-						</Col>
-						<Col>
-							<SliderInput
-								legend={t('smoothing-parameter')}
-								min={0.01}
-								max={1}
-								step={0.01}
-								defaultValue={this.state.smoothSpan}
-								disabled={!contains( this.state.regressionMethod, 'smooth' )}
-								onChange={( value ) => {
-									this.setState({
-										smoothSpan: value
-									});
-								}}
-							/>
-						</Col>
-					</Row>
-					<Button variant="primary" block onClick={this.generateContourChart}>
-						{t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+	};
+	const { variables, t } = props;
+	return (
+		<Card style={{ minWidth: 650 }}>
+			<Card.Header as="h4" >
+				{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={DESCRIPTION} />
+			</Card.Header>
+			<Card.Body>
+				<Row>
+					<Col>
+						<SelectInput
+							legend={t('x-axis-variable')}
+							defaultValue={x}
+							options={variables}
+							onChange={setX}
+						/>
+					</Col>
+					<Col>
+						<SelectInput
+							legend={t('y-axis-variable')}
+							defaultValue={y}
+							options={variables}
+							menuPlacement="top"
+							onChange={setY}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<CheckboxInput
+							legend={t('overlay-observations')}
+							defaultValue={overlayPoints}
+							onChange={() => {
+								setOverlayPoints( !overlayPoints );
+							}}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<SelectInput
+							legend={t('overlay-regression-line')}
+							defaultValue={regressionMethod}
+							multi={true}
+							options={[ 'linear', 'smooth' ]}
+							onChange={setRegressionMethod}
+						/>
+					</Col>
+					<Col>
+						<SliderInput
+							legend={t('smoothing-parameter')}
+							min={0.01}
+							max={1}
+							step={0.01}
+							defaultValue={smoothSpan}
+							disabled={!contains( regressionMethod, 'smooth' )}
+							onChange={setSmoothSpan}
+						/>
+					</Col>
+				</Row>
+				<Button variant="primary" block onClick={generateContourChart}>
+					{t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
