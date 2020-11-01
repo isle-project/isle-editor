@@ -182,12 +182,10 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		let newState = {};
+		const newState = {};
 		const diff = absdiff( nextProps.actions.length, prevState.actions.length );
 		if ( diff >= UPDATE_THRESHOLD || nextProps.actions.length === prevState.actions.length - 1 ) {
 			newState.filtered = nextProps.actions.slice();
-		}
-		if ( !isEmptyObject( newState ) ) {
 			newState.actions = nextProps.actions.slice();
 			newState.clusters = [];
 			return newState;
@@ -196,6 +194,7 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	searchFilter = ( value, caseSensitive, exact ) => {
+		const { actions } = this.props;
 		if ( isStrictEqual( value, '' ) ) {
 			this.setState({
 				filtered: this.props.actions,
@@ -205,8 +204,8 @@ class FullscreenActionDisplay extends Component {
 		} else {
 			const newFilter = [];
 			if ( !exact ) {
-				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					const action = this.props.actions[ i ];
+				for ( let i = 0; i < actions.length; i++ ) {
+					const action = actions[ i ];
 					const flags = caseSensitive ? '' : 'i';
 					const expr = new RegExp( value, flags );
 					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
@@ -226,8 +225,8 @@ class FullscreenActionDisplay extends Component {
 			} else {
 				const flags = caseSensitive ? '' : 'i';
 				const expr = new RegExp( '(?:^|[^\\w])' + value + '(?:$|[^\\w])', flags );
-				for ( let i = 0; i < this.props.actions.length; i++ ) {
-					const action = this.props.actions[ i ];
+				for ( let i = 0; i < actions.length; i++ ) {
+					const action = actions[ i ];
 					const actionValue = generateValueLabel({ value: action.value, ...this.props.data });
 					if (
 						this.props.showExtended &&
@@ -605,7 +604,8 @@ class FullscreenActionDisplay extends Component {
 
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
-		const elem = this.state.filtered[ index ];
+		const { filtered, clusters, searchwords } = this.state;
+		const elem = filtered[ index ];
 		const value = generateValueLabel({ value: elem.value, ...this.props.data });
 		let highlighter;
 		if ( this.props.data.type === 'image' ) {
@@ -613,7 +613,7 @@ class FullscreenActionDisplay extends Component {
 		} else {
 			highlighter = isString( value ) ? <Highlighter
 				className="response-visualizer-text"
-				searchWords={this.state.searchwords}
+				searchWords={searchwords}
 				autoEscape={true}
 				textToHighlight={wordWrap( String( value ) )}
 			/> : value;
@@ -622,9 +622,9 @@ class FullscreenActionDisplay extends Component {
 		const style = {
 			padding: '0.75rem'
 		};
-		if ( this.state.clusters.length > 0 ) {
+		if ( clusters.length > 0 ) {
 			const opacity = 0.1;
-			const col = COLORS[ this.state.clusters[ index ] % COLORS.length ] || '#D3D3D3';
+			const col = COLORS[ clusters[ index ] % COLORS.length ] || '#D3D3D3';
 			let rgba = 'rgba(' + parseInt( col.substring( 1, 3 ), 16 ) + ','+ parseInt( col.substring( 3, 5 ), 16 );
 			rgba += ',' + parseInt( col.substring( 5, 7 ), 16 ) + ',' + opacity + ')';
 			style.background = rgba;
