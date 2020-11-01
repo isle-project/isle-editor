@@ -38,33 +38,34 @@ class ContourChartMenu extends Component {
 
 	generateContourChart = () => {
 		const { x, y, overlayPoints, regressionMethod, smoothSpan } = this.state;
+		const { data, onCreated, onSelected, logAction, session, t } = this.props;
 		const plotId = randomstring( 6 );
 		const action = {
 			x, y, overlayPoints, regressionMethod, smoothSpan, plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
+			logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
 		};
 		const output = <ContourChart
 			id={plotId}
 			action={action}
-			data={this.props.data}
+			data={data}
 			onShare={onShare}
 			x={x}
 			y={y}
 			overlayPoints={overlayPoints}
 			regressionMethod={regressionMethod}
 			smoothSpan={smoothSpan}
-			onSelected={this.props.onSelected}
+			onSelected={onSelected}
 		/>;
-		this.props.logAction( DATA_EXPLORER_CONTOURPLOT, action );
-		this.props.onCreated( output );
+		logAction( DATA_EXPLORER_CONTOURPLOT, action );
+		onCreated( output );
 	}
 
 	render() {

@@ -59,15 +59,15 @@ class BarchartMenu extends Component {
 		this.state = {
 			variable: defaultValue || variables[ 0 ],
 			yvar: quantitative[ 0 ],
+			direction: 'ascending',
 			summary: STATS[ 0 ],
 			group: null,
 			horizontal: false,
-			stackBars: false,
+			mode: MODES[ 0 ],
 			relative: false,
+			stackBars: false,
 			totalPercent: false,
-			xOrder: null,
-			direction: 'ascending',
-			mode: MODES[ 0 ]
+			xOrder: null
 		};
 	}
 
@@ -114,7 +114,7 @@ class BarchartMenu extends Component {
 			this.state.totalPercent || // overall percent
 			this.state.mode === MODES[ 1 ] // when evaluating a function
 		);
-		const { t } = this.props;
+		const { groupingVariables, variables, t } = this.props;
 		return (
 			<Card>
 				<Card.Header as="h4">
@@ -126,20 +126,16 @@ class BarchartMenu extends Component {
 						legend={t('bars-represent')}
 						defaultValue={this.state.mode}
 						options={MODES}
-						onChange={( value )=>{
-							this.setState({
-								mode: value
-							});
+						onChange={( value ) => {
+							this.setState({ mode: value });
 						}}
 					/>
 					<SelectInput
 						legend={t('variable')}
 						defaultValue={this.state.variable}
-						options={this.props.variables}
-						onChange={( value )=>{
-							this.setState({
-								variable: value
-							});
+						options={variables}
+						onChange={( value ) => {
+							this.setState({ variable: value });
 						}}
 					/>
 					{ this.state.mode === MODES[ 1 ] ?
@@ -167,14 +163,12 @@ class BarchartMenu extends Component {
 						</Row> : null }
 					<SelectInput
 						legend={t('group-by')}
-						defaultValue={this.state.group}
-						options={this.props.groupingVariables}
 						clearable={true}
+						defaultValue={this.state.group}
+						options={groupingVariables}
 						menuPlacement="top"
-						onChange={( value )=>{
-							this.setState({
-								group: value
-							});
+						onChange={( value ) => {
+							this.setState({ group: value });
 						}}
 					/>
 					<Row>

@@ -38,7 +38,7 @@ exports[`renders an expandable calculator 1`] = `
       className="panel  card"
       footer={null}
       header="calculator"
-      id="calc-panel"
+      id="calculator-panel"
       role="button"
       style={
         Object {
