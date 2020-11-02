@@ -26,7 +26,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', 'app', 'components' )
 });
-const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)/;
+const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)|(\/\*\*[\s\S]*?@property[\s\S]*?\*\/)\r?\n(?:const)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
@@ -117,7 +117,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	const jsdoc = file.match( RE_JSDOC );
 	let componentDescription = 'Description is missing.';
 	if ( jsdoc ) {
-		const ast = parseJSDoc( jsdoc[ 1 ], { unwrap: true });
+		const ast = parseJSDoc( jsdoc[ 1 ] || jsdoc[ 2 ], { unwrap: true });
 		if ( ast.description && ast.description.length > 0 ) {
 			componentDescription = ast.description;
 			if ( !endsWith( componentDescription, '.' ) ) {
