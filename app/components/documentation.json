@@ -5199,7 +5199,7 @@
         "defaultValue": null
       },
       {
-        "name": "horiz",
+        "name": "horizontal",
         "type": "boolean",
         "description": "whether to display bars horizontally",
         "defaultValue": false
@@ -8079,12 +8079,6 @@
         "type": "number",
         "description": "time between auto saves",
         "defaultValue": 10000
-      },
-      {
-        "name": "peerReview",
-        "type": "{submitButtonLabel,reviewButtonLabel,finalButtonLabel,filterOwners}",
-        "description": "if not null, enables peer review mode in which each submission is sent to another randomly chosen student and vice versa",
-        "defaultValue": null
       },
       {
         "name": "resetModal",
