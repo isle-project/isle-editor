@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -21,11 +21,9 @@ import ResponseVisualizer from 'components/response-visualizer';
 import NumberInput from 'components/input/number';
 import HintButton from 'components/hint-button';
 import FeedbackButtons from 'components/feedback';
-import VoiceControl from 'components/internal/voice-control';
 import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
-import VOICE_COMMANDS from './voice_commands.json';
 import './load_translations.js';
 import './range-question.css';
 
@@ -52,7 +50,6 @@ const uid = generateUID( 'range-question' );
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
-* @property {strings} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
@@ -60,257 +57,198 @@ const uid = generateUID( 'range-question' );
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
-class RangeQuestion extends Component {
-	/**
-	* Create a number question with a number input field.
-	*
-	* @param {Object} props
-	*/
-	constructor( props ) {
-		super( props );
+const RangeQuestion = ( props ) => {
+	const id = props.id || uid( props );
+	const session = useContext( SessionContext );
 
-		this.id = props.id || uid( props );
+	const [ lower, setLower ] = useState( props.min );
+	const [ upper, setUpper ] = useState( props.max );
+	const [ submitted, setSubmitted ] = useState( false );
+	const [ correct, setCorrect ] = useState( false );
 
-		// Initialize state variables...
-		this.state = {
-			lower: props.min,
-			upper: props.max,
-			submitted: false,
-			correct: false
-		};
-	}
-
-	componentDidUpdate( prevProps ) {
-		if (
-			this.props.question !== prevProps.question ||
-			(
-				this.props.solution && prevProps.solution &&
-				(
-					!isnan( this.props.solution[ 1 ] ) &&
-					!isnan( this.props.solution[ 0 ] ) &&
-					( this.props.solution[ 1 ] !== prevProps.solution[ 1 ] ||
-					this.props.solution[ 0 ] !== prevProps.solution[ 0 ] )
-				)
-			)
-		) {
-			this.setState({
-				lower: void 0,
-				upper: void 0,
-				submitted: false,
-				correct: false
+	const handleChangeUpper = ( newValue ) => {
+		setUpper( newValue );
+		props.onChangeUpper( max( newValue, lower ) );
+	};
+	const handleChangeLower = ( newValue ) => {
+		setLower( newValue );
+		props.onChangeLower( min( newValue, upper ) );
+	};
+	const handleBlurUpper = ( value ) => {
+		if ( value <= lower ) {
+			setUpper( lower );
+		}
+	};
+	const handleBlurLower = ( value ) => {
+		if ( value >= upper ) {
+			setLower( upper );
+		}
+	};
+	const logHint = ( idx ) => {
+		debug( 'Logging hint...' );
+		session.log({
+			id: id,
+			type: RANGE_QUESTION_OPEN_HINT,
+			value: idx
+		});
+	};
+	const submitHandler = () => {
+		const { digits, solution } = props;
+		let correct;
+		const lowerVal = parseFloat( lower );
+		const upperVal = parseFloat( upper );
+		if ( !isUndefinedOrNull( solution ) ) {
+			if ( digits === null ) {
+				correct = ( lowerVal === solution[0] && upperVal === solution[1] );
+			} else {
+				correct = ( roundn( lowerVal, -digits ) === roundn( solution[0], -digits ) &&
+					(roundn(upperVal, -digits) === roundn(solution[1], -digits)) );
+			}
+			props.onSubmit( [ lowerVal, upperVal ], correct );
+			if ( props.provideFeedback ) {
+				session.addNotification({
+					title: props.t('answer-submitted'),
+					message: correct ? props.t('submission-correct') : props.t('submission-incorrect'),
+					level: correct ? 'success' : 'error'
+				});
+			} else {
+				session.addNotification({
+					title: submitted ? props.t('answer-resubmitted') : props.t('answer-submitted'),
+					message: submitted ?
+						props.t('resubmission-message') :
+						props.t('submission-message'),
+					level: 'info'
+				});
+			}
+		} else {
+			props.onSubmit( [ lowerVal, upperVal ] );
+			session.addNotification({
+				title: submitted ? props.t('answer-resubmitted') : props.t('answer-submitted'),
+				message: submitted ?
+					props.t('resubmission-message') :
+					props.t('submission-message'),
+				level: 'success'
 			});
 		}
-	}
-
-	/*
-	* Event handler invoked when text area value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
-	*/
-	handleChangeUpper = ( newValue ) => {
-		this.setState({ upper: newValue });
-		this.props.onChangeUpper( max( newValue, this.state.lower ) );
-	}
-
-	handleChangeLower = ( newValue ) => {
-		this.setState({ lower: newValue });
-		this.props.onChangeLower( min( newValue, this.state.upper ) );
-	}
-
-	handleKeyPress = ( event ) => {
+		setSubmitted( true );
+		setCorrect( correct );
+		session.log({
+			id: id,
+			type: RANGE_QUESTION_SUBMIT_ANSWER,
+			value: JSON.stringify( [ lower, upper ] )
+		});
+	};
+	const handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
 			// Manually trigger blur event since not happening when pressing ENTER:
 			if ( document && document.activeElement ) {
 				debug( 'Trigger blur event...' );
 				document.activeElement.blur();
 			}
-			setTimeout( this.submitHandler, 50 );
+			setTimeout( submitHandler, 50 );
 		}
-	}
-
-	setValue = ( type, value ) => {
-		if ( type === 'lower' || type === 'minimum' ) {
-			this.handleChangeLower( parseFloat( value ) );
-		} else if ( type === 'upper' || type === 'maximum' ) {
-			this.handleChangeUpper( parseFloat( value ) );
+	};
+	useEffect(() => {
+		if ( !isnan( props.solution[ 1 ] ) && !isnan( props.solution[ 0 ] ) ) {
+			setLower( props.min );
+			setUpper( props.max );
+			setSubmitted( false );
+			setCorrect( false );
 		}
-	}
-
-	submitHandler = () => {
-		const { digits, solution } = this.props;
-		const session = this.context;
-		let correct;
-		if ( !isUndefinedOrNull( solution ) ) {
-			const lowerVal = parseFloat( this.state.lower );
-			const upperVal = parseFloat( this.state.upper );
-			const upperSol = solution[1];
-			const lowerSol = solution[0];
-			if ( digits === null ) {
-				correct = ( lowerVal === lowerSol && upperVal === upperSol );
-			} else {
-				correct = (roundn( lowerVal, -digits ) === roundn( lowerSol, -digits ) &&
-					(roundn(upperVal, -digits) === roundn(upperSol, -digits)));
-			}
-			this.props.onSubmit( [ lowerVal, upperVal ], correct );
-			if ( this.props.provideFeedback ) {
-				session.addNotification({
-					title: this.props.t('answer-submitted'),
-					message: correct ? this.props.t('submission-correct') : this.props.t('submission-incorrect'),
-					level: correct ? 'success' : 'error'
-				});
-			} else {
-				session.addNotification({
-					title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
-					message: this.state.submitted ?
-						this.props.t('resubmission-message') :
-						this.props.t('submission-message'),
-					level: 'info'
-				});
-			}
-		} else {
-			const lowerVal = parseFloat( this.state.lower );
-			const upperVal = parseFloat( this.state.upper );
-			this.props.onSubmit( [ lowerVal, upperVal ] );
-			session.addNotification({
-				title: this.state.submitted ? this.props.t('answer-resubmitted') : this.props.t('answer-submitted'),
-				message: this.state.submitted ?
-					this.props.t('resubmission-message') :
-					this.props.t('submission-message'),
-				level: 'success'
-			});
-		}
-		this.setState({
-			submitted: true,
-			correct
-		});
-		session.log({
-			id: this.id,
-			type: RANGE_QUESTION_SUBMIT_ANSWER,
-			value: JSON.stringify( [ this.state.lower, this.state.upper ] )
-		});
-	}
-
-	onNoClickUpper = (val) => {
-		if ( val <= this.state.lower ) {
-			this.setState({ upper: this.state.lower });
-		}
-	}
-
-	onNoClickLower = (val) => {
-		if ( val >= this.state.upper ) {
-			this.setState({ lower: this.state.upper });
-		}
-	}
-
-	logHint = ( idx ) => {
-		debug( 'Logging hint...' );
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: RANGE_QUESTION_OPEN_HINT,
-			value: idx
-		});
-	}
-
-	renderSubmitButton() {
-		const session = this.context;
-		if ( this.props.until && session.startTime > this.props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+	}, [ props.question, props.solution ]);
+	const renderSubmitButton = () => {
+		if ( props.until && session.startTime > props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
 		}
 		return (
 			<TimedButton
 				className="submit-button"
 				variant="primary"
 				size="sm"
-				disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-				onClick={this.submitHandler}
+				disabled={submitted && !props.allowMultipleAnswers}
+				onClick={submitHandler}
 			>
-				{ this.state.submitted && this.props.allowMultipleAnswers ? this.props.t('resubmit') : this.props.t('submit') }
+				{ submitted && props.allowMultipleAnswers ? props.t('resubmit') : props.t('submit') }
 			</TimedButton>
 		);
-	}
-
-	/*
-	* React component render method.
-	*/
-	render() {
-		const nHints = this.props.hints.length;
-		const solutionPresent = this.props.solution !== null;
-		return (
-			<Card id={this.id} className="range-question" style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
-					{ this.props.question ? <label>{this.props.question}</label> : null }
-					<div className="range-question-input-wrapper" >
-						<NumberInput
-							step="any"
-							legend={this.props.t('lower')}
-							onChange={this.handleChangeLower}
-							defaultValue={this.state.lower}
-							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-							inline
-							width={90}
-							min={this.props.min}
-							max={this.props.max}
-							numbersOnly={false}
-							onBlur={this.onNoClickLower}
-							onKeyPress={this.handleKeyPress}
-						/>
-						<NumberInput
-							step="any"
-							legend={this.props.t('upper')}
-							onChange={this.handleChangeUpper}
-							defaultValue={this.state.upper}
-							disabled={this.state.submitted && !this.props.allowMultipleAnswers}
-							inline
-							width={90}
-							min={this.props.min}
-							max={this.props.max}
-							numbersOnly={false}
-							onBlur={this.onNoClickUpper}
-							onKeyPress={this.handleKeyPress}
-						/>
-						{ this.state.submitted && solutionPresent && this.props.provideFeedback ?
-							<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-								{`${this.props.t('solution')}:   `}
-								{this.props.solution[0]}, {this.props.solution[1]}
-							</Badge> :
-							null
-						}
-					</div>
-					<ButtonToolbar className="range-question-toolbar" >
-						<ResponseVisualizer
-							buttonLabel={this.props.t('answers')}
-							id={this.id}
-							data={{
-								type: 'range',
-								question: this.props.question,
-								solution: this.props.solution
-							}}
-							info={RANGE_QUESTION_SUBMIT_ANSWER}
-							style={{ marginLeft: '3px', marginRight: '3px' }}
-							points={this.props.points}
-						/>
-						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
-							null
-						}
-						{
-							this.props.chat ?
-								<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-									<ChatButton for={this.id} />
-								</div> : null
-						}
-						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
-						{this.renderSubmitButton()}
-					</ButtonToolbar>
-					{ this.props.feedback ? <FeedbackButtons
-						id={this.id+'_feedback'}
-						style={{ marginRight: 5, marginTop: -5 }}
-					/> : null }
-					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+	};
+	const nHints = props.hints.length;
+	const solutionPresent = props.solution !== null;
+	return (
+		<Card id={id} className="range-question" style={props.style} >
+			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
+				{ props.question ? <label>{props.question}</label> : null }
+				<div className="range-question-input-wrapper" >
+					<NumberInput
+						step="any"
+						legend={props.t('lower')}
+						onChange={handleChangeLower}
+						defaultValue={lower}
+						disabled={submitted && !props.allowMultipleAnswers}
+						inline
+						width={90}
+						min={props.min}
+						max={props.max}
+						numbersOnly={false}
+						onBlur={handleBlurLower}
+						onKeyPress={handleKeyPress}
+					/>
+					<NumberInput
+						step="any"
+						legend={props.t('upper')}
+						onChange={handleChangeUpper}
+						defaultValue={upper}
+						disabled={submitted && !props.allowMultipleAnswers}
+						inline
+						width={90}
+						min={props.min}
+						max={props.max}
+						numbersOnly={false}
+						onBlur={handleBlurUpper}
+						onKeyPress={handleKeyPress}
+					/>
+					{ submitted && solutionPresent && props.provideFeedback ?
+						<Badge variant={correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+							{`${props.t('solution')}:   `}
+							{props.solution[0]}, {props.solution[1]}
+						</Badge> :
+						null
+					}
+				</div>
+				<ButtonToolbar className="range-question-toolbar" >
+					<ResponseVisualizer
+						buttonLabel={props.t('answers')}
+						id={id}
+						data={{
+							type: 'range',
+							question: props.question,
+							solution: props.solution
+						}}
+						info={RANGE_QUESTION_SUBMIT_ANSWER}
+						style={{ marginLeft: '3px', marginRight: '3px' }}
+						points={props.points}
+					/>
+					{ nHints > 0 ?
+						<HintButton onClick={logHint} hints={props.hints} placement={props.hintPlacement} /> :
+						null
+					}
+					{
+						props.chat ?
+							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
+								<ChatButton for={id} />
+							</div> : null
+					}
+					{renderSubmitButton()}
+				</ButtonToolbar>
+				{ props.feedback ? <FeedbackButtons
+					id={id+'_feedback'}
+					style={{ marginRight: 5, marginTop: -5 }}
+				/> : null }
+				<GradeFeedbackRenderer for={id} points={props.points} />
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
@@ -327,7 +265,6 @@ RangeQuestion.defaultProps = {
 	min: NINF,
 	provideFeedback: true,
 	allowMultipleAnswers: false,
-	voiceID: null,
 	until: null,
 	points: 10,
 	style: {},
@@ -353,7 +290,6 @@ RangeQuestion.propTypes = {
 	min: PropTypes.number,
 	provideFeedback: PropTypes.bool,
 	allowMultipleAnswers: PropTypes.bool,
-	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
 	points: PropTypes.number,
 	style: PropTypes.object,
@@ -361,8 +297,6 @@ RangeQuestion.propTypes = {
 	onChangeUpper: PropTypes.func,
 	onSubmit: PropTypes.func
 };
-
-RangeQuestion.contextType = SessionContext;
 
 
 // EXPORTS //
