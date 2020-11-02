@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode';
@@ -25,75 +25,58 @@ const debug = logger( 'isle:qrcode' );
 * @property {boolean} showText - boolean determining whether to show the text encoded in the QR code
 * @property {Object} style - CSS inline styles
 */
-class Qrcode extends Component {
-	constructor( props, context ) {
-		super( props );
-	}
+const Qrcode = ( props ) => {
+	let canvasRef;
 
-	componentDidMount() {
-		this.renderCode();
-		if ( !isElectron ) {
-			window.addEventListener( 'hashchange', this.handleHashChange );
-		}
-	}
-
-	componentDidUpdate( prevProps ) {
-		if (
-			this.props.text !== prevProps.text ||
-			this.props.scale !== prevProps.scale ||
-			this.props.width !== prevProps.width ||
-			this.props.height !== prevProps.height
-		) {
-			this.renderCode();
-		}
-	}
-
-	componentWillUnmount() {
-		if ( !isElectron ) {
-			window.removeEventListener( 'hashchange', this.handleHashChange );
-		}
-	}
-
-	handleHashChange = () => {
-		if ( !this.props.text ) {
-			this.renderCode();
-		}
-	}
-
-	renderCode() {
-		const text = this.props.text || window.location.href;
+	const renderCode = () => {
+		const text = props.text || window.location.href;
 		debug( `Display '${text}' as QR code...` );
-		QRCode.toCanvas( this.canvas, text, {
-			scale: this.props.scale,
-			width: this.props.width,
-			height: this.props.height
+		QRCode.toCanvas( canvasRef, text, {
+			scale: props.scale,
+			width: props.width,
+			height: props.height
 		}, debug );
-	}
-
-	render() {
-		const canvas = <canvas
-			className={`qrcode-canvas ${this.props.center ? 'center' : ''}`}
-			ref={( canvas ) => {
-				if ( canvas ) {
-					this.canvas = canvas;
-				}
-			}}
-			style={this.props.style}
-		/>;
-		if ( this.props.showText ) {
-			const text = this.props.text || window.location.href;
-			const divStyle = {};
-			if ( this.props.center ) {
-				divStyle.textAlign = 'center';
-			}
-			return ( <Fragment>
-				{canvas}
-				<div className="title" style={divStyle} >{text}</div>
-			</Fragment> );
+	};
+	const handleHashChange = () => {
+		if ( !props.text ) {
+			renderCode();
 		}
-		return canvas;
+	};
+	useEffect( () => {
+		renderCode();
+	}, [ props.text, props.scale, props.width, props.height ] );
+	useEffect( () => {
+		if ( !isElectron ) {
+			window.addEventListener( 'hashchange', handleHashChange );
+		}
+		return () => {
+			if ( !isElectron ) {
+				window.removeEventListener( 'hashchange', handleHashChange );
+			}
+		};
+	}, [] );
+	const canvas = <canvas
+		className={`qrcode-canvas ${props.center ? 'center' : ''}`}
+		ref={( canvas ) => {
+			if ( canvas ) {
+				canvasRef = canvas;
+			}
+		}}
+		style={props.style}
+	/>;
+	if ( props.showText ) {
+		const text = props.text || window.location.href;
+		const divStyle = {};
+		if ( props.center ) {
+			divStyle.textAlign = 'center';
+		}
+		return ( <Fragment>
+			{canvas}
+			<div className="title" style={divStyle} >{text}</div>
+		</Fragment> );
 	}
-}
+	return canvas;
+};
 
 
 // PROPERTIES //
@@ -101,6 +84,8 @@ class Qrcode extends Component {
 Qrcode.defaultProps = {
 	text: null,
 	scale: 8,
+	width: null,
+	height: null,
 	showText: false,
 	center: false,
 	style: {}
@@ -109,6 +94,8 @@ Qrcode.defaultProps = {
 Qrcode.propTypes = {
 	text: PropTypes.string,
 	scale: PropTypes.number,
+	width: PropTypes.number,
+	height: PropTypes.number,
 	showText: PropTypes.bool,
 	center: PropTypes.bool,
 	style: PropTypes.object
