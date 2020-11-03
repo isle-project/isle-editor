@@ -63,7 +63,7 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 /**
 * Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.
 */
-function calculateDensityValues( vals, densityType ) {
+function calculateDensityValues( vals, densityType, bandwidthAdjust = 1 ) {
 	/* eslint-disable no-case-declarations */
 	const minVal = min( vals );
 	const maxVal = max( vals );
@@ -72,7 +72,10 @@ function calculateDensityValues( vals, densityType ) {
 	switch ( densityType ) {
 	case 'Data-driven':
 		// Chose appropriate bandwidth via rule-of-thumb:
-		const h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;
+		let h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;
+
+		// Multiply bandwidth with user-defined adjustment parameter:
+		h *= bandwidthAdjust;
 		const phi = gaussian.factory( 0.0, 1.0 );
 		const kde = kernelSmoothDensity( vals, phi, h );
 		y = x.map( x => kde( x ) );
@@ -93,7 +96,7 @@ function calculateDensityValues( vals, densityType ) {
 	return [ x, y ];
 }
 
-export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins = {}}) {
+export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins = {}}) {
 	let traces;
 	let layout;
 
@@ -115,7 +118,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );
 		if ( displayDensity ) {
 			if ( densityType ) {
-				const [ x, y ] = calculateDensityValues( vals, densityType );
+				const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
 				traces.push({
 					x: x,
 					y: y,
@@ -166,7 +169,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 					setBins( config, vals, binStrategy, nBins, xbins );
 					traces.push( config );
 					if ( densityType ) {
-						const [ x, y ] = calculateDensityValues( vals, densityType );
+						const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
@@ -203,7 +206,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 					setBins( config, vals, binStrategy, nBins, xbins );
 					traces.push( config );
 					if ( densityType ) {
-						const [ x, y ] = calculateDensityValues( vals, densityType );
+						const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
@@ -248,8 +251,8 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins, action, onShare, onSelected }) {
-	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins });
+function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins, action, onShare, onSelected }) {
+	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins });
 	return (
 		<Plotly
 			editable
@@ -277,6 +280,7 @@ Histogram.defaultProps = {
 	groupMode: 'Overlay',
 	displayDensity: false,
 	densityType: null,
+	bandwidthAdjust: 1,
 	binStrategy: 'Automatic',
 	nBins: null,
 	nCols: null,
@@ -290,6 +294,7 @@ Histogram.propTypes = {
 	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
 	displayDensity: PropTypes.bool,
 	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),
+	bandwidthAdjust: PropTypes.number,
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
 	nBins: PropTypes.number,
 	nCols: PropTypes.number,

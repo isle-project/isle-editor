@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -24,231 +24,211 @@ const DESCRIPTION = 'A histogram allows one to visualize the distribution of a q
 
 // MAIN //
 
-class HistogramMenu extends Component {
-	constructor( props ) {
-		super( props );
+const HistogramMenu = ( props ) => {
+	const [ displayDensity, setDisplayDensity ] = useState( false );
+	const [ densityType, setDensityType ] = useState( null );
+	const [ bandwidthAdjust, setBandwidthAdjust ] = useState( 1 );
+	const [ variable, setVariable ] = useState( props.defaultValue || props.variables[ 0 ] );
+	const [ group, setGroup ] = useState( null );
+	const [ groupMode, setGroupMode ] = useState( 'Overlay' );
+	const [ nCols, setNCols ] = useState( 2 );
+	const [ nBins, setNBins ] = useState( 10 );
+	const [ xBins, setXBins ] = useState({
+		start: null,
+		size: 100,
+		end: null
+	});
+	const [ binStrategy, setBinStrategy ] = useState( 'Automatic' );
+	const { variables, groupingVariables, t } = props;
 
-		this.state = {
-			chooseBins: false,
-			displayDensity: false,
-			variable: props.defaultValue || props.variables[ 0 ],
-			group: null, // eslint-disable-line react/no-unused-state
-			groupMode: 'Overlay',
-			nCols: 2,
-			nBins: 10,
-			densityType: null,
-			xbins: {
-				start: null,
-				size: 100,
-				end: null
-			},
-			binStrategy: 'Automatic'
-		};
-	}
-
-	generateHistogram() {
-		debug( `Generate a histogram with ${this.state.nBins} bins` );
+	const generateHistogram = () => {
+		debug( `Generate a histogram with ${nBins} bins` );
 		const plotId = randomstring( 6 );
-		const action = { ...this.state, plotId };
+		const state = {
+			variable,
+			group,
+			groupMode,
+			displayDensity,
+			densityType,
+			binStrategy
+		};
+		if ( binStrategy === 'Select # of bins' ) {
+			state.nBins = nBins;
+		} else if ( binStrategy === 'Set bin width' ) {
+			state.xBins = xBins;
+		}
+		if ( groupMode === 'Facets' ) {
+			state.nCols = nCols;
+		}
+		if ( densityType === 'Data-driven' ) {
+			state.bandwidthAdjust = bandwidthAdjust;
+		}
+		const action = { state, plotId };
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: props.t('plot-shared'),
+				message: props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, action );
+			props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, action );
 		};
-		const output = <Histogram data={this.props.data} {...this.state} id={plotId} action={action} onShare={onShare} />;
-		this.props.logAction( DATA_EXPLORER_HISTOGRAM, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { variables, groupingVariables, t } = this.props;
-		return (
-			<Card>
-				<Card.Header as="h4">
-					{t('Histogram')}
-					<QuestionButton title={t('Histogram')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<SelectInput
-						legend={t('variable')}
-						defaultValue={this.state.variable}
-						options={variables}
-						onChange={( value )=>{
-							this.setState({
-								variable: value
-							});
-						}}
-					/>
-					<Row>
-						<Col md={5} >
-							<SelectInput
-								legend={t('group-by')}
-								options={groupingVariables}
-								clearable={true}
-								onChange={( value )=>{
-									this.setState({
-										group: value // eslint-disable-line react/no-unused-state
-									});
-								}}
-							/>
-						</Col>
-						<Col md={4} >
-							{ this.state.group ? <SelectInput
-								legend="Mode:"
-								defaultValue={this.state.groupMode}
-								options={[ 'Overlay', 'Facets' ]}
-								onChange={( value )=>{
-									this.setState({
-										groupMode: value // eslint-disable-line react/no-unused-state
-									});
-								}}
-							/> : null }
-						</Col>
-						<Col md={3} >
-							{ this.state.group && this.state.groupMode === 'Facets' ? <NumberInput
-								legend="Columns"
-								defaultValue={2}
-								min={1}
-								onChange={( value )=>{
-									this.setState({
-										nCols: value
-									});
-								}}
-								style={{
-									marginTop: 0
-								}}
-								inputStyle={{
-									width: 70,
-									marginLeft: 0,
-									marginTop: 2
-								}}
-							/> : null }
-						</Col>
-					</Row>
-					<div>
+		const output = <Histogram data={props.data} {...state} id={plotId} action={action} onShare={onShare} />;
+		props.logAction( DATA_EXPLORER_HISTOGRAM, action );
+		props.onCreated( output );
+	};
+	return (
+		<Card>
+			<Card.Header as="h4">
+				{t('Histogram')}
+				<QuestionButton title={t('Histogram')} content={DESCRIPTION} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('variable')}
+					defaultValue={variable}
+					options={variables}
+					onChange={setVariable}
+				/>
+				<Row>
+					<Col md={5} >
 						<SelectInput
-							legend={t('binning-strategy')}
-							options={[
-								'Automatic',
-								'Select # of bins',
-								'Set bin width'
-							]}
-							defaultValue={this.state.binStrategy}
-							inline
-							onChange={( binStrategy )=>{
-								this.setState({
-									binStrategy
-								});
-							}}
+							legend={t('group-by')}
+							options={groupingVariables}
+							clearable={true}
+							onChange={setGroup}
 						/>
-						{ this.state.binStrategy !== 'Automatic' ?
-							<div>
-								<NumberInput
-									legend="Start"
-									inline
-									defaultValue={this.state.xbins.start}
-									onChange={( val ) => {
-										const xbins = { ...this.state.xbins };
-										xbins.start = val;
-										this.setState({
-											xbins
-										});
-									}}
-									step="any"
-									inputStyle={{
-										width: 70
-									}}
-								/>
-								{ this.state.binStrategy === 'Select # of bins' ?
-									<NumberInput
-										legend="Bins"
-										defaultValue={this.state.nBins}
-										min={1}
-										step={1}
-										onChange={( value )=>{
-											this.setState({
-												nBins: value
-											});
-										}}
-										inline
-										inputStyle={{
-											width: 70
-										}}
-									/> : null
-								}
-								{ this.state.binStrategy === 'Set bin width' ?
-									<NumberInput
-										legend="Size"
-										inline
-										defaultValue={this.state.xbins.size}
-										onChange={( val ) => {
-											const xbins = { ...this.state.xbins };
-											xbins.size = val;
-											this.setState({
-												xbins
-											});
-										}}
-										step="any"
-										inputStyle={{
-											width: 70
-										}}
-									/> : null
-								}
-								<NumberInput
-									legend="End"
-									inline
-									defaultValue={this.state.xbins.end}
-									onChange={( val ) => {
-										const xbins = { ...this.state.xbins };
-										xbins.end = val;
-										this.setState({
-											xbins
-										});
-									}}
-									step="any"
-									inputStyle={{
-										width: 70
-									}}
-								/>
-							</div> : null }
-					</div>
-					{ this.props.showDensityOption ?
+					</Col>
+					<Col md={4} >
+						{ group ? <SelectInput
+							legend="Mode:"
+							defaultValue={groupMode}
+							options={[ 'Overlay', 'Facets' ]}
+							onChange={setGroupMode}
+						/> : null }
+					</Col>
+					<Col md={3} >
+						{ group && groupMode === 'Facets' ? <NumberInput
+							legend="Columns"
+							defaultValue={2}
+							min={1}
+							onChange={setNCols}
+							style={{
+								marginTop: 0
+							}}
+							inputStyle={{
+								width: 70,
+								marginLeft: 0,
+								marginTop: 2
+							}}
+						/> : null }
+					</Col>
+				</Row>
+				<div>
+					<SelectInput
+						legend={t('binning-strategy')}
+						options={[
+							'Automatic',
+							'Select # of bins',
+							'Set bin width'
+						]}
+						defaultValue={binStrategy}
+						inline
+						onChange={setBinStrategy}
+					/>
+					{ binStrategy !== 'Automatic' ?
 						<div>
-							<CheckboxInput
-								legend={t('display-density')}
-								defaultValue={this.state.displayDensity}
-								onChange={()=>{
-									this.setState({
-										displayDensity: !this.state.displayDensity
-									});
+							<NumberInput
+								legend="Start"
+								inline
+								defaultValue={xBins.start}
+								onChange={( val ) => {
+									const newXBins = { ...xBins };
+									newXBins.start = val;
+									setXBins( newXBins );
+								}}
+								step="any"
+								inputStyle={{
+									width: 70
 								}}
 							/>
-							<SelectInput
-								legend={t('overlay-density-line')}
-								options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
-								disabled={!this.state.displayDensity}
-								defaultValue={this.state.densityType}
-								clearable
-								menuPlacement="top"
-								onChange={( value )=>{
-									this.setState({
-										densityType: value
-									});
+							{ binStrategy === 'Select # of bins' ?
+								<NumberInput
+									legend="Bins"
+									defaultValue={nBins}
+									min={1}
+									step={1}
+									onChange={setNBins}
+									inline
+									inputStyle={{
+										width: 70
+									}}
+								/> : null
+							}
+							{ binStrategy === 'Set bin width' ?
+								<NumberInput
+									legend="Size"
+									inline
+									defaultValue={xBins.size}
+									onChange={( val ) => {
+										const newXBins = { ...xBins };
+										newXBins.size = val;
+										setXBins( newXBins );
+									}}
+									step="any"
+									inputStyle={{
+										width: 70
+									}}
+								/> : null
+							}
+							<NumberInput
+								legend="End"
+								inline
+								defaultValue={xBins.end}
+								onChange={( val ) => {
+									const newXBins = { ...xBins };
+									newXBins.end = val;
+									setXBins( newXBins );
+								}}
+								step="any"
+								inputStyle={{
+									width: 70
 								}}
 							/>
 						</div> : null }
-					<Button variant="primary" block onClick={this.generateHistogram.bind( this )}>
-						{t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+				</div>
+				{ props.showDensityOption ?
+					<div>
+						<CheckboxInput
+							legend={t('display-density')}
+							defaultValue={displayDensity}
+							onChange={setDisplayDensity}
+						/>
+						<SelectInput
+							legend={t('overlay-density-line')}
+							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
+							disabled={!displayDensity}
+							defaultValue={densityType}
+							clearable
+							menuPlacement="top"
+							onChange={setDensityType}
+						/>
+						{densityType === 'Data-driven' ?
+							<NumberInput
+								legend="Bandwidth adjustment"
+								defaultValue={bandwidthAdjust}
+								min={0} step={0.1}
+								onChange={setBandwidthAdjust}
+							/> : null
+						}
+					</div> : null }
+				<Button variant="primary" block onClick={generateHistogram}>
+					{t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
