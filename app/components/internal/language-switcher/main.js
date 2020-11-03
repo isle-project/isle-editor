@@ -17,84 +17,69 @@
 
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import TRANSLATION from './translation.json';
 import './language_switcher.css';
+import './load_translations.js';
 
 
 // VARIABLES //
 
-i18next.addResources( 'de', 'components', TRANSLATION.DE );
-i18next.addResources( 'en', 'components', TRANSLATION.EN );
-i18next.addResources( 'es', 'components', TRANSLATION.ES );
+const SelectModal = ( props ) => {
+	if ( !props.show ) {
+		return null;
+	}
+	const changeLanguageFactory = ( lng ) => {
+		return async () => {
+			props.onHide();
+			await i18next.changeLanguage( lng );
+		};
+	};
+	const { t } = props;
+	return (
+		<Modal show onHide={props.onHide} >
+			<Modal.Header closeButton >
+				<Modal.Title as="h3">{t('choose-language')}</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<Button block onClick={changeLanguageFactory( 'en' )}>English - EN</Button>
+				<Button block onClick={changeLanguageFactory( 'es' )}>Español - ES</Button>
+				<Button block onClick={changeLanguageFactory( 'de' )}>Deutsch - DE</Button>
+			</Modal.Body>
+		</Modal>
+	);
+};
 
 
 // MAIN //
 
-class LanguageSwitcher extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			showSelectModal: false
-		};
-	}
-
-	changeLanguageFactory = ( lng ) => {
-		return async () => {
-			this.toggleSelectModal();
-			await i18next.changeLanguage( lng );
-		};
-	}
-
-	toggleSelectModal = () => {
-		this.setState({
-			showSelectModal: !this.state.showSelectModal
-		});
-	}
-
-	renderSelectModal() {
-		if ( !this.state.showSelectModal ) {
-			return null;
-		}
-		const { t } = this.props;
-		return (
-			<Modal show onHide={this.toggleSelectModal} >
-				<Modal.Header closeButton >
-					<Modal.Title as="h3">{t('choose-language')}</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<Button block onClick={this.changeLanguageFactory( 'en' )}>English - EN</Button>
-					<Button block onClick={this.changeLanguageFactory( 'es' )}>Español - ES</Button>
-					<Button block onClick={this.changeLanguageFactory( 'de' )}>Deutsch - DE</Button>
-				</Modal.Body>
-			</Modal>
-		);
-	}
-
-	render() {
-		const { t } = this.props;
-		return (
-			<Fragment>
-				<OverlayTrigger placement="left" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
-					<button
-						onClick={this.toggleSelectModal} className="language-switcher"
-						aria-label={t('choose-language')}
-					>
-						<i className="fas fa-globe"></i>
-					</button>
-				</OverlayTrigger>
-				{this.renderSelectModal()}
-			</Fragment>
-		);
-	}
-}
+const LanguageSwitcher = ( props ) => {
+	const [ showSelectModal, setShowSelectModal ] = useState( false );
+	const toggleSelectModal = () => {
+		setShowSelectModal( !showSelectModal );
+	};
+	const { t } = props;
+	return (
+		<Fragment>
+			<OverlayTrigger placement="left" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
+				<button
+					onClick={toggleSelectModal} className="language-switcher"
+					aria-label={t('choose-language')}
+				>
+					<i className="fas fa-globe"></i>
+				</button>
+			</OverlayTrigger>
+			<SelectModal
+				show={showSelectModal} onHide={toggleSelectModal} t={t}
+			/>
+		</Fragment>
+	);
+};
 
 
 // EXPORTS //
