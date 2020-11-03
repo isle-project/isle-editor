@@ -11,7 +11,7 @@ import Checkbox from 'components/input/checkbox';
 
 // MAIN //
 
-const Search = ( props ) => {
+const Search = ({ extended, onClick, t }) => {
 	const [ search, setSearch ] = useState( '' );
 	const [ caseSensitive, setCaseSensitive ] = useState( false );
 	const [ exact, setExact ] = useState( false );
@@ -19,22 +19,18 @@ const Search = ( props ) => {
 	const handleSearch = ( event ) => {
 		setSearch( event.target.value );
 	};
-
-	const handleSubmit = () => {
-		props.onClick( search, caseSensitive, exact );
-	};
 	useEffect( () => {
-		handleSubmit();
-	}, [ props.extended ]);
+		onClick( search, caseSensitive, exact );
+	}, [ caseSensitive, exact, search, onClick ]);
 
 	const handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
-			handleSubmit();
+			onClick( search, caseSensitive, exact );
 		}
 	};
 	const handleReset = () => {
 		setSearch( '' );
-		props.onClick( '' );
+		onClick( '' );
 	};
 	return (
 		<Fragment>
@@ -42,41 +38,43 @@ const Search = ( props ) => {
 				<InputGroup size="small" >
 					<FormControl
 						type="text"
-						placeholder={props.t('enter-text')}
+						placeholder={t('enter-text')}
 						onChange={handleSearch}
 						onKeyPress={handleKeyPress}
 						value={search}
 					/>
 					<Button
-						onClick={handleSubmit}
+						onClick={() => {
+							onClick( search, caseSensitive, exact );
+						}}
 					>
-						{props.t('search')}
+						{t('search')}
 					</Button>
 					<Button style={{ float: 'left' }} size="small" onClick={handleReset} >
-						{props.t('reset')}
+						{t('reset')}
 					</Button>
 				</InputGroup>
 			</FormGroup>
 			<FormGroup style={{ float: 'left', margin: '4px' }} >
 				<Checkbox
-					tooltip={props.t('whole-word-tooltip')}
+					tooltip={t('whole-word-tooltip')}
 					tooltipPlacement="top"
 					size="small" inline
-					legend={props.t('whole-word')}
+					legend={t('whole-word')}
 					style={{ fontSize: '0.9rem' }}
 					onChange={( value ) => {
 						setExact( value );
-						props.onClick( search, caseSensitive, value );
+						onClick( search, caseSensitive, value );
 					}}
 				/>
 				<Checkbox
-					tooltip={props.t('toggle-sensitivity')} tooltipPlacement="top"
+					tooltip={t('toggle-sensitivity')} tooltipPlacement="top"
 					size="small" inline
-					legend={props.t('case-sensitive')}
+					legend={t('case-sensitive')}
 					style={{ fontSize: '0.9rem' }}
 					onChange={( value ) => {
 						setCaseSensitive( value );
-						props.onClick( search, value, exact );
+						onClick( search, value, exact );
 					}}
 				/>
 			</FormGroup>
