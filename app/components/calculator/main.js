@@ -10,6 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import isMobile from 'is-mobile';
 import Draggable from 'components/draggable';
 import Panel from 'components/panel';
 import TeX from 'components/tex';
@@ -28,6 +29,9 @@ import './calculator.css';
 const debug = logger( 'isle:calculator' );
 const RE_SPLIT_KEY = /([() +\-/*^!])/;
 const RE_OPERATOR = /[+\-/*^!]/;
+const IS_MOBILE = isMobile({
+	tablet: true
+});
 
 
 // MAIN //
@@ -256,6 +260,7 @@ class Calculator extends Component {
 							onChange={this.handleTypeChange}
 							ref={( div ) => { this.textInput = div; }}
 							onKeyPress={this.handleKeyPress}
+							readOnly={IS_MOBILE}
 						/>
 						<p>{this.props.t( 'answer' )} = {this.state.answer}</p>
 						<Row>
@@ -355,6 +360,7 @@ class Calculator extends Component {
 							onChange={this.handleTypeChange}
 							ref={( div ) => { this.textInput = div; }}
 							onKeyPress={this.handleKeyPress}
+							readOnly={IS_MOBILE}
 						/>
 						<p>{this.props.t( 'answer' )} = {this.state.answer}</p>
 						<Row>
