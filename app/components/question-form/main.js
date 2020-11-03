@@ -1,14 +1,21 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import SessionContext from 'session/context.js';
+import isLineWrapper from 'utils/is-line-wrapper';
 import './load_translations.js';
 import './question_form.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:question-form' );
 
 
 // MAIN //
@@ -19,65 +26,63 @@ import './question_form.css';
 * @property {string} buttonLabel - label of the submit button
 * @property {Function} onSubmit - callback invoked when the submit button is clicked
 */
-class QuestionForm extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			answered: {}
-		};
+const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
+	const session = useContext( SessionContext );
+	const [ answered, setAnswered ] = useState({});
+	if ( !children ) {
+		return <Alert variant="danger" >{t('missing-children')}</Alert>;
 	}
-
-	handleClick = () => {
-		const elems = this.questionForm.getElementsByClassName( 'submit-button' );
-		for ( let i = 0; i < elems.length; i++ ) {
-			elems[ i ].click();
+	let questionForm;
+	const handleClick = () => {
+		const elements = questionForm.getElementsByClassName( 'submit-button' );
+		for ( let i = 0; i < elements.length; i++ ) {
+			elements[ i ].click();
 		}
-		this.props.onSubmit();
-	}
-
-	render() {
-		if ( !this.props.children ) {
-			return <Alert variant="danger" >{this.props.t('missing-children')}</Alert>;
+		onSubmit();
+	};
+	const cloneChild = ( child, idx ) => {
+		return React.cloneElement( child, {
+			disableSubmitNotification: true,
+			onChange: () => {
+				const newAnswered = { ...answered };
+				newAnswered[ idx ] = true;
+				setAnswered( newAnswered );
+			},
+			key: idx
+		});
+	};
+	const clonedChildren = React.Children.map( children, ( child, idx ) => {
+		if ( isNull( child ) ) {
+			return child;
 		}
-		let children = React.Children.map( this.props.children, ( child, idx ) => {
-			if ( isNull( child ) ) {
-				return child;
-			}
-			if ( !child.props.requireAnswer ) {
-				this.state.answered[ idx ] = true; // eslint-disable-line react/no-direct-mutation-state
-			}
+		if ( isLineWrapper( child ) ) {
+			debug( 'Encountered a line wrapper, go one level deeper...' );
 			return React.cloneElement( child, {
-				disableSubmitNotification: true,
-				onChange: () => {
-					const answered = this.state.answered;
-					answered[ idx ] = true;
-					this.setState( answered );
-				},
+				children: cloneChild( child.props.children, idx ),
 				key: idx
 			});
-		});
-		let finished = 0;
-		for ( let key in this.state.answered ) {
-			if ( this.state.answered[ key ] ) {
-				finished += 1;
-			}
 		}
-		const session = this.context;
-		const disabled = ( finished !== children.length ) && !session.isOwner();
-		return ( <div
-			ref={( div ) => {
-				this.questionForm = div;
-			}}
-			className="question-form"
-		>
-			{children}
-			<Button disabled={disabled} onClick={this.handleClick} >
-				{this.props.buttonLabel || this.props.t('submit')}
-			</Button>
-		</div> );
+		return cloneChild( child, idx );
+	});
+	let finished = 0;
+	for ( let key in answered ) {
+		if ( answered[ key ] ) {
+			finished += 1;
+		}
 	}
-}
+	const disabled = ( finished !== clonedChildren.length ) && !session.isOwner();
+	return ( <div
+		ref={( div ) => {
+			questionForm = div;
+		}}
+		className="question-form"
+	>
+		{clonedChildren}
+		<Button disabled={disabled} onClick={handleClick} style={{ float: 'right' }}>
+			{buttonLabel || t('submit')}
+		</Button>
+	</div> );
+};
 
 
 // PROPERTIES //
@@ -91,8 +96,6 @@ QuestionForm.defaultProps = {
 	buttonLabel: null,
 	onSubmit() {}
 };
-
-QuestionForm.contextType = SessionContext;
 
 
 // EXPORTS //
