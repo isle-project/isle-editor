@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -17,50 +17,43 @@ const DESCRIPTION = 'A QQ (quantile-quantile) plot allows one to compare the dis
 
 // MAIN //
 
-class QQPlotMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
+const QQPlotMenu = ({ data,  variables, defaultValue, t, session, logAction, onCreated }) => {
+	return (
+		<Dashboard
+			title={<span>
+				{t('QQ Plot')}
+				<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} />
+			</span>}
+			autoStart={false}
+			onGenerate={generateQQPlot}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={defaultValue || variables[ 0 ]}
+				options={variables}
+			/>
+		</Dashboard>
+	);
 
-	generateQQPlot( variable ) {
+	function generateQQPlot( variable ) {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
+			logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
 		};
-		const output = <QQPlot data={this.props.data} variable={variable} id={plotId} action={action} onShare={onShare} />;
-		this.props.logAction( DATA_EXPLORER_QQPLOT, action );
-		this.props.onCreated( output );
+		const output = <QQPlot data={data} variable={variable} id={plotId} action={action} onShare={onShare} />;
+		logAction( DATA_EXPLORER_QQPLOT, action );
+		onCreated( output );
 	}
-
-	render() {
-		const { variables, defaultValue, t } = this.props;
-		return (
-			<Dashboard
-				title={<span>
-					{t('QQ Plot')}
-					<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} />
-				</span>}
-				autoStart={false}
-				onGenerate={this.generateQQPlot.bind( this )}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={defaultValue || variables[ 0 ]}
-					options={variables}
-				/>
-			</Dashboard>
-		);
-	}
-}
+};
 
 
 // PROPERTIES //
