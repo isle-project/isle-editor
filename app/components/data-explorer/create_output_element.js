@@ -56,8 +56,8 @@ const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
 
 const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilters, t ) => {
 	return ( <ButtonGroup style={{ float: 'right', top: '-4px', zIndex: 2 }}>
-		<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} />
-		<FullscreenButton header={header} body={table} />
+		<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} t={t} />
+		<FullscreenButton header={header} body={table} t={t} />
 		<ClearButton onClick={() => {
 			debug( `Clear element with ID ${idx}` );
 			clearOutput( idx );
@@ -292,6 +292,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 					style={{
 						right: 55, position: 'absolute'
 					}}
+					t={t}
 				/>
 				<ClearButton
 					onClick={() => { clearOutput( idx ); }}
