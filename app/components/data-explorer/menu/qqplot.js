@@ -17,7 +17,7 @@ const DESCRIPTION = 'A QQ (quantile-quantile) plot allows one to compare the dis
 
 // MAIN //
 
-const QQPlotMenu = ({ data,  variables, defaultValue, t, session, logAction, onCreated }) => {
+const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCreated }) => {
 	return (
 		<Dashboard
 			title={<span>
