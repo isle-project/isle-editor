@@ -38,34 +38,33 @@ function timerID( id ) {
 * @property {Object} style - CSS inline styles
 * @property {Function} onTimeUp - callback invoked when the timer runs out
 */
-const Timer = ( props ) => {
-	const storedTimeLeft = localStorage.getItem( timerID( props.id ) );
-	const [ timeLeft, setTimeLeft ] = useState( storedTimeLeft || props.duration );
-	const [ prevDuration, setPrevDuration ] = useState( props.duration );
+const Timer = ({ id, active, duration, invisible, belowZero, legend, style, onTimeUp }) => {
+	const storedTimeLeft = localStorage.getItem( timerID( id ) );
+	const [ timeLeft, setTimeLeft ] = useState( storedTimeLeft || duration );
+	const [ prevDuration, setPrevDuration ] = useState( duration );
 	const [ finished, setFinished ] = useState( false );
 	const [ countdown, setCountdown ] = useState( null );
 
-	if ( props.duration !== prevDuration ) {
+	if ( duration !== prevDuration ) {
 		debug( 'Duration changed since last render...' );
-		setTimeLeft( props.duration );
-		setPrevDuration( props.duration );
+		setTimeLeft( duration );
+		setPrevDuration( duration );
 	}
-
 	useEffect( () => {
-		if ( props.active && !countdown ) {
+		if ( active && !countdown ) {
 			debug( 'Starting countdown...' );
 			const interval = setInterval( () => {
 				setTimeLeft( timeLeft => {
 					const newTimeLeft = timeLeft - 1;
-					const id = timerID( props.id );
-					if ( id ) {
-						localStorage.setItem( id, newTimeLeft );
+					const key = timerID( id );
+					if ( key ) {
+						localStorage.setItem( key, newTimeLeft );
 					}
 					if ( !finished && newTimeLeft <= 0 ) {
-						if ( !props.belowZero ) {
+						if ( !belowZero ) {
 							clearInterval( countdown );
 						}
-						props.onTimeUp();
+						onTimeUp();
 						setFinished( true );
 					}
 					return newTimeLeft;
@@ -79,16 +78,16 @@ const Timer = ( props ) => {
 				clearInterval( countdown );
 			}
 		};
-	}, [ props.active ]);
+	}, [ active, belowZero, countdown, finished, id, onTimeUp ]);
 
-	if ( props.invisible ) {
+	if ( invisible ) {
 		return null;
 	}
 	const format = timeLeft > 0 ? fmtPositiveTime : fmtNegativeTime;
 	return (
-		<div style={props.style} className={`timer-div ${timeLeft < 0 ? 'timer-danger' : 'timer-info'}`}>
-			{props.legend}
-			{format( props.belowZero ? timeLeft : max( timeLeft, 0 ) )}
+		<div style={style} className={`timer-div ${timeLeft < 0 ? 'timer-danger' : 'timer-info'}`}>
+			{legend}
+			{format( belowZero ? timeLeft : max( timeLeft, 0 ) )}
 		</div>
 	);
 };
