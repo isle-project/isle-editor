@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -30,93 +30,78 @@ const uid = generateUID( 'likert-scale' );
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
-class LikertScale extends Component {
-	constructor( props ) {
-		super( props );
+const LikertScale = ( props ) => {
+	const id = props.id || uid( props );
+	const session = useContext( SessionContext );
+	const [ value, setValue ] = useState( null );
+	const [ submitted, setSubmitted ] = useState( false );
 
-		this.id = props.id || uid( props );
-		this.state = {
-			value: null,
-			submitted: false
-		};
-	}
-
-	submitHandler = () => {
-		const session = this.context;
-		if ( !this.props.disableSubmitNotification ) {
+	const submitHandler = () => {
+		if ( !props.disableSubmitNotification ) {
 			session.addNotification({
 				title: 'Answer submitted.',
 				message: 'Your answer was successfully stored',
 				level: 'success'
 			});
 		}
-		this.setState({
-			submitted: true
-		});
+		setSubmitted( true );
 		session.log({
-			id: this.id,
+			id: id,
 			type: LIKERT_SCALE_SUBMISSION,
-			value: indexOf( this.props.options, this.state.value )
+			value: indexOf( props.options, value )
 		});
-	}
-
-	handleChange = ( event ) => {
-		const value = event.target.value;
-		this.setState({
-			value
-		});
-	}
-
-	render() {
-		const disabled = this.props.noMultipleResponses && this.state.submitted;
-		return (
-			<Card className={`${this.props.className} center`} style={{ width: '75%', ...this.props.style }} >
-				<Card.Body>
-					<FormGroup className="center" >
-						<label>{this.props.question}</label>
-						<br />
-						{this.props.options.map( ( elem, idx ) => {
-							return (
-								<Form.Check
-									type="radio"
-									label={elem}
-									checked={this.state.value === elem}
-									value={elem}
-									key={idx}
-									disabled={disabled}
-									inline
-									onClick={this.handleChange}
-								/>
-							);
-						})}
-					</FormGroup>
+	};
+	const handleChange = ( event ) => {
+		setValue( event.target.value );
+	};
+	const disabled = props.noMultipleResponses && submitted;
+	return (
+		<Card className={`${props.className} center`} style={{ width: '75%', ...props.style }} >
+			<Card.Body>
+				<FormGroup className="center" >
+					<label>{props.question}</label>
 					<br />
-					<Button
-						className="submit-button"
-						variant="primary"
-						size="sm"
-						disabled={!this.state.value || disabled}
-						onClick={this.submitHandler}
-						style={{
-							marginRight: '5px'
-						}}
-					>
-						{ ( this.state.submitted && !this.props.noMultipleResponses ) ? 'Resubmit' : 'Submit' }
-					</Button>
-					<ResponseVisualizer
-						buttonLabel="Responses"
-						id={this.id}
-						data={{
-							type: 'factor',
-							levels: this.props.options
-						}}
-						info={LIKERT_SCALE_SUBMISSION}
-					/>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+					{props.options.map( ( elem, idx ) => {
+						return (
+							<Form.Check
+								type="radio"
+								label={elem}
+								checked={value === elem}
+								value={elem}
+								key={idx}
+								disabled={disabled}
+								inline
+								onClick={handleChange}
+							/>
+						);
+					})}
+				</FormGroup>
+				<br />
+				<Button
+					className="submit-button"
+					variant="primary"
+					size="sm"
+					disabled={!value || disabled}
+					onClick={submitHandler}
+					style={{
+						marginRight: '5px'
+					}}
+				>
+					{ ( submitted && !props.noMultipleResponses ) ? 'Resubmit' : 'Submit' }
+				</Button>
+				<ResponseVisualizer
+					buttonLabel="Responses"
+					id={id}
+					data={{
+						type: 'factor',
+						levels: props.options
+					}}
+					info={LIKERT_SCALE_SUBMISSION}
+				/>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
@@ -147,8 +132,6 @@ LikertScale.defaultProps = {
 	className: '',
 	style: {}
 };
-
-LikertScale.contextType = SessionContext;
 
 
 // EXPORTS //
