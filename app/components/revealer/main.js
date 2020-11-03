@@ -31,33 +31,34 @@ const uid = generateUID( 'revealer' );
 * @property {(string|node)} message - message to be displayed when content is hidden
 * @property {boolean} show - controls whether to initially display child elements
 */
-const Revealer = ( props ) => {
-	const id = props.id || uid( props );
+const Revealer = ({ id, message, show, t, children }) => {
+	id = id || uid({ id, message, show });
 	const session = useContext( SessionContext );
 
-	const [ showChildren, setShowChildren ] = useState( props.show );
-	const [ prevShow, setPrevShow ] = useState( props.show );
+	const [ showChildren, setShowChildren ] = useState( show );
+	const [ prevShow, setPrevShow ] = useState( show );
 	const [ selectedCohort, setSelectedCohort ] = useState( null );
 
-	if ( props.show !== prevShow ) {
-		setShowChildren( props.show );
-		setPrevShow( props.show );
+	if ( show !== prevShow ) {
+		setShowChildren( show );
+		setPrevShow( show );
 	}
-	const readMetadata = () => {
-		if (
-			session &&
-			session.metadata &&
-			session.metadata.revealer &&
-			session.metadata.revealer[ id ]
-		) {
-			const show = session.metadata.revealer[ id ][ session.cohort || 'all' ];
-			if ( show === true || show === false ) {
-				setShowChildren( show );
-			}
-		}
-	};
-	let unsubscribe;
 	useEffect(() => {
+		const readMetadata = () => {
+			if (
+				session &&
+				session.metadata &&
+				session.metadata.revealer &&
+				session.metadata.revealer[ id ]
+			) {
+				const show = session.metadata.revealer[ id ][ session.cohort || 'all' ];
+				if ( show === true || show === false ) {
+					setShowChildren( show );
+				}
+			}
+		};
+
+		let unsubscribe;
 		if ( session ) {
 			readMetadata();
 			unsubscribe = session.subscribe( ( type, action ) => {
@@ -101,7 +102,7 @@ const Revealer = ( props ) => {
 				unsubscribe();
 			}
 		};
-	}, [] );
+	}, [ id, selectedCohort, session ] );
 
 	const handleCohortChange = ( event ) => {
 		const value = event.target.value;
@@ -148,7 +149,7 @@ const Revealer = ( props ) => {
 		}
 	};
 	const cohorts = session.cohorts || [];
-	const header = <h3 className="center" >{props.message || props.t('message')}</h3>;
+	const header = <h3 className="center" >{message || t('message')}</h3>;
 	debug( 'showChildren: '+showChildren );
 	return (<Fragment>
 		<Gate owner >
@@ -156,8 +157,8 @@ const Revealer = ( props ) => {
 				<Button
 					className="revealer-button"
 					onClick={toggleContent}
-				>{showChildren ? props.t('hide') : props.t('reveal')}</Button>
-				{props.t('contents-of')}<i>{id}</i> {showChildren ? props.t('from') : props.t('to')}
+				>{showChildren ? t('hide') : t('reveal')}</Button>
+				{t('contents-of')}<i>{id}</i> {showChildren ? t('from') : t('to')}
 				<select
 					className="revealer-select"
 					onChange={handleCohortChange}
@@ -165,7 +166,7 @@ const Revealer = ( props ) => {
 					onClick={stopPropagation}
 					value={selectedCohort || 'all'}
 				>
-					<option value="all">{props.t('all-students')}</option>
+					<option value="all">{t('all-students')}</option>
 					{cohorts.map( ( v, key ) => {
 						return (
 							<option
@@ -180,7 +181,7 @@ const Revealer = ( props ) => {
 		{!showChildren ? header : null}
 		<div className="revealer outer-element" style={{
 			display: showChildren ? 'inherit' : 'none'
-		}}>{props.children}</div>
+		}}>{children}</div>
 	</Fragment> );
 };
 
