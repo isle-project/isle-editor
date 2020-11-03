@@ -16,48 +16,39 @@ const DESCRIPTION = 'A test determining if there is a significant association be
 
 // MAIN //
 
-class Chi2TestMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	calculateChisquareTest = ( var1, var2 ) => {
-		const { data } = this.props;
+const Chi2TestMenu = ({ data, categorical, t, logAction, onCreated }) => {
+	const calculateChisquareTest = ( var1, var2 ) => {
 		const output = <Chi2Test data={data} var1={var1} var2={var2} />;
-		this.props.logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
+		logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
 			var1, var2
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { categorical, t } = this.props;
-		return (
-			<Dashboard
-				title={
-					<span>
-						{t('Chi-square Independence Test')}
-						<QuestionButton title={t('Chi-square Independence Test')} content={DESCRIPTION} />
-					</span>
-				}
-				label={t('calculate')}
-				autoStart={false}
-				onGenerate={this.calculateChisquareTest}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={categorical[ 0 ]}
-					options={categorical}
-				/>
-				<SelectInput
-					legend={t('second-variable')}
-					defaultValue={categorical[ 1 ]}
-					options={categorical}
-				/>
-			</Dashboard>
-		);
-	}
-}
+		onCreated( output );
+	};
+	return (
+		<Dashboard
+			title={
+				<span>
+					{t('Chi-square Independence Test')}
+					<QuestionButton title={t('Chi-square Independence Test')} content={DESCRIPTION} />
+				</span>
+			}
+			label={t('calculate')}
+			autoStart={false}
+			onGenerate={calculateChisquareTest}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={categorical[ 0 ]}
+				options={categorical}
+			/>
+			<SelectInput
+				legend={t('second-variable')}
+				defaultValue={categorical[ 1 ]}
+				options={categorical}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
