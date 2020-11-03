@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
@@ -28,92 +28,71 @@ const debug = logger( 'isle:accordion' );
 * @property {string} className - class name for outer div
 * @property {Object} style - CSS inline styles for outer div
 */
-class Accordion extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			active: props.active,
-			prevActive: props.active
-		};
+const Accordion = ( props ) => {
+	debug( 'Rendering accordion...' );
+	const [ isActive, setIsActive ] = useState( props.active );
+	const [ prevActive, setPrevActive ] = useState( props.active );
+	if ( props.active !== prevActive ) {
+		setIsActive( props.active );
+		setPrevActive( props.active );
 	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.active !== prevState.prevActive ) {
-			const newState = {
-				active: nextProps.active,
-				prevActive: nextProps.active
-			};
-			return newState;
-		}
-		return null;
+	if ( !isArray( props.children ) ) {
+		return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
 	}
-
-	clickFactory = ( len, idx ) => {
-		if ( this.props.canCloseAll ) {
+	const clickFactory = ( len, idx ) => {
+		if ( props.canCloseAll ) {
 			return () => {
-				const active = ( this.state.active === idx ) ? null : idx;
-				this.setState({ active });
+				setIsActive( ( isActive === idx ) ? null : idx );
 			};
 		}
 		return () => {
-			const active = ( this.state.active === idx ) ? (idx+1) % len : idx;
-			debug( `Open accordion element at index ${active}...` );
-			this.setState({
-				active
-			});
+			setIsActive( ( isActive === idx ) ? (idx+1) % len : idx );
 		};
-	}
-
-	render() {
-		if ( !isArray( this.props.children ) ) {
-			return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
-		}
-		const out = [];
-		const headers = this.props.headers || [];
-		let count = 0;
-		for ( let i = 0; i < this.props.children.length; i++ ) {
-			const child = this.props.children[ i ];
-			if ( !isLineButtons( child ) ) {
-				const style = {
-					boxShadow: '0 0 -4px rgba(92, 92, 92, 0.5)'
-				};
-				if ( count === 1 ) {
-					style.borderTopLeftRadius = 6;
-					style.borderTopRightRadius = 6;
-				}
-				if ( i === this.state.active ) {
-					style.background = 'rgba(201, 93, 10, 0.2)';
-				}
-				const elem = (
-					<Collapse
-						key={i}
-						visible={i === this.state.active}
-						header={headers[ count ] || `Header ${count}`}
-						headerClassName={this.props.headerClassName}
-						headerStyle={{
-							...style,
-							...this.props.headerStyle
-						}}
-						onClick={this.clickFactory( this.props.children.length, i )}
-					>
-						{child}
-					</Collapse>
-				);
-				count += 1;
-				out.push( elem );
+	};
+	const out = [];
+	const headers = props.headers || [];
+	let count = 0;
+	for ( let i = 0; i < props.children.length; i++ ) {
+		const child = props.children[ i ];
+		if ( !isLineButtons( child ) ) {
+			const style = {
+				boxShadow: '0 0 -4px rgba(92, 92, 92, 0.5)'
+			};
+			if ( count === 1 ) {
+				style.borderTopLeftRadius = 6;
+				style.borderTopRightRadius = 6;
 			}
+			if ( i === isActive ) {
+				style.background = 'rgba(201, 93, 10, 0.2)';
+			}
+			const elem = (
+				<Collapse
+					key={i}
+					visible={i === isActive}
+					header={headers[ count ] || `Header ${count}`}
+					headerClassName={props.headerClassName}
+					headerStyle={{
+						...style,
+						...props.headerStyle
+					}}
+					onClick={clickFactory( props.children.length, i )}
+				>
+					{child}
+				</Collapse>
+			);
+			count += 1;
+			out.push( elem );
 		}
-		return (
-			<div
-				className={`accordion ${this.props.className}`}
-				style={this.props.style}
-			>
-				{out}
-			</div>
-		);
 	}
-}
+	return (
+		<div
+			className={`accordion ${props.className}`}
+			style={props.style}
+		>
+			{out}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
