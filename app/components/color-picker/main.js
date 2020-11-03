@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Loadable from 'components/internal/loadable';
 const SketchPicker = Loadable( () => import( 'react-color/lib/Sketch.js' ) );
@@ -24,31 +24,29 @@ const BlockPicker = Loadable( () => import( 'react-color/lib/Block.js' ) );
 * @property {Function} onChange - callback invoked every time color is changed
 * @property {Function} onChangeComplete - callback invoked once a color change is complete
 */
-class ColorPicker extends Component {
-	render() {
-		let colorPicker;
-		switch ( this.props.variant ) {
-			case 'Block':
-				colorPicker = <BlockPicker {...this.props} />;
-				break;
-			case 'Compact':
-				colorPicker = <CompactPicker {...this.props} />;
-				break;
-			case 'Material':
-				colorPicker = <MaterialPicker {...this.props} />;
-				break;
-			case 'Sketch':
-			default:
-				colorPicker = <SketchPicker {...this.props} />;
-				break;
-		}
-		return (
-			<div className={this.props.className} style={{ width: 'fit-content', margin: '0 auto', ...this.props.style }}>
-				{colorPicker}
-			</div>
-		);
+const ColorPicker = ( props ) => {
+	let colorPicker;
+	switch ( props.variant ) {
+		case 'Block':
+			colorPicker = <BlockPicker {...props} />;
+			break;
+		case 'Compact':
+			colorPicker = <CompactPicker {...props} />;
+			break;
+		case 'Material':
+			colorPicker = <MaterialPicker {...props} />;
+			break;
+		case 'Sketch':
+		default:
+			colorPicker = <SketchPicker {...props} />;
+			break;
 	}
-}
+	return (
+		<div className={props.className} style={{ width: 'fit-content', margin: '0 auto', ...this.props.style }}>
+			{colorPicker}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
