@@ -1,6 +1,5 @@
 // MODULES //
 
-import papplyRight from '@stdlib/utils/papply-right';
 import kurtosis from './kurtosis.js';
 import skewness from './skewness.js';
 import quantile from './quantile.js';
@@ -17,8 +16,12 @@ import sum from './sum.js';
 
 // VARIABLES //
 
-const firstQuartile = papplyRight( quantile, 0.25, 5 );
-const thirdQuartile = papplyRight( quantile, 0.75, 5 );
+const firstQuartile = ( x ) => {
+	return quantile( x, 0.25, 5 );
+};
+const thirdQuartile = ( x ) => {
+	return quantile( x, 0.75, 5 );
+};
 
 
 // MAIN //
