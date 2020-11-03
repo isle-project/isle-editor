@@ -95,7 +95,6 @@ Bibliography.defaultProps = {
 };
 
 
-
 // EXPORTS //
 
 export default withTranslation( 'bibliography' )( Bibliography );
