@@ -25,27 +25,20 @@ const debug = logger( 'isle:qrcode' );
 * @property {boolean} showText - boolean determining whether to show the text encoded in the QR code
 * @property {Object} style - CSS inline styles
 */
-const Qrcode = ( props ) => {
+const Qrcode = ({ text, scale, width, height, center, showText, style }) => {
 	let canvasRef;
+	useEffect( () => {
+		const txt = text || window.location.href;
+		debug( `Display '${txt}' as QR code...` );
+		QRCode.toCanvas( canvasRef, txt, { scale, width, height }, debug );
 
-	const renderCode = () => {
-		const text = props.text || window.location.href;
-		debug( `Display '${text}' as QR code...` );
-		QRCode.toCanvas( canvasRef, text, {
-			scale: props.scale,
-			width: props.width,
-			height: props.height
-		}, debug );
-	};
-	const handleHashChange = () => {
-		if ( !props.text ) {
-			renderCode();
-		}
-	};
-	useEffect( () => {
-		renderCode();
-	}, [ props.text, props.scale, props.width, props.height ] );
-	useEffect( () => {
+		const handleHashChange = () => {
+			if ( !text ) {
+				const txt = text || window.location.href;
+				debug( `Display '${txt}' as QR code...` );
+				QRCode.toCanvas( canvasRef, txt, { scale, width, height }, debug );
+			}
+		};
 		if ( !isElectron ) {
 			window.addEventListener( 'hashchange', handleHashChange );
 		}
@@ -54,25 +47,26 @@ const Qrcode = ( props ) => {
 				window.removeEventListener( 'hashchange', handleHashChange );
 			}
 		};
-	}, [] );
+	}, [ text, scale, width, height, canvasRef ] );
 	const canvas = <canvas
-		className={`qrcode-canvas ${props.center ? 'center' : ''}`}
+		className={`qrcode-canvas ${center ? 'center' : ''}`}
 		ref={( canvas ) => {
 			if ( canvas ) {
 				canvasRef = canvas;
 			}
 		}}
-		style={props.style}
+		style={style}
 	/>;
-	if ( props.showText ) {
-		const text = props.text || window.location.href;
+	if ( showText ) {
 		const divStyle = {};
-		if ( props.center ) {
+		if ( center ) {
 			divStyle.textAlign = 'center';
 		}
 		return ( <Fragment>
 			{canvas}
-			<div className="title" style={divStyle} >{text}</div>
+			<div className="title" style={divStyle} >
+				{text || window.location.href}
+			</div>
 		</Fragment> );
 	}
 	return canvas;
