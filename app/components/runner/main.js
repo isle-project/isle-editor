@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -13,48 +13,27 @@ import PropTypes from 'prop-types';
 * @property {number} interval - number of milliseconds between invocations of `onEvaluate`. If no interval is set, the function is only invoked once
 * @property {Function} onEvaluate - function to be invoked
 */
-class Runner extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {};
-	}
-
-	componentDidMount() {
-		if ( this.props.active ) {
-			if ( this.props.interval ) {
-				this.intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
+const Runner = ({ active, interval, onEvaluate }) => {
+	let intervalID = useRef( null );
+	useEffect( () => {
+		if ( active ) {
+			if ( interval ) {
+				if ( intervalID.current ) {
+					window.clearInterval( intervalID.current );
+				}
+				intervalID.current = window.setInterval( onEvaluate, interval );
 			} else {
-				this.props.onEvaluate();
+				onEvaluate();
 			}
 		}
-	}
-
-	componentDidUpdate( prevProps ) {
-		if ( prevProps.active && !this.props.active ) {
-			if ( this.intervalID ) {
-				window.clearInterval( this.intervalID );
-				this.intervalID = null;
+		return () => {
+			if ( intervalID.current ) {
+				window.clearInterval( intervalID.current );
 			}
-		}
-		else if ( !prevProps.active && this.props.active ) {
-			if ( this.props.interval ) {
-				this.intervalID = window.setInterval( this.props.onEvaluate, this.props.interval );
-			} else {
-				this.props.onEvaluate();
-			}
-		}
-	}
-
-	componentWillUnmount() {
-		if ( this.intervalID ) {
-			window.clearInterval( this.intervalID );
-		}
-	}
-
-	render() {
-		return null;
-	}
-}
+		};
+	}, [ active, interval, onEvaluate ]);
+	return null;
+};
 
 
 // PROPERTIES //
