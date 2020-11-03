@@ -73,6 +73,7 @@ exports[`renders an expandable calculator 1`] = `
             id="calc-text-area"
             onChange={[Function]}
             onKeyPress={[Function]}
+            readOnly={false}
             type="text"
             value="0"
           />
