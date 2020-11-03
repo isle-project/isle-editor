@@ -17,6 +17,7 @@ function isLineWrapper( element ) {
 	);
 }
 
+
 // EXPORTS //
 
 export default isLineWrapper;
