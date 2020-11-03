@@ -1832,7 +1832,8 @@ DataExplorer.defaultProps = {
 		'Excess Kurtosis',
 		'First Quartile',
 		'Third Quartile',
-		'Quantile'
+		'Quantile',
+		'Five-Number Summary'
 	],
 	plots: [
 		'Bar Chart',

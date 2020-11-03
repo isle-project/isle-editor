@@ -15,6 +15,7 @@ import SelectInput from 'components/input/select';
 import selectStyles from 'components/input/select/styles';
 import Tooltip from 'components/tooltip';
 import statistic from 'utils/statistic';
+import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
 import papplyRight from '@stdlib/utils/papply-right';
@@ -40,7 +41,7 @@ const Option = props => {
 	const popover = <Popover id={`${props.data.label}-popover`}>
 		<PopoverContent>{STAT_DESCRIPTIONS[ i18next.language ][ props.data.label]}</PopoverContent>
 	</Popover>;
-	return ( <components.Option {...props} >
+	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
 		}}>{i18next.t( 'data-explorer:'+props.data.label )}</span>
@@ -293,6 +294,9 @@ class SummaryStatisticsMenu extends Component {
 				case 'Min':
 				case 'Max':
 					location.push({ 'label': e, 'value': statistic( e ) });
+					break;
+				case 'Five-Number Summary':
+					location.push({ 'label': e, value: null });
 					break;
 				case 'Range':
 				case 'Interquartile Range':
@@ -578,9 +582,15 @@ class SummaryStatisticsMenu extends Component {
 							components={{ Option, GroupHeading }}
 							hideSelectedOptions={false}
 							onChange={( value ) => {
+								let fiveNumberSummary = -1;
 								let labels;
 								if ( isArray( value ) && value.length > 0 ) {
-									labels = value.map( x => x.label );
+									labels = value.map( ( x, idx ) => {
+										if ( x.label === 'Five-Number Summary' ) {
+											fiveNumberSummary = idx;
+										}
+										return x.label;
+									});
 									const lastLabel = labels[ labels.length-1 ];
 									if (
 										lastLabel === 'Correlation' ||
@@ -600,7 +610,43 @@ class SummaryStatisticsMenu extends Component {
 									) {
 										value.shift();
 									}
+									if ( fiveNumberSummary > -1 ) {
+										value = value.slice();
+										const additions = [];
+										if ( !contains( labels, 'Min' ) ) {
+											additions.push({
+												label: 'Min',
+												value: statistic( 'Min' )
+											});
+										}
+										if ( !contains( labels, 'First Quartile' ) ) {
+											additions.push({
+												label: 'First Quartile',
+												value: statistic( 'First Quartile' )
+											});
+										}
+										if ( !contains( labels, 'Median' ) ) {
+											additions.push({
+												label: 'Median',
+												value: statistic( 'Median' )
+											});
+										}
+										if ( !contains( labels, 'Third Quartile' ) ) {
+											additions.push({
+												label: 'Third Quartile',
+												value: statistic( 'Third Quartile' )
+											});
+										}
+										if ( !contains( labels, 'Max' ) ) {
+											additions.push({
+												label: 'Max',
+												value: statistic( 'Max' )
+											});
+										}
+										value.splice( fiveNumberSummary, 1, ...additions);
+									}
 								}
+								console.log( value );
 								this.setState({
 									selectedStats: value,
 									showSecondVarSelect: false,
@@ -736,7 +782,8 @@ SummaryStatisticsMenu.defaultProps = {
 		'Excess Kurtosis',
 		'First Quartile',
 		'Third Quartile',
-		'Quantile'
+		'Quantile',
+		'Five-Number Summary'
 	]
 };
 
