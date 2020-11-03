@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import CheckboxInput from 'components/input/checkbox';
@@ -18,16 +18,38 @@ const DESCRIPTION = '';
 
 // MAIN //
 
-class ViolinPlotMenu extends Component {
-	constructor( props ) {
-		super( props );
+const ViolinPlotMenu = ({ data, variables, defaultValue, groupingVariables, t, session, logAction, onCreated }) => {
+	const [ showBox, setShowBox ] = useState( false );
+	return (
+		<Dashboard
+			autoStart={false}
+			title={<span>
+				{t('Violin Plot')}
+				<QuestionButton title={t('Violin Plot')} content={DESCRIPTION} />
+			</span>}
+			onGenerate={generateViolinplot}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={defaultValue || variables[ 0 ]}
+				options={variables}
+			/>
+			<SelectInput
+				legend={t('group-by')}
+				options={groupingVariables}
+				clearable={true}
+			/>
+			<CheckboxInput
+				legend={t('show-boxplot')}
+				defaultValue={showBox}
+				onChange={() => {
+					setShowBox( !showBox );
+				}}
+			/>
+		</Dashboard>
+	);
 
-		this.state = {
-			showBox: false
-		};
-	}
-
-	generateViolinplot( variable, group ) {
+	function generateViolinplot( variable, group ) {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
@@ -35,57 +57,23 @@ class ViolinPlotMenu extends Component {
 			plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
+			logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
 		};
 		const output = <ViolinPlot
 			id={plotId} variable={variable} group={group}
-			data={this.props.data} onShare={onShare} action={action}
-			showBox={this.state.showBox}
+			data={data} onShare={onShare} action={action}
+			showBox={showBox}
 		/>;
-		this.props.logAction( DATA_EXPLORER_VIOLINPLOT, action );
-		this.props.onCreated( output );
+		logAction( DATA_EXPLORER_VIOLINPLOT, action );
+		onCreated( output );
 	}
-
-	render() {
-		const { variables, defaultValue, groupingVariables, t } = this.props;
-		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>
-					{t('Violin Plot')}
-					<QuestionButton title={t('Violin Plot')} content={DESCRIPTION} />
-				</span>}
-				onGenerate={this.generateViolinplot.bind( this )}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={defaultValue || variables[ 0 ]}
-					options={variables}
-				/>
-				<SelectInput
-					legend={t('group-by')}
-					options={groupingVariables}
-					clearable={true}
-				/>
-				<CheckboxInput
-					legend={t('show-boxplot')}
-					defaultValue={this.state.showBox}
-					onChange={()=>{
-						this.setState({
-							showBox: !this.state.showBox
-						});
-					}}
-				/>
-			</Dashboard>
-		);
-	}
-}
+};
 
 
 // PROPERTIES //
