@@ -24,7 +24,6 @@ class Clock extends Component {
 				minute: '2-digit'
 			}),
 			startTime: new Date().getTime()
-
 		};
 	}
 
