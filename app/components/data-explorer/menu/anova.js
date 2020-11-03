@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -16,46 +16,36 @@ const DESCRIPTION = 'A one-way analysis of variance tests for equality of means 
 
 // MAIN //
 
-class AnovaMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	calculateANOVA = ( variable, group ) => {
-		const { data, showDecision } = this.props;
-		this.props.logAction( DATA_EXPLORER_TESTS_ANOVA, {
-			variable, group, showDecision
-		});
-		const output = <Anova data={data} variable={variable} group={group} showDecision={showDecision} />;
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { quantitative, categorical, t } = this.props;
-		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>
-					{t('One-Way ANOVA')}
-					<QuestionButton title={t('One-Way ANOVA')} content={DESCRIPTION} />
-				</span>}
-				label={t('calculate')}
-				onGenerate={this.calculateANOVA}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={quantitative[ 0 ]}
-					options={quantitative}
-				/>
-				<SelectInput
-					legend={t('grouping-variable')}
-					defaultValue={categorical[ 0 ]}
-					options={categorical}
-				/>
-			</Dashboard>
-		);
-	}
-}
+const AnovaMenu = ({ quantitative, categorical, t, data, showDecision, logAction, onCreated }) => {
+	return (
+		<Dashboard
+			autoStart={false}
+			title={<span>
+				{t('One-Way ANOVA')}
+				<QuestionButton title={t('One-Way ANOVA')} content={DESCRIPTION} />
+			</span>}
+			label={t('calculate')}
+			onGenerate={( variable, group ) => {
+				logAction( DATA_EXPLORER_TESTS_ANOVA, {
+					variable, group, showDecision
+				});
+				const output = <Anova data={data} variable={variable} group={group} showDecision={showDecision} />;
+				onCreated( output );
+			}}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={quantitative[ 0 ]}
+				options={quantitative}
+			/>
+			<SelectInput
+				legend={t('grouping-variable')}
+				defaultValue={categorical[ 0 ]}
+				options={categorical}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
