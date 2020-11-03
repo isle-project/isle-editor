@@ -9,8 +9,8 @@ import Badge from 'react-bootstrap/Badge';
 import logger from 'debug';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import min from '@stdlib/math/base/special/min';
-import max from '@stdlib/math/base/special/max';
+import minimum from '@stdlib/math/base/special/min';
+import maximum from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
 import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
@@ -59,20 +59,22 @@ const uid = generateUID( 'range-question' );
  */
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
+	const { min, max, points, question, solution, t, until, feedback, style,
+		provideFeedback, allowMultipleAnswers, hints, chat } = props;
 	const session = useContext( SessionContext );
 
-	const [ lower, setLower ] = useState( props.min );
-	const [ upper, setUpper ] = useState( props.max );
+	const [ lower, setLower ] = useState( min );
+	const [ upper, setUpper ] = useState( max );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ correct, setCorrect ] = useState( false );
 
 	const handleChangeUpper = ( newValue ) => {
 		setUpper( newValue );
-		props.onChangeUpper( max( newValue, lower ) );
+		props.onChangeUpper( maximum( newValue, lower ) );
 	};
 	const handleChangeLower = ( newValue ) => {
 		setLower( newValue );
-		props.onChangeLower( min( newValue, upper ) );
+		props.onChangeLower( minimum( newValue, upper ) );
 	};
 	const handleBlurUpper = ( value ) => {
 		if ( value <= lower ) {
@@ -105,28 +107,28 @@ const RangeQuestion = ( props ) => {
 					(roundn(upperVal, -digits) === roundn(solution[1], -digits)) );
 			}
 			props.onSubmit( [ lowerVal, upperVal ], correct );
-			if ( props.provideFeedback ) {
+			if ( provideFeedback ) {
 				session.addNotification({
-					title: props.t('answer-submitted'),
-					message: correct ? props.t('submission-correct') : props.t('submission-incorrect'),
+					title: t('answer-submitted'),
+					message: correct ? t('submission-correct') : t('submission-incorrect'),
 					level: correct ? 'success' : 'error'
 				});
 			} else {
 				session.addNotification({
-					title: submitted ? props.t('answer-resubmitted') : props.t('answer-submitted'),
+					title: submitted ? t('answer-resubmitted') : t('answer-submitted'),
 					message: submitted ?
-						props.t('resubmission-message') :
-						props.t('submission-message'),
+						t('resubmission-message') :
+						t('submission-message'),
 					level: 'info'
 				});
 			}
 		} else {
 			props.onSubmit( [ lowerVal, upperVal ] );
 			session.addNotification({
-				title: submitted ? props.t('answer-resubmitted') : props.t('answer-submitted'),
+				title: submitted ? t('answer-resubmitted') : t('answer-submitted'),
 				message: submitted ?
-					props.t('resubmission-message') :
-					props.t('submission-message'),
+					t('resubmission-message') :
+					t('submission-message'),
 				level: 'success'
 			});
 		}
@@ -149,102 +151,99 @@ const RangeQuestion = ( props ) => {
 		}
 	};
 	useEffect(() => {
-		if ( !isnan( props.solution[ 1 ] ) && !isnan( props.solution[ 0 ] ) ) {
-			setLower( props.min );
-			setUpper( props.max );
+		if ( !isnan( solution[ 1 ] ) && !isnan( solution[ 0 ] ) ) {
+			setLower( min );
+			setUpper( max );
 			setSubmitted( false );
 			setCorrect( false );
 		}
-	}, [ props.question, props.solution ]);
+	}, [ question, solution, min, max ]);
 	const renderSubmitButton = () => {
-		if ( props.until && session.startTime > props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
+		if ( until && session.startTime > until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
 		return (
 			<TimedButton
 				className="submit-button"
 				variant="primary"
 				size="sm"
-				disabled={submitted && !props.allowMultipleAnswers}
+				disabled={submitted && !allowMultipleAnswers}
 				onClick={submitHandler}
 			>
-				{ submitted && props.allowMultipleAnswers ? props.t('resubmit') : props.t('submit') }
+				{ submitted && allowMultipleAnswers ? t('resubmit') : t('submit') }
 			</TimedButton>
 		);
 	};
-	const nHints = props.hints.length;
-	const solutionPresent = props.solution !== null;
+	const nHints = hints.length;
+	const solutionPresent = solution !== null;
 	return (
-		<Card id={id} className="range-question" style={props.style} >
-			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
-				{ props.question ? <label>{props.question}</label> : null }
+		<Card id={id} className="range-question" style={style} >
+			<Card.Body style={{ width: feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
+				{ question ? <label>{question}</label> : null }
 				<div className="range-question-input-wrapper" >
 					<NumberInput
 						step="any"
-						legend={props.t('lower')}
+						legend={t('lower')}
 						onChange={handleChangeLower}
 						defaultValue={lower}
-						disabled={submitted && !props.allowMultipleAnswers}
+						disabled={submitted && !allowMultipleAnswers}
 						inline
 						width={90}
-						min={props.min}
-						max={props.max}
+						min={min}
+						max={max}
 						numbersOnly={false}
 						onBlur={handleBlurLower}
 						onKeyPress={handleKeyPress}
 					/>
 					<NumberInput
 						step="any"
-						legend={props.t('upper')}
+						legend={t('upper')}
 						onChange={handleChangeUpper}
 						defaultValue={upper}
-						disabled={submitted && !props.allowMultipleAnswers}
+						disabled={submitted && !allowMultipleAnswers}
 						inline
 						width={90}
-						min={props.min}
-						max={props.max}
+						min={min}
+						max={max}
 						numbersOnly={false}
 						onBlur={handleBlurUpper}
 						onKeyPress={handleKeyPress}
 					/>
-					{ submitted && solutionPresent && props.provideFeedback ?
+					{ submitted && solutionPresent && provideFeedback ?
 						<Badge variant={correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-							{`${props.t('solution')}:   `}
-							{props.solution[0]}, {props.solution[1]}
+							{`${t('solution')}:   `}
+							{solution[0]}, {solution[1]}
 						</Badge> :
 						null
 					}
 				</div>
 				<ButtonToolbar className="range-question-toolbar" >
 					<ResponseVisualizer
-						buttonLabel={props.t('answers')}
+						buttonLabel={t('answers')}
 						id={id}
 						data={{
 							type: 'range',
-							question: props.question,
-							solution: props.solution
+							question: question,
+							solution: solution
 						}}
 						info={RANGE_QUESTION_SUBMIT_ANSWER}
 						style={{ marginLeft: '3px', marginRight: '3px' }}
-						points={props.points}
+						points={points}
 					/>
 					{ nHints > 0 ?
-						<HintButton onClick={logHint} hints={props.hints} placement={props.hintPlacement} /> :
+						<HintButton onClick={logHint} hints={hints} placement={props.hintPlacement} /> :
 						null
 					}
-					{
-						props.chat ?
-							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={id} />
-							</div> : null
-					}
+					{ chat ? <div style={{ display: 'inline-block', marginLeft: '4px' }}>
+						<ChatButton for={id} />
+					</div> : null }
 					{renderSubmitButton()}
 				</ButtonToolbar>
-				{ props.feedback ? <FeedbackButtons
+				{ feedback ? <FeedbackButtons
 					id={id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
-				<GradeFeedbackRenderer for={id} points={props.points} />
+				<GradeFeedbackRenderer for={id} points={points} />
 			</Card.Body>
 		</Card>
 	);
