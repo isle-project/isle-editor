@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -33,6 +33,17 @@ const debug = logger( 'isle:image-question' );
 const RE_IMAGE_SRC = /src="([^"]*)"/;
 
 
+// FUNCTIONS //
+
+/**
+* Event handler ignoring default dragging behavior and preventing bubbling-up.
+*/
+function ignoreDrag( evt ) {
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+
+
 // MAIN //
 
 /**
@@ -53,104 +64,91 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
-class ImageQuestion extends Component {
-	constructor( props ) {
-		super( props );
+const ImageQuestion = ( props ) => {
+	const id = props.id || uid( props );
+	const session = useContext( SessionContext );
+	let fileUpload;
 
-		this.id = props.id || uid( props );
+	const [ submitted, setSubmitted ] = useState( false );
+	const [ src, setSrc ] = useState( null );
+	const [ exhaustedHints, setExhaustedHints ] = useState( props.hints.length === 0 );
+	const [ displaySolution, setDisplaySolution ] = useState( false );
+	const [ isProcessing, setIsProcessing ] = useState( false );
 
-		// Initialize state variables...
-		this.state = {
-			submitted: false,
-			src: null,
-			exhaustedHints: props.hints.length === 0,
-			displaySolution: false,
-			isProcessing: false
-		};
-	}
+	const onFileRead = ( event ) => {
+		setSrc( event.target.result );
+	};
 
-	logHint = ( idx ) => {
+	const nHints = props.hints.length;
+	const solutionButton = <SolutionButton
+		disabled={!submitted || !exhaustedHints}
+		onClick={() => {
+			setDisplaySolution( !displaySolution );
+		}}
+		hasHints={props.hints.length > 0}
+	/>;
+	const logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const session = this.context;
 		session.log({
-			id: this.id,
+			id: id,
 			type: IMAGE_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	}
-
-	sendSubmitNotification = () => {
-		const session = this.context;
+	};
+	const sendSubmitNotification = () => {
 		session.addNotification({
-			title: this.props.t('submitted'),
-			message: this.props.t('answer-submitted'),
+			title: props.t('submitted'),
+			message: props.t('answer-submitted'),
 			level: 'info'
 		});
-	}
-
-	handleSubmit = () => {
-		const session = this.context;
-		if ( !this.props.disableSubmitNotification ) {
-			this.sendSubmitNotification();
-		}
-		this.props.onSubmit();
-		this.setState({
-			submitted: true
-		});
-		if ( this.state.src ) {
-			session.log({
-				id: this.id,
-				type: IMAGE_QUESTION_SUBMISSION,
-				value: this.state.src
-			});
-		} else {
-			const canvas = document.getElementById( this.id+'-canvas' );
-			canvas.toBlob( ( blob ) => {
-				blobToBase64( blob ).then( src => {
-					session.log({
-						id: this.id,
-						type: IMAGE_QUESTION_SUBMISSION,
-						value: src
-					});
-					this.setState({
-						src
-					});
-				});
-			});
-		}
-	}
-
-	/**
-	* Event handler ignoring default dragging behavior and preventing bubbling-up.
-	*/
-	ignoreDrag = ( evt ) => {
-		evt.stopPropagation();
-		evt.preventDefault();
-	}
+	};
+	const toggleSpinner = () => {
+		setIsProcessing( !isProcessing );
+	};
 
 	/**
 	* Creates FileReader and attaches event listener for when the file is ready.
 	*/
-	handleFileUpload = () => {
+	const handleFileUpload = () => {
 		const reader = new FileReader();
-		const selectedFile = this.fileUpload.files[ 0 ];
-		reader.addEventListener( 'load', this.onFileRead, false );
+		const selectedFile = fileUpload.files[ 0 ];
+		reader.addEventListener( 'load', onFileRead, false );
 		reader.readAsDataURL( selectedFile );
-	}
-
-	toggleSpinner = () => {
-		this.setState({
-			isProcessing: !this.state.isProcessing
-		});
-	}
+	};
+	const handleSubmit = () => {
+		if ( !props.disableSubmitNotification ) {
+			sendSubmitNotification();
+		}
+		props.onSubmit();
+		setSubmitted( true );
+		if ( src ) {
+			session.log({
+				id: id,
+				type: IMAGE_QUESTION_SUBMISSION,
+				value: src
+			});
+		} else {
+			const canvas = document.getElementById( id+'-canvas' );
+			canvas.toBlob( ( blob ) => {
+				blobToBase64( blob ).then( newSrc => {
+					session.log({
+						id: id,
+						type: IMAGE_QUESTION_SUBMISSION,
+						value: newSrc
+					});
+					setSrc( newSrc );
+				});
+			});
+		}
+	};
 
 	/**
 	* Event handler invoked when user drags file onto the upload area.
 	*/
-	onDrop = ( evt ) => {
+	const onDrop = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
-		this.toggleSpinner();
+		toggleSpinner();
 		const dt = evt.dataTransfer;
 		const reader = new FileReader();
 		let file = null;
@@ -164,9 +162,8 @@ class ImageQuestion extends Component {
 					if ( contains( str, '<img' ) ) {
 						const match = str.match( RE_IMAGE_SRC );
 						if ( match ) {
-							this.setState({
-								src: match[ 1 ]
-							}, this.toggleSpinner );
+							setSrc( match[ 1 ] );
+							toggleSpinner();
 						}
 					} else if ( contains( str, '<thead' ) ) {
 						const node = document.createElement( 'table' );
@@ -179,9 +176,8 @@ class ImageQuestion extends Component {
 							},
 							width: 600
 						}).then( data => {
-							this.setState({
-								src: data
-							}, this.toggleSpinner );
+							setSrc( data );
+							toggleSpinner();
 							node.remove();
 						});
 					} else {
@@ -194,9 +190,8 @@ class ImageQuestion extends Component {
 								fontSize: 14
 							}
 						}).then( data => {
-							this.setState({
-								src: data
-							}, this.toggleSpinner );
+							setSrc( data );
+							toggleSpinner();
 							node.remove();
 						});
 					}
@@ -207,152 +202,123 @@ class ImageQuestion extends Component {
 			file = dt.files[ 0 ];
 		}
 		if ( file ) {
-			this.mimeType = file.type;
 			if ( file ) {
-				reader.addEventListener( 'load', this.onFileRead, false );
+				reader.addEventListener( 'load', onFileRead, false );
 				reader.readAsDataURL( file );
 			}
 		}
-	}
-
-	onFileRead = ( event ) => {
-		let result = event.target.result;
-		this.setState({
-			src: result
-		});
-	}
-
-	handleSolutionClick = () => {
-		this.setState({
-			displaySolution: !this.state.displaySolution
-		});
-	}
-
-	renderSubmitButton() {
-		const session = this.context;
-		if ( this.props.until && session.startTime > this.props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+	};
+	const renderSubmitButton = () => {
+		if ( props.until && session.startTime > props.until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
 		}
 		return (
 			<TimedButton
-				className="submit-button" variant="primary" size="sm" onClick={this.handleSubmit}
+				className="submit-button" variant="primary" size="sm" onClick={handleSubmit}
 			>
-				{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
+				{ submitted ? props.t('resubmit') : props.t('submit') }
 			</TimedButton>
 		);
-	}
-
-	render() {
-		const nHints = this.props.hints.length;
-		const solutionButton = <SolutionButton
-			disabled={!this.state.submitted || !this.state.exhaustedHints}
-			onClick={this.handleSolutionClick}
-			hasHints={this.props.hints.length > 0}
-		/>;
-
-		let content;
-		if ( !this.state.isProcessing ) {
-			content = this.state.src ?
-			<div className="center" style={{ maxWidth: 600 }}>
-				{this.state.displaySolution ?
-					<Image
-						alt={this.props.t('model-solution')}
-						src={this.props.solution}
-						width="100%" height="auto"
-						style={{
-							border: 'solid 1px gold'
-						}}
-					/> : <Image
-						alt={this.props.t('upload')}
-						src={this.state.src}
-						width="100%" height="auto"
-					/>
-				}
-			</div>:
-			<Fragment>
-				<div
-					className="image-question-dropzone"
-					onDrop={this.onDrop}
-					onDragOver={this.ignoreDrag}
-					onDragEnd={this.ignoreDrag}
-				>
-					<span>{this.props.t('drop-image')}</span>
-				</div>
-				<p className="center">{this.props.t('or')}</p>
-				<input
-					id={this.id+'-upload'}
-					className="image-question-upload center"
-					type="file"
-					accept="image/*"
-					onChange={this.handleFileUpload}
-					ref={fileUpload => {
-						this.fileUpload = fileUpload;
+	};
+	let content;
+	if ( !isProcessing ) {
+		content = src ?
+		<div className="center" style={{ maxWidth: 600 }}>
+			{displaySolution ?
+				<Image
+					alt={props.t('model-solution')}
+					src={props.solution}
+					width="100%" height="auto"
+					style={{
+						border: 'solid 1px gold'
 					}}
+				/> : <Image
+					alt={props.t('upload')}
+					src={src}
+					width="100%" height="auto"
 				/>
-				{this.props.sketchpad ?
-				<Fragment>
-					<p className="center">{this.props.t('or')}</p>
-					<Sketchpad
-						id={this.id}
-						hideNavigationButtons hideSaveButtons hideTransmitButtons
-						canvasWidth={900}
-						canvasHeight={600}
-						{...this.props.sketchpad}
-					/>
-				</Fragment> : null}
-			</Fragment>;
-		}
-		return (
-			<Card id={this.id} className={`image-question ${this.props.className}`} style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
-					<label>{this.props.question}</label>
-					<Spinner running={this.state.isProcessing} width={256} height={128} />
-					{content}
-					{ this.props.feedback ? <FeedbackButtons vertical
-						id={this.id+'_feedback'}
-						style={{
-							position: 'absolute',
-							right: '4px',
-							top: '4px'
-						}}
-					/> : null }
-					<ResponseVisualizer
-						buttonLabel="Answers" id={this.id}
-						info={IMAGE_QUESTION_SUBMISSION}
-						data={{
-							question: this.props.question,
-							type: 'image'
-						}}
-						points={this.props.points}
-					/>
-					<div className="image-question-toolbar">
-						{ nHints > 0 ?
-							<HintButton
-								onClick={this.logHint}
-								hints={this.props.hints}
-								placement={this.props.hintPlacement}
-								onFinished={() => {
-									this.setState({ exhaustedHints: true });
-								}}
-							/> :
-							null
-						}
-						{ this.state.src ? <Button size="sm" variant="warning" onClick={() => {
-							this.setState({ src: null });
-						}}>{this.props.t('reset')}</Button> : null }
-						{this.renderSubmitButton()}
-						{this.props.solution ? solutionButton : null}
-						{
-							this.props.chat ?
-								<ChatButton for={this.id} /> : null
-						}
-					</div>
-					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
-				</Card.Body>
-			</Card>
-		);
+			}
+		</div>:
+		<Fragment>
+			<div
+				className="image-question-dropzone"
+				onDrop={onDrop}
+				onDragOver={ignoreDrag}
+				onDragEnd={ignoreDrag}
+			>
+				<span>{props.t('drop-image')}</span>
+			</div>
+			<p className="center">{props.t('or')}</p>
+			<input
+				id={id+'-upload'}
+				className="image-question-upload center"
+				type="file"
+				accept="image/*"
+				onChange={handleFileUpload}
+				ref={input => {
+					fileUpload = input;
+				}}
+			/>
+			{props.sketchpad ?
+			<Fragment>
+				<p className="center">{props.t('or')}</p>
+				<Sketchpad
+					id={id}
+					hideNavigationButtons hideSaveButtons hideTransmitButtons
+					canvasWidth={900}
+					canvasHeight={600}
+					{...props.sketchpad}
+				/>
+			</Fragment> : null}
+		</Fragment>;
 	}
-}
+	return (
+		<Card id={id} className={`image-question ${props.className}`} style={props.style} >
+			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
+				<label>{props.question}</label>
+				<Spinner running={isProcessing} width={256} height={128} />
+				{content}
+				{ props.feedback ? <FeedbackButtons vertical
+					id={id+'_feedback'}
+					style={{
+						position: 'absolute',
+						right: '4px',
+						top: '4px'
+					}}
+				/> : null }
+				<ResponseVisualizer
+					buttonLabel="Answers" id={id}
+					info={IMAGE_QUESTION_SUBMISSION}
+					data={{
+						question: props.question,
+						type: 'image'
+					}}
+					points={props.points}
+				/>
+				<div className="image-question-toolbar">
+					{ nHints > 0 ?
+						<HintButton
+							onClick={logHint}
+							hints={props.hints}
+							placement={props.hintPlacement}
+							onFinished={() => {
+								setExhaustedHints( true );
+							}}
+						/> :
+						null
+					}
+					{ src ? <Button size="sm" variant="warning" onClick={() => {
+						setSrc( null );
+					}}>{props.t('reset')}</Button> : null }
+					{renderSubmitButton()}
+					{ props.solution ? solutionButton : null }
+					{ props.chat ? <ChatButton for={id} /> : null }
+				</div>
+				<GradeFeedbackRenderer for={id} points={props.points} />
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
