@@ -42,7 +42,7 @@ const ColorPicker = ( props ) => {
 			break;
 	}
 	return (
-		<div className={props.className} style={{ width: 'fit-content', margin: '0 auto', ...this.props.style }}>
+		<div className={props.className} style={{ width: 'fit-content', margin: '0 auto', ...props.style }}>
 			{colorPicker}
 		</div>
 	);
