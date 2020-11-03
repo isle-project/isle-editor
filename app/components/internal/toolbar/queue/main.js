@@ -133,8 +133,8 @@ const QueueTable = ( props ) => {
 
 // MAIN //
 
-const Queue = ( props ) => {
-	const id = props.id || uid();
+const Queue = ({ id, draggable, show, onHide, onNewQuestion, t }) => {
+	id = id || uid();
 	const session = useContext( SessionContext );
 	const questions = session.questions;
 	const [ text, setText ] = useState( '' );
@@ -166,11 +166,11 @@ const Queue = ( props ) => {
 		if (
 			event.target.className && event.target.className.includes( 'queue-panel' )
 		) {
-			props.onHide();
+			onHide();
 		}
 	};
-	let unsubscribe;
 	useEffect(() => {
+		let unsubscribe;
 		if ( session ) {
 			debug( 'We have a session, subscribe the component...' );
 			unsubscribe = session.subscribe( ( type, action ) => {
@@ -187,7 +187,7 @@ const Queue = ( props ) => {
 				}
 				if ( action && action.id === id && action.type === ENTER_QUEUE ) {
 					if ( session.isOwner() ) {
-						props.onNewQuestion();
+						onNewQuestion();
 					}
 				}
 			});
@@ -197,23 +197,23 @@ const Queue = ( props ) => {
 				unsubscribe();
 			}
 		};
-	}, [] );
+	}, [ id, onNewQuestion, session ] );
 
 	let out;
-	if ( props.show ) {
+	if ( show ) {
 		if ( session.isOwner() ) {
 			debug( 'User is an owner...' );
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
-				header={props.t( 'queue' )} onHide={props.onHide} minimizable
+				header={t( 'queue' )} onHide={onHide} minimizable
 			>
 				<QueueTable
 					questions={session.questions}
-					t={props.t}
+					t={t}
 					session={session}
 					for={id}
 				/>
 			</Panel>;
-			if ( props.draggable ) {
+			if ( draggable ) {
 				out = <Draggable
 					bounds="#Lesson" cancel=".queue-table"
 					onEscape={handleEscape} resizable
@@ -226,12 +226,12 @@ const Queue = ( props ) => {
 		}
 		const handleHide = () => {
 			setText( '' );
-			props.onHide();
+			onHide();
 		};
 		if ( !isNull( spot ) ) {
 			const chatID = 'Queue_'+session.user.name;
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
-				header={props.t( 'queue' )} onHide={handleHide} minimizable >
+				header={t( 'queue' )} onHide={handleHide} minimizable >
 				<p>
 				<Trans i18nKey="queue-status" >
 					Your question: <i>{{ question: text }}</i><br />
@@ -241,10 +241,10 @@ const Queue = ( props ) => {
 				</p>
 				<ChatButton for={chatID} showTooltip={false} />
 				<Button style={{ marginLeft: 10 }} size="sm" onClick={leave}>
-					{props.t( 'remove-myself-from-queue' )}
+					{t( 'remove-myself-from-queue' )}
 				</Button>
 			</Panel>;
-			if ( props.draggable ) {
+			if ( draggable ) {
 				out = <Draggable
 					bounds="#Lesson"
 					onEscape={handleEscape} resizable
@@ -257,11 +257,11 @@ const Queue = ( props ) => {
 		}
 		out = <Panel
 			className="queue-panel" tabIndex={0} role="button"
-			header={props.t( 'queue' )} onHide={handleHide} minimizable
+			header={t( 'queue' )} onHide={handleHide} minimizable
 		>
-			<p>{props.t( 'queue-prompt' )}</p>
+			<p>{t( 'queue-prompt' )}</p>
 			<FormGroup>
-				<FormLabel>{props.t( 'question' )}</FormLabel>
+				<FormLabel>{t( 'question' )}</FormLabel>
 				<FormControl type="text" id="queue_form"
 					value={text}
 					onChange={( event ) => {
@@ -279,13 +279,13 @@ const Queue = ( props ) => {
 				disabled={text.length === 0}
 				onClick={enter}
 			>
-				{props.t( 'submit-question' )}
+				{t( 'submit-question' )}
 			</Button>
 			<span style={{ marginLeft: 8 }}>
-				{props.t( 'queue-size', { n: questions.length })}
+				{t( 'queue-size', { n: questions.length })}
 			</span>
 		</Panel>;
-		if ( props.draggable ) {
+		if ( draggable ) {
 			out = <Draggable
 				bounds="#Lesson" cancel="#queue_form"
 				onEscape={handleEscape}
