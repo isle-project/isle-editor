@@ -20,7 +20,6 @@ import QuestionButton from './../question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'A bar chart is a graph that displays categorical data as rectangular bars with the bar heights being proportional to the frequency of each category. When grouping by a second variable, the bar chart becomes a grouped bar chart, in which multiple bars are shown for each category. An alternative would be to stack the bars on top of each other; in this case, the chart is called a stacked bar chart.';
 const STATS = [
 	'Mean',
 	'Median',
@@ -105,7 +104,7 @@ const BarchartMenu = ( props ) => {
 		<Card>
 			<Card.Header as="h4">
 				{t('Bar Chart')}
-				<QuestionButton title={t('Bar Chart')} content={DESCRIPTION} />
+				<QuestionButton title={t('Bar Chart')} content={t('Bar Chart-description')} />
 			</Card.Header>
 			<Card.Body>
 				<SelectInput

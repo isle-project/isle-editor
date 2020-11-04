@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -22,21 +22,14 @@ const MODES = [
 
 // MAIN //
 
-class PieChartMenu extends Component {
-	constructor( props ) {
-		super( props );
+const PieChartMenu = ( props ) => {
+	const { variables, defaultValue, groupingVariables, quantitative, t } = props;
+	const [ variable, setVariable ] = useState( defaultValue || variables[ 0 ] );
+	const [ summaryVariable, setSummaryVariable ] = useState( quantitative[ 0 ] );
+	const [ group, setGroup ] = useState( null );
+	const [ mode, setMode ] = useState( MODES[ 0 ] );
 
-		const { variables, defaultValue, quantitative } = props;
-		this.state = {
-			variable: defaultValue || variables[ 0 ],
-			summaryVariable: quantitative[ 0 ],
-			group: null,
-			mode: MODES[ 0 ]
-		};
-	}
-
-	handleGenerate = () => {
-		const { variable, group, mode, summaryVariable } = this.state;
+	const handleGenerate = () => {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable, group, plotId
@@ -45,86 +38,68 @@ class PieChartMenu extends Component {
 			action.summaryVariable = summaryVariable;
 		}
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
+			props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
 		};
 		const output= <PieChart
 			id={plotId}
-			{...this.props}
+			{...props}
 			variable={variable}
 			group={group}
 			summaryVariable={mode === MODES[ 1 ] ? summaryVariable : null}
 			action={action}
 			onShare={onShare}
 		/>;
-		this.props.logAction( DATA_EXPLORER_PIECHART, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { t } = this.props;
-		return (
-			<Card>
-				<Card.Header as="h4">
-					{t('Pie Chart')}
-					<QuestionButton title={t('Pie Chart')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
+		props.logAction( DATA_EXPLORER_PIECHART, action );
+		props.onCreated( output );
+	};
+	return (
+		<Card>
+			<Card.Header as="h4">
+				{t('Pie Chart')}
+				<QuestionButton title={t('Pie Chart')} content={DESCRIPTION} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('pie-sizes-represent')}
+					defaultValue={mode}
+					options={MODES}
+					onChange={setMode}
+				/>
+				<SelectInput
+					legend={t('variable')}
+					defaultValue={variable}
+					options={variables}
+					onChange={setVariable}
+				/>
+				{ mode === MODES[ 1 ] ?
 					<SelectInput
-						legend={t('pie-sizes-represent')}
-						defaultValue={this.state.mode}
-						options={MODES}
-						onChange={( value )=>{
-							this.setState({
-								mode: value
-							});
-						}}
-					/>
-					<SelectInput
-						legend={t('variable')}
-						defaultValue={this.state.variable}
-						options={this.props.variables}
-						onChange={( value )=>{
-							this.setState({
-								variable: value
-							});
-						}}
-					/>
-					{ this.state.mode === MODES[ 1 ] ?
-						<SelectInput
-							legend="Set slice sizes to sum of summary variable:"
-							defaultValue={this.state.summaryVariable}
-							options={this.props.quantitative}
-							onChange={( summaryVariable ) => {
-								this.setState({ summaryVariable });
-							}}
-						/> : null }
-					<SelectInput
-						legend={t('group-by')}
-						defaultValue={this.state.group}
-						options={this.props.groupingVariables}
-						clearable={true}
-						menuPlacement="top"
-						onChange={( value )=>{
-							this.setState({
-								group: value
-							});
-						}}
-					/>
-					<Button
-						variant="primary" block
-						onClick={this.handleGenerate}
-					>{t('generate')}</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+						legend="Set slice sizes to sum of summary variable:"
+						defaultValue={summaryVariable}
+						options={quantitative}
+						onChange={setSummaryVariable}
+					/> : null }
+				<SelectInput
+					legend={t('group-by')}
+					defaultValue={group}
+					options={groupingVariables}
+					clearable={true}
+					menuPlacement="top"
+					onChange={setGroup}
+				/>
+				<Button
+					variant="primary" block
+					onClick={handleGenerate}
+				>{t('generate')}</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //

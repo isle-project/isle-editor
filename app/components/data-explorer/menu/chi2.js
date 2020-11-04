@@ -9,11 +9,6 @@ import { DATA_EXPLORER_TESTS_CHISQUARE } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A test determining if there is a significant association between two categorical variables.';
-
-
 // MAIN //
 
 const Chi2TestMenu = ({ data, categorical, t, logAction, onCreated }) => {
@@ -29,7 +24,7 @@ const Chi2TestMenu = ({ data, categorical, t, logAction, onCreated }) => {
 			title={
 				<span>
 					{t('Chi-square Independence Test')}
-					<QuestionButton title={t('Chi-square Independence Test')} content={DESCRIPTION} />
+					<QuestionButton title={t('Chi-square Independence Test')} content={t('Chi-square Independence Test-description')} />
 				</span>
 			}
 			label={t('calculate')}

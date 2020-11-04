@@ -10,11 +10,6 @@ import { DATA_EXPLORER_SHARE_QQPLOT, DATA_EXPLORER_QQPLOT } from 'constants/acti
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A QQ (quantile-quantile) plot allows one to compare the distribution of a sample to a reference distribution (usually a normal distribution). Deviations from the plotted 45 degree reference line on the plot indicate how much the sample deviates from the reference distribution.';
-
-
 // MAIN //
 
 const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCreated }) => {
@@ -22,7 +17,7 @@ const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCr
 		<Dashboard
 			title={<span>
 				{t('QQ Plot')}
-				<QuestionButton title={t('QQ Plot')} content={DESCRIPTION} />
+				<QuestionButton title={t('QQ Plot')} content={t('QQ Plot-description')} />
 			</span>}
 			autoStart={false}
 			onGenerate={generateQQPlot}
