@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Card from 'react-bootstrap/Card';
@@ -16,11 +16,6 @@ import { DATA_EXPLORER_SHARE_LINEPLOT, DATA_EXPLORER_LINEPLOT } from 'constants/
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A line plot can be used to display one quantitative variable or the relationship between two quantitative variables as a number line. If no variable is supplied for the x-axis, the values of the y-axis variable are displayed according to their indices in the data table.';
-
-
 // FUNCTIONS //
 
 function createOption( label ) {
@@ -33,20 +28,12 @@ function createOption( label ) {
 
 // MAIN //
 
-class LinePlotMenu extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			x: null,
-			y: props.defaultValue || props.variables[ 0 ],
-			group: null,
-			showPoints: false
-		};
-	}
-
-	generateLinePlot = () => {
-		const { x, y, group, showPoints } = this.state;
+const LinePlotMenu = ( props ) => {
+	const [ x, setX ] = useState( null );
+	const [ y, setY ] = useState( props.defaultValue || props.variables[ 0 ] );
+	const [ group, setGroup ] = useState( null );
+	const [ showPoints, setShowPoints ] = useState( false );
+	const generateLinePlot = () => {
 		const plotId = randomstring( 6 );
 		const action = {
 			x,
@@ -55,94 +42,79 @@ class LinePlotMenu extends Component {
 			plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: props.t('plot-shared'),
+				message: props.t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
+			props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
 		};
 		const output = <LinePlot
-			data={this.props.data} x={x} y={y}
+			data={props.data} x={x} y={y}
 			group={group} showPoints={showPoints}
 			onShare={onShare} action={action} id={plotId}
 		/>;
-		this.props.logAction( DATA_EXPLORER_LINEPLOT, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { categorical, variables, groupingVariables, t } = this.props;
-		return (
-			<Card>
-				<Card.Header as="h4">
-					{t('Line Plot')}
-					<QuestionButton title={t('Line Plot')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<FormGroup controlId="lineplot-form-select">
-						<FormLabel>{t('x-axis')}</FormLabel>
-						<Select
-							legend={t('x-axis')}
-							defaultValue={null}
-							options={[
-								{
-									label: 'Quantitative',
-									options: variables.map( createOption )
-								},
-								{
-									label: 'Categorical',
-									options: categorical.map( createOption )
-								}
-							]}
-							onChange={( elem ) => {
-								this.setState({
-									x: elem ? elem.value : null
-								});
-							}}
-							placeholder="Select... (optional)"
-							isClearable
-							styles={selectStyles}
-						/>
-					</FormGroup>
-					<SelectInput
-						legend={t('y-axis')}
-						defaultValue={this.state.y}
-						options={variables}
-						onChange={( y ) => {
-							this.setState({ y });
+		props.logAction( DATA_EXPLORER_LINEPLOT, action );
+		props.onCreated( output );
+	};
+	const { categorical, variables, groupingVariables, t } = props;
+	return (
+		<Card>
+			<Card.Header as="h4">
+				{t('Line Plot')}
+				<QuestionButton title={t('Line Plot')} content={t('Line Plot-description')} />
+			</Card.Header>
+			<Card.Body>
+				<FormGroup controlId="lineplot-form-select">
+					<FormLabel>{t('x-axis')}</FormLabel>
+					<Select
+						legend={t('x-axis')}
+						defaultValue={null}
+						options={[
+							{
+								label: 'Quantitative',
+								options: variables.map( createOption )
+							},
+							{
+								label: 'Categorical',
+								options: categorical.map( createOption )
+							}
+						]}
+						onChange={( elem ) => {
+							setX( elem ? elem.value : null );
 						}}
+						placeholder="Select... (optional)"
+						isClearable
+						styles={selectStyles}
 					/>
-					<SelectInput
-						legend={this.props.t('group-by')}
-						defaultValue={this.state.group}
-						options={groupingVariables}
-						clearable={true}
-						menuPlacement="top"
-						onChange={( value )=>{
-							this.setState({
-								group: value
-							});
-						}}
-					/>
-					<CheckboxInput
-						legend={t('show-point-markers')}
-						defaultValue={this.state.showPoints}
-						onChange={( value )=>{
-							this.setState({
-								showPoints: value
-							});
-						}}
-					/>
-					<Button variant="primary" block onClick={this.generateLinePlot}>
-						{this.props.t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+				</FormGroup>
+				<SelectInput
+					legend={t('y-axis')}
+					defaultValue={y}
+					options={variables}
+					onChange={setY}
+				/>
+				<SelectInput
+					legend={props.t('group-by')}
+					defaultValue={group}
+					options={groupingVariables}
+					clearable={true}
+					menuPlacement="top"
+					onChange={setGroup}
+				/>
+				<CheckboxInput
+					legend={t('show-point-markers')}
+					defaultValue={showPoints}
+					onChange={setShowPoints}
+				/>
+				<Button variant="primary" block onClick={generateLinePlot}>
+					{this.props.t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //

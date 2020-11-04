@@ -16,11 +16,6 @@ import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from 'constants/ac
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A box plot (full name: box and whisker plot, coined by famous statistician John Tukey) is a display for quantitative data. For any variable, the boxplot displays its 25% quantile (a value that is greater than 25% of the data), its median, and its 75% quantile as a box. The whiskers extend to the lower fence at the smallest value in the sample that is smaller than Q1 but greater than (Q1 - 1.5*IQR) and to analogously defined upper fence.';
-
-
 // MAIN //
 
 const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, session, logAction, onCreated }) => {
@@ -56,7 +51,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 		<Card>
 			<Card.Header as="h4">
 				{t('Box Plot')}
-				<QuestionButton title={t('Box Plot')} content={DESCRIPTION} />
+				<QuestionButton title={t('Box Plot')} content={t('Box Plot-description')} />
 			</Card.Header>
 			<Card.Body>
 				<SelectInput
