@@ -13,7 +13,6 @@ import QuestionButton from './../question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'Statistical display for categorical data. The arc length of each slice in the pie is proportional to the quantity of the respective category. An alternative display for categorical data is a bar chart.';
 const MODES = [
 	'Counts of unique values',
 	'Values from a second variable'
@@ -62,7 +61,7 @@ const PieChartMenu = ( props ) => {
 		<Card>
 			<Card.Header as="h4">
 				{t('Pie Chart')}
-				<QuestionButton title={t('Pie Chart')} content={DESCRIPTION} />
+				<QuestionButton title={t('Pie Chart')} content={t('Pie Chart-description')} />
 			</Card.Header>
 			<Card.Body>
 				<SelectInput
