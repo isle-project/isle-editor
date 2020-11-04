@@ -15,7 +15,6 @@ import QuestionButton from './../question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'Display geospatial information in a map using latitude and longitude or country / state names.';
 const SCOPES = [
 	'world',
 	'usa',
@@ -75,7 +74,7 @@ class MapMenu extends Component {
 		return (
 			<Dashboard
 				autoStart={false}
-				title={<span>{t('Map')}<QuestionButton title={t('Map')} content={DESCRIPTION} /></span>}
+				title={<span>{t('Map')}<QuestionButton title={t('Map')} content={t('Map-description')} /></span>}
 				onGenerate={this.generateMap.bind( this )}
 			>
 				<Row>

@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from 'components/input/select';
 import Dashboard from 'components/dashboard';
@@ -9,53 +9,41 @@ import { DATA_EXPLORER_TESTS_KRUSKAL } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'The Kruskal-Wallis rank sum test evaluates for multiple samples the null hypothesis that their medians are identical. The Kruskal-Wallis test is a nonparametric test which does not require the data to be normally distributed.';
-
-
 // MAIN //
 
-class KruskalMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	calculateTest = ( variable, group ) => {
-		const { data, showDecision } = this.props;
+const KruskalMenu = ( props ) => {
+	const calculateTest = ( variable, group ) => {
+		const { data, showDecision } = props;
 		const output = <Kruskal data={data} variable={variable} group={group} showDecision={showDecision} />;
-		this.props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
+		props.logAction( DATA_EXPLORER_TESTS_KRUSKAL, {
 			variable, group, showDecision
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { quantitative, categorical, t } = this.props;
-		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>
-					{t('Kruskal-Wallis Test')}
-					<QuestionButton title={t('Kruskal-Wallis Test')} content={DESCRIPTION} />
-				</span>}
-				label={t('calculate')}
-				onGenerate={this.calculateTest}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={quantitative[ 0 ]}
-					options={quantitative}
-				/>
-				<SelectInput
-					legend={t('grouping-variable')}
-					defaultValue={categorical[ 0 ]}
-					options={categorical}
-				/>
-			</Dashboard>
-		);
-	}
-}
+		props.onCreated( output );
+	};
+	const { quantitative, categorical, t } = props;
+	return (
+		<Dashboard
+			autoStart={false}
+			title={<span>
+				{t('Kruskal-Wallis Test')}
+				<QuestionButton title={t('Kruskal-Wallis Test')} content={t('Kruskal-Wallis Test-description')} />
+			</span>}
+			label={t('calculate')}
+			onGenerate={calculateTest}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={quantitative[ 0 ]}
+				options={quantitative}
+			/>
+			<SelectInput
+				legend={t('grouping-variable')}
+				defaultValue={categorical[ 0 ]}
+				options={categorical}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //

@@ -19,7 +19,6 @@ import QuestionButton from './../question_button.js';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:histogram' );
-const DESCRIPTION = 'A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called "bins"; the height of each bin corresponds to how many observations are in that bin range.';
 
 
 // MAIN //
@@ -81,7 +80,7 @@ const HistogramMenu = ( props ) => {
 		<Card>
 			<Card.Header as="h4">
 				{t('Histogram')}
-				<QuestionButton title={t('Histogram')} content={DESCRIPTION} />
+				<QuestionButton title={t('Histogram')} content={t('Histogram-description')} />
 			</Card.Header>
 			<Card.Body>
 				<SelectInput

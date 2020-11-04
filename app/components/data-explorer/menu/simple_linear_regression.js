@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
@@ -19,19 +19,15 @@ const DESCRIPTION = 'Statistical model which estimates a best-fit line for a res
 
 // MAIN //
 
-class SimpleLinearRegressionMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	fitRegression = ( y, x, group, omitMissing ) => {
+const SimpleLinearRegressionMenu = ( props ) => {
+	const fitRegression = ( y, x, group, omitMissing ) => {
 		const output = <SimpleLinearRegression
 			y={y} x={x}
 			group={group} omitMissing={omitMissing}
-			data={this.props.data}
+			data={props.data}
 			onPredict={( yhat, resid, counter ) => {
-				const newData = copy( this.props.data, 1 );
-				const newQuantitative = this.props.quantitative.slice();
+				const newData = copy( props.data, 1 );
+				const newQuantitative = props.quantitative.slice();
 				let name = 'pred_slm'+counter;
 				newData[ name ] = yhat;
 				if ( !contains( newQuantitative, name ) ) {
@@ -42,48 +38,48 @@ class SimpleLinearRegressionMenu extends Component {
 					newQuantitative.push( name );
 				}
 				newData[ name ] = resid;
-				this.props.onGenerate( newQuantitative, newData );
+				props.onGenerate( newQuantitative, newData );
 			}}
-			onDiagnostics={this.props.onCreated}
+			onDiagnostics={props.onCreated}
 		/>;
-		this.props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
+		props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
 			y, x, group, omitMissing
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { quantitative, categorical, t } = this.props;
-		return (
-			<Dashboard
-				title={<span>{this.props.t('Simple Linear Regression')}<QuestionButton title={this.props.t('Simple Linear Regression')} content={DESCRIPTION} /></span>}
-				autoStart={false}
-				onGenerate={this.fitRegression}
-			>
-				<SelectInput
-					legend={t('outcome-y')}
-					defaultValue={quantitative[ 0 ]}
-					options={quantitative}
-				/>
-				<SelectInput
-					legend={t('explanatory-variable')}
-					defaultValue={quantitative[ 1 ]}
-					options={quantitative}
-				/>
-				<SelectInput
-					legend={t('group-by')}
-					options={categorical}
-					clearable={true}
-					menuPlacement="top"
-				/>
-				<CheckboxInput
-					legend={t('omit-missing')}
-					defaultValue={false}
-				/>
-			</Dashboard>
-		);
-	}
-}
+		props.onCreated( output );
+	};
+	const { quantitative, categorical, t } = props;
+	return (
+		<Dashboard
+			title={<span>
+				{props.t('Simple Linear Regression')}
+				<QuestionButton title={props.t('Simple Linear Regression')} content={DESCRIPTION} />
+			</span>}
+			autoStart={false}
+			onGenerate={fitRegression}
+		>
+			<SelectInput
+				legend={t('outcome-y')}
+				defaultValue={quantitative[ 0 ]}
+				options={quantitative}
+			/>
+			<SelectInput
+				legend={t('explanatory-variable')}
+				defaultValue={quantitative[ 1 ]}
+				options={quantitative}
+			/>
+			<SelectInput
+				legend={t('group-by')}
+				options={categorical}
+				clearable={true}
+				menuPlacement="top"
+			/>
+			<CheckboxInput
+				legend={t('omit-missing')}
+				defaultValue={false}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
