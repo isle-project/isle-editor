@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -33,12 +33,9 @@ const LOCATION_MODES = [
 
 // MAIN //
 
-class MapMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	generateMap( locations, locationmode, scope, showLand, longitude, latitude, variable ) {
+const MapMenu = ( props ) => {
+	const { variables, groupingVariables, t } = props;
+	const generateMap = ( locations, locationmode, scope, showLand, longitude, latitude, variable ) => {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
@@ -49,93 +46,91 @@ class MapMenu extends Component {
 			showLand,
 			plotId
 		};
-		const { t } = this.props;
 		const onShare = () => {
-			this.props.session.addNotification({
+			props.session.addNotification({
 				title: t('plot-shared'),
 				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_MAP, action );
+			props.logAction( DATA_EXPLORER_SHARE_MAP, action );
 		};
 		const output = <Map
-			data={this.props.data} variable={variable} locations={locations}
+			data={props.data} variable={variable} locations={locations}
 			longitude={longitude} latitude={latitude} locationmode={locationmode}
 			scope={scope} showLand={showLand}
 			id={plotId} action={action} onShare={onShare}
 		/>;
-		this.props.logAction( DATA_EXPLORER_MAP, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { variables, groupingVariables, t } = this.props;
-		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>{t('Map')}<QuestionButton title={t('Map')} content={t('Map-description')} /></span>}
-				onGenerate={this.generateMap.bind( this )}
-			>
-				<Row>
-					<Col>
-						<SelectInput
-							legend="Locations:"
-							options={groupingVariables}
-							clearable
-						/>
-					</Col>
-					<Col>
-						<SelectInput
-							legend="Location encoding"
-							options={LOCATION_MODES}
-							defaultValue="country names"
-						/>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<SelectInput
-							legend="Scope:"
-							defaultValue="world"
-							options={SCOPES}
-						/>
-					</Col>
-					<Col>
-						<CheckboxInput
-							legend="Show Land"
-							defaultValue={false}
-							style={{ marginTop: 35 }}
-						/>
-					</Col>
-				</Row>
-				<h4 className="center">or</h4>
-				<Row>
-					<Col>
-						<SelectInput
-							legend="Longitude:"
-							options={variables}
-							clearable
-						/>
-					</Col>
-					<Col>
-						<SelectInput
-							legend="Latitude:"
-							options={variables}
-							clearable
-						/>
-					</Col>
-				</Row>
-				<hr />
-				<SelectInput
-					legend={t('variable')}
-					options={variables}
-					clearable
-				/>
-			</Dashboard>
-		);
-	}
-}
+		props.logAction( DATA_EXPLORER_MAP, action );
+		props.onCreated( output );
+	};
+	return (
+		<Dashboard
+			autoStart={false}
+			title={<span>
+				{t('Map')}
+				<QuestionButton title={t('Map')} content={t('Map-description')} />
+			</span>}
+			onGenerate={generateMap}
+		>
+			<Row>
+				<Col>
+					<SelectInput
+						legend="Locations:"
+						options={groupingVariables}
+						clearable
+					/>
+				</Col>
+				<Col>
+					<SelectInput
+						legend="Location encoding"
+						options={LOCATION_MODES}
+						defaultValue="country names"
+					/>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<SelectInput
+						legend="Scope:"
+						defaultValue="world"
+						options={SCOPES}
+					/>
+				</Col>
+				<Col>
+					<CheckboxInput
+						legend="Show Land"
+						defaultValue={false}
+						style={{ marginTop: 35 }}
+					/>
+				</Col>
+			</Row>
+			<h4 className="center">or</h4>
+			<Row>
+				<Col>
+					<SelectInput
+						legend="Longitude:"
+						options={variables}
+						clearable
+					/>
+				</Col>
+				<Col>
+					<SelectInput
+						legend="Latitude:"
+						options={variables}
+						clearable
+					/>
+				</Col>
+			</Row>
+			<hr />
+			<SelectInput
+				legend={t('variable')}
+				options={variables}
+				clearable
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
