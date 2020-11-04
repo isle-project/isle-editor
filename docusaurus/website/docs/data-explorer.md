@@ -102,7 +102,8 @@ We will include the explorer with the following code:
   'Excess Kurtosis',
   'First Quartile',
   'Third Quartile',
-  'Quantile'
+  'Quantile',
+  'Five-Number Summary'
 ]`.
 * __style__ | `object`: CSS inline styles for main container. Default: `{}`.
 * __tables__ | `array`: array of strings indicating which tables may be created from the data. Default: `[

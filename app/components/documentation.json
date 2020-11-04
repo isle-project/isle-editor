@@ -174,11 +174,10 @@
       {
         "name": "title",
         "type": "string",
-        "description": "heading to be displayed in front of references",
         "defaultValue": null
       }
     ],
-    "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."
+    "description": "Description is missing."
   },
   "undefined": {
     "props": [
@@ -749,7 +748,8 @@
           "Excess Kurtosis",
           "First Quartile",
           "Third Quartile",
-          "Quantile"
+          "Quantile",
+          "Five-Number Summary"
         ]
       },
       {
@@ -1887,7 +1887,7 @@
         "defaultValue": "function onSubmit() {}"
       }
     ],
-    "description": "A question that asks the user to upload an image."
+    "description": "Event handler ignoring default dragging behavior and preventing bubbling-up.\n/\nfunction ignoreDrag( evt ) {\nevt.stopPropagation();\nevt.preventDefault();\n}\n\n\n// MAIN //\n\n/**\nA question that asks the user to upload an image."
   },
   "Image": {
     "props": [
@@ -5407,6 +5407,11 @@
         "defaultValue": null
       },
       {
+        "name": "bandwidthAdjust",
+        "type": "number",
+        "defaultValue": 1
+      },
+      {
         "name": "binStrategy",
         "type": "string",
         "description": "binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)",
@@ -5431,7 +5436,7 @@
         "defaultValue": {}
       }
     ],
-    "description": "Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.\n/\nfunction calculateDensityValues( vals, densityType ) {\n/* eslint-disable no-case-declarations */\nconst minVal = min( vals );\nconst maxVal = max( vals );\nconst x = linspace( minVal, maxVal, 512 );\nlet y;\nswitch ( densityType ) {\ncase 'Data-driven':\n// Chose appropriate bandwidth via rule-of-thumb:\nconst h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;\nconst phi = gaussian.factory( 0.0, 1.0 );\nconst kde = kernelSmoothDensity( vals, phi, h );\ny = x.map( x => kde( x ) );\nbreak;\ncase 'Uniform':\ny = x.map( x => dunif( x, minVal, maxVal ) );\nbreak;\ncase 'Exponential':\nconst lambda = 1.0 / mean( vals );\ny = x.map( x => dexp( x, lambda ) );\nbreak;\ncase 'Normal':\nconst avg = mean( vals );\nconst sd = stdev( vals );\ny = x.map( x => gaussian( x, avg, sd ) );\nbreak;\n}\nreturn [ x, y ];\n}\n\nexport function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins = {}}) {\nlet traces;\nlet layout;\n\nif ( !group ) {\nlet vals = data[ variable ];\nlet nonmissing = [];\nfor ( let i = 0; i < vals.length; i++ ) {\nlet x = vals[ i ];\nif ( isNonMissingNumber( x ) ) {\nnonmissing.push( x );\n}\n}\nvals = nonmissing;\ntraces = [ {\nx: vals,\ntype: 'histogram',\nname: 'histogram'\n} ];\ntraces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );\nif ( displayDensity ) {\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: densityType+' density'\n});\n}\ntraces[ 0 ][ 'histnorm' ] = 'probability density';\n}\nlayout = {\nxaxis: { title: variable },\nyaxis: {\ntitle: displayDensity ? 'Density' : 'Count',\nfixedrange: true\n},\nreversescale: true,\ntitle: variable,\n...SETTINGS\n};\n} else {\nlet freqs = by( data[ variable ], data[ group ], arr => {\nlet nonmissing = [];\nfor ( let i = 0; i < arr.length; i++ ) {\nlet x = arr[ i ];\nif ( isNonMissingNumber( x ) ) {\nnonmissing.push( x );\n}\n}\nreturn nonmissing;\n});\ntraces = [];\nconst keys = extractUsedCategories( freqs, group );\nconst nPlots = keys.length;\nconst nRows = ceil( nPlots / nCols );\nif ( groupMode === 'Facets' ) {\nfor ( let i = 0; i < keys.length; i++ ) {\nconst key = keys[ i ];\nlet vals = freqs[ key ];\nif ( displayDensity ) {\nconst config = {\nx: vals,\ntype: 'histogram',\nhistnorm: 'probability density',\nname: densityType ? key+':histogram' : key,\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: key+':density',\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n});\n}\n} else {\nconst config = {\nx: vals,\ntype: 'histogram',\nname: key,\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\n}\n}\n} else {\nfor ( let i = 0; i < keys.length; i++ ) {\nconst key = keys[ i ];\nlet vals = freqs[ key ];\nif ( displayDensity ) {\nconst config = {\nx: vals,\ntype: 'histogram',\nhistnorm: 'probability density',\nname: densityType ? key+':histogram' : key,\nopacity: 0.5\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: key+':density'\n});\n}\n} else {\nconst config = {\nx: vals,\ntype: 'histogram',\nname: key,\nopacity: 0.5\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\n}\n}\n}\nlayout = {\nyaxis: {\ntitle: displayDensity ? 'Density' : 'Count',\nfixedrange: true\n},\ntitle: `${variable} given ${group}`,\n...SETTINGS\n};\nif ( groupMode === 'Facets' ) {\nlayout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };\nlayout.height = 300 + ( ( nRows - 1 ) * 150 );\n} else {\nlayout.barmode = 'overlay';\nlayout.xaxis = { title: variable };\n}\n}\nreturn {\ndata: traces,\nlayout: layout\n};\n}\n\n\n// MAIN //\n\nfunction Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins, action, onShare, onSelected }) {\nconst config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, binStrategy, nBins, xbins });\nreturn (\n<Plotly\neditable\ndraggable\nid={id}\nfit\nmeta={action}\ndata={config.data}\nlayout={config.layout}\nonShare={onShare}\nonSelected={( selected ) => {\nif ( onSelected ) {\nonSelected( variable, selected );\n}\n}}\n/>\n);\n}\n\n\n// PROPERTIES //\n\nHistogram.defaultProps = {\ngroup: null,\ngroupMode: 'Overlay',\ndisplayDensity: false,\ndensityType: null,\nbinStrategy: 'Automatic',\nnBins: null,\nnCols: null,\nxbins: {}\n};\n\nHistogram.propTypes = {\ndata: PropTypes.object.isRequired,\nvariable: PropTypes.string.isRequired,\ngroup: PropTypes.string,\ngroupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),\ndisplayDensity: PropTypes.bool,\ndensityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),\nbinStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),\nnBins: PropTypes.number,\nnCols: PropTypes.number,\nxbins: PropTypes.shape({\nstart: PropTypes.number,\nsize: PropTypes.number,\nend: PropTypes.number\n})\n};\n\n\n// EXPORTS //\n\n/**\nA histogram."
+    "description": "Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.\n/\nfunction calculateDensityValues( vals, densityType, bandwidthAdjust = 1 ) {\n/* eslint-disable no-case-declarations */\nconst minVal = min( vals );\nconst maxVal = max( vals );\nconst x = linspace( minVal, maxVal, 512 );\nlet y;\nswitch ( densityType ) {\ncase 'Data-driven':\n// Chose appropriate bandwidth via rule-of-thumb:\nlet h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;\n\n// Multiply bandwidth with user-defined adjustment parameter:\nh *= bandwidthAdjust;\nconst phi = gaussian.factory( 0.0, 1.0 );\nconst kde = kernelSmoothDensity( vals, phi, h );\ny = x.map( x => kde( x ) );\nbreak;\ncase 'Uniform':\ny = x.map( x => dunif( x, minVal, maxVal ) );\nbreak;\ncase 'Exponential':\nconst lambda = 1.0 / mean( vals );\ny = x.map( x => dexp( x, lambda ) );\nbreak;\ncase 'Normal':\nconst avg = mean( vals );\nconst sd = stdev( vals );\ny = x.map( x => gaussian( x, avg, sd ) );\nbreak;\n}\nreturn [ x, y ];\n}\n\nexport function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins = {}}) {\nlet traces;\nlet layout;\n\nif ( !group ) {\nlet vals = data[ variable ];\nlet nonmissing = [];\nfor ( let i = 0; i < vals.length; i++ ) {\nlet x = vals[ i ];\nif ( isNonMissingNumber( x ) ) {\nnonmissing.push( x );\n}\n}\nvals = nonmissing;\ntraces = [ {\nx: vals,\ntype: 'histogram',\nname: 'histogram'\n} ];\ntraces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );\nif ( displayDensity ) {\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: densityType+' density'\n});\n}\ntraces[ 0 ][ 'histnorm' ] = 'probability density';\n}\nlayout = {\nxaxis: { title: variable },\nyaxis: {\ntitle: displayDensity ? 'Density' : 'Count',\nfixedrange: true\n},\nreversescale: true,\ntitle: variable,\n...SETTINGS\n};\n} else {\nlet freqs = by( data[ variable ], data[ group ], arr => {\nlet nonmissing = [];\nfor ( let i = 0; i < arr.length; i++ ) {\nlet x = arr[ i ];\nif ( isNonMissingNumber( x ) ) {\nnonmissing.push( x );\n}\n}\nreturn nonmissing;\n});\ntraces = [];\nconst keys = extractUsedCategories( freqs, group );\nconst nPlots = keys.length;\nconst nRows = ceil( nPlots / nCols );\nif ( groupMode === 'Facets' ) {\nfor ( let i = 0; i < keys.length; i++ ) {\nconst key = keys[ i ];\nlet vals = freqs[ key ];\nif ( displayDensity ) {\nconst config = {\nx: vals,\ntype: 'histogram',\nhistnorm: 'probability density',\nname: densityType ? key+':histogram' : key,\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: key+':density',\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n});\n}\n} else {\nconst config = {\nx: vals,\ntype: 'histogram',\nname: key,\nxaxis: 'x'+(i+1),\nyaxis: 'y'+(i+1)\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\n}\n}\n} else {\nfor ( let i = 0; i < keys.length; i++ ) {\nconst key = keys[ i ];\nlet vals = freqs[ key ];\nif ( displayDensity ) {\nconst config = {\nx: vals,\ntype: 'histogram',\nhistnorm: 'probability density',\nname: densityType ? key+':histogram' : key,\nopacity: 0.5\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\nif ( densityType ) {\nconst [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );\ntraces.push({\nx: x,\ny: y,\ntype: 'lines',\nname: key+':density'\n});\n}\n} else {\nconst config = {\nx: vals,\ntype: 'histogram',\nname: key,\nopacity: 0.5\n};\nsetBins( config, vals, binStrategy, nBins, xbins );\ntraces.push( config );\n}\n}\n}\nlayout = {\nyaxis: {\ntitle: displayDensity ? 'Density' : 'Count',\nfixedrange: true\n},\ntitle: `${variable} given ${group}`,\n...SETTINGS\n};\nif ( groupMode === 'Facets' ) {\nlayout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };\nlayout.height = 300 + ( ( nRows - 1 ) * 150 );\n} else {\nlayout.barmode = 'overlay';\nlayout.xaxis = { title: variable };\n}\n}\nreturn {\ndata: traces,\nlayout: layout\n};\n}\n\n\n// MAIN //\n\nfunction Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins, action, onShare, onSelected }) {\nconst config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins });\nreturn (\n<Plotly\neditable\ndraggable\nid={id}\nfit\nmeta={action}\ndata={config.data}\nlayout={config.layout}\nonShare={onShare}\nonSelected={( selected ) => {\nif ( onSelected ) {\nonSelected( variable, selected );\n}\n}}\n/>\n);\n}\n\n\n// PROPERTIES //\n\nHistogram.defaultProps = {\ngroup: null,\ngroupMode: 'Overlay',\ndisplayDensity: false,\ndensityType: null,\nbandwidthAdjust: 1,\nbinStrategy: 'Automatic',\nnBins: null,\nnCols: null,\nxbins: {}\n};\n\nHistogram.propTypes = {\ndata: PropTypes.object.isRequired,\nvariable: PropTypes.string.isRequired,\ngroup: PropTypes.string,\ngroupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),\ndisplayDensity: PropTypes.bool,\ndensityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),\nbandwidthAdjust: PropTypes.number,\nbinStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),\nnBins: PropTypes.number,\nnCols: PropTypes.number,\nxbins: PropTypes.shape({\nstart: PropTypes.number,\nsize: PropTypes.number,\nend: PropTypes.number\n})\n};\n\n\n// EXPORTS //\n\n/**\nA histogram."
   },
   "LinePlot": {
     "props": [
@@ -5876,6 +5881,18 @@
         "type": "number",
         "description": "number of pixels per modules (black dots)",
         "defaultValue": 8
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "description": "width in pixels; takes precedence over `scale` property",
+        "defaultValue": null
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "description": "height in pixels; takes precedence over `scale` property",
+        "defaultValue": null
       },
       {
         "name": "showText",
@@ -6334,12 +6351,6 @@
         "type": "boolean",
         "description": "controls whether one can submit multiple answers",
         "defaultValue": false
-      },
-      {
-        "name": "voiceID",
-        "type": "string",
-        "description": "voice control identifier",
-        "defaultValue": null
       },
       {
         "name": "until",
