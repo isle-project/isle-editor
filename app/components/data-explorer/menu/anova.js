@@ -9,11 +9,6 @@ import { DATA_EXPLORER_TESTS_ANOVA } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A one-way analysis of variance tests for equality of means across several groups.';
-
-
 // MAIN //
 
 const AnovaMenu = ({ quantitative, categorical, t, data, showDecision, logAction, onCreated }) => {
@@ -22,7 +17,7 @@ const AnovaMenu = ({ quantitative, categorical, t, data, showDecision, logAction
 			autoStart={false}
 			title={<span>
 				{t('One-Way ANOVA')}
-				<QuestionButton title={t('One-Way ANOVA')} content={DESCRIPTION} />
+				<QuestionButton title={t('One-Way ANOVA')} content={t('One-Way ANOVA-description')} />
 			</span>}
 			label={t('calculate')}
 			onGenerate={( variable, group ) => {

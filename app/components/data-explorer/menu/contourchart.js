@@ -16,11 +16,6 @@ import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from 'cons
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A contour plot can be used to display the joint distribution of two quantitative variables. It plots a three-dimensional surface by plotting constant slices, called contours, on a two-dimensional grid.';
-
-
 // MAIN //
 
 const ContourChartMenu = ( props ) => {
@@ -64,7 +59,7 @@ const ContourChartMenu = ( props ) => {
 	return (
 		<Card style={{ minWidth: 650 }}>
 			<Card.Header as="h4" >
-				{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={DESCRIPTION} />
+				{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={t('Contour Chart-description')} />
 			</Card.Header>
 			<Card.Body>
 				<Row>

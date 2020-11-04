@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import NumberInput from 'components/input/number';
 import SelectInput from 'components/input/select';
@@ -11,74 +11,62 @@ import { DATA_EXPLORER_TESTS_CORRTEST } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A test used to evaluate the Pearson correlation between two variables, which measures the linear association between them.';
-
-
 // MAIN //
 
-class CorrTestMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
-		const { data, showDecision } = this.props;
+const CorrTestMenu = ( props ) => {
+	const calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
+		const { data, showDecision } = props;
 		const output = <CorrTest data={data} var1={var1} var2={var2} rho0={rho0} direction={direction} alpha={alpha} showDecision={showDecision} />;
-		this.props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
+		props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
 			var1, var2, rho0, direction, alpha, showDecision
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { quantitative, t } = this.props;
-		return (
-			<Dashboard
-				title={
-					<span>
-						{t('Correlation Test')}
-						<QuestionButton title={t('Correlation Test')} content={DESCRIPTION} />
-					</span>
-				}
-				label={t('calculate')}
-				autoStart={false}
-				onGenerate={this.calculateCorrTest}
-			>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={quantitative[ 0 ]}
-					options={quantitative}
-				/>
-				<SelectInput
-					legend={t('second-variable')}
-					defaultValue={quantitative[ 1 ]}
-					options={quantitative}
-				/>
-				<NumberInput
-					legend={<TeX raw="\rho_0" />}
-					defaultValue={0.0}
-					step="any"
-					min={-1.0}
-					max={1.0}
-				/>
-				<SelectInput
-					legend={t('direction')}
-					defaultValue="two-sided"
-					options={[ 'less', 'greater', 'two-sided' ]}
-				/>
-				<NumberInput
-					legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
-					defaultValue={0.05}
-					min={0.0}
-					max={1.0}
-					step="any"
-				/>
-			</Dashboard>
-		);
-	}
-}
+		props.onCreated( output );
+	};
+	const { quantitative, t } = props;
+	return (
+		<Dashboard
+			title={
+				<span>
+					{t('Correlation Test')}
+					<QuestionButton title={t('Correlation Test')} content={t('Correlation Test-description')} />
+				</span>
+			}
+			label={t('calculate')}
+			autoStart={false}
+			onGenerate={calculateCorrTest}
+		>
+			<SelectInput
+				legend={t('variable')}
+				defaultValue={quantitative[ 0 ]}
+				options={quantitative}
+			/>
+			<SelectInput
+				legend={t('second-variable')}
+				defaultValue={quantitative[ 1 ]}
+				options={quantitative}
+			/>
+			<NumberInput
+				legend={<TeX raw="\rho_0" />}
+				defaultValue={0.0}
+				step="any"
+				min={-1.0}
+				max={1.0}
+			/>
+			<SelectInput
+				legend={t('direction')}
+				defaultValue="two-sided"
+				options={[ 'less', 'greater', 'two-sided' ]}
+			/>
+			<NumberInput
+				legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
+				defaultValue={0.05}
+				min={0.0}
+				max={1.0}
+				step="any"
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
