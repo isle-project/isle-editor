@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -14,30 +14,18 @@ import { DATA_EXPLORER_TESTS_MEAN } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A test for the mean of a quantitative variable.';
-
-
 // MAIN //
 
-class MeanTestMenu extends Component {
-	constructor( props ) {
-		super( props );
+const MeanTestMenu = ( props ) => {
+	const { data, showDecision, quantitative, t } = props;
+	const [ type, setType ] = useState( 'T Test' );
+	const [ variable, setVariable ] = useState( null );
+	const [ mu0, setMu0 ] = useState( 0 );
+	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ alpha, setAlpha ] = useState( 0.05 );
+	const [ stdev, setStdev ] = useState( null );
 
-		this.state = {
-			type: 'T Test',
-			variable: null,
-			mu0: 0,
-			direction: 'two-sided',
-			alpha: 0.05,
-			stdev: null
-		};
-	}
-
-	calculateMeanTest = () => {
-		const { data, showDecision } = this.props;
-		const { variable, type, mu0, direction, alpha, stdev } = this.state;
+	const calculateMeanTest = () => {
 		const output = <MeanTest
 			data={data}
 			variable={variable}
@@ -48,47 +36,39 @@ class MeanTestMenu extends Component {
 			type={type}
 			alpha={alpha}
 		/>;
-		this.props.logAction( DATA_EXPLORER_TESTS_MEAN, {
+		props.logAction( DATA_EXPLORER_TESTS_MEAN, {
 			variable, mu0, direction, alpha, type, stdev, showDecision
 		});
-		this.props.onCreated( output );
-	}
-
-	renderInputs() {
-		const { quantitative, t } = this.props;
-		return (
-			<Fragment>
+		props.onCreated( output );
+	};
+	return (
+		<Card
+			style={{ fontSize: '14px' }}
+		>
+			<Card.Header as="h4">
+				{t('One-Sample Mean Test')}
+				<QuestionButton title={t('One-Sample Mean Test')} content={t('One-Sample Mean Test-description')} />
+			</Card.Header>
+			<Card.Body>
 				<SelectInput
 					legend={t('type-of-test')}
-					defaultValue={this.state.type}
+					defaultValue={type}
 					options={[ 'T Test', 'Z Test' ]}
-					onChange={( value ) => {
-						this.setState({
-							type: value
-						});
-					}}
+					onChange={setType}
 				/>
 				<SelectInput
 					legend={t('variable')}
 					defaultValue={null}
 					options={quantitative}
-					onChange={( variable ) => {
-						this.setState({
-							variable
-						});
-					}}
+					onChange={setVariable}
 				/>
-				{ this.state.type === 'Z Test' ?
+				{ type === 'Z Test' ?
 					<NumberInput
 						legend={t('Standard Deviation')}
-						defaultValue={this.state.stdev}
+						defaultValue={stdev}
 						step="any"
 						min={0}
-						onChange={( value ) => {
-							this.setState({
-								stdev: value
-							});
-						}}
+						onChange={setStdev}
 						inputStyle={{
 							width: 140
 						}}
@@ -98,69 +78,41 @@ class MeanTestMenu extends Component {
 					<Col>
 						<NumberInput
 							legend={<span><TeX raw="H_0" /> mean value (<TeX raw="\mu_0" />)</span>}
-							defaultValue={this.state.mu0}
+							defaultValue={mu0}
 							step="any"
-							onChange={( value ) => {
-								this.setState({
-									mu0: value
-								});
-							}}
+							onChange={setMu0}
 						/>
 					</Col>
 					<Col>
 						<NumberInput
 							legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
-							defaultValue={this.state.alpha}
+							defaultValue={alpha}
 							min={0.0}
 							max={1.0}
 							tooltipPlacement="left"
 							step="any"
-							onChange={( value ) => {
-								this.setState({
-									alpha: value
-								});
-							}}
+							onChange={setAlpha}
 						/>
 					</Col>
 				</Row>
 				<SelectInput
 					legend={t('direction')}
-					defaultValue={this.state.direction}
+					defaultValue={direction}
 					options={[ 'less', 'greater', 'two-sided' ]}
-					onChange={( value ) => {
-						this.setState({
-							direction: value
-						});
-					}}
+					onChange={setDirection}
 					menuPlacement="top"
 				/>
-			</Fragment>
-		);
-	}
+				<Button
+					variant="primary" block onClick={calculateMeanTest}
+					disabled={!variable}
+				>
+					{t('calculate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
-	render() {
-		const { t } = this.props;
-		return (
-			<Card
-				style={{ fontSize: '14px' }}
-			>
-				<Card.Header as="h4">
-					{t('One-Sample Mean Test')}
-					<QuestionButton title={t('One-Sample Mean Test')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					{this.renderInputs()}
-					<Button
-						variant="primary" block onClick={this.calculateMeanTest}
-						disabled={!this.state.variable}
-					>
-						{t('calculate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
 
 // PROPERTIES //
 
