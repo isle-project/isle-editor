@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import unique from 'uniq';
 import copy from '@stdlib/utils/copy';
@@ -13,25 +13,18 @@ import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'Predict a quantitative response variable using one or more explanatory variables.';
-
-
 // MAIN //
 
-class MultipleLinearRegressionMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
+const MultipleLinearRegressionMenu = ( props ) => {
+	const { data, categorical, quantitative, t } = props;
 
-	compute = ( y, x, intercept, omitMissing ) => {
+	const compute = ( y, x, intercept, omitMissing ) => {
 		const output = <MultipleLinearRegression
 			x={x} y={y} intercept={intercept} omitMissing={omitMissing}
-			data={this.props.data} quantitative={this.props.quantitative}
+			data={data} quantitative={quantitative}
 			onPredict={( yhat, resid, counter ) => {
-				const newData = copy( this.props.data, 1 );
-				const newQuantitative = this.props.quantitative.slice();
+				const newData = copy( data, 1 );
+				const newQuantitative = quantitative.slice();
 				let name = 'pred_lm'+counter;
 				newData[ name ] = yhat;
 				if ( !contains( newQuantitative, name ) ) {
@@ -42,51 +35,47 @@ class MultipleLinearRegressionMenu extends Component {
 					newQuantitative.push( name );
 				}
 				newData[ name ] = resid;
-				this.props.onGenerate( newQuantitative, newData );
+				props.onGenerate( newQuantitative, newData );
 			}}
-			onDiagnostics={this.props.onCreated}
+			onDiagnostics={props.onCreated}
 		/>;
 		const action = {
 			y, x, intercept
 		};
-		this.props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { categorical, quantitative, t } = this.props;
-		return (
-			<Dashboard
-				title={<span>
-					{t('Multiple Linear Regression')}
-					<QuestionButton title={t('Multiple Linear Regression')} content={DESCRIPTION} />
-				</span>}
-				autoStart={false}
-				onGenerate={this.compute}
-			>
-				<SelectInput
-					legend={t('outcome-y')}
-					options={quantitative}
-					defaultValue={quantitative[ 0 ]}
-				/>
-				<SelectInput
-					legend={t('predictors-x')} multi
-					options={unique( quantitative.concat( categorical ) )}
-					defaultValue={quantitative[ 1 ]}
-					closeMenuOnSelect={false}
-				/>
-				<CheckboxInput
-					legend={t('include-intercept')}
-					defaultValue={true}
-				/>
-				<CheckboxInput
-					legend={t('omit-missing')}
-					defaultValue={false}
-				/>
-			</Dashboard>
-		);
-	}
-}
+		props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, action );
+		props.onCreated( output );
+	};
+	return (
+		<Dashboard
+			title={<span>
+				{t('Multiple Linear Regression')}
+				<QuestionButton title={t('Multiple Linear Regression')} content={t('Multiple Linear Regression-description')} />
+			</span>}
+			autoStart={false}
+			onGenerate={compute}
+		>
+			<SelectInput
+				legend={t('outcome-y')}
+				options={quantitative}
+				defaultValue={quantitative[ 0 ]}
+			/>
+			<SelectInput
+				legend={t('predictors-x')} multi
+				options={unique( quantitative.concat( categorical ) )}
+				defaultValue={quantitative[ 1 ]}
+				closeMenuOnSelect={false}
+			/>
+			<CheckboxInput
+				legend={t('include-intercept')}
+				defaultValue={true}
+			/>
+			<CheckboxInput
+				legend={t('omit-missing')}
+				defaultValue={false}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //
