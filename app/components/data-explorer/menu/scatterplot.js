@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -15,214 +15,176 @@ import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'cons
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A scatterplot is used to display the values of two quantitative variables inside a Cartesian coordinate system. Three additional variables can be displayed on the plot in this implementation: The color and type of the dots corresponding to each observation can represent categorical variables, and a quantitative variable can be chosen to govern the size of the dots. In cases where there is a textual identifier for each observation, it can be displayed as a label next to the dots. It is also possible to overlay a linear and/or smoothed regression line.';
-
-
 // MAIN //
 
-class ScatterplotMenu extends Component {
-	constructor( props ) {
-		super( props );
+const ScatterplotMenu = ( props ) => {
+	const { variables, groupingVariables, defaultX, defaultY, t } = props;
 
-		const { variables, defaultX, defaultY } = props;
+	const [ xval, setXval ] = useState( defaultX || variables[ 0 ] );
+	const [ yval, setYval ] = useState( defaultY || variables[ 1 ] );
+	const [ color, setColor ] = useState( null );
+	const [ type, setType ] = useState( null );
+	const [ size, setSize ] = useState( null );
+	const [ text, setText ] = useState( null );
+	const [ regressionLine, setRegressionLine ] = useState( false );
+	const [ regressionMethod, setRegressionMethod ] = useState([ 'linear' ]);
+	const [ lineBy, setLineBy ] = useState( null );
+	const [ smoothSpan, setSmoothSpan ] = useState( 0.66 );
 
-		this.state = {
-			xval: defaultX || variables[ 0 ],
-			yval: defaultY || variables[ 1 ],
-			color: null,
-			type: null,
-			text: null,
-			regressionLine: false,
-			regressionMethod: ['linear'],
-			lineBy: null,
-			smoothSpan: 0.66
-		};
-	}
-
-	generateScatterplot = () => {
+	const generateScatterplot = () => {
 		const plotId = randomstring( 6 );
-		const action = { ...this.state, plotId };
-
+		const action = { xval, yval, plotId };
+		if ( color ) {
+			action.color = color;
+		}
+		if ( type ) {
+			action.type = type;
+		}
+		if ( size ) {
+			action.size = size;
+		}
+		if ( text ) {
+			action.text = text;
+		}
+		if ( regressionLine ) {
+			action.regressionLine = regressionLine;
+			action.regressionMethod = regressionMethod;
+		}
+		if ( contains( regressionMethod, 'smooth' ) ) {
+			action.smoothSpan = smoothSpan;
+		}
+		if ( lineBy ) {
+			action.lineBy = lineBy;
+		}
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, action );
+			props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, action );
 		};
 		const output = <ScatterPlot
-			data={this.props.data}
-			{...this.state}
+			data={props.data}
+			xval={xval} yval={yval} color={color} type={type} size={size} text={text}
+			regressionLine={regressionLine} regressionMethod={regressionMethod}
+			lineBy={lineBy} smoothSpan={smoothSpan}
 			id={plotId}
 			action={action}
+			onSelected={props.onSelected}
 			onShare={onShare}
 		/>;
-		this.props.logAction( DATA_EXPLORER_SCATTERPLOT, action );
-		this.props.onCreated( output );
-	}
-
-	renderInputs() {
-		const { variables, groupingVariables, t } = this.props;
-		return ( <Fragment>
-			<div style={{ width: '100%' }}>
-				<SelectInput
-					legend={t('x-axis')}
-					defaultValue={this.state.xval}
-					options={variables}
-					style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
-					onChange={( value ) => {
-						this.setState({
-							xval: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend={t('y-axis')}
-					defaultValue={this.state.yval}
-					style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
-					options={variables}
-					onChange={( value ) => {
-						this.setState({
-							yval: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Labels:"
-					style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
-					clearable={true}
-					options={groupingVariables}
-					onChange={( value ) => {
-						this.setState({
-							text: value
-						});
-					}}
-				/>
-			</div>
-			<div style={{ width: '100%' }}>
-				<SelectInput
-					legend="Color:"
-					options={groupingVariables}
-					clearable={true}
-					style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
-					onChange={( value ) => {
-						this.setState({
-							color: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Type:"
-					options={groupingVariables}
-					clearable={true}
-					style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
-					onChange={( value ) => {
-						this.setState({
-							type: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Size:"
-					options={variables}
-					clearable={true}
-					style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
-					onChange={( value ) => {
-						this.setState({
-							size: value
-						});
-					}}
-				/>
-			</div>
-		</Fragment> );
-	}
-
-	renderRegressionLineOptions() {
-		const { t } = this.props;
-		return ( <div style={{
-			opacity: this.props.showRegressionOption ? 1.0 : 0.0
-		}}>
-			<CheckboxInput
-				inline
-				legend="Show Regression Model"
-				defaultValue={false}
-				onChange={() => {
-					this.setState({
-						regressionLine: !this.state.regressionLine
-					});
-				}}
-			/>
-			<div style={{ width: '100%' }}>
-				<SelectInput
-					legend="Method:"
-					defaultValue="linear"
-					multi={true}
-					options={[ 'linear', 'smooth' ]}
-					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
-					disabled={!this.state.regressionLine}
-					onChange={( value ) => {
-						if ( !isArray(value) ) {
-							value = [value];
-						}
-						this.setState({
-							regressionMethod: value
-						});
-					}}
-				/>
-				<SelectInput
-					legend="Split By:"
-					options={this.props.groupingVariables}
-					clearable={true}
-					style={{ float: 'right', paddingLeft: 10, width: '45%' }}
-					disabled={!this.state.regressionLine}
-					onChange={( value ) => {
-						this.setState({
-							lineBy: value
-						});
-					}}
-				/>
-				<SliderInput
-					legend={t('smoothing-parameter')}
-					disabled={!contains(this.state.regressionMethod, 'smooth')}
-					min={0.01}
-					max={1}
-					step={0.01}
-					defaultValue={0.66}
-					onChange={( value ) => {
-						this.setState({
-							smoothSpan: value
-						});
-					}}
-				/>
-			</div>
-		</div> );
-	}
-
-	render() {
-		const { t } = this.props;
-		return (
-			<Card style={{ minWidth: 650 }} >
-				<Card.Header as="h4" >
-					{t('Scatterplot')}
-					<QuestionButton title={t('Scatterplot')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					{this.renderInputs()}
-					<div style={{ clear: 'both' }}></div>
-					{this.renderRegressionLineOptions()}
-					<div style={{ clear: 'both' }}></div>
-					<Button variant="primary" block onClick={this.generateScatterplot}>
-						{t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+		props.logAction( DATA_EXPLORER_SCATTERPLOT, action );
+		props.onCreated( output );
+	};
+	return (
+		<Card style={{ minWidth: 650 }} >
+			<Card.Header as="h4" >
+				{t('Scatterplot')}
+				<QuestionButton title={t('Scatterplot')} content={DESCRIPTION} />
+			</Card.Header>
+			<Card.Body>
+				<div style={{ width: '100%' }}>
+					<SelectInput
+						legend={t('x-axis')}
+						defaultValue={xval}
+						options={variables}
+						style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
+						onChange={setXval}
+					/>
+					<SelectInput
+						legend={t('y-axis')}
+						defaultValue={yval}
+						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
+						options={variables}
+						onChange={setYval}
+					/>
+					<SelectInput
+						legend="Labels:"
+						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
+						clearable={true}
+						options={groupingVariables}
+						onChange={setText}
+					/>
+				</div>
+				<div style={{ width: '100%' }}>
+					<SelectInput
+						legend="Color:"
+						options={groupingVariables}
+						clearable={true}
+						style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
+						onChange={setColor}
+					/>
+					<SelectInput
+						legend="Type:"
+						options={groupingVariables}
+						clearable={true}
+						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
+						onChange={setType}
+					/>
+					<SelectInput
+						legend="Size:"
+						options={variables}
+						clearable={true}
+						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
+						onChange={setSize}
+					/>
+				</div>
+				<div style={{ clear: 'both' }}></div>
+				<div style={{
+					opacity: props.showRegressionOption ? 1.0 : 0.0
+				}}>
+					<CheckboxInput
+						inline
+						legend="Show Regression Model"
+						defaultValue={false}
+						onChange={() => {
+							setRegressionLine( !regressionLine );
+						}}
+					/>
+					<div style={{ width: '100%' }}>
+						<SelectInput
+							legend="Method:"
+							defaultValue="linear"
+							multi={true}
+							options={[ 'linear', 'smooth' ]}
+							style={{ float: 'right', paddingLeft: 10, width: '45%' }}
+							disabled={!regressionLine}
+							onChange={( value ) => {
+								if ( !isArray(value) ) {
+									value = [value];
+								}
+								setRegressionMethod( value );
+							}}
+						/>
+						<SelectInput
+							legend="Split By:"
+							options={props.groupingVariables}
+							clearable={true}
+							style={{ float: 'right', paddingLeft: 10, width: '45%' }}
+							disabled={!regressionLine}
+							onChange={setLineBy}
+						/>
+						<SliderInput
+							legend={t('smoothing-parameter')}
+							disabled={!contains( regressionMethod, 'smooth' )}
+							min={0.01}
+							max={1}
+							step={0.01}
+							defaultValue={0.66}
+							onChange={setSmoothSpan}
+						/>
+					</div>
+				</div>
+				<div style={{ clear: 'both' }}></div>
+				<Button variant="primary" block onClick={generateScatterplot}>
+					{t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //

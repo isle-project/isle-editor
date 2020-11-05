@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -11,87 +11,68 @@ import { DATA_EXPLORER_SHARE_SPLOM, DATA_EXPLORER_SPLOM } from 'constants/action
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A scatterplot matrix is a grid of scatterplots visualizing the relationships between any two variables from a chosen set of quantitative variables.';
-
-
 // MAIN //
 
-class ScatterplotMatrixMenu extends Component {
-	constructor( props ) {
-		super( props );
+const ScatterplotMatrixMenu = ( props ) => {
+	const { data, t } = props;
+	const [ variables, setVariables ] = useState( null );
+	const [ color, setColor ] = useState( null );
 
-		this.state = {
-			variables: null,
-			color: null
-		};
-	}
-
-	generate = () => {
+	const generate = () => {
 		const plotId = randomstring( 6 );
 		const action = {
-			...this.state, plotId
+			variables, color, plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			props.session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
+			props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
 		};
 		const output = <ScatterPlotMatrix
 			id={plotId}
-			data={this.props.data}
-			{...this.state}
+			data={data}
+			variables={variables}
+			color={color}
 			action={action}
 			onShare={onShare}
+			onSelected={props.onSelected}
 		/>;
-		this.props.logAction( DATA_EXPLORER_SPLOM, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		return (
-			<Card>
-				<Card.Header as="h4" >
-					{this.props.t('Scatterplot Matrix')}<QuestionButton title={this.props.t('Scatterplot Matrix')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<SelectInput
-						legend={this.props.t('variables')}
-						options={this.props.variables}
-						multi
-						onChange={( vars ) => {
-							this.setState({
-								variables: vars
-							});
-						}}
-					/>
-					<SelectInput
-						legend="Color:"
-						options={this.props.groupingVariables}
-						clearable={true}
-						onChange={( value ) => {
-							this.setState({
-								color: value
-							});
-						}}
-					/>
-					<Button
-						variant="primary" block
-						onClick={this.generate}
-						disabled={!this.state.variables || this.state.variables.length < 2}
-					>
-						{this.props.t('generate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+		props.logAction( DATA_EXPLORER_SPLOM, action );
+		props.onCreated( output );
+	};
+	return (
+		<Card>
+			<Card.Header as="h4" >
+				{t('Scatterplot Matrix')}<QuestionButton title={t('Scatterplot Matrix')} content={t('Scatterplot Matrix-description')} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('variables')}
+					options={props.variables}
+					multi
+					onChange={setVariables}
+				/>
+				<SelectInput
+					legend="Color:"
+					options={props.groupingVariables}
+					clearable={true}
+					onChange={setColor}
+				/>
+				<Button
+					variant="primary" block
+					onClick={generate}
+					disabled={!variables || variables.length < 2}
+				>
+					{t('generate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
