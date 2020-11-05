@@ -167,6 +167,9 @@ class StatusBar extends Component {
 		if ( this.renderTextInterval ) {
 			clearInterval( this.renderTextInterval );
 		}
+		if ( this.progressTimeout ) {
+			clearTimeout( this.progressTimeout );
+		}
 	}
 
 	closeSignup = () => {
