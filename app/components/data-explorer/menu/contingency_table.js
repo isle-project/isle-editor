@@ -16,7 +16,6 @@ import QuestionButton from './../question_button.js';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:contingency-table' );
-const DESCRIPTION = 'A contingency table displays either the raw absolute or relative frequencies of two categorical variable\'s values alongside their row and column totals.';
 
 
 // MAIN //
@@ -79,7 +78,7 @@ class ContingencyTableMenu extends Component {
 			<Card>
 				<Card.Header as="h4">
 					{t('Contingency Table')}
-					<QuestionButton title={t('Contingency Table')} content={DESCRIPTION} />
+					<QuestionButton title={t('Contingency Table')} content={t('Contingency Table-description')} />
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
