@@ -139,7 +139,7 @@
     "core-js": "2.6.5",
     "cross-env": "^7.0.2",
     "css": "^3.0.0",
-    "css-loader": "4.2.1",
+    "css-loader": "5.0.1",
     "css-modules-require-hook": "^4.2.3",
     "csv-parse": "^4.12.0",
     "csv-stringify": "^5.5.1",
