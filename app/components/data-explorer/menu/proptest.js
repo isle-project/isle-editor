@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -13,118 +13,85 @@ import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A test for the proportion of a selected category of a qualitative variable.';
-
-
 // MAIN //
 
-class PropTestMenu extends Component {
-	constructor( props ) {
-		super( props );
+const PropTestMenu = ( props ) => {
+	const { data, categorical, showDecision, t } = props;
 
-		this.state = {
-			variable: null,
-			success: null,
-			p0: 0.5,
-			direction: 'two-sided',
-			alpha: 0.05,
-			categories: null
-		};
-	}
+	const [ variable, setVariable ] = useState( null );
+	const [ success, setSuccess ] = useState( null );
+	const [ p0, setP0 ] = useState( 0.5 );
+	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ alpha, setAlpha ] = useState( 0.05 );
+	const [ categories, setCategories ] = useState( null );
 
-	calculatePropTest = () => {
-		const { variable, success, p0, direction, alpha } = this.state;
-		const { data, showDecision } = this.props;
+	const calculatePropTest = () => {
 		const output = <PropTest data={data} variable={variable} success={success} p0={p0} direction={direction} alpha={alpha} showDecision={showDecision} />;
-		this.props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
+		props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
 			variable, success, p0, direction, alpha, showDecision
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { categorical, t } = this.props;
-		return (
-			<Card
-				style={{ fontSize: '14px' }}
-			>
-				<Card.Header as="h4">
-					{t('One-Sample Proportion Test')}
-					<QuestionButton title={t('One-Sample Proportion Test')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<SelectInput
-						legend={t('variable')}
-						defaultValue={this.state.variable}
-						options={categorical}
-						onChange={( variable ) => {
-							const values = this.props.data[ variable ];
-							const categories = extractCategoriesFromValues( values, variable );
-							this.setState({
-								categories,
-								variable,
-								success: categories[ 0 ]
-							});
-						}}
-					/>
-					{ this.state.categories ? <SelectInput
-						legend="Success:"
-						defaultValue={this.state.success}
-						options={this.state.categories}
-						onChange={( value ) => {
-							this.setState({
-								success: value
-							});
-						}}
-					/> : null }
-					<NumberInput
-						legend={<TeX raw="p_0" />}
-						defaultValue={this.state.p0}
-						min={0.001}
-						max={0.999}
-						step="any"
-						onChange={( value ) => {
-							this.setState({
-								p0: value
-							});
-						}}
-					/>
-					<SelectInput
-						legend={t('direction')}
-						defaultValue={this.state.direction}
-						options={[ 'less', 'greater', 'two-sided' ]}
-						onChange={( value ) => {
-							this.setState({
-								direction: value
-							});
-						}}
-					/>
-					<NumberInput
-						legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
-						defaultValue={this.state.alpha}
-						min={0.0}
-						max={1.0}
-						step="any"
-						onChange={( value ) => {
-							this.setState({
-								alpha: value
-							});
-						}}
-					/>
-					<Button
-						variant="primary" block
-						onClick={this.calculatePropTest}
-						disabled={!this.state.variable}
-					>
-						{t('calculate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+		props.onCreated( output );
+	};
+	return (
+		<Card
+			style={{ fontSize: '14px' }}
+		>
+			<Card.Header as="h4">
+				{t('One-Sample Proportion Test')}
+				<QuestionButton title={t('One-Sample Proportion Test')} content={t('One-Sample Proportion Test-description')} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('variable')}
+					defaultValue={variable}
+					options={categorical}
+					onChange={( variable ) => {
+						const values = props.data[ variable ];
+						const newCategories = extractCategoriesFromValues( values, variable );
+						setCategories( newCategories );
+						setVariable( variable );
+						setSuccess( categories[ 0 ] );
+					}}
+				/>
+				{ categories ? <SelectInput
+					legend="Success:"
+					defaultValue={success}
+					options={categories}
+					onChange={setSuccess}
+				/> : null }
+				<NumberInput
+					legend={<TeX raw="p_0" />}
+					defaultValue={p0}
+					min={0.001}
+					max={0.999}
+					step="any"
+					onChange={setP0}
+				/>
+				<SelectInput
+					legend={t('direction')}
+					defaultValue={direction}
+					options={[ 'less', 'greater', 'two-sided' ]}
+					onChange={setDirection}
+				/>
+				<NumberInput
+					legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
+					defaultValue={alpha}
+					min={0.0}
+					max={1.0}
+					step="any"
+					onChange={setAlpha}
+				/>
+				<Button
+					variant="primary" block
+					onClick={calculatePropTest}
+					disabled={!variable}
+				>
+					{t('calculate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //

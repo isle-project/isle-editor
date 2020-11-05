@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
@@ -13,7 +13,6 @@ import QuestionButton from './../question_button.js';
 
 // VARIABLES //
 
-const DESCRIPTION = 'A mosaic plot can be used to visualize two or more categorical variables. The areas of the boxes in the plot are proportional to the cell frequencies of a contingency table of the selected variables.';
 const AXIS_OPTIONS = [
 	'parallel to the axis',
 	'horizontal',
@@ -24,14 +23,10 @@ const AXIS_OPTIONS = [
 
 // MAIN //
 
-class MosaicPlotMenu extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
-	generateMosaicPlot( variables, showColors, axisLabels ) {
+const MosaicPlotMenu = ({ data, variables, session, t, logAction, onCreated, onPlotDone }) => {
+	const generateMosaicPlot = ( variables, showColors, axisLabels ) => {
 		if ( !variables || variables.length < 2 ) {
-			return this.props.session.addNotification({
+			return session.addNotification({
 				title: 'Select Variables',
 				message: 'You need to select at least two variables for the mosaic plot',
 				level: 'warning',
@@ -43,56 +38,55 @@ class MosaicPlotMenu extends Component {
 			variables, showColors, plotId
 		};
 		const onShare = () => {
-			this.props.session.addNotification({
-				title: this.props.t('plot-shared'),
-				message: this.props.t('plot-shared-message'),
+			session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			this.props.logAction( DATA_EXPLORER_SHARE_MOSAIC, {
+			logAction( DATA_EXPLORER_SHARE_MOSAIC, {
 				variables, showColors, plotId
 			});
 		};
 		const output = <MosaicPlot
-			data={this.props.data}
+			data={data}
 			variables={variables}
 			showColors={showColors}
 			axisLabels={axisLabels}
 			id={plotId}
 			action={action}
 			onShare={onShare}
-			onPlotDone={this.props.onPlotDone}
+			onPlotDone={onPlotDone}
 		/>;
-		this.props.logAction( DATA_EXPLORER_MOSAIC, action );
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { variables, t } = this.props;
-		return (
-			<Dashboard
-				autoStart={false}
-				title={<span>{this.props.t('Mosaic Plot')}<QuestionButton title={this.props.t('Mosaic Plot')} content={DESCRIPTION} /></span>}
-				onGenerate={this.generateMosaicPlot.bind( this )}
-				style={{ minHeight: 380 }}
-			>
-				<SelectInput
-					legend={t('variables')}
-					options={variables}
-					multi
-				/>
-				<CheckboxInput
-					legend={t('show-colors')}
-					defaultValue={false}
-				/>
-				<SelectInput
-					legend="Axis Label Rotation"
-					options={AXIS_OPTIONS}
-				/>
-			</Dashboard>
-		);
-	}
-}
+		logAction( DATA_EXPLORER_MOSAIC, action );
+		onCreated( output );
+	};
+	return (
+		<Dashboard
+			autoStart={false}
+			title={<span>
+				{t('Mosaic Plot')}
+				<QuestionButton title={t('Mosaic Plot')} content={t('Mosaic Plot-description')} />
+			</span>}
+			onGenerate={generateMosaicPlot}
+			style={{ minHeight: 380 }}
+		>
+			<SelectInput
+				legend={t('variables')}
+				options={variables}
+				multi
+			/>
+			<CheckboxInput
+				legend={t('show-colors')}
+				defaultValue={false}
+			/>
+			<SelectInput
+				legend="Axis Label Rotation"
+				options={AXIS_OPTIONS}
+			/>
+		</Dashboard>
+	);
+};
 
 
 // PROPERTIES //

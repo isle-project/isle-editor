@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -15,35 +15,24 @@ import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'A test for equality of means across two groups.';
-
-
 // MAIN //
 
-class MeanTest2Menu extends Component {
-	constructor( props ) {
-		super( props );
+const MeanTest2Menu = ( props ) => {
+	const { quantitative, categorical, data, t } = props;
+	const [ x, setX ] = useState( null );
+	const [ group, setGroup ] = useState( null );
+	const [ y, setY ] = useState( null );
+	const [ diff, setDiff ] = useState( 0 );
+	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ alpha, setAlpha ] = useState( 0.05 );
+	const [ type, setType ] = useState( 'T Test' );
+	const [ xstdev, setXstdev ] = useState( null );
+	const [ ystdev, setYstdev ] = useState( null );
 
-		this.state = {
-			x: null,
-			group: null,
-			y: null,
-			diff: 0,
-			direction: 'two-sided',
-			alpha: 0.05,
-			type: 'T Test',
-			xstdev: null,
-			ystdev: null
-		};
-	}
-
-	calculateTwoSampleZTest = () => {
-		let { x, group, y, diff, direction, alpha, type, xstdev, ystdev } = this.state;
-		const { data, showDecision } = this.props;
+	const calculateTwoSampleZTest = () => {
+		const { data, showDecision } = props;
 		if ( !y && !group ) {
-			return this.props.session.addNotification({
+			return props.session.addNotification({
 				title: 'Action required',
 				message: `Please select either a grouping variable or a second variable to compare ${x} against.`,
 				level: 'warning',
@@ -55,167 +44,125 @@ class MeanTest2Menu extends Component {
 			alpha={alpha} type={type} xstdev={xstdev} ystdev={ystdev}
 			data={data} showDecision={showDecision}
 		/>;
-		this.props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN, {
+		props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN, {
 			x, group, y, diff, direction, alpha, showDecision
 		});
-		this.props.onCreated( output );
-	}
+		props.onCreated( output );
+	};
 
-	renderInputs() {
-		const { quantitative, categorical, data, t } = this.props;
-		const binary = getBinaryVars( categorical, data );
-		return ( <Fragment>
-			<SelectInput
-				legend={t('type-of-test')}
-				defaultValue={this.state.type}
-				options={[ 'T Test', 'Z Test' ]}
-				onChange={( value ) => {
-					this.setState({
-						type: value
-					});
-				}}
-			/>
-			<SelectInput
-				legend={t('variable')}
-				defaultValue={this.state.x}
-				options={quantitative}
-				onChange={( x ) => {
-					this.setState({
-						x
-					});
-				}}
-			/>
-			<Row>
-				<Col md={5}>
-					<SelectInput
-						legend={t('groups')}
-						options={binary}
-						defaultValue={this.state.group}
-						clearable
-						onChange={( group ) => {
-							return this.setState({
-								y: null,
-								group
-							});
-						}}
-					/>
-				</Col>
-				<Col md={2}>
-					<p>OR</p>
-				</Col>
-				<Col md={5}>
-					<SelectInput
-						legend={t('second-variable')}
-						options={quantitative}
-						defaultValue={this.state.y}
-						clearable
-						onChange={( y ) => {
-							return this.setState({
-								y,
-								group: null
-							});
-						}}
-					/>
-				</Col>
-			</Row>
-			{ this.state.type === 'Z Test' ?
+	const binary = getBinaryVars( categorical, data );
+	return (
+		<Card
+			style={{ fontSize: '14px' }}
+		>
+			<Card.Header as="h4">
+				{t('Two-Sample Mean Test')}
+				<QuestionButton title={t('Two-Sample Mean Test')} content={t('Two-Sample Mean Test-description')} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('type-of-test')}
+					defaultValue={type}
+					options={[ 'T Test', 'Z Test' ]}
+					onChange={setType}
+				/>
+				<SelectInput
+					legend={t('variable')}
+					defaultValue={x}
+					options={quantitative}
+					onChange={setX}
+				/>
+				<Row>
+					<Col md={5}>
+						<SelectInput
+							legend={t('groups')}
+							options={binary}
+							defaultValue={group}
+							clearable
+							onChange={( group ) => {
+								setY( null );
+								setGroup( group );
+							}}
+						/>
+					</Col>
+					<Col md={2}>
+						<p>OR</p>
+					</Col>
+					<Col md={5}>
+						<SelectInput
+							legend={t('second-variable')}
+							options={quantitative}
+							defaultValue={y}
+							clearable
+							onChange={( y ) => {
+								setY( y );
+								setGroup( null );
+							}}
+						/>
+					</Col>
+				</Row>
+				{ type === 'Z Test' ?
+					<Row>
+						<Col>
+							<NumberInput
+								legend={t('1st-stdev')}
+								defaultValue={xstdev || 1}
+								step="any"
+								min={0}
+								onChange={setXstdev}
+							/>
+						</Col>
+						<Col>
+							<NumberInput
+								legend={t('2nd-stdev')}
+								defaultValue={ystdev || 1}
+								step="any"
+								min={0}
+								onChange={setYstdev}
+								tooltipPlacement="top"
+							/>
+						</Col>
+					</Row>: null
+				}
 				<Row>
 					<Col>
 						<NumberInput
-							legend={t('1st-stdev')}
-							defaultValue={this.state.xstdev || 1}
+							legend={t('difference-h0')}
+							defaultValue={diff}
 							step="any"
-							min={0}
-							onChange={( value ) => {
-								this.setState({
-									xstdev: value
-								});
-							}}
+							onChange={setDiff}
 						/>
 					</Col>
 					<Col>
 						<NumberInput
-							legend={t('2nd-stdev')}
-							defaultValue={this.state.ystdev || 1}
+							legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
+							defaultValue={alpha}
+							min={0.0}
+							max={1.0}
 							step="any"
-							min={0}
-							onChange={( value ) => {
-								this.setState({
-									ystdev: value
-								});
-							}}
-							tooltipPlacement="top"
+							onChange={setAlpha}
+							tooltipPlacement="bottom"
 						/>
 					</Col>
-				</Row>: null
-			}
-			<Row>
-				<Col>
-					<NumberInput
-						legend={t('difference-h0')}
-						defaultValue={this.state.diff}
-						step="any"
-						onChange={( value ) => {
-							this.setState({
-								diff: value
-							});
-						}}
-					/>
-				</Col>
-				<Col>
-					<NumberInput
-						legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
-						defaultValue={this.state.alpha}
-						min={0.0}
-						max={1.0}
-						step="any"
-						onChange={( value ) => {
-							this.setState({
-								alpha: value
-							});
-						}}
-						tooltipPlacement="bottom"
-					/>
-				</Col>
-			</Row>
-			<SelectInput
-				legend={t('direction')}
-				defaultValue={this.state.direction}
-				options={[ 'less', 'greater', 'two-sided' ]}
-				onChange={( value ) => {
-					this.setState({
-						direction: value
-					});
-				}}
-				menuPlacement="top"
-			/>
-		</Fragment> );
-	}
-
-	render() {
-		const { t } = this.props;
-		return (
-			<Card
-				style={{ fontSize: '14px' }}
-			>
-				<Card.Header as="h4">
-					{t('Two-Sample Mean Test')}
-					<QuestionButton title={t('Two-Sample Mean Test')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					{this.renderInputs()}
-					<Button
-						variant="primary" block
-						onClick={this.calculateTwoSampleZTest}
-						disabled={(!this.state.group && !this.state.y) || !this.state.x}
-					>
-						{t('calculate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+				</Row>
+				<SelectInput
+					legend={t('direction')}
+					defaultValue={direction}
+					options={[ 'less', 'greater', 'two-sided' ]}
+					onChange={setDirection}
+					menuPlacement="top"
+				/>
+				<Button
+					variant="primary" block
+					onClick={calculateTwoSampleZTest}
+					disabled={(!group && !y) || !x}
+				>
+					{t('calculate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
