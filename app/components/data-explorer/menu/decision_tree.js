@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -16,39 +16,28 @@ import subtract from 'utils/subtract';
 import QuestionButton from '../question_button.js';
 
 
-// VARIABLES //
-
-const DESCRIPTION = 'Grow a decision tree for either a regression or classification problem. For quantitative responses, at each iteration of the algorithm the data are split by the variable which leads to splits with the greatest reduction in variance for the response. For categorical responses, the data are split on the feature which leads to the largest information gain (measured either in terms of the Gini index or entropy)';
-
-
 // MAIN //
 
-class DecisionTreeMenu extends Component {
-	constructor( props ) {
-		super( props );
+const DecisionTreeMenu = ( props ) => {
+	const { categorical, quantitative, t } = props;
+	const [ y, setY ] = useState( 0 );
+	const [ x, setX ] = useState( 0 );
+	const [ type, setType ] = useState( 'Classification' );
+	const [ impurityMeasure, setImpurityMeasure ] = useState( 'gini' );
+	const [ scoreThreshold, setScoreThreshold ] = useState( 0.0075 );
+	const [ maxTreeDepth, setMaxTreeDepth ] = useState( 5 );
+	const [ minItemsCount, setMinItemsCount ] = useState( 50 );
 
-		this.state = {
-			y: props.categorical[ 0 ],
-			x: props.quantitative[ 0 ],
-			type: 'Classification',
-			impurityMeasure: 'gini',
-			scoreThreshold: 0.0075,
-			maxTreeDepth: 5,
-			minItemsCount: 50
-		};
-	}
-
-	compute = () => {
-		let { y, x, type, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = this.state;
+	const compute = () => {
 		const output = <DecisionTree
 			x={x} y={y} type={type} impurityMeasure={impurityMeasure}
-			data={this.props.data} quantitative={this.props.quantitative}
+			data={props.data} quantitative={props.quantitative}
 			scoreThreshold={scoreThreshold} maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
 			onPredict={( tree, counter ) => {
-				const newData = copy( this.props.data, 1 );
+				const newData = copy( props.data, 1 );
 				if ( type === 'Classification' ) {
-					const newCategorical = this.props.categorical.slice();
+					const newCategorical = props.categorical.slice();
 					const yhat = tree.predict( newData ).map( x => String( x ) );
 					let name = 'pred_tree' + counter;
 					newData[ name ] = yhat;
@@ -56,15 +45,15 @@ class DecisionTreeMenu extends Component {
 						newCategorical.push( name );
 					}
 					name = 'correct_tree' + counter;
-					const yvalues = this.props.data[ y ];
+					const yvalues = props.data[ y ];
 					newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
 					if ( !contains( newCategorical, name ) ) {
 						newCategorical.push( name );
 					}
-					this.props.onGenerate( this.props.quantitative, newCategorical, newData );
+					props.onGenerate( props.quantitative, newCategorical, newData );
 				}
 				else {
-					const newQuantitative = this.props.quantitative.slice();
+					const newQuantitative = props.quantitative.slice();
 					const yhat = tree.predict( newData );
 					let name = 'pred_tree' + counter;
 					newData[ name ] = yhat;
@@ -72,87 +61,80 @@ class DecisionTreeMenu extends Component {
 						newQuantitative.push( name );
 					}
 					name = 'resid_tree' + counter;
-					newData[ name ] = subtract( yhat, this.props.data[ y ] );
+					newData[ name ] = subtract( yhat, props.data[ y ] );
 					if ( !contains( newQuantitative, name ) ) {
 						newQuantitative.push( name );
 					}
-					this.props.onGenerate( newQuantitative, this.props.categorical, newData );
+					props.onGenerate( newQuantitative, props.categorical, newData );
 				}
 			}}
 		/>;
-		this.props.logAction( DATA_EXPLORER_DECISION_TREE, {
+		props.logAction( DATA_EXPLORER_DECISION_TREE, {
 			y, x, type
 		});
-		this.props.onCreated( output );
-	}
-
-	render() {
-		const { categorical, quantitative, t } = this.props;
-		const { x, y, type } = this.state;
-		return (
-			<Card
-				style={{ fontSize: '14px', maxWidth: 600 }}
-			>
-				<Card.Header as="h4">
-					{t('Decision Tree')}
-					<QuestionButton title={t('Decision Tree')} content={DESCRIPTION} />
-				</Card.Header>
-				<Card.Body>
-					<SelectInput
-						legend={t('type')}
-						options={[ 'Classification', 'Regression' ]}
-						defaultValue={type}
-						onChange={( type ) => {
-							if ( type !== this.state.type ) {
-								this.setState({
-									type,
-									y: type === 'Classification' ? categorical[ 0 ] : quantitative[ 0 ]
-								});
-							}
-						}}
+		props.onCreated( output );
+	};
+	return (
+		<Card
+			style={{ fontSize: '14px', maxWidth: 600 }}
+		>
+			<Card.Header as="h4">
+				{t('Decision Tree')}
+				<QuestionButton title={t('Decision Tree')} content={t('Decision Tree-description')} />
+			</Card.Header>
+			<Card.Body>
+				<SelectInput
+					legend={t('type')}
+					options={[ 'Classification', 'Regression' ]}
+					defaultValue={type}
+					onChange={( newType ) => {
+						if ( newType !== type ) {
+							setType( newType );
+							setY( type === 'Classification' ? categorical[ 0 ] : quantitative[ 0 ] );
+						}
+					}}
+				/>
+				<SelectInput
+					legend={t('outcome-y')}
+					options={type === 'Classification' ? categorical : quantitative}
+					defaultValue={y}
+					onChange={setY}
+				/>
+				<SelectInput
+					legend={t('predictors-x')} multi
+					options={unique( quantitative.concat( categorical ) )}
+					defaultValue={x || ''}
+					onChange={setX}
+					closeMenuOnSelect={false}
+				/>
+				{ type === 'Classification' ? <SelectInput
+					legend={t('impurity-measure')}
+					defaultValue={impurityMeasure}
+					options={[ 'gini', 'entropy' ]}
+					onChange={setImpurityMeasure}
+				/> : null }
+				<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
+					<NumberInput legend="Score threshold for split"
+						min={0} max={1} step={0.001}
+						defaultValue={scoreThreshold} onChange={setScoreThreshold}
 					/>
-					<SelectInput
-						legend={t('outcome-y')}
-						options={type === 'Classification' ? categorical : quantitative}
-						defaultValue={y}
-						onChange={( y ) => this.setState({ y })}
+					<NumberInput legend={t('maximum-tree-depth')}
+						min={1} max={50}
+						defaultValue={maxTreeDepth} onChange={setMaxTreeDepth}
 					/>
-					<SelectInput
-						legend={t('predictors-x')} multi
-						options={unique( quantitative.concat( categorical ) )}
-						defaultValue={x || ''}
-						onChange={( x ) => this.setState({ x })}
-						closeMenuOnSelect={false}
+					<NumberInput legend={t('min-obs-leafs')}
+						min={1}
+						defaultValue={minItemsCount}
+						onChange={setMinItemsCount}
 					/>
-					{ type === 'Classification' ? <SelectInput
-						legend={t('impurity-measure')}
-						defaultValue={this.state.impurityMeasure}
-						options={[ 'gini', 'entropy' ]}
-						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
-					/> : null }
-					<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
-						<NumberInput legend="Score threshold for split"
-							min={0} max={1} step={0.001}
-							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
-						/>
-						<NumberInput legend={t('maximum-tree-depth')}
-							min={1} max={50}
-							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
-						/>
-						<NumberInput legend={t('min-obs-leafs')}
-							min={1}
-							defaultValue={this.state.minItemsCount}
-							onChange={( minItemsCount ) => this.setState({ minItemsCount })}
-						/>
-					</Collapse>
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{t('calculate')}
-					</Button>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+				</Collapse>
+				<Button disabled={!x || x.length === 0} variant="primary" block onClick={compute} >
+					{t('calculate')}
+				</Button>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
