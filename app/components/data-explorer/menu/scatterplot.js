@@ -82,7 +82,7 @@ const ScatterplotMenu = ( props ) => {
 		<Card style={{ minWidth: 650 }} >
 			<Card.Header as="h4" >
 				{t('Scatterplot')}
-				<QuestionButton title={t('Scatterplot')} content={DESCRIPTION} />
+				<QuestionButton title={t('Scatterplot')} content={t('Scatterplot-description')} />
 			</Card.Header>
 			<Card.Body>
 				<div style={{ width: '100%' }}>
