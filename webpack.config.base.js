@@ -89,7 +89,7 @@ export default {
 		{
 			test: /\.worker\.js$/,
 			use: { loader: 'worker-loader' },
-			include: join( __dirname, 'app', 'components', 'response-visualizer' )
+			include: join( __dirname, 'app', 'components', 'internal', 'response-visualizer' )
 		},
 		{
 			test: /\.txt$/,

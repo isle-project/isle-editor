@@ -11,7 +11,7 @@ import generateUID from 'utils/uid/incremental';
 import Tooltip from 'components/tooltip';
 import TextArea from 'components/input/text-area';
 import CheckboxInput from 'components/input/checkbox';
-import ResponseVisualizer from 'components/response-visualizer';
+import ResponseVisualizer from 'components/internal/response-visualizer';
 import SessionContext from 'session/context.js';
 import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } from 'constants/actions.js';
 import Confused from '-!svg-react-loader!./../../img/confused.svg';

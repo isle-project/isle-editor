@@ -1,0 +1,12 @@
+{
+	"DE": {
+		"submit": "Abschicken",
+		"missing-children": "Für das Frageformular müssen mindestens zwei Kind-Elemente gerendert werden."
+	},
+	"EN": {
+		"submit": "Submit",
+		"missing-children": "The question form requires at least two child elements to be rendered."
+	},
+	"ES": {
+	}
+}

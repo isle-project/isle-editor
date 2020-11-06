@@ -1,0 +1,37 @@
+{
+	"DE": {
+		"correct": "Correct",
+		"incorrect": "Incorrect",
+		"question-closed": "Frage ist nun geschlossen.",
+		"resubmit": "Erneut einreichen",
+		"submission-correct": "Das ist die richtige Reihenfolge!",
+		"submission-incorrect": "Nicht ganz, versuche es noch einmal!",
+		"submission-message": "Deine Antwort wurde erfolgreich übermittelt.",
+		"submit": "Abschicken",
+		"submitted": "Submitted"
+	},
+	"EN": {
+		"correct": "Correct",
+		"incorrect": "Incorrect",
+		"question-closed": "Question is now closed.",
+		"resubmit": "Resubmit",
+		"resubmission-message": "You have successfully re-submitted your answer.",
+		"submission-correct": "That's the correct ordering!",
+		"submission-incorrect": "Not quite, try again!",
+		"submission-message": "You have successfully submitted your answer.",
+		"submit": "Submit",
+		"submitted": "Submitted"
+	},
+	"ES": {
+		"correct": "Correcto",
+		"incorrect": "Incorrecto",
+		"question-closed": "La pregunta está ahora cerrada.",
+		"resubmit": "Volver a presentar",
+		"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+		"submission-correct": "¡Es el orden correcto!",
+		"submission-incorrect": "No del todo, ¡intente de nuevo!",
+		"submission-message": "Ha enviado con éxito su respuesta.",
+		"submit": "Enviar",
+		"submitted": "Presentado"
+	}
+}

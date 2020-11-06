@@ -1,0 +1,35 @@
+{
+	"DE": {
+		"answer-resubmitted": "Antwort erneut eingereicht",
+		"answer-submitted": "Antwort eingereicht.",
+		"correct-answer": "Richtige Antwort",
+		"success-message": "Das ist die richtige Antwort!",
+		"failure-message": "Nicht ganz.",
+		"resubmit": "Erneut einreichen",
+		"resubmit-message": "Du hast Deine Antwort erfolgreich erneut eingereicht.",
+		"submit": "Abschicken",
+		"submit-message": "Deine Antwort wurde übermittelt."
+	},
+	"EN": {
+		"answer-resubmitted": "Answer re-submitted.",
+		"answer-submitted": "Answer submitted.",
+		"correct-answer": "Correct answer",
+		"success-message": "That's the correct answer!",
+		"failure-message": "Not quite.",
+		"resubmit": "Resubmit",
+		"resubmit-message": "You have successfully re-submitted your answer.",
+		"submit": "Submit",
+		"submit-message": "Your answer has been submitted."
+	},
+	"ES": {
+		"answer-resubmitted": "Respuesta presentada de nuevo.",
+		"answer-submitted": "Respuesta presentada.",
+		"correct-answer": "Respuesta correcta",
+		"success-message": "¡Esa es la respuesta correcta!",
+		"failure-message": "No del todo.",
+		"resubmit": "Volver a presentar",
+		"resubmit-message": "Ha vuelto a enviar su respuesta con éxito",
+		"submit": "Presentar",
+		"submit-message": "Su respuesta ha sido presentada."
+	}
+}

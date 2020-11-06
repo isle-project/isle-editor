@@ -1,0 +1,23 @@
+.image-question {
+	max-width: 1200px;
+	margin: 0 auto 10px;
+}
+
+.image-question-toolbar {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.image-question-dropzone {
+	min-height: 50px;
+	width: 25%;
+	margin: 0 auto;
+	border: 1px solid blue;
+	padding: 10px;
+}
+
+.image-question-upload {
+	width: 250px;
+}

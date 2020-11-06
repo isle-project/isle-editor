@@ -9,7 +9,7 @@ import Loadable from 'components/internal/loadable';
 import VoiceInput from 'components/input/voice';
 import Gate from 'components/gate';
 import SelectInput from 'components/input/select';
-import ResponseVisualizer from 'components/response-visualizer';
+import ResponseVisualizer from 'components/internal/response-visualizer';
 import logger from 'debug';
 import { DOMSerializer } from 'prosemirror-model';
 import repeat from '@stdlib/string/repeat';

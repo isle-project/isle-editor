@@ -18,7 +18,7 @@ import tokenize from '@stdlib/nlp/tokenize';
 import generateUID from 'utils/uid';
 import TextArea from 'components/input/text-area';
 import Gate from 'components/gate';
-import ResponseVisualizer from 'components/response-visualizer';
+import ResponseVisualizer from 'components/internal/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from 'constants/actions.js';

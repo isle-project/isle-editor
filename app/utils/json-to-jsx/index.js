@@ -6,14 +6,14 @@ import isArray from '@stdlib/assert/is-array';
 import isPlainObject from '@stdlib/assert/is-plain-object';
 import copy from '@stdlib/utils/copy';
 import TeX from 'components/tex';
-import FreeTextQuestion from 'components/free-text-question';
-import MultipleChoiceQuestion from 'components/multiple-choice-question';
-import MultipleChoiceMatrix from 'components/multiple-choice-matrix';
-import MatchListQuestion from 'components/match-list-question';
-import NumberQuestion from 'components/number-question';
-import OrderQuestion from 'components/order-question';
-import RangeQuestion from 'components/range-question';
-import SelectQuestion from 'components/select-question';
+import FreeTextQuestion from 'components/questions/free-text';
+import MultipleChoiceQuestion from 'components/questions/multiple-choice';
+import MultipleChoiceMatrix from 'components/questions/multiple-choice-matrix';
+import MatchListQuestion from 'components/questions/match-list';
+import NumberQuestion from 'components/questions/number';
+import OrderQuestion from 'components/questions/order';
+import RangeQuestion from 'components/questions/range';
+import SelectQuestion from 'components/questions/select';
 
 
 // VARIABLES //

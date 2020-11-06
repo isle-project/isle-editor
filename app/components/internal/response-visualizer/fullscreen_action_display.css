@@ -1,0 +1,16 @@
+.scrollable-table {
+	overflow-y: auto;
+	border: 1px solid #dee2e6;
+}
+
+.scrollable-table th {
+	background: ghostwhite;
+}
+
+.scrollable-table thead th {
+	position: sticky;
+	top: 0;
+	box-shadow: 1px 1px 0 #dee2e6;
+	border-top: 0;
+	border-bottom: 0;
+}

@@ -17,7 +17,7 @@ import stdev from 'utils/statistic/stdev';
 import NumberInput from 'components/input/number';
 import Gate from 'components/gate';
 import Plotly from 'components/plotly';
-import ResponseVisualizer from 'components/response-visualizer';
+import ResponseVisualizer from 'components/internal/response-visualizer';
 import RealtimeMetrics from 'components/metrics/realtime';
 import SessionContext from 'session/context.js';
 import { NUMBER_SURVEY_SUBMISSION } from 'constants/actions.js';

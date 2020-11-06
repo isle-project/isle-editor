@@ -1,0 +1,34 @@
+{
+	"DE": {
+		"answers": "Antworten",
+		"answer-resubmitted": "Antwort erneut eingereicht",
+		"answer-submitted": "Antwort eingereicht.",
+		"instructions": "Ordne {{complete}} Elemente auf der linken Seite den entsprechenden Elementen auf der rechten Seite zu, indem Du sie anklickst.",
+		"question-closed": "Frage ist nun geschlossen.",
+		"resubmit": "Erneut einreichen",
+		"submit": "Abschicken",
+		"submit-tooltip": "Du kannst eine Antwort einreichen, nachdem Du alle Elemente von der linken Seite zu den entsprechenden Elementen von der rechten Seite zugeordnet hast"
+	},
+	"EN": {
+		"answers": "Answers",
+		"answer-resubmitted": "Answer re-submitted.",
+		"answer-submitted": "Answer submitted.",
+		"instructions": "Match {{complete}} elements from the left-hand side with the corresponding elements on the right-hand side by clicking on them.",
+		"question-closed": "Question is now closed.",
+		"resubmit": "Resubmit",
+		"resubmission-message": "You have successfully re-submitted your answer.",
+		"submit": "Submit",
+		"submit-tooltip": "You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side"
+	},
+	"ES": {
+		"answers": "Respuestas",
+		"answer-resubmitted": "Respuesta presentada de nuevo.",
+		"answer-submitted": "Respuesta presentada.",
+		"instructions": "Coincidir {{complete}} los elementos de la izquierda con los elementos correspondientes de la derecha haciendo clic en ellos.",
+		"question-closed": "La pregunta está ahora cerrada.",
+		"resubmit": "Volver a presentar",
+		"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+		"submit": "Enviar",
+		"submit-tooltip": "Puede someterse después de haber emparejado todos los elementos del lado izquierdo con los elementos correspondientes del lado derecho"
+	}
+}
