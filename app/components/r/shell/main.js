@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import Image from 'components/image';
-import ResponseVisualizer from 'components/response-visualizer';
+import ResponseVisualizer from 'components/internal/response-visualizer';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Modal from 'react-bootstrap/Modal';
