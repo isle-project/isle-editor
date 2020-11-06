@@ -10,7 +10,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import max from '@stdlib/math/base/special/max';
 import isElectron from 'utils/is-electron';
 import ActionLog from 'components/internal/statusbar/action-log';
-import InstructorNotes from 'components/internal/statusbar/instructor-notes';
+import InstructorNotesEditor from 'components/internal/statusbar/instructor-notes-editor';
 import animatePosition from 'utils/animate-position';
 import Tooltip from 'components/tooltip';
 import SessionContext from 'session/context.js';
@@ -152,7 +152,7 @@ class InstructorView extends Component {
 					/>
 				</Tab>
 				<Tab eventKey="instructor_notes" title={this.props.t( 'instructor-notes' )} >
-					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotes /> : null }
+					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotesEditor /> : null }
 				</Tab>
 			</Tabs>
 		);

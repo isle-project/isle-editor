@@ -3,12 +3,12 @@
 import React from 'react';
 import logger from 'debug';
 import TextEditor from 'components/text-editor';
-import './instructor_notes.css';
+import './instructor_notes_editor.css';
 
 
 // VARIABLES //
 
-const debug = logger( 'isle:instructor-notes' );
+const debug = logger( 'isle:instructor-notes-editor' );
 const TOOLBAR_CONFIG = [
 	'bold',
 	'italic',
@@ -23,12 +23,12 @@ const TOOLBAR_CONFIG = [
 
 // MAIN //
 
-const InstructorNotes = () => {
+const InstructorNotesEditor = () => {
 	debug( 'Rendering instructor notes...' );
 	return (
 		<TextEditor
-			id="instructor-notes"
-			className="instructor-notes"
+			id="instructor-notes-editor"
+			className="instructor-notes-editor"
 			mode="collaborative"
 			allowSubmissions={false}
 			toolbarConfig={TOOLBAR_CONFIG}
@@ -39,4 +39,4 @@ const InstructorNotes = () => {
 
 // EXPORTS //
 
-export default InstructorNotes;
+export default InstructorNotesEditor;
