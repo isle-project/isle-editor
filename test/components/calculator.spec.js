@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Calculator from 'components/calculator/main.js';
+import Calculator from 'components/internal/toolbar/calculator/main.js';
 
 
 // TESTS //
