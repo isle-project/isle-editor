@@ -1,0 +1,38 @@
+{
+	"DE": {
+		"answer": "Resultat",
+		"basic": "Basis",
+		"calculator": "Taschenrechner",
+		"copied": "Kopiert",
+		"copied-message": "Result in die Zwischenablage kopiert",
+		"copy": "Kopiere",
+		"expand": "Mehr",
+		"malformed-expression": "Fehlerhafter Ausdruck",
+		"too-many-closing-parens": "Zu viele schließende Klammern",
+		"too-many-opening-parens": "Zu viele öffnende Klammern"
+	},
+	"EN": {
+		"answer": "Answer",
+		"basic": "Basic",
+		"calculator": "Calculator",
+		"copied": "Copied",
+		"copied-message": "Result copied to clipboard",
+		"copy": "Copy",
+		"expand": "Expand",
+		"malformed-expression": "Malformed expression",
+		"too-many-closing-parens": "Too many closing parentheses",
+		"too-many-opening-parens": "Too many opening parentheses"
+	},
+	"ES": {
+		"answer": "Respuesta",
+		"basic": "Básico",
+		"calculator": "Calculadora",
+		"copied": "Copiado",
+		"copied-message": "Resultado copiado al portapapeles",
+		"copy": "Copia",
+		"expand": "Expandir",
+		"malformed-expression": "Expresión malformada",
+		"too-many-closing-parens": "Demasiados paréntesis de cierre",
+		"too-many-opening-parens": "Demasiados paréntesis de apertura"
+	}
+}
