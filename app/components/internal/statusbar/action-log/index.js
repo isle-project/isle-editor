@@ -251,9 +251,11 @@ class ActionLog extends Component {
 		});
 	}
 
-	prepareActionsForExport() {
-		let actions;
+	prepareActionsForExport = () => {
 		const len = this.state.actions.length;
+
+		debug( 'Exporting '+len+' actions for export...' );
+		let actions;
 		if ( this.state.anonymized ) {
 			actions = new Array( len );
 			for ( let i = 0; i < len; i++ ) {
@@ -266,9 +268,7 @@ class ActionLog extends Component {
 		else {
 			actions = this.state.actions;
 		}
-		const out = [];
-
-		return out;
+		return actions;
 	}
 
 	saveJSON = () => {
