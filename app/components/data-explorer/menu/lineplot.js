@@ -29,8 +29,9 @@ function createOption( label ) {
 // MAIN //
 
 const LinePlotMenu = ( props ) => {
+	const { categorical, data, defaultValue, variables, groupingVariables, t, session, logAction, onCreated } = props;
 	const [ x, setX ] = useState( null );
-	const [ y, setY ] = useState( props.defaultValue || props.variables[ 0 ] );
+	const [ y, setY ] = useState( defaultValue || variables[ 0 ] );
 	const [ group, setGroup ] = useState( null );
 	const [ showPoints, setShowPoints ] = useState( false );
 	const generateLinePlot = () => {
@@ -42,23 +43,22 @@ const LinePlotMenu = ( props ) => {
 			plotId
 		};
 		const onShare = () => {
-			props.session.addNotification({
-				title: props.t('plot-shared'),
-				message: props.t('plot-shared-message'),
+			session.addNotification({
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
+			logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
 		};
 		const output = <LinePlot
-			data={props.data} x={x} y={y}
+			data={data} x={x} y={y}
 			group={group} showPoints={showPoints}
 			onShare={onShare} action={action} id={plotId}
 		/>;
-		props.logAction( DATA_EXPLORER_LINEPLOT, action );
-		props.onCreated( output );
+		logAction( DATA_EXPLORER_LINEPLOT, action );
+		onCreated( output );
 	};
-	const { categorical, variables, groupingVariables, t } = props;
 	return (
 		<Card>
 			<Card.Header as="h4">
@@ -96,7 +96,7 @@ const LinePlotMenu = ( props ) => {
 					onChange={setY}
 				/>
 				<SelectInput
-					legend={props.t('group-by')}
+					legend={t('group-by')}
 					defaultValue={group}
 					options={groupingVariables}
 					clearable={true}
@@ -109,7 +109,7 @@ const LinePlotMenu = ( props ) => {
 					onChange={setShowPoints}
 				/>
 				<Button variant="primary" block onClick={generateLinePlot}>
-					{this.props.t('generate')}
+					{t('generate')}
 				</Button>
 			</Card.Body>
 		</Card>
