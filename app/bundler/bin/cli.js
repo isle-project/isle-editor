@@ -5,11 +5,11 @@
 
 const fs = require( 'fs' );
 const path = require( 'path' );
-const cwd = require( '@stdlib/process/cwd' );
 const parseArgs = require( 'minimist' );
+const cwd = require( '@stdlib/process/cwd' );
 const pkg = require( './../../../package.json' );
-const opts = require( './opts.json' );
 const main = require( './../index.js' );
+const opts = require( './opts.json' );
 
 
 // FUNCTIONS //
