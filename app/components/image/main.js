@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
@@ -29,143 +29,127 @@ import './image.css';
 * @property {Object} style - CSS inline styles
 * @property {Function} onShare - callback invoked with the image if the "share" button is clicked
 */
-class Image extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			showModal: false,
-			showPicker: false
-		};
-	}
-
-	closeModal = () => {
-		this.setState({ showModal: false });
-	}
-
-	renderModal() {
-		if ( !this.state.showModal ) {
-			this.containerDiv = null;
-			return null;
-		}
-		return (
-			<Fragment>
-				<Modal
-					show={this.state.showModal}
-					onHide={this.closeModal}
-					title={this.props.alt}
-					backdrop={true}
-					dialogClassName="modal-100w"
+const Image = ( props ) => {
+	const [ showModal, setShowModal ] = useState( false );
+	const [ showPicker, setShowPicker ] = useState( false );
+	const [ attached, setAttached ] = useState( false );
+	const containerDiv = useRef();
+	const closeModal = () => {
+		setShowModal( false );
+		containerDiv.current = null;
+	};
+	let modal;
+	if ( showModal ) {
+		modal = <Fragment>
+			<Modal
+				show={showModal}
+				onHide={closeModal}
+				title={props.alt}
+				backdrop={true}
+				dialogClassName="modal-100w"
+			>
+				<Modal.Body
+					style={{ height: 'calc(100vh - 80px)', 'position': 'relative' }}
 				>
-					<Modal.Body
-						style={{ height: 'calc(100vh - 80px)', 'position': 'relative' }}
-					>
-						<div style={{ height: '100%' }} ref={( div ) => {
-							if ( !this.containerDiv ) {
-								this.containerDiv = div;
-								this.forceUpdate();
+					<div style={{ height: '100%' }} ref={( div ) => {
+						if ( !containerDiv.current ) {
+							containerDiv.current = div;
+							setAttached( !attached );
+						}
+					}} ></div>
+					{ showPicker ? <ColorPicker
+						variant="Compact"className="isle-image-picker"
+						onChangeComplete={( value ) => {
+							const div = document.getElementsByClassName( 'react-viewer-canvas' )[ 0 ];
+							div.style.backgroundColor = value.hex;
+						}}
+					/> : null }
+					<Viewer
+						container={containerDiv.current}
+						visible={showModal}
+						images={[
+							{
+								src: props.src,
+								alt: props.alt
 							}
-						}} ></div>
-						{ this.state.showPicker ? <ColorPicker
-							variant="Compact"className="isle-image-picker"
-							onChangeComplete={( value ) => {
-								const div = document.getElementsByClassName( 'react-viewer-canvas' )[ 0 ];
-								div.style.backgroundColor = value.hex;
-							}}
-						/> : null }
-						{ this.containerDiv ? <Viewer
-							container={this.containerDiv}
-							visible={this.state.showModal}
-							images={[
+						]}
+						noNavbar noClose showTotal={false}
+						downloadable={false}
+						changeable={false}
+						zoomSpeed={0.1}
+						customToolbar={( toolbars ) => {
+							return toolbars.concat([
 								{
-									src: this.props.src,
-									alt: this.props.alt
-								}
-							]}
-							noNavbar noClose showTotal={false}
-							downloadable={false}
-							changeable={false}
-							zoomSpeed={0.1}
-							customToolbar={( toolbars ) => {
-								return toolbars.concat([
-									{
-										key: 'Background',
-										render: <i className="fas fa-tint"></i>,
-										onClick: () => {
-											this.setState({
-												showPicker: !this.state.showPicker
-											});
-										}
+									key: 'Background',
+									render: <i className="fas fa-tint"></i>,
+									onClick: () => {
+										setShowPicker( !showPicker );
 									}
-								]);
-							}}
-						/> : null }
-					</Modal.Body>
-					<Modal.Footer>
-						{ this.props.body ?
-							<CopyToClipboard text={this.props.body} onCopy={this.closeModal}>
-								<Button variant="secondary">
-									{this.props.t('copy-svg')}
-								</Button>
-							</CopyToClipboard> : null
-						}
-						{ this.props.onShare ?
-							<Button variant="secondary" onClick={() => {
-								this.props.onShare( this.props.src );
-								this.closeModal();
-							}}>
-								{this.props.t('share')}
-							</Button> : null
-						}
-						<CopyToClipboard text={`<img src="${this.props.src}" width="400" height="300" />`} onCopy={this.closeModal}>
+								}
+							]);
+						}}
+					/>
+				</Modal.Body>
+				<Modal.Footer>
+					{ props.body ?
+						<CopyToClipboard text={props.body} onCopy={closeModal}>
 							<Button variant="secondary">
-								{this.props.t('copy-link')}
+								{props.t('copy-svg')}
 							</Button>
-						</CopyToClipboard>
-						<Button variant="secondary" href={this.props.src} download="image.png" >
-							{this.props.t('save-image')}
+						</CopyToClipboard> : null
+					}
+					{ props.onShare ?
+						<Button variant="secondary" onClick={() => {
+							props.onShare( props.src );
+							closeModal();
+						}}>
+							{props.t('share')}
+						</Button> : null
+					}
+					<CopyToClipboard text={`<img src="${props.src}" width="400" height="300" />`} onCopy={closeModal}>
+						<Button variant="secondary">
+							{props.t('copy-link')}
 						</Button>
-						<Button variant="secondary" onClick={this.closeModal}>
-							{this.props.t('close')}
-						</Button>
-					</Modal.Footer>
-				</Modal>
-			</Fragment>
-		);
+					</CopyToClipboard>
+					<Button variant="secondary" href={props.src} download="image.png" >
+						{props.t('save-image')}
+					</Button>
+					<Button variant="secondary" onClick={closeModal}>
+						{props.t('close')}
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</Fragment>;
 	}
-
-	render() {
-		return (
-			<Fragment>
-				<img
-					className={`isle-image ${this.props.className}`}
-					alt={this.props.alt}
-					src={this.props.src}
-					width={this.props.width}
-					height={this.props.height}
-					role="presentation"
-					onClick={() => {
-						if ( this.props.showModal ) {
-							this.setState({
-								showModal: true
-							});
-						}
-					}}
-					onDragStart={( ev ) => {
-						const plotData = {
-							key: `<!--IMAGE_LOG:${this.props.id}_${randomstring( 6 )}-->`,
-							value: `<img src="${this.props.body}" width="400" height="300" style="display: block; margin: 0 auto;" />`
-						};
-						ev.dataTransfer.setData( 'text', `<img src="${this.props.src}" width="400" height="300" />` );
-						ev.dataTransfer.setData( 'text/html', plotData.value );
-						ev.dataTransfer.setData( 'text/plain', plotData.key );
-					}}
-					style={this.props.style}
-				/>
-				{this.renderModal()}
-			</Fragment>
-		);
-	}
-}
+	return (
+		<Fragment>
+			<img
+				className={`isle-image ${props.className}`}
+				alt={props.alt}
+				src={props.src}
+				width={props.width}
+				height={props.height}
+				role="presentation"
+				onClick={() => {
+					if ( props.showModal ) {
+						setShowModal( true );
+					}
+				}}
+				onDragStart={( ev ) => {
+					const plotData = {
+						key: `<!--IMAGE_LOG:${props.id}_${randomstring( 6 )}-->`,
+						value: `<img src="${props.body}" width="400" height="300" style="display: block; margin: 0 auto;" />`
+					};
+					ev.dataTransfer.setData( 'text', `<img src="${props.src}" width="400" height="300" />` );
+					ev.dataTransfer.setData( 'text/html', plotData.value );
+					ev.dataTransfer.setData( 'text/plain', plotData.key );
+				}}
+				style={props.style}
+			/>
+			{modal}
+		</Fragment>
+	);
+};
 
 
 // PROPERTIES //
