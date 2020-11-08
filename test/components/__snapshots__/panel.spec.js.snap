@@ -3,8 +3,6 @@
 exports[`renders a panel 1`] = `
 <div
   className="panel  card"
-  footer={null}
-  header={null}
   style={
     Object {
       "height": undefined,
@@ -29,8 +27,6 @@ exports[`renders a panel 1`] = `
 exports[`renders a panel with a heading 1`] = `
 <div
   className="panel  card"
-  footer={null}
-  header="Title"
   style={
     Object {
       "height": undefined,

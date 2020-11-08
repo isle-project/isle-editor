@@ -1,14 +1,34 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
-import omit from '@stdlib/utils/omit';
 import Tooltip from 'components/tooltip';
 import FullscreenButton from 'components/internal/fullscreen-button';
 import './load_translations.js';
 import './panel.css';
+
+
+// FUNCTIONS //
+
+const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinimize, t }) => {
+	if ( !children ) {
+		return null;
+	}
+	return ( <Card.Header as="h3">
+		<span className="unselectable" >{children}</span>
+		{ onHide ?
+			<Tooltip tooltip={hideTooltip || t( 'close' )} >
+				<button className="panel-hide-button fa fa-times" onClick={onHide} />
+			</Tooltip> : null
+		}
+		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}><button
+			className={`panel-hide-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
+			onClick={onMinimize}
+		/></Tooltip> : null }
+	</Card.Header> );
+};
 
 
 // MAIN //
@@ -27,72 +47,48 @@ import './panel.css';
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-class Wrapper extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			minimized: false
-		};
-	}
-
-	toggleMinimize = () => {
-		this.setState({
-			minimized: !this.state.minimized
-		});
-	}
-
-	renderHeader() {
-		if ( !this.props.header ) {
-			return null;
-		}
-		return ( <Card.Header as="h3">
-			<span className="unselectable" >{this.props.header}</span>
-			{ this.props.onHide ?
-				<Tooltip tooltip={this.props.hideTooltip || this.props.t( 'close' )} >
-					<button className="panel-hide-button fa fa-times" onClick={this.props.onHide} />
-				</Tooltip> : null
-			}
-			{ this.props.minimizable ? <Tooltip tooltip={this.state.minimized ? this.props.t( 'maximize' ) : this.props.t( 'minimize' )}><button
-				className={`panel-hide-button ${this.state.minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
-				onClick={this.toggleMinimize}
-			/></Tooltip> : null }
-		</Card.Header> );
-	}
-
-	render() {
-		return ( <Card
-			{...omit( this.props, [ 'footerStyle', 'bodyStyle', 'onHide', 'minimizable', 'hideTooltip', 'fullscreen', 't', 'tReady' ] )}
-			className={`panel ${this.props.className}`}
-			style={{
-				height: this.state.minimized ? '53px' : void 0,
-				...this.props.style
+const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, t, children, tReady, ...rest }) => {
+	const [ minimized, setMinimized ] = useState( false );
+	return ( <Card
+		{...rest}
+		className={`panel ${className}`}
+		style={{
+			height: minimized ? '53px' : void 0,
+			...style
+		}}
+	>
+		{ fullscreen ? <FullscreenButton
+			header={header}
+			body={children}
+			footer={footer}
+			className={className}
+			t={t}
+			owner
+		/> : null }
+		<Header
+			minimizable={minimizable} minimized={minimized}
+			onMinimize={() => {
+				setMinimized( !minimized );
 			}}
+			hideTooltip={hideTooltip} onHide={onHide}
+			t={t}
 		>
-			{ this.props.fullscreen ? <FullscreenButton
-				header={this.props.header}
-				body={this.props.children}
-				footer={this.props.footer}
-				className={this.props.className}
-				t={this.props.t}
-				owner
-			/> : null }
-			{this.renderHeader()}
-			<Card.Body style={{
-				...this.props.bodyStyle,
-				display: this.state.minimized ? 'none' : null
-			}} >
-				{this.props.children}
-			</Card.Body>
-			{this.props.footer ? <Card.Footer
-				style={{
-					...this.props.footerStyle,
-					display: this.state.minimized ? 'none' : null
-				}}
-			>{this.props.footer}</Card.Footer> : null}
-		</Card> );
-	}
-}
+			{header}
+		</Header>
+		<Card.Body style={{
+			...bodyStyle,
+			display: minimized ? 'none' : null
+		}} >
+			{children}
+		</Card.Body>
+		{footer ? <Card.Footer
+			style={{
+				...footerStyle,
+				display: minimized ? 'none' : null
+			}}
+		>{footer}</Card.Footer> : null}
+	</Card> );
+};
 
 
 // PROPERTIES //
