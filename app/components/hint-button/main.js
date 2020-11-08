@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -88,60 +88,41 @@ const getHintLabel = ( index, noHints, hintOpen, t ) => {
 * @param {string} size - button size
 * @param {Object} style - CSS inline styles
 */
-class HintButton extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			hintOpen: false,
-			currentHint: 0
-		};
-	}
-
-	handleHintClick = ( callback ) => {
-		debug( 'Clicked on a hint button...' );
-		const { currentHint, hintOpen } = this.state;
-		const { hints } = this.props;
-		if ( currentHint < hints.length && hintOpen === false ) {
-			this.props.onClick( currentHint );
-			this.setState({
-				currentHint: currentHint + 1,
-				hintOpen: true
-			}, () => {
-				if ( this.state.currentHint === hints.length ) {
-					this.props.onFinished();
-				}
-				callback( false );
-			});
-		} else {
-			this.setState({
-				hintOpen: !this.state.hintOpen
-			});
-			return callback( this.state.hintOpen );
-		}
-	};
-
-	render() {
-		const label = getHintLabel( this.state.currentHint, this.props.hints.length, this.state.hintOpen, this.props.t );
-		return (
-			<OverlayTrigger
-				trigger="click"
-				placement={this.props.placement}
-				overlay={displayHint( this.state.currentHint - 1, this.props.hints, this.props.id, this.props.t )}
-			>
-				<TimedButton
-					className="hint-button"
-					variant="success"
-					size={this.props.size}
-					onClick={this.handleHintClick}
-					disabled={this.props.disabled}
-					autoActivate={false}
-					style={this.props.style}
-				>{label}</TimedButton>
-			</OverlayTrigger>
-		);
-	}
-}
+const HintButton = ({ disabled, hints, onClick, onFinished, placement, size, style, id, t }) => {
+	const [ hintOpen, setHintOpen ] = useState( false );
+	const [ currentHint, setCurrentHint ] = useState( 0 );
+	const label = getHintLabel( currentHint, hints.length, hintOpen, t );
+	return (
+		<OverlayTrigger
+			trigger="click"
+			placement={placement}
+			overlay={displayHint( currentHint - 1, hints, id, t )}
+		>
+			<TimedButton
+				className="hint-button"
+				variant="success"
+				size={size}
+				onClick={( callback ) => {
+					debug( 'Clicked on a hint button...' );
+					if ( currentHint < hints.length && hintOpen === false ) {
+						onClick( currentHint );
+						setCurrentHint( currentHint + 1 );
+						setHintOpen( true );
+						if ( currentHint + 1 === hints.length ) {
+							onFinished();
+						}
+						return callback( false );
+					}
+					setHintOpen( false );
+					return callback( hintOpen );
+				}}
+				disabled={disabled}
+				autoActivate={false}
+				style={style}
+			>{label}</TimedButton>
+		</OverlayTrigger>
+	);
+};
 
 
 // TYPES //
