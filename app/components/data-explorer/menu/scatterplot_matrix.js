@@ -80,7 +80,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 ScatterplotMatrixMenu.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
-	onSelected() {},
+	onSelected() {}
 };
 
 ScatterplotMatrixMenu.propTypes = {

@@ -239,7 +239,7 @@ BarchartMenu.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	onCreated() {},
-	onSelected() {},
+	onSelected() {}
 };
 
 BarchartMenu.propTypes = {
