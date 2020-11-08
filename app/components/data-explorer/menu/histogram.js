@@ -236,7 +236,6 @@ HistogramMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
-	session: {},
 	showDensityOption: true,
 	onSelected() {}
 };
@@ -248,7 +247,7 @@ HistogramMenu.propTypes = {
 	logAction: PropTypes.func,
 	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	showDensityOption: PropTypes.bool,
 	variables: PropTypes.array.isRequired
 };

@@ -103,8 +103,7 @@ BoxplotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
-	onCreated() {},
-	session: {}
+	onCreated() {}
 };
 
 BoxplotMenu.propTypes = {
@@ -113,7 +112,7 @@ BoxplotMenu.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

@@ -163,8 +163,7 @@ ContingencyTableMenu.defaultProps = {
 	defaultRowVar: null,
 	defaultColVar: null,
 	groupingVariables: null,
-	logAction() {},
-	session: {}
+	logAction() {}
 };
 
 ContingencyTableMenu.propTypes = {
@@ -174,7 +173,7 @@ ContingencyTableMenu.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

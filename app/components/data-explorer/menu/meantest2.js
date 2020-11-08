@@ -170,7 +170,6 @@ const MeanTest2Menu = ( props ) => {
 MeanTest2Menu.defaultProps = {
 	categorical: null,
 	logAction() {},
-	session: {},
 	showDecision: true
 };
 
@@ -180,7 +179,7 @@ MeanTest2Menu.propTypes = {
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	showDecision: PropTypes.bool
 };
 

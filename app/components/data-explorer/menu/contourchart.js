@@ -19,8 +19,8 @@ import QuestionButton from '../question_button.js';
 // MAIN //
 
 const ContourChartMenu = ( props ) => {
-	const [ x, setX ] = useState( props.defaultX || props.variables[ 0 ] );
-	const [ y, setY ] = useState( props.defaultY || props.variables[ 1 ] );
+	const [ x, setX ] = useState( props.variables[ 0 ] );
+	const [ y, setY ] = useState( props.variables[ 1 ] );
 	const [ overlayPoints, setOverlayPoints ] = useState( false );
 	const [ regressionMethod, setRegressionMethod ] = useState( [] );
 	const [ smoothSpan, setSmoothSpan ] = useState( 0.66 );
@@ -126,8 +126,6 @@ const ContourChartMenu = ( props ) => {
 // PROPERTIES //
 
 ContourChartMenu.defaultProps = {
-	defaultX: null,
-	defaultY: null,
 	logAction() {},
 	onSelected() {},
 	session: {}
@@ -135,8 +133,6 @@ ContourChartMenu.defaultProps = {
 
 ContourChartMenu.propTypes = {
 	data: PropTypes.object.isRequired,
-	defaultX: PropTypes.string,
-	defaultY: PropTypes.string,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	onSelected: PropTypes.func,

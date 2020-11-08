@@ -81,7 +81,6 @@ ScatterplotMatrixMenu.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	onSelected() {},
-	session: {}
 };
 
 ScatterplotMatrixMenu.propTypes = {
@@ -90,7 +89,7 @@ ScatterplotMatrixMenu.propTypes = {
 	logAction: PropTypes.func,
 	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

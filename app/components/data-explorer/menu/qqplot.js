@@ -55,8 +55,7 @@ const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCr
 
 QQPlotMenu.defaultProps = {
 	defaultValue: null,
-	logAction() {},
-	session: {}
+	logAction() {}
 };
 
 QQPlotMenu.propTypes = {
@@ -64,7 +63,7 @@ QQPlotMenu.propTypes = {
 	defaultValue: PropTypes.string,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

@@ -123,8 +123,7 @@ LinePlotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
-	onCreated() {},
-	session: {}
+	onCreated() {}
 };
 
 LinePlotMenu.propTypes = {
@@ -133,7 +132,7 @@ LinePlotMenu.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	categorical: PropTypes.array.isRequired,
 	variables: PropTypes.array.isRequired
 };

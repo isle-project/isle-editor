@@ -82,8 +82,7 @@ ViolinPlotMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
-	onCreated() {},
-	session: {}
+	onCreated() {}
 };
 
 ViolinPlotMenu.propTypes = {
@@ -92,7 +91,7 @@ ViolinPlotMenu.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

@@ -195,7 +195,6 @@ ScatterplotMenu.defaultProps = {
 	groupingVariables: null,
 	logAction() {},
 	onSelected() {},
-	session: {},
 	showRegressionOption: true
 };
 
@@ -207,7 +206,7 @@ ScatterplotMenu.propTypes = {
 	logAction: PropTypes.func,
 	onSelected: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	showRegressionOption: PropTypes.bool,
 	variables: PropTypes.array.isRequired
 };

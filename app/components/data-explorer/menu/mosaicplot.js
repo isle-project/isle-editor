@@ -93,8 +93,7 @@ const MosaicPlotMenu = ({ data, variables, session, t, logAction, onCreated, onP
 
 MosaicPlotMenu.defaultProps = {
 	logAction() {},
-	onPlotDone() {},
-	session: {}
+	onPlotDone() {}
 };
 
 MosaicPlotMenu.propTypes = {
@@ -102,7 +101,7 @@ MosaicPlotMenu.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	onPlotDone: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

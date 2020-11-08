@@ -240,7 +240,6 @@ BarchartMenu.defaultProps = {
 	logAction() {},
 	onCreated() {},
 	onSelected() {},
-	session: {}
 };
 
 BarchartMenu.propTypes = {
@@ -250,7 +249,7 @@ BarchartMenu.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
 	onSelected: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

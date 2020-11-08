@@ -171,8 +171,7 @@ HeatMapMenu.defaultProps = {
 	defaultY: null,
 	groupingVariables: null,
 	logAction() {},
-	onSelected() {},
-	session: {}
+	onSelected() {}
 };
 
 HeatMapMenu.propTypes = {
@@ -183,7 +182,7 @@ HeatMapMenu.propTypes = {
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
 	onSelected: PropTypes.func,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired
 };
 

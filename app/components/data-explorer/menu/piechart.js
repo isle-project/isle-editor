@@ -106,8 +106,7 @@ const PieChartMenu = ( props ) => {
 PieChartMenu.defaultProps = {
 	defaultValue: null,
 	groupingVariables: null,
-	logAction() {},
-	session: {}
+	logAction() {}
 };
 
 PieChartMenu.propTypes = {
@@ -116,7 +115,7 @@ PieChartMenu.propTypes = {
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	quantitative: PropTypes.array.isRequired,
 	variables: PropTypes.array.isRequired
 };

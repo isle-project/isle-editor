@@ -171,20 +171,19 @@ const PropTest2Menu = ( props ) => {
 
 // PROPERTIES //
 
+PropTest2Menu.defaultProps = {
+	categorical: null,
+	logAction() {},
+	showDecision: true
+};
+
 PropTest2Menu.propTypes = {
 	categorical: PropTypes.array,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func.isRequired,
-	session: PropTypes.object,
+	session: PropTypes.object.isRequired,
 	showDecision: PropTypes.bool
-};
-
-PropTest2Menu.defaultProps = {
-	categorical: null,
-	logAction() {},
-	session: {},
-	showDecision: true
 };
 
 
