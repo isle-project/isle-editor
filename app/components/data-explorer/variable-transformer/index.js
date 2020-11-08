@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import BinTransformer from './bin_transformer.js';
@@ -11,171 +11,131 @@ import GroupModal from './group_transformer.js';
 
 // MAIN //
 
-class Transformer extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			active: null
-		};
-	}
+const Transformer = ( props ) => {
+	const { data, categorical, quantitative, t, session, defaultCode, logAction, onGenerate } = props;
+	const [ active, setActive ] = useState( null );
 
-	renderFormulaModal = () => {
-		const isActive = this.state.active === 'formula';
-		if ( !isActive || !this.props.data ) {
-			return null;
+	const toggleFormulaModal = () => {
+		const newActive = active === 'formula' ? null : 'formula';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	const toggleBinModal = () => {
+		const newActive = active === 'bin' ? null : 'bin';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	const toggleCategoricalModal = () => {
+		const newActive = active === 'categorical' ? null : 'categorical';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	const toggleGroupModal = () => {
+		const newActive = active === 'group' ? null : 'group';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	let modal;
+	if ( data ) {
+		switch ( active ) {
+			case 'bin':
+				modal = <BinTransformer
+					show={true}
+					onHide={toggleBinModal}
+					quantitative={quantitative}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					data={data}
+					t={t}
+				/>;
+			break;
+			case 'categorical':
+				modal = <CategoricalModal
+					show={true}
+					onHide={toggleCategoricalModal}
+					categorical={categorical}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					data={data}
+					t={t}
+				/>;
+			break;
+			case 'formula':
+				modal = <FormulaTransformer
+					show={true}
+					onHide={toggleFormulaModal}
+					categorical={categorical}
+					quantitative={quantitative}
+					data={data}
+					defaultCode={defaultCode}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					session={session}
+					t={t}
+				/>;
+			break;
+			case 'group':
+				modal = <GroupModal
+					show={true}
+					onHide={toggleGroupModal}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					data={data}
+					t={t}
+				/>;
+			break;
 		}
-		return (
-			<FormulaTransformer
-				show={isActive}
-				onHide={this.toggleFormulaModal}
-				categorical={this.props.categorical}
-				quantitative={this.props.quantitative}
-				data={this.props.data}
-				defaultCode={this.props.defaultCode}
-				logAction={this.props.logAction}
-				onGenerate={this.props.onGenerate}
-				session={this.props.session}
-				t={this.props.t}
-			/>
-		);
 	}
-
-	renderBinModal = () => {
-		const isActive = this.state.active === 'bin';
-		if ( !isActive || !this.props.data ) {
-			return null;
-		}
-		return (
-			<BinTransformer
-				show={isActive}
-				onHide={this.toggleBinModal}
-				quantitative={this.props.quantitative}
-				logAction={this.props.logAction}
-				onGenerate={this.props.onGenerate}
-				data={this.props.data}
-				t={this.props.t}
-			/>
-		);
-	}
-
-	renderCategoricalModal = () => {
-		const isActive = this.state.active === 'categorical';
-		if ( !isActive || !this.props.data ) {
-			return null;
-		}
-		return (
-			<CategoricalModal
-				show={isActive}
-				onHide={this.toggleCategoricalModal}
-				categorical={this.props.categorical}
-				logAction={this.props.logAction}
-				onGenerate={this.props.onGenerate}
-				data={this.props.data}
-				t={this.props.t}
-			/>
-		);
-	}
-
-	renderGroupModal = () => {
-		const isActive = this.state.active === 'group';
-		if ( !isActive || !this.props.data ) {
-			return null;
-		}
-		return (
-			<GroupModal
-				show={isActive}
-				onHide={this.toggleGroupModal}
-				logAction={this.props.logAction}
-				onGenerate={this.props.onGenerate}
-				data={this.props.data}
-				t={this.props.t}
-			/>
-		);
-	}
-
-	handleActive = () => {
-		this.props.onActive( this.state.active );
-	}
-
-	toggleFormulaModal = () => {
-		this.setState({
-			active: this.state.active === 'formula' ? null : 'formula'
-		}, this.handleActive );
-	}
-
-	toggleBinModal = () => {
-		this.setState({
-			active: this.state.active === 'bin' ? null : 'bin'
-		}, this.handleActive );
-	}
-
-	toggleCategoricalModal = () => {
-		this.setState({
-			active: this.state.active === 'categorical' ? null : 'categorical'
-		}, this.handleActive );
-	}
-
-	toggleGroupModal = () => {
-		this.setState({
-			active: this.state.active === 'group' ? null : 'group'
-		}, this.handleActive );
-	}
-
-	render() {
-		return (
-			<Fragment>
-				<div className="well" style={{ padding: 15, margin: 15 }} >
-					<div style={{ padding: 12 }} >
-						<Button
-							onClick={this.toggleFormulaModal}
-							variant="primary"
-							block
-							style={{ fontSize: '1.2em' }}
-						>
-							{this.props.t('interactions-functions')}
-						</Button>
-					</div>
-					<div style={{ padding: 12 }} >
-						<Button
-							onClick={this.toggleBinModal}
-							disabled={this.props.quantitative.length === 0}
-							variant="primary"
-							block
-							style={{ fontSize: '1.2em' }}
-						>
-							{this.props.t('bin-quantitative')}
-						</Button>
-					</div>
-					<div style={{ padding: 12 }} >
-						<Button
-							onClick={this.toggleCategoricalModal}
-							disabled={this.props.categorical.length === 0}
-							variant="primary"
-							block
-							style={{ fontSize: '1.2em' }}
-						>
-							{this.props.t('rename-or-combine')}
-						</Button>
-					</div>
-					<div style={{ padding: 12 }} >
-						<Button
-							onClick={this.toggleGroupModal}
-							variant="primary"
-							block
-							style={{ fontSize: '1.2em' }}
-						>
-							{this.props.t('create-groups')}
-						</Button>
-					</div>
+	return (
+		<Fragment>
+			<div className="well" style={{ padding: 15, margin: 15 }} >
+				<div style={{ padding: 12 }} >
+					<Button
+						onClick={toggleFormulaModal}
+						variant="primary"
+						block
+						style={{ fontSize: '1.2em' }}
+					>
+						{t('interactions-functions')}
+					</Button>
 				</div>
-				{this.renderBinModal()}
-				{this.renderFormulaModal()}
-				{this.renderCategoricalModal()}
-				{this.renderGroupModal()}
-			</Fragment>
-		);
-	}
-}
+				<div style={{ padding: 12 }} >
+					<Button
+						onClick={toggleBinModal}
+						disabled={quantitative.length === 0}
+						variant="primary"
+						block
+						style={{ fontSize: '1.2em' }}
+					>
+						{t('bin-quantitative')}
+					</Button>
+				</div>
+				<div style={{ padding: 12 }} >
+					<Button
+						onClick={toggleCategoricalModal}
+						disabled={categorical.length === 0}
+						variant="primary"
+						block
+						style={{ fontSize: '1.2em' }}
+					>
+						{t('rename-or-combine')}
+					</Button>
+				</div>
+				<div style={{ padding: 12 }} >
+					<Button
+						onClick={toggleGroupModal}
+						variant="primary"
+						block
+						style={{ fontSize: '1.2em' }}
+					>
+						{t('create-groups')}
+					</Button>
+				</div>
+			</div>
+			{modal}
+		</Fragment>
+	);
+};
 
 
 // PROPERTIES //
