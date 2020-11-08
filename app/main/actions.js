@@ -159,13 +159,15 @@ export function openFile( filePath, browserWindow ) {
 export function open({ browserWindow }) {
 	const filePath = config.get( 'mostRecentFilePath' );
 	const opts = {
-		properties: [ 'openFile' ],
+		buttonLabel: 'Open file',
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]},
 			{ name: 'markdown', extensions: [ 'markdown', 'md', 'mdown', 'mkd', 'mdwn' ]},
 			{ name: 'html', extensions: [ 'html' ]}
 		],
-		buttonLabel: 'Open file'
+		properties: [
+			'openFile'
+		]
 	};
 	if ( filePath ) {
 		opts.defaultPath = filePath;
