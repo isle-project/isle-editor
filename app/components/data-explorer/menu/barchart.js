@@ -2,16 +2,16 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Select, { components } from 'react-select';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
-import Select, { components } from 'react-select';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import CheckboxInput from 'components/input/checkbox';
 import SelectInput from 'components/input/select';
 import selectStyles from 'components/input/select/styles';
-import CheckboxInput from 'components/input/checkbox';
 import randomstring from 'utils/randomstring/alphanumeric';
 import BarChart from 'components/plots/barchart';
 import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';

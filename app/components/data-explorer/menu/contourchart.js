@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import contains from '@stdlib/assert/contains';
 import CheckboxInput from 'components/input/checkbox';
+import ContourChart from 'components/plots/contourchart';
 import SelectInput from 'components/input/select';
 import SliderInput from 'components/input/slider';
-import ContourChart from 'components/plots/contourchart';
 import randomstring from 'utils/randomstring/alphanumeric';
 import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from 'constants/actions.js';
 import QuestionButton from '../question_button.js';
@@ -127,17 +127,16 @@ const ContourChartMenu = ( props ) => {
 
 ContourChartMenu.defaultProps = {
 	logAction() {},
-	onSelected() {},
-	session: {}
+	onSelected() {}
 };
 
 ContourChartMenu.propTypes = {
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
+	session: PropTypes.object.isRequired,
+	variables: PropTypes.array.isRequired,
 	onCreated: PropTypes.func.isRequired,
-	onSelected: PropTypes.func,
-	session: PropTypes.object,
-	variables: PropTypes.array.isRequired
+	onSelected: PropTypes.func
 };
 
 
