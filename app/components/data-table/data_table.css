@@ -5,10 +5,9 @@
 }
 
 .data-table-title-button {
-	float: center;
 	background: rgba(0, 0, 0, 0.05);
-	box-shadow: none;
 	border-color: #0000004d;
+	box-shadow: none;
 	width: calc(100% - 88px);
 }
 
@@ -54,9 +53,9 @@
 
 .data-table-title-button-h4 {
 	font-size: 21px;
-	text-align: center;
 	letter-spacing: 2.5px;
 	margin: 0px;
+	text-align: center;
 }
 
 .variable-descriptions-button {
