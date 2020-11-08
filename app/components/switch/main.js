@@ -1,8 +1,7 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import copy from '@stdlib/utils/copy';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from 'components/tooltip';
 import './switch.css';
@@ -20,76 +19,64 @@ import './switch.css';
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked when elements are switched. Receives as its first argument the index of the currently displayed child
 */
-class Switch extends Component {
-	constructor() {
-		super();
-		this.state = {
-			pos: 0
-		};
-	}
+const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, children }) => {
+	const [ pos, setPos ] = useState( 0 );
 
-	handleClick = () => {
-		const newState = copy( this.state );
-		if ( !isArray( this.props.children ) ) {
+	const mappedChildren = React.Children.map( children, ( elem, idx ) => {
+		const props = ( idx !== pos ) ? {
+			style: { display: 'none' }
+		} : {
+			style: { display: 'inline' }
+		};
+		return React.cloneElement( elem, props );
+	});
+	const handleClick = () => {
+		if ( !isArray( children ) ) {
 			return null;
 		}
-		if ( newState.pos + 1 >= this.props.children.length ) {
-			newState.pos = 0;
+		const newPos = pos + 1;
+		if ( newPos >= children.length ) {
+			setPos( 0 );
 		} else {
-			newState.pos += 1;
+			setPos( newPos );
 		}
-		this.setState( newState );
-		this.props.onChange( newState.pos );
+		onChange( newPos );
+	};
+	let fullClassName = active ? 'switch active' : 'switch';
+	if ( className ) {
+		fullClassName += ' '+className;
 	}
-
-	makeVisible( element, index ) {
-		const o = ( index !== this.state.pos ) ?
-			{
-				style: { display: 'none' }
-			} :
-			{
-				style: { display: 'inline' }
-			};
-		return React.cloneElement( element, o );
+	if ( !active ) {
+		return ( <span
+			className={fullClassName}
+			style={style}
+		>
+			{mappedChildren}
+		</span> );
 	}
+	const content =
+		<span
+			role="button" tabIndex={0}
+			className={className}
+			onClick={handleClick}
+			onKeyPress={handleClick}
+			style={style}
+		>
+			{mappedChildren}
+		</span>;
 
-	render() {
-		let children = React.Children.map( this.props.children, this.makeVisible.bind( this ) );
-		let className = this.props.active ? 'switch active' : 'switch';
-		if ( this.props.className ) {
-			className += ' '+this.props.className;
-		}
-		if ( !this.props.active ) {
-			return ( <span
-				className={className}
-				style={this.props.style}
-			>
-				{children}
-			</span> );
-		}
-		const content =
-			<span
-				role="button" tabIndex={0}
-				className={className}
-				onClick={this.handleClick} onKeyPress={this.handleClick}
-				style={this.props.style}
-			>
-				{children}
-			</span>;
-
-		if ( this.props.tooltip === '' || !this.props.active ) {
-			return content;
-		}
-		return (
-			<Tooltip
-				placement={this.props.tooltipPos}
-				tooltip={this.props.tooltip}
-			>
-				{content}
-			</Tooltip>
-		);
+	if ( tooltip === '' || !active ) {
+		return content;
 	}
-}
+	return (
+		<Tooltip
+			placement={tooltipPos}
+			tooltip={tooltip}
+		>
+			{content}
+		</Tooltip>
+	);
+};
 
 
 // PROPERTIES //
