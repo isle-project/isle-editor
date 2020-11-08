@@ -174,11 +174,12 @@ const BinningTransformer = ( props ) => {
 			newCategories[ ind ] = value;
 			const newCustomNames = state.customNames.slice();
 			newCustomNames[ ind ] = value;
-			setState({
+			const newState = {
 				...state,
 				categories: newCategories,
 				customNames: newCustomNames
-			});
+			};
+			setState( newState );
 		};
 	};
 	const deleteBreakpoint = ( ind ) => {
@@ -357,12 +358,14 @@ const BinningTransformer = ( props ) => {
 
 		const customNames = state.customNames;
 		customNames.push( false );
-		setState({
+
+		const newState = {
 			...state,
 			breakpoints: newBreakpoints,
 			configHist,
 			categories: createCategoryNames( newBreakpoints, customNames )
-		});
+		};
+		setState( newState );
 	};
 	const renderBody = () => {
 		const configHist = state.configHist;

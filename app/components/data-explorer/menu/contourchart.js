@@ -31,20 +31,19 @@ const ContourChartMenu = ( props ) => {
 		const action = {
 			x, y, overlayPoints, regressionMethod, smoothSpan, plotId
 		};
-		const onShare = () => {
-			session.addNotification({
-				title: t('plot-shared'),
-				message: t('plot-shared-message'),
-				level: 'success',
-				position: 'tr'
-			});
-			logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
-		};
 		const output = <ContourChart
 			id={plotId}
 			action={action}
 			data={data}
-			onShare={onShare}
+			onShare={() => {
+				session.addNotification({
+					title: t('plot-shared'),
+					message: t('plot-shared-message'),
+					level: 'success',
+					position: 'tr'
+				});
+				logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
+			}}
 			x={x}
 			y={y}
 			overlayPoints={overlayPoints}
@@ -59,7 +58,8 @@ const ContourChartMenu = ( props ) => {
 	return (
 		<Card style={{ minWidth: 650 }}>
 			<Card.Header as="h4" >
-				{t('Contour Chart')}<QuestionButton title={t('Contour Chart')} content={t('Contour Chart-description')} />
+				{t('Contour Chart')}
+				<QuestionButton title={t('Contour Chart')} content={t('Contour Chart-description')} />
 			</Card.Header>
 			<Card.Body>
 				<Row>
