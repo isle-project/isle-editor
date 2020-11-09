@@ -2,9 +2,15 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from 'components/tooltip';
 import './switch.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:switch' );
 
 
 // MAIN //
@@ -24,6 +30,8 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 
 	const mappedChildren = React.Children.map( children, ( elem, idx ) => {
 		const props = { style: {}};
+
+		debug( `Check whether idx = ${idx} is equal to pos = ${pos}` );
 		if ( idx !== pos ) {
 			props.style.display = 'none';
 		} else {
@@ -36,6 +44,8 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 			return null;
 		}
 		const newPos = pos + 1;
+
+		debug( 'Handle click: New position is '+ newPos );
 		if ( newPos >= children.length ) {
 			setPos( 0 );
 			onChange( 0 );
