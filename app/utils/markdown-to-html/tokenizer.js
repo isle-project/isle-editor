@@ -404,7 +404,7 @@ class Tokenizer {
 
 	_inStringAttribute( char ) {
 		this._current += char;
-		if ( char === this._stringOpener && this._buffer.charAt( this.pos-1 ) !== '/' ) {
+		if ( char === this._stringOpener && this._buffer.charAt( this.pos-1 ) !== '\\' ) {
 			debug( 'IN_STRING_ATTRIBUTE -> IN_OPENING_TAG' );
 			if ( this.rawEscaping ) {
 				this._current = this._current.slice( 0, -1 ) + '`}';
@@ -829,6 +829,7 @@ class Tokenizer {
 		if ( this.addEmptySpans && this.outer ) {
 			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber+1}} />${EOL}`;
 		}
+		console.log( out );
 		return out;
 	}
 }
