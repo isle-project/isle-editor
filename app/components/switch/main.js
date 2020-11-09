@@ -23,11 +23,12 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 	const [ pos, setPos ] = useState( 0 );
 
 	const mappedChildren = React.Children.map( children, ( elem, idx ) => {
-		const props = ( idx !== pos ) ? {
-			style: { display: 'none' }
-		} : {
-			style: { display: 'inline' }
-		};
+		const props = { style: {}};
+		if ( idx !== pos ) {
+			props.style.display = 'none';
+		} else {
+			props.style.display = 'inline';
+		}
 		return React.cloneElement( elem, props );
 	});
 	const handleClick = () => {
