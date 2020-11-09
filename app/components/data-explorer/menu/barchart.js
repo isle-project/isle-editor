@@ -86,6 +86,7 @@ const BarchartMenu = ( props ) => {
 			{...props}
 			variable={variable}
 			group={group}
+			horizontal={horizontal}
 			relative={relative} totalPercent={totalPercent} xOrder={xOrder}
 			direction={direction} summary={summary} yvar={yvar} stackBars={stackBars}
 			id={plotId}
