@@ -25,10 +25,11 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 	const [ overlayPoints, setOverlayPoints ] = useState( false );
 
 	const generateBoxplot = () => {
+		const groupValues = ( this.state.group || [] ).map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
-			group: ( group || [] ).map( e => e.value ),
+			group: groupValues,
 			plotId
 		};
 		const onShare = () => {
@@ -41,7 +42,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 			logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
 		};
 		const output = <BoxPlot id={plotId} onShare={onShare} action={action}
-			data={data} variable={variable} group={group} orientation={orientation}
+			data={data} variable={variable} group={groupValues} orientation={orientation}
 			overlayPoints={overlayPoints} variables={variables}
 		/>;
 		logAction( DATA_EXPLORER_BOXPLOT, action );
