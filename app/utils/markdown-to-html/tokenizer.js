@@ -829,7 +829,6 @@ class Tokenizer {
 		if ( this.addEmptySpans && this.outer ) {
 			out += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber+1}} />${EOL}`;
 		}
-		console.log( out );
 		return out;
 	}
 }
