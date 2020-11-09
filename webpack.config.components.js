@@ -60,7 +60,6 @@ const config = {
 			'./app/components/background',
 			'./app/components/beacon-tooltip',
 			'./app/components/bibliography',
-			'./app/components/calculator',
 			'./app/components/chat-button',
 			'./app/components/citation',
 			'./app/components/clock',
@@ -140,7 +139,6 @@ const config = {
 			'./app/components/slider',
 			'./app/components/solution-button',
 			'./app/components/sortable-tree',
-			'./app/components/internal/spinner',
 			'./app/components/spreadsheet-upload',
 			'./app/components/sticky-note',
 			'./app/components/switch',
@@ -153,7 +151,6 @@ const config = {
 			'./app/components/tooltip',
 			'./app/components/typewriter',
 			'./app/components/unveil',
-			'./app/components/user-pairer',
 			'./app/components/video-chat-button',
 			'./app/components/video-lecture',
 			'./app/components/video-player',
@@ -164,6 +161,7 @@ const config = {
 			'./app/components/internal/login',
 			'./app/components/internal/response-visualizer',
 			'./app/components/internal/signup',
+			'./app/components/internal/spinner',
 			'./app/components/internal/statusbar',
 			'./app/components/internal/toolbar',
 			'./app/components/internal/voice-control'
@@ -173,7 +171,7 @@ const config = {
 		path: join( __dirname, 'dll', 'components' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.47.6/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.47.8/'
 	},
 	optimization: {
 		minimize: true,
