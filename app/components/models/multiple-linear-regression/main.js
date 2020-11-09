@@ -331,8 +331,8 @@ MultipleLinearRegression.propTypes = {
 	y: PropTypes.string.isRequired,
 	x: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
-	omitMissing: false,
-	intercept: true,
+	omitMissing: PropTypes.bool,
+	intercept: PropTypes.bool,
 	onDiagnostics: PropTypes.func,
 	onPredict: PropTypes.func
 };
