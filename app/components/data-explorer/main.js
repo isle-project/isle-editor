@@ -1846,6 +1846,7 @@ DataExplorer.defaultProps = {
 		'Scatterplot Matrix',
 		'Heat Map',
 		'Contour Chart',
+		'Violin Plot',
 		'QQ Plot'
 	],
 	tables: [
