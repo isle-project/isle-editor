@@ -714,6 +714,7 @@
           "Scatterplot Matrix",
           "Heat Map",
           "Contour Chart",
+          "Violin Plot",
           "QQ Plot"
         ]
       },
@@ -1200,143 +1201,6 @@
     ],
     "description": "An ISLE component that allows two render two-sides."
   },
-  "FreeTextQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "the question displayed at the top of the free text question component",
-        "defaultValue": ""
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "top"
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "solution",
-        "type": "(string|node)",
-        "description": "a model answer to the problem",
-        "defaultValue": ""
-      },
-      {
-        "name": "instantSolution",
-        "type": "boolean",
-        "description": "whether one can toggle the display of the model answer immediately",
-        "defaultValue": false
-      },
-      {
-        "name": "rows",
-        "type": "number",
-        "description": "number of rows of the text field for students to type their answers",
-        "defaultValue": 5
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether to enable group chat should for the question",
-        "defaultValue": false
-      },
-      {
-        "name": "resizable",
-        "type": "boolean",
-        "description": "controls whether the text area should be resizable",
-        "defaultValue": false
-      },
-      {
-        "name": "placeholder",
-        "type": "string",
-        "description": "placeholder text displayed before user has entered any text",
-        "defaultValue": "Enter your answer here..."
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "submissionMsg",
-        "type": "string",
-        "description": "notification displayed when the learner first submits his answer",
-        "defaultValue": ""
-      },
-      {
-        "name": "resubmissionMsg",
-        "type": "string",
-        "description": "notification displayed for all submissions after the first one",
-        "defaultValue": "You have successfully re-submitted your answer."
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
-        "defaultValue": true
-      },
-      {
-        "name": "maxlength",
-        "type": "number",
-        "description": "maximum allowed number of characters",
-        "defaultValue": 2500
-      },
-      {
-        "name": "voiceID",
-        "type": "string",
-        "description": "voice control identifier",
-        "defaultValue": null
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback invoked every time the text area value changes; receives the current text as its sole argument",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when user submits an answer; receives the submitted text as its sole argument",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "An ISLE component for questions where answers by students should be supplied in the form of free text."
-  },
   "FreeTextSurvey": {
     "props": [
       {
@@ -1805,89 +1669,6 @@
       }
     ],
     "description": "An iFrame component."
-  },
-  "ImageQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "question for which the student has to bring the available `options` into the correct order",
-        "defaultValue": ""
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "bottom"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether a notification should be displayed after submitting an image",
-        "defaultValue": false
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "sketchpad",
-        "type": "object",
-        "description": "properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`",
-        "defaultValue": null
-      },
-      {
-        "name": "solution",
-        "type": "string",
-        "description": "image URL of model solution",
-        "defaultValue": null
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "Event handler ignoring default dragging behavior and preventing bubbling-up.\n/\nfunction ignoreDrag( evt ) {\nevt.stopPropagation();\nevt.preventDefault();\n}\n\n\n// MAIN //\n\n/**\nA question that asks the user to upload an image."
   },
   "Image": {
     "props": [
@@ -3732,113 +3513,6 @@
     ],
     "description": "A component for displaying a link."
   },
-  "MatchListQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "question to be displayed at the top of the match list question component",
-        "defaultValue": ""
-      },
-      {
-        "name": "elements",
-        "type": "array<{a,b}>",
-        "description": "an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties; supply elements with only `a` or `b` properties to add distractor answers",
-        "defaultValue": []
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "bottom"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether the solution should be accessible after learners submit their answers",
-        "defaultValue": true
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "colorScale",
-        "type": "array",
-        "description": "if set, the supplied colors are used for the tiles",
-        "defaultValue": null
-      },
-      {
-        "name": "shuffle",
-        "type": "string",
-        "description": "specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched",
-        "defaultValue": "both"
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "submissionMsg",
-        "type": "string",
-        "description": "notification displayed when the learner first submits his answer",
-        "defaultValue": "You have successfully submitted your answer."
-      },
-      {
-        "name": "resubmissionMsg",
-        "type": "string",
-        "description": "notification displayed for all submissions after the first one",
-        "defaultValue": "You have successfully re-submitted your answer."
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when students submits an answer",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way."
-  },
   "MetricsContingencyTable": {
     "props": [
       {
@@ -4150,7 +3824,7 @@
       },
       {
         "name": "x",
-        "type": "array<string> (required)",
+        "type": "(array<string>|string) (required)",
         "description": "one or more predictor variables"
       },
       {
@@ -4160,13 +3834,13 @@
       },
       {
         "name": "omitMissing",
-        "type": false,
+        "type": "boolean",
         "description": "controls whether to omit missing values",
         "defaultValue": false
       },
       {
         "name": "intercept",
-        "type": true,
+        "type": "boolean",
         "description": "controls whether to fit a model with an intercept term",
         "defaultValue": true
       },
@@ -4435,163 +4109,6 @@
     ],
     "description": "An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory)."
   },
-  "MultipleChoiceMatrix": {
-    "props": [
-      {
-        "name": "questions",
-        "type": "array (required)",
-        "description": "an array of questions"
-      },
-      {
-        "name": "answers",
-        "type": "array (required)",
-        "description": "an array of answers"
-      },
-      {
-        "name": "title",
-        "type": "(string|node)",
-        "description": "title to be displayed on top of the question matrix",
-        "defaultValue": null
-      },
-      {
-        "name": "solution",
-        "type": "array<array>",
-        "description": "boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked",
-        "defaultValue": null
-      },
-      {
-        "name": "type",
-        "type": "string",
-        "description": "question type (`radio` corresponds to \"Select one\", `checkbox` to \"Select all that apply\")",
-        "defaultValue": "radio"
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when user clicks the \"Submit\" button; invoked with the two-dimensional boolean array of the active status for each answer option",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "An ISLE component that renders a matrix of multiple choice questions with the same answers."
-  },
-  "MultipleChoiceQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "the question displayed at the top of the multiple choice component",
-        "defaultValue": ""
-      },
-      {
-        "name": "solution",
-        "type": "(number|array)",
-        "description": "number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers",
-        "defaultValue": null
-      },
-      {
-        "name": "answers",
-        "type": "array (required)",
-        "description": "an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect"
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "bottom"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "disabled",
-        "type": "boolean",
-        "description": "controls whether the question is disabled",
-        "defaultValue": false
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "provideFeedback",
-        "type": "string",
-        "description": "either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
-        "defaultValue": "incremental"
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "displaySolution",
-        "type": "boolean",
-        "description": "controls whether the solution is displayed upfront",
-        "defaultValue": false
-      },
-      {
-        "name": "voiceID",
-        "type": "string",
-        "description": "voice control identifier",
-        "defaultValue": null
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type \"Choose all that apply\")",
-        "defaultValue": "function onChange(){}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked after an answer is submitted",
-        "defaultValue": "function onSubmit(){}"
-      }
-    ],
-    "description": "An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked."
-  },
   "MultipleChoiceSurvey": {
     "props": [
       {
@@ -4674,119 +4191,6 @@
     ],
     "description": "The **News** component scans the public **News API** (consisting of 71 international  newspapers) and displays the latest 10 articles of the given newspaper. There are two ways to enter a source: one by typing into the search field and submitting via the ENTER button, the second via voice."
   },
-  "NumberQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "number question",
-        "defaultValue": ""
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "top"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "solution",
-        "type": "(number|array<number>)",
-        "description": "a numeric answer to the problem (or multiple correct answers if an array is supplied)",
-        "defaultValue": null
-      },
-      {
-        "name": "digits",
-        "type": "number",
-        "description": "number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.",
-        "defaultValue": 3
-      },
-      {
-        "name": "max",
-        "type": "number",
-        "description": "maximum allowed input value",
-        "defaultValue": null
-      },
-      {
-        "name": "min",
-        "type": "number",
-        "description": "minimum allowed input value",
-        "defaultValue": null
-      },
-      {
-        "name": "defaultValue",
-        "type": "number",
-        "description": "pre-selected value of number input",
-        "defaultValue": 0
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
-        "defaultValue": true
-      },
-      {
-        "name": "nTries",
-        "type": "number",
-        "description": "after how many tries feedback should be supplied (if `provideFeedback` is `true`)",
-        "defaultValue": 1
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading* @property {number} points - maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "A number question component."
-  },
   "NumberSurvey": {
     "props": [
       {
@@ -4827,100 +4231,6 @@
       }
     ],
     "description": "A survey component in which the instructor may collect numeric survey data from students in real-time."
-  },
-  "OrderQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "question for which the student has to bring the available `options` into the correct order",
-        "defaultValue": ""
-      },
-      {
-        "name": "options",
-        "type": "array (required)",
-        "description": "an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order)"
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "controls whether to show a notification displaying whether the submitted answer is correct or not",
-        "defaultValue": true
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "bottom"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "failureMsg",
-        "type": "string",
-        "description": "message to be displayed when student submits a wrong answer",
-        "defaultValue": null
-      },
-      {
-        "name": "successMsg",
-        "type": "string",
-        "description": "message to be displayed when student submits the correct answer",
-        "defaultValue": null
-      },
-      {
-        "name": "disableSubmitNotification",
-        "type": "boolean",
-        "description": "controls whether to disable submission notifications",
-        "defaultValue": false
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "An order question component that asks student to bring a collection of elements into the correct order."
   },
   "Pages": {
     "props": [
@@ -5915,6 +5225,697 @@
     ],
     "description": "QR Code."
   },
+  "FreeTextQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "the question displayed at the top of the free text question component",
+        "defaultValue": ""
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "top"
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "solution",
+        "type": "(string|node)",
+        "description": "a model answer to the problem",
+        "defaultValue": ""
+      },
+      {
+        "name": "instantSolution",
+        "type": "boolean",
+        "description": "whether one can toggle the display of the model answer immediately",
+        "defaultValue": false
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "description": "number of rows of the text field for students to type their answers",
+        "defaultValue": 5
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether to enable group chat should for the question",
+        "defaultValue": false
+      },
+      {
+        "name": "resizable",
+        "type": "boolean",
+        "description": "controls whether the text area should be resizable",
+        "defaultValue": false
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "description": "placeholder text displayed before user has entered any text",
+        "defaultValue": "Enter your answer here..."
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "submissionMsg",
+        "type": "string",
+        "description": "notification displayed when the learner first submits his answer",
+        "defaultValue": ""
+      },
+      {
+        "name": "resubmissionMsg",
+        "type": "string",
+        "description": "notification displayed for all submissions after the first one",
+        "defaultValue": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "defaultValue": true
+      },
+      {
+        "name": "maxlength",
+        "type": "number",
+        "description": "maximum allowed number of characters",
+        "defaultValue": 2500
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time the text area value changes; receives the current text as its sole argument",
+        "defaultValue": "function onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when user submits an answer; receives the submitted text as its sole argument",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component for questions where answers by students should be supplied in the form of free text."
+  },
+  "ImageQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question for which the student has to bring the available `options` into the correct order",
+        "defaultValue": ""
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether a notification should be displayed after submitting an image",
+        "defaultValue": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "sketchpad",
+        "type": "object",
+        "description": "properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`",
+        "defaultValue": null
+      },
+      {
+        "name": "solution",
+        "type": "string",
+        "description": "image URL of model solution",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "Event handler ignoring default dragging behavior and preventing bubbling-up.\n/\nfunction ignoreDrag( evt ) {\nevt.stopPropagation();\nevt.preventDefault();\n}\n\n\n// MAIN //\n\n/**\nA question that asks the user to upload an image."
+  },
+  "MatchListQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question to be displayed at the top of the match list question component",
+        "defaultValue": ""
+      },
+      {
+        "name": "elements",
+        "type": "array<{a,b}>",
+        "description": "an `array` holding the correct pairs displayed at the top of the free text question component. Each `array` element must be an `object` with `a` and `b` properties; supply elements with only `a` or `b` properties to add distractor answers",
+        "defaultValue": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether the solution should be accessible after learners submit their answers",
+        "defaultValue": true
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "colorScale",
+        "type": "array",
+        "description": "if set, the supplied colors are used for the tiles",
+        "defaultValue": null
+      },
+      {
+        "name": "shuffle",
+        "type": "string",
+        "description": "specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched",
+        "defaultValue": "both"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "submissionMsg",
+        "type": "string",
+        "description": "notification displayed when the learner first submits his answer",
+        "defaultValue": "You have successfully submitted your answer."
+      },
+      {
+        "name": "resubmissionMsg",
+        "type": "string",
+        "description": "notification displayed for all submissions after the first one",
+        "defaultValue": "You have successfully re-submitted your answer."
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when students submits an answer",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way."
+  },
+  "MultipleChoiceMatrix": {
+    "props": [
+      {
+        "name": "questions",
+        "type": "array (required)",
+        "description": "an array of questions"
+      },
+      {
+        "name": "answers",
+        "type": "array (required)",
+        "description": "an array of answers"
+      },
+      {
+        "name": "title",
+        "type": "(string|node)",
+        "description": "title to be displayed on top of the question matrix",
+        "defaultValue": null
+      },
+      {
+        "name": "solution",
+        "type": "array<array>",
+        "description": "boolean matrix the element of which indicate whether the respective radio button or checkbox should be ticked",
+        "defaultValue": null
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": "question type (`radio` corresponds to \"Select one\", `checkbox` to \"Select all that apply\")",
+        "defaultValue": "radio"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked when the value of a checkbox / radio button changes; invoked with the two-dimensional boolean array of the active status for each answer option",
+        "defaultValue": "function onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when user clicks the \"Submit\" button; invoked with the two-dimensional boolean array of the active status for each answer option",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "An ISLE component that renders a matrix of multiple choice questions with the same answers."
+  },
+  "MultipleChoiceQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "the question displayed at the top of the multiple choice component",
+        "defaultValue": ""
+      },
+      {
+        "name": "solution",
+        "type": "(number|array)",
+        "description": "number denoting which answer is correct or an `array` of the correct answer numbers in case the learner should be able to select multiple answers",
+        "defaultValue": null
+      },
+      {
+        "name": "answers",
+        "type": "array (required)",
+        "description": "an `array` of answer objects. Each answer should be an object with `content` and `explanation` fields, which denote the displayed answer option and an explanation visible after the question has been submitted to explain why the answer is correct or incorrect"
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "controls whether the question is disabled",
+        "defaultValue": false
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "string",
+        "description": "either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned",
+        "defaultValue": "incremental"
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "displaySolution",
+        "type": "boolean",
+        "description": "controls whether the solution is displayed upfront",
+        "defaultValue": false
+      },
+      {
+        "name": "voiceID",
+        "type": "string",
+        "description": "voice control identifier",
+        "defaultValue": null
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked every time the selected answer changes; receives the index of the selected question as its sole argument (or an array in case the question is of type \"Choose all that apply\")",
+        "defaultValue": "function onChange(){}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked after an answer is submitted",
+        "defaultValue": "function onSubmit(){}"
+      }
+    ],
+    "description": "An ISLE component that renders a multiple choice question. It supports the case where the learner has to select a single answer and when there might be multiple correct answers and all correct ones must be picked."
+  },
+  "NumberQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "number question",
+        "defaultValue": ""
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "solution",
+        "type": "(number|array<number>)",
+        "description": "a numeric answer to the problem (or multiple correct answers if an array is supplied)",
+        "defaultValue": null
+      },
+      {
+        "name": "digits",
+        "type": "number",
+        "description": "number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.",
+        "defaultValue": 3
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "maximum allowed input value",
+        "defaultValue": null
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "minimum allowed input value",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "type": "number",
+        "description": "pre-selected value of number input",
+        "defaultValue": 0
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "defaultValue": true
+      },
+      {
+        "name": "nTries",
+        "type": "number",
+        "description": "after how many tries feedback should be supplied (if `provideFeedback` is `true`)",
+        "defaultValue": 1
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading* @property {number} points - maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after the value of the number field changes; receives the current value as its sole argument",
+        "defaultValue": "function onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "A number question component."
+  },
+  "OrderQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question for which the student has to bring the available `options` into the correct order",
+        "defaultValue": ""
+      },
+      {
+        "name": "options",
+        "type": "array (required)",
+        "description": "an array of texts which the student has to bring into the correct ordering (assumed to be the supplied order)"
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "controls whether to show a notification displaying whether the submitted answer is correct or not",
+        "defaultValue": true
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "bottom"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "description": "message to be displayed when student submits a wrong answer",
+        "defaultValue": null
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "description": "message to be displayed when student submits the correct answer",
+        "defaultValue": null
+      },
+      {
+        "name": "disableSubmitNotification",
+        "type": "boolean",
+        "description": "controls whether to disable submission notifications",
+        "defaultValue": false
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering",
+        "defaultValue": "function onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "An order question component that asks student to bring a collection of elements into the correct order."
+  },
   "QuestionForm": {
     "props": [
       {
@@ -6025,6 +6026,323 @@
       }
     ],
     "description": "A quiz component displaying a sequence of question components."
+  },
+  "RangeQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "displayed question",
+        "defaultValue": ""
+      },
+      {
+        "name": "solution",
+        "type": "array<number>",
+        "description": "two-element array containing the endpoints of the correct range",
+        "defaultValue": null
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "digits",
+        "type": "number",
+        "description": "number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality",
+        "defaultValue": 3
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "maximum input value",
+        "defaultValue": null
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "minimum input value",
+        "defaultValue": null
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "defaultValue": true
+      },
+      {
+        "name": "allowMultipleAnswers",
+        "type": "boolean",
+        "description": "controls whether one can submit multiple answers",
+        "defaultValue": false
+      },
+      {
+        "name": "until",
+        "type": "Date",
+        "description": "time until students should be allowed to submit answers",
+        "defaultValue": null
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChangeLower",
+        "type": "function",
+        "description": "callback triggered after the lower bound is changed by the user",
+        "defaultValue": "function onChangeLower() {}"
+      },
+      {
+        "name": "onChangeUpper",
+        "type": "function",
+        "description": "callback triggered after the upper bound is changed by the user",
+        "defaultValue": "function onChangeUpper() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "A range question component that asks students to supply a lower and upper end point."
+  },
+  "SelectQuestionMatrix": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question to be displayed at the top of the select question matrix",
+        "defaultValue": ""
+      },
+      {
+        "name": "rows",
+        "type": "array",
+        "defaultValue": []
+      },
+      {
+        "name": "cols",
+        "type": "array",
+        "description": "column labels",
+        "defaultValue": []
+      },
+      {
+        "name": "options",
+        "type": "object",
+        "description": "object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being arrays of the possible answer choices for the individual select questions",
+        "defaultValue": {}
+      },
+      {
+        "name": "solution",
+        "type": "object",
+        "description": "solution object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being the index of the correct answer element from the respective `options` array",
+        "defaultValue": {}
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "bottom"
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "provideFeedback",
+        "type": "string",
+        "description": "whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions",
+        "defaultValue": "individual"
+      },
+      {
+        "name": "allowIncomplete",
+        "type": "boolean",
+        "description": "whether to allow submissions without a selection made in each select box",
+        "defaultValue": false
+      },
+      {
+        "name": "nTries",
+        "type": "number",
+        "description": "after how many tries no further answers are accepted (if `provideFeedback` is not `none`)",
+        "defaultValue": 1
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "description": "notification text displayed upon submitting incorrect answers",
+        "defaultValue": null
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "description": "notification text displayed upon submitting correct answers",
+        "defaultValue": null
+      },
+      {
+        "name": "cellLabels",
+        "type": "object",
+        "defaultValue": {}
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "A question with an answer consisting of multiple select boxes."
+  },
+  "SelectQuestion": {
+    "props": [
+      {
+        "name": "question",
+        "type": "(string|node)",
+        "description": "question for which the student has to select one of the available answer options",
+        "defaultValue": ""
+      },
+      {
+        "name": "options",
+        "type": "array (required)",
+        "description": "available answer options from which the student can select"
+      },
+      {
+        "name": "solution",
+        "type": "number (required)",
+        "description": "index of solution element in `options`"
+      },
+      {
+        "name": "preselected",
+        "type": "number",
+        "description": "index of preselected answer option",
+        "defaultValue": 0
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "description": "controls whether the component is rendered inline or not",
+        "defaultValue": false
+      },
+      {
+        "name": "hintPlacement",
+        "type": "string",
+        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
+        "defaultValue": "top"
+      },
+      {
+        "name": "hints",
+        "type": "array<(string|node)>",
+        "description": "hints providing guidance on how to answer the question",
+        "defaultValue": []
+      },
+      {
+        "name": "feedback",
+        "type": "boolean",
+        "description": "controls whether to display feedback buttons",
+        "defaultValue": true
+      },
+      {
+        "name": "chat",
+        "type": "boolean",
+        "description": "controls whether the element should have an integrated chat",
+        "defaultValue": false
+      },
+      {
+        "name": "provideFeedback",
+        "type": "boolean",
+        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
+        "defaultValue": true
+      },
+      {
+        "name": "failureMsg",
+        "type": "string",
+        "description": "message to be displayed when student selects a wrong answer",
+        "defaultValue": "Not quite, try again!"
+      },
+      {
+        "name": "successMsg",
+        "type": "string",
+        "description": "message to be displayed when student selects the correct answer",
+        "defaultValue": "That's the correct answer!"
+      },
+      {
+        "name": "points",
+        "type": "number",
+        "description": "maximum number of points awarded in grading",
+        "defaultValue": 10
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
+      },
+      {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback  which is triggered after the submit action",
+        "defaultValue": "function onChange() {}"
+      },
+      {
+        "name": "onSubmit",
+        "type": "function",
+        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
+        "defaultValue": "function onSubmit() {}"
+      }
+    ],
+    "description": "A select question component."
   },
   "RHelp": {
     "props": [
@@ -6284,113 +6602,6 @@
     ],
     "description": "Displays a random video from a list of videos."
   },
-  "RangeQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "displayed question",
-        "defaultValue": ""
-      },
-      {
-        "name": "solution",
-        "type": "array<number>",
-        "description": "two-element array containing the endpoints of the correct range",
-        "defaultValue": null
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "top"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "digits",
-        "type": "number",
-        "description": "number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality",
-        "defaultValue": 3
-      },
-      {
-        "name": "max",
-        "type": "number",
-        "description": "maximum input value",
-        "defaultValue": null
-      },
-      {
-        "name": "min",
-        "type": "number",
-        "description": "minimum input value",
-        "defaultValue": null
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
-        "defaultValue": true
-      },
-      {
-        "name": "allowMultipleAnswers",
-        "type": "boolean",
-        "description": "controls whether one can submit multiple answers",
-        "defaultValue": false
-      },
-      {
-        "name": "until",
-        "type": "Date",
-        "description": "time until students should be allowed to submit answers",
-        "defaultValue": null
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChangeLower",
-        "type": "function",
-        "description": "callback triggered after the lower bound is changed by the user",
-        "defaultValue": "function onChangeLower() {}"
-      },
-      {
-        "name": "onChangeUpper",
-        "type": "function",
-        "description": "callback triggered after the upper bound is changed by the user",
-        "defaultValue": "function onChangeUpper() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "A range question component that asks students to supply a lower and upper end point."
-  },
   "Reaction": {
     "props": [
       {
@@ -6646,216 +6857,6 @@
       }
     ],
     "description": "An approval seal."
-  },
-  "SelectQuestionMatrix": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "question to be displayed at the top of the select question matrix",
-        "defaultValue": ""
-      },
-      {
-        "name": "rows",
-        "type": "array",
-        "defaultValue": []
-      },
-      {
-        "name": "cols",
-        "type": "array",
-        "description": "column labels",
-        "defaultValue": []
-      },
-      {
-        "name": "options",
-        "type": "object",
-        "description": "object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being arrays of the possible answer choices for the individual select questions",
-        "defaultValue": {}
-      },
-      {
-        "name": "solution",
-        "type": "object",
-        "description": "solution object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being the index of the correct answer element from the respective `options` array",
-        "defaultValue": {}
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "bottom"
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "provideFeedback",
-        "type": "string",
-        "description": "whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions",
-        "defaultValue": "individual"
-      },
-      {
-        "name": "allowIncomplete",
-        "type": "boolean",
-        "description": "whether to allow submissions without a selection made in each select box",
-        "defaultValue": false
-      },
-      {
-        "name": "nTries",
-        "type": "number",
-        "description": "after how many tries no further answers are accepted (if `provideFeedback` is not `none`)",
-        "defaultValue": 1
-      },
-      {
-        "name": "failureMsg",
-        "type": "string",
-        "description": "notification text displayed upon submitting incorrect answers",
-        "defaultValue": null
-      },
-      {
-        "name": "successMsg",
-        "type": "string",
-        "description": "notification text displayed upon submitting correct answers",
-        "defaultValue": null
-      },
-      {
-        "name": "cellLabels",
-        "type": "object",
-        "defaultValue": {}
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "className",
-        "type": "string",
-        "description": "class name",
-        "defaultValue": ""
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "A question with an answer consisting of multiple select boxes."
-  },
-  "SelectQuestion": {
-    "props": [
-      {
-        "name": "question",
-        "type": "(string|node)",
-        "description": "question for which the student has to select one of the available answer options",
-        "defaultValue": ""
-      },
-      {
-        "name": "options",
-        "type": "array (required)",
-        "description": "available answer options from which the student can select"
-      },
-      {
-        "name": "solution",
-        "type": "number (required)",
-        "description": "index of solution element in `options`"
-      },
-      {
-        "name": "preselected",
-        "type": "number",
-        "description": "index of preselected answer option",
-        "defaultValue": 0
-      },
-      {
-        "name": "inline",
-        "type": "boolean",
-        "description": "controls whether the component is rendered inline or not",
-        "defaultValue": false
-      },
-      {
-        "name": "hintPlacement",
-        "type": "string",
-        "description": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
-        "defaultValue": "top"
-      },
-      {
-        "name": "hints",
-        "type": "array<(string|node)>",
-        "description": "hints providing guidance on how to answer the question",
-        "defaultValue": []
-      },
-      {
-        "name": "feedback",
-        "type": "boolean",
-        "description": "controls whether to display feedback buttons",
-        "defaultValue": true
-      },
-      {
-        "name": "chat",
-        "type": "boolean",
-        "description": "controls whether the element should have an integrated chat",
-        "defaultValue": false
-      },
-      {
-        "name": "provideFeedback",
-        "type": "boolean",
-        "description": "indicates whether feedback including the correct answer should be displayed after learners submit their answers",
-        "defaultValue": true
-      },
-      {
-        "name": "failureMsg",
-        "type": "string",
-        "description": "message to be displayed when student selects a wrong answer",
-        "defaultValue": "Not quite, try again!"
-      },
-      {
-        "name": "successMsg",
-        "type": "string",
-        "description": "message to be displayed when student selects the correct answer",
-        "defaultValue": "That's the correct answer!"
-      },
-      {
-        "name": "points",
-        "type": "number",
-        "description": "maximum number of points awarded in grading",
-        "defaultValue": 10
-      },
-      {
-        "name": "style",
-        "type": "object",
-        "description": "CSS inline styles",
-        "defaultValue": {}
-      },
-      {
-        "name": "onChange",
-        "type": "function",
-        "description": "callback  which is triggered after the submit action",
-        "defaultValue": "function onChange() {}"
-      },
-      {
-        "name": "onSubmit",
-        "type": "function",
-        "description": "callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter",
-        "defaultValue": "function onSubmit() {}"
-      }
-    ],
-    "description": "A select question component."
   },
   "ShapedForm": {
     "props": [

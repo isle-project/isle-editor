@@ -83,6 +83,7 @@ We will include the explorer with the following code:
   'Scatterplot Matrix',
   'Heat Map',
   'Contour Chart',
+  'Violin Plot',
   'QQ Plot'
 ]`.
 * __questions__ | `array`: array of nodes indicating surrounding text and question components to be displayed in a tabbed window. Default: `[]`.
