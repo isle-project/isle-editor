@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.71.3](https://github.com/isle-project/isle-editor/releases/tag/v0.71.3) (2020-11-09)
+
+This release contains various bug fixes, internal refactoring of components, and translations for the data explorer toolbox.
+
+**Implemented enhancements:**
+
+- Smoothing of Density curve Data Driven Histogram [\#1277](https://github.com/isle-project/isle-editor/issues/1277)
+- brainstorming enhancements to "statistics" tab [\#1165](https://github.com/isle-project/isle-editor/issues/1165)
+
 ## [v0.71.2](https://github.com/isle-project/isle-editor/releases/tag/v0.71.2) (2020-10-26)
 
 This release adds a new error reporting system to the toolbar, which will be available in case ticketing is enabled for the respective course on the ISLE dashboard. It also augments the student responses tab on the instructor panel with grading capabilities.
