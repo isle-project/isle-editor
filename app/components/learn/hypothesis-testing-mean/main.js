@@ -194,7 +194,7 @@ class MeanTest extends Component {
 					y: pdf( d )
 				};
 			});
-			probFormula = `P( |Z| > ${zStat}) = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
+			probFormula = `P( |Z| > ${abs(zStat)}) = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
