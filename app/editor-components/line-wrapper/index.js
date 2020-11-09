@@ -251,7 +251,7 @@ class LineWrapper extends Component {
 					className="line-wrapper outer-element"
 					onDoubleClick={this.handleDoubleClick}
 					title={outerTitle}
-					style={this.state.style}
+					style={{ ...this.props.style, ...this.state.style }}
 					ref={span => {
 						this.lineWrapper = span;
 					}}
@@ -273,7 +273,7 @@ class LineWrapper extends Component {
 				className="line-wrapper outer-element"
 				onDoubleClick={this.handleDoubleClick}
 				title={outerTitle}
-				style={this.state.style}
+				style={{ ...this.props.style, ...this.state.style }}
 				ref={div => {
 					this.lineWrapper = div;
 				}}
@@ -294,7 +294,8 @@ LineWrapper.defaultProps = {
 	isInline: false,
 	startColumn: 1,
 	endColumn: PINF,
-	tagName: null
+	tagName: null,
+	style: {}
 };
 
 LineWrapper.propTypes = {
@@ -306,7 +307,8 @@ LineWrapper.propTypes = {
 	switchWithNext: PropTypes.func.isRequired,
 	switchWithPrevious: PropTypes.func.isRequired,
 	endColumn: PropTypes.number,
-	tagName: PropTypes.string
+	tagName: PropTypes.string,
+	style: PropTypes.object
 };
 
 
