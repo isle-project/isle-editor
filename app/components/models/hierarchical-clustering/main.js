@@ -7,10 +7,12 @@ import Alert from 'react-bootstrap/Alert';
 import round from '@stdlib/math/base/special/round';
 import randomstring from 'utils/randomstring/alphanumeric';
 import { svgString2Image, getSVGString } from 'utils/svg';
+import blobToBase64 from 'utils/blob-to-base64';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
 import './load_translations.js';
+import './hierarchical_clustering.css';
 
 
 // FUNCTIONS //
@@ -92,10 +94,11 @@ class HierarchicalClustering extends Component {
 			<div style={{ overflowX: 'auto', width: '100%' }} >
 				<span className="title" >Hierarchical Clustering Summary</span>
 				<div
-					className="decision-tree-draggable-bar"
+					className="hierarchical-clustering-draggable-bar"
 					draggable="true"
 					onDragStart={( ev ) => {
 						ev.dataTransfer.setData( 'text/html', this.plotValue );
+						console.log( this.plotValue );
 						ev.dataTransfer.setData( 'text/plain', this.plotKey );
 					}}
 				>Drag Plot</div>
@@ -122,10 +125,11 @@ class HierarchicalClustering extends Component {
 							const height = 375;
 							const svgString = getSVGString( this.svg );
 							svgString2Image( svgString, 2.0*width, 2.0*height, ( dataBlob ) => {
-								const value = `<img src="${dataBlob}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`;
-								this.plotKey = `<!--IMAGE_LOG:${randomstring( 6 )}_${randomstring( 6 )}-->`;
-								this.plotValue = value;
-								this.plotData = dataBlob;
+								blobToBase64( dataBlob ).then( str => {
+									const value = `<img src="${str}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%" />`;
+									this.plotKey = `<!--IMAGE_LOG:${randomstring( 6 )}_${randomstring( 6 )}-->`;
+									this.plotValue = value;
+								});
 							});
 						}
 					}}>
