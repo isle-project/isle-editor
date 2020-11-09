@@ -37,10 +37,11 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 		const newPos = pos + 1;
 		if ( newPos >= children.length ) {
 			setPos( 0 );
+			onChange( 0 );
 		} else {
 			setPos( newPos );
+			onChange( newPos );
 		}
-		onChange( newPos );
 	};
 	let fullClassName = active ? 'switch active' : 'switch';
 	if ( className ) {
