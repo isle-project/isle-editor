@@ -148,7 +148,16 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 
 // MAIN //
 
-function BoxPlot({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) {
+/**
+* A box plot.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {Array<string>} group - one or two grouping variables
+* @property {string} orientation - `vertical` or `horizontal` orientation
+* @property {boolean} overlayPoints - controls whether to overlay points
+*/
+const BoxPlot = ({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) =>{
 	const config = generateBoxplotConfig({
 		data,
 		variable,
@@ -166,7 +175,7 @@ function BoxPlot({ data, variable, group = [], orientation, overlayPoints, id, a
 		meta={action}
 		onShare={onShare}
 	/> );
-}
+};
 
 
 // PROPERTIES //
@@ -188,13 +197,4 @@ BoxPlot.propTypes = {
 
 // EXPORTS //
 
-/**
-* A box plot.
-*
-* @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {Array<string>} group - one or two grouping variables
-* @property {string} orientation - `vertical` or `horizontal` orientation
-* @property {boolean} overlayPoints - controls whether to overlay points
-*/
 export default BoxPlot;

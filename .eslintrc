@@ -413,7 +413,8 @@
           "ymin",
           "ymax",
           "ysmall",
-          "ystdev"
+          "ystdev",
+          "yvar"
         ],
         "skipIfMatch": [
           "Copyright",

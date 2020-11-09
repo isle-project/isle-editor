@@ -177,6 +177,20 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 
 // MAIN //
 
+/**
+* Bar chart.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {boolean} stackBars - when grouping, controls whether to stack bars on top of each other
+* @property {boolean} relative - whether to calculate relative frequencies inside each group
+* @property {boolean} totalPercent - whether to display overall bars as relative frequencies
+* @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category
+* @property {boolean} horizontal - whether to display bars horizontally
+* @property {string} xOrder - one of `total`, `category`, `min`, `max`, `mean`, or `median`
+* @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
+*/
 const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
 	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
 	return (
@@ -230,18 +244,4 @@ BarChart.propTypes = {
 
 // EXPORTS //
 
-/**
-* Bar chart.
-*
-* @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {string} group - grouping variable
-* @property {boolean} stackBars - when grouping, controls whether to stack bars on top of each other
-* @property {boolean} relative - whether to calculate relative frequencies inside each group
-* @property {boolean} totalPercent - whether to display overall bars as relative frequencies
-* @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category
-* @property {boolean} horizontal - whether to display bars horizontally
-* @property {string} xOrder - one of `total`, `category`, `min`, `max`, `mean`, or `median`
-* @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
-*/
 export default BarChart;
