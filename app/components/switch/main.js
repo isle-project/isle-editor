@@ -59,7 +59,7 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 	const content =
 		<span
 			role="button" tabIndex={0}
-			className={className}
+			className={fullClassName}
 			onClick={handleClick}
 			onKeyPress={handleClick}
 			style={style}
