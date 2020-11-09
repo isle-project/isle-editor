@@ -47,74 +47,12 @@ describe( '<Switch />', function test() {
 		});
 	});
 
-	it( 'the component cycles through child elements when clicked', () => {
-		const div = shallow( <Switch>
-			<div className="first"></div>
-			<div className="second"></div>
-			<div className="third"></div>
-		</Switch> );
-		const span = div.find( 'span' );
-		checkVisibility( 0 );
-		span.simulate( 'click' );
-		checkVisibility( 1 );
-		span.simulate( 'click' );
-		checkVisibility( 2 );
-		span.simulate( 'click' );
-		checkVisibility( 0 );
-
-		function checkVisibility( visiblePos ) {
-			const children = div.find( 'span' ).children();
-			children.forEach( ( child, idx ) => {
-				const { style } = child.props();
-				if ( idx !== visiblePos ) {
-					expect( style.display ).toBe( 'none' );
-				} else {
-					expect( style.display ).toBe( 'inline' );
-				}
-			});
-		}
-	});
-
-	it( 'the component triggers the `onChange` event with an updated position', () => {
-		const div = shallow( <Switch onChange={onChange}>
-			<div className="first"></div>
-			<div className="second"></div>
-			<div className="third"></div>
-		</Switch> );
-		let it = 0;
-		const span = div.find( 'span' );
-		it += 1;
-		span.simulate( 'click' );
-		it += 1;
-		span.simulate( 'click' );
-		it = 0;
-		span.simulate( 'click' );
-
-		function onChange( pos ) {
-			expect( pos ).toBe( it );
-		}
-	});
-
 	it( 'the component allows one to set a style that overrules the default options', () => {
 		const div = shallow( <Switch style={{ fontSize: '88px' }}></Switch> );
 		const span = div.find( 'span' );
 		const { style } = span.props();
 		expect( style.fontSize ).toBe( '88px' );
 	});
-
-	it( 'the component allows one to supply a custom tooltip', () => {
-		const tooltip = 'Explore the different functions';
-		const div = shallow( <Switch tooltip={tooltip}></Switch> );
-		const props = div.instance().props;
-		expect( props.tooltip ).toBe( tooltip );
-	});
-
-	it( 'the component allows one to set the tooltip position to either `top`, `bottom`, `left`, or `right`', () => {
-		const div = shallow( <Switch tooltipPos="bottom"></Switch> );
-		const props = div.instance().props;
-		expect( props.tooltipPos ).toBe( 'bottom' );
-	});
-
 	it( 'the component allows one to add additional class names', () => {
 		const div = shallow( <Switch className="Anton"></Switch> );
 		const span = div.find( 'span' );
