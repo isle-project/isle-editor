@@ -152,8 +152,8 @@ const ScatterplotMenu = ( props ) => {
 							style={{ float: 'right', paddingLeft: 10, width: '45%' }}
 							disabled={!regressionLine}
 							onChange={( value ) => {
-								if ( !isArray(value) ) {
-									value = [value];
+								if ( !isArray( value ) ) {
+									value = [ value ];
 								}
 								setRegressionMethod( value );
 							}}

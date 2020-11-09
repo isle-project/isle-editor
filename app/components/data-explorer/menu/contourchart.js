@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import contains from '@stdlib/assert/contains';
+import isArray from '@stdlib/assert/is-array';
 import CheckboxInput from 'components/input/checkbox';
 import ContourChart from 'components/plots/contourchart';
 import SelectInput from 'components/input/select';
@@ -96,10 +97,14 @@ const ContourChartMenu = ( props ) => {
 					<Col>
 						<SelectInput
 							legend={t('overlay-regression-line')}
-							defaultValue={regressionMethod}
 							multi={true}
 							options={[ 'linear', 'smooth' ]}
-							onChange={setRegressionMethod}
+							onChange={( value ) => {
+								if ( !isArray( value ) ) {
+									value = [ value ];
+								}
+								setRegressionMethod( value );
+							}}
 						/>
 					</Col>
 					<Col>

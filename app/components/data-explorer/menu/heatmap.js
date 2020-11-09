@@ -132,7 +132,6 @@ const HeatMapMenu = ( props ) => {
 					<Col>
 						<SelectInput
 							legend={t('overlay-regression-line')}
-							defaultValue={regressionMethod}
 							multi={true}
 							options={[ 'linear', 'smooth' ]}
 							onChange={( value ) => {
