@@ -25,7 +25,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 	const [ overlayPoints, setOverlayPoints ] = useState( false );
 
 	const generateBoxplot = () => {
-		const groupValues = ( this.state.group || [] ).map( e => e.value );
+		const groupValues = ( group || [] ).map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
