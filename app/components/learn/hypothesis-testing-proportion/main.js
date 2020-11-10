@@ -144,7 +144,7 @@ class ProportionTest extends Component {
 			areaData2 = linspace( -3, -abs( pStat ), 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
-			probFormula = `P( |Z| > ${pStat}) = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
+			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( pStat || 0.0, 3, 200 ).map( d => {
