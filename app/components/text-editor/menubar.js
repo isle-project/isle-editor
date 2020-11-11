@@ -2,6 +2,7 @@
 
 import React, { Fragment } from 'react';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import CirclePicker from 'react-color/lib/Circle.js';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -191,4 +192,4 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 
 // EXPORTS //
 
-export default MenuBar;
+export default withTranslation( 'text-editor' )( MenuBar );
