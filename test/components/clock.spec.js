@@ -1,26 +1,19 @@
 // MODULES //
 
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import Clock from 'components/clock/main.js';
-
-
-// VARIABLES //
-
-Enzyme.configure({ adapter: new Adapter() });
 
 
 // TESTS //
 
 it( 'renders the current time', () => {
-	const clock = shallow( <Clock /> );
-	const span = clock.find( 'span' );
-	expect( span ).toHaveLength( 1 );
+	const { container } = render( <Clock /> );
+	expect( container ).not.toBeEmpty();
 });
 
 it( 'renders the duration of the lesson', () => {
-	const clock = shallow( <Clock duration /> );
-	const span = clock.find( 'span' );
-	expect( span ).toHaveLength( 1 );
+	const { container } = render( <Clock duration /> );
+	expect( container ).not.toBeEmpty();
 });
