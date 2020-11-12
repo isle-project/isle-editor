@@ -11,7 +11,7 @@ import Unveil from 'components/unveil/main.js';
 describe( '<Unveil />', function test() {
 	it( 'the component renders an element', () => {
 		const { container } = render( <Unveil /> );
-		expect( container ).not.toBeEmpty();
+		expect( container ).not.toBeEmptyDOMElement();
 	});
 
 	it( 'the component unveils child elements if it is active', async () => {

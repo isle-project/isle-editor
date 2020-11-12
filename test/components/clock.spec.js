@@ -10,10 +10,10 @@ import Clock from 'components/clock/main.js';
 
 it( 'renders the current time', () => {
 	const { container } = render( <Clock /> );
-	expect( container ).not.toBeEmpty();
+	expect( container ).not.toBeEmptyDOMElement();
 });
 
 it( 'renders the duration of the lesson', () => {
 	const { container } = render( <Clock duration /> );
-	expect( container ).not.toBeEmpty();
+	expect( container ).not.toBeEmptyDOMElement();
 });

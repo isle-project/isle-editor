@@ -11,7 +11,7 @@ import TeX from 'components/tex/main.js';
 describe( '<TeX />', function test() {
 	it( 'the component renders an element', () => {
 		const { container } = render( <TeX raw="2+2" /> );
-		expect( container ).not.toBeEmpty();
+		expect( container ).not.toBeEmptyDOMElement();
 	});
 
 	it( 'the component supports a numeric `raw` property value', () => {
@@ -21,12 +21,12 @@ describe( '<TeX />', function test() {
 
 	it( 'the component handles an invalid LaTeX equation by not rendering anything', () => {
 		const { container } = render( <TeX raw="\intelli x" /> );
-		expect( container ).toBeEmpty();
+		expect( container ).not.toHaveTextContent( '\\intelli x' );
 	});
 
 	it( 'the component handles an empty `raw` property value', () => {
 		const { container } = render( <TeX raw="" /> );
-		expect( container ).toBeEmpty();
+		expect( container ).toContainHTML( '<span class="katex-html" aria-hidden="true"></span>' );
 	});
 
 	it( 'the component renders a tag when `numbered` property is set', () => {

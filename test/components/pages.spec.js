@@ -1,203 +1,34 @@
 // MODULES //
 
 import React from 'react';
-import Enzyme, { mount, shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { PurePages as Pages } from 'components/pages/main.js';
-
-
-// VARIABLES //
-
-Enzyme.configure({ adapter: new Adapter() });
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import Pages from 'components/pages/main.js';
 
 
 // TESTS //
 
 describe( '<Pages />', function test() {
-	it( 'does not render any elements if no children are present', () => {
-		const wrapper = shallow( <Pages t={key => key} ></Pages> );
-		expect( wrapper ).toHaveLength( 1 );
+	it( 'renders an alert if no children are present', () => {
+		const { container } = render( <Pages ></Pages> );
+		expect( container ).toHaveTextContent( 'missing-children' );
 	});
 
 	it( 'renders a user-supplied `title`', () => {
-		const wrapper = shallow( <Pages t={key => key} title="A Title" >
+		const { getByRole } = render( <Pages title="A Title" >
 			<div>ONE</div>
 			<div>TWO</div>
 		</Pages> );
-		const { title } = wrapper.instance().props;
-		expect( title ).toBe( 'A Title' );
-		const h3 = wrapper.find( 'h3' );
-		expect( h3.text() ).toBe( 'A Title' );
-	});
-
-	it( 'the `jumpTo` method allows one to call up a certain page', () => {
-		const wrapper = mount(<Pages t={key => key}>
-			<p>ONE</p>
-			<p>TWO</p>
-			<p>THREE</p>
-			<p>FOUR</p>
-		</Pages>
-		);
-		wrapper.instance().jumpTo( 2 );
-		wrapper.update();
-		const state = wrapper.instance().state;
-
-		const span = wrapper.find( '.page-children-wrapper span' );
-		span.forEach( ( elem, idx ) => {
-			if ( idx !== 1 ) {
-				expect( elem.hasClass( 'visible-page' ) ).toBeFalsy();
-			} else {
-				expect( elem.hasClass( 'visible-page' ) ).toBeTruthy();
-			}
-		});
-		expect( state.activePage ).toBe( 2 );
-	});
-
-	it( 'the `jumpTo` method stays at the current age if supplied a page outside the allowed range', () => {
-		const wrapper = mount(<Pages t={key => key} >
-			<p>ONE</p>
-			<p>TWO</p>
-			<p>THREE</p>
-			<p>FOUR</p>
-		</Pages>
-		);
-
-		wrapper.instance().jumpTo( 3 );
-		wrapper.instance().jumpTo( 5 );
-		wrapper.update();
-		let state = wrapper.instance().state;
-		let span = wrapper.find( '.page-children-wrapper span' );
-		span.forEach( ( elem, idx ) => {
-			if ( idx !== 2 ) {
-				expect( elem.hasClass( 'visible-page' ) ).toBeFalsy();
-			} else {
-				expect( elem.hasClass( 'visible-page' ) ).toBeTruthy();
-			}
-		});
-		expect( state.activePage ).toBe( 3 );
-
-		wrapper.instance().jumpTo( 1 );
-		wrapper.instance().jumpTo( 0 );
-		wrapper.update();
-		state = wrapper.instance().state;
-
-		span = wrapper.find( '.page-children-wrapper span' );
-		span.forEach( ( elem, idx ) => {
-			if ( idx !== 0 ) {
-				expect( elem.hasClass( 'visible-page' ) ).toBeFalsy();
-			} else {
-				expect( elem.hasClass( 'visible-page' ) ).toBeTruthy();
-			}
-		});
-		expect( state.activePage ).toBe( 1 );
-	});
-
-	it( 'the `nextPage` method allows one to call the next page externally', () => {
-		const wrapper = mount(<Pages t={key => key} >
-			<p>ONE</p>
-			<p>TWO</p>
-			<p>THREE</p>
-			<p>FOUR</p>
-		</Pages> );
-
-		wrapper.instance().nextPage();
-		wrapper.update();
-		let state = wrapper.instance().state;
-		let div = wrapper.find( '.visible-page' );
-		let text = div.text();
-		expect( text ).toBe( 'TWO' );
-		expect( state.activePage ).toBe( 2 );
-
-		wrapper.instance().nextPage();
-		wrapper.instance().nextPage();
-		wrapper.instance().nextPage();
-		wrapper.update();
-		state = wrapper.instance().state;
-		div = wrapper.find( '.visible-page' );
-		text = div.text();
-		expect( text ).toBe( 'FOUR' );
-		expect( state.activePage ).toBe( 4 );
-	});
-
-	it( 'the `prevPage` method allows one to call the previous page externally', () => {
-		const wrapper = mount(<Pages t={key => key} >
-			<div>ONE</div>
-			<div>TWO</div>
-			<div>THREE</div>
-			<div>FOUR</div>
-		</Pages>
-		);
-
-		wrapper.instance().prevPage();
-		wrapper.update();
-		let state = wrapper.instance().state;
-		let div = wrapper.find( '.visible-page' );
-		let text = div.text();
-		expect( text ).toBe( 'ONE' );
-		expect( state.activePage ).toBe( 1 );
-
-		wrapper.instance().jumpTo( 4 );
-		wrapper.instance().prevPage();
-		wrapper.update();
-		state = wrapper.instance().state;
-		div = wrapper.find( '.visible-page' );
-		text = div.text();
-		expect( text ).toBe( 'THREE' );
-		expect( state.activePage ).toBe( 3 );
-	});
-
-	it( 'when clicked, the component moves to the next or previous page', done => {
-		const wrapper = mount(<Pages activePage={3} t={key => key} >
-			<div>ONE</div>
-			<div>TWO</div>
-			<div>THREE</div>
-			<div>FOUR</div>
-		</Pages>
-		);
-		const pagination = wrapper.find( '.my-pagination' ).first();
-		const listItems = pagination.find( 'li' );
-
-		const nextPageButton = listItems.at( listItems.length - 1 );
-		const previousPageButton = listItems.at( 0 );
-
-		nextPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 4 );
-
-		previousPageButton.find( 'a' ).simulate( 'click' );
-		expect( wrapper.instance().state.activePage ).toBe( 3 );
-
-		done();
+		expect( getByRole( 'heading') ).toHaveTextContent( 'A Title' );
 	});
 
 	it( 'allows one to set the `height` of the container', () => {
-		const wrapper = mount(<Pages height="300px" t={key => key} >
+		const { container } = render(<Pages height="300px" >
 			<div>ONE</div>
 			<div>TWO</div>
 			<div>THREE</div>
-		</Pages>
-		);
-		const container = wrapper.find( '.page-children-wrapper' );
-		expect( container.instance().style.height ).toBe( '300px' );
-	});
-
-	it( 'triggers the `onSelect` event when the active page is changed', () => {
-		const wrapper = shallow( <Pages onSelect={onSelect} t={key => key} >
-			<p>ONE</p>
-			<p>TWO</p>
-			<p>THREE</p>
 		</Pages> );
-		let it = 1;
-		const instance = wrapper.instance();
-
-		it += 1;
-		instance.nextPage();
-		it += 1;
-		instance.nextPage();
-		it = 1;
-		instance.jumpTo( 1 );
-
-		function onSelect( page ) {
-			expect( page ).toBe( it );
-		}
+		const pages = container.querySelector( '.page-children-wrapper' );
+		expect( pages.style.height ).toBe( '300px' );
 	});
 });

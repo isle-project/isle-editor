@@ -11,6 +11,6 @@ import Wikipedia from 'components/wikipedia/main.js';
 describe( '<Wikipedia />', function test(){
 	it( 'the component renders an element', () => {
 		const { container } = render( <Wikipedia /> );
-		expect( container ).not.toBeEmpty();
+		expect( container ).not.toBeEmptyDOMElement();
 	});
 });

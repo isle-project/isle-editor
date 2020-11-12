@@ -11,7 +11,7 @@ import Switch from 'components/switch/main.js';
 describe( '<Switch />', function test() {
 	it( 'the component renders an empty element if not supplied children', () => {
 		const { container } = render( <Switch /> );
-		expect( container ).toBeEmpty();
+		expect( container ).toBeEmptyDOMElement();
 	});
 
 	it( 'the component renders a non-empty element if supplied children', () => {
@@ -20,7 +20,7 @@ describe( '<Switch />', function test() {
 			<div className="second">2</div>
 			<div className="third">3</div>
 		</Switch> );
-		expect( container ).not.toBeEmpty();
+		expect( container ).not.toBeEmptyDOMElement();
 	});
 
 	it( 'by default, the component displays only the first child element', () => {
