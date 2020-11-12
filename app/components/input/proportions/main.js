@@ -128,13 +128,13 @@ class ProportionInput extends Input {
 	}
 
 	checkPercentage( ndx, value ) {
-		const copy = this.state.values.slice();
-		copy[ ndx ] = value;
+		const newValues = this.state.values.slice();
+		newValues[ ndx ] = value;
 
-		this.props.onChange( copy );
+		this.props.onChange( newValues );
 		this.setState({
-			values: copy,
-			visualData: this.pieData( copy )
+			values: newValues,
+			visualData: pieData( newValues, this.props.nElements, this.props.legends )
 		});
 	}
 
