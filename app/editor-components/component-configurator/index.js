@@ -650,10 +650,16 @@ class ComponentConfigurator extends Component {
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
 					<SearchBar
+						value={this.state.searchValue}
 						placeholder="Search for options..."
 						onChange={( event ) => {
 							this.setState({
 								searchValue: lowercase( event.target.value )
+							});
+						}}
+						onClear={() => {
+							this.setState({
+								searchValue: ''
 							});
 						}}
 						style={{ width: '14vw', minWidth: '120px', float: 'right', marginBottom: 2 }}

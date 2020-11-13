@@ -9,9 +9,12 @@ import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import { LANGUAGES } from 'constants/deepl';
+import Tooltip from 'components/tooltip';
 import SearchBar from 'editor-components/searchbar';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
+import COMPONENT_DOCS from 'components/documentation.json';
 import electronStore from 'store/electron.js';
+import './contextmenu.css';
 
 
 // VARIABLES //
@@ -20,6 +23,12 @@ const debug = logger( 'isle:editor:context-menu' );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 const RE_WHITESPACE = require( '@stdlib/regexp/whitespace' );
+const BUTTON_STYLE = {
+	float: 'right',
+	border: 'none',
+	background: 'none',
+	cursor: 'pointer'
+};
 
 
 // MAIN //
@@ -61,21 +70,24 @@ class EditorContextMenu extends Component {
 	}
 
 	renderMenuItem = ( obj, idx ) => {
+		const description = COMPONENT_DOCS[ obj.name ] ? COMPONENT_DOCS[ obj.name ].description : '';
 		return ( <MenuItem
 			key={idx}
 			data={obj}
 			onClick={this.handleContextMenuClick}
 		>
-			{obj.name}
+			<span>{obj.name}</span>
+			<Tooltip tooltip={description} placement="top" >
+				<sup
+					className="fas fa-info-circle"
+					title="Description"
+					style={{ marginLeft: 2, color: 'rgb(120, 120, 120)' }}
+				></sup>
+			</Tooltip>
 			<button
 				className="fa fa-cogs"
 				title="Open component configurator"
-				style={{
-					float: 'right',
-					border: 'none',
-					background: 'none',
-					cursor: 'pointer'
-				}}
+				style={BUTTON_STYLE}
 				onClick={this.handleCustomInsertClick}
 			/>
 		</MenuItem>
@@ -126,7 +138,7 @@ class EditorContextMenu extends Component {
 		const data = this.createMenuEntries( [], 'Data', models, tables, tests );
 		return (
 			<Fragment>
-				<ContextMenu id={this.props.id} onHide={this.handleHide} >
+				<ContextMenu className="components-contextmenu" id={this.props.id} onHide={this.handleHide} >
 					<span style={{ marginLeft: 6 }} >Select Component to Insert</span>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{main}
@@ -145,6 +157,7 @@ class EditorContextMenu extends Component {
 					{plots}
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					<SearchBar
+						value={this.state.searchValue}
 						placeholder="Search for components..."
 						onChange={( event ) => {
 							this.setState({
@@ -153,6 +166,11 @@ class EditorContextMenu extends Component {
 						}}
 						buttonSize="sm"
 						style={{ margin: 0, fontSize: 10 }}
+						onClear={() => {
+							this.setState({
+								searchValue: ''
+							});
+						}}
 					/>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					<SubMenu title="Translate selection to" disabled={!ISLE_SERVER_TOKEN || !this.props.hasSelection} >
