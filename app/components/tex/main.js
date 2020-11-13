@@ -188,49 +188,75 @@ class TeX extends Component {
 			__html: str
 		};
 		if ( this.props.displayMode === true ) {
-			return (
+			const tag = this.props.numbered ?
 				<div
+					className="tag"
+					style={{
+						float: 'right',
+						marginTop: 5,
+						marginRight: 5
+					}}
+				>
+					{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
+				</div> : null;
+			const equation = <span
+				ref={( span ) => { this.katex = span; }}
+				dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
+				aria-hidden={!!math}
+			/>;
+			if ( this.props.onClick ) {
+				return (
+					<div
+						className="tex"
+						role="button" tabIndex={0}
+						style={this.props.style}
+						onClick={this.props.onClick} onKeyPress={this.props.onClick}
+						aria-label="Equation"
+					>
+						{tag}
+						{equation}
+						{overlays}
+					</div>
+				);
+			}
+			return ( <div
+				className="tex"
+				style={this.props.style}
+				aria-label="Equation"
+			>
+				{tag}
+				{equation}
+				{overlays}
+			</div> );
+		}
+		const equation = <span
+			dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
+			aria-hidden={!!math}
+			style={{ whiteSpace: 'nowrap' }}
+		/>;
+		if ( this.props.onClick ) {
+			return (
+				<span
 					className="tex"
 					role="button" tabIndex={0}
+					ref={( span ) => { this.katex = span; }}
 					style={this.props.style}
 					onClick={this.props.onClick} onKeyPress={this.props.onClick}
 					aria-label="Equation"
 				>
-					{ this.props.numbered ?
-						<div
-							className="tag"
-							style={{
-								float: 'right',
-								marginTop: 5,
-								marginRight: 5
-							}}
-						>
-							{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
-						</div> : null
-					}
-					<span
-						ref={( span ) => { this.katex = span; }}
-						dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
-						aria-hidden={!!math}
-					/>
+					{equation}
 					{overlays}
-				</div>
+				</span>
 			);
 		}
 		return (
 			<span
 				className="tex"
-				role="button" tabIndex={0}
 				ref={( span ) => { this.katex = span; }}
 				style={this.props.style}
-				onClick={this.props.onClick} onKeyPress={this.props.onClick}
 				aria-label="Equation"
 			>
-				<span
-					dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
-					aria-hidden={!!math}
-					style={{ whiteSpace: 'nowrap' }}
-				/>
+				{equation}
 				{overlays}
 			</span>
 		);
@@ -262,7 +288,7 @@ TeX.defaultProps = {
 	elems: {},
 	popoverPlacement: 'top',
 	onPopover() {},
-	onClick() {}
+	onClick: null
 };
 
 
