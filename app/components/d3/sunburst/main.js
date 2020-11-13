@@ -26,19 +26,23 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';
 import PI from '@stdlib/constants/math/float64-pi';
 import { CAT20 as COLORS } from 'constants/colors';
-import randomstring from 'utils/randomstring/alphanumeric';
+import generateUID from 'utils/uid';
 import './style.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:sunburst' );
+const uid = generateUID( 'sunburst' );
 
 
 // FUNCTIONS //
 
 function createColorMapping( categories ) {
 	const out = {};
+	if ( !categories ) {
+		return out;
+	}
 	for ( let i = 0; i < categories.length; i++ ) {
 		out[ categories[i] ] = COLORS[ i % 20 ];
 	}
@@ -51,15 +55,16 @@ function createColorMapping( categories ) {
 /**
 * A d3-based sunburst plot for displaying pathways.
 *
+* @property {Object} data - data object
+* @property {Array<string>} categories - array of category names
 * @property {number} width - width of the plot (in px)
 * @property {number} height - height of the plot (in px)
-* @property {Object} data - data object
+* @property {Object} breadcrumbs - object with dimensions: `w` for width, `h` for height, `s` for spacing, `t` for width of tip/tail
 */
 class Sunburst extends Component {
 	constructor( props ) {
 		super( props );
-
-		this.id = props.id || randomstring( 6 );
+		this.id = props.id || uid( props );
 	}
 
 	componentDidMount() {
