@@ -428,10 +428,6 @@
 		"value": "<Weather location=\"${1:location}\" />\n"
 	},
 	{
-		"name": "Well",
-		"value": "<Well>\n  ${1:}\n</Well>\n"
-	},
-	{
 		"name": "Wikipedia",
 		"value": "<Wikipedia\n  speech={${1:true}}\n  language = \"en-US\"\n/>\n"
 	},
