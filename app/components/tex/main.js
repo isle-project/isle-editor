@@ -32,7 +32,7 @@ let counter = 1;
 * @property {Object} style - `object` with CSS key-value pairs to be applied to the equation container
 * @property {string} tag - Custom characters displayed for display equations at the right side. Defaults to the number of the equation inside the lesson
 * @property {Object} elems - `object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported
-* @property {string} popoverPlacement - popover position for the specified `elems`
+* @property {string} popoverPlacement - popover position for the specified `elems` (either `top`, `right`, `bottom`, or `left`)
 * @property {Function} onPopover - callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument
 * @property {Function} onClick - callback `function` invoked whenever a user clicks on the equation
 */

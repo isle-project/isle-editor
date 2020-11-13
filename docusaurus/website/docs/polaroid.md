@@ -19,6 +19,4 @@ A component displaying an image in the style of a polaroid.
 * __showPin__ | `boolean`: shows a pin. Default: `false`.
 * __width__ | `number`: polaroid width (in px). Default: `350`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __onClick__ | `function`: event handler invoked when image is clicked (receives the id of the Polaroid as parameter). Default: `function noop() {
-	// Empty function...
-}`.
+* __onClick__ | `function`: event handler invoked when image is clicked (receives the id of the Polaroid as parameter). Default: `none`.
