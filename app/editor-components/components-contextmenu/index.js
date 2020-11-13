@@ -44,10 +44,20 @@ class EditorContextMenu extends Component {
 
 	createMenuEntries = ( arr, title, ...otherMenuEntries ) => {
 		const out = [];
-		const { searchValue } = this.state;
+		let { searchValue } = this.state;
+		let strippedSearchValue;
+		if ( searchValue ) {
+			searchValue = lowercase( searchValue );
+			strippedSearchValue = replace( lowercase( searchValue ), RE_WHITESPACE, '' );
+		}
 		for ( let i = 0; i < arr.length; i++ ) {
 			const obj = arr[ i ];
-			if ( searchValue && !contains( lowercase( obj.name ), searchValue ) ) {
+			const description = COMPONENT_DOCS[ obj.name ] ? COMPONENT_DOCS[ obj.name ].description : '';
+			if (
+				searchValue &&
+				!contains( lowercase( obj.name ), strippedSearchValue ) &&
+				!contains( lowercase( description ), searchValue )
+			) {
 				continue;
 			}
 			out.push( this.renderMenuItem( obj, out.length ) );
@@ -161,7 +171,7 @@ class EditorContextMenu extends Component {
 						placeholder="Search for components..."
 						onChange={( event ) => {
 							this.setState({
-								searchValue: replace( lowercase( event.target.value ), RE_WHITESPACE, '' )
+								searchValue: event.target.value
 							});
 						}}
 						buttonSize="sm"
