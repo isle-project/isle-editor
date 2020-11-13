@@ -18,6 +18,7 @@ const ReactJson = Loadable( () => import( 'react-json-view' ) );
 import TextArea from 'components/input/text-area';
 import Checkbox from 'components/input/checkbox';
 import NumberInput from 'components/input/number';
+import SelectInput from 'components/input/select';
 import Playground from 'editor-components/playground';
 import Provider from 'components/provider';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -32,6 +33,7 @@ import lowercase from '@stdlib/string/lowercase';
 import contains from '@stdlib/assert/contains';
 import rescape from '@stdlib/utils/escape-regexp-string';
 import { SCOPE } from 'editor-components/preview/create_scope.js';
+import extractOptionsFromDescription from 'utils/extract-options-from-description';
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from 'components/documentation.json';
 import Session from 'session';
@@ -514,15 +516,26 @@ class ComponentConfigurator extends Component {
 					case 'number':
 						input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
 						break;
-					case 'string':
-						input = <TextArea
-							value={propValue}
-							rows={2}
-							placeholder={`Enter ${name}...`}
-							onChange={this.replaceStringFactory(name)}
-							resizable="vertical"
-						/>;
+					case 'string': {
+						const options = extractOptionsFromDescription( description );
+						if ( options ) {
+							input = <SelectInput
+								options={options}
+								value={propValue}
+								style={{ background: 'white' }}
+								onChange={this.replaceStringFactory( name )}
+							/>;
+						} else {
+							input = <TextArea
+								value={propValue}
+								rows={2}
+								placeholder={`Enter ${name}...`}
+								onChange={this.replaceStringFactory( name )}
+								resizable="vertical"
+							/>;
+						}
 						break;
+					}
 					case 'boolean':
 						input = <Checkbox
 							value={propValue}

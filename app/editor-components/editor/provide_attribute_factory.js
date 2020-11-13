@@ -7,6 +7,7 @@ import contains from '@stdlib/assert/contains';
 import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
 import COMPONENT_DOCS from 'components/documentation.json';
+import extractOptionsFromDescription from 'utils/extract-options-from-description';
 import getLastOpenedTag from './get_last_opened_tag.js';
 import CSS_PROPERTIES from './css_properties.json';
 import CSS_NAMES from './css_names.json';
@@ -52,22 +53,6 @@ function generateReplacement( defaultValue ) {
 		default:
 			return '{${1:}}'; // eslint-disable-line
 	}
-}
-
-function extractOptions( description ) {
-	const listStart = description.indexOf( 'either ' );
-	if ( listStart === -1 ) {
-		return null;
-	}
-	description = description.substring( listStart );
-	const RE_BACKTICK_STRINGS = /`([^`]+)`/g;
-	let match = RE_BACKTICK_STRINGS.exec( description );
-	const values = [];
-	while ( match !== null ) {
-		values.push( match[ 1 ] );
-		match = RE_BACKTICK_STRINGS.exec( description );
-	}
-	return values;
 }
 
 
@@ -199,7 +184,7 @@ function factory( monaco ) {
 						};
 					}
 					if ( prop.type === 'string' ) {
-						const options = extractOptions( prop.description );
+						const options = extractOptionsFromDescription( prop.description );
 						if ( options ) {
 							return {
 								suggestions: options.map( x => {
