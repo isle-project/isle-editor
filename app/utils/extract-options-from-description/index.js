@@ -3,10 +3,10 @@
 /**
 * Extracts the possible values of a property from a component property description.
 *
-* @param {string} description - component property description
+* @param {string} [description=''] - component property description
 * @returns {Array} array of values
 */
-function extractOptionsFromDescription( description ) {
+function extractOptionsFromDescription( description = '' ) {
 	const listStart = description.indexOf( 'either ' );
 	if ( listStart === -1 ) {
 		return null;
