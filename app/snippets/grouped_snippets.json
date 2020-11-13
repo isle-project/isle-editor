@@ -217,6 +217,10 @@
       "value": "<NetworkPlot\n  width={${1:500}}\n  height={${2:350}}\n  data={{\n    nodes: [\n      { 'id': 0 },\n      { 'id': 1 },\n      ${3:}\n    ],\n    links: [\n      { 'source': 0, 'target': 1 },\n      ${4:}\n    ]\n  }}\n/>\n"
     },
     {
+      "name": "Sunburst",
+      "value": "<Sunburst\n  data={{ name: 'root', children: [ { name: 'L', children: [] }, { name: 'R', children: [] } ] }}\n />\n"
+    },
+    {
       "name": "WordCloud",
       "value": "<WordCloud data={[${1:'First document','Second document'}]} />"
     },
