@@ -16,13 +16,13 @@ const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 /**
 * An ISLE component that allows you to create a typewriter effect
 *
-* @property {number} deviation - allows you to specify the randomness
+* @property {string} text - the full text to be displayed
 * @property {number} hold - if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array
 * @property {number} interval - the interval of the typewriter (in milliseconds)
 * @property {number} delay - initial delay before typewriter starts (in milliseconds)
 * @property {boolean} random - if random is set, the keystrokes will be performed with a certain, "humane" randomness
+* @property {number} deviation - allows you to specify the randomness
 * @property {boolean} sound - the typed keystroke will be also heard
-* @property {string} text - the full text to be displayed
 * @property {Object} style - CSS inline styles
 */
 class Typewriter extends Component {
