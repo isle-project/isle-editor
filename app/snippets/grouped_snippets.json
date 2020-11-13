@@ -10,7 +10,7 @@
     },
     {
       "name": "Background",
-      "value": "<Background\n  time={${2:8000}}\n  imageList={[${3:}]}\n  inTime={${4:3}}\n/>\n"
+      "value": "<Background\n  time={${2:8000}}\n  images={[${3:}]}\n  inTime={${4:3}}\n/>\n"
     },
     {
       "name": "DraggableGrid",
