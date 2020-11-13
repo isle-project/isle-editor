@@ -9,6 +9,14 @@ import SessionContext from 'session/context.js';
 import './load_translations.js';
 
 
+// VARIABLES //
+
+const WARNING_STYLE = {
+	background: 'red',
+	color: 'white'
+};
+
+
 // FUNCTIONS //
 
 function extractSurname( name ) {
@@ -31,20 +39,28 @@ function extractSurname( name ) {
 */
 class Citation extends Component {
 	render() {
+		const { t } = this.props;
 		const session = this.context;
+		if ( !session.config.references ) {
+			return (
+				<span style={WARNING_STYLE} >
+					{t('no-references')}
+				</span>
+			);
+		}
 		const item = session.config.references[ this.props.citeKey ];
 		if ( !item ) {
-			return <span style={{ background: 'red', color: 'white' }} >Citation key not found in references.</span>;
+			return <span style={WARNING_STYLE} >{t('key-not-found')}</span>;
 		}
 		if ( !item.author ) {
-			return <span style={{ background: 'red', color: 'white' }} >Author field should not be empty.</span>;
+			return <span style={WARNING_STYLE} >{t('no-author')}</span>;
 		}
 		let authors = item.author.split( 'and' );
 		let author = '';
 		if ( authors.length > 2 ) {
 			author = extractSurname( authors[ 0 ] ) + ' et al.';
 		} else if ( authors.length > 1 ) {
-			author = extractSurname( authors[ 0 ] ) + this.props.t('and') + extractSurname( authors[ 1 ] );
+			author = extractSurname( authors[ 0 ] ) + t('and') + extractSurname( authors[ 1 ] );
 		} else {
 			author = extractSurname( authors[ 0 ] );
 		}
