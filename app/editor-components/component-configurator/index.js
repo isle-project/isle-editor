@@ -491,8 +491,8 @@ class ComponentConfigurator extends Component {
 			const { name, description, type } = prop;
 			if (
 				searchValue &&
-				!contains( lowercase( name ), searchValue ) &&
-				!contains( lowercase( description ), searchValue ) &&
+				!contains( lowercase( name || '' ), searchValue ) &&
+				!contains( lowercase( description || '' ), searchValue ) &&
 				!contains( type, searchValue )
 			) {
 				continue;
