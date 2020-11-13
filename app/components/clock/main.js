@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 * Clock component displaying the current time.
 *
 * @property {boolean} duration - if set, the duration of the session is displayed (not the actual time)
-* @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH:MM:SSS`)
+* @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH`)
 * @property {Object} style - CSS inline styles
 * @property {string} className - class name
 */
@@ -61,6 +61,11 @@ class Clock extends Component {
 		let currentTime;
 		if ( this.props.format ) {
 			switch ( this.props.format ) {
+				case 'HH':
+					currentTime = new Date().toLocaleTimeString([], {
+						hour: '2-digit'
+					});
+				break;
 				case 'HH:MM':
 					currentTime = new Date().toLocaleTimeString([], {
 						hour: '2-digit',
@@ -74,13 +79,6 @@ class Clock extends Component {
 						second: '2-digit'
 					});
 				break;
-				case 'HH:MM:SSS':
-				currentTime = new Date().toLocaleTimeString([], {
-					hour: '2-digit',
-					minute: '2-digit',
-					second: '3-digit'
-				});
-			break;
 			}
 		} else {
 			currentTime = new Date().toLocaleTimeString([], {
