@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
-import noop from '@stdlib/utils/noop';
 import './polaroid.css';
 
 
@@ -58,7 +57,7 @@ class Polaroid extends Component {
 	}
 
 	trigger = () => {
-		if ( this.props.onClick !== noop ) {
+		if ( this.props.onClick ) {
 			this.props.onClick( this.props.id );
 		}
 	}
@@ -83,7 +82,7 @@ class Polaroid extends Component {
 			backgroundPosition: 'center'
 		};
 		let imageClass = 'polaroid';
-		if ( this.props.onClick !== noop ) {
+		if ( this.props.onClick ) {
 			imageClass += ' clickable-polaroid';
 		}
 		let innerImage = 'polaroid-image';
@@ -133,7 +132,7 @@ Polaroid.defaultProps = {
 	showPin: false,
 	width: 350,
 	style: {},
-	onClick: noop
+	onClick: null
 };
 
 

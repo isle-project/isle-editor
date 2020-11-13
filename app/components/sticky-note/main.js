@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import noop from '@stdlib/utils/noop';
 import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from 'components/draggable';
 import SessionContext from 'session/context.js';
@@ -23,8 +22,9 @@ const debug = logger( 'isle:sticky-note' );
 *
 * @property {string} title - note title
 * @property {string} body - text of the note
-* @property {string} color - available options: red, green, blue, pink, orange
+* @property {string} color - either `red`, `green`, `blue`, `pink`, or `orange`
 * @property {Object} style - CSS inline styles
+* @property {boolean} draggable - controls whether one should be able to drag the note around
 * @property {string} date - a date displayed for the note
 * @property {boolean} editable - controls whether the component is editable
 * @property {boolean} minimizable - controls whether the component is minimizable
@@ -64,7 +64,7 @@ class StickyNote extends Component {
 				minimized: false
 			});
 		}
-		else {
+		if ( this.props.onClick ) {
 			this.props.onClick( this.props.id );
 		}
 	}
@@ -312,7 +312,7 @@ class StickyNote extends Component {
 		if ( this.state.minimized === true ) {
 			className += ' sticky-note-minimized';
 		}
-		if ( this.props.onClick !== noop ) {
+		if ( this.props.onClick ) {
 			className += ' sticky-note-callback';
 		}
 		const out = <div className="sticky-note-outer" style={style}>
@@ -385,7 +385,7 @@ StickyNote.defaultProps = {
 	minimized: false,
 	style: {},
 	stain: false,
-	onClick: noop,
+	onClick: null,
 	removable: false
 };
 
