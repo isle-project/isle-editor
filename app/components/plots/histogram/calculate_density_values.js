@@ -8,6 +8,8 @@ import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import mean from 'utils/statistic/mean';
 import stdev from 'utils/statistic/stdev';
 import iqr from 'utils/statistic/iqr';
+import min from 'utils/statistic/min';
+import max from 'utils/statistic/max';
 import kernelSmoothDensity from 'utils/kernel-smooth-density';
 
 
