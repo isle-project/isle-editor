@@ -21,6 +21,7 @@ import FeedbackButtons from 'components/feedback';
 import GradeFeedbackRenderer from 'components/internal/grade-feedback-renderer';
 import SessionContext from 'session/context.js';
 import blobToBase64 from 'utils/blob-to-base64';
+import stopDefaultAndPropagation from 'utils/stop-default-and-propagation';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from 'constants/actions.js';
 import './load_translations.js';
 import './image_question.css';
@@ -31,17 +32,6 @@ import './image_question.css';
 const uid = generateUID( 'image-question' );
 const debug = logger( 'isle:image-question' );
 const RE_IMAGE_SRC = /src="([^"]*)"/;
-
-
-// FUNCTIONS //
-
-/**
-* Event handler ignoring default dragging behavior and preventing bubbling-up.
-*/
-function ignoreDrag( evt ) {
-	evt.stopPropagation();
-	evt.preventDefault();
-}
 
 
 // MAIN //
@@ -243,8 +233,8 @@ const ImageQuestion = ( props ) => {
 			<div
 				className="image-question-dropzone"
 				onDrop={onDrop}
-				onDragOver={ignoreDrag}
-				onDragEnd={ignoreDrag}
+				onDragOver={stopDefaultAndPropagation}
+				onDragEnd={stopDefaultAndPropagation}
 			>
 				<span>{props.t('drop-image')}</span>
 			</div>
