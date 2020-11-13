@@ -2,23 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import linspace from '@stdlib/math/utils/linspace';
 import min from 'utils/statistic/min';
 import max from 'utils/statistic/max';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import ceil from '@stdlib/math/base/special/ceil';
-import pow from '@stdlib/math/base/special/pow';
-import gaussian from '@stdlib/stats/base/dists/normal/pdf';
-import dexp from '@stdlib/stats/base/dists/exponential/pdf';
-import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import Plotly from 'components/plotly';
-import iqr from 'utils/statistic/iqr';
 import extractUsedCategories from 'utils/extract-used-categories';
-import kernelSmoothDensity from 'utils/kernel-smooth-density';
 import by from 'utils/by';
+import calculateDensityValues from './calculate_density_values.js';
 
 
 // VARIABLES //
@@ -58,42 +50,6 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 		};
 	}
 	return config;
-}
-
-/**
-* Calculates either a kernel density estimator or the MLE of a chosen parametric distribution.
-*/
-function calculateDensityValues( vals, densityType, bandwidthAdjust = 1 ) {
-	/* eslint-disable no-case-declarations */
-	const minVal = min( vals );
-	const maxVal = max( vals );
-	const x = linspace( minVal, maxVal, 512 );
-	let y;
-	switch ( densityType ) {
-	case 'Data-driven':
-		// Chose appropriate bandwidth via rule-of-thumb:
-		let h = 2.0 * iqr( vals ) * pow( vals.length, -1/3 ) || 0.1;
-
-		// Multiply bandwidth with user-defined adjustment parameter:
-		h *= bandwidthAdjust;
-		const phi = gaussian.factory( 0.0, 1.0 );
-		const kde = kernelSmoothDensity( vals, phi, h );
-		y = x.map( x => kde( x ) );
-		break;
-	case 'Uniform':
-		y = x.map( x => dunif( x, minVal, maxVal ) );
-		break;
-	case 'Exponential':
-		const lambda = 1.0 / mean( vals );
-		y = x.map( x => dexp( x, lambda ) );
-		break;
-	case 'Normal':
-		const avg = mean( vals );
-		const sd = stdev( vals );
-		y = x.map( x => gaussian( x, avg, sd ) );
-		break;
-	}
-	return [ x, y ];
 }
 
 export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins = {}}) {
