@@ -174,10 +174,11 @@
       {
         "name": "title",
         "type": "string",
+        "description": "heading to be displayed in front of references",
         "defaultValue": null
       }
     ],
-    "description": "Description is missing."
+    "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."
   },
   "undefined": {
     "props": [

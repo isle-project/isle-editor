@@ -24,7 +24,7 @@ function generateAuthorString( author ) {
 /**
 * Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble).
 *
-* @prop {string} title - heading to be displayed in front of references
+* @property {string} title - heading to be displayed in front of references
 */
 const Bibliography = ({ title, t }) => {
 	const session = useContext( SessionContext );
