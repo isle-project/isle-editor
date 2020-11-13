@@ -37,7 +37,7 @@ import extractOptionsFromDescription from 'utils/extract-options-from-descriptio
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from 'components/documentation.json';
 import Session from 'session';
-import SearchBar from './searchbar.js';
+import SearchBar from '../searchbar/index.js';
 import './component_configurator.css';
 
 
@@ -656,6 +656,7 @@ class ComponentConfigurator extends Component {
 								searchValue: lowercase( event.target.value )
 							});
 						}}
+						style={{ width: '14vw', minWidth: '120px', float: 'right', marginBottom: 2 }}
 					/>
 					{componentDescription}
 					<Card.Subtitle style={{ fontSize: '12px', margin: 0 }} className="text-muted">

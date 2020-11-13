@@ -14,7 +14,7 @@ const BlockPicker = Loadable( () => import( 'react-color/lib/Block.js' ) );
 /**
 * A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker.
 *
-* @property {string} variant - color picker variant (one of `Compact`, `Sketch`, `Material`, or `Block`)
+* @property {string} variant - color picker variant (either `Compact`, `Sketch`, `Material`, or `Block`)
 * @property {(string|Object)} color - `string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one
 * @property {boolean} disableAlpha - controls whether to remove alpha slider and options
 * @property {Array<string>} presetColors - HeX `strings` specifying the default colors at the bottom of the colorpicker

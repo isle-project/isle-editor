@@ -222,13 +222,13 @@ MeanTest2.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} x - name of first variable
-* @property {string} y - name of second variable (either `y` or `group` have to be supplied)
-* @property {string} group - name of grouping variable (either `y` or `group` have to be supplied)
-* @property {string} type - type of test (`Z Test` or `T Test`)
+* @property {string} y - name of second variable (`y` or `group` have to be supplied)
+* @property {string} group - name of grouping variable (`y` or `group` have to be supplied)
+* @property {string} type - type of test (either `Z Test` or `T Test`)
 * @property {number} xstdev - first standard deviation (for `Z Test`)
 * @property {number} ystdev - second standard deviation (for `Z Test`)
 * @property {number} alpha - significance level
-* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)
 * @property {number} diff - difference under H0
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */

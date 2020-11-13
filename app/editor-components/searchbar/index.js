@@ -11,10 +11,10 @@ import Button from 'react-bootstrap/Button';
 
 const SearchBar = ( props ) => {
 	return (
-		<FormGroup style={{ width: '14vw', minWidth: '120px', float: 'right', marginBottom: 2, ...props.style }}>
+		<FormGroup style={props.style} >
 			<InputGroup>
 				<FormControl
-					className="header-bar-search"
+					className="editor-searchbar"
 					type="text"
 					placeholder={props.placeholder}
 					value={props.value}
@@ -22,13 +22,19 @@ const SearchBar = ( props ) => {
 					aria-label="search-field"
 				/>
 					<InputGroup.Append>
-						<Button aria-label="search-field-icon" disabled variant="secondary" style={{ cursor: 'auto' }}>
+						<Button size={props.buttonSize} aria-label="search-field-icon" disabled variant="secondary" style={{ cursor: 'auto' }}>
 							<i className="fa fa-search"></i>
 						</Button>
 					</InputGroup.Append>
 			</InputGroup>
 		</FormGroup>
 	);
+};
+
+// PROPERTIES //
+
+SearchBar.defaultProps = {
+	buttonSize: null
 };
 
 

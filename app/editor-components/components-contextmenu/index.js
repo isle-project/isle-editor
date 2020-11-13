@@ -6,6 +6,7 @@ import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
 import { LANGUAGES } from 'constants/deepl';
+import SearchBar from 'editor-components/searchbar';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
 import electronStore from 'store/electron.js';
 
@@ -132,6 +133,8 @@ class EditorContextMenu extends Component {
 							{GROUPED_SNIPPETS.victory.map( this.renderMenuItem )}
 						</SubMenu>
 					</SubMenu>
+					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+					<SearchBar buttonSize="sm" style={{ margin: 0, fontSize: 10 }} />
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					<SubMenu title="Translate selection to" disabled={!ISLE_SERVER_TOKEN || !this.props.hasSelection} >
 						{LANGUAGE_NAMES.map( ( name, idx ) => {

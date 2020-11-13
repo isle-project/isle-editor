@@ -85,7 +85,7 @@ PropTest.propTypes = {
 * @property {string} variable - name of variable
 * @property {*} success - success category of `variable`
 * @property {number} alpha - significance level
-* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)
 * @property {number} p0 - proportion under the null hypothesis
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */

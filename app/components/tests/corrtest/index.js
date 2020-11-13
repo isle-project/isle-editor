@@ -79,7 +79,7 @@ CorrTest.propTypes = {
 * @property {string} var2 - name of second variable
 * @property {number} alpha - significance level
 * @property {number} rho0 - correlation value under the null hypothesis
-* @property {string} direction - test direction (one of `less`, `greater`, or `two-sided`)
+* @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
 export default CorrTest;

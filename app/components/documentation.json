@@ -341,7 +341,7 @@
       {
         "name": "variant",
         "type": "string",
-        "description": "color picker variant (one of `Compact`, `Sketch`, `Material`, or `Block`)",
+        "description": "color picker variant (either `Compact`, `Sketch`, `Material`, or `Block`)",
         "defaultValue": "Sketch"
       },
       {
@@ -495,7 +495,8 @@
     "props": [
       {
         "name": "categories",
-        "type": "array (required)"
+        "type": "array (required)",
+        "description": "array of category names"
       },
       {
         "name": "data",
@@ -522,6 +523,7 @@
       {
         "name": "breadcrumbs",
         "type": "{w,h,s,t}",
+        "description": "object with dimensions: `w` for width, `h` for height, `s` for spacing, `t` for width of tip/tail",
         "defaultValue": {
           "w": 250,
           "h": 50,
@@ -4261,7 +4263,7 @@
       {
         "name": "size",
         "type": "string",
-        "description": "size of the pagination buttons (one of `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)",
+        "description": "size of the pagination buttons (either `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)",
         "defaultValue": "default"
       },
       {
@@ -4535,7 +4537,7 @@
       {
         "name": "xOrder",
         "type": "string",
-        "description": "one of `total`, `category`, `min`, `max`, `mean`, or `median`",
+        "description": "either `total`, `category`, `min`, `max`, `mean`, or `median`",
         "defaultValue": null
       },
       {
@@ -4803,7 +4805,7 @@
       {
         "name": "locationmode",
         "type": "string",
-        "description": "one of `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded",
+        "description": "either `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded",
         "defaultValue": "country names"
       },
       {
@@ -7739,7 +7741,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "description": "test direction (either `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
@@ -7811,7 +7813,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "description": "test direction (either `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
@@ -7844,19 +7846,19 @@
       {
         "name": "y",
         "type": "string",
-        "description": "name of second variable (either `y` or `group` have to be supplied)",
+        "description": "name of second variable (`y` or `group` have to be supplied)",
         "defaultValue": null
       },
       {
         "name": "group",
         "type": "string",
-        "description": "name of grouping variable (either `y` or `group` have to be supplied)",
+        "description": "name of grouping variable (`y` or `group` have to be supplied)",
         "defaultValue": null
       },
       {
         "name": "type",
         "type": "string",
-        "description": "type of test (`Z Test` or `T Test`)",
+        "description": "type of test (either `Z Test` or `T Test`)",
         "defaultValue": "T Test"
       },
       {
@@ -7880,7 +7882,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "description": "test direction (either `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
@@ -7924,7 +7926,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "description": "test direction (either `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
@@ -7962,13 +7964,13 @@
       {
         "name": "var2",
         "type": "string",
-        "description": "name of second variable (either `var2` or `group` have to be supplied)",
+        "description": "name of second variable (`var2` or `group` have to be supplied)",
         "defaultValue": null
       },
       {
         "name": "group",
         "type": "string",
-        "description": "name of grouping variable (either `var2` or `group` have to be supplied)",
+        "description": "name of grouping variable (`var2` or `group` have to be supplied)",
         "defaultValue": null
       },
       {
@@ -7980,7 +7982,7 @@
       {
         "name": "direction",
         "type": "string",
-        "description": "test direction (one of `less`, `greater`, or `two-sided`)",
+        "description": "test direction (either `less`, `greater`, or `two-sided`)",
         "defaultValue": "two-sided"
       },
       {
