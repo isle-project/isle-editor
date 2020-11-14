@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Badge from 'react-bootstrap/Badge';
 import Input from 'components/input/base';
 import Tooltip from 'components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -206,9 +207,9 @@ class SliderInput extends Input {
 						null
 					}
 					<span className="slider-range-wrapper" >
-						<span>{minLabel || min}</span>
+						<Badge>{minLabel || min}</Badge>
 						{rangeInput}
-						<span>{maxLabel || max}</span>
+						<Badge>{maxLabel || max}</Badge>
 					</span>
 					{numberInput}
 				</span>
@@ -234,9 +235,9 @@ class SliderInput extends Input {
 					}
 					<br />
 					<span className="slider-range-wrapper" >
-						<span style={{ float: 'left' }} >{minLabel || min}</span>
+						<Badge variant="secondary" style={{ float: 'left' }} >{minLabel || min}</Badge>
 						{rangeInput}
-						<span>{maxLabel || max}</span>
+						<Badge variant="secondary" style={{ float: 'left' }} >{maxLabel || max}</Badge>
 					</span>
 					{numberInput}
 					<br />
