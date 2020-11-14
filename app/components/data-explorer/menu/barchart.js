@@ -82,17 +82,30 @@ const BarchartMenu = ( props ) => {
 			});
 			props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
 		};
-		const output = <BarChart
-			{...props}
-			variable={variable}
-			group={group}
-			horizontal={horizontal}
-			relative={relative} totalPercent={totalPercent} xOrder={xOrder}
-			direction={direction} summary={summary} yvar={yvar} stackBars={stackBars}
-			id={plotId}
-			action={action}
-			onShare={onShare}
-		/>;
+		let output;
+		if ( mode === MODES[ 1 ] ) {
+			output = <BarChart
+				{...props}
+				variable={variable} group={group}
+				horizontal={horizontal}
+				relative={relative} totalPercent={totalPercent} xOrder={xOrder}
+				direction={direction} summary={summary} yvar={yvar} stackBars={stackBars}
+				id={plotId}
+				action={action}
+				onShare={onShare}
+			/>;
+		} else {
+			output = <BarChart
+				{...props}
+				variable={variable} group={group}
+				horizontal={horizontal}
+				relative={relative} totalPercent={totalPercent} xOrder={xOrder}
+				direction={direction} stackBars={stackBars}
+				id={plotId}
+				action={action}
+				onShare={onShare}
+			/>;
+		}
 		props.logAction( DATA_EXPLORER_BARCHART, action );
 		props.onCreated( output );
 	};
