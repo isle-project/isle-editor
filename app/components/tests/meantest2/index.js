@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import Alert from 'react-bootstrap/Alert';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -39,6 +40,9 @@ function retrieveGroupedValues( data, x, group ) {
 			break;
 		}
 	}
+	if ( !secondCategory ) {
+		return null;
+	}
 	const splitted = bifurcateBy( data[ x ], function splitter( x, idx ) {
 		return categories[ idx ] === firstCategory;
 	});
@@ -59,6 +63,11 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 	let out;
 	if ( group ) {
 		out = retrieveGroupedValues( data, x, group );
+		if ( !out ) {
+			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
+				Grouping variable <code>{group}</code> must have at least two different values.
+			</Alert> );
+		}
 	} else {
 		out = {
 			xvalues: data[ x ],

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ztest2 from '@stdlib/stats/ztest2';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -46,7 +47,13 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		for ( let i = 1; i < categories.length; i++ ) {
 			if ( categories[ i ] !== firstCategory ) {
 				secondCategory = categories[ i ];
+				break;
 			}
+		}
+		if ( !secondCategory ) {
+			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
+				Grouping variable <code>{group}</code> must have at least two different values.
+			</Alert> );
 		}
 		const splitted = bifurcateBy( binary, function splitter( x, idx ) {
 			return categories[ idx ] === firstCategory;
