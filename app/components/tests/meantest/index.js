@@ -99,7 +99,7 @@ MeanTest.propTypes = {
 	type: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
 	stdev: PropTypes.number,
 	alpha: PropTypes.number,
-	direction: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
+	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
 	mu0: PropTypes.number,
 	showDecision: PropTypes.bool
 };

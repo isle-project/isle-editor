@@ -70,7 +70,7 @@ PropTest.propTypes = {
 	variable: PropTypes.string.isRequired,
 	success: PropTypes.string.isRequired,
 	alpha: PropTypes.number,
-	direction: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
+	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
 	p0: PropTypes.number,
 	showDecision: PropTypes.bool
 };
