@@ -207,9 +207,9 @@ class SliderInput extends Input {
 						null
 					}
 					<span className="slider-range-wrapper" >
-						<Badge>{minLabel || min}</Badge>
+						<Badge variant="secondary" >{minLabel || min}</Badge>
 						{rangeInput}
-						<Badge>{maxLabel || max}</Badge>
+						<Badge variant="secondary" >{maxLabel || max}</Badge>
 					</span>
 					{numberInput}
 				</span>
