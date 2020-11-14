@@ -50,7 +50,7 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 			const row = floor( i / nCols );
 			const col = i - ( row*nCols );
 			const val = freqs[ key ];
-			const categories = extractUsedCategories( val, variable.categories );
+			const categories = extractUsedCategories( val, variable );
 			const counts = new Array( categories.length );
 			for ( let i = 0; i < categories.length; i++ ) {
 				counts[ i ] = val[ categories[ i ] ];
