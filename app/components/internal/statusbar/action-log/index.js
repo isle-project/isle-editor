@@ -16,6 +16,7 @@ import contains from '@stdlib/assert/contains';
 import isFunction from '@stdlib/assert/is-function';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import max from '@stdlib/math/base/special/max';
 import RangePicker from 'components/range-picker';
 import saveAs from 'utils/file-saver';
 import isUserInCohort from 'utils/is-user-in-cohort';
@@ -45,7 +46,8 @@ class ActionLog extends Component {
 				from: moment( 0 ).startOf( 'day' ),
 				to: moment().endOf( 'day' )
 			},
-			actions: []
+			actions: [],
+			listHeight: max( window.innerHeight * 0.85 - 320, 0 )
 		};
 	}
 
@@ -82,6 +84,7 @@ class ActionLog extends Component {
 			}
 		});
 		/* eslint-enable react/no-did-mount-set-state */
+		window.addEventListener( 'resize', this.resizeHandler );
 	}
 
 	componentDidUpdate( prevProps, prevState ) {
@@ -133,6 +136,13 @@ class ActionLog extends Component {
 		if ( isFunction( this.unsubscribe ) ) {
 			this.unsubscribe();
 		}
+		window.removeEventListener( 'resize', this.resizeHandler );
+	}
+
+	resizeHandler = () => {
+		this.setState({
+			listHeight: max( window.innerHeight * 0.85 - 320, 0 )
+		});
 	}
 
 	handleEmailFilterClick = ( event ) => {
@@ -340,7 +350,7 @@ class ActionLog extends Component {
 					actions={this.state.actions}
 					period={this.state.period}
 					filter={this.state.filter}
-					height={window.innerHeight / 2.0}
+					height={this.state.listHeight}
 					userHash={this.userHash}
 					anonymized={this.state.anonymized}
 					onFilterChange={( newFilter, newFilters ) => {
