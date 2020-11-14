@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.71.5](https://github.com/isle-project/isle-editor/releases/tag/v0.71.5) (2020-11-14)
+
+**Implemented enhancements:**
+
+- Bar Chart options misleading [\#1149](https://github.com/isle-project/isle-editor/issues/1149)
+
 ## [v0.71.4](https://github.com/isle-project/isle-editor/releases/tag/v0.71.4) (2020-11-14)
 
 This release fixes a regression in the frequency calculations of the bar chart inside the data explorer toolbox alongside other minor improvements. It also adds a search bar to the component configuration context menu in the editor (opened via right click in the source pane or by click on the red "+" buttons in the preview pane), which makes it easier to find relevant components when inserting a component into a lesson.
