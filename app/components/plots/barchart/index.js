@@ -160,7 +160,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			tickcolor: 'white'
 		};
 		yaxis = {
-			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
+			title: ( totalPercent || relative ) ? 'Proportion' : 'Count'
 		};
 	}
 	return {
