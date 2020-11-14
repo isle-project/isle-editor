@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.71.6](https://github.com/isle-project/isle-editor/releases/tag/v0.71.6) (2020-11-14)
+
+This patch fixes two a bug in the one-sample proportion and prevents the two-sample mean / proportion tests from crashing the website when using a grouping variable with only one level, instead printing an error message in the output pane.
+
 ## [v0.71.5](https://github.com/isle-project/isle-editor/releases/tag/v0.71.5) (2020-11-14)
 
 **Implemented enhancements:**
