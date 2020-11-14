@@ -169,7 +169,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			barmode: stackBars ? 'stack' : null,
 			xaxis,
 			yaxis,
-			title: group ? `${variable} given ${group}` : variable
+			title: group ? `${variable} given ${group}` : variable,
+			hovermode: 'closest'
 		}
 	};
 }
