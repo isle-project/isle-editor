@@ -50,7 +50,7 @@ const PropTestMenu = ( props ) => {
 						const newCategories = extractCategoriesFromValues( values, variable );
 						setCategories( newCategories );
 						setVariable( variable );
-						setSuccess( categories[ 0 ] );
+						setSuccess( newCategories[ 0 ] );
 					}}
 				/>
 				{ categories ? <SelectInput
