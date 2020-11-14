@@ -230,7 +230,7 @@ BarChart.defaultProps = {
 BarChart.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.array,
+	group: PropTypes.string,
 	yvar: PropTypes.string,
 	summary: PropTypes.oneOf([ 'Mean', 'Median', 'Min', 'Max', 'Sum' ]),
 	horizontal: PropTypes.bool,
