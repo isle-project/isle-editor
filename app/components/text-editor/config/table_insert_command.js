@@ -1,7 +1,7 @@
 // MODULES //
 
 import { TextSelection } from 'prosemirror-state';
-import { atAnchorBottom } from './ui/popup_position.js';
+import { atAnchorBottomLeft } from './ui/popup_position.js';
 import TableGridSizeEditor from './ui/table_grid_size_editor.js';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import UICommand from './ui/ui_command.js';
@@ -54,7 +54,7 @@ class TableInsertCommand extends UICommand {
 		return new Promise( resolve => {
 			this._popUp = createPopUp( TableGridSizeEditor, null, {
 				anchor,
-				position: atAnchorBottom,
+				position: atAnchorBottomLeft,
 				onClose: val => {
 					if ( this._popUp ) {
 						this._popUp = null;
