@@ -31,7 +31,7 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.71.4.
+Current version: v0.71.5.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
@@ -150,10 +150,10 @@ The following icons are used under a Creative Commons CCBY license.
 [license]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 [node-js]: https://nodejs.org/en/
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.71.4/isle-editor-0.71.4.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.71.4/isle-editor-0.71.4-x86_64.AppImage
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.71.4/isle-editor-0.71.4-amd64.deb
-[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.71.4/isle-editor-Setup-0.71.4.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.71.5/isle-editor-0.71.5.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.71.5/isle-editor-0.71.5-x86_64.AppImage
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.71.5/isle-editor-0.71.5-amd64.deb
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.71.5/isle-editor-Setup-0.71.5.exe
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
