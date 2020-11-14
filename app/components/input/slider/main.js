@@ -48,6 +48,8 @@ function createTooltip( props ) {
 * @property {boolean} inline - controls whether to place the slider inline with text or outside
 * @property {number} precision - rounding of the input. The value will be rounded to have no more significant digits than the precision. For example, if one wishes to only use integers, a precision of 10 would be used, while if one wishes to round to the hundreds place, one would use a precision of 0.001
 * @property {boolean} disabled - controls whether the slider input is active or not. If set to true, the slider will be present on the screen, albeit grayed-out
+* @property {string} minLabel - label to be displayed to the left of slider instead of minimum value
+* @property {string} maxLabel - label to be displayed to the right of slider instead of maximum value
 * @property {boolean} hideTooltip - controls whether to hide tooltip
 * @property {Object} style - CSS inline styles
 * @property {Object} numberInputStyle - CSS inline styles for number input component
@@ -153,18 +155,18 @@ class SliderInput extends Input {
 
 	render() {
 		let { value } = this.state;
-		const { legend, inline } = this.props;
+		const { legend, disabled, inline, min, max, precision, step, minLabel, maxLabel } = this.props;
 		if ( value !== '' ) {
-			roundn( value, ( -1.0 )*this.props.precision );
+			roundn( value, ( -1.0 )*precision );
 		}
 		const rangeInput = <input
 			type="range"
 			className="slider-range-input"
-			min={this.props.min}
-			max={this.props.max}
-			step={this.props.step}
+			min={min}
+			max={max}
+			step={step}
 			value={value}
-			disabled={this.props.disabled}
+			disabled={disabled}
 			onChange={this.handleInputChange}
 			style={{
 				width: '160px',
@@ -177,10 +179,10 @@ class SliderInput extends Input {
 			type="number"
 			name="input"
 			className="slider-number-input"
-			disabled={this.props.disabled}
-			min={this.props.min}
-			max={this.props.max}
-			step={this.props.step}
+			disabled={disabled}
+			min={min}
+			max={max}
+			step={step}
 			value={value}
 			onChange={this.handleInputChange}
 			onBlur={this.finishChange}
@@ -196,14 +198,18 @@ class SliderInput extends Input {
 			return (
 				<span className="input" style={{
 					padding: '5px',
-					opacity: this.props.disabled ? 0.2 : 1.0,
+					opacity: disabled ? 0.2 : 1.0,
 					...this.props.style
 				}}>
 					{ legend ?
 						<label>{legend}:</label> :
 						null
 					}
-					{rangeInput}
+					<span className="slider-range-wrapper" >
+						<span>{minLabel || min}</span>
+						{rangeInput}
+						<span>{maxLabel || max}</span>
+					</span>
 					{numberInput}
 				</span>
 			);
@@ -213,12 +219,12 @@ class SliderInput extends Input {
 				id="sliderTooltip"
 				placement="top"
 				show={!this.props.hideTooltip}
-				tooltip={this.props.disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
+				tooltip={disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
 			>
 				<div
 					className="slider-outer-div input"
 					style={{
-						opacity: this.props.disabled ? 0.2 : 1.0,
+						opacity: disabled ? 0.2 : 1.0,
 						...this.props.style
 					}}
 				>
@@ -227,7 +233,11 @@ class SliderInput extends Input {
 						null
 					}
 					<br />
-					{rangeInput}
+					<span className="slider-range-wrapper" >
+						<span style={{ float: 'left' }} >{minLabel || min}</span>
+						{rangeInput}
+						<span>{maxLabel || max}</span>
+					</span>
 					{numberInput}
 					<br />
 				</div>
@@ -243,7 +253,9 @@ SliderInput.defaultProps = {
 	inline: false,
 	legend: null,
 	min: 0,
+	minLabel: null,
 	max: 100,
+	maxLabel: null,
 	step: 1,
 	defaultValue: 10,
 	onChange() {},
@@ -264,7 +276,9 @@ SliderInput.propTypes = {
 		PropTypes.node
 	]),
 	max: PropTypes.number,
+	maxLabel: PropTypes.string,
 	min: PropTypes.number,
+	minLabel: PropTypes.string,
 	onChange: PropTypes.func,
 	precision: PropTypes.number,
 	step: PropTypes.oneOfType([

@@ -37,3 +37,9 @@
 	margin-right: 8px;
 	vertical-align: middle;
 }
+
+.slider-range-wrapper {
+	width: fit-content;
+	margin-left: 6px;
+	margin-right: 6px;
+}

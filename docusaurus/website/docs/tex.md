@@ -27,4 +27,4 @@ sidebar_label: LaTeX Equations
 * __elems__ | `object`: `object` with `keys` denoting LaTeX characters and their corresponding values being configuration `objects` to make them interactive. Setting a `tooltip` option will show a tooltip when hovering over the LaTeX characters. Setting a `variable` property will display an input slider to change the respective state variable; in this case, additional properties `legend`, `min`, `max`, and `step` are supported. Default: `{}`.
 * __popoverPlacement__ | `string`: popover position for the specified `elems` (either `top`, `right`, `bottom`, or `left`). Default: `'top'`.
 * __onPopover__ | `function`: callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument. Default: `onPopover() {}`.
-* __onClick__ | `function`: callback `function` invoked whenever a user clicks on the equation. Default: `onClick() {}`.
+* __onClick__ | `function`: callback `function` invoked whenever a user clicks on the equation. Default: `none`.

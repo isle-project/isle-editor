@@ -2098,10 +2098,22 @@
         "defaultValue": 100
       },
       {
+        "name": "maxLabel",
+        "type": "string",
+        "description": "label to be displayed to the right of slider instead of maximum value",
+        "defaultValue": null
+      },
+      {
         "name": "min",
         "type": "number",
         "description": "The minimum value of the slider",
         "defaultValue": 0
+      },
+      {
+        "name": "minLabel",
+        "type": "string",
+        "description": "label to be displayed to the left of slider instead of minimum value",
+        "defaultValue": null
       },
       {
         "name": "onChange",
@@ -4496,7 +4508,7 @@
       },
       {
         "name": "group",
-        "type": "array",
+        "type": "string",
         "description": "grouping variable",
         "defaultValue": null
       },
@@ -8054,7 +8066,7 @@
         "name": "onClick",
         "type": "function",
         "description": "callback `function` invoked whenever a user clicks on the equation",
-        "defaultValue": "function onClick() {}"
+        "defaultValue": null
       }
     ],
     "description": "`TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering."
