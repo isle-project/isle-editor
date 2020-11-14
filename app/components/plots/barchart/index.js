@@ -136,7 +136,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	let yaxis;
 	if ( horizontal ) {
 		xaxis = {
-			title: ( totalPercent || relative ) ? 'Percentage' : 'Count'
+			title: ( totalPercent || relative ) ? 'Proportion' : 'Count'
 		};
 		yaxis = {
 			title: group ? group : variable,
