@@ -674,7 +674,7 @@ class StudentResponses extends Component {
 								{this.props.t('maximum-points')}: {session.metadata.grades.maxPoints}
 							</Badge>
 							<Button
-								variant="warning" style={{ float: 'right', fontVariant: 'small-caps' }}
+								variant="warning" style={{ float: 'right', fontVariant: 'small-caps', margin: 3 }}
 								onClick={() => {
 									session.adjustGrades( this.state.leftUser.email, this.state.grades );
 								}}
@@ -686,7 +686,7 @@ class StudentResponses extends Component {
 				</Col>
 			</Row>
 			<Container style={{
-				height: window.innerHeight / 1.5,
+				height: 'calc(85vh - 175px)',
 				overflowY: 'scroll'
 			}} >
 				{list}

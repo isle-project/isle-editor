@@ -242,7 +242,7 @@ class ResponseVisualizers extends Component {
 				now={overallProgress}
 			/>
 			<ListGroup style={{
-				height: window.innerHeight / 1.5,
+				height: 'calc(85vh - 110px)',
 				overflowY: 'scroll'
 			}}>
 				{list}

@@ -181,7 +181,7 @@ class UserList extends Component {
 		const userProgress = session.userProgress;
 		const ID_COUNTS = {};
 		let ID_COUNT_SUM = 0;
-		const list = <ListGroup className="user-list-group" style={{ height: window.innerHeight / 1.5 }}>
+		const list = <ListGroup className="user-list-group" style={{ height: 'calc(85vh - 110px)' }}>
 			{session.userList.filter( user => {
 				if (
 					session.selectedCohort &&
