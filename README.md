@@ -117,7 +117,7 @@ $ npm run test -- -t "name-of-spec"
 
 ## License
 
-See [LICENSE][license].
+See [LICENSE][license-url].
 
 ## Icon Credits
 
