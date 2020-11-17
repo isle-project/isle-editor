@@ -15,8 +15,6 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPlainObject from '@stdlib/assert/is-plain-object';
-import SearchBar from './search.js';
-import TextSelect from './text_select.js';
 import BoxPlot from 'components/plots/boxplot';
 import BarChart from 'components/plots/barchart';
 import ContourChart from 'components/plots/contourchart';
@@ -50,6 +48,8 @@ import PrincipalComponentAnalysis from 'components/models/principal-component-an
 import HierarchicalClustering from 'components/models/hierarchical-clustering';
 import KMeans from 'components/models/kmeans';
 import NaiveBayes from 'components/models/naive-bayes';
+import SearchBar from './search.js';
+import TextSelect from './text_select.js';
 
 
 // FUNCTIONS //
