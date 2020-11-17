@@ -299,7 +299,7 @@
     "react-draggable": "^4.4.3",
     "react-list": "^0.8.15",
     "react-monaco-editor": "0.40.0",
-    "react-player": "^2.6.1",
+    "react-player": "^2.7.0",
     "react-refresh": "^0.9.0",
     "react-test-renderer": "17.0.1",
     "redux-devtools": "3.7.0",
