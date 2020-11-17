@@ -142,6 +142,8 @@ const HeatMapMenu = ( props ) => {
 							}}
 						/>
 					</Col>
+				</Row>
+				<Row>
 					<Col>
 						<SliderInput
 							legend={t('smoothing-parameter')}

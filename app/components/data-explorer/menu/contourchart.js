@@ -57,7 +57,7 @@ const ContourChartMenu = ( props ) => {
 	};
 	const { variables, t } = props;
 	return (
-		<Card style={{ minWidth: 650 }}>
+		<Card>
 			<Card.Header as="h4" >
 				{t('Contour Chart')}
 				<QuestionButton title={t('Contour Chart')} content={t('Contour Chart-description')} />
@@ -107,6 +107,8 @@ const ContourChartMenu = ( props ) => {
 							}}
 						/>
 					</Col>
+				</Row>
+				<Row>
 					<Col>
 						<SliderInput
 							legend={t('smoothing-parameter')}
