@@ -62,7 +62,7 @@ const HistogramMenu = ( props ) => {
 		if ( densityType === 'Data-driven' ) {
 			state.bandwidthAdjust = bandwidthAdjust;
 		}
-		const action = { state, plotId };
+		const action = { ...state, plotId };
 		const onShare = () => {
 			props.session.addNotification({
 				title: props.t('plot-shared'),
