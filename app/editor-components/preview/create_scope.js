@@ -48,7 +48,9 @@ export const SCOPE = {
 	NavLink,
 	Row,
 	Tab,
-	Tabs
+	Tabs,
+	Draggable,
+	factor
 };
 
 
@@ -60,8 +62,6 @@ const createScope = ( session ) => {
 	scope.React = React;
 	scope.Component = Component;
 	scope.render = render;
-	scope.factor = factor;
-	scope.Draggable = Draggable;
 	return scope;
 };
 
