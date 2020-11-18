@@ -52,6 +52,7 @@ import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
 import EditorFooter from './footer.js';
 import './editor.css';
+import { start } from 'repl';
 
 
 // VARIABLES //
@@ -672,8 +673,16 @@ class Editor extends Component {
 				const model = this.editor.getModel();
 				const { current, previous } = this.props.elementRange;
 				if ( current.endLineNumber > previous.endLineNumber ) {
-					const currentContent = model.getValueInRange( current );
+					let currentContent = model.getValueInRange( current );
 					const previousContent = model.getValueInRange( previous );
+					if ( previousContent.length === 0 ) {
+						if ( !startsWith( currentContent, '\n' ) ) {
+							currentContent = '\n' + currentContent;
+						}
+						if ( !endsWith( currentContent, '\n' ) ) {
+							currentContent += '\n';
+						}
+					}
 					const op1 = {
 						range: current,
 						text: previousContent
@@ -693,8 +702,16 @@ class Editor extends Component {
 				const model = this.editor.getModel();
 				const { current, next } = this.props.elementRange;
 				if ( next.endLineNumber > current.endLineNumber ) {
-					const currentContent = model.getValueInRange( current );
+					let currentContent = model.getValueInRange( current );
 					const nextContent = model.getValueInRange( next );
+					if ( nextContent.length === 0 ) {
+						if ( !startsWith( currentContent, '\n' ) ) {
+							currentContent = '\n' + currentContent;
+						}
+						if ( !endsWith( currentContent, '\n' ) ) {
+							currentContent += '\n';
+						}
+					}
 					const op1 = {
 						range: current,
 						text: nextContent
