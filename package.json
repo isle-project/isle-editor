@@ -214,7 +214,7 @@
     "react-dnd-touch-backend": "^11.1.0",
     "react-dom": "17.0.1",
     "react-floater": "^0.7.1",
-    "react-grid-layout": "^1.1.1",
+    "react-grid-layout": "^1.2.0",
     "react-highlight-words": "^0.16.0",
     "react-i18next": "^11.7.1",
     "react-innertext": "^1.1.5",
