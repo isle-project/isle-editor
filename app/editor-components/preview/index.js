@@ -7,6 +7,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { transformSync } from '@babel/core';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
@@ -292,9 +294,13 @@ class Preview extends Component {
 
 	render() {
 		debug( 'Rendering preview...' );
-		return ( <Provider session={this.session} currentRole={this.props.currentRole} >
-			{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
-		</Provider> );
+		return (
+			<DndProvider backend={HTML5Backend} >
+				<Provider session={this.session} currentRole={this.props.currentRole} >
+					{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
+				</Provider>
+			</DndProvider>
+		);
 	}
 }
 

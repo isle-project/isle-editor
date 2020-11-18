@@ -1,12 +1,14 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDrag } from 'react-dnd';
 import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
+import useIsMounted from 'hooks/is-mounted';
 import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
@@ -31,30 +33,25 @@ function isDOMElement( elem ) {
 /**
 * A line wrapper for use in the editor.
 */
-class LineWrapper extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			style: null
-		};
-	}
-
-	componentDidMount() {
-		this.__unmounted = false;
-		window.requestIdleCallback( this.retrievePositioning );
-	}
-
-	componentWillUnmount() {
-		this._unmounted = true;
-	}
-
-	retrievePositioning = () => {
+const LineWrapper = ( props ) => {
+	const [ style, setStyle ] = useState( null );
+	const isMounted = useIsMounted();
+	const lineWrapper = useRef( null );
+	const [ , drag ] = useDrag({
+		item: {
+			type: 'component-wrapper',
+			startLineNumber: props.startLineNumber,
+			endLineNumber: props.endLineNumber,
+			startColumn: props.startColumn,
+			endColumn: props.endColumn
+		}
+	});
+	const retrievePositioning = useCallback( () => {
 		debug( 'Retrieve positioning...' );
-		if ( this._unmounted || this.state.style ) {
+		if ( !isMounted() || style ) {
 			return;
 		}
-		const node = findDOMNode( this );
+		const node = findDOMNode( lineWrapper.current );
 		const child = node.lastChild;
 		if (
 			child &&
@@ -62,68 +59,28 @@ class LineWrapper extends Component {
 			!RE_LINE_WRAPPER_BAR.test( child.className )
 		) {
 			if ( RE_CONTEXT_MENU.test( child.className ) ) {
-				return this.setState({
-					style: {}
-				});
+				setStyle({});
 			}
 			const style = isDOMElement( child ) ? window.getComputedStyle( child, null ) : {};
 			if ( style.position === 'fixed' || style.position === 'absolute' ) {
-				this.setState({
-					style: {
-						position: style.position,
-						top: style.top,
-						left: style.left,
-						bottom: style.bottom,
-						right: style.right
-					}
+				setStyle({
+					position: style.position,
+					top: style.top,
+					left: style.left,
+					bottom: style.bottom,
+					right: style.right
 				});
 			}
 		} else {
-			window.requestIdleCallback( this.retrievePositioning );
+			window.requestIdleCallback( retrievePositioning );
 		}
-	}
+	}, [ isMounted, style ] );
+	useEffect( () => {
+		window.requestIdleCallback( retrievePositioning );
+	}, [ retrievePositioning ] );
 
-	handleDoubleClick = ( event ) => {
-		event.stopPropagation();
-		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.startLineNumber,
-			endLineNumber: this.props.endLineNumber,
-			startColumn: this.props.startColumn,
-			endColumn: this.props.endColumn,
-			elementRangeAction: null
-		});
-	}
-
-	handleConfiguratorTrigger = () => {
-		this.props.jumpToElementInEditor({
-			startLineNumber: this.props.startLineNumber,
-			endLineNumber: this.props.endLineNumber,
-			startColumn: this.props.startColumn,
-			endColumn: this.props.endColumn,
-			elementRangeAction: 'trigger_configurator'
-		});
-	}
-
-	deleteElement = () => {
-		vex.dialog.confirm({
-			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
-			callback: ( value ) => {
-				if ( value ) {
-					this.props.jumpToElementInEditor({
-						startLineNumber: this.props.startLineNumber,
-						endLineNumber: this.props.endLineNumber,
-						startColumn: this.props.startColumn,
-						endColumn: this.props.endColumn,
-						elementRangeAction: 'delete'
-					});
-				}
-			}
-		});
-	}
-
-	switchWithPrevious = () => {
-		const el = this.lineWrapper;
-
+	const switchWithPrevious = () => {
+		const el = lineWrapper.current;
 		let previous;
 		let sibling = el.previousElementSibling;
 		while ( sibling ) {
@@ -147,12 +104,12 @@ class LineWrapper extends Component {
 			}
 		}
 		if ( previous && previous.dataset.startLineNumber ) {
-			this.props.switchWithPrevious({
+			props.switchWithPrevious({
 				current: {
-					startLineNumber: this.props.startLineNumber,
-					endLineNumber: this.props.endLineNumber,
-					startColumn: this.props.startColumn,
-					endColumn: this.props.endColumn
+					startLineNumber: props.startLineNumber,
+					endLineNumber: props.endLineNumber,
+					startColumn: props.startColumn,
+					endColumn: props.endColumn
 				},
 				previous: {
 					startLineNumber: Number( previous.dataset.startLineNumber ),
@@ -163,10 +120,9 @@ class LineWrapper extends Component {
 				elementRangeAction: 'switch_previous'
 			});
 		}
-	}
-
-	switchWithNext = () => {
-		const el = this.lineWrapper;
+	};
+	const switchWithNext = () => {
+		const el = lineWrapper.current;
 		const elements = document.getElementsByClassName( 'line-wrapper' );
 		let next;
 		let sibling = el.nextElementSibling;
@@ -186,12 +142,12 @@ class LineWrapper extends Component {
 			}
 		}
 		if ( next && next.dataset.startLineNumber ) {
-			this.props.switchWithNext({
+			props.switchWithNext({
 				current: {
-					startLineNumber: this.props.startLineNumber,
-					endLineNumber: this.props.endLineNumber,
-					startColumn: this.props.startColumn,
-					endColumn: this.props.endColumn
+					startLineNumber: props.startLineNumber,
+					endLineNumber: props.endLineNumber,
+					startColumn: props.startColumn,
+					endColumn: props.endColumn
 				},
 				next: {
 					startLineNumber: Number( next.dataset.startLineNumber ),
@@ -202,90 +158,124 @@ class LineWrapper extends Component {
 				elementRangeAction: 'switch_next'
 			});
 		}
+	};
+	const deleteElement = () => {
+		vex.dialog.confirm({
+			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
+			callback: ( value ) => {
+				if ( value ) {
+					props.jumpToElementInEditor({
+						startLineNumber: props.startLineNumber,
+						endLineNumber: props.endLineNumber,
+						startColumn: props.startColumn,
+						endColumn: props.endColumn,
+						elementRangeAction: 'delete'
+					});
+				}
+			}
+		});
+	};
+	const handleDoubleClick = ( event ) => {
+		event.stopPropagation();
+		props.jumpToElementInEditor({
+			startLineNumber: props.startLineNumber,
+			endLineNumber: props.endLineNumber,
+			startColumn: props.startColumn,
+			endColumn: props.endColumn,
+			elementRangeAction: null
+		});
+	};
+	const handleConfiguratorTrigger = () => {
+		props.jumpToElementInEditor({
+			startLineNumber: props.startLineNumber,
+			endLineNumber: props.endLineNumber,
+			startColumn: props.startColumn,
+			endColumn: props.endColumn,
+			elementRangeAction: 'trigger_configurator'
+		});
+	};
+	const { tagName, startLineNumber, endLineNumber, startColumn } = props;
+	let outerTitle = `Double-click to highlight source code for <${tagName} />`;
+	if ( startLineNumber === endLineNumber ) {
+		outerTitle += ` (L${startLineNumber})`;
 	}
-
-	render() {
-		const { tagName, startLineNumber, endLineNumber, startColumn } = this.props;
-		let outerTitle = `Double-click to highlight source code for <${tagName} />`;
-		if ( startLineNumber === endLineNumber ) {
-			outerTitle += ` (L${startLineNumber})`;
-		}
-		else {
-			outerTitle += ` (L${startLineNumber}-${endLineNumber})`;
-		}
-		const wrapperBar = <Fragment>
-			<span className="line-wrapper-tagname" >{tagName}</span>
-			<span
-				role="button" tabIndex={0}
-				className="line-wrapper-delete fa fa-caret-up"
-				title={`Switch <${tagName} /> with previous element`}
-				onClick={this.switchWithPrevious}
-				onKeyPress={this.switchWithPrevious}
-			></span>
-			<span
-				role="button" tabIndex={0}
-				className="line-wrapper-delete fa fa-caret-down"
-				title={`Switch <${tagName} /> with next element`}
-				onClick={this.switchWithNext}
-				onKeyPress={this.switchWithNext}
-			></span>
-			<span
-				role="button" tabIndex={0}
-				className="line-wrapper-delete fa fa-trash"
-				title={`Delete <${tagName} /> from lesson`}
-				onClick={this.deleteElement}
-				onKeyPress={this.deleteElement}
-			></span>
-			<span
-				role="button" tabIndex={0}
-				className="line-wrapper-open-configurator fa fa-cogs"
-				title={`Click to open configurator menu for <${tagName} />`}
-				onClick={this.handleConfiguratorTrigger}
-				onKeyPress={this.handleConfiguratorTrigger}
-			></span>
-		</Fragment>;
-		if ( this.props.isInline ) {
-			return (
-				<span
-					id={`line-${startLineNumber}-${startColumn}`}
-					className="line-wrapper outer-element"
-					onDoubleClick={this.handleDoubleClick}
-					title={outerTitle}
-					style={{ ...this.props.style, ...this.state.style }}
-					ref={span => {
-						this.lineWrapper = span;
-					}}
-				>
-					<span className="line-wrapper-bar" >
-						{wrapperBar}
-					</span>
-					{this.props.children}
-				</span>
-			);
-		}
+	else {
+		outerTitle += ` (L${startLineNumber}-${endLineNumber})`;
+	}
+	const wrapperBar = <Fragment>
+		<span className="line-wrapper-tagname" >{tagName}</span>
+		<span
+			role="button" tabIndex={0}
+			className="line-wrapper-delete fa fa-caret-up"
+			title={`Switch <${tagName} /> with previous element`}
+			onClick={switchWithPrevious}
+			onKeyPress={switchWithPrevious}
+		></span>
+		<span
+			role="button" tabIndex={0}
+			className="line-wrapper-delete fa fa-caret-down"
+			title={`Switch <${tagName} /> with next element`}
+			onClick={switchWithNext}
+			onKeyPress={switchWithNext}
+		></span>
+		<span
+			role="button" tabIndex={0}
+			className="line-wrapper-delete fa fa-trash"
+			title={`Delete <${tagName} /> from lesson`}
+			onClick={deleteElement}
+			onKeyPress={deleteElement}
+		></span>
+		<span
+			role="button" tabIndex={0}
+			className="line-wrapper-open-configurator fa fa-cogs"
+			title={`Click to open configurator menu for <${tagName} />`}
+			onClick={handleConfiguratorTrigger}
+			onKeyPress={handleConfiguratorTrigger}
+		></span>
+	</Fragment>;
+	if ( props.isInline ) {
 		return (
-			<div
+			<span
 				id={`line-${startLineNumber}-${startColumn}`}
-				data-start-line-number={startLineNumber}
-				data-start-column={startColumn}
-				data-end-column={this.props.endColumn}
-				data-end-line-number={this.props.endLineNumber}
 				className="line-wrapper outer-element"
-				onDoubleClick={this.handleDoubleClick}
+				onDoubleClick={handleDoubleClick}
 				title={outerTitle}
-				style={{ ...this.props.style, ...this.state.style }}
-				ref={div => {
-					this.lineWrapper = div;
+				style={{ ...props.style, ...style }}
+				ref={( div ) => {
+					lineWrapper.current = div;
+					drag( div );
 				}}
 			>
-				<div className="line-wrapper-bar" >
+				<span className="line-wrapper-bar" >
 					{wrapperBar}
-				</div>
-				{this.props.children}
-			</div>
+				</span>
+				{props.children}
+			</span>
 		);
 	}
-}
+	return (
+		<div
+			id={`line-${startLineNumber}-${startColumn}`}
+			data-start-line-number={startLineNumber}
+			data-start-column={startColumn}
+			data-end-column={props.endColumn}
+			data-end-line-number={props.endLineNumber}
+			className="line-wrapper outer-element"
+			onDoubleClick={handleDoubleClick}
+			title={outerTitle}
+			style={{ ...props.style, ...style }}
+			ref={( div ) => {
+				lineWrapper.current = div;
+				drag( div );
+			}}
+		>
+			<div className="line-wrapper-bar" >
+				{wrapperBar}
+			</div>
+			{props.children}
+		</div>
+	);
+};
 
 
 // PROPERTIES //

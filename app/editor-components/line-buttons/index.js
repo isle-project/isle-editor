@@ -1,11 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useDrop } from 'react-dnd';
 import logger from 'debug';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { connect } from 'react-redux';
-import { jumpToElementInEditor, toggleConfigurator } from 'actions';
+import PINF from '@stdlib/constants/math/float64-pinf';
+import { jumpToElementInEditor, switchWithPrevious, switchWithNext } from 'actions';
 import stopPropagation from 'utils/stop-propagation';
 import './line_buttons.css';
 
@@ -20,70 +22,108 @@ const debug = logger( 'isle:line-buttons' );
 /**
 * A line wrapper for use in the editor.
 */
-class LineButtons extends Component {
-	constructor( props ) {
-		super( props );
+const LineButtons = ( props ) => {
+	const [ { canDrop, isOver }, drop ] = useDrop({
+		accept: 'component-wrapper',
+		drop: ( item, monitor ) => {
+			const thisLine = {
+				startLineNumber: props.lineNumber,
+				endLineNumber: props.lineNumber,
+				startColumn: 0,
+				endColumn: PINF
+			};
+			if ( item.startLineNumber > props.lineNumber ) {
+				props.switchWithPrevious({
+					current: item,
+					previous: thisLine,
+					elementRangeAction: 'switch_previous'
+				});
+			} else {
+				props.switchWithNext({
+					current: item,
+					next: thisLine,
+					elementRangeAction: 'switch_next'
+				});
+			}
+			return void 0;
+		},
+		collect: ( monitor ) => ({
+			isOver: monitor.isOver(),
+			canDrop: monitor.canDrop()
+		})
+	});
+	if ( !props.showLineButtons || !props.show ) {
+		return null;
 	}
-
-	jumpToLine = ( event ) => {
+	const jumpToLine = ( event ) => {
 		event.stopPropagation();
-		const { lineNumber } = this.props;
+		const { lineNumber } = props;
 		debug( 'Select line '+lineNumber );
-		this.props.jumpToElementInEditor({
+		props.jumpToElementInEditor({
 			startLineNumber: lineNumber,
 			endLineNumber: lineNumber,
 			elementRangeAction: 'reveal'
 		});
+	};
+	const isActive = canDrop && isOver;
+	let color;
+	let icon = 'fa-plus-circle';
+	if ( isActive ) {
+		color = 'green';
+		icon = 'fa-check-circle';
+	}
+	else if ( canDrop ) {
+		color = '#258080';
+		icon = 'fa-chevron-circle-down';
 	}
 
-	render() {
-		if ( !this.props.showLineButtons || !this.props.show ) {
-			return null;
-		}
-		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
-		return (
-			<span className="line-buttons" onClick={stopPropagation} >
-				{ this.props.splitPos !== 1 ? <span
-					className="line-buttons-jump"
-					role="button" tabIndex={0}
-					onClick={this.jumpToLine}
-					onKeyPress={this.jumpToLine}
-					title={`Center editor on line ${this.props.lineNumber}`}
-				>
-					<span
-						className="fa fa-arrow-circle-left"
-					></span>
-					<strong className="line-buttons-line-display" >
-						{this.props.lineNumber}
-					</strong>
-				</span> : null }
-				<ContextMenuTrigger
-					id="editor-context-menu"
-					renderTag="span"
-					holdToDisplay={0}
-					collect={() => {
-						return {
-							context: 'preview',
-							lineNumber: this.props.lineNumber
-						};
-					}}
-				>
-					<i
-						className="line-buttons-contextmenu fas fa-plus-circle"
-						title={`Click to insert component at line ${this.props.lineNumber}`}
-					></i>
-				</ContextMenuTrigger>
-			</span>
-		);
-	}
-}
+	/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+	return (
+		<span className="line-buttons" onClick={stopPropagation} ref={drop} >
+			{ props.splitPos !== 1 ? <span
+				className="line-buttons-jump"
+				role="button" tabIndex={0}
+				onClick={jumpToLine}
+				onKeyPress={jumpToLine}
+				title={`Center editor on line ${props.lineNumber}`}
+			>
+				<span
+					className="fa fa-arrow-circle-left"
+				></span>
+				<strong className="line-buttons-line-display" >
+					{props.lineNumber}
+				</strong>
+			</span> : null }
+			<ContextMenuTrigger
+				id="editor-context-menu"
+				renderTag="span"
+				holdToDisplay={0}
+				collect={() => {
+					return {
+						context: 'preview',
+						lineNumber: props.lineNumber
+					};
+				}}
+			>
+				<i
+					className={`line-buttons-contextmenu fas ${icon} fa-lg`}
+					title={`Click to insert component at line ${props.lineNumber}`}
+					style={{ color }}
+				></i>
+			</ContextMenuTrigger>
+		</span>
+	);
+};
 
 
 // PROPERTIES //
 
 LineButtons.propTypes = {
 	show: PropTypes.bool,
-	lineNumber: PropTypes.number.isRequired
+	lineNumber: PropTypes.number.isRequired,
+	jumpToElementInEditor: PropTypes.func.isRequired,
+	switchWithNext: PropTypes.func.isRequired,
+	switchWithPrevious: PropTypes.func.isRequired
 };
 
 LineButtons.defaultProps = {
@@ -94,7 +134,7 @@ LineButtons.defaultProps = {
 // EXPORTS //
 
 export default connect( mapStateToProps, {
-	jumpToElementInEditor, toggleConfigurator
+	jumpToElementInEditor, switchWithPrevious, switchWithNext
 })( LineButtons );
 
 function mapStateToProps({ preview, editor }) {
