@@ -6,10 +6,11 @@ import { useDrag } from 'react-dnd';
 import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import useIsMounted from 'hooks/is-mounted';
-import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
+import { jumpToElementInEditor, handleSwitchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
 
@@ -37,15 +38,24 @@ const LineWrapper = ( props ) => {
 	const [ style, setStyle ] = useState( null );
 	const isMounted = useIsMounted();
 	const lineWrapper = useRef( null );
-	const [ , drag ] = useDrag({
+	const tagNameRef = useRef( null );
+	const { tagName, startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor, switchWithNext, switchWithPrevious } = props;
+	const [ { opacity }, drag, preview ] = useDrag({
 		item: {
 			type: 'component-wrapper',
-			startLineNumber: props.startLineNumber,
-			endLineNumber: props.endLineNumber,
-			startColumn: props.startColumn,
-			endColumn: props.endColumn
-		}
+			tagName,
+			startLineNumber,
+			endLineNumber,
+			startColumn,
+			endColumn
+		},
+		collect: monitor => ({
+			opacity: monitor.isDragging() ? 0.2 : 1
+		})
 	});
+	useEffect(() => {
+		preview( getEmptyImage(), { captureDraggingState: true });
+	}, [ preview ] );
 	const retrievePositioning = useCallback( () => {
 		debug( 'Retrieve positioning...' );
 		if ( !isMounted() || style ) {
@@ -79,7 +89,7 @@ const LineWrapper = ( props ) => {
 		window.requestIdleCallback( retrievePositioning );
 	}, [ retrievePositioning ] );
 
-	const switchWithPrevious = () => {
+	const handleSwitchWithPrevious = useCallback( () => {
 		const el = lineWrapper.current;
 		let previous;
 		let sibling = el.previousElementSibling;
@@ -104,12 +114,12 @@ const LineWrapper = ( props ) => {
 			}
 		}
 		if ( previous && previous.dataset.startLineNumber ) {
-			props.switchWithPrevious({
+			switchWithPrevious({
 				current: {
-					startLineNumber: props.startLineNumber,
-					endLineNumber: props.endLineNumber,
-					startColumn: props.startColumn,
-					endColumn: props.endColumn
+					startLineNumber,
+					endLineNumber,
+					startColumn,
+					endColumn
 				},
 				previous: {
 					startLineNumber: Number( previous.dataset.startLineNumber ),
@@ -120,8 +130,8 @@ const LineWrapper = ( props ) => {
 				elementRangeAction: 'switch_previous'
 			});
 		}
-	};
-	const switchWithNext = () => {
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, switchWithPrevious ] );
+	const handleSwitchWithNext = useCallback( () => {
 		const el = lineWrapper.current;
 		const elements = document.getElementsByClassName( 'line-wrapper' );
 		let next;
@@ -142,12 +152,12 @@ const LineWrapper = ( props ) => {
 			}
 		}
 		if ( next && next.dataset.startLineNumber ) {
-			props.switchWithNext({
+			switchWithNext({
 				current: {
-					startLineNumber: props.startLineNumber,
-					endLineNumber: props.endLineNumber,
-					startColumn: props.startColumn,
-					endColumn: props.endColumn
+					startLineNumber,
+					endLineNumber,
+					startColumn,
+					endColumn
 				},
 				next: {
 					startLineNumber: Number( next.dataset.startLineNumber ),
@@ -158,43 +168,42 @@ const LineWrapper = ( props ) => {
 				elementRangeAction: 'switch_next'
 			});
 		}
-	};
-	const deleteElement = () => {
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, switchWithNext ] );
+	const deleteElement = useCallback( () => {
 		vex.dialog.confirm({
 			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
 			callback: ( value ) => {
 				if ( value ) {
-					props.jumpToElementInEditor({
-						startLineNumber: props.startLineNumber,
-						endLineNumber: props.endLineNumber,
-						startColumn: props.startColumn,
-						endColumn: props.endColumn,
+					jumpToElementInEditor({
+						startLineNumber,
+						endLineNumber,
+						startColumn,
+						endColumn,
 						elementRangeAction: 'delete'
 					});
 				}
 			}
 		});
-	};
-	const handleDoubleClick = ( event ) => {
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
+	const handleDoubleClick = useCallback( ( event ) => {
 		event.stopPropagation();
-		props.jumpToElementInEditor({
-			startLineNumber: props.startLineNumber,
-			endLineNumber: props.endLineNumber,
-			startColumn: props.startColumn,
-			endColumn: props.endColumn,
+		jumpToElementInEditor({
+			startLineNumber,
+			endLineNumber,
+			startColumn,
+			endColumn,
 			elementRangeAction: null
 		});
-	};
-	const handleConfiguratorTrigger = () => {
-		props.jumpToElementInEditor({
-			startLineNumber: props.startLineNumber,
-			endLineNumber: props.endLineNumber,
-			startColumn: props.startColumn,
-			endColumn: props.endColumn,
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
+	const handleConfiguratorTrigger = useCallback( () => {
+		jumpToElementInEditor({
+			startLineNumber,
+			endLineNumber,
+			startColumn,
+			endColumn,
 			elementRangeAction: 'trigger_configurator'
 		});
-	};
-	const { tagName, startLineNumber, endLineNumber, startColumn } = props;
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	let outerTitle = `Double-click to highlight source code for <${tagName} />`;
 	if ( startLineNumber === endLineNumber ) {
 		outerTitle += ` (L${startLineNumber})`;
@@ -203,20 +212,22 @@ const LineWrapper = ( props ) => {
 		outerTitle += ` (L${startLineNumber}-${endLineNumber})`;
 	}
 	const wrapperBar = <Fragment>
-		<span className="line-wrapper-tagname" >{tagName}</span>
+		<span className="line-wrapper-tagname" ref={tagNameRef} >
+			{tagName}
+			</span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-up"
 			title={`Switch <${tagName} /> with previous element`}
-			onClick={switchWithPrevious}
-			onKeyPress={switchWithPrevious}
+			onClick={handleSwitchWithPrevious}
+			onKeyPress={handleSwitchWithPrevious}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-down"
 			title={`Switch <${tagName} /> with next element`}
-			onClick={switchWithNext}
-			onKeyPress={switchWithNext}
+			onClick={handleSwitchWithNext}
+			onKeyPress={handleSwitchWithNext}
 		></span>
 		<span
 			role="button" tabIndex={0}
@@ -240,7 +251,7 @@ const LineWrapper = ( props ) => {
 				className="line-wrapper outer-element"
 				onDoubleClick={handleDoubleClick}
 				title={outerTitle}
-				style={{ ...props.style, ...style }}
+				style={{ opacity, ...props.style, ...style }}
 				ref={( div ) => {
 					lineWrapper.current = div;
 					drag( div );
@@ -263,7 +274,7 @@ const LineWrapper = ( props ) => {
 			className="line-wrapper outer-element"
 			onDoubleClick={handleDoubleClick}
 			title={outerTitle}
-			style={{ ...props.style, ...style }}
+			style={{ opacity, ...props.style, ...style }}
 			ref={( div ) => {
 				lineWrapper.current = div;
 				drag( div );
@@ -305,7 +316,7 @@ LineWrapper.propTypes = {
 // EXPORTS //
 
 export default connect( mapStateToProps, {
-	jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator
+	jumpToElementInEditor, handleSwitchWithNext, switchWithPrevious, toggleConfigurator
 })( LineWrapper );
 
 function mapStateToProps() {
