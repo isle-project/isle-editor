@@ -25,6 +25,7 @@ import isleFileIncludes from './isle_file_includes.js';
 import createScope from './create_scope.js';
 import loadRequires from './load_requires.js';
 import applyStyles from './apply_styles.js';
+import DragLayer from './drag_layer.js';
 import './preview.css';
 
 
@@ -296,6 +297,7 @@ class Preview extends Component {
 		debug( 'Rendering preview...' );
 		return (
 			<DndProvider backend={HTML5Backend} >
+				<DragLayer />
 				<Provider session={this.session} currentRole={this.props.currentRole} >
 					{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
 				</Provider>
