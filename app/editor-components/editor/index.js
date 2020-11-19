@@ -52,7 +52,6 @@ import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
 import EditorFooter from './footer.js';
 import './editor.css';
-import { start } from 'repl';
 
 
 // VARIABLES //
