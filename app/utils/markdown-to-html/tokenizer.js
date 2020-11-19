@@ -40,7 +40,7 @@ const RE_ALPHACHAR = /[A-Z]/i;
 const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
 const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
-const RE_NON_LINE_OR_COL = /<(?!\/?Col|LineButtons)/;
+const RE_NO_LINE_ROW_COL = /<(?!\/?Row|\/?Col|LineButtons)/;
 const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
 const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|Citation|Clock|Input|Link|Nav\.Link|NavLink|RHelp|Text|TeX|Typewriter)$/;
@@ -299,8 +299,11 @@ class Tokenizer {
 				this._current = replace( this._current, '<Card.Link ', '<Link className="card-link" ' );
 				this._current = replace( this._current, '</Card.Link>', '</Link>' );
 			}
-			else if ( this._openingTagName === 'Col' && !RE_NON_LINE_OR_COL.test( this._current ) ) {
+			else if ( this._openingTagName === 'Col' && !RE_NO_LINE_ROW_COL.test( this._current ) ) {
 				this._current = replace( this._current, '<Col', '<Col className="editor-col"' );
+			}
+			else if ( this._openingTagName === 'Row' && !RE_NO_LINE_ROW_COL.test( this._current ) ) {
+				this._current = replace( this._current, '<Row', '<Row className="editor-row"' );
 			}
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
