@@ -409,7 +409,7 @@ class UploadLesson extends Component {
 					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Settings</FormLabel>
+					<FormLabel>Code Settings</FormLabel>
 					<CheckboxInput
 						legend="Minify code"
 						tooltip="Disabling this option slightly reduces build time but results in more data to be downloaded by users"
