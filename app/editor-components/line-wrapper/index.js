@@ -10,7 +10,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import useIsMounted from 'hooks/is-mounted';
-import { jumpToElementInEditor, handleSwitchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
+import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
 
@@ -316,7 +316,7 @@ LineWrapper.propTypes = {
 // EXPORTS //
 
 export default connect( mapStateToProps, {
-	jumpToElementInEditor, handleSwitchWithNext, switchWithPrevious, toggleConfigurator
+	jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator
 })( LineWrapper );
 
 function mapStateToProps() {
