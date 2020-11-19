@@ -67,14 +67,17 @@ const LineButtons = ( props ) => {
 	};
 	const isActive = canDrop && isOver;
 	let color;
-	let icon = 'fa-plus-circle';
+	let icon;
 	if ( isActive ) {
 		color = 'green';
-		icon = 'fa-check-circle';
+		icon = 'fa-check-circle fa-2x';
 	}
 	else if ( canDrop ) {
 		color = '#258080';
-		icon = 'fa-chevron-circle-down';
+		icon = 'fa-chevron-circle-down fa-2x';
+	}
+	else {
+		icon = 'fa-plus-circle fa-lg';
 	}
 
 	/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
@@ -106,7 +109,7 @@ const LineButtons = ( props ) => {
 				}}
 			>
 				<i
-					className={`line-buttons-contextmenu fas ${icon} fa-lg`}
+					className={`line-buttons-contextmenu fas ${icon}`}
 					title={`Click to insert component at line ${props.lineNumber}`}
 					style={{ color }}
 				></i>
