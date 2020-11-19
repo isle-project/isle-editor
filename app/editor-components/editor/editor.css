@@ -169,6 +169,7 @@
 }
 
 .editor-row {
+	position: relative;
 	background: rgba(0, 0, 0, 0.01);
 	min-height: 100px;
 	border: solid 1px lightgray;
