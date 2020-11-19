@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Portal } from 'react-portal';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { transformSync } from '@babel/core';
@@ -297,7 +298,11 @@ class Preview extends Component {
 		debug( 'Rendering preview...' );
 		return (
 			<DndProvider backend={HTML5Backend} >
-				<DragLayer />
+				<Portal
+					node={document.body}
+				>
+					<DragLayer />
+				</Portal>
 				<Provider session={this.session} currentRole={this.props.currentRole} >
 					{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
 				</Provider>

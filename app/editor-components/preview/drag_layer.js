@@ -12,22 +12,23 @@ const DragWrapper = memo( ({ title }) => {
 			Drag <code>{title}</code> to one of the <i className="fas fa-chevron-circle-down" style={{ color: '#258080' }} /> buttons
 		</div>
 	);
-});
+} );
 
 
 // FUNCTIONS //
 
-function createStyle( initialOffset, currentOffset ) {
-	if ( !initialOffset || !currentOffset ) {
+function createStyle( currentOffset ) {
+	if ( !currentOffset ) {
 		return {
 			display: 'none'
 		};
 	}
 	const { x, y } = currentOffset;
-	const transform = `translate(${x}px, ${y}px)`;
 	return {
-		transform,
-		WebkitTransform: transform
+		position: 'absolute',
+		width: 'fit-content',
+		left: x,
+		top: y
 	};
 }
 
@@ -35,10 +36,9 @@ function createStyle( initialOffset, currentOffset ) {
 // MAIN //
 
 const CustomDragLayer = () => {
-	const { itemType, isDragging, item, initialOffset, currentOffset } = useDragLayer(( monitor ) => ({
+	const { itemType, isDragging, item, currentOffset } = useDragLayer(( monitor ) => ({
 		item: monitor.getItem(),
 		itemType: monitor.getItemType(),
-		initialOffset: monitor.getInitialClientOffset(),
 		currentOffset: monitor.getClientOffset(),
 		isDragging: monitor.isDragging()
 	}));
@@ -54,7 +54,7 @@ const CustomDragLayer = () => {
 		return null;
 	}
 	return ( <div className="preview-drag-layer" >
-		<div style={createStyle( initialOffset, currentOffset )} >
+		<div style={createStyle( currentOffset )} >
 			{renderItem()}
 		</div>
 	</div>);
