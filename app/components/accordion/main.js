@@ -58,7 +58,7 @@ const Accordion = ( props ) => {
 			const style = {
 				boxShadow: '0 0 -4px rgba(92, 92, 92, 0.5)'
 			};
-			if ( count === 1 ) {
+			if ( count === 0 ) {
 				style.borderTopLeftRadius = 6;
 				style.borderTopRightRadius = 6;
 			}
