@@ -275,8 +275,8 @@ const ComponentStyler = ( props ) => {
 	}
 	return (
 		<div className="component-styler" >
-			<span className="component-styler-heading" >Customize style <Button size="sm" variant="light" style={{ float: 'right' }} onClick={props.onHide}>X</Button></span>
-			<Accordion canCloseAll headers={[ 'Background', 'Typography', 'Font Variants' ]} headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }} >
+			<span className="component-styler-heading" >Customize style <Button size="sm" variant="light" className="component-styler-close-button" onClick={props.onHide}>X</Button></span>
+			<Accordion className="component-styler-accordion" canCloseAll headers={[ 'Layout & Background', 'Spacing & Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Display' ]} headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }} >
 				<div style={ACCORDION_ITEM_STYLE} >
 					<Form.Group as={Row} >
 						<Form.Label column sm="4">
@@ -302,6 +302,12 @@ const ComponentStyler = ( props ) => {
 							</OverlayTrigger>
 						</Col>
 					</Form.Group>
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
 					<Form.Group as={Row} >
@@ -556,6 +562,12 @@ const ComponentStyler = ( props ) => {
 					<hr />
 					<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Text Shadow</p>
 					<TextShadowInput style={props.style} onChange={props.onChange} />
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+
 				</div>
 			</Accordion>
 		</div>

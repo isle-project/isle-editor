@@ -1,12 +1,25 @@
 .component-styler {
 	position: absolute;
-	height: 50%;
 	width: 40%;
+	min-width: 600px;
+	height: 50%;
 	left: 1%;
 	top: 60px;
 	z-index: 1050;
 	background-color: gainsboro;
 	box-shadow: 0 0 10px darkslategray;
+}
+
+.component-styler-close-button {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: 28px;
+}
+
+.component-styler-accordion {
+	overflow-y: auto;
+	height: calc(100% - 32px);
 }
 
 .component-styler-heading {
