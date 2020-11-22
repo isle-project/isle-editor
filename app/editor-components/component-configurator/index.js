@@ -659,7 +659,6 @@ class ComponentConfigurator extends Component {
 
 	render() {
 		debug( 'Rendering component configurator modal...' );
-		console.log( this.state );
 		const innerHTML = {
 			'__html': this.description
 		};
