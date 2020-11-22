@@ -22,3 +22,9 @@
 .configurator-tr-active {
 	background: rgba(129, 226, 129, 0.2) !important;
 }
+
+.style-button {
+	position: absolute;
+	right: 6px;
+	top: 5px;
+}

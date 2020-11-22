@@ -36,6 +36,7 @@ import { SCOPE } from 'editor-components/preview/create_scope.js';
 import extractOptionsFromDescription from 'utils/extract-options-from-description';
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from 'components/documentation.json';
+import ComponentStyler from 'editor-components/component-styler';
 import Session from 'session';
 import SearchBar from '../searchbar/index.js';
 import './component_configurator.css';
@@ -171,6 +172,7 @@ class ComponentConfigurator extends Component {
 			value,
 			searchValue: '',
 			propActive,
+			showStyler: false,
 			...propValues
 		};
 		if ( !this.selfClosing ) {
@@ -404,6 +406,17 @@ class ComponentConfigurator extends Component {
 		};
 	}
 
+	replaceStyle = ( newValue ) => {
+		this.setState({
+			[ 'prop:style' ]: newValue
+		}, () => {
+			let { value } = this.state;
+			const RE_STYLE_KEY = /([ \t]*)style=({{[\s\S]*?}})/;
+			value = replace( value, RE_STYLE_KEY, '$1style={' + JSON.stringify( newValue, null, 2 ) + '}' );
+			this.setState({ value });
+		});
+	};
+
 	replaceNumberOrBooleanFactory = ( key ) => {
 		const RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i' );
 		return ( newValue ) => {
@@ -446,6 +459,12 @@ class ComponentConfigurator extends Component {
 			value,
 			propActive: newPropActive,
 			[ 'prop:'+key ]: defaultValue
+		});
+	}
+
+	toggleStyler = () => {
+		this.setState({
+			showStyler: !this.state.showStyler
 		});
 	}
 
@@ -597,8 +616,17 @@ class ComponentConfigurator extends Component {
 					}
 				</td>
 				<td>{description}</td>
-				<td>
-					{(isActive || isRequired ) ? input : null}
+				<td style={{ position: 'relative' }} >
+					{(isActive || isRequired ) ?
+						<Fragment>
+							{input}
+							{ name === 'style' ?
+								<Button className="style-button" variant="outline-secondary" onClick={this.toggleStyler} >
+									<i className="fas fa-palette"></i>
+								</Button> :
+								null
+							}
+						</Fragment> : null}
 				</td>
 				<td>
 					{type ? `${type}` : ''}
@@ -631,6 +659,7 @@ class ComponentConfigurator extends Component {
 
 	render() {
 		debug( 'Rendering component configurator modal...' );
+		console.log( this.state );
 		const innerHTML = {
 			'__html': this.description
 		};
@@ -723,6 +752,11 @@ class ComponentConfigurator extends Component {
 						onClick={this.clickHide}
 					>Close</Button>
 				</Modal.Footer>
+				<ComponentStyler
+					show={this.state.showStyler} onHide={this.toggleStyler}
+					style={this.state[ 'prop:style' ]}
+					onChange={this.replaceStyle}
+				/>
 			</Modal>
 		);
 	}

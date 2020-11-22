@@ -1,0 +1,18 @@
+.component-styler {
+	position: absolute;
+	height: 50%;
+	width: 40%;
+	left: 1%;
+	top: 60px;
+	z-index: 1050;
+	background-color: gainsboro;
+	box-shadow: 0 0 10px darkslategray;
+}
+
+.component-styler-heading {
+	font-variant: all-small-caps;
+	font-size: 1.2em;
+	padding-left: 6px;
+	color: black;
+	font-weight: 600;
+}
