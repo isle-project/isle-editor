@@ -162,12 +162,8 @@ class UploadLesson extends Component {
 		const form = new FormData();
 		form.append( 'namespaceName', namespaceName );
 		form.append( 'lessonName', lessonName );
-		if ( this.state.active ) {
-			form.append( 'active', String( this.state.active ) );
-		}
-		if ( this.state.public ) {
-			form.append( 'public', String( this.state.public ) );
-		}
+		form.append( 'active', String( this.state.active ) );
+		form.append( 'showInGallery', String( this.state.showInGallery ) );
 		if ( meta.description ) {
 			form.append( 'description', meta.description );
 		}
@@ -419,7 +415,7 @@ class UploadLesson extends Component {
 					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Released?</FormLabel>
+					<FormLabel>Release to Students?</FormLabel>
 					<ToggleButtonGroup
 						name="Released"
 						onChange={( active ) => {
@@ -428,7 +424,7 @@ class UploadLesson extends Component {
 							});
 						}}
 						type="radio"
-						size="small"
+						size="sm"
 						value={this.state.active}
 						style={{ float: 'right' }}
 					>
@@ -464,7 +460,7 @@ class UploadLesson extends Component {
 							});
 						}}
 						type="radio"
-						size="small"
+						size="sm"
 						value={this.state.showInGallery}
 						style={{ float: 'right' }}
 					>
