@@ -13,6 +13,8 @@ import qs from 'querystring';
 import FormData from 'form-data';
 import jsyaml from 'js-yaml';
 import Button from 'react-bootstrap/Button';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -57,6 +59,7 @@ class UploadLesson extends Component {
 			minify: true,
 			loadFromCDN: true,
 			lessonName,
+			isPrivate: false,
 			dirname: randomstring( 16, 65, 90 ),
 			server: electronStore.get( 'server' ),
 			token: electronStore.get( 'token' ),
@@ -407,6 +410,42 @@ class UploadLesson extends Component {
 					<FormControl.Feedback type="invalid" >
 						Please provide a lesson name of lowercase characters without spaces.
 					</FormControl.Feedback>
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Visibility</FormLabel>
+					<ToggleButtonGroup
+						name="Visibility"
+						onChange={( isPrivate ) => {
+							this.setState({
+								isPrivate
+							});
+						}}
+						type="radio"
+						size="small"
+						value={this.state.isPrivate}
+						style={{ float: 'right' }}
+					>
+						<ToggleButton
+							variant="outline-secondary"
+							value={false}
+							style={{
+								color: this.state.isPrivate ? '#A9A9A9' : 'white',
+								fontWeight: this.state.isPrivate ? 200 : 600
+							}}
+						>
+							Public
+						</ToggleButton>
+						<ToggleButton
+							variant="outline-secondary"
+							value={true}
+							style={{
+								color: this.state.isPrivate ? 'white' : '#A9A9A9',
+								fontWeight: this.state.isPrivate ? 600 : 200
+							}}
+						>
+							Private
+						</ToggleButton>
+					</ToggleButtonGroup>
 				</FormGroup>
 				<FormGroup>
 					<FormLabel>Code Settings</FormLabel>
