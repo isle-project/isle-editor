@@ -46,6 +46,7 @@ Developing and running the ISLE Editor has the following prerequisites:
 
 * [git][git]: version control
 * [Node.js][node-js]: JavaScript runtime (version `>= 9.0`)
+* [node-gyp][node-gyp]: Node.js native addon build tool (see link for how to install pre-requisites on the various operating systems)
 
 #### Download
 
@@ -147,6 +148,7 @@ The following icons are used under a Creative Commons CCBY license.
 [git]: http://git-scm.com/
 [jest]: https://jestjs.io
 [node-js]: https://nodejs.org/en/
+[node-gyp]: https://github.com/nodejs/node-gyp#installation
 
 [macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.71.6/isle-editor-0.71.6.dmg
 [linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.71.6/isle-editor-0.71.6-x86_64.AppImage
