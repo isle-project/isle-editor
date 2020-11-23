@@ -17,6 +17,7 @@ import cos from '@stdlib/math/base/special/cos';
 import Accordion from 'components/accordion';
 import ColorPicker from 'components/color-picker';
 import SelectInput from 'components/input/select';
+import SpacingSetter from './spacing_setter.js';
 import './styler.css';
 
 
@@ -303,11 +304,10 @@ const ComponentStyler = ( props ) => {
 						</Col>
 					</Form.Group>
 				</div>
-				<div style={ACCORDION_ITEM_STYLE} >
-
+				<div style={{ ...ACCORDION_ITEM_STYLE, height: 260 }} >
+					<SpacingSetter style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
 					<Form.Group as={Row} >

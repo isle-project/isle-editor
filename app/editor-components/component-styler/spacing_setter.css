@@ -1,0 +1,209 @@
+.component-styler-spacing-outer {
+	width: 320px;
+	height: 220px;
+	position: absolute;
+	background-color: black;
+	z-index: 200;
+}
+
+.component-styler-spacing-container {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: darkgray;
+	width: 300px;
+	height: 200px;
+	outline: 1px solid rgb(64, 64, 64);
+}
+
+.component-styler-spacing-center {
+	position: absolute;
+	left: 40%;
+	top: 42.5%;
+	width: 20%;
+	height: 15%;
+	background-color: rgb(92, 92, 92);
+	outline: 1px solid black;
+	z-index: 2;
+}
+
+.component-styler-spacing-inner-border {
+	position: absolute;
+	left: 20%;
+	top: 18%;
+	width: 60%;
+	height: 60%;
+	background-color: transparent;
+	border: solid 4px rgb(80, 80, 80);
+	outline: 1px solid black;
+	z-index: 2;
+}
+
+.component-styler-left-trapezoid {
+	position: absolute;
+	border-left: 150px solid darkgrey;
+	border-bottom: 100px solid transparent;
+	border-top: 100px solid transparent;
+	outline: 1px solid black;
+}
+
+.component-styler-right-trapezoid {
+	position: absolute;
+	left: 150px;
+	border-right: 150px solid darkgrey;
+	border-bottom: 100px solid transparent;
+	border-top: 100px solid transparent;
+	outline: 1px solid black;
+}
+
+.component-styler-top-trapezoid {
+	position: absolute;
+	border-top: 108px solid rgb(128, 128, 128);
+	border-left: 150px solid transparent;
+	border-right: 150px solid transparent;
+	z-index: 1;
+}
+
+.component-styler-bottom-trapezoid {
+	position: absolute;
+	bottom: 0;
+	border-bottom: 108px solid rgb(112, 112, 112);
+	border-left: 150px solid transparent;
+	border-right: 150px solid transparent;
+}
+
+.component-styler-margin-legend {
+	position: absolute;
+	left: 24px;
+	top: 0px;
+	z-index: 3;
+	color: ivory;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: Open Sans Condensed;
+}
+
+.component-styler-margin-number-top {
+	position: absolute;
+	left: 130px;
+	width: 40px;
+	top: 6px;
+	z-index: 3;
+	background: white;
+	background-image: none;
+	border: none;
+	color: black;
+	font-size: 12px;
+	font-weight: 400;
+	box-shadow: none;
+	text-align: center;
+}
+
+.component-styler-margin-number-bottom {
+	position: absolute;
+	left: 130px;
+	bottom: 6px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: white;
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-margin-number-left {
+	position: absolute;
+	left: 4px;
+	top: 94px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: white;
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-margin-number-right {
+	position: absolute;
+	right: 4px;
+	top: 94px;;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: white;
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-padding-legend {
+	position: absolute;
+	left: 80px;
+	top: 38px;
+	z-index: 3;
+	color: ivory;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: Open Sans Condensed;
+}
+
+.component-styler-padding-number-left {
+	position: absolute;
+	left: 68px;
+	top: 92px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: rgb(155, 255, 255);
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-padding-number-right {
+	position: absolute;
+	right: 68px;
+	top: 92px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: rgb(155, 255, 255);
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-padding-number-top {
+	position: absolute;
+	right: 130px;
+	top: 60px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: rgb(155, 255, 255);
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.component-styler-padding-number-bottom {
+	position: absolute;
+	right: 130px;
+	bottom: 60px;
+	z-index: 3;
+	color: black;
+	border: none;
+	background: rgb(155, 255, 255);
+	width: 40px;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
