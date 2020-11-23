@@ -59,7 +59,8 @@ class UploadLesson extends Component {
 			minify: true,
 			loadFromCDN: true,
 			lessonName,
-			isPrivate: false,
+			active: true,
+			showInGallery: false,
 			dirname: randomstring( 16, 65, 90 ),
 			server: electronStore.get( 'server' ),
 			token: electronStore.get( 'token' ),
@@ -161,6 +162,12 @@ class UploadLesson extends Component {
 		const form = new FormData();
 		form.append( 'namespaceName', namespaceName );
 		form.append( 'lessonName', lessonName );
+		if ( this.state.active ) {
+			form.append( 'active', String( this.state.active ) );
+		}
+		if ( this.state.public ) {
+			form.append( 'public', String( this.state.public ) );
+		}
 		if ( meta.description ) {
 			form.append( 'description', meta.description );
 		}
@@ -412,35 +419,71 @@ class UploadLesson extends Component {
 					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Visibility</FormLabel>
+					<FormLabel>Released?</FormLabel>
 					<ToggleButtonGroup
-						name="Visibility"
-						onChange={( isPrivate ) => {
+						name="Released"
+						onChange={( active ) => {
 							this.setState({
-								isPrivate
+								active
 							});
 						}}
 						type="radio"
 						size="small"
-						value={this.state.isPrivate}
+						value={this.state.active}
 						style={{ float: 'right' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
+							value={true}
+							style={{
+								color: this.state.active ? 'white' : '#A9A9A9',
+								fontWeight: this.state.active ? 600 : 200
+							}}
+						>
+							Active
+						</ToggleButton>
+						<ToggleButton
+							variant="outline-secondary"
 							value={false}
 							style={{
-								color: this.state.isPrivate ? '#A9A9A9' : 'white',
-								fontWeight: this.state.isPrivate ? 200 : 600
+								color: this.state.active ? '#A9A9A9' : 'white',
+								fontWeight: this.state.active? 200 : 600
+							}}
+						>
+							Inactive
+						</ToggleButton>
+					</ToggleButtonGroup>
+				</FormGroup>
+				<FormGroup>
+					<FormLabel>Show in Gallery?</FormLabel>
+					<ToggleButtonGroup
+						name="Visibility"
+						onChange={( showInGallery ) => {
+							this.setState({
+								showInGallery
+							});
+						}}
+						type="radio"
+						size="small"
+						value={this.state.showInGallery}
+						style={{ float: 'right' }}
+					>
+						<ToggleButton
+							variant="outline-secondary"
+							value={true}
+							style={{
+								color: this.state.showInGallery ? 'white' : '#A9A9A9',
+								fontWeight: this.state.showInGallery ? 600 : 200
 							}}
 						>
 							Public
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
-							value={true}
+							value={false}
 							style={{
-								color: this.state.isPrivate ? 'white' : '#A9A9A9',
-								fontWeight: this.state.isPrivate ? 600 : 200
+								color: this.state.showInGallery ? '#A9A9A9' : 'white',
+								fontWeight: this.state.showInGallery? 200 : 600
 							}}
 						>
 							Private
