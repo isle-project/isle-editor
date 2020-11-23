@@ -1592,3 +1592,7 @@ label {
 	color: inherit !important;
 	text-decoration: inherit !important;
 }
+
+.btn-group-toggle .btn.active {
+	font-weight: 600;
+}
