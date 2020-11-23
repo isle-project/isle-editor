@@ -682,6 +682,9 @@ class Editor extends Component {
 							currentContent += '\n';
 						}
 					}
+					if ( previousContent.length === 0 ) {
+						current.endLineNumber += 1;
+					}
 					const op1 = {
 						range: current,
 						text: previousContent
@@ -710,6 +713,9 @@ class Editor extends Component {
 						if ( !endsWith( currentContent, '\n' ) ) {
 							currentContent += '\n';
 						}
+					}
+					if ( nextContent.length === 0 ) {
+						current.endLineNumber += 1;
 					}
 					const op1 = {
 						range: current,
