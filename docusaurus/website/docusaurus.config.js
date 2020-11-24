@@ -51,7 +51,7 @@ const siteConfig = {
 	themeConfig: {
 		announcementBar: {
 			id: 'updated_docs', // Any value that will identify this message
-			content: 'Watch out for updated documentation in the coming weeks',
+			content: 'Watch out for new video tutorials in the coming weeks',
 			backgroundColor: '#fafbfc', // Defaults to `#fff`
 			textColor: '#091E42' // Defaults to `#000`
 		},
