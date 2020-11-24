@@ -350,8 +350,6 @@ ImageQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-ImageQuestion.contextType = SessionContext;
-
 
 // EXPORTS //
 
