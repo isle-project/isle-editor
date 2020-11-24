@@ -14,16 +14,21 @@ import PropTypes from 'prop-types';
 * @property {Function} onEvaluate - function to be invoked
 */
 const Runner = ({ active, interval, onEvaluate }) => {
-	let intervalID = useRef( null );
+	const intervalID = useRef( null );
+	const savedCallback = useRef();
+
+	useEffect(() => {
+		savedCallback.current = onEvaluate;
+	});
 	useEffect( () => {
 		if ( active ) {
 			if ( interval ) {
 				if ( intervalID.current ) {
 					window.clearInterval( intervalID.current );
 				}
-				intervalID.current = window.setInterval( onEvaluate, interval );
+				intervalID.current = window.setInterval( savedCallback.current, interval );
 			} else {
-				onEvaluate();
+				savedCallback.current();
 			}
 		}
 		return () => {
@@ -31,7 +36,7 @@ const Runner = ({ active, interval, onEvaluate }) => {
 				window.clearInterval( intervalID.current );
 			}
 		};
-	}, [ active, interval, onEvaluate ]);
+	}, [ active, interval ]);
 	return null;
 };
 
