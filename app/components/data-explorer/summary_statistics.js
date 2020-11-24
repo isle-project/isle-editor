@@ -646,7 +646,6 @@ class SummaryStatisticsMenu extends Component {
 										value.splice( fiveNumberSummary, 1, ...additions);
 									}
 								}
-								console.log( value );
 								this.setState({
 									selectedStats: value,
 									showSecondVarSelect: false,
