@@ -2,7 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Popover from 'react-bootstrap/Popover';
+import PopoverContent from 'react-bootstrap/PopoverContent';
 import Loadable from 'components/internal/loadable';
+import OverlayTrigger from 'components/overlay-trigger';
 const SketchPicker = Loadable( () => import( 'react-color/lib/Sketch.js' ) );
 const CompactPicker = Loadable( () => import( 'react-color/lib/Compact.js' ) );
 const MaterialPicker = Loadable( () => import( 'react-color/lib/Material.js' ) );
@@ -36,6 +40,22 @@ const ColorPicker = ( props ) => {
 		case 'Material':
 			colorPicker = <MaterialPicker {...props} />;
 			break;
+		case 'Button': {
+			const popover = <Popover id={`${props.variant}-popover`}>
+				<PopoverContent>
+				<SketchPicker {...props} />
+				</PopoverContent>
+			</Popover>;
+			colorPicker = <OverlayTrigger
+				overlay={popover}
+				placement="bottom-end"
+				trigger={[ 'click' ]}
+			>
+				<Button size="sm" style={{ backgroundColor: props.color, width: 38, height: 38 }} >
+				</Button>
+			</OverlayTrigger>;
+			break;
+		}
 		case 'Sketch':
 		default:
 			colorPicker = <SketchPicker {...props} />;
