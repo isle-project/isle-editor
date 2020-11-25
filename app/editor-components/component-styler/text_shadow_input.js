@@ -1,8 +1,6 @@
 // MODULES //
 
 import React, { Fragment, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -90,26 +88,20 @@ const TextShadowInput = ( props ) => {
 					Color
 				</Form.Label>
 				<Col sm="11">
-					<OverlayTrigger
-						overlay={<ColorPicker
-							color={state.color}
-							style={{ zIndex: 2000 }}
-							onChange={({ rgb }) => {
-								const { r, g, b, a } = rgb;
-								const newState = {
-									...state,
-									color: `rgba(${r}, ${g}, ${b}, ${a} )`
-								};
-								setState( newState );
-								handleChange( newState );
-							}}
-						/>}
-						placement="bottom-end"
-						trigger={[ 'click' ]}
-					>
-						<Button size="sm" style={{ backgroundColor: state.color, width: 38, height: 38 }} >
-						</Button>
-					</OverlayTrigger>
+					<ColorPicker
+						style={{ zIndex: 2000 }}
+						color={state.color}
+						onChange={({ rgb }) => {
+							const { r, g, b, a } = rgb;
+							const newState = {
+								...state,
+								color: `rgba(${r}, ${g}, ${b}, ${a} )`
+							};
+							setState( newState );
+							handleChange( newState );
+						}}
+						variant="Button"
+					/>
 				</Col>
 			</Form.Group>
 		</Fragment>

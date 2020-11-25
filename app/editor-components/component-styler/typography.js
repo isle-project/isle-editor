@@ -2,13 +2,11 @@
 
 import React, { Fragment } from 'react';
 import { components } from 'react-select';
-import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import OverlayTrigger from 'components/overlay-trigger';
 import ColorPicker from 'components/color-picker';
 import SelectInput from 'components/input/select';
 import UnitInput from './unit_input.js';
@@ -45,23 +43,17 @@ const Typography = ( props ) => {
 					Color
 				</Form.Label>
 				<Col sm="2">
-					<OverlayTrigger
-						overlay={<ColorPicker
-							style={{ zIndex: 2000 }}
-							color={props.style.color}
-							onChange={({ rgb }) => {
-								const { r, g, b, a } = rgb;
-								const newStyle = { ...props.style };
-								newStyle.color = `rgba(${r}, ${g}, ${b}, ${a} )`;
-								props.onChange( newStyle );
-							}}
-						/>}
-						placement="bottom-end"
-						trigger={[ 'click' ]}
-					>
-						<Button size="sm" style={{ backgroundColor: props.style.color, width: 38, height: 38 }} >
-						</Button>
-					</OverlayTrigger>
+					<ColorPicker
+						style={{ zIndex: 2000 }}
+						color={props.style.color}
+						onChange={({ rgb }) => {
+							const { r, g, b, a } = rgb;
+							const newStyle = { ...props.style };
+							newStyle.color = `rgba(${r}, ${g}, ${b}, ${a} )`;
+							props.onChange( newStyle );
+						}}
+						variant="Button"
+					/>
 				</Col>
 				<UnitInput
 					label="Size"
