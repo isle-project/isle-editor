@@ -7,6 +7,9 @@ import './spacing_setter.css';
 // MAIN //
 
 const SpacingSetter = ( props ) => {
+	if ( !props.active ) {
+		return null;
+	}
 	return (
 		<div className="component-styler-spacing-outer" >
 			<div className="component-styler-spacing-container" >

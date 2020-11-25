@@ -3,12 +3,12 @@
 import React, { Fragment } from 'react';
 import { components } from 'react-select';
 import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import OverlayTrigger from 'components/overlay-trigger';
 import ColorPicker from 'components/color-picker';
 import SelectInput from 'components/input/select';
 import UnitInput from './unit_input.js';
@@ -35,6 +35,9 @@ const SingleValue = ( props ) => {
 // MAIN //
 
 const Typography = ( props ) => {
+	if ( !props.active ) {
+		return null;
+	}
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
