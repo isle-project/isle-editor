@@ -25,6 +25,7 @@ const debug = logger( 'isle:accordion' );
 * @property {boolean} canCloseAll - whether one can collapse all headers
 * @property {string} headerClassName - this overrules the given class name of the headers
 * @property {Object} headerStyle - one may also assign a style to the header bars
+* @property {Function} onChange - callback invoked with index of new active vertical slider
 * @property {string} className - class name for outer div
 * @property {Object} style - CSS inline styles for outer div
 */
@@ -35,6 +36,7 @@ const Accordion = ( props ) => {
 	if ( props.active !== prevActive ) {
 		setIsActive( props.active );
 		setPrevActive( props.active );
+		props.onChange( props.active );
 	}
 	if ( !isArray( props.children ) ) {
 		return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
@@ -42,11 +44,15 @@ const Accordion = ( props ) => {
 	const clickFactory = ( len, idx ) => {
 		if ( props.canCloseAll ) {
 			return () => {
-				setIsActive( ( isActive === idx ) ? null : idx );
+				const newIdx = ( isActive === idx ) ? null : idx;
+				setIsActive( newIdx );
+				props.onChange( newIdx );
 			};
 		}
 		return () => {
-			setIsActive( ( isActive === idx ) ? (idx+1) % len : idx );
+			const newIdx = ( isActive === idx ) ? (idx+1) % len : idx;
+			setIsActive( newIdx );
+			props.onChange( newIdx );
 		};
 	};
 	const out = [];
@@ -103,6 +109,7 @@ Accordion.defaultProps = {
 	headers: null,
 	headerClassName: null,
 	headerStyle: null,
+	onChange() {},
 	className: '',
 	style: null
 };
@@ -115,6 +122,7 @@ Accordion.propTypes = {
 	]) ),
 	headerStyle: PropTypes.object,
 	headerClassName: PropTypes.string,
+	onChange: PropTypes.func,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
