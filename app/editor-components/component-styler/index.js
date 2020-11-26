@@ -9,6 +9,7 @@ import FontVariants from './font_variants.js';
 import Typography from './typography.js';
 import BoxShadows from './box_shadows.js';
 import Borders from './borders.js';
+import Position from './position.js';
 import Layout from './layout.js';
 import Effects from './effects.js';
 import Size from './size.js';
@@ -51,6 +52,7 @@ const ComponentStyler = ( props ) => {
 					<Size active={active === 2} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
+					<Position active={active === 3} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
 					<Typography active={active === 4} style={props.style} onChange={props.onChange} />
