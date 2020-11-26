@@ -1,0 +1,116 @@
+
+:root {
+	--linecolor: silver;
+	--lineover: orange;
+	--activeline: yellow;
+	--borderboxsize: 70px;
+	--marginboxsize: 20px;
+}
+
+.component-styler-border-selector {
+	position: relative;
+	width: 400px;
+	height: 240px;
+	background: gainsboro;
+}
+
+.component-styler-border-graphical-box {
+	position: absolute;
+	background-color: silver;
+	height: var(--borderboxsize);
+	width: var(--borderboxsize);
+	left: var(--marginboxsize);
+	top: var(--marginboxsize);
+	outline: 1px solid black;
+	z-index: 2;
+}
+
+.component-styler-border-graphical-box-inside {
+	position: relative;
+	width: 60%;
+	height: 60%;
+	margin-left: 20%;
+	margin-top: 20%;
+	background: darkgray;
+	outline: solid 1px black;
+}
+
+.component-styler-border-graphical-box-inside:not(.active):hover {
+	background: var(--lineover);
+}
+
+.component-styler-border-selector .active {
+	background: var(--activeline);
+}
+
+.component-styler-border-graphical-box-top {
+	position: absolute;
+	background: var(--linecolor);
+	left: var(--marginboxsize);
+	top: 0;
+	width: var(--borderboxsize);
+	height: var(--marginboxsize);
+	outline: solid 1px black;
+}
+
+.component-styler-border-graphical-box-top:not(.active):hover {
+	background: var(--lineover);
+}
+
+.component-styler-border-graphical-box-bottom {
+	position: absolute;
+	background: var(--linecolor);
+	left: var(--marginboxsize);
+	top: calc(var(--marginboxsize) + var(--borderboxsize));
+	width: var(--borderboxsize);
+	height: var(--marginboxsize);
+	outline: solid 1px black;
+}
+
+.component-styler-border-graphical-box-bottom:not(.active):hover {
+	background: var(--lineover);
+}
+
+.component-styler-border-graphical-box-left {
+	position: absolute;
+	background: var(--linecolor);
+	left: 0;
+	top: var(--marginboxsize);
+	width: var(--marginboxsize);
+	height:  var(--borderboxsize);
+	outline: solid 1px black;
+}
+
+.component-styler-border-graphical-box-left:not(.active):hover {
+	background: var(--lineover);
+}
+
+.component-styler-border-graphical-box-right {
+	position: absolute;
+	background: var(--linecolor);
+	left: calc(var(--marginboxsize) + var(--borderboxsize));
+	top: var(--marginboxsize);
+	width: var(--marginboxsize);
+	height: var(--borderboxsize);
+	outline: solid 1px black;
+}
+
+.component-styler-border-graphical-box-right:not(.active):hover {
+	background: var(--lineover);
+}
+
+.component-styler-unicode-solid {
+	font-weight: 800;
+	position: absolute;
+	left: 14px;
+	top: -4px;
+	font-size: 18px;
+}
+
+.component-styler-unicode-dashed {
+	font-weight: 800;
+	position: absolute;
+	left: 10px;
+	top: -2px;
+	font-size: 18px;
+}
