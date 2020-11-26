@@ -3,6 +3,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -160,6 +162,138 @@ const BorderInputs = ({ activeBorder, style, onChange }) => {
 	);
 };
 
+const BorderRadiusPicker = ( props ) => {
+	const [ overallRadius, setOverallRadius ] = useState( 0 );
+	const [ radii, setRadii ] = useState({
+		tl: 0, tr: 0, bl: 0, br: 0
+	});
+	const append = <InputGroup.Append>
+		<InputGroup.Text style={{ padding: 4 }}>px</InputGroup.Text>
+	</InputGroup.Append>;
+	return (
+		<Fragment>
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Border Radius</p>
+			<Row>
+				<Form.Label column sm={1} >
+					All
+				</Form.Label>
+				<Col sm={3} >
+					<InputGroup>
+						<FormControl
+							type="number"
+							value={overallRadius}
+							min={0} max={99}
+							onChange={( event ) => {
+								const radius = event.target.value;
+								setOverallRadius( radius );
+								props.onChange( `${radius}px` );
+								setRadii({ tl: radius, tr: radius, bl: radius, br: radius });
+							}}
+						/>
+						<InputGroup.Append>
+							<InputGroup.Text>px</InputGroup.Text>
+						</InputGroup.Append>
+					</InputGroup>
+				</Col>
+				<Col sm={8} >
+					<Form.Group as={Row} >
+						<Form.Label column sm={3} >
+							Top-Left
+						</Form.Label>
+						<Col sm={3} >
+							<InputGroup>
+								<FormControl
+									value={radii.tl}
+									type="number"
+									min={0} max={99}
+									onChange={( event ) => {
+										const newRadii = {
+											...radii,
+											tl: event.target.value
+										};
+										setRadii( newRadii );
+										props.onChange( `${newRadii.tl}px ${newRadii.tr}px ${newRadii.br}px ${newRadii.bl}px` );
+									}}
+									style={{ padding: 8 }}
+								/>
+								{append}
+							</InputGroup>
+						</Col>
+						<Form.Label column sm={{ span: 3 }} >
+							Top-Right
+						</Form.Label>
+						<Col sm={3} >
+							<InputGroup>
+								<FormControl
+									value={radii.tr}
+									type="number"
+									min={0} max={99}
+									onChange={( event ) => {
+										const newRadii = {
+											...radii,
+											tr: event.target.value
+										};
+										setRadii( newRadii );
+										props.onChange( `${newRadii.tl}px ${newRadii.tr}px ${newRadii.br}px ${newRadii.bl}px` );
+									}}
+									style={{ padding: 8 }}
+								/>
+								{append}
+							</InputGroup>
+						</Col>
+					</Form.Group>
+					<Form.Group as={Row} >
+						<Form.Label column sm={3} >
+							Bottom-Left
+						</Form.Label>
+						<Col sm={3} >
+							<InputGroup>
+								<FormControl
+									value={radii.bl}
+									type="number"
+									min={0} max={99}
+									onChange={( event ) => {
+										const newRadii = {
+											...radii,
+											bl: event.target.value
+										};
+										setRadii( newRadii );
+										props.onChange( `${newRadii.tl}px ${newRadii.tr}px ${newRadii.br}px ${newRadii.bl}px` );
+									}}
+									style={{ padding: 8 }}
+								/>
+								{append}
+							</InputGroup>
+						</Col>
+						<Form.Label column sm={3} >
+							Bottom-Right
+						</Form.Label>
+						<Col sm={3} >
+							<InputGroup>
+								<FormControl
+									value={radii.br}
+									type="number"
+									min={0} max={99}
+									onChange={( event ) => {
+										const newRadii = {
+											...radii,
+											br: event.target.value
+										};
+										setRadii( newRadii );
+										props.onChange( `${newRadii.tl}px ${newRadii.tr}px ${newRadii.br}px ${newRadii.bl}px` );
+									}}
+									style={{ padding: 8 }}
+								/>
+								{append}
+							</InputGroup>
+						</Col>
+					</Form.Group>
+				</Col>
+			</Row>
+		</Fragment>
+	);
+};
+
 
 // MAIN //
 
@@ -252,6 +386,15 @@ const Borders = ( props ) => {
 					/>
 				</Col>
 			</Row>
+			<hr />
+			<BorderRadiusPicker
+				style={props.style}
+				onChange={( borderRadius ) => {
+					const newStyle = { ...props.style };
+					newStyle.borderRadius = borderRadius;
+					props.onChange( newStyle );
+				}}
+			/>
 		</Fragment>
 	);
 };
