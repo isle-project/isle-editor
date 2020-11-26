@@ -15,6 +15,12 @@ const RE_UNIT_INPUT = /(\d+)([a-z%]*)/;
 // FUNCTIONS //
 
 const extractUnitAndValue = ( defaultValue ) => {
+	if ( defaultValue === 'auto' || defaultValue === 'none' ) {
+		return {
+			value: 0,
+			unit: defaultValue
+		};
+	}
 	const match = RE_UNIT_INPUT.exec( defaultValue );
 	if ( !match ) {
 		return {
@@ -31,15 +37,22 @@ const extractUnitAndValue = ( defaultValue ) => {
 
 // MAIN //
 
-const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange }) => {
+const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange, auto, none }) => {
 	const initial = extractUnitAndValue( defaultValue );
 	const [ unit, setUnit ] = useState( initial.unit );
 	const [ value, setValue ] = useState( initial.value );
+	const OPTIONS = UNIT_TYPES.slice();
+	if ( auto ) {
+		OPTIONS.unshift( 'auto' );
+	}
+	if ( none ) {
+		OPTIONS.push( 'none' );
+	}
 	useEffect( () => {
 		const initial = extractUnitAndValue( defaultValue );
 		setUnit( initial.unit );
 		setValue( initial.value );
-	}, [ defaultValue ]);
+	}, [ auto, defaultValue ]);
 	return (
 		<Fragment>
 			<Form.Label column sm={labelWidth || 1} >
@@ -47,27 +60,33 @@ const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange }) 
 			</Form.Label>
 			<Col sm={colWidth || 3} >
 				<InputGroup style={{ width: 120 }}>
-					<Form.Control
-						type="number" min={0} max={200}
-						value={value}
-						onChange={( event ) => {
-							setValue( event.target.value );
-							onChange( `${event.target.value}${unit}`);
-						}}
-					/>
+					{ unit === 'auto' || unit === 'none' ?
+						<Form.Control type="text" disabled value={unit} style={{ fontVariant: 'small-caps' }} /> :
+						<Form.Control
+							type="number" min={0} max={200}
+							value={value}
+							onChange={( event ) => {
+								setValue( event.target.value );
+								onChange( `${event.target.value}${unit}`);
+							}}
+						/>
+					}
 					<InputGroup.Append>
 						<Form.Control
 							as="select"
 							style={{ padding: 3, background: 'silver' }}
 							value={unit}
 							onChange={( event ) => {
-								setUnit( event.target.value );
-								if ( value ) {
-									onChange( `${value}${event.target.value}`);
+								const newUnit = event.target.value;
+								setUnit( newUnit );
+								if ( value && newUnit !== 'auto' && newUnit !== 'none' ) {
+									onChange( `${value}${newUnit}`);
+								} else {
+									onChange( newUnit );
 								}
 							}}
 						>
-							{UNIT_TYPES.map( ( x, idx ) => <option key={idx}>{x}</option>)}
+							{OPTIONS.map( ( x, idx ) => <option key={idx}>{x}</option>)}
 						</Form.Control>
 					</InputGroup.Append>
 				</InputGroup>

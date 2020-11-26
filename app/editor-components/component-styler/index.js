@@ -9,6 +9,7 @@ import FontVariants from './font_variants.js';
 import Typography from './typography.js';
 import Borders from './borders.js';
 import Layout from './layout.js';
+import Size from './size.js';
 import './styler.css';
 
 
@@ -34,7 +35,7 @@ const ComponentStyler = ( props ) => {
 			<Accordion
 				className="component-styler-accordion"
 				canCloseAll
-				headers={[ 'Layout & Background', 'Spacing & Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Display' ]}
+				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Display' ]}
 				headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }}
 				onChange={setActive}
 			>
@@ -45,15 +46,18 @@ const ComponentStyler = ( props ) => {
 					<SpacingSetter active={active === 1} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
+					<Size active={active === 2} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Typography active={active === 3} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<FontVariants active={active === 4} style={props.style} onChange={props.onChange} />
+					<Typography active={active === 4} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Borders active={active === 5} style={props.style} onChange={props.onChange} />
+					<FontVariants active={active === 5} style={props.style} onChange={props.onChange} />
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+					<Borders active={active === 6} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
 
