@@ -7,8 +7,10 @@ import Accordion from 'components/accordion';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
 import Typography from './typography.js';
+import BoxShadows from './box_shadows.js';
 import Borders from './borders.js';
 import Layout from './layout.js';
+import Effects from './effects.js';
 import Size from './size.js';
 import './styler.css';
 
@@ -35,7 +37,7 @@ const ComponentStyler = ( props ) => {
 			<Accordion
 				className="component-styler-accordion"
 				canCloseAll
-				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Display' ]}
+				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Effects', 'Box Shadows' ]}
 				headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }}
 				onChange={setActive}
 			>
@@ -60,7 +62,10 @@ const ComponentStyler = ( props ) => {
 					<Borders active={active === 6} style={props.style} onChange={props.onChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-
+					<Effects active={active === 7} style={props.style} onChange={props.onChange} />
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+					<BoxShadows active={active === 8} style={props.style} onChange={props.onChange} />
 				</div>
 			</Accordion>
 		</div>
