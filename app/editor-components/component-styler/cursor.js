@@ -30,7 +30,7 @@ const CURSOR_TYPES = [
 		options: [
 			{ label: 'context-menu', value: 'context-menu' },
 			{ label: 'help', value: 'help' },
-			{ label: 'wait	', value: 'wait	' },
+			{ label: 'wait', value: 'wait' },
 			{ label: 'progress', value: 'progress' }
 		]
 	},
