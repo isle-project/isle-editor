@@ -13,6 +13,7 @@ import Borders from './borders.js';
 import Position from './position.js';
 import Layout from './layout.js';
 import Effects from './effects.js';
+import Cursor from './cursor.js';
 import Size from './size.js';
 import './styler.css';
 
@@ -40,7 +41,7 @@ const ComponentStyler = ( props ) => {
 			<Accordion
 				className="component-styler-accordion"
 				canCloseAll
-				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Effects', 'Box Shadows' ]}
+				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Cursor', 'Effects', 'Box Shadows' ]}
 				headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }}
 				onChange={setActive}
 			>
@@ -66,10 +67,13 @@ const ComponentStyler = ( props ) => {
 					<Borders active={active === 6} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Effects active={active === 7} style={props.style} onChange={handleChange} />
+					<Cursor active={active === 7} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<BoxShadows active={active === 8} style={props.style} onChange={handleChange} />
+					<Effects active={active === 8} style={props.style} onChange={handleChange} />
+				</div>
+				<div style={ACCORDION_ITEM_STYLE} >
+					<BoxShadows active={active === 9} style={props.style} onChange={handleChange} />
 				</div>
 			</Accordion>
 		</div>
