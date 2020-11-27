@@ -1,31 +1,73 @@
 // MODULES //
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
+import markdownit from 'markdown-it';
+import replace from '@stdlib/string/replace';
 import ComponentStyler from 'editor-components/component-styler';
 import Draggable from 'components/draggable';
 import './editor_component_styler.css';
 
 
+// VARIABLES //
+
+const debug = logger( 'isle:editor-component-styler' );
+const RE_STYLE = /style={({[\s\S]*?})}/;
+const RE_TAG_START = /^(\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
+const md = markdownit({
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	typographer: false
+});
+
+
 // MAIN //
 
-const EditorComponentStyler = ({ componentValue }) => {
+const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 	const [ isShown, setIsShown ] = useState( false );
+	const [ style, setStyle ] = useState({});
+	const handleChange = useRef( () => {} );
 	useEffect(() => {
 		if ( componentValue ) {
 			setIsShown( true );
-		} else {
-			setIsShown( false );
+			handleChange.current = ( style ) => {
+				if ( !elementRange ) {
+					return debug( 'No selection...');
+				}
+				let text;
+				let value = componentValue;
+				let match = value.match( RE_TAG_START );
+				if ( !match ) {
+					value = md.render( value );
+					match = value.match( RE_TAG_START );
+				}
+				if ( RE_STYLE.test( value ) ) {
+					text = replace( value, RE_STYLE, `style={${JSON.stringify( style, null, 2 )}}` );
+				} else {
+					text = replace( value, RE_TAG_START, `$1 style={${JSON.stringify( style, null, 2 )}` );
+				}
+				onChange( text, elementRange );
+			};
+			let newStyle;
+			const matches = RE_STYLE.exec( componentValue );
+			if ( !matches ) {
+				newStyle = {};
+			} else {
+				newStyle = eval( `(${matches[ 1 ]})` ); // eslint-disable-line no-eval
+			}
+			setStyle( newStyle );
 		}
-	}, [ componentValue ] );
+	}, [ componentValue, elementRange, onChange ] );
 	if ( !isShown ) {
 		return null;
 	}
 	return ( <Draggable className="editor-component-styler" cancel=".popover" >
 		<ComponentStyler
-			style={{}}
+			componentStyle={style}
 			show={isShown}
-			onChange={() => {}}
+			onChange={handleChange.current}
 			onHide={() => {
 				setIsShown( !isShown );
 			}}
@@ -37,17 +79,13 @@ const EditorComponentStyler = ({ componentValue }) => {
 // PROPERTIES //
 
 EditorComponentStyler.defaultProps = {
-	componentValue: '',
-	show: false
+	componentValue: ''
 };
 
 EditorComponentStyler.propTypes = {
-	endLineNumber: PropTypes.number.isRequired,
-	startLineNumber: PropTypes.number.isRequired,
-	startColumn: PropTypes.number,
-	endColumn: PropTypes.number,
 	componentValue: PropTypes.string,
-	show: PropTypes.bool
+	elementRange: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired
 };
 
 

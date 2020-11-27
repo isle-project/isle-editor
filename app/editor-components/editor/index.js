@@ -749,12 +749,10 @@ class Editor extends Component {
 					}
 				]);
 				this.hasHighlight = true;
-				this.setState({ componentStylerProps: {}});
 			}
 			else if ( this.props.elementRangeAction === 'select' ) {
 				const range = this.props.elementRange;
 				this.editor.setPosition({ lineNumber: range.startLineNumber, column: Infinity });
-				this.setState({ componentStylerProps: {}});
 			}
 			else {
 				this.editor.revealLine( this.props.elementRange.startLineNumber );
@@ -787,14 +785,18 @@ class Editor extends Component {
 				}
 				else if ( this.props.elementRangeAction === 'trigger_component_styler' ) {
 					const model = this.editor.getModel();
-					const componentValue = model.getValueInRange( this.props.elementRange );
+					const range = this.props.elementRange;
+					const componentValue = model.getValueInRange( range );
+					const selection = new this.monaco.Selection( range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn );
+					const componentStylerProps = {
+						elementRange: this.props.elementRange,
+						componentValue
+					};
+					console.log( componentStylerProps );
 					this.setState({
-						componentStylerProps: {
-							...this.props.elementRange,
-							componentValue
-						}
+						componentStylerProps
 					}, () => {
-						console.log( this.state.componentStylerProps );
+						this.editor.setSelection( selection );
 					});
 				}
 			}
@@ -1408,7 +1410,6 @@ class Editor extends Component {
 			endLineNumber: elementRange.endLineNumber
 		};
 		const selection = new this.monaco.Selection( range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn );
-
 		this.editor.setSelection( selection );
 		let content = model.getValueInRange( range );
 		let match = content.match( RE_TAG_START );
@@ -1491,6 +1492,25 @@ class Editor extends Component {
 				/>
 				<EditorComponentStyler
 					{...this.state.componentStylerProps}
+					onChange={( text, elementRange ) => {
+						const op = {
+							range: elementRange,
+							text: text,
+							forceMoveMarkers: true
+						};
+						this.immediateUpdate = true;
+						let newRange;
+						this.editor.executeEdits( 'my-source', [ op ], ( arr ) => {
+							newRange = arr[ 0 ].range;
+							return null;
+						});
+						this.setState({
+							componentStylerProps: {
+								elementRange: newRange,
+								componentValue: text
+							}
+						});
+					}}
 				/>
 			</div>
 		);
