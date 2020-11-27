@@ -89,7 +89,23 @@ const Position = ( props ) => {
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm={4} >
+					z-index
+				</Form.Label>
+				<Col sm={2} >
+					<Form.Control
+						type="number"
+						min={0} max={9999}
+						onChange={( event ) => {
+							const newStyle = { ...props.style };
+							newStyle.zIndex = event.target.value;
+							props.onChange( newStyle );
+						}}
+					/>
+				</Col>
+			</Form.Group>
+			<Form.Group as={Row} >
+				<Form.Label column sm={4} >
 					Float
 				</Form.Label>
 				<Col sm={8} >
@@ -127,7 +143,7 @@ const Position = ( props ) => {
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm={4} >
 					Clear
 				</Form.Label>
 				<Col sm={8} >
