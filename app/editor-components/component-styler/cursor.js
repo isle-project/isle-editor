@@ -94,6 +94,10 @@ const Option = props => {
 		}}>{props.data.label}</div>
 	</components.Option> );
 };
+const SELECT_STYLES = {
+	option: base => ({ ...base, paddingLeft: 24, paddingTop: 4, paddingBottom: 4, fontSize: '0.85em' }),
+	menuPortal: base => ({ ...base, zIndex: 1060 })
+};
 
 
 // MAIN //
@@ -120,10 +124,7 @@ const Cursor = ( props ) => {
 							props.onChange( newStyle );
 						}}
 						menuPortalTarget={document.body}
-						styles={{
-							option: base => ({ ...base, paddingLeft: 12, paddingTop: 4 }),
-							menuPortal: base => ({ ...base, zIndex: 1060 })
-						}}
+						styles={SELECT_STYLES}
 						components={{ Option }}
 					/>
 				</Col>
