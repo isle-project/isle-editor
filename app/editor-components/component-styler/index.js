@@ -36,7 +36,7 @@ const ComponentStyler = ( props ) => {
 	}
 	const handleChange = debounce( props.onChange, 25 );
 	return (
-		<div className="component-styler" >
+		<div className="component-styler" style={props.style} >
 			<span className="component-styler-heading" >Customize style <Button size="sm" variant="light" className="component-styler-close-button" onClick={props.onHide}>X</Button></span>
 			<Accordion
 				className="component-styler-accordion"
@@ -46,34 +46,34 @@ const ComponentStyler = ( props ) => {
 				onChange={setActive}
 			>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Layout active={active === 0} style={props.style} onChange={handleChange} />
+					<Layout active={active === 0} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={{ ...ACCORDION_ITEM_STYLE, height: 260 }} >
-					<SpacingSetter active={active === 1} style={props.style} onChange={handleChange} />
+					<SpacingSetter active={active === 1} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Size active={active === 2} style={props.style} onChange={handleChange} />
+					<Size active={active === 2} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Position active={active === 3} style={props.style} onChange={handleChange} />
+					<Position active={active === 3} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Typography active={active === 4} style={props.style} onChange={handleChange} />
+					<Typography active={active === 4} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<FontVariants active={active === 5} style={props.style} onChange={handleChange} />
+					<FontVariants active={active === 5} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Borders active={active === 6} style={props.style} onChange={handleChange} />
+					<Borders active={active === 6} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Cursor active={active === 7} style={props.style} onChange={handleChange} />
+					<Cursor active={active === 7} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Effects active={active === 8} style={props.style} onChange={handleChange} />
+					<Effects active={active === 8} style={props.componentStyle} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<BoxShadows active={active === 9} style={props.style} onChange={handleChange} />
+					<BoxShadows active={active === 9} style={props.componentStyle} onChange={handleChange} />
 				</div>
 			</Accordion>
 		</div>
@@ -84,10 +84,14 @@ const ComponentStyler = ( props ) => {
 // PROPERTIES //
 
 ComponentStyler.defaultProps = {
+	show: false,
+	componentStyle: {},
 	style: {}
 };
 
 ComponentStyler.propTypes = {
+	show: PropTypes.bool,
+	componentStyle: PropTypes.object,
 	style: PropTypes.object,
 	onChange: PropTypes.func.isRequired
 };

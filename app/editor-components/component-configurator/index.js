@@ -752,9 +752,17 @@ class ComponentConfigurator extends Component {
 					>Close</Button>
 				</Modal.Footer>
 				<ComponentStyler
-					show={this.state.showStyler} onHide={this.toggleStyler}
-					style={this.state[ 'prop:style' ]}
+					show={this.state.showStyler}
+					onHide={this.toggleStyler}
+					componentStyle={this.state[ 'prop:style' ]}
 					onChange={this.replaceStyle}
+					style={{
+						position: 'absolute',
+						height: '50%',
+						left: '1%',
+						top: '60px',
+						width: '40%'
+					}}
 				/>
 			</Modal>
 		);

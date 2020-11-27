@@ -45,10 +45,10 @@ const BoxShadowInput = ( props ) => {
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
-				<Form.Label column sm="1">
+				<Form.Label column sm={1} >
 					Type
 				</Form.Label>
-				<Col sm="10">
+				<Col sm={10} >
 					<ToggleButtonGroup
 						name="options"
 						onChange={( inset ) => {
@@ -80,7 +80,7 @@ const BoxShadowInput = ( props ) => {
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
-				<Form.Label column sm="1">
+				<Form.Label column sm={1} >
 					Angle
 				</Form.Label>
 				<Col sm={2} >
@@ -99,7 +99,9 @@ const BoxShadowInput = ( props ) => {
 				</Col>
 				<UnitInputBase
 					label="Distance"
-					labelWidth={2} style={props.style}
+					labelWidth={2}
+					style={props.style}
+					colWidth={3}
 					onChange={( value ) => {
 						const newState = {
 							...state,
@@ -111,7 +113,9 @@ const BoxShadowInput = ( props ) => {
 				/>
 				<UnitInputBase
 					label="Blur"
-					labelWidth={1} style={props.style}
+					labelWidth={1}
+					colWidth={3}
+					style={props.style}
 					onChange={( value ) => {
 						const newState = {
 							...state,
@@ -123,10 +127,10 @@ const BoxShadowInput = ( props ) => {
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
-				<Form.Label column sm="1">
+				<Form.Label column sm={1} >
 					Color
 				</Form.Label>
-				<Col sm="1">
+				<Col sm={1} >
 					<ColorPicker
 						style={{ zIndex: 2000 }}
 						color={state.color}

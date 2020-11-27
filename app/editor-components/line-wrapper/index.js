@@ -169,6 +169,15 @@ const LineWrapper = ( props ) => {
 			});
 		}
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, switchWithNext ] );
+	const toggleComponentStyler = useCallback( () => {
+		jumpToElementInEditor({
+			startLineNumber,
+			endLineNumber,
+			startColumn,
+			endColumn,
+			elementRangeAction: 'trigger_component_styler'
+		});
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	const deleteElement = useCallback( () => {
 		vex.dialog.confirm({
 			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
@@ -217,6 +226,20 @@ const LineWrapper = ( props ) => {
 			</span>
 		<span
 			role="button" tabIndex={0}
+			className="line-wrapper-open-configurator fa fa-cogs"
+			title={`Click to open configurator menu for <${tagName} />`}
+			onClick={handleConfiguratorTrigger}
+			onKeyPress={handleConfiguratorTrigger}
+		></span>
+		<span
+			role="button" tabIndex={0}
+			className="line-wrapper-delete fa fa-palette"
+			title="Change styling"
+			onClick={toggleComponentStyler}
+			onKeyPress={toggleComponentStyler}
+		></span>
+		<span
+			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-up"
 			title={`Switch <${tagName} /> with previous element`}
 			onClick={handleSwitchWithPrevious}
@@ -235,13 +258,6 @@ const LineWrapper = ( props ) => {
 			title={`Delete <${tagName} /> from lesson`}
 			onClick={deleteElement}
 			onKeyPress={deleteElement}
-		></span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-open-configurator fa fa-cogs"
-			title={`Click to open configurator menu for <${tagName} />`}
-			onClick={handleConfiguratorTrigger}
-			onKeyPress={handleConfiguratorTrigger}
 		></span>
 	</Fragment>;
 	if ( props.isInline ) {

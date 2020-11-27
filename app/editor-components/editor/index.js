@@ -48,6 +48,7 @@ import IMAGE_EXTENSIONS from './image_extensions.json';
 import IS_WINDOWS from '@stdlib/assert/is-windows';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
+const EditorComponentStyler = Loadable( () => import( 'editor-components/editor-component-styler' ) );
 import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
 import EditorFooter from './footer.js';
@@ -119,7 +120,8 @@ class Editor extends Component {
 		this.state = {
 			sourceFiles: {},
 			value: props.value,
-			hasSelection: false
+			hasSelection: false,
+			componentStylerProps: {}
 		};
 		this.decorations = [];
 		this.dragProvider = {
@@ -609,11 +611,13 @@ class Editor extends Component {
 					}
 				}
 				this.setState({
-					hasSelection: true
+					hasSelection: true,
+					componentStylerProps: {}
 				});
 			} else {
 				this.setState({
-					hasSelection: false
+					hasSelection: false,
+					componentStylerProps: {}
 				});
 			}
 		});
@@ -630,7 +634,8 @@ class Editor extends Component {
 			this.props.height !== prevProps.height ||
 			this.props.insertionText !== prevProps.insertionText ||
 			this.state.sourceFiles !== prevState.sourceFiles ||
-			this.state.hasSelection !== prevState.hasSelection
+			this.state.hasSelection !== prevState.hasSelection ||
+			this.state.componentStylerProps !== prevState.componentStylerProps
 		) {
 			return true;
 		}
@@ -744,10 +749,12 @@ class Editor extends Component {
 					}
 				]);
 				this.hasHighlight = true;
+				this.setState({ componentStylerProps: {}});
 			}
 			else if ( this.props.elementRangeAction === 'select' ) {
 				const range = this.props.elementRange;
 				this.editor.setPosition({ lineNumber: range.startLineNumber, column: Infinity });
+				this.setState({ componentStylerProps: {}});
 			}
 			else {
 				this.editor.revealLine( this.props.elementRange.startLineNumber );
@@ -774,8 +781,21 @@ class Editor extends Component {
 					}
 				]);
 				this.hasHighlight = true;
+				this.setState({ componentStylerProps: {}});
 				if ( this.props.elementRangeAction === 'trigger_configurator' ) {
 					this.triggerConfiguratorViaGlyph();
+				}
+				else if ( this.props.elementRangeAction === 'trigger_component_styler' ) {
+					const model = this.editor.getModel();
+					const componentValue = model.getValueInRange( this.props.elementRange );
+					this.setState({
+						componentStylerProps: {
+							...this.props.elementRange,
+							componentValue
+						}
+					}, () => {
+						console.log( this.state.componentStylerProps );
+					});
 				}
 			}
 		}
@@ -1468,6 +1488,9 @@ class Editor extends Component {
 					onContextMenuClick={this.handleContextMenuClick}
 					onTranslateSelection={this.translateSelection}
 					hasSelection={this.state.hasSelection}
+				/>
+				<EditorComponentStyler
+					{...this.state.componentStylerProps}
 				/>
 			</div>
 		);
