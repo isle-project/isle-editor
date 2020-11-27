@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import debounce from 'lodash.debounce';
 import Accordion from 'components/accordion';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
@@ -32,6 +33,7 @@ const ComponentStyler = ( props ) => {
 	if ( !props.show ) {
 		return null;
 	}
+	const handleChange = debounce( props.onChange, 25 );
 	return (
 		<div className="component-styler" >
 			<span className="component-styler-heading" >Customize style <Button size="sm" variant="light" className="component-styler-close-button" onClick={props.onHide}>X</Button></span>
@@ -43,31 +45,31 @@ const ComponentStyler = ( props ) => {
 				onChange={setActive}
 			>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Layout active={active === 0} style={props.style} onChange={props.onChange} />
+					<Layout active={active === 0} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={{ ...ACCORDION_ITEM_STYLE, height: 260 }} >
-					<SpacingSetter active={active === 1} style={props.style} onChange={props.onChange} />
+					<SpacingSetter active={active === 1} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Size active={active === 2} style={props.style} onChange={props.onChange} />
+					<Size active={active === 2} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Position active={active === 3} style={props.style} onChange={props.onChange} />
+					<Position active={active === 3} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Typography active={active === 4} style={props.style} onChange={props.onChange} />
+					<Typography active={active === 4} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<FontVariants active={active === 5} style={props.style} onChange={props.onChange} />
+					<FontVariants active={active === 5} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Borders active={active === 6} style={props.style} onChange={props.onChange} />
+					<Borders active={active === 6} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Effects active={active === 7} style={props.style} onChange={props.onChange} />
+					<Effects active={active === 7} style={props.style} onChange={handleChange} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<BoxShadows active={active === 8} style={props.style} onChange={props.onChange} />
+					<BoxShadows active={active === 8} style={props.style} onChange={handleChange} />
 				</div>
 			</Accordion>
 		</div>
@@ -82,7 +84,8 @@ ComponentStyler.defaultProps = {
 };
 
 ComponentStyler.propTypes = {
-	style: PropTypes.object
+	style: PropTypes.object,
+	onChange: PropTypes.func.isRequired
 };
 
 

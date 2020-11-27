@@ -6,6 +6,19 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import SelectInput from 'components/input/select';
+import UnitInputBase from './unit_input_base.js';
+
+
+// VARIABLES //
+
+const POSITION_TYPES = [
+	'static',
+	'relative',
+	'absolute',
+	'fixed',
+	'sticky'
+];
 
 
 // MAIN //
@@ -17,9 +30,63 @@ const Position = ( props ) => {
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm="3">
 					Position
 				</Form.Label>
+				<Col sm={3} >
+					<SelectInput
+						clearable
+						options={POSITION_TYPES}
+						defaultValue={POSITION_TYPES[ 0 ]}
+						onChange={( position ) => {
+							const newStyle = { ...props.style };
+							newStyle.position = position;
+							props.onChange( newStyle );
+						}}
+					/>
+				</Col>
+				<UnitInputBase
+					label="Top"
+					auto
+					onChange={( top ) => {
+						const newStyle = { ...props.style };
+						newStyle.top = top;
+						props.onChange( newStyle );
+					}}
+				/>
+			</Form.Group>
+			<Form.Group as={Row} >
+				<Col sm={4} ></Col>
+				<UnitInputBase
+					label="Left"
+					auto
+					onChange={( left ) => {
+						const newStyle = { ...props.style };
+						newStyle.left = left;
+						props.onChange( newStyle );
+					}}
+				/>
+				<UnitInputBase
+					label="Right"
+					auto
+					onChange={( right ) => {
+						const newStyle = { ...props.style };
+						newStyle.right = right;
+						props.onChange( newStyle );
+					}}
+				/>
+			</Form.Group>
+			<Form.Group as={Row} >
+				<Col sm={5} ></Col>
+				<UnitInputBase
+					label="Bottom" labelWidth={2}
+					auto
+					onChange={( bottom ) => {
+						const newStyle = { ...props.style };
+						newStyle.bottom = bottom;
+						props.onChange( newStyle );
+					}}
+				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
