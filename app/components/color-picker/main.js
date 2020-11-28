@@ -73,7 +73,7 @@ const ColorPicker = ( props ) => {
 
 ColorPicker.propTypes = {
 	variant: PropTypes.oneOf([
-		'Sketch', 'Material', 'Block', 'Compact'
+		'Sketch', 'Material', 'Block', 'Compact', 'Button'
 	]),
 	color: PropTypes.oneOfType([
 		PropTypes.string,
