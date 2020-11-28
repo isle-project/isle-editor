@@ -71,6 +71,10 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 			onHide={() => {
 				setIsShown( !isShown );
 			}}
+			style={{
+				maxHeight: '90vh',
+				overflowY: 'auto'
+			}}
 		/>
 	</Draggable> );
 };
