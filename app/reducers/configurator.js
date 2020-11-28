@@ -8,7 +8,7 @@ import * as types from 'constants/editor_actions.js';
 const initialState = {
 	configuratorIsOpened: false,
 	selectedComponent: {},
-	insertionText: null
+	insertion: null
 };
 
 
@@ -29,12 +29,14 @@ export default function configurator( state = initialState, action ) {
 	case types.PASTE_INSERTION:
 		return {
 			...state,
-			insertionText: action.payload.text
+			insertion: {
+				text: action.payload.text
+			}
 		};
 	case types.CLEAR_INSERTION:
 		return {
 			...state,
-			insertionText: null
+			insertion: null
 		};
 	default:
 		return state;

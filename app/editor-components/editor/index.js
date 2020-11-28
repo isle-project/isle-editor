@@ -632,7 +632,7 @@ class Editor extends Component {
 			this.props.spellingErrors.revision !== prevProps.spellingErrors.revision ||
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.height !== prevProps.height ||
-			this.props.insertionText !== prevProps.insertionText ||
+			this.props.insertion !== prevProps.insertion ||
 			this.state.sourceFiles !== prevState.sourceFiles ||
 			this.state.hasSelection !== prevState.hasSelection ||
 			this.state.componentStylerProps !== prevState.componentStylerProps
@@ -651,12 +651,12 @@ class Editor extends Component {
 		if ( !this.monaco ) {
 			return;
 		}
-		if ( this.props.insertionText && !prevProps.insertionText ) {
+		if ( this.props.insertion && !prevProps.insertion ) {
 			const selection = this.editor.getSelection();
 			const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
 			const op = {
 				range: range,
-				text: String( this.props.insertionText ),
+				text: String( this.props.insertion.text ),
 				forceMoveMarkers: true
 			};
 			this.immediateUpdate = true;
@@ -1535,6 +1535,9 @@ class Editor extends Component {
 							}
 						});
 					}}
+					appendStyleToPreamble={( css ) => {
+
+					}}
 				/>
 			</div>
 		);
@@ -1547,7 +1550,7 @@ class Editor extends Component {
 Editor.defaultProps = {
 	filePath: '',
 	fontSize: 14,
-	insertionText: null,
+	insertion: null,
 	elementRange: null,
 	elementRangeAction: null,
 	onChange: noop,
@@ -1559,7 +1562,7 @@ Editor.propTypes = {
 	currentRole: PropTypes.string.isRequired,
 	filePath: PropTypes.string,
 	fontSize: PropTypes.number,
-	insertionText: PropTypes.string,
+	insertion: PropTypes.object,
 	onChange: PropTypes.func,
 	preamble: PropTypes.object.isRequired,
 	author: PropTypes.string.isRequired,

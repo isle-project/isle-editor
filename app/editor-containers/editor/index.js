@@ -96,7 +96,7 @@ class App extends Component {
 		this.props.convertMarkdown( value );
 		this.spellcheckCode( value );
 		this.handlePreambleChange( value );
-		if ( this.props.insertionText ) {
+		if ( this.props.insertion ) {
 			this.props.clearInsertion();
 		}
 	};
@@ -333,7 +333,7 @@ class App extends Component {
 								lintErrors={this.props.lintErrors}
 								spellingErrors={this.props.spellingErrors}
 								setConfiguratorComponent={this.props.setConfiguratorComponent}
-								insertionText={this.props.insertionText}
+								insertion={this.props.insertion}
 								clearInsertion={this.props.clearInsertion}
 								elementRangeAction={this.props.elementRangeAction}
 								elementRangeVersion={this.props.elementRangeVersion}
@@ -369,6 +369,7 @@ class App extends Component {
 						this.props.toggleConfigurator( false );
 					}}
 				/> : null }
+
 				{
 					( () => {
 						// eslint-disable-next-line no-process-env
@@ -391,7 +392,7 @@ App.defaultProps = {
 	error: null,
 	fileName: null,
 	filePath: null,
-	insertionText: null,
+	insertion: null,
 	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
@@ -414,7 +415,7 @@ App.propTypes = {
 	fileName: PropTypes.string,
 	filePath: PropTypes.string,
 	hideToolbar: PropTypes.bool.isRequired,
-	insertionText: PropTypes.string,
+	insertion: PropTypes.object,
 	lintErrors: PropTypes.array.isRequired,
 	markdown: PropTypes.string.isRequired,
 	pasteInsertion: PropTypes.func.isRequired,
