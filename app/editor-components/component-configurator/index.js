@@ -48,8 +48,10 @@ const RE_SNIPPET_PLACEHOLDER = /\${[0-9]:([^}]+)}/g;
 const RE_SNIPPET_EMPTY_PLACEHOLDER = /\t*\${[0-9]:}\n?/g;
 const RE_NEW_LINES = /\n{2,99}/g;
 const RE_BEFORE_TAG = /^\s*['"]?[\da-z]+['"]?:/i;
+const RE_STYLE_KEY = /([ \t]*)style=({{[\s\S]*?}})/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
+const RE_CLASSNAME = /className=(['"{])[\s\S]+?\1/;
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -411,11 +413,23 @@ class ComponentConfigurator extends Component {
 			[ 'prop:style' ]: newValue
 		}, () => {
 			let { value } = this.state;
-			const RE_STYLE_KEY = /([ \t]*)style=({{[\s\S]*?}})/;
 			value = replace( value, RE_STYLE_KEY, '$1style={' + JSON.stringify( newValue, null, 2 ) + '}' );
 			this.setState({ value });
 		});
-	};
+	}
+
+	handleClassTransform = ( className ) => {
+		let { value } = this.state;
+		value = replace( value, RE_STYLE_KEY, '' );
+		value = replace( value, RE_CLASSNAME, '' );
+		this.setState({
+			[ 'prop:style' ]: {},
+			[ 'prop:className' ]: this.state[ 'prop:className' ] ? this.state[ 'prop:className' ] + ' ' + className : className,
+			value
+		}, () => {
+			this.insertAttribute( 'className' );
+		});
+	}
 
 	replaceNumberOrBooleanFactory = ( key ) => {
 		const RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i' );
@@ -672,6 +686,7 @@ class ComponentConfigurator extends Component {
 				onHide={this.clickHide}
 				show={this.props.show}
 				dialogClassName="modal-90w"
+				enforceFocus={false}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
@@ -756,6 +771,7 @@ class ComponentConfigurator extends Component {
 					onHide={this.toggleStyler}
 					componentStyle={this.state[ 'prop:style' ]}
 					onChange={this.replaceStyle}
+					onClassTransform={this.handleClassTransform}
 					style={{
 						position: 'absolute',
 						height: '50%',

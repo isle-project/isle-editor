@@ -43,6 +43,7 @@ const ComponentStyler = ( props ) => {
 			placeholder: 'Enter class name',
 			callback( className ) {
 				console.log( jsxToCSS( '.'+className, props.componentStyle ) );
+				props.onClassTransform( className );
 			}
 		});
 	};
@@ -117,7 +118,8 @@ ComponentStyler.propTypes = {
 	show: PropTypes.bool,
 	componentStyle: PropTypes.object,
 	style: PropTypes.object,
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired,
+	onClassTransform: PropTypes.func.isRequired
 };
 
 
