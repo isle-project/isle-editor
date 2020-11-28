@@ -70,6 +70,7 @@ const BoxShadows = ( props ) => {
 					);
 				})}
 			</ListGroup>
+			{shadows.length === 0 ? <p>No box shadows currently applied</p> : null}
 			<hr />
 			<BoxShadowInput
 				style={props.style}
