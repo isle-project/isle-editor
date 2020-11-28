@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+import vex from 'vex-js';
 import debounce from 'lodash.debounce';
+import Button from 'react-bootstrap/Button';
 import Accordion from 'components/accordion';
+import jsxToCSS from 'utils/jsx-to-css';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
 import Typography from './typography.js';
@@ -35,9 +37,31 @@ const ComponentStyler = ( props ) => {
 		return null;
 	}
 	const handleChange = debounce( props.onChange, 25 );
+	const handleCSSTransform = () => {
+		vex.dialog.prompt({
+			message: 'Please enter a class name for which the current styling should be applied',
+			placeholder: 'Enter class name',
+			callback( className ) {
+				console.log( jsxToCSS( '.'+className, props.componentStyle ) );
+			}
+		});
+	};
 	return (
 		<div className="component-styler" style={props.style} >
-			<span className="component-styler-heading" >Customize style <Button size="sm" variant="light" className="component-styler-close-button" onClick={props.onHide}>X</Button></span>
+			<span className="component-styler-heading" >
+				Customize style
+				<Button
+					variant="secondary" size="sm"
+					className="component-styler-css-button"
+					onClick={handleCSSTransform}
+				>
+					<i className="fab fa-css3"></i>Move CSS ruleset to preamble
+				</Button>
+				<Button
+					size="sm" variant="warning"
+					className="component-styler-close-button" onClick={props.onHide}
+				>X</Button>
+			</span>
 			<Accordion
 				className="component-styler-accordion"
 				canCloseAll

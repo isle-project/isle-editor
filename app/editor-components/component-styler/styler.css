@@ -5,6 +5,12 @@
 	box-shadow: 0 0 10px darkslategray;
 }
 
+.component-styler-css-button {
+	float: right;
+	margin-right: 40px;
+	margin-top: 8px;
+}
+
 .component-styler-close-button {
 	position: absolute;
 	right: 0px;
@@ -19,8 +25,9 @@
 
 .component-styler-heading {
 	font-variant: all-small-caps;
-	font-size: 1.2em;
+	font-size: 1.8em;
 	padding-left: 6px;
 	color: black;
 	font-weight: 600;
+	font-family: Open Sans Condensed;
 }
