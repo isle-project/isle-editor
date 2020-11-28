@@ -7,12 +7,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import deg2Rad from '@stdlib/math/base/special/deg2rad';
+import roundn from '@stdlib/math/base/special/roundn';
+import sin from '@stdlib/math/base/special/sin';
+import cos from '@stdlib/math/base/special/cos';
 import ColorPicker from 'components/color-picker';
 import UnitInputBase from './unit_input_base.js';
 
 
 // VARIABLES //
 
+const RE_UNIT = /(\d+)([^\d]+)/;
 const DEFAULT_STATE = {
 	inset: false,
 	angle: 0,
@@ -129,7 +134,16 @@ const BoxShadowInput = ( props ) => {
 				</Col>
 			</Form.Group>
 			<Button variant="secondary" onClick={() => {
-				props.onChange( state );
+				const radians = deg2Rad( state.angle );
+				const match = RE_UNIT.exec( state.distance );
+				if ( match ) {
+					const numDistance = match[ 1 ];
+					const distUnit = match[ 2 ];
+					const xDistance = roundn( cos( radians ) * numDistance, -3 );
+					const yDistance = roundn( sin( radians ) * numDistance, -3 );
+					const shadow = `${state.inset ? 'inset ' : ''}${xDistance}${distUnit} ${yDistance}${distUnit} ${state.blur} ${state.color}`;
+					props.onChange( shadow );
+				}
 				setState( DEFAULT_STATE );
 			}} >
 				Add Shadow

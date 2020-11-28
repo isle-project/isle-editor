@@ -3,16 +3,11 @@
 import React, { Fragment, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import deg2Rad from '@stdlib/math/base/special/deg2rad';
-import roundn from '@stdlib/math/base/special/roundn';
-import sin from '@stdlib/math/base/special/sin';
-import cos from '@stdlib/math/base/special/cos';
 import BoxShadowInput from './box_shadow_input.js';
 
 
 // VARIABLES //
 
-const RE_UNIT = /(\d+)([^\d]+)/;
 const RE_SEPARATOR = /(?<=[^\d]),/;
 
 
@@ -27,23 +22,6 @@ const BoxShadows = ( props ) => {
 	if ( !props.active ) {
 		return null;
 	}
-	const handleChange = ({ inset, angle, distance, blur, color }) => {
-		const newStyle = { ...props.style };
-		const radians = deg2Rad( angle );
-		const match = RE_UNIT.exec( distance );
-		if ( match ) {
-			const numDistance = match[ 1 ];
-			const distUnit = match[ 2 ];
-			const xDistance = roundn( cos( radians ) * numDistance, -3 );
-			const yDistance = roundn( sin( radians ) * numDistance, -3 );
-			const shadow = `${inset ? 'inset ' : ''}${xDistance}${distUnit} ${yDistance}${distUnit} ${blur} ${color}`;
-			const newShadows = shadows.slice();
-			newShadows.push( shadow );
-			setShadows( newShadows );
-			newStyle.boxShadow = newShadows.join( ', ' );
-			props.onChange( newStyle );
-		}
-	};
 	return (
 		<Fragment>
 			<ListGroup>
@@ -74,7 +52,14 @@ const BoxShadows = ( props ) => {
 			<hr />
 			<BoxShadowInput
 				style={props.style}
-				onChange={handleChange}
+				onChange={( shadow ) => {
+					const newStyle = { ...props.style };
+					const newShadows = shadows.slice();
+					newShadows.push( shadow );
+					setShadows( newShadows );
+					newStyle.boxShadow = newShadows.join( ', ' );
+					props.onChange( newStyle );
+				}}
 			/>
 		</Fragment>
 	);
