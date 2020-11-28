@@ -1,10 +1,13 @@
 
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import omit from '@stdlib/utils/omit';
 import SelectInput from 'components/input/select';
 import TextShadowInput from './text_shadow_input.js';
 
@@ -33,11 +36,17 @@ const FONT_BREAKS = [
 	'pre-line',
 	'pre-wrap'
 ];
+const RE_SEPARATOR = /(?<=[^\d]),/;
 
 
 // MAIN //
 
 const FontVariants = ( props ) => {
+	let initialTextShadow = props.style.textShadow;
+	if ( initialTextShadow ) {
+		initialTextShadow = initialTextShadow.split( RE_SEPARATOR );
+	}
+	const [ textShadows, setTextShadows ] = useState( initialTextShadow || [] );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
@@ -90,8 +99,44 @@ const FontVariants = ( props ) => {
 				</Col>
 			</Form.Group>
 			<hr />
-			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Text Shadow</p>
-			<TextShadowInput style={props.style} onChange={props.onChange} />
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Text Shadows</p>
+			<ListGroup>
+				{textShadows.map( ( transition, idx ) => {
+					return (
+						<ListGroup.Item key={`transition-${idx}`}>
+							{transition}
+							<Button
+								variant="danger"
+								size="sm"
+								onClick={() => {
+									const newTextShadows = textShadows.slice();
+									newTextShadows.splice( idx, 1 );
+									setTextShadows( newTextShadows );
+									const newStyle = { ...props.style };
+									newStyle.textShadow = newTextShadows.join( ', ' );
+									props.onChange( newStyle );
+								}}
+								style={{ float: 'right' }}
+							>
+								x
+							</Button>
+						</ListGroup.Item>
+					);
+				})}
+			</ListGroup>
+			{textShadows.length === 0 ? <p>No text shadows currently applied</p> : null}
+			<hr />
+			<TextShadowInput
+				style={props.style}
+				onChange={( shadow ) => {
+					const newTextShadows = textShadows.slice();
+					newTextShadows.push( shadow );
+					setTextShadows( newTextShadows );
+					const newStyle = omit( props.style, 'textShadow' );
+					newStyle.textShadow = newTextShadows.join( ', ' );
+					props.onChange( newStyle );
+				}}
+			/>
 		</Fragment>
 	);
 };
