@@ -756,7 +756,7 @@ class Editor extends Component {
 			}
 			else {
 				this.editor.revealLine( this.props.elementRange.startLineNumber );
-				this.decorations = this.editor.deltaDecorations( this.decorations, [
+				const newDecorations = [
 					{
 						range: this.props.elementRange,
 						options: {
@@ -764,7 +764,7 @@ class Editor extends Component {
 							className: 'highlighted_content',
 							glyphMarginClassName: 'configurator_glyph',
 							glyphMarginHoverMessage: {
-								value: 'Click on the cogs to open component configurator'
+								value: 'Click on the cogs to open the component configurator or the color palette to style the component'
 							}
 						}
 					},
@@ -774,10 +774,22 @@ class Editor extends Component {
 							endLineNumber: this.props.elementRange.startLineNumber
 						},
 						options: {
-							glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon'
+							glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon configurator-icon'
 						}
 					}
-				]);
+				];
+				if ( this.props.elementRange.startLineNumber !== this.props.elementRange.endLineNumber ) {
+					newDecorations.push({
+						range: {
+							startLineNumber: this.props.elementRange.startLineNumber + 1,
+							endLineNumber: this.props.elementRange.startLineNumber + 1
+						},
+						options: {
+							glyphMarginClassName: 'configurator-glyph-icon fas fa-palette glyph-icon styler-icon'
+						}
+					});
+				}
+				this.decorations = this.editor.deltaDecorations( this.decorations, newDecorations );
 				this.hasHighlight = true;
 				this.setState({ componentStylerProps: {}});
 				if ( this.props.elementRangeAction === 'trigger_configurator' ) {
@@ -787,16 +799,12 @@ class Editor extends Component {
 					const model = this.editor.getModel();
 					const range = this.props.elementRange;
 					const componentValue = model.getValueInRange( range );
-					const selection = new this.monaco.Selection( range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn );
 					const componentStylerProps = {
 						elementRange: this.props.elementRange,
 						componentValue
 					};
-					console.log( componentStylerProps );
 					this.setState({
 						componentStylerProps
-					}, () => {
-						this.editor.setSelection( selection );
 					});
 				}
 			}
@@ -1420,6 +1428,18 @@ class Editor extends Component {
 		return { match, content };
 	}
 
+	triggerStylerViaGlyph = () => {
+		const model = this.editor.getModel();
+		const range = this.props.elementRange;
+		const componentStylerProps = {
+			elementRange: range,
+			componentValue: model.getValueInRange( range )
+		};
+		this.setState({
+			componentStylerProps
+		});
+	}
+
 	triggerConfiguratorViaGlyph = () => {
 		const { match, content } = this.extractComponentFromSelection();
 		if ( match ) {
@@ -1437,8 +1457,12 @@ class Editor extends Component {
 		this.dragProvider = new MonacoDragNDropProvider( this.handleDrop, editor, monaco );
 		this.editor.onMouseDown( ( e ) => {
 			const target = e.target;
-			if ( target && target.element && target.element.classList.contains( 'glyph-icon' ) ) {
-				this.triggerConfiguratorViaGlyph();
+			if ( target && target.element ) {
+				if ( target.element.classList.contains( 'configurator-icon' ) ) {
+					this.triggerConfiguratorViaGlyph();
+				} else if ( target.element.classList.contains( 'styler-icon' ) ) {
+					this.triggerStylerViaGlyph();
+				}
 			}
 		});
 		this.forceUpdate();
