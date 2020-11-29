@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SelectInput from 'components/input/select';
 import UnitInputBase from './unit_input_base.js';
-import { style } from 'd3';
 
 
 // VARIABLES //
