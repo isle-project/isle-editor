@@ -14,7 +14,7 @@ import './editor_component_styler.css';
 
 const debug = logger( 'isle:editor-component-styler' );
 const RE_STYLE = /style={({[\s\S]*?})}/;
-const RE_CLASSNAME = /className=(['"])([\s\S]+?)\1/;
+const RE_CLASS_NAME = /className=(['"])([\s\S]+?)\1/;
 const RE_TAG_START = /^(\s*|\s*['"]?[\da-z]+['"]?:\s*)<([a-z]+[0-9]*)/i;
 const md = markdownit({
 	html: true,
@@ -58,8 +58,8 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 					value = md.render( value );
 				}
 				value = replace( value, RE_STYLE, '' );
-				if ( RE_CLASSNAME.test( value ) ) {
-					value = replace( value, RE_CLASSNAME, 'className=$1$2 '+className+'$1' );
+				if ( RE_CLASS_NAME.test( value ) ) {
+					value = replace( value, RE_CLASS_NAME, 'className=$1$2 '+className+'$1' );
 				} else {
 					value = replace( value, RE_TAG_START, `$1<$2 className="${className}"` );
 				}
