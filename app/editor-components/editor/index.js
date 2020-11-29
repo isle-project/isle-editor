@@ -1542,9 +1542,6 @@ class Editor extends Component {
 							}
 						});
 					}}
-					appendStyleToPreamble={( css ) => {
-
-					}}
 				/>
 			</div>
 		);
