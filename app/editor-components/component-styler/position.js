@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SelectInput from 'components/input/select';
 import UnitInputBase from './unit_input_base.js';
+import { style } from 'd3';
 
 
 // VARIABLES //
@@ -48,6 +49,7 @@ const Position = ( props ) => {
 				<UnitInputBase
 					label="Top"
 					auto
+					defaultValue={props.style.top}
 					onChange={( top ) => {
 						const newStyle = { ...props.style };
 						newStyle.top = top;
@@ -60,6 +62,7 @@ const Position = ( props ) => {
 				<UnitInputBase
 					label="Left"
 					auto
+					defaultValue={props.style.left}
 					onChange={( left ) => {
 						const newStyle = { ...props.style };
 						newStyle.left = left;
@@ -69,6 +72,7 @@ const Position = ( props ) => {
 				<UnitInputBase
 					label="Right"
 					auto
+					defaultValue={props.style.right}
 					onChange={( right ) => {
 						const newStyle = { ...props.style };
 						newStyle.right = right;
@@ -81,6 +85,7 @@ const Position = ( props ) => {
 				<UnitInputBase
 					label="Bottom" labelWidth={2}
 					auto
+					defaultValue={props.style.bottom}
 					onChange={( bottom ) => {
 						const newStyle = { ...props.style };
 						newStyle.bottom = bottom;
@@ -95,6 +100,7 @@ const Position = ( props ) => {
 				<Col sm={2} >
 					<Form.Control
 						type="number"
+						defaultValue={props.style.zIndex}
 						min={0} max={9999}
 						onChange={( event ) => {
 							const newStyle = { ...props.style };
