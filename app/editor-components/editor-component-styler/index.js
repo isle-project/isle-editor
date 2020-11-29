@@ -99,12 +99,13 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 // PROPERTIES //
 
 EditorComponentStyler.defaultProps = {
-	componentValue: ''
+	componentValue: '',
+	elementRange: null
 };
 
 EditorComponentStyler.propTypes = {
 	componentValue: PropTypes.string,
-	elementRange: PropTypes.object.isRequired,
+	elementRange: PropTypes.object,
 	onChange: PropTypes.func.isRequired
 };
 
