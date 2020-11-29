@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
+import noop from '@stdlib/utils/noop';
 import replace from '@stdlib/string/replace';
 import ComponentStyler from 'editor-components/component-styler';
 import Draggable from 'components/draggable';
@@ -26,14 +27,14 @@ const md = markdownit({
 
 // MAIN //
 
-const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
+const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, onHide }) => {
 	const [ isShown, setIsShown ] = useState( false );
 	const [ style, setStyle ] = useState({});
 	const handleChange = useRef( () => {} );
 	const handleClassTransform = useRef( () => {} );
 	useEffect(() => {
-		if ( componentValue ) {
-			setIsShown( true );
+		if ( show ) {
+			setIsShown( show );
 			handleChange.current = ( style ) => {
 				if ( !elementRange ) {
 					return debug( 'No selection...');
@@ -74,7 +75,7 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 			}
 			setStyle( newStyle );
 		}
-	}, [ componentValue, elementRange, onChange ] );
+	}, [ componentValue, elementRange, show, onChange ] );
 	if ( !isShown ) {
 		return null;
 	}
@@ -85,7 +86,8 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 			onChange={handleChange.current}
 			onClassTransform={handleClassTransform.current}
 			onHide={() => {
-				setIsShown( !isShown );
+				setIsShown( false );
+				onHide();
 			}}
 			style={{
 				maxHeight: '90vh',
@@ -100,13 +102,15 @@ const EditorComponentStyler = ({ componentValue, elementRange, onChange }) => {
 
 EditorComponentStyler.defaultProps = {
 	componentValue: '',
-	elementRange: null
+	elementRange: null,
+	onHide: noop
 };
 
 EditorComponentStyler.propTypes = {
 	componentValue: PropTypes.string,
 	elementRange: PropTypes.object,
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired,
+	onHide: PropTypes.func
 };
 
 

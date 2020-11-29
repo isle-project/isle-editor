@@ -810,7 +810,8 @@ class Editor extends Component {
 					const componentValue = model.getValueInRange( range );
 					const componentStylerProps = {
 						elementRange: this.props.elementRange,
-						componentValue
+						componentValue,
+						show: true
 					};
 					this.setState({
 						componentStylerProps
@@ -1442,7 +1443,8 @@ class Editor extends Component {
 		const range = this.props.elementRange;
 		const componentStylerProps = {
 			elementRange: range,
-			componentValue: model.getValueInRange( range )
+			componentValue: model.getValueInRange( range ),
+			show: true
 		};
 		this.setState({
 			componentStylerProps
@@ -1541,6 +1543,13 @@ class Editor extends Component {
 							componentStylerProps: {
 								elementRange: newRange,
 								componentValue: text
+							}
+						});
+					}}
+					onHide={() => {
+						this.setState({
+							componentStylerProps: {
+								show: false
 							}
 						});
 					}}
