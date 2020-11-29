@@ -35,47 +35,49 @@ const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, o
 	useEffect(() => {
 		if ( show ) {
 			setIsShown( show );
-			handleChange.current = ( style ) => {
-				if ( !elementRange ) {
-					return debug( 'No selection...');
-				}
-				let text;
-				let value = componentValue;
-				let match = value.match( RE_TAG_START );
-				if ( !match ) {
-					value = md.render( value );
-				}
-				if ( RE_STYLE.test( value ) ) {
-					text = replace( value, RE_STYLE, `style={${JSON.stringify( style, null, 2 )}}` );
-				} else {
-					text = replace( value, RE_TAG_START, `$1<$2 style={${JSON.stringify( style, null, 2 )}}` );
-				}
-				onChange( text, elementRange );
-			};
-			handleClassTransform.current = ( className ) => {
-				let value = componentValue;
-				let match = value.match( RE_TAG_START );
-				if ( !match ) {
-					value = md.render( value );
-				}
-				value = replace( value, RE_STYLE, '' );
-				if ( RE_CLASS_NAME.test( value ) ) {
-					value = replace( value, RE_CLASS_NAME, 'className=$1$2 '+className+'$1' );
-				} else {
-					value = replace( value, RE_TAG_START, `$1<$2 className="${className}"` );
-				}
-				onChange( value, elementRange );
-			};
-			let newStyle;
-			const matches = RE_STYLE.exec( componentValue );
-			if ( !matches ) {
-				newStyle = {};
-			} else {
-				newStyle = eval( `(${matches[ 1 ]})` ); // eslint-disable-line no-eval
-			}
-			setStyle( newStyle );
 		}
-	}, [ componentValue, elementRange, show, onChange ] );
+	}, [ show ] );
+	useEffect( () => {
+		handleChange.current = ( style ) => {
+			if ( !elementRange ) {
+				return debug( 'No selection...');
+			}
+			let text;
+			let value = componentValue;
+			let match = value.match( RE_TAG_START );
+			if ( !match ) {
+				value = md.render( value );
+			}
+			if ( RE_STYLE.test( value ) ) {
+				text = replace( value, RE_STYLE, `style={${JSON.stringify( style, null, 2 )}}` );
+			} else {
+				text = replace( value, RE_TAG_START, `$1<$2 style={${JSON.stringify( style, null, 2 )}}` );
+			}
+			onChange( text, elementRange );
+		};
+		handleClassTransform.current = ( className ) => {
+			let value = componentValue;
+			let match = value.match( RE_TAG_START );
+			if ( !match ) {
+				value = md.render( value );
+			}
+			value = replace( value, RE_STYLE, '' );
+			if ( RE_CLASS_NAME.test( value ) ) {
+				value = replace( value, RE_CLASS_NAME, 'className=$1$2 '+className+'$1' );
+			} else {
+				value = replace( value, RE_TAG_START, `$1<$2 className="${className}"` );
+			}
+			onChange( value, elementRange );
+		};
+		let newStyle;
+		const matches = RE_STYLE.exec( componentValue );
+		if ( !matches ) {
+			newStyle = {};
+		} else {
+			newStyle = eval( `(${matches[ 1 ]})` ); // eslint-disable-line no-eval
+		}
+		setStyle( newStyle );
+	}, [ componentValue, elementRange, onChange ] );
 	if ( !isShown ) {
 		return null;
 	}
