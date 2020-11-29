@@ -51,7 +51,7 @@ const RE_BEFORE_TAG = /^\s*['"]?[\da-z]+['"]?:/i;
 const RE_STYLE_KEY = /([ \t]*)style=({{[\s\S]*?}})/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
-const RE_CLASSNAME = /className=(['"{])[\s\S]+?\1/;
+const RE_CLASSNAME = /className=(['"])[\s\S]+?\1/;
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -422,6 +422,9 @@ class ComponentConfigurator extends Component {
 		let { value } = this.state;
 		value = replace( value, RE_STYLE_KEY, '' );
 		value = replace( value, RE_CLASSNAME, '' );
+		if ( !this.propertyTypes[ 'className' ] ) {
+			this.propertyTypes[ 'className' ] = 'string';
+		}
 		this.setState({
 			[ 'prop:style' ]: {},
 			[ 'prop:className' ]: this.state[ 'prop:className' ] ? this.state[ 'prop:className' ] + ' ' + className : className,

@@ -155,6 +155,15 @@ export function clearInsertion() {
 	};
 }
 
+export function appendCSSToPreamble({ css }) {
+	return {
+		type: types.APPEND_CSS_TO_PREAMBLE,
+		payload: {
+			css
+		}
+	};
+}
+
 export function toggleScrolling() {
 	return {
 		type: types.TOGGLE_SCROLLING

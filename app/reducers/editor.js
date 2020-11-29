@@ -63,7 +63,23 @@ const initialState = {
 	preambleTemplate: preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
 	unsaved: false,
-	documentVersion: 0
+	documentVersion: 0,
+	insertion: null
+};
+
+
+// FUNCTIONS //
+
+const appendCSSToPreamble = ( preambleText, css ) => {
+	let out = preambleText;
+	css = '  '+css;
+	css = replace( css, '\n', '\n  ' );
+	if ( preambleText.includes( 'style: |' ) ) {
+		out = out.replace( 'style: |', 'style: |\n'+css );
+	} else {
+		out += 'style: |\n'+css+'\n';
+	}
+	return out;
 };
 
 
@@ -194,6 +210,28 @@ export default function markdown( state = initialState, action ) {
 			...state,
 			preambleTemplate: action.payload.preambleTemplate
 		};
+	case types.PASTE_INSERTION:
+		return {
+			...state,
+			insertion: {
+				text: action.payload.text
+			}
+		};
+	case types.CLEAR_INSERTION:
+		return {
+			...state,
+			insertion: null
+		};
+	case types.APPEND_CSS_TO_PREAMBLE: {
+		const css = action.payload.css;
+		return {
+			...state,
+			insertion: {
+				text: appendCSSToPreamble( state.preambleText, css ),
+				oldText: state.preambleText
+			}
+		};
+	}
 	default:
 		return state;
 	}

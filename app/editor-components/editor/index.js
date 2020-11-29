@@ -652,8 +652,15 @@ class Editor extends Component {
 			return;
 		}
 		if ( this.props.insertion && !prevProps.insertion ) {
-			const selection = this.editor.getSelection();
-			const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+			let range;
+			if ( this.props.insertion.oldText ) {
+				const model = this.editor.getModel();
+				const match = model.findNextMatch( this.props.insertion.oldText, 0, false, true, null, false );
+				range = match.range;
+			} else {
+				const selection = this.editor.getSelection();
+				range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+			}
 			const op = {
 				range: range,
 				text: String( this.props.insertion.text ),

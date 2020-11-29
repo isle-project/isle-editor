@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import vex from 'vex-js';
 import debounce from 'lodash.debounce';
+import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'components/accordion';
 import jsxToCSS from 'utils/jsx-to-css';
+import { appendCSSToPreamble } from 'actions';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
 import Typography from './typography.js';
@@ -42,8 +44,9 @@ const ComponentStyler = ( props ) => {
 			message: 'Please enter a class name for which the current styling should be applied',
 			placeholder: 'Enter class name',
 			callback( className ) {
-				console.log( jsxToCSS( '.'+className, props.componentStyle ) );
+				const css = jsxToCSS( '.'+className, props.componentStyle, '  ' );
 				props.onClassTransform( className );
+				props.appendCSSToPreamble({ css });
 			}
 		});
 	};
@@ -118,11 +121,18 @@ ComponentStyler.propTypes = {
 	show: PropTypes.bool,
 	componentStyle: PropTypes.object,
 	style: PropTypes.object,
+	appendCSSToPreamble: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	onClassTransform: PropTypes.func.isRequired
+	onClassTransform: PropTypes.func.isRequired,
 };
 
 
 // EXPORTS //
 
-export default ComponentStyler;
+export default connect( mapStateToProps, {
+	appendCSSToPreamble
+})( ComponentStyler );
+
+function mapStateToProps() {
+	return {};
+}
