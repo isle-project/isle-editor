@@ -132,7 +132,7 @@ const Size = ( props ) => {
 						}}
 						type="radio"
 						size="small"
-						value={props.overflow}
+						value={props.style.overflow}
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
@@ -186,7 +186,7 @@ const Size = ( props ) => {
 						}}
 						type="radio"
 						size="small"
-						value={props.overflowX}
+						value={props.style.overflowX}
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
@@ -240,7 +240,7 @@ const Size = ( props ) => {
 						}}
 						type="radio"
 						size="small"
-						value={props.overflowY}
+						value={props.style.overflowY}
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton

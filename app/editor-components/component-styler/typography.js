@@ -160,7 +160,7 @@ const Typography = ( props ) => {
 						}}
 						type="radio"
 						size="small"
-						value={props.fontSize}
+						value={props.style.fontStyle}
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
@@ -185,7 +185,7 @@ const Typography = ( props ) => {
 						}}
 						type="radio"
 						size="small"
-						value={props.fontSize}
+						value={props.style.textDecoration}
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
