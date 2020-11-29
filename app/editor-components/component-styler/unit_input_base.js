@@ -29,7 +29,7 @@ const extractUnitAndValue = ( defaultValue ) => {
 		};
 	}
 	return {
-		value: match[ 1 ],
+		value: Number( match[ 1 ] ),
 		unit: match[ 2 ] || 'px'
 	};
 };
