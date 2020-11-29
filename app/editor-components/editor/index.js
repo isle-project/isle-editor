@@ -763,16 +763,18 @@ class Editor extends Component {
 			}
 			else {
 				this.editor.revealLine( this.props.elementRange.startLineNumber );
+				const highlightRange = { ...this.props.elementRange };
+				if ( highlightRange.endLineNumber === highlightRange.startLineNumber ) {
+					highlightRange.endLineNumber += 1;
+				}
 				const newDecorations = [
 					{
-						range: this.props.elementRange,
+						range: {
+							startLineNumber: this.props.elementRange.startLineNumber + 1,
+							endLineNumber: this.props.elementRange.startLineNumber + 1
+						},
 						options: {
-							isWholeLine: false,
-							className: 'highlighted_content',
-							glyphMarginClassName: 'configurator_glyph',
-							glyphMarginHoverMessage: {
-								value: 'Click on the cogs to open the component configurator or the color palette to style the component'
-							}
+							glyphMarginClassName: 'configurator-glyph-icon fas fa-palette glyph-icon styler-icon'
 						}
 					},
 					{
@@ -783,19 +785,19 @@ class Editor extends Component {
 						options: {
 							glyphMarginClassName: 'configurator-glyph-icon fas fa-cogs glyph-icon configurator-icon'
 						}
+					},
+					{
+						range: highlightRange,
+						options: {
+							isWholeLine: false,
+							className: 'highlighted_content',
+							glyphMarginClassName: 'configurator_glyph',
+							glyphMarginHoverMessage: {
+								value: 'Click on the cogs to open the component configurator or the color palette to style the component'
+							}
+						}
 					}
 				];
-				if ( this.props.elementRange.startLineNumber !== this.props.elementRange.endLineNumber ) {
-					newDecorations.push({
-						range: {
-							startLineNumber: this.props.elementRange.startLineNumber + 1,
-							endLineNumber: this.props.elementRange.startLineNumber + 1
-						},
-						options: {
-							glyphMarginClassName: 'configurator-glyph-icon fas fa-palette glyph-icon styler-icon'
-						}
-					});
-				}
 				this.decorations = this.editor.deltaDecorations( this.decorations, newDecorations );
 				this.hasHighlight = true;
 				this.setState({ componentStylerProps: {}});
