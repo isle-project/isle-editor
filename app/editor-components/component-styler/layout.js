@@ -104,24 +104,28 @@ const Layout = ( props ) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="color"
+							title="Color"
 						>
 							<i className="fas fa-square fa-lg" style={{ color: 'black' }} ></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="image"
+							title="Image"
 						>
 							<i className="far fa-image fa-lg"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="linear-gradient"
+							title="Linear Gradient"
 						>
 							<div className="component-styler-box linear-gradient-box" ></div>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="radial-gradient"
+							title="Radial Gradient"
 						>
 							<div className="component-styler-box radial-gradient-box" ></div>
 						</ToggleButton>

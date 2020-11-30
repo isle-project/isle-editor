@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import omit from '@stdlib/utils/omit';
+import Tooltip from 'components/tooltip';
 import ColorPicker from 'components/color-picker';
 import UnitInputBase from './unit_input_base.js';
 import BorderRadiusPicker from './border_radius_picker.js';
@@ -131,12 +132,14 @@ const BorderInputs = ({ activeBorder, style, onChange }) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="none"
+							title="None"
 						>
 							<i className="fas fa-times"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="solid"
+							title="Solid"
 							style={{ width: 42 }}
 						>
 							<span className="component-styler-unicode-solid">&#9135;</span>
@@ -144,12 +147,14 @@ const BorderInputs = ({ activeBorder, style, onChange }) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="dotted"
+							title="Dotted"
 						>
 							<i className="fas fa-ellipsis-h"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="dashed"
+							title="Dashed"
 							style={{ width: 42 }}
 						>
 							<span className="component-styler-unicode-dashed">&#65101;</span>
@@ -190,32 +195,42 @@ const Borders = ( props ) => {
 				<Col sm={3} >
 					<div className="component-styler-border-selector" >
 						<div className="component-styler-border-graphical-box" >
+							<Tooltip tooltip="Change all borders" >
+								<div
+									role="button" tabIndex={0}
+									className={`component-styler-border-graphical-box-inside ${activeBorder === 'all' ? 'active' : ''}`}
+									onClick={handleAllClick} onKeyPress={handleAllClick}
+								/>
+							</Tooltip>
+						</div>
+						<Tooltip tooltip="Change left border" >
 							<div
 								role="button" tabIndex={0}
-								className={`component-styler-border-graphical-box-inside ${activeBorder === 'all' ? 'active' : ''}`}
-								onClick={handleAllClick} onKeyPress={handleAllClick}
+								className={`component-styler-border-graphical-box-left ${activeBorder === 'left' ? 'active' : ''}`}
+								onClick={handleLeftClick} onKeyPress={handleLeftClick}
 							/>
-						</div>
-						<div
-							role="button" tabIndex={0}
-							className={`component-styler-border-graphical-box-left ${activeBorder === 'left' ? 'active' : ''}`}
-							onClick={handleLeftClick} onKeyPress={handleLeftClick}
-						/>
-						<div
-							role="button" tabIndex={0}
-							className={`component-styler-border-graphical-box-top ${activeBorder === 'top' ? 'active' : ''}`}
-							onClick={handleTopClick} onKeyPress={handleTopClick}
-						/>
-						<div
-							role="button" tabIndex={0}
-							className={`component-styler-border-graphical-box-bottom ${activeBorder === 'bottom' ? 'active' : ''}`}
-							onClick={handleBottomClick} onKeyPress={handleBottomClick}
-						/>
-						<div
-							role="button" tabIndex={0}
-							className={`component-styler-border-graphical-box-right ${activeBorder === 'right' ? 'active' : ''}`}
-							onClick={handleRightClick} onKeyPress={handleRightClick}
-						/>
+						</Tooltip>
+						<Tooltip tooltip="Change top border" placement="top" >
+							<div
+								role="button" tabIndex={0}
+								className={`component-styler-border-graphical-box-top ${activeBorder === 'top' ? 'active' : ''}`}
+								onClick={handleTopClick} onKeyPress={handleTopClick}
+							/>
+						</Tooltip>
+						<Tooltip tooltip="Change bottom border" >
+							<div
+								role="button" tabIndex={0}
+								className={`component-styler-border-graphical-box-bottom ${activeBorder === 'bottom' ? 'active' : ''}`}
+								onClick={handleBottomClick} onKeyPress={handleBottomClick}
+							/>
+						</Tooltip>
+						<Tooltip tooltip="Change right border" placement="bottom" >
+							<div
+								role="button" tabIndex={0}
+								className={`component-styler-border-graphical-box-right ${activeBorder === 'right' ? 'active' : ''}`}
+								onClick={handleRightClick} onKeyPress={handleRightClick}
+							/>
+						</Tooltip>
 					</div>
 				</Col>
 				<Col sm={9} >
