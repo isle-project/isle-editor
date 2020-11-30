@@ -106,6 +106,13 @@ const Cursor = ( props ) => {
 	if ( !props.active ) {
 		return null;
 	}
+	let defaultValue;
+	if ( props.style.cursor ) {
+		defaultValue = {
+			label: props.style.cursor,
+			value: props.style.cursor
+		};
+	}
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
@@ -115,10 +122,8 @@ const Cursor = ( props ) => {
 				<Col sm={4} >
 					<Select
 						isClearable
-						defaultValue={{
-							label: props.style.cursor,
-							value: props.style.cursor
-						}}
+						defaultValue={defaultValue}
+						placeholder="Select cursor"
 						options={CURSOR_TYPES}
 						onChange={( elem ) => {
 							const newStyle = omit( props.style, 'cursor' );
