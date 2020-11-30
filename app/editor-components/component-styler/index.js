@@ -59,7 +59,7 @@ const ComponentStyler = ( props ) => {
 					className="component-styler-css-button"
 					onClick={handleCSSTransform}
 				>
-					<i className="fab fa-css3"></i>Move CSS ruleset to preamble
+					<i className="fab fa-css3" style={{ marginRight: 5 }} /> Move CSS ruleset to preamble
 				</Button>
 				<Button
 					size="sm" variant="warning"

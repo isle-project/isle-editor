@@ -61,7 +61,7 @@ const Size = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label="Min W"
+					label="Min Width"
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minWidth ) ? '0px' : minWidth}
@@ -73,7 +73,7 @@ const Size = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Min H"
+					label="Min Height"
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minHeight ) ? '0px' : minHeight}
@@ -87,7 +87,7 @@ const Size = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label="Max W"
+					label="Max Width"
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxWidth ) ? 'none' : maxWidth}
@@ -99,7 +99,7 @@ const Size = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Max H"
+					label="Max Height"
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxHeight ) ? 'none' : maxHeight}
@@ -133,29 +133,32 @@ const Size = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.overflow}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
 							value="visible"
+							title="Visible"
 						>
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="hidden"
+							title="Hidden"
 						>
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="scroll"
+							title="Scroll"
 						>
 							<i className="fas fa-align-justify"></i>  &#8613;
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="auto"
+							title="Auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
 							auto
@@ -187,7 +190,6 @@ const Size = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.overflowX}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -241,7 +243,6 @@ const Size = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.overflowY}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"

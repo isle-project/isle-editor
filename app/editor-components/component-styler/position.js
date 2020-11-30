@@ -30,10 +30,10 @@ const Position = ( props ) => {
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
-				<Form.Label column sm="3">
+				<Form.Label column sm={2} >
 					Position
 				</Form.Label>
-				<Col sm={3} >
+				<Col sm={4} >
 					<SelectInput
 						clearable
 						options={POSITION_TYPES}
@@ -124,7 +124,6 @@ const Position = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.float || 'none'}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -162,7 +161,6 @@ const Position = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.clear || 'none'}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"

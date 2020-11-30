@@ -127,7 +127,6 @@ const BorderInputs = ({ activeBorder, style, onChange }) => {
 						type="radio"
 						size="small"
 						value={state.style}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"

@@ -119,7 +119,6 @@ const Typography = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.textAlign || 'left'}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -163,7 +162,7 @@ const Typography = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.fontStyle}
-						style={{ marginRight: '5px' }}
+						style={{ marginRight: 6 }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -188,7 +187,6 @@ const Typography = ( props ) => {
 						type="radio"
 						size="small"
 						value={props.style.textDecoration}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"

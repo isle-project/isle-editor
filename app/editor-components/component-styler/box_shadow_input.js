@@ -50,7 +50,6 @@ const BoxShadowInput = ( props ) => {
 						type="radio"
 						size="small"
 						value={state.inset}
-						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
 							variant="outline-secondary"
