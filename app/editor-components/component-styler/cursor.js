@@ -115,6 +115,10 @@ const Cursor = ( props ) => {
 				<Col sm={4} >
 					<Select
 						isClearable
+						defaultValue={{
+							label: props.style.cursor,
+							value: props.style.cursor
+						}}
 						options={CURSOR_TYPES}
 						onChange={( elem ) => {
 							const newStyle = omit( props.style, 'cursor' );

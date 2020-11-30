@@ -37,7 +37,7 @@ const Position = ( props ) => {
 					<SelectInput
 						clearable
 						options={POSITION_TYPES}
-						defaultValue={POSITION_TYPES[ 0 ]}
+						defaultValue={props.style.position || POSITION_TYPES[ 0 ]}
 						onChange={( position ) => {
 							const newStyle = { ...props.style };
 							newStyle.position = position;

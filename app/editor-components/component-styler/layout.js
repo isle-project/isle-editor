@@ -80,7 +80,7 @@ const Layout = ( props ) => {
 				</Form.Label>
 				<Col sm="8">
 					<SelectInput
-						defaultValue={DISPLAY_TYPES[ 0 ]}
+						defaultValue={props.style.display || DISPLAY_TYPES[ 0 ]}
 						options={DISPLAY_TYPES}
 						onChange={( display ) => {
 							const newStyle = { ...props.style };

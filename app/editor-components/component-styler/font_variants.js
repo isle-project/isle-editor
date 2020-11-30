@@ -72,6 +72,7 @@ const FontVariants = ( props ) => {
 					<SelectInput
 						clearable
 						options={FONT_BREAKS}
+						defaultValue={props.style.whiteSpace}
 						placeholder="Inherit"
 						onChange={( whiteSpace ) => {
 							const newStyle = { ...props.style };
@@ -89,6 +90,7 @@ const FontVariants = ( props ) => {
 					<SelectInput
 						clearable
 						options={FONT_VARIANTS}
+						defaultValue={props.style.fontVariant}
 						placeholder="Inherit"
 						onChange={( fontVariant ) => {
 							const newStyle = { ...props.style };

@@ -277,7 +277,7 @@ const Size = ( props ) => {
 				</Form.Label>
 				<Col sm={4} >
 					<SelectInput
-						defaultValue={FIT_OPTIONS[ 0 ]}
+						defaultValue={props.style.fit || FIT_OPTIONS[ 0 ]}
 						options={FIT_OPTIONS}
 						onChange={( fit ) => {
 							const newStyle = { ...props.style };

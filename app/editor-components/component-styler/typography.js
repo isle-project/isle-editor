@@ -77,6 +77,7 @@ const Typography = ( props ) => {
 					<SelectInput
 						clearable
 						options={FONTS}
+						defaultValue={props.style.fontFamily}
 						components={{ Option, SingleValue }}
 						placeholder="Inherit"
 						onChange={( fontFamily ) => {
@@ -93,6 +94,7 @@ const Typography = ( props ) => {
 					<SelectInput
 						clearable
 						options={FONT_WEIGHTS}
+						defaultValue={props.style.fontWeight}
 						placeholder="Inherit"
 						onChange={( fontWeight ) => {
 							const newStyle = { ...props.style };
