@@ -123,7 +123,7 @@ ComponentStyler.propTypes = {
 	style: PropTypes.object,
 	appendCSSToPreamble: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	onClassTransform: PropTypes.func.isRequired,
+	onClassTransform: PropTypes.func.isRequired
 };
 
 
