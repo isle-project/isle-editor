@@ -11,6 +11,7 @@ import isnan from '@stdlib/assert/is-nan';
 import replace from '@stdlib/string/replace';
 import roundn from '@stdlib/math/base/special/roundn';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import stdev from 'utils/statistic/stdev';
 import TeX from 'components/tex';
 import escapeLatex from 'utils/escape-latex';
@@ -40,7 +41,7 @@ function retrieveGroupedValues( data, x, group ) {
 			break;
 		}
 	}
-	if ( !secondCategory ) {
+	if ( isUndefinedOrNull( secondCategory ) ) {
 		return null;
 	}
 	const splitted = bifurcateBy( data[ x ], function splitter( x, idx ) {
