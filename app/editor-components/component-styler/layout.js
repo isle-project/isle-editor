@@ -1,46 +1,198 @@
 // MODULES //
 
 import React, { Fragment, useState } from 'react';
+import ChromePicker from 'react-color/lib/Chrome.js';
+import { GradientPickerPopover } from 'react-linear-gradient-picker';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import round from '@stdlib/math/base/special/round';
 import ColorPicker from 'components/color-picker';
 import SelectInput from 'components/input/select';
+import UnitInputBase from './unit_input_base.js';
 import DISPLAY_TYPES from './display_types.json';
 import './layout.css';
 
 
-// MAIN //
+// VARIABLES //
 
-const Layout = ( props ) => {
-	const [ type, setType ] = useState( 'color' );
-	if ( !props.active ) {
-		return null;
-	}
+const SIZE_OPTIONS = [
+	'closest-side',
+	'closest-corner',
+	'farthest-side',
+	'farthest-corner'
+];
+const POSITION_OPTIONS = [
+	[ '0%', '0%' ],
+	[ '50%', '0%' ],
+	[ '100%', '0%' ],
+	[ '0%', '50%' ],
+	[ '50%', '50%' ],
+	[ '100%', '50%' ],
+	[ '0%', '100%' ],
+	[ '50%', '100%' ],
+	[ '100%', '100%' ],
+];
+const WrappedSketchPicker = ({ onSelect, color, ...rest }) => {
+	return (
+		<ChromePicker {...rest}
+			color={color}
+			onChange={c => {
+				const { r, g, b, a } = c.rgb;
+				onSelect( `rgba(${r}, ${g}, ${b}, ${a})` );
+			}}
+		/>
+	);
+};
+const initialPallet = [
+	{ offset: '0.00', color: 'rgba(238, 241, 11, 1.0)' },
+	{ offset: '1.00', color: 'rgba(126, 32, 207, 1.0)' }
+];
+const GradientPicker = ( props ) => {
+	const [ open, setOpen ] = useState( false );
+	const [ angle, setAngle ] = useState( 90 );
+	const [ palette, setPalette ] = useState( initialPallet );
+	const [ background, setBackground ] = useState( null );
+	return (
+		<Fragment>
+			<GradientPickerPopover {...{
+				open,
+				setOpen,
+				angle,
+				setAngle: ( newAngle ) => {
+					if ( props.onChange ) {
+						props.onChange( newAngle, palette );
+					}
+					setAngle( newAngle );
+				},
+				showAnglePicker: true,
+				width: 250,
+				maxStops: 4,
+				paletteHeight: 36,
+				palette,
+				onPaletteChange: ( newPalette ) => {
+					setBackground( `linear-gradient(${angle}deg, ${palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ')})` );
+					setPalette( newPalette );
+					if ( props.onChange ) {
+						props.onChange( angle, newPalette );
+					}
+				}
+			}}>
+				<WrappedSketchPicker />
+			</GradientPickerPopover>
+			{props.onCreate ? <Button variant="secondary" onClick={() => {
+				props.onCreate( background );
+			}} style={{ float: 'right' }} >
+				Add Background
+			</Button> : null}
+		</Fragment>
+	);
+};
+const RadialGradientPicker = ( props ) => {
+	const [ gradient, setGradient ] = useState( null );
+	const [ size, setSize ] = useState( null );
+	const [ top, setTop ] = useState( null );
+	const [ left, setLeft ] = useState( null );
+	const [ repeating, setRepeating ] = useState( false );
+	return (
+		<Fragment>
+			<Form.Group as={Row} >
+				<Form.Label column sm="4">
+					Radial Gradient
+				</Form.Label>
+				<Col sm="8">
+					<Form.Group as={Row} >
+						<Form.Label column sm={2} >
+							Gradient
+						</Form.Label>
+						<Col sm={3} style={{ marginTop: -14, marginLeft: 0 }} >
+							<GradientPicker
+								onChange={( angle, palette ) => {
+									setGradient({ angle, palette });
+								}}
+							/>
+						</Col>
+						<Form.Label column sm={2} >
+							Size
+						</Form.Label>
+						<Col sm={5} >
+							<SelectInput defaultValue="farthest-corner" options={SIZE_OPTIONS} onChange={setSize} />
+						</Col>
+					</Form.Group>
+					<Form.Group as={Row} >
+						<Form.Label column sm={2} >
+							Position
+						</Form.Label>
+						<Col sm={4} >
+							<div className="radial-gradient-position-box">
+								{POSITION_OPTIONS.map( ( option, idx ) => {
+									const handleClick = () => {
+										setTop( option[ 1 ] );
+										setLeft( option[ 0 ]);
+									};
+									return ( <div
+										role="button" tabIndex={-1}
+										className="top-left select-box"
+										key={idx}
+										onClick={handleClick}
+										onKeyPress={handleClick}
+									>
+										<div className="white-center" />
+									</div> );
+								})}
+							</div>
+						</Col>
+						<Col sm={6} >
+							<Row>
+								<UnitInputBase
+									label="Top"
+									defaultValue={top}
+									labelWidth={3}
+									colWidth={5}
+									onChange={setTop}
+								/>
+							</Row>
+							<Row>
+								<UnitInputBase
+									label="Left"
+									defaultValue={left}
+									labelWidth={3}
+									colWidth={5}
+									onChange={setLeft}
+								/>
+							</Row>
+						</Col>
+					</Form.Group>
+				</Col>
+			</Form.Group>
+			<Button variant="secondary" onClick={() => {
+				let background;
+				if ( repeating ) {
+					background = 'repeating radial-gradient(';
+				} else {
+					background = 'radial-gradient(';
+				}
+				background += 'circle ';
+				background += size;
+				background += ' at ';
+				background += `${left} ${top}, `;
+				background += gradient.palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ');
+				background += ')';
+				props.onCreate( background );
+			}} style={{ float: 'right' }} >
+				Add Background
+			</Button>
+		</Fragment>
+	);
+};
+const BackgroundPicker = ( props ) => {
+	const [ type, setType ] = useState( 'image' );
 	let input;
 	switch ( type ) {
-		case 'color':
-			input = <Form.Group as={Row} >
-				<Form.Label column sm="4">
-					Background Color
-				</Form.Label>
-				<Col sm={1} >
-					<ColorPicker
-						style={{ zIndex: 2000 }}
-						color={props.style.backgroundColor}
-						onChange={({ rgb }) => {
-							const { r, g, b, a } = rgb;
-							const newStyle = { ...props.style };
-							newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`;
-							props.onChange( newStyle );
-						}}
-						variant="Button"
-					/>
-				</Col>
-			</Form.Group>;
-			break;
 		case 'image':
 			input = <Form.Group as={Row} >
 				<Form.Label column sm="4">
@@ -56,40 +208,17 @@ const Layout = ( props ) => {
 				<Form.Label column sm="4">
 					Linear Gradient
 				</Form.Label>
-				<Col sm="8">
-
+				<Col sm="8" style={{ marginTop: -15, marginLeft: -20 }} >
+					<GradientPicker onCreate={props.onCreate} />
 				</Col>
 			</Form.Group>;
 			break;
 		case 'radial-gradient':
-			input = <Form.Group as={Row} >
-				<Form.Label column sm="4">
-					Radial Gradient
-				</Form.Label>
-				<Col sm="8">
-
-				</Col>
-			</Form.Group>;
+			input = <RadialGradientPicker onCreate={props.onCreate} />;
 			break;
 	}
 	return (
 		<Fragment>
-			<Form.Group as={Row} >
-				<Form.Label column sm="4">
-					Display
-				</Form.Label>
-				<Col sm="8">
-					<SelectInput
-						defaultValue={props.style.display || DISPLAY_TYPES[ 0 ]}
-						options={DISPLAY_TYPES}
-						onChange={( display ) => {
-							const newStyle = { ...props.style };
-							newStyle.display = display;
-							props.onChange( newStyle );
-						}}
-					/>
-				</Col>
-			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
 					Background Type
@@ -101,13 +230,6 @@ const Layout = ( props ) => {
 						type="radio"
 						value={type}
 					>
-						<ToggleButton
-							variant="outline-secondary"
-							value="color"
-							title="Color"
-						>
-							<i className="fas fa-square fa-lg" style={{ color: 'black' }} ></i>
-						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="image"
@@ -133,6 +255,91 @@ const Layout = ( props ) => {
 				</Col>
 			</Form.Group>
 			{input}
+		</Fragment>
+	);
+};
+
+
+// MAIN //
+
+const Layout = ( props ) => {
+	const [ backgrounds, setBackgrounds ] = useState( [] );
+	if ( !props.active ) {
+		return null;
+	}
+	return (
+		<Fragment>
+			<Form.Group as={Row} >
+				<Form.Label column sm="4">
+					Display
+				</Form.Label>
+				<Col sm="8">
+					<SelectInput
+						defaultValue={props.style.display || DISPLAY_TYPES[ 0 ]}
+						options={DISPLAY_TYPES}
+						onChange={( display ) => {
+							const newStyle = { ...props.style };
+							newStyle.display = display;
+							props.onChange( newStyle );
+						}}
+					/>
+				</Col>
+			</Form.Group>
+			<Form.Group as={Row} >
+				<Form.Label column sm="4">
+					Background Color
+				</Form.Label>
+				<Col sm={1} >
+					<ColorPicker
+						style={{ zIndex: 2000 }}
+						color={props.style.backgroundColor}
+						onChange={({ rgb }) => {
+							const { r, g, b, a } = rgb;
+							const newStyle = { ...props.style };
+							newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`;
+							props.onChange( newStyle );
+						}}
+						variant="Button"
+					/>
+				</Col>
+			</Form.Group>
+			<hr />
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Backgrounds</p>
+			<ListGroup>
+				{backgrounds.map( ( background, idx ) => {
+					return (
+						<ListGroup.Item key={`background-${idx}`} style={{ fontFamily: 'Open Sans Condensed' }} >
+							{background}
+							<Button
+								variant="danger"
+								size="sm"
+								onClick={() => {
+									const newBackgrounds = backgrounds.slice();
+									newBackgrounds.splice( idx, 1 );
+									setBackgrounds( newBackgrounds );
+									const newStyle = { ...props.style };
+									newStyle.background = newBackgrounds.join( ', ' );
+									props.onChange( newStyle );
+								}}
+								style={{ float: 'right' }}
+							>
+								x
+							</Button>
+						</ListGroup.Item>
+					);
+				})}
+			</ListGroup>
+			<hr />
+			<BackgroundPicker
+				style={props.style}
+				onCreate={( background ) => {
+					const newBackgrounds = backgrounds.slice();
+					newBackgrounds.push( background );
+					const newStyle = { ...props.style };
+					newStyle.backgroundImage = newBackgrounds.join( ', ' );
+					props.onChange( newStyle );
+					setBackgrounds( newBackgrounds );
+				}} />
 		</Fragment>
 	);
 };

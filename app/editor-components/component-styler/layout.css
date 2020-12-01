@@ -11,3 +11,39 @@
 .radial-gradient-box {
 	background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 100%);
 }
+
+.radial-gradient-position-box {
+	width: 120px;
+	height: 120px;
+	outline: solid 2px rgb(90, 90, 90);
+	margin-left: 8px;
+}
+
+.select-box {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background: rgb(150, 150, 150);
+	float: left;
+	border: solid 1px rgb(130, 130, 130);
+}
+
+.select-box:hover {
+	transition: all 0.3s;
+	background: rgb(92, 92, 92);
+	border: solid 1px gainsboro;
+}
+
+.white-center {
+	position: absolute;
+	left: 17px;
+	top: 17px;
+	background: silver;
+	border-radius: 50%;
+	width: 6px;
+	height: 6px;
+}
+
+.select-box-clicked {
+	background: rgb(92, 64, 0);
+}
