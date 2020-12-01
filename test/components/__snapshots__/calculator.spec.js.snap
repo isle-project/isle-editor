@@ -299,7 +299,7 @@ exports[`renders an expandable calculator 1`] = `
         </div>
       </div>
     </div>
-    <span />
+    <div />
   </div>
 </div>
 `;
