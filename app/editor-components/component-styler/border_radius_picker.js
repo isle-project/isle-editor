@@ -25,7 +25,6 @@ function extractRadii( borderRadius ) {
 		};
 	}
 	const match = RE_BORDER_RADIUS.exec( borderRadius );
-	console.log( match );
 	if ( !match ) {
 		return {
 			radii: DEFAULT_RADII,
@@ -75,7 +74,6 @@ function extractRadii( borderRadius ) {
 
 const BorderRadiusPicker = ( props ) => {
 	const initial = extractRadii( props.style.borderRadius );
-	console.log( initial );
 	const [ overallRadius, setOverallRadius ] = useState( initial.overall );
 	const [ radii, setRadii ] = useState( initial.radii );
 	return (
