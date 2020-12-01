@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import round from '@stdlib/math/base/special/round';
+import CheckboxInput from 'components/input/checkbox';
 import ColorPicker from 'components/color-picker';
 import SelectInput from 'components/input/select';
 import UnitInputBase from './unit_input_base.js';
@@ -35,9 +36,13 @@ const POSITION_OPTIONS = [
 	[ '100%', '50%' ],
 	[ '0%', '100%' ],
 	[ '50%', '100%' ],
-	[ '100%', '100%' ],
+	[ '100%', '100%' ]
 ];
-const WrappedSketchPicker = ({ onSelect, color, ...rest }) => {
+const INITIAL_PALETTE = [
+	{ offset: '0.00', color: 'rgba(238, 241, 11, 1.0)' },
+	{ offset: '1.00', color: 'rgba(126, 32, 207, 1.0)' }
+];
+const WrappedChromePicker = ({ onSelect, color, ...rest }) => {
 	return (
 		<ChromePicker {...rest}
 			color={color}
@@ -48,17 +53,12 @@ const WrappedSketchPicker = ({ onSelect, color, ...rest }) => {
 		/>
 	);
 };
-const initialPallet = [
-	{ offset: '0.00', color: 'rgba(238, 241, 11, 1.0)' },
-	{ offset: '1.00', color: 'rgba(126, 32, 207, 1.0)' }
-];
-const GradientPicker = ( props ) => {
+const BaseGradientPicker = ( props ) => {
 	const [ open, setOpen ] = useState( false );
 	const [ angle, setAngle ] = useState( 90 );
-	const [ palette, setPalette ] = useState( initialPallet );
-	const [ background, setBackground ] = useState( null );
+	const [ palette, setPalette ] = useState( INITIAL_PALETTE );
 	return (
-		<Fragment>
+		<div style={{ marginLeft: -10, marginTop: -14 }}>
 			<GradientPickerPopover {...{
 				open,
 				setOpen,
@@ -75,18 +75,40 @@ const GradientPicker = ( props ) => {
 				paletteHeight: 36,
 				palette,
 				onPaletteChange: ( newPalette ) => {
-					setBackground( `linear-gradient(${angle}deg, ${palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ')})` );
 					setPalette( newPalette );
 					if ( props.onChange ) {
 						props.onChange( angle, newPalette );
 					}
 				}
 			}}>
-				<WrappedSketchPicker />
+				<WrappedChromePicker />
 			</GradientPickerPopover>
+		</div>
+	);
+};
+const GradientPicker = ( props ) => {
+	const [ gradient, setGradient ] = useState( null );
+	const [ repeating, setRepeating ] = useState( false );
+	return (
+		<Fragment>
+			<Form.Group as={Row} >
+					<Form.Label column sm={3} >
+						Linear Gradient
+					</Form.Label>
+					<Col sm={9} >
+						<BaseGradientPicker
+							onChange={( angle, palette ) => {
+								setGradient({ angle, palette });
+							}}
+						/>
+						<CheckboxInput legend="Repeating?" defaultValue={repeating} onChange={setRepeating} />
+					</Col>
+			</Form.Group>
 			{props.onCreate ? <Button variant="secondary" onClick={() => {
+				let background = repeating ? 'repeating-linear-gradient' : 'linear-gradient';
+				background += `(${gradient.angle}deg, ${gradient.palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ')})`;
 				props.onCreate( background );
-			}} style={{ float: 'right' }} >
+			}} >
 				Add Background
 			</Button> : null}
 		</Fragment>
@@ -101,31 +123,31 @@ const RadialGradientPicker = ( props ) => {
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm={3} >
 					Radial Gradient
 				</Form.Label>
-				<Col sm="8">
+				<Col sm={9} >
 					<Form.Group as={Row} >
-						<Form.Label column sm={2} >
-							Gradient
-						</Form.Label>
-						<Col sm={3} style={{ marginTop: -14, marginLeft: 0 }} >
-							<GradientPicker
+						<Col sm={2} >
+							<BaseGradientPicker
 								onChange={( angle, palette ) => {
 									setGradient({ angle, palette });
 								}}
 							/>
 						</Col>
-						<Form.Label column sm={2} >
-							Size
+						<Form.Label column sm={1} >
+							Size:
 						</Form.Label>
 						<Col sm={5} >
 							<SelectInput defaultValue="farthest-corner" options={SIZE_OPTIONS} onChange={setSize} />
 						</Col>
+						<Col sm={4} >
+							<CheckboxInput legend="Repeating?" defaultValue={repeating} onChange={setRepeating} />
+						</Col>
 					</Form.Group>
 					<Form.Group as={Row} >
 						<Form.Label column sm={2} >
-							Position
+							Position:
 						</Form.Label>
 						<Col sm={4} >
 							<div className="radial-gradient-position-box">
@@ -172,7 +194,7 @@ const RadialGradientPicker = ( props ) => {
 			<Button variant="secondary" onClick={() => {
 				let background;
 				if ( repeating ) {
-					background = 'repeating radial-gradient(';
+					background = 'repeating-radial-gradient(';
 				} else {
 					background = 'radial-gradient(';
 				}
@@ -183,7 +205,7 @@ const RadialGradientPicker = ( props ) => {
 				background += gradient.palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ');
 				background += ')';
 				props.onCreate( background );
-			}} style={{ float: 'right' }} >
+			}} >
 				Add Background
 			</Button>
 		</Fragment>
@@ -195,23 +217,16 @@ const BackgroundPicker = ( props ) => {
 	switch ( type ) {
 		case 'image':
 			input = <Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm={3} >
 					Background Image
 				</Form.Label>
-				<Col sm="8">
+				<Col sm={9} >
 
 				</Col>
 			</Form.Group>;
 			break;
 		case 'linear-gradient':
-			input = <Form.Group as={Row} >
-				<Form.Label column sm="4">
-					Linear Gradient
-				</Form.Label>
-				<Col sm="8" style={{ marginTop: -15, marginLeft: -20 }} >
-					<GradientPicker onCreate={props.onCreate} />
-				</Col>
-			</Form.Group>;
+			input = <GradientPicker onCreate={props.onCreate} />
 			break;
 		case 'radial-gradient':
 			input = <RadialGradientPicker onCreate={props.onCreate} />;
@@ -220,10 +235,10 @@ const BackgroundPicker = ( props ) => {
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
-				<Form.Label column sm="4">
+				<Form.Label column sm={6} >
 					Background Type
 				</Form.Label>
-				<Col sm={8} >
+				<Col sm={6} >
 					<ToggleButtonGroup
 						name="type"
 						onChange={setType}
