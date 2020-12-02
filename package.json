@@ -114,6 +114,7 @@
     "@babel/register": "^7.12.0",
     "@babel/runtime": "^7.12.5",
     "@iktakahiro/markdown-it-katex": "^4.0.0",
+    "@isle-project/webpack-cdn-plugin": "0.0.0",
     "@stdlib/stdlib": "0.0.92",
     "acorn": "^8.0.1",
     "ajv": "^6.12.6",
