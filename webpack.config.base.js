@@ -74,7 +74,7 @@ export default {
 				{
 					loader: 'babel-loader',
 					options: {
-						plugins: [],
+						babelrc: true,
 						cacheDirectory: true,
 						cacheCompression: false
 					}
@@ -82,14 +82,15 @@ export default {
 			],
 			include: [
 				join( __dirname, 'main.development.js' ),
-				join( __dirname, 'app' )
+				join( __dirname, 'app' ),
+				join( __dirname, 'packages' )
 			],
 			exclude: /fonts\.js$/
 		},
 		{
 			test: /\.worker\.js$/,
 			use: { loader: 'worker-loader' },
-			include: join( __dirname, 'app', 'components', 'internal', 'response-visualizer' )
+			include: join( __dirname, 'packages', 'components', 'internal', 'response-visualizer' )
 		},
 		{
 			test: /\.txt$/,
@@ -127,6 +128,7 @@ export default {
 			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
 		},
 		modules: [
+			resolve( './packages' ),
 			resolve( './app' ),
 			resolve( './node_modules' )
 		],

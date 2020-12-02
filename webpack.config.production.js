@@ -88,7 +88,8 @@ const config = {
 				use: 'happypack/loader',
 				include: [
 					path.join( __dirname, 'main.development.js' ),
-					path.join( __dirname, 'app' )
+					path.join( __dirname, 'app' ),
+					path.join( __dirname, 'packages' )
 				]
 			},
 			{

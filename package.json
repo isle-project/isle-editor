@@ -90,7 +90,8 @@
     },
     "modulePaths": [
       "<rootDir>",
-      "app"
+      "app",
+      "packages"
     ],
     "moduleDirectories": [
       "node_modules"

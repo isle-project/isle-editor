@@ -327,7 +327,8 @@ function writeIndexFile({
 	let fileName;
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
-		resolve( basePath, './app/' )
+		resolve( basePath, './app/' ),
+		resolve( basePath, './packages/' )
 	];
 	if ( filePath ) {
 		fileDir = dirname( filePath );

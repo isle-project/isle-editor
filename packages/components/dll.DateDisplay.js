@@ -1,2 +1,0 @@
-/*! For license information please see dll.DateDisplay.js.LICENSE.txt */
-(window.webpackJsonp_name_dll=window.webpackJsonp_name_dll||[]).push([[38],{841:function(e,n,t){"use strict";t.r(n);var a=t(0),l=t.n(a);n.default=function(){var e=new Date;return l.a.createElement("span",null,e.getMonth()+1,"/",e.getDate(),"/",e.getFullYear())}}}]);

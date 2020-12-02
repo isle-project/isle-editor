@@ -5,7 +5,7 @@ import PREAMBLE_FIELDS from './preamble_fields.json';
 import LICENSES from './preamble_licenses.json';
 import LANGUAGES from './preamble_languages.json';
 import NAMESPACE from './stdlib/namespace.json';
-import COMPONENTS_DOCS from './../../components/documentation.json';
+import COMPONENTS_DOCS from 'components/documentation.json';
 
 
 // VARIABLES //

@@ -514,6 +514,7 @@
       "node": {
         "moduleDirectory": [
           "app",
+          "packages",
           "node_modules"
         ]
       }

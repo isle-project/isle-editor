@@ -29,7 +29,8 @@ const config = {
 					}
 				],
 				include: [
-					join( __dirname, 'app' )
+					join( __dirname, 'app' ),
+					join( __dirname, 'packages' )
 				]
 			}
 		]
@@ -37,16 +38,17 @@ const config = {
 	resolve: {
 		modules: [
 			resolve( './app' ),
+			resolve( './packages' ),
 			resolve( './node_modules' )
 		]
 	},
 	entry: {
 		session: [
-			'./app/session'
+			'./session'
 		]
 	},
 	output: {
-		path: join( __dirname, 'dll', 'session' ),
+		path: join( __dirname, 'packages', 'session', 'dist' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
 		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/session@0.32.8/'
@@ -63,7 +65,7 @@ const config = {
 	},
 	plugins: [
 		new DllPlugin({
-			path: join( __dirname, 'app', 'session', '[name]-manifest.json' ),
+			path: join( __dirname, 'packages', 'session', '[name]-manifest.json' ),
 			name: '[name]_dll'
 		})
 	],
