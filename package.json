@@ -137,7 +137,7 @@
     "compute-hamming": "^1.1.0",
     "compute-manhattan-distance": "^1.0.1",
     "core-js": "2.6.5",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "css": "^3.0.0",
     "css-loader": "4.2.1",
     "css-modules-require-hook": "^4.2.3",
