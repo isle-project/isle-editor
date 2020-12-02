@@ -11,7 +11,7 @@ import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
-import WebpackCdnPlugin from './webpack_cdn_plugin.js';
+import WebpackCdnPlugin, { CDN_MODULES } from '@isle-project/webpack-cdn-plugin';
 import logger from 'debug';
 import contains from '@stdlib/assert/contains';
 import isURI from '@stdlib/assert/is-uri';
@@ -27,7 +27,6 @@ import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
 import COMPONENTS_MANIFEST from 'components/components-manifest.json';
 import SESSION_MANIFEST from 'session/session-manifest.json';
-import CDN_MODULES from './cdn_modules.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
 
