@@ -1,0 +1,62 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A wrapper around String objects for specifying ordered categories.
+*
+* @param {string} name - variable name
+* @param {Array} categories - ordered categories
+* @returns {String} factor variable string object
+*/
+
+/**
+* Comparator function used to sort values in ascending order.
+*
+* @private
+* @param {number} a - first number
+* @param {number} b - second number
+* @returns {number} difference between `a` and `b`
+*/
+
+/**
+* Creates an array of category names for created bins.
+*
+* @param {Array<number>} breakpoints - breakpoints
+* @param {Array<string>} customNames - custom category labels
+* @returns {Array<string>} array of bin labels
+*/
+
+/**
+* Function to make shapes from breakpoints.
+*/
+
+/***/
+
+// Case: Have both a second and first variable...
+
+// Case: Resetting the second variable...
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// Handle "Return" key:
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// Remove the elements at the specified index:
+
+// VARIABLES //
+
+// eslint-disable-line no-new-wrappers

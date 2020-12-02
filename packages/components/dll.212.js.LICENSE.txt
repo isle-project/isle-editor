@@ -1,0 +1,28 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Login modal window.
+*
+* @property {boolean} show - controls whether to display the modal window
+* @property {Function} onClose - callback invoked when closing the modal window
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

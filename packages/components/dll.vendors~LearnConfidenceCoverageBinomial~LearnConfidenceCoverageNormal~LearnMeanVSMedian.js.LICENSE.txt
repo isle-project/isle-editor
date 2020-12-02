@@ -1,0 +1,393 @@
+/* This is a generated file. Do not edit directly. */
+
+/**
+	* Evaluates the quantile function for a normal distribution.
+	*
+	* @private
+	* @param {Probability} p - input value
+	* @returns {number} evaluated quantile function
+	*
+	* @example
+	* var y = quantile( 0.3 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the quantile function of a degenerate distribution.
+	*
+	* @private
+	* @param {Probability} p - input value
+	* @returns {number} evaluated quantile function
+	*
+	* @example
+	* var y = quantile( 0.5 );
+	* // returns <number>
+	*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_48_0/boost/math/special_functions/detail/erf_inv.hpp}. This implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* (C) Copyright John Maddock 2006.
+*
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Degenerate distribution quantile function.
+*
+* @module @stdlib/stats/base/dists/degenerate/quantile
+*
+* @example
+* var quantile = require( '@stdlib/stats/base/dists/degenerate/quantile' );
+*
+* var y = quantile( 0.5, 2.0 );
+* // returns 2.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/quantile' ).factory;
+*
+* var quantile = factory( 10.0 );
+*
+* var y = quantile( 0.5 );
+* // returns 10.0
+*/
+
+/**
+* Evaluate the inverse error function.
+*
+* @module @stdlib/math/base/special/erfinv
+*
+* @example
+* var erfinv = require( '@stdlib/math/base/special/erfinv' );
+*
+* var y = erfinv( 0.5 );
+* // returns ~0.4769
+*
+* y = erfinv( 0.8 );
+* // returns ~0.9062
+*
+* y = erfinv( 0.0 );
+* // returns 0.0
+*
+* y = erfinv( -0.0 );
+* // returns -0.0
+*
+* y = erfinv( -1.0 );
+* // returns -Infinity
+*
+* y = erfinv( 1.0 );
+* // returns Infinity
+*
+* y = erfinv( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+
+/**
+* Evaluates the inverse error function.
+*
+* ## Method
+*
+* 1.  For \\(|x| \leq 0.5\\), we evaluate the inverse error function using the rational approximation
+*
+*     ```tex
+*     \operatorname{erf^{-1}}(x) = x(x+10)(\mathrm{Y} + \operatorname{R}(x))
+*     ```
+*
+*     where \\(Y\\) is a constant and \\(\operatorname{R}(x)\\) is optimized for a low absolute error compared to \\(|Y|\\).
+*
+*     <!-- <note> -->
+*
+*     Max error \\(2.001849\mbox{e-}18\\). Maximum deviation found (error term at infinite precision) \\(8.030\mbox{e-}21\\).
+*
+*     <!-- </note> -->
+*
+* 2.  For \\(0.5 > 1-|x| \geq 0\\), we evaluate the inverse error function using the rational approximation
+*
+*     ```tex
+*     \operatorname{erf^{-1}} = \frac{\sqrt{-2 \cdot \ln(1-x)}}{\mathrm{Y} + \operatorname{R}(1-x)}
+*     ```
+*
+*     where \\(Y\\) is a constant, and \\(\operatorname{R}(q)\\) is optimized for a low absolute error compared to \\(Y\\).
+*
+*     <!-- <note> -->
+*
+*     Max error \\(7.403372\mbox{e-}17\\). Maximum deviation found (error term at infinite precision) \\(4.811\mbox{e-}20\\).
+*
+*     <!-- </note> -->
+*
+* 3.  For \\(1-|x| < 0.25\\), we have a series of rational approximations all of the general form
+*
+*     ```tex
+*     p = \sqrt{-\ln(1-x)}
+*     ```
+*
+*     Accordingly, the result is given by
+*
+*     ```tex
+*     \operatorname{erf^{-1}}(x) = p(\mathrm{Y} + \operatorname{R}(p-B))
+*     ```
+*
+*     where \\(Y\\) is a constant, \\(B\\) is the lowest value of \\(p\\) for which the approximation is valid, and \\(\operatorname{R}(x-B)\\) is optimized for a low absolute error compared to \\(Y\\).
+*
+*     <!-- <note> -->
+*
+*     Almost all code will only go through the first or maybe second approximation.  After that we are dealing with very small input values.
+*
+*     -   If \\(p < 3\\), max error \\(1.089051\mbox{e-}20\\).
+*     -   If \\(p < 6\\), max error \\(8.389174\mbox{e-}21\\).
+*     -   If \\(p < 18\\), max error \\(1.481312\mbox{e-}19\\).
+*     -   If \\(p < 44\\), max error \\(5.697761\mbox{e-}20\\).
+*     -   If \\(p \geq 44\\), max error \\(1.279746\mbox{e-}20\\).
+*
+*     <!-- </note> -->
+*
+*     <!-- <note> -->
+*
+*     The Boost library can accommodate \\(80\\) and \\(128\\) bit long doubles. JavaScript only supports a \\(64\\) bit double (IEEE 754). Accordingly, the smallest \\(p\\) (in JavaScript at the time of this writing) is \\(\sqrt{-\ln(\sim5\mbox{e-}324)} = 27.284429111150214\\).
+*
+*     <!-- </note> -->
+*
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var y = erfinv( 0.5 );
+* // returns ~0.4769
+*
+* @example
+* var y = erfinv( 0.8 );
+* // returns ~0.9062
+*
+* @example
+* var y = erfinv( 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = erfinv( -0.0 );
+* // returns -0.0
+*
+* @example
+* var y = erfinv( -1.0 );
+* // returns -Infinity
+*
+* @example
+* var y = erfinv( 1.0 );
+* // returns Infinity
+*
+* @example
+* var y = erfinv( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the quantile function for a degenerate distribution centered at `mu`.
+*
+* @param {Probability} p - input value
+* @param {number} mu - constant value of the distribution
+* @returns {number} evaluated quantile function
+*
+* @example
+* var y = quantile( 0.5, 2.0 );
+* // returns 2.0
+*
+* @example
+* var y = quantile( 0.9, 4.0 );
+* // returns 4.0
+*
+* @example
+* var y = quantile( 1.1, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( -0.2, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the quantile function for a normal distribution with mean `mu` and standard deviation `sigma` at a probability `p`.
+*
+* @param {Probability} p - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated quantile function
+*
+* @example
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.842
+*
+* @example
+* var y = quantile( 0.5, 4.0, 2.0 );
+* // returns 4.0
+*
+* @example
+* var y = quantile( 1.1, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( -0.2, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = quantile( 0.5, 0.0, -1.0 );
+* // returns NaN
+*/
+
+/**
+* Normal distribution quantile function.
+*
+* @module @stdlib/stats/base/dists/normal/quantile
+*
+* @example
+* var quantile = require( '@stdlib/stats/base/dists/normal/quantile' );
+*
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.842
+*
+* var myQuantile = quantile.factory( 10.0, 2.0 );
+* y = myQuantile( 0.5 );
+* // returns 10.0
+*/
+
+/**
+* Returns a function for evaluating the quantile function of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - value at which to center the distribution
+* @returns {Function} function to evaluate the quantile function
+*
+* @example
+* var quantile = factory( 5.0 );
+*
+* var y = quantile( 0.3 );
+* // returns 5.0
+*
+* y = quantile( 0.1 );
+* // returns 5.0
+*
+* y = quantile( 1.1 );
+* // returns NaN
+*/
+
+/**
+* Returns a function for evaluating the quantile function of a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} quantile function
+*
+* @example
+* var quantile = factory( 10.0, 2.0 );
+* var y = quantile( 0.5 );
+* // returns 10.0
+*
+* y = quantile( 0.8 );
+* // returns ~11.683
+*/
+
+/***/
+
+// 1-|x| >= 0.25
+
+// Argument reduction (reduce to interval [0,1]). If `x` is negative, we can safely negate the value, taking advantage of the error function being an odd function; i.e., `erf(-x) = -erf(x)`.
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// Special case: +-0
+
+// Special case: -1
+
+// Special case: 1
+
+// Special case: NaN
+
+// Special case: |x| > 1 (range error)
+
+// eslint-disable-line max-len
+
+// q < 3
+
+// q < 6
+
+// |x| <= 0.5

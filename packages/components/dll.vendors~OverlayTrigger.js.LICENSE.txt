@@ -1,0 +1,327 @@
+/* */
+
+/* eslint-disable no-return-assign */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/*#__PURE__*/
+
+/**
+         * If a prop switches from controlled to Uncontrolled
+         * reset its value to the defaultValue
+         */
+
+/**
+   * A Callback fired by the Overlay when it wishes to be hidden.
+   *
+   * __required__ when `rootClose` is `true`.
+   *
+   * @type func
+   */
+
+/**
+   * A DOM Element, Ref to an element, or function that returns either. The `container` will have the Portal children
+   * appended to it.
+   */
+
+/**
+   * A DOM Element, Ref to an element, or function that returns either. The `target` element is where
+   * the overlay is positioned relative to.
+   */
+
+/**
+   * A `react-transition-group@2.0.0` `<Transition/>` component
+   * used to animate the overlay as it changes visibility.
+   */
+
+/**
+   * A render prop that returns an element to overlay and position. See
+   * the [react-popper documentation](https://github.com/FezVrasta/react-popper#children) for more info.
+   *
+   * @type {Function ({
+   *   show: boolean,
+   *   placement: Placement,
+   *   update: () => void,
+   *   forceUpdate: () => void,
+   *   props: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *     aria-labelledby: ?string
+   *     [string]: string | number,
+   *   },
+   *   arrowProps: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *     [string]: string | number,
+   *   },
+   * }) => React.Element}
+   */
+
+/**
+   * A set of popper options and props passed directly to react-popper's Popper component.
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning in
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning out
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition in
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition out
+   */
+
+/**
+   * Callback fired before the Overlay transitions in
+   */
+
+/**
+   * Callback fired right before the Overlay transitions out
+   */
+
+/**
+   * Control how much space there is between the edge of the boundary element and overlay.
+   * A convenience shortcut to setting `popperConfig.modfiers.preventOverflow.padding`
+   */
+
+/**
+   * Enables the Popper.js `flip` modifier, allowing the Overlay to
+   * automatically adjust it's placement in case of overlap with the viewport or toggle.
+   * Refer to the [flip docs](https://popper.js.org/popper-documentation.html#modifiers..flip.enabled) for more info
+   */
+
+/**
+   * If a prop switches from controlled to Uncontrolled
+   * reset its value to the defaultValue
+   */
+
+/**
+   * Set the visibility of the Overlay
+   */
+
+/**
+   * Specify disabled for disable RootCloseWrapper
+   */
+
+/**
+   * Specify event for toggling overlay
+   */
+
+/**
+   * Specify whether the overlay should trigger `onHide` when the user clicks outside the overlay
+   */
+
+/**
+   * useful when wrapping a Component and you want to control
+   * everything
+   */
+
+/**
+ * An `addEventListener` ponyfill, supports the `once` option
+ */
+
+/**
+ * Attach a callback that fires when a component unmounts
+ *
+ * @param fn Handler to run when the component unmounts
+ * @category effects
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ * https://github.com/facebook/react/blob/2aeb8a2a6beb00617a4217f7f8284924fa2ad819/src/vendor/core/hyphenateStyleName.js
+ */
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+
+/**
+ * Returns a controller object for setting a timeout that is properly cleaned up
+ * once the component unmounts. New timeouts cancel and replace existing ones.
+ */
+
+/**
+ * Returns a ref that is immediately updated with the new value
+ *
+ * @param value The Ref value
+ * @category refs
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+/** Specify where the overlay element is positioned in relation to the target element */
+
+/***/
+
+//         nextStatus = ENTERING
+
+//         nextStatus = EXITING
+
+//       if (status !== ENTERING && status !== ENTERED) {
+
+//       if (status === ENTERING || status === ENTERED) {
+
+//       }
+
+//     const { status } = this.state
+
+//     if (this.props.in) {
+
+//     }
+
+//     } else {
+
+//   if (prevProps !== this.props) {
+
+//   let nextStatus = null
+
+//   return { nextStatus }
+
+//   }
+
+// 16.3+ will not execute our will-update method;
+
+// @ts-ignore
+
+// Add a flag to suppress these warnings for this special case.
+
+// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+
+// As a workaround, use cWU to invoke the new lifecycle.
+
+// Because for <= 15.x versions this might be a "prevContext" object.
+
+// Because get-snapshot might return a falsy value.
+
+// Because they would work differently between older and newer (16.3+) versions of React.
+
+// Binding "this" is important for shallow renderer support.
+
+// Call this.constructor.gDSFP to support sub-classes.
+
+// Don't bother showing anything if we don't have to.
+
+// Don't un-render the overlay while it's transitioning out.
+
+// Error if any of these lifecycles are present,
+
+// For simplicity, if the timeout is short, just set a normal timeout.
+
+// If new component APIs are defined, "unsafe" lifecycles won't be called.
+
+// In the context of a TransitionGroup all enters are really appears
+
+// It will pass a snapshot value to did-update though.
+
+// Name the function so it is clearer in the documentation
+
+// Newer versions of React will ignore that lifecycle if gSBU exists.
+
+// Newer versions of React will ignore these lifecycles if gDSFP exists.
+
+// Older versions will require our polyfilled will-update value.
+
+// React <= 16.2 does not support getSnapshotBeforeUpdate.
+
+// React <= 16.2 does not support static getDerivedStateFromProps.
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+
+// React's built version is broken: https://github.com/facebook/react/issues/4251
+
+// Simple implementation of mouseEnter and mouseLeave.
+
+// So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+
+// TODO: remove fallback for next major
+
+// This shouldn't be necessary, but there are weird race conditions with
+
+// Use the setState() updater to ensure state isn't stale in certain edge cases.
+
+// We also can't just check "__reactInternalSnapshot",
+
+// We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+
+// add default propTypes for folks that use runtime checks
+
+// allows for nested Transitions
+
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+// eslint-disable-next-line no-multi-assign
+
+// for cases when the trigger is disabled and mouseOut/Over can cause flicker
+
+// getSnapshotBeforeUpdate(prevProps) {
+
+// if we are mounting and running this it means appear _must_ be set
+
+// moving from one child element to another.
+
+// nextStatus will always be ENTERING or EXITING.
+
+// no enter animation skip right to ENTERED
+
+// no exit animation skip right to EXITED
+
+// reading a dimension prop will cause the browser to recalculate,
+
+// setState callbacks and unmounting in testing, so always make sure that
+
+// types are confused between node and web here IDK
+
+// we can cancel any pending setState callbacks after we unmount.
+
+// we don't care about invariant's own frame
+
+// which will let our animations work
+
+// }
+
+//let setState trigger the update

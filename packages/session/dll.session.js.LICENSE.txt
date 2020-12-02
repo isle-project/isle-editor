@@ -1,0 +1,7978 @@
+/*
+		* In the original C implementation (see `init_by_array()`),
+		*
+		* ```c
+		* mt[i] = (mt[i]^((mt[i-1]^(mt[i-1]>>30))*1566083941UL)) - i;
+		* ```
+		*
+		* In order to replicate this in JavaScript, we must emulate C-like multiplication of unsigned 32-bit integers.
+		*/
+
+/*
+		* In the original C implementation (see `init_by_array()`),
+		*
+		* ```c
+		* mt[i] = (mt[i]^((mt[i-1]^(mt[i-1]>>30))*1664525UL)) + seed[j] + j;
+		* ```
+		*
+		* In order to replicate this in JavaScript, we must emulate C-like multiplication of unsigned 32-bit integers.
+		*/
+
+/*
+		* In the original C implementation (see `init_genrand()`),
+		*
+		* ```c
+		* mt[i] = (KNUTH_MULTIPLIER * (mt[i-1] ^ (mt[i-1] >> 30)) + i)
+		* ```
+		*
+		* In order to replicate this in JavaScript, we must emulate C-like multiplication of unsigned 32-bit integers.
+		*/
+
+/*
+ * Export kMaxLength after typed array support is determined.
+ */
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+
+/*
+* Built-in `typeof` operator behavior:
+*
+* ```text
+* typeof null => 'object'
+* typeof undefined => 'undefined'
+* typeof 'a' => 'string'
+* typeof 5 => 'number'
+* typeof NaN => 'number'
+* typeof true => 'boolean'
+* typeof false => 'boolean'
+* typeof {} => 'object'
+* typeof [] => 'object'
+* typeof function foo(){} => 'function'
+* typeof function* foo(){} => 'object'
+* typeof Symbol() => 'symbol'
+* ```
+*
+*/
+
+/* 0 */
+
+/* 1 */
+
+/* 10 */
+
+/* 100 */
+
+/* 101 */
+
+/* 102 */
+
+/* 103 */
+
+/* 104 */
+
+/* 105 */
+
+/* 106 */
+
+/* 107 */
+
+/* 108 */
+
+/* 109 */
+
+/* 11 */
+
+/* 110 */
+
+/* 111 */
+
+/* 112 */
+
+/* 113 */
+
+/* 114 */
+
+/* 115 */
+
+/* 116 */
+
+/* 117 */
+
+/* 118 */
+
+/* 119 */
+
+/* 12 */
+
+/* 120 */
+
+/* 121 */
+
+/* 122 */
+
+/* 123 */
+
+/* 124 */
+
+/* 125 */
+
+/* 126 */
+
+/* 127 */
+
+/* 128 */
+
+/* 129 */
+
+/* 13 */
+
+/* 130 */
+
+/* 131 */
+
+/* 132 */
+
+/* 133 */
+
+/* 134 */
+
+/* 135 */
+
+/* 136 */
+
+/* 137 */
+
+/* 138 */
+
+/* 139 */
+
+/* 14 */
+
+/* 140 */
+
+/* 141 */
+
+/* 142 */
+
+/* 143 */
+
+/* 144 */
+
+/* 145 */
+
+/* 146 */
+
+/* 147 */
+
+/* 148 */
+
+/* 149 */
+
+/* 15 */
+
+/* 150 */
+
+/* 151 */
+
+/* 152 */
+
+/* 153 */
+
+/* 154 */
+
+/* 155 */
+
+/* 156 */
+
+/* 157 */
+
+/* 158 */
+
+/* 159 */
+
+/* 16 */
+
+/* 160 */
+
+/* 161 */
+
+/* 162 */
+
+/* 163 */
+
+/* 164 */
+
+/* 165 */
+
+/* 166 */
+
+/* 167 */
+
+/* 168 */
+
+/* 169 */
+
+/* 17 */
+
+/* 170 */
+
+/* 171 */
+
+/* 172 */
+
+/* 173 */
+
+/* 174 */
+
+/* 175 */
+
+/* 176 */
+
+/* 177 */
+
+/* 178 */
+
+/* 179 */
+
+/* 18 */
+
+/* 180 */
+
+/* 181 */
+
+/* 182 */
+
+/* 183 */
+
+/* 184 */
+
+/* 185 */
+
+/* 186 */
+
+/* 187 */
+
+/* 188 */
+
+/* 189 */
+
+/* 19 */
+
+/* 190 */
+
+/* 191 */
+
+/* 192 */
+
+/* 193 */
+
+/* 194 */
+
+/* 195 */
+
+/* 196 */
+
+/* 197 */
+
+/* 198 */
+
+/* 199 */
+
+/* 2 */
+
+/* 20 */
+
+/* 200 */
+
+/* 201 */
+
+/* 202 */
+
+/* 203 */
+
+/* 204 */
+
+/* 205 */
+
+/* 206 */
+
+/* 207 */
+
+/* 208 */
+
+/* 209 */
+
+/* 21 */
+
+/* 210 */
+
+/* 211 */
+
+/* 212 */
+
+/* 213 */
+
+/* 214 */
+
+/* 215 */
+
+/* 216 */
+
+/* 217 */
+
+/* 218 */
+
+/* 219 */
+
+/* 22 */
+
+/* 220 */
+
+/* 221 */
+
+/* 222 */
+
+/* 223 */
+
+/* 224 */
+
+/* 225 */
+
+/* 226 */
+
+/* 227 */
+
+/* 228 */
+
+/* 229 */
+
+/* 23 */
+
+/* 230 */
+
+/* 231 */
+
+/* 232 */
+
+/* 233 */
+
+/* 234 */
+
+/* 235 */
+
+/* 236 */
+
+/* 237 */
+
+/* 238 */
+
+/* 239 */
+
+/* 24 */
+
+/* 240 */
+
+/* 241 */
+
+/* 242 */
+
+/* 243 */
+
+/* 244 */
+
+/* 245 */
+
+/* 246 */
+
+/* 247 */
+
+/* 248 */
+
+/* 249 */
+
+/* 25 */
+
+/* 250 */
+
+/* 251 */
+
+/* 252 */
+
+/* 253 */
+
+/* 254 */
+
+/* 255 */
+
+/* 256 */
+
+/* 257 */
+
+/* 258 */
+
+/* 259 */
+
+/* 26 */
+
+/* 260 */
+
+/* 261 */
+
+/* 262 */
+
+/* 263 */
+
+/* 264 */
+
+/* 265 */
+
+/* 266 */
+
+/* 267 */
+
+/* 268 */
+
+/* 269 */
+
+/* 27 */
+
+/* 270 */
+
+/* 271 */
+
+/* 272 */
+
+/* 273 */
+
+/* 274 */
+
+/* 275 */
+
+/* 276 */
+
+/* 277 */
+
+/* 278 */
+
+/* 279 */
+
+/* 28 */
+
+/* 280 */
+
+/* 281 */
+
+/* 282 */
+
+/* 283 */
+
+/* 284 */
+
+/* 285 */
+
+/* 286 */
+
+/* 287 */
+
+/* 288 */
+
+/* 289 */
+
+/* 29 */
+
+/* 290 */
+
+/* 291 */
+
+/* 292 */
+
+/* 293 */
+
+/* 294 */
+
+/* 295 */
+
+/* 296 */
+
+/* 297 */
+
+/* 298 */
+
+/* 299 */
+
+/* 3 */
+
+/* 30 */
+
+/* 300 */
+
+/* 301 */
+
+/* 302 */
+
+/* 303 */
+
+/* 304 */
+
+/* 305 */
+
+/* 306 */
+
+/* 307 */
+
+/* 308 */
+
+/* 309 */
+
+/* 31 */
+
+/* 310 */
+
+/* 311 */
+
+/* 312 */
+
+/* 313 */
+
+/* 314 */
+
+/* 315 */
+
+/* 316 */
+
+/* 317 */
+
+/* 318 */
+
+/* 319 */
+
+/* 32 */
+
+/* 320 */
+
+/* 321 */
+
+/* 322 */
+
+/* 323 */
+
+/* 324 */
+
+/* 325 */
+
+/* 326 */
+
+/* 327 */
+
+/* 328 */
+
+/* 329 */
+
+/* 33 */
+
+/* 330 */
+
+/* 331 */
+
+/* 332 */
+
+/* 333 */
+
+/* 334 */
+
+/* 335 */
+
+/* 336 */
+
+/* 337 */
+
+/* 338 */
+
+/* 339 */
+
+/* 34 */
+
+/* 340 */
+
+/* 341 */
+
+/* 342 */
+
+/* 343 */
+
+/* 344 */
+
+/* 345 */
+
+/* 346 */
+
+/* 347 */
+
+/* 348 */
+
+/* 349 */
+
+/* 35 */
+
+/* 350 */
+
+/* 351 */
+
+/* 352 */
+
+/* 353 */
+
+/* 354 */
+
+/* 355 */
+
+/* 356 */
+
+/* 357 */
+
+/* 358 */
+
+/* 359 */
+
+/* 36 */
+
+/* 360 */
+
+/* 361 */
+
+/* 362 */
+
+/* 363 */
+
+/* 364 */
+
+/* 365 */
+
+/* 37 */
+
+/* 38 */
+
+/* 39 */
+
+/* 4 */
+
+/* 40 */
+
+/* 41 */
+
+/* 42 */
+
+/* 43 */
+
+/* 44 */
+
+/* 45 */
+
+/* 46 */
+
+/* 47 */
+
+/* 48 */
+
+/* 49 */
+
+/* 5 */
+
+/* 50 */
+
+/* 51 */
+
+/* 52 */
+
+/* 53 */
+
+/* 54 */
+
+/* 55 */
+
+/* 56 */
+
+/* 57 */
+
+/* 58 */
+
+/* 59 */
+
+/* 6 */
+
+/* 60 */
+
+/* 61 */
+
+/* 62 */
+
+/* 63 */
+
+/* 64 */
+
+/* 65 */
+
+/* 66 */
+
+/* 67 */
+
+/* 68 */
+
+/* 69 */
+
+/* 7 */
+
+/* 70 */
+
+/* 71 */
+
+/* 72 */
+
+/* 73 */
+
+/* 74 */
+
+/* 75 */
+
+/* 76 */
+
+/* 77 */
+
+/* 78 */
+
+/* 79 */
+
+/* 8 */
+
+/* 80 */
+
+/* 81 */
+
+/* 82 */
+
+/* 83 */
+
+/* 84 */
+
+/* 85 */
+
+/* 86 */
+
+/* 87 */
+
+/* 88 */
+
+/* 89 */
+
+/* 9 */
+
+/* 90 */
+
+/* 91 */
+
+/* 92 */
+
+/* 93 */
+
+/* 94 */
+
+/* 95 */
+
+/* 96 */
+
+/* 97 */
+
+/* 98 */
+
+/* 99 */
+
+/* WEBPACK VAR INJECTION */
+
+/* eslint-disable class-methods-use-this, max-lines */
+
+/* eslint-disable max-lines, max-len */
+
+/* eslint-disable no-proto */
+
+/* eslint-disable no-underscore-dangle, no-proto */
+
+/* eslint-env browser */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* non-linear */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*#__PURE__*/
+
+/**
+	* Coerce `val`.
+	*
+	* @param {Mixed} val
+	* @return {Mixed}
+	* @api private
+	*/
+
+/**
+	* Convert regexp to namespace
+	*
+	* @param {RegExp} regxep
+	* @return {String} namespace
+	* @api private
+	*/
+
+/**
+	* Create a debugger with the given `namespace`.
+	*
+	* @param {String} namespace
+	* @return {Function}
+	* @api public
+	*/
+
+/**
+	* Disable debug output.
+	*
+	* @return {String} namespaces
+	* @api public
+	*/
+
+/**
+	* Enables a debug mode by namespaces. This can include modes
+	* separated by a colon and wildcards.
+	*
+	* @param {String} namespaces
+	* @api public
+	*/
+
+/**
+	* Generates a pseudorandom integer on the interval \\( [1,2^{32}-1) \\).
+	*
+	* @private
+	* @returns {uinteger32} pseudorandom integer
+	*
+	* @example
+	* var r = mt19937();
+	* // returns <number>
+	*/
+
+/**
+	* Generates a pseudorandom number on the interval \\( [0,1) \\).
+	*
+	* ## Notes
+	*
+	* -   The original C implementation credits Isaku Wada for this algorithm (2002/01/09).
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var r = normalized();
+	* // returns <number>
+	*/
+
+/**
+	* Map of special "%n" handling functions, for the debug "format" argument.
+	*
+	* Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+	*/
+
+/**
+	* Merges objects into a target object. Note that the target object is mutated.
+	*
+	* @private
+	* @param {Object} target - target object
+	* @param {...Object} source - source objects (i.e., objects to be merged into the target object)
+	* @throws {Error} must provide a target object and one or more source objects
+	* @throws {TypeError} first argument must be an object
+	* @throws {TypeError} source arguments must be objects
+	* @returns {Object} merged (target) object
+	*
+	* @example
+	* var target = {
+	*     'a': 'beep'
+	* };
+	* var source = {
+	*     'a': 'boop',
+	*     'b': 'bap'
+	* };
+	*
+	* var out = merge( target, source );
+	* // returns {'a':'boop', 'b':'bap'}
+	*/
+
+/**
+	* Returns the PRNG seed length.
+	*
+	* @private
+	* @returns {PositiveInteger} seed length
+	*/
+
+/**
+	* Returns the PRNG seed.
+	*
+	* @private
+	* @returns {PRNGSeedMT19937} seed
+	*/
+
+/**
+	* Returns the PRNG state length.
+	*
+	* @private
+	* @returns {PositiveInteger} state length
+	*/
+
+/**
+	* Returns the PRNG state size (in bytes).
+	*
+	* @private
+	* @returns {PositiveInteger} state size (in bytes)
+	*/
+
+/**
+	* Returns the current PRNG state.
+	*
+	* ## Notes
+	*
+	* -   The PRNG state array is comprised of a preamble followed by `3` sections:
+	*
+	*     0.  preamble (version + number of sections)
+	*     1.  internal PRNG state
+	*     2.  auxiliary state information
+	*     3.  PRNG seed
+	*
+	* -   The first element of the PRNG state array preamble is the state array schema version.
+	*
+	* -   The second element of the PRNG state array preamble is the number of state array sections (i.e., `3`).
+	*
+	* -   The first element of each section following the preamble specifies the section length. The remaining section elements comprise the section contents.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+
+/**
+	* Returns true if the given mode name is enabled, false otherwise.
+	*
+	* @param {String} name
+	* @return {Boolean}
+	* @api public
+	*/
+
+/**
+	* Samples elements from a population.
+	*
+	* @private
+	* @param {Options} [options] - function options
+	* @param {NonNegativeInteger} [options.size] - sample size
+	* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+	* @param {boolean} [options.mutate=false] - boolean indicating whether to mutate the `pool` when sampling without replacement
+	* @throws {TypeError} options argument must be an object
+	* @throws {TypeError} must provide valid options
+	* @throws {RangeError} `size` option must be less than or equal to the population when the `replace` option is `false`
+	* @returns {Array} sample
+	*/
+
+/**
+	* Samples elements from an array-like object.
+	*
+	* @private
+	* @param {ArrayLike} x - array-like object from which to sample elements
+	* @param {Options} [options] - function options
+	* @param {NonNegativeInteger} [options.size] - sample size
+	* @param {ProbabilityArray} [options.probs] - element probabilities
+	* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+	* @throws {TypeError} first argument must be array-like
+	* @throws {TypeError} options argument must be an object
+	* @throws {TypeError} must provide valid options
+	* @throws {RangeError} `size` option must be less than or equal to the length of `x` when the `replace` option is `false`
+	* @returns {Array} sample
+	*/
+
+/**
+	* Selects a color for a debug namespace
+	* @param {String} namespace The namespace string for the for the debug instance to be colored
+	* @return {Number|String} An ANSI color code for the given namespace
+	* @api private
+	*/
+
+/**
+	* Serializes the pseudorandom number generator as a JSON object.
+	*
+	* ## Notes
+	*
+	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
+	*
+	* @private
+	* @returns {Object} JSON representation
+	*/
+
+/**
+	* Sets the PRNG state.
+	*
+	* ## Notes
+	*
+	* -   If PRNG state is "shared" (meaning a state array was provided during PRNG creation and **not** copied) and one sets the generator state to a state array having a different length, the PRNG does **not** update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for **each** relevant PRNG must be **explicitly** set.
+	* -   If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {TypeError} must provide a `Uint32Array`
+	* @throws {Error} must provide a valid state
+	*/
+
+/**
+	* Tests if every element in an array passes a test condition.
+	*
+	* @private
+	* @param {*} value - value to test
+	* @returns {boolean} boolean indicating whether a value is an array for which all elements pass a test condition
+	*/
+
+/**
+	* The currently active debug mode names, and names to skip.
+	*/
+
+/**
+	* XXX DO NOT USE. This is a temporary stub function.
+	* XXX It WILL be removed in the next major release.
+	*/
+
+/**
+    * Checks whether the text contains a valid name.
+    */
+
+/**
+    * Closes the given chat for all members.
+    *
+    * @param {string} name - chat name
+    */
+
+/**
+    * Creates an account for a new user.
+    *
+    * @param {Object} data - registration data (`email`, `name`, `password`)
+    * @param {Function} clbk - callback invoked after successful login or when encountering an error
+    */
+
+/**
+    * Displays a notification.
+    *
+    * @param {Object} notification configuration
+    * @returns {(null|Notification)}
+    */
+
+/**
+    * Emits the `add_question` event with a new question from a student.
+    *
+    * @param {Object} question - question object
+    */
+
+/**
+    * Emits the `create_groups` event with the newly generated group assignments.
+    *
+    * @param {Object} groups - group assignments
+    */
+
+/**
+    * Emits the `delete_groups` event and closes all group chats upon finishing group mode.
+    */
+
+/**
+    * Emits the `remove_question` event to remove the specified question from the queue.
+    *
+    * @param {Object} question - question object
+    */
+
+/**
+    * Establishes socket connection with other users.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Finalizes session once user clicks on "Submit Lesson" button.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Get the OpenCPU server address.
+    *
+    * @returns {string} OpenCPU address
+    */
+
+/**
+    * Initialize progress after response visualizer has mounted.
+    */
+
+/**
+    * Invites a user to a text chat with the supplied information.
+    *
+    * @param {Object} data - chat information object with at least a `name`
+    * @param {string} email - email of user to invite
+    */
+
+/**
+    * Invites a user to a video chat with the supplied information.
+    *
+    * @param {Object} data - chat information object with at least a `name`
+    * @param {string} email - email of user to invite
+    */
+
+/**
+    * Invoked when the main lesson component has mounted.
+    */
+
+/**
+    * Joins collaborative editing of document.
+    *
+    * @param {string} name - document identifier
+    * @param {string} [doc] - default document
+    */
+
+/**
+    * Joins the specified chat in case of an existing socket connection.
+    *
+    * @param {Object} config - chat information
+    * @param {string} config.name - chat room name
+    * @param {boolean} [config.canLeave=true] - whether invited user can leave chat
+    * @param {boolean} [config.anonymousSubmissions=false] - whether users can post anonymously to the chat
+    */
+
+/**
+    * Joins the specified video chat
+    *
+    * @param {Object} opts - options
+    * @param {string} opts.name - chat name
+    * @param {string} opts.subject - displayed subject line
+    */
+
+/**
+    * Leaves chat with the given name and removes it from the current list of chats.
+    *
+    * @param {string} name - chat room name
+    * @returns {void}
+    */
+
+/**
+    * Leaves video chat with the given name and removes it from the current list of chats.
+    *
+    * @param {string} name - video chat room name
+    * @returns {void}
+    */
+
+/**
+    * Logs data to database.
+    *
+    * @param {string} type - type of data to log (`vars` or `action`)
+    * @param {Object} data - data to log
+    * @param {Function} clbk - callback invoked with `err` and `res` arguments
+    * @returns {void}
+    */
+
+/**
+    * Logs out the currently logged-in user and remove his meta-data from localStorage.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Logs session action to database and sends it via socket connection to specified user(s).
+    *
+    * @param {Object} action - action object
+    * @param {string} to - group to send log message to (either `owners`, `members`, or email address of an individual user)
+    * @returns {void}
+    */
+
+/**
+    * Logs user in.
+    *
+    * @param {Object} form - form data
+    * @param {string} form.email - email address
+    * @param {string} form.password - user password
+    * @param {Function} clbk - callback function
+    * @returns {void}
+    */
+
+/**
+    * Marks all chat messages in the specified room as read.
+    *
+    * @param {string} name - name of chat room
+    * @returns {void}
+    */
+
+/**
+    * Poll server for collaborative editing events.
+    *
+    * @param {string} name - document identifier
+    * @param {Object} data - object with `version` and `commentVersion`
+    */
+
+/**
+    * Re-establish connection if user has logged out in another tab.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Removes a notification.
+    *
+    * @param {(Object|string)} notification - notification or `uid`
+    * @returns {void}
+    */
+
+/**
+    * Removes a session object from the remote data store.
+    *
+    * @param {string} sessionElementID - id of session
+    * @param {Function} clbk - callback invoked upon removal or error
+    */
+
+/**
+    * Removes leading namespace and lesson identifiers from chat name.
+    *
+    * @param {string} name - full chat name
+    * @returns {string} stripped chat name
+    */
+
+/**
+    * Removes specified chat from list of chats
+    *
+    * @param {string} name - full chat name
+    */
+
+/**
+    * Resets session instance variables.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Retrieves all fake users.
+    */
+
+/**
+    * Retrieves all owner files for the current lesson.
+    *
+    * @param {Function} clbk - callback invoked with error as first (`null` if successful) and files as second argument
+    */
+
+/**
+    * Retrieves chat room object.
+    *
+    * @param {string} name - chat room name
+    * @returns {(Object|null)} chat room if found, null otherwise
+    */
+
+/**
+    * Retrieves data from database.
+    *
+    * @param {Object} query - query for actions to obtain from database
+    * @param {Function} onData - callback invoked with error or retrieved data
+    * @returns {void}
+    */
+
+/**
+    * Retrieves instructor sketchpad data for logged-in users and anonymous visitors.
+    *
+    * @param {string} id - sketchpad identifier
+    * @returns {Promise} sketchpad data
+    */
+
+/**
+    * Retrieves sketchpad data for the currently logged-in user.
+    *
+    * @param {string} id - sketchpad identifier
+    * @returns {Promise} sketchpad data
+    */
+
+/**
+    * Retrieves the ID for the lesson and namespace from the database.
+    */
+
+/**
+    * Retrieves the value of a session variable.
+    *
+    * @param {string} name - variable name
+    * @returns {*} variable value
+    */
+
+/**
+    * Saves sketchpad data (lines, annotations, etc.) on the server.
+    *
+    * @param {string} id - sketchpad identifier
+    * @param {Object} data - sketchpad data
+    * @returns {Promise} server response
+    */
+
+/**
+    * Send document edits.
+    *
+    * @param {string} name - document identifier
+    * @param {Object} data - document edit events
+    */
+
+/**
+    * Sends a "Reset Password" link to the supplied email address.
+    *
+    * @param {string} email - email address
+    * @returns {void}
+    */
+
+/**
+    * Sends an email.
+    *
+    * @param {Object} mail - email object
+    * @param {string} to - email address of receiver
+    * @returns {void}
+    */
+
+/**
+    * Sends the supplied message to all members in the given chat room.
+    *
+    * @param {string} name - chat room name
+    * @param {string} msg - chat message
+    * @param {boolean} anonymous - whether the message should be send anonymously to all other users (aside from owners)
+    */
+
+/**
+    * Sets the user's progress for the lesson.
+    *
+    * @param {string} [id] - action id
+    */
+
+/**
+    * Update all lesson components that have subscribed to session updates.
+    *
+    * @param {string} type - event type
+    * @param {*} data - event data
+    */
+
+/**
+    * Updates session instance in the remote database.
+    *
+    * @returns {void}
+    */
+
+/**
+    * Updates the user's score based on his latest action.
+    *
+    * @param {Object} action - user action
+    * @returns {void}
+    */
+
+/**
+    * Updates whether voice recording is currently active.
+    *
+    * @param {boolean} value - voice recording status
+    */
+
+/**
+    * Uploads a file.
+    *
+    * @param {Object} options - options object
+    * @param {Object} options.formData - form data object
+    * @param {Function} [options.callback] - callback function
+    * @param {boolean} [options.showNotification] - controls whether to show upload notification
+    * @returns {void}
+    */
+
+/**
+    * Verifies user credentials via JSON Web Token to finish login process.
+    *
+    * @param {Object} obj - user object with `token` and `id` fields
+    * @param {boolean} silent - controls whether to display notification or not
+    * @returns {void}
+    */
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+/**
+ * Colors.
+ */
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+
+/**
+ * Creates a new filled Buffer instance.
+ * alloc(size[, fill[, encoding]])
+ **/
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+/**
+ * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
+ * */
+
+/**
+ * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
+ */
+
+/**
+ * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
+ * if value is a number.
+ * Buffer.from(str[, encoding])
+ * Buffer.from(array)
+ * Buffer.from(buffer)
+ * Buffer.from(arrayBuffer[, byteOffset[, length]])
+ **/
+
+/**
+ * Helpers.
+ */
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Due to various browser bugs, sometimes the Object implementation will be used even
+ * when the browser supports typed arrays.
+ *
+ * Note:
+ *
+ *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+ *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *     incorrect length in some situations.
+
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+ * get the Object implementation, which is slower but behaves correctly.
+ */
+
+/**
+ * Invokes `console.debug()` when available.
+ * No-op when `console.debug` is not a "function".
+ * If `console.debug` is not available, falls back
+ * to `console.log`.
+ *
+ * @api public
+ */
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} [options]
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+/**
+ * Pluralization helper.
+ */
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+/**
+ * The Buffer constructor returns instances of `Uint8Array` that have their
+ * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
+ * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
+ * and the `Uint8Array` methods. Square bracket notation works as expected -- it
+ * returns a single octet.
+ *
+ * The `Uint8Array` prototype remains unmodified.
+ */
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ */
+
+/**
+ * This is the web browser implementation of `debug()`.
+ */
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C code and copyright notice are from the [source implementation]{@link http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/CODES/mt19937ar.c}. The implementation has been modified for JavaScript.
+*
+* ```text
+* Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+*   1. Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*   2. Redistributions in binary form must reproduce the above copyright
+*      notice, this list of conditions and the following disclaimer in the
+*      documentation and/or other materials provided with the distribution.
+*
+*   3. The names of its contributors may not be used to endorse or promote
+*      products derived from this software without specific prior written
+*      permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+* A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+* PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* A 32-bit Mersenne Twister pseudorandom number generator.
+*
+* @module @stdlib/random/base/mt19937
+*
+* @example
+* var mt19937 = require( '@stdlib/random/base/mt19937' );
+*
+* var v = mt19937();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/mt19937' ).factory;
+*
+* var mt19937 = factory({
+*     'seed': 1234
+* });
+*
+* var v = mt19937();
+* // returns 822569775
+*/
+
+/**
+* Assigns a non-empty string to the `returnValue` property of the unload event, which causes a dialog box to appear, asking the user for confirmation to leave the page.
+*
+* @param {Event} event - unload event
+* @returns {string} confirmation message
+*/
+
+/**
+* Attempts to extract a string value.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a string can be extracted
+*/
+
+/**
+* Attempts to serialize a value to a string.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value can be serialized
+*/
+
+/**
+* BLAS level 1 routine to copy values from `x` into `y`.
+*
+* @module @stdlib/blas/base/gcopy
+*
+* @example
+* var gcopy = require( '@stdlib/blas/base/gcopy' );
+*
+* var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
+* var y = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];
+*
+* gcopy( x.length, x, 1, y, 1 );
+* // y => [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
+*
+* @example
+* var gcopy = require( '@stdlib/blas/base/gcopy' );
+*
+* var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
+* var y = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];
+*
+* gcopy.ndarray( x.length, x, 1, 0, y, 1, 0 );
+* // y => [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
+*/
+
+/**
+* Buffer constructor.
+*
+* @module @stdlib/buffer/ctor
+*
+* @example
+* var ctor = require( '@stdlib/buffer/ctor' );
+*
+* var b = new ctor( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*/
+
+/**
+* Buffer constructor.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Captures everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* Regular expression: `/^\s*function\s*([^(]*)/i`
+*
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
+*
+* @constant
+* @type {RegExp}
+* @default /^\s*function\s*([^(]*)/i
+*/
+
+/**
+* Checks whether a polyfill is needed when using the `typeof` operator.
+*
+* @private
+* @returns {boolean} boolean indicating whether a polyfill is needed
+*/
+
+/**
+* Checks whether text contains a command keyword.
+*
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+
+/**
+* Clones a class instance.
+*
+* ## Notes
+*
+* -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
+* -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
+*
+*
+* @private
+* @param {Object} val - class instance
+* @returns {Object} new instance
+*/
+
+/**
+* Compute an absolute value.
+*
+* @module @stdlib/math/base/special/abs
+*
+* @example
+* var abs = require( '@stdlib/math/base/special/abs' );
+*
+* var v = abs( -1.0 );
+* // returns 1.0
+*
+* v = abs( 2.0 );
+* // returns 2.0
+*
+* v = abs( 0.0 );
+* // returns 0.0
+*
+* v = abs( -0.0 );
+* // returns 0.0
+*
+* v = abs( NaN );
+* // returns NaN
+*/
+
+/**
+* Compute the absolute difference.
+*
+* @module @stdlib/math/base/utils/absolute-difference
+*
+* @example
+* var diff = require( '@stdlib/math/base/utils/absolute-difference' );
+*
+* var d = diff( 2.0, 5.0 );
+* // returns 3.0
+*
+* d = diff( -1.0, 3.14 );
+* // returns ~4.14
+*
+* d = diff( 10.1, -2.05 );
+* // returns ~12.15
+*
+* d = diff( -0.0, 0.0 );
+* // returns +0.0
+*
+* d = diff( NaN, 5.0 );
+* // returns NaN
+*
+* d = diff( Infinity, -Infinity  );
+* // returns Infinity
+*
+* d = diff( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Computes the absolute difference.
+*
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} absolute difference
+*
+* @example
+* var d = absoluteDifference( 2.0, 5.0 );
+* // returns 3.0
+*
+* @example
+* var d = absoluteDifference( -1.0, 3.14 );
+* // returns ~4.14
+*
+* @example
+* var d = absoluteDifference( 10.1, -2.05 );
+* // returns ~12.15
+*
+* @example
+* var d = absoluteDifference( -0.0, 0.0 );
+* // returns +0.0
+*
+* @example
+* var d = absoluteDifference( NaN, 5.0 );
+* // returns NaN
+*
+* @example
+* var d = absoluteDifference( Infinity, -Infinity  );
+* // returns Infinity
+*
+* @example
+* var d = absoluteDifference( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Computes the absolute value of `x`.
+*
+* @param {number} x - input value
+* @returns {number} absolute value
+*
+* @example
+* var v = abs( -1.0 );
+* // returns 1.0
+*
+* @example
+* var v = abs( 2.0 );
+* // returns 2.0
+*
+* @example
+* var v = abs( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = abs( -0.0 );
+* // returns 0.0
+*
+* @example
+* var v = abs( NaN );
+* // returns NaN
+*/
+
+/**
+* Constructor which returns a `Number` object.
+*
+* @module @stdlib/number/ctor
+*
+* @example
+* var Number = require( '@stdlib/number/ctor' );
+*
+* var v = new Number( 10.0 );
+* // returns <Number>
+*/
+
+/**
+* Copies a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - array to copy
+* @returns {Float32Array} new array
+*/
+
+/**
+* Copies a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - array to copy
+* @returns {Float64Array} new array
+*/
+
+/**
+* Copies a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - array to copy
+* @returns {Uint16Array} new array
+*/
+
+/**
+* Copies a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - array to copy
+* @returns {Uint32Array} new array
+*/
+
+/**
+* Copies a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - array to copy
+* @returns {Uint8Array} new array
+*/
+
+/**
+* Copies a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - array to copy
+* @returns {Uint8ClampedArray} new array
+*/
+
+/**
+* Copies an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - array to copy
+* @returns {Int16Array} new array
+*/
+
+/**
+* Copies an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - array to copy
+* @returns {Int32Array} new array
+*/
+
+/**
+* Copies an `Int8Array`.
+*
+* @private
+* @param {Int8Array} arr - array to copy
+* @returns {Int8Array} new array
+*/
+
+/**
+* Copies an error object.
+*
+* @private
+* @param {(Error|TypeError|SyntaxError|URIError|ReferenceError|RangeError|EvalError)} error - error to copy
+* @returns {(Error|TypeError|SyntaxError|URIError|ReferenceError|RangeError|EvalError)} error copy
+*
+* @example
+* var err1 = new TypeError( 'beep' );
+*
+* var err2 = copyError( err1 );
+* // returns <TypeError>
+*/
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+
+/**
+* Copies or deep clones a value to an arbitrary depth.
+*
+* @param {*} value - value to copy
+* @param {NonNegativeInteger} [level=+infinity] - copy depth
+* @throws {TypeError} `level` must be a nonnegative integer
+* @returns {*} value copy
+*
+* @example
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+
+/**
+* Copies values from `x` into `y`.
+*
+* @param {PositiveInteger} N - number of values to copy
+* @param {NumericArray} x - input array
+* @param {integer} strideX - `x` stride length
+* @param {NonNegativeInteger} offsetX - starting `x` index
+* @param {NumericArray} y - destination array
+* @param {integer} strideY - `y` stride length
+* @param {NonNegativeInteger} offsetY - starting `y` index
+* @returns {NumericArray} `y`
+*
+* @example
+* var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
+* var y = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];
+*
+* gcopy( x.length, x, 1, 0, y, 1, 0 );
+* // y => [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
+*/
+
+/**
+* Copies values from `x` into `y`.
+*
+* @param {PositiveInteger} N - number of values to copy
+* @param {NumericArray} x - input array
+* @param {integer} strideX - `x` stride length
+* @param {NumericArray} y - destination array
+* @param {integer} strideY - `y` stride length
+* @returns {NumericArray} `y`
+*
+* @example
+* var x = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];
+* var y = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];
+*
+* gcopy( x.length, x, 1, y, 1 );
+* // y => [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
+*/
+
+/**
+* Copy buffer data to a new `Buffer` instance.
+*
+* @module @stdlib/buffer/from-buffer
+*
+* @example
+* var fromArray = require( '@stdlib/buffer/from-array' );
+* var copyBuffer = require( '@stdlib/buffer/from-buffer' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = copyBuffer( b1 );
+* // returns <Buffer>
+*/
+
+/**
+* Copy or deep clone a value to an arbitrary depth.
+*
+* @module @stdlib/utils/copy
+*
+* @example
+* var copy = require( '@stdlib/utils/copy' );
+*
+* var out = copy( 'beep' );
+* // returns 'beep'
+*
+* @example
+* var copy = require( '@stdlib/utils/copy' );
+*
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
+* var out = copy( value );
+* // returns [ {'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
+*
+* var bool = ( value[0].c === out[0].c );
+* // returns false
+*/
+
+/**
+* Copyright (C) 2016-present The ISLE Authors
+*
+* The isle-dashboard program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Affero General Public License as
+* published by the Free Software Foundation, either version 3 of the
+* License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU Affero General Public License for more details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
+* Copyright (C) 2016-present The ISLE Authors
+*
+* The isle-session program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Affero General Public License as
+* published by the Free Software Foundation, either version 3 of the
+* License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU Affero General Public License for more details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
+* Create a regular expression from a regular expression string.
+*
+* @module @stdlib/utils/regexp-from-string
+*
+* @example
+* var reFromString = require( '@stdlib/utils/regexp-from-string' );
+*
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+/**
+* Create a string from a sequence of Unicode code points.
+*
+* @module @stdlib/string/from-code-point
+*
+* @example
+* var fromCodePoint = require( '@stdlib/string/from-code-point' );
+*
+* var str = fromCodePoint( 9731 );
+* // returns '☃'
+*/
+
+/**
+* Creates a string from a sequence of Unicode code points.
+*
+* ## Notes
+*
+* -   UTF-16 encoding uses one 16-bit unit for non-surrogates (U+0000 to U+D7FF and U+E000 to U+FFFF).
+* -   UTF-16 encoding uses two 16-bit units (surrogate pairs) for U+10000 to U+10FFFF and encodes U+10000-U+10FFFF by subtracting 0x10000 from the code point, expressing the result as a 20-bit binary, and splitting the 20 bits of 0x0-0xFFFFF as upper and lower 10-bits. The respective 10-bits are stored in two 16-bit words: a high and a low surrogate.
+*
+*
+* @param {...NonNegativeInteger} args - sequence of code points
+* @throws {Error} must provide either an array-like object of code points or one or more code points as separate arguments
+* @throws {TypeError} a code point must be a nonnegative integer
+* @throws {RangeError} must provide a valid Unicode code point
+* @returns {string} created string
+*
+* @example
+* var str = fromCodePoint( 9731 );
+* // returns '☃'
+*/
+
+/**
+* Define (or modify) an object property.
+*
+* @module @stdlib/utils/define-property
+*
+* @example
+* var defineProperty = require( '@stdlib/utils/define-property' );
+*
+* var obj = {};
+* defineProperty( obj, 'foo', {
+*     'value': 'bar',
+*     'writable': false,
+*     'configurable': false,
+*     'enumerable': false
+* });
+* obj.foo = 'boop'; // => throws
+*/
+
+/**
+* Define a non-enumerable read-only accessor.
+*
+* @module @stdlib/utils/define-nonenumerable-read-only-accessor
+*
+* @example
+* var setNonEnumerableReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
+*
+* function getter() {
+*     return 'bar';
+* }
+*
+* var obj = {};
+*
+* setNonEnumerableReadOnlyAccessor( obj, 'foo', getter );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+
+/**
+* Define a non-enumerable read-only property.
+*
+* @module @stdlib/utils/define-nonenumerable-read-only-property
+*
+* @example
+* var setNonEnumerableReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+*
+* var obj = {};
+*
+* setNonEnumerableReadOnly( obj, 'foo', 'bar' );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+
+/**
+* Define a non-enumerable read-write accessor.
+*
+* @module @stdlib/utils/define-nonenumerable-read-write-accessor
+*
+* @example
+* var setNonEnumerableReadWriteAccessor = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' );
+*
+* function getter() {
+*     return name + ' foo';
+* }
+*
+* function setter( v ) {
+*     name = v;
+* }
+*
+* var name = 'bar';
+* var obj = {};
+*
+* setNonEnumerableReadWriteAccessor( obj, 'foo', getter, setter );
+*
+* var v = obj.foo;
+* // returns 'bar foo'
+*
+* obj.foo = 'beep';
+*
+* v = obj.foo;
+* // returns 'beep foo'
+*/
+
+/**
+* Defines (or modifies) an object property.
+*
+* ## Notes
+*
+* -   Property descriptors come in two flavors: **data descriptors** and **accessor descriptors**. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be one of these two flavors and cannot be both.
+*
+* @name defineProperty
+* @type {Function}
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {Object} descriptor - property descriptor
+* @param {boolean} [descriptor.configurable=false] - boolean indicating if property descriptor can be changed and if the property can be deleted from the provided object
+* @param {boolean} [descriptor.enumerable=false] - boolean indicating if the property shows up when enumerating object properties
+* @param {boolean} [descriptor.writable=false] - boolean indicating if the value associated with the property can be changed with an assignment operator
+* @param {*} [descriptor.value] - property value
+* @param {(Function|void)} [descriptor.get=undefined] - function which serves as a getter for the property, or, if no getter, undefined. When the property is accessed, a getter function is called without arguments and with the `this` context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value.
+* @param {(Function|void)} [descriptor.set=undefined] - function which serves as a setter for the property, or, if no setter, undefined. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the `this` context set to the object through which the property is assigned.
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} third argument must be an object
+* @throws {Error} property descriptor cannot have both a value and a setter and/or getter
+* @returns {Object} object with added property
+*
+* @example
+* var obj = {};
+*
+* defineProperty( obj, 'foo', {
+*     'value': 'bar'
+* });
+*
+* var str = obj.foo;
+* // returns 'bar'
+*/
+
+/**
+* Defines (or modifies) an object property.
+*
+* ## Notes
+*
+* -   Property descriptors come in two flavors: **data descriptors** and **accessor descriptors**. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be one of these two flavors and cannot be both.
+*
+* @param {Object} obj - object on which to define the property
+* @param {string} prop - property name
+* @param {Object} descriptor - property descriptor
+* @param {boolean} [descriptor.configurable=false] - boolean indicating if property descriptor can be changed and if the property can be deleted from the provided object
+* @param {boolean} [descriptor.enumerable=false] - boolean indicating if the property shows up when enumerating object properties
+* @param {boolean} [descriptor.writable=false] - boolean indicating if the value associated with the property can be changed with an assignment operator
+* @param {*} [descriptor.value] - property value
+* @param {(Function|void)} [descriptor.get=undefined] - function which serves as a getter for the property, or, if no getter, undefined. When the property is accessed, a getter function is called without arguments and with the `this` context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value.
+* @param {(Function|void)} [descriptor.set=undefined] - function which serves as a setter for the property, or, if no setter, undefined. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the `this` context set to the object through which the property is assigned.
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} third argument must be an object
+* @throws {Error} property descriptor cannot have both a value and a setter and/or getter
+* @returns {Object} object with added property
+*
+* @example
+* var obj = {};
+*
+* defineProperty( obj, 'foo', {
+*     'value': 'bar'
+* });
+*
+* var str = obj.foo;
+* // returns 'bar'
+*/
+
+/**
+* Defines a non-enumerable read-only accessor.
+*
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {Function} getter - accessor
+*
+* @example
+* function getter() {
+*     return 'bar';
+* }
+*
+* var obj = {};
+*
+* setNonEnumerableReadOnlyAccessor( obj, 'foo', getter );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+
+/**
+* Defines a non-enumerable read-only property.
+*
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {*} value - value to set
+*
+* @example
+* var obj = {};
+*
+* setNonEnumerableReadOnly( obj, 'foo', 'bar' );
+*
+* try {
+*     obj.foo = 'boop';
+* } catch ( err ) {
+*     console.error( err.message );
+* }
+*/
+
+/**
+* Defines a non-enumerable read-write accessor.
+*
+* @param {Object} obj - object on which to define the property
+* @param {(string|symbol)} prop - property name
+* @param {Function} getter - get accessor
+* @param {Function} setter - set accessor
+*
+* @example
+* function getter() {
+*     return name + ' foo';
+* }
+*
+* function setter( v ) {
+*     name = v;
+* }
+*
+* var name = 'bar';
+* var obj = {};
+*
+* setNonEnumerableReadWriteAccessor( obj, 'foo', getter, setter );
+*
+* var v = obj.foo;
+* // returns 'bar foo'
+*
+* obj.foo = 'beep';
+*
+* v = obj.foo;
+* // returns 'beep foo'
+*/
+
+/**
+* Detects whether an environment returns the expected internal class of the `arguments` object.
+*
+* @private
+* @returns {boolean} boolean indicating whether an environment behaves as expected
+*
+* @example
+* var bool = detect();
+* // returns <boolean>
+*/
+
+/**
+* Determine a value's type.
+*
+* @module @stdlib/utils/type-of
+*
+* @example
+* var typeOf = require( '@stdlib/utils/type-of' );
+*
+* var str = typeOf( 'a' );
+* // returns 'string'
+*
+* str = typeOf( 5 );
+* // returns 'number'
+*/
+
+/**
+* Determine the name of a value's constructor.
+*
+* @module @stdlib/utils/constructor-name
+*
+* @example
+* var constructorName = require( '@stdlib/utils/constructor-name' );
+*
+* var v = constructorName( 'a' );
+* // returns 'String'
+*
+* v = constructorName( {} );
+* // returns 'Object'
+*
+* v = constructorName( true );
+* // returns 'Boolean'
+*/
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+
+/**
+* Determines the name of a value's constructor.
+*
+* @param {*} v - input value
+* @returns {string} name of a value's constructor
+*
+* @example
+* var v = constructorName( 'a' );
+* // returns 'String'
+*
+* @example
+* var v = constructorName( 5 );
+* // returns 'Number'
+*
+* @example
+* var v = constructorName( null );
+* // returns 'Null'
+*
+* @example
+* var v = constructorName( undefined );
+* // returns 'Undefined'
+*
+* @example
+* var v = constructorName( function noop() {} );
+* // returns 'Function'
+*/
+
+/**
+* Determines whether an environment throws when comparing to the prototype of a value's constructor (e.g., [IE9][1]).
+*
+* [1]: https://stackoverflow.com/questions/7688070/why-is-comparing-the-constructor-property-of-two-windows-unreliable
+*
+* @private
+* @returns {boolean} boolean indicating whether an environment is buggy
+*/
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+/**
+* Dummy constructor.
+*
+* @private
+*/
+
+/**
+* Dummy function.
+*
+* @private
+*/
+
+/**
+* Executes a detected voice command if found.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+
+/**
+* Finds and executes a detected voice command with a single regular expression for extracting parameters.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+
+/**
+* Finds and executes a detected voice command with multiple regular expressions for extracting parameters.
+*
+* @param {Node} ref - component reference
+* @param {Object} command - command options
+* @param {string} text - parsed voice command
+* @returns {boolean} returns true if text matches a command, false otherwise
+*/
+
+/**
+* Group values according to an indicator function and return group counts.
+*
+* @module @stdlib/utils/count-by
+*
+* @example
+* var countBy = require( '@stdlib/utils/count-by' );
+*
+* function indicator( v ) {
+*     return v[ 0 ];
+* }
+* var arr = [ 'beep', 'boop', 'foo', 'bar' ];
+*
+* var out = countBy( arr, indicator );
+* // returns { 'b': 3, 'f': 1 }
+*/
+
+/**
+* Groups values according to an indicator function and returns group counts.
+*
+* @param {Collection} collection - input collection
+* @param {Options} [options] - function options
+* @param {*} [options.thisArg] - execution context
+* @param {Function} indicator - indicator function specifying which group an element in the input collection belongs to
+* @throws {TypeError} first argument must be a collection
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} last argument must be a function
+* @throws {TypeError} must provide valid options
+* @returns {Object} counts
+*
+* @example
+* function indicator( v ) {
+*     return v[ 0 ];
+* }
+* var arr = [ 'beep', 'boop', 'foo', 'bar' ];
+*
+* var out = countBy( arr, indicator );
+* // returns { 'b': 3, 'f': 1 }
+*/
+
+/**
+* Identity function.
+*
+* @module @stdlib/utils/identity-function
+*
+* @example
+* var identity = require( '@stdlib/utils/identity-function' );
+*
+* var input = [];
+* var output = identity( input );
+*
+* var bool = ( input === output );
+* // returns true
+*/
+
+/**
+* Identity function.
+*
+* @param {*} x - input value
+* @returns {*} input value
+*
+* @example
+* var v = identity( 3.14 );
+* // returns 3.14
+*/
+
+/**
+* Initializes a PRNG state array according to a seed array.
+*
+* @private
+* @param {Uint32Array} state - state array
+* @param {NonNegativeInteger} N - state array length
+* @param {ArrayLikeObject} seed - seed array
+* @param {NonNegativeInteger} M - seed array length
+* @returns {Uint32Array} state array
+*/
+
+/**
+* Matches parts of a regular expression string.
+*
+* Regular expression: `/^\/((?:\\\/|[^\/])+)\/([imgy]*)$/`
+*
+* -   `/^\/`
+*     -   match a string that begins with a `/`
+*
+* -   `()`
+*     -   capture
+*
+* -   `(?:)+`
+*     -   capture, but do not remember, a group of characters which occur one or more times
+*
+* -   `\\\/`
+*     -   match the literal `\/`
+*
+* -   `|`
+*     -   OR
+*
+* -   `[^\/]`
+*     -   anything which is not the literal `\/`
+*
+* -   `\/`
+*     -   match the literal `/`
+*
+* -   `([imgy]*)`
+*     -   capture any characters matching `imgy` occurring zero or more times
+*
+* -   `$/`
+*     -   string end
+*
+*
+* @constant
+* @type {RegExp}
+* @default /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/
+*/
+
+/**
+* Maximum Unicode code point in the Basic Multilingual Plane (BMP).
+*
+* @constant
+* @type {integer32}
+* @default 65535
+* @see [Unicode]{@link https://en.wikipedia.org/wiki/Unicode}
+*/
+
+/**
+* Maximum Unicode code point in the Basic Multilingual Plane (BMP).
+*
+* @module @stdlib/constants/string/unicode-max-bmp
+* @type {integer32}
+*
+* @example
+* var UNICODE_MAX_BMP = require( '@stdlib/constants/string/unicode-max-bmp' );
+* // returns 65535
+*/
+
+/**
+* Maximum Unicode code point.
+*
+* @constant
+* @type {integer32}
+* @default 1114111
+* @see [Unicode]{@link https://en.wikipedia.org/wiki/Unicode}
+*/
+
+/**
+* Maximum Unicode code point.
+*
+* @module @stdlib/constants/string/unicode-max
+* @type {integer32}
+*
+* @example
+* var UNICODE_MAX = require( '@stdlib/constants/string/unicode-max' );
+* // returns 1114111
+*/
+
+/**
+* Maximum length of a generic array.
+*
+* @module @stdlib/constants/array/max-array-length
+*
+* @example
+* var MAX_ARRAY_LENGTH = require( '@stdlib/constants/array/max-array-length' );
+* // returns 4294967295
+*/
+
+/**
+* Maximum length of a generic array.
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+
+/**
+* Maximum length of a typed array.
+*
+* @module @stdlib/constants/array/max-typed-array-length
+*
+* @example
+* var MAX_TYPED_ARRAY_LENGTH = require( '@stdlib/constants/array/max-typed-array-length' );
+* // returns 9007199254740991
+*/
+
+/**
+* Maximum length of a typed array.
+*
+* ```tex
+* 2^{53} - 1
+* ```
+*
+* @constant
+* @type {number}
+* @default 9007199254740991
+*/
+
+/**
+* Maximum safe double-precision floating-point integer.
+*
+* ## Notes
+*
+* The integer has the value
+*
+* ```tex
+* 2^{53} - 1
+* ```
+*
+* @constant
+* @type {number}
+* @default 9007199254740991
+* @see [Safe Integers]{@link http://www.2ality.com/2013/10/safe-integers.html}
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+
+/**
+* Maximum safe double-precision floating-point integer.
+*
+* @module @stdlib/constants/math/float64-max-safe-integer
+* @type {number}
+*
+* @example
+* var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/constants/math/float64-max-safe-integer' );
+* // returns 9007199254740991
+*/
+
+/**
+* Maximum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{15} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 32767
+*/
+
+/**
+* Maximum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-max
+* @type {integer32}
+*
+* @example
+* var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+* // returns 32767
+*/
+
+/**
+* Maximum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{31} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 2147483647
+*/
+
+/**
+* Maximum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-max
+* @type {integer32}
+*
+* @example
+* var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+* // returns 2147483647
+*/
+
+/**
+* Maximum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* 2^{7} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 127
+*/
+
+/**
+* Maximum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-max
+* @type {integer32}
+*
+* @example
+* var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+* // returns 127
+*/
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+/**
+* Merge and extend objects.
+*
+* @module @stdlib/utils/merge
+*
+* @example
+* var merge = require( '@stdlib/utils/merge' );
+*
+* var target = {
+*     'a': 'beep'
+* };
+* var source = {
+*     'a': 'boop',
+*     'b': 'bap'
+* };
+*
+* var out = merge( target, source );
+* // returns {'a':'boop', 'b':'bap'}
+*
+* @example
+* var factory = require( '@stdlib/utils/merge' ).factory;
+*
+* var opts = {
+*     'level': 100,
+*     'copy': true,
+*     'override': true,
+*     'extend': true
+* };
+*
+* var merge = factory( opts );
+* // returns <Function>
+*/
+
+/**
+* Merges a source object into a target object.
+*
+* @private
+* @param {Object} target - target object
+* @param {Object} source - source object
+* @param {number} level - merge level
+* @param {boolean} copy - indicates whether to perform a deep copy of merged values
+* @param {(boolean|Function)} override - defines the merge strategy
+* @param {boolean} extend - indicates whether new properties can be added to the target object
+*/
+
+/**
+* Minimum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{15})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 1000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -32768
+*/
+
+/**
+* Minimum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-min
+* @type {integer32}
+*
+* @example
+* var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+* // returns -32768
+*/
+
+/**
+* Minimum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{31})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -2147483648
+*/
+
+/**
+* Minimum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-min
+* @type {integer32}
+*
+* @example
+* var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+* // returns -2147483648
+*/
+
+/**
+* Minimum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* -(2^{7})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -128
+*/
+
+/**
+* Minimum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-min
+* @type {integer32}
+*
+* @example
+* var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+* // returns -128
+*/
+
+/**
+* No operation.
+*
+* @example
+* noop();
+* // ...does nothing.
+*/
+
+/**
+* No operation.
+*
+* @module @stdlib/utils/noop
+*
+* @example
+* var noop = require( '@stdlib/utils/noop' );
+*
+* noop();
+* // ...does nothing.
+*/
+
+/**
+* Parses a regular expression string and returns a new regular expression.
+*
+* @param {string} str - regular expression string
+* @throws {TypeError} must provide a regular expression string
+* @returns {(RegExp|null)} regular expression or null
+*
+* @example
+* var re = reFromString( '/beep/' );
+* // returns /beep/
+*/
+
+/**
+* Perform C-like multiplication of two unsigned 32-bit integers.
+*
+* @module @stdlib/math/base/special/uimul
+*
+* @example
+* var uimul = require( '@stdlib/math/base/special/uimul' );
+*
+* var v = uimul( 10>>>0, 4>>>0 );
+* // returns 40
+*/
+
+/**
+* Performs C-like multiplication of two unsigned 32-bit integers.
+*
+* ## Method
+*
+* -   To emulate C-like multiplication without the aid of 64-bit integers, we recognize that a 32-bit integer can be split into two 16-bit words
+*
+*     ```tex
+*     a = w_h*2^{16} + w_l
+*     ```
+*
+*     where \\( w_h \\) is the most significant 16 bits and \\( w_l \\) is the least significant 16 bits. For example, consider the maximum unsigned 32-bit integer \\( 2^{32}-1 \\)
+*
+*     ```binarystring
+*     11111111111111111111111111111111
+*     ```
+*
+*     The 16-bit high word is then
+*
+*     ```binarystring
+*     1111111111111111
+*     ```
+*
+*     and the 16-bit low word
+*
+*     ```binarystring
+*     1111111111111111
+*     ```
+*
+*     If we cast the high word to 32-bit precision and multiply by \\( 2^{16} \\) (equivalent to a 16-bit left shift), then the bit sequence is
+*
+*     ```binarystring
+*     11111111111111110000000000000000
+*     ```
+*
+*     Similarly, upon casting the low word to 32-bit precision, the bit sequence is
+*
+*     ```binarystring
+*     00000000000000001111111111111111
+*     ```
+*
+*     From the rules of binary addition, we recognize that adding the two 32-bit values for the high and low words will return our original value \\( 2^{32}-1 \\).
+*
+* -   Accordingly, the multiplication of two 32-bit integers can be expressed
+*
+*     ```tex
+*     \begin{align*}
+*     a \cdot b &= ( a_h \cdot 2^{16} + a_l) \cdot ( b_h \cdot 2^{16} + b_l) \\
+*           &= a_l \cdot b_l + a_h \cdot b_l \cdot 2^{16} + a_l \cdot b_h \cdot 2^{16} + (a_h \cdot b_h) \cdot 2^{32} \\
+*           &= a_l \cdot b_l + (a_h \cdot b_l + a_l \cdot b_h) \cdot 2^{16} + (a_h \cdot b_h) \cdot 2^{32}
+*     \end{align*}
+*     ```
+*
+* -   We note that multiplying (dividing) an integer by \\( 2^n \\) is equivalent to performing a left (right) shift of \\( n \\) bits.
+*
+* -   Further, as we want to return an integer of the same precision, for a 32-bit integer, the return value will be modulo \\( 2^{32} \\). Stated another way, we only care about the low word of a 64-bit result.
+*
+* -   Accordingly, the last term, being evenly divisible by \\( 2^{32} \\), drops from the equation leaving the remaining two terms as the remainder.
+*
+*     ```tex
+*     a \cdot b = a_l \cdot b_l + (a_h \cdot b_l + a_l \cdot b_h) << 16
+*     ```
+*
+* -   Lastly, the second term in the above equation contributes to the middle bits and may cause the product to "overflow". However, we can disregard (`>>>0`) overflow bits due modulo arithmetic, as discussed earlier with regard to the term involving the partial product of high words.
+*
+*
+* @param {uinteger32} a - integer
+* @param {uinteger32} b - integer
+* @returns {uinteger32} product
+*
+* @example
+* var v = uimul( 10>>>0, 4>>>0 );
+* // returns 40
+*/
+
+/**
+* Recursively performs a deep copy of an input object.
+*
+* @private
+* @param {*} val - value to copy
+* @param {(Array|Object)} copy - copy
+* @param {Array} cache - an array of visited objects
+* @param {Array} refs - an array of object references
+* @param {NonNegativeInteger} level - copy depth
+* @returns {*} deep copy
+*/
+
+/**
+* Regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* @module @stdlib/regexp/function-name
+* @type {RegExp}
+*
+* @example
+* var RE_FUNCTION_NAME = require( '@stdlib/regexp/function-name' );
+*
+* function fname( fcn ) {
+*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
+* }
+*
+* var fn = fname( Math.sqrt );
+* // returns 'sqrt'
+*
+* fn = fname( Int8Array );
+* // returns 'Int8Array'
+*
+* fn = fname( Object.prototype.toString );
+* // returns 'toString'
+*
+* fn = fname( function(){} );
+* // returns ''
+*/
+
+/**
+* Regular expression to parse a regular expression string.
+*
+* @module @stdlib/regexp/regexp
+* @type {RegExp}
+*
+* @example
+* var RE_REGEXP = require( '@stdlib/regexp/regexp' );
+*
+* var bool = RE_REGEXP.test( '/^beep$/' );
+* // returns true
+*
+* bool = RE_REGEXP.test( '' );
+* // returns false
+*
+* @example
+* var RE_REGEXP = require( '@stdlib/regexp/regexp' );
+*
+* var parts = RE_REGEXP.exec( '/^.*$/ig' );
+* // returns [ '/^.*$/ig', '^.*$', 'ig', 'index': 0, 'input': '/^.*$/ig' ]
+*/
+
+/**
+* Restrict a value to a specified range.
+*
+* @module @stdlib/math/base/special/clamp
+*
+* @example
+* var clamp = require( '@stdlib/math/base/special/clamp' );
+*
+* var v = clamp( 3.14, 0.0, 5.0 );
+* // returns 3.14
+*
+* v = clamp( -3.14, 0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( 10.0, 0.0, 5.0 );
+* // returns 5.0
+*
+* v = clamp( -0.0, 0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( 0.0, -0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( NaN, 0.0, 5.0 );
+* // returns NaN
+*
+* v = clamp( 0.0, NaN, 5.0 );
+* // returns NaN
+*
+* v = clamp( 3.14, 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Restricts a value to a specified range.
+*
+* @param {number} v - input value
+* @param {number} min - minimum value
+* @param {number} max - maximum value
+* @returns {number} value restricted to a specified range
+*
+* @example
+* var v = clamp( 3.14, 0.0, 5.0 );
+* // returns 3.14
+*
+* v = clamp( -3.14, 0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( 10.0, 0.0, 5.0 );
+* // returns 5.0
+*
+* v = clamp( -0.0, 0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( 0.0, -0.0, 5.0 );
+* // returns 0.0
+*
+* v = clamp( NaN, 0.0, 5.0 );
+* // returns NaN
+*
+* v = clamp( 0.0, NaN, 5.0 );
+* // returns NaN
+*
+* v = clamp( 3.14, 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Return a JSON representation of a typed array.
+*
+* @module @stdlib/array/to-json
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var toJSON = require( '@stdlib/array/to-json' );
+*
+* var arr = new Float64Array( [ 5.0, 3.0 ] );
+* var json = toJSON( arr );
+* // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
+*/
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+/**
+* Return a property descriptor for an object's own property.
+*
+* @module @stdlib/utils/property-descriptor
+*
+* @example
+* var getOwnPropertyDescriptor = require( '@stdlib/utils/property-descriptor' );
+*
+* var obj = {
+*   'foo': 'bar',
+*   'beep': 'boop'
+* };
+*
+* var keys = getOwnPropertyDescriptor( obj, 'foo' );
+* // returns {'configurable':true,'enumerable':true,'writable':true,'value':'bar'}
+*/
+
+/**
+* Return a string value indicating a specification defined classification of an object.
+*
+* @module @stdlib/utils/native-class
+*
+* @example
+* var nativeClass = require( '@stdlib/utils/native-class' );
+*
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* function Beep() {
+*     return this;
+* }
+* str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+/**
+* Return an array of an object's own enumerable and non-enumerable property names.
+*
+* @module @stdlib/utils/property-names
+*
+* @example
+* var getOwnPropertyNames = require( '@stdlib/utils/property-names' );
+*
+* var keys = getOwnPropertyNames({
+*   'foo': 'bar',
+*   'beep': 'boop'
+* });
+* // e.g., returns [ 'foo', 'beep' ]
+*/
+
+/**
+* Return an array of an object's own enumerable property names.
+*
+* @module @stdlib/utils/keys
+*
+* @example
+* var keys = require( '@stdlib/utils/keys' );
+*
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var k = keys( obj );
+* // e.g., returns [ 'beep', 'foo' ]
+*/
+
+/**
+* Return the first index at which a given element can be found.
+*
+* @module @stdlib/utils/index-of
+*
+* @example
+* var indexOf = require( '@stdlib/utils/index-of' );
+*
+* var arr = [ 4, 3, 2, 1 ];
+* var idx = indexOf( arr, 3 );
+* // returns 1
+*
+* arr = [ 4, 3, 2, 1 ];
+* idx = indexOf( arr, 5 );
+* // returns -1
+*
+* // Using a `fromIndex`:
+* arr = [ 1, 2, 3, 4, 5, 2, 6 ];
+* idx = indexOf( arr, 2, 3 );
+* // returns 5
+*
+* // `fromIndex` which exceeds `array` length:
+* arr = [ 1, 2, 3, 4, 2, 5 ];
+* idx = indexOf( arr, 2, 10 );
+* // returns -1
+*
+* // Negative `fromIndex`:
+* arr = [ 1, 2, 3, 4, 5, 2, 6, 2 ];
+* idx = indexOf( arr, 2, -4 );
+* // returns 5
+*
+* idx = indexOf( arr, 2, -1 );
+* // returns 7
+*
+* // Negative `fromIndex` exceeding input `array` length:
+* arr = [ 1, 2, 3, 4, 5, 2, 6 ];
+* idx = indexOf( arr, 2, -10 );
+* // returns 1
+*
+* // Array-like objects:
+* var str = 'bebop';
+* idx = indexOf( str, 'o' );
+* // returns 3
+*/
+
+/**
+* Return the global object.
+*
+* @module @stdlib/utils/global
+*
+* @example
+* var getGlobal = require( '@stdlib/utils/global' );
+*
+* var g = getGlobal();
+* // returns {...}
+*/
+
+/**
+* Return the maximum value.
+*
+* @module @stdlib/math/base/special/max
+*
+* @example
+* var max = require( '@stdlib/math/base/special/max' );
+*
+* var v = max( 3.14, 4.2 );
+* // returns 4.2
+*
+* v = max( 5.9, 3.14, 4.2 );
+* // returns 5.9
+*
+* v = max( 3.14, NaN );
+* // returns NaN
+*
+* v = max( +0.0, -0.0 );
+* // returns +0.0
+*/
+
+/**
+* Return the name of a function.
+*
+* @module @stdlib/utils/function-name
+*
+* @example
+* var functionName = require( '@stdlib/utils/function-name' );
+*
+* var v = functionName( String );
+* // returns 'String'
+*
+* v = functionName( function foo(){} );
+* // returns 'foo'
+*
+* v = functionName( function(){} );
+* // returns '' || 'anonymous'
+*/
+
+/**
+* Return the prototype of a provided object.
+*
+* @module @stdlib/utils/get-prototype-of
+*
+* @example
+* var getPrototype = require( '@stdlib/utils/get-prototype-of' );
+*
+* var proto = getPrototype( {} );
+* // returns {}
+*/
+
+/**
+* Returns a 32-bit Mersenne Twister pseudorandom number generator.
+*
+* ## Notes
+*
+* -   In contrast to the original C implementation, array seeds of length `1` are considered integer seeds. This ensures that the seed `[ 1234 ]` generates the same output as the seed `1234`. In the original C implementation, the two seeds would yield different output, which is **not** obvious from a user perspective.
+*
+* @param {Options} [options] - options
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} a seed must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integers less than or equal to the maximum unsigned 32-bit integer
+* @throws {RangeError} a numeric seed must be a positive integer less than or equal to the maximum unsigned 32-bit integer
+* @throws {TypeError} state must be a `Uint32Array`
+* @throws {Error} must provide a valid state
+* @throws {TypeError} `copy` option must be a boolean
+* @returns {PRNG} Mersenne Twister PRNG
+*
+* @example
+* var mt19937 = factory();
+*
+* var v = mt19937();
+* // returns <number>
+*
+* @example
+* // Return a seeded Mersenne Twister PRNG:
+* var mt19937 = factory({
+*     'seed': 1234
+* });
+*
+* var v = mt19937();
+* // returns 822569775
+*/
+
+/**
+* Returns a JSON representation of a typed array.
+*
+* ## Notes
+*
+* -   We build a JSON object representing a typed array similar to how Node.js `Buffer` objects are represented. See [Buffer][1].
+*
+* [1]: https://nodejs.org/api/buffer.html#buffer_buf_tojson
+*
+* @param {TypedArray} arr - typed array to serialize
+* @throws {TypeError} first argument must be a typed array
+* @returns {Object} JSON representation
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( [ 5.0, 3.0 ] );
+* var json = toJSON( arr );
+* // returns { 'type': 'Float64Array', 'data': [ 5.0, 3.0 ] }
+*/
+
+/**
+* Returns a function for merging and extending objects.
+*
+* @param {Options} options - merge options
+* @param {number} [options.level=Infinity] - merge level
+* @param {boolean} [options.copy=true] - boolean indicating whether to deep copy merged values
+* @param {(boolean|Function)} [options.override=true] - defines the merge strategy
+* @param {boolean} [options.extend=true] - boolean indicating whether new properties can be added to the target object
+* @throws {TypeError} must provide valid options
+* @returns {Function} function which can be used to merge objects
+*
+* @example
+* var opts = {
+*     'level': 100,
+*     'copy': true,
+*     'override': true,
+*     'extend': true
+* };
+*
+* var merge = factory( opts );
+* // returns <Function>
+*/
+
+/**
+* Returns a function to sample elements from an array-like object.
+*
+* @param {ArrayLike} [pool] - array-like object from which to sample
+* @param {Options} [options] - function options
+* @param {PositiveInteger} [options.seed] - integer-valued seed
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+* @param {boolean} [options.mutate=false] - boolean indicating whether to mutate the `pool` when sampling without replacement
+* @throws {TypeError} `pool` must be an array-like object
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @returns {Function} function to sample elements from an array-like object
+*
+* @example
+* var sample = factory({
+*     'seed': 232
+* });
+* var out = sample( 'abcdefg' );
+* // e.g., returns [ 'g', 'd', 'g', 'f', 'c', 'e', 'f' ]
+*
+* @example
+* var sample = factory( [ 1, 2, 3, 4, 5, 6 ], {
+*     'seed': 232,
+*     'size': 2
+* });
+* var out = sample();
+* // e.g., returns [ 6, 4 ]
+*
+* out = sample();
+* // e.g., returns [ 6, 5 ]
+*
+* @example
+* var sample = factory( [ 1, 2, 3, 4, 5, 6 ], {
+*     'seed': 474,
+*     'size': 3,
+*     'mutate': true,
+*     'replace': false
+* });
+* var out = sample();
+* // e.g., returns [ 4, 3, 6 ]
+*
+* out = sample();
+* // e.g., returns [ 1, 5, 2 ]
+*
+* out = sample();
+* // returns null
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'size': 10
+* });
+* // e.g., returns [ 0, 1, 1, 1, 0, 1, 0, 0, 1, 1 ]
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'replace': false
+* });
+* // e.g., returns [ 0, 1 ] or [ 1, 0 ]
+*
+* out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2,
+*     'mutate': true
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'replace': false
+* });
+* // e.g., returns [ 0, 1 ] or [ 1, 0 ]
+*
+* out = sample();
+* // returns null
+*/
+
+/**
+* Returns a function which tests if every element in an array passes a test condition.
+*
+* @param {Function} predicate - function to apply
+* @throws {TypeError} must provide a function
+* @returns {Function} an array function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+/**
+* Returns a hash of functions for copying typed arrays.
+*
+* @private
+* @returns {Object} function hash
+*/
+
+/**
+* Returns a merge function based on provided options.
+*
+* @private
+* @param {Options} opts - function options
+* @param {number} options.level - merge level
+* @param {boolean} options.copy - boolean indicating whether to deep copy merged values
+* @param {(boolean|Function)} options.override - defines the merge strategy
+* @param {boolean} options.extend - boolean indicating whether new properties can be added to the target object
+* @returns {Function} merge function
+*
+* @example
+* var merge = mergefcn({
+*     'level': Number.POSITIVE_INFINITY,
+*     'copy': true,
+*     'override': true,
+*     'extend': true
+* });
+* // returns <Function>
+*/
+
+/**
+* Returns a property descriptor for an object's own property.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertyDescriptor()`, this function returns `null` if provided `undefined` or `null`, rather than throwing an error.
+* -   In contrast to the built-in `Object.getOwnPropertyDescriptor()`, this function returns `null` if an object does not have a provided property, rather than `undefined`.
+*
+* @private
+* @param {*} value - input object
+* @param {(string|symbol)} property - property
+* @returns {(Object|null)} property descriptor or null
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var desc = getOwnPropertyDescriptor( obj, 'foo' );
+* // returns {'configurable':true,'enumerable':true,'writable':true,'value':3.14}
+*/
+
+/**
+* Returns a property descriptor for an object's own property.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertyDescriptor()`, this function returns `null` if provided `undefined` or `null`, rather than throwing an error.
+* -   In contrast to the built-in `Object.getOwnPropertyDescriptor()`, this function returns `null` if an object does not have a provided property, rather than `undefined`.
+* -   In environments lacking `Object.getOwnPropertyDescriptor()` support, property descriptors do not exist. In non-supporting environment, if an object has a provided property, this function returns a descriptor object equivalent to that returned in a supporting environment; otherwise, the function returns `null`.
+*
+* @private
+* @param {*} value - input object
+* @param {(string|symbol)} property - property
+* @returns {(Object|null)} property descriptor or null
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var desc = getOwnPropertyDescriptor( obj, 'foo' );
+* // returns {'configurable':true,'enumerable':true,'writable':true,'value':3.14}
+*/
+
+/**
+* Returns a pseudorandom integer on the interval \\([1, 2^{32}-1)\\).
+*
+* @private
+* @returns {PositiveInteger} pseudorandom integer
+*
+* @example
+* var v = randuint32();
+* // returns <number>
+*/
+
+/**
+* Returns a string value indicating a specification defined classification (via the internal property `[[Class]]`) of an object.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+/**
+* Returns a string value indicating a specification defined classification of an object in environments supporting `Symbol.toStringTag`.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+/**
+* Returns an array of an object's own enumerable and non-enumerable property names.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertyNames()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own property names
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var keys = getOwnPropertyNames( obj );
+* // e.g., returns [ 'beep', 'foo' ]
+*/
+
+/**
+* Returns an array of an object's own enumerable and non-enumerable property names.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.getOwnPropertyNames()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+* -   In environments lacking support for `Object.getOwnPropertyNames()`, property descriptors are unavailable, and thus all properties can be safely assumed to be enumerable. Hence, we can defer to calling `Object.keys`, which retrieves all own enumerable property names.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own property names
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var keys = getOwnPropertyNames( obj );
+* // e.g., returns [ 'beep', 'foo' ]
+*/
+
+/**
+* Returns an array of an object's own enumerable property names.
+*
+* ## Notes
+*
+* -   In contrast to the built-in `Object.keys()`, this function returns an empty array if provided `undefined` or `null`, rather than throwing an error.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own enumerable property names
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var k = keys( obj );
+* // e.g., returns [ 'beep', 'foo' ]
+*/
+
+/**
+* Returns an array of an object's own enumerable property names.
+*
+* @private
+* @param {*} value - input object
+* @returns {Array} a list of own enumerable property names
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 3.14
+* };
+*
+* var k = keys( obj );
+* // e.g., returns [ 'beep', 'foo' ]
+*/
+
+/**
+* Returns an initial PRNG state.
+*
+* @private
+* @param {Uint32Array} state - state array
+* @param {PositiveInteger} N - state size
+* @param {uinteger32} s - seed
+* @returns {Uint32Array} state array
+*/
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @param {ArrayLike} arr - array-like object
+* @param {*} searchElement - element to find
+* @param {integer} [fromIndex] - starting index (if negative, the start index is determined relative to last element)
+* @throws {TypeError} must provide an array-like object
+* @throws {TypeError} `fromIndex` must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = [ 4, 3, 2, 1 ];
+* var idx = indexOf( arr, 3 );
+* // returns 1
+*
+* @example
+* var arr = [ 4, 3, 2, 1 ];
+* var idx = indexOf( arr, 5 );
+* // returns -1
+*
+* @example
+* // Using a `fromIndex`:
+* var arr = [ 1, 2, 3, 4, 5, 2, 6 ];
+* var idx = indexOf( arr, 2, 3 );
+* // returns 5
+*
+* @example
+* // `fromIndex` which exceeds `array` length:
+* var arr = [ 1, 2, 3, 4, 2, 5 ];
+* var idx = indexOf( arr, 2, 10 );
+* // returns -1
+*
+* @example
+* // Negative `fromIndex`:
+* var arr = [ 1, 2, 3, 4, 5, 2, 6, 2 ];
+* var idx = indexOf( arr, 2, -4 );
+* // returns 5
+*
+* idx = indexOf( arr, 2, -1 );
+* // returns 7
+*
+* @example
+* // Negative `fromIndex` exceeding input `array` length:
+* var arr = [ 1, 2, 3, 4, 5, 2, 6 ];
+* var idx = indexOf( arr, 2, -10 );
+* // returns 1
+*
+* @example
+* // Array-like objects:
+* var str = 'bebop';
+* var idx = indexOf( str, 'o' );
+* // returns 3
+*/
+
+/**
+* Returns the global object using code generation.
+*
+* @private
+* @returns {Object} global object
+*/
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+
+/**
+* Returns the maximum value.
+*
+* @param {number} [x] - first number
+* @param {number} [y] - second number
+* @param {...number} [args] - numbers
+* @returns {number} maximum value
+*
+* @example
+* var v = max( 3.14, 4.2 );
+* // returns 4.2
+*
+* @example
+* var v = max( 5.9, 3.14, 4.2 );
+* // returns 5.9
+*
+* @example
+* var v = max( 3.14, NaN );
+* // returns NaN
+*
+* @example
+* var v = max( +0.0, -0.0 );
+* // returns +0.0
+*/
+
+/**
+* Returns the name of a function.
+*
+* @param {Function} fcn - input function
+* @throws {TypeError} must provide a function
+* @returns {string} function name
+*
+* @example
+* var v = functionName( Math.sqrt );
+* // returns 'sqrt'
+*
+* @example
+* var v = functionName( function foo(){} );
+* // returns 'foo'
+*
+* @example
+* var v = functionName( function(){} );
+* // returns '' || 'anonymous'
+*
+* @example
+* var v = functionName( String );
+* // returns 'String'
+*/
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+
+/**
+* Returns the prototype of a provided object.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {(Object|null)} prototype
+*/
+
+/**
+* Returns the typed array type.
+*
+* @private
+* @param {TypedArray} arr - typed array
+* @returns {(string|void)} typed array type
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* var arr = new Float64Array( 5 );
+* var str = typeName( arr );
+* // returns 'Float64Array'
+*/
+
+/**
+* Returns the value of the `__proto__` property.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {*} value of `__proto__` property
+*/
+
+/**
+* Round a numeric value toward negative infinity.
+*
+* @module @stdlib/math/base/special/floor
+*
+* @example
+* var floor = require( '@stdlib/math/base/special/floor' );
+*
+* var v = floor( -4.2 );
+* // returns -5.0
+*
+* v = floor( 9.99999 );
+* // returns 9.0
+*
+* v = floor( 0.0 );
+* // returns 0.0
+*
+* v = floor( NaN );
+* // returns NaN
+*/
+
+/**
+* Rounds a numeric value toward negative infinity.
+*
+* @param {number} x - input value
+* @returns {number} rounded value
+*
+* @example
+* var v = floor( -4.2 );
+* // returns -5.0
+*
+* @example
+* var v = floor( 9.99999 );
+* // returns 9.0
+*
+* @example
+* var v = floor( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = floor( NaN );
+* // returns NaN
+*/
+
+/**
+* Sample elements from an array-like object.
+*
+* @module @stdlib/random/sample
+*
+* @example
+* var sample = require( '@stdlib/random/sample' );
+*
+* var out = sample( 'abc' );
+* // e.g., returns [ 'a', 'a', 'b' ]
+*
+* out = sample( [ 3, 6, 9 ] );
+* // e.g., returns [ 3, 9, 6 ]
+*
+* var bool = ( out.length === 3 );
+* // returns true
+*
+* @example
+* var sample = require( '@stdlib/random/sample' );
+*
+* var mysample = sample.factory({
+*     'seed': 323
+* });
+* var out = mysample( [ 3, 6, 9 ], {
+*     'size': 10
+* });
+* // e.g., returns [ 3, 9, 3, 3, 3, 6, 3, 3, 3, 6 ]
+*/
+
+/**
+* Samples elements from an array-like object.
+*
+* @name sample
+* @type {Function}
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {Options} [options] - function options
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {ProbabilityArray} [options.probs] - element probabilities
+* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+* @throws {TypeError} first argument must be array-like
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {RangeError} `size` option must be less than or equal to the length of `x` when the `replace` option is `false`
+* @returns {Array} sample
+*
+* @example
+* var out = sample( [ 3, null, NaN, 'abc', function(){} ] );
+* // e.g., returns [ 3, 'abc', null, 3, null ]
+*/
+
+/**
+* Samples from a discrete uniform distribution (equal probabilities and with replacement).
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @returns {Array} sample
+*/
+
+/**
+* Samples uniformly without replacement using the Fisher-Yates shuffle.
+*
+* ## References
+*
+* -   Knuth, Donald E. 1997. _The Art of Computer Programming, Volume 2 (3rd Ed.): Seminumerical Algorithms_. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @returns {Array} sample
+*/
+
+/**
+* Samples with replacement and non-uniform probabilities using Vose's [alias method][alias-method].
+*
+* ## References
+*
+* -   Vose, Michael D. 1991. "A linear algorithm for generating random numbers with a given distribution." _IEEE Transactions on Software Engineering_ 17 (9): 972–75. doi:[10.1109/32.92917][@vose:1991].
+*
+* [alias-method]: http://keithschwarz.com/darts-dice-coins/
+* [@vose:1991]: https://doi.org/10.1109/32.92917
+*
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @param {ProbabilityArray} probabilities - element probabilities
+* @returns {Array} sample
+*/
+
+/**
+* Samples without replacement from a discrete set using custom probabilities.
+*
+* ## Notes
+*
+* -   After each draw, the probabilities of the remaining observations are renormalized so that they sum to one.
+*
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @param {ProbabilityArray} probabilities - element probabilities
+* @returns {Array} sample
+*/
+
+/**
+* Square root of double-precision floating-point epsilon.
+*
+* @module @stdlib/constants/math/float64-sqrt-eps
+* @type {number}
+*
+* @example
+* var FLOAT64_SQRT_EPSILON = require( '@stdlib/constants/math/float64-sqrt-eps' );
+* // returns 0.14901161193847656e-7
+*/
+
+/**
+* Square root of double-precision floating-point epsilon.
+*
+* ```tex
+* \sqrt{\frac{1}{2^{52}}}
+* ```
+*
+* @constant
+* @type {number}
+* @default 0.14901161193847656e-7
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+*/
+
+/**
+* Test for `Object.defineProperty` support.
+*
+* @module @stdlib/assert/has-define-property-support
+*
+* @example
+* var hasDefinePropertySupport = require( '@stdlib/assert/has-define-property-support' );
+*
+* var bool = hasDefinePropertySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Buffer` support.
+*
+* @module @stdlib/assert/has-node-buffer-support
+*
+* @example
+* var hasNodeBufferSupport = require( '@stdlib/assert/has-node-buffer-support' );
+*
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Float32Array` support.
+*
+* @module @stdlib/assert/has-float32array-support
+*
+* @example
+* var hasFloat32ArraySupport = require( '@stdlib/assert/has-float32array-support' );
+*
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Float64Array` support.
+*
+* @module @stdlib/assert/has-float64array-support
+*
+* @example
+* var hasFloat64ArraySupport = require( '@stdlib/assert/has-float64array-support' );
+*
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Int16Array` support.
+*
+* @module @stdlib/assert/has-int16array-support
+*
+* @example
+* var hasInt16ArraySupport = require( '@stdlib/assert/has-int16array-support' );
+*
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Int32Array` support.
+*
+* @module @stdlib/assert/has-int32array-support
+*
+* @example
+* var hasInt32ArraySupport = require( '@stdlib/assert/has-int32array-support' );
+*
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Int8Array` support.
+*
+* @module @stdlib/assert/has-int8array-support
+*
+* @example
+* var hasInt8ArraySupport = require( '@stdlib/assert/has-int8array-support' );
+*
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Symbol` support.
+*
+* @module @stdlib/assert/has-symbol-support
+*
+* @example
+* var hasSymbolSupport = require( '@stdlib/assert/has-symbol-support' );
+*
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/assert/has-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/assert/has-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/assert/has-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/assert/has-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/assert/has-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/assert/has-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `Uint8ClampedArray` support.
+*
+* @module @stdlib/assert/has-uint8clampedarray-support
+*
+* @example
+* var hasUint8ClampedArraySupport = require( '@stdlib/assert/has-uint8clampedarray-support' );
+*
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native `toStringTag` support.
+*
+* @module @stdlib/assert/has-tostringtag-support
+*
+* @example
+* var hasToStringTagSupport = require( '@stdlib/assert/has-tostringtag-support' );
+*
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+
+/**
+* Test for native function `name` support.
+*
+* @module @stdlib/assert/has-function-name-support
+*
+* @example
+* var hasFunctionNameSupport = require( '@stdlib/assert/has-function-name-support' );
+*
+* var bool = hasFunctionNameSupport();
+* // returns <boolean>
+*/
+
+/**
+* Test if a double-precision floating-point numeric value is `NaN`.
+*
+* @module @stdlib/math/base/assert/is-nan
+*
+* @example
+* var isnan = require( '@stdlib/math/base/assert/is-nan' );
+*
+* var bool = isnan( NaN );
+* // returns true
+*
+* bool = isnan( 7.0 );
+* // returns false
+*/
+
+/**
+* Test if a double-precision floating-point numeric value is negative zero.
+*
+* @module @stdlib/math/base/assert/is-negative-zero
+*
+* @example
+* var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
+*
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* Test if a double-precision floating-point numeric value is positive zero.
+*
+* @module @stdlib/math/base/assert/is-positive-zero
+*
+* @example
+* var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
+*
+* var bool = isPositiveZero( 0.0 );
+* // returns true
+*
+* bool = isPositiveZero( -0.0 );
+* // returns false
+*/
+
+/**
+* Test if a finite double-precision floating-point number is an integer.
+*
+* @module @stdlib/math/base/assert/is-integer
+*
+* @example
+* var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+*
+* var bool = isInteger( 1.0 );
+* // returns true
+*
+* bool = isInteger( 3.14 );
+* // returns false
+*/
+
+/**
+* Test if a numeric value is infinite.
+*
+* @module @stdlib/math/base/assert/is-infinite
+*
+* @example
+* var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
+*
+* var bool = isInfinite( Infinity );
+* // returns true
+*
+* bool = isInfinite( -Infinity );
+* // returns true
+*
+* bool = isInfinite( 5.0 );
+* // returns false
+*
+* bool = isInfinite( NaN );
+* // returns false
+*/
+
+/**
+* Test if a string starts with the characters of another string.
+*
+* @module @stdlib/string/starts-with
+*
+* @example
+* var startsWith = require( '@stdlib/string/starts-with' );
+*
+* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
+* var bool = startsWith( str, 'Fair' );
+* // returns true
+*
+* bool = startsWith( str, 'fair' );
+* // returns false
+*
+* bool = startsWith( str, 'foul', 8 );
+* // returns true
+*
+* bool = startsWith( str, 'filthy', -10 );
+* // returns true
+*/
+
+/**
+* Test if a value is `NaN`.
+*
+* @module @stdlib/assert/is-nan
+*
+* @example
+* var isnan = require( '@stdlib/assert/is-nan' );
+*
+* var bool = isnan( NaN );
+* // returns true
+*
+* bool = isnan( new Number( NaN ) );
+* // returns true
+*
+* bool = isnan( 3.14 );
+* // returns false
+*
+* bool = isnan( null );
+* // returns false
+*
+* @example
+* var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
+*
+* var bool = isnan( NaN );
+* // returns true
+*
+* bool = isnan( 3.14 );
+* // returns false
+*
+* bool = isnan( new Number( NaN ) );
+* // returns false
+*
+* @example
+* var isnan = require( '@stdlib/assert/is-nan' ).isObject;
+*
+* var bool = isnan( NaN );
+* // returns false
+*
+* bool = isnan( new Number( NaN ) );
+* // returns true
+*/
+
+/**
+* Test if a value is a Buffer instance.
+*
+* @module @stdlib/assert/is-buffer
+*
+* @example
+* var isBuffer = require( '@stdlib/assert/is-buffer' );
+*
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* v = isBuffer( {} );
+* // returns false
+*/
+
+/**
+* Test if a value is a Float32Array.
+*
+* @module @stdlib/assert/is-float32array
+*
+* @example
+* var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+*
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* bool = isFloat32Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a Uint8ClampedArray.
+*
+* @module @stdlib/assert/is-uint8clampedarray
+*
+* @example
+* var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+*
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is a boolean.
+*
+* @module @stdlib/assert/is-boolean
+*
+* @example
+* var isBoolean = require( '@stdlib/assert/is-boolean' );
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* // Use interface to check for boolean primitives...
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( true ) );
+* // returns false
+*
+* @example
+* // Use interface to check for boolean objects...
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
+*
+* var bool = isBoolean( true );
+* // returns false
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+
+/**
+* Test if a value is a collection.
+*
+* @module @stdlib/assert/is-collection
+*
+* @example
+* var isCollection = require( '@stdlib/assert/is-collection' );
+*
+* var bool = isCollection( [] );
+* // returns true
+*
+* bool = isCollection( {} );
+* // returns false
+*/
+
+/**
+* Test if a value is a function.
+*
+* @module @stdlib/assert/is-function
+*
+* @example
+* var isFunction = require( '@stdlib/assert/is-function' );
+*
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+
+/**
+* Test if a value is a nonnegative integer.
+*
+* @module @stdlib/assert/is-nonnegative-integer
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' );
+*
+* var bool = isNonNegativeInteger( 5.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( new Number( 5.0 ) );
+* // returns true
+*
+* bool = isNonNegativeInteger( -5.0 );
+* // returns false
+*
+* bool = isNonNegativeInteger( 3.14 );
+* // returns false
+*
+* bool = isNonNegativeInteger( null );
+* // returns false
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+*
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns false
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isObject;
+*
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns false
+*
+* bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Test if a value is a number.
+*
+* @module @stdlib/assert/is-number
+*
+* @example
+* var isNumber = require( '@stdlib/assert/is-number' );
+*
+* var bool = isNumber( 3.14 );
+* // returns true
+*
+* bool = isNumber( new Number( 3.14 ) );
+* // returns true
+*
+* bool = isNumber( NaN );
+* // returns true
+*
+* bool = isNumber( null );
+* // returns false
+*
+* @example
+* var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+*
+* var bool = isNumber( 3.14 );
+* // returns true
+*
+* bool = isNumber( NaN );
+* // returns true
+*
+* bool = isNumber( new Number( 3.14 ) );
+* // returns false
+*
+* @example
+* var isNumber = require( '@stdlib/assert/is-number' ).isObject;
+*
+* var bool = isNumber( 3.14 );
+* // returns false
+*
+* bool = isNumber( new Number( 3.14 ) );
+* // returns true
+*/
+
+/**
+* Test if a value is a plain object.
+*
+* @module @stdlib/assert/is-plain-object
+*
+* @example
+* var isPlainObject = require( '@stdlib/assert/is-plain-object' );
+*
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* bool = isPlainObject( null );
+* // returns false
+*/
+
+/**
+* Test if a value is a positive integer.
+*
+* @module @stdlib/assert/is-positive-integer
+*
+* @example
+* var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' );
+*
+* var bool = isPositiveInteger( 5.0 );
+* // returns true
+*
+* bool = isPositiveInteger( new Number( 5.0 ) );
+* // returns true
+*
+* bool = isPositiveInteger( -5.0 );
+* // returns false
+*
+* bool = isPositiveInteger( 3.14 );
+* // returns false
+*
+* bool = isPositiveInteger( null );
+* // returns false
+*
+* @example
+* var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
+*
+* var bool = isPositiveInteger( 3.0 );
+* // returns true
+*
+* bool = isPositiveInteger( new Number( 3.0 ) );
+* // returns false
+*
+* @example
+* var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isObject;
+*
+* var bool = isPositiveInteger( 3.0 );
+* // returns false
+*
+* bool = isPositiveInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Test if a value is a regular expression string.
+*
+* @module @stdlib/assert/is-regexp-string
+*
+* @example
+* var isRegExpString = require( '@stdlib/assert/is-regexp-string' );
+*
+* var bool = isRegExpString( '/beep/' );
+* // returns true
+*
+* bool = isRegExpString( 'beep' );
+* // returns false
+*
+* bool = isRegExpString( '' );
+* // returns false
+*
+* bool = isRegExpString( null );
+* // returns false
+*/
+
+/**
+* Test if a value is a string.
+*
+* @module @stdlib/assert/is-string
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' );
+*
+* var bool = isString( 'beep' );
+* // returns true
+*
+* bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* bool = isString( 5 );
+* // returns false
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' ).isObject;
+*
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* bool = isString( 'beep' );
+* // returns false
+*
+* @example
+* var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+*
+* var bool = isString( 'beep' );
+* // returns true
+*
+* bool = isString( new String( 'beep' ) );
+* // returns false
+*/
+
+/**
+* Test if a value is a typed array.
+*
+* @module @stdlib/assert/is-typed-array
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+* var isTypedArray = require( '@stdlib/assert/is-typed-array' );
+*
+* var bool = isTypedArray( new Int8Array( 10 ) );
+* // returns true
+*/
+
+/**
+* Test if a value is an Int16Array.
+*
+* @module @stdlib/assert/is-int16array
+*
+* @example
+* var isInt16Array = require( '@stdlib/assert/is-int16array' );
+*
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* bool = isInt16Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is an Int32Array.
+*
+* @module @stdlib/assert/is-int32array
+*
+* @example
+* var isInt32Array = require( '@stdlib/assert/is-int32array' );
+*
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* bool = isInt32Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is an Int8Array.
+*
+* @module @stdlib/assert/is-int8array
+*
+* @example
+* var isInt8Array = require( '@stdlib/assert/is-int8array' );
+*
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* bool = isInt8Array( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is an `Error` object.
+*
+* @module @stdlib/assert/is-error
+*
+* @example
+* var isError = require( '@stdlib/assert/is-error' );
+*
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* bool = isError( {} );
+* // returns false
+*/
+
+/**
+* Test if a value is an `arguments` object.
+*
+* @module @stdlib/assert/is-arguments
+*
+* @example
+* var isArguments = require( '@stdlib/assert/is-arguments' );
+*
+* function foo() {
+*     return arguments;
+* }
+*
+* var bool = isArguments( foo() );
+* // returns true
+*
+* bool = isArguments( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is an array of probabilities that sum to one.
+*
+* @module @stdlib/assert/is-unity-probability-array
+*
+* @example
+* var isUnityProbabilityArray = require( '@stdlib/assert/is-unity-probability-array' );
+*
+* var bool = isUnityProbabilityArray( [ 0.25, 0.5, 0.25 ] );
+* // returns true
+*
+* bool = isUnityProbabilityArray( new Uint8Array( [ 0, 1 ] ) );
+* // returns true
+*
+* bool = isUnityProbabilityArray( [ 0.4, 0.4, 0.4 ] );
+* // returns false
+*
+* bool = isUnityProbabilityArray( [ 3.14, 0.0 ] );
+* // returns false
+*/
+
+/**
+* Test if a value is an array.
+*
+* @module @stdlib/assert/is-array
+*
+* @example
+* var isArray = require( '@stdlib/assert/is-array' );
+*
+* var bool = isArray( [] );
+* // returns true
+*
+* bool = isArray( {} );
+* // returns false
+*/
+
+/**
+* Test if a value is an empty array.
+*
+* @module @stdlib/assert/is-empty-array
+*
+* @example
+* var isEmptyArray = require( '@stdlib/assert/is-empty-array' );
+*
+* var bool = isEmptyArray( [] );
+* // returns true
+*
+* bool = isEmptyArray( [ 1, 2, 3 ] );
+* // returns false
+*
+* bool = isEmptyArray( {} );
+* // returns false
+*/
+
+/**
+* Test if a value is an empty object.
+*
+* @module @stdlib/assert/is-empty-object
+*
+* @example
+* var isEmptyObject = require( '@stdlib/assert/is-empty-object' );
+*
+* var bool = isEmptyObject( {} );
+* // returns true
+*
+* bool = isEmptyObject( { 'beep': 'boop' } );
+* // returns false
+*
+* bool = isEmptyObject( [] );
+* // returns false
+*/
+
+/**
+* Test if a value is an integer.
+*
+* @module @stdlib/assert/is-integer
+*
+* @example
+* var isInteger = require( '@stdlib/assert/is-integer' );
+*
+* var bool = isInteger( 5.0 );
+* // returns true
+*
+* bool = isInteger( new Number( 5.0 ) );
+* // returns true
+*
+* bool = isInteger( -3.14 );
+* // returns false
+*
+* bool = isInteger( null );
+* // returns false
+*
+* @example
+* // Use interface to check for integer primitives...
+* var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+*
+* var bool = isInteger( -3.0 );
+* // returns true
+*
+* bool = isInteger( new Number( -3.0 ) );
+* // returns false
+*
+* @example
+* // Use interface to check for integer objects...
+* var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
+*
+* var bool = isInteger( 3.0 );
+* // returns false
+*
+* bool = isInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Test if a value is an object.
+*
+* @module @stdlib/assert/is-object
+*
+* @example
+* var isObject = require( '@stdlib/assert/is-object' );
+*
+* var bool = isObject( {} );
+* // returns true
+*
+* bool = isObject( true );
+* // returns false
+*/
+
+/**
+* Test if a value is array-like.
+*
+* @module @stdlib/assert/is-array-like
+*
+* @example
+* var isArrayLike = require( '@stdlib/assert/is-array-like' );
+*
+* var bool = isArrayLike( [] );
+* // returns true
+*
+* bool = isArrayLike( { 'length': 10 } );
+* // returns true
+*
+* bool = isArrayLike( 'beep' );
+* // returns true
+*/
+
+/**
+* Test if a value is object-like.
+*
+* @module @stdlib/assert/is-object-like
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' );
+*
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* bool = isObjectLike( [] );
+* // returns true
+*
+* bool = isObjectLike( null );
+* // returns false
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' ).isObjectLikeArray;
+*
+* var bool = isObjectLike( [ {}, [] ] );
+* // returns true
+*
+* bool = isObjectLike( [ {}, '3.0' ] );
+* // returns false
+*/
+
+/**
+* Test if an array-like value contains another value.
+*
+* @module @stdlib/assert/contains
+*
+* @example
+* var contains = require( '@stdlib/assert/contains' );
+*
+* var bool = contains( 'Hello World', 'World' );
+* // returns true
+*
+* bool = contains( 'Hello World', 'world' );
+* // returns false
+*
+* bool = contains( [ 1, 2, 3, 4 ], 2 );
+* // returns true
+*
+* bool = contains( [ NaN, 2, 3, 4 ], NaN );
+* // returns true
+*/
+
+/**
+* Test whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @module @stdlib/assert/instance-of
+*
+* @example
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+*
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* bool = instanceOf( 'beep', String );
+* // returns false
+*
+* bool = instanceOf( null, Object );
+* // returns false
+*
+* bool = instanceOf( 5, Object );
+* // returns false
+*/
+
+/**
+* Test whether an object has a specified property, either own or inherited.
+*
+* @module @stdlib/assert/has-property
+*
+* @example
+* var hasProp = require( '@stdlib/assert/has-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasProp( beep, 'boop' );
+* // returns true
+*
+* bool = hasProp( beep, 'bop' );
+* // returns false
+*/
+
+/**
+* Test whether an object has a specified property.
+*
+* @module @stdlib/assert/has-own-property
+*
+* @example
+* var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* bool = hasOwnProp( beep, 'bop' );
+* // returns false
+*/
+
+/**
+* Test whether an object's own property is enumerable.
+*
+* @module @stdlib/assert/is-enumerable-property
+*
+* @example
+* var isEnumerableProperty = require( '@stdlib/assert/is-enumerable-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = isEnumerableProperty( beep, 'boop' );
+* // returns true
+*
+* bool = isEnumerableProperty( beep, 'hasOwnProperty' );
+* // returns false
+*/
+
+/**
+* Tests for `Object.defineProperty` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Object.defineProperty` support
+*
+* @example
+* var bool = hasDefinePropertySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Buffer` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Buffer` support
+*
+* @example
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Float32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float32Array` support
+*
+* @example
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Float64Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
+*
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Int16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int16Array` support
+*
+* @example
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Int32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int32Array` support
+*
+* @example
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Int8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int8Array` support
+*
+* @example
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Symbol` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Symbol` support
+*
+* @example
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `Uint8ClampedArray` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8ClampedArray` support
+*
+* @example
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native `toStringTag` support.
+*
+* @returns {boolean} boolean indicating if an environment has `toStringTag` support
+*
+* @example
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests for native function `name` support.
+*
+* @returns {boolean} boolean indicating if an environment has function `name` support
+*
+* @example
+* var bool = hasFunctionNameSupport();
+* // returns <boolean>
+*/
+
+/**
+* Tests if a double-precision floating-point numeric value is `NaN`.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 7.0 );
+* // returns false
+*/
+
+/**
+* Tests if a double-precision floating-point numeric value is negative zero.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is negative zero
+*
+* @example
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* @example
+* var bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* Tests if a double-precision floating-point numeric value is positive zero.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is positive zero
+*
+* @example
+* var bool = isPositiveZero( 0.0 );
+* // returns true
+*
+* @example
+* var bool = isPositiveZero( -0.0 );
+* // returns false
+*/
+
+/**
+* Tests if a finite double-precision floating-point number is an integer.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is an integer
+*
+* @example
+* var bool = isInteger( 1.0 );
+* // returns true
+*
+* @example
+* var bool = isInteger( 3.14 );
+* // returns false
+*/
+
+/**
+* Tests if a number primitive is an integer value.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a number primitive is an integer value
+*/
+
+/**
+* Tests if a numeric value is infinite.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is infinite
+*
+* @example
+* var bool = isInfinite( Infinity );
+* // returns true
+*
+* @example
+* var bool = isInfinite( -Infinity );
+* // returns true
+*
+* @example
+* var bool = isInfinite( 5.0 );
+* // returns false
+*
+* @example
+* var bool = isInfinite( NaN );
+* // returns false
+*/
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} [position=0] - position at which to start searching
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument must be a string primitive
+* @throws {TypeError} third argument must be an integer
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember' );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember' );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be' );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be' );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+
+/**
+* Tests if a value is `NaN`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( new Number( NaN ) );
+* // returns true
+*
+* @example
+* var bool = isnan( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isnan( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Buffer instance.
+*
+* @param {*} value - value to validate
+* @returns {boolean} boolean indicating if a value is a Buffer instance
+*
+* @example
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( new Buffer( [1,2,3,4] ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( {} );
+* // returns false
+*
+* @example
+* var v = isBuffer( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Float32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float32Array
+*
+* @example
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat32Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a Uint8ClampedArray.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8ClampedArray
+*
+* @example
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is a `NaN` number primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `NaN` number primitive
+*
+* @example
+* var bool = isnan( NaN );
+* // returns true
+*
+* @example
+* var bool = isnan( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isnan( new Number( NaN ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a boolean object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean object
+*
+* @example
+* var bool = isBoolean( true );
+* // returns false
+*
+* @example
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a boolean primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean primitive
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( true ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a boolean.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a boolean
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( true ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a collection.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is a collection
+*
+* @example
+* var bool = isCollection( [] );
+* // returns true
+*
+* @example
+* var bool = isCollection( {} );
+* // returns false
+*/
+
+/**
+* Tests if a value is a function.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a function
+*
+* @example
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+
+/**
+* Tests if a value is a nonnegative integer.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a nonnegative integer
+*
+* @example
+* var bool = isNonNegativeInteger( 5.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 5.0 ) );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( -5.0 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a number object having a nonnegative integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having a nonnegative integer value
+*
+* @example
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns false
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number object having a positive integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having a positive integer value
+*
+* @example
+* var bool = isPositiveInteger( 3.0 );
+* // returns false
+*
+* @example
+* var bool = isPositiveInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number object having a value of `NaN`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having a value of `NaN`
+*
+* @example
+* var bool = isnan( NaN );
+* // returns false
+*
+* @example
+* var bool = isnan( new Number( NaN ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number object having an integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having an integer value
+*
+* @example
+* var bool = isInteger( 3.0 );
+* // returns false
+*
+* @example
+* var bool = isInteger( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object
+*
+* @example
+* var bool = isNumber( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isNumber( new Number( 3.14 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number primitive having a nonnegative integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive having a nonnegative integer value
+*
+* @example
+* var bool = isNonNegativeInteger( 3.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( new Number( 3.0 ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a number primitive having a positive integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive having a positive integer value
+*
+* @example
+* var bool = isPositiveInteger( 3.0 );
+* // returns true
+*
+* @example
+* var bool = isPositiveInteger( new Number( 3.0 ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a number primitive having an integer value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive having an integer value
+*
+* @example
+* var bool = isInteger( -3.0 );
+* // returns true
+*
+* @example
+* var bool = isInteger( new Number( -3.0 ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a number primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive
+*
+* @example
+* var bool = isNumber( 3.14 );
+* // returns true
+*
+* @example
+* var bool = isNumber( NaN );
+* // returns true
+*
+* @example
+* var bool = isNumber( new Number( 3.14 ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a number.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a number
+*
+* @example
+* var bool = isNumber( 3.14 );
+* // returns true
+*
+* @example
+* var bool = isNumber( new Number( 3.14 ) );
+* // returns true
+*
+* @example
+* var bool = isNumber( NaN );
+* // returns true
+*
+* @example
+* var bool = isNumber( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a plain object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a plain object
+*
+* @example
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* @example
+* var bool = isPlainObject( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a positive integer.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a positive integer
+*
+* @example
+* var bool = isPositiveInteger( 5.0 );
+* // returns true
+*
+* @example
+* var bool = isPositiveInteger( new Number( 5.0 ) );
+* // returns true
+*
+* @example
+* var bool = isPositiveInteger( 0.0 );
+* // returns false
+*
+* @example
+* var bool = isPositiveInteger( -5.0 );
+* // returns false
+*
+* @example
+* var bool = isPositiveInteger( 3.14 );
+* // returns false
+*
+* @example
+* var bool = isPositiveInteger( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a regular expression string.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is a regular expression string
+*
+* @example
+* var bool = isRegExpString( '/beep/' );
+* // returns true
+*
+* @example
+* var bool = isRegExpString( '/beep/gim' );
+* // returns true
+*
+* @example
+* var bool = isRegExpString( 'beep' );
+* // returns false
+*
+* @example
+* var bool = isRegExpString( '' );
+* // returns false
+*
+* @example
+* var bool = isRegExpString( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is a string object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a string object
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns false
+*/
+
+/**
+* Tests if a value is a string primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a string primitive
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a string.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
+*/
+
+/**
+* Tests if a value is a typed array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a typed array
+*
+* @example
+* var Int8Array = require( '@stdlib/array/int8' );
+*
+* var bool = isTypedArray( new Int8Array( 10 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is an Int16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int16Array
+*
+* @example
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt16Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an Int32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int32Array
+*
+* @example
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt32Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an Int8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int8Array
+*
+* @example
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt8Array( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an `Error` object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is an `Error` object
+*
+* @example
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isError( {} );
+* // returns false
+*/
+
+/**
+* Tests if a value is an array of probabilities that sum to one.
+*
+* @param {*} v - value to test
+* @returns {boolean} boolean indicating if a value is a probability array
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 0.25, 0.5, 0.25 ] );
+* // returns true
+*
+* @example
+* var bool = isUnityProbabilityArray( new Uint8Array( [ 0, 1 ] ) );
+* // returns true
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 0.4, 0.4, 0.4 ] );
+* // returns false
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 3.14, 0.0 ] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an array
+*
+* @example
+* var bool = isArray( [] );
+* // returns true
+*
+* @example
+* var bool = isArray( {} );
+* // returns false
+*/
+
+/**
+* Tests if a value is an empty array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an empty array
+*
+* @example
+* var bool = isEmptyArray( [] );
+* // returns true
+*
+* @example
+* var bool = isEmptyArray( [ 1, 2, 3 ] );
+* // returns false
+*
+* @example
+* var bool = isEmptyArray( {} );
+* // returns false
+*/
+
+/**
+* Tests if a value is an empty object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an empty object
+*
+* @example
+* var bool = isEmptyObject( {} );
+* // returns true
+*
+* @example
+* var bool = isEmptyObject( { 'beep': 'boop' } );
+* // returns false
+*
+* @example
+* var bool = isEmptyObject( [] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an integer.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an integer
+*
+* @example
+* var bool = isInteger( 5.0 );
+* // returns true
+*
+* @example
+* var bool = isInteger( new Number( 5.0 ) );
+* // returns true
+*
+* @example
+* var bool = isInteger( -3.14 );
+* // returns false
+*
+* @example
+* var bool = isInteger( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is an object; e.g., `{}`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an object
+*
+* @example
+* var bool = isObject( {} );
+* // returns true
+*
+* @example
+* var bool = isObject( null );
+* // returns false
+*/
+
+/**
+* Tests if a value is array-like.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is array-like
+*
+* @example
+* var bool = isArrayLike( [] );
+* // returns true
+*
+* @example
+* var bool = isArrayLike( {'length':10} );
+* // returns true
+*/
+
+/**
+* Tests if a value is object-like.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is object-like
+*
+* @example
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( [] );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( null );
+* // returns false
+*/
+
+/**
+* Tests if an array-like value contains a search value.
+*
+* @param {(Collection|string)} val - input value
+* @param {*} searchValue - search value
+* @param {integer} [position=0] - position at which to start searching for `searchValue`
+* @throws {TypeError} first argument must be array-like
+* @throws {Error} must provide a search value
+* @throws {TypeError} second argument must be a primitive string primitive when the first argument is a string
+* @throws {TypeError} third argument must be an integer
+* @returns {boolean} boolean indicating whether one value contains another
+*
+* @example
+* var bool = contains( 'last man standing', 'stand' );
+* // returns true
+*
+* @example
+* var bool = contains( [ 1, 2, 3, 4 ], 2 );
+* // returns true
+*
+* @example
+* var bool = contains( 'presidential election', 'president' );
+* // returns true
+*
+* @example
+* var bool = contains( [ NaN, 2, 3, 4 ], NaN );
+* // returns true
+*
+* @example
+* var bool = contains( 'javaScript', 'js' );
+* // returns false
+*
+* @example
+* var bool = contains( [ 1, 2, 3, {} ], {} );
+* // returns false
+*
+* @example
+* var bool = contains( 'Hidden Treasures', '' );
+* // returns true
+*/
+
+/**
+* Tests if an object has a specified property, either own or inherited.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object has a specified property
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasProp( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasProp( beep, 'bap' );
+* // returns false
+*/
+
+/**
+* Tests if an object has a specified property.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object has a specified property
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'bap' );
+* // returns false
+*/
+
+/**
+* Tests if an object's own property is enumerable.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object property is enumerable
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = isEnumerableProperty( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = isEnumerableProperty( beep, 'hasOwnProperty' );
+* // returns false
+*/
+
+/**
+* Tests if an object's own property is enumerable.
+*
+* @private
+* @name isEnumerableProperty
+* @type {Function}
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object property is enumerable
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = isEnumerableProperty( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = isEnumerableProperty( beep, 'hasOwnProperty' );
+* // returns false
+*/
+
+/**
+* Tests that an object only has own properties.
+*
+* @private
+* @param {Object} obj - value to test
+* @returns {boolean} boolean indicating if an object only has own properties
+*/
+
+/**
+* Tests the built-in `Object.keys()` implementation when provided `arguments`.
+*
+* @private
+* @returns {boolean} boolean indicating whether the built-in implementation returns the expected number of keys
+*/
+
+/**
+* Tests whether a value equals the prototype of its constructor.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value equals the prototype of its constructor
+*/
+
+/**
+* Tests whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @param {*} value - value to test
+* @param {Function} constructor - constructor to test against
+* @throws {TypeError} constructor must be callable
+* @returns {boolean} boolean indicating whether a value is an instance of a provided constructor
+*
+* @example
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* @example
+* var bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* @example
+* var bool = instanceOf( 'beep', String );
+* // returns false
+*
+* @example
+* var bool = instanceOf( null, Object );
+* // returns false
+*
+* @example
+* var bool = instanceOf( 5, Object );
+* // returns false
+*/
+
+/**
+* Tests whether a value is an `arguments` object.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is an `arguments` object
+*
+* @example
+* function foo() {
+*     return arguments;
+* }
+*
+* var bool = isArguments( foo() );
+* // returns true
+*
+* @example
+* var bool = isArguments( [] );
+* // returns false
+*/
+
+/**
+* Tests whether the built-in `Object.keys()` implementation supports providing `arguments` as an input value.
+*
+* ## Notes
+*
+* -   Safari 5.0 does **not** support `arguments` as an input value.
+*
+* @private
+* @returns {boolean} boolean indicating whether a built-in implementation supports `arguments`
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @module @stdlib/array/uint8c
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8c' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8ClampedArray>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int16
+*
+* @example
+* var ctor = require( '@stdlib/array/int16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int16Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int32
+*
+* @example
+* var ctor = require( '@stdlib/array/int32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int32Array>
+*/
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int8
+*
+* @example
+* var ctor = require( '@stdlib/array/int8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int8Array>
+*/
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of single-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Typed array which represents an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+
+/**
+* Updates a PRNG's internal state by generating the next `N` words.
+*
+* @private
+* @param {Uint32Array} state - state array
+* @returns {Uint32Array} state array
+*/
+
+/**
+* Validates function options.
+*
+* @private
+* @param {Object} opts - destination for validated options
+* @param {Options} options - function options
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {ProbabilityArray} [options.probs] - element probabilities
+* @param {boolean} [options.replace] - boolean indicating whether to sample with replacement
+* @param {boolean} [options.mutate] - boolean indicating whether to mutate the `pool` when sampling without replacement
+* @returns {(null|Error)} null or an error
+*
+* @example
+* var opts = {};
+* var options = {
+*     'size': 10,
+*     'replace': false,
+*     'mutate': true,
+*     'probs': [ 0.7, 0.3 ]
+* };
+* var err = validate( opts, options );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/**
+* Validates function options.
+*
+* @private
+* @param {Object} opts - destination object
+* @param {Options} options - function options
+* @param {*} [options.thisArg] - execution context
+* @returns {(Error|null)} null or an error object
+*
+* @example
+* var opts = {};
+* var options = {
+*     'thisArg': {}
+* };
+* var err = validate( opts, options );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/**
+* Validates function options.
+*
+* @private
+* @param {Object} opts - destination object
+* @param {Options} options - options to validate
+* @param {number} [options.level] - merge level
+* @param {boolean} [options.copy] - boolean indicating whether to deep copy merged values
+* @param {(boolean|Function)} [options.override] - defines the merge strategy
+* @param {boolean} [options.extend] - boolean indicating whether new properties can be added to the target object
+* @returns {(Error|null)} error object or null
+*/
+
+/**
+* Verifies state array integrity.
+*
+* @private
+* @param {Uint32Array} state - state array
+* @param {boolean} FLG - flag indicating whether the state array was provided as an option (true) or an argument (false)
+* @returns {(Error|null)} an error or `null`
+*/
+
+/**
+* Wraps the test for constructor prototype equality to accommodate buggy environments (e.g., environments which throw when testing equality).
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value equals the prototype of its constructor
+*/
+
+/** Used as references for various `Number` constants. */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+
+/************************************************************************/
+
+/******/
+
+/***/
+
+/*.*/
+
+/*/*/
+
+//
+
+//    buffer.fill(buffer[, offset[, end]])
+
+//    buffer.fill(number[, offset[, end]])
+
+//    buffer.fill(string[, offset[, end]][, encoding])
+
+// "Software"), to deal in the Software without restriction, including
+
+// 'abxxcd' will be treated as 'ab')
+
+// (so also no leading and trailing slashes - it does not distinguish
+
+// (the user may have provided their own)
+
+// - buffer - a Buffer to search
+
+// - byteOffset - an index into `buffer`; will be clamped to an int32
+
+// - dir - true for indexOf, false for lastIndexOf
+
+// - encoding - an optional encoding, relevant is val is a string
+
+// - val - a string, Buffer, or number
+
+// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+
+// 1 (version) + 1 (num_sections) + 1 (state_length) + N (state) + 1 (other_length) + 1 (state_index) + 1 (seed_length)
+
+// 2 leads in a row
+
+// ================
+
+// Account for environments which do not treat string character indices as "own" properties...
+
+// Account for environments which treat `arguments` differently...
+
+// Actions for the current user:
+
+// Actions received from other users via socket communication:
+
+// Address `typeof null` => `object` (see http://wiki.ecmascript.org/doku.php?id=harmony:typeof_null):
+
+// Address in local storage for user information:
+
+// Address where ISLE server is running:
+
+// All elements equally likely...
+
+// Any enumerable properties...
+
+// Anything else let's inspect with %O
+
+// Apply any `formatters` transformations
+
+// Apply env-specific formatting (colors, etc.)
+
+// Are we oob?
+
+// Arguments:
+
+// Array of available cohorts (only filled for owners):
+
+// Array of subscribed components listening for session updates:
+
+// Arrays and plain objects...
+
+// Arrays of open text and video chats:
+
+// Assign unique ID to anonymous user:
+
+// Assigned user group:
+
+// At this point the path should be resolved to a full absolute path, but
+
+// Attach received action ID:
+
+// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
+
+// Authenticate requests:
+
+// Available user groups:
+
+// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+
+// Boolean indicating whether the server is responding:
+
+// Boolean indicating whether user is logged in or not:
+
+// Boolean whether lesson is finished:
+
+// Buffer instances.
+
+// Buffer#write(string)
+
+// Can we add new properties to the target?
+
+// Cannot have own `constructor` property:
+
+// Capture the regular expression pattern and any flags:
+
+// Case: Node.js
+
+// Case: Oneself has logged off on another browser tab
+
+// Case: browsers
+
+// Case: browsers and web workers
+
+// Case: unknown
+
+// Check for `Error` objects from the same realm (same Node.js `vm` or same `Window` object)...
+
+// Check for `NaN`...
+
+// Check for the abstract class...
+
+// Check for typed array objects from the same realm (same Node.js `vm` or same `Window` object)...
+
+// Check if module is in cache
+
+// Check if we can reuse allocated memory...
+
+// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
+
+// Circular reference...
+
+// Class instances...
+
+// Cloning requires ES5 or higher...
+
+// Code point from a supplementary plane. Split into two 16-bit code units (surrogate pair).
+
+// Coerce to Number.
+
+// Cohort of logged-in user:
+
+// Common case.
+
+// Connect via WebSockets to other users as an anonymous user...
+
+// Connect via WebSockets to other users...
+
+// Copy 0 bytes; we're done
+
+// Copy the provided seed array to prevent external mutation, as mutation would lead to an inability to reproduce PRNG values according to the PRNG's stated seed:
+
+// Copyright Joyent, Inc. and other Node contributors.
+
+// Create a new error...
+
+// Create a new module (and put it into the cache)
+
+// Create a new regular expression:
+
+// Create a new seed "view":
+
+// Create a new state "view":
+
+// Create a seed "view":
+
+// Create a state "view":
+
+// Create instance of indexedDB database:
+
+// Custom probabilities...
+
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+
+// Decode in chunks to avoid "call stack size exceeded".
+
+// Decrement the level:
+
+// Define a mask for the least significant 16 bits (low word): 65535 => 0x0000ffff => 00000000000000001111111111111111
+
+// Delete property as existing getters/setters prevent assigning value to specified property:
+
+// Determine if we were provided a custom override strategy:
+
+// Determine whether we need to update the PRNG state:
+
+// Disabled?
+
+// Double check webkit in userAgent just in case we are in a worker
+
+// EXPORTS //
+
+// Either this is the first call, activity has stopped and we're at the
+
+// Empty buffer means no match
+
+// Empty function...
+
+// Ensure a non-zero initial state array:
+
+// Ensure abstract typed array class has expected name:
+
+// Env-specific initialization logic for debug instances
+
+// Execute the module function
+
+// Extract namespace and lesson name from URL:
+
+// FUNCTIONS //
+
+// Fall through...
+
+// Fallback: Return an object instance of the Buffer class
+
+// Fatal error conditions
+
+// Finally, search either indexOf (if dir is true) or lastIndexOf
+
+// Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
+
+// Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
+
+// Flag the module as loaded
+
+// Force coersion to uint32. This will also coerce falsey/NaN values to 0.
+
+// Gecko, Trident, Chrome 34+
+
+// Gecko, WebKit, Chrome <34
+
+// Generate an integer index on the interval: [0,i]
+
+// Get the next word of "raw"/untempered state:
+
+// HELPER FUNCTIONS
+
+// Handle invocations in a tight loop.
+
+// Handle string cases:
+
+// IDs in the database:
+
+// If a `stack` property is present, copy it over...
+
+// If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+
+// If first action, create session on server:
+
+// If obj.hasOwnProperty has been overridden, then calling
+
+// If provided a PRNG state, we ignore the `seed` option...
+
+// If provided an `Object`, return an equivalent primitive!
+
+// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
+
+// If this is our first dot, mark it as the start of our extension
+
+// If user object is available in local storage, login to server:
+
+// If we encounter an escaped % then don't increase the array index
+
+// If we have a remainder, run a clean-up loop...
+
+// If we reached a path separator that was not part of a set of path
+
+// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+
+// Initialize progress after a response visualizer hasn't registered for at least three seconds:
+
+// Initialize sections:
+
+// Initialize the internal PRNG state:
+
+// Initialize the remaining state array elements:
+
+// Instructor-student communication regarding grades:
+
+// Internet Explorer and Edge do not support colors.
+
+// Invalid ranges are not set to a default, so can range check early.
+
+// Invoke the leading edge.
+
+// Is firebug? http://stackoverflow.com/a/398120/376773
+
+// Is firefox >= v31?
+
+// Is webkit? http://stackoverflow.com/a/16459606/376773
+
+// Isolate the least significant 16-bits:
+
+// Keep track of whether an owner is present in the session:
+
+// Lesson grades for students:
+
+// Lesson metadata:
+
+// List of currently logged-in users:
+
+// Load entry module and return exports
+
+// Log action for loading lesson:
+
+// Log session data to database in regular interval:
+
+// Loop through the source keys and implement the merge strategy...
+
+// MAIN //
+
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+
+// MODULES //
+
+// MSB (most significant bit) is 1
+
+// NB: In an Electron preload script, document will be defined but not fully
+
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+
+// NOTE: possibility of perf boost if key enumeration order is known (see http://stackoverflow.com/questions/18531624/isplainobject-thing).
+
+// NOTES //
+
+// New property to be added to target object. Should we deep copy the source value?
+
+// No need to verify that "this.length <= MAX_UINT32" since it's a read-only
+
+// No-op...
+
+// Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+
+// Node converts strings with length < 2 to ''
+
+// Node strips out invalid characters like \n and \t from the string, base64-js does not
+
+// Node's code seems to be doing this and not & 0x7F..
+
+// Node.js specific (system errors)...
+
+// Normalize byteOffset
+
+// Normalize byteOffset: negative offsets start from the end of the buffer
+
+// Normalize the path
+
+// Normalize val
+
+// Note: cannot use `length < kMaxLength()` here because that fails when
+
+// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
+
+// Note: property order matters in order to maintain consistency of PRNG "shape" (hidden classes).
+
+// Note: we only check for indices, as properties attached to a `String` object are properly detected as enumerable above.
+
+// Note: we skip the first element, as no further swaps are possible given that all other indices are excluded from swapping...
+
+// Note: yes, we are precluding the `arguments` array-like object from having other enumerable properties; however, this should (1) be very rare and (2) not be encouraged (e.g., doing something like `arguments.a = 'b'`; in certain engines directly manipulating the `arguments` value results in automatic de-optimization).
+
+// Now we need to remove `args[index]` since it's inlined in the `format`
+
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+
+// OR the last index of `val` in `buffer` at offset <= `byteOffset`.
+
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+
+// Object.prototype.hasOwnProperty.call
+
+// Objects with no prototype (e.g., `Object.create( null )`) are plain...
+
+// Objects...
+
+// Only invoke if we have `lastArgs` which means `func` has been
+
+// Override `__proto__` to avoid touching inherited accessors:
+
+// Override server property with value from preamble:
+
+// Permission is hereby granted, free of charge, to any person obtaining a
+
+// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
+
+// Ping server to check status:
+
+// Plain array or object...
+
+// Presentation mode for the owners (hiding owner elements)
+
+// Primitive, Buffer, special class instance...
+
+// Primitives and functions...
+
+// Prototype `constructor` property must be a function (see also https://bugs.jquery.com/ticket/9897 and http://stackoverflow.com/questions/18531624/isplainobject-thing):
+
+// Push to respective array of currentUserActions hash table:
+
+// Queue questions:
+
+// Received a new action, check whether we need to increment progress...
+
+// Register speech interface:
+
+// Registered response visualizers:
+
+// Remove the sample observations:
+
+// Remove user after three minutes:
+
+// Reset any `maxWait` timer.
+
+// Restart the timer.
+
+// Restore original prototype:
+
+// Retrieve Jitsi token for video chat:
+
+// Retrieve the current state index:
+
+// Return an augmented `Uint8Array` instance, for best performance
+
+// Return early if start > this.length. Done here to prevent potential uint32
+
+// Return the exports of the module
+
+// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
+
+// Save user token to local storage:
+
+// Screen for obvious non-objects...
+
+// Search for a byte value [0-255]
+
+// Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
+
+// See: https://en.wikipedia.org/wiki/Base64#URL_applications
+
+// See: https://github.com/beatgammit/base64-js/issues/42
+
+// See: https://github.com/joyent/node/issues/1707
+
+// Send data to self for components to update properly:
+
+// Send message to subscribed components:
+
+// Send only to socket connections and do not save to database:
+
+// Set `diff` timestamp
+
+// Set the first element of the state array to the provided seed:
+
+// Set whether the session tries to communicate with the server
+
+// Should we apply a custom merge (override) strategy?
+
+// Should we recurse to perform a deep(er) merge? (only if both the current value and the proposed value are objects and the level is > 0)
+
+// Simple cases...
+
+// Skip empty and invalid entries
+
+// Some versions of I.E. have different rules for clearTimeout vs setTimeout
+
+// Special case: looking for empty string/buffer always fails
+
+// Special cases for handling +-0.0...
+
+// Start the timer for the trailing edge.
+
+// State variables of the given lesson:
+
+// String for distinguishing multiple browser windows from each other:
+
+// String.prototype.substr - negative index don't work in IE8
+
+// Support decoding URL-safe base64 strings, as Node.js does.
+
+// Swallow
+
+// Swap elements:
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+
+// TODO: Legacy, not needed anymore. Remove in next major version.
+
+// TODO: add support for generator functions?
+
+// TODO: implementation (?)
+
+// TODO: replace with `isCallable` check
+
+// TODO: write (browser) polyfill
+
+// TODO: write polyfill
+
+// TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
+
+// Tempering transform to compensate for the reduced dimensionality of equidistribution:
+
+// Test basic support...
+
+// Test for object-specific method:
+
+// Test if the prototype matches the global `Object` prototype (same realm):
+
+// Test that all properties are own properties (cross-realm; *most* likely a plain object):
+
+// The (right-most) trimmed path component is exactly '..'
+
+// The Browser also has localStorage in the global context.
+
+// The above copyright notice and this permission notice shall be included
+
+// The final "%c" is somewhat tricky, because there could be other
+
+// The final `>>>0` converts the intermediate sum to an unsigned integer (possible integer overflow during sum):
+
+// The first element of the state array must equal the supported state array schema version...
+
+// The length of the "other" section must equal `1`...
+
+// The length of the "seed" section much match the empirical length...
+
+// The length of the "state" section must equal `N`...
+
+// The module cache
+
+// The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
+
+// The require function
+
+// The second element of the state array must contain the number of sections...
+
+// The state array must have a minimum length...
+
+// This behaves neither like String nor Uint8Array in that we set start/end
+
+// This works if eval is allowed (see CSP)
+
+// This works if the window reference is available
+
+// This works in non-strict mode
+
+// Trim off extra bytes after placeholder bytes are found
+
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// Update the state index:
+
+// Usage:
+
+// Use a for loop to avoid recursion
+
+// Use unrolled loops if both strides are equal to `1`...
+
+// User object:
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+
+// VARIABLES //
+
+// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
+
+// WARNING: the following check does NOT prevent shared (leaky) nested references. We only check for top-level reference equality. We will assume that the user knows best, given their having provided a custom override strategy.
+
+// WARNING: this is a porous check. Buffers, Numbers, Booleans, Strings, Dates, RegExp, custom class instances,... will all pass.
+
+// Walk the prototype tree until we find an object having a desired class...
+
+// Walk the prototype tree until we find an object having a desired native class...
+
+// Walk the prototype tree until we find an object having the desired native class...
+
+// Warning: maxLength not taken into account in base64Write
+
+// We go 1 magnitude less, for safety
+
+// We only are interested in the *last* %c
+
+// We return undefined, instead of nothing here, so it's
+
+// We saw a non-dot and non-path separator before our dot, so we should
+
+// We saw a non-dot character immediately before the dot
+
+// We saw the first non-path separator
+
+// We saw the first non-path separator, mark this as the end of our
+
+// When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+
+// When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+
+// Whether voice control is active or not:
+
+// Writing a hex string, for example, that contains invalid characters will
+
+// XXX (@Qix-) should we be logging these?
+
+// XXX Temporary. Will be removed in the next major release.
+
+// YAML configuration object:
+
+// [1] Retrieve lesson information:
+
+// __webpack_public_path__
+
+// arguments passed either before or after the %c, so we need to
+
+// ascending copy from start
+
+// asm type annotation
+
+// asm type annotation; possible integer overflow
+
+// assume utf8
+
+// avoid extra slice()
+
+// backported and transplited with Babel, with backwards-compat fixes
+
+// base64 is 4/3 + up to two characters of the original data
+
+// byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
+
+// cached from whatever global is present so that test runners that stub it
+
+// cause everything after the first invalid character to be ignored. (e.g.
+
+// chrome 9-10 lack `subarray`
+
+// clamped
+
+// coercion fail below.
+
+// copy of this software and associated documentation files (the
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+
+// create a fake namespace object
+
+// debounced at least once.
+
+// define __esModule on exports
+
+// define getter function for harmony exports
+
+// descending copy from end
+
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+
+// document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+
+// don't break things.  But we need to wrap it in a try catch in case it is
+
+// easier to handle this case. if(!global) { ...}
+
+// empty string to avoid regexp issues
+
+// encode to utf16 (surrogate pair dance)
+
+// encode utf8
+
+// equivalent to `s & 0xffffffffUL` in original C implementation
+
+// eslint-disable-line eqeqeq
+
+// eslint-disable-line guard-for-in
+
+// eslint-disable-line id-length
+
+// eslint-disable-line max-len
+
+// eslint-disable-line no-buffer-constructor
+
+// eslint-disable-line no-empty-function
+
+// eslint-disable-line no-new-func
+
+// eslint-disable-line no-unused-vars
+
+// eslint-disable-line no-useless-escape
+
+// eslint-disable-line stdlib/no-builtin-math
+
+// eslint-disable-line stdlib/no-redeclare
+
+// eslint-disable-line stdlib/require-globals
+
+// eslint-disable-next-line complexity
+
+// eslint-disable-next-line no-proto
+
+// eslint-disable-next-line no-underscore-dangle
+
+// eslint-disable-next-line stdlib/no-redeclare
+
+// explicitly
+
+// expose the module cache
+
+// expose the modules object (__webpack_modules__)
+
+// extension
+
+// figure out the correct index to insert the CSS into
+
+// following conditions:
+
+// for envs missing Object.prototype.constructor (e.g., Safari 5-7)
+
+// function because try/catches deoptimize in certain engines.
+
+// g can still be undefined, but nothing to do about it...
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// go through the array every three bytes, we'll deal with trailing stuff later
+
+// handle relative paths to be safe (might happen when process.cwd() fails)
+
+// have a good chance at having a non-empty extension
+
+// https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+
+// ie10 has broken `subarray`
+
+// if clearTimeout wasn't available but was latter defined
+
+// if setTimeout wasn't available but was latter defined
+
+// if the path is allowed to go above the root, restore leading ..s
+
+// if the path tries to go above the root, `up` ends up > 0
+
+// in all copies or substantial portions of the Software.
+
+// in new Node.js versions, so only basename() above is backported here
+
+// initialized. Since we know we're in Chrome, we'll just detect this case
+
+// is surrogate component
+
+// it as the trailing edge, or we've hit the `maxWait` limit.
+
+// last char was a lead
+
+// length is NaN (which is otherwise coerced to zero.)
+
+// maxKeys <= 0 means that we should not limit keys count
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// must be an even number of digits
+
+// must be multiple of 3
+
+// must be no slashes, empty elements, or device names (c:\) in the array
+
+// no lead yet
+
+// non-generic
+
+// not used by this implementation
+
+// obj.hasOwnProperty(prop) will break.
+
+// pad the end with zeros, but make sure to not forget the extra bytes
+
+// path component
+
+// path.normalize(path)
+
+// path.relative(from, to)
+
+// path.resolve([from ...], to)
+
+// persons to whom the Software is furnished to do so, subject to the
+
+// point to new shared state
+
+// posix version
+
+// property of a typed array.
+
+// relative and absolute paths)
+
+// replacement char (U+FFFD) and advance only 1 byte
+
+// resolves . and .. elements in a path array with directory names there
+
+// round to nearest
+
+// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+
+// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+
+// separators at the end of the string, stop now
+
+// shim for using process in browser
+
+// state index
+
+// the lowest limit is Chrome, with 0x10000 args.
+
+// this throws if `array` is not a valid ArrayBuffer
+
+// to their upper/lower bounds if the value passed is out of range.
+
+// trailing edge, the system time has gone backwards and we're treating
+
+// truncation
+
+// truncation and wrap around
+
+// typed array instances can be augmented
+
+// undefined is handled specially as per ECMA-262 6th Edition,
+
+// unexpected trail
+
+// unpaired lead
+
+// v8 likes predictible objects
+
+// valid lead
+
+// valid surrogate pair
+
+// we did not generate a valid codePoint so insert a
+
+// webpackBootstrap
+
+// when when somebody has screwed with setTimeout but no I.E. maddness
+
+// without limitation the rights to use, copy, modify, merge, publish,
+
+// wrap around
+
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+
+//normal enviroments in sane situations

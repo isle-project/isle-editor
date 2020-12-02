@@ -1,0 +1,35 @@
+/* Inspired by snippet shared by Jeremy Crane at: https://github.com/mzabriskie/react-draggable/issues/402 */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A component for making a child component draggable and optionally resizable.
+*
+* @property {boolean} disabled - whether dragging should be disabled
+* @property {boolean} resizable - whether resize handlers should be attached to the edges of the child element
+* @property {Function} onStop - event handler called when dragging is stopped
+* @property {Function} onEscape - event handler called when the escape key is pressed
+* @property {Object} style - CSS inline styles
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

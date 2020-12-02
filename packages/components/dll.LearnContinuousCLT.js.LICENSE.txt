@@ -1,0 +1,1646 @@
+/*
+* Adapted from MIT-licensed code.
+*
+* Copyright (c) 2014. Athan Reines.
+*
+* @source https://github.com/compute-io/iqr
+*/
+
+/*
+* Adapted from MIT-licensed code.
+*
+* Copyright (c) 2014. Athan Reines.
+*
+* @source https://github.com/compute-io/max
+*/
+
+/*
+* Adapted from MIT-licensed code.
+*
+* Copyright (c) 2014. Athan Reines.
+*
+* @source https://github.com/compute-io/mean
+*/
+
+/*
+* Adapted from MIT-licensed code.
+*
+* Copyright (c) 2014. Athan Reines.
+*
+* @source https://github.com/compute-io/min
+*/
+
+/*
+* Adapted from MIT-licensed code.
+*
+* Copyright (c) 2014. Athan Reines.
+*
+* @source https://github.com/compute-io/stdev
+*/
+
+/* */
+
+/* Falls through... */
+
+/* eslint-disable no-return-assign */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/*#__PURE__*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) for a Normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) for a uniform distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) of a degenerate distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated cumulative distribution function
+	*
+	* @example
+	* var y = cdf( 10.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) for a normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( -3.14 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) for a uniform distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated PDF
+	*
+	* @example
+	* var y = pdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) of a degenerate distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( 10.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Generates a normally distributed pseudorandom number.
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var r = randn();
+	* // returns <number>
+	*/
+
+/**
+	* Returns a normally distributed pseudorandom number with mean `mu` and standard deviation `sigma`.
+	*
+	* @private
+	* @param {number} mu - mean
+	* @param {PositiveNumber} sigma - standard deviation
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = normal2( 0.0, 1.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = normal2( 0.0, -1.0 );
+	* // returns NaN
+	*/
+
+/**
+	* Returns a pseudorandom number drawn from an exponential distribution with bound parameter `lambda`.
+	*
+	* @private
+	* @returns {NonNegativeNumber} pseudorandom number
+	*
+	* @example
+	* var v = exponential1();
+	* // returns <number>
+	*/
+
+/**
+	* Returns a pseudorandom number drawn from an exponential distribution with parameter `lambda`.
+	*
+	* @private
+	* @param {PositiveNumber} lambda - rate parameter
+	* @returns {NonNegativeNumber} pseudorandom number
+	*
+	* @example
+	* var v = exponential2( 4.8 );
+	* // returns <number>
+	*/
+
+/**
+	* Returns a pseudorandom number from a normal distribution with bound parameters `mu` and `sigma`.
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = normal1();
+	* // returns <number>
+	*/
+
+/**
+	* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+	*
+	* @private
+	* @param {number} a - minimum support (inclusive)
+	* @param {number} b - maximum support (exclusive)
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = uniform2( 0.0, 1.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = uniform2( 1.0, 0.0 );
+	* // returns NaN
+	*/
+
+/**
+	* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = uniform1();
+	* // returns <number>
+	*/
+
+/**
+	* Returns the PRNG seed length.
+	*
+	* @private
+	* @returns {PositiveInteger} seed length
+	*/
+
+/**
+	* Returns the PRNG seed.
+	*
+	* @private
+	* @returns {PRNGSeedMT19937} seed
+	*/
+
+/**
+	* Returns the PRNG state length.
+	*
+	* @private
+	* @returns {PositiveInteger} state length
+	*/
+
+/**
+	* Returns the PRNG state size (in bytes).
+	*
+	* @private
+	* @returns {PositiveInteger} state size (in bytes)
+	*/
+
+/**
+	* Returns the current PRNG state.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+
+/**
+	* Returns the current pseudorandom number generator state.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+
+/**
+	* Serializes the pseudorandom number generator as a JSON object.
+	*
+	* ## Notes
+	*
+	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
+	*
+	* @private
+	* @returns {Object} JSON representation
+	*/
+
+/**
+	* Sets the PRNG state.
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {Error} must provide a valid state
+	*/
+
+/**
+	* Sets the pseudorandom number generator state.
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {Error} must provide a valid state
+	*/
+
+/**
+         * If a prop switches from controlled to Uncontrolled
+         * reset its value to the defaultValue
+         */
+
+/**
+   * If a prop switches from controlled to Uncontrolled
+   * reset its value to the defaultValue
+   */
+
+/**
+   * useful when wrapping a Component and you want to control
+   * everything
+   */
+
+/**
+ * An `addEventListener` ponyfill, supports the `once` option
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ * https://github.com/facebook/react/blob/2aeb8a2a6beb00617a4217f7f8284924fa2ad819/src/vendor/core/hyphenateStyleName.js
+ */
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution.
+*
+* @property {Array<string>} distributions - statistical distributions to choose from ('uniform', 'exponential', and/or 'normal')
+* @property {boolean} hideFormulas - controls whether to hide formulas in the component text
+*/
+
+/**
+* Comparator function used to sort values in ascending order.
+*
+* @private
+* @param {number} a
+* @param {number} b
+* @returns {number} difference between `a` and `b`
+*/
+
+/**
+* Comparator function used to sort values in ascending order.
+*
+* @private
+* @param {number} a - first number
+* @param {number} b - second number
+* @returns {number} difference between `a` and `b`
+*/
+
+/**
+* Computes a quantile of the values in a numeric array.
+*
+* @param {Array} arr - input array
+* @param {number} prob - quantile prob [0,1]
+* @param {number} [method=7] - number indicating the method used to interpolate a quantile value
+* @returns {(number|null)} quantile or null
+*/
+
+/**
+* Computes the arithmetic mean of a numeric array.
+*
+* @param {Array} arr - input array
+* @returns {(number|null)} arithmetic mean or null
+*/
+
+/**
+* Computes the interquartile range for an array.
+*
+* @param {Array} arr - array of values
+* @returns {number} interquartile range
+*/
+
+/**
+* Computes the maximum value of a numeric array.
+*
+* @param {Array} arr - array of values
+* @returns {number} max value
+*/
+
+/**
+* Computes the minimum value of an array.
+*
+* @param {Array} arr - array of values
+* @returns {number} min value
+*/
+
+/**
+* Computes the sample standard deviation over an array of values.
+*
+* @param {Array} arr - array of values
+* @returns {number} sample standard deviation
+*/
+
+/**
+* Degenerate distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/degenerate/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/degenerate/cdf' );
+*
+* var y = cdf( 2.0, 5.0 );
+* // returns 0.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/cdf' ).factory;
+*
+* var cdf = factory( 5.0 );
+*
+* var y = cdf( 3.0 );
+* // returns 0.0
+*
+* y = cdf( 6.0 );
+* // returns 1.0
+*/
+
+/**
+* Degenerate distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/degenerate/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/degenerate/pdf' );
+*
+* var y = pdf( 2.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/pdf' ).factory;
+*
+* var pdf = factory( 10.0 );
+*
+* var y = pdf( 10.0 );
+* // returns Infinity
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a Normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Probability} evaluated cumulative distribution function
+*
+* @example
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* @example
+* var y = cdf( -1.0, -1.0, 2.0 );
+* // returns 0.5
+*
+* @example
+* var y = cdf( -1.0, 4.0, 2.0 );
+* // returns ~0.006
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = cdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a degenerate distribution with mean value `mu`.
+*
+* @param {number} x - input value
+* @param {number} mu - constant value of distribution
+* @returns {Probability} evaluated cumulative distribution function
+*
+* @example
+* var y = cdf( 2.0, 3.0 );
+* // returns 0.0
+*
+* @example
+* var y = cdf( 4.0, 3.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( 3.0, 3.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a uniform distribution with minimum support `a` and maximum support `b` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Probability} evaluated CDF
+*
+* @example
+* var y = cdf( 9.0, 0.0, 10.0 );
+* // returns 0.9
+*
+* @example
+* var y = cdf( 0.5, 0.0, 2.0 );
+* // returns 0.25
+*
+* @example
+* var y = cdf( +Infinity, 2.0, 4.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( -Infinity, 2.0, 4.0 );
+* // returns 0.0
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = cdf( 2.0, 1.0, 0.0 );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a degenerate distribution centered at `mu`.
+*
+* @param {number} x - input value
+* @param {number} mu - constant value of the distribution
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 3.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 3.0, 3.0 );
+* // returns Infinity
+*
+* @example
+* var y = pdf( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* @example
+* var y = pdf( -1.0, 4.0, 2.0 );
+* // returns ~0.009
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 8.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 8.0, 8.0, 0.0 );
+* // returns Infinity
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a uniform distribution with minimum support `a` and maximum support `b` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {number} evaluated PDF
+*
+* @example
+* var y = pdf( 2.0, 0.0, 4.0 );
+* // returns 0.25
+*
+* @example
+* var y = pdf( 5.0, 0.0, 4.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 0.25, 0.0, 1.0 );
+* // returns 1.0
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 3.0, 1.0 );
+* // returns NaN
+*/
+
+/**
+* Exponentially distributed pseudorandom numbers.
+*
+* @module @stdlib/random/base/exponential
+*
+* @example
+* var exponential = require( '@stdlib/random/base/exponential' );
+*
+* var v = exponential( 4.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/exponential' ).factory;
+*
+* var exponential = factory( 4.0, {
+*     'seed': 297
+* });
+*
+* var v = exponential();
+* // returns <number>
+*/
+
+/**
+* Generate a linearly spaced numeric array.
+*
+* @module @stdlib/math/utils/linspace
+*
+* @example
+* var linspace = require( '@stdlib/math/utils/linspace' );
+*
+* var arr = linspace( 0, 100, 6 );
+* // returns [ 0, 20, 40, 60, 80, 100 ]
+*/
+
+/**
+* Generates a linearly spaced numeric array.
+*
+* @param {number} x1 - first array value
+* @param {number} x2 - last array value
+* @param {NonNegativeInteger} [len=100] - length of output array
+* @throws {TypeError} first argument must be numeric
+* @throws {TypeError} second argument must be numeric
+* @throws {TypeError} third argument must be a nonnegative integer
+* @returns {Array} linearly spaced numeric array
+*
+* @example
+* var arr = linspace( 0, 100, 6 );
+* // returns [ 0, 20, 40, 60, 80, 100 ]
+*/
+
+/**
+* Generates a standard normally distributed random number.
+*
+* ## Method
+*
+* The basic Ziggurat method works as follows:
+*
+*
+*     ```tex
+*     x_{C-1}(r) \left[ f(0) - f\left( x_{C-1}(r) \right) \right] - V(r) = 0
+*     ```
+*
+*     where
+*
+*     ```tex
+*     V(r) = r \; f(r) + \int_r^\infty \; f(x) \; dx
+*     ```
+*
+*     and \\( r \\) denotes the right-most \\( x_1 \\).
+*
+* -   We then use the following rejection algorithm:
+*
+*     -   Draw a box \\( B_i \\) at random with probability \\( \tfrac{1}{C} \\).
+*     -   Draw a random number from the box as \\( z = U_0 x_i \\) for \\( i > 0 \\) and \\( z = U_0 V / f(x_1) \\).
+*     -   If \\( z < x_{i+1} \\), accept \\( z \\).
+*     -   If \\( i = 0 \\), accept a \\( v \\) by transforming the tail of the normal distribution to the unit interval and then use rejection technique by Marsaglia, G. (1964) to generate a standard normal variable. Otherwise, if \\( i > 0 \\) and \\( U_1 \left[ f(x_i) - f(x_{i+1})\right] < f(z) - f(x_{i+1}) \\) accept \\( z \\).
+*     -   Go back to the first step.
+*
+* -   The improved version by Doornik (2005) changes step four in order to correct a deficiency of the original Ziggurat algorithm. The updated version requires the generation of two random numbers, a uniform variable drawn from \\( U(-1,1) \\) and the last seven bits of a random integer.
+*
+* ## References
+*
+* -   Doornik, Jurgen A. 2005. "An Improved Ziggurat Method to Generate Normal Random Samples." <https://www.doornik.com/research/ziggurat.pdf>.
+* -   Marsaglia, George, and Wai Wan Tsang. 2000. "The Ziggurat Method for Generating Random Variables." _Journal of Statistical Software_ 5 (1): 1–7. doi:[10.18637/jss.v005.i08](http://dx.doi.org/10.18637/jss.v005.i08).
+* -   Marsaglia, George. 1964. "Generating a Variable from the Tail of the Normal Distribution." _Technometrics_ 6 (1): 101–2. doi:[10.1080/00401706.1964.10490150](http://dx.doi.org/10.1080/00401706.1964.10490150).
+*
+*
+* @name randn
+* @type {PRNG}
+* @returns {number} pseudorandom number
+*
+* @example
+* var r = randn();
+* // returns <number>
+*/
+
+/**
+* Invoke a function once for each element in a collection and update the collection in-place.
+*
+* @module @stdlib/utils/inmap
+*
+* @example
+* var inmap = require( '@stdlib/utils/inmap' );
+*
+* function scale( value, index, collection ) {
+*     return value * index;
+* }
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var out = inmap( arr, scale );
+* // returns [ 0, 2, 6, 12 ]
+*
+* var bool = ( out === arr );
+* // returns true
+*/
+
+/**
+* Invokes a function once for each element in a collection and updates the collection in-place.
+*
+* ## Notes
+*
+* -   The invoked function's return value is cached prior to updating a collection. Before updating the collection, a collection must be inspected to ensure that a collection has not been resized during invocation such that an index no longer has a corresponding element in the collection. Were a return value automatically used to update a collection, an input collection could be converted into a sparse data structure. While some might consider this a feature, here, we take stance that a user should be less clever.
+*
+*
+* @param {Collection} collection - input collection
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - execution context
+* @throws {TypeError} first argument must be a collection
+* @throws {TypeError} second argument must be a function
+* @returns {Collection} input collection
+*
+* @example
+* function scale( value, index, collection ) {
+*     return value * index;
+* }
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var out = inmap( arr, scale );
+* // returns [ 0, 2, 6, 12 ]
+*
+* var bool = ( out === arr );
+* // returns true
+*/
+
+/**
+* Normal distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/normal/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/normal/cdf' );
+*
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* var myCDF = cdf.factory( 10.0, 2.0 );
+* y = myCDF( 10.0 );
+* // returns 0.5
+*/
+
+/**
+* Normal distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/normal/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/normal/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* var myPDF = pdf.factory( 10.0, 2.0 );
+* y = myPDF( 10.0 );
+* // returns ~0.199
+*/
+
+/**
+* Normally distributed pseudorandom numbers using the improved Ziggurat method.
+*
+* @module @stdlib/random/base/improved-ziggurat
+*
+* @example
+* var randn = require( '@stdlib/random/base/improved-ziggurat' );
+*
+* var r = randn();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/improved-ziggurat' ).factory;
+*
+* var randn = factory({
+*     'seed': 12345
+* });
+*
+* var r = randn();
+* // returns <number>
+*/
+
+/**
+* Normally distributed pseudorandom numbers.
+*
+* @module @stdlib/random/base/normal
+*
+* @example
+* var normal = require( '@stdlib/random/base/normal' );
+*
+* var v = normal( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/normal' ).factory;
+* var normal = factory( 3.0, 2.0, {
+*     'seed': 297
+* });
+*
+* var v = normal();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/normal' ).factory;
+* var normal = factory({
+*     'seed': 297
+* });
+*
+* var v = normal( -3.0, 2.0 );
+* // returns <number>
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a Normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the cumulative distribution function
+*
+* @example
+* var cdf = factory( 10.0, 2.0 );
+* var y = cdf( 10.0 );
+* // returns 0.5
+*
+* y = cdf( 12.0 );
+* // returns ~0.841
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a uniform distribution with minimum support `a` and maximum support `b`.
+*
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Function} CDF
+*
+* @example
+* var cdf = factory( 0.0, 10.0 );
+* var y = cdf( 0.5 );
+* // returns 0.05
+*
+* y = cdf( 8.0 );
+* // returns 0.8
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - constant value of distribution
+* @returns {Function} function to evaluate the cumulative distribution function
+*
+* @example
+* var cdf = factory( 5.0 );
+*
+* var y = cdf( 3.0 );
+* // returns 0.0
+*
+* y = cdf( 6.0 );
+* // returns 1.0
+*
+* y = cdf( NaN );
+* // returns NaN
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 10.0, 2.0 );
+* var y = pdf( 10.0 );
+* // returns ~0.199
+*
+* y = pdf( 5.0 );
+* // returns ~0.009
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a uniform distribution with minimum support `a` and maximum support `b`.
+*
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Function} PDF
+*
+* @example
+* var pdf = factory( 0.0, 10.0 );
+* var y = pdf( 2.0 );
+* // returns 0.1
+*
+* y = pdf( 12.0 );
+* // returns 0.0
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - value at which to center the distribution
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 5.0 );
+*
+* var y = pdf( 0.0 );
+* // returns 0.0
+*
+* y = pdf( 5.0 );
+* // returns Infinity
+*/
+
+/**
+* Returns a normally distributed pseudorandom number with mean `mu` and standard deviation `sigma`.
+*
+* @name normal
+* @type {PRNG}
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} pseudorandom number
+*
+* @example
+* var v = normal( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var v = normal( 0.0, -1.0 );
+* // returns NaN
+*/
+
+/**
+* Returns a pseudorandom number drawn from an exponential distribution with parameter `lambda`.
+*
+* @name exponential
+* @type {PRNG}
+* @param {PositiveNumber} lambda - rate parameter
+* @returns {NonNegativeNumber} pseudorandom number
+*
+* @example
+* var v = exponential( 4.8 );
+* // returns <number>
+*
+* @example
+* var v = exponential( 0.0 );
+* // returns NaN
+*
+* @example
+* var v = exponential( NaN );
+* // returns NaN
+*/
+
+/**
+* Returns a pseudorandom number drawn from an exponential distribution.
+*
+* @private
+* @param {PRNG} rand - PRNG for uniformly distributed numbers
+* @param {PositiveNumber} lambda - rate parameter
+* @returns {NonNegativeNumber} pseudorandom number
+*/
+
+/**
+* Returns a pseudorandom number from a normal distribution with parameters `mu` and `sigma`.
+*
+* @private
+* @param {PRNG} rand - pseudorandom number generator
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} pseudorandom number
+*/
+
+/**
+* Returns a pseudorandom number generator for generating exponentially distributed random numbers.
+*
+* @param {PositiveNumber} [lambda] - rate parameter
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `lambda` must be a positive number
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var exponential = factory( 0.5 );
+* var v = exponential();
+* // returns <number>
+*
+* @example
+* var exponential = factory( 0.8, {
+*     'seed': 297
+* });
+* var v = exponential();
+* // returns ~3.735
+*
+* @example
+* var exponential = factory();
+* var v = exponential( 0.5 );
+* // returns <number>
+*/
+
+/**
+* Returns a pseudorandom number generator for generating normally distributed random numbers.
+*
+* @param {number} [mu] - mean
+* @param {PositiveNumber} [sigma] - standard deviation
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `mu` must be a number
+* @throws {TypeError} `sigma` must be a positive number
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var normal = factory( 0.0, 1.0 );
+* var v = normal();
+* // returns <number>
+*
+* @example
+* var normal = factory( -3.0, 0.5, {
+*     'seed': 297
+* });
+* var v = normal();
+* // returns <number>
+*/
+
+/**
+* Returns a pseudorandom number generator for generating uniformly distributed random numbers.
+*
+* @param {number} [a] - minimum support (inclusive)
+* @param {number} [b] - maximum support (exclusive)
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `a` must be a number
+* @throws {TypeError} `b` must be a number
+* @throws {RangeError} `a` must be less than `b`
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var uniform = factory( 0.0, 1.0 );
+*
+* var v = uniform();
+* // returns <number>
+*
+* @example
+* var uniform = factory( -3.0, -1.0, {
+*     'seed': 297
+* });
+* var v = uniform();
+* // returns <number>
+*/
+
+/**
+* Returns a pseudorandom number generator which implements the improved Ziggurat algorithm for generating normally distributed pseudorandom numbers.
+*
+* @private
+* @param {PRNG} randu - PRNG for generating uniformly distributed numbers
+* @param {PRNG} randi - PRNG for generating uniformly distributed integers
+* @returns {number} pseudorandom number
+*/
+
+/**
+* Returns a pseudorandom number generator which implements the improved Ziggurat method to generate normally distributed pseudorandom numbers.
+*
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} must provide an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var randn = factory();
+*
+* var r = randn();
+* // returns <number>
+*
+* @example
+* // Return a seeded PRNG:
+* var randn = factory({
+*     'seed': 12345
+* });
+*
+* var r = randn();
+* // returns <number>
+*/
+
+/**
+* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+*
+* @name uniform
+* @type {PRNG}
+* @param {number} a - minimum support (inclusive)
+* @param {number} b - maximum support (exclusive)
+* @returns {number} pseudorandom number
+*
+* @example
+* var v = uniform( 0.0, 1.0 );
+* // returns <number>
+*/
+
+/**
+* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+*
+* @private
+* @param {PRNG} rand - pseudorandom number generator
+* @param {number} a - minimum support (inclusive)
+* @param {number} b - maximum support (exclusive)
+* @returns {number} pseudorandom number
+*/
+
+/**
+* Returns an array containing coordinates such that each rectangle has the same area.
+*
+* @private
+* @param {PositiveInteger} N - number of rectangles
+* @param {number} rTail - start of right tail
+* @returns {NumberArray} coordinate array
+*
+* @example
+* var X = coordsArray( 128, 3.44 );
+* // returns <Array>
+*/
+
+/**
+* Returns an array containing the ratio of each pair of consecutive elements in order: `X[ i+1 ] / X[ i ]`.
+*
+* @private
+* @param {NumberArray} X - input array
+* @returns {NumberArray} ratio array
+*
+* @example
+* var R = ratioArray( [ 1.0, 2.0, 5.0 ] );
+* // returns [ 2.0, 2.5 ]
+*/
+
+/**
+* Test if a value is a positive number.
+*
+* @module @stdlib/assert/is-positive-number
+*
+* @example
+* var isPositiveNumber = require( '@stdlib/assert/is-positive-number' );
+*
+* var bool = isPositiveNumber( 5.0 );
+* // returns true
+*
+* bool = isPositiveNumber( new Number( 5.0 ) );
+* // returns true
+*
+* bool = isPositiveNumber( 3.14 );
+* // returns true
+*
+* bool = isPositiveNumber( -5.0 );
+* // returns false
+*
+* bool = isPositiveNumber( null );
+* // returns false
+*
+* @example
+* var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isPrimitive;
+*
+* var bool = isPositiveNumber( 3.0 );
+* // returns true
+*
+* bool = isPositiveNumber( new Number( 3.0 ) );
+* // returns false
+*
+* @example
+* var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isObject;
+*
+* var bool = isPositiveNumber( 3.0 );
+* // returns false
+*
+* bool = isPositiveNumber( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number object having a positive value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number object having a positive value
+*
+* @example
+* var bool = isPositiveNumber( 3.0 );
+* // returns false
+*
+* @example
+* var bool = isPositiveNumber( new Number( 3.0 ) );
+* // returns true
+*/
+
+/**
+* Tests if a value is a number primitive having a positive value.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a number primitive having a positive value
+*
+* @example
+* var bool = isPositiveNumber( 3.0 );
+* // returns true
+*
+* @example
+* var bool = isPositiveNumber( new Number( 3.0 ) );
+* // returns false
+*/
+
+/**
+* Tests if a value is a positive number.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a positive number
+*
+* @example
+* var bool = isPositiveNumber( 5.0 );
+* // returns true
+*
+* @example
+* var bool = isPositiveNumber( new Number( 5.0 ) );
+* // returns true
+*
+* @example
+* var bool = isPositiveNumber( 3.14 );
+* // returns true
+*
+* @example
+* var bool = isPositiveNumber( -5.0 );
+* // returns false
+*
+* @example
+* var bool = isPositiveNumber( null );
+* // returns false
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @constant
+* @type {number}
+* @default 6.283185307179586
+* @see [Wikipedia]{@link https://en.wikipedia.org/wiki/Pi}
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @module @stdlib/constants/math/float64-two-pi
+* @type {number}
+*
+* @example
+* var TWO_PI = require( '@stdlib/constants/math/float64-two-pi' );
+* // returns 6.283185307179586
+*/
+
+/**
+* Transforms the tail of the normal distribution to the unit interval and then uses rejection technique to generate standard normal variable.
+*
+* ## References
+*
+* -   Marsaglia, George. 1964. "Generating a Variable from the Tail of the Normal Distribution." _Technometrics_ 6 (1): 101–2. doi:[10.1080/00401706.1964.10490150](http://dx.doi.org/10.1080/00401706.1964.10490150).
+*
+* @private
+* @param {PRNG} rand - pseudorandom number generator
+* @param {number} rTail - start value of the right tail
+* @param {boolean} isNegative - boolean indicating which side to evaluate
+* @returns {number} standard normal variable
+*/
+
+/**
+* Uniform distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/uniform/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/uniform/cdf' );
+*
+* var y = cdf( 5.0, 0.0, 4.0 );
+* // returns 1.0
+*
+* var mycdf = cdf.factory( 0.0, 10.0 );
+* y = mycdf( 0.5 );
+* // returns 0.05
+*
+* y = mycdf( 8.0 );
+* // returns 0.8
+*/
+
+/**
+* Uniform distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/uniform/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/uniform/pdf' );
+*
+* var y = pdf( 3.0, 2.0, 6.0 );
+* // returns 0.25
+*
+* var myPDF = pdf.factory( 6.0, 7.0 );
+* y = myPDF( 7.0 );
+* // returns 1.0
+*
+* y = myPDF( 5.0 );
+* // returns 0.0
+*/
+
+/**
+* Uniform distribution pseudorandom numbers.
+*
+* @module @stdlib/random/base/uniform
+*
+* @example
+* var uniform = require( '@stdlib/random/base/uniform' );
+*
+* var v = uniform( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/uniform' ).factory;
+* var uniform = factory( -5.0, 5.0, {
+*     'seed': 297
+* });
+*
+* var v = uniform();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/uniform' ).factory;
+* var uniform = factory({
+*     'seed': 297
+* });
+*
+* var v = uniform( -5.0, 5.0 );
+* // returns <number>
+*/
+
+/**
+* Validates parameters.
+*
+* @private
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/**
+* Validates values provided for minimum and maximum support.
+*
+* @private
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/***/
+
+//         nextStatus = ENTERING
+
+//         nextStatus = EXITING
+
+//       if (status !== ENTERING && status !== ENTERED) {
+
+//       if (status === ENTERING || status === ENTERED) {
+
+//       }
+
+//     const { status } = this.state
+
+//     if (this.props.in) {
+
+//     }
+
+//     } else {
+
+//   if (prevProps !== this.props) {
+
+//   let nextStatus = null
+
+//   return { nextStatus }
+
+//   }
+
+// 16.3+ will not execute our will-update method;
+
+// Account for dynamically resizing a collection...
+
+// Add a flag to suppress these warnings for this special case.
+
+// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+
+// As a workaround, use cWU to invoke the new lifecycle.
+
+// Because for <= 15.x versions this might be a "prevContext" object.
+
+// Because get-snapshot might return a falsy value.
+
+// Because they would work differently between older and newer (16.3+) versions of React.
+
+// Binding "this" is important for shallow renderer support.
+
+// Build the output array...
+
+// Calculate the increment:
+
+// Call this.constructor.gDSFP to support sub-classes.
+
+// EXPORTS //
+
+// Error if any of these lifecycles are present,
+
+// Exports
+
+// FUNCTIONS //
+
+// First try the rectangular boxes...
+
+// Function to ensure that all data is rounded to 3 decimal places
+
+// Function to round an element to 2 places
+
+// If bottom box, sample from the tail...
+
+// If new component APIs are defined, "unsafe" lifecycles won't be called.
+
+// If provided a PRNG, ignore the `state` option, as we don't support getting or setting PRNG state.
+
+// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
+
+// In the context of a TransitionGroup all enters are really appears
+
+// Is this a sample from the wedges?
+
+// It will pass a snapshot value to did-update though.
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// Name the function so it is clearer in the documentation
+
+// Newer versions of React will ignore that lifecycle if gSBU exists.
+
+// Newer versions of React will ignore these lifecycles if gDSFP exists.
+
+// Older versions will require our polyfilled will-update value.
+
+// PROPERTIES //
+
+// React <= 16.2 does not support getSnapshotBeforeUpdate.
+
+// React <= 16.2 does not support static getDerivedStateFromProps.
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+
+// So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+
+// TODO: remove fallback for next major
+
+// This shouldn't be necessary, but there are weird race conditions with
+
+// Use the setState() updater to ensure state isn't stale in certain edge cases.
+
+// VARIABLES //
+
+// We also can't just check "__reactInternalSnapshot",
+
+// We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+
+// [0] is bottom block: V / f(R)
+
+// add default propTypes for folks that use runtime checks
+
+// allows for nested Transitions
+
+// allows seeding via an externally seeded PRNG
+
+// asm type annotation
+
+// equivalent to (b-a)*r + a
+
+// eslint-disable-line max-len
+
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+// eslint-disable-next-line no-multi-assign
+
+// getSnapshotBeforeUpdate(prevProps) {
+
+// if we are mounting and running this it means appear _must_ be set
+
+// nextStatus will always be ENTERING or EXITING.
+
+// no enter animation skip right to ENTERED
+
+// no exit animation skip right to EXITED
+
+// reading a dimension prop will cause the browser to recalculate,
+
+// setState callbacks and unmounting in testing, so always make sure that
+
+// we can cancel any pending setState callbacks after we unmount.
+
+// we don't care about invariant's own frame
+
+// which will let our animations work
+
+// }
+
+//let setState trigger the update

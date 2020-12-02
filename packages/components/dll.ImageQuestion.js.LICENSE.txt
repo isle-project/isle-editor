@@ -1,0 +1,25 @@
+/* harmony default export */
+
+/* harmony import */
+
+/* import() | GradeFeedbackRenderer */
+
+/*#__PURE__*/
+
+/**
+* Event handler ignoring default behavior and preventing bubbling-up.
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //

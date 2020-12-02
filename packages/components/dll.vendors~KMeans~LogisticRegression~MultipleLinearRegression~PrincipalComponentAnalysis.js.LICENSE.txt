@@ -1,0 +1,62 @@
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/**
+ * @private
+ * Check that a column index is not out of bounds
+ * @param {Matrix} matrix
+ * @param {number} index
+ * @param {boolean} [outer]
+ */
+
+/**
+ * @private
+ * Check that a row index is not out of bounds
+ * @param {Matrix} matrix
+ * @param {number} index
+ * @param {boolean} [outer]
+ */
+
+/**
+ * @private
+ * Check that the provided vector is an array with the right length
+ * @param {Matrix} matrix
+ * @param {Array|Matrix} vector
+ * @return {Array}
+ * @throws {RangeError}
+ */
+
+/***/
+
+// Apply dynamic padding.
+
+// Copy the values from the 2D array
+
+// Create an empty matrix
+
+// Crop output to the desired size (undo dynamic padding).
+
+// For small matrices, resort to naive multiplication.
+
+// Make sure both matrices are the same size.
+
+// Our recursive multiplication function.
+
+// Put a matrix into the top left of a matrix of zeros.
+
+// Synonyms
+
+// This is exclusively for simplicity:
+
+// `rows` and `cols` are the dimensions of the output matrix.
+
+// a is equivalent to this
+
+// eslint-disable-next-line no-console
+
+// eslint-disable-next-line no-constructor-return
+
+// this algorithm can be implemented with matrices of different sizes.

@@ -1,0 +1,95 @@
+/*
+* Adapted from:
+*
+* FileSaver.js
+* A saveAs() FileSaver implementation.
+* 1.3.8
+* 2018-03-22 14:03:47
+*
+* By Eli Grey, https://eligrey.com
+* License: MIT
+*   See https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md
+*
+* @source http://purl.eligrey.com/github/FileSaver.js/blob/master/src/FileSaver.js
+*/
+
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud).
+*
+* @property {Array} data - either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys)
+* @property {Function} font - accessor function specifying the font face for each word. Also accepts a constant instead of a function
+* @property {Function} fontSizeMapper - accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively
+* @property {boolean} precalculated - controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts
+* @property {(Function|number)} rotate - accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function
+* @property {number} width - width of the word cloud (in px)
+* @property {number} height - height of the word cloud (in px)
+* @property {string} language - language identifier (determines the stopwords to be removed)
+* @property {number} minCount - if set, only include words that appear more than `minCount` times in the given data
+* @property {boolean} saveButton - controls whether to display a button for saving the word cloud as an image
+* @property {(Function|number)} padding - accessor function or constant indicating the numerical padding for each word
+* @property {number} updateThreshold - batch size of new documents in `data` before the word cloud is re-rendered
+* @property {boolean} triggerRender - rerender when the data set is exchanged
+* @property {Array} stopwords - additional stopwords to remove before rendering the word cloud
+* @property {Object} style - CSS inline styles
+* @property {Function} onClick - callback function invoked when a word on the word cloud is clicked
+*/
+
+/**
+* Code adapted from Nikita Rokotyan. MIT licensed. Source: http://bl.ocks.org/Rokotyan/0556f8facbaf344507cdc45dc3622177
+*/
+
+/***/
+
+// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
+
+// Convert SVG string to data URL
+
+// Don't create more object URLs than needed:
+
+// EXPORTS //
+
+// FUNCTIONS //
+
+// First try a download, then web filesystem, then object URLs:
+
+// Fix root xlink without namespace
+
+// IE 10+ (native saveAs)
+
+// MAIN //
+
+// MODULES //
+
+// On any filesystem errors, revert to saving with object URLs:
+
+// PROPERTIES //
+
+// Prepend BOM for UTF-8 XML and text/* types (including HTML). Note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
+
+// Safari NS namespace fix
+
+// Safari doesn't allow downloading of blob URLs:
+
+// VARIABLES //
+
+// file is a File
+
+// file is an object URL
+
+// for Firefox
+
+// in ms
+
+// only get URL when necessary in case Blob.js hasn't overridden it yet
+
+// release reference before dispatching

@@ -1,0 +1,629 @@
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Attempts to call a `RegExp` method.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if able to call a `RegExp` method
+*/
+
+/**
+* Compute the absolute difference.
+*
+* @module @stdlib/math/base/utils/absolute-difference
+*
+* @example
+* var diff = require( '@stdlib/math/base/utils/absolute-difference' );
+*
+* var d = diff( 2.0, 5.0 );
+* // returns 3.0
+*
+* d = diff( -1.0, 3.14 );
+* // returns ~4.14
+*
+* d = diff( 10.1, -2.05 );
+* // returns ~12.15
+*
+* d = diff( -0.0, 0.0 );
+* // returns +0.0
+*
+* d = diff( NaN, 5.0 );
+* // returns NaN
+*
+* d = diff( Infinity, -Infinity  );
+* // returns Infinity
+*
+* d = diff( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Computes the absolute difference.
+*
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} absolute difference
+*
+* @example
+* var d = absoluteDifference( 2.0, 5.0 );
+* // returns 3.0
+*
+* @example
+* var d = absoluteDifference( -1.0, 3.14 );
+* // returns ~4.14
+*
+* @example
+* var d = absoluteDifference( 10.1, -2.05 );
+* // returns ~12.15
+*
+* @example
+* var d = absoluteDifference( -0.0, 0.0 );
+* // returns +0.0
+*
+* @example
+* var d = absoluteDifference( NaN, 5.0 );
+* // returns NaN
+*
+* @example
+* var d = absoluteDifference( Infinity, -Infinity  );
+* // returns Infinity
+*
+* @example
+* var d = absoluteDifference( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Convert a string to lowercase.
+*
+* @module @stdlib/string/lowercase
+*
+* @example
+* var lowercase = require( '@stdlib/string/lowercase' );
+*
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
+*/
+
+/**
+* Converts a string to lowercase.
+*
+* @param {string} str - string to convert
+* @throws {TypeError} must provide a primitive string
+* @returns {string} lowercase string
+*
+* @example
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
+*/
+
+/**
+* Escape a regular expression string or pattern.
+*
+* @module @stdlib/utils/escape-regexp-string
+*
+* @example
+* var rescape = require( '@stdlib/utils/escape-regexp-string' );
+*
+* var str = rescape( '[A-Z]*' );
+* // returns '\\[A\\-Z\\]\\*'
+*/
+
+/**
+* Escapes a regular expression string.
+*
+* @param {string} str - regular expression string
+* @throws {TypeError} first argument must be a string primitive
+* @returns {string} escaped string
+*
+* @example
+* var str = rescape( '[A-Z]*' );
+* // returns '\\[A\\-Z\\]\\*'
+*/
+
+/**
+* Extends an array by the elements of another array.
+*
+* @private
+* @param {Array} arr - input array
+* @param {Array} ext - array to extend `arr` with
+* @returns {Array} mutated input array
+*
+* @example
+* var arr = [ 1, 2, 3 ];
+* var out = extend( arr, [ 4, 5 ] );
+* // returns [ 1, 2, 3, 4, 5 ]
+*/
+
+/**
+* Remove punctuation characters from a string.
+*
+* @module @stdlib/string/remove-punctuation
+*
+* @example
+* var removePunctuation = require( '@stdlib/string/remove-punctuation' );
+*
+* var out = removePunctuation( 'Sun Tzu said: "A leader leads by example not by force."' );
+* // returns 'Sun Tzu said A leader leads by example not by force'
+*
+* out = removePunctuation( 'Double, double, toil and trouble; Fire burn, and cauldron bubble!' ) );
+* // returns 'Double double toil and trouble Fire burn and cauldron bubble'
+*/
+
+/**
+* Removes punctuation characters from a string.
+*
+* @param {string} str - input string
+* @throws {TypeError} must provide a string primitive
+* @returns {string} output string
+*
+* @example
+* var str = 'Sun Tzu said: "A leader leads by example not by force."';
+* var out = removePunctuation( str );
+* // returns 'Sun Tzu said A leader leads by example not by force'
+*
+* @example
+* var str = 'Double, double, toil and trouble; Fire burn, and cauldron bubble!';
+* var out = removePunctuation( str );
+* // returns 'Double double toil and trouble Fire burn and cauldron bubble'
+*
+* @example
+* var str = 'This module removes these characters: `{}[]:,!/<>().;~|?\'"';
+* var out = removePunctuation( str );
+* // returns 'This module removes these characters '
+*/
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/replace
+*
+* @example
+* var replace = require( '@stdlib/string/replace' );
+*
+* var str = 'beep';
+* var out = replace( str, 'e', 'o' );
+* // returns 'boop'
+*
+* str = 'Hello World';
+* out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {(string|RegExp)} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument argument must be a string primitive or regular expression
+* @throws {TypeError} third argument must be a string primitive or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'beep';
+* var out = replace( str, 'e', 'o' );
+* // returns 'boop'
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer);
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+
+/**
+* Return an array of an object's own enumerable property `[key, value]` pairs.
+*
+* @module @stdlib/utils/entries
+*
+* @example
+* var objectEntries = require( '@stdlib/utils/entries' );
+*
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 'bar'
+* };
+*
+* var entries = objectEntries( obj );
+* // e.g., returns [ ['beep', 'boop'], ['foo', 'bar'] ]
+*/
+
+/**
+* Return the minimum value.
+*
+* @module @stdlib/math/base/special/min
+*
+* @example
+* var min = require( '@stdlib/math/base/special/min' );
+*
+* var v = min( 3.14, 4.2 );
+* // returns 3.14
+*
+* v = min( 5.9, 3.14, 4.2 );
+* // returns 3.14
+*
+* v = min( 3.14, NaN );
+* // returns NaN
+*
+* v = min( +0.0, -0.0 );
+* // returns -0.0
+*/
+
+/**
+* Returns a list of English stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'about', 'above', 'across', 'actually', ... ]
+*/
+
+/**
+* Returns a list of Finnish stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'aiemmin', 'aika', 'aikaa', 'aikaan', 'aikaisemmin', ... ]
+*/
+
+/**
+* Returns a list of French stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'à', 'â', 'abord', 'afin', 'ah', ... ]
+*/
+
+/**
+* Returns a list of German stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'ab', 'aber', 'ach', ... ]
+*/
+
+/**
+* Returns a list of Italian stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'abbastanza', 'accidenti', 'ad', 'adesso', ... ]
+*/
+
+/**
+* Returns a list of Portuguese stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'à', 'adeus', 'agora', 'aí', 'ainda', ... ]
+*/
+
+/**
+* Returns a list of Spanish stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'a', 'acuerdo', 'adelante', 'ademas', 'además', ... ]
+*/
+
+/**
+* Returns a list of Swedish stop words.
+*
+* @returns {StringArray} stop words
+*
+* @example
+* var list = stopwords();
+* // returns [ 'aderton', 'adertonde', 'adjö', 'aldrig', 'alla', 'allas', ... ]
+*/
+
+/**
+* Returns an array of an object's own enumerable property `[key, value]` pairs.
+*
+* @param {ObjectLike} obj - input object
+* @throws {TypeError} must provide an object-like value
+* @returns {Array} array containing key-value pairs
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 'bar'
+* };
+*
+* var entries = objectEntries( obj );
+* // e.g., returns [ ['beep', 'boop'], ['foo', 'bar'] ]
+*/
+
+/**
+* Returns the minimum value.
+*
+* @param {number} [x] - first number
+* @param {number} [y] - second number
+* @param {...number} [args] - numbers
+* @returns {number} minimum value
+*
+* @example
+* var v = min( 3.14, 4.2 );
+* // returns 3.14
+*
+* @example
+* var v = min( 5.9, 3.14, 4.2 );
+* // returns 3.14
+*
+* @example
+* var v = min( 3.14, NaN );
+* // returns NaN
+*
+* @example
+* var v = min( +0.0, -0.0 );
+* // returns -0.0
+*/
+
+/**
+* Test if a double-precision floating-point numeric value is negative zero.
+*
+* @module @stdlib/math/base/assert/is-negative-zero
+*
+* @example
+* var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
+*
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* Test if a value is a regular expression.
+*
+* @module @stdlib/assert/is-regexp
+*
+* @example
+* var isRegExp = require( '@stdlib/assert/is-regexp' );
+*
+* var bool = isRegExp( /\.+/ );
+* // returns true
+*
+* bool = isRegExp( {} );
+* // returns false
+*/
+
+/**
+* Tests if a double-precision floating-point numeric value is negative zero.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is negative zero
+*
+* @example
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* @example
+* var bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* Tests if a value is a regular expression.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a regular expression
+*
+* @example
+* var bool = isRegExp( /\.+/ );
+* // returns true
+*
+* @example
+* var bool = isRegExp( {} );
+* // returns false
+*/
+
+/**
+* Tokenize a string.
+*
+* @module @stdlib/nlp/tokenize
+*
+* @example
+* var tokenize = require( '@stdlib/nlp/tokenize' );
+*
+* var str = 'Hello Mrs. Maple, could you call me back?';
+* var out = tokenize( str );
+* // returns [ 'Hello', 'Mrs.', 'Maple', ',', 'could', 'you', 'call', 'me', 'back', '?' ]
+*
+* str = 'Hello World!';
+* out = tokenize( str );
+* // returns [ 'Hello', 'World', '!' ]
+*/
+
+/**
+* Tokenize a string.
+*
+* @param {string} str - input string
+* @param {boolean} [keepWhitespace=false] - boolean indicating whether whitespace characters should be returned as part of the token array
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument must be a boolean primitive
+* @returns {Array} array of tokens
+*
+* @example
+* var str = 'Hello World!';
+* var out = tokenize( str );
+* // returns [ 'Hello', 'World', '!' ]
+*
+* @example
+* var str = '';
+* var out = tokenize( str );
+* // returns []
+*
+* @example
+* var str = 'Hello Mrs. Maple, could you call me back?';
+* var out = tokenize( str );
+* // returns [ 'Hello', 'Mrs.', 'Maple', ',', 'could', 'you', 'call', 'me', 'back', '?' ]
+*/
+
+/**
+* Tokenizes a substring.
+*
+* @private
+* @param {string} substr - input string
+* @returns {Array} token array
+*
+* @example
+* var str = '(never)';
+* var out = tokenizeSubstring( str );
+* // returns [ '(', 'never', ')' ]
+*/
+
+/***/
+
+// "too much recursion" error.
+
+// Algorithm due to Jonathan Feinberg, http://static.mrfeinberg.com/bv_ch03.pdf
+
+// Callback can either be a function or a string
+
+// Check if the string starts with a forward slash...
+
+// Copy function arguments
+
+// Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+
+// DOM APIs, for completeness
+
+// Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+
+// Does not start the time, just sets up the members needed.
+
+// Don't get fooled by e.g. browserify environments.
+
+// EXPORTS //
+
+// FUNCTIONS //
+
+// Fetches a monochrome sprite bitmap for the specified text.
+
+// For IE 6–8
+
+// For non-IE10 modern browsers
+
+// For web workers, where supported
+
+// From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+
+// If a type was specified, set the callback for the given type and name.
+
+// If no callback was specified, return the callback of the given type and name.
+
+// If we searched the string to no avail or if the first letter is not `/`, assume that the string is not of the form `/[...]/[guimy]`:
+
+// Initialize token array:
+
+// Load in batches for speed.
+
+// MAIN //
+
+// MODULES //
+
+// On some exotic environments, it's not clear which object `setimmediate` was
+
+// Only escape the characters between the `/`:
+
+// Otherwise, if a null callback was specified, remove callbacks of the given name.
+
+// Reassemble:
+
+// See triangular numbers: T_n = n * (n + 1) / 2.
+
+// Set up cache to hold tokens for substring matches:
+
+// So if we're currently running a task, we'll need to delay this invocation.
+
+// Spec says greater than zero
+
+// Split on whitespace:
+
+// Store and register the task
+
+// TODO only check for collisions within current bounds.
+
+// TODO reuse arrays?
+
+// Temporary hack
+
+// The test against `importScripts` prevents this implementation from being installed inside a web worker,
+
+// Use mask-based collision detection.
+
+// VARIABLES //
+
+// We need to de-construct the string...
+
+// Word cloud layout by Jason Davies, https://www.jasondavies.com/wordcloud/
+
+// Zero the buffer
+
+// `setimmediate` library.
+
+// able to install onto.  Search each possibility in the same order as the
+
+// eslint-disable-line no-unused-vars
+
+// eslint-disable-line no-useless-escape
+
+// into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+
+// non-generic
+
+// setimmediate attaches itself to the global object
+
+// where `global.postMessage` means something completely different and can't be used for this purpose.

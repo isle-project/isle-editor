@@ -1,0 +1,24 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Shows different components depending on user actions.
+*
+* @property {string} actionID - ID of component to watch
+* @property {(Object|Function)} show - hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result)
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// VARIABLES //

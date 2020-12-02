@@ -1,0 +1,1113 @@
+/* This is a generated file. Do not edit directly. */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+	* Constant function.
+	*
+	* @private
+	* @returns {*} constant value
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) for a normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( -3.14 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) of a degenerate distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( 10.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Samples elements from a population.
+	*
+	* @private
+	* @param {Options} [options] - function options
+	* @param {NonNegativeInteger} [options.size] - sample size
+	* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+	* @param {boolean} [options.mutate=false] - boolean indicating whether to mutate the `pool` when sampling without replacement
+	* @throws {TypeError} options argument must be an object
+	* @throws {TypeError} must provide valid options
+	* @throws {RangeError} `size` option must be less than or equal to the population when the `replace` option is `false`
+	* @returns {Array} sample
+	*/
+
+/**
+	* Samples elements from an array-like object.
+	*
+	* @private
+	* @param {ArrayLike} x - array-like object from which to sample elements
+	* @param {Options} [options] - function options
+	* @param {NonNegativeInteger} [options.size] - sample size
+	* @param {ProbabilityArray} [options.probs] - element probabilities
+	* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+	* @throws {TypeError} first argument must be array-like
+	* @throws {TypeError} options argument must be an object
+	* @throws {TypeError} must provide valid options
+	* @throws {RangeError} `size` option must be less than or equal to the length of `x` when the `replace` option is `false`
+	* @returns {Array} sample
+	*/
+
+/**
+	* Tests if every element in an array-like object passes a test condition.
+	*
+	* @private
+	* @param {*} value - value to test
+	* @returns {boolean} boolean indicating whether a value is an array-like object for which all elements pass a test condition
+	*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_exp.c}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+*
+* Developed at SunPro, a Sun Microsystems, Inc. business.
+* Permission to use, copy, modify, and distribute this
+* software is freely granted, provided that this notice
+* is preserved.
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Compute the absolute difference.
+*
+* @module @stdlib/math/base/utils/absolute-difference
+*
+* @example
+* var diff = require( '@stdlib/math/base/utils/absolute-difference' );
+*
+* var d = diff( 2.0, 5.0 );
+* // returns 3.0
+*
+* d = diff( -1.0, 3.14 );
+* // returns ~4.14
+*
+* d = diff( 10.1, -2.05 );
+* // returns ~12.15
+*
+* d = diff( -0.0, 0.0 );
+* // returns +0.0
+*
+* d = diff( NaN, 5.0 );
+* // returns NaN
+*
+* d = diff( Infinity, -Infinity  );
+* // returns Infinity
+*
+* d = diff( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Computes \\(e^{r} 2^k\\) where \\(r = \mathrm{hi} - \mathrm{lo}\\) and \\(|r| \leq \ln(2)/2\\).
+*
+* @private
+* @param {number} hi - upper bound
+* @param {number} lo - lower bound
+* @param {integer} k - power of 2
+* @returns {number} function value
+*/
+
+/**
+* Computes the absolute difference.
+*
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} absolute difference
+*
+* @example
+* var d = absoluteDifference( 2.0, 5.0 );
+* // returns 3.0
+*
+* @example
+* var d = absoluteDifference( -1.0, 3.14 );
+* // returns ~4.14
+*
+* @example
+* var d = absoluteDifference( 10.1, -2.05 );
+* // returns ~12.15
+*
+* @example
+* var d = absoluteDifference( -0.0, 0.0 );
+* // returns +0.0
+*
+* @example
+* var d = absoluteDifference( NaN, 5.0 );
+* // returns NaN
+*
+* @example
+* var d = absoluteDifference( Infinity, -Infinity  );
+* // returns Infinity
+*
+* @example
+* var d = absoluteDifference( Infinity, Infinity  );
+* // returns NaN
+*/
+
+/**
+* Create a constant function.
+*
+* @module @stdlib/utils/constant-function
+*
+* @example
+* var constantFunction = require( '@stdlib/utils/constant-function' );
+*
+* var fcn = constantFunction( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+/**
+* Creates a function which always returns the same value.
+*
+* @param {*} [value] - value to always return
+* @returns {Function} constant function
+*
+* @example
+* var fcn = wrap( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+/**
+* Degenerate distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/degenerate/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/degenerate/pdf' );
+*
+* var y = pdf( 2.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/pdf' ).factory;
+*
+* var pdf = factory( 10.0 );
+*
+* var y = pdf( 10.0 );
+* // returns Infinity
+*/
+
+/**
+* Evaluate the natural exponential function.
+*
+* @module @stdlib/math/base/special/exp
+*
+* @example
+* var exp = require( '@stdlib/math/base/special/exp' );
+*
+* var v = exp( 4.0 );
+* // returns ~54.5982
+*
+* v = exp( -9.0 );
+* // returns ~1.234e-4
+*
+* v = exp( 0.0 );
+* // returns 1.0
+*
+* v = exp( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+
+/**
+* Evaluates the natural exponential function.
+*
+* ## Method
+*
+* 1.  We reduce \\( x \\) to an \\( r \\) so that \\( |r| \leq 0.5 \cdot \ln(2) \approx 0.34658 \\). Given \\( x \\), we find an \\( r \\) and integer \\( k \\) such that
+*
+*     ```tex
+*     \begin{align*}
+*     x &= k \cdot \ln(2) + r \\
+*     |r| &\leq 0.5 \cdot \ln(2)
+*     \end{align*}
+*     ```
+*
+*     <!-- <note> -->
+*
+*     \\( r \\) can be represented as \\( r = \mathrm{hi} - \mathrm{lo} \\) for better accuracy.
+*
+*     <!-- </note> -->
+*
+* 2.  We approximate of \\( e^{r} \\) by a special rational function on the interval \\(\[0,0.34658]\\):
+*
+*     ```tex
+*     \begin{align*}
+*     R\left(r^2\right) &= r \cdot \frac{ e^{r}+1 }{ e^{r}-1 } \\
+*     &= 2 + \frac{r^2}{6} - \frac{r^4}{360} + \ldots
+*     \end{align*}
+*     ```
+*
+*     We use a special Remes algorithm on \\(\[0,0.34658]\\) to generate a polynomial of degree \\(5\\) to approximate \\(R\\). The maximum error of this polynomial approximation is bounded by \\(2^{-59}\\). In other words,
+*
+*     ```tex
+*     R(z) \sim 2 + P_1 z + P_2 z^2 + P_3 z^3 + P_4 z^4 + P_5 z^5
+*     ```
+*
+*     where \\( z = r^2 \\) and
+*
+*     ```tex
+*     \left|  2 + P_1 z + \ldots + P_5 z^5  - R(z) \right| \leq 2^{-59}
+*     ```
+*
+*     <!-- <note> -->
+*
+*     The values of \\( P_1 \\) to \\( P_5 \\) are listed in the source code.
+*
+*     <!-- </note> -->
+*
+*     The computation of \\( e^{r} \\) thus becomes
+*
+*     ```tex
+*     \begin{align*}
+*     e^{r} &= 1 + \frac{2r}{R-r} \\
+*           &= 1 + r + \frac{r \cdot R_1(r)}{2 - R_1(r)}\ \text{for better accuracy}
+*     \end{align*}
+*     ```
+*
+*     where
+*
+*     ```tex
+*     R_1(r) = r - P_1\ r^2 + P_2\ r^4 + \ldots + P_5\ r^{10}
+*     ```
+*
+* 3.  We scale back to obtain \\( e^{x} \\). From step 1, we have
+*
+*     ```tex
+*     e^{x} = 2^k e^{r}
+*     ```
+*
+*
+* ## Special Cases
+*
+* ```tex
+* \begin{align*}
+* e^\infty &= \infty \\
+* e^{-\infty} &= 0 \\
+* e^{\mathrm{NaN}} &= \mathrm{NaN} \\
+* e^0 &= 1\ \mathrm{is\ exact\ for\ finite\ argument\ only}
+* \end{align*}
+* ```
+*
+* ## Notes
+*
+* -   According to an error analysis, the error is always less than \\(1\\) ulp (unit in the last place).
+*
+* -   For an IEEE double,
+*
+*     -   if \\(x > 7.09782712893383973096\mbox{e+}02\\), then \\(e^{x}\\) overflows
+*     -   if \\(x < -7.45133219101941108420\mbox{e+}02\\), then \\(e^{x}\\) underflows
+*
+* -   The hexadecimal values included in the source code are the intended ones for the used constants. Decimal values may be used, provided that the compiler will convert from decimal to binary accurately enough to produce the intended hexadecimal values.
+*
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var v = exp( 4.0 );
+* // returns ~54.5982
+*
+* @example
+* var v = exp( -9.0 );
+* // returns ~1.234e-4
+*
+* @example
+* var v = exp( 0.0 );
+* // returns 1.0
+*
+* @example
+* var v = exp( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a degenerate distribution centered at `mu`.
+*
+* @param {number} x - input value
+* @param {number} mu - constant value of the distribution
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 3.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 3.0, 3.0 );
+* // returns Infinity
+*
+* @example
+* var y = pdf( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* @example
+* var y = pdf( -1.0, 4.0, 2.0 );
+* // returns ~0.009
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 8.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 8.0, 8.0, 0.0 );
+* // returns Infinity
+*/
+
+/**
+* Invoke a function once for each element in a collection and update the collection in-place.
+*
+* @module @stdlib/utils/inmap
+*
+* @example
+* var inmap = require( '@stdlib/utils/inmap' );
+*
+* function scale( value, index, collection ) {
+*     return value * index;
+* }
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var out = inmap( arr, scale );
+* // returns [ 0, 2, 6, 12 ]
+*
+* var bool = ( out === arr );
+* // returns true
+*/
+
+/**
+* Invokes a function once for each element in a collection and updates the collection in-place.
+*
+* ## Notes
+*
+* -   The invoked function's return value is cached prior to updating a collection. Before updating the collection, a collection must be inspected to ensure that a collection has not been resized during invocation such that an index no longer has a corresponding element in the collection. Were a return value automatically used to update a collection, an input collection could be converted into a sparse data structure. While some might consider this a feature, here, we take stance that a user should be less clever.
+*
+*
+* @param {Collection} collection - input collection
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - execution context
+* @throws {TypeError} first argument must be a collection
+* @throws {TypeError} second argument must be a function
+* @returns {Collection} input collection
+*
+* @example
+* function scale( value, index, collection ) {
+*     return value * index;
+* }
+*
+* var arr = [ 1, 2, 3, 4 ];
+*
+* var out = inmap( arr, scale );
+* // returns [ 0, 2, 6, 12 ]
+*
+* var bool = ( out === arr );
+* // returns true
+*/
+
+/**
+* Normal distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/normal/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/normal/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* var myPDF = pdf.factory( 10.0, 2.0 );
+* y = myPDF( 10.0 );
+* // returns ~0.199
+*/
+
+/**
+* Return a function which tests if every element in an array-like object passes a test condition.
+*
+* @module @stdlib/assert/tools/array-like-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arraylikefcn = require( '@stdlib/assert/tools/array-like-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arraylikefcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 10.0, 2.0 );
+* var y = pdf( 10.0 );
+* // returns ~0.199
+*
+* y = pdf( 5.0 );
+* // returns ~0.009
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - value at which to center the distribution
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 5.0 );
+*
+* var y = pdf( 0.0 );
+* // returns 0.0
+*
+* y = pdf( 5.0 );
+* // returns Infinity
+*/
+
+/**
+* Returns a function to sample elements from an array-like object.
+*
+* @param {ArrayLike} [pool] - array-like object from which to sample
+* @param {Options} [options] - function options
+* @param {PositiveInteger} [options.seed] - integer-valued seed
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+* @param {boolean} [options.mutate=false] - boolean indicating whether to mutate the `pool` when sampling without replacement
+* @throws {TypeError} `pool` must be an array-like object
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @returns {Function} function to sample elements from an array-like object
+*
+* @example
+* var sample = factory({
+*     'seed': 232
+* });
+* var out = sample( 'abcdefg' );
+* // e.g., returns [ 'g', 'd', 'g', 'f', 'c', 'e', 'f' ]
+*
+* @example
+* var sample = factory( [ 1, 2, 3, 4, 5, 6 ], {
+*     'seed': 232,
+*     'size': 2
+* });
+* var out = sample();
+* // e.g., returns [ 6, 4 ]
+*
+* out = sample();
+* // e.g., returns [ 6, 5 ]
+*
+* @example
+* var sample = factory( [ 1, 2, 3, 4, 5, 6 ], {
+*     'seed': 474,
+*     'size': 3,
+*     'mutate': true,
+*     'replace': false
+* });
+* var out = sample();
+* // e.g., returns [ 4, 3, 6 ]
+*
+* out = sample();
+* // e.g., returns [ 1, 5, 2 ]
+*
+* out = sample();
+* // returns null
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'size': 10
+* });
+* // e.g., returns [ 0, 1, 1, 1, 0, 1, 0, 0, 1, 1 ]
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'replace': false
+* });
+* // e.g., returns [ 0, 1 ] or [ 1, 0 ]
+*
+* out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* @example
+* var sample = factory( [ 0, 1 ], {
+*     'size': 2,
+*     'mutate': true
+* });
+*
+* var out = sample();
+* // e.g., returns [ 1, 1 ]
+*
+* out = sample({
+*     'replace': false
+* });
+* // e.g., returns [ 0, 1 ] or [ 1, 0 ]
+*
+* out = sample();
+* // returns null
+*/
+
+/**
+* Returns a function which tests if every element in an array-like object passes a test condition.
+*
+* @param {Function} predicate - function to apply
+* @throws {TypeError} must provide a function
+* @returns {Function} an array-like object function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arraylikefcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+/**
+* Round a numeric value toward positive infinity.
+*
+* @module @stdlib/math/base/special/ceil
+*
+* @example
+* var ceil = require( '@stdlib/math/base/special/ceil' );
+*
+* var v = ceil( -4.2 );
+* // returns -4.0
+*
+* v = ceil( 9.99999 );
+* // returns 10.0
+*
+* v = ceil( 0.0 );
+* // returns 0.0
+*
+* v = ceil( NaN );
+* // returns NaN
+*/
+
+/**
+* Round a numeric value toward zero.
+*
+* @module @stdlib/math/base/special/trunc
+*
+* @example
+* var trunc = require( '@stdlib/math/base/special/trunc' );
+*
+* var v = trunc( -4.2 );
+* // returns -4.0
+*
+* v = trunc( 9.99999 );
+* // returns 9.0
+*
+* v = trunc( 0.0 );
+* // returns 0.0
+*
+* v = trunc( -0.0 );
+* // returns -0.0
+*
+* v = trunc( NaN );
+* // returns NaN
+*
+* v = trunc( Infinity );
+* // returns Infinity
+*
+* v = trunc( -Infinity );
+* // returns -Infinity
+*/
+
+/**
+* Rounds a numeric value toward positive infinity.
+*
+* @param {number} x - input value
+* @returns {number} rounded value
+*
+* @example
+* var v = ceil( -4.2 );
+* // returns -4.0
+*
+* @example
+* var v = ceil( 9.99999 );
+* // returns 10.0
+*
+* @example
+* var v = ceil( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = ceil( NaN );
+* // returns NaN
+*/
+
+/**
+* Rounds a numeric value toward zero.
+*
+* @param {number} x - input value
+* @returns {number} rounded value
+*
+* @example
+* var v = trunc( -4.2 );
+* // returns -4.0
+*
+* @example
+* var v = trunc( 9.99999 );
+* // returns 9.0
+*
+* @example
+* var v = trunc( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = trunc( -0.0 );
+* // returns -0.0
+*
+* @example
+* var v = trunc( NaN );
+* // returns NaN
+*
+* @example
+* var v = trunc( Infinity );
+* // returns Infinity
+*
+* @example
+* var v = trunc( -Infinity );
+* // returns -Infinity
+*/
+
+/**
+* Sample elements from an array-like object.
+*
+* @module @stdlib/random/sample
+*
+* @example
+* var sample = require( '@stdlib/random/sample' );
+*
+* var out = sample( 'abc' );
+* // e.g., returns [ 'a', 'a', 'b' ]
+*
+* out = sample( [ 3, 6, 9 ] );
+* // e.g., returns [ 3, 9, 6 ]
+*
+* var bool = ( out.length === 3 );
+* // returns true
+*
+* @example
+* var sample = require( '@stdlib/random/sample' );
+*
+* var mysample = sample.factory({
+*     'seed': 323
+* });
+* var out = mysample( [ 3, 6, 9 ], {
+*     'size': 10
+* });
+* // e.g., returns [ 3, 9, 3, 3, 3, 6, 3, 3, 3, 6 ]
+*/
+
+/**
+* Samples elements from an array-like object.
+*
+* @name sample
+* @type {Function}
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {Options} [options] - function options
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {ProbabilityArray} [options.probs] - element probabilities
+* @param {boolean} [options.replace=true] - boolean indicating whether to sample with replacement
+* @throws {TypeError} first argument must be array-like
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {RangeError} `size` option must be less than or equal to the length of `x` when the `replace` option is `false`
+* @returns {Array} sample
+*
+* @example
+* var out = sample( [ 3, null, NaN, 'abc', function(){} ] );
+* // e.g., returns [ 3, 'abc', null, 3, null ]
+*/
+
+/**
+* Samples from a discrete uniform distribution (equal probabilities and with replacement).
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @returns {Array} sample
+*/
+
+/**
+* Samples uniformly without replacement using the Fisher-Yates shuffle.
+*
+* ## References
+*
+* -   Knuth, Donald E. 1997. _The Art of Computer Programming, Volume 2 (3rd Ed.): Seminumerical Algorithms_. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @returns {Array} sample
+*/
+
+/**
+* Samples with replacement and non-uniform probabilities using Vose's [alias method][alias-method].
+*
+* ## References
+*
+* -   Vose, Michael D. 1991. "A linear algorithm for generating random numbers with a given distribution." _IEEE Transactions on Software Engineering_ 17 (9): 972–75. doi:[10.1109/32.92917][@vose:1991].
+*
+* [alias-method]: http://keithschwarz.com/darts-dice-coins/
+* [@vose:1991]: https://doi.org/10.1109/32.92917
+*
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @param {ProbabilityArray} probabilities - element probabilities
+* @returns {Array} sample
+*/
+
+/**
+* Samples without replacement from a discrete set using custom probabilities.
+*
+* ## Notes
+*
+* -   After each draw, the probabilities of the remaining observations are renormalized so that they sum to one.
+*
+*
+* @private
+* @param {ArrayLike} x - array-like object from which to sample
+* @param {NonNegativeInteger} size - sample size
+* @param {Function} rand - PRNG for generating uniformly distributed numbers
+* @param {ProbabilityArray} probabilities - element probabilities
+* @returns {Array} sample
+*/
+
+/**
+* Square root of double-precision floating-point epsilon.
+*
+* @module @stdlib/constants/math/float64-sqrt-eps
+* @type {number}
+*
+* @example
+* var FLOAT64_SQRT_EPSILON = require( '@stdlib/constants/math/float64-sqrt-eps' );
+* // returns 0.14901161193847656e-7
+*/
+
+/**
+* Square root of double-precision floating-point epsilon.
+*
+* ```tex
+* \sqrt{\frac{1}{2^{52}}}
+* ```
+*
+* @constant
+* @type {number}
+* @default 0.14901161193847656e-7
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+*/
+
+/**
+* Test if a value is an array of probabilities that sum to one.
+*
+* @module @stdlib/assert/is-unity-probability-array
+*
+* @example
+* var isUnityProbabilityArray = require( '@stdlib/assert/is-unity-probability-array' );
+*
+* var bool = isUnityProbabilityArray( [ 0.25, 0.5, 0.25 ] );
+* // returns true
+*
+* bool = isUnityProbabilityArray( new Uint8Array( [ 0, 1 ] ) );
+* // returns true
+*
+* bool = isUnityProbabilityArray( [ 0.4, 0.4, 0.4 ] );
+* // returns false
+*
+* bool = isUnityProbabilityArray( [ 3.14, 0.0 ] );
+* // returns false
+*/
+
+/**
+* Test if a value is an array-like object of numbers.
+*
+* @module @stdlib/assert/is-number-array
+*
+* @example
+* var isNumberArray = require( '@stdlib/assert/is-number-array' );
+*
+* var bool = isNumberArray( [ 1, 2, 3 ] );
+* // returns true
+*
+* bool = isNumberArray( [ '1', 2, 3 ] );
+* // returns false
+*
+* @example
+* var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
+*
+* var bool = isNumberArray( [ 1, 2, 3 ] );
+* // returns true
+*
+* bool = isNumberArray( [ 1, new Number( 2 ) ] );
+* // returns false
+*
+* @example
+* var isNumberArray = require( '@stdlib/assert/is-number-array' ).objects;
+*
+* var bool = isNumberArray( [ new Number( 1 ), new Number( 2 ) ] );
+* // returns true
+*
+* bool = isNumberArray( [ new Number( 1 ), 2 ] );
+* // returns false
+*/
+
+/**
+* Tests if a value is an array of probabilities that sum to one.
+*
+* @param {*} v - value to test
+* @returns {boolean} boolean indicating if a value is a probability array
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 0.25, 0.5, 0.25 ] );
+* // returns true
+*
+* @example
+* var bool = isUnityProbabilityArray( new Uint8Array( [ 0, 1 ] ) );
+* // returns true
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 0.4, 0.4, 0.4 ] );
+* // returns false
+*
+* @example
+* var bool = isUnityProbabilityArray( [ 3.14, 0.0 ] );
+* // returns false
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @constant
+* @type {number}
+* @default 6.283185307179586
+* @see [Wikipedia]{@link https://en.wikipedia.org/wiki/Pi}
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @module @stdlib/constants/math/float64-two-pi
+* @type {number}
+*
+* @example
+* var TWO_PI = require( '@stdlib/constants/math/float64-two-pi' );
+* // returns 6.283185307179586
+*/
+
+/**
+* Validates function options.
+*
+* @private
+* @param {Object} opts - destination for validated options
+* @param {Options} options - function options
+* @param {NonNegativeInteger} [options.size] - sample size
+* @param {ProbabilityArray} [options.probs] - element probabilities
+* @param {boolean} [options.replace] - boolean indicating whether to sample with replacement
+* @param {boolean} [options.mutate] - boolean indicating whether to mutate the `pool` when sampling without replacement
+* @returns {(null|Error)} null or an error
+*
+* @example
+* var opts = {};
+* var options = {
+*     'size': 10,
+*     'replace': false,
+*     'mutate': true,
+*     'probs': [ 0.7, 0.3 ]
+* };
+* var err = validate( opts, options );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/***/
+
+// Account for dynamically resizing a collection...
+
+// All elements equally likely...
+
+// Custom probabilities...
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// Generate an integer index on the interval: [0,i]
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// Note: we skip the first element, as no further swaps are possible given that all other indices are excluded from swapping...
+
+// Reduce and compute `r = hi - lo` for extra precision.
+
+// Remove the sample observations:
+
+// Swap elements:
+
+// TODO: implementation (?)
+
+// eslint-disable-line max-len
+
+// eslint-disable-line stdlib/no-builtin-math

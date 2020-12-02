@@ -1,0 +1,22 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Component supplying the session object to all its children.
+*
+* @property {string} currentRole - current user role (used in editor)
+* @property {Object} session - active session
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //

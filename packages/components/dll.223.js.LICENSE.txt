@@ -1,0 +1,27 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Computes an element-wise subtraction.
+*
+* @param {NumberArray} arr - input array
+* @param {(NumberArray|number)} x - either an array of equal length or a scalar
+* @returns {NumberArray} output array
+*/
+
+/***/
+
+// Case 1: x is an array
+
+// Case 2: scalar
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //

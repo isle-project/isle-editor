@@ -1,0 +1,41 @@
+/*
+    * Invoked immediately before component is unmounted from DOM. Performs clean-up of
+    * component timer.
+    */
+
+/*
+    * Invoked once on client after the initial rendering. Sets up component timer.
+    */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+    * React component render method
+    */
+
+/**
+  * Constructor function
+  */
+
+/**
+* The expire component will cause all of its children to become invisible after a specified amount of time.
+*
+* @property {boolean} active - controls whether the counter should be active
+* @property {number} delay - number of milliseconds before component disappears
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// Set initial component states...

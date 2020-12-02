@@ -1,0 +1,41 @@
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Extracts the second to last word of an action type, as these should be most informative about the nature of the action (recall that project convention is to use `_` to separate words in action types)
+*
+* @private
+* @param {string} str - action type
+* @returns {string} substring of action type
+*/
+
+/***/
+
+// Attach total number of actions on initial call:
+
+// Drop empty labels in case of many levels for readability of plot:
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// Unregister from session:
+
+// VARIABLES //
+
+// user has component in focus

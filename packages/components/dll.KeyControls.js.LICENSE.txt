@@ -1,0 +1,24 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Keyboard controls.
+*
+* @property {Object} actions - object mapping key codes to events
+* @property {Node} container - DOM node for which to attach event listeners
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// VARIABLES //

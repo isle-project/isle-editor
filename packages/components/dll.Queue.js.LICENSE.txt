@@ -1,0 +1,102 @@
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+ * This file automatically generated from `pre-publish.js`.
+ * Do not manually edit.
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Test if a value is `null`.
+*
+* @module @stdlib/assert/is-null
+*
+* @example
+* var isNull = require( '@stdlib/assert/is-null' );
+*
+* var value = null;
+*
+* var bool = isNull( value );
+* // returns true
+*/
+
+/**
+* Tests if a value is `null`.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is null
+*
+* @example
+* var bool = isNull( null );
+* // returns true
+*
+* bool = isNull( true );
+* // returns false
+*/
+
+/***/
+
+/*jshint -W030 */
+
+//  * end > -1 indicates this is not a trailing text node
+
+//  * leading node is when level is -1 and list has length 0
+
+// EXPORTS //
+
+// Exports
+
+// If the "html" passed isn't actually html, add it as a text node.
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// a child to the current node.
+
+// calculate correct end of the content slice in case there's
+
+// common logic for pushing a child node onto a list
+
+// don't add whitespace-only text nodes if they would be trailing text nodes
+
+// https://www.w3.org/TR/html4/struct/text.html#h-9.1
+
+// if a node is nothing but whitespace, collapse it as the spec states:
+
+// if we're at root, push new base node
+
+// if we're at the root, push a base text node. otherwise add as
+
+// no tag after the text node.
+
+// or if they would be leading whitespace-only text nodes:
+
+// trailing text node

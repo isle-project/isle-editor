@@ -1,0 +1,57 @@
+/*
+* Sorting functionality adapted from MIT-licensed code:
+*
+* Copyright (C) 2013 Adam Schwartz, http://adamschwartz.co
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*/
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A basic bootstrap table.
+*
+* @property {boolean} bordered - adds borders on all sides of the table and cells
+* @property {boolean} borderless - removes all borders on the table and cells, including table header
+* @property {boolean} hover - enable a hover state on table rows within a <tbody>
+* @property {(boolean|string)} responsive - responsive tables allow tables to be scrolled horizontally with ease. Across every breakpoint, use responsive for horizontally scrolling tables. Responsive tables are wrapped automatically in a div. Use responsive="sm", responsive="md", responsive="lg", or responsive="xl" as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally
+* @property {string} size - make tables more compact by cutting cell padding in half by setting size as `sm`
+* @property {boolean} striped - adds zebra-striping to any table row within the <tbody>
+* @property {string} variant - invert the colors of the table — with light text on dark backgrounds by setting variant as dark
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

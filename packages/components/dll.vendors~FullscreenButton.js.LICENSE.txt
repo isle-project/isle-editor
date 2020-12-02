@@ -1,0 +1,163 @@
+/* */
+
+/* eslint-disable no-bitwise, no-cond-assign */
+
+/* eslint-disable no-return-assign */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+ * A convenience hook around `useState` designed to be paired with
+ * the component [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) api.
+ * Callback refs are useful over `useRef()` when you need to respond to the ref being set
+ * instead of lazily accessing it in an effect.
+ *
+ * ```ts
+ * const [element, attachRef] = useCallbackRef<HTMLDivElement>()
+ *
+ * useEffect(() => {
+ *   if (!element) return
+ *
+ *   const calendar = new FullCalendar.Calendar(element)
+ *
+ *   return () => {
+ *     calendar.destroy()
+ *   }
+ * }, [element])
+ *
+ * return <div ref={attachRef} />
+ * ```
+ *
+ * @category refs
+ */
+
+/**
+ * An `addEventListener` ponyfill, supports the `once` option
+ */
+
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ * https://github.com/facebook/react/blob/2aeb8a2a6beb00617a4217f7f8284924fa2ad819/src/vendor/core/hyphenateStyleName.js
+ */
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+
+/**
+ * Store the last of some value. Tracked via a `Ref` only updating it
+ * after the component renders.
+ *
+ * Helpful if you need to compare a prop value to it's previous value during render.
+ *
+ * ```ts
+ * function Component(props) {
+ *   const lastProps = usePrevious(props)
+ *
+ *   if (lastProps.foo !== props.foo)
+ *     resetValueFromProps(props.foo)
+ * }
+ * ```
+ *
+ * @param value the value to track
+ */
+
+/**
+ * Track whether a component is current mounted. Generally less preferable than
+ * properlly canceling effects so they don't run after a component is unmounted,
+ * but helpful in cases where that isn't feasible, such as a `Promise` resolution.
+ *
+ * @returns a function that returns the current isMounted state of the component
+ *
+ * ```ts
+ * const [data, setData] = useState(null)
+ * const isMounted = useMounted()
+ *
+ * useEffect(() => {
+ *   fetchdata().then((newData) => {
+ *      if (isMounted()) {
+ *        setData(newData);
+ *      }
+ *   })
+ * })
+ * ```
+ */
+
+/***/
+
+//         nextStatus = ENTERING
+
+//         nextStatus = EXITING
+
+//       if (status !== ENTERING && status !== ENTERED) {
+
+//       if (status === ENTERING || status === ENTERED) {
+
+//       }
+
+//     const { status } = this.state
+
+//     if (this.props.in) {
+
+//     }
+
+//     } else {
+
+//   if (prevProps !== this.props) {
+
+//   let nextStatus = null
+
+//   return { nextStatus }
+
+//   }
+
+// HTML DOM and SVG DOM may have different support levels,
+
+// In the context of a TransitionGroup all enters are really appears
+
+// Name the function so it is clearer in the documentation
+
+// TODO: remove fallback for next major
+
+// This shouldn't be necessary, but there are weird race conditions with
+
+// allows for nested Transitions
+
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+// eslint-disable-next-line no-multi-assign
+
+// getSnapshotBeforeUpdate(prevProps) {
+
+// if we are mounting and running this it means appear _must_ be set
+
+// nextStatus will always be ENTERING or EXITING.
+
+// no enter animation skip right to ENTERED
+
+// no exit animation skip right to EXITED
+
+// reading a dimension prop will cause the browser to recalculate,
+
+// setState callbacks and unmounting in testing, so always make sure that
+
+// so we need to check on context instead of a document root element.
+
+// we can cancel any pending setState callbacks after we unmount.
+
+// which will let our animations work
+
+// }

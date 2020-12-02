@@ -1,0 +1,16 @@
+{
+  "name": "@isle-project/webpack-cdn-plugin",
+  "version": "0.0.0",
+  "description": "Internal ISLE package to configure webpack to load packages via CDN.",
+  "main": "lib/index.js",
+  "author": {
+    "name": "Philipp Burckhardt",
+    "email": "pburckhardt@outlook.com",
+    "url": "https://github.com/planeshifter"
+  },
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "html-webpack-plugin": "^4.5.0"
+  }
+}

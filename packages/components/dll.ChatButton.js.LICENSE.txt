@@ -1,0 +1,33 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A button for joining and leaving chat rooms.
+*
+* @property {string} for - chat room identifier
+* @property {boolean} anonymousSubmissions - controls whether a button to submit messages anonymously should be displayed
+* @property {(string|node)} buttonLabel - custom button label overriding the default one(s)
+* @property {string} size - button size
+* @property {string} buttonVariant - button variant
+* @property {boolean} showTooltip - controls whether to show tooltip
+* @property {(string|node)} tooltip - tooltip content
+* @property {string} tooltipPlacement - position of button tooltip
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
+* @property {Function} onClick - event handler invoked when join/leave button is clicked
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// VARIABLES //

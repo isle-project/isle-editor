@@ -1,0 +1,121 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Group values according to an indicator function and return group counts.
+*
+* @module @stdlib/utils/count-by
+*
+* @example
+* var countBy = require( '@stdlib/utils/count-by' );
+*
+* function indicator( v ) {
+*     return v[ 0 ];
+* }
+* var arr = [ 'beep', 'boop', 'foo', 'bar' ];
+*
+* var out = countBy( arr, indicator );
+* // returns { 'b': 3, 'f': 1 }
+*/
+
+/**
+* Groups values according to an indicator function and returns group counts.
+*
+* @param {Collection} collection - input collection
+* @param {Options} [options] - function options
+* @param {*} [options.thisArg] - execution context
+* @param {Function} indicator - indicator function specifying which group an element in the input collection belongs to
+* @throws {TypeError} first argument must be a collection
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} last argument must be a function
+* @throws {TypeError} must provide valid options
+* @returns {Object} counts
+*
+* @example
+* function indicator( v ) {
+*     return v[ 0 ];
+* }
+* var arr = [ 'beep', 'boop', 'foo', 'bar' ];
+*
+* var out = countBy( arr, indicator );
+* // returns { 'b': 3, 'f': 1 }
+*/
+
+/**
+* Identity function.
+*
+* @module @stdlib/utils/identity-function
+*
+* @example
+* var identity = require( '@stdlib/utils/identity-function' );
+*
+* var input = [];
+* var output = identity( input );
+*
+* var bool = ( input === output );
+* // returns true
+*/
+
+/**
+* Identity function.
+*
+* @param {*} x - input value
+* @returns {*} input value
+*
+* @example
+* var v = identity( 3.14 );
+* // returns 3.14
+*/
+
+/**
+* Validates function options.
+*
+* @private
+* @param {Object} opts - destination object
+* @param {Options} options - function options
+* @param {*} [options.thisArg] - execution context
+* @returns {(Error|null)} null or an error object
+*
+* @example
+* var opts = {};
+* var options = {
+*     'thisArg': {}
+* };
+* var err = validate( opts, options );
+* if ( err ) {
+*     throw err;
+* }
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// eslint-disable-line react/no-unused-prop-types

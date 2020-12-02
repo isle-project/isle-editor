@@ -1,0 +1,59 @@
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+    * Scrolls to the bottom of the console output.
+    */
+
+/**
+* An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc.
+*
+* @property {string} code - JavaScript code to be evaluated
+* @property {string} solution - for programming questions, code `string` representing the official solution for the problem
+* @property {Array<string>} hints - for programming questions, an array of hints providing guidance on how to approach the problem
+* @property {boolean} precompute - controls whether the default code should be executed once the component has mounted
+* @property {boolean} chat - controls whether group chat functionality should be enabled
+* @property {boolean} check - appended JavaScript code to check the `code` to be evaluated
+* @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
+* @property {number} lines - number of lines to display
+* @property {Object} vars - scope object with variables that should be made available to evaluated `code`
+* @property {string} voiceID - voice control identifier
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback invoked whenever the text field input changes
+* @property {Function} onEvaluate - callback invoked whenever the `Evaluate` button is clicked
+*/
+
+/**
+* Scrolls a vertical scrollbar to the specified position.
+*
+* @param {Node} element - DOM node with the scrollbar to change
+* @param {number} to - vertical position of the scroll bar after animation
+* @param {integer} duration - number of milliseconds until animation shall be complete
+* @returns {void}
+*/
+
+/***/
+
+// Add event listener:
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// Undo Spectacle scaling as it messes up the rendering of the ACE editor:
+
+// VARIABLES //

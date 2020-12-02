@@ -1,0 +1,75 @@
+/* WEBPACK VAR INJECTION */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* tslint:disable:max-line-length */
+
+/***/
+
+//     .then((svg) => svgToDataURL(svg))
+
+//     .then(createImage)
+
+//   return Promise.resolve(node as SVGElement)
+
+// -----------
+
+// Can not handle redirect-url, such as when access 'http://something.com/avatar.png'
+
+// First loop inlines imports
+
+// KNOWN ISSUE
+
+// Second loop parses rules
+
+// Side Effect
+
+// We should not use GUIDs, otherwise pseudo elements sometimes cannot be captured.
+
+// cache bypass so we dont have CORS issues with cached images
+
+// dataURI, mailto:, tel:, etc.
+
+// fix: Cannot assign to read only property 'className' of object '#<…
+
+// generate uuid for className of pseudo elements.
+
+// if (node.tagName && node.tagName.toLowerCase() === 'svg') {
+
+// ref: http://stackoverflow.com/a/6248722/2519373
+
+// ref: https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Bypassing_the_cache
+
+// strip out comments
+
+// tslint:disable-next-line
+
+// unified regex
+
+// url is absolute already
+
+// url is absolute already, without protocol
+
+// will redirect to 'http://something.com/65fc2ffcc8aea7ba65a1d1feda173540'
+
+// }
+
+//# sourceMappingURL=applyStyleWithOptions.js.map
+
+//# sourceMappingURL=cloneNode.js.map
+
+//# sourceMappingURL=createSvgDataURL.js.map
+
+//# sourceMappingURL=embedImages.js.map
+
+//# sourceMappingURL=embedResources.js.map
+
+//# sourceMappingURL=embedWebFonts.js.map
+
+//# sourceMappingURL=getBlobFromURL.js.map
+
+//# sourceMappingURL=index.js.map
+
+//# sourceMappingURL=util.js.map

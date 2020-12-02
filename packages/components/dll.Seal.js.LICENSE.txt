@@ -1,0 +1,40 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* An approval seal.
+*
+* @property {boolean} active - controls whether seal is active or grayed out
+* @property {number} scale - object size (if not explicitly set, the seal is not rescaled)
+* @property {string} title - seal title
+* @property {string} lower - the lower text
+* @property {number} lowerArc - the arc for the lower text
+* @property {string} upper - the upper text
+* @property {number} upperArc - the arc for the upper text
+* @property {Object} style - the style for the element
+* @property {Object} innerStyle - the style for the inner circle
+* @property {boolean} noOrnaments - prevents rendering of the ornaments
+* @property {boolean} removable - controls whether the note is removed when clicked
+* @property {Function} onClick - callback function invoked when the note is clicked
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

@@ -1,0 +1,30 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A component displaying an image in the style of a polaroid.
+*
+* @property {string} image - the URL of the image to be displayed in the polaroid frame
+* @property {boolean} draggable - controls whether one can drag the polaroid around the screen
+* @property {Function} onClick - event handler invoked when image is clicked (receives the id of the Polaroid as parameter)
+* @property {boolean} showPin - shows a pin
+* @property {number} width - polaroid width (in px)
+* @property {Object} style - CSS inline styles
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //

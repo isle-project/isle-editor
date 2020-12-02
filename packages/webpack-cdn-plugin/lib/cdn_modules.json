@@ -1,0 +1,167 @@
+[
+	{
+		"name": "axios",
+		"alias": "axios",
+		"var": "axios",
+		"path": "axios.min.js"
+	},
+	{
+		"name": "katex",
+		"alias": "KaTeX",
+		"var": "katex",
+		"path": "katex.min.js",
+		"version": "0.12.0"
+	},
+	{
+		"name": "pdfjs-dist/webpack",
+		"alias": "pdf.js",
+		"var": "pdfjsLib",
+		"path": "pdf.min.js",
+		"version": "2.4.456",
+		"defer": true
+	},
+	{
+		"name": "plotly.js",
+		"alias": "plotly.js",
+		"var": "Plotly",
+		"path": "plotly.min.js",
+		"version": "1.51.1"
+	},
+	{
+		"name": "lodash",
+		"alias": "lodash.js",
+		"var": "_",
+		"path": "lodash.min.js",
+		"version": "4.17.15"
+	},
+	{
+		"name": "js-yaml",
+		"alias": "js-yaml",
+		"var": "jsyaml",
+		"path": "js-yaml.min.js",
+		"version": "3.13.1"
+	},
+	{
+		"name": "moment",
+		"alias": "moment.js",
+		"var": "moment",
+		"path": "moment.min.js",
+		"version": "2.24.0"
+	},
+	{
+		"name": "react",
+		"alias": "react",
+		"var": "React",
+		"path": "umd/react.production.min.js"
+	},
+	{
+		"name": "react-dom",
+		"alias": "react-dom",
+		"var": "ReactDOM",
+		"path": "umd/react-dom.production.min.js"
+	},
+	{
+		"name": "prop-types",
+		"alias": "prop-types",
+		"var": "PropTypes",
+		"path": "prop-types.min.js"
+	},
+	{
+		"name": "react-table",
+		"alias": "react-table",
+		"var": "ReactTable",
+		"path": "react-table.min.js"
+	},
+	{
+		"name": "markdown-it",
+		"alias": "markdown-it",
+		"var": "markdownit",
+		"path": "markdown-it.min.js"
+	},
+	{
+		"name": "victory",
+		"alias": "victory",
+		"var": "Victory",
+		"path": "victory.min.js",
+		"version": "34.2.0"
+	},
+	{
+		"name": "pdfmake/build/pdfmake",
+		"alias": "pdfmake",
+		"var": "pdfMake",
+		"path": "pdfmake.min.js",
+		"version": "0.1.62",
+		"defer": true
+	},
+	{
+		"name": "pdfmake/build/vfs_fonts.js",
+		"alias": "pdfmake",
+		"var": "pdfMake",
+		"path": "vfs_fonts.js",
+		"version": "0.1.62",
+		"defer": true
+	},
+	{
+		"name": "localforage",
+		"alias": "localforage",
+		"var": "localforage",
+		"path": "localforage.min.js",
+		"version": "1.7.3"
+	},
+	{
+		"name": "react-player",
+		"alias": "react-player",
+		"var": "ReactPlayer",
+		"path": "dist/ReactPlayer.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "2.0.1"
+	},
+	{
+		"name": "react-draggable",
+		"alias": "react-draggable",
+		"var": "ReactDraggable",
+		"path": "build/web/react-draggable.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "4.2.0"
+	},
+	{
+		"name": "socket.io-client",
+		"alias": "socket.io-client",
+		"var": "io",
+		"path": "dist/socket.io.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "2.3.0"
+	},
+	{
+		"name": "react-contextmenu",
+		"alias": "react-contextmenu",
+		"var": "ReactContextMenu",
+		"path": "dist/react-contextmenu.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "2.13.0"
+	},
+	{
+		"name": "react-list",
+		"alias": "react-list",
+		"var": "ReactList",
+		"path": "react-list.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "0.8.11"
+	},
+	{
+		"name": "react-notification-system",
+		"alias": "react-notification-system",
+		"var": "ReactNotificationSystem",
+		"path": "dist/react-notification-system.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "0.4.0"
+	},
+	{
+		"name": "d3",
+		"alias": "d3",
+		"var": "d3",
+		"path": "dist/d3.min.js",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
+		"version": "5.16.0"
+	}
+]

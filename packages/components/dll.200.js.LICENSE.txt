@@ -1,0 +1,45 @@
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony import */
+
+/* import() */
+
+/* import() | Calculator */
+
+/* import() | Queue */
+
+/*#__PURE__*/
+
+/**
+* Casts a pixel string to a number.
+*
+* @private
+* @param {(string|number)} x - input value
+* @param {number} cast number (in px)
+*/
+
+/**
+* Toolbar of widgets for students to use during the course of a lesson.
+*
+* @property {Array} elements - array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

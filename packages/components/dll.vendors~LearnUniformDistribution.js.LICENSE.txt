@@ -1,0 +1,491 @@
+/* */
+
+/* eslint-disable no-return-assign */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/*#__PURE__*/
+
+/**
+	* Constant function.
+	*
+	* @private
+	* @returns {*} constant value
+	*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) for a uniform distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) for a uniform distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated PDF
+	*
+	* @example
+	* var y = pdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+         * If a prop switches from controlled to Uncontrolled
+         * reset its value to the defaultValue
+         */
+
+/**
+   * If a prop switches from controlled to Uncontrolled
+   * reset its value to the defaultValue
+   */
+
+/**
+   * useful when wrapping a Component and you want to control
+   * everything
+   */
+
+/**
+ * An `addEventListener` ponyfill, supports the `once` option
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ * https://github.com/facebook/react/blob/2aeb8a2a6beb00617a4217f7f8284924fa2ad819/src/vendor/core/hyphenateStyleName.js
+ */
+
+/**
+ * Create and returns a single callback ref composed from two other Refs.
+ *
+ * ```tsx
+ * const Button = React.forwardRef((props, ref) => {
+ *   const [element, attachRef] = useCallbackRef<HTMLButtonElement>();
+ *   const mergedRef = useMergedRefs(ref, attachRef);
+ *
+ *   return <button ref={mergedRef} {...props}/>
+ * })
+ * ```
+ *
+ * @param refA A Callback or mutable Ref
+ * @param refB A Callback or mutable Ref
+ * @category refs
+ */
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+
+/**
+ * Iterates through children that are "valid elements".
+ *
+ * The provided forEachFunc(child, index) will be called for each
+ * leaf child with the index reflecting the position relative to "valid components".
+ */
+
+/**
+ * Iterates through children that are typically specified as `props.children`,
+ * but only maps over children that are "valid elements".
+ *
+ * The mapFunction provided index will be normalised to the components mapped,
+ * so an invalid component would not increase the index.
+ *
+ */
+
+/**
+ * Returns a function that triggers a component update. the hook equivalent to
+ * `this.forceUpdate()` in a class component. In most cases using a state value directly
+ * is preferable but may be required in some advanced usages of refs for interop or
+ * when direct DOM manipulation is required.
+ *
+ * ```ts
+ * const forceUpdate = useForceUpdate();
+ *
+ * const updateOnClick = useCallback(() => {
+ *  forceUpdate()
+ * }, [forceUpdate])
+ *
+ * return <button type="button" onClick={updateOnClick}>Hi there</button>
+ * ```
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Create a constant function.
+*
+* @module @stdlib/utils/constant-function
+*
+* @example
+* var constantFunction = require( '@stdlib/utils/constant-function' );
+*
+* var fcn = constantFunction( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+/**
+* Creates a function which always returns the same value.
+*
+* @param {*} [value] - value to always return
+* @returns {Function} constant function
+*
+* @example
+* var fcn = wrap( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a uniform distribution with minimum support `a` and maximum support `b` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Probability} evaluated CDF
+*
+* @example
+* var y = cdf( 9.0, 0.0, 10.0 );
+* // returns 0.9
+*
+* @example
+* var y = cdf( 0.5, 0.0, 2.0 );
+* // returns 0.25
+*
+* @example
+* var y = cdf( +Infinity, 2.0, 4.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( -Infinity, 2.0, 4.0 );
+* // returns 0.0
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = cdf( 2.0, 1.0, 0.0 );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a uniform distribution with minimum support `a` and maximum support `b` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {number} evaluated PDF
+*
+* @example
+* var y = pdf( 2.0, 0.0, 4.0 );
+* // returns 0.25
+*
+* @example
+* var y = pdf( 5.0, 0.0, 4.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 0.25, 0.0, 1.0 );
+* // returns 1.0
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 3.0, 1.0 );
+* // returns NaN
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a uniform distribution with minimum support `a` and maximum support `b`.
+*
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Function} CDF
+*
+* @example
+* var cdf = factory( 0.0, 10.0 );
+* var y = cdf( 0.5 );
+* // returns 0.05
+*
+* y = cdf( 8.0 );
+* // returns 0.8
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a uniform distribution with minimum support `a` and maximum support `b`.
+*
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {Function} PDF
+*
+* @example
+* var pdf = factory( 0.0, 10.0 );
+* var y = pdf( 2.0 );
+* // returns 0.1
+*
+* y = pdf( 12.0 );
+* // returns 0.0
+*/
+
+/**
+* Uniform distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/uniform/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/uniform/cdf' );
+*
+* var y = cdf( 5.0, 0.0, 4.0 );
+* // returns 1.0
+*
+* var mycdf = cdf.factory( 0.0, 10.0 );
+* y = mycdf( 0.5 );
+* // returns 0.05
+*
+* y = mycdf( 8.0 );
+* // returns 0.8
+*/
+
+/**
+* Uniform distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/uniform/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/uniform/pdf' );
+*
+* var y = pdf( 3.0, 2.0, 6.0 );
+* // returns 0.25
+*
+* var myPDF = pdf.factory( 6.0, 7.0 );
+* y = myPDF( 7.0 );
+* // returns 1.0
+*
+* y = myPDF( 5.0 );
+* // returns 0.0
+*/
+
+/***/
+
+//         nextStatus = ENTERING
+
+//         nextStatus = EXITING
+
+//       if (status !== ENTERING && status !== ENTERED) {
+
+//       if (status === ENTERING || status === ENTERED) {
+
+//       }
+
+//     const { status } = this.state
+
+//     if (this.props.in) {
+
+//     }
+
+//     } else {
+
+//   if (prevProps !== this.props) {
+
+//   let nextStatus = null
+
+//   return { nextStatus }
+
+//   }
+
+// 16.3+ will not execute our will-update method;
+
+// A ref and forceUpdate for refocus, b/c we only want to trigger when needed
+
+// Add a flag to suppress these warnings for this special case.
+
+// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+
+// As a workaround, use cWU to invoke the new lifecycle.
+
+// Because for <= 15.x versions this might be a "prevContext" object.
+
+// Because get-snapshot might return a falsy value.
+
+// Because they would work differently between older and newer (16.3+) versions of React.
+
+// Binding "this" is important for shallow renderer support.
+
+// Call this.constructor.gDSFP to support sub-classes.
+
+// EXPORTS //
+
+// Error if any of these lifecycles are present,
+
+// If new component APIs are defined, "unsafe" lifecycles won't be called.
+
+// In the context of a TransitionGroup all enters are really appears
+
+// It will pass a snapshot value to did-update though.
+
+// MAIN //
+
+// MODULES //
+
+// Name the function so it is clearer in the documentation
+
+// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+
+// Newer versions of React will ignore that lifecycle if gSBU exists.
+
+// Newer versions of React will ignore these lifecycles if gDSFP exists.
+
+// Older versions will require our polyfilled will-update value.
+
+// React <= 16.2 does not support getSnapshotBeforeUpdate.
+
+// React <= 16.2 does not support static getDerivedStateFromProps.
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+
+// So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+
+// TODO: remove fallback for next major
+
+// This shouldn't be necessary, but there are weird race conditions with
+
+// Use the setState() updater to ensure state isn't stale in certain edge cases.
+
+// We also can't just check "__reactInternalSnapshot",
+
+// We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+
+// We provide an empty the TabContext so `<Nav>`s in `<TabPane>`s don't
+
+// add default propTypes for folks that use runtime checks
+
+// allows for nested Transitions
+
+// and don't want to reset the set in the effect
+
+// conflict with the top level one.
+
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+// eslint-disable-next-line no-multi-assign
+
+// getSnapshotBeforeUpdate(prevProps) {
+
+// if we are mounting and running this it means appear _must_ be set
+
+// nextStatus will always be ENTERING or EXITING.
+
+// no enter animation skip right to ENTERED
+
+// no exit animation skip right to EXITED
+
+// reading a dimension prop will cause the browser to recalculate,
+
+// setState callbacks and unmounting in testing, so always make sure that
+
+// used by NavLink to determine it's role
+
+// we can cancel any pending setState callbacks after we unmount.
+
+// we don't care about invariant's own frame
+
+// which will let our animations work
+
+// }
+
+//let setState trigger the update

@@ -1,0 +1,23 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A tooltip overlay.
+*
+* @property {string} tooltip - tooltip content
+* @property {string} placement - direction of the tooltip
+* @property {boolean} show - controls whether the tooltip shall be displayed
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //

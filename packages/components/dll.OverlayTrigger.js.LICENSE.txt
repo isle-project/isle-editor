@@ -1,0 +1,21 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Wrapper around react-bootstrap's OverlayTrigger disabling the overlay on touch devices.
+*/
+
+/***/
+
+// EXPORTS //
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// VARIABLES //

@@ -1,0 +1,1043 @@
+/*
+   * Initial width
+   */
+
+/*
+  * Called on resize event
+  * */
+
+/*
+  * Called on start resize event
+  * */
+
+/*
+  * Called on stop resize event
+  * */
+
+/*
+  * Customize cursor resize handle
+  * */
+
+/*
+  * Defines which resize handles should be rendered (default: 'se')
+  * 's' - South handle (bottom-center)
+  * 'w' - West handle (left-center)
+  * 'e' - East handle (right-center)
+  * 'n' - North handle (top-center)
+  * 'sw' - Southwest handle (bottom-left)
+  * 'nw' - Northwest handle (top-left)
+  * 'se' - Southeast handle (bottom-right)
+  * 'ne' - Northeast handle (top-center)
+  * */
+
+/*
+  * If `transform: scale(n)` is set on the parent, this should be set to `n`.
+  * */
+
+/*
+  * If you change this, be sure to update your css
+  * */
+
+/*
+  * Initial height
+  * */
+
+/*
+  * Max X & Y measure
+  * */
+
+/*
+  * Min X & Y measure
+  * */
+
+/*
+  * Require that one and only one child be present.
+  * */
+
+/*
+  * Restricts resizing to a particular axis (default: 'both')
+  * 'both' - allows resizing by width or height
+  * 'x' - only allows the width to be changed
+  * 'y' - only allows the height to be changed
+  * 'none' - disables resizing altogether
+  * */
+
+/*
+  * These will be passed wholesale to react-draggable's DraggableCore
+  * */
+
+/*
+ * A simple HOC that provides facility for listening to container resizes.
+ *
+ * The Flow type is pretty janky here. I can't just spread `WPProps` into this returned object - I wish I could - but it triggers
+ * a flow bug of some sort that causes it to stop typechecking.
+ */
+
+/* Ignore */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-enable no-unused-vars */
+
+/*#__PURE__*/
+
+/**
+     * Calculates a pixel value for the container.
+     * @return {String} Container height in pixels.
+     */
+
+/**
+     * Create a placeholder object.
+     * @return {Element} Placeholder div.
+     */
+
+/**
+     * Each drag movement create a new dragelement and move the element to the dragged location
+     * @param {String} i Id of the child
+     * @param {Number} x X position of the move
+     * @param {Number} y Y position of the move
+     * @param {Event} e The mousedown event
+     * @param {Element} node The current dragging DOM element
+     */
+
+/**
+     * Given a grid item, set its style attributes & surround in a <Draggable>.
+     * @param  {Element} child React element.
+     * @return {Element}       Element wrapped in draggable and properly placed.
+     */
+
+/**
+     * Mix a Draggable instance into a child.
+     * @param  {Element} child    Child element.
+     * @return {Element}          Child wrapped in Draggable.
+     */
+
+/**
+     * Mix a Resizable instance into a child.
+     * @param  {Element} child    Child element.
+     * @param  {Object} position  Position object (pixel values)
+     * @return {Element}          Child wrapped in Resizable.
+     */
+
+/**
+     * This is where we set the grid item's absolute placement. It gets a little tricky because we want to do it
+     * well when server rendering, and the only way to do that properly is to use percentage width/left because
+     * we don't know exactly what the browser viewport is.
+     * Unfortunately, CSS Transforms, which are great for performance, break in this instance because a percentage
+     * left is relative to the item itself, not its container! So we cannot use them on the server rendering pass.
+     *
+     * @param  {Object} pos Position object with width, height, left, top.
+     * @return {Object}     Style object.
+     */
+
+/**
+     * When dragging starts
+     * @param {String} i Id of the child
+     * @param {Number} x X position of the move
+     * @param {Number} y Y position of the move
+     * @param {Event} e The mousedown event
+     * @param {Element} node The current dragging DOM element
+     */
+
+/**
+     * When dragging stops, figure out which position the element is closest to and update its x and y.
+     * @param  {String} i Index of the child.
+     * @param {Number} x X position of the move
+     * @param {Number} y Y position of the move
+     * @param {Event} e The mousedown event
+     * @param {Element} node The current dragging DOM element
+     */
+
+/**
+     * When the width changes work through breakpoints and reset state with the new width & breakpoint.
+     * Width changes are necessary to figure out the widget widths.
+     */
+
+/**
+     * Wrapper around drag events to provide more useful data.
+     * All drag events call the function with the given handler name,
+     * with the signature (index, x, y).
+     *
+     * @param  {String} handlerName Handler name to wrap.
+     * @return {Function}           Handler function.
+     */
+
+/**
+     * onDragStart event handler
+     * @param  {Event}  e             event data
+     * @param  {Object} callbackData  an object with node, delta and position information
+     */
+
+/**
+   * Wrapper around drag events to provide more useful data.
+   *
+   * @param  {String} handlerName Handler name to wrap.
+   * @return {Function}           Handler function.
+   */
+
+/**
+ * A reactive, fluid grid layout with draggable, resizable components.
+ */
+
+/**
+ * An individual item within a ReactGridLayout.
+ */
+
+/**
+ * Before moving item down, it will check if the movement will cause collisions and move those items down before.
+ */
+
+/**
+ * Compact an item in the layout.
+ *
+ * Modifies item.
+ *
+ */
+
+/**
+ * Comparing React `children` is a bit difficult. This is a good way to compare them.
+ * This will catch differences in keys, order, and length.
+ */
+
+/**
+ * Generate a layout using the initialLayout and children as a template.
+ * Missing entries will be added, extraneous ones will be truncated.
+ *
+ * Does not modify initialLayout.
+ *
+ * @param  {Array}  initialLayout Layout passed in through props.
+ * @param  {String} breakpoint    Current responsive breakpoint.
+ * @param  {?String} compact      Compaction option.
+ * @return {Array}                Working layout.
+ */
+
+/**
+ * Get a layout item by ID. Used so we can override later on if necessary.
+ *
+ * @param  {Array}  layout Layout array.
+ * @param  {String} id     ID
+ * @return {LayoutItem}    Item at ID.
+ */
+
+/**
+ * Get a value of margin or containerPadding.
+ *
+ * @param  {Array | Object} param Margin | containerPadding, e.g. [10, 10] | {lg: [10, 10], ...}.
+ * @param  {String} breakpoint   Breakpoint: lg, md, sm, xs and etc.
+ * @return {Array}
+ */
+
+/**
+ * Get all static elements.
+ * @param  {Array} layout Array of layout objects.
+ * @return {Array}        Array of static layout items..
+ */
+
+/**
+ * Get layout items sorted from top left to right and down.
+ *
+ * @return {Array} Array of layout objects.
+ * @return {Array}        Layout, sorted static items first.
+ */
+
+/**
+ * Given a breakpoint, get the # of cols set for it.
+ * @param  {String} breakpoint Breakpoint name.
+ * @param  {Object} cols       Map of breakpoints to cols.
+ * @return {Number}            Number of cols.
+ */
+
+/**
+ * Given a height and width in pixel values, calculate grid units.
+ * @param  {PositionParams} positionParams  Parameters of grid needed for coordinates calcluations.
+ * @param  {Number} height                  Height in pixels.
+ * @param  {Number} width                   Width in pixels.
+ * @param  {Number} x                       X coordinate in grid units.
+ * @param  {Number} y                       Y coordinate in grid units.
+ * @return {Object}                         w, h as grid units.
+ */
+
+/**
+ * Given a layout, compact it. This involves going down each y coordinate and removing gaps
+ * between items.
+ *
+ * Does not modify layout items (clones). Creates a new layout array.
+ *
+ * @param  {Array} layout Layout.
+ * @param  {Boolean} verticalCompact Whether or not to compact the layout
+ *   vertically.
+ * @return {Array}       Compacted Layout.
+ */
+
+/**
+ * Given a layout, make sure all elements fit within its bounds.
+ *
+ * Modifies layout items.
+ *
+ * @param  {Array} layout Layout array.
+ * @param  {Number} bounds Number of columns.
+ */
+
+/**
+ * Given a width, find the highest breakpoint that matches is valid for it (width > breakpoint).
+ *
+ * @param  {Object} breakpoints Breakpoints object (e.g. {lg: 1200, md: 960, ...})
+ * @param  {Number} width Screen width.
+ * @return {String}       Highest breakpoint that is less than width.
+ */
+
+/**
+ * Given breakpoints, return an array of breakpoints sorted by width. This is usually
+ * e.g. ['xxs', 'xs', 'sm', ...]
+ *
+ * @param  {Object} breakpoints Key/value pair of breakpoint names to widths.
+ * @return {Array}              Sorted breakpoints.
+ */
+
+/**
+ * Given existing layouts and a new breakpoint, find or generate a new layout.
+ *
+ * This finds the layout above the new one and generates from it, if it exists.
+ *
+ * @param  {Object} layouts     Existing layouts.
+ * @param  {Array} breakpoints All breakpoints.
+ * @param  {String} breakpoint New breakpoint.
+ * @param  {String} breakpoint Last breakpoint (for fallback).
+ * @param  {Number} cols       Column count at new breakpoint.
+ * @param  {Boolean} verticalCompact Whether or not to compact the layout
+ *   vertically.
+ * @return {Array}             New layout.
+ */
+
+/**
+ * Given two layoutitems, check if they collide.
+ */
+
+/**
+ * Helper to convert a number to a percentage string.
+ *
+ * @param  {Number} num Any number
+ * @return {String}     That number as a percentage.
+ */
+
+/**
+ * Move an element. Responsible for doing cascading movements of other elements.
+ *
+ * Modifies layout items.
+ *
+ * @param  {Array}      layout            Full layout to modify.
+ * @param  {LayoutItem} l                 element to move.
+ * @param  {Number}     [x]               X position in grid units.
+ * @param  {Number}     [y]               Y position in grid units.
+ */
+
+/**
+ * Return position on the page given an x, y, w, h.
+ * left, top, width, height are all in pixels.
+ * @param  {PositionParams} positionParams  Parameters of grid needed for coordinates calculations.
+ * @param  {Number}  x                      X coordinate in grid units.
+ * @param  {Number}  y                      Y coordinate in grid units.
+ * @param  {Number}  w                      W coordinate in grid units.
+ * @param  {Number}  h                      H coordinate in grid units.
+ * @return {Position}                       Object containing coords.
+ */
+
+/**
+ * Return the bottom coordinate of the layout.
+ *
+ * @param  {Array} layout Layout array.
+ * @return {Number}       Bottom coordinate.
+ */
+
+/**
+ * Returns the first item this layout collides with.
+ * It doesn't appear to matter which order we approach this from, although
+ * perhaps that is the wrong thing to do.
+ *
+ * @param  {Object} layoutItem Layout item.
+ * @return {Object|undefined}  A colliding layout item, or undefined.
+ */
+
+/**
+ * See `fastRGLPropsEqual.js`.
+ * We want this to run as fast as possible - it is called often - and to be
+ * resilient to new props that we add. So rather than call lodash.isEqual,
+ * which isn't suited to comparing props very well, we use this specialized
+ * function in conjunction with preval to generate the fastest possible comparison
+ * function, tuned for exactly our props.
+ */
+
+/**
+ * Sort layout items by column ascending then row ascending.
+ *
+ * Does not modify Layout.
+ */
+
+/**
+ * Sort layout items by row ascending and column ascending.
+ *
+ * Does not modify Layout.
+ */
+
+/**
+ * This is where the magic needs to happen - given a collision, move an element away from the collision.
+ * We attempt to move it up if there's room, otherwise it goes below.
+ *
+ * @param  {Array} layout            Full layout to modify.
+ * @param  {LayoutItem} collidesWith Layout item we're colliding with.
+ * @param  {LayoutItem} itemToMove   Layout item we're moving.
+ */
+
+/**
+ * Translate x and y coordinates from pixels to grid units.
+ * @param  {PositionParams} positionParams  Parameters of grid needed for coordinates calculations.
+ * @param  {Number} top                     Top position (relative to parent) in pixels.
+ * @param  {Number} left                    Left position (relative to parent) in pixels.
+ * @param  {Number} w                       W coordinate in grid units.
+ * @param  {Number} h                       H coordinate in grid units.
+ * @return {Object}                         x and y in grid units.
+ */
+
+/**
+ * Validate a layout. Throws errors.
+ *
+ * @param  {Array}  layout        Array of layout items.
+ * @param  {String} [contextName] Context name for errors.
+ * @throw  {Error}                Validation error.
+ */
+
+/***/
+
+/*: "x" | "y"*/
+
+/*: ?Layout*/
+
+/*: ?LayoutItem*/
+
+/*: ?Object*/
+
+/*: ?boolean*/
+
+/*: ?number*/
+
+/*: ?{ verticalCompact: boolean, compactType: CompactType }*/
+
+/*: Array<string>*/
+
+/*: Breakpoint*/
+
+/*: Breakpoints<Breakpoint>*/
+
+/*: CompactType*/
+
+/*: DragOverEvent*/
+
+/*: Event*/
+
+/*: FastRGLPropsEqual*/
+
+/*: HTMLElement*/
+
+/*: Layout*/
+
+/*: LayoutItem*/
+
+/*: LayoutItem[]*/
+
+/*: Object*/
+
+/*: PartialPosition*/
+
+/*: Position*/
+
+/*: PositionParams*/
+
+/*: Props*/
+
+/*: Props<*>*/
+
+/*: Props<>*/
+
+/*: React.AbstractComponent<Config>*/
+
+/*: ReactChildren*/
+
+/*: ReactElement<any>*/
+
+/*: ResponsiveLayout<Breakpoint>*/
+
+/*: State*/
+
+/*: any*/
+
+/*: boolean*/
+
+/*: number*/
+
+/*: string*/
+
+/*: { [key: string]: T } | T*/
+
+/*: { cols: number }*/
+
+/*: { node: HTMLElement, size: Position }*/
+
+/*:: <T: ?[number, number]>*/
+
+/*:: export type PositionParams = {
+  margin: [number, number],
+  containerPadding: [number, number],
+  containerWidth: number,
+  cols: number,
+  rowHeight: number,
+  maxRows: number
+};*/
+
+/*:: import type { Position } from "./utils";*/
+
+/*:: type FastRGLPropsEqual = (Object, Object, Function) => boolean;*/
+
+/*:: type Props<Breakpoint: string = string> = {|
+  ...React.ElementConfig<typeof ReactGridLayout>,
+
+  // Responsive config
+  breakpoint?: ?Breakpoint,
+  breakpoints: Breakpoints<Breakpoint>,
+  cols: { [key: Breakpoint]: number },
+  layouts: ResponsiveLayout<Breakpoint>,
+  width: number,
+  margin: { [key: Breakpoint]: [number, number] } | [number, number],
+  /* prettier-ignore *-/
+  containerPadding: { [key: Breakpoint]: ?[number, number] } | ?[number, number],
+
+  // Callbacks
+  onBreakpointChange: (Breakpoint, cols: number) => void,
+  onLayoutChange: (Layout, { [key: Breakpoint]: Layout }) => void,
+  onWidthChange: (
+    containerWidth: number,
+    margin: [number, number],
+    cols: number,
+    containerPadding: ?[number, number]
+  ) => void
+|};*/
+
+/*:: type State = {
+  layout: Layout,
+  breakpoint: string,
+  cols: number,
+  layouts?: { [key: string]: Layout }
+};*/
+
+//
+
+// # of cols.
+
+// # of cols. This is a breakpoint -> cols map
+
+// # of containerPadding. This is a breakpoint -> containerPadding map
+
+// # of margin. This is a breakpoint -> margin map
+
+// $FlowIgnore acceptable modification of read-only array as it was recently cloned
+
+// $FlowIssue doesn't seem to understand this
+
+// 'e' - East handle (right-center)
+
+// 'n' - North handle (top-center)
+
+// 'ne' - Northeast handle (top-right)
+
+// 'nw' - Northwest handle (top-left)
+
+// 's' - South handle (bottom-center)
+
+// 'se' - Southeast handle (bottom-right)
+
+// 'sw' - Southwest handle (bottom-left)
+
+// 'w' - West handle (left-center)
+
+// 0 * Infinity === NaN, which causes problems with resize contraints
+
+// A selector for the draggable handler
+
+// A selector that will not be draggable.
+
+// Add slack to the values used to calculate bound position. This will ensure that if
+
+// Add to comparison array. We only collide with items before this one.
+
+// Add to output array to make sure they still come out in the right order.
+
+// All callbacks below have the same signature. 'start' and 'stop' callbacks omit the 'placeholder'.
+
+// All optional
+
+// Allow parent to set layout directly.
+
+// Allow parent to set layouts directly.
+
+// Allow parent to set width or breakpoint directly.
+
+// Allows for any combination of:
+
+// Axis restrictions
+
+// Basic props
+
+// Basic wrapper around a Resizable instance.
+
+// Bottom 'y' possible is the bottom of the layout.
+
+// Boundary calculations; keeps items within the grid
+
+// Breakpoint change
+
+// But we know that count of dragEnter and dragLeave events
+
+// CSS Transforms support (default)
+
+// Call callback with this data
+
+// Call to properly set the breakpoint and resize the elements.
+
+// Call user-supplied callback if present.
+
+// Callback so you can save the layout.
+
+// Callback so you can save the layout. Calls after each drag & resize stops.
+
+// Callbacks
+
+// Called while dragging an element. Part of browser native drag/drop API.
+
+// Calls back with (containerWidth, margin, cols, containerPadding)
+
+// Calls back with (currentLayout, allLayouts). allLayouts are keyed by breakpoint.
+
+// Calls back with breakpoint and new # cols
+
+// Calls on each drag movement.
+
+// Calls when drag is complete.
+
+// Calls when drag starts. Callback is of the signature (layout, oldItem, newItem, placeholder, e, ?node).
+
+// Calls when resize is complete.
+
+// Calls when resize movement happens.
+
+// Calls when some element is dropped.
+
+// Capping
+
+// Check children keys for duplicates. Throw if found.
+
+// Children must be only a single element
+
+// Children must not have duplicate keys.
+
+// Choose vertical or hotizontal compaction
+
+// Clamp width and height within provided constraints
+
+// Clear moved flag, if it exists.
+
+// Compact vertically if not set to horizontal
+
+// Create placeholder (display only)
+
+// Create placeholder element (display only)
+
+// Current position of a dropping element
+
+// Decompose axis for later use
+
+// Default Infinity, but you can specify a max here if you like.
+
+// Defines which resize handles should be rendered (default: 'se')
+
+// Deprecated
+
+// Don't move static elements
+
+// Don't move static items - we have to move *this* element away
+
+// Don't overwrite if it already exists.
+
+// Draggable support. This is always on, except for with placeholders.
+
+// End Types
+
+// FIXME remove this hack
+
+// Fast path to cloning, since this is monomorphic
+
+// Find or generate a new layout.
+
+// Find or generate the next layout
+
+// Flags
+
+// Flow can't really figure this out, so we just use Object
+
+// Flow casts this to Text | Element
+
+// Functions
+
+// General grid attributes
+
+// Generate one layout item per child.
+
+// Go through each item we collide with.
+
+// Grid Dimensions
+
+// Helper for generating column width
+
+// Hey, this item has a data-grid property, use it.
+
+// I hope you're setting the data-grid property on the grid items
+
+// ID is nice to have for callbacks
+
+// If children change, also regenerate the layout. Use our state
+
+// If constraining to min and max, we need to also fit width and height to aspect ratio.
+
+// If dragging, use the exact width and height as returned from dragging callbacks.
+
+// If it already exists, just return it.
+
+// If parent changes height/width, set that in our state.
+
+// If resizing, use the exact width and height as returned from resizing callbacks.
+
+// If the handle has repositioned on either axis since last render,
+
+// If the width or height changed, we must have introduced some slack. Record it for the next iteration.
+
+// If there is enough space above the collision to put this element, move it there.
+
+// If this collides with anything, move it.
+
+// If this is static and collides with other statics, we must move it down.
+
+// If this is static and not explicitly enabled as draggable,
+
+// If true, an external element can trigger onDrop callback with a specific grid position as a parameter
+
+// If true, grid items won't change position when being dragged over.
+
+// If true, the container height swells and contracts to fit contents
+
+// If true, will not render children until mounted. Useful for getting the exact width before
+
+// If we're colliding, we need adjust the placeholder.
+
+// If you need that behavior, use WidthProvider.
+
+// If you use Resizable directly, you are responsible for updating the child component
+
+// Ignore static items
+
+// Intentionally not documented for this reason.
+
+// Its original children (resizable's child's children), and
+
+// Legacy support for compactType
+
+// Legacy support for verticalCompact: false
+
+// Like the above, but a lot simpler.
+
+// Make a mock item so we don't modify the item here, only modify in moveElement.
+
+// Margin between items [x, y] in px
+
+// Min/max capping
+
+// Move each item that collides away from this element.
+
+// Move it down, and keep moving it down if it's colliding.
+
+// Move the element here
+
+// Move the element left as far as it can go without colliding.
+
+// Move the element to the dragged location.
+
+// Move the element up as far as it can go without colliding.
+
+// NOTE: this is almost always unequal. Therefore the only way to get better performance
+
+// Native event target might be the layout itself, or an element within the layout.
+
+// No collision? If so, we can go up there; otherwise, we'll end up moving down as normal
+
+// No dragging possible.
+
+// Note that if you're doing a full-width element, this can get a little wonky if a scrollbar
+
+// Note that this isn't fully fleshed out and won't error if you specify a layout that
+
+// One or more draggable handles.
+
+// Only checking 'n', 'w' since resizing by 's', 'w' won't affect the overall position on page,
+
+// Optimization: we can break early if we know we're past this el
+
+// Optional ref for getting a reference for the wrapping div.
+
+// Optional, but if you are managing width yourself you may want to set the breakpoint
+
+// Other validations
+
+// Others
+
+// Overflows left
+
+// Overflows right
+
+// Padding inside the container [x, y] in px
+
+// Pass along only props not meant for the `<Resizable>`.`
+
+// Possibly call back with layout on mount. This should be done after correcting the layout width
+
+// Preserve the current layout if the current breakpoint is not present in the next layouts.
+
+// Re-compact the layout and set the drag placeholder.
+
+// React.addons.cloneWithProps look-alike that merges style & className.
+
+// Refactored to another module to make way for preval
+
+// Replace unitless items with px
+
+// Required in this propTypes stanza because generateInitialState() will fail without it.
+
+// Reset data in case it was left over somehow (should not be possible)
+
+// Reset internal data
+
+// Reset isUserAction flag because we're not in the main collision anymore.
+
+// Resizable support. This is usually on but the user can toggle it off.
+
+// Reverse delta if using top or left drag handles.
+
+// Rows have a static height, but you can change this based on breakpoints if you like
+
+// Selector for draggable cancel (see react-draggable)
+
+// Selector for draggable handle
+
+// Set new width and height.
+
+// Set state
+
+// Short circuit so we can't infinite loop
+
+// Short-circuit if nothing to do.
+
+// Similar to _.clamp
+
+// Since we can't grow without bounds horizontally, if we've overflown, let's move it down and try again.
+
+// Since we're setting an entirely new layout object, we must generate a new responsive layout
+
+// Slice to clone array as sort modifies
+
+// Something like quad tree should be used
+
+// Statics are already in this array.
+
+// Statics go in the compareWith array right away so items flow around them.
+
+// Storage of last rect so we know how much it has really moved.
+
+// Store the new layout.
+
+// TODO memoize these calculations so they don't take so long?
+
+// TODO publish internal ReactClass displayName transform
+
+// TODO: this wont work on nested parents
+
+// Take into account vertical resize with N/S handles on locked aspect
+
+// The width of this component.
+
+// There was a collision; abort
+
+// These are all in grid units
+
+// These can be null/undefined
+
+// This adds missing items.
+
+// This allows you to do nice stuff like specify {y: Infinity}
+
+// This can be set explicitly. If it is not set, it will automatically
+
+// This can either be called:
+
+// This is here because the layout must be sorted in order to get the correct bottom `y`.
+
+// This is quite a bit faster than extending the object
+
+// This is used for server rendering.
+
+// Try...catch will protect from navigator not existing (e.g. node) or a bad implementation of navigator
+
+// Update w/h by the deltas. Also factor in transformScale.
+
+// Use CSS transforms instead of top/left
+
+// We are then defining its children as:
+
+// We can do this b/c it's a sorted layout
+
+// We can set the width and height on the child, but unfortunately we can't set the position.
+
+// We can't deeply compare children. If the developer memoizes them, we can
+
+// We go through the items by row and column.
+
+// We have to do something nicer than just letting them overlap.
+
+// We need to regenerate the layout.
+
+// We need to save these props to state for using
+
+// We only do this on the main collision as this can get funky in cascades and cause
+
+// What we're doing here is getting the child of this element, and cloning it with this element's props.
+
+// When a droppingPosition is present, this means we should fire a move event, as if we had moved
+
+// When doing this comparison, we have to sort the items we compare with
+
+// adjust w && h to maximum allowed space
+
+// an item past the barrier. They can push items beyond the barrier, though.
+
+// appears because of the grid. In that case, fire your own resize event, or set `overflow: scroll` on your body.
+
+// as the base in case because it may be more up to date than
+
+// be set to the container width. Note that resizes will *not* cause this to adjust.
+
+// calcGridItemWHPx(h, rowHeight, margin[1])
+
+// calcGridItemWHPx(w, colWidth, margin[0])
+
+// callbacks
+
+// clone layout so we don't modify existing items
+
+// completely removed.
+
+// e.g. [10, 10]
+
+// e.g. { lg: [5, 5], md: [10, 10], sm: [15, 15] }
+
+// e.g. {lg: Layout, md: Layout, ...}
+
+// eslint-disable-next-line no-unused-vars
+
+// eslint-disable-next-line react/no-find-dom-node
+
+// extends beyond the row capacity. It will, however, not allow users to drag/resize
+
+// from SCU is if the user intentionally memoizes children. If they do, and they can
+
+// getDerivedStateFromProps instead of componentDidMount (in which we would get extra rerender)
+
+// handle changes properly, performance will increase.
+
+// if one does not exist.
+
+// infinite vertical growth
+
+// l1 is left of l2
+
+// l1 is right of l2
+
+// layout is an array of object with the format:
+
+// layouts is an object mapping breakpoints to layouts.
+
+// maxW should be at most (cols - x)
+
+// minW should be at least 1 (TODO propTypes validation?)
+
+// nearest collision.
+
+// no move is possible, so we can short-circuit this immediately.
+
+// onDragLeave can be triggered on each layout's child.
+
+// or
+
+// parent layout transform scale
+
+// ratio. Calculate the change height-first, instead of width-first
+
+// rendering, to prevent any unsightly resizing.
+
+// reset gragEnter counter on drop
+
+// same element
+
+// so we can increase and decrease count of dragEnter and
+
+// this element by `x, y` pixels.
+
+// this file was prevaled
+
+// to avoid unpredictable jumping of a dropping placeholder
+
+// to ensure we don't rerender with the wrong width.
+
+// to ensure, in the case of multiple collisions, that we're getting the
+
+// to find collisions faster
+
+// top,left (slow)
+
+// unwanted swapping behavior.
+
+// use this optimization.
+
+// we need to increase our callback values by this much.
+
+// we should ignore events from layout's children in Firefox
+
+// we start removing slack, the element won't react to it right away until it's been
+
+// we're already colliding (not for static items)
+
+// what is in props.
+
+// when it'll be equal to 0 we'll remove the placeholder
+
+// will be balanced after leaving the layout's container
+
+// with a new width and height.
+
+// wrap layouts so we do not need to pass layouts to child
+
+// yourself as well.
+
+// {...this.state.activeDrag} is pretty slow, actually
+
+// {name: pxVal}, e.g. {lg: 1200, md: 996, sm: 768, xs: 480}
+
+// {x: Number, y: Number, w: Number, h: Number, i: String}
+
+//Calls when resize starts.
+
+//call onWidthChange on every change of width, not only on breakpoint changes

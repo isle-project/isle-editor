@@ -1,0 +1,86 @@
+/*
+* Adapted from:
+*
+* FileSaver.js
+* A saveAs() FileSaver implementation.
+* 1.3.8
+* 2018-03-22 14:03:47
+*
+* By Eli Grey, https://eligrey.com
+* License: MIT
+*   See https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md
+*
+* @source http://purl.eligrey.com/github/FileSaver.js/blob/master/src/FileSaver.js
+*/
+
+/* (ignored) */
+
+/* WEBPACK VAR INJECTION */
+
+/* eslint-disable react/no-did-mount-set-state */
+
+/* eslint-enable react/no-did-mount-set-state */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/***/
+
+// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
+
+// Case: Guest
+
+// Case: Owner
+
+// Case: Student
+
+// Don't create more object URLs than needed:
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// First try a download, then web filesystem, then object URLs:
+
+// IE 10+ (native saveAs)
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// On any filesystem errors, revert to saving with object URLs:
+
+// PROPERTIES //
+
+// Prepend BOM for UTF-8 XML and text/* types (including HTML). Note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
+
+// Remove glow effect from previously highlighted elements:
+
+// Safari doesn't allow downloading of blob URLs:
+
+// TYPES //
+
+// VARIABLES //
+
+// array of IDs for lesson elements
+
+// eslint-disable-next-line react/no-did-mount-set-state
+
+// file is a File
+
+// file is an object URL
+
+// in ms
+
+// only get URL when necessary in case Blob.js hasn't overridden it yet
+
+// release reference before dispatching

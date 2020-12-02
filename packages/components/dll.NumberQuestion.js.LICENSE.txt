@@ -1,0 +1,125 @@
+/*
+    * Event handler invoked when input field value changes. Updates `value` and invokes `onChange` callback with the new value as its first argument
+    */
+
+/*
+    * React component render method.
+    */
+
+/* harmony default export */
+
+/* harmony import */
+
+/* import() | GradeFeedbackRenderer */
+
+/*#__PURE__*/
+
+/**
+  * Create a number question with a number input field.
+  *
+  * @param {Object} props
+  */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* A number question component.
+*
+* @property {(string|node)} question - number question
+* @property {Array<string>} hints - hints providing guidance on how to answer the question
+* @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {boolean} feedback - controls whether to display feedback buttons
+* @property {(number|Array<number>)} solution - a numeric answer to the problem (or multiple correct answers if an array is supplied)
+* @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
+* @property {number} max - maximum allowed input value
+* @property {number} min - minimum allowed input value
+* @property {number} defaultValue - pre-selected value of number input
+* @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is `true`)
+* @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
+* @property {Date} until - time until students should be allowed to submit answers
+* @property {number} points - maximum number of points awarded in grading
+* @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback  which is triggered after the value of the number field changes; receives the current value as its sole argument
+* @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
+*/
+
+/**
+* Test if a value is `undefined` or `null`.
+*
+* @module @stdlib/assert/is-undefined-or-null
+*
+* @example
+* var isUndefinedOrNull = require( '@stdlib/assert/is-undefined-or-null' );
+*
+* var bool = isUndefinedOrNull( void 0 );
+* // returns true
+*
+* bool = isUndefinedOrNull( null );
+* // returns true
+*
+* bool = isUndefinedOrNull( false );
+* // returns false
+*/
+
+/**
+* Tests if a value is `undefined` or `null`.
+*
+* ## Notes
+*
+* -   In older browsers, `undefined` is a global which can be overridden. `void`, however, is an operator which **cannot** be overridden. Consequently, better to use `void` to check for `undefined`. See [Stack Overflow][1].
+*
+* [1]: http://stackoverflow.com/a/19369078/2225624
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is undefined
+*
+* @example
+* var bool = isUndefinedOrNull( undefined );
+* // returns true
+*
+* bool = isUndefinedOrNull( null );
+* // returns true
+*
+* bool = isUndefinedOrNull( false );
+* // returns false
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// Initialize state variables...
+
+// MAIN //
+
+// MODULES //
+
+// Manually trigger blur event since not happening when pressing ENTER:
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

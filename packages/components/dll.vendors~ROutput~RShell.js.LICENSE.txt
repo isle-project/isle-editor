@@ -1,0 +1,281 @@
+/*
+            AdoptNode() is not used because internal state is not reset
+            (e.g. the past names map of a HTMLFormElement), this is safe
+            in theory but we would rather not risk another attack vector.
+            The state that is cloned by importNode() is explicitly defined
+            by the specs.
+          */
+
+/* Add #text in case KEEP_CONTENT is set to true */
+
+/* Add html, head and body to ALLOWED_TAGS in case WHOLE_DOCUMENT is true */
+
+/* Add properties to a lookup table */
+
+/* Add tbody to ALLOWED_TAGS in case tables are permitted, see #286, #365 */
+
+/* Allow valid data-* attributes: At least one character after "-"
+          (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
+          XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
+          We don't need to check the value; it's always URI safe. */
+
+/* Assign config vars */
+
+/* Check attributes, sanitize if necessary */
+
+/* Check if dirty is correctly typed for IN_PLACE */
+
+/* Check if element is clobbered or can clobber */
+
+/* Check if tagname contains Unicode */
+
+/* Check if we have attributes; if not we might have a text node */
+
+/* Check value is safe. First, is attr inert? If so, is safe */
+
+/* Check we can run. Otherwise fall back or ignore */
+
+/* Check we have a DOM node from the data */
+
+/* Clean up removed elements */
+
+/* Create a HTML document */
+
+/* Deep shadow DOM detected */
+
+/* Detect mXSS attempts abusing namespace confusion */
+
+/* Did the hooks approve of the attribute? */
+
+/* Execute a hook if present */
+
+/* Exit directly if we have nothing to do */
+
+/* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+
+/* Fix IE's strange behavior with manipulated textNodes #89 */
+
+/* Get node iterator */
+
+/* Get the element's text content */
+
+/* Go backwards over all attributes; safely remove bad ones */
+
+/* Handle invalid data-* attribute set by try-catching it */
+
+/* If FORCE_BODY isn't used, leading whitespace needs to be preserved manually */
+
+/* If dirty is a DOM element, append to an empty document to avoid
+           elements being stripped by the parser */
+
+/* If we sanitized `dirty` in-place, return it. */
+
+/* Initialize shared config vars if necessary. */
+
+/* Initialize the document to work on */
+
+/* Is `value` valid for this attribute? */
+
+/* Keep content except for bad-listed elements */
+
+/* Make sure attribute cannot clobber */
+
+/* Make sure we have a string to sanitize.
+        DO NOT return early, as this will return the wrong type if
+        the user has requested a DOM object rather than a string */
+
+/* Merge configuration parameters */
+
+/* Node is already a body, use as is */
+
+/* Now let's check the element's type and name */
+
+/* Now start iterating over the created document */
+
+/* Parse profile info */
+
+/* Remove attribute */
+
+/* Remove element if anything forbids its presence */
+
+/* Remove first element node (ours) if FORCE_BODY is set */
+
+/* Remove in case a noscript/noembed XSS is suspected */
+
+/* Return sanitized string or DOM */
+
+/* Sanitize attribute content to be template-safe */
+
+/* Sanitize element content to be template-safe */
+
+/* Sanitize final string template-safe */
+
+/* Sanitize tags and elements */
+
+/* Set configuration parameters */
+
+/* Shadow DOM detected, sanitize it */
+
+/* Shallow clone an object */
+
+/* Shield configuration object from prototype pollution */
+
+/* Shield configuration object from tampering */
+
+/* Stringify, in case dirty is an object */
+
+/* Take care of an mXSS pattern using p, br inside svg, math */
+
+/* Use createHTMLDocument in case DOMParser is not available */
+
+/* Use the DOMParser API by default, fallback later if needs be */
+
+/* Work around a security issue in jQuery 3.0 */
+
+/* Work on whole document or just its body */
+
+/*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.0.8/LICENSE */
+
+/**
+     * AddHook
+     * Public method to add DOMPurify hooks
+     *
+     * @param {String} entryPoint entry point for the hook to add
+     * @param {Function} hookFunction function to execute
+     */
+
+/**
+     * Array of elements that DOMPurify removed during sanitation.
+     * Empty if nothing was removed.
+     */
+
+/**
+     * Expose whether this browser supports running the full DOMPurify.
+     */
+
+/**
+     * Public method to check if an attribute value is valid.
+     * Uses last set config, if any. Otherwise, uses config defaults.
+     * isValidAttribute
+     *
+     * @param  {string} tag Tag name of containing element.
+     * @param  {string} attr Attribute name.
+     * @param  {string} value Attribute value.
+     * @return {Boolean} Returns true if `value` is valid. Otherwise, returns false.
+     */
+
+/**
+     * Public method to remove the configuration
+     * clearConfig
+     *
+     */
+
+/**
+     * Public method to set the configuration once
+     * setConfig
+     *
+     * @param {Object} cfg configuration object
+     */
+
+/**
+     * RemoveAllHooks
+     * Public method to remove all DOMPurify hooks
+     *
+     */
+
+/**
+     * RemoveHook
+     * Public method to remove a DOMPurify hook at a given entryPoint
+     * (pops it from the stack of hooks if more are present)
+     *
+     * @param {String} entryPoint entry point for the hook to remove
+     */
+
+/**
+     * RemoveHooks
+     * Public method to remove all DOMPurify hooks at a given entryPoint
+     *
+     * @param  {String} entryPoint entry point for the hooks to remove
+     */
+
+/**
+     * Sanitize
+     * Public method providing core sanitation functionality
+     *
+     * @param {String|Node} dirty string or DOM node
+     * @param {Object} configuration object
+     */
+
+/**
+     * Version label, exposed for easier checks
+     * if DOMPurify is up to date or not
+     */
+
+/**
+   * Creates a no-op policy for internal use only.
+   * Don't export this function outside this module!
+   * @param {?TrustedTypePolicyFactory} trustedTypes The policy factory.
+   * @param {Document} document The document object (to determine policy name suffix)
+   * @return {?TrustedTypePolicy} The policy created (or null, if Trusted Types
+   * are not supported).
+   */
+
+/***/
+
+// (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+
+// Allow the callers to control the unique policy name
+
+// Allows developers to see this is a property they can set
+
+// As per issue #47, the web-components registry is inherited by a
+
+// Config presets (e.g. tags.js, attrs.js) are immutable.
+
+// Default false
+
+// Default true
+
+// Make 'in' and truthy checks like Boolean(set.constructor)
+
+// Not available in IE8, Safari 5, etc.
+
+// Not running in a browser, provide a factory function
+
+// Policy creation failed (most likely another DOMPurify script has
+
+// Policy creation with duplicate names throws in Trusted Types.
+
+// Prevent further manipulation of configuration.
+
+// Prevent prototype setters from intercepting set as a this value.
+
+// SVG
+
+// a new empty registry is used when creating a template contents owner
+
+// already run). Skip creating the policy, as this will only cause errors
+
+// by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+
+// document, so we use that as our parent document to ensure nothing
+
+// eslint-disable-next-line complexity
+
+// eslint-disable-next-line no-negated-condition
+
+// eslint-disable-next-line unicorn/prefer-includes
+
+// eslint-disable-next-line unicorn/prefer-node-append
+
+// if TT are enforced.
+
+// independent of any properties defined on Object.prototype.
+
+// is inherited.
+
+// new document created via createHTMLDocument. As per the spec
+
+// so that you can pass your own Window
+
+//# sourceMappingURL=purify.js.map

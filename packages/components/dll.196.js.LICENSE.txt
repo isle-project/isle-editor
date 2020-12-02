@@ -1,0 +1,386 @@
+/*
+CSV Stringify
+
+Please look at the [project documentation](https://csv.js.org/stringify/) for
+additional information.
+*/
+
+/* WEBPACK VAR INJECTION */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+	* If provided a value, the accumulator function returns an updated mean. If not provided a value, the accumulator function returns the current mean.
+	*
+	* @private
+	* @param {number} [x] - new value
+	* @returns {(number|null)} mean value or null
+	*/
+
+/**
+   * A Callback fired by the Overlay when it wishes to be hidden.
+   *
+   * __required__ when `rootClose` is `true`.
+   *
+   * @type func
+   */
+
+/**
+   * A DOM Element, Ref to an element, or function that returns either. The `container` will have the Portal children
+   * appended to it.
+   */
+
+/**
+   * A DOM Element, Ref to an element, or function that returns either. The `target` element is where
+   * the overlay is positioned relative to.
+   */
+
+/**
+   * A `react-transition-group@2.0.0` `<Transition/>` component
+   * used to animate the overlay as it changes visibility.
+   */
+
+/**
+   * A render prop that returns an element to overlay and position. See
+   * the [react-popper documentation](https://github.com/FezVrasta/react-popper#children) for more info.
+   *
+   * @type {Function ({
+   *   show: boolean,
+   *   placement: Placement,
+   *   update: () => void,
+   *   forceUpdate: () => void,
+   *   props: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *     aria-labelledby: ?string
+   *     [string]: string | number,
+   *   },
+   *   arrowProps: {
+   *     ref: (?HTMLElement) => void,
+   *     style: { [string]: string | number },
+   *     [string]: string | number,
+   *   },
+   * }) => React.Element}
+   */
+
+/**
+   * A set of popper options and props passed directly to react-popper's Popper component.
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning in
+   */
+
+/**
+   * Callback fired after the Overlay finishes transitioning out
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition in
+   */
+
+/**
+   * Callback fired as the Overlay begins to transition out
+   */
+
+/**
+   * Callback fired before the Overlay transitions in
+   */
+
+/**
+   * Callback fired right before the Overlay transitions out
+   */
+
+/**
+   * Control how much space there is between the edge of the boundary element and overlay.
+   * A convenience shortcut to setting `popperConfig.modfiers.preventOverflow.padding`
+   */
+
+/**
+   * Enables the Popper.js `flip` modifier, allowing the Overlay to
+   * automatically adjust it's placement in case of overlap with the viewport or toggle.
+   * Refer to the [flip docs](https://popper.js.org/popper-documentation.html#modifiers..flip.enabled) for more info
+   */
+
+/**
+   * Set the visibility of the Overlay
+   */
+
+/**
+   * Specify disabled for disable RootCloseWrapper
+   */
+
+/**
+   * Specify event for toggling overlay
+   */
+
+/**
+   * Specify whether the overlay should trigger `onHide` when the user clicks outside the overlay
+   */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Compute an arithmetic mean incrementally.
+*
+* @module @stdlib/stats/incr/mean
+*
+* @example
+* var incrmean = require( '@stdlib/stats/incr/mean' );
+*
+* var accumulator = incrmean();
+*
+* var mu = accumulator();
+* // returns null
+*
+* mu = accumulator( 2.0 );
+* // returns 2.0
+*
+* mu = accumulator( -5.0 );
+* // returns -1.5
+*
+* mu = accumulator();
+* // returns -1.5
+*/
+
+/**
+* Return an array of an object's own enumerable property `[key, value]` pairs.
+*
+* @module @stdlib/utils/entries
+*
+* @example
+* var objectEntries = require( '@stdlib/utils/entries' );
+*
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 'bar'
+* };
+*
+* var entries = objectEntries( obj );
+* // e.g., returns [ ['beep', 'boop'], ['foo', 'bar'] ]
+*/
+
+/**
+* Returns an accumulator function which incrementally computes an arithmetic mean.
+*
+* ## Method
+*
+* -   This implementation uses [Welford's method][algorithms-variance] for efficient computation, which can be derived as follows
+*
+*     ```tex
+*     \begin{align*}
+*     \mu_n &= \frac{1}{n} \sum_{i=0}^{n-1} x_i \\
+*           &= \frac{1}{n} \biggl(x_{n-1} + \sum_{i=0}^{n-2} x_i \biggr) \\
+*           &= \frac{1}{n} (x_{n-1} + (n-1)\mu_{n-1}) \\
+*           &= \mu_{n-1} + \frac{1}{n} (x_{n-1} - \mu_{n-1})
+*     \end{align*}
+*     ```
+*
+* [algorithms-variance]: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance
+*
+* @returns {Function} accumulator function
+*
+* @example
+* var accumulator = incrmean();
+*
+* var mu = accumulator();
+* // returns null
+*
+* mu = accumulator( 2.0 );
+* // returns 2.0
+*
+* mu = accumulator( -5.0 );
+* // returns -1.5
+*
+* mu = accumulator();
+* // returns -1.5
+*/
+
+/**
+* Returns an array of an object's own enumerable property `[key, value]` pairs.
+*
+* @param {ObjectLike} obj - input object
+* @throws {TypeError} must provide an object-like value
+* @returns {Array} array containing key-value pairs
+*
+* @example
+* var obj = {
+*     'beep': 'boop',
+*     'foo': 'bar'
+* };
+*
+* var entries = objectEntries( obj );
+* // e.g., returns [ ['beep', 'boop'], ['foo', 'bar'] ]
+*/
+
+/** Specify where the overlay element is positioned in relation to the target element */
+
+/***/
+
+// "too much recursion" error.
+
+// @ts-ignore
+
+// Callback can either be a function or a string
+
+// Cast boolean to string by default
+
+// Cast date to timestamp string by default
+
+// Cast number to string using native casting by default
+
+// Cast record elements
+
+// Chunk validation
+
+// Convert the record into a string
+
+// Copy function arguments
+
+// Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+
+// DOM APIs, for completeness
+
+// Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+
+// Detect columns from the first record
+
+// Does not start the time, just sets up the members needed.
+
+// Don't bother showing anything if we don't have to.
+
+// Don't get fooled by e.g. browserify environments.
+
+// Don't un-render the overlay while it's transitioning out.
+
+// EXPORTS //
+
+// Emit and stringify the record if an object or an array
+
+// Emit the csv
+
+// Emit the header
+
+// Expose options
+
+// For IE 6–8
+
+// For non-IE10 modern browsers
+
+// For web workers, where supported
+
+// From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+
+// Give a chance for events to be registered later
+
+// Information
+
+// Internal state
+
+// Leave string untouched
+
+// Lodash implementation of `get`
+
+// MAIN //
+
+// MODULES //
+
+// Match anything that isn't a dot or bracket.
+
+// Merge with user options
+
+// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+
+// Normalize option `bom`
+
+// Normalize option `cast`
+
+// Normalize option `columns`
+
+// Normalize option `delimiter`
+
+// Normalize option `eof`
+
+// Normalize option `escape`
+
+// Normalize option `header`
+
+// Normalize option `quote`
+
+// Normalize option `quoted_empty`
+
+// Normalize option `quoted_match`
+
+// Normalize option `quoted_string`
+
+// Normalize option `quoted`
+
+// Normalize option `record_delimiter`
+
+// Normalize option cast.bigint
+
+// Normalize option cast.boolean
+
+// Normalize option cast.date
+
+// Normalize option cast.number
+
+// Normalize option cast.object
+
+// Normalize option cast.string
+
+// On some exotic environments, it's not clear which object `setimmediate` was
+
+// Record is a literal object
+
+// Record is an array
+
+// So if we're currently running a task, we'll need to delay this invocation.
+
+// Spec says greater than zero
+
+// Store and register the task
+
+// Stringify object as JSON by default
+
+// The test against `importScripts` prevents this implementation from being installed inside a web worker,
+
+// We are getting an array but the user has specified output columns. In
+
+// We provide an empty the TabContext so `<Nav>`s in `<TabPane>`s don't
+
+// `setimmediate` library.
+
+// able to install onto.  Search each possibility in the same order as the
+
+// conflict with the top level one.
+
+// into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+
+// let { value, ...options } = value
+
+// setimmediate attaches itself to the global object
+
+// this case, we respect the columns indexes
+
+// where `global.postMessage` means something completely different and can't be used for this purpose.

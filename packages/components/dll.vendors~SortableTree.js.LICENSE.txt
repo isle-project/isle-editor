@@ -1,0 +1,1939 @@
+/* ---------------------------- Component lifecycle methods ---------------------------- */
+
+/* ---------------------------- Helper methods ---------------------------- */
+
+/* Listen for a css animation to detect element display/re-attach */
+
+/* WEBPACK VAR INJECTION */
+
+/* eslint-disable import/prefer-default-export */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/* harmony reexport (unknown) */
+
+/*#__PURE__*/
+
+/**
+       * TODO: Avoid rendering children before the initial measurements have been collected.
+       * At best this would just be wasting cycles.
+       * Add this check into version 10 though as it could break too many ref callbacks in version 9.
+       * Note that if default width/height props were provided this would still work with SSR.
+      if (
+        height !== 0 &&
+        width !== 0
+      ) {
+        child = children({ height, width })
+      }
+      */
+
+/**
+     * @private
+     * This method updates scrollLeft/scrollTop in state for the following conditions:
+     * 1) Empty content (0 rows or columns)
+     * 2) New scroll props overriding the current state
+     * 3) Cells-count or cells-size has changed, making previous scroll offsets invalid
+     */
+
+/**
+     * @private
+     * This method updates scrollLeft/scrollTop in state for the following conditions:
+     * 1) New scroll-to-cell props have been set
+     */
+
+/**
+     * Avoid recreating inline styles each render; this bypasses Grid's shallowCompare.
+     * This method recalculates styles only when specific props change.
+     */
+
+/**
+     * Calculates the minimum amount of change from the current scroll position to ensure the specified cell is (fully) visible.
+     */
+
+/**
+     * Check for batched CellMeasurer size invalidations.
+     * This will occur the first time one or more previously unmeasured cells are rendered.
+     */
+
+/**
+     * Clear all cached values for cells after the specified index.
+     * This method should be called for any cell that has changed its size.
+     * It will not immediately perform any calculations; they'll be performed the next time getSizeAndPositionOfCell() is called.
+     */
+
+/**
+     * Determines a new offset that ensures a certain cell is visible, given the current offset.
+     * If the cell is already visible then the current offset will be returned.
+     * If the current offset is too great or small, it will be adjusted just enough to ensure the specified index is visible.
+     *
+     * @param align Desired alignment within container; one of "auto" (default), "start", or "end"
+     * @param containerSize Size (width or height) of the container viewport
+     * @param currentOffset Container's current (x or y) offset
+     * @param totalSize Total size (width or height) of all cells
+     * @return Offset to use to ensure the specified cell is visible
+     */
+
+/**
+     * Determines the flex-shrink, flex-grow, and width values for a cell (header or column).
+     */
+
+/**
+     * Ensure column and row are visible.
+     */
+
+/**
+     * Forced recompute of row heights and column widths.
+     * This function should be called if dynamic column or row sizes have changed but nothing else has.
+     * Since Grid only receives :columnCount and :rowCount it has no way of detecting when the underlying data changes.
+     */
+
+/**
+     * Get the updated state after scrolling to
+     * scrollLeft and scrollTop
+     */
+
+/**
+     * Gets estimated total columns' width.
+     */
+
+/**
+     * Gets estimated total rows' height.
+     */
+
+/**
+     * Invalidate Grid size and recompute visible cells.
+     * This is a deferred wrapper for recomputeGridSize().
+     * It sets a flag to be evaluated on cDM/cDU to avoid unnecessary renders.
+     * This method is intended for advanced use-cases like CellMeasurer.
+     */
+
+/**
+     * Number of pixels a cell at the given position (offset) should be shifted in order to fit within the scaled container.
+     * The offset passed to this function is scaled (safe) as well.
+     */
+
+/**
+     * Pre-measure all columns and rows in a Grid.
+     * Typically cells are only measured as needed and estimated sizes are used for cells that have not yet been measured.
+     * This method ensures that the next call to getTotalSize() returns an exact size (as opposed to just an estimated one).
+     */
+
+/**
+     * Returns the most recently rendered set of cell indices.
+     */
+
+/**
+     * Scroll to the specified offset(s).
+     * Useful for animating position changes.
+     */
+
+/**
+     * Searches for the cell (index) nearest the specified offset.
+     *
+     * If no exact match is found the next lowest cell index will be returned.
+     * This allows partially visible cells (with offsets just before/above the fold) to be visible.
+     */
+
+/**
+     * Sets an :isScrolling flag for a small window of time.
+     * This flag is used to disable pointer events on the scrollable portion of the Collection.
+     * This prevents jerky/stuttery mouse-wheel scrolling.
+     */
+
+/**
+     * Sets an :isScrolling flag for a small window of time.
+     * This flag is used to disable pointer events on the scrollable portion of the Grid.
+     * This prevents jerky/stuttery mouse-wheel scrolling.
+     */
+
+/**
+     * This method handles a scroll event originating from an external scroll control.
+     * It's an advanced method and should probably not be used unless you're implementing a custom scroll-bar solution.
+     */
+
+/**
+     * This method returns the size and position for the cell at the specified index.
+     * It just-in-time calculates (or used cached values) for cells leading up to the index.
+     */
+
+/**
+     * This method updates scrollLeft/scrollTop in state for the following conditions:
+     * 1) Empty content (0 rows or columns)
+     * 2) New scroll props overriding the current state
+     * 3) Cells-count or cells-size has changed, making previous scroll offsets invalid
+     */
+
+/**
+     * Total size of all cells being measured.
+     * This value will be completely estimated initially.
+     * As cells are measured, the estimate will be updated.
+     */
+
+/**
+   * Forced recompute of cell sizes and positions.
+   * This function should be called if cell sizes have changed but nothing else has.
+   * Since cell positions are calculated by callbacks, the collection view has no way of detecting when the underlying data has changed.
+   */
+
+/**
+   * Gets all cell indices contained in the specified region.
+   * A region may encompass 1 or more Sections.
+   */
+
+/**
+   * Gets offsets for a given cell and alignment.
+   */
+
+/**
+   * Sort items in ascending order.
+   * This means arranging from the lowest value to the highest (e.g. a-z, 0-9).
+   */
+
+/**
+   * Sort items in descending order.
+   * This means arranging from the highest value to the lowest (e.g. z-a, 9-0).
+   */
+
+/**
+ *
+ * @param monitor The monitor to collect state from
+ * @param collect The collecting function
+ * @param onUpdate A method to invoke when updates occur
+ */
+
+/**
+ * A hook to retrieve the DragDropManager from Context
+ */
+
+/**
+ * Adds the node to the specified parent and returns the resulting treeData.
+ *
+ * @param {!Object[]} treeData
+ * @param {!Object} newNode - The node to insert
+ * @param {number|string} parentKey - The key of the to-be parentNode of the node
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ * @param {boolean=} expandParent - If true, expands the parentNode specified by parentPath
+ * @param {boolean=} addAsFirstChild - If true, adds new node as first child of tree
+ *
+ * @return {Object} result
+ * @return {Object[]} result.treeData - The updated tree data
+ * @return {number} result.treeIndex - The tree index at which the node was inserted
+ */
+
+/**
+ * Binary Search Bounds
+ * https://github.com/mikolalysenko/binary-search-bounds
+ * Mikola Lysenko
+ *
+ * Inlined because of Content Security Policy issue caused by the use of `new Function(...)` syntax.
+ * Issue reported here: https://github.com/mikolalysenko/binary-search-bounds/issues/5
+ **/
+
+/**
+ * Binary Search Bounds
+ * https://github.com/mikolalysenko/interval-tree-1d
+ * Mikola Lysenko
+ *
+ * Inlined because of Content Security Policy issue caused by the use of `new Function(...)` syntax in an upstream dependency.
+ * Issue reported here: https://github.com/mikolalysenko/binary-search-bounds/issues/5
+ **/
+
+/**
+ * Calculates the number of cells to overscan before and after a specified range.
+ * This function ensures that overscanning doesn't exceed the available cells.
+ */
+
+/**
+ * Check if a node is a descendant of another node.
+ *
+ * @param {!Object} older - Potential ancestor of younger node
+ * @param {!Object} younger - Potential descendant of older node
+ *
+ * @return {boolean}
+ */
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+
+/**
+ * Controls whether the Grid updates the DOM element's scrollLeft/scrollTop based on the current state or just observes it.
+ * This prevents Grid from interrupting mouse-wheel animations (see issue #2).
+ */
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Count all the visible (expanded) descendants in the tree data.
+ *
+ * @param {!Object[]} treeData - Tree data
+ *
+ * @return {number} count
+ */
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+
+/**
+ * Default accessor for returning a cell value for a given attribute.
+ * This function expects to operate on either a vanilla Object or an Immutable Map.
+ * You should override the column's cellDataGetter if your data is some other type of object.
+ */
+
+/**
+ * Default cell renderer that displays an attribute as a simple string
+ * You should override the column's cellRenderer if your data is some other type of object.
+ */
+
+/**
+ * Default implementation of cellRangeRenderer used by Grid.
+ * This renderer supports cell-caching while the user is scrolling.
+ */
+
+/**
+ * Default row renderer for Table.
+ */
+
+/**
+ * Default table header renderer.
+ */
+
+/**
+ * Detect Element Resize.
+ * https://github.com/sdecima/javascript-detect-element-resize
+ * Sebastian Decima
+ *
+ * Forked from version 0.5.3; includes the following modifications:
+ * 1) Guard against unsafe 'window' and 'document' references (to support SSR).
+ * 2) Defer initialization code via a top-level function wrapper (to support SSR).
+ * 3) Avoid unnecessary reflows by not measuring size for scroll events bubbling from children.
+ * 4) Add nonce for style element.
+ * 5) Added support for injecting custom window object
+ **/
+
+/**
+ * Determines a new offset that ensures a certain cell is visible, given the current offset.
+ * If the cell is already visible then the current offset will be returned.
+ * If the current offset is too great or small, it will be adjusted just enough to ensure the specified index is visible.
+ *
+ * @param align Desired alignment within container; one of "auto" (default), "start", or "end"
+ * @param cellOffset Offset (x or y) position for cell
+ * @param cellSize Size (width or height) of cell
+ * @param containerSize Total size (width or height) of the container
+ * @param currentOffset Container's current (x or y) offset
+ * @return Offset to use to ensure the specified cell is visible
+ */
+
+/**
+ * Determines if the specified start/stop range is visible based on the most recently rendered range.
+ */
+
+/**
+ * Displayed beside a header to indicate that a Table is currently sorted by this column.
+ */
+
+/**
+ * Expand or close every node in the tree
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {?boolean} expanded - Whether the node is expanded or not
+ *
+ * @return {Object[]} changedTreeData - The changed tree data
+ */
+
+/**
+ * Find nodes matching a search query in the tree,
+ *
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {!Object[]} treeData - Tree data
+ * @param {?string|number} searchQuery - Function returning a boolean to indicate whether the node is a match or not
+ * @param {!function} searchMethod - Function returning a boolean to indicate whether the node is a match or not
+ * @param {?number} searchFocusOffset - The offset of the match to focus on
+ *                                      (e.g., 0 focuses on the first match, 1 on the second)
+ * @param {boolean=} expandAllMatchPaths - If true, expands the paths to any matched node
+ * @param {boolean=} expandFocusMatchPaths - If true, expands the path to the focused node
+ *
+ * @return {Object[]} matches - An array of objects containing the matching `node`s, their `path`s and `treeIndex`s
+ * @return {Object[]} treeData - The original tree data with all relevant nodes expanded.
+ *                               If expandAllMatchPaths and expandFocusMatchPaths are both false,
+ *                               it will be the same as the original tree data.
+ */
+
+/**
+ * Generate a tree structure from flat data.
+ *
+ * @param {!Object[]} flatData
+ * @param {!function=} getKey - Function to get the key from the nodeData
+ * @param {!function=} getParentKey - Function to get the parent key from the nodeData
+ * @param {string|number=} rootKey - The value returned by `getParentKey` that corresponds to the root node.
+ *                                  For example, if your nodes have id 1-99, you might use rootKey = 0
+ *
+ * @return {Object[]} treeData - The flat data represented as a tree
+ */
+
+/**
+ * Get the <targetIndex>th visible node in the tree data.
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {!number} targetIndex - The index of the node to search for
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ *
+ * @return {{
+ *      node: Object,
+ *      path: []string|[]number,
+ *      lowerSiblingCounts: []number
+ *  }|null} node - The node at targetIndex, or null if not found
+ */
+
+/**
+ * Get the maximum depth of the children (the depth of the root node is 0).
+ *
+ * @param {!Object} node - Node in the tree
+ * @param {?number} depth - The current depth
+ *
+ * @return {number} maxDepth - The deepest depth in the tree
+ */
+
+/**
+ * Get tree data flattened.
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {{
+ *      node: Object,
+ *      path: []string|[]number,
+ *      lowerSiblingCounts: []number
+ *  }}[] nodes - The node array
+ */
+
+/**
+ * Gets the dimensions of the element, accounting for API differences between
+ * `window` and other DOM elements.
+ */
+
+/**
+ * Gets the node at the specified path
+ *
+ * @param {!Object[]} treeData
+ * @param {number[]|string[]} path - Array of keys leading up to node to be deleted
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {Object|null} nodeInfo - The node info at the given path, or null if not found
+ */
+
+/**
+ * Gets the vertical and horizontal position of an element within its scroll container.
+ * Elements that have been “scrolled past” return negative values.
+ * Handles edge-case where a user is navigating back (history) from an already-scrolled page.
+ * In this case the body’s top or left position will be a negative number and this element’s top or left will be increased (by that amount).
+ */
+
+/**
+ * Gets the vertical and horizontal scroll amount of the element, accounting for IE compatibility
+ * and API differences between `window` and other DOM elements.
+ */
+
+/**
+ * Helper function that determines when to update scroll offsets to ensure that a scroll-to-index remains visible.
+ * This function also ensures that the scroll ofset isn't past the last column/row of cells.
+ */
+
+/**
+ * Helper method that determines when to recalculate row or column metadata.
+ */
+
+/**
+ * Helper utility that updates the specified callback whenever any of the specified indices have changed.
+ */
+
+/**
+ * Insert a node into the tree at the given depth, after the minimum index
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {!number} depth - The depth to insert the node at (the first level of the array being depth 0)
+ * @param {!number} minimumTreeIndex - The lowest possible treeIndex to insert the node at
+ * @param {!Object} newNode - The node to insert into the tree
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ * @param {boolean=} expandParent - If true, expands the parent of the inserted node
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ *
+ * @return {Object} result
+ * @return {Object[]} result.treeData - The tree data with the node added
+ * @return {number} result.treeIndex - The tree index at which the node was inserted
+ * @return {number[]|string[]} result.path - Array of keys leading to the node location after insertion
+ * @return {Object} result.parentNode - The parent node of the inserted node
+ */
+
+/**
+ * Perform a change on the given node and all its descendants, traversing the tree depth-first
+ *
+ * @param {Object} args - Function parameters
+ * @param {function} args.callback - Function to call on each node
+ * @param {function} args.getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean} args.ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ * @param {boolean=} args.isPseudoRoot - If true, this node has no real data, and only serves
+ *                                        as the parent of all the nodes in the tree
+ * @param {Object} args.node - A tree node
+ * @param {Object=} args.parentNode - The parent node of `node`
+ * @param {number} args.currentIndex - The treeIndex of `node`
+ * @param {number[]|string[]} args.path - Array of keys leading up to node to be changed
+ * @param {number[]} args.lowerSiblingCounts - An array containing the count of siblings beneath the
+ *                                             previous nodes in this path
+ *
+ * @return {number|false} nextIndex - Index of the next sibling of `node`,
+ *                                    or false if the walk should be terminated
+ */
+
+/**
+ * Perform a depth-first transversal of the descendants and
+ *  make a change to every node in the tree
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {function} callback - Function to call on each node
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {Object[]} changedTreeData - The changed tree data
+ */
+
+/**
+ * Performs a depth-first traversal over all of the node descendants,
+ * incrementing currentIndex by 1 for each
+ */
+
+/**
+ * Removes the node at the specified path and returns the resulting treeData.
+ *
+ * @param {!Object[]} treeData
+ * @param {number[]|string[]} path - Array of keys leading up to node to be deleted
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {Object[]} changedTreeData - The tree data with the node removed
+ */
+
+/**
+ * Removes the node at the specified path and returns the resulting treeData.
+ *
+ * @param {!Object[]} treeData
+ * @param {number[]|string[]} path - Array of keys leading up to node to be deleted
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {Object} result
+ * @return {Object[]} result.treeData - The tree data with the node removed
+ * @return {Object} result.node - The node that was removed
+ * @return {number} result.treeIndex - The previous treeIndex of the removed node
+ */
+
+/**
+ * Renders 1, 2, or 4 Grids depending on configuration.
+ * A main (body) Grid will always be rendered.
+ * Optionally, 1-2 Grids for sticky header rows will also be rendered.
+ * If no sticky columns, only 1 sticky header Grid will be rendered.
+ * If sticky columns, 2 sticky header Grids will be rendered.
+ */
+
+/**
+ * Replaces node at path with object, or callback-defined object
+ *
+ * @param {!Object[]} treeData
+ * @param {number[]|string[]} path - Array of keys leading up to node to be changed
+ * @param {function|any} newNode - Node to replace the node at the path with, or a function producing the new node
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return {Object[]} changedTreeData - The changed tree data
+ */
+
+/**
+ * Returns all of the ranges within a larger range that contain unloaded rows.
+ */
+
+/**
+ * Since RV components use shallowCompare we need to force a render (even though props haven't changed).
+ * However InfiniteLoader may wrap a Grid or it may wrap a Table or List.
+ * In the first case the built-in React forceUpdate() method is sufficient to force a re-render,
+ * But in the latter cases we need to use the RV-specific forceUpdateGrid() method.
+ * Else the inner Grid will not be re-rendered and visuals may be stale.
+ *
+ * Additionally, while a Grid is scrolling the cells can be cached,
+ * So it's important to invalidate that cache by recalculating sizes
+ * before forcing a rerender.
+ */
+
+/**
+ * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
+ * This improves performance and makes scrolling smoother.
+ */
+
+/**
+ * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
+ * This improves performance and makes scrolling smoother.
+ */
+
+/**
+ * Table component with fixed headers and virtualized rows for improved performance with large data sets.
+ * This component expects explicit width, height, and padding parameters.
+ */
+
+/**
+ * This HOC decorates a virtualized component and responds to arrow-key events by scrolling one row or column at a time.
+ */
+
+/**
+ * Walk all descendants of the given node, depth-first
+ *
+ * @param {Object} args - Function parameters
+ * @param {function} args.callback - Function to call on each node
+ * @param {function} args.getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {boolean} args.ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ * @param {boolean=} args.isPseudoRoot - If true, this node has no real data, and only serves
+ *                                        as the parent of all the nodes in the tree
+ * @param {Object} args.node - A tree node
+ * @param {Object=} args.parentNode - The parent node of `node`
+ * @param {number} args.currentIndex - The treeIndex of `node`
+ * @param {number[]|string[]} args.path - Array of keys leading up to node to be changed
+ * @param {number[]} args.lowerSiblingCounts - An array containing the count of siblings beneath the
+ *                                             previous nodes in this path
+ *
+ * @return {number|false} nextIndex - Index of the next sibling of `node`,
+ *                                    or false if the walk should be terminated
+ */
+
+/**
+ * Walk descendants depth-first and call a callback on each
+ *
+ * @param {!Object[]} treeData - Tree data
+ * @param {!function} getNodeKey - Function to get the key from the nodeData and tree index
+ * @param {function} callback - Function to call on each node
+ * @param {boolean=} ignoreCollapsed - Ignore children of nodes without `expanded` set to `true`
+ *
+ * @return void
+ */
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/**
+ * useDragLayer Hook
+ * @param collector The property collector
+ */
+
+/**
+ * useDragSource hook
+ * @param sourceSpec The drag source specification *
+ */
+
+/**
+ * useDropTarget Hook
+ * @param spec The drop target specification
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Return a partial object copy excluding specified keys.
+*
+* @module @stdlib/utils/omit
+*
+* @example
+* var omit = require( '@stdlib/utils/omit' );
+*
+* var obj1 = {
+*     'a': 1,
+*     'b': 2
+* };
+*
+* var obj2 = omit( obj1, 'b' );
+* // returns { 'a': 1 }
+*/
+
+/**
+* Returns a partial object copy excluding specified keys.
+*
+* @param {Object} obj - source object
+* @param {(string|StringArray)} keys - keys to exclude
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} second argument must be either a string or an array of strings
+* @returns {Object} new object
+*
+* @example
+* var obj1 = {
+*     'a': 1,
+*     'b': 2
+* };
+*
+* var obj2 = omit( obj1, 'b' );
+* // returns { 'a': 1 }
+*/
+
+/**
+* Test if a value is an array of strings.
+*
+* @module @stdlib/assert/is-string-array
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' );
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', 123 ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', new String( 'def' ) ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).objects;
+*
+* var bool = isStringArray( [ new String( 'abc' ), new String( 'def' ) ] );
+* // returns true
+*
+* bool = isStringArray( [ new String( 'abc' ), 'def' ] );
+* // returns false
+*/
+
+/** @class */
+
+/** Add a cell to this section. */
+
+/** Adds a cell to the appropriate Sections and registers it metadata for later retrievable. */
+
+/** CellLayoutManager interface */
+
+/** CellMeasurer compatibility */
+
+/** Get all Sections overlapping the specified region. */
+
+/** Get all cell indices that have been added to this section. */
+
+/** Get size and position information for the cell specified. */
+
+/** Intended for debugger/test purposes only */
+
+/** React lifecycle methods */
+
+/** See CellSizeAndPositionManager#getTotalSize */
+
+/** See CellSizeAndPositionManager#getUpdatedOffsetForIndex */
+
+/** See CellSizeAndPositionManager#getVisibleCellRange */
+
+/** See Collection#recomputeCellSizesAndPositions */
+
+/** See Grid#getOffsetForCell */
+
+/** See Grid#invalidateCellSizeAfterRender */
+
+/** See Grid#measureAllCells */
+
+/** See Grid#recomputeGridSize */
+
+/** See Grid#scrollToCell */
+
+/** See Grid#scrollToPosition */
+
+/** Total number of Sections based on the currently registered cells. */
+
+/** Used as references for various `Number` constants. */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+
+/***/
+
+//
+
+//    !active && "class2",
+
+//    "class1",
+
+//    active && "class3"
+
+//  an external element
+
+//  and yet still defined by a function (a callback to fetch the children)
+
+//  comparisons between nodes inside the `matches` and `treeData` results
+
+//  delete the node from the array.
+
+//  during the search of the descendants. The entire node is used in
+
+//  for in the first place
+
+//  is reached
+
+//  of this method (`find`)
+
+//  or set to load even before expansion, run the function.
+
+//  source tree
+
+//  the row above is a function
+
+// (And so we can't know the height without measuring all column-cells first).
+
+// (And so we can't know the width without measuring all row-cells first).
+
+// ); // returns -> class1 class3";
+
+// +--+--+
+
+// +-----+
+
+// 16.3+ will not execute our will-update method;
+
+// :columnWidth and :rowHeight are derived based on all cells in a column/row.
+
+// @TODO (bvaughn) Add automated test coverage for this.
+
+// @TODO Do we also need this check or can the one in componentWillUpdate() suffice?
+
+// @TODO Merge Collection and CollectionView
+
+// @TRICKY :autoHeight and :autoWidth properties instructs Grid to leave :scrollTop and :scrollLeft management to an external HOC (eg WindowScroller).
+
+// Add a flag to suppress these warnings for this special case.
+
+// Add one and continue for nodes with no children or hidden children
+
+// Add this node to the matches if it fits the search criteria.
+
+// Advanced use-cases (eg CellMeasurer) require batched measurements to determine accurate sizes.
+
+// All things considered, this seems to be the best current work around that I'm aware of.
+
+// Allows for loose type truthy/falsey checks
+
+// Also explicitly init styles to 'auto' if scrollbars are required.
+
+// An extra cell is added to the count
+
+// And give them width/height of 'auto' so they can grow larger than the parent Grid if necessary.
+
+// And it keeps the caches from growing too large.
+
+// And prevents us from recording inaccurage measurements when used with CellMeasurer.
+
+// And to discard any pending async changes to the scroll position that may have happened in the meantime (e.g. on a separate scrolling thread).
+
+// Any property that should trigger a re-render of Grid then is specified here to avoid a stale display.
+
+// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+
+// As a workaround, use cWU to invoke the new lifecycle.
+
+// As well as libraries like react-lite which have a slightly different lifecycle.
+
+// Assigning to scrollLeft/scrollTop tells the browser to interrupt any running scroll animations,
+
+// At this level in the tree, the nodes had sibling nodes further down
+
+// Avoid re-creating cells while scrolling.
+
+// Avoid re-rendering in this case as it can cause problems; see #532 for more.
+
+// Avoid using object-spread syntax with multiple objects here,
+
+// Because for <= 15.x versions this might be a "prevContext" object.
+
+// Because get-snapshot might return a falsy value.
+
+// Because the height of the row is equal to the tallest cell within that row,
+
+// Because the width of the column is equal to the widest cell within that column,
+
+// Because they would work differently between older and newer (16.3+) versions of React.
+
+// Binding "this" is important for shallow renderer support.
+
+// Boolean("") === false;
+
+// Boolean("classname") === true;
+
+// Boolean(0) === false;
+
+// Boolean(false) === false;
+
+// Boolean(null) === false;
+
+// Boolean(undefined) === false;
+
+// Browsers with cancelable scroll events (eg. Firefox) interrupt scrolling animations if scrollTop/scrollLeft is set.
+
+// But an initial scroll index of offset is set as an external prop.
+
+// By default, List cells should be 100% width.
+
+// By default, returns the index in the tree (omitting hidden nodes).
+
+// Cache of size and position data for cells, mapped by cell index.
+
+// Cache style objects so shallow-compare doesn't re-render unnecessarily.
+
+// Call the children fetching function
+
+// Call the tree traversal with a pseudo-root node
+
+// Call this.constructor.gDSFP to support sub-classes.
+
+// Called after children nodes collapsed or expanded.
+
+// Called after node move operation.
+
+// Called to track between dropped and dragging
+
+// Called whenever tree data changed.
+
+// Cannot assign a treeIndex to hidden nodes
+
+// Cannot drop if we're adding to the children of the row above and
+
+// Cell cache during scroll (for performance)
+
+// Cell sizes may be determined by a function property.
+
+// Certain devices (like Apple touchpad) rapid-fire duplicate events.
+
+// Changes to :scrollLeft or :scrollTop should also notify :onScroll listeners
+
+// Cheap hack to get the text of a react object
+
+// Check `document` and `window` in case of server-side rendering
+
+// Check to see if our first range ended prematurely.
+
+// Class name for the container wrapping the tree
+
+// Clear cell cache in case we are scrolling;
+
+// Clear queue here to prevent
+
+// Clear sortBy array of all non-selected keys
+
+// Control + click removes column from sort (if pressent)
+
+// Copy over the visible cell styles so avoid unnecessary re-render.
+
+// Custom properties to hand to the react-virtualized list
+
+// Cut walk short if the callback returned false
+
+// Defaults to a function that uses the `searchQuery` string to search for nodes with
+
+// Defer requiring resize handler in order to support server-side rendering.
+
+// Delay access of parentNode until mount.
+
+// Determine the unique key used to identify each node and
+
+// Determine whether a node can be dragged. Set to false to disable dragging on all nodes.
+
+// Determine whether a node can be dropped based on its path and parents'.
+
+// Determine whether a node can have children
+
+// Don't adjust scroll offset for single-column grids (eg List, Table).
+
+// Don't change direction for an axis unless scroll offset has changed.
+
+// Don't clear visible cells from cellCache if isScrollingOptOut is specified.
+
+// Don't compare cell sizes if they are functions because inline functions would cause infinite loops.
+
+// Don't force a re-render if this is the case.
+
+// Don't interfere with CellMeasurer's measurements by setting an invalid size.
+
+// Don't measure (which forces) reflow for scrolls that happen inside of children!
+
+// Don't render any of our Grids if there are no cells.
+
+// Don't update scroll offset if the size is 0; we don't render any cells in this case.
+
+// Drag and drop API functions
+
+// Drag source
+
+// Drop target
+
+// Drop was cancelled
+
+// EXPORTS //
+
+// Either a fixed row height (number) or a function that returns the
+
+// Either this is the first call, activity has stopped and we're at the
+
+// Else, set sort direction to default direction.
+
+// Equals -1 when dragged from external tree
+
+// Error if any of these lifecycles are present,
+
+// Even if we are measuring initially- if we're inside of a MultiGrid component,
+
+// Examine the current node to see if it is a match
+
+// Expand the current node if it has descendants matching the search
+
+// Explicitly clear width/height before measuring to avoid being tainted by another Grid.
+
+// Export the tree component without the react-dnd DragDropContext,
+
+// Exports
+
+// Fall back to the tree data if something is being dragged in from
+
+// Falsy arguments are ignored:
+
+// Favor composition over inheritance to simplify IE10 support
+
+// Find the shortest column and use it.
+
+// For more info refer to issue #1028
+
+// For more info refer to issue #395
+
+// For more info see bvaughn/react-virtualized/issues/218
+
+// For more info see issues #625
+
+// For more information see https://github.com/bvaughn/react-virtualized/pull/124
+
+// Generate an object with additional props to be passed to the node renderer.
+
+// Generated by CoffeeScript 1.12.2
+
+// Get all descendants
+
+// Get indices for rows that match the search conditions
+
+// Get the nodes that match the search criteria. Used for counting total matches, etc.
+
+// Gradually converging on a scrollTop that is within the bounds of the new, smaller height.
+
+// Guard against AutoSizer component being removed from the DOM immediately after being added.
+
+// HACK This method signature was intended for Grid
+
+// Handle edge case where column or row count has only just increased over 0.
+
+// Handle invocations in a tight loop.
+
+// Hook into react-dnd state changes to detect when the drag ends
+
+// However if we are scaling scroll positions and sizes, we should also avoid caching.
+
+// If :rangeStopIndex is not null it means we haven't ran out of unloaded rows.
+
+// If a maxDepth is defined, constrain the target depth
+
+// If a scroll is in progress- cache and reuse cells.
+
+// If a valid location is found, mark it as the insertion location and
+
+// If all else fails, fall back to the default
+
+// If any have not yet been measured, then we need to render all columns initially,
+
+// If any have not yet been measured, then we need to render all rows initially,
+
+// If cell sizes have been invalidated (eg we are using CellMeasurer) then reset cached positions.
+
+// If columns have a dynamic width, scan the columns we are about to render.
+
+// If copying is enabled, a drop outside leaves behind a copy in the
+
+// If isScrolling is defined in props, use it to override the value in state
+
+// If isScrollingOptOut is specified, we always cache cells.
+
+// If key is already selected, reverse sort direction.
+
+// If new component APIs are defined, "unsafe" lifecycles won't be called.
+
+// If no children exist yet, just add the single newNode
+
+// If no scrollbar, the extra space is overflow:hidden anyway
+
+// If no valid indices to add the node were found
+
+// If prop has been specified, do not change it
+
+// If prop is specified in theme, use the theme setting
+
+// If rows have a dynamic height, scan the rows we are about to render.
+
+// If scrolling is controlled outside this component, clear cache when scrolling stops
+
+// If size has changed, let Grid know to re-render.
+
+// If the arguments for the last insert operation are different than this time,
+
+// If the current position is the only possible place to add, add it
+
+// If the drag ends and the tree is still in a mid-drag state,
+
+// If the last position in this node's children is less than the minimum index
+
+// If the node has children defined by a function, and is either expanded
+
+// If the result was falsy (returned from the newNode function), then
+
+// If the result went down the correct path
+
+// If the target node is not found, return the farthest traversed index
+
+// If this component is being rendered server-side, getScrollbarSize() will return undefined.
+
+// If this component was first rendered server-side, scrollbar size will be undefined.
+
+// If this is a sortable header, clicking it should update the table data's sorting.
+
+// If this is the final location in the path, return its changed form
+
+// If this is the firstTime sort of this column, use the column default sort order.
+
+// If this is the target depth for the insertion,
+
+// If this node is part of the path, but has no children, return the unchanged node
+
+// If we are re-measuring a cell that has already been measured,
+
+// If we have a new scroll target OR if height/row-height has changed,
+
+// Ignore hidden nodes by only advancing the index counter to the returned treeIndex
+
+// Ignore the error -- the null return will be explanation enough
+
+// Ignore the tree depth of the source, if it had any to begin with
+
+// Ignore this hover if it is at the same position as the last hover
+
+// In case the main (bottom right) Grid has a scrollbar
+
+// In certain edge-cases React dispatches an onScroll event with an invalid target.scrollLeft / target.scrollTop.
+
+// In deferred mode, cells will be initially rendered before we know their size.
+
+// In that event users should use the manual recompute methods to inform of changes.
+
+// In that event we need to remeasure.
+
+// In this case the cDU handler can't know if they changed.
+
+// In this case we don't show any windowed cells at all.
+
+// In this case we may have to restore a previously-specified scroll offset.
+
+// In this case we should also update the scrollTop to ensure it stays visible.
+
+// In this case we should avoid checking scrollingContainer.scrollTop and scrollingContainer.scrollLeft since it forces layout/flow.
+
+// In this case we should scan backwards to try filling our :minimumBatchSize.
+
+// Increment the index by the child itself plus the number of descendants it has
+
+// Initialize onScroll callback
+
+// Initialize onScroll callback.
+
+// Initially we should not clearStyleCache
+
+// Insert the newNode at the insertIndex
+
+// Invalid row heights likely mean invalid cached content as well.
+
+// Invoke the leading edge.
+
+// Invokes callbacks only when their values have changed.
+
+// Invokes onSectionRendered callback only when start/stop row or column indices change
+
+// It is best to copy the component in `node-renderer-default.js` to use as a base, and customize as needed.
+
+// It is best to copy the component in `placeholder-renderer-default.js` to use as a base,
+
+// It will have a hard-coded width/height from the previous measurement.
+
+// It will pass a snapshot value to did-update though.
+
+// Iterate over each child and their descendants and return the
+
+// Just like with React input elements, you have to update your
+
+// Keep track of the number of matching nodes, so we know when the searchFocusOffset
+
+// Layout algorithm below always inserts into the shortest column.
+
+// Let :focus outline show through
+
+// Let componentDidMount fire to initialize the collected state
+
+// Limit the length of the path to the deepest possible
+
+// Load any children in the tree that are given by a function
+
+// MAIN //
+
+// MODULES //
+
+// Make sure requested changes to :scrollLeft or :scrollTop get applied.
+
+// Make sure we render at least 1 cell extra before and after (except near boundaries)
+
+// Maximum depth nodes can be inserted at. Defaults to infinite.
+
+// Measurements for cells up to this index can be trusted; cells afterward should be estimated.
+
+// Memoization reset
+
+// Module
+
+// NOTE: Auto-scrolling while dragging, and scrolling to the `searchFocusOffset` will be disabled.
+
+// NOTE: Changing `searchMethod` will not update the search, but changing the `searchQuery` will.
+
+// Needed for dndManager
+
+// Newer versions of React will ignore that lifecycle if gSBU exists.
+
+// Newer versions of React will ignore these lifecycles if gDSFP exists.
+
+// Note that invalid values may exist in this map so only rely on cells up to this._lastMeasuredIndex
+
+// Note that we specify :rowCount, :scrollbarWidth, :sortBy, and :sortDirection as properties on Grid even though these have nothing to do with Grid.
+
+// Notify application code
+
+// Object keys are strings; this function returns numbers
+
+// Older versions will require our polyfilled will-update value.
+
+// On iOS, we can arrive at negative offsets by swiping past the start or end.
+
+// On iOS, we can arrive at negative offsets by swiping past the start.
+
+// Only invoke if we have `lastArgs` which means `func` has been
+
+// Only replace the old node if it's the one we set off to find children
+
+// Only update non-fixed dimensions though to avoid doing unnecessary work.
+
+// Or hovered above the same node but at a different depth
+
+// Other browsers (eg. Safari) don't scroll as well without the help under certain conditions (DOM or style changes during scrolling).
+
+// Otherwise they will remain in their unloaded visual state.
+
+// Otherwise, invert the direction of the sort.
+
+// Our search algorithms find the nearest match at or below the specified offset.
+
+// Outline the <`searchFocusOffset`>th node and scroll to it.
+
+// Override the default component for rendering an empty tree
+
+// Override the default component for rendering nodes (but keep the scaffolding generator)
+
+// Performance is most sensitive when a user is scrolling.
+
+// Position not-yet-measured cells at top/left 0,0,
+
+// Positioning them further to the right/bottom influences their measured size.
+
+// Pre-cache these derived values for faster lookup later.
+
+// Preact compat; see developit/preact-compat/issues/228
+
+// Precompute and cache column styles before rendering rows and columns to speed things up
+
+// Prepare scroll-on-drag options for this list
+
+// Prevent pointer events from interrupting a smooth scroll
+
+// Prevents infinite loop
+
+// Properly handle server-side rendering.
+
+// Provide a helper to append the new data when it is received
+
+// Query external layout logic for position of newly-measured cells
+
+// React <= 16.2 does not support getSnapshotBeforeUpdate.
+
+// React <= 16.2 does not support static getDerivedStateFromProps.
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+
+// Reads are expected to occur more frequently than writes in this case.
+
+// Redraw if hovered above different nodes
+
+// Refresh the visible rows if any of them have just been loaded.
+
+// Render all cells visible within the viewport range defined.
+
+// Render list with react-virtualized
+
+// Render list without react-virtualized
+
+// Render only enough columns and rows to cover the visible area of the grid.
+
+// Reset after measuring to avoid breaking styles; see #660
+
+// Reset any `maxWait` timer.
+
+// Reset cache. set it to {} in render
+
+// Reset cell and style caches once scrolling stops.
+
+// Reset initial offsets to be ignored in browser
+
+// Restart the timer.
+
+// Return node with successful insert result
+
+// Return nodes that are not the parent as-is
+
+// Return self on nodes with no children or hidden children
+
+// Return target node when found
+
+// Safely expand the rendered area by the specified overscan amount
+
+// Scan forward to try filling our :minimumBatchSize.
+
+// Scan over the children to see if there's a place among them that fulfills
+
+// Search for a query string inside a node property
+
+// See PR https://github.com/bvaughn/react-virtualized/pull/942
+
+// See issue #150 for more context.
+
+// See issue #2 for more information.
+
+// See issue #404 for more information.
+
+// See issue #41
+
+// See issue #593 for more info.
+
+// Seek to the focused search result if there is one specified
+
+// Set to false to disable virtualization.
+
+// Setting a state may cause us to later thing we've updated the offce when we haven't.
+
+// Shift + click appends a column to existing criteria
+
+// Should be a string for the default `searchMethod`, but can be anything when using a custom search.
+
+// Show a loading symbol on the handle when the children are expanded
+
+// Since it results in an extra method call to 'babel-runtime/helpers/extends'
+
+// Since the CellMeasurerCache is shared between them this taints derived cell size values.
+
+// Size in px of the region near the edges that initiates scrolling on dragover
+
+// Size is cached per cell so we don't have to re-measure if cells are re-ordered.
+
+// Skip over nodes with no children or hidden children
+
+// Skip search if no conditions are specified
+
+// So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+
+// So explicitly clear it out (eg set to "auto") so we can recalculate.
+
+// So make sure the offset is at least 0 or no match will be found.
+
+// So we only set these when we require an adjustment of the scroll position.
+
+// So we should always recalculate offset afterwards.
+
+// Some versions of FF have rAF but not cAF
+
+// Somehow in MultiGrid the main grid doesn't trigger a update on mount.
+
+// Special case where the previous size was 0:
+
+// Specify that nodes that do not match search will be collapsed
+
+// Start the timer for the trailing edge.
+
+// Store for _invokeOnGridRenderedHelper()
+
+// Store for later calls to getLastRenderedIndices()
+
+// Store the target node and delete it from the tree
+
+// Store this flag to let the next cDU pass know it needs to recompute the scroll offset.
+
+// Style applied to the container wrapping the tree (style defaults to {height: '100%'})
+
+// Style applied to the inner, scrollable container (for padding, etc.)
+
+// Synchronously set :isScrolling the first time (since _setNextState will reschedule its animation frame each time it's called)
+
+// TODO Check for a bad combination of fixedWidth and missing numeric width or vice versa with height
+
+// TODO Move this into WindowScroller and import from there
+
+// TODO: This is very brittle, so it needs to be replaced if react-dnd
+
+// TODO: wire options into createSourceConnector
+
+// The above cases all prevent default event event behavior.
+
+// The child could have been expanded from the start,
+
+// The fact that we are measuring indicates this measurement is probably stale,
+
+// The last or only node in this level of the tree
+
+// The method used to search nodes.
+
+// The mouse may move faster then the animation frame does.
+
+// The node was dropped in an external drop target or tree
+
+// The pseudo-root is not considered in the path
+
+// The width of the blocks containing the lines representing the structure of the tree.
+
+// This block is on the bottom (target) line
+
+// This block points at the target block (where the row will go when released)
+
+// This cache will be thrown away once scrolling completes.
+
+// This cache will be thrown away once scrolling complets.
+
+// This can cause a funky scroll offset because of the vertical scrollbar width.
+
+// This can lead to the same cell being created many times and can cause performance issues for "heavy" cells.
+
+// This can result in invalid style values which can result in NaN values if we don't handle them.
+
+// This causes a series of rapid renders that is slow for long lists.
+
+// This gives the smaller Grid extra room for offset,
+
+// This handles edge-cases where the component has already been unmounted before its ref has been set,
+
+// This invalid event can be detected by comparing event.target to this component's scrollable DOM element.
+
+// This is a performance optimization for WindowScroller + Grid
+
+// This is an advanced option for complete customization of the appearance.
+
+// This is because the offset changes slightly as scroll position changes and caching leads to stale values.
+
+// This is done because Grid is a pure component and won't update unless its properties or state has changed.
+
+// This is necessary in order to support keyboard navigation (TAB/SHIFT+TAB) in some cases
+
+// This is performed at the last minute so newNode can be sent in its final form.
+
+// This is to keep the grid from scrolling after the snap-to update.
+
+// This keeps the cellCache to a resonable size.
+
+// This makes Grid simpler to use (since cells commonly change).
+
+// This mirrors what Grid does,
+
+// This prevents them from flowing under a scrollbar (if present).
+
+// This row has been shifted, and is at the depth of
+
+// This was originally reported via clauderic/react-infinite-calendar/issues/23
+
+// This works around an obscure edge case where external CSS styles have not yet been loaded,
+
+// To prevent flicker here, we make playing in the negative offset zone cause nothing to happen.
+
+// Top-left corner of the tree
+
+// Top-left corner of the tree, but has no siblings
+
+// Track scrolling direction so we can more efficiently overscan rows to reduce empty space around the edges while scrolling.
+
+// Track the height of each column.
+
+// Tree data in the following format:
+
+// Update onRowsRendered callback
+
+// Update onRowsRendered callback if start/stop indices have changed
+
+// Update onSectionRendered callback.
+
+// Update scaleX and scaleY every 100ms or so
+
+// Update scroll offsets if the current :scrollToCell values requires it
+
+// Update scroll offsets if the current :scrollToColumn or :scrollToRow values requires it
+
+// Update the tree with data leaving all paths leading to matching nodes open
+
+// Updated cell metadata may have hidden the previous scrolled-to item.
+
+// Use Boolean constructor as a filter callback
+
+// Use requestAnimationFrame to avoid over-updating.
+
+// Use the last position in the children array to insert the newNode
+
+// Use the setState() updater to ensure state isn't stale in certain edge cases.
+
+// Use this for adding buttons via the `buttons` key,
+
+// Used by react-virtualized
+
+// Used by the `searchMethod` to highlight and scroll to matched nodes.
+
+// Used for DEV mode warning check
+
+// Used in deferred mode to track which cells have been queued for measurement.
+
+// We also can't just check "__reactInternalSnapshot",
+
+// We can avoid that by doing some simple bounds checking to ensure that scrollTop never exceeds the total height.
+
+// We cannot add this node to the matches right away, as it may be changed
+
+// We handle this case in componentDidMount()
+
+// We must do this at the start of the method as we may calculate and update scroll position below.
+
+// We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+
+// We need to measure additional cells for this layout
+
+// We should ensure that the scroll target is visible.
+
+// When adding node from external source
+
+// When this component is shrunk drastically, React dispatches a series of back-to-back scroll events,
+
+// When true, or a callback returning true, dropping nodes to react-dnd
+
+// Without this style, Grid would render the correct range of cells but would NOT update its internal offset.
+
+// Wrap in a new function to prevent
+
+// Wrapping classes for use with react-dnd
+
+// [{title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3') }] }]
+
+// `cancel` potentially being assigned
+
+// `children` is an array of child nodes belonging to the node.
+
+// `expanded` shows children of the node if true, or hides them if false. Defaults to false.
+
+// `subtitle` is a secondary label for the node
+
+// `title` is the primary label for the node
+
+// and customize as needed.
+
+// and start scrolling if necessary
+
+// and the components are attached to dnd-core
+
+// and the settings are set to do so.
+
+// and there are more children on the level of this node, return without insertion
+
+// break out of the loop
+
+// calculate _styleCache here
+
+// calculate children to render here
+
+// callbacks from appending listeners
+
+// calls the onChange callback on the new treeData
+
+// const active = true
+
+// const className = classnames(
+
+// create a shallow copy of the node
+
+// debounced at least once.
+
+// drop targets outside of this tree will not remove them from this tree
+
+// eg top/left Grid renders before bottom/right Grid
+
+// elsewhere, and we should reset the state of this tree
+
+// eslint-disable-line react/forbid-prop-types
+
+// eslint-disable-line react/no-find-dom-node
+
+// eslint-disable-next-line react/forbid-prop-types
+
+// eslint-disable-next-line react/no-array-index-key
+
+// eslint-disable-next-line react/no-find-dom-node
+
+// event that same frame. So we double the strengthMultiplier and only adjust
+
+// generate the `path` array passed in callbacks.
+
+// getting scrollBarSize (moved from componentWillMount)
+
+// handle row direction support
+
+// have to attach the listeners to the body
+
+// height of a row given its index: `({ index: number }): number`
+
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+// https://github.com/bvaughn/react-virtualized/blob/master/docs/List.md#prop-types
+
+// i.e., where the newNode can be added to the current node's children
+
+// if it is not the same then call the onDragStateChanged
+
+// if onlyExpandSearchedNodes collapse the tree and search
+
+// if state.isScrolling (not from _isScrolling) then reset
+
+// if the child is expanded.
+
+// isScrolling is used to determine if we reset styleCache
+
+// it as the trailing edge, or we've hit the `maxWait` limit.
+
+// it means that the drag was canceled or the dragSource dropped
+
+// listen to dragging
+
+// make sure we have the most recent version of treeData
+
+// matching `title` or `subtitle` values.
+
+// mousemove events from a container that also emits a scroll
+
+// null means we're using CellMeasurer and haven't yet measured a given index.
+
+// offers a more official way to detect when a drag ends
+
+// or additional `style` / `className` settings.
+
+// or expanded due to a matching node being found in its descendants
+
+// own component's data to see the changes reflected.
+
+// props that need to be used in gDSFP or static functions will be stored here
+
+// recalculate the result
+
+// refs don't work in `react-test-renderer`
+
+// requestAnimationFrame() shim by Paul Irish
+
+// reset the scroll focus so it doesn't jump back
+
+// returns the new state after search
+
+// rtl support
+
+// scrollTop and scrollLeft props are explicitly filtered out and ignored
+
+// setting the ref's scrollLeft and scrollTop.
+
+// start scrolling if we need to
+
+// stop scrolling if there's nothing to do
+
+// target node if childIndex reaches the targetIndex
+
+// the line pointing to the new destination
+
+// the minimumTreeIndex requirement
+
+// the scroll position at 30fps
+
+// there's a bug in safari where it seems like we can't get
+
+// throttle `dragHover` work to available animation frames
+
+// to a search result while dragging
+
+// to the current frame's queue
+
+// to the native rAF function
+
+// touchmove events don't seem to work across siblings, so we unfortunately
+
+// trailing edge, the system time has gone backwards and we're treating
+
+// undefined or NaN probably means a logic error in the size getter.
+
+// update the collected properties after the first render
+
+// update the indices
+
+// use treeData unaltered by the drag operation
+
+// used in dndManager
+
+// very simple className utility for creating a classname string...
+
+// wait for end of processing current event handler, because event handler may be long
+
+// |     |
+
+// |  +--+
+
+// |  |  |
+
+//# sourceMappingURL=performance-now.js.map
+
+//Split center intervals
+
+//User friendly wrapper that makes it possible to support empty trees
+
+//opacity:0 works around a chrome bug https://code.google.com/p/chromium/issues/detail?id=286360

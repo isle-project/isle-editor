@@ -1,0 +1,33 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* An accordion component controlling vertical sliders.
+*
+* @property {number} active - index of slider to be opened at the beginning
+* @property {Array} headers - array of header names
+* @property {boolean} canCloseAll - whether one can collapse all headers
+* @property {string} headerClassName - this overrules the given class name of the headers
+* @property {Object} headerStyle - one may also assign a style to the header bars
+* @property {string} className - class name for outer div
+* @property {Object} style - CSS inline styles for outer div
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

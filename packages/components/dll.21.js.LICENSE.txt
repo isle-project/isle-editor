@@ -1,0 +1,531 @@
+/* */
+
+/* eslint-disable no-return-assign */
+
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/* harmony reexport (safe) */
+
+/*#__PURE__*/
+
+/**
+         * If a prop switches from controlled to Uncontrolled
+         * reset its value to the defaultValue
+         */
+
+/**
+   * Add empty cells due to rowspan
+   *
+   * @param {Object} params
+   *   @param {Array} rows
+   *   @param {Object} cell
+   *   @param {Number} rowIndex Current row index
+   *   @param {Number} cellIndex Current cell index
+   */
+
+/**
+   * Apply style and classes from all the parents
+   *
+   * @param  {Object} params
+   *   @param {Object} ret The object that will receive the 'style' and other properties
+   *   @param {Array} parents Array of node elements
+   * @return {Object} the modified 'ret'
+   */
+
+/**
+   * Convert 'px'/'rem'/'cm' to 'pt', and return false for the other ones. If it's only a number, it will just return it
+   *
+   * @param  {String} val The value with units (e.g. 12px)
+   * @return {Number|Boolean} Return the pt value, or false
+   */
+
+/**
+   * Converts a single HTML element to pdfmake, calls itself recursively for child html elements
+   *
+   * @param element can be an HTML element (<p>) or plain text ("Hello World")
+   * @param parentNode the parent node for the current element
+   * @param parents Array of node names of all the parents for the element
+   * @returns the doc def to the given element in consideration to the given paragraph and styles
+   */
+
+/**
+   * If a prop switches from controlled to Uncontrolled
+   * reset its value to the defaultValue
+   */
+
+/**
+   * Permit to change the default styles based on the options
+   */
+
+/**
+   * Returns the color in a hex format (e.g. #12ff00).
+   * Also tries to convert RGB colors into hex values
+   *
+   * @param color color as string representation
+   * @returns color as hex values for pdfmake
+   */
+
+/**
+   * Takes an HTML string, converts to HTML using a DOM parser and recursivly parses
+   * the content into pdfmake compatible doc definition
+   *
+   * @param htmlText the html text to translate as string
+   * @returns pdfmake doc definition as object
+   */
+
+/**
+   * Transform a CSS expression (e.g. 'margin:10px') in the PDFMake version
+   *
+   * @param {String} style The CSS expression to transform
+   * @param {DOMElement} element
+   * @param {Boolean} ignoreProperties TRUE when we have to ignore some properties, like border, padding, margin
+   * @returns {Array} array of {key, value}
+   */
+
+/**
+   * useful when wrapping a Component and you want to control
+   * everything
+   */
+
+/**
+  To use it:
+  import htmlToPdfMake from 'html-to-pdfmake.js'
+  htmlToPdfMake('<b>my bold text</b>');
+*/
+
+/**
+ * An `addEventListener` ponyfill, supports the `once` option
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
+ * value is the one rendered with. Generally only required for Concurrent mode usage
+ * where previous work in `render()` may be discarded befor being used.
+ *
+ * This is safe to access in an event handler.
+ *
+ * @param value The `Ref` value
+ */
+
+/**
+ * Returns a function that triggers a component update. the hook equivalent to
+ * `this.forceUpdate()` in a class component. In most cases using a state value directly
+ * is preferable but may be required in some advanced usages of refs for interop or
+ * when direct DOM manipulation is required.
+ *
+ * ```ts
+ * const forceUpdate = useForceUpdate();
+ *
+ * const updateOnClick = useCallback(() => {
+ *  forceUpdate()
+ * }, [forceUpdate])
+ *
+ * return <button type="button" onClick={updateOnClick}>Hi there</button>
+ * ```
+ */
+
+/**
+ * Transform HTML code to a PdfMake object
+ * @param  {String} htmlText The HTML code to transform
+ * @param  {Object} [options]
+ *   @param  {Object} [defaultStyles] An object with the default styles for each elements
+ *   @param  {Boolean} [tableAutoSize=false] It permits to use the width/height defined in styles for a table's cells and rows
+ *   @param  {Object} [window] The `window` object (required for NodeJS server side use)
+ * @return {Object} it returns a PdfMake object
+ *
+ * @example
+ * // Some styles are applied by defaults for the supported HTML elements
+ * // but you can pass your own styles if you prefer
+ * htmlToPdfMake('<div><h1>My Title</h1><p>My paragraph</p></div>');
+ *
+ * // If you want to overwrite the default styles, e.g. you want <li> to not have a margin-left, and links to be 'purple' and not 'blue', and links without 'underline'
+ * htmlToPdfMake('<ul><li>this is <a href="...">a link</a></li><li>another item</li></ul>', {
+ *   defaultStyles:{
+ *     a:{
+ *       color:'purple',
+ *       decoration:null
+ *     },
+ *     li:null
+ *   }
+ * });
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Attempts to call a `RegExp` method.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if able to call a `RegExp` method
+*/
+
+/**
+* Escape a regular expression string or pattern.
+*
+* @module @stdlib/utils/escape-regexp-string
+*
+* @example
+* var rescape = require( '@stdlib/utils/escape-regexp-string' );
+*
+* var str = rescape( '[A-Z]*' );
+* // returns '\\[A\\-Z\\]\\*'
+*/
+
+/**
+* Escapes a regular expression string.
+*
+* @param {string} str - regular expression string
+* @throws {TypeError} first argument must be a string primitive
+* @returns {string} escaped string
+*
+* @example
+* var str = rescape( '[A-Z]*' );
+* // returns '\\[A\\-Z\\]\\*'
+*/
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @module @stdlib/string/replace
+*
+* @example
+* var replace = require( '@stdlib/string/replace' );
+*
+* var str = 'beep';
+* var out = replace( str, 'e', 'o' );
+* // returns 'boop'
+*
+* str = 'Hello World';
+* out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*/
+
+/**
+* Replace search occurrences with a replacement string.
+*
+* @param {string} str - input string
+* @param {(string|RegExp)} search - search expression
+* @param {(string|Function)} newval - replacement value or function
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument argument must be a string primitive or regular expression
+* @throws {TypeError} third argument must be a string primitive or function
+* @returns {string} new string containing replacement(s)
+*
+* @example
+* var str = 'beep';
+* var out = replace( str, 'e', 'o' );
+* // returns 'boop'
+*
+* @example
+* var str = 'Hello World';
+* var out = replace( str, /world/i, 'Mr. President' );
+* // returns 'Hello Mr. President'
+*
+* @example
+* var capitalize = require( '@stdlib/string/capitalize' );
+*
+* var str = 'Oranges and lemons say the bells of St. Clement\'s';
+*
+* function replacer( match, p1 ) {
+*     return capitalize( p1 );
+* }
+*
+* var out = replace( str, /([^\s]*)/gi, replacer);
+* // returns 'Oranges And Lemons Say The Bells Of St. Clement\'s'
+*/
+
+/**
+* Test if a value is a regular expression.
+*
+* @module @stdlib/assert/is-regexp
+*
+* @example
+* var isRegExp = require( '@stdlib/assert/is-regexp' );
+*
+* var bool = isRegExp( /\.+/ );
+* // returns true
+*
+* bool = isRegExp( {} );
+* // returns false
+*/
+
+/**
+* Tests if a value is a regular expression.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a regular expression
+*
+* @example
+* var bool = isRegExp( /\.+/ );
+* // returns true
+*
+* @example
+* var bool = isRegExp( {} );
+* // returns false
+*/
+
+/***/
+
+// 'decoration' can be an array
+
+// 1) the default styles
+
+// 16.3+ will not execute our will-update method;
+
+// 1px => 0.75292857248934pt
+
+// 2) element's style
+
+// Add a flag to suppress these warnings for this special case.
+
+// Add rows to allRows
+
+// Applying inherited styles
+
+// Array with All Rows including THEAD
+
+// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+
+// As a workaround, use cWU to invoke the new lifecycle.
+
+// Assigning the font size
+
+// Because for <= 15.x versions this might be a "prevContext" object.
+
+// Because get-snapshot might return a falsy value.
+
+// Because they would work differently between older and newer (16.3+) versions of React.
+
+// Binding "this" is important for shallow renderer support.
+
+// Call this.constructor.gDSFP to support sub-classes.
+
+// Check if the string starts with a forward slash...
+
+// Checking if the element has a size attribute
+
+// Create a HTML DOM tree out of html string
+
+// ELEMENT_NODE
+
+// EXPORTS //
+
+// Error if any of these lifecycles are present,
+
+// Getting and sanitizing the size value – it should be included between 1 and 7
+
+// Getting the relative fontsize
+
+// If new component APIs are defined, "unsafe" lifecycles won't be called.
+
+// If we searched the string to no avail or if the first letter is not `/`, assume that the string is not of the form `/[...]/[guimy]`:
+
+// It will pass a snapshot value to did-update though.
+
+// MAIN //
+
+// MODULES //
+
+// Newer versions of React will ignore that lifecycle if gSBU exists.
+
+// Newer versions of React will ignore these lifecycles if gDSFP exists.
+
+// Older versions will require our polyfilled will-update value.
+
+// Only escape the characters between the `/`:
+
+// React <= 16.2 does not support getSnapshotBeforeUpdate.
+
+// React <= 16.2 does not support static getDerivedStateFromProps.
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+
+// Reassemble:
+
+// So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+
+// TEXT_NODE
+
+// Use the setState() updater to ensure state isn't stale in certain edge cases.
+
+// VARIABLES //
+
+// We also can't just check "__reactInternalSnapshot",
+
+// We need to de-construct the string...
+
+// We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+
+// add default propTypes for folks that use runtime checks
+
+// and https://github.com/bpampuch/pdfmake/issues/205
+
+// apply all the inhirent classes and styles from the parents
+
+// apply all the inhirent classes and styles from the parents, or for the current element
+
+// array of boolean
+
+// array of colors
+
+// check if we have "width" or "height"
+
+// check if we have `list-style-type` or `list-style`
+
+// check if we have colspan or rowspan
+
+// check if we have some data-pdfmake to apply
+
+// chekck if we have some data-pdfmake to apply
+
+// classes
+
+// convert value to a 'pt' when possible
+
+// default font-size is 12pt
+
+// default style for the HR
+
+// determine the max height for each row
+
+// determine the max width for each cell
+
+// do we have a colSpan?
+
+// do we have a rowSpan ?
+
+// do we have a rowSpan in addition of the colSpan?
+
+// e.g. `#fff` or `#ff0048`
+
+// eslint-disable-line no-unused-vars
+
+// eslint-disable-line no-useless-escape
+
+// eslint-disable-next-line no-multi-assign
+
+// fill the gaps
+
+// for BR we return '\n'
+
+// for borders
+
+// for each THEAD / TBODY
+
+// for each cell
+
+// for each row
+
+// for table, thead, tbody, tfoot, tr, ul, ol: remove all empty space
+
+// for the color
+
+// for the width
+
+// if TH/TD and key is 'background', then we use 'fillColor' instead
+
+// if it's just a number, then return it
+
+// if option tableAutoSize, then we try to apply the correct width/height on the table
+
+// if we add default styles
+
+// if we don't have a number with supported units, then return false
+
+// if we want to delete a specific property
+
+// if we want to remove a default style
+
+// if yes, and if width/height is a number, we divide by the col/rowspan, otherwise we use 'auto'
+
+// if yes, insert empty cells due to colspan
+
+// ignore if we have a FALSE in the table
+
+// ignore some HTML tags
+
+// ignore some properties
+
+// keep adding empty cell due to rowspan
+
+// non-generic
+
+// not all the CSS properties should be inhirent
+
+// padding is not supported by PDFMake
+
+// pdfMake uses a different order than CSS
+
+// remove first level
+
+// source: https://github.com/OpenSlides/OpenSlides/blob/f4f8b8422f9b3fbab58e35ac3f8f870d35813b7d/client/src/app/core/ui-services/html-to-pdf.service.ts
+
+// the format for the table is table.body[[], [], …]
+
+// top | right | bottom | left ==> left | top | right | bottom
+
+// we can override the default HR style with "data-pdfmake"
+
+// we don't care about invariant's own frame
+
+// we have 3 properties: width style color
+
+// we have to merge together the borders in two properties
+
+// we now need to convert to PT
+
+// we want TD/TH to receive descendent properties from TR
+
+// we want to remember the different sizes
+
+//let setState trigger the update
+
+//var util = require("util"); // to debug

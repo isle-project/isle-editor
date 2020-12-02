@@ -1,0 +1,31 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A component that allows the display of shapes, triggered by images with alpha channel
+*
+* @property {string} image - the background image url
+* @property {string} svg - the svg background image url
+* @property {number} margin - the margin in regards to the floating text, in pixels. Default: 10
+* @property {Object} style - the style of the object, it can hold any css including animations
+* @property {Function} onClick - event handler invoked when image is clicked
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

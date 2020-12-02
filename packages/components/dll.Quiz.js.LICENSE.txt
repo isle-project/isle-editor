@@ -1,0 +1,70 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* A quiz component displaying a sequence of question components.
+*
+* @property {Array} questions - array of questions from which questions will be randomly selected
+* @property {number} count - number of questions to include in the quiz
+* @property {boolean} confidence - whether to display a Likert scale asking for the confidence of the user's answer
+* @property {boolean} forceConfidence - controls whether a user has to supply a confidence level before moving to the next question
+* @property {boolean} skippable - controls whether questions in  the quiz are skippable
+* @property {Array} footerNodes - array of nodes to be displayed in the footer of each question
+* @property {string} nextLabel - label of button to advance to next question
+* @property {boolean} showFinishButton - controls whether to display button to finish quiz and jump directly to results page
+* @property {string} finishLabel - label of button to finish quiz
+* @property {boolean} provideFeedback - controls whether to show students feedback on correctness of their answers after quiz completion
+* @property {boolean} active - controls whether the timer for the quiz is active
+* @property {number} duration - duration of the quiz (in minutes); once time is up, the summary page will be displayed
+* @property {boolean} downloadButton - controls whether to display a button for downloading the responses
+* @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
+* @property {Function} onSubmit - callback invoked when user submits an answer
+*/
+
+/**
+* Transforms a JSON configuration object to a React component and its children.
+*
+* ## Notes
+*
+* -   Only a subset of isle React component are supported.
+*
+* @param {Object} config - JSON configuration
+* @returns {Node} created component
+*/
+
+/***/
+
+// Case: 'MatchListQuestion'
+
+// Case: 'MultipleChoiceQuestion'
+
+// Case: 'OrderQuestion'
+
+// Case: Other question types...
+
+// Case: `config` already is a React component, clone it to pass in submit handler:
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// Save chosen confidence level:
+
+// Submit all questions on the current page:
+
+// TYPES //
+
+// VARIABLES //

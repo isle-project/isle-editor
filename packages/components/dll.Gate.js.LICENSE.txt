@@ -1,0 +1,34 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* An ISLE component that allows to display its children only to reserved audiences.
+*
+* @property {boolean} user - when set the gated content is displayed to users
+* @property {boolean} notUser - when set the gated content is **not** displayed to users
+* @property {boolean} enrolled - when set the gated content is displayed to the students enrolled in the course
+* @property {boolean} notEnrolled - when set the gated content is **not** displayed to the students enrolled in the course
+* @property {boolean} owner - when set the gated content is displayed to the owner of the course (usually the instructor)
+* @property {boolean} notOwner - when set the gated content is **not** displayed to the owner of the course (usually the instructor)
+* @property {Date} until - time until the contents of the gate should remain visible
+* @property {Date} after - time after which the contents of the gate should become visible
+* @property {Node} banner - a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges
+* @property {boolean} showOwnerInPresentationMode - controls whether to show gate contents in presentation mode when gate is visible for `owner`s
+* @property {boolean} disabled - if a gate is disabled, the banner will be displayed no matter what
+* @property {Function} check - callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive
+*/
+
+/***/
+
+// Case: `after` property assigned
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //

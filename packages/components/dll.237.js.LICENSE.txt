@@ -1,0 +1,98 @@
+/*
+CSV Stringify
+
+Please look at the [project documentation](https://csv.js.org/stringify/) for
+additional information.
+*/
+
+/* (ignored) */
+
+/* WEBPACK VAR INJECTION */
+
+/***/
+
+// Cast boolean to string by default
+
+// Cast date to timestamp string by default
+
+// Cast number to string using native casting by default
+
+// Cast record elements
+
+// Chunk validation
+
+// Convert the record into a string
+
+// Detect columns from the first record
+
+// Emit and stringify the record if an object or an array
+
+// Emit the csv
+
+// Emit the header
+
+// Expose options
+
+// Give a chance for events to be registered later
+
+// Information
+
+// Internal state
+
+// Leave string untouched
+
+// Lodash implementation of `get`
+
+// Match anything that isn't a dot or bracket.
+
+// Merge with user options
+
+// Normalize option `bom`
+
+// Normalize option `cast`
+
+// Normalize option `columns`
+
+// Normalize option `delimiter`
+
+// Normalize option `eof`
+
+// Normalize option `escape`
+
+// Normalize option `header`
+
+// Normalize option `quote`
+
+// Normalize option `quoted_empty`
+
+// Normalize option `quoted_match`
+
+// Normalize option `quoted_string`
+
+// Normalize option `quoted`
+
+// Normalize option `record_delimiter`
+
+// Normalize option cast.bigint
+
+// Normalize option cast.boolean
+
+// Normalize option cast.date
+
+// Normalize option cast.number
+
+// Normalize option cast.object
+
+// Normalize option cast.string
+
+// Record is a literal object
+
+// Record is an array
+
+// Stringify object as JSON by default
+
+// We are getting an array but the user has specified output columns. In
+
+// let { value, ...options } = value
+
+// this case, we respect the columns indexes

@@ -1,0 +1,1048 @@
+/*
+        * Assesses the query, turning on all handlers if it matches, turning them off if it doesn't match
+        */
+
+/* WEBPACK VAR INJECTION */
+
+/* eslint-disable require-jsdoc, valid-jsdoc */
+
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+             * @returns {boolean}
+             */
+
+/**
+         * @param {*} key
+         * @param {*} value
+         * @returns {void}
+         */
+
+/**
+         * @param {*} key
+         * @returns {*}
+         */
+
+/**
+         * @param {*} key
+         * @returns {void}
+         */
+
+/**
+         * @param {Function} callback
+         * @param {*} [ctx=null]
+         * @returns {void}
+         */
+
+/**
+         * @returns {void}
+         */
+
+/**
+         * A list of connected observers.
+         *
+         * @private {Array<ResizeObserverSPI>}
+         */
+
+/**
+         * Broadcasted height of content rectangle.
+         *
+         * @type {number}
+         */
+
+/**
+         * Broadcasted width of content rectangle.
+         *
+         * @type {number}
+         */
+
+/**
+         * Collection of resize observations that have detected changes in dimensions
+         * of elements.
+         *
+         * @private {Array<ResizeObservation>}
+         */
+
+/**
+         * Indicates whether DOM listeners have been added.
+         *
+         * @private {boolean}
+         */
+
+/**
+         * Keeps reference to the instance of MutationObserver.
+         *
+         * @private {MutationObserver}
+         */
+
+/**
+         * Reference to the last observed content rectangle.
+         *
+         * @private {DOMRectInit}
+         */
+
+/**
+         * Registry of the ResizeObservation instances.
+         *
+         * @private {Map<Element, ResizeObservation>}
+         */
+
+/**
+         * Tells that controller has subscribed for Mutation Events.
+         *
+         * @private {boolean}
+         */
+
+/**
+     * "Transitionend" event handler.
+     *
+     * @private
+     * @param {TransitionEvent} event
+     * @returns {void}
+     */
+
+/**
+     * Adds observer to observers list.
+     *
+     * @param {ResizeObserverSPI} observer - Observer to be added.
+     * @returns {void}
+     */
+
+/**
+     * Callback invoked after the specified delay. It will further postpone
+     * invocation of the original function delegating it to the
+     * requestAnimationFrame.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Clears all handlers and unbinds events
+     */
+
+/**
+     * Clears the collection of active observations.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Collects observation instances the associated element of which has changed
+     * it's content rectangle.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Creates a new instance of ResizeObserver.
+     *
+     * @param {ResizeObserverCallback} callback - Callback function that is invoked
+     *      when one of the observed elements changes it's content dimensions.
+     * @param {ResizeObserverController} controller - Controller instance which
+     *      is responsible for the updates of observer.
+     * @param {ResizeObserver} callbackCtx - Reference to the public
+     *      ResizeObserver instance which will be passed to callback function.
+     */
+
+/**
+     * Creates a new instance of ResizeObserver.
+     *
+     * @param {ResizeObserverCallback} callback - Callback that is invoked when
+     *      dimensions of the observed elements change.
+     */
+
+/**
+     * Creates a new instance of ResizeObserverController.
+     *
+     * @private
+     */
+
+/**
+     * Creates an instance of ResizeObservation.
+     *
+     * @param {Element} target - Element to be observed.
+     */
+
+/**
+     * Creates an instance of ResizeObserverEntry.
+     *
+     * @param {Element} target - Element that is being observed.
+     * @param {DOMRectInit} rectInit - Data of the element's content rectangle.
+     */
+
+/**
+     * Determine whether the media query should be considered a match
+     *
+     * @return {Boolean} true if media query can be considered a match, false otherwise
+     */
+
+/**
+     * Holds reference to the controller's instance.
+     *
+     * @private {ResizeObserverController}
+     */
+
+/**
+     * Initializes DOM listeners.
+     *
+     * @private
+     * @returns {void}
+     */
+
+/**
+     * Invokes initial callback function with a list of ResizeObserverEntry
+     * instances collected from active resize observations.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Invokes the original callback function and schedules new invocation if
+     * the "proxy" was called during current request.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Invokes the update of observers. It will continue running updates insofar
+     * it detects changes.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Registers a handler for the given media query
+     *
+     * @param {string} q the media query
+     * @param {object || Array || Function} options either a single query handler object, a function, or an array of query handlers
+     * @param {function} options.match fired when query matched
+     * @param {function} [options.unmatch] fired when a query is no longer matched
+     * @param {function} [options.setup] fired when handler first triggered
+     * @param {boolean} [options.deferSetup=false] whether setup should be run immediately or deferred until query is first matched
+     * @param {boolean} [shouldDegrade=false] whether this particular media query should always run on incapable browsers
+     */
+
+/**
+     * Removes DOM listeners.
+     *
+     * @private
+     * @returns {void}
+     */
+
+/**
+     * Removes observer from observers list.
+     *
+     * @param {ResizeObserverSPI} observer - Observer to be removed.
+     * @returns {void}
+     */
+
+/**
+     * Returns index in provided array that matches the specified key.
+     *
+     * @param {Array<Array>} arr
+     * @param {*} key
+     * @returns {number}
+     */
+
+/**
+     * Returns instance of the ResizeObserverController.
+     *
+     * @returns {ResizeObserverController}
+     */
+
+/**
+     * Schedules invocation of the original function.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Starts observing provided element.
+     *
+     * @param {Element} target - Element to be observed.
+     * @returns {void}
+     */
+
+/**
+     * Stops observing all elements.
+     *
+     * @returns {void}
+     */
+
+/**
+     * Stops observing provided element.
+     *
+     * @param {Element} target - Element to stop observing.
+     * @returns {void}
+     */
+
+/**
+     * Tells whether observer has active observations.
+     *
+     * @returns {boolean}
+     */
+
+/**
+     * Updates 'broadcastWidth' and 'broadcastHeight' properties with a data
+     * from the corresponding properties of the last observed content rectangle.
+     *
+     * @returns {DOMRectInit} Last observed content rectangle.
+     */
+
+/**
+     * Updates content rectangle and tells whether it's width or height properties
+     * have changed since the last broadcast.
+     *
+     * @returns {boolean}
+     */
+
+/**
+     * Updates every observer from observers list and notifies them of queued
+     * entries.
+     *
+     * @private
+     * @returns {boolean} Returns "true" if any observer has detected changes in
+     *      dimensions of it's elements.
+     */
+
+/**
+     * add a handler for this query, triggering if already active
+     *
+     * @param {object} handler
+     * @param {function} handler.match callback for when query is activated
+     * @param {function} [handler.unmatch] callback for when query is deactivated
+     * @param {function} [handler.setup] callback for immediate execution when a query handler is registered
+     * @param {boolean} [handler.deferSetup=false] should the setup callback be deferred until the first time the handler is matched?
+     */
+
+/**
+     * called when a handler is to be destroyed.
+     * delegates to the destroy or unmatch callbacks, depending on availability.
+     *
+     * @function
+     */
+
+/**
+     * coordinates setup and triggering of the handler
+     *
+     * @function
+     */
+
+/**
+     * coordinates setup of the handler
+     *
+     * @function
+     */
+
+/**
+     * coordinates the unmatch event for the handler
+     *
+     * @function
+     */
+
+/**
+     * determines equality by reference.
+     * if object is supplied compare options, if function, compare match callback
+     *
+     * @function
+     * @param {object || function} [target] the target for comparison
+     */
+
+/**
+     * removes the given handler from the collection, and calls it's destroy methods
+     *
+     * @param {object || function} handler the handler to remove
+     */
+
+/**
+     * unregisters a query and all it's handlers, or a specific handler for a query
+     *
+     * @param {string} q the media query to target
+     * @param {object || function} [handler] specific handler to unregister
+     */
+
+/**
+ * A collection of shims that provide minimal functionality of the ES6 collections.
+ *
+ * These implementations are not meant to be used outside of the ResizeObserver
+ * modules as they cover only a limited range of use cases.
+ */
+
+/**
+ * Allows for registration of query handlers.
+ * Manages the query handler's state and is responsible for wiring up browser events
+ *
+ * @constructor
+ */
+
+/**
+ * Calculates an appropriate content rectangle for provided html or svg element.
+ *
+ * @param {Element} target - Element content rectangle of which needs to be calculated.
+ * @returns {DOMRectInit}
+ */
+
+/**
+ * Calculates content rectangle of provided HTMLElement.
+ *
+ * @param {HTMLElement} target - Element for which to calculate the content rectangle.
+ * @returns {DOMRectInit}
+ */
+
+/**
+ * Calculates content rectangle of provided SVG element.
+ *
+ * @param {SVGGraphicsElement} target - Element content rectangle of which needs
+ *      to be calculated.
+ * @returns {DOMRectInit}
+ */
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+
+/**
+ * Checks whether provided element is a document element (<html>).
+ *
+ * @param {Element} target - Element to be checked.
+ * @returns {boolean}
+ */
+
+/**
+ * Checks whether provided element is an instance of the SVGGraphicsElement.
+ *
+ * @param {Element} target - Element to be checked.
+ * @returns {boolean}
+ */
+
+/**
+ * Class that is responsible for computations of the content rectangle of
+ * provided DOM element and for keeping track of it's changes.
+ */
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+
+/**
+ * Converts provided string to a number.
+ *
+ * @param {number|string} value
+ * @returns {number}
+ */
+
+/**
+ * Creates DOMRectInit object based on the provided dimensions and the x/y coordinates.
+ * Spec: https://drafts.fxtf.org/geometry/#dictdef-domrectinit
+ *
+ * @param {number} x - X coordinate.
+ * @param {number} y - Y coordinate.
+ * @param {number} width - Rectangle's width.
+ * @param {number} height - Rectangle's height.
+ * @returns {DOMRectInit}
+ */
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+
+/**
+ * Creates a wrapper function which ensures that provided callback will be
+ * invoked only once during the specified delay period.
+ *
+ * @param {Function} callback - Function to be invoked after the delay period.
+ * @param {number} delay - Delay after which to invoke callback.
+ * @returns {Function}
+ */
+
+/**
+ * Creates rectangle with an interface of the DOMRectReadOnly.
+ * Spec: https://drafts.fxtf.org/geometry/#domrectreadonly
+ *
+ * @param {DOMRectInit} rectInit - Object with rectangle's x/y coordinates and dimensions.
+ * @returns {DOMRectReadOnly}
+ */
+
+/**
+ * Delegate to handle a media query being matched and unmatched.
+ *
+ * @param {object} options
+ * @param {function} options.match callback for when the media query is matched
+ * @param {function} [options.unmatch] callback for when the media query is unmatched
+ * @param {function} [options.setup] one-time callback triggered the first time a query is matched
+ * @param {boolean} [options.deferSetup=false] should the setup callback be run immediately, rather than first time query is matched?
+ * @constructor
+ */
+
+/**
+ * Detects whether window and document objects are available in current environment.
+ */
+
+/**
+ * Extracts borders size from provided styles.
+ *
+ * @param {CSSStyleDeclaration} styles
+ * @param {...string} positions - Borders positions (top, right, ...)
+ * @returns {number}
+ */
+
+/**
+ * Extracts paddings sizes from provided styles.
+ *
+ * @param {CSSStyleDeclaration} styles
+ * @returns {Object} Paddings box.
+ */
+
+/**
+ * Helper function for determining whether target object is a function
+ *
+ * @param target the object under test
+ * @return {Boolean} true if function, false otherwise
+ */
+
+/**
+ * Helper function for determining whether target object is an array
+ *
+ * @param target the object under test
+ * @return {Boolean} true if array, false otherwise
+ */
+
+/**
+ * Helper function for iterating over a collection
+ *
+ * @param collection
+ * @param fn
+ */
+
+/**
+ * Represents a single media query, manages it's state and registered handlers for this query
+ *
+ * @constructor
+ * @param {string} query the media query string
+ * @param {boolean} [isUnconditional=false] whether the media query should run regardless of whether the conditions are met. Primarily for helping older browsers deal with mobile-first design
+ */
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Test if a string starts with the characters of another string.
+*
+* @module @stdlib/string/starts-with
+*
+* @example
+* var startsWith = require( '@stdlib/string/starts-with' );
+*
+* var str = 'Fair is foul, and foul is fair, hover through fog and filthy air';
+* var bool = startsWith( str, 'Fair' );
+* // returns true
+*
+* bool = startsWith( str, 'fair' );
+* // returns false
+*
+* bool = startsWith( str, 'foul', 8 );
+* // returns true
+*
+* bool = startsWith( str, 'filthy', -10 );
+* // returns true
+*/
+
+/**
+* Tests if a string starts with the characters of another string.
+*
+* @param {string} str - input string
+* @param {string} search - search string
+* @param {integer} [position=0] - position at which to start searching
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument must be a string primitive
+* @throws {TypeError} third argument must be an integer
+* @returns {boolean} boolean indicating if the input string starts with the search string
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember' );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'Remember the story I used to tell you when you were a boy?', 'Remember, remember' );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'To be' );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be' );
+* // returns false
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'to be', 14 );
+* // returns true
+*
+* @example
+* var bool = startsWith( 'To be, or not to be, that is the question.', 'quest', -9 );
+* // returns true
+*/
+
+/** @class */
+
+/** Used as references for various `Number` constants. */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+
+/***/
+
+//
+
+//   this.props.onLazyLoad([leftMostSlide])
+
+// 314px. And it doesn't happen all the time. So just ignore this delta
+
+// A list of substrings of CSS properties used to find transition events that
+
+// According to the specification following properties are not writable
+
+// Add listeners if they haven't been added yet.
+
+// Add px to dimension features
+
+// Adjust the track back to it's original position.
+
+// Besides, it's as well not necessary as the <html> itself neither has
+
+// By this condition we can catch all non-replaced inline, hidden and
+
+// Children may contain false or null, so we should filter them
+
+// Chrome has a rather weird rounding of "client" properties.
+
+// Chrome passes an MediaQueryListEvent object, while other browsers pass MediaQueryList directly
+
+// Click on dots
+
+// Click on the slides
+
+// Client width & height properties can't be
+
+// Collect observers that have active observations.
+
+// Continue running updates if changes have been detected as there might
+
+// Create ResizeObserverEntry instance for every active observation.
+
+// Deliver notifications in a separate cycle in order to avoid any
+
+// Detect whether transition may affect dimensions of an element.
+
+// Do nothing if current environment doesn't have the Element interface.
+
+// Do nothing if element is already being observed.
+
+// Do nothing if element is not being observed.
+
+// Do nothing if observer doesn't have active observations.
+
+// Do nothing if running in a non-browser environment or if listeners
+
+// E.g. for an element with content width of 314.2px it sometimes gives
+
+// EXPORTS //
+
+// Either this is the first call, activity has stopped and we're at the
+
+// Export existing implementation if available.
+
+// Expose public methods of ResizeObserver.
+
+// Fallback for IE8
+
+// Following conditions are required to handle Internet Explorer which
+
+// Following steps can't be applied to the document's root element as its
+
+// Force the update of observations.
+
+// Handle invocations in a tight loop.
+
+// Handling array of media queries
+
+// In Autoplay the focus stays on clicked button even after transition
+
+// In some browsers (only in Firefox, actually) CSS width & height
+
+// Invoke the leading edge.
+
+// MAIN //
+
+// MODULES //
+
+// Minimum delay before invoking the update of observers.
+
+// Only invoke if we have `lastArgs` which means `func` has been
+
+// Property accessors are not being used as they'd require to define a
+
+// Rectangle's properties are not writable and non-enumerable.
+
+// Register media query for full screen. Need to support resize from small to large
+
+// Reject immediately following calls.
+
+// Remove listeners if controller has no connected observers.
+
+// Remove observer if it's present in registry.
+
+// Reset any `maxWait` timer.
+
+// ResizeObserver are tracking the same element and the callback of one
+
+// Restart the timer.
+
+// Return the local global object if it's not possible extract one from
+
+// Schedule new call to be in invoked when the pending one is resolved.
+
+// Some browsers, namely IE and Edge, don't have the SVGGraphicsElement
+
+// Start the timer for the trailing edge.
+
+// Subscription to the "Transitionend" event is used as a workaround for
+
+// This is important for "transitions" which never actually start
+
+// We can say that if CSS dimensions + paddings are equal to the "client"
+
+// Width & height include paddings and borders when the 'border-box' box
+
+// Without it we would need to implement separate methods for each of
+
+// and "client" properties, though that is not always true in Chrome.
+
+// and are also not enumerable in the native implementation.
+
+// animating state should be cleared while resizing, otherwise autoplay stops working
+
+// any of such methods are called
+
+// anything, or an element merely doesn't have paddings/borders styles.
+
+// as a non-relevant.
+
+// asNavForIndex check is to avoid recursive calls of slideHandler in waitForAnimate=false mode
+
+// bars are the only difference between rounded dimensions + paddings
+
+// be future ones caused by CSS transitions.
+
+// bring active slide to the beginning of visual area
+
+// children may also contain string filled with spaces (in certain cases where we use jsx strings)
+
+// client[Width/Height] properties represent viewport area of the window.
+
+// collisions between observers, e.g. when multiple instances of
+
+// convert javascript object to media query string
+
+// debounced at least once.
+
+// delayed transitions. This way it's possible to capture at least the
+
+// detached elements. Though elements with width & height properties less
+
+// doesn't include paddings and borders to computed CSS dimensions.
+
+// don't set trackStyle hence don't break animation
+
+// don't support this type of collections.
+
+// effective test for hidden elements. E.g. even jQuery's ':visible' filter
+
+// final state of an element.
+
+// force scrolling by one if centerMode is on
+
+// force showing one slide and scrolling by one if the fade mode is on
+
+// get initialized state
+
+// get width of an element
+
+// given an object and a list of keys, return new object with given keys
+
+// given specifications/props for a slide, fetch all the classes that need to be applied to the slide
+
+// gives wrong results for elements with width & height less than 0.5.
+
+// handles responsive breakpoints
+
+// happens amids the pending invocation.
+
+// have been already added.
+
+// have been already removed.
+
+// if (this.props.onLazyLoad) {
+
+// if next scroll doesn't have enough children, just reach till the end of original slides instead of shifting slidesToScroll children
+
+// if slide needs to be precloned or postcloned
+
+// immediately so there is a chance that we might miss one if change
+
+// in case of lazyLoad, whether or not we want to fetch the slide
+
+// include scroll bars size which can be removed at this step as scroll
+
+// interface.
+
+// it as the trailing edge, or we've hit the `maxWait` limit.
+
+// javascript handler for  css media query
+
+// makes sure that children is an array, even when there is only 1 child
+
+// media query for each breakpoint
+
+// might affect dimensions of observed elements.
+
+// model is applied (except for IE).
+
+// of them changes content dimensions of the observed target. Sometimes
+
+// pauseType  is 'hovered'
+
+// performance monitoring
+
+// prevent warning: setting state on unmounted component (server side rendering)
+
+// private WeakMap storage which may cause memory leaks in browsers that
+
+// properties then it's either IE, and thus we don't need to subtract
+
+// provided element.
+
+// push a cloned element of the desired slide
+
+// rendered scroll bars nor it can be clipped.
+
+// return list of slides that need to be present
+
+// returns no of slides on the left of active slide
+
+// returns no of slides on the right of active slide
+
+// rows and slidesPerRow logic is handled here
+
+// shift current slide to center of the frame
+
+// sort them in increasing order of their numerical value
+
+// spec also contains listRef, trackRef
+
+// spec also contains, trackRef and slideIndex
+
+// startIndex that needs to be present
+
+// than 0.5 will be discarded as well.
+
+// the client width of 315px and for the width of 314.7px it may give
+
+// this and fellow methods are wrapped in setTimeout
+
+// this may result in notifications being blocked for the rest of observers.
+
+// those cases and it's not possible to perform a precise and performance
+
+// to make sure initialize setState has happened before
+
+// to next slide. That only goes away by click somewhere outside
+
+// trailing edge, the system time has gone backwards and we're treating
+
+// useCSS is true by default so it can be undefined
+
+// used by swipeEvent. differentites between touch and swipe.
+
+// used exclusively as they provide rounded values.
+
+// when not using server side rendering
+
+// whether or not we can go next
+
+// }
+
+//const { whyDidYouUpdate } = require('why-did-you-update')
+
+//if (process.env.NODE_ENV !== 'production') {
+
+//normalise to object in an array
+
+//remove from array and exit each early
+
+//whyDidYouUpdate(React)
+
+//}

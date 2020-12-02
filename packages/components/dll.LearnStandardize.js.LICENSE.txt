@@ -1,0 +1,413 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) for a Normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the cumulative distribution function (CDF) of a degenerate distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated cumulative distribution function
+	*
+	* @example
+	* var y = cdf( 10.0 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) for a normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( -3.14 );
+	* // returns <number>
+	*/
+
+/**
+	* Evaluates the probability density function (PDF) of a degenerate distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( 10.0 );
+	* // returns <number>
+	*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Degenerate distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/degenerate/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/degenerate/cdf' );
+*
+* var y = cdf( 2.0, 5.0 );
+* // returns 0.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/cdf' ).factory;
+*
+* var cdf = factory( 5.0 );
+*
+* var y = cdf( 3.0 );
+* // returns 0.0
+*
+* y = cdf( 6.0 );
+* // returns 1.0
+*/
+
+/**
+* Degenerate distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/degenerate/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/degenerate/pdf' );
+*
+* var y = pdf( 2.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var factory = require( '@stdlib/stats/base/dists/degenerate/pdf' ).factory;
+*
+* var pdf = factory( 10.0 );
+*
+* var y = pdf( 10.0 );
+* // returns Infinity
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a Normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Probability} evaluated cumulative distribution function
+*
+* @example
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* @example
+* var y = cdf( -1.0, -1.0, 2.0 );
+* // returns 0.5
+*
+* @example
+* var y = cdf( -1.0, 4.0, 2.0 );
+* // returns ~0.006
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = cdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a degenerate distribution with mean value `mu`.
+*
+* @param {number} x - input value
+* @param {number} mu - constant value of distribution
+* @returns {Probability} evaluated cumulative distribution function
+*
+* @example
+* var y = cdf( 2.0, 3.0 );
+* // returns 0.0
+*
+* @example
+* var y = cdf( 4.0, 3.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( 3.0, 3.0 );
+* // returns 1.0
+*
+* @example
+* var y = cdf( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a degenerate distribution centered at `mu`.
+*
+* @param {number} x - input value
+* @param {number} mu - constant value of the distribution
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 3.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 3.0, 3.0 );
+* // returns Infinity
+*
+* @example
+* var y = pdf( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the probability density function (PDF) for a normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* @example
+* var y = pdf( -1.0, 4.0, 2.0 );
+* // returns ~0.009
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 8.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 8.0, 8.0, 0.0 );
+* // returns Infinity
+*/
+
+/**
+* Generate a linearly spaced numeric array.
+*
+* @module @stdlib/math/utils/linspace
+*
+* @example
+* var linspace = require( '@stdlib/math/utils/linspace' );
+*
+* var arr = linspace( 0, 100, 6 );
+* // returns [ 0, 20, 40, 60, 80, 100 ]
+*/
+
+/**
+* Generates a linearly spaced numeric array.
+*
+* @param {number} x1 - first array value
+* @param {number} x2 - last array value
+* @param {NonNegativeInteger} [len=100] - length of output array
+* @throws {TypeError} first argument must be numeric
+* @throws {TypeError} second argument must be numeric
+* @throws {TypeError} third argument must be a nonnegative integer
+* @returns {Array} linearly spaced numeric array
+*
+* @example
+* var arr = linspace( 0, 100, 6 );
+* // returns [ 0, 20, 40, 60, 80, 100 ]
+*/
+
+/**
+* Normal distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/normal/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/normal/cdf' );
+*
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* var myCDF = cdf.factory( 10.0, 2.0 );
+* y = myCDF( 10.0 );
+* // returns 0.5
+*/
+
+/**
+* Normal distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/normal/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/normal/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* var myPDF = pdf.factory( 10.0, 2.0 );
+* y = myPDF( 10.0 );
+* // returns ~0.199
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a Normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the cumulative distribution function
+*
+* @example
+* var cdf = factory( 10.0, 2.0 );
+* var y = cdf( 10.0 );
+* // returns 0.5
+*
+* y = cdf( 12.0 );
+* // returns ~0.841
+*/
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - constant value of distribution
+* @returns {Function} function to evaluate the cumulative distribution function
+*
+* @example
+* var cdf = factory( 5.0 );
+*
+* var y = cdf( 3.0 );
+* // returns 0.0
+*
+* y = cdf( 6.0 );
+* // returns 1.0
+*
+* y = cdf( NaN );
+* // returns NaN
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 10.0, 2.0 );
+* var y = pdf( 10.0 );
+* // returns ~0.199
+*
+* y = pdf( 5.0 );
+* // returns ~0.009
+*/
+
+/**
+* Returns a function for evaluating the probability density function (PDF) of a degenerate distribution centered at a provided mean value.
+*
+* @param {number} mu - value at which to center the distribution
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 5.0 );
+*
+* var y = pdf( 0.0 );
+* // returns 0.0
+*
+* y = pdf( 5.0 );
+* // returns Infinity
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @constant
+* @type {number}
+* @default 6.283185307179586
+* @see [Wikipedia]{@link https://en.wikipedia.org/wiki/Pi}
+*/
+
+/**
+* The mathematical constant `π` times `2`.
+*
+* @module @stdlib/constants/math/float64-two-pi
+* @type {number}
+*
+* @example
+* var TWO_PI = require( '@stdlib/constants/math/float64-two-pi' );
+* // returns 6.283185307179586
+*/
+
+/***/
+
+// Build the output array...
+
+// Calculate the increment:
+
+// DEFAULT PROPERTIES //
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
+
+// VARIABLES //
+
+// eslint-disable-line max-len

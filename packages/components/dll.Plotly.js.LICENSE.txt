@@ -1,0 +1,49 @@
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Plotly visualization.
+*
+* @property {Array} data - data array
+* @property {boolean} editable - controls whether labels of the created plot are editable
+* @property {boolean} draggable - controls whether the plot should be draggable
+* @property {string} id - component identifier
+* @property {Object} layout - Plotly layout object
+* @property {boolean} legendButtons - controls whether to display buttons for changing the legend
+* @property {boolean} toggleFullscreen - controls whether to allow displaying the plot in fullscreen mode
+* @property {boolean} removeButtons - controls whether to remove all buttons (aside from fullscreen button if enabled)
+* @property {Object} meta - plot meta-information
+* @property {number} revision - when provided, causes the plot to update when the revision value is incremented
+* @property {Object} style - CSS inline styles
+* @property {Function} onAfterPlot - callback function invoked each time a chart is plotted
+* @property {Function} onClick - callback function invoked when any element is clicked
+* @property {Function} onInitialized - callback invoked once plot is initialized; called with figure (object with three keys corresponding to input props: `data`, `layout`, and `frames`) and the DOM node `graphDiv`
+* @property {Function} onRelayout - callback function invoked when relayout is triggered
+* @property {Function} onLegendClick - callback function invoked when legend item is clicked
+* @property {Function} onLegendDoubleClick - callback function invoked when legend item is double-clicked
+* @property {Function} onSelected - callback function invoked when elements are selected
+* @property {Function} onShare - callback function invoked when clicking on the "Share" button
+*/
+
+/***/
+
+// EXPORTS //
+
+// Exports
+
+// FUNCTIONS //
+
+// MAIN //
+
+// MODULES //
+
+// Module
+
+// PROPERTIES //
+
+// VARIABLES //

@@ -1,0 +1,21 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Container wrapper.
+*
+* @property {boolean} fluid - turn any fixed-width container layout into a full-width layout
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// TYPES //

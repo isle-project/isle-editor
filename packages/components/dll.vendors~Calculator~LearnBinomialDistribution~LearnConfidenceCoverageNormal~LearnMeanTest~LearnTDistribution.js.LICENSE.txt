@@ -1,0 +1,559 @@
+/* This is a generated file. Do not edit directly. */
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The following copyright and license were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_log.c}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+*
+* Developed at SunPro, a Sun Microsystems, Inc. business.
+* Permission to use, copy, modify, and distribute this
+* software is freely granted, provided that this notice
+* is preserved.
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C code, copyright, license, and constants are from [Cephes]{@link http://www.netlib.org/cephes}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright 1984, 1987, 1989, 1992, 2000 by Stephen L. Moshier
+*
+* Some software in this archive may be from the book _Methods and Programs for Mathematical Functions_ (Prentice-Hall or Simon & Schuster International, 1989) or from the Cephes Mathematical Library, a commercial product. In either event, it is copyrighted by the author. What you see here may be used freely but it comes with no support or guarantee.
+*
+* Stephen L. Moshier
+* moshier@na-net.ornl.gov
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C code, long comment, copyright, license, and constants are from [Cephes]{@link http://www.netlib.org/cephes}. The implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* Copyright 1984, 1987, 1989, 1992, 2000 by Stephen L. Moshier
+*
+* Some software in this archive may be from the book _Methods and Programs for Mathematical Functions_ (Prentice-Hall or Simon & Schuster International, 1989) or from the Cephes Mathematical Library, a commercial product. In either event, it is copyrighted by the author. What you see here may be used freely but it comes with no support or guarantee.
+*
+* Stephen L. Moshier
+* moshier@na-net.ornl.gov
+* ```
+*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Compute the binomial coefficient.
+*
+* @module @stdlib/math/base/special/binomcoef
+*
+* @example
+* var binomcoef = require( '@stdlib/math/base/special/binomcoef' );
+*
+* var v = binomcoef( 8, 2 );
+* // returns 28
+*
+* v = binomcoef( 0, 0 );
+* // returns 1
+*
+* v = binomcoef( -4, 2 );
+* // returns 10
+*
+* v = binomcoef( 5, 3 );
+* // returns 10
+*
+* v = binomcoef( NaN, 3 );
+* // returns NaN
+*
+* v = binomcoef( 5, NaN );
+* // returns NaN
+*
+* v = binomcoef( NaN, NaN );
+* // returns NaN
+*/
+
+/**
+* Computes the binomial coefficient of two integers.
+*
+* ## Method
+*
+* -   Instead of evaluating the factorial form, which is inefficient and prone to overflow for large inputs arguments, this module computes the following multiplicative representation of the binomial coefficient for integer arguments
+*
+*     ```tex
+*     \binom nk = \prod_{i=1}^k \frac{n+1-i}{i}
+*     ```
+*
+* @param {integer} n - input value
+* @param {integer} k - second input value
+* @returns {integer} function value
+*
+* @example
+* var v = binomcoef( 8, 2 );
+* // returns 28
+*
+* @example
+* var v = binomcoef( 0, 0 );
+* // returns 1
+*
+* @example
+* var v = binomcoef( -4, 2 );
+* // returns 10
+*
+* @example
+* var v = binomcoef( NaN, 3 );
+* // returns NaN
+*
+* @example
+* var v = binomcoef( 5, NaN );
+* // returns NaN
+*
+* @example
+* var v = binomcoef( NaN, NaN );
+* // returns NaN
+*/
+
+/**
+* Euler's number.
+*
+* @constant
+* @type {number}
+* @default 2.718281828459045
+* @see [OEIS]{@link https://oeis.org/A001113}
+* @see [Wikipedia]{@link https://en.wikipedia.org/wiki/E_(mathematical_constant)}
+*/
+
+/**
+* Euler's number.
+*
+* @module @stdlib/constants/math/float64-e
+* @type {number}
+*
+* @example
+* var E = require( '@stdlib/constants/math/float64-e' );
+* // returns 2.718281828459045
+*/
+
+/**
+* Evaluate the factorial function.
+*
+* @module @stdlib/math/base/special/factorial
+*
+* @example
+* var factorial = require( '@stdlib/math/base/special/factorial' );
+*
+* var v = factorial( 3.0 );
+* // returns 6.0
+*
+* v = factorial( -1.5 );
+* // returns ~-3.545
+*
+* v = factorial( -0.5 );
+* // returns ~1.772
+*
+* v = factorial( 0.5 );
+* // returns ~0.886
+*
+* v = factorial( -10.0 );
+* // returns NaN
+*
+* v = factorial( 171.0 );
+* // returns Infinity
+*
+* v = factorial( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluate the gamma function.
+*
+* @module @stdlib/math/base/special/gamma
+*
+* @example
+* var gamma = require( '@stdlib/math/base/special/gamma' );
+*
+* var v = gamma( 4.0 );
+* // returns 6.0
+*
+* v = gamma( -1.5 );
+* // returns ~2.363
+*
+* v = gamma( -0.5 );
+* // returns ~-3.545
+*
+* v = gamma( 0.5 );
+* // returns ~1.772
+*
+* v = gamma( 0.0 );
+* // returns Infinity
+*
+* v = gamma( -0.0 );
+* // returns -Infinity
+*
+* v = gamma( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluate the natural logarithm.
+*
+* @module @stdlib/math/base/special/ln
+*
+* @example
+* var ln = require( '@stdlib/math/base/special/ln' );
+*
+* var v = ln( 4.0 );
+* // returns ~1.386
+*
+* v = ln( 0.0 );
+* // returns -Infinity
+*
+* v = ln( Infinity );
+* // returns Infinity
+*
+* v = ln( NaN );
+* // returns NaN
+*
+* v = ln( -4.0 );
+* // returns NaN
+*/
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+
+/**
+* Evaluates the factorial of `x`.
+*
+* @param {number} x - input value
+* @returns {number} factorial
+*
+* @example
+* var v = factorial( 3.0 );
+* // returns 6.0
+*
+* @example
+* var v = factorial( -1.5 );
+* // returns ~-3.545
+*
+* @example
+* var v = factorial( -0.5 );
+* // returns ~1.772
+*
+* @example
+* var v = factorial( 0.5 );
+* // returns ~0.886
+*
+* @example
+* var v = factorial( -10.0 );
+* // returns NaN
+*
+* @example
+* var v = factorial( 171.0 );
+* // returns Infinity
+*
+* @example
+* var v = factorial( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the gamma function using Stirling's formula. The polynomial is valid for \\(33 \leq x \leq 172\\).
+*
+* @private
+* @param {number} x - input value
+* @returns {number} function value
+*/
+
+/**
+* Evaluates the gamma function using a small-value approximation.
+*
+* @private
+* @param {number} x - input value
+* @param {number} z - scale factor
+* @returns {number} function value
+*/
+
+/**
+* Evaluates the gamma function.
+*
+* ## Method
+*
+* 1.  Arguments \\(|x| \leq 34\\) are reduced by recurrence and the function approximated by a rational function of degree \\(6/7\\) in the interval \\((2,3)\\).
+* 2.  Large negative arguments are made positive using a reflection formula.
+* 3.  Large arguments are handled by Stirling's formula.
+*
+*
+* ## Notes
+*
+* -   Relative error:
+*
+*     | arithmetic | domain    | # trials | peak    | rms     |
+*     |:----------:|:---------:|:--------:|:-------:|:-------:|
+*     | DEC        | -34,34    | 10000    | 1.3e-16 | 2.5e-17 |
+*     | IEEE       | -170,-33  | 20000    | 2.3e-15 | 3.3e-16 |
+*     | IEEE       | -33, 33   | 20000    | 9.4e-16 | 2.2e-16 |
+*     | IEEE       | 33, 171.6 | 20000    | 2.3e-15 | 3.2e-16 |
+*
+* -   Error for arguments outside the test range will be larger owing to error amplification by the exponential function.
+*
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var v = gamma( 4.0 );
+* // returns 6.0
+*
+* @example
+* var v = gamma( -1.5 );
+* // returns ~2.363
+*
+* @example
+* var v = gamma( -0.5 );
+* // returns ~-3.545
+*
+* @example
+* var v = gamma( 0.5 );
+* // returns ~1.772
+*
+* @example
+* var v = gamma( 0.0 );
+* // returns Infinity
+*
+* @example
+* var v = gamma( -0.0 );
+* // returns -Infinity
+*
+* @example
+* var v = gamma( NaN );
+* // returns NaN
+*/
+
+/**
+* Evaluates the natural logarithm.
+*
+* @param {NonNegativeNumber} x - input value
+* @returns {number} function value
+*
+* @example
+* var v = ln( 4.0 );
+* // returns ~1.386
+*
+* @example
+* var v = ln( 0.0 );
+* // returns -Infinity
+*
+* @example
+* var v = ln( Infinity );
+* // returns Infinity
+*
+* @example
+* var v = ln( NaN );
+* // returns NaN
+*
+* @example
+* var v = ln( -4.0 );
+* // returns NaN
+*/
+
+/**
+* Square root of the mathematical constant `π` times `2`.
+*
+* @constant
+* @type {number}
+* @default 2.5066282746310007
+* @see [Wikipedia]{@link https://en.wikipedia.org/wiki/Pi}
+*/
+
+/**
+* Square root of the mathematical constant `π` times `2`.
+*
+* @module @stdlib/constants/math/float64-sqrt-two-pi
+* @type {number}
+*
+* @example
+* var SQRT_TWO_PI = require( '@stdlib/constants/math/float64-sqrt-two-pi' );
+* // returns 2.5066282746310007
+*/
+
+/**
+* Test if a double-precision floating-point numeric value is negative zero.
+*
+* @module @stdlib/math/base/assert/is-negative-zero
+*
+* @example
+* var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
+*
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* Tests if a double-precision floating-point numeric value is negative zero.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is negative zero
+*
+* @example
+* var bool = isNegativeZero( -0.0 );
+* // returns true
+*
+* @example
+* var bool = isNegativeZero( 0.0 );
+* // returns false
+*/
+
+/**
+* The Euler-Mascheroni constant.
+*
+* @constant
+* @type {number}
+* @default 0.5772156649015329
+* @see [OEIS]{@link http://oeis.org/A001620}
+* @see [Mathworld]{@link http://mathworld.wolfram.com/Euler-MascheroniConstant.html}
+*/
+
+/**
+* The Euler-Mascheroni constant.
+*
+* @module @stdlib/constants/math/float64-eulergamma
+* @type {number}
+*
+* @example
+* var GAMMA = require( '@stdlib/constants/math/float64-eulergamma' );
+* // returns 0.5772156649015329
+*/
+
+/***/
+
+// Case: -2**-20 <= f < 2**-20
+
+// Case: 0 < x < 2**-1022
+
+// Check `x` to avoid `pow()` overflow...
+
+// Check whether `x` is even...
+
+// Correct for rounding errors...
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// Normalize `x` or `x/2`...
+
+// Reduce `x`...
+
+// Subnormal number, scale up `x`:
+
+// TODO: consider extracting as a constant
+
+// Use recursive definition...
+
+// asm type annotation
+
+// eslint-disable-line max-len

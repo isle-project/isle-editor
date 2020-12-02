@@ -1,0 +1,166 @@
+/* harmony default export */
+
+/* harmony export (binding) */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/**
+* Return a partial object copy excluding specified keys.
+*
+* @module @stdlib/utils/omit
+*
+* @example
+* var omit = require( '@stdlib/utils/omit' );
+*
+* var obj1 = {
+*     'a': 1,
+*     'b': 2
+* };
+*
+* var obj2 = omit( obj1, 'b' );
+* // returns { 'a': 1 }
+*/
+
+/**
+* Returns a partial object copy excluding specified keys.
+*
+* @param {Object} obj - source object
+* @param {(string|StringArray)} keys - keys to exclude
+* @throws {TypeError} first argument must be an object
+* @throws {TypeError} second argument must be either a string or an array of strings
+* @returns {Object} new object
+*
+* @example
+* var obj1 = {
+*     'a': 1,
+*     'b': 2
+* };
+*
+* var obj2 = omit( obj1, 'b' );
+* // returns { 'a': 1 }
+*/
+
+/**
+* Test if a value is an array of strings.
+*
+* @module @stdlib/assert/is-string-array
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' );
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', 123 ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+*
+* var bool = isStringArray( [ 'abc', 'def' ] );
+* // returns true
+*
+* bool = isStringArray( [ 'abc', new String( 'def' ) ] );
+* // returns false
+*
+* @example
+* var isStringArray = require( '@stdlib/assert/is-string-array' ).objects;
+*
+* var bool = isStringArray( [ new String( 'abc' ), new String( 'def' ) ] );
+* // returns true
+*
+* bool = isStringArray( [ new String( 'abc' ), 'def' ] );
+* // returns false
+*/
+
+/** @class */
+
+/***/
+
+//
+
+// #93 Wrap the resize box in span (will not break 100% width/height)
+
+// API
+
+// Cache
+
+// Calculate max size from boundary settings
+
+// Calculate new size
+
+// EXPORTS //
+
+// Fix #168
+
+// For boundary
+
+// For lockAspectRatio case
+
+// For parent boundary
+
+// For target boundary
+
+// For target(html element) boundary
+
+// HACK: Apply position adjustment
+
+// HACK: MouseEvent does not have `which` from flow-bin v0.68.
+
+// HACK: To get `react-draggable` state x and y.
+
+// INFO: Apply x and y position adjustments caused by resizing to draggable
+
+// INFO: Make uncontorolled component when resizing to control position by setPostion.
+
+// INFO: To calculate parent width with flex layout
+
+// INFO: To set bounds in `lock aspect ratio with bounds` case. See also that story.
+
+// INFO: Use original width or height if set auto.
+
+// Ignore on fail
+
+// MAIN //
+
+// MODULES //
+
+// Main
+
+// Remove unknown props, see also https://reactjs.org/warnings/unknown-prop.html
+
+// Restore original position
+
+// Serializer
+
+// Strategy
+
+// This file is a fallback for a consumer who is not yet on React 16
+
+// When user click with right button the resize is stuck in resizing mode
+
+// as createPortal was introduced in React 16
+
+// https://gist.github.com/jimfb/d99e0678e9da715ccf6454961ef04d1b
+
+// until users clicks again, dont continue if right click is used.

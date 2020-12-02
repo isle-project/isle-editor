@@ -1,0 +1,24 @@
+/* harmony default export */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+/**
+* Clock component displaying the current time.
+*
+* @property {boolean} duration - if set, the duration of the session is displayed (not the actual time)
+* @property {string} format - time format (either `HH:MM`, `HH:MM:SS`, or `HH`)
+* @property {Object} style - CSS inline styles
+* @property {string} className - class name
+*/
+
+/***/
+
+// EXPORTS //
+
+// MAIN //
+
+// MODULES //
+
+// PROPERTIES //
