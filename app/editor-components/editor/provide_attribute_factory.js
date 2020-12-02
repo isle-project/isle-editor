@@ -8,10 +8,10 @@ import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
 import COMPONENT_DOCS from 'components/documentation.json';
 import extractOptionsFromDescription from 'utils/extract-options-from-description';
+import mainStore from 'store/main.js';
 import getLastOpenedTag from './get_last_opened_tag.js';
 import CSS_PROPERTIES from './css_properties.json';
 import CSS_NAMES from './css_names.json';
-
 
 // VARIABLES //
 
@@ -116,6 +116,21 @@ function factory( monaco ) {
 				});
 				return {
 					suggestions: suggestions,
+					incomplete: false
+				};
+			}
+			if ( tag.attributeName === 'className' ) {
+				const preambleClassNames = mainStore.get( 'preambleClassNames' ) || [];
+				return {
+					suggestions: preambleClassNames.map( name => {
+						return {
+							label: name,
+							kind: monaco.languages.CompletionItemKind.Snippet,
+							insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+							insertText: name,
+							sortText: 'a'+name
+						};
+					}),
 					incomplete: false
 				};
 			}

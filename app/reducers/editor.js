@@ -4,6 +4,7 @@ import { readFileSync } from 'fs';
 import { basename } from 'path';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
+import removeFirst from '@stdlib/string/remove-first';
 import exists from '@stdlib/fs/exists';
 import * as types from 'constants/editor_actions.js';
 import Store from 'electron-store';
@@ -17,6 +18,7 @@ import today from 'utils/today';
 
 const mainStore = new Store( 'isle-main' );
 const debug = logger( 'isle-editor:reducers' );
+const RE_CLASSNAME = /(\.[a-z][_a-z0-9-]*)(?=[^}"]*{)/gi;
 let filePath = mainStore.get( 'mostRecentFilePath' );
 if ( !exists.sync( filePath ) ) {
 	filePath = null;
@@ -82,6 +84,17 @@ const appendCSSToPreamble = ( preambleText, css ) => {
 	return out;
 };
 
+const extractClassNames = ( style ) => {
+	if ( !style ) {
+		return [];
+	}
+	const matches = style.match( RE_CLASSNAME );
+	if ( !matches ) {
+		return [];
+	}
+	return matches.map( x => removeFirst( x ) );
+};
+
 
 // EXPORTS //
 
@@ -129,13 +142,21 @@ export default function markdown( state = initialState, action ) {
 			error: null,
 			unsaved: true
 		};
-	case types.PREAMBLE_CHANGED:
+	case types.PREAMBLE_CHANGED: {
+		let preambleClassNames;
+		if ( action.payload.preamble.style !== state.preamble.style ) {
+			preambleClassNames = extractClassNames( action.payload.preamble.style );
+		} else {
+			preambleClassNames = state.preambleClassNames.slice();
+		}
+		mainStore.set( 'preambleClassNames', preambleClassNames );
 		return {
 			...state,
 			preamble: action.payload.preamble,
 			preambleText: action.payload.preambleText,
 			error: null
 		};
+	}
 	case types.ROLE_CHANGED:
 		return {
 			...state,
