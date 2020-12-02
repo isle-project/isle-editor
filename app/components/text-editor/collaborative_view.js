@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { collab, receiveTransaction, sendableSteps, getVersion } from 'prosemirror-collab';
 import { DOMParser as ProseMirrorParser } from 'prosemirror-model';
 import { Step } from 'prosemirror-transform';
@@ -485,4 +486,4 @@ ProseMirrorCollaborative.defaultProps = {
 
 // EXPORTS //
 
-export default ProseMirrorCollaborative;
+export default withTranslation( 'text-editor' )( ProseMirrorCollaborative );

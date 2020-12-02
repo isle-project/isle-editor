@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
@@ -200,4 +201,4 @@ ProseMirror.defaultProps = {
 
 // EXPORTS //
 
-export default ProseMirror;
+export default withTranslation( 'text-editor' )( ProseMirror );
