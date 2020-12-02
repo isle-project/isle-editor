@@ -439,7 +439,6 @@ class GroupManager extends Component {
 					options={this.state.notAssigned}
 					styles={customSelectStyles}
 					menuPlacement="bottom"
-					menuPortalTarget={document.body}
 					menuShouldScrollIntoView={false}
 					onChange={( _, action ) => {
 						if ( action.action === 'remove-value' ) {
