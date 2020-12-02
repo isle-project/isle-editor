@@ -578,7 +578,6 @@ class TextEditor extends Component {
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
-							t={this.props.t}
 						/> :
 						<ProseMirrorEditorView
 							defaultValue={this.state.value}
@@ -595,7 +594,6 @@ class TextEditor extends Component {
 								this.editorState = editorState;
 							}}
 							docId={this.state.docId}
-							t={this.props.t}
 						/>
 					}
 				</div>
@@ -611,30 +609,30 @@ class TextEditor extends Component {
 						style={{ padding: 5 }}
 					/>
 				</div>: null }
-				<ResetModal
+				{this.state.showResetModal ? <ResetModal
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
 					onSubmit={this.resetEditor}
 					t={this.props.t}
 					{...this.props.resetModal}
-				/>
-				<SubmitModal
+				/> : null}
+				{this.state.showSubmitModal ? <SubmitModal
 					show={this.state.showSubmitModal}
 					onHide={this.toggleSubmitModal}
 					onSubmit={this.submitReport}
 					t={this.props.t}
-				/>
-				<Guides
+				/> : null}
+				{this.state.showGuides ? <Guides
 					show={this.state.showGuides}
 					onHide={this.toggleGuides}
 					t={this.props.t}
-				/>
-				<PDFModal
+				/> : null}
+				{this.state.showPDFModal ? <PDFModal
 					show={this.state.showPDFModal}
 					onHide={this.togglePDFModal}
 					exportPDF={this.exportPDF}
 					t={this.props.t}
-				/>
+				/> : null}
 			</Fragment>
 		);
 	}
