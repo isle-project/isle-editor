@@ -27,7 +27,7 @@ const packageJson = 'package.json';
 const paramsRegex = /:([a-z]+)/gi;
 const DEFAULT_MODULE_KEY = 'defaultCdnModuleKey____';
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
-const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
+const IS_PACKAGED = process.resourcesPath && !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_DIR = IS_PACKAGED ? process.resourcesPath : '.';
 const NODE_MODULES_DIR = resolve( BASE_DIR, './node_modules' );
 
