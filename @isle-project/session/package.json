@@ -12,6 +12,13 @@
 	"main": "index.js",
 	"dependencies": {
 		"@isle-project/constants": "0.0.0",
-		"@isle-project/utils": "0.0.0"
+		"@isle-project/utils": "0.0.0",
+		"axios": "^0.21.0",
+		"debug": "4.3.1",
+		"localforage": "^1.9.0",
+		"lodash.debounce": "^4.0.8",
+		"react": "17.0.1",
+		"react-dom": "17.0.1",
+		"socket.io-client": "2.3.1"
 	}
 }

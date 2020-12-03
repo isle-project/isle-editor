@@ -8,5 +8,12 @@
 	},
 	"bundleDependencies": false,
 	"description": "ISLE utilities.",
-	"license": "AGPL-3.0-only"
+	"license": "AGPL-3.0-only",
+	"dependencies": {
+		"debug": "4.3.1",
+		"i18next": "^19.8.4",
+		"react": "17.0.1",
+		"react-dom": "17.0.1",
+		"typo-js": "^1.0.3"
+	}
 }
