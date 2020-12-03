@@ -44,7 +44,7 @@ const config = {
 	},
 	entry: {
 		session: [
-			'./@isle-project/session'
+			'@isle-project/session'
 		]
 	},
 	output: {
