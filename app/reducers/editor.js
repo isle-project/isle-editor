@@ -49,6 +49,7 @@ const initialState = {
 	markdown: md,
 	preamble: preamble || {},
 	preambleText: preambleText || '',
+	preambleClassNames: [],
 	isScrolling: true,
 	hideToolbar: false,
 	elementRange: null,
