@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/session",
-	"version": "0.33.3",
+	"version": "0.33.4",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -12,7 +12,7 @@
 	"main": "index.js",
 	"dependencies": {
 		"@isle-project/constants": "0.0.0",
-		"@isle-project/utils": "0.0.0",
+		"@isle-project/utils": "0.0.1",
 		"axios": "^0.21.0",
 		"debug": "4.3.1",
 		"localforage": "^1.9.0",

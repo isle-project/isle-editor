@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.49.2",
+	"version": "0.49.3",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -12,8 +12,8 @@
 	"main": "index.js",
 	"dependencies": {
 		"@isle-project/constants": "0.0.0",
-		"@isle-project/session": "0.33.3",
-		"@isle-project/utils": "0.0.0",
+		"@isle-project/session": "0.33.4",
+		"@isle-project/utils": "0.0.1",
 		"@iktakahiro/markdown-it-katex": "^4.0.0",
 		"axios": "^0.21.0",
 		"classnames": "^2.2.6",
