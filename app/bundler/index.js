@@ -278,7 +278,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	res += '\n';
 	res += `const preamble = ${JSON.stringify( meta )};`;
 
-	res += 'import Session from \'session\';';
+	res += 'import Session from \'@isle-project/session\';';
 
 	res += `global.COMPONENT_LIST = ${JSON.stringify( components )};`;
 	res += getComponents( components );
@@ -326,9 +326,9 @@ function writeIndexFile({
 	let resourceDirectory;
 	let fileName;
 	const modulePaths = [
-		resolve( basePath, './node_modules' ),
+		resolve( basePath, './' ),
 		resolve( basePath, './app/' ),
-		resolve( basePath, './@isle-project/' )
+		resolve( basePath, './node_modules' )
 	];
 	if ( filePath ) {
 		fileDir = dirname( filePath );
