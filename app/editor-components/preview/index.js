@@ -99,7 +99,6 @@ class Preview extends Component {
 	shouldComponentUpdate( nextProps, nextState ) {
 		if (
 			this.props.version !== nextProps.version ||
-			this.state.isLoading !== nextState.isLoading ||
 			this.props.currentMode !== nextProps.currentMode ||
 			this.props.currentRole !== nextProps.currentRole
 		) {
@@ -114,13 +113,11 @@ class Preview extends Component {
 			this.props.code !== nextProps.code ||
 			this.props.autoUpdatePreview !== nextProps.autoUpdatePreview ||
 			this.props.preambleText !== nextProps.preambleText ||
-			this.props.unavailableHeight !== nextProps.unavailableHeight ||
-			this.state.includes !== nextState.includes
+			this.props.unavailableHeight !== nextProps.unavailableHeight
 		) {
 			return true;
 		}
-		const lessonState = this.session.config.state;
-		const keys = objectKeys( lessonState );
+		const keys = objectKeys( this.state );
 		for ( let i = 0; i < keys.length; i++ ) {
 			if ( this.state[ keys[ i ] ] !== nextState[ keys[ i ] ] ) {
 				return true;
