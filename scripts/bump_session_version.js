@@ -25,7 +25,7 @@ if ( !contains( SEMVER, type ) ) {
 // MAIN //
 
 // Increment package versions:
-const pkgPath = join( __dirname, '..', 'packages', 'session', 'package.json' );
+const pkgPath = join( __dirname, '..', '@isle-project', 'session', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
@@ -59,12 +59,12 @@ if ( type === 'major' || type === 'minor'|| type === 'patch' ) {
 }
 
 // Delete current DLL files:
-fs.readdir( join( __dirname, '..', 'packages', 'session', 'dist' ), ( error, files ) => {
+fs.readdir( join( __dirname, '..', '@isle-project', 'session', 'dist' ), ( error, files ) => {
 	if ( error ) {
 		throw error;
 	}
 	files.filter( name => RE_DLL_FILE.test( name ) ).forEach( x => {
-		fs.unlink( join( __dirname, '..', 'packages', 'session', 'dist', x ), ( err ) => {
+		fs.unlink( join( __dirname, '..', '@isle-project', 'session', 'dist', x ), ( err ) => {
 			if ( err ) {
 				console.error( err );
 			}

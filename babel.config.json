@@ -23,7 +23,7 @@
           "module-resolver", {
             "root": [
                 "app",
-                "packages"
+                "@isle-project"
               ]
             }
         ]

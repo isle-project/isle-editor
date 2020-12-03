@@ -328,7 +328,7 @@ function writeIndexFile({
 	const modulePaths = [
 		resolve( basePath, './node_modules' ),
 		resolve( basePath, './app/' ),
-		resolve( basePath, './packages/' )
+		resolve( basePath, './@isle-project/' )
 	];
 	if ( filePath ) {
 		fileDir = dirname( filePath );

@@ -91,7 +91,7 @@
     "modulePaths": [
       "<rootDir>",
       "app",
-      "packages"
+      "@isle-project"
     ],
     "moduleDirectories": [
       "node_modules"
@@ -335,9 +335,9 @@
     "extraResources": [
       "app/css/*",
       "app/constants/*",
-      "packages/components/**/*",
-      "packages/session/*",
-      "packages/utils/**/*",
+      "@isle-project/components/**/*",
+      "@isle-project/session/*",
+      "@isle-project/utils/**/*",
       "app/img/*",
       "app/bundler/*",
       "node_modules/**/*",

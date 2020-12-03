@@ -83,14 +83,14 @@ export default {
 			include: [
 				join( __dirname, 'main.development.js' ),
 				join( __dirname, 'app' ),
-				join( __dirname, 'packages' )
+				join( __dirname, '@isle-project' )
 			],
 			exclude: /fonts\.js$/
 		},
 		{
 			test: /\.worker\.js$/,
 			use: { loader: 'worker-loader' },
-			include: join( __dirname, 'packages', 'components', 'internal', 'response-visualizer' )
+			include: join( __dirname, '@isle-project', 'components', 'internal', 'response-visualizer' )
 		},
 		{
 			test: /\.txt$/,
@@ -128,7 +128,7 @@ export default {
 			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
 		},
 		modules: [
-			resolve( './packages' ),
+			resolve( './@isle-project' ),
 			resolve( './app' ),
 			resolve( './node_modules' )
 		],

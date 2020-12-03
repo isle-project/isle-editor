@@ -24,7 +24,7 @@ const PropTypes = require( './prop_types.js' );
 
 const debug = logger( 'isle-editor:update-docs' );
 const files = glob( path.join( '**', 'index.js' ), {
-	'cwd': path.join( __dirname, '..', 'packages', 'components' )
+	'cwd': path.join( __dirname, '..', '@isle-project', 'components' )
 });
 const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)|(\/\*\*[\s\S]*?@property[\s\S]*?\*\/)\r?\n(?:const)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
@@ -85,13 +85,13 @@ for ( let i = 0; i < files.length; i++ ) {
 	DOCS[ tagName ] = {
 		props: []
 	};
-	let fpath = path.join( './packages/components', component, 'main.js' );
+	let fpath = path.join( './@isle-project/components', component, 'main.js' );
 	const mdpath = path.join( './docusaurus/website/docs', component+'.md' );
 
 	let file;
 	try {
 		if ( !fs.existsSync( fpath ) ) {
-			fpath = path.join( './packages/components', component, 'index.js' );
+			fpath = path.join( './@isle-project/components', component, 'index.js' );
 		}
 		file = fs.readFileSync( fpath ).toString();
 	} catch ( err ) {
@@ -176,6 +176,6 @@ for ( let i = 0; i < files.length; i++ ) {
 }
 
 console.log( 'Write `documentation.json` file...' );
-fs.writeFileSync( './packages/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
+fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
 
 console.log( 'Finished updating docs.' );

@@ -89,7 +89,7 @@ const config = {
 				include: [
 					path.join( __dirname, 'main.development.js' ),
 					path.join( __dirname, 'app' ),
-					path.join( __dirname, 'packages' )
+					path.join( __dirname, '@isle-project' )
 				]
 			},
 			{
