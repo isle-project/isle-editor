@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
 import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
@@ -184,6 +183,7 @@ ProseMirror.propTypes = {
 	showColorPicker: PropTypes.bool.isRequired,
 	menu: PropTypes.object.isRequired,
 	showStatusBar: PropTypes.bool,
+	t: PropTypes.func,
 	onColorChoice: PropTypes.func,
 	onEditorState: PropTypes.func,
 	onKeyDown: PropTypes.func,
@@ -192,6 +192,7 @@ ProseMirror.propTypes = {
 
 ProseMirror.defaultProps = {
 	showStatusBar: true,
+	t() {},
 	onColorChoice() {},
 	onEditorState() {},
 	onKeyDown() {},
@@ -201,4 +202,4 @@ ProseMirror.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'text-editor' )( ProseMirror );
+export default ProseMirror;
