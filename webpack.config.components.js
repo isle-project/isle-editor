@@ -173,7 +173,7 @@ const config = {
 		path: join( __dirname, 'packages', 'components', 'dist' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.47.13/dist'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.49.0/dist'
 	},
 	optimization: {
 		minimize: true,
