@@ -9,7 +9,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import omit from '@stdlib/utils/omit';
 import UnitInputBase from './unit_input_base.js';
-import SelectInput from 'components/input/select';
+import SelectInput from '@isle-project/components/input/select';
 import './spacing_setter.css';
 
 

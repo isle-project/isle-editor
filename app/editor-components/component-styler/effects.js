@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import omit from '@stdlib/utils/omit';
 import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import SliderInput from 'components/input/slider';
+import SliderInput from '@isle-project/components/input/slider';
 import TransitionPicker from './transition_picker.js';
 
 

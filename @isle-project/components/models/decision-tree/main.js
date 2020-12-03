@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
 import './load_translations.js';
 

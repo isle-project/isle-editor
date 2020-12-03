@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { scaleOrdinal, schemeCategory10, select } from 'd3';
 import cloud from 'd3-cloud';
-import saveAs from 'utils/file-saver';
+import saveAs from '@isle-project/utils/file-saver';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import min from '@stdlib/math/base/special/min';
 import removePunctuation from '@stdlib/string/remove-punctuation';
@@ -28,8 +28,8 @@ import STOPWORDS_IT from '@stdlib/datasets/savoy-stopwords-it';
 import STOPWORDS_POR from '@stdlib/datasets/savoy-stopwords-por';
 import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
-import Tooltip from 'components/tooltip';
-import { svgString2Image, getSVGString } from 'utils/svg';
+import Tooltip from '@isle-project/components/tooltip';
+import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 import './load_translations.js';
 
 

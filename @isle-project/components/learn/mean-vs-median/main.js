@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Table from 'components/table';
+import Table from '@isle-project/components/table';
 import { VictoryChart, VictoryCursorContainer, VictoryLine } from 'victory';
 import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
@@ -16,9 +16,9 @@ import randu from '@stdlib/random/base/randu';
 import linspace from '@stdlib/math/utils/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
 import incrmean from '@stdlib/stats/incr/mean';
-import FeedbackButtons from 'components/feedback';
-import SessionContext from 'session/context.js';
-import { MEMBER_ACTION } from 'constants/events.js';
+import FeedbackButtons from '@isle-project/components/feedback';
+import SessionContext from '@isle-project/session/context.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

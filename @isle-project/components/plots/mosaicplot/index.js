@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import RPlot from 'components/r/plot';
+import RPlot from '@isle-project/components/r/plot';
 import PropTypes from 'prop-types';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';

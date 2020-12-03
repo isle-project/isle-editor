@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import Dashboard from 'components/dashboard';
-import randomstring from 'utils/randomstring/alphanumeric';
-import ViolinPlot from 'components/plots/violinplot';
-import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import Dashboard from '@isle-project/components/dashboard';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import ViolinPlot from '@isle-project/components/plots/violinplot';
+import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

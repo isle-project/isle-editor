@@ -7,7 +7,7 @@ import markdownit from 'markdown-it';
 import noop from '@stdlib/utils/noop';
 import replace from '@stdlib/string/replace';
 import ComponentStyler from 'editor-components/component-styler';
-import Draggable from 'components/draggable';
+import Draggable from '@isle-project/components/draggable';
 import './editor_component_styler.css';
 
 

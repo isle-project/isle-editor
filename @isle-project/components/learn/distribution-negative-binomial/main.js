@@ -15,11 +15,11 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import dnbinom from '@stdlib/stats/base/dists/negative-binomial/pmf';
 import pnbinom from '@stdlib/stats/base/dists/negative-binomial/cdf';
 import qnbinom from '@stdlib/stats/base/dists/negative-binomial/quantile';
-import FeedbackButtons from 'components/feedback';
-import NumberInput from 'components/input/number';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import FeedbackButtons from '@isle-project/components/feedback';
+import NumberInput from '@isle-project/components/input/number';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

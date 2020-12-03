@@ -17,11 +17,11 @@ import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import roundn from '@stdlib/math/base/special/roundn';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isNumberArray from '@stdlib/assert/is-number-array';
-import { NumberInput, SelectInput } from 'components/input';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
+import { NumberInput, SelectInput } from '@isle-project/components/input';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 

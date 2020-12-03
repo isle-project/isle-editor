@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import omit from '@stdlib/utils/omit';
-import SelectInput from 'components/input/select';
+import SelectInput from '@isle-project/components/input/select';
 import TextShadowInput from './text_shadow_input.js';
 
 

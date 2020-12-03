@@ -15,10 +15,10 @@ import max from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
-import NumberInput from 'components/input/number';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import NumberInput from '@isle-project/components/input/number';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

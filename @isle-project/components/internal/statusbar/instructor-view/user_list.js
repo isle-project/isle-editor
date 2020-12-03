@@ -11,14 +11,14 @@ import indexOf from '@stdlib/utils/index-of';
 import isFunction from '@stdlib/assert/is-function';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import keys from '@stdlib/utils/keys';
-import ChatButton from 'components/chat-button';
-import VideoChatButton from 'components/video-chat-button';
-import Tooltip from 'components/tooltip';
-import isUserInCohort from 'utils/is-user-in-cohort';
-import isHidden from 'utils/is-hidden';
-import { CAT20 } from 'constants/colors';
+import ChatButton from '@isle-project/components/chat-button';
+import VideoChatButton from '@isle-project/components/video-chat-button';
+import Tooltip from '@isle-project/components/tooltip';
+import isUserInCohort from '@isle-project/utils/is-user-in-cohort';
+import isHidden from '@isle-project/utils/is-hidden';
+import { CAT20 } from '@isle-project/constants/colors';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION, RECEIVED_USERS,
-	SELECTED_COHORT, USER_FINALLY_REMOVED, 	USER_JOINED, USER_LEFT, USER_PROGRESS } from 'constants/events.js';
+	SELECTED_COHORT, USER_FINALLY_REMOVED, 	USER_JOINED, USER_LEFT, USER_PROGRESS } from '@isle-project/constants/events.js';
 import './user_list.css';
 
 

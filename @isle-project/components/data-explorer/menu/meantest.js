@@ -6,11 +6,11 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import TeX from 'components/tex';
-import MeanTest from 'components/tests/meantest';
-import { DATA_EXPLORER_TESTS_MEAN } from 'constants/actions.js';
+import NumberInput from '@isle-project/components/input/number';
+import SelectInput from '@isle-project/components/input/select';
+import TeX from '@isle-project/components/tex';
+import MeanTest from '@isle-project/components/tests/meantest';
+import { DATA_EXPLORER_TESTS_MEAN } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

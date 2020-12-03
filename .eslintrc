@@ -513,8 +513,8 @@
     "import/resolver": {
       "node": {
         "moduleDirectory": [
+          ".",
           "app",
-          "@isle-project",
           "node_modules"
         ]
       }

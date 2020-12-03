@@ -10,8 +10,8 @@ import detect from 'detect-csv';
 import replace from '@stdlib/string/replace';
 import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
-import SessionContext from 'session/context.js';
-import CheckboxInput from 'components/input/checkbox';
+import SessionContext from '@isle-project/session/context.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import './load_translations.js';
 
 

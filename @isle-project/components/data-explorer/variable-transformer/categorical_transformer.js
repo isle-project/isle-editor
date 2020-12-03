@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Draggable from 'components/draggable';
-import Panel from 'components/panel';
+import Draggable from '@isle-project/components/draggable';
+import Panel from '@isle-project/components/panel';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -12,19 +12,19 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
-import Table from 'components/table';
+import Table from '@isle-project/components/table';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import copy from '@stdlib/utils/copy';
 import replace from '@stdlib/string/replace';
 import isDigitString from '@stdlib/assert/is-digit-string';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import Tooltip from 'components/tooltip';
-import { DATA_EXPLORER_CAT_TRANSFORMER } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import Tooltip from '@isle-project/components/tooltip';
+import { DATA_EXPLORER_CAT_TRANSFORMER } from '@isle-project/constants/actions.js';
 import recodeCategorical from './recode_categorical';
-import extractUsedCategories from 'utils/extract-used-categories';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import './categorical_transformer.css';
 
 

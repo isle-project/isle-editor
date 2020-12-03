@@ -2,9 +2,9 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Provider from 'components/provider';
-import FeedbackButtons from 'components/feedback/main.js';
-import Session from 'session';
+import Provider from '@isle-project/components/provider';
+import FeedbackButtons from '@isle-project/components/feedback/main.js';
+import Session from '@isle-project/session';
 
 
 // VARIABLES //

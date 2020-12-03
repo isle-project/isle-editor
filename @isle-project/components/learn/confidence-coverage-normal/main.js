@@ -13,14 +13,14 @@ import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import normal from '@stdlib/random/base/normal';
 import roundn from '@stdlib/math/base/special/roundn';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import Dashboard from 'components/dashboard';
-import Switch from 'components/switch';
-import TeX from 'components/tex';
-import FeedbackButtons from 'components/feedback';
-import SliderInput from 'components/input/slider';
-import NumberInput from 'components/input/number';
-import mean from 'utils/statistic/mean.js';
-import stdev from 'utils/statistic/stdev.js';
+import Dashboard from '@isle-project/components/dashboard';
+import Switch from '@isle-project/components/switch';
+import TeX from '@isle-project/components/tex';
+import FeedbackButtons from '@isle-project/components/feedback';
+import SliderInput from '@isle-project/components/input/slider';
+import NumberInput from '@isle-project/components/input/number';
+import mean from '@isle-project/utils/statistic/mean.js';
+import stdev from '@isle-project/utils/statistic/stdev.js';
 
 
 // VARIABLES //

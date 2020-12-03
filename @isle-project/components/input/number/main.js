@@ -3,16 +3,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Input from 'components/input/base';
+import Input from '@isle-project/components/input/base';
 import contains from '@stdlib/assert/contains';
 import isnan from '@stdlib/math/base/assert/is-nan';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
-import generateUID from 'utils/uid';
+import Tooltip from '@isle-project/components/tooltip';
+import SessionContext from '@isle-project/session/context.js';
+import generateUID from '@isle-project/utils/uid';
 import createTooltip from './create_tooltip.js';
 import './number.css';
 

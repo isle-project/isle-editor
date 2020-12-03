@@ -14,9 +14,9 @@ import roundn from '@stdlib/math/base/special/roundn';
 import dchisq from '@stdlib/stats/base/dists/chisquare/pdf';
 import pchisq from '@stdlib/stats/base/dists/chisquare/cdf';
 import qchisq from '@stdlib/stats/base/dists/chisquare/quantile';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

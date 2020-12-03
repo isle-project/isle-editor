@@ -4,7 +4,7 @@ import React, { Fragment, useEffect } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode';
-import isElectron from 'utils/is-electron';
+import isElectron from '@isle-project/utils/is-electron';
 
 
 // VARIABLES //

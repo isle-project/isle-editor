@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Rnd } from 'react-rnd';
 import { Portal } from 'react-portal';
 import omit from '@stdlib/utils/omit';
-import KeyControls from 'components/key-controls';
+import KeyControls from '@isle-project/components/key-controls';
 import './draggable.css';
 
 

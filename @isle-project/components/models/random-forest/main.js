@@ -6,9 +6,9 @@ import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
-import Plotly from 'components/plotly';
-import Tooltip from 'components/tooltip';
-import { RandomForestClassifier } from 'components/models/decision-tree/tree.js';
+import Plotly from '@isle-project/components/plotly';
+import Tooltip from '@isle-project/components/tooltip';
+import { RandomForestClassifier } from '@isle-project/components/models/decision-tree/tree.js';
 import './load_translations.js';
 
 

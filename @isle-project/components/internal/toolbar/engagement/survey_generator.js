@@ -8,16 +8,16 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Draggable from 'components/draggable';
-import Panel from 'components/panel';
-import Gate from 'components/gate';
-import { CheckboxInput, SelectInput } from 'components/input';
-import TextArea from 'components/input/text-area';
-import MultipleChoiceSurvey from 'components/multiple-choice-survey';
-import NumberSurvey from 'components/number-survey';
-import FreeTextSurvey from 'components/free-text-survey';
-import { STOP_SURVEY, START_SURVEY } from 'constants/actions.js';
-import { MEMBER_ACTION } from 'constants/events.js';
+import Draggable from '@isle-project/components/draggable';
+import Panel from '@isle-project/components/panel';
+import Gate from '@isle-project/components/gate';
+import { CheckboxInput, SelectInput } from '@isle-project/components/input';
+import TextArea from '@isle-project/components/input/text-area';
+import MultipleChoiceSurvey from '@isle-project/components/multiple-choice-survey';
+import NumberSurvey from '@isle-project/components/number-survey';
+import FreeTextSurvey from '@isle-project/components/free-text-survey';
+import { STOP_SURVEY, START_SURVEY } from '@isle-project/constants/actions.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

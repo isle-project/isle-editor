@@ -7,7 +7,7 @@ import logger from 'debug';
 import ReactList from 'react-list';
 import copy from '@stdlib/utils/copy';
 import isObjectLike from '@stdlib/assert/is-object-like';
-import DeleteModal from 'components/internal/delete-modal';
+import DeleteModal from '@isle-project/components/internal/delete-modal';
 import Action from './action.js';
 import createFilters from './create_filters';
 

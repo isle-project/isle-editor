@@ -17,11 +17,11 @@ import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import dt from '@stdlib/stats/base/dists/t/pdf';
 import pt from '@stdlib/stats/base/dists/t/cdf';
-import FeedbackButtons from 'components/feedback';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import Switch from 'components/switch';
-import TeX from 'components/tex';
+import FeedbackButtons from '@isle-project/components/feedback';
+import NumberInput from '@isle-project/components/input/number';
+import SelectInput from '@isle-project/components/input/select';
+import Switch from '@isle-project/components/switch';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

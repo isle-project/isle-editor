@@ -7,8 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
 import pageSizes from './page_sizes.json';
 import './pdf_modal.css';
 

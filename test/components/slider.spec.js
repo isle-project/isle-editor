@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Slider from 'components/slider/main.js';
+import Slider from '@isle-project/components/slider/main.js';
 
 
 // TESTS //

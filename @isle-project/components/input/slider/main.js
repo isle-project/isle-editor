@@ -4,13 +4,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Badge from 'react-bootstrap/Badge';
-import Input from 'components/input/base';
-import Tooltip from 'components/tooltip';
+import Input from '@isle-project/components/input/base';
+import Tooltip from '@isle-project/components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import './slider.css';
 
 

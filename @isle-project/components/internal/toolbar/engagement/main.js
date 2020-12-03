@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { MEMBER_ACTION } from 'constants/events.js';
-import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END } from 'constants/actions.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END } from '@isle-project/constants/actions.js';
 import SurveyGenerator from './survey_generator.js';
 import Binary from './binary.js';
 import Meter from './meter.js';

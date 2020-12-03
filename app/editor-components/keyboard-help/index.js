@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import ReactDraggable from 'react-draggable';
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
-import Panel from 'components/panel';
+import Panel from '@isle-project/components/panel';
 import './keyboard_help.css';
 
 

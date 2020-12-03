@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from 'components/table';
+import Table from '@isle-project/components/table';
 import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import extractUsedCategories from 'utils/extract-used-categories';
-import by from 'utils/by';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import by from '@isle-project/utils/by';
 
 
 // VARIABLES //

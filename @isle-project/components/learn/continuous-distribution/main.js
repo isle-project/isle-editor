@@ -26,10 +26,10 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import contains from '@stdlib/assert/contains';
-import Panel from 'components/panel';
-import NumberInput from 'components/input/number';
-import TextInput from 'components/input/text';
-import TeX from 'components/tex';
+import Panel from '@isle-project/components/panel';
+import NumberInput from '@isle-project/components/input/number';
+import TextInput from '@isle-project/components/input/text';
+import TeX from '@isle-project/components/tex';
 import FUNCTION_KEYS from './function_keys.json';
 import integrate from './integrate_simpson.js';
 

@@ -30,7 +30,7 @@
 
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
-import Timer from 'components/timer';
+import Timer from '@isle-project/components/timer';
 import { getSlideByIndex } from '../utils/slides';
 import Time from './time';
 import { SpectacleContext } from '../utils/context';

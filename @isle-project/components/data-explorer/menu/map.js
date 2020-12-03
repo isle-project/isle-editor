@@ -4,12 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import CheckboxInput from 'components/input/checkbox';
-import randomstring from 'utils/randomstring/alphanumeric';
-import Map from 'components/plots/map';
-import { DATA_EXPLORER_SHARE_MAP, DATA_EXPLORER_MAP } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import Map from '@isle-project/components/plots/map';
+import { DATA_EXPLORER_SHARE_MAP, DATA_EXPLORER_MAP } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

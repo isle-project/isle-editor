@@ -30,7 +30,7 @@ import { Plugin } from 'prosemirror-state';
 import { TextSelection } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import isNull from '@stdlib/assert/is-null';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import './ui/image_upload_placeholder.css';
 
 

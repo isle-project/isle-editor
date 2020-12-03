@@ -2,9 +2,9 @@
 
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
-import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
-import { SELF_UPDATED_SCORE } from 'constants/events.js';
+import Tooltip from '@isle-project/components/tooltip';
+import SessionContext from '@isle-project/session/context.js';
+import { SELF_UPDATED_SCORE } from '@isle-project/constants/events.js';
 import './score.css';
 
 

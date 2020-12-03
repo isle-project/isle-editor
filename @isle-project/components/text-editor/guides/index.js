@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Joyride, { EVENTS } from 'components/joyride';
+import Joyride, { EVENTS } from '@isle-project/components/joyride';
 import overview from './overview.json';
 import poster from './poster.json';
 import saving from './saving.json';

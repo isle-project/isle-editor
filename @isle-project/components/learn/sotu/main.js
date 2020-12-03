@@ -9,12 +9,12 @@ import isArray from '@stdlib/assert/is-array';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import LearnWordVennDiagram from 'components/learn/word-venn-diagram';
-import NumberInput from 'components/input/number';
-import Plotly from 'components/plotly';
-import Panel from 'components/panel';
-import Pages from 'components/pages';
-import Dashboard from 'components/dashboard';
+import LearnWordVennDiagram from '@isle-project/components/learn/word-venn-diagram';
+import NumberInput from '@isle-project/components/input/number';
+import Plotly from '@isle-project/components/plotly';
+import Panel from '@isle-project/components/panel';
+import Pages from '@isle-project/components/pages';
+import Dashboard from '@isle-project/components/dashboard';
 
 
 // VARIABLES //

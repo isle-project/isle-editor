@@ -8,31 +8,31 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import round from '@stdlib/math/base/special/round';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import Signup from 'components/internal/signup';
-import Login from 'components/internal/login';
-import Gate from 'components/gate';
-import Tooltip from 'components/tooltip';
-import KeyControls from 'components/key-controls';
-import Seal from 'components/seal';
-import isElectron from 'utils/is-electron';
-import VideoChatButton from 'components/video-chat-button';
-import ChatButton from 'components/chat-button';
-import animatePosition from 'utils/animate-position';
-import SessionContext from 'session/context.js';
+import Signup from '@isle-project/components/internal/signup';
+import Login from '@isle-project/components/internal/login';
+import Gate from '@isle-project/components/gate';
+import Tooltip from '@isle-project/components/tooltip';
+import KeyControls from '@isle-project/components/key-controls';
+import Seal from '@isle-project/components/seal';
+import isElectron from '@isle-project/utils/is-electron';
+import VideoChatButton from '@isle-project/components/video-chat-button';
+import ChatButton from '@isle-project/components/chat-button';
+import animatePosition from '@isle-project/utils/animate-position';
+import SessionContext from '@isle-project/session/context.js';
 import VideoChats from './video-chats';
 import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';
-import isHidden from 'utils/is-hidden';
-import { TOGGLE_BLACKSCREEN } from 'constants/actions.js';
+import isHidden from '@isle-project/utils/is-hidden';
+import { TOGGLE_BLACKSCREEN } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from 'constants/events.js';
+	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
 import VoiceControl from './voice-control';
 import GroupManager from './group-manager';
 import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
 import './load_translations.js';
-const InstructorView = lazy( () => import( 'components/internal/statusbar/instructor-view' ) );
+const InstructorView = lazy( () => import( '@isle-project/components/internal/statusbar/instructor-view' ) );
 
 
 // VARIABLES //

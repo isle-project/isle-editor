@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import SelectInput from 'components/input/select';
-import randomstring from 'utils/randomstring/alphanumeric';
-import PieChart from 'components/plots/piechart';
-import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import PieChart from '@isle-project/components/plots/piechart';
+import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

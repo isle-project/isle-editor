@@ -22,11 +22,11 @@ import startsWith from '@stdlib/string/starts-with';
 import max from '@stdlib/math/base/special/max';
 import objectKeys from '@stdlib/utils/keys';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
-import markdownToHTML from 'utils/markdown-to-html';
-import transformToPresentation from 'utils/transform-to-presentation';
+import markdownToHTML from '@isle-project/utils/markdown-to-html';
+import transformToPresentation from '@isle-project/utils/transform-to-presentation';
 import REQUIRES from './requires.json';
-import COMPONENTS_MANIFEST from 'components/components-manifest.json';
-import SESSION_MANIFEST from 'session/session-manifest.json';
+import COMPONENTS_MANIFEST from '@isle-project/components/components-manifest.json';
+import SESSION_MANIFEST from '@isle-project/session/session-manifest.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
 
@@ -114,11 +114,11 @@ import { render } from 'react-dom';
 import { extname } from 'path';
 import * as serviceWorker from 'bundler/service_worker.js';
 import { UpdateNotification } from 'bundler/service_worker.js';
-import TextClustering from 'components/internal/text-clustering';
-import Lesson from 'components/internal/lesson';
-import Provider from 'components/provider';
-import factor from 'utils/factor-variable';
-import obsToVar from 'utils/obs-to-var';
+import TextClustering from '@isle-project/components/internal/text-clustering';
+import Lesson from '@isle-project/components/internal/lesson';
+import Provider from '@isle-project/components/provider';
+import factor from '@isle-project/utils/factor-variable';
+import obsToVar from '@isle-project/utils/obs-to-var';
 import 'css/lesson.css';
 `;
 

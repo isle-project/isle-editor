@@ -8,13 +8,13 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import logger from 'debug';
-import generateUID from 'utils/uid';
-import ProportionsInput from 'components/input/proportions';
-import Gate from 'components/gate';
-import ResponseVisualizer from 'components/internal/response-visualizer';
-import RealtimeMetrics from 'components/metrics/realtime';
-import SessionContext from 'session/context.js';
-import { PROPORTIONS_SURVEY_SUBMISSION } from 'constants/actions.js';
+import generateUID from '@isle-project/utils/uid';
+import ProportionsInput from '@isle-project/components/input/proportions';
+import Gate from '@isle-project/components/gate';
+import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
+import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import SessionContext from '@isle-project/session/context.js';
+import { PROPORTIONS_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //

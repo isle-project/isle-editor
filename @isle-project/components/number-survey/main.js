@@ -9,18 +9,18 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
-import generateUID from 'utils/uid';
+import generateUID from '@isle-project/utils/uid';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
-import NumberInput from 'components/input/number';
-import Gate from 'components/gate';
-import Plotly from 'components/plotly';
-import ResponseVisualizer from 'components/internal/response-visualizer';
-import RealtimeMetrics from 'components/metrics/realtime';
-import SessionContext from 'session/context.js';
-import { NUMBER_SURVEY_SUBMISSION } from 'constants/actions.js';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
+import NumberInput from '@isle-project/components/input/number';
+import Gate from '@isle-project/components/gate';
+import Plotly from '@isle-project/components/plotly';
+import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
+import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import SessionContext from '@isle-project/session/context.js';
+import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import './number-survey.css';
 
 

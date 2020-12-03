@@ -6,7 +6,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SelectInput from 'components/input/select';
+import SelectInput from '@isle-project/components/input/select';
 import UnitInputBase from './unit_input_base.js';
 
 

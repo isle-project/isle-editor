@@ -7,12 +7,12 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
-import randomstring from 'utils/randomstring/alphanumeric';
-import Histogram from 'components/plots/histogram';
-import { DATA_EXPLORER_SHARE_HISTOGRAM, DATA_EXPLORER_HISTOGRAM } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import Histogram from '@isle-project/components/plots/histogram';
+import { DATA_EXPLORER_SHARE_HISTOGRAM, DATA_EXPLORER_HISTOGRAM } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

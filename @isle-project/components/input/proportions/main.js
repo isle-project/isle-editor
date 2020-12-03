@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/input/base';
-import NumberInput from 'components/input/number';
+import Input from '@isle-project/components/input/base';
+import NumberInput from '@isle-project/components/input/number';
 import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
 

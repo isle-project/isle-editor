@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 
 
 // MAIN //

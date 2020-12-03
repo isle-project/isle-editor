@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Polaroid from 'components/polaroid/main.js';
+import Polaroid from '@isle-project/components/polaroid/main.js';
 
 
 // VARIABLES //

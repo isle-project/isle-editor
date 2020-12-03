@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import TeX from 'components/tex';
+import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
-import standardDeviation from 'utils/statistic/stdev';
+import standardDeviation from '@isle-project/utils/statistic/stdev';
 
 
 // VARIABLES //

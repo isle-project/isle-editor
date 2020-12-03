@@ -2,7 +2,7 @@
 
 import React from 'react';
 import logger from 'debug';
-import TextEditor from 'components/text-editor';
+import TextEditor from '@isle-project/components/text-editor';
 import './instructor_notes_editor.css';
 
 

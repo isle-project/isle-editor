@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'components/overlay-trigger';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import './load_translations.js';
 
 

@@ -10,7 +10,7 @@ import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import DropdownToggle from 'react-bootstrap/DropdownToggle';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import icons from './config/icons';
 import findActiveFontSize from './config/find_active_font_size.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';

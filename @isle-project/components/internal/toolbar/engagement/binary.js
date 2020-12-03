@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import Draggable from 'components/draggable';
-import Gate from 'components/gate';
-import Panel from 'components/panel';
+import Draggable from '@isle-project/components/draggable';
+import Gate from '@isle-project/components/gate';
+import Panel from '@isle-project/components/panel';
 import ResponsesTable from './responses_table.js';
-import { SHARE_ENGAGEMENT } from 'constants/actions.js';
-import { MEMBER_ACTION } from 'constants/events.js';
+import { SHARE_ENGAGEMENT } from '@isle-project/constants/actions.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

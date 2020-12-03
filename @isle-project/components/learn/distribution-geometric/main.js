@@ -14,10 +14,10 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import dgeom from '@stdlib/stats/base/dists/geometric/pmf';
 import pgeom from '@stdlib/stats/base/dists/geometric/cdf';
 import qgeom from '@stdlib/stats/base/dists/geometric/quantile';
-import SliderInput from 'components/input/slider';
-import NumberInput from 'components/input/number';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import SliderInput from '@isle-project/components/input/slider';
+import NumberInput from '@isle-project/components/input/number';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import unique from 'uniq';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import Dashboard from 'components/dashboard';
-import MultipleLinearRegression from 'components/models/multiple-linear-regression';
-import { DATA_EXPLORER_MULTIPLE_REGRESSION } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import Dashboard from '@isle-project/components/dashboard';
+import MultipleLinearRegression from '@isle-project/components/models/multiple-linear-regression';
+import { DATA_EXPLORER_MULTIPLE_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

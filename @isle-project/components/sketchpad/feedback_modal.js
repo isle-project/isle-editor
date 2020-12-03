@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import objectKeys from '@stdlib/utils/keys';
 import isNull from '@stdlib/assert/is-null';
 import startsWith from '@stdlib/string/starts-with';

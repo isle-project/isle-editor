@@ -9,12 +9,12 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-import SelectInput from 'components/input/select';
-import Draggable from 'components/draggable';
-import TextArea from 'components/input/text-area';
-import Tooltip from 'components/tooltip';
-import Panel from 'components/panel';
-import AlertModal from 'components/internal/alert-modal';
+import SelectInput from '@isle-project/components/input/select';
+import Draggable from '@isle-project/components/draggable';
+import TextArea from '@isle-project/components/input/text-area';
+import Tooltip from '@isle-project/components/tooltip';
+import Panel from '@isle-project/components/panel';
+import AlertModal from '@isle-project/components/internal/alert-modal';
 import './ticketing.css';
 
 

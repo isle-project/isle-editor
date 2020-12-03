@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
-import Tooltip from 'components/tooltip';
-import FullscreenButton from 'components/internal/fullscreen-button';
+import Tooltip from '@isle-project/components/tooltip';
+import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
 import './load_translations.js';
 import './panel.css';
 

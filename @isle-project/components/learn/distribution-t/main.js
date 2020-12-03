@@ -14,9 +14,9 @@ import roundn from '@stdlib/math/base/special/roundn';
 import dt from '@stdlib/stats/base/dists/t/pdf';
 import pt from '@stdlib/stats/base/dists/t/cdf';
 import qt from '@stdlib/stats/base/dists/t/quantile';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // MAIN //

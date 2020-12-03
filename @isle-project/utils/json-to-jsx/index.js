@@ -5,15 +5,15 @@ import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import isPlainObject from '@stdlib/assert/is-plain-object';
 import copy from '@stdlib/utils/copy';
-import TeX from 'components/tex';
-import FreeTextQuestion from 'components/questions/free-text';
-import MultipleChoiceQuestion from 'components/questions/multiple-choice';
-import MultipleChoiceMatrix from 'components/questions/multiple-choice-matrix';
-import MatchListQuestion from 'components/questions/match-list';
-import NumberQuestion from 'components/questions/number';
-import OrderQuestion from 'components/questions/order';
-import RangeQuestion from 'components/questions/range';
-import SelectQuestion from 'components/questions/select';
+import TeX from '@isle-project/components/tex';
+import FreeTextQuestion from '@isle-project/components/questions/free-text';
+import MultipleChoiceQuestion from '@isle-project/components/questions/multiple-choice';
+import MultipleChoiceMatrix from '@isle-project/components/questions/multiple-choice-matrix';
+import MatchListQuestion from '@isle-project/components/questions/match-list';
+import NumberQuestion from '@isle-project/components/questions/number';
+import OrderQuestion from '@isle-project/components/questions/order';
+import RangeQuestion from '@isle-project/components/questions/range';
+import SelectQuestion from '@isle-project/components/questions/select';
 
 
 // VARIABLES //

@@ -8,11 +8,11 @@ import objectKeys from '@stdlib/utils/keys';
 import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
-import { LANGUAGES } from 'constants/deepl';
-import Tooltip from 'components/tooltip';
+import { LANGUAGES } from '@isle-project/constants/deepl';
+import Tooltip from '@isle-project/components/tooltip';
 import SearchBar from 'editor-components/searchbar';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
-import COMPONENT_DOCS from 'components/documentation.json';
+import COMPONENT_DOCS from '@isle-project/components/documentation.json';
 import electronStore from 'store/electron.js';
 import './contextmenu.css';
 

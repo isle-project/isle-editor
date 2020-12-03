@@ -20,7 +20,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
-import randomstring from 'utils/randomstring/ascii';
+import randomstring from '@isle-project/utils/randomstring/ascii';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
@@ -28,9 +28,9 @@ import removeLast from '@stdlib/string/remove-last';
 import isArray from '@stdlib/assert/is-array';
 import pick from '@stdlib/utils/pick';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import CheckboxInput from 'components/input/checkbox';
-import Spinner from 'components/internal/spinner';
-import KeyControls from 'components/key-controls';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import Spinner from '@isle-project/components/internal/spinner';
+import KeyControls from '@isle-project/components/key-controls';
 import electronStore from 'store/electron.js';
 
 

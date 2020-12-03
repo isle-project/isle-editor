@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import copy from '@stdlib/utils/copy';
-import FlippableCard from 'components/flippable-card';
-import SessionContext from 'session/context.js';
-import VoiceInput from 'components/input/voice';
+import FlippableCard from '@isle-project/components/flippable-card';
+import SessionContext from '@isle-project/session/context.js';
+import VoiceInput from '@isle-project/components/input/voice';
 import Memory from './memory.js';
 import Bingo from './bingo.js';
 

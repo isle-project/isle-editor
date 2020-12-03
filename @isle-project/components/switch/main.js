@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import './switch.css';
 
 

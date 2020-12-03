@@ -9,9 +9,9 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
-import CheckboxInput from 'components/input/checkbox';
-import KeyControls from 'components/key-controls';
-import stopPropagation from 'utils/stop-propagation';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import KeyControls from '@isle-project/components/key-controls';
+import stopPropagation from '@isle-project/utils/stop-propagation';
 import './header.css';
 
 

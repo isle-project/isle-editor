@@ -4,8 +4,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'components/overlay-trigger';
-import Joyride, { EVENTS } from 'components/joyride';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
+import Joyride, { EVENTS } from '@isle-project/components/joyride';
 import copy from '@stdlib/utils/copy';
 import STEPS from './steps.json';
 

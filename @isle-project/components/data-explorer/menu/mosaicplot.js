@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import randomstring from 'utils/randomstring/alphanumeric';
-import MosaicPlot from 'components/plots/mosaicplot';
-import { DATA_EXPLORER_SHARE_MOSAIC, DATA_EXPLORER_MOSAIC } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import MosaicPlot from '@isle-project/components/plots/mosaicplot';
+import { DATA_EXPLORER_SHARE_MOSAIC, DATA_EXPLORER_MOSAIC } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

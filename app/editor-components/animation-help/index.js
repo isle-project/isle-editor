@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
-import Panel from 'components/panel';
+import Panel from '@isle-project/components/panel';
 import Principles from './principles.js';
 import Shorthand from './shorthand.js';
 import TextEffects from './text-effects.js';

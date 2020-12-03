@@ -6,10 +6,10 @@ import logger from 'debug';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import TextEditor from 'components/text-editor';
-import VoiceInput from 'components/input/voice';
-import Tooltip from 'components/tooltip';
-import { MEMBER_ACTION, VOICE_TEXT, VOICE_TEXT_SEGMENT } from 'constants/events.js';
+import TextEditor from '@isle-project/components/text-editor';
+import VoiceInput from '@isle-project/components/input/voice';
+import Tooltip from '@isle-project/components/tooltip';
+import { MEMBER_ACTION, VOICE_TEXT, VOICE_TEXT_SEGMENT } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

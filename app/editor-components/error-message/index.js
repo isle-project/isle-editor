@@ -4,8 +4,8 @@ import React from 'react';
 import Ansi from 'ansi-to-react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Tooltip from 'components/tooltip';
-import formatError from 'utils/format-error';
+import Tooltip from '@isle-project/components/tooltip';
+import formatError from '@isle-project/utils/format-error';
 
 
 // MAIN //

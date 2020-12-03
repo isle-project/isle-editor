@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Wikipedia from 'components/wikipedia/main.js';
+import Wikipedia from '@isle-project/components/wikipedia/main.js';
 
 
 // TESTS //

@@ -8,7 +8,7 @@ import { ContextMenuTrigger } from 'react-contextmenu';
 import { connect } from 'react-redux';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import { jumpToElementInEditor, switchWithPrevious, switchWithNext } from 'actions';
-import stopPropagation from 'utils/stop-propagation';
+import stopPropagation from '@isle-project/utils/stop-propagation';
 import './line_buttons.css';
 
 

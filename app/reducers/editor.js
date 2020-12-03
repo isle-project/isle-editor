@@ -11,7 +11,7 @@ import Store from 'electron-store';
 import template from 'constants/templates/generic.js';
 import PREAMBLE from 'constants/preamble.js';
 import electronStore from 'store/electron.js';
-import today from 'utils/today';
+import today from '@isle-project/utils/today';
 
 
 // VARIABLES //

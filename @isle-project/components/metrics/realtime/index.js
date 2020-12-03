@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import indexOf from '@stdlib/utils/index-of';
-import SessionContext from 'session/context.js';
-import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION } from 'constants/events.js';
+import SessionContext from '@isle-project/session/context.js';
+import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

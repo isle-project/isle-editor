@@ -31,26 +31,26 @@ import copy from '@stdlib/utils/copy';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
 import incrspace from '@stdlib/math/utils/incrspace';
-import generateUID from 'utils/uid';
-import Loadable from 'components/internal/loadable';
-import Draggable from 'components/draggable';
-import SelectInput from 'components/input/select';
-const ContingencyTable = Loadable( () => import( 'components/data-explorer/menu/contingency_table' ) );
-const FrequencyTable = Loadable( () => import( 'components/data-explorer/menu/frequency_table' ) );
-const SummaryStatistics = Loadable( () => import( 'components/data-explorer/summary_statistics' ) );
-const VariableTransformer = Loadable( () => import( 'components/data-explorer/variable-transformer' ) );
-const ToolboxTutorialButton = Loadable( () => import( 'components/data-explorer/toolbox-tutorial-button' ) );
-const TextEditor = Loadable( () => import( 'components/text-editor' ) );
+import generateUID from '@isle-project/utils/uid';
+import Loadable from '@isle-project/components/internal/loadable';
+import Draggable from '@isle-project/components/draggable';
+import SelectInput from '@isle-project/components/input/select';
+const ContingencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/contingency_table' ) );
+const FrequencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/frequency_table' ) );
+const SummaryStatistics = Loadable( () => import( '@isle-project/components/data-explorer/summary_statistics' ) );
+const VariableTransformer = Loadable( () => import( '@isle-project/components/data-explorer/variable-transformer' ) );
+const ToolboxTutorialButton = Loadable( () => import( '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
+const TextEditor = Loadable( () => import( '@isle-project/components/text-editor' ) );
 import GridLayout from './grid_layout.js';
-import Pages from 'components/pages';
-import Gate from 'components/gate';
-import RealtimeMetrics from 'components/metrics/realtime';
-import Plotly from 'components/plotly';
-import OverlayTrigger from 'components/overlay-trigger';
-const SpreadsheetUpload = Loadable( () => import( 'components/spreadsheet-upload' ) );
-const RPlot = Loadable( () => import( 'components/r/plot' ) );
-const DataTable = Loadable( () => import( 'components/data-table' ) );
-import SessionContext from 'session/context.js';
+import Pages from '@isle-project/components/pages';
+import Gate from '@isle-project/components/gate';
+import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import Plotly from '@isle-project/components/plotly';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
+const SpreadsheetUpload = Loadable( () => import( '@isle-project/components/spreadsheet-upload' ) );
+const RPlot = Loadable( () => import( '@isle-project/components/r/plot' ) );
+const DataTable = Loadable( () => import( '@isle-project/components/data-table' ) );
+import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
 import createOutputElement from './create_output_element.js';
@@ -59,66 +59,66 @@ import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
-	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from 'constants/actions.js';
-import { RETRIEVED_CURRENT_USER_ACTIONS } from 'constants/events.js';
+	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import './load_translations.js';
 import './data_explorer.css';
 
 
 // MODEL COMPONENTS //
 
-const DecisionTree = Loadable( () => import( 'components/data-explorer/menu/decision_tree.js' ) );
-const LassoRegression = Loadable( () => import( 'components/data-explorer/menu/lasso_regression.js' ) );
-const LogisticRegression = Loadable( () => import( 'components/data-explorer/menu/logistic_regression' ) );
-const MultipleLinearRegression = Loadable( () => import( 'components/data-explorer/menu/multiple_linear_regression' ) );
-const RandomForest = Loadable( () => import( 'components/data-explorer/menu/random_forest.js' ) );
-const SimpleLinearRegression = Loadable( () => import( 'components/data-explorer/menu/simple_linear_regression' ) );
-const PrincipalComponentAnalysis = Loadable( () => import( 'components/data-explorer/menu/principal_component_analysis' ) );
-const HierarchicalClustering = Loadable( () => import( 'components/data-explorer/menu/hierarchical_clustering.js' ) );
-const KMeans = Loadable( () => import( 'components/data-explorer/menu/kmeans' ) );
-const NaiveBayes = Loadable( () => import( 'components/data-explorer/menu/naive_bayes.js' ) );
+const DecisionTree = Loadable( () => import( '@isle-project/components/data-explorer/menu/decision_tree.js' ) );
+const LassoRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/lasso_regression.js' ) );
+const LogisticRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/logistic_regression' ) );
+const MultipleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/multiple_linear_regression' ) );
+const RandomForest = Loadable( () => import( '@isle-project/components/data-explorer/menu/random_forest.js' ) );
+const SimpleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/simple_linear_regression' ) );
+const PrincipalComponentAnalysis = Loadable( () => import( '@isle-project/components/data-explorer/menu/principal_component_analysis' ) );
+const HierarchicalClustering = Loadable( () => import( '@isle-project/components/data-explorer/menu/hierarchical_clustering.js' ) );
+const KMeans = Loadable( () => import( '@isle-project/components/data-explorer/menu/kmeans' ) );
+const NaiveBayes = Loadable( () => import( '@isle-project/components/data-explorer/menu/naive_bayes.js' ) );
 
 
 // PLOT COMPONENTS //
 
-const Barchart = Loadable( () => import( 'components/data-explorer/menu/barchart' ) );
-import { generateBarchartConfig } from 'components/plots/barchart';
-const Boxplot = Loadable( () => import( 'components/data-explorer/menu/boxplot' ) );
-import { generateBoxplotConfig } from 'components/plots/boxplot';
-const Heatmap = Loadable( () => import( 'components/data-explorer/menu/heatmap' ) );
-import { generateHeatmapConfig } from 'components/plots/heatmap';
-const Histogram = Loadable( () => import( 'components/data-explorer/menu/histogram' ) );
-import { generateHistogramConfig } from 'components/plots/histogram';
-const Lineplot = Loadable( () => import( 'components/data-explorer/menu/lineplot' ) );
-import { generateLineplotConfig } from 'components/plots/lineplot';
-const Map = Loadable( () => import( 'components/data-explorer/menu/map' ) );
-import { generateMapConfig } from 'components/plots/map';
-const MosaicPlot = Loadable( () => import( 'components/data-explorer/menu/mosaicplot' ) );
-import { generateMosaicPlotCode } from 'components/plots/mosaicplot';
-const Piechart = Loadable( () => import( 'components/data-explorer/menu/piechart' ) );
-import { generatePiechartConfig } from 'components/plots/piechart';
-const QQPlot = Loadable( () => import( 'components/data-explorer/menu/qqplot' ) );
-import { generateQQPlotConfig } from 'components/plots/qqplot';
-const Scatterplot = Loadable( () => import( 'components/data-explorer/menu/scatterplot' ) );
-import { generateScatterplotConfig } from 'components/plots/scatterplot';
-const ScatterplotMatrix = Loadable( () => import( 'components/data-explorer/menu/scatterplot_matrix' ) );
-import { generateScatterplotMatrixConfig } from 'components/plots/scatterplot-matrix';
-const Violinplot = Loadable( () => import( 'components/data-explorer/menu/violinplot' ) );
-import { generateViolinplotConfig } from 'components/plots/violinplot';
-const ContourChart = Loadable( () => import( 'components/data-explorer/menu/contourchart.js' ) );
-import { generateContourChart } from 'components/plots/contourchart';
+const Barchart = Loadable( () => import( '@isle-project/components/data-explorer/menu/barchart' ) );
+import { generateBarchartConfig } from '@isle-project/components/plots/barchart';
+const Boxplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/boxplot' ) );
+import { generateBoxplotConfig } from '@isle-project/components/plots/boxplot';
+const Heatmap = Loadable( () => import( '@isle-project/components/data-explorer/menu/heatmap' ) );
+import { generateHeatmapConfig } from '@isle-project/components/plots/heatmap';
+const Histogram = Loadable( () => import( '@isle-project/components/data-explorer/menu/histogram' ) );
+import { generateHistogramConfig } from '@isle-project/components/plots/histogram';
+const Lineplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/lineplot' ) );
+import { generateLineplotConfig } from '@isle-project/components/plots/lineplot';
+const Map = Loadable( () => import( '@isle-project/components/data-explorer/menu/map' ) );
+import { generateMapConfig } from '@isle-project/components/plots/map';
+const MosaicPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/mosaicplot' ) );
+import { generateMosaicPlotCode } from '@isle-project/components/plots/mosaicplot';
+const Piechart = Loadable( () => import( '@isle-project/components/data-explorer/menu/piechart' ) );
+import { generatePiechartConfig } from '@isle-project/components/plots/piechart';
+const QQPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/qqplot' ) );
+import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
+const Scatterplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot' ) );
+import { generateScatterplotConfig } from '@isle-project/components/plots/scatterplot';
+const ScatterplotMatrix = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot_matrix' ) );
+import { generateScatterplotMatrixConfig } from '@isle-project/components/plots/scatterplot-matrix';
+const Violinplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/violinplot' ) );
+import { generateViolinplotConfig } from '@isle-project/components/plots/violinplot';
+const ContourChart = Loadable( () => import( '@isle-project/components/data-explorer/menu/contourchart.js' ) );
+import { generateContourChart } from '@isle-project/components/plots/contourchart';
 
 
 // TEST COMPONENTS //
 
-const Anova = Loadable( () => import( 'components/data-explorer/menu/anova' ) );
-const Chi2Test = Loadable( () => import( 'components/data-explorer/menu/chi2' ) );
-const CorrTest = Loadable( () => import( 'components/data-explorer/menu/corrtest' ) );
-const Kruskal = Loadable( () => import( 'components/data-explorer/menu/kruskal' ) );
-const MeanTest = Loadable( () => import( 'components/data-explorer/menu/meantest' ) );
-const MeanTest2 = Loadable( () => import( 'components/data-explorer/menu/meantest2' ) );
-const PropTest = Loadable( () => import( 'components/data-explorer/menu/proptest' ) );
-const PropTest2 = Loadable( () => import( 'components/data-explorer/menu/proptest2' ) );
+const Anova = Loadable( () => import( '@isle-project/components/data-explorer/menu/anova' ) );
+const Chi2Test = Loadable( () => import( '@isle-project/components/data-explorer/menu/chi2' ) );
+const CorrTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/corrtest' ) );
+const Kruskal = Loadable( () => import( '@isle-project/components/data-explorer/menu/kruskal' ) );
+const MeanTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest' ) );
+const MeanTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest2' ) );
+const PropTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest' ) );
+const PropTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest2' ) );
 
 
 // VARIABLES //

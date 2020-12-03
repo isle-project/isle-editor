@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import './load_translations.js';
 
 

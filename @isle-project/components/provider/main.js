@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SessionContext from 'session/context.js';
-import RoleContext from 'session/role_context.js';
+import SessionContext from '@isle-project/session/context.js';
+import RoleContext from '@isle-project/session/role_context.js';
 
 
 // MAIN //

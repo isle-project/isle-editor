@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import TeX from 'components/tex';
+import TeX from '@isle-project/components/tex';
 import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';

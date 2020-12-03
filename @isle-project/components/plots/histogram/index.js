@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import min from 'utils/statistic/min';
-import max from 'utils/statistic/max';
+import min from '@isle-project/utils/statistic/min';
+import max from '@isle-project/utils/statistic/max';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import ceil from '@stdlib/math/base/special/ceil';
-import Plotly from 'components/plotly';
-import extractUsedCategories from 'utils/extract-used-categories';
-import by from 'utils/by';
+import Plotly from '@isle-project/components/plotly';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import by from '@isle-project/utils/by';
 import calculateDensityValues from './calculate_density_values.js';
 
 

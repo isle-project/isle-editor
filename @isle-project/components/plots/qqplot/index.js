@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
-import Plotly from 'components/plotly';
-import quantile from 'utils/statistic/quantile';
+import Plotly from '@isle-project/components/plotly';
+import quantile from '@isle-project/utils/statistic/quantile';
 
 
 // FUNCTIONS //

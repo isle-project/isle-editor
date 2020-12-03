@@ -3,10 +3,10 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import ReactTable from 'react-table';
-import Tooltip from 'components/tooltip';
-import Panel from 'components/panel';
-import Draggable from 'components/draggable';
-import ChatButton from 'components/chat-button';
+import Tooltip from '@isle-project/components/tooltip';
+import Panel from '@isle-project/components/panel';
+import Draggable from '@isle-project/components/draggable';
+import ChatButton from '@isle-project/components/chat-button';
 
 
 // MAIN //

@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { changeRenderInterval, changeFontSize, changePreambleTemplate, updateDownloading } from 'actions';
-import NumberInput from 'components/input/number';
+import NumberInput from '@isle-project/components/input/number';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

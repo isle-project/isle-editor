@@ -12,9 +12,9 @@ import replace from '@stdlib/string/replace';
 import roundn from '@stdlib/math/base/special/roundn';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import stdev from 'utils/statistic/stdev';
-import TeX from 'components/tex';
-import escapeLatex from 'utils/escape-latex';
+import stdev from '@isle-project/utils/statistic/stdev';
+import TeX from '@isle-project/components/tex';
+import escapeLatex from '@isle-project/utils/escape-latex';
 
 
 // VARIABLES //

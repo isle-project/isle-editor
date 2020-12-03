@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
 import isFunction from '@stdlib/assert/is-function';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 
 
 // VARIABLES //

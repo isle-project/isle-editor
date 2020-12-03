@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Clock from 'components/clock/main.js';
+import Clock from '@isle-project/components/clock/main.js';
 
 
 // TESTS //

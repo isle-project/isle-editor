@@ -4,11 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import SimpleLinearRegression from 'components/models/simple-linear-regression';
-import { DATA_EXPLORER_LINEAR_REGRESSION } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import SimpleLinearRegression from '@isle-project/components/models/simple-linear-regression';
+import { DATA_EXPLORER_LINEAR_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import TeX from 'components/tex';
+import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
-import mean from 'utils/statistic/mean';
+import mean from '@isle-project/utils/statistic/mean';
 
 
 // VARIABLES //

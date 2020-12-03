@@ -8,10 +8,10 @@ import ztest2 from '@stdlib/stats/ztest2';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import bifurcateBy from '@stdlib/utils/bifurcate-by';
-import TeX from 'components/tex';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
-import escapeLatex from 'utils/escape-latex';
+import TeX from '@isle-project/components/tex';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
+import escapeLatex from '@isle-project/utils/escape-latex';
 
 
 // VARIABLES //

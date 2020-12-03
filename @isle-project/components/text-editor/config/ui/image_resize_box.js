@@ -30,7 +30,7 @@ import React from 'react';
 import cx from 'classnames';
 import clamp from '@stdlib/math/base/special/clamp';
 import isNull from '@stdlib/assert/is-null';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import './image_resize_box.css';
 
 

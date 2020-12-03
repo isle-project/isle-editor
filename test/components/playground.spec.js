@@ -2,10 +2,10 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Provider from 'components/provider';
-import Session from 'session';
+import Provider from '@isle-project/components/provider';
+import Session from '@isle-project/session';
 import Playground from 'editor-components/playground/main.js';
-import Clock from 'components/clock';
+import Clock from '@isle-project/components/clock';
 
 
 // VARIABLES //

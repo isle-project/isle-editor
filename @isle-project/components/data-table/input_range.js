@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
 import Overlay from 'react-bootstrap/Overlay';
-import NumberInput from 'components/input/number';
+import NumberInput from '@isle-project/components/input/number';
 import Button from 'react-bootstrap/Button';
 import round from '@stdlib/math/base/special/round';
 

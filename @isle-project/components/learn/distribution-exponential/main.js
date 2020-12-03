@@ -14,9 +14,9 @@ import roundn from '@stdlib/math/base/special/roundn';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import pexp from '@stdlib/stats/base/dists/exponential/cdf';
 import qexp from '@stdlib/stats/base/dists/exponential/quantile';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

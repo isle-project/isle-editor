@@ -1,6 +1,6 @@
 // MODULES //
 
-import pixelsToNumber from 'utils/pixels-to-number';
+import pixelsToNumber from '@isle-project/utils/pixels-to-number';
 
 
 // MAIN //

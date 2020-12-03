@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import Image from 'components/image';
+import Image from '@isle-project/components/image';
 
 
 // MAIN //

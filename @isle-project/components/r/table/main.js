@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DataTable from 'components/data-table';
-import Spinner from 'components/internal/spinner';
-import createPrependCode from 'components/r/utils/create-prepend-code';
-import SessionContext from 'session/context.js';
+import DataTable from '@isle-project/components/data-table';
+import Spinner from '@isle-project/components/internal/spinner';
+import createPrependCode from '@isle-project/components/r/utils/create-prepend-code';
+import SessionContext from '@isle-project/session/context.js';
 
 
 // MAIN //

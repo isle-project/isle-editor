@@ -25,8 +25,8 @@ import logger from 'debug';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';
 import PI from '@stdlib/constants/math/float64-pi';
-import { CAT20 as COLORS } from 'constants/colors';
-import generateUID from 'utils/uid';
+import { CAT20 as COLORS } from '@isle-project/constants/colors';
+import generateUID from '@isle-project/utils/uid';
 import './style.css';
 
 

@@ -29,7 +29,7 @@
 import cx from 'classnames';
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import CustomNodeView from './custom_node_view.js';
 import { FRAMESET_BODY_CLASSNAME } from './editor_frameset.js';
 import Icons from './../icons.js';

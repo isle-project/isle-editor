@@ -15,8 +15,8 @@ import Card from 'react-bootstrap/Card';
 import replace from '@stdlib/string/replace';
 import isArray from '@stdlib/assert/is-array';
 import exists from '@stdlib/fs/exists';
-import CheckboxInput from 'components/input/checkbox';
-import Spinner from 'components/internal/spinner';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import Spinner from '@isle-project/components/internal/spinner';
 import electronStore from 'store/electron.js';
 import './export_page.css';
 

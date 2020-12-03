@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import startcase from '@stdlib/string/startcase';
-import Plotly from 'components/plotly';
-import mean from 'utils/statistic/mean';
-import range from 'utils/statistic/range';
+import Plotly from '@isle-project/components/plotly';
+import mean from '@isle-project/utils/statistic/mean';
+import range from '@isle-project/utils/statistic/range';
 
 
 // VARIABLES //

@@ -4,7 +4,7 @@ import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
-import { CAT20, CAT20_FADED } from 'constants/colors';
+import { CAT20, CAT20_FADED } from '@isle-project/constants/colors';
 import './ui/collaborative_cursor.css';
 
 

@@ -10,11 +10,11 @@ import Col from 'react-bootstrap/Col';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import { DATA_EXPLORER_LOGISTIC_REGRESSION } from 'constants/actions.js';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
-import LogisticRegression from 'components/models/logistic-regression';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import { DATA_EXPLORER_LOGISTIC_REGRESSION } from '@isle-project/constants/actions.js';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import LogisticRegression from '@isle-project/components/models/logistic-regression';
 import QuestionButton from './../question_button.js';
 
 

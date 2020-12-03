@@ -2,9 +2,9 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Provider from 'components/provider';
-import Session from 'session';
-import LessonSubmit from 'components/lesson-submit/main.js';
+import Provider from '@isle-project/components/provider';
+import Session from '@isle-project/session';
+import LessonSubmit from '@isle-project/components/lesson-submit/main.js';
 
 
 // VARIABLES //

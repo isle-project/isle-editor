@@ -10,9 +10,9 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isObject from '@stdlib/assert/is-object';
-import Tooltip from 'components/tooltip';
-import Input from 'components/input/base';
-import generateUID from 'utils/uid';
+import Tooltip from '@isle-project/components/tooltip';
+import Input from '@isle-project/components/input/base';
+import generateUID from '@isle-project/utils/uid';
 import customStyles from './styles.js';
 
 

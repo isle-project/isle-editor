@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import expit from '@stdlib/math/base/special/expit';
-import Plotly from 'components/plotly';
-import Dashboard from 'components/dashboard';
-import SliderInput from 'components/input/slider';
-import CheckboxInput from 'components/input/checkbox';
+import Plotly from '@isle-project/components/plotly';
+import Dashboard from '@isle-project/components/dashboard';
+import SliderInput from '@isle-project/components/input/slider';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 
 
 // MAIN //

@@ -9,9 +9,9 @@ import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
-import Loadable from 'components/internal/loadable';
+import Loadable from '@isle-project/components/internal/loadable';
 import electronStore from 'store/electron.js';
-import formatError from 'utils/format-error';
+import formatError from '@isle-project/utils/format-error';
 import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, incrementDocumentVersion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
@@ -177,7 +177,7 @@ class App extends Component {
 
 	spellcheckCode = async ( code ) => {
 		const language = this.props.preamble.language || 'en-US';
-		const SpellChecker = await import( 'utils/spell-checker' );
+		const SpellChecker = await import( '@isle-project/utils/spell-checker' );
 		const errs = SpellChecker.default( code, {
 			language
 		});

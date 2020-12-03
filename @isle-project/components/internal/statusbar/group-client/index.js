@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Panel from 'components/panel';
-import Draggable from 'components/draggable';
-import VideoChatButton from 'components/video-chat-button';
-import Timer from 'components/timer';
-import SessionContext from 'session/context.js';
-import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from 'constants/events.js';
-import { GROUP_MODE_END } from 'constants/actions.js';
+import Panel from '@isle-project/components/panel';
+import Draggable from '@isle-project/components/draggable';
+import VideoChatButton from '@isle-project/components/video-chat-button';
+import Timer from '@isle-project/components/timer';
+import SessionContext from '@isle-project/session/context.js';
+import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { GROUP_MODE_END } from '@isle-project/constants/actions.js';
 import './group_client.css';
 
 

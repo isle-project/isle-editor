@@ -8,10 +8,10 @@ import exp from '@stdlib/math/base/special/exp';
 import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
 import PI from '@stdlib/constants/math/float64-pi';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
-import max from 'utils/statistic/max';
-import subtract from 'utils/subtract';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
+import max from '@isle-project/utils/statistic/max';
+import subtract from '@isle-project/utils/subtract';
 
 
 // MAIN //

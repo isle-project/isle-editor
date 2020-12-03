@@ -20,9 +20,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
-import Checkbox from 'components/input/checkbox';
-import Tooltip from 'components/tooltip';
-import FeedbackButtons from 'components/feedback';
+import Checkbox from '@isle-project/components/input/checkbox';
+import Tooltip from '@isle-project/components/tooltip';
+import FeedbackButtons from '@isle-project/components/feedback';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
@@ -37,24 +37,24 @@ import noop from '@stdlib/utils/noop';
 import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
-import generateUID from 'utils/uid';
-import saveAs from 'utils/file-saver';
-import base64toBlob from 'utils/base64-to-blob';
-import Joyride from 'components/joyride';
-import Gate from 'components/gate';
-import KeyControls from 'components/key-controls';
-import VoiceControl from 'components/internal/voice-control';
-import randomstring from 'utils/randomstring/ascii';
-import SessionContext from 'session/context.js';
+import generateUID from '@isle-project/utils/uid';
+import saveAs from '@isle-project/utils/file-saver';
+import base64toBlob from '@isle-project/utils/base64-to-blob';
+import Joyride from '@isle-project/components/joyride';
+import Gate from '@isle-project/components/gate';
+import KeyControls from '@isle-project/components/key-controls';
+import VoiceControl from '@isle-project/components/internal/voice-control';
+import randomstring from '@isle-project/utils/randomstring/ascii';
+import SessionContext from '@isle-project/session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
 import harmonizeSketchpadElements from './harmonize_sketchpad_elements.js';
-import Loadable from 'components/internal/loadable';
-import closeHintButtons from 'utils/close-hint-buttons';
-import isElectron from 'utils/is-electron';
-import stopPropagation from 'utils/stop-propagation';
+import Loadable from '@isle-project/components/internal/loadable';
+import closeHintButtons from '@isle-project/utils/close-hint-buttons';
+import isElectron from '@isle-project/utils/is-electron';
+import stopPropagation from '@isle-project/utils/stop-propagation';
 import {
 	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
 	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
@@ -63,8 +63,8 @@ import {
 	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
-} from 'constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from 'constants/events.js';
+} from '@isle-project/constants/actions.js';
+import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from '@isle-project/constants/events.js';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const DeletePageModal = Loadable( () => import( './delete_page_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );

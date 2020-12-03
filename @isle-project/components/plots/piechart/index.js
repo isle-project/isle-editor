@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
-import extractUsedCategories from 'utils/extract-used-categories';
-import sum from 'utils/statistic/sum';
-import by from 'utils/by';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import sum from '@isle-project/utils/statistic/sum';
+import by from '@isle-project/utils/by';
 
 
 // FUNCTIONS //

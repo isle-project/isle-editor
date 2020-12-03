@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Loadable from 'components/internal/loadable';
+import Loadable from '@isle-project/components/internal/loadable';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 const ExportPage = Loadable( () => import( 'editor-components/export-page' ) );
 import { convertMarkdown, toggleScrolling, changeNamespace, updateDownloading } from 'actions';

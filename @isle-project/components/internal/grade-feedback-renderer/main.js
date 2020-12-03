@@ -3,12 +3,12 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import Badge from 'react-bootstrap/Badge';
 import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
-import Tooltip from 'components/tooltip';
-import renderTime from 'utils/render-time';
+import Tooltip from '@isle-project/components/tooltip';
+import renderTime from '@isle-project/utils/render-time';
 import './grade_feedback_renderer.css';
 import './load_translations.js';
 

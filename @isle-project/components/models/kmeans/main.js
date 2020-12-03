@@ -8,7 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
-import Table from 'components/table';
+import Table from '@isle-project/components/table';
 import './load_translations.js';
 
 

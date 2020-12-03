@@ -6,7 +6,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import generateUID from 'utils/uid';
+import generateUID from '@isle-project/utils/uid';
 
 
 // VARIABLES //

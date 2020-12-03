@@ -12,10 +12,10 @@ import identity from '@stdlib/utils/identity-function';
 import objectKeys from '@stdlib/utils/keys';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import Button from 'react-bootstrap/Button';
-import Tooltip from 'components/tooltip';
-import Table from 'components/table';
-import multiply from 'utils/multiply';
-import zScore from 'utils/zscore';
+import Tooltip from '@isle-project/components/tooltip';
+import Table from '@isle-project/components/table';
+import multiply from '@isle-project/utils/multiply';
+import zScore from '@isle-project/utils/zscore';
 import LASSO from './lasso.js';
 import './load_translations.js';
 

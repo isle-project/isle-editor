@@ -7,12 +7,12 @@ import Card from 'react-bootstrap/Card';
 import unique from 'uniq';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
-import Collapse from 'components/collapse';
-import DecisionTree from 'components/models/decision-tree';
-import { DATA_EXPLORER_DECISION_TREE } from 'constants/actions.js';
-import subtract from 'utils/subtract';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
+import Collapse from '@isle-project/components/collapse';
+import DecisionTree from '@isle-project/components/models/decision-tree';
+import { DATA_EXPLORER_DECISION_TREE } from '@isle-project/constants/actions.js';
+import subtract from '@isle-project/utils/subtract';
 import QuestionButton from '../question_button.js';
 
 

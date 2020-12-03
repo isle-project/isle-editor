@@ -2,10 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import Kruskal from 'components/tests/kruskal';
-import { DATA_EXPLORER_TESTS_KRUSKAL } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import Kruskal from '@isle-project/components/tests/kruskal';
+import { DATA_EXPLORER_TESTS_KRUSKAL } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

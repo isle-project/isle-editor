@@ -2,10 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import Chi2Test from 'components/tests/chi2';
-import { DATA_EXPLORER_TESTS_CHISQUARE } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import Chi2Test from '@isle-project/components/tests/chi2';
+import { DATA_EXPLORER_TESTS_CHISQUARE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import SliderInput from 'components/input/slider';
+import SliderInput from '@isle-project/components/input/slider';
 
 
 // VARIABLES //

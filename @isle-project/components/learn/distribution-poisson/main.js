@@ -15,10 +15,10 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import dpois from '@stdlib/stats/base/dists/poisson/pmf';
 import ppois from '@stdlib/stats/base/dists/poisson/cdf';
 import qpois from '@stdlib/stats/base/dists/poisson/quantile';
-import SliderInput from 'components/input/slider';
-import NumberInput from 'components/input/number';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import SliderInput from '@isle-project/components/input/slider';
+import NumberInput from '@isle-project/components/input/number';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import noop from '@stdlib/utils/noop';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import FilterList from './filter_list.js';
 
 

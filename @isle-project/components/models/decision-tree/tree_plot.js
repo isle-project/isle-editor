@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { toJpeg } from 'html-to-image';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isInteger from '@stdlib/assert/is-integer';
-import randomstring from 'utils/randomstring/alphanumeric';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import FullscreenButton from './fullscreen_button';
 import './tree.css';
 

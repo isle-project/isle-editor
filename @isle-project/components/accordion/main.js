@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
-import Collapse from 'components/collapse';
-import isLineButtons from 'utils/is-line-buttons';
+import Collapse from '@isle-project/components/collapse';
+import isLineButtons from '@isle-project/utils/is-line-buttons';
 import './accordion.css';
 
 

@@ -9,13 +9,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import incrspace from '@stdlib/math/utils/incrspace';
 import randu from '@stdlib/random/base/randu';
-import Dashboard from 'components/dashboard';
-import FeedbackButtons from 'components/feedback';
-import NumberInput from 'components/input/number';
-import Panel from 'components/panel';
-import NetworkPlot from 'components/d3/network-plot';
-import Plotly from 'components/plotly';
-import TeX from 'components/tex';
+import Dashboard from '@isle-project/components/dashboard';
+import FeedbackButtons from '@isle-project/components/feedback';
+import NumberInput from '@isle-project/components/input/number';
+import Panel from '@isle-project/components/panel';
+import NetworkPlot from '@isle-project/components/d3/network-plot';
+import Plotly from '@isle-project/components/plotly';
+import TeX from '@isle-project/components/tex';
 import calculateTransitivity from './calculate_transitivity.js';
 
 

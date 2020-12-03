@@ -10,10 +10,10 @@ import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
 import linspace from '@stdlib/math/utils/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
-import Plotly from 'components/plotly';
-import max from 'utils/statistic/max';
-import min from 'utils/statistic/min';
-import calculateCoefficients from 'utils/linear-regression/calculate_coefficients.js';
+import Plotly from '@isle-project/components/plotly';
+import max from '@isle-project/utils/statistic/max';
+import min from '@isle-project/utils/statistic/min';
+import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 
 
 // FUNCTIONS //

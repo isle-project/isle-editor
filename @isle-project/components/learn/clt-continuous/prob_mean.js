@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import TeX from 'components/tex';
-import NumberInput from 'components/input/number';
+import TeX from '@isle-project/components/tex';
+import NumberInput from '@isle-project/components/input/number';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';

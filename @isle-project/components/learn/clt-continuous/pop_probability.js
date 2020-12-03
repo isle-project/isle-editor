@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import TeX from 'components/tex';
-import NumberInput from 'components/input/number';
+import TeX from '@isle-project/components/tex';
+import NumberInput from '@isle-project/components/input/number';
 import pexp from '@stdlib/stats/base/dists/exponential/cdf';
 import punif from '@stdlib/stats/base/dists/uniform/cdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';

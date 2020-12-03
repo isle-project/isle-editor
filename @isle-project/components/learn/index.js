@@ -1,26 +1,26 @@
 // MODULES //
 
-import CausalityDiagram from 'components/learn/causality-diagram';
-import ContinuousCLT from 'components/learn/clt-continuous';
-import DiscreteCLT from 'components/learn/clt-discrete';
-import SampleCLT from 'components/learn/clt-sample';
-import CrossValidation from 'components/learn/cross-validation';
-import DiceThrowing from 'components/learn/dice-throwing';
-import MeanTest from 'components/learn/hypothesis-testing-mean';
-import ProportionTest from 'components/learn/hypothesis-testing-proportion';
-import BinomialDistribution from 'components/learn/distribution-binomial';
-import ExponentialDistribution from 'components/learn/distribution-exponential';
-import NormalDistribution from 'components/learn/distribution-normal';
-import TDistribution from 'components/learn/distribution-t';
-import UniformDistribution from 'components/learn/distribution-uniform';
-import ConditionalProbability from 'components/learn/conditional-probability';
-import VennDiagramBuilder from 'components/learn/venn-diagram-builder';
-import WordVennDiagram from 'components/learn/word-venn-diagram';
-import MeanVSMedian from 'components/learn/mean-vs-median';
-import Standardize from 'components/learn/standardize';
-import ConfidenceCoverageBinomial from 'components/learn/confidence-coverage-binomial';
-import ConfidenceCoverageNormal from 'components/learn/confidence-coverage-normal';
-import ImagePixelPicker from 'components/learn/image-pixel-picker';
+import CausalityDiagram from '@isle-project/components/learn/causality-diagram';
+import ContinuousCLT from '@isle-project/components/learn/clt-continuous';
+import DiscreteCLT from '@isle-project/components/learn/clt-discrete';
+import SampleCLT from '@isle-project/components/learn/clt-sample';
+import CrossValidation from '@isle-project/components/learn/cross-validation';
+import DiceThrowing from '@isle-project/components/learn/dice-throwing';
+import MeanTest from '@isle-project/components/learn/hypothesis-testing-mean';
+import ProportionTest from '@isle-project/components/learn/hypothesis-testing-proportion';
+import BinomialDistribution from '@isle-project/components/learn/distribution-binomial';
+import ExponentialDistribution from '@isle-project/components/learn/distribution-exponential';
+import NormalDistribution from '@isle-project/components/learn/distribution-normal';
+import TDistribution from '@isle-project/components/learn/distribution-t';
+import UniformDistribution from '@isle-project/components/learn/distribution-uniform';
+import ConditionalProbability from '@isle-project/components/learn/conditional-probability';
+import VennDiagramBuilder from '@isle-project/components/learn/venn-diagram-builder';
+import WordVennDiagram from '@isle-project/components/learn/word-venn-diagram';
+import MeanVSMedian from '@isle-project/components/learn/mean-vs-median';
+import Standardize from '@isle-project/components/learn/standardize';
+import ConfidenceCoverageBinomial from '@isle-project/components/learn/confidence-coverage-binomial';
+import ConfidenceCoverageNormal from '@isle-project/components/learn/confidence-coverage-normal';
+import ImagePixelPicker from '@isle-project/components/learn/image-pixel-picker';
 
 
 // EXPORTS //

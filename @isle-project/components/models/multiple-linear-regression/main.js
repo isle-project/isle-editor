@@ -16,13 +16,13 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
 import abs from '@stdlib/math/base/special/abs';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
-import Table from 'components/table';
-import Tooltip from 'components/tooltip';
-import Plotly from 'components/plotly';
-import { generateQQPlotConfig } from 'components/plots/qqplot';
-import subtract from 'utils/subtract';
-import mean from 'utils/statistic/mean';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
+import Table from '@isle-project/components/table';
+import Tooltip from '@isle-project/components/tooltip';
+import Plotly from '@isle-project/components/plotly';
+import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
+import subtract from '@isle-project/utils/subtract';
+import mean from '@isle-project/utils/statistic/mean';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import './load_translations.js';
 
 

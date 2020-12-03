@@ -1,6 +1,6 @@
 // MODULES //
 
-import Loadable from 'components/internal/loadable';
+import Loadable from '@isle-project/components/internal/loadable';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 

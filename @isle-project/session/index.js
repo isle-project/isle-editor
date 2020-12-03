@@ -39,13 +39,13 @@ import identity from '@stdlib/utils/identity-function';
 import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
 import sample from '@stdlib/random/sample';
-import isElectron from 'utils/is-electron';
-import randomstring from 'utils/randomstring/alphanumeric';
-import retrieveUserGroup from 'utils/retrieve-user-group';
-import beforeUnload from 'utils/before-unload';
+import isElectron from '@isle-project/utils/is-electron';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import retrieveUserGroup from '@isle-project/utils/retrieve-user-group';
+import beforeUnload from '@isle-project/utils/before-unload';
 import SpeechInterface from './speech_interface.js';
-import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from 'constants/opencpu';
-import { LESSON_CONNECTED, TOGGLE_PRESENTATION_MODE } from 'constants/actions.js';
+import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from '@isle-project/constants/opencpu';
+import { LESSON_CONNECTED, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
 	CREATED_GROUPS, DELETED_GROUPS, DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
@@ -54,9 +54,9 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
-	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from 'constants/events.js';
-import POINTS from 'constants/points.js';
-import ANIMALS from 'constants/animals.js';
+	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
+import POINTS from '@isle-project/constants/points.js';
+import ANIMALS from '@isle-project/constants/animals.js';
 
 
 // VARIABLES //

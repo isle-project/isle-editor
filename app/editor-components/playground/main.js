@@ -13,8 +13,8 @@ import {
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import isError from '@stdlib/assert/is-error';
-import SessionContext from 'session/context.js';
-import formatError from 'utils/format-error';
+import SessionContext from '@isle-project/session/context.js';
+import formatError from '@isle-project/utils/format-error';
 import styles from './styles.json';
 import theme from './theme.js';
 import './playground.css';

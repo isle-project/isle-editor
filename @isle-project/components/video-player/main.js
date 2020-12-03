@@ -8,13 +8,13 @@ import ReactPlayer from 'react-player';
 import Button from 'react-bootstrap/Button';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
-import generateUID from 'utils/uid';
-import VoiceControl from 'components/internal/voice-control';
-import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
-import isHidden from 'utils/is-hidden';
-import isElectron from 'utils/is-electron';
-import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from 'constants/actions.js';
+import generateUID from '@isle-project/utils/uid';
+import VoiceControl from '@isle-project/components/internal/voice-control';
+import Tooltip from '@isle-project/components/tooltip';
+import SessionContext from '@isle-project/session/context.js';
+import isHidden from '@isle-project/utils/is-hidden';
+import isElectron from '@isle-project/utils/is-electron';
+import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from '@isle-project/constants/actions.js';
 import VOICE_COMMANDS from './voice_commands.json';
 
 

@@ -29,7 +29,7 @@
 import React from 'react';
 import PopUpManager from './popup_manager.js';
 import { atAnchorBottomLeft, atViewportCenter } from './popup_position.js';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 
 
 // VARIABLES //

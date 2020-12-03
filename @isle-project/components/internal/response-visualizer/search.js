@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
-import Checkbox from 'components/input/checkbox';
+import Checkbox from '@isle-project/components/input/checkbox';
 
 
 // MAIN //

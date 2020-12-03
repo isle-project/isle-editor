@@ -3,7 +3,7 @@
 import copy from '@stdlib/utils/copy';
 import logger from 'debug';
 import isObjectLike from '@stdlib/assert/is-object-like';
-import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION, USER_FEEDBACK_FORM } from 'constants/actions.js';
+import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION, USER_FEEDBACK_FORM } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //

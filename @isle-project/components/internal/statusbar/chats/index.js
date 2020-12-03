@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import ceil from '@stdlib/math/base/special/ceil';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
-import SessionContext from 'session/context.js';
-import { REMOVED_CHAT, RECEIVED_CHAT_HISTORY } from 'constants/events.js';
+import SessionContext from '@isle-project/session/context.js';
+import { REMOVED_CHAT, RECEIVED_CHAT_HISTORY } from '@isle-project/constants/events.js';
 import Chat from './chat.js';
 
 

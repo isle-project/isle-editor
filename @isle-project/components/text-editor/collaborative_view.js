@@ -12,8 +12,8 @@ import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
 import isJSON from '@stdlib/assert/is-json';
 import objectKeys from '@stdlib/utils/keys';
-import Tooltip from 'components/tooltip';
-import { CAT20 } from 'constants/colors';
+import Tooltip from '@isle-project/components/tooltip';
+import { CAT20 } from '@isle-project/constants/colors';
 import plugins from './config/plugins';
 import MenuBar from './menubar.js';
 import schema from './config/schema';
@@ -25,8 +25,8 @@ import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
 import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
-	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from 'constants/events.js';
-import 'components/plotly/tooltip.css';
+	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from '@isle-project/constants/events.js';
+import '@isle-project/components/plotly/tooltip.css';
 
 
 // VARIABLES //

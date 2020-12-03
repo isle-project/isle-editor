@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import RangePicker from 'components/range-picker';
+import RangePicker from '@isle-project/components/range-picker';
 import Modal from 'react-bootstrap/Modal';
 import isArray from '@stdlib/assert/is-array';
 

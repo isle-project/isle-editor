@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Panel from 'components/panel';
+import Panel from '@isle-project/components/panel';
 
 
 // MAIN //

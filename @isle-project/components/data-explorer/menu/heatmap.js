@@ -6,14 +6,14 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
-import randomstring from 'utils/randomstring/alphanumeric';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import SliderInput from '@isle-project/components/input/slider';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
-import HeatMap from 'components/plots/heatmap';
-import { DATA_EXPLORER_SHARE_HEATMAP, DATA_EXPLORER_HEATMAP } from 'constants/actions.js';
+import HeatMap from '@isle-project/components/plots/heatmap';
+import { DATA_EXPLORER_SHARE_HEATMAP, DATA_EXPLORER_HEATMAP } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

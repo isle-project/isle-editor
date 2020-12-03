@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import TeX from 'components/tex';
-import CorrTest from 'components/tests/corrtest';
-import { DATA_EXPLORER_TESTS_CORRTEST } from 'constants/actions.js';
+import NumberInput from '@isle-project/components/input/number';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import TeX from '@isle-project/components/tex';
+import CorrTest from '@isle-project/components/tests/corrtest';
+import { DATA_EXPLORER_TESTS_CORRTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

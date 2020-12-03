@@ -9,7 +9,7 @@ import Tab from 'react-bootstrap/Tab';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
-import Text from 'components/text';
+import Text from '@isle-project/components/text';
 import DataExplorerHelp from './help/data_explorer.js';
 import DataTableHelp from './help/data_table.js';
 import STATUSBAR_HELP from './help/statusbar.js';

@@ -27,7 +27,7 @@
 // MODULES //
 
 import React from 'react';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import createPopUp from './create_popup.js';
 import { atAnchorBottomCenter } from './popup_position.js';
 import './tooltip_surface.css';

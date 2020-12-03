@@ -7,12 +7,12 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import SelectInput from 'components/input/select';
-import selectStyles from 'components/input/select/styles';
-import CheckboxInput from 'components/input/checkbox';
-import randomstring from 'utils/randomstring/alphanumeric';
-import LinePlot from 'components/plots/lineplot';
-import { DATA_EXPLORER_SHARE_LINEPLOT, DATA_EXPLORER_LINEPLOT } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import selectStyles from '@isle-project/components/input/select/styles';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import LinePlot from '@isle-project/components/plots/lineplot';
+import { DATA_EXPLORER_SHARE_LINEPLOT, DATA_EXPLORER_LINEPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 

@@ -9,12 +9,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import FeedbackButtons from 'components/feedback';
-import SolutionButton from 'components/solution-button';
-import ResponseVisualizer from 'components/internal/response-visualizer';
-import Text from 'components/text';
-import SessionContext from 'session/context.js';
-import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from 'constants/actions.js';
+import FeedbackButtons from '@isle-project/components/feedback';
+import SolutionButton from '@isle-project/components/solution-button';
+import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
+import Text from '@isle-project/components/text';
+import SessionContext from '@isle-project/session/context.js';
+import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
 import './multiple_choice_matrix.css';
 
 

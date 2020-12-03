@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import contains from '@stdlib/assert/contains';
@@ -13,12 +13,12 @@ import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
-import max from 'utils/statistic/max';
-import min from 'utils/statistic/min';
-import extractUsedCategories from 'utils/extract-used-categories';
-import calculateCoefficients from 'utils/linear-regression/calculate_coefficients.js';
-import by2 from 'utils/by2';
-import by from 'utils/by';
+import max from '@isle-project/utils/statistic/max';
+import min from '@isle-project/utils/statistic/min';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
+import by2 from '@isle-project/utils/by2';
+import by from '@isle-project/utils/by';
 
 
 // FUNCTIONS //

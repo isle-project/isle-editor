@@ -12,12 +12,12 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import round from '@stdlib/math/base/special/round';
-import beforeUnload from 'utils/before-unload';
-import Signup from 'components/internal/signup';
-import Login from 'components/internal/login';
-import SessionContext from 'session/context.js';
-import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from 'constants/events.js';
-import { LESSON_SUBMIT } from 'constants/actions.js';
+import beforeUnload from '@isle-project/utils/before-unload';
+import Signup from '@isle-project/components/internal/signup';
+import Login from '@isle-project/components/internal/login';
+import SessionContext from '@isle-project/session/context.js';
+import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
+import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import './load_translations.js';
 

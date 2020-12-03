@@ -4,9 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import noop from '@stdlib/utils/noop';
-import Input from 'components/input/base';
-import Tooltip from 'components/tooltip';
-import SessionContext from 'session/context.js';
+import Input from '@isle-project/components/input/base';
+import Tooltip from '@isle-project/components/tooltip';
+import SessionContext from '@isle-project/session/context.js';
 import './checkbox.css';
 
 

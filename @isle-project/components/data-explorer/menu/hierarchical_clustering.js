@@ -7,13 +7,13 @@ import Col from 'react-bootstrap/Col';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
 import incrspace from '@stdlib/math/utils/incrspace';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import NumberInput from 'components/input/number';
-import Dashboard from 'components/dashboard';
-import factor from 'utils/factor-variable';
-import HierarchicalClustering from 'components/models/hierarchical-clustering';
-import { DATA_EXPLORER_HIERARCHICAL_CLUSTERING } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import NumberInput from '@isle-project/components/input/number';
+import Dashboard from '@isle-project/components/dashboard';
+import factor from '@isle-project/utils/factor-variable';
+import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
+import { DATA_EXPLORER_HIERARCHICAL_CLUSTERING } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

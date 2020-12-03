@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import VictoryChart from 'components/victory/chart';
-import saveAs from 'utils/file-saver';
-import Tooltip from 'components/tooltip';
-import { svgString2Image, getSVGString } from 'utils/svg';
+import VictoryChart from '@isle-project/components/victory/chart';
+import saveAs from '@isle-project/utils/file-saver';
+import Tooltip from '@isle-project/components/tooltip';
+import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 
 
 // MAIN //

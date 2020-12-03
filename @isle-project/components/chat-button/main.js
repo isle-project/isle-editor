@@ -6,11 +6,11 @@ import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import Tooltip from 'components/tooltip';
-import Gate from 'components/gate';
-import SessionContext from 'session/context.js';
+import Tooltip from '@isle-project/components/tooltip';
+import Gate from '@isle-project/components/gate';
+import SessionContext from '@isle-project/session/context.js';
 import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
-	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from 'constants/events.js';
+	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from '@isle-project/constants/events.js';
 import './load_translations.js';
 
 

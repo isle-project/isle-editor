@@ -7,10 +7,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import indexOf from '@stdlib/utils/index-of';
-import generateUID from 'utils/uid';
-import SessionContext from 'session/context.js';
-import ResponseVisualizer from 'components/internal/response-visualizer';
-import { LIKERT_SCALE_SUBMISSION } from 'constants/actions.js';
+import generateUID from '@isle-project/utils/uid';
+import SessionContext from '@isle-project/session/context.js';
+import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
+import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //

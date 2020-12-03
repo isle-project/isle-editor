@@ -11,11 +11,11 @@ import * as d3 from 'd3';
 import randu from '@stdlib/random/base/randu';
 import round from '@stdlib/math/base/special/round';
 import min from '@stdlib/math/base/special/min';
-import NumberInput from 'components/input/number';
-import TextInput from 'components/input/text';
-import Dashboard from 'components/dashboard';
-import FeedbackButtons from 'components/feedback';
-import TeX from 'components/tex';
+import NumberInput from '@isle-project/components/input/number';
+import TextInput from '@isle-project/components/input/text';
+import Dashboard from '@isle-project/components/dashboard';
+import FeedbackButtons from '@isle-project/components/feedback';
+import TeX from '@isle-project/components/tex';
 import './venn_diagram_builder.css';
 
 

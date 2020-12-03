@@ -6,7 +6,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
 import isArray from '@stdlib/assert/is-array';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 
 
 // FUNCTIONS //

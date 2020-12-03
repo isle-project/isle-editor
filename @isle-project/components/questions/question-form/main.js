@@ -7,8 +7,8 @@ import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
-import SessionContext from 'session/context.js';
-import isLineWrapper from 'utils/is-line-wrapper';
+import SessionContext from '@isle-project/session/context.js';
+import isLineWrapper from '@isle-project/utils/is-line-wrapper';
 import './load_translations.js';
 import './question_form.css';
 

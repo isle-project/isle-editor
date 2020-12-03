@@ -13,8 +13,8 @@ import trim from '@stdlib/string/trim';
 import randu from '@stdlib/random/base/randu';
 import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
-import NumberInput from 'components/input/number';
-import TextInput from 'components/input/text';
+import NumberInput from '@isle-project/components/input/number';
+import TextInput from '@isle-project/components/input/text';
 import './venn_diagram.css';
 
 

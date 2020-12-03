@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
@@ -14,12 +14,12 @@ import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';
 import group from '@stdlib/utils/group';
 import unique from 'uniq';
-import max from 'utils/statistic/max';
-import min from 'utils/statistic/min';
-import calculateCoefficients from 'utils/linear-regression/calculate_coefficients.js';
+import max from '@isle-project/utils/statistic/max';
+import min from '@isle-project/utils/statistic/min';
+import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
-import { CAT20 } from 'constants/colors';
+import { CAT20 } from '@isle-project/constants/colors';
 
 
 // VARIABLES //

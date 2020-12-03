@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Alert from 'react-bootstrap/Alert';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
-import { MEMBER_ACTION } from 'constants/events.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

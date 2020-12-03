@@ -9,19 +9,19 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import profanities from 'profanities';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
 import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
-import generateUID from 'utils/uid';
-import TextArea from 'components/input/text-area';
-import Gate from 'components/gate';
-import ResponseVisualizer from 'components/internal/response-visualizer';
-import RealtimeMetrics from 'components/metrics/realtime';
-import SessionContext from 'session/context.js';
-import { TEXT_SURVEY_SUBMISSION } from 'constants/actions.js';
+import generateUID from '@isle-project/utils/uid';
+import TextArea from '@isle-project/components/input/text-area';
+import Gate from '@isle-project/components/gate';
+import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
+import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import SessionContext from '@isle-project/session/context.js';
+import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import './free-text-survey.css';
 
 

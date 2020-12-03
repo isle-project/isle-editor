@@ -6,9 +6,9 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import isArray from '@stdlib/assert/is-array';
-import OverlayTrigger from 'components/overlay-trigger';
-import SessionContext from 'session/context.js';
-import { VOICE_RECORDING_STATUS } from 'constants/events.js';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
+import SessionContext from '@isle-project/session/context.js';
+import { VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import './load_translations.js';
 
 

@@ -4,9 +4,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
-import Input from 'components/input/base';
-import OverlayTrigger from 'components/overlay-trigger';
-import SessionContext from 'session/context.js';
+import Input from '@isle-project/components/input/base';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
+import SessionContext from '@isle-project/session/context.js';
 import Microphone from './microphone.js';
 import './voice.css';
 

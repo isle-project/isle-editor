@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
-import FullscreenButton from 'components/internal/fullscreen-button';
+import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
 import './load_translations.js';
 
 

@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import Tooltip from 'components/tooltip';
-import Gate from 'components/gate';
-import SessionContext from 'session/context.js';
-import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from 'constants/events.js';
+import Tooltip from '@isle-project/components/tooltip';
+import Gate from '@isle-project/components/gate';
+import SessionContext from '@isle-project/session/context.js';
+import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from '@isle-project/constants/events.js';
 import './load_translations.js';
 
 

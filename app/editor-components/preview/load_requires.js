@@ -10,7 +10,7 @@ import isError from '@stdlib/assert/is-error';
 import isURI from '@stdlib/assert/is-uri';
 import replace from '@stdlib/string/replace';
 import readJSON from '@stdlib/fs/read-json';
-import obsToVar from 'utils/obs-to-var';
+import obsToVar from '@isle-project/utils/obs-to-var';
 
 
 // VARIABLES //

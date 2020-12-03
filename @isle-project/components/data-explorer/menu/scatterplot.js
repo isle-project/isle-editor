@@ -6,12 +6,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
-import randomstring from 'utils/randomstring/alphanumeric';
-import ScatterPlot from 'components/plots/scatterplot';
-import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import SliderInput from '@isle-project/components/input/slider';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import ScatterPlot from '@isle-project/components/plots/scatterplot';
+import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

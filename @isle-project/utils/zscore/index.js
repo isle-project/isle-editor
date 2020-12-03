@@ -1,7 +1,7 @@
 // MODULES //
 
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
 import setNonEnumerableProperty from '@stdlib/utils/define-nonenumerable-property';
 
 

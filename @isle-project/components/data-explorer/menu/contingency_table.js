@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
-import ContingencyTable from 'components/tables/contingency-table';
-import { DATA_EXPLORER_CONTINGENCY_TABLE } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
+import ContingencyTable from '@isle-project/components/tables/contingency-table';
+import { DATA_EXPLORER_CONTINGENCY_TABLE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

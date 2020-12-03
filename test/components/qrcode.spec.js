@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import QRCode from 'components/qrcode/main.js';
+import QRCode from '@isle-project/components/qrcode/main.js';
 
 
 // TESTS //

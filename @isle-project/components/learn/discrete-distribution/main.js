@@ -13,11 +13,11 @@ import { VictoryAxis, VictoryChart, VictoryBar, VictoryLine, VictoryTheme } from
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import round from '@stdlib/math/base/special/round';
 import papplyRight from '@stdlib/utils/papply-right';
-import NumberInput from 'components/input/number';
-import TeX from 'components/tex';
-import Panel from 'components/panel';
-import min from 'utils/statistic/min';
-import max from 'utils/statistic/max';
+import NumberInput from '@isle-project/components/input/number';
+import TeX from '@isle-project/components/tex';
+import Panel from '@isle-project/components/panel';
+import min from '@isle-project/utils/statistic/min';
+import max from '@isle-project/utils/statistic/max';
 
 
 // FUNCTIONS //

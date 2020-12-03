@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import round from '@stdlib/math/base/special/round';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import './header_upper_bar.css';
 
 

@@ -11,7 +11,7 @@ import katex from 'katex';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import keys from '@stdlib/utils/keys';
-import NumberInput from 'components/input/number';
+import NumberInput from '@isle-project/components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import './tex.css';
 

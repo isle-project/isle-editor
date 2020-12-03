@@ -12,10 +12,10 @@ import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } fro
 import roundn from '@stdlib/math/base/special/roundn';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
 import punif from '@stdlib/stats/base/dists/uniform/cdf';
-import NumberInput from 'components/input/number';
-import SliderInput from 'components/input/slider';
-import Panel from 'components/panel';
-import TeX from 'components/tex';
+import NumberInput from '@isle-project/components/input/number';
+import SliderInput from '@isle-project/components/input/slider';
+import Panel from '@isle-project/components/panel';
+import TeX from '@isle-project/components/tex';
 
 
 // VARIABLES //

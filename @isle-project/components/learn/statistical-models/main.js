@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
-import FlippableCard from 'components/flippable-card';
+import FlippableCard from '@isle-project/components/flippable-card';
 import LinearRegression from '-!svg-react-loader!./img/linear_regression.svg';
 import Lasso from '-!svg-react-loader!./img/lasso.svg';
 import Ridge from '-!svg-react-loader!./img/ridge.svg';

@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
-import TimedButton from 'components/timed-button';
+import TimedButton from '@isle-project/components/timed-button';
 import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'components/overlay-trigger';
+import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import './load_translations.js';
 
 

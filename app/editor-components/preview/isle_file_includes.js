@@ -7,8 +7,8 @@ import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
 import readJSON from '@stdlib/fs/read-json';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
-import mergePreambles from 'utils/merge-preambles';
+import createResourcesDirectoryIfNeeded from '@isle-project/utils/create-resources-directory-if-needed';
+import mergePreambles from '@isle-project/utils/merge-preambles';
 
 
 // VARIABLES //

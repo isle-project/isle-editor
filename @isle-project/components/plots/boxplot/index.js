@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Plotly from 'components/plotly';
+import Plotly from '@isle-project/components/plotly';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
-import extractUsedCategories from 'utils/extract-used-categories';
-import by from 'utils/by';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import by from '@isle-project/utils/by';
 
 
 // FUNCTIONS //

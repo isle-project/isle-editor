@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import Table from 'components/table';
-import Tooltip from 'components/tooltip';
+import Table from '@isle-project/components/table';
+import Tooltip from '@isle-project/components/tooltip';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isnan from '@stdlib/assert/is-nan';
@@ -16,11 +16,11 @@ import incrsumabs2 from '@stdlib/stats/incr/sumabs2';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import mean from 'utils/statistic/mean';
-import Plotly from 'components/plotly';
-import { generateQQPlotConfig } from 'components/plots/qqplot';
-import by2 from 'utils/by2';
-import by from 'utils/by';
+import mean from '@isle-project/utils/statistic/mean';
+import Plotly from '@isle-project/components/plotly';
+import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
+import by2 from '@isle-project/utils/by2';
+import by from '@isle-project/utils/by';
 import './load_translations.js';
 
 

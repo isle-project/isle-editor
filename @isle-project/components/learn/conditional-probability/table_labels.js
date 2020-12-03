@@ -1,7 +1,7 @@
 // MODULES //
 
 import PropTypes from 'prop-types';
-import TeX from 'components/tex';
+import TeX from '@isle-project/components/tex';
 
 
 // MAIN //

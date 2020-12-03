@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Spinner from 'components/internal/spinner';
+import Spinner from '@isle-project/components/internal/spinner';
 
 
 // TESTS //

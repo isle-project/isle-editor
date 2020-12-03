@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import isObject from '@stdlib/assert/is-plain-object';
-import Draggable from 'components/draggable';
-import SessionContext from 'session/context.js';
-import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from 'constants/actions.js';
+import Draggable from '@isle-project/components/draggable';
+import SessionContext from '@isle-project/session/context.js';
+import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from '@isle-project/constants/actions.js';
 import './sticky_note.css';
 
 

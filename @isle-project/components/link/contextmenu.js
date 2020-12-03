@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ContextMenu, MenuItem } from 'react-contextmenu';
 import logger from 'debug';
-import { OPEN_LINK } from 'constants/actions.js';
+import { OPEN_LINK } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //

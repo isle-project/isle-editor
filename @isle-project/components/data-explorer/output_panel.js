@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import scrollTo from 'utils/scroll-to';
+import scrollTo from '@isle-project/utils/scroll-to';
 
 
 // MAIN //

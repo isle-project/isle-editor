@@ -30,7 +30,7 @@ import cx from 'classnames';
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import CustomButton from './custom_button.js';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import './image_upload_editor.css';
 import './form.css';
 

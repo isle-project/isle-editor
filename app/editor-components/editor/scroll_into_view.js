@@ -1,6 +1,6 @@
 // MODULES //
 
-import isHidden from 'utils/is-hidden';
+import isHidden from '@isle-project/utils/is-hidden';
 
 
 // MAIN //

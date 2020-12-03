@@ -128,7 +128,7 @@ export default {
 			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
 		},
 		modules: [
-			resolve( './@isle-project' ),
+			resolve( './' ),
 			resolve( './app' ),
 			resolve( './node_modules' )
 		],

@@ -13,11 +13,11 @@ import FormText from 'react-bootstrap/FormText';
 import sample from '@stdlib/random/sample';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import objectKeys from '@stdlib/utils/keys';
-import TextInput from 'components/input/text';
-import NumberInput from 'components/input/number';
-import Draggable from 'components/draggable';
-import Panel from 'components/panel';
-import { DATA_EXPLORER_GROUP_TRANSFORMER } from 'constants/actions.js';
+import TextInput from '@isle-project/components/input/text';
+import NumberInput from '@isle-project/components/input/number';
+import Draggable from '@isle-project/components/draggable';
+import Panel from '@isle-project/components/panel';
+import { DATA_EXPLORER_GROUP_TRANSFORMER } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //

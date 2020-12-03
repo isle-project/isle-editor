@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import randomstring from 'utils/randomstring/alphanumeric';
-import SelectInput from 'components/input/select';
-import ScatterPlotMatrix from 'components/plots/scatterplot-matrix';
-import { DATA_EXPLORER_SHARE_SPLOM, DATA_EXPLORER_SPLOM } from 'constants/actions.js';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import SelectInput from '@isle-project/components/input/select';
+import ScatterPlotMatrix from '@isle-project/components/plots/scatterplot-matrix';
+import { DATA_EXPLORER_SHARE_SPLOM, DATA_EXPLORER_SPLOM } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 

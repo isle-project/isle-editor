@@ -8,12 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import CheckboxInput from 'components/input/checkbox';
-import ContourChart from 'components/plots/contourchart';
-import SelectInput from 'components/input/select';
-import SliderInput from 'components/input/slider';
-import randomstring from 'utils/randomstring/alphanumeric';
-import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import ContourChart from '@isle-project/components/plots/contourchart';
+import SelectInput from '@isle-project/components/input/select';
+import SliderInput from '@isle-project/components/input/slider';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 

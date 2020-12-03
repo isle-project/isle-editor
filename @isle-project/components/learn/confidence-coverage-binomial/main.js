@@ -12,13 +12,13 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import randu from '@stdlib/random/base/randu';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import roundn from '@stdlib/math/base/special/roundn';
-import Dashboard from 'components/dashboard';
-import TeX from 'components/tex';
-import Switch from 'components/switch';
-import mean from 'utils/statistic/mean.js';
-import FeedbackButtons from 'components/feedback';
-import SliderInput from 'components/input/slider';
-import NumberInput from 'components/input/number';
+import Dashboard from '@isle-project/components/dashboard';
+import TeX from '@isle-project/components/tex';
+import Switch from '@isle-project/components/switch';
+import mean from '@isle-project/utils/statistic/mean.js';
+import FeedbackButtons from '@isle-project/components/feedback';
+import SliderInput from '@isle-project/components/input/slider';
+import NumberInput from '@isle-project/components/input/number';
 import './confidence_coverage_binomial.css';
 
 

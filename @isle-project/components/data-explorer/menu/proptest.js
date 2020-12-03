@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import NumberInput from 'components/input/number';
-import SelectInput from 'components/input/select';
-import TeX from 'components/tex';
-import PropTest from 'components/tests/proptest';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
-import { DATA_EXPLORER_TESTS_PROPTEST } from 'constants/actions.js';
+import NumberInput from '@isle-project/components/input/number';
+import SelectInput from '@isle-project/components/input/select';
+import TeX from '@isle-project/components/tex';
+import PropTest from '@isle-project/components/tests/proptest';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import { DATA_EXPLORER_TESTS_PROPTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

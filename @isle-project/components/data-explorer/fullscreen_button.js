@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 
 
 // MAIN //

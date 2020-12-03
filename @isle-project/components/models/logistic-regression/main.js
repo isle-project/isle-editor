@@ -17,11 +17,11 @@ import isnan from '@stdlib/assert/is-nan';
 import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import roundn from '@stdlib/math/base/special/roundn';
-import Tooltip from 'components/tooltip';
-import Table from 'components/table';
-import TeX from 'components/tex';
-import extractCategoriesFromValues from 'utils/extract-categories-from-values';
-import subtract from 'utils/subtract';
+import Tooltip from '@isle-project/components/tooltip';
+import Table from '@isle-project/components/table';
+import TeX from '@isle-project/components/tex';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import subtract from '@isle-project/utils/subtract';
 import irls from './logistic_regression.js';
 import './load_translations.js';
 

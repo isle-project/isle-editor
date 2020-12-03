@@ -10,11 +10,11 @@ import isArray from '@stdlib/assert/is-array';
 import copy from '@stdlib/utils/copy';
 import floor from '@stdlib/math/base/special/floor';
 import sqrt from '@stdlib/math/base/special/sqrt';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
-import Collapse from 'components/collapse';
-import RandomForest from 'components/models/random-forest';
-import { DATA_EXPLORER_RANDOM_FOREST } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
+import Collapse from '@isle-project/components/collapse';
+import RandomForest from '@isle-project/components/models/random-forest';
+import { DATA_EXPLORER_RANDOM_FOREST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

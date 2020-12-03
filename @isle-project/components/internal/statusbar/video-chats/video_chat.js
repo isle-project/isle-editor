@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import Button from 'react-bootstrap/Button';
 import max from '@stdlib/math/base/special/max';
-import Draggable from 'components/draggable/main';
-import Panel from 'components/panel';
-import SessionContext from 'session/context.js';
+import Draggable from '@isle-project/components/draggable/main';
+import Panel from '@isle-project/components/panel';
+import SessionContext from '@isle-project/session/context.js';
 import './video_chat.css';
 
 

@@ -3,7 +3,7 @@
 import isAlphanumeric from '@stdlib/assert/is-alphanumeric';
 import isWhitespace from '@stdlib/assert/is-whitespace';
 import removeFirst from '@stdlib/string/remove-first';
-import COMPONENT_DOCS from 'components/documentation.json';
+import COMPONENT_DOCS from '@isle-project/components/documentation.json';
 import { componentSnippets } from 'snippets';
 
 

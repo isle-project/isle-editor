@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
-import Tooltip from 'components/tooltip';
-import Gate from 'components/gate';
+import Tooltip from '@isle-project/components/tooltip';
+import Gate from '@isle-project/components/gate';
 import './load_translations.js';
 
 

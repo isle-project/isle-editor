@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ROutput from 'components/r/output';
+import ROutput from '@isle-project/components/r/output';
 
 
 // MAIN //

@@ -9,7 +9,7 @@ import deg2Rad from '@stdlib/math/base/special/deg2rad';
 import roundn from '@stdlib/math/base/special/roundn';
 import sin from '@stdlib/math/base/special/sin';
 import cos from '@stdlib/math/base/special/cos';
-import ColorPicker from 'components/color-picker';
+import ColorPicker from '@isle-project/components/color-picker';
 import UnitInputBase from './unit_input_base.js';
 
 

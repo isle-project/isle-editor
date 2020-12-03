@@ -1,6 +1,6 @@
 // MODULES //
 
-import mean from 'utils/statistic/mean';
+import mean from '@isle-project/utils/statistic/mean';
 
 
 // MAIN //

@@ -6,9 +6,9 @@ import { withTranslation } from 'react-i18next';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
-import { OPEN_LINK } from 'constants/actions.js';
+import { OPEN_LINK } from '@isle-project/constants/actions.js';
 import './load_translations.js';
 
 

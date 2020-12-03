@@ -15,7 +15,7 @@ import Modal from 'react-bootstrap/Modal';
 import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import './load_translations.js';
 import './login.css';
 

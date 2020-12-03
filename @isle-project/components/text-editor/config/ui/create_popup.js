@@ -29,7 +29,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PopUp from './popup.js';
-import generateUID from 'utils/uid/incremental';
+import generateUID from '@isle-project/utils/uid/incremental';
 import './popup.css';
 
 

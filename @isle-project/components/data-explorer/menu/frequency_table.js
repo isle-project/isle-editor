@@ -6,11 +6,11 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import NumberInput from 'components/input/number';
-import FrequencyTable from 'components/tables/frequency-table';
-import { DATA_EXPLORER_FREQUENCY_TABLE } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import NumberInput from '@isle-project/components/input/number';
+import FrequencyTable from '@isle-project/components/tables/frequency-table';
+import { DATA_EXPLORER_FREQUENCY_TABLE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

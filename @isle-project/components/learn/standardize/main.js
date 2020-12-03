@@ -12,9 +12,9 @@ import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import linspace from '@stdlib/math/utils/linspace';
-import TeX from 'components/tex';
-import NumberInput from 'components/input/number';
-import Dashboard from 'components/dashboard';
+import TeX from '@isle-project/components/tex';
+import NumberInput from '@isle-project/components/input/number';
+import Dashboard from '@isle-project/components/dashboard';
 
 
 // VARIABLES //

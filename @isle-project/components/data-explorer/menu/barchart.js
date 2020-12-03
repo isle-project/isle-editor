@@ -9,12 +9,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import CheckboxInput from 'components/input/checkbox';
-import SelectInput from 'components/input/select';
-import selectStyles from 'components/input/select/styles';
-import randomstring from 'utils/randomstring/alphanumeric';
-import BarChart from 'components/plots/barchart';
-import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from 'constants/actions.js';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SelectInput from '@isle-project/components/input/select';
+import selectStyles from '@isle-project/components/input/select/styles';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import BarChart from '@isle-project/components/plots/barchart';
+import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

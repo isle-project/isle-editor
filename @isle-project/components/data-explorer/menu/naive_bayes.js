@@ -7,11 +7,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import { DATA_EXPLORER_NAIVE_BAYES } from 'constants/actions.js';
-import NaiveBayes from 'components/models/naive-bayes';
-import { designMatrix } from 'components/models/naive-bayes/design_matrix.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import { DATA_EXPLORER_NAIVE_BAYES } from '@isle-project/constants/actions.js';
+import NaiveBayes from '@isle-project/components/models/naive-bayes';
+import { designMatrix } from '@isle-project/components/models/naive-bayes/design_matrix.js';
 import QuestionButton from './../question_button.js';
 
 

@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import unique from 'uniq';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import TeX from 'components/tex';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import SliderInput from 'components/input/slider';
-import Dashboard from 'components/dashboard';
-import LassoRegression from 'components/models/lasso-regression';
-import { DATA_EXPLORER_LASSO_REGRESSION } from 'constants/actions.js';
+import TeX from '@isle-project/components/tex';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import SliderInput from '@isle-project/components/input/slider';
+import Dashboard from '@isle-project/components/dashboard';
+import LassoRegression from '@isle-project/components/models/lasso-regression';
+import { DATA_EXPLORER_LASSO_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

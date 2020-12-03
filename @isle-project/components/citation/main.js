@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import trim from '@stdlib/string/trim';
 import contains from '@stdlib/assert/contains';
-import SessionContext from 'session/context.js';
+import SessionContext from '@isle-project/session/context.js';
 import './load_translations.js';
 
 

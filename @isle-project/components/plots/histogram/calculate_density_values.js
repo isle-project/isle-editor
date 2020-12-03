@@ -5,12 +5,12 @@ import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
-import mean from 'utils/statistic/mean';
-import stdev from 'utils/statistic/stdev';
-import iqr from 'utils/statistic/iqr';
-import min from 'utils/statistic/min';
-import max from 'utils/statistic/max';
-import kernelSmoothDensity from 'utils/kernel-smooth-density';
+import mean from '@isle-project/utils/statistic/mean';
+import stdev from '@isle-project/utils/statistic/stdev';
+import iqr from '@isle-project/utils/statistic/iqr';
+import min from '@isle-project/utils/statistic/min';
+import max from '@isle-project/utils/statistic/max';
+import kernelSmoothDensity from '@isle-project/utils/kernel-smooth-density';
 
 
 // MAIN //

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Plotly from 'components/plotly';
-import extractUsedCategories from 'utils/extract-used-categories';
-import by from 'utils/by';
+import Plotly from '@isle-project/components/plotly';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import by from '@isle-project/utils/by';
 
 
 // FUNCTIONS //

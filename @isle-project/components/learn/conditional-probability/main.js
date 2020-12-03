@@ -10,10 +10,10 @@ import roundn from '@stdlib/math/base/special/roundn';
 import max from '@stdlib/math/base/special/max';
 import min from '@stdlib/math/base/special/min';
 import epsdiff from '@stdlib/math/base/utils/float64-epsilon-difference';
-import FeedbackButtons from 'components/feedback';
-import NumberInput from 'components/input/number';
-import TextInput from 'components/input/text';
-import TeX from 'components/tex';
+import FeedbackButtons from '@isle-project/components/feedback';
+import NumberInput from '@isle-project/components/input/number';
+import TextInput from '@isle-project/components/input/text';
+import TeX from '@isle-project/components/tex';
 import probabilityTableLabels from './table_labels.js';
 
 

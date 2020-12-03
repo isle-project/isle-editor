@@ -4,12 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import SelectInput from 'components/input/select';
-import CheckboxInput from 'components/input/checkbox';
-import NumberInput from 'components/input/number';
-import Dashboard from 'components/dashboard';
-import PrincipalComponentAnalysis from 'components/models/principal-component-analysis';
-import { DATA_EXPLORER_PCA } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
+import NumberInput from '@isle-project/components/input/number';
+import Dashboard from '@isle-project/components/dashboard';
+import PrincipalComponentAnalysis from '@isle-project/components/models/principal-component-analysis';
+import { DATA_EXPLORER_PCA } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 

@@ -2,13 +2,13 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Table from 'components/table';
+import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
-import extractUsedCategories from 'utils/extract-used-categories';
+import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 
 
 // VARIABLES //

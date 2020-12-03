@@ -7,15 +7,15 @@ import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@isle-project/components/tooltip';
 import copy from '@stdlib/utils/copy';
 import keys from '@stdlib/utils/keys';
 import contains from '@stdlib/assert/contains';
 import round from '@stdlib/math/base/special/round';
 import incrmean from '@stdlib/stats/incr/mean';
-import formatTime from 'utils/format-time';
-import isHidden from 'utils/is-hidden';
-import { MEMBER_ACTION, SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
+import formatTime from '@isle-project/utils/format-time';
+import isHidden from '@isle-project/utils/is-hidden';
+import { MEMBER_ACTION, SELECTED_COHORT, UPDATED_VISUALIZER } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //

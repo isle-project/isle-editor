@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Switch from 'components/switch/main.js';
+import Switch from '@isle-project/components/switch/main.js';
 
 
 // TESTS //

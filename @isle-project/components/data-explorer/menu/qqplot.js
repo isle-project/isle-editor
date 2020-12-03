@@ -2,11 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectInput from 'components/input/select';
-import Dashboard from 'components/dashboard';
-import randomstring from 'utils/randomstring/alphanumeric';
-import QQPlot from 'components/plots/qqplot';
-import { DATA_EXPLORER_SHARE_QQPLOT, DATA_EXPLORER_QQPLOT } from 'constants/actions.js';
+import SelectInput from '@isle-project/components/input/select';
+import Dashboard from '@isle-project/components/dashboard';
+import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import QQPlot from '@isle-project/components/plots/qqplot';
+import { DATA_EXPLORER_SHARE_QQPLOT, DATA_EXPLORER_QQPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 

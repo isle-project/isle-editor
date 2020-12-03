@@ -12,7 +12,7 @@ import Plotly from 'plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent( Plotly );
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import { CAT20 as COLORS } from 'constants/colors';
+import { CAT20 as COLORS } from '@isle-project/constants/colors';
 
 
 // VARIABLES //

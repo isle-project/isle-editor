@@ -2,8 +2,8 @@
 
 import uniq from 'uniq';
 import ndarray from '@stdlib/ndarray/array';
-import max from 'utils/statistic/max';
-import subtract from 'utils/subtract';
+import max from '@isle-project/utils/statistic/max';
+import subtract from '@isle-project/utils/subtract';
 import exp from '@stdlib/math/base/special/exp';
 import isArrayArray from '@stdlib/assert/is-array-array';
 import isMatrixLike from '@stdlib/assert/is-matrix-like';

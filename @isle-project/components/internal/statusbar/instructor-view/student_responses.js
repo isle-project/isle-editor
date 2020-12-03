@@ -19,13 +19,13 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import Tooltip from 'components/tooltip';
-import Switch from 'components/switch';
-import selectStyles from 'components/input/select/styles.js';
-import saveAs from 'utils/file-saver';
-import isHidden from 'utils/is-hidden';
-import renderTime from 'utils/render-time';
-import { SELECTED_COHORT, UPDATED_VISUALIZER } from 'constants/events.js';
+import Tooltip from '@isle-project/components/tooltip';
+import Switch from '@isle-project/components/switch';
+import selectStyles from '@isle-project/components/input/select/styles.js';
+import saveAs from '@isle-project/utils/file-saver';
+import isHidden from '@isle-project/utils/is-hidden';
+import renderTime from '@isle-project/utils/render-time';
+import { SELECTED_COHORT, UPDATED_VISUALIZER } from '@isle-project/constants/events.js';
 import './student_responses.css';
 
 
