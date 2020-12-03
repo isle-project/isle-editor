@@ -7,7 +7,7 @@ import contains from '@stdlib/assert/contains';
 import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
 import COMPONENT_DOCS from '@isle-project/components/documentation.json';
-import extractOptionsFromDescription from '@isle-project/utils/extract-options-from-description';
+import extractOptionsFromDescription from 'utils/extract-options-from-description';
 import mainStore from 'store/main.js';
 import getLastOpenedTag from './get_last_opened_tag.js';
 import CSS_PROPERTIES from './css_properties.json';

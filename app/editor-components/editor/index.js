@@ -38,7 +38,7 @@ import readJSON from '@stdlib/fs/read-json';
 import Loadable from '@isle-project/components/internal/loadable';
 import bugTemplate from 'constants/github-templates/bug.js';
 import featureRequestTemplate from 'constants/github-templates/feature_request.js';
-import createResourcesDirectoryIfNeeded from '@isle-project/utils/create-resources-directory-if-needed';
+import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-if-needed';
 import SpellChecker from '@isle-project/utils/spell-checker';
 import today from '@isle-project/utils/today';
 import electronStore from 'store/electron.js';

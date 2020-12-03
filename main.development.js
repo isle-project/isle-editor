@@ -9,7 +9,7 @@ import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
 import { autoUpdater } from 'electron-updater';
 import pkg from './package.json';
-import installExtensions from './@isle-project/utils/install-extensions';
+import installExtensions from './app/utils/install-extensions';
 import addRecentFilesMenu from './app/main/add_recent_files_menu.js';
 import addCustomTemplates from './app/main/add_custom_templates.js';
 
