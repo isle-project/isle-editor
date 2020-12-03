@@ -50,8 +50,8 @@ const config = {
 	},
 	resolve: {
 		modules: [
+			resolve( './' ),
 			resolve( './app' ),
-			resolve( './@isle-project' ),
 			resolve( './node_modules' )
 		]
 	},
@@ -173,7 +173,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'components', 'dist' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.49.0/dist'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.49.1/dist'
 	},
 	optimization: {
 		minimize: true,
