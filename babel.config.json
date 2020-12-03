@@ -13,6 +13,7 @@
     "@babel/plugin-syntax-dynamic-import",
     "transform-modern-regexp"
   ],
+  "sourceType": "unambiguous",
   "env": {
     "development": {
       "presets": []
