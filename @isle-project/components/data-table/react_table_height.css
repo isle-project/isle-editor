@@ -1,4 +1,4 @@
-.ReactTable {
+.Lesson .ReactTable {
 	height: 65vh;
 	background: white;
 	border: 1px solid  rgba(92, 92, 92, 0.6);
@@ -8,42 +8,42 @@
 	width: 100%;
 }
 
-.rt-table {
+.Lesson .rt-table {
 	overflow: hidden !important;
 }
 
-.rt-tbody {
+.Lesson .rt-tbody {
 	min-width: 0px !important;
 }
 
-.rt-thead {
+.Lesson .rt-thead {
 	min-width: 0px !important;
 	overflow: hidden;
 }
 
-.rt-thead.-header {
+.Lesson .rt-thead.-header {
 	font-size: 18px;
 	font-family: Open Sans Condensed;
 }
 
-.rt-thead::-webkit-scrollbar {
+.Lesson .rt-thead::-webkit-scrollbar {
 	background: transparent;
 }
 
-.ReactTable .rt-tbody .rt-td {
+.Lesson .ReactTable .rt-tbody .rt-td {
 	border-right: 1px solid rgba(0, 0, 0, 0.1);
 	border-top: solid 1px rgba(0, 0, 0, 0.1);
 }
 
-.ReactTable .rt-tbody .rt-tr-group {
+.Lesson .ReactTable .rt-tbody .rt-tr-group {
 	border-bottom: none;
 }
 
-.ReactTable .rt-thead.-filters .rt-th {
+.Lesson .ReactTable .rt-thead.-filters .rt-th {
 	border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.frozen {
+.Lesson .frozen {
 	order: -1;
 	position: relative;
 	left: 0;
@@ -51,6 +51,6 @@
 	z-index: 10;
 }
 
-.table_last_col {
+.Lesson .table_last_col {
 	width: 10px !important;
 }
