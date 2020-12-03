@@ -32,6 +32,12 @@
         "defaultValue": null
       },
       {
+        "name": "onChange",
+        "type": "function",
+        "description": "callback invoked with index of new active vertical slider",
+        "defaultValue": "function onChange() {}"
+      },
+      {
         "name": "className",
         "type": "string",
         "description": "class name for outer div",
