@@ -9,5 +9,9 @@
 	"bundleDependencies": false,
 	"description": "ISLE components.",
 	"license": "AGPL-3.0-only",
-	"main": "dll.components.js"
+	"main": "index.js",
+	"dependencies": {
+		"@isle-project/constants": "0.0.0",
+		"@isle-project/utils": "0.0.0"
+	}
 }
