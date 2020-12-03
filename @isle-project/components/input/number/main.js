@@ -7,6 +7,7 @@ import Input from '@isle-project/components/input/base';
 import contains from '@stdlib/assert/contains';
 import isnan from '@stdlib/math/base/assert/is-nan';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
@@ -89,8 +90,8 @@ class NumberInput extends Input {
 	componentDidUpdate() {
 		debug( 'Component did update...' );
 		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
+			const globalVal = global.lesson.state[ this.props.bind ];
+			if ( globalVal !== this.state.value && isNumber( this.state.value ) ) {
 				this.setState({
 					value: globalVal
 				});
