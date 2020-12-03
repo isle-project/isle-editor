@@ -31,10 +31,10 @@ const pkg = require( pkgPath );
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
 	oldVersion = replace( match, RE_VERSION, '$1.$2.$3' );
 	if ( type === 'major' ) {
-		newVersion = `${Number( p1 ) + 1}.${p2}.${p3}`;
+		newVersion = `${Number( p1 ) + 1}.${0}.${0}`;
 	}
 	else if ( type === 'minor' ) {
-		newVersion = `${p1}.${Number( p2 ) + 1}.${p3}`;
+		newVersion = `${p1}.${Number( p2 ) + 1}.${0}`;
 	} else {
 		newVersion = `${p1}.${p2}.${Number( p3 ) + 1}`;
 	}
