@@ -59,12 +59,12 @@ if ( type === 'major' || type === 'minor' || type === 'patch' ) {
 }
 
 // Delete current DLL files:
-fs.readdir( join( __dirname, '..', 'dll', 'components' ), ( error, files ) => {
+fs.readdir( join( __dirname, '..', 'packages', 'components', 'dist' ), ( error, files ) => {
 	if ( error ) {
 		throw error;
 	}
 	files.filter( name => RE_DLL_FILE.test( name ) ).forEach( x => {
-		fs.unlink( join( __dirname, '..', 'dll', 'components', x ), ( err ) => {
+		fs.unlink( join( __dirname, '..', 'packages', 'components', 'dist', x ), ( err ) => {
 			if ( err ) {
 				console.error( err );
 			}

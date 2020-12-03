@@ -20,9 +20,9 @@ const pkg = require( pkgPath );
 const extraResources = [
 	'app/css/*',
 	'app/constants/*',
-	'app/components/**/*',
-	'app/session/*',
-	'app/utils/**/*',
+	'packages/components/**/*',
+	'packages/session/*',
+	'packages/utils/**/*',
 	'app/img/*',
 	'app/bundler/*',
 	'node_modules/**/*',
