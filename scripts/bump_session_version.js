@@ -25,7 +25,7 @@ if ( !contains( SEMVER, type ) ) {
 // MAIN //
 
 // Increment package versions:
-const pkgPath = join( __dirname, '..', 'dll', 'session', 'package.json' );
+const pkgPath = join( __dirname, '..', 'packages', 'session', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
