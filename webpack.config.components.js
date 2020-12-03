@@ -215,7 +215,7 @@ const config = {
 		'js-yaml': 'jsyaml',
 		'markdown-it': 'markdownit',
 		'lodash': '_',
-		'components/internal/text-clustering': 'TextClustering'
+		'@isle-project/components/internal/text-clustering': 'TextClustering'
 	}
 };
 
