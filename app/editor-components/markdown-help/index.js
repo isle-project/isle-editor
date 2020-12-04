@@ -108,5 +108,5 @@ class MarkdownHelp extends Component {
 
 // EXPORTS //
 
-export default MarkdownHelp;
+export default React.memo( MarkdownHelp );
 

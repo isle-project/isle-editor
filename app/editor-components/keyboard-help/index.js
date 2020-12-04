@@ -285,5 +285,5 @@ class KeyboardHelp extends Component {
 
 // EXPORTS //
 
-export default KeyboardHelp;
+export default React.memo( KeyboardHelp );
 

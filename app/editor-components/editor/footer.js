@@ -155,4 +155,4 @@ EditorFooter.defaultProps = {
 
 // EXPORTS //
 
-export default EditorFooter;
+export default React.memo( EditorFooter );
