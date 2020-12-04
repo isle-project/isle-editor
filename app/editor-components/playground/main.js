@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 import { withTranslation } from 'react-i18next';
@@ -40,7 +40,7 @@ const RE_BLOCKED_TAG = /^\s*<(?=SlideNotes|SlideAppear)/;
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked with new code once code in editor changes
 */
-class Playground extends Component {
+class Playground extends PureComponent {
 	constructor( props, context ) {
 		super( props );
 
