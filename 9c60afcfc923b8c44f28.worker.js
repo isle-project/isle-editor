@@ -44333,7 +44333,7 @@ var trim_lib_default = /*#__PURE__*/__webpack_require__.n(trim_lib);
 var stopwords_en_lib = __webpack_require__(196);
 var stopwords_en_lib_default = /*#__PURE__*/__webpack_require__.n(stopwords_en_lib);
 
-// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/app/components/internal/text-clustering/process_document.js
+// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/@isle-project/components/internal/text-clustering/process_document.js
 // MODULES //
 // VARIABLES //
 var STOPWORDS=stopwords_en_lib_default()();// MAIN //
@@ -44350,7 +44350,7 @@ var STOPWORDS=stopwords_en_lib_default()();// MAIN //
 * @returns {string} pre-processed document
 */function processDocument(doc){doc=lowercase_lib_default()(doc);doc=expand_contractions_lib_default()(doc);doc=remove_punctuation_lib_default()(doc);doc=remove_words_lib_default()(doc,STOPWORDS);doc=trim_lib_default()(doc);return doc;}// EXPORTS //
 /* harmony default export */ var process_document = (processDocument);
-// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/app/components/internal/text-clustering/vocabulary.js
+// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/@isle-project/components/internal/text-clustering/vocabulary.js
 // MODULES //
 // VARIABLES //
 var vocabulary_vector=ctor_lib_default()('int8',1);// FUNCTIONS //
@@ -49050,7 +49050,7 @@ var to_array_lib_default = /*#__PURE__*/__webpack_require__.n(to_array_lib);
 var sqrt_lib = __webpack_require__(40);
 var sqrt_lib_default = /*#__PURE__*/__webpack_require__.n(sqrt_lib);
 
-// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/app/components/internal/text-clustering/similarity.js
+// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/@isle-project/components/internal/text-clustering/similarity.js
 // MODULES //
 // FUNCTIONS //
 /**
@@ -49073,7 +49073,7 @@ var sqrt_lib_default = /*#__PURE__*/__webpack_require__.n(sqrt_lib);
 * @returns {number|null} cosine similarity or null
 */function cosineSimilarity(x,y){var a=dot(x,y);var b=l2norm(x);var c=l2norm(y);return a/(b*c);}// EXPORTS //
 /* harmony default export */ var similarity = (cosineSimilarity);
-// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/app/components/internal/text-clustering/corpus.js
+// CONCATENATED MODULE: /home/philipp/git/cmu-isle/isle-editor/@isle-project/components/internal/text-clustering/corpus.js
 // MODULES //
 // VARIABLES //
 var debug=src_default()('isle:text-clustering:corpus');// MAIN //
@@ -49119,7 +49119,7 @@ this.models=clusters.map(function(nClusters){return kmeans_lib_default()(nCluste
     * @param {integer} iter - number of times
     */},{key:"iterate",value:function iterate(iter){var _this2=this;this.centroids=this.models.map(function(acc){var out;for(var j=0;j<iter;j++){for(var i=0;i<_this2.nDocs;i++){out=acc(_this2.vecs[i]);}}return out?out.centroids:null;});}}]);return Corpus;}();// EXPORTS //
 /* harmony default export */ var corpus = (corpus_Corpus);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--7-0!./node_modules/babel-loader/lib??ref--7-1!./node_modules/babel-loader/lib??ref--14!/home/philipp/git/cmu-isle/isle-editor/app/components/internal/text-clustering/worker.js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--7-0!./node_modules/babel-loader/lib??ref--7-1!./node_modules/babel-loader/lib??ref--14!/home/philipp/git/cmu-isle/isle-editor/@isle-project/components/internal/text-clustering/worker.js
 // MODULES //
 // VARIABLES //
 var DIM=300;var vocab=new text_clustering_vocabulary(DIM);var worker_corpus=new corpus(vocab,[3,5,7]);// MAIN //
