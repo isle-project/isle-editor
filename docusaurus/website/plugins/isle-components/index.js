@@ -8,8 +8,9 @@ const path = require( 'path' );
 const resolve = path.resolve;
 const basePath = resolve( __dirname, './../../../../' );
 const modulePaths = [
-	path.join( basePath, 'node_modules' ),
-	path.join( basePath, 'app' )
+	path.join( basePath, '.' ),
+	path.join( basePath, 'app' ),
+	path.join( basePath, 'node_modules' )
 ];
 
 
