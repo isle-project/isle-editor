@@ -42,21 +42,21 @@ const SCOPE_VALUES = [
 	repeat( '\n', 15 )
 ];
 const HTML_ELEMENTS = {
-	'components/html/blockquote': 'blockquote',
-	'components/html/div': 'div',
-	'components/html/h1': 'h1',
-	'components/html/h2': 'h2',
-	'components/html/h3': 'h3',
-	'components/html/h4': 'h4',
-	'components/html/h5': 'h5',
-	'components/html/h6': 'h6',
-	'components/html/hr': 'hr',
-	'components/html/li': 'li',
-	'components/html/ol': 'ol',
-	'components/html/p': 'p',
-	'components/html/pre': 'pre',
-	'components/html/span': 'span',
-	'components/html/ul': 'ul'
+	'@isle-project/components/html/blockquote': 'blockquote',
+	'@isle-project/components/html/div': 'div',
+	'@isle-project/components/html/h1': 'h1',
+	'@isle-project/components/html/h2': 'h2',
+	'@isle-project/components/html/h3': 'h3',
+	'@isle-project/components/html/h4': 'h4',
+	'@isle-project/components/html/h5': 'h5',
+	'@isle-project/components/html/h6': 'h6',
+	'@isle-project/components/html/hr': 'hr',
+	'@isle-project/components/html/li': 'li',
+	'@isle-project/components/html/ol': 'ol',
+	'@isle-project/components/html/p': 'p',
+	'@isle-project/components/html/pre': 'pre',
+	'@isle-project/components/html/span': 'span',
+	'@isle-project/components/html/ul': 'ul'
 };
 const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS );
 
@@ -81,7 +81,7 @@ function generateDefaultString( defaultValue ) {
 const DOCS = {};
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
-	const tagName = REQUIRES_MAP[ 'components/'+component ];
+	const tagName = REQUIRES_MAP[ '@isle-project/components/'+component ];
 	DOCS[ tagName ] = {
 		props: []
 	};
