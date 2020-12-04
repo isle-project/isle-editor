@@ -33,7 +33,9 @@ const extraResources = [
 	'!node_modules/@stdlib/datasets/spam-assassin/*',
 	'!node_modules/@stdlib/stdlib/lib/node_modules/@stdlib/datasets/spam-assassin/*',
 	'!node_modules/.cache/**/*',
-	'!node_modules/@icons/**/*'
+	'!node_modules/@icons/**/*',
+	'!@isle-project/components/dist/**/*',
+	'!@isle-project/session/dist/*'
 ];
 const DEV_DEPS = new Set();
 const listDevDeps = spawn( 'npm', [ 'ls', '--only=dev', '--parseable' ] );
