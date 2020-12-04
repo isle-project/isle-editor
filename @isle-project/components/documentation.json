@@ -182,6 +182,18 @@
         "type": "string",
         "description": "heading to be displayed in front of references",
         "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "class name",
+        "defaultValue": ""
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "CSS inline styles",
+        "defaultValue": {}
       }
     ],
     "description": "Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble)."

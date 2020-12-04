@@ -25,6 +25,8 @@ function generateAuthorString( author ) {
 * Bibliography component which prints all references used in the lesson (specified via `references` field in the preamble).
 *
 * @property {string} title - heading to be displayed in front of references
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
 */
 const Bibliography = ({ title, t }) => {
 	const session = useContext( SessionContext );
@@ -74,12 +76,12 @@ const Bibliography = ({ title, t }) => {
 		out.push( li );
 	}
 	return (
-		<Fragment>
+		<div className={this.props.className} style={this.props.style} >
 			{title ? <h2>{title}</h2> : <h2>{t('references')}</h2>}
 			<ol>
 				{out}
 			</ol>
-		</Fragment>
+		</div>
 	);
 };
 
@@ -87,11 +89,15 @@ const Bibliography = ({ title, t }) => {
 // PROPERTIES //
 
 Bibliography.propTypes = {
-	title: PropTypes.string
+	title: PropTypes.string,
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 
 Bibliography.defaultProps = {
-	title: null
+	title: null,
+	className: '',
+	style: {}
 };
 
 
