@@ -20,9 +20,7 @@ const pkg = require( pkgPath );
 const extraResources = [
 	'app/css/*',
 	'app/constants/*',
-	'@isle-project/components/**/*',
-	'@isle-project/session/*',
-	'@isle-project/utils/**/*',
+	'@isle-project/**/*',
 	'app/img/*',
 	'app/bundler/*',
 	'node_modules/**/*',
