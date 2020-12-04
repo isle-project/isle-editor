@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.72.0](https://github.com/isle-project/isle-editor/releases/tag/v0.72.0) (2020-12-04)
+
+This release adds a new GUI for styling components and offers quite significant performance improvements of the editor pane. It also enables users to drag elements to new positions inside the preview pane. The styling GUI can be accessed by a new color palette symbol that shows when selecting an component in the editor pane or by hovering over an element in the preview pane, see below screenshot.
+
+![palette](https://user-images.githubusercontent.com/1913638/101127258-30e6d700-35cb-11eb-89d6-5a5505f424f6.png)
+
+
+**Implemented enhancements:**
+
+- request "visibility setting" on Upload Lesson in Editor [\#1478](https://github.com/isle-project/isle-editor/issues/1478)
+
+**Fixed bugs:**
+
+- 1 lesson only is unresponsive [\#1504](https://github.com/isle-project/isle-editor/issues/1504)
+
 ## [v0.71.6](https://github.com/isle-project/isle-editor/releases/tag/v0.71.6) (2020-11-14)
 
 This patch fixes two a bug in the one-sample proportion and prevents the two-sample mean / proportion tests from crashing the website when using a grouping variable with only one level, instead printing an error message in the output pane.
