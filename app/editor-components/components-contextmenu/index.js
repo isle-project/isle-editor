@@ -42,6 +42,17 @@ class EditorContextMenu extends Component {
 		};
 	}
 
+	shouldComponentUpdate = ( nextProps, nextState ) => {
+		if (
+			this.props.onContextMenuClick !== nextProps.onContextMenuClick ||
+			this.props.onTranslateSelection !== nextProps.onTranslateSelection ||
+			this.state.searchValue !== nextState.searchValue
+		) {
+			return true;
+		}
+		return false;
+	}
+
 	createMenuEntries = ( arr, title, ...otherMenuEntries ) => {
 		const out = [];
 		let { searchValue } = this.state;
