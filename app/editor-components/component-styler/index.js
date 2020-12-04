@@ -44,9 +44,11 @@ const ComponentStyler = ( props ) => {
 			unsafeMessage: 'Please enter a <code>className</code> for which the current styling should be applied (so that it may be easily reused for other elements in the lesson by setting their <code>className</code> attributes)',
 			placeholder: 'Enter class name',
 			callback( className ) {
-				const css = jsxToCSS( '.'+className, props.componentStyle, '  ' );
-				props.onClassTransform( className );
-				props.appendCSSToPreamble({ css });
+				if ( className ) {
+					const css = jsxToCSS( '.'+className, props.componentStyle, '  ' );
+					props.onClassTransform( className );
+					props.appendCSSToPreamble({ css });
+				}
 			}
 		});
 	};
