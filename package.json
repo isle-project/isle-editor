@@ -136,7 +136,7 @@
     "compute-euclidean-distance": "^1.0.0",
     "compute-hamming": "^1.1.0",
     "compute-manhattan-distance": "^1.0.1",
-    "core-js": "2.6.5",
+    "core-js": "3.8.1",
     "cross-env": "^7.0.3",
     "css": "^3.0.0",
     "css-loader": "4.2.1",
