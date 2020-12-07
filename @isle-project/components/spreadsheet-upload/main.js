@@ -15,11 +15,6 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import './load_translations.js';
 
 
-// VARIABLES //
-
-const RE_LONE_CARRIAGE = /\r(?!\n)/g;
-
-
 // MAIN //
 
 /**
@@ -73,7 +68,7 @@ class SpreadsheetUpload extends Component {
 		} else {
 			delimiter = ',';
 		}
-		text = replace( text, RE_LONE_CARRIAGE, '\n' );
+		text = replace( text, '\r', '' ); // Remove carriage returns for search in L73 to return correct index
 		let columns;
 		const idx = text.indexOf( '\n' );
 		let firstLine = text.substring( 0, idx ).split( delimiter );
