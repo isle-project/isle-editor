@@ -18,21 +18,19 @@ class ExportPage extends Component {
 	}
 	render() {
 		return (
-			<div className="export-page">
-				<Container>
-					<Row>
-						<Col md={4} >
-							<UploadLesson {...this.props} />
-						</Col>
-						<Col md={2} >
-							<h1 style={{ textAlign: 'center' }}> OR </h1>
-						</Col>
-						<Col md={6} >
-							<ExportLesson {...this.props} />
-						</Col>
-					</Row>
-				</Container>
-			</div>
+			<Container className="export-page">
+				<Row>
+					<Col md={5} >
+						<UploadLesson {...this.props} />
+					</Col>
+					<Col md={2} >
+						<h1 style={{ textAlign: 'center' }}> OR </h1>
+					</Col>
+					<Col md={5} >
+						<ExportLesson {...this.props} />
+					</Col>
+				</Row>
+			</Container>
 		);
 	}
 }
