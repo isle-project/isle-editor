@@ -675,7 +675,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	render() {
-		debug( 'Rendering component configurator modal...' );
+		debug( 'Rendering component wizard modal...' );
 		const innerHTML = {
 			'__html': this.description
 		};
@@ -692,7 +692,7 @@ class ComponentConfigurator extends Component {
 				enforceFocus={false}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title as="h5">Configure {this.props.component.name}</Modal.Title>
+					<Modal.Title as="h5">{this.props.component.name} Component Wizard</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
 					<SearchBar

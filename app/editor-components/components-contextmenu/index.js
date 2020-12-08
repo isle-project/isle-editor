@@ -107,7 +107,7 @@ class EditorContextMenu extends Component {
 			</Tooltip>
 			<button
 				className="fa fa-cogs"
-				title="Open component configurator"
+				title="Open component wizard"
 				style={BUTTON_STYLE}
 				onClick={this.handleCustomInsertClick}
 			/>

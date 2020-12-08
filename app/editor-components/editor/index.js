@@ -793,7 +793,7 @@ class Editor extends Component {
 							className: 'highlighted_content',
 							glyphMarginClassName: 'configurator_glyph',
 							glyphMarginHoverMessage: {
-								value: 'Click on the cogs to open the component configurator or the color palette to style the component'
+								value: 'Click on the cogs to open the component wizard or the color palette to style the component'
 							}
 						}
 					}
