@@ -320,7 +320,7 @@
     "xterm-addon-web-links": "^0.4.0"
   },
   "devEngines": {
-    "node": "11.x || 12.x || 13.x || 14.x"
+    "node": "14.x || 15.x"
   },
   "build": {
     "appId": "isle.editor",
