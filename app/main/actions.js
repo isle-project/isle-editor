@@ -80,7 +80,7 @@ ipcMain.on( 'create', () => {
 });
 
 ipcMain.on( 'create-from-user-template', ( e, name ) => {
-	console.log( 'Creating new file from template...' );
+	debug( 'Creating new file from template...' );
 	createWindow({ fromTemplate: name });
 });
 

@@ -71,7 +71,7 @@ const CURSOR_TYPES = [
 		label: 'Resizing',
 		options: [
 			{ label: 'col-resize', value: 'col-resize' },
-			{ label: 'row-resize', value: 'row-resize'},
+			{ label: 'row-resize', value: 'row-resize' },
 			{ label: 'e-resize', value: 'e-resize' },
 			{ label: 'n-resize', value: 'n-resize' },
 			{ label: 'ne-resize', value: 'ne-resize' },
