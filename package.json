@@ -117,7 +117,7 @@
     "@iktakahiro/markdown-it-katex": "^4.0.0",
     "@stdlib/stdlib": "0.0.93",
     "acorn": "^8.0.1",
-    "ansi-to-react": "6.0.10",
+    "ansi-to-react": "6.1.1",
     "archiver": "^5.0.2",
     "autobind-decorator": "^2.2.1",
     "axios": "^0.21.0",
