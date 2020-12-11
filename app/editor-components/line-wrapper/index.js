@@ -19,7 +19,7 @@ import './line_wrapper.css';
 const debug = logger( 'isle:line-wrapper' );
 const RE_LOADABLE = /(\s|^)isle-loadable(\s|$)/;
 const RE_LINE_WRAPPER_BAR = /(\s|^)line-wrapper-bar(\s|$)/;
-const RE_CONTEXT_MENU = /(\s|^)react-contextmenu(\s|$)/;
+const RE_CONTEXT_MENU = /(\s|^)react-contextmenu(?:-wrapper)?(\s|$)/;
 
 
 // FUNCTIONS //
