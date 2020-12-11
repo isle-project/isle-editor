@@ -70,16 +70,17 @@ const LineWrapper = ( props ) => {
 		) {
 			if ( RE_CONTEXT_MENU.test( child.className ) ) {
 				setStyle({});
-			}
-			const style = isDOMElement( child ) ? window.getComputedStyle( child, null ) : {};
-			if ( style.position === 'fixed' || style.position === 'absolute' ) {
-				setStyle({
-					position: style.position,
-					top: style.top,
-					left: style.left,
-					bottom: style.bottom,
-					right: style.right
-				});
+			} else {
+				const style = isDOMElement( child ) ? window.getComputedStyle( child, null ) : {};
+				if ( style.position === 'fixed' || style.position === 'absolute' ) {
+					setStyle({
+						position: style.position,
+						top: style.top,
+						left: style.left,
+						bottom: style.bottom,
+						right: style.right
+					});
+				}
 			}
 		} else {
 			window.requestIdleCallback( retrievePositioning );
