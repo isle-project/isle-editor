@@ -11,7 +11,7 @@ i18n.use( LanguageDetector )
 	.use( initReactI18next )
 	.init({
 		debug: !!process.env.DEBUG_I18N, // eslint-disable-line no-process-env
-		lng: 'en',
+		lng: localStorage.getItem( 'i18nextLng' ) || 'en',
 		fallbackLng: 'en',
 		ns: [ 'components' ],
 		defaultNS: 'components',
