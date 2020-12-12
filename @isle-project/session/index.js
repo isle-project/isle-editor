@@ -22,6 +22,7 @@
 import qs from 'querystring';
 import logger from 'debug';
 import axios from 'axios';
+import i18next from 'i18next';
 import localforage from 'localforage';
 import { basename } from 'path';
 import io from 'socket.io-client';
@@ -57,6 +58,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import POINTS from '@isle-project/constants/points.js';
 import ANIMALS from '@isle-project/constants/animals.js';
+import TRANSLATION from './translation.json';
 
 
 // VARIABLES //
@@ -148,6 +150,7 @@ class Session {
 
 		// Authenticate requests:
 		axios.interceptors.request.use( ( config ) => {
+			config.headers[ 'Accept-Language' ] = i18next.language;
 			const token = JWT.token;
 			if ( token && startsWith( config.url, this.server ) ) {
 				config.headers.Authorization = `JWT ${token}`;
@@ -343,6 +346,9 @@ class Session {
 			// Log session data to database in regular interval:
 			this.logSessionInterval = setInterval( this.interval, LOG_SESSION_INTERVAL );
 		}
+		i18next.addResources( 'de', 'components', TRANSLATION.DE );
+		i18next.addResources( 'en', 'components', TRANSLATION.EN );
+		i18next.addResources( 'es', 'components', TRANSLATION.ES );
 	}
 
 	/**
@@ -1075,7 +1081,7 @@ class Session {
 		})
 		.catch( error => {
 			this.addNotification({
-				title: 'Error encountered',
+				title: i18next.t( 'error-encountered' ),
 				message: error.message,
 				level: 'error',
 				position: 'tl'
@@ -1152,7 +1158,7 @@ class Session {
 			})
 			.catch( error => {
 				this.addNotification({
-					title: 'Error encountered',
+					title: i18next.t( 'error-encountered' ),
 					message: error.message,
 					level: 'error',
 					position: 'tl'
@@ -1409,7 +1415,7 @@ class Session {
 			})
 			.catch( err => {
 				return this.addNotification({
-					title: 'Request failed',
+					title: i18next.t( 'request-failed' ),
 					message: err.message,
 					level: 'error',
 					position: 'tl'
@@ -1539,8 +1545,8 @@ class Session {
 		axios.post( this.server+'/create_user', data )
 		.then( () => {
 			this.addNotification({
-				title: 'User created',
-				message: 'You have successfully signed up.',
+				title: i18next.t( 'user-created' ),
+				message: i18next.t( 'user-created-message' ),
 				level: 'success',
 				position: 'tl'
 			});
@@ -1548,7 +1554,7 @@ class Session {
 		})
 		.catch( ( err ) => {
 			this.addNotification({
-				title: 'User not created',
+				title: i18next.t( 'user-not-created' ),
 				message: err.response.data,
 				level: 'error',
 				position: 'tl'
@@ -1573,8 +1579,8 @@ class Session {
 		this.userRightsQuestionPosed = false;
 		this.reset();
 		this.addNotification({
-			title: 'Logged out',
-			message: 'You have successfully logged out.',
+			title: i18next.t( 'logout-title' ),
+			message: i18next.t( 'logout-message' ),
 			level: 'success',
 			position: 'tl'
 		});
@@ -1647,7 +1653,7 @@ class Session {
 			if ( err.response.status === 404 ) {
 				return this.addNotification({
 					title: err.response.statusText,
-					message: 'A user with the supplied email address does not exist',
+					message: err.response.data,
 					level: 'error',
 					position: 'tl'
 				});
@@ -1655,7 +1661,7 @@ class Session {
 			else if ( err.response.status === 401 ) {
 				return this.addNotification({
 					title: err.response.statusText,
-					message: 'Please make sure that you enter the correct password. If you need to reset your password, please click on the "Forgot password?" link',
+					message: err.response.data,
 					level: 'error',
 					position: 'tl'
 				});
@@ -1675,15 +1681,15 @@ class Session {
 			.then( () => {
 				debug( 'GET: /forgot_password' );
 				this.addNotification({
-					title: 'New Password',
-					message: 'Check your email inbox for a link to choose a new password.',
+					title: i18next.t( 'new-password-title' ),
+					message: i18next.t( 'new-password-message' ),
 					level: 'success',
 					position: 'tl'
 				});
 			})
 			.catch( ( error ) => {
 				this.addNotification({
-					title: 'New Password',
+					title: i18next.t( 'new-password-title' ),
 					message: error.message,
 					level: 'error',
 					position: 'tl'
@@ -1755,8 +1761,8 @@ class Session {
 			debug( 'Received credentials for login...' );
 			if ( !silent ) {
 				this.addNotification({
-					title: 'Logged in',
-					message: 'You have successfully logged in.',
+					title: i18next.t( 'loggedin' ),
+					message: i18next.t( 'loggedin-message' ),
 					level: 'success',
 					position: 'tl'
 				});
@@ -1898,7 +1904,7 @@ class Session {
 			namespaceID: this.namespaceID
 		}).then( ( res ) => {
 			this.addNotification({
-				title: 'Grades saved',
+				title: i18next.t( 'grades-saved' ),
 				message: res.data.message,
 				level: 'success',
 				position: 'tl'
@@ -1929,7 +1935,7 @@ class Session {
 			message
 		}).then( ( res ) => {
 			this.addNotification({
-				title: 'Message saved',
+				title: i18next.t( 'message-saved' ),
 				message: res.data.message,
 				level: 'success',
 				position: 'tl'
@@ -2113,8 +2119,8 @@ class Session {
 				}
 			}
 			this.addNotification({
-				title: 'Deleted',
-				message: 'You have successfully deleted the action.',
+				title: i18next.t( 'deleted' ),
+				message: i18next.t( 'deleted-message' ),
 				level: 'success',
 				position: 'tl'
 			});
@@ -2122,7 +2128,7 @@ class Session {
 		})
 		.catch( error => {
 			this.addNotification({
-				title: 'Error encountered',
+				title: i18next.t( 'error-encountered' ),
 				message: error.message,
 				level: 'error',
 				position: 'tl'
@@ -2142,7 +2148,7 @@ class Session {
 		const onLogged = ( err, res ) => {
 			if ( err ) {
 				return this.addNotification({
-					title: 'Error encountered',
+					title: i18next.t( 'error-encountered' ),
 					message: err.message,
 					level: 'error',
 					position: 'tl'
@@ -2234,12 +2240,12 @@ class Session {
 		}
 		if ( isEmptyObject( this.user ) ) {
 			this.addNotification({
-				title: 'File Upload',
-				message: 'You have to be signed in in order to upload files.',
+				title: i18next.t( 'file-upload' ),
+				message: i18next.t( 'file-upload-signin-required' ),
 				level: 'warning',
 				position: 'tl'
 			});
-			return callback( new Error( 'You have to be signed in in order to upload files.' ) );
+			return callback( new Error( i18next.t( 'file-upload-signin-required' ) ) );
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
@@ -2263,7 +2269,7 @@ class Session {
 				}
 				if ( showNotification ) {
 					this.addNotification({
-						title: 'File Upload',
+						title: i18next.t( 'file-upload' ),
 						message,
 						level,
 						position: 'tl'

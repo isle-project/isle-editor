@@ -50,7 +50,8 @@ class Login extends Component {
 			return {
 				email: '',
 				password: '',
-				show: nextProps.show
+				show: nextProps.show,
+				showTFA: false
 			};
 		}
 		return null;
@@ -196,6 +197,7 @@ class Login extends Component {
 									placeholder={this.props.t( 'enter-token' )}
 									onChange={this.handleInputChange}
 									onKeyPress={this.handleKeyPress}
+									autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 								/>
 							</FormGroup> :
 							null}
