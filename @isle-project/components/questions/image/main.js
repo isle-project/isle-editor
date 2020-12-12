@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -55,7 +55,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
 const ImageQuestion = ( props ) => {
-	const id = props.id || uid( props );
+	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	let fileUpload;
 
@@ -80,7 +80,7 @@ const ImageQuestion = ( props ) => {
 	const logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
-			id: id,
+			id: id.current,
 			type: IMAGE_QUESTION_OPEN_HINT,
 			value: idx
 		});
@@ -113,7 +113,7 @@ const ImageQuestion = ( props ) => {
 		setSubmitted( true );
 		if ( src ) {
 			session.log({
-				id: id,
+				id: id.current,
 				type: IMAGE_QUESTION_SUBMISSION,
 				value: src
 			});
@@ -122,7 +122,7 @@ const ImageQuestion = ( props ) => {
 			canvas.toBlob( ( blob ) => {
 				blobToBase64( blob ).then( newSrc => {
 					session.log({
-						id: id,
+						id: id.current,
 						type: IMAGE_QUESTION_SUBMISSION,
 						value: newSrc
 					});
@@ -240,7 +240,7 @@ const ImageQuestion = ( props ) => {
 			</div>
 			<p className="center">{props.t('or')}</p>
 			<input
-				id={id+'-upload'}
+				id={id.current+'-upload'}
 				className="image-question-upload center"
 				type="file"
 				accept="image/*"
@@ -253,7 +253,7 @@ const ImageQuestion = ( props ) => {
 			<Fragment>
 				<p className="center">{props.t('or')}</p>
 				<Sketchpad
-					id={id}
+					id={id.current}
 					hideNavigationButtons hideSaveButtons hideTransmitButtons
 					canvasWidth={900}
 					canvasHeight={600}
@@ -263,13 +263,13 @@ const ImageQuestion = ( props ) => {
 		</Fragment>;
 	}
 	return (
-		<Card id={id} className={`image-question ${props.className}`} style={props.style} >
+		<Card id={id.current} className={`image-question ${props.className}`} style={props.style} >
 			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<Spinner running={isProcessing} width={256} height={128} />
 				{content}
 				{ props.feedback ? <FeedbackButtons vertical
-					id={id+'_feedback'}
+					id={id.current+'_feedback'}
 					style={{
 						position: 'absolute',
 						right: '4px',
@@ -277,7 +277,7 @@ const ImageQuestion = ( props ) => {
 					}}
 				/> : null }
 				<ResponseVisualizer
-					buttonLabel="Answers" id={id}
+					buttonLabel="Answers" id={id.current}
 					info={IMAGE_QUESTION_SUBMISSION}
 					data={{
 						question: props.question,
@@ -302,9 +302,9 @@ const ImageQuestion = ( props ) => {
 					}}>{props.t('reset')}</Button> : null }
 					{renderSubmitButton()}
 					{ props.solution ? solutionButton : null }
-					{ props.chat ? <ChatButton for={id} /> : null }
+					{ props.chat ? <ChatButton for={id.current} /> : null }
 				</div>
-				<GradeFeedbackRenderer for={id} points={props.points} />
+				<GradeFeedbackRenderer for={id.current} points={props.points} />
 			</Card.Body>
 		</Card>
 	);
