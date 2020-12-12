@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -71,7 +71,7 @@ function createColorScale( length ) {
 */
 const MatchListQuestion = ( props ) => {
 	const { question, elements, hints } = props;
-	const id = props.id || uid( props );
+	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 
 	const [ leftSelected, setLeftSelected ] = useState( null );
@@ -100,7 +100,7 @@ const MatchListQuestion = ( props ) => {
 	const logHint = ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
-			id: id,
+			id: id.current,
 			type: MATCH_LIST_OPEN_HINT,
 			value: idx
 		});
@@ -129,7 +129,7 @@ const MatchListQuestion = ( props ) => {
 			solutionColorScale = colorScale;
 		}
 		session.log({
-			id: id,
+			id: id.current,
 			type: MATCH_LIST_TOGGLE_SOLUTION,
 			value: null
 		});
@@ -157,7 +157,7 @@ const MatchListQuestion = ( props ) => {
 		setSubmitted( true );
 		const newAnswers = answers.map( ans => ({ a: ans.a, b: ans.b }) );
 		session.log({
-			id: id,
+			id: id.current,
 			type: MATCH_LIST_SUBMISSION,
 			value: JSON.stringify( newAnswers )
 		});
@@ -168,7 +168,7 @@ const MatchListQuestion = ( props ) => {
 			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
 		}
 		return (
-			<Tooltip id={`${id}_tooltip`} tooltip={props.t('submit-tooltip')} >
+			<Tooltip id={`${id.current}_tooltip`} tooltip={props.t('submit-tooltip')} >
 				<div style={{ display: 'inline-block' }}>
 					<Button
 						className="submit-button"
@@ -201,7 +201,7 @@ const MatchListQuestion = ( props ) => {
 	}
 	const unfinished = answers.length !== nComplete;
 	return (
-		<div id={id} className={`match-list-question-container ${props.className}`} style={props.style} >
+		<div id={id.current} className={`match-list-question-container ${props.className}`} style={props.style} >
 			{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
 			<i style={{ fontSize: '0.8rem' }} >{props.t('instructions', { complete: nComplete })}</i>
 			<div className="match-list-question-lists">
@@ -255,13 +255,13 @@ const MatchListQuestion = ( props ) => {
 				{
 					props.chat ?
 						<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-							<ChatButton for={id} />
+							<ChatButton for={id.current} />
 						</div> : null
 				}
 				<ResponseVisualizer
 					buttonLabel={props.t('answers')}
 					info={MATCH_LIST_SUBMISSION}
-					id={id}
+					id={id.current}
 					data={{
 						type: 'matches',
 						left: props.elements.map( x => x.a ),
@@ -274,9 +274,9 @@ const MatchListQuestion = ( props ) => {
 			</div>
 			{ props.feedback ? <FeedbackButtons
 				style={{ marginTop: '5px', marginRight: '8px' }}
-				id={id+'_feedback'}
+				id={id.current+'_feedback'}
 			/> : null }
-			<GradeFeedbackRenderer for={id} points={props.points} />
+			<GradeFeedbackRenderer for={id.current} points={props.points} />
 		</div>
 	);
 };
