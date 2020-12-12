@@ -1617,14 +1617,20 @@ class Session {
 	* @param {Object} form - form data
 	* @param {string} form.email - email address
 	* @param {string} form.password - user password
+	* @param {string} form.token - two-factor authentication token
 	* @param {Function} clbk - callback function
 	* @returns {void}
 	*/
 	login = ( form, clbk ) => {
-		axios.post( this.server+'/login', form )
+		let url;
+		if ( form.token ) {
+			url = this.server+'/login_tfa';
+		} else {
+			url = this.server+'/login';
+		}
+		axios.post( url, form )
 		.then( response => {
 			const { token, id, message } = response.data;
-
 			JWT = {
 				token,
 				id

@@ -39,7 +39,9 @@ class Login extends Component {
 		this.state = {
 			email: '',
 			password: '',
-			show: props.show
+			show: props.show,
+			showTFA: false,
+			token: ''
 		};
 	}
 
@@ -99,6 +101,15 @@ class Login extends Component {
 			password: this.state.password,
 			email: this.state.email
 		};
+		if ( this.state.showTFA ) {
+			form.token = this.state.token;
+			const session = this.context;
+			return session.login( form, ( err, res, body ) => {
+				if ( !err && body.message === 'ok' ) {
+					this.props.onClose();
+				}
+			});
+		}
 		if ( form.email === '' ) {
 			debug( 'Email input field is empty, show message...' );
 			this.setState({
@@ -122,6 +133,10 @@ class Login extends Component {
 					const { message, type } = body;
 					if ( message === 'ok' ) {
 						this.props.onClose();
+					} else if ( message === 'finish-login-via-tfa' ) {
+						this.setState({
+							showTFA: true
+						});
 					} else {
 						this.setState({
 							showInputOverlay: true,
@@ -156,6 +171,7 @@ class Login extends Component {
 								onChange={this.handleInputChange}
 								onKeyPress={this.handleKeyPress}
 								ref={( input ) => { this.emailInput = input; }}
+								disabled={this.state.showTFA}
 							/>
 						</FormGroup>
 						<FormGroup controlId="form-password" >
@@ -168,8 +184,21 @@ class Login extends Component {
 								onChange={this.handleInputChange}
 								onKeyPress={this.handleKeyPress}
 								ref={( input ) => { this.passwordInput = input; }}
+								disabled={this.state.showTFA}
 							/>
 						</FormGroup>
+						{this.state.showTFA ?
+							<FormGroup controlId="form-tfa" >
+								<FormLabel>{this.props.t( 'enter-tfa-token' )}</FormLabel>
+								<FormControl
+									name="token"
+									type="text"
+									placeholder={this.props.t( 'enter-token' )}
+									onChange={this.handleInputChange}
+									onKeyPress={this.handleKeyPress}
+								/>
+							</FormGroup> :
+							null}
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
