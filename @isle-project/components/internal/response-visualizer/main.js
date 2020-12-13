@@ -22,7 +22,6 @@ import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
 	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from '@isle-project/constants/events.js';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
-import './load_translations.js';
 import './response_visualizer.css';
 
 
@@ -531,4 +530,4 @@ ResponseVisualizer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'response-visualizer' )( ResponseVisualizer );
+export default withTranslation( 'ResponseVisualizer' )( ResponseVisualizer );
