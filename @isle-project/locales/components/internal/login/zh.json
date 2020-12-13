@@ -1,0 +1,14 @@
+{
+	"close": "关闭",
+	"email": "电子邮件",
+	"enter-email": "请输入您的电子邮件地址。",
+	"enter-email-before-password-reset": "在申请新密码之前，请输入您的电子邮件地址。",
+	"enter-password": "输入你的密码。",
+	"enter-tfa-token": "请从您的 authenticator设备中输入一个6位数的代码。",
+	"enter-token": "输入确认码...",
+	"forgot-password": "忘记密码？",
+	"invalid": "无效",
+	"login": "登入",
+	"password": "密码",
+	"signin": "登录"
+}

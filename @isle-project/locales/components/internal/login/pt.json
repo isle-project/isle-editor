@@ -1,0 +1,14 @@
+{
+	"close": "Fechar",
+	"email": "Email",
+	"enter-email": "Digite seu endereço de e-mail.",
+	"enter-email-before-password-reset": "Por favor, digite seu endereço de e-mail antes de solicitar uma nova senha.",
+	"enter-password": "Digite sua senha.",
+	"enter-tfa-token": "Por favor, digite um código de 6 dígitos do dispositivo your authenticator:",
+	"enter-token": "Digite o código de confirmação...",
+	"forgot-password": "Esqueceu a senha?",
+	"invalid": "Não válido",
+	"login": "Login",
+	"password": "Senha",
+	"signin": "Faça o login"
+}

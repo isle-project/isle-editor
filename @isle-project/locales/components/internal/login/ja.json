@@ -1,0 +1,14 @@
+{
+	"close": "クローズ",
+	"email": "電子メール",
+	"enter-email": "メールアドレスを入力してください。",
+	"enter-email-before-password-reset": "新しいパスワードを要求する前に、メールアドレスを入力してください。",
+	"enter-password": "パスワードを入力してください。",
+	"enter-tfa-token": "お使いの認証装置から6桁のコードを入力してください。",
+	"enter-token": "確認コードを入力して...",
+	"forgot-password": "パスワードをお忘れですか？",
+	"invalid": "有効ではありません。",
+	"login": "ログイン",
+	"password": "パスワード",
+	"signin": "サインイン"
+}

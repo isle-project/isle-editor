@@ -1,0 +1,14 @@
+{
+	"close": "Fermer",
+	"email": "Courriel",
+	"enter-email": "Entrez votre adresse électronique.",
+	"enter-email-before-password-reset": "Veuillez saisir votre adresse électronique avant de demander un nouveau mot de passe.",
+	"enter-password": "Entrez votre mot de passe.",
+	"enter-tfa-token": "Veuillez entrer un code à 6 chiffres provenant de l'appareil your authenticator :",
+	"enter-token": "Entrez le code de confirmation...",
+	"forgot-password": "Mot de passe oublié ?",
+	"invalid": "Non valable",
+	"login": "Connexion",
+	"password": "Mot de passe",
+	"signin": "S'identifier"
+}

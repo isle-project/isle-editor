@@ -1,0 +1,14 @@
+{
+	"close": "Close",
+	"email": "Email",
+	"enter-email": "Podaj swój adres e-mail.",
+	"enter-email-before-password-reset": "Proszę podać swój adres e-mail przed poproszeniem o nowe hasło.",
+	"enter-password": "Wpisz swoje hasło.",
+	"enter-tfa-token": "Proszę wprowadzić 6-cyfrowy kod z urządzenia uwierzytelniającego:",
+	"enter-token": "Wpisz kod potwierdzenia...",
+	"forgot-password": "Zapomniałeś hasła?",
+	"invalid": "Nieważne",
+	"login": "Login",
+	"password": "Hasło",
+	"signin": "Zaloguj się"
+}
