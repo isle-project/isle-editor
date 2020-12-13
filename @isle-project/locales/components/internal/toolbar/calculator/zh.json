@@ -1,0 +1,12 @@
+{
+	"answer": "答案",
+	"basic": "基础",
+	"calculator": "计算器",
+	"copied": "抄袭",
+	"copied-message": "结果复制到剪贴板",
+	"copy": "复制",
+	"expand": "展开",
+	"malformed-expression": "畸形表达",
+	"too-many-closing-parens": "结尾括号太多",
+	"too-many-opening-parens": "开头括号太多"
+}

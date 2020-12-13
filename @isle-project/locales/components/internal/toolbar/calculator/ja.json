@@ -1,0 +1,12 @@
+{
+	"answer": "回答",
+	"basic": "基本的なこと",
+	"calculator": "計算機",
+	"copied": "コピーされた",
+	"copied-message": "結果をクリップボードにコピー",
+	"copy": "コピー",
+	"expand": "展開",
+	"malformed-expression": "変形した表現",
+	"too-many-closing-parens": "閉じ括弧が多すぎる",
+	"too-many-opening-parens": "開き括弧が多すぎる"
+}

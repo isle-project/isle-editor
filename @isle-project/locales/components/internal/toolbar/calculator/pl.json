@@ -1,0 +1,12 @@
+{
+	"answer": "Odpowiedź",
+	"basic": "Podstawowe",
+	"calculator": "Kalkulator",
+	"copied": "Skopiowany",
+	"copied-message": "Wynik skopiowany do schowka",
+	"copy": "Kopia",
+	"expand": "Rozwiń",
+	"malformed-expression": "Niewłaściwe sformułowanie",
+	"too-many-closing-parens": "Zbyt wiele nawiasów zamykających",
+	"too-many-opening-parens": "Zbyt wiele nawiasów otwierających"
+}
