@@ -11,7 +11,7 @@ addResources( 'Toolbar' );
 
 // MAIN //
 
-const Toolbar = Loadable( () => import( './main.js' ) );
+const Toolbar = Loadable( () => import( /* webpackChunkName: "Toolbar" */ './main.js' ) );
 
 
 // EXPORTS //
