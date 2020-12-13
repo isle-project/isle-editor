@@ -17,7 +17,6 @@ import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } 
 import Confused from '-!svg-react-loader!./img/confused.svg';
 import Understood from '-!svg-react-loader!./img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./img/feedback.svg';
-import './load_translations.js';
 import './feedback.css';
 
 
@@ -276,4 +275,4 @@ FeedbackButtons.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'feedback' )( FeedbackButtons );
+export default withTranslation( 'Feedback' )( FeedbackButtons );

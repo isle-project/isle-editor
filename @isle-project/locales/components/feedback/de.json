@@ -1,0 +1,19 @@
+{
+	"cancel": "Abbrechen",
+	"cannot-follow": "Ich kann der Logik nicht folgen",
+	"enter-text": "Text eingeben",
+	"feedback": "Feedback",
+	"give-custom-feedback": "Detailliertes Feedback geben",
+	"have-feedback": "Ich habe eine Rückmeldung.",
+	"makes-sense": "Ergibt Sinn.",
+	"needs-detailed-explanation": "Dies bedarf einer detaillierteren Erklärung",
+	"no-understanding": "Das verstehe ich überhaupt nicht",
+	"not-clear": "Das ist mir nicht klar.",
+	"responses": "Antworten",
+	"submit": "Einreichen",
+	"submit-confused-message": "Es tut uns leid, das zu hören. Dein Feedback hilft uns, das Material zu verbessern.",
+	"submit-custom-message": "Danke, dass Du Dir die Zeit genommen haben, uns Feedback zu schicken.",
+	"submit-understood-message": "Schön, das zu hören! Vielen Dank für Deine Rückmeldung.",
+	"textarea-legend": "Ich habe folgende Kommentare (optional):",
+	"thank-you": "Danke Dir!"
+}

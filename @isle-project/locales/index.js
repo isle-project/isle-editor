@@ -12,6 +12,7 @@ const TRANSLATIONS = {
 	'de': {
 		'Bibliography': () => import( './components/bibliography/de.json' ),
 		'DataExplorer': () => import( './components/data-explorer/de.json' ),
+		'Feedback': () => import( './components/feedback/de.json' ),
 		'VideoPlayer': () => import( './components/video-player/de.json' ),
 		'WordCloud': () => import( './components/word-cloud/de.json' ),
 		'Login': () => import( './components/internal/login/de.json' ),
@@ -28,6 +29,7 @@ const TRANSLATIONS = {
 	'en': {
 		'Bibliography': () => import( './components/bibliography/en.json' ),
 		'DataExplorer': () => import( './components/data-explorer/en.json' ),
+		'Feedback': () => import( './components/feedback/en.json' ),
 		'VideoPlayer': () => import( './components/video-player/en.json' ),
 		'WordCloud': () => import( './components/word-cloud/en.json' ),
 		'Login': () => import( './components/internal/login/en.json' ),
@@ -44,6 +46,7 @@ const TRANSLATIONS = {
 	'es': {
 		'Bibliography': () => import( './components/bibliography/es.json' ),
 		'DataExplorer': () => import( './components/data-explorer/es.json' ),
+		'Feedback': () => import( './components/feedback/es.json' ),
 		'VideoPlayer': () => import( './components/video-player/es.json' ),
 		'WordCloud': () => import( './components/word-cloud/es.json' ),
 		'Login': () => import( './components/internal/login/es.json' ),
