@@ -11,7 +11,6 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from '@isle-project/constants/events.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -208,4 +207,4 @@ ChatButton.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'chat-button' )( ChatButton );
+export default withTranslation( 'ChatButton' )( ChatButton );
