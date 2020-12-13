@@ -41,7 +41,6 @@ import { CREATED_GROUPS, DELETED_GROUPS } from '@isle-project/constants/events.j
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -681,4 +680,4 @@ TextEditor.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'text-editor' )( TextEditor );
+export default withTranslation( 'TextEditor' )( TextEditor );

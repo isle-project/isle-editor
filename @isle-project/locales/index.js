@@ -21,7 +21,8 @@ const TRANSLATIONS = {
 		'Calculator': () => import( './components/internal/toolbar/calculator/de.json' ),
 		'Queue': () => import( './components/internal/toolbar/queue/de.json' ),
 		'Pages': () => import( './components/pages/de.json' ),
-		'Sketchpad': () => import( './components/sketchpad/de.json' )
+		'Sketchpad': () => import( './components/sketchpad/de.json' ),
+		'TextEditor': () => import( './components/text-editor/de.json' )
 	},
 	'en': {
 		'Bibliography': () => import( './components/bibliography/en.json' ),
@@ -35,7 +36,8 @@ const TRANSLATIONS = {
 		'Calculator': () => import( './components/internal/toolbar/calculator/en.json' ),
 		'Queue': () => import( './components/internal/toolbar/queue/en.json' ),
 		'Pages': () => import( './components/pages/en.json' ),
-		'Sketchpad': () => import( './components/sketchpad/en.json' )
+		'Sketchpad': () => import( './components/sketchpad/en.json' ),
+		'TextEditor': () => import( './components/text-editor/en.json' )
 	},
 	'es': {
 		'Bibliography': () => import( './components/bibliography/es.json' ),
@@ -49,7 +51,8 @@ const TRANSLATIONS = {
 		'Calculator': () => import( './components/internal/toolbar/calculator/es.json' ),
 		'Queue': () => import( './components/internal/toolbar/queue/es.json' ),
 		'Pages': () => import( './components/pages/es.json' ),
-		'Sketchpad': () => import( './components/sketchpad/es.json' )
+		'Sketchpad': () => import( './components/sketchpad/es.json' ),
+		'TextEditor': () => import( './components/text-editor/es.json' )
 	}
 };
 
