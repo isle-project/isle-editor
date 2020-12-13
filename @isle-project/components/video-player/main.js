@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import ReactPlayer from 'react-player';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
@@ -209,6 +210,9 @@ class Video extends Component {
 	}
 
 	render() {
+		if ( !this.props.url ) {
+			return <Alert variant="danger" >{this.props.t('url-missing')}</Alert>;
+		}
 		let props = this.props;
 		const style = {
 			width: props.width,

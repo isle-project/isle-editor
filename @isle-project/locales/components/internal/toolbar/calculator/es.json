@@ -1,0 +1,12 @@
+{
+	"answer": "Respuesta",
+	"basic": "Básico",
+	"calculator": "Calculadora",
+	"copied": "Copiado",
+	"copied-message": "Resultado copiado al portapapeles",
+	"copy": "Copia",
+	"expand": "Expandir",
+	"malformed-expression": "Expresión malformada",
+	"too-many-closing-parens": "Demasiados paréntesis de cierre",
+	"too-many-opening-parens": "Demasiados paréntesis de apertura"
+}

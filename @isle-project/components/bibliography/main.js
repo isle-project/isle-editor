@@ -1,12 +1,11 @@
 // MODULES //
 
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
 import SessionContext from '@isle-project/session/context.js';
-import './load_translations.js';
 
 
 // FUNCTIONS //
@@ -28,7 +27,7 @@ function generateAuthorString( author ) {
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
-const Bibliography = ({ title, t }) => {
+const Bibliography = ({ title, className, style, t }) => {
 	const session = useContext( SessionContext );
 	const references = session.config.references;
 
@@ -76,7 +75,7 @@ const Bibliography = ({ title, t }) => {
 		out.push( li );
 	}
 	return (
-		<div className={this.props.className} style={this.props.style} >
+		<div className={`outer-element ${className}`} style={style} >
 			{title ? <h2>{title}</h2> : <h2>{t('references')}</h2>}
 			<ol>
 				{out}
@@ -103,4 +102,4 @@ Bibliography.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'bibliography' )( Bibliography );
+export default withTranslation( 'Bibliography' )( Bibliography );

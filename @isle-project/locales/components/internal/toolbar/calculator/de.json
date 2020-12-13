@@ -1,0 +1,12 @@
+{
+	"answer": "Resultat",
+	"basic": "Basis",
+	"calculator": "Taschenrechner",
+	"copied": "Kopiert",
+	"copied-message": "Result in die Zwischenablage kopiert",
+	"copy": "Kopiere",
+	"expand": "Mehr",
+	"malformed-expression": "Fehlerhafter Ausdruck",
+	"too-many-closing-parens": "Zu viele schließende Klammern",
+	"too-many-opening-parens": "Zu viele öffnende Klammern"
+}

@@ -18,7 +18,6 @@ import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
-import './load_translations.js';
 import './pages.css';
 
 
@@ -319,4 +318,4 @@ Pages.contextType = SessionContext;
 
 export const PurePages = Pages;
 
-export default withTranslation( 'pages' )( Pages );
+export default withTranslation( 'Pages' )( Pages );

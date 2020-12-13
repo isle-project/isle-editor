@@ -72,7 +72,6 @@ const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
 const SaveModal = Loadable( () => import( './save_modal.js' ) );
 import SketchpadContextMenu from './contextmenu.js';
 import guide from './guide.json';
-import './load_translations.js';
 import './sketchpad.css';
 import './pdf_viewer.css';
 
@@ -2931,4 +2930,4 @@ Sketchpad.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'sketchpad' )( Sketchpad );
+export default withTranslation( 'Sketchpad' )( Sketchpad );

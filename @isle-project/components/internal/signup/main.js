@@ -17,7 +17,6 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import pick from '@stdlib/utils/pick';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
-import './load_translations.js';
 
 
 // VARIABLES //

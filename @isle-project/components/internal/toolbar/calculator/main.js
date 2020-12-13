@@ -20,7 +20,6 @@ import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
 import evaluate from './shunting_yard.js';
-import './load_translations.js';
 import './calculator.css';
 
 
@@ -360,4 +359,4 @@ Calculator.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'calculator' )( Calculator );
+export default withTranslation( 'Calculator' )( Calculator );

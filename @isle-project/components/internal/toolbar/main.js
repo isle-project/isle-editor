@@ -22,7 +22,6 @@ import Calculator from './calculator';
 import Engagement from './engagement';
 import Ticketing from './ticketing';
 import Queue from './queue';
-import './load_translations.js';
 import './toolbar.css';
 
 
@@ -501,4 +500,4 @@ Toolbar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Toolbar );
+export default withTranslation( 'Toolbar' )( Toolbar );

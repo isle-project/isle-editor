@@ -1,7 +1,7 @@
 // MODULES //
 
 import Loadable from '@isle-project/components/internal/loadable';
-
+console.log( 'HAS TYPEWRITER' );
 
 // MAIN //
 

@@ -3,6 +3,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { RESOURCES } from '@isle-project/locales';
 
 
 // MAIN //
@@ -15,9 +16,11 @@ i18n.use( LanguageDetector )
 		fallbackLng: 'en',
 		ns: [ 'components' ],
 		defaultNS: 'components',
-		resources: {},
+		resources: RESOURCES,
 		react: {
-			wait: true
+			bindI18n: 'languageChanged',
+			bindI18nStore: 'added',
+			wait: false
 		},
 		interpolation: {
 			escapeValue: false // Not needed for React!

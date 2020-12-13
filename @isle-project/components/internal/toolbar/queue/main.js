@@ -20,7 +20,6 @@ import SessionContext from '@isle-project/session/context.js';
 import { ENTER_QUEUE } from '@isle-project/constants/actions.js';
 import { RECEIVED_QUEUE_QUESTIONS } from '@isle-project/constants/events.js';
 import 'react-table/react-table.css';
-import './load_translations.js';
 import './queue.css';
 
 
@@ -320,4 +319,4 @@ Queue.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'queue' )( Queue );
+export default withTranslation( 'Queue' )( Queue );

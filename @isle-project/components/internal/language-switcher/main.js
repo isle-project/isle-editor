@@ -18,12 +18,12 @@
 // MODULES //
 
 import React, { Fragment, useState } from 'react';
-import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { changeLanguage } from '@isle-project/locales';
 import './language_switcher.css';
 import './load_translations.js';
 
@@ -35,9 +35,9 @@ const SelectModal = ( props ) => {
 		return null;
 	}
 	const changeLanguageFactory = ( lng ) => {
-		return async () => {
+		return () => {
 			props.onHide();
-			await i18next.changeLanguage( lng );
+			changeLanguage( lng );
 		};
 	};
 	const { t } = props;
