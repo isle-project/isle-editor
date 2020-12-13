@@ -61,7 +61,6 @@ import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
-import './load_translations.js';
 import './data_explorer.css';
 
 
@@ -1922,4 +1921,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'data-explorer' )( DataExplorer );
+export default withTranslation( 'DataExplorer' )( DataExplorer );

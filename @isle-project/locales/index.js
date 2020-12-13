@@ -11,6 +11,7 @@ const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
 		'Bibliography': () => import( './components/bibliography/de.json' ),
+		'DataExplorer': () => import( './components/data-explorer/de.json' ),
 		'VideoPlayer': () => import( './components/video-player/de.json' ),
 		'WordCloud': () => import( './components/word-cloud/de.json' ),
 		'Signup': () => import( './components/internal/signup/de.json' ),
@@ -22,6 +23,7 @@ const TRANSLATIONS = {
 	},
 	'en': {
 		'Bibliography': () => import( './components/bibliography/en.json' ),
+		'DataExplorer': () => import( './components/data-explorer/en.json' ),
 		'VideoPlayer': () => import( './components/video-player/en.json' ),
 		'WordCloud': () => import( './components/word-cloud/en.json' ),
 		'Signup': () => import( './components/internal/signup/en.json' ),
@@ -33,6 +35,7 @@ const TRANSLATIONS = {
 	},
 	'es': {
 		'Bibliography': () => import( './components/bibliography/es.json' ),
+		'DataExplorer': () => import( './components/data-explorer/es.json' ),
 		'VideoPlayer': () => import( './components/video-player/es.json' ),
 		'WordCloud': () => import( './components/word-cloud/es.json' ),
 		'Signup': () => import( './components/internal/signup/es.json' ),
