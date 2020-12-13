@@ -5,7 +5,7 @@ import Loadable from '@isle-project/components/internal/loadable';
 
 // MAIN //
 
-const LanguageSwitcher = Loadable( () => import( './main.js' ) );
+const LanguageSwitcher = Loadable( () => import( /* webpackChunkName: "LanguageSwitcher" */ './main.js' ) );
 
 
 // EXPORTS //

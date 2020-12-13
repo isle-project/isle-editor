@@ -11,7 +11,7 @@ addResources( 'Signup' );
 
 // MAIN //
 
-const Signup = Loadable( () => import( './main.js' ) );
+const Signup = Loadable( () => import( /* webpackChunkName: "Signup" */ './main.js' ) );
 
 
 // EXPORTS //

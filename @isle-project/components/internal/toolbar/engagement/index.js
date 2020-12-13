@@ -5,7 +5,7 @@ import Loadable from '@isle-project/components/internal/loadable';
 
 // MAIN //
 
-const Engagement = Loadable( () => import( './main.js' ) );
+const Engagement = Loadable( () => import( /* webpackChunkName: "Engagement" */ './main.js' ) );
 
 
 // EXPORTS //

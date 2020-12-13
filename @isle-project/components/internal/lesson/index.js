@@ -5,7 +5,7 @@ import Loadable from '@isle-project/components/internal/loadable';
 
 // MAIN //
 
-const Lesson = Loadable( () => import( './main.js' ) );
+const Lesson = Loadable( () => import( /* webpackChunkName: "Lesson" */ './main.js' ) );
 
 
 // EXPORTS //
