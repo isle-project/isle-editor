@@ -1,0 +1,6 @@
+{
+	"and": " et",
+	"key-not-found": "La clé de citation ne se trouve pas dans les références.",
+	"no-author": "Le champ auteur ne doit pas être vide.",
+	"no-references": "Aucune \"référence\" n'a été trouvée dans le préambule de la leçon."
+}
