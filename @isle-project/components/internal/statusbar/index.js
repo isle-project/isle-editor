@@ -1,13 +1,19 @@
 // MODULES //
 
 import Loadable from '@isle-project/components/internal/loadable';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'StatusBar' );
 
 
 // MAIN //
 
-const Statusbar = Loadable( () => import( './main.js' ) );
+const StatusBar = Loadable( () => import( /* webpackChunkName: "StatusBar" */ './main.js' ) );
 
 
 // EXPORTS //
 
-export default Statusbar;
+export default StatusBar;

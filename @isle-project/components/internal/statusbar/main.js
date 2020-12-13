@@ -31,7 +31,6 @@ import GroupManager from './group-manager';
 import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
-import './load_translations.js';
 const InstructorView = lazy( () => import( '@isle-project/components/internal/statusbar/instructor-view' ) );
 
 
@@ -602,4 +601,4 @@ StatusBar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( StatusBar );
+export default withTranslation( 'StatusBar' )( StatusBar );
