@@ -14,7 +14,6 @@ import isFunction from '@stdlib/assert/is-function';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
-import './load_translations.js';
 
 
 // MAIN //
@@ -137,4 +136,4 @@ DataSampler.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'data-sampler' )( DataSampler );
+export default withTranslation( 'DataSampler' )( DataSampler );
