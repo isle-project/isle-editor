@@ -346,9 +346,9 @@ class Session {
 			// Log session data to database in regular interval:
 			this.logSessionInterval = setInterval( this.interval, LOG_SESSION_INTERVAL );
 		}
-		i18next.addResources( 'de', 'components', TRANSLATION.DE );
-		i18next.addResources( 'en', 'components', TRANSLATION.EN );
-		i18next.addResources( 'es', 'components', TRANSLATION.ES );
+		i18next.addResources( 'de', 'session', TRANSLATION.DE );
+		i18next.addResources( 'en', 'session', TRANSLATION.EN );
+		i18next.addResources( 'es', 'session', TRANSLATION.ES );
 	}
 
 	/**
@@ -1081,7 +1081,7 @@ class Session {
 		})
 		.catch( error => {
 			this.addNotification({
-				title: i18next.t( 'error-encountered' ),
+				title: i18next.t( 'session:error-encountered' ),
 				message: error.message,
 				level: 'error',
 				position: 'tl'
@@ -1158,7 +1158,7 @@ class Session {
 			})
 			.catch( error => {
 				this.addNotification({
-					title: i18next.t( 'error-encountered' ),
+					title: i18next.t( 'session:error-encountered' ),
 					message: error.message,
 					level: 'error',
 					position: 'tl'
@@ -1415,7 +1415,7 @@ class Session {
 			})
 			.catch( err => {
 				return this.addNotification({
-					title: i18next.t( 'request-failed' ),
+					title: i18next.t( 'session:request-failed' ),
 					message: err.message,
 					level: 'error',
 					position: 'tl'
@@ -1545,8 +1545,8 @@ class Session {
 		axios.post( this.server+'/create_user', data )
 		.then( () => {
 			this.addNotification({
-				title: i18next.t( 'user-created' ),
-				message: i18next.t( 'user-created-message' ),
+				title: i18next.t( 'session:user-created' ),
+				message: i18next.t( 'session:user-created-message' ),
 				level: 'success',
 				position: 'tl'
 			});
@@ -1554,7 +1554,7 @@ class Session {
 		})
 		.catch( ( err ) => {
 			this.addNotification({
-				title: i18next.t( 'user-not-created' ),
+				title: i18next.t( 'session:user-not-created' ),
 				message: err.response.data,
 				level: 'error',
 				position: 'tl'
@@ -1579,8 +1579,8 @@ class Session {
 		this.userRightsQuestionPosed = false;
 		this.reset();
 		this.addNotification({
-			title: i18next.t( 'logout-title' ),
-			message: i18next.t( 'logout-message' ),
+			title: i18next.t( 'session:logout-title' ),
+			message: i18next.t( 'session:logout-message' ),
 			level: 'success',
 			position: 'tl'
 		});
@@ -1681,15 +1681,15 @@ class Session {
 			.then( () => {
 				debug( 'GET: /forgot_password' );
 				this.addNotification({
-					title: i18next.t( 'new-password-title' ),
-					message: i18next.t( 'new-password-message' ),
+					title: i18next.t( 'session:new-password-title' ),
+					message: i18next.t( 'session:new-password-message' ),
 					level: 'success',
 					position: 'tl'
 				});
 			})
 			.catch( ( error ) => {
 				this.addNotification({
-					title: i18next.t( 'new-password-title' ),
+					title: i18next.t( 'session:new-password-title' ),
 					message: error.message,
 					level: 'error',
 					position: 'tl'
@@ -1761,8 +1761,8 @@ class Session {
 			debug( 'Received credentials for login...' );
 			if ( !silent ) {
 				this.addNotification({
-					title: i18next.t( 'loggedin' ),
-					message: i18next.t( 'loggedin-message' ),
+					title: i18next.t( 'session:loggedin' ),
+					message: i18next.t( 'session:loggedin-message' ),
 					level: 'success',
 					position: 'tl'
 				});
@@ -1904,7 +1904,7 @@ class Session {
 			namespaceID: this.namespaceID
 		}).then( ( res ) => {
 			this.addNotification({
-				title: i18next.t( 'grades-saved' ),
+				title: i18next.t( 'session:grades-saved' ),
 				message: res.data.message,
 				level: 'success',
 				position: 'tl'
@@ -1935,7 +1935,7 @@ class Session {
 			message
 		}).then( ( res ) => {
 			this.addNotification({
-				title: i18next.t( 'message-saved' ),
+				title: i18next.t( 'session:message-saved' ),
 				message: res.data.message,
 				level: 'success',
 				position: 'tl'
@@ -2119,8 +2119,8 @@ class Session {
 				}
 			}
 			this.addNotification({
-				title: i18next.t( 'deleted' ),
-				message: i18next.t( 'deleted-message' ),
+				title: i18next.t( 'session:deleted' ),
+				message: i18next.t( 'session:deleted-message' ),
 				level: 'success',
 				position: 'tl'
 			});
@@ -2128,7 +2128,7 @@ class Session {
 		})
 		.catch( error => {
 			this.addNotification({
-				title: i18next.t( 'error-encountered' ),
+				title: i18next.t( 'session:error-encountered' ),
 				message: error.message,
 				level: 'error',
 				position: 'tl'
@@ -2148,7 +2148,7 @@ class Session {
 		const onLogged = ( err, res ) => {
 			if ( err ) {
 				return this.addNotification({
-					title: i18next.t( 'error-encountered' ),
+					title: i18next.t( 'session:error-encountered' ),
 					message: err.message,
 					level: 'error',
 					position: 'tl'
@@ -2240,12 +2240,12 @@ class Session {
 		}
 		if ( isEmptyObject( this.user ) ) {
 			this.addNotification({
-				title: i18next.t( 'file-upload' ),
-				message: i18next.t( 'file-upload-signin-required' ),
+				title: i18next.t( 'session:file-upload' ),
+				message: i18next.t( 'session:file-upload-signin-required' ),
 				level: 'warning',
 				position: 'tl'
 			});
-			return callback( new Error( i18next.t( 'file-upload-signin-required' ) ) );
+			return callback( new Error( i18next.t( 'session:file-upload-signin-required' ) ) );
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.open( 'POST', this.server+'/upload_file', true );
@@ -2269,7 +2269,7 @@ class Session {
 				}
 				if ( showNotification ) {
 					this.addNotification({
-						title: i18next.t( 'file-upload' ),
+						title: i18next.t( 'session:file-upload' ),
 						message,
 						level,
 						position: 'tl'
