@@ -1,0 +1,14 @@
+{
+	"cohort": "Coorte",
+	"mark-and-remove": "Segnare la domanda come risposta e rimuovere",
+	"name": "Nome",
+	"no-questions": "Al momento non ci sono domande in coda.",
+	"queue": "Coda",
+	"queue-prompt": "Potete inviare una domanda qui sotto e qualcuno sarà con voi a breve!",
+	"queue-status": "La tua domanda: <1>{{{domanda}}}</1><br /> Attualmente sei nella posizione <4>{{{spot}}</4> nella coda.<br /> Ci sono <8>{{dimensione}}</8> individui nella coda.",
+	"queue-size": "(ci sono attualmente {{n}}} individui in coda)",
+	"queue-start-chat": "Inizia a chattare con lo studente",
+	"question": "Domanda",
+	"remove-myself-from-queue": "Toglimi dalla coda",
+	"submit-question": "Invia domanda"
+}

@@ -1,0 +1,14 @@
+{
+	"cohort": "Kohorta",
+	"mark-and-remove": "Zaznaczyć pytanie, na które udzielono odpowiedzi i usunąć",
+	"name": "Nazwa",
+	"no-questions": "W tej chwili nie ma żadnych pytań w kolejce.",
+	"queue": "Kolejka",
+	"queue-prompt": "Możesz zadać pytanie poniżej, a ktoś wkrótce będzie z tobą!",
+	"queue-status": "Twoje pytanie: <1>{{pytanie}}</1><br /> Jesteś obecnie na pozycji <4>{{{punkt}}</4> w kolejce.<br /> W kolejce jest <8>{{rozmiar}}</8> osobnik/y.",
+	"queue-size": "(są obecnie {{n}} osoby w kolejce)",
+	"queue-start-chat": "Zacznij rozmowę z uczniem",
+	"question": "Pytanie",
+	"remove-myself-from-queue": "Usuń mnie z kolejki",
+	"submit-question": "Złóż pytanie"
+}

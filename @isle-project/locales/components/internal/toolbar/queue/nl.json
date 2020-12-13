@@ -1,0 +1,14 @@
+{
+	"cohort": "Cohort",
+	"mark-and-remove": "Markeer de vraag als beantwoord en verwijder",
+	"name": "Naam",
+	"no-questions": "Er staan momenteel geen vragen in de rij.",
+	"queue": "Wachtrij",
+	"queue-prompt": "U kunt hieronder een vraag stellen en iemand zal binnenkort bij u zijn!",
+	"queue-status": "Uw vraag: <1>{{vraag}}</1><br /> U staat momenteel op positie <4>{{{spot}}</4> in de wachtrij.<br /> Er staan <8>{{grote}}</8> individu(en) in de wachtrij.",
+	"queue-size": "(er staan op dit moment {{n}) individu(en) in de wachtrij)",
+	"queue-start-chat": "Start chat met student",
+	"question": "Vraag",
+	"remove-myself-from-queue": "Haal me uit de rij",
+	"submit-question": "Vraag stellen"
+}
