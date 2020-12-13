@@ -16,7 +16,6 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import SessionContext from '@isle-project/session/context.js';
-import './load_translations.js';
 import './login.css';
 
 
@@ -248,4 +247,4 @@ Login.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'login' )( Login );
+export default withTranslation( 'Login' )( Login );

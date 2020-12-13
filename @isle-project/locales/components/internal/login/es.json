@@ -1,0 +1,14 @@
+{
+	"close": "Cerca",
+	"email": "Email",
+	"enter-email": "Introduzca su dirección de correo electrónico.",
+	"enter-email-before-password-reset": "Por favor, introduzca su dirección de correo electrónico antes de solicitar una nueva contraseña.",
+	"enter-password": "Introduzca su contraseña.",
+	"enter-tfa-token": "Por favor, introduzca un código de 6 dígitos de su dispositivo de autentificación:",
+	"enter-token": "Introduzca el código de confirmación...",
+	"forgot-password": "¿Olvidó su contraseña?",
+	"invalid": "No es válida",
+	"login": "Login",
+	"password": "Contraseña",
+	"signin": "Firmar"
+}
