@@ -1,0 +1,7 @@
+{
+	"join-chat": "加入聊天",
+	"join-chat-id": "用ID{{id}}加入聊天",
+	"leave-chat-id": "用ID{{id}}留下聊天记录",
+	"leave-chat": "留下聊天记录",
+	"toggle-chat": "切换聊天"
+}

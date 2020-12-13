@@ -1,0 +1,7 @@
+{
+	"join-chat": "Rejoindre le chat",
+	"join-chat-id": "Rejoindre le chat avec ID {{id}}",
+	"leave-chat-id": "Quitter le chat avec ID {{id}}",
+	"leave-chat": "Quitter le chat",
+	"toggle-chat": "Toggle Chat"
+}
