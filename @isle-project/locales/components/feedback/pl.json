@@ -1,0 +1,19 @@
+{
+	"cancel": "Anuluj",
+	"cannot-follow": "Nie mogę podążać za logiką.",
+	"enter-text": "Wpisz tekst",
+	"feedback": "Informacja zwrotna",
+	"give-custom-feedback": "Udzielanie niestandardowych informacji zwrotnych",
+	"have-feedback": "Mam informację zwrotną.",
+	"makes-sense": "To ma sens.",
+	"needs-detailed-explanation": "To wymaga bardziej szczegółowego wyjaśnienia.",
+	"no-understanding": "Wcale tego nie rozumiem",
+	"not-clear": "To nie jest dla mnie jasne.",
+	"responses": "Odpowiedzi",
+	"submit": "Zgłoś się",
+	"submit-confused-message": "Przykro nam to słyszeć. Twoja opinia pomaga nam udoskonalić materiał.",
+	"submit-custom-message": "Dziękujemy za poświęcenie czasu na przesłanie nam opinii.",
+	"submit-understood-message": "\"Cieszę się, że to słyszę! Dziękuję za informację zwrotną.",
+	"textarea-legend": "Mam następujące uwagi (nieobowiązkowe):",
+	"thank-you": "Dziękuję!"
+}

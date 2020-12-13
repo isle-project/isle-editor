@@ -1,0 +1,19 @@
+{
+	"cancel": "取消",
+	"cannot-follow": "我无法理解这个逻辑。",
+	"enter-text": "输入文本",
+	"feedback": "意见反馈",
+	"give-custom-feedback": "自定义反馈",
+	"have-feedback": "我有反馈。",
+	"makes-sense": "有道理。",
+	"needs-detailed-explanation": "这需要更详细的解释。",
+	"no-understanding": "我完全不明白",
+	"not-clear": "这一点我不清楚。",
+	"responses": "应对措施",
+	"submit": "提交",
+	"submit-confused-message": "我们很抱歉听到这个消息。您的反馈有助于我们改进材料。",
+	"submit-custom-message": "谢谢你花时间给我们反馈。",
+	"submit-understood-message": "'很高兴听到这个消息!谢谢你的反馈。",
+	"textarea-legend": "我有以下意见（可选）：",
+	"thank-you": "谢谢你！"
+}

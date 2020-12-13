@@ -1,0 +1,19 @@
+{
+	"cancel": "Annuler",
+	"cannot-follow": "Je ne peux pas suivre la logique.",
+	"enter-text": "Saisir le texte",
+	"feedback": "Retour d'information",
+	"give-custom-feedback": "Donner un retour d'information personnalisé",
+	"have-feedback": "J'ai des réactions.",
+	"makes-sense": "C'est logique.",
+	"needs-detailed-explanation": "Cela nécessite une explication plus détaillée.",
+	"no-understanding": "Je ne comprends pas du tout cela",
+	"not-clear": "Cela n'est pas clair pour moi.",
+	"responses": "Réponses",
+	"submit": "Soumettre",
+	"submit-confused-message": "Nous sommes désolés d'entendre cela. Vos commentaires nous aident à améliorer le matériel.",
+	"submit-custom-message": "Merci d'avoir pris le temps de nous envoyer vos commentaires.",
+	"submit-understood-message": "Ravi de l'entendre ! Merci pour vos commentaires.",
+	"textarea-legend": "J'ai les commentaires suivants (facultatif) :",
+	"thank-you": "Merci !"
+}

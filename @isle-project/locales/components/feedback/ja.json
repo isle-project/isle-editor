@@ -1,0 +1,19 @@
+{
+	"cancel": "キャンセル",
+	"cannot-follow": "理屈が通らない。",
+	"enter-text": "テキストを入力してください",
+	"feedback": "フィードバック",
+	"give-custom-feedback": "カスタムフィードバック",
+	"have-feedback": "フィードバックがあります。",
+	"makes-sense": "理にかなっている。",
+	"needs-detailed-explanation": "これにはもっと詳しい説明が必要です。",
+	"no-understanding": "いまいち理解できない",
+	"not-clear": "これは私にはよくわかりません。",
+	"responses": "レスポンス",
+	"submit": "提出",
+	"submit-confused-message": "この度は大変申し訳ございませんでした。皆様からのご意見は、素材の改善に役立てています。",
+	"submit-custom-message": "この度は、お忙しい中、ご意見をお寄せいただきありがとうございました。",
+	"submit-understood-message": "'嬉しい！'ご意見ありがとうございます。",
+	"textarea-legend": "以下のようなコメントがあります（任意）。",
+	"thank-you": "ありがとうございます！"
+}
