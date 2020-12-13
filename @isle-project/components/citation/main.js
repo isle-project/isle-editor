@@ -6,7 +6,6 @@ import { withTranslation } from 'react-i18next';
 import trim from '@stdlib/string/trim';
 import contains from '@stdlib/assert/contains';
 import SessionContext from '@isle-project/session/context.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -91,4 +90,4 @@ Citation.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'citation' )( Citation );
+export default withTranslation( 'Citation' )( Citation );

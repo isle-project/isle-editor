@@ -1,0 +1,6 @@
+{
+	"and": " und ",
+	"key-not-found": "Zitationsschlüssel in Referenzen nicht gefunden.",
+	"no-author": "Das Autorenfeld sollte nicht leer sein.",
+	"no-references": "Keine `references` in der Präambel der Lektion gefunden."
+}
