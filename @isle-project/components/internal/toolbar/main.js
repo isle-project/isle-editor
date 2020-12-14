@@ -421,7 +421,7 @@ class Toolbar extends Component {
 						</Panel>
 					</Draggable> : null
 				}
-				<Calculator show={this.state.calculator} onHide={this.toggleCalculator} />
+				{this.state.calculator ? <Calculator show={this.state.calculator} onHide={this.toggleCalculator} /> : null}
 				<Queue
 					id="main_queue"
 					show={this.state.queue}
@@ -443,12 +443,12 @@ class Toolbar extends Component {
 						});
 					}}
 				/>
-				<Ticketing
+				{this.state.ticketing ? <Ticketing
 					show={this.state.ticketing}
 					onHide={this.toggleTicketing}
 					t={this.props.t}
 					session={this.context}
-				/>
+				/> : null}
 				{this.state.elements.filter( x => !!x.component ).map( ( x, key ) => {
 					const toggleElement = () => {
 						this.setState({ [x.name]: !this.state[ x.name ] });
