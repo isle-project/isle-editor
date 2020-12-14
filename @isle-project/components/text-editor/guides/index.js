@@ -34,16 +34,19 @@ class Guides extends Component {
 		};
 
 		this.saving = saving.map( x => {
-			x.target = `#${props.for} ` + x.target;
-			return x;
+			const out = { ...x };
+			out.target = `#${props.for} ` + out.target;
+			return out;
 		});
 		this.overview = overview.map( x => {
-			x.target = `#${props.for} ` + x.target;
-			return x;
+			const out = { ...x };
+			out.target = `#${props.for} ` + out.target;
+			return out;
 		});
 		this.poster = poster.map( x => {
-			x.target = `#${props.for} ` + x.target;
-			return x;
+			const out = { ...x };
+			out.target = `#${props.for} ` + out.target;
+			return out;
 		});
 	}
 
