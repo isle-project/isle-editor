@@ -338,4 +338,4 @@ Video.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'video-player' )( Video );
+export default withTranslation( 'VideoPlayer' )( Video );
