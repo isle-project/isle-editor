@@ -1,0 +1,23 @@
+{
+	"data-explorer-title": "Explorador de datos",
+	"data-explorer-p1": "El explorador de datos de la ISLE le permite analizar los conjuntos de datos usando una interfaz de apuntar y hacer clic. El explorador de datos está dividido en dos paneles, un panel izquierdo donde puede alternar entre una vista de hoja de cálculo de los datos a analizar y otros componentes opcionales como un editor de redacción de informes o una lista de preguntas. El lado derecho es un panel de salida que contiene todos los resultados (estadísticas de resumen, gráficas, resultados de pruebas de hipótesis) que ha creado.",
+	"data-explorer-p2": "Se pueden generar nuevas salidas a través de la caja de herramientas, que se puede abrir haciendo clic en el botón \"Mostrar caja de herramientas\". Una nueva gráfica o tabla generada se añadirá a la lista de elementos de salida que se muestra a la derecha",
+	"data-explorer-p3": "Los botones rojos con los iconos \"x\" pueden utilizarse para eliminar elementos de salida individuales, mientras que el botón \"Borrar todo\" en la parte inferior eliminará todos los elementos de salida",
+	"data-explorer-p4": "Usando los botones con un signo de interrogación en la hoja de cálculo de datos, el editor de informes o la caja de herramientas le permitirá iniciar un recorrido guiado por las capacidades de las diferentes piezas.",
+	"data-table-title": "Tabla de datos",
+	"data-table-p1": "Una forma sencilla de mostrar los datos en ISLE es a través de una Tabla de Datos. Estos aparecen en el típico formato de visualización de datos, similar a como se ven los datos en una hoja de cálculo de Excel. Cada columna es una variable con el nombre de la variable en la parte superior.",
+	"data-table-p2": "Para una visita guiada de las cosas que puedes hacer con las tablas de datos, haz clic en el botón Mostrar Tutorial (el signo de interrogación en la parte superior derecha de la tabla de datos).",
+	"documentation": "Documentación",
+	"download-pdf": "Descargar PDF",
+	"questions-title": "Preguntas",
+	"questions-p1": "Muchas de las lecciones de la ISLE en las que trabajará contendrán preguntas para que las responda. Hay una variedad de posibles tipos de preguntas, desde respuestas cortas hasta de opción múltiple. Aquí hay un ejemplo de una pregunta de respuesta corta:",
+	"questions-p2": "Enviando",
+	"questions-p3": "Una vez que haya respondido a una pregunta y esté listo para enviar su respuesta, haga clic en el botón \"Enviar\". Esto registra su trabajo para que su instructor pueda ver su respuesta y darle crédito por la pregunta.",
+	"questions-p4": "Botones de retroalimentación",
+	"questions-p5": "A veces, su instructor puede incluir botones de retroalimentación (mostrados arriba) en preguntas individuales. El botón de la izquierda le permite anotar que está confundido en la pregunta; el botón del centro le permite anotar que la pregunta tiene sentido; y el botón de la derecha le permite dar comentarios específicos de retroalimentación con más detalle.",
+	"questions-p6": "Preguntas de navegación",
+	"questions-p7": "Se pueden colocar varias preguntas en el mismo lugar de la página. Si este es el caso, puede navegar entre las preguntas haciendo clic en el botón \"Siguiente\" o seleccionando las preguntas por número:",
+	"statusbar-title": "Barra de estado",
+	"statusbar-p1": "Al hacer clic en la barra de estado se revelarán los botones para que te registres en una cuenta de ISLE o para acceder a una ya existente. En el centro de la barra de estado, encontrará su nombre de usuario o su nombre de usuario conectado. Al pasar el cursor sobre él, se mostrarán varias estadísticas sobre el progreso de su lección: el tiempo que ha pasado en la lección, el porcentaje de actividades completadas en la lección y sus puntos de logros generales.",
+	"click-instruction": "Haz clic en un elemento del menú para saber más sobre él..."
+}

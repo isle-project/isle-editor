@@ -1,0 +1,23 @@
+{
+	"data-explorer-title": "Data Explorer",
+	"data-explorer-p1": "Eksplorator danych ISLE pozwala na analizę zbiorów danych za pomocą interfejsu typu \"wskaż i kliknij\". Eksplorator danych jest podzielony na dwie szyby, lewą, w której można przełączać się pomiędzy widokiem arkusza kalkulacyjnego danych do analizy a innymi opcjonalnymi komponentami, takimi jak edytor zapisu raportów lub lista pytań. Po prawej stronie znajduje się okienko wyjściowe, które zawiera wszystkie utworzone dane wyjściowe (statystyki podsumowujące, wykresy, wyniki testu hipotez).",
+	"data-explorer-p2": "Nowe wyjścia można wygenerować poprzez Toolbox, który można otworzyć klikając na przycisk \"Show Toolbox\". Nowo wygenerowana działka lub tabela zostanie dołączona do listy elementów wyjściowych pokazanych po prawej stronie.",
+	"data-explorer-p3": "Czerwone przyciski z ikonami \"x\" mogą być używane do usuwania poszczególnych elementów wyjściowych, natomiast przycisk \"Clear All\" na dole usuwa wszystkie elementy wyjściowe.",
+	"data-explorer-p4": "Użycie przycisków ze znakiem zapytania w arkuszu danych, edytorze raportów lub w zestawie narzędzi pozwoli na rozpoczęcie zwiedzania z przewodnikiem po możliwościach poszczególnych elementów.",
+	"data-table-title": "Tabela danych",
+	"data-table-p1": "Prosty sposób wyświetlania danych w ISLE polega na wykorzystaniu tabeli danych. Pojawiają się one w typowym formacie do przeglądania danych, podobnym do tego, jak dane wyglądają w arkuszu kalkulacyjnym Excela. Każda kolumna jest zmienną z nazwą zmiennej na górze.",
+	"data-table-p2": "Aby zwiedzić z przewodnikiem to, co można zrobić z tabelami danych, kliknij przycisk Pokaż samouczek (znak zapytania w prawym górnym rogu tabeli danych).",
+	"documentation": "Dokumentacja",
+	"download-pdf": "Pobierz plik PDF",
+	"questions-title": "Pytania",
+	"questions-p1": "Wiele z lekcji na ISLE, nad którymi będziesz pracował, będzie zawierało pytania, na które będziesz mógł odpowiedzieć. Istnieje wiele możliwych typów pytań, od krótkich odpowiedzi do wielokrotnego wyboru. Oto przykład krótkiej odpowiedzi na pytanie:",
+	"questions-p2": "Składanie wniosków",
+	"questions-p3": "Gdy już odpowiedziałeś na pytanie i jesteś gotowy do przesłania odpowiedzi, kliknij przycisk \"Prześlij\". Zapisuje on Twoją pracę, aby Twój instruktor mógł zobaczyć Twoją odpowiedź i wyrazić uznanie dla Twojego pytania.",
+	"questions-p4": "Przyciski sprzężenia zwrotnego (Feedback Buttons)",
+	"questions-p5": "Czasami instruktor może umieścić przyciski informacji zwrotnej (pokazane powyżej) na poszczególnych pytaniach. Lewy przycisk pozwala zauważyć, że jesteś zdezorientowany w pytaniu; środkowy przycisk pozwala zauważyć, że pytanie ma sens; a prawy przycisk pozwala na bardziej szczegółowe komentarze zwrotne.",
+	"questions-p6": "Pytania nawigacyjne",
+	"questions-p7": "Kilka pytań może być umieszczonych w tym samym miejscu na stronie. W takim przypadku można poruszać się pomiędzy pytaniami klikając przycisk \"Dalej\" lub wybierając pytania według numerów:",
+	"statusbar-title": "Statusbar",
+	"statusbar-p1": "Kliknięcie na pasku stanu spowoduje wyświetlenie przycisków umożliwiających założenie konta ISLE lub zalogowanie się do istniejącego. Na środku paska stanu znajduje się wyświetlona nazwa użytkownika lub osoba zalogowana. Po najechaniu na niego wyświetli się kilka statystyk dotyczących postępów w nauce: czas spędzony na lekcji, procent zajęć wykonanych na danej lekcji oraz ogólne punkty osiągnięć.",
+	"click-instruction": "Kliknij na pozycję w menu, aby dowiedzieć się więcej na jej temat..."
+}

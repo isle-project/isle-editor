@@ -1,0 +1,23 @@
+{
+	"data-explorer-title": "Explorador de dados",
+	"data-explorer-p1": "O explorador de dados ISLE permite analisar conjuntos de dados usando uma interface do tipo apontar e clicar. O explorador de dados é dividido em dois painéis, um painel à esquerda onde você pode alternar entre uma visualização em planilha dos dados a serem analisados e outros componentes opcionais, tais como um editor de relatórios ou uma lista de perguntas. O lado direito é um painel de saída que contém toda a saída (estatísticas resumidas, gráficos, resultados do teste de hipóteses) que você criou.",
+	"data-explorer-p2": "Novas saídas podem ser geradas através da caixa de ferramentas, que pode ser aberta clicando no botão \"Mostrar caixa de ferramentas\". Um gráfico ou tabela recém gerada será anexada à lista de elementos de saída mostrados no lado direito.",
+	"data-explorer-p3": "Os botões vermelhos com os ícones \"x\" podem ser usados para apagar elementos de saída individuais, enquanto o botão \"Limpar tudo\", na parte inferior, removerá todos os elementos de saída",
+	"data-explorer-p4": "Usando os botões com um ponto de interrogação na planilha de dados, o editor de relatórios ou a caixa de ferramentas permitirá iniciar uma visita guiada através das capacidades das diferentes peças.",
+	"data-table-title": "Tabela de dados",
+	"data-table-p1": "Uma maneira simples de exibir os dados no ISLE é através de uma Tabela de Dados. Estes aparecem no formato típico de visualização de dados, semelhante ao que os dados parecem em uma planilha de Excel. Cada coluna é uma variável com o nome da variável no topo.",
+	"data-table-p2": "Para uma visita guiada às coisas que você pode fazer com as tabelas de dados, clique no botão Mostrar Tutorial (o ponto de interrogação no canto superior direito da tabela de dados).",
+	"documentation": "Documentação",
+	"download-pdf": "Baixar PDF",
+	"questions-title": "Perguntas",
+	"questions-p1": "Muitas das lições do ISLE em que você vai trabalhar conterão perguntas para você responder. Há uma variedade de tipos de perguntas possíveis, desde respostas curtas até escolhas múltiplas. Aqui está um exemplo de uma pergunta de resposta curta:",
+	"questions-p2": "Enviando",
+	"questions-p3": "Uma vez que você tenha respondido a uma pergunta e esteja pronto para enviar sua resposta, clique no botão \"Submit\" (Enviar). Isto registra seu trabalho para que seu instrutor possa ver sua resposta e lhe dar crédito pela pergunta.",
+	"questions-p4": "Botões de feedback",
+	"questions-p5": "s vezes, seu instrutor pode incluir botões de feedback (mostrados acima) em perguntas individuais. O botão esquerdo permite que você note que está confuso na pergunta; o botão central permite que você note que a pergunta faz sentido; e o botão direito permite que você dê comentários de feedback específicos com mais detalhes.",
+	"questions-p6": "Perguntas de navegação",
+	"questions-p7": "Múltiplas perguntas podem ser colocadas no mesmo local na página. Se este for o caso, você pode navegar entre as perguntas clicando no botão \"Próximo\" ou selecionando as perguntas por número:",
+	"statusbar-title": "Barra de status",
+	"statusbar-p1": "Clicando na barra de status, você verá botões para se inscrever em uma conta ISLE ou entrar em uma conta já existente. No meio da barra de status, você encontrará exibido seu nome de usuário ou logado. Passando o mouse sobre ela exibirá várias estatísticas sobre o progresso de sua lição: o tempo gasto na lição, a porcentagem de atividades concluídas na lição, e seus pontos de realização geral.",
+	"click-instruction": "Clique em um item do menu para saber mais sobre ele..."
+}

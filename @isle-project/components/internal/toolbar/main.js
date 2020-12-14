@@ -17,7 +17,7 @@ import SessionContext from '@isle-project/session/context.js';
 import pixelsToNumber from '@isle-project/utils/pixels-to-number';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from '@isle-project/constants/events.js';
-import HelpPage from './help.js';
+import HelpPage from './help';
 import Calculator from './calculator';
 import Engagement from './engagement';
 import Ticketing from './ticketing';
