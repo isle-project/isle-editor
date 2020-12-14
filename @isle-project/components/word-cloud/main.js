@@ -398,4 +398,4 @@ Wrapper.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'word-cloud' )( Wrapper );
+export default withTranslation( 'WordCloud' )( Wrapper );

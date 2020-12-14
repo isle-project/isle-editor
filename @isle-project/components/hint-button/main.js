@@ -8,7 +8,6 @@ import { withTranslation } from 'react-i18next';
 import TimedButton from '@isle-project/components/timed-button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -151,4 +150,4 @@ HintButton.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation()( HintButton );
+export default withTranslation( 'HintButton' )( HintButton );

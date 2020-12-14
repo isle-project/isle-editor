@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
-import './load_translations.js';
 
 
 // MAIN //
@@ -133,4 +132,4 @@ IFrame.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'iframe' )( IFrame );
+export default withTranslation( 'Iframe' )( IFrame );

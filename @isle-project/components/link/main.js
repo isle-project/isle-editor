@@ -9,7 +9,6 @@ import startsWith from '@stdlib/string/starts-with';
 import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
 import { OPEN_LINK } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 
 
 // MAIN //
@@ -114,4 +113,4 @@ Link.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'link' )( Link );
+export default withTranslation( 'Link' )( Link );
