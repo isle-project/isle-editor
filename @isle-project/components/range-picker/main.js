@@ -8,7 +8,6 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
-import './load_translations.js';
 import './_datepicker.css';
 
 
@@ -206,4 +205,4 @@ RangePicker.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'range-picker' )( RangePicker );
+export default withTranslation( 'RangePicker' )( RangePicker );
