@@ -1,0 +1,4 @@
+{
+	"close": "Close",
+	"missing-children": "The slider requires at least two child elements for it to be rendered."
+}

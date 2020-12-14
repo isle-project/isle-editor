@@ -10,7 +10,6 @@ import isLineButtons from '@isle-project/utils/is-line-buttons';
 import closeHintButtons from '@isle-project/utils/close-hint-buttons';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
-import './load_translations.js';
 import './slick-theme.min.css';
 import './slick.css';
 import './slider.css';
@@ -168,4 +167,4 @@ DefaultSlider.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'slider' )( DefaultSlider );
+export default withTranslation( 'Slider' )( DefaultSlider );
