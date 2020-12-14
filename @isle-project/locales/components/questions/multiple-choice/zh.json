@@ -1,0 +1,18 @@
+{
+	"answers": "答案",
+	"answer-correct": "万岁，你的答案是正确的!",
+	"answer-incorrect-explanations": "您可以将鼠标悬停在不同的答案选项上，弹出一个工具提示，解释为什么相应的答案是错误的。",
+	"answer-incorrect-full": "不幸的是，你的答案是错误的。正确答案以橙色显示。",
+	"answer-incorrect-incremental-missing": "你还没有提供所有的正确答案。请选择其他答案。",
+	"answer-incorrect-incremental-extra": "您检查了所有正确的答案选择，但至少有一个错误的答案溜进来了。请选择错误的答案并重新提交。",
+	"answer-incorrect-incremental-equal": "不幸的是，不是所有的答案都是正确的。试试其他组合。",
+	"answer-incorrect-incremental": "不幸的是，你的答案是错误的。你可以选择其他答案再试一次。",
+	"answer-submitted": "提交的答复：",
+	"answer-submitted-nofeedback": "你已经成功提交了你的答案。如果你愿意，你可以更改你的答案并重新提交。",
+	"chose-all-apply": "选择所有适用的内容",
+	"question-closed": "问题现已结束。",
+	"resubmit": "重新提交",
+	"select-answer": "选择一个答案",
+	"submit": "提交",
+	"submitted": "已提交"
+}
