@@ -32,7 +32,6 @@ import generateUID from '@isle-project/utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from '@isle-project/constants/actions.js';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
-import './load_translations.js';
 import './quiz.css';
 
 
@@ -739,4 +738,4 @@ Quiz.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'quiz' )( Quiz );
+export default withTranslation( 'Quiz' )( Quiz );
