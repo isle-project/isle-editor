@@ -1,0 +1,6 @@
+{
+	"show-solution": "Show Solution",
+	"hide-solution": "Hide Solution",
+	"solution-available-tooltip": "Solution becomes available after answer is submitted",
+	"solution-available-tooltip-hints": "and all hints have been requested"
+}
