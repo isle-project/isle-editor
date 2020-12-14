@@ -94,7 +94,7 @@ let ALL_GROUPS = null;
 let ASSIGNED_GROUP = null;
 let QUESTIONS = null;
 
-addResources( 'Session' );
+addResources( 'session' );
 
 // JSON Web Token for user authentication:
 let JWT = null;
