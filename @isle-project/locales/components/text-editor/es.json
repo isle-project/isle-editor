@@ -41,7 +41,7 @@
 	"insert-row-before": "Insertar fila antes",
 	"insert-table": "Insertar mesa",
 	"insert-table-caption": "Insertar pie de foto de la mesa",
-	"insert-table-spec": "Insertar {{filas}} x {{cols}} mesa",
+	"insert-table-spec": "Insertar {{rows}} x {{cols}} mesa",
 	"join-with-above": "Unir con el bloque de arriba",
 	"join-with-below": "Unir con el bloque de abajo",
 	"justified": "Justificado",

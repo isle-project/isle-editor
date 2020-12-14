@@ -33,7 +33,7 @@
 	"no-matching-data": "Nie ma danych odpowiadających wybranym parametrom.",
 	"num-actions": "# wyświetlanego {{label}}: {{n}}",
 	"on": " na stronie",
-	"open-tooltip": "{\\i1}Otwórz {\\i1}dla komponentu z identyfikatorem {\\i1}",
+	"open-tooltip": "Otwórz {{label}} dla komponentu z identyfikatorem {{id}}",
 	"orange": "Orange",
 	"rate": "Stawka",
 	"red": "Czerwony",

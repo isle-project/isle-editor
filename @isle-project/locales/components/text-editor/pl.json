@@ -60,7 +60,7 @@
 	"redo-last-undone-change": "Redo ostatnia cofnięta zmiana",
 	"report-deleted-msg": "Twój raport został pomyślnie usunięty, a edytor przywrócił jego wartość domyślną",
 	"report-submitted": "Przedstawione sprawozdanie",
-	"report-submitted-msg": "{\\i1}Droga.{\\i0} {\\i1} {\\i1}Twój raport został pomyślnie zarejestrowany.{\\i0} Dla Twojej wygody, Twój raport i wygenerowany plik HTML są dołączone do tego e-maila.",
+	"report-submitted-msg": "Droga {{name}} Twój raport został pomyślnie zarejestrowany. Dla Twojej wygody, Twój raport i wygenerowany plik HTML są dołączone do tego e-maila.",
 	"reset-modal-title": "Raport zresetowany",
 	"reset-modal-body": "Czy na pewno chcesz zresetować zawartość edytora do wartości domyślnej? Ta akcja jest nieodwracalna i cała Twoja praca zostanie utracona, jeśli nie zapisałeś pliku źródłowego Markdowna.",
 	"reset-modal-button-label": "Zresetować",

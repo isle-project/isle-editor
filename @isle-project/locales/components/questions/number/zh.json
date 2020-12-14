@@ -13,8 +13,8 @@
 	"submission-correct": "恭喜你，没错",
 	"submission-incorrect": "不尽然。将你的答案与解决方案进行比较。",
 	"submission-try-again": "您的答案是错误的。请再试一次",
-	"tries": "{{数}}尝试左",
-	"tries_plural": "{{数}}尝试左",
+	"tries": "{{count}}尝试左",
+	"tries_plural": "{{count}}尝试左",
 	"submission-message": "您的答案已经提交。",
 	"submit": "提交",
 	"your-answer": "您的回答"

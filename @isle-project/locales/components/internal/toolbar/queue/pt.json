@@ -5,7 +5,7 @@
 	"no-questions": "Atualmente não há perguntas na fila de espera.",
 	"queue": "Fila",
 	"queue-prompt": "Você pode enviar uma pergunta abaixo e alguém estará com você em breve!",
-	"queue-status": "Sua pergunta: <1>{{question}}</1>>br /> Você está atualmente na posição <4>{{spot}}</4> na fila.<br /> Há <8>{{tamanho}}</8> indivíduo(s) na fila.",
+	"queue-status": "Sua pergunta: <1>{{question}}</1>>br /> Você está atualmente na posição <4>{{spot}}</4> na fila.<br /> Há <8>{{size}}</8> indivíduo(s) na fila.",
 	"queue-size": "(atualmente há {{n}} indivíduo(s) na fila)",
 	"queue-start-chat": "Comece a conversar com o aluno",
 	"question": "Pergunta",

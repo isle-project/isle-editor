@@ -41,7 +41,7 @@
 	"insert-row-before": "前面插入一行",
 	"insert-table": "插入表格",
 	"insert-table-caption": "插入表格标题",
-	"insert-table-spec": "插入{{行}}x {{cols}}表",
+	"insert-table-spec": "插入{{rows}} x {{cols}}表",
 	"join-with-above": "与上面的模块连接",
 	"join-with-below": "与下面的块加入",
 	"justified": "合理的",

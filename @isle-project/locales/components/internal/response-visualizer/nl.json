@@ -33,7 +33,7 @@
 	"no-matching-data": "Er zijn geen gegevens die overeenkomen met de geselecteerde parameters.",
 	"num-actions": "# van weergegeven {{label}}: {{n}}",
 	"on": " op",
-	"open-tooltip": "Open {{label}} voor component met ID {id}",
+	"open-tooltip": "Open {{label}} voor component met ID {{id}}",
 	"orange": "Oranje",
 	"rate": "Beoordeel",
 	"red": "Rood",

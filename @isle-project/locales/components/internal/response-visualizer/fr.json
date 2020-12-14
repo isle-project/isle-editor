@@ -25,7 +25,7 @@
 	"in-focus": "Composante en vedette",
 	"include-all": "Inclure <2>all</2> {{label}}s pour tout étudiant.",
 	"include-first": "<1>seulement</1> inclure d'abord {{label}} pour tout étudiant",
-	"include-latest": "<1>Only</1> inclure la dernière {étiquette} pour tout étudiant.",
+	"include-latest": "<1>Only</1> inclure la dernière {{label}} pour tout étudiant.",
 	"interaction-rate-tooltip": "Taux d'interaction pour les étudiants actuellement actifs",
 	"many-clusters": "De nombreux clusters",
 	"no-data-available": "Aucune donnée disponible (encore) à visualiser",

@@ -2,7 +2,7 @@
 	"answers": "Réponses",
 	"answer-resubmitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
-	"instructions": "Faites correspondre les éléments {{complets}} de la partie gauche avec les éléments correspondants de la partie droite en cliquant dessus.",
+	"instructions": "Faites correspondre les éléments {{complete}} de la partie gauche avec les éléments correspondants de la partie droite en cliquant dessus.",
 	"question-closed": "La question est maintenant close.",
 	"resubmit": "Soumettre à nouveau",
 	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",

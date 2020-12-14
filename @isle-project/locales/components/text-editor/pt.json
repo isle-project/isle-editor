@@ -41,7 +41,7 @@
 	"insert-row-before": "Inserir fileira antes de",
 	"insert-table": "Inserir tabela",
 	"insert-table-caption": "Inserir legenda de tabela",
-	"insert-table-spec": "Inserir {{linhas}} x tabela",
+	"insert-table-spec": "Inserir {{rows}} x {{cols}} tabela",
 	"join-with-above": "Junte-se ao bloco acima",
 	"join-with-below": "Junte-se ao bloco abaixo",
 	"justified": "Justificativa",

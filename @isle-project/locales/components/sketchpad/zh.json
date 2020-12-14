@@ -53,7 +53,7 @@
 	"show": "显示",
 	"text-mode": "文本模式",
 	"undo": "撤销",
-	"upload-email": "亲爱的{{姓名}}，您的笔记已成功上传，现可在以下网址查看",
+	"upload-email": "亲爱的{{name}}，您的笔记已成功上传，现可在以下网址查看",
 	"upload-successful": "该文件已成功上传，可在以下地址访问。",
 	"upload-to-server": "上传至服务器"
 }
