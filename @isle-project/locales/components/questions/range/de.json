@@ -1,0 +1,15 @@
+{
+	"answers": "Antworten",
+	"answer-resubmitted": "Antwort erneut eingereicht",
+	"answer-submitted": "Antwort eingereicht.",
+	"lower": "Untere",
+	"question-closed": "Frage ist nun geschlossen.",
+	"resubmit": "Erneut einreichen",
+	"solution": "Lösung",
+	"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
+	"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
+	"submission-message": "Deine Antwort wurde aufgezeichnet",
+	"submit": "Abschicken",
+	"upper": "Obere",
+	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht."
+}

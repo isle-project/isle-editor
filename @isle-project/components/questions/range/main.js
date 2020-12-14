@@ -24,7 +24,6 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 import './range-question.css';
 
 
@@ -300,4 +299,4 @@ RangeQuestion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'range-question' )( RangeQuestion );
+export default withTranslation( 'RangeQuestion' )( RangeQuestion );

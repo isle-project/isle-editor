@@ -1,0 +1,15 @@
+{
+	"answers": "Odpowiedzi",
+	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
+	"answer-submitted": "Odpowiedź nadesłana.",
+	"lower": "Niżej",
+	"question-closed": "Pytanie jest już zamknięte.",
+	"resubmit": "Ponowne przedłożenie",
+	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
+	"solution": "Rozwiązanie",
+	"submission-correct": "Gratulacje, to prawda!",
+	"submission-incorrect": "Niezupełnie. Porównaj swoją odpowiedź z rozwiązaniem.",
+	"submission-message": "Twoja odpowiedź została złożona.",
+	"submit": "Zgłoś się",
+	"upper": "Górna strona"
+}
