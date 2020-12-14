@@ -19,6 +19,8 @@
 	"finish-poll": "Terminare il sondaggio",
 	"finish-survey": "Sondaggio finale",
 	"help-queue": "Coda di aiuto",
+	"help-click-instruction": "Cliccare su una voce del menu per saperne di più...",
+	"help-data-explorer": "<0>Il data explorer ISLE permette di analizzare set di dati utilizzando un'interfaccia \"punta e clicca\". Il data explorer è diviso in due riquadri, un riquadro a sinistra dove è possibile passare da una visualizzazione su foglio di calcolo dei dati da analizzare ad altri componenti opzionali come un editor per la scrittura di rapporti o un elenco di domande. Il lato destro è un riquadro di output che contiene tutti gli output (statistiche riassuntive, trame, risultati del test di ipotesi) che avete creato.</0><2> Nuovi output possono essere generati tramite il toolbox, che può essere aperto cliccando sul pulsante &quot;Mostra Toolbox&quot;Mostra Toolbox&quot;. Una nuova trama o tabella generata verrà aggiunta alla lista degli elementi di output mostrata sul lato destro:</2><4> I pulsanti rossi con l'&quot;x&quot;x&quot; le icone possono essere usate per cancellare i singoli elementi di output, mentre l'&quot;Clear All&quot; pulsante in basso rimuoverà tutti gli elementi di output.</4><5> L'uso dei pulsanti con un punto interrogativo sul foglio di calcolo dei dati, l'editor di report, o il toolbox vi permetterà di iniziare una visita guidata attraverso le capacità dei diversi pezzi.</5>",
 	"like-dislike": "Mi piace / Non mi piace",
 	"maximum-num-attachments": "Raggiunto il numero massimo di allegati",
 	"maximum-num-attachments-message": "Non è possibile caricare più di sei allegati per biglietto.",

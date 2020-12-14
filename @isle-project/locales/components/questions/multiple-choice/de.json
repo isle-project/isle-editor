@@ -8,11 +8,11 @@
 	"answer-incorrect-incremental-equal": "Leider waren nicht alle deine Antworten richtig. Versuche eine andere Kombination.",
 	"answer-incorrect-incremental": "Leider ist Deine Antwort falsch. Du könntest es erneut versuchen, indem Du eine andere Antwortmöglichkeit wählst.",
 	"answer-submitted": "Antwort eingereicht.",
+	"answer-submitted-nofeedback": "Sie haben Ihre Antwort erfolgreich übermittelt. Sie können Ihre Antwort ändern und erneut einreichen, wenn Sie dies wünschen.",
 	"chose-all-apply": "Wähle alle zutreffenden Antworten",
 	"question-closed": "Frage ist nun geschlossen.",
 	"resubmit": "Erneut einreichen",
 	"select-answer": "Wähle eine Antwort",
 	"submit": "Abschicken",
-	"submitted": "Eingereicht",
-	"answer-submitted-nofeedback": "Sie haben Ihre Antwort erfolgreich übermittelt. Sie können Ihre Antwort ändern und erneut einreichen, wenn Sie dies wünschen."
+	"submitted": "Eingereicht"
 }

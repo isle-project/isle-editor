@@ -8,6 +8,7 @@
 	"or": "oder",
 	"question-closed": "Frage ist nun geschlossen.",
 	"resubmit": "Erneut einreichen",
+	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht.",
 	"solution": "Lösung",
 	"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
 	"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
@@ -16,6 +17,5 @@
 	"tries_plural": "noch {{count}} Versuche",
 	"submission-message": "Deine Antwort wurde aufgezeichnet",
 	"submit": "Abschicken",
-	"your-answer": "Deine Antwort",
-	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht."
+	"your-answer": "Deine Antwort"
 }

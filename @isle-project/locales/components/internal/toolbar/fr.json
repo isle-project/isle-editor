@@ -19,6 +19,8 @@
 	"finish-poll": "Sondage de fin de séjour",
 	"finish-survey": "Fin de l'enquête",
 	"help-queue": "File d'attente pour l'aide",
+	"help-click-instruction": "Cliquez sur un élément du menu pour en savoir plus sur...",
+	"help-data-explorer": "<0> L'explorateur de données ISLE vous permet d'analyser des ensembles de données à l'aide d'une interface de type \"pointer-cliquer\". L'explorateur de données est divisé en deux volets, un volet de gauche où vous pouvez basculer entre une vue de tableur des données à analyser et d'autres composants optionnels tels qu'un éditeur de rédaction de rapports ou une liste de questions. Le volet de droite est un panneau de sortie qui contient toutes les sorties (statistiques sommaires, graphiques, résultats de tests d'hypothèses) que vous avez créées.</0><2>De nouvelles sorties peuvent être générées via la boîte à outils, qui peut être ouverte en cliquant sur le bouton &quot;Show Toolbox&quot ;. Un graphique ou un tableau nouvellement généré sera ajouté à la liste des éléments de sortie affichés sur le côté droit:</2><4>Les boutons rouges avec les icônes &quot;x&quot ; peuvent être utilisés pour supprimer des éléments de sortie individuels, tandis que le bouton &quot;Clear All&quot ; en bas supprimera tous les éléments de sortie.</4><5>L'utilisation des boutons avec un point d'interrogation sur la feuille de données, l'éditeur de rapport ou la boîte à outils vous permettra de commencer une visite guidée à travers les capacités des différentes pièces.</5>",
 	"like-dislike": "Aimer / Ne pas aimer",
 	"maximum-num-attachments": "Atteindre le nombre maximum de pièces jointes",
 	"maximum-num-attachments-message": "Vous ne pouvez pas télécharger plus de six pièces jointes par billet.",

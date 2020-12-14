@@ -5,11 +5,11 @@
 	"lower": "Untere",
 	"question-closed": "Frage ist nun geschlossen.",
 	"resubmit": "Erneut einreichen",
+	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht.",
 	"solution": "Lösung",
 	"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
 	"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
 	"submission-message": "Deine Antwort wurde aufgezeichnet",
 	"submit": "Abschicken",
-	"upper": "Obere",
-	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht."
+	"upper": "Obere"
 }
