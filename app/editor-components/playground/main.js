@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
-import { withTranslation } from 'react-i18next';
 import {
 	LiveProvider,
 	LiveEditor,
@@ -18,7 +17,6 @@ import formatError from '@isle-project/utils/format-error';
 import styles from './styles.json';
 import theme from './theme.js';
 import './playground.css';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -123,7 +121,9 @@ class Playground extends PureComponent {
 		}
 		return (
 			<div className="component-documentation" style={this.props.style} >
-				<div className="playground-editable unselectable">{this.props.t('editable-source')}</div>
+				<div className="playground-editable unselectable">
+					EDITABLE SOURCE
+				</div>
 				<LiveProvider code={value} scope={scope} theme={theme} transformCode={this.transformCode} >
 					<div className="playground-live-editor" >
 						<LiveEditor
@@ -183,4 +183,4 @@ Playground.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'playground' )( Playground );
+export default Playground;
