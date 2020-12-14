@@ -9,7 +9,6 @@ import isArray from '@stdlib/assert/is-array';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
 import { VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
-import './load_translations.js';
 
 
 // FUNCTIONS //
@@ -143,4 +142,4 @@ VoiceControl.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'voice-control' )( VoiceControl );
+export default withTranslation( 'VoiceControl' )( VoiceControl );
