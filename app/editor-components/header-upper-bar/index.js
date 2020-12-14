@@ -90,13 +90,14 @@ const HeaderUpperBar = ( props ) => {
 // PROPERTIES //
 
 HeaderUpperBar.defaultProps = {
+	updateDownloading() {},
 	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
 };
 
 HeaderUpperBar.propTypes = {
-	updateDownloading: PropTypes.func.isRequired,
+	updateDownloading: PropTypes.func,
 	updateDownloadPercent: PropTypes.number,
 	updateInfo: PropTypes.object,
 	updateStatus: PropTypes.string
