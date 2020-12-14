@@ -1,8 +1,8 @@
 {
 	"disabled": "Video Chat per disabili",
 	"join": "Iscriviti al video",
-	"join-id": "Iscriviti alla video chat con ID {{id}}}",
+	"join-id": "Iscriviti alla video chat con ID {{id}}",
 	"leave": "Lascia il video",
-	"leave-id": "Lascia la video chat con ID {{id}}}",
+	"leave-id": "Lascia la video chat con ID {{id}}",
 	"toggle": "Attivare la chat video"
 }

@@ -60,7 +60,7 @@
 	"redo-last-undone-change": "Letzte rückgängig gemachte Änderung wiederherstellen",
 	"report-deleted-msg": "Dein Bericht wurde erfolgreich gelöscht und der Editor auf den Standardwert zurückgesetzt",
 	"report-submitted": "Bericht eingereicht",
-	"report-submitted-msg": "Lieber {{{name}}}, Dein Bericht wurde erfolgreich aufgenommen. Zu Deiner Information sind Dein Bericht und die generierte HTML-Datei an diese E-Mail angehängt.",
+	"report-submitted-msg": "Lieber {{name}}, Dein Bericht wurde erfolgreich aufgenommen. Zu Deiner Information sind Dein Bericht und die generierte HTML-Datei an diese E-Mail angehängt.",
 	"reset-modal-title": "Bericht zurücksetzen",
 	"reset-modal-body": "Bist Du sicher, dass Du den Inhalt des Editors auf seinen Standardwert zurücksetzen willst? Diese Aktion ist irreversibel, und Deine gesamte Arbeit geht verloren, wenn Du die Markdown-Quelldatei nicht speicherst",
 	"reset-modal-button-label": "Zurücksetzen",

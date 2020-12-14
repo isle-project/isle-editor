@@ -3,7 +3,7 @@
 	"answer-resubmitted": "Resposta re-submetida.",
 	"answer-submitted": "Resposta apresentada.",
 	"invalid-answer": "Resposta inválida",
-	"invalid-range": "Sua resposta deve ser um número entre {{{min}} e {max}}.",
+	"invalid-range": "Sua resposta deve ser um número entre {{min}} e {max}}.",
 	"one-of": "um dos",
 	"or": "ou",
 	"question-closed": "A pergunta está agora encerrada.",

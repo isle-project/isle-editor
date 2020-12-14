@@ -2,7 +2,7 @@
 	"answers": "Risposte",
 	"answer-resubmitted": "La risposta è stata ripresentata.",
 	"answer-submitted": "Risposta inviata.",
-	"instructions": "Far corrispondere gli elementi {{{completo}}} dal lato sinistro con gli elementi corrispondenti sul lato destro cliccandoci sopra.",
+	"instructions": "Far corrispondere gli elementi {{completo}} dal lato sinistro con gli elementi corrispondenti sul lato destro cliccandoci sopra.",
 	"question-closed": "La domanda è chiusa.",
 	"resubmit": "Invia di nuovo",
 	"resubmission-message": "Lei ha ripresentato con successo la sua risposta.",

@@ -21,7 +21,7 @@
 	"completed": "Concluído!",
 	"completion-rate": "Taxa de conclusão",
 	"completion-rate-all": "Taxa de conclusão para estudantes atualmente ativos de todos os coortes",
-	"completion-rate-cohort": "Taxa de conclusão para estudantes de coorte {{{cohort}}}",
+	"completion-rate-cohort": "Taxa de conclusão para estudantes de coorte {{cohort}}",
 	"confirm": "Confirme",
 	"confirm-logout": "Você realmente quer terminar a sessão? Para fazer o login novamente, você precisará de sua senha.",
 	"congratulations": "Parabéns!",

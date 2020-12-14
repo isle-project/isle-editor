@@ -41,7 +41,7 @@
 	"insert-row-before": "行の前に挿入",
 	"insert-table": "インサートテーブル",
 	"insert-table-caption": "テーブルキャプションの挿入",
-	"insert-table-spec": "挿入{{{rows}}}をx {{{cols}}表",
+	"insert-table-spec": "挿入{{rows}}をx {{cols}}表",
 	"join-with-above": "上記ブロックとの結合",
 	"join-with-below": "以下のブロックに参加する",
 	"justified": "正当化",

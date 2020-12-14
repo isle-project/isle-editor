@@ -14,7 +14,7 @@
 	"cancel": "キャンセル",
 	"chat-members": "名前}}チャットのメンバーです。",
 	"chat-with": "チャットで{{名前}}と",
-	"class-progress": "現在のクラスの進捗状況。{{progress}}}%%のようになっています。",
+	"class-progress": "現在のクラスの進捗状況。{{progress}}%%のようになっています。",
 	"close-groups": "クローズグループ",
 	"close-groups-tooltip": "グループ閉鎖が開始されたら、学生は60秒以内に作業を終了します。",
 	"close-groups-confirm": "本当にグループを閉じたいのか？",
@@ -68,11 +68,11 @@
 	"minimize": "最小化",
 	"name": "名前",
 	"no-feedback-yet": "まだフィードバックはありません。",
-	"nonassigned-students": "現在、どのグループにも割り当てられていない{{{n}}}ユーザーがいます。",
+	"nonassigned-students": "現在、どのグループにも割り当てられていない{{n}}ユーザーがいます。",
 	"number-of-groups": "グループ数",
 	"num-actions": "# of actions.{{n}}",
-	"num-cohort-actions": "# アクションの数 ({{{コホート}})",
-	"num-students-answered": "# 回答した学生の数({{{cohort}}})",
+	"num-cohort-actions": "# アクションの数 ({{コホート}})",
+	"num-students-answered": "# 回答した学生の数({{cohort}})",
 	"only-show-users-from": "からのユーザーのみを表示します。",
 	"open-actions": "オープンアクション",
 	"open-transcript": "トランスクリプトを開く",
@@ -122,5 +122,5 @@
 	"value": "値",
 	"video-active": "アクティブなビデオ",
 	"video-chat": "ビデオチャット",
-	"video-chat-with": "{{{名前}}}とのビデオチャット"
+	"video-chat-with": "{{名前}}とのビデオチャット"
 }

@@ -13,8 +13,8 @@
 	"submission-correct": "Congratulazioni, è vero!",
 	"submission-incorrect": "Non proprio. Confronta la tua risposta con la soluzione.",
 	"submission-try-again": "La tua risposta non è corretta. Si prega di riprovare",
-	"tries": "{{{count}}} prova a sinistra",
-	"tries_plural": "{{{count}}} prova a sinistra",
+	"tries": "{{count}} prova a sinistra",
+	"tries_plural": "{{count}} prova a sinistra",
 	"submission-message": "La sua risposta è stata inviata.",
 	"submit": "Invia a",
 	"your-answer": "La tua risposta"

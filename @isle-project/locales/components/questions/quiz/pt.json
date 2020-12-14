@@ -1,6 +1,6 @@
 {
 	"answer": "Resposta",
-	"answer-for": "Resposta para {{{id}}}",
+	"answer-for": "Resposta para {{id}}",
 	"answer-summary": "Resumo da resposta",
 	"by": "por",
 	"cancel": "Cancelar",

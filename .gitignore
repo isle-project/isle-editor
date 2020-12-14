@@ -45,7 +45,5 @@ jsconfig.json
 # Public folder should be ignored as it is used during lesson upload
 public
 
-dll/components/dist/.js
-dll/components/dist/*.LICENSE.txt
-dll/session/dist/*.js
-dll/session/dist/*.LICENSE.txt
+# Scripts for locales
+**/locales/scripts

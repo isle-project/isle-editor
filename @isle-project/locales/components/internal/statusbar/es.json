@@ -12,7 +12,7 @@
 	"broadcast-message-tooltip": "Transmitir mensaje a todos los grupos",
 	"by": "por",
 	"cancel": "Cancelar",
-	"chat-members": "Miembros de {{{name}} del chat:",
+	"chat-members": "Miembros de {{name}} del chat:",
 	"chat-with": "Chatear con {{name}}",
 	"class-progress": "Progreso de clase actual: {{progress}}%",
 	"close-groups": "Grupos cercanos",

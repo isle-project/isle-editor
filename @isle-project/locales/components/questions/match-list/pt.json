@@ -2,7 +2,7 @@
 	"answers": "Respostas",
 	"answer-resubmitted": "Resposta re-submetida.",
 	"answer-submitted": "Resposta apresentada.",
-	"instructions": "Combine {{{completar}} elementos do lado esquerdo com os elementos correspondentes do lado direito, clicando neles.",
+	"instructions": "Combine {{completar}} elementos do lado esquerdo com os elementos correspondentes do lado direito, clicando neles.",
 	"question-closed": "A pergunta está agora encerrada.",
 	"resubmit": "Enviar novamente",
 	"resubmission-message": "Você reapresentou com sucesso sua resposta.",

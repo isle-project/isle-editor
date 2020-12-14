@@ -33,7 +33,7 @@
 	"no-matching-data": "Não há dados que correspondam aos parâmetros selecionados.",
 	"num-actions": "# de exibido {{label}}: {{n}}",
 	"on": " em",
-	"open-tooltip": "Aberto {{{label}} para componente com identificação {{id}}",
+	"open-tooltip": "Aberto {{label}} para componente com identificação {{id}}",
 	"orange": "Laranja",
 	"rate": "Tarifa",
 	"red": "Vermelho",

@@ -7,7 +7,7 @@
 	"blue": "Blu",
 	"cancel": "Annulla",
 	"case-sensitive": "Case-sensitive",
-	"chat-with": "Chatta con {{nome}}}",
+	"chat-with": "Chatta con {{nome}}",
 	"choice": "Scelta",
 	"close": "Chiudere",
 	"cluster": "Cluster",
@@ -33,7 +33,7 @@
 	"no-matching-data": "Non ci sono dati corrispondenti ai parametri selezionati.",
 	"num-actions": "# di visualizzato {{etichetta}}: {{n}}",
 	"on": " su",
-	"open-tooltip": "Aprire {{etichetta}} per il componente con ID {{id}}}.",
+	"open-tooltip": "Aprire {{etichetta}} per il componente con ID {{id}}.",
 	"orange": "Arancione",
 	"rate": "Vota",
 	"red": "Rosso",
@@ -54,7 +54,7 @@
 	"users-in-focus": "I seguenti utenti hanno attualmente il componente a fuoco:",
 	"value": "Valore",
 	"video-chat": "Video Chat",
-	"video-chat-with": "Video chat con {{nome}}}",
+	"video-chat-with": "Video chat con {{nome}}",
 	"whole-word": "Parola intera",
 	"whole-word-tooltip": "Se cercare parole intere"
 }

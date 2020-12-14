@@ -13,7 +13,7 @@
 	"by": "da",
 	"cancel": "Annulla",
 	"chat-members": "I membri della {{nome}} chat:",
-	"chat-with": "Chatta con {{nome}}}",
+	"chat-with": "Chatta con {{nome}}",
 	"class-progress": "Progressi della classe attuale: {{progress}}%",
 	"close-groups": "Chiudi Gruppi",
 	"close-groups-tooltip": "Gli studenti hanno sessanta secondi per finire il loro lavoro una volta iniziata la chiusura del gruppo",
@@ -21,7 +21,7 @@
 	"completed": "Completato!",
 	"completion-rate": "Tasso di completamento",
 	"completion-rate-all": "Tasso di completamento per gli studenti attualmente attivi di tutte le coorti",
-	"completion-rate-cohort": "Tasso di completamento per gli studenti della coorte {{{cohort}}",
+	"completion-rate-cohort": "Tasso di completamento per gli studenti della coorte {{cohort}}",
 	"confirm": "Confermare",
 	"confirm-logout": "Vuoi davvero disconnetterti? Per effettuare nuovamente il login è necessaria la password.",
 	"congratulations": "Congratulazioni!",
@@ -36,7 +36,7 @@
 	"email": "Invia un'e-mail a",
 	"enable-voice": "Attivare la registrazione vocale / controllo",
 	"enlarge": "Ingrandisci",
-	"enter-feedback": "Inserisci il feedback per la risposta di {{nome}}}.",
+	"enter-feedback": "Inserisci il feedback per la risposta di {{nome}}.",
 	"error-csv": "Incontrato un errore durante la creazione di CSV:",
 	"error-encountered": "Errore riscontrato",
 	"error-fake-users": "Ha incontrato un errore mentre generava falsi utenti:",
@@ -122,5 +122,5 @@
 	"value": "Valore",
 	"video-active": "Video attivo",
 	"video-chat": "Video Chat",
-	"video-chat-with": "Video chat con {{nome}}}"
+	"video-chat-with": "Video chat con {{nome}}"
 }

@@ -53,7 +53,7 @@
 	"show": "Mostra",
 	"text-mode": "Modalità testo",
 	"undo": "Annulla",
-	"upload-email": "Caro {{{nome}}}, le tue note sono state caricate con successo e sono ora disponibili all'indirizzo",
+	"upload-email": "Caro {{nome}}, le tue note sono state caricate con successo e sono ora disponibili all'indirizzo",
 	"upload-successful": "Il file è stato caricato con successo ed è accessibile al seguente indirizzo",
 	"upload-to-server": "Carica sul server"
 }

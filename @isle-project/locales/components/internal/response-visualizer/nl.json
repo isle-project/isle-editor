@@ -24,7 +24,7 @@
 	"hide-extended": "Verberg Uitgebreid",
 	"in-focus": "Component in focus",
 	"include-all": "Neem <2>all</2>s op voor elke student.",
-	"include-first": "<1>Alleen</1> eerst {{{label}} opnemen voor elke student",
+	"include-first": "<1>Alleen</1> eerst {{label}} opnemen voor elke student",
 	"include-latest": "<1>Alleen</1> met de laatste {label} voor elke student.",
 	"interaction-rate-tooltip": "Interactiegraad voor momenteel actieve studenten",
 	"many-clusters": "Veel clusters",

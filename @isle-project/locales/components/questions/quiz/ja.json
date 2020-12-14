@@ -1,6 +1,6 @@
 {
 	"answer": "回答",
-	"answer-for": "の答えは{{{id}}}です。",
+	"answer-for": "の答えは{{id}}です。",
 	"answer-summary": "回答のまとめ",
 	"by": "掖",
 	"cancel": "キャンセル",
