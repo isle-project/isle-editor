@@ -9,7 +9,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { RECEIVED_JITSI_TOKEN, RECEIVED_USER_RIGHTS, VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED } from '@isle-project/constants/events.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -178,4 +177,4 @@ VideoChatButton.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'video-chat-button' )( VideoChatButton );
+export default withTranslation( 'VideoChatButton' )( VideoChatButton );

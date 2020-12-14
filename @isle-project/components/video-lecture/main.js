@@ -14,7 +14,6 @@ import KeyControls from '@isle-project/components/key-controls';
 import VideoPlayer from '@isle-project/components/video-player';
 import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';
-import './load_translations.js';
 import './video_lecture.css';
 
 
@@ -298,4 +297,4 @@ VideoLecture.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'video-lecture' )( VideoLecture );
+export default withTranslation( 'VideoLecture' )( VideoLecture );
