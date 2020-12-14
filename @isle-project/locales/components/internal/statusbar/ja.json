@@ -21,7 +21,7 @@
 	"completed": "完成！",
 	"completion-rate": "完工率",
 	"completion-rate-all": "全コホートの現役学生の修了率",
-	"completion-rate-cohort": "コホート{{コホート}}の学生の修了率",
+	"completion-rate-cohort": "コホート{{cohort}}の学生の修了率",
 	"confirm": "確認",
 	"confirm-logout": "本当にログアウトしますか？再度ログインするには、パスワードが必要です。",
 	"congratulations": "おめでとう！",
@@ -71,7 +71,7 @@
 	"nonassigned-students": "現在、どのグループにも割り当てられていない{{n}}ユーザーがいます。",
 	"number-of-groups": "グループ数",
 	"num-actions": "# of actions.{{n}}",
-	"num-cohort-actions": "# アクションの数 ({{コホート}})",
+	"num-cohort-actions": "# アクションの数 ({{cohort}})",
 	"num-students-answered": "# 回答した学生の数({{cohort}})",
 	"only-show-users-from": "からのユーザーのみを表示します。",
 	"open-actions": "オープンアクション",
@@ -122,5 +122,5 @@
 	"value": "値",
 	"video-active": "アクティブなビデオ",
 	"video-chat": "ビデオチャット",
-	"video-chat-with": "{{名前}}とのビデオチャット"
+	"video-chat-with": "{{name}}とのビデオチャット"
 }

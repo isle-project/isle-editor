@@ -139,7 +139,7 @@
 	"variable-exists": "La variabile esiste",
 	"variable-exists-msg": "Le variabili originali del set di dati non possono essere sovrascritte.",
 	"variable-removed": "Variabile rimossa",
-	"variable-removed-msg": "La variabile con il nome {{variabile}} è stata rimossa con successo.",
+	"variable-removed-msg": "La variabile con il nome {{variable}} è stata rimossa con successo.",
 	"variable-to-bin": "Variabile a bin:",
 	"variation-measures": "Misure di variazione",
 	"x-axis-variable": "Variabile sull'asse x:",

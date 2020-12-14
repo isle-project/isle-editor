@@ -41,7 +41,7 @@
 	"insert-row-before": "Rij voor",
 	"insert-table": "Tabel invoegen",
 	"insert-table-caption": "Tafelondertiteling invoegen",
-	"insert-table-spec": "Invoegen {{\\an5} x {\\an5} tabel",
+	"insert-table-spec": "Invoegen {{rows}} x {{cols}} tabel",
 	"join-with-above": "Voeg toe met bovenstaand blok",
 	"join-with-below": "Sluit u aan bij onderstaand blok",
 	"justified": "Gerechtvaardigd",

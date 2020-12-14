@@ -13,8 +13,8 @@
 	"submission-correct": "Gefeliciteerd, dat klopt!",
 	"submission-incorrect": "Niet helemaal. Vergelijk je antwoord met de oplossing.",
 	"submission-try-again": "Je antwoord is onjuist. Probeer het nog eens.",
-	"tries": "{\\an5} Probeer links",
-	"tries_plural": "{\\an5} probeert links",
+	"tries": "{{count}} Probeer links",
+	"tries_plural": "{{count}} probeert links",
 	"submission-message": "Uw antwoord is ingediend.",
 	"submit": "Stuur een bericht naar",
 	"your-answer": "Uw antwoord"

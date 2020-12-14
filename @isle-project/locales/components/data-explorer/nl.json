@@ -139,7 +139,7 @@
 	"variable-exists": "Variabele bestaat",
 	"variable-exists-msg": "De oorspronkelijke variabelen van de dataset kunnen niet worden overschreven.",
 	"variable-removed": "Variabele verwijderd",
-	"variable-removed-msg": "De variabele met de naam {{variabele}} is met succes verwijderd.",
+	"variable-removed-msg": "De variabele met de naam {{variable}} is met succes verwijderd.",
 	"variable-to-bin": "Variabel naar bak:",
 	"variation-measures": "Afwijkende maatregelen",
 	"x-axis-variable": "Variabele op x-as:",

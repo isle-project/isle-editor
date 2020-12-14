@@ -60,7 +60,7 @@
 	"redo-last-undone-change": "重做上次未做的更改",
 	"report-deleted-msg": "您的报告已被成功删除，编辑器被重置为默认值。",
 	"report-submitted": "提交的报告",
-	"report-submitted-msg": "`亲爱的{{姓名}}，您的报告已被成功记录。为方便起见，您的报告和生成的HTML文件附在这封邮件中。",
+	"report-submitted-msg": "`亲爱的{{name}}，您的报告已被成功记录。为方便起见，您的报告和生成的HTML文件附在这封邮件中。",
 	"reset-modal-title": "重置报告",
 	"reset-modal-body": "您确定要将编辑器的内容重置为默认值吗？这个操作是不可逆的，您的所有工作都将丢失，除非您保存Markdown源文件。",
 	"reset-modal-button-label": "重置",

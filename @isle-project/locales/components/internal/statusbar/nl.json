@@ -14,7 +14,7 @@
 	"cancel": "Annuleer",
 	"chat-members": "Leden van {{name} chat:",
 	"chat-with": "Chat met {{name}}",
-	"class-progress": "Huidige klasse vooruitgang: {\\an5}%",
+	"class-progress": "Huidige klasse vooruitgang: {{progress}}%",
 	"close-groups": "Groepen sluiten",
 	"close-groups-tooltip": "Studenten hebben zestig seconden de tijd om hun werk af te maken als de groepssluiting eenmaal is begonnen.",
 	"close-groups-confirm": "Wil je de groepen echt sluiten?",

@@ -14,7 +14,7 @@
 	"cancel": "Cancelar",
 	"chat-members": "Membros do chat {{name}}:",
 	"chat-with": "Bate-papo com {{name}}",
-	"class-progress": "Progresso da classe atual: {{progresso}}%",
+	"class-progress": "Progresso da classe atual: {{progress}}%",
 	"close-groups": "Grupos próximos",
 	"close-groups-tooltip": "Os estudantes têm sessenta segundos para concluir seu trabalho quando o encerramento do grupo é iniciado",
 	"close-groups-confirm": "Você realmente quer fechar os grupos?",

@@ -41,7 +41,7 @@
 	"insert-row-before": "Wstawić rząd przed",
 	"insert-table": "Wstawić tabelę",
 	"insert-table-caption": "Wstawić napis w tabeli",
-	"insert-table-spec": "{{\\i1}Wstawić {\\i0} x {{cols} tabela",
+	"insert-table-spec": "Wstawić {{rows}} x {{cols}} tabela",
 	"join-with-above": "Połącz się z powyższym blokiem",
 	"join-with-below": "Przyłącz się do poniższego bloku",
 	"justified": "Uzasadnione",
