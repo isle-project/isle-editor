@@ -1,0 +1,12 @@
+{
+	"correct": "正确",
+	"incorrect": "不正确",
+	"question-closed": "问题现已结束。",
+	"resubmit": "重新提交",
+	"resubmission-message": "你已经成功地重新提交了你的答案。",
+	"submission-correct": "这是正确的命令！",
+	"submission-incorrect": "不完全是，再试试！",
+	"submission-message": "你已经成功提交了你的答案。",
+	"submit": "提交",
+	"submitted": "已提交"
+}

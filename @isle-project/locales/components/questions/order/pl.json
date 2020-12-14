@@ -1,0 +1,12 @@
+{
+	"correct": "Poprawnie",
+	"incorrect": "Błędny",
+	"question-closed": "Pytanie jest już zamknięte.",
+	"resubmit": "Ponowne przedłożenie",
+	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
+	"submission-correct": "To jest prawidłowe zamówienie!",
+	"submission-incorrect": "Nie całkiem, spróbuj jeszcze raz!",
+	"submission-message": "Udało ci się przekazać swoją odpowiedź.",
+	"submit": "Zgłoś się",
+	"submitted": "Zgłoszony"
+}

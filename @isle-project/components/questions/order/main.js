@@ -16,7 +16,6 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import permute from '@isle-project/utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 import './order-question.css';
 
 
@@ -258,4 +257,4 @@ OrderQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'order-question' )( OrderQuestion );
+export default withTranslation( 'OrderQuestion' )( OrderQuestion );

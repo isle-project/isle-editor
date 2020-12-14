@@ -1,0 +1,12 @@
+{
+	"correct": "Корректный",
+	"incorrect": "Неправильный",
+	"question-closed": "Вопрос закрыт.",
+	"resubmit": "Повторная отправка",
+	"resubmission-message": "Вы успешно переслали свой ответ.",
+	"submission-correct": "Это правильный заказ!",
+	"submission-incorrect": "Не совсем, попробуй еще раз!",
+	"submission-message": "Вы успешно представили свой ответ.",
+	"submit": "Отправить .",
+	"submitted": "Представлено на ."
+}

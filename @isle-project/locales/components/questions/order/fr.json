@@ -1,0 +1,12 @@
+{
+	"correct": "Correct",
+	"incorrect": "Incorrect",
+	"question-closed": "La question est maintenant close.",
+	"resubmit": "Soumettre à nouveau",
+	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",
+	"submission-correct": "C'est le bon ordre !",
+	"submission-incorrect": "Pas tout à fait, essayez encore !",
+	"submission-message": "Vous avez soumis votre réponse avec succès.",
+	"submit": "Soumettre",
+	"submitted": "Soumis"
+}

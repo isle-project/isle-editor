@@ -1,0 +1,12 @@
+{
+	"correct": "Correcto",
+	"incorrect": "Incorrecto",
+	"question-closed": "La pregunta está ahora cerrada.",
+	"resubmit": "Volver a presentar",
+	"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+	"submission-correct": "¡Es el orden correcto!",
+	"submission-incorrect": "No del todo, ¡intente de nuevo!",
+	"submission-message": "Ha enviado con éxito su respuesta.",
+	"submit": "Enviar",
+	"submitted": "Presentado"
+}
