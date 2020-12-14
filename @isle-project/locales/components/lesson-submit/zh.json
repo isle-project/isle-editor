@@ -1,0 +1,16 @@
+{
+	"authentication": "认证",
+	"authentication-prompt": "要完成本课程，请登录您的ISLE帐户。如果您还没有创建帐户，请注册并使用ISLE的全部功能。",
+	"by": "由",
+	"choice": "选择",
+	"completed": "已完成",
+	"confirmation-email": "您将很快收到一封确认邮件。",
+	"download-pdf": "下载PDF格式的答复",
+	"elapsed": "逝去的",
+	"lesson-successfully-completed": "课程成功完成。",
+	"lesson-submitted": "课件提交！",
+	"login": "登入",
+	"responses-header": "对ISLE课程的回应",
+	"signup": "报名",
+	"submit": "提交"
+}

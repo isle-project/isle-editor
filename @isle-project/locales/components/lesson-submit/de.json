@@ -1,0 +1,16 @@
+{
+	"authentication": "Authentifizierung",
+	"authentication-prompt": "Um diese Lektion abzuschließen, logge Dich bitte in Dein ISLE-Konto ein. Wenn Du noch kein Konto eingerichtet hast, melde Dich bitte an und erhalte Zugang zur vollen Funktionalität von ISLE",
+	"by": "von",
+	"choice": "Wahl",
+	"completed": "Abgeschlossen",
+	"confirmation-email": " Du erhälst in Kürze eine Bestätigungs-E-Mail.",
+	"download-pdf": "PDF der Antworten herunterladen",
+	"elapsed": "verstrichen",
+	"lesson-successfully-completed": "Lektion erfolgreich abgeschlossen.",
+	"lesson-submitted": "Lektion abgeschlossen!",
+	"login": "Anmelden",
+	"responses-header": "Antworten für die ISLE-Lektion",
+	"signup": "Registrieren",
+	"submit": "Abschicken"
+}

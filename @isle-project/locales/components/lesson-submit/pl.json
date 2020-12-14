@@ -1,0 +1,16 @@
+{
+	"authentication": "Uwierzytelnianie",
+	"authentication-prompt": "Aby sfinalizować tę lekcję, proszę zaloguj się na swoje konto ISLE. Jeśli go nie stworzyłeś, zarejestruj się i uzyskaj dostęp do pełnej funkcjonalności ISLE.",
+	"by": "przez",
+	"choice": "Wybór",
+	"completed": "Ukończono",
+	"confirmation-email": " Wkrótce otrzymasz wiadomość e-mail z potwierdzeniem.",
+	"download-pdf": "Pobierz PDF z odpowiedziami",
+	"elapsed": "upłynął",
+	"lesson-successfully-completed": "Lekcja zakończona sukcesem.",
+	"lesson-submitted": "Lekcja zgłoszona!",
+	"login": "Login",
+	"responses-header": "Odpowiedzi na lekcję ISLE",
+	"signup": "Zarejestruj się",
+	"submit": "Zgłoś się"
+}

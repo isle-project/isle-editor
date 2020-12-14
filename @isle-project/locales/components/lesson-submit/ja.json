@@ -1,0 +1,16 @@
+{
+	"authentication": "認証",
+	"authentication-prompt": "このレッスンを完成させるには、ISLEのアカウントにログインしてください。まだアカウントを作成していない場合は、サインアップしてISLEの全機能にアクセスしてください。",
+	"by": "掖",
+	"choice": "選択肢",
+	"completed": "完成した",
+	"confirmation-email": "まもなく確認のメールが届きます。",
+	"download-pdf": "回答のPDFをダウンロード",
+	"elapsed": "経過",
+	"lesson-successfully-completed": "レッスンは無事終了しました。",
+	"lesson-submitted": "レッスンを提出しました!",
+	"login": "ログイン",
+	"responses-header": "ISLEレッスンへの対応",
+	"signup": "サインアップ",
+	"submit": "提出"
+}
