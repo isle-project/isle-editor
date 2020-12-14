@@ -10,7 +10,7 @@ exports[`renders a playground with a supplied scope 1`] = `
   <div
     className="playground-editable unselectable"
   >
-    editable-source
+    EDITABLE SOURCE
   </div>
   <div
     className="playground-live-editor"
@@ -244,7 +244,7 @@ exports[`renders an uncontrolled playground 1`] = `
   <div
     className="playground-editable unselectable"
   >
-    editable-source
+    EDITABLE SOURCE
   </div>
   <div
     className="playground-live-editor"
