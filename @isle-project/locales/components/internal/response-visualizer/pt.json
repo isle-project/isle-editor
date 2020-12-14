@@ -7,7 +7,7 @@
 	"blue": "Azul",
 	"cancel": "Cancelar",
 	"case-sensitive": "Sensível a casos",
-	"chat-with": "Bate-papo com {{nome}}",
+	"chat-with": "Bate-papo com {{name}}",
 	"choice": "Escolha",
 	"close": "Fechar",
 	"cluster": "Cluster",
@@ -54,7 +54,7 @@
 	"users-in-focus": "Os seguintes usuários têm atualmente o componente em foco:",
 	"value": "Valor",
 	"video-chat": "Bate-papo em vídeo",
-	"video-chat-with": "Bate-papo de vídeo com {{nome}}",
+	"video-chat-with": "Bate-papo de vídeo com {{name}}",
 	"whole-word": "Palavra completa",
 	"whole-word-tooltip": "Se pesquisar por palavras inteiras"
 }

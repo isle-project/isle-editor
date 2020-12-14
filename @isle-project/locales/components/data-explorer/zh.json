@@ -139,7 +139,7 @@
 	"variable-exists": "变量存在",
 	"variable-exists-msg": "数据集的原始变量不能被覆盖。",
 	"variable-removed": "删除的变量",
-	"variable-removed-msg": "成功删除了名为{{变量}}的变量。",
+	"variable-removed-msg": "成功删除了名为{{variable}}的变量。",
 	"variable-to-bin": "变量到斌。",
 	"variation-measures": "变化措施",
 	"x-axis-variable": "x轴上的变量。",

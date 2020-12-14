@@ -135,7 +135,7 @@
 	"variable-s": "Variabele(n):",
 	"variables-statistics-tooltip": "Kwantitatieve variabele waarvoor statistieken moeten worden berekend",
 	"variable-created": "Variabele gecreëerd",
-	"variable-created-msg": "De variabele met de naam {{naam}} is met succes gegenereerd",
+	"variable-created-msg": "De variabele met de naam {{name}} is met succes gegenereerd",
 	"variable-exists": "Variabele bestaat",
 	"variable-exists-msg": "De oorspronkelijke variabelen van de dataset kunnen niet worden overschreven.",
 	"variable-removed": "Variabele verwijderd",

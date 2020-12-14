@@ -13,7 +13,7 @@
 	"by": "掖",
 	"cancel": "キャンセル",
 	"chat-members": "名前}}チャットのメンバーです。",
-	"chat-with": "チャットで{{名前}}と",
+	"chat-with": "チャットで{{name}}と",
 	"class-progress": "現在のクラスの進捗状況。{{progress}}%%のようになっています。",
 	"close-groups": "クローズグループ",
 	"close-groups-tooltip": "グループ閉鎖が開始されたら、学生は60秒以内に作業を終了します。",

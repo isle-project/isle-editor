@@ -12,8 +12,8 @@
 	"broadcast-message-tooltip": "Transmissão de mensagem a todos os grupos",
 	"by": "por",
 	"cancel": "Cancelar",
-	"chat-members": "Membros do chat {{nome}}:",
-	"chat-with": "Bate-papo com {{nome}}",
+	"chat-members": "Membros do chat {{name}}:",
+	"chat-with": "Bate-papo com {{name}}",
 	"class-progress": "Progresso da classe atual: {{progresso}}%",
 	"close-groups": "Grupos próximos",
 	"close-groups-tooltip": "Os estudantes têm sessenta segundos para concluir seu trabalho quando o encerramento do grupo é iniciado",
@@ -36,7 +36,7 @@
 	"email": "Email",
 	"enable-voice": "Habilitar gravação / controle de voz",
 	"enlarge": "Ampliar",
-	"enter-feedback": "Digite o feedback para resposta de {{nome}}",
+	"enter-feedback": "Digite o feedback para resposta de {{name}}",
 	"error-csv": "Encontrou um erro ao criar o CSV:",
 	"error-encountered": "Erro encontrado",
 	"error-fake-users": "Encontrou um erro ao gerar usuários falsos:",
@@ -122,5 +122,5 @@
 	"value": "Valor",
 	"video-active": "Vídeo ativo",
 	"video-chat": "Bate-papo em vídeo",
-	"video-chat-with": "Bate-papo de vídeo com {{nome}}"
+	"video-chat-with": "Bate-papo de vídeo com {{name}}"
 }

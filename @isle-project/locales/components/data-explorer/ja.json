@@ -139,7 +139,7 @@
 	"variable-exists": "変数が存在する",
 	"variable-exists-msg": "データセットの元の変数を上書きすることはできません。",
 	"variable-removed": "変数が削除されました",
-	"variable-removed-msg": "名前が{{変数}}の変数が正常に削除されました。",
+	"variable-removed-msg": "名前が{{variable}}の変数が正常に削除されました。",
 	"variable-to-bin": "変数をbinにします。",
 	"variation-measures": "変動対策",
 	"x-axis-variable": "X軸上の変数。",

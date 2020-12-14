@@ -7,7 +7,7 @@
 	"blue": "青色",
 	"cancel": "キャンセル",
 	"case-sensitive": "ケースセンシティブ",
-	"chat-with": "チャットで{{名前}}と",
+	"chat-with": "チャットで{{name}}と",
 	"choice": "選択肢",
 	"close": "クローズ",
 	"cluster": "クラスター",
@@ -54,7 +54,7 @@
 	"users-in-focus": "現在、以下のユーザーがコンポーネントに注目しています。",
 	"value": "値",
 	"video-chat": "ビデオチャット",
-	"video-chat-with": "{{名前}}とのビデオチャット",
+	"video-chat-with": "{{name}}とのビデオチャット",
 	"whole-word": "全単語",
 	"whole-word-tooltip": "単語全体を検索するかどうか"
 }

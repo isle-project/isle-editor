@@ -60,7 +60,7 @@
 	"redo-last-undone-change": "Refazer a última mudança desfeita",
 	"report-deleted-msg": "Seu relatório foi excluído com sucesso e o editor retornou ao seu valor padrão",
 	"report-submitted": "Relatório apresentado",
-	"report-submitted-msg": "Ouvir {{nome}}, seu relatório foi registrado com sucesso. Para sua conveniência, seu relatório e o arquivo HTML gerado são anexados a este e-mail.",
+	"report-submitted-msg": "Ouvir {{name}}, seu relatório foi registrado com sucesso. Para sua conveniência, seu relatório e o arquivo HTML gerado são anexados a este e-mail.",
 	"reset-modal-title": "Relatório de reinicialização",
 	"reset-modal-body": "Você tem certeza de que quer repor o conteúdo do editor ao seu valor padrão? Esta ação é irreversível e todo o seu trabalho será perdido a menos que você salve o arquivo fonte Markdown.",
 	"reset-modal-button-label": "Reinicialização",

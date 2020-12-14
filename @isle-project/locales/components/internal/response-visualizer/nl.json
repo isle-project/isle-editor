@@ -7,7 +7,7 @@
 	"blue": "Blauw",
 	"cancel": "Annuleer",
 	"case-sensitive": "Gevoelige gevallen",
-	"chat-with": "Chat met {{naam}}",
+	"chat-with": "Chat met {{name}}",
 	"choice": "Keuze",
 	"close": "Sluit",
 	"cluster": "Cluster",
@@ -54,7 +54,7 @@
 	"users-in-focus": "De volgende gebruikers hebben op dit moment de component in beeld:",
 	"value": "Waarde",
 	"video-chat": "Videopraatje",
-	"video-chat-with": "Videochat met {{naam}",
+	"video-chat-with": "Videochat met {{name}}",
 	"whole-word": "Hele woord",
 	"whole-word-tooltip": "Het zoeken naar hele woorden"
 }
