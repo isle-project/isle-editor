@@ -1480,7 +1480,6 @@ class Editor extends Component {
 	}
 
 	render() {
-		MONACO_OPTIONS.fontSize = this.props.splitPos !== 1 ? this.props.fontSize : 4;
 		debug( 'Re-rendering monaco editor...' );
 		let outerStyle;
 		if ( this.props.splitPos === 1 ) {
@@ -1508,7 +1507,10 @@ class Editor extends Component {
 							width={max( window.innerWidth * ( 1.0 - this.props.splitPos ), 300 )}
 							language="javascript"
 							value={this.state.value}
-							options={MONACO_OPTIONS}
+							options={{
+								...MONACO_OPTIONS,
+								fontSize: this.props.splitPos !== 1 ? this.props.fontSize : 4
+							}}
 							onChange={this.handleChange}
 							editorDidMount={this.onEditorMount}
 						/>
