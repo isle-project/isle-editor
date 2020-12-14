@@ -9,7 +9,6 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import ColorPicker from '@isle-project/components/color-picker';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
-import './load_translations.js';
 import './image.css';
 
 
@@ -188,4 +187,4 @@ Image.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'image' )( Image );
+export default withTranslation( 'Image' )( Image );
