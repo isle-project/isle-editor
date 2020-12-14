@@ -6,7 +6,6 @@ import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Tooltip from '@isle-project/components/tooltip';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
-import './load_translations.js';
 import './panel.css';
 
 
@@ -128,4 +127,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation()( Wrapper );
+export default withTranslation( 'Panel' )( Wrapper );
