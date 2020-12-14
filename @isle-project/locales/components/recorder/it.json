@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Cancella il file",
+	"download-file": "Scarica il file",
+	"encountered-error": "Errore incontrato",
+	"failed-to-capture-camera": "Impossibile catturare la fotocamera (errore: {{msg}})",
+	"failed-to-capture-microphone": "Impossibile catturare il microfono (errore: {{msg}})",
+	"failed-to-capture-screen": "Impossibile catturare lo schermo (errore: {{msg}})",
+	"open-link": "Aprire il collegamento",
+	"recording-uploaded": "Registrazione caricata",
+	"recording-uploaded-message": "La vostra registrazione è stata caricata con successo ed è possibile accedervi all'indirizzo:",
+	"screen": "Schermo",
+	"upload-file": "Carica file"
+}

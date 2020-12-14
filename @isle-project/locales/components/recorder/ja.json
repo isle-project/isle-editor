@@ -1,0 +1,15 @@
+{
+	"audio": "オーディオ",
+	"cam": "カム",
+	"clear-file": "クリアファイル",
+	"download-file": "ファイルのダウンロード",
+	"encountered-error": "遭遇したエラー",
+	"failed-to-capture-camera": "カメラのキャプチャに失敗しました(エラー: {{msg}})",
+	"failed-to-capture-microphone": "マイクのキャプチャに失敗しました(エラー: {{msg}})",
+	"failed-to-capture-screen": "画面のキャプチャに失敗しました(エラー: {{msg}})",
+	"open-link": "オープンリンク",
+	"recording-uploaded": "アップロードされた記録",
+	"recording-uploaded-message": "あなたの録音は正常にアップロードされました。",
+	"screen": "スクリーン",
+	"upload-file": "ファイルのアップロード"
+}

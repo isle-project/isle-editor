@@ -1,0 +1,15 @@
+{
+	"audio": "Áudio",
+	"cam": "Cam",
+	"clear-file": "Limpar arquivo",
+	"download-file": "Baixar arquivo",
+	"encountered-error": "Erro Encontrado",
+	"failed-to-capture-camera": "Falha em capturar sua câmera (erro: {{msg}})",
+	"failed-to-capture-microphone": "Falha ao capturar seu microfone (erro: {{msg}})",
+	"failed-to-capture-screen": "Falha em capturar sua tela (erro: {{msg}})",
+	"open-link": "Link aberto",
+	"recording-uploaded": "Gravação carregada",
+	"recording-uploaded-message": "Sua gravação foi carregada com sucesso e pode ser acessada em:",
+	"screen": "Tela",
+	"upload-file": "Carregar arquivo"
+}

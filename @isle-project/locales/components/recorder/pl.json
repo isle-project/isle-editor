@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Klarowny plik",
+	"download-file": "Plik do pobrania",
+	"encountered-error": "Napotkany błąd",
+	"failed-to-capture-camera": "Nie udało się uchwycić kamery (błąd: {{msg}})",
+	"failed-to-capture-microphone": "Nie udało się uchwycić mikrofonu (błąd: {{msg}})",
+	"failed-to-capture-screen": "Nie udało się uchwycić ekranu (błąd: {{msg}})",
+	"open-link": "Open Link",
+	"recording-uploaded": "Nagranie załadowane",
+	"recording-uploaded-message": "Twoje nagranie zostało pomyślnie przesłane i może być dostępne na stronie:",
+	"screen": "Ekran",
+	"upload-file": "Prześlij plik"
+}

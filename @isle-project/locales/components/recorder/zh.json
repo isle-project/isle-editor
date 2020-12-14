@@ -1,0 +1,15 @@
+{
+	"audio": "音频",
+	"cam": "凸轮",
+	"clear-file": "清除文件",
+	"download-file": "下载文件",
+	"encountered-error": "遇到的错误",
+	"failed-to-capture-camera": "捕获您的相机失败（错误：{{msg}}）。",
+	"failed-to-capture-microphone": "捕获麦克风失败（错误：{{msg}}）。",
+	"failed-to-capture-screen": "捕捉屏幕失败（错误：{{msg}}）。",
+	"open-link": "打开链接",
+	"recording-uploaded": "上传的记录",
+	"recording-uploaded-message": "您的录音已成功上传，可在以下网址访问：",
+	"screen": "屏幕",
+	"upload-file": "上传文件"
+}

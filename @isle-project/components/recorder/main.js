@@ -14,7 +14,6 @@ import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } 
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
-import './load_translations.js';
 import './ebml.js';
 import './recorder.css';
 
@@ -557,4 +556,4 @@ Recorder.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'recorder' )( Recorder );
+export default withTranslation( 'Recorder' )( Recorder );

@@ -1,0 +1,15 @@
+{
+	"audio": "Аудио",
+	"cam": "Кам",
+	"clear-file": "Чистый файл",
+	"download-file": "Скачать файл",
+	"encountered-error": "Встреченная ошибка",
+	"failed-to-capture-camera": "Не удалось запечатлеть камеру (ошибка: {{msg}}).",
+	"failed-to-capture-microphone": "Не удалось захватить микрофон (ошибка: {{msg}}).",
+	"failed-to-capture-screen": "Не удалось захватить экран (ошибка: {{msg}}).",
+	"open-link": "Открытая ссылка",
+	"recording-uploaded": "Загруженная запись",
+	"recording-uploaded-message": "Ваша запись была успешно загружена, и к ней можно получить доступ:",
+	"screen": "Экран",
+	"upload-file": "Загрузить файл"
+}

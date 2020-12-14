@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Effacer le fichier",
+	"download-file": "Télécharger le fichier",
+	"encountered-error": "Erreur rencontrée",
+	"failed-to-capture-camera": "N'a pas réussi à capturer votre appareil photo (erreur : {{msg}})",
+	"failed-to-capture-microphone": "Vous n'avez pas réussi à capturer votre microphone (erreur : {{msg}})",
+	"failed-to-capture-screen": "Vous n'avez pas réussi à capturer votre écran (erreur : {{msg}})",
+	"open-link": "Ouvrir le lien",
+	"recording-uploaded": "Enregistrement téléchargé",
+	"recording-uploaded-message": "Votre enregistrement a été téléchargé avec succès et peut être consulté à l'adresse suivante",
+	"screen": "Écran",
+	"upload-file": "Télécharger un fichier"
+}
