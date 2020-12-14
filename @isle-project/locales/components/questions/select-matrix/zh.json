@@ -1,0 +1,11 @@
+{
+	"answer-resubmitted": "答复重新提交。",
+	"answer-submitted": "提交的答复：",
+	"correct-answer": "正确答案",
+	"success-message": "这是正确的答案！",
+	"failure-message": "不完全是",
+	"resubmit": "重新提交",
+	"resubmit-message": "你已经成功地重新提交了你的答案。",
+	"submit": "提交",
+	"submit-message": "您的答案已经提交。"
+}

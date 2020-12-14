@@ -25,7 +25,6 @@ import Text from '@isle-project/components/text';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 import './select-question-matrix.css';
 
 
@@ -362,4 +361,4 @@ SelectQuestionMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'select-question-matrix' )( SelectQuestionMatrix );
+export default withTranslation( 'SelectQuestionMatrix' )( SelectQuestionMatrix );

@@ -1,0 +1,11 @@
+{
+	"answer-resubmitted": "Respuesta presentada de nuevo.",
+	"answer-submitted": "Respuesta presentada.",
+	"correct-answer": "Respuesta correcta",
+	"success-message": "¡Esa es la respuesta correcta!",
+	"failure-message": "No del todo.",
+	"resubmit": "Volver a presentar",
+	"resubmit-message": "Ha vuelto a enviar su respuesta con éxito",
+	"submit": "Presentar",
+	"submit-message": "Su respuesta ha sido presentada."
+}
