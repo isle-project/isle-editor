@@ -674,4 +674,4 @@ GroupManager.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation()( GroupManager );
+export default withTranslation( 'StatusBar' )( GroupManager );

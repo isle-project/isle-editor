@@ -60,4 +60,4 @@ SketchpadContextMenu.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation()( SketchpadContextMenu );
+export default withTranslation( 'Sketchpad' )( SketchpadContextMenu );

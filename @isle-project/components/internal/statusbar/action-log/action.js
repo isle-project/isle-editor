@@ -91,4 +91,4 @@ Action.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation()( Action );
+export default withTranslation( 'StatusBar' )( Action );

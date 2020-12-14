@@ -214,4 +214,4 @@ InstructorView.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( InstructorView );
+export default withTranslation( 'StatusBar' )( InstructorView );

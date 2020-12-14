@@ -244,4 +244,4 @@ class SurveyGenerator extends Component {
 
 // EXPORTS //
 
-export default withTranslation()( SurveyGenerator );
+export default withTranslation( 'Toolbar' )( SurveyGenerator );

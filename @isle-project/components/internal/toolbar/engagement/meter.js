@@ -147,4 +147,4 @@ EngagementMeter.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation()( EngagementMeter );
+export default withTranslation( 'Toolbar' )( EngagementMeter );

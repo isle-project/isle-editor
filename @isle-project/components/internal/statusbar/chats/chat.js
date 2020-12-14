@@ -368,4 +368,4 @@ Chat.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Chat );
+export default withTranslation( 'StatusBar' )( Chat );

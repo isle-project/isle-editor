@@ -71,4 +71,4 @@ SolutionButton.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation()( SolutionButton );
+export default withTranslation( 'SolutionButton' )( SolutionButton );

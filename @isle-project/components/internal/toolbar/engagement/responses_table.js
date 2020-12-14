@@ -84,4 +84,4 @@ const ResponsesTable = ( props ) => {
 
 // EXPORTS //
 
-export default withTranslation()( ResponsesTable );
+export default withTranslation( 'Toolbar' )( ResponsesTable );
