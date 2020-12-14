@@ -1,0 +1,14 @@
+{
+	"add-note": "Notiz hinzufügen",
+	"clipboard-empty": "Zwischenablage ist leer",
+	"clipboard-empty-message": "Das Einfügen von Text ist fehlgeschlagen. Die Zwischenablage ist derzeit leer.",
+	"copy": "Kopieren",
+	"cut": "Ausschneiden",
+	"highlight": "Hervorheben",
+	"not-available-yet": "Lektion (noch) nicht verfügbar",
+	"paste": "Einfügen",
+	"read-aloud": "Vorlesen",
+	"remove-highlight": "Hervorhebung entfernen",
+	"voice-not-supported": "Nicht unterstützt.",
+	"voice-not-supported-message": "Die Text-to-Speech-Funktionalität wird derzeit von Ihrem Browser nicht unterstützt. Bitte versuchen Sie Google Chrome."
+}

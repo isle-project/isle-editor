@@ -1,0 +1,14 @@
+{
+	"add-note": "Opmerking toevoegen",
+	"clipboard-empty": "Klembord is leeg",
+	"clipboard-empty-message": "Er is geen tekst ingevoegd. Het klembord is momenteel leeg.",
+	"copy": "Kopieer",
+	"cut": "Knip",
+	"highlight": "Markeer",
+	"not-available-yet": "Les (nog) niet beschikbaar",
+	"paste": "Plakken",
+	"read-aloud": "Voorlezen",
+	"remove-highlight": "Verwijder Highlight",
+	"voice-not-supported": "Niet ondersteund.",
+	"voice-not-supported-message": "De tekst-naar-spraak functionaliteit wordt momenteel niet ondersteund op uw browser. Probeer Google Chrome."
+}

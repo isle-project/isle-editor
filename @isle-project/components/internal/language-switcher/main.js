@@ -25,7 +25,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { changeLanguage } from '@isle-project/locales';
 import './language_switcher.css';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -50,6 +49,14 @@ const SelectModal = ( props ) => {
 				<Button block onClick={changeLanguageFactory( 'en' )}>English - EN</Button>
 				<Button block onClick={changeLanguageFactory( 'es' )}>Español - ES</Button>
 				<Button block onClick={changeLanguageFactory( 'de' )}>Deutsch - DE</Button>
+				<Button block onClick={changeLanguageFactory( 'fr' )}>Français - FR</Button>
+				<Button block onClick={changeLanguageFactory( 'it' )}>Italiano - IT</Button>
+				<Button block onClick={changeLanguageFactory( 'ja' )}>にほんご - JA</Button>
+				<Button block onClick={changeLanguageFactory( 'nl' )}>Nederlands - NL</Button>
+				<Button block onClick={changeLanguageFactory( 'pt' )}>Porgtugês - PT</Button>
+				<Button block onClick={changeLanguageFactory( 'pl' )}>Polski - PL</Button>
+				<Button block onClick={changeLanguageFactory( 'ru' )}>русский - RU</Button>
+				<Button block onClick={changeLanguageFactory( 'zh' )}>中文 - ZH</Button>
 			</Modal.Body>
 		</Modal>
 	);
@@ -84,4 +91,4 @@ const LanguageSwitcher = ( props ) => {
 
 // EXPORTS //
 
-export default withTranslation()( LanguageSwitcher );
+export default withTranslation( 'LanguageSwitcher' )( LanguageSwitcher );

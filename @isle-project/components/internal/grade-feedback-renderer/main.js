@@ -10,12 +10,11 @@ import Button from 'react-bootstrap/Button';
 import Tooltip from '@isle-project/components/tooltip';
 import renderTime from '@isle-project/utils/render-time';
 import './grade_feedback_renderer.css';
-import './load_translations.js';
 
 
 // MAIN //
 
-class FeedbackRenderer extends Component {
+class GradeFeedbackRenderer extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -142,14 +141,14 @@ class FeedbackRenderer extends Component {
 
 // PROPERTIES //
 
-FeedbackRenderer.propTypes = {
+GradeFeedbackRenderer.propTypes = {
 	points: PropTypes.number.isRequired,
 	for: PropTypes.string.isRequired
 };
 
-FeedbackRenderer.contextType = SessionContext;
+GradeFeedbackRenderer.contextType = SessionContext;
 
 
 // EXPORTS //
 
-export default withTranslation( 'grade-feedback-renderer' )( FeedbackRenderer );
+export default withTranslation( 'GradeFeedbackRenderer' )( GradeFeedbackRenderer );

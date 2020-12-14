@@ -263,4 +263,4 @@ Signup.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'signup' )( Signup );
+export default withTranslation( 'Signup' )( Signup );

@@ -1,0 +1,14 @@
+{
+	"add-note": "Adicionar Nota",
+	"clipboard-empty": "A prancheta está vazia",
+	"clipboard-empty-message": "Falha na inserção de texto. A prancheta está atualmente vazia.",
+	"copy": "Cópia",
+	"cut": "Corte",
+	"highlight": "Destaque",
+	"not-available-yet": "Lição não disponível (ainda)",
+	"paste": "Colar",
+	"read-aloud": "Leia em voz alta",
+	"remove-highlight": "Remover Destaque",
+	"voice-not-supported": "Não é suportado.",
+	"voice-not-supported-message": "A funcionalidade texto-para-fala não é atualmente suportada em seu navegador. Por favor, tente o Google Chrome."
+}

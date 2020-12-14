@@ -213,4 +213,4 @@ VideoChat.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( VideoChat );
+export default withTranslation( 'StatusBar' )( VideoChat );

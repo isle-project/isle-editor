@@ -1,0 +1,14 @@
+{
+	"add-note": "Añade una nota",
+	"clipboard-empty": "El portapapeles está vacío",
+	"clipboard-empty-message": "No se insertó el texto. El portapapeles está actualmente vacío.",
+	"copy": "Kopieren",
+	"cut": "Cortar",
+	"highlight": "Destacar",
+	"not-available-yet": "Lección no disponible (aún)",
+	"paste": "Pegar",
+	"read-aloud": "Lea en voz alta",
+	"remove-highlight": "Eliminar el resalte",
+	"voice-not-supported": "No se apoya.",
+	"voice-not-supported-message": "La función de texto a voz no es actualmente compatible con su navegador. Prueba con Google Chrome."
+}

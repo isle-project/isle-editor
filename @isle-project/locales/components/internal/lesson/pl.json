@@ -1,0 +1,14 @@
+{
+	"add-note": "Dodaj notatkę",
+	"clipboard-empty": "Schowek jest pusty",
+	"clipboard-empty-message": "Nie udało się wstawić tekstu. Schowek jest obecnie pusty.",
+	"copy": "Kopia",
+	"cut": "Cięcie",
+	"highlight": "Highlight",
+	"not-available-yet": "Lekcja nie jest dostępna (jeszcze)",
+	"paste": "Pasta",
+	"read-aloud": "Czytaj na głos",
+	"remove-highlight": "Usuń podświetlenie",
+	"voice-not-supported": "Nie ma wsparcia.",
+	"voice-not-supported-message": "Funkcja text-to-speech nie jest obecnie obsługiwana w Twojej przeglądarce. Wypróbuj Google Chrome."
+}

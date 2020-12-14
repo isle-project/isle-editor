@@ -1,0 +1,14 @@
+{
+	"add-note": "Aggiungi nota",
+	"clipboard-empty": "La bacheca è vuota",
+	"clipboard-empty-message": "Impossibile inserire il testo. La clipboard è attualmente vuota.",
+	"copy": "Copia",
+	"cut": "Taglia",
+	"highlight": "Evidenziare",
+	"not-available-yet": "Lezione non disponibile (ancora)",
+	"paste": "Incolla",
+	"read-aloud": "Leggi ad alta voce",
+	"remove-highlight": "Rimuovi evidenziazione",
+	"voice-not-supported": "Non è supportato.",
+	"voice-not-supported-message": "La funzionalità text-to-speech non è attualmente supportata dal vostro browser. Si prega di provare Google Chrome."
+}

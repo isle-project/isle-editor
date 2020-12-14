@@ -6,7 +6,6 @@ import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { withTranslation } from 'react-i18next';
 import isObjectArray from '@stdlib/assert/is-object-array';
-import i18next from './i18n.js';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
 import StickyNote from '@isle-project/components/sticky-note';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
@@ -15,14 +14,10 @@ import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
-import TRANSLATION from './translation.json';
+import './i18n.js';
 
 
 // VARIABLES //
-
-i18next.addResources( 'de', 'components', TRANSLATION.DE );
-i18next.addResources( 'en', 'components', TRANSLATION.EN );
-i18next.addResources( 'es', 'components', TRANSLATION.ES );
 
 const NOTIFICATION_STYLE = {
 	Containers: {
@@ -218,4 +213,4 @@ Lesson.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation()( Lesson );
+export default withTranslation( 'Lesson' )( Lesson );

@@ -1,0 +1,14 @@
+{
+	"add-note": "Ajouter une note",
+	"clipboard-empty": "Le presse-papiers est vide",
+	"clipboard-empty-message": "Le texte n'a pas été inséré. Le presse-papiers est actuellement vide.",
+	"copy": "Copie",
+	"cut": "Coupez",
+	"highlight": "Souligner",
+	"not-available-yet": "Leçon non disponible (encore)",
+	"paste": "Coller",
+	"read-aloud": "Lire à haute voix",
+	"remove-highlight": "Supprimer le surlignage",
+	"voice-not-supported": "Non soutenu.",
+	"voice-not-supported-message": "La fonction de synthèse vocale n'est pas encore prise en charge par votre navigateur. Veuillez essayer Google Chrome."
+}

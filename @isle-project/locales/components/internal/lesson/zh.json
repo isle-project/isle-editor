@@ -1,0 +1,14 @@
+{
+	"add-note": "补充说明",
+	"clipboard-empty": "剪贴板是空的",
+	"clipboard-empty-message": "插入文本失败。目前剪贴板为空。",
+	"copy": "复制",
+	"cut": "切",
+	"highlight": "亮点",
+	"not-available-yet": "尚未有课程",
+	"paste": "粘贴",
+	"read-aloud": "朗读",
+	"remove-highlight": "移除高光",
+	"voice-not-supported": "不支持。",
+	"voice-not-supported-message": "您的浏览器目前不支持文本到语音功能。请尝试使用谷歌浏览器。"
+}
