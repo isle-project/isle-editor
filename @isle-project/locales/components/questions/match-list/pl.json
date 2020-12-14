@@ -1,0 +1,11 @@
+{
+	"answers": "Odpowiedzi",
+	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
+	"answer-submitted": "Odpowiedź nadesłana.",
+	"instructions": "Dopasuj elementy z lewej strony do odpowiednich elementów z prawej strony, klikając na nie.",
+	"question-closed": "Pytanie jest już zamknięte.",
+	"resubmit": "Ponowne przedłożenie",
+	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
+	"submit": "Zgłoś się",
+	"submit-tooltip": "Możesz zgłosić po dopasowaniu wszystkich elementów z lewej strony do odpowiednich elementów z prawej strony."
+}

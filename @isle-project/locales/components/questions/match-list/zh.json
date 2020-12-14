@@ -1,0 +1,11 @@
+{
+	"answers": "答案",
+	"answer-resubmitted": "答复重新提交。",
+	"answer-submitted": "提交的答复：",
+	"instructions": "将左侧的{{完整}}元素与右侧的相应元素相匹配，点击它们。",
+	"question-closed": "问题现已结束。",
+	"resubmit": "重新提交",
+	"resubmission-message": "你已经成功地重新提交了你的答案。",
+	"submit": "提交",
+	"submit-tooltip": "您可以在将左手边的所有元素与右手边的相应元素匹配后提交"
+}

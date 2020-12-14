@@ -1,0 +1,11 @@
+{
+	"answers": "Réponses",
+	"answer-resubmitted": "Réponse soumise à nouveau.",
+	"answer-submitted": "Réponse soumise.",
+	"instructions": "Faites correspondre les éléments {{complets}} de la partie gauche avec les éléments correspondants de la partie droite en cliquant dessus.",
+	"question-closed": "La question est maintenant close.",
+	"resubmit": "Soumettre à nouveau",
+	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",
+	"submit": "Soumettre",
+	"submit-tooltip": "Vous pouvez soumettre après avoir fait correspondre tous les éléments de la partie gauche avec les éléments correspondants de la partie droite"
+}

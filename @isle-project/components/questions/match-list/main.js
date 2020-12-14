@@ -20,7 +20,6 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from '@isle-project/constants/actions.js';
 import OptionsList from './options_list.js';
-import './load_translations.js';
 import './match_list_question.css';
 
 
@@ -335,4 +334,4 @@ MatchListQuestion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'match-list-question' )( MatchListQuestion );
+export default withTranslation( 'MatchListQuestion' )( MatchListQuestion );

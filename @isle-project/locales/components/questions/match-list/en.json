@@ -1,0 +1,11 @@
+{
+	"answers": "Answers",
+	"answer-resubmitted": "Answer re-submitted.",
+	"answer-submitted": "Answer submitted.",
+	"instructions": "Match {{complete}} elements from the left-hand side with the corresponding elements on the right-hand side by clicking on them.",
+	"question-closed": "Question is now closed.",
+	"resubmit": "Resubmit",
+	"resubmission-message": "You have successfully re-submitted your answer.",
+	"submit": "Submit",
+	"submit-tooltip": "You may submit after you have matched all elements from the left-hand side with the corresponding elements from the right-hand side"
+}
