@@ -1,0 +1,10 @@
+{
+	"csv-upload-prompt": "Favor carregar um conjunto de dados (formato CSV)",
+	"drop-file": "Arquivo drop aqui",
+	"error-message": "O seguinte erro foi encontrado ao tentar ler o arquivo",
+	"error-title": "Não foi possível ler o arquivo.",
+	"first-row-names": "A primeira linha contém nomes variáveis",
+	"no-csv": "Sem arquivo CSV.",
+	"no-csv-message": "O arquivo fornecido não é um arquivo CSV.",
+	"title": "Upload de arquivos"
+}

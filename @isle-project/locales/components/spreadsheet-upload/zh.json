@@ -1,0 +1,10 @@
+{
+	"csv-upload-prompt": "请上传数据集(CSV格式)",
+	"drop-file": "把文件放在这里",
+	"error-message": "在试图读取文件时，遇到了以下错误。",
+	"error-title": "无法读取文件。",
+	"first-row-names": "第一行包含变量名称",
+	"no-csv": "没有CSV文件。",
+	"no-csv-message": "提供的文件不是CSV文件。",
+	"title": "文件上传"
+}

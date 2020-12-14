@@ -1,0 +1,10 @@
+{
+	"csv-upload-prompt": "Veuillez télécharger un ensemble de données (format CSV)",
+	"drop-file": "Déposer le fichier ici",
+	"error-message": "L'erreur suivante a été rencontrée en essayant de lire le fichier",
+	"error-title": "Impossible de lire le fichier.",
+	"first-row-names": "La première ligne contient les noms des variables",
+	"no-csv": "Pas de fichier CSV.",
+	"no-csv-message": "Le fichier fourni n'est pas un fichier CSV.",
+	"title": "Téléchargement de fichiers"
+}

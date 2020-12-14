@@ -1,0 +1,10 @@
+{
+	"csv-upload-prompt": "Prosimy o przesłanie zestawu danych (format CSV)",
+	"drop-file": "Wrzuć teczkę tutaj",
+	"error-message": "Podczas próby odczytania pliku napotkano następujący błąd",
+	"error-title": "Nie mógł odczytać pliku.",
+	"first-row-names": "Pierwszy wiersz zawiera nazwy zmiennych",
+	"no-csv": "Brak pliku CSV.",
+	"no-csv-message": "Dostarczony plik nie jest plikiem CSV.",
+	"title": "Przesyłanie plików"
+}
