@@ -585,6 +585,7 @@ class TextEditor extends Component {
 							onMount={( div ) => {
 								this.editorDiv = div;
 							}}
+							t={this.props.t}
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}
@@ -621,11 +622,12 @@ class TextEditor extends Component {
 					onSubmit={this.submitReport}
 					t={this.props.t}
 				/> : null}
-				{this.state.showGuides ? <Guides
+				<Guides
 					show={this.state.showGuides}
 					onHide={this.toggleGuides}
+					for={this.id}
 					t={this.props.t}
-				/> : null}
+				/>
 				{this.state.showPDFModal ? <PDFModal
 					show={this.state.showPDFModal}
 					onHide={this.togglePDFModal}

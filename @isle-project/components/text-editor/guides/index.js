@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -17,6 +18,11 @@ import poster from './poster.json';
 import saving from './saving.json';
 
 
+// VARIABLES //
+
+const debug = logger( 'isle:text-editor:guides' );
+
+
 // MAIN //
 
 class Guides extends Component {
@@ -26,6 +32,19 @@ class Guides extends Component {
 			selected: 'overview',
 			running: false
 		};
+
+		this.saving = saving.map( x => {
+			x.target = `#${props.for} ` + x.target;
+			return x;
+		});
+		this.overview = overview.map( x => {
+			x.target = `#${props.for} ` + x.target;
+			return x;
+		});
+		this.poster = poster.map( x => {
+			x.target = `#${props.for} ` + x.target;
+			return x;
+		});
 	}
 
 	clickHide = () => {
@@ -92,7 +111,9 @@ class Guides extends Component {
 					</FormGroup>
 				</Form>
 				<ButtonToolbar>
-					<Button variant="success" onClick={this.handleStartClick} >{this.props.t('start-tour')}</Button>
+					<Button variant="success" onClick={this.handleStartClick} >
+						{this.props.t('start-tour')}
+					</Button>
 				</ButtonToolbar>
 			</Card>
 		);
@@ -192,13 +213,15 @@ class Guides extends Component {
 
 	render() {
 		let modal = this.renderModal();
+		debug( `Selected tutorial ${this.state.selected} is${this.state.running ? ' ' : ' not ' }running` );
 		return (
 			<Fragment>
 				{modal}
 				{ this.state.selected === 'saving' ?
 					<Joyride
-						steps={saving}
+						steps={this.saving}
 						showProgress
+						disableScrolling
 						run={this.state.running}
 						callback={( tour ) => {
 							const type = tour.type;
@@ -210,8 +233,9 @@ class Guides extends Component {
 				}
 				{ this.state.selected === 'overview' ?
 					<Joyride
-						steps={overview}
+						steps={this.overview}
 						showProgress
+						disableScrolling
 						continuous
 						run={this.state.running}
 						callback={( tour ) => {
@@ -224,8 +248,9 @@ class Guides extends Component {
 				}
 				{ this.state.selected === 'poster' ?
 					<Joyride
-						steps={poster}
+						steps={this.poster}
 						showProgress
+						disableScrolling
 						run={this.state.running}
 						callback={( tour ) => {
 							const type = tour.type;
