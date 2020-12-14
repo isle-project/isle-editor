@@ -19,7 +19,6 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 import './select-question.css';
 
 
@@ -264,4 +263,4 @@ SelectQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'select-question' )( SelectQuestion );
+export default withTranslation( 'SelectQuestion' )( SelectQuestion );
