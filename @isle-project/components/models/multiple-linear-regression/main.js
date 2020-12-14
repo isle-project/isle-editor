@@ -23,7 +23,6 @@ import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import subtract from '@isle-project/utils/subtract';
 import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -343,4 +342,4 @@ MultipleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'multiple-linear-regression' )( MultipleLinearRegression );
+export default withTranslation( 'StatisticalModels' )( MultipleLinearRegression );

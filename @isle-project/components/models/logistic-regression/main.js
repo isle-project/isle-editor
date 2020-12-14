@@ -23,7 +23,6 @@ import TeX from '@isle-project/components/tex';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import subtract from '@isle-project/utils/subtract';
 import irls from './logistic_regression.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -323,4 +322,4 @@ LogisticRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'logistic-regression' )( LogisticRegression );
+export default withTranslation( 'StatisticalModels' )( LogisticRegression );

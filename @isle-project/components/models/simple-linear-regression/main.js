@@ -21,7 +21,6 @@ import Plotly from '@isle-project/components/plotly';
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -402,4 +401,4 @@ SimpleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'simple-linear-regression' )( SimpleLinearRegression );
+export default withTranslation( 'StatisticalModels' )( SimpleLinearRegression );

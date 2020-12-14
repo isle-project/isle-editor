@@ -11,7 +11,6 @@ import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
-import './load_translations.js';
 import './hierarchical_clustering.css';
 
 
@@ -163,4 +162,4 @@ HierarchicalClustering.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'hierarchical-clustering' )( HierarchicalClustering );
+export default withTranslation( 'StatisticalModels' )( HierarchicalClustering );

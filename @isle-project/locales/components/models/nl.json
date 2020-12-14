@@ -1,0 +1,4 @@
+{
+	"lambda-not-number": "Lambda' moet een nummer zijn.",
+	"missing-attributes": "Het model kon niet worden ingeschat. Controleer of alle benodigde attributen zijn meegeleverd."
+}

@@ -10,7 +10,6 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import Plotly from '@isle-project/components/plotly';
-import './load_translations.js';
 
 
 // FUNCTIONS //
@@ -181,4 +180,4 @@ PrincipalComponentAnalysis.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'pca' )( PrincipalComponentAnalysis );
+export default withTranslation( 'StatisticalModels' )( PrincipalComponentAnalysis );

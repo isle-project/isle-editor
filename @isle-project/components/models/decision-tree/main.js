@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -157,4 +156,4 @@ DecisionTree.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'decision-tree' )( DecisionTree );
+export default withTranslation( 'DecisionTree' )( DecisionTree );

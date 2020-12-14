@@ -1,0 +1,4 @@
+{
+	"lambda-not-number": "`lambda` has to be a number.",
+	"missing-attributes": "Model could not be estimated. Please check that all required attributes are supplied."
+}

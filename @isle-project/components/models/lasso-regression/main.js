@@ -17,7 +17,6 @@ import Table from '@isle-project/components/table';
 import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
 import LASSO from './lasso.js';
-import './load_translations.js';
 
 
 // VARIABLES //
@@ -253,4 +252,4 @@ LassoRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'lasso-regression' )( LassoRegression );
+export default withTranslation( 'StatisticalModels' )( LassoRegression );
