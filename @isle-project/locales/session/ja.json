@@ -1,0 +1,19 @@
+{
+	"deleted": "削除された",
+	"deleted-message": "アクションの削除に成功しました。",
+	"error-encountered": "エラーが発生しました。",
+	"file-upload": "ファイルのアップロード",
+	"file-upload-signin-required": "ファイルをアップロードするためには、サインインする必要があります。",
+	"grades-saved": "保存された成績",
+	"logout-title": "ログアウト",
+	"logout-message": "ログアウトに成功しました。",
+	"loggedin": "ログイン",
+	"loggedin-message": "ログインに成功しました。",
+	"message-saved": "保存されたメッセージ",
+	"new-password-title": "新しいパスワード",
+	"new-password-message": "新しいパスワードを選択するためのリンクがあるかどうか、メールの受信箱を確認してください。",
+	"request-failed": "リクエストに失敗しました。",
+	"user-created": "ユーザー作成",
+	"user-created-message": "正常にサインアップされました。",
+	"user-not-created": "作成されていないユーザー"
+}

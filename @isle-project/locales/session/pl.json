@@ -1,0 +1,19 @@
+{
+	"deleted": "Skreślony",
+	"deleted-message": "Udało ci się usunąć tę akcję.",
+	"error-encountered": "Napotkany błąd",
+	"file-upload": "Przesyłanie plików",
+	"file-upload-signin-required": "Musisz być podpisany, aby przesłać pliki.",
+	"grades-saved": "Grades Saved",
+	"logout-title": "Wylogowany",
+	"logout-message": "Udało ci się wylogować.",
+	"loggedin": "Zalogowany",
+	"loggedin-message": "Udało ci się zalogować.",
+	"message-saved": "Wiadomość zapisana",
+	"new-password-title": "Nowe hasło",
+	"new-password-message": "Sprawdź swoją skrzynkę e-mail, aby znaleźć link do wyboru nowego hasła.",
+	"request-failed": "Wniosek nie został przyjęty",
+	"user-created": "Użytkownik utworzony",
+	"user-created-message": "Udało ci się zapisać.",
+	"user-not-created": "Użytkownik nie stworzony"
+}

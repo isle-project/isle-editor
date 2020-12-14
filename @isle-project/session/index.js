@@ -58,7 +58,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import POINTS from '@isle-project/constants/points.js';
 import ANIMALS from '@isle-project/constants/animals.js';
-import TRANSLATION from './translation.json';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
@@ -93,6 +93,8 @@ let TEXT_CHATS = null;
 let ALL_GROUPS = null;
 let ASSIGNED_GROUP = null;
 let QUESTIONS = null;
+
+addResources( 'Session' );
 
 // JSON Web Token for user authentication:
 let JWT = null;
@@ -346,9 +348,6 @@ class Session {
 			// Log session data to database in regular interval:
 			this.logSessionInterval = setInterval( this.interval, LOG_SESSION_INTERVAL );
 		}
-		i18next.addResources( 'de', 'session', TRANSLATION.DE );
-		i18next.addResources( 'en', 'session', TRANSLATION.EN );
-		i18next.addResources( 'es', 'session', TRANSLATION.ES );
 	}
 
 	/**

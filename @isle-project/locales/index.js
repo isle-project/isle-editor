@@ -62,7 +62,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/de.json' ),
 		'VideoLecture': () => import( './components/video-lecture/de.json' ),
 		'VideoPlayer': () => import( './components/video-player/de.json' ),
-		'WordCloud': () => import( './components/word-cloud/de.json' )
+		'WordCloud': () => import( './components/word-cloud/de.json' ),
+		'Session': () => import( './session/de.json' )
 	},
 	'en': {
 		'Bibliography': () => import( './components/bibliography/en.json' ),
@@ -117,7 +118,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/en.json' ),
 		'VideoLecture': () => import( './components/video-lecture/en.json' ),
 		'VideoPlayer': () => import( './components/video-player/en.json' ),
-		'WordCloud': () => import( './components/word-cloud/en.json' )
+		'WordCloud': () => import( './components/word-cloud/en.json' ),
+		'Session': () => import( './session/en.json' )
 	},
 	'es': {
 		'Bibliography': () => import( './components/bibliography/es.json' ),
@@ -172,7 +174,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/es.json' ),
 		'VideoLecture': () => import( './components/video-lecture/es.json' ),
 		'VideoPlayer': () => import( './components/video-player/es.json' ),
-		'WordCloud': () => import( './components/word-cloud/es.json' )
+		'WordCloud': () => import( './components/word-cloud/es.json' ),
+		'Session': () => import( './session/es.json' )
 	},
 	'fr': {
 		'Bibliography': () => import( './components/bibliography/fr.json' ),
@@ -227,7 +230,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/fr.json' ),
 		'VideoLecture': () => import( './components/video-lecture/fr.json' ),
 		'VideoPlayer': () => import( './components/video-player/fr.json' ),
-		'WordCloud': () => import( './components/word-cloud/fr.json' )
+		'WordCloud': () => import( './components/word-cloud/fr.json' ),
+		'Session': () => import( './session/fr.json' )
 	},
 	'it': {
 		'Bibliography': () => import( './components/bibliography/it.json' ),
@@ -282,7 +286,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/it.json' ),
 		'VideoLecture': () => import( './components/video-lecture/it.json' ),
 		'VideoPlayer': () => import( './components/video-player/it.json' ),
-		'WordCloud': () => import( './components/word-cloud/it.json' )
+		'WordCloud': () => import( './components/word-cloud/it.json' ),
+		'Session': () => import( './session/it.json' )
 	},
 	'nl': {
 		'Bibliography': () => import( './components/bibliography/nl.json' ),
@@ -337,7 +342,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/nl.json' ),
 		'VideoLecture': () => import( './components/video-lecture/nl.json' ),
 		'VideoPlayer': () => import( './components/video-player/nl.json' ),
-		'WordCloud': () => import( './components/word-cloud/nl.json' )
+		'WordCloud': () => import( './components/word-cloud/nl.json' ),
+		'Session': () => import( './session/nl.json' )
 	},
 	'ru': {
 		'Bibliography': () => import( './components/bibliography/ru.json' ),
@@ -392,7 +398,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/ru.json' ),
 		'VideoLecture': () => import( './components/video-lecture/ru.json' ),
 		'VideoPlayer': () => import( './components/video-player/ru.json' ),
-		'WordCloud': () => import( './components/word-cloud/ru.json' )
+		'WordCloud': () => import( './components/word-cloud/ru.json' ),
+		'Session': () => import( './session/ru.json' )
 	},
 	'pl': {
 		'Bibliography': () => import( './components/bibliography/pl.json' ),
@@ -447,7 +454,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/pl.json' ),
 		'VideoLecture': () => import( './components/video-lecture/pl.json' ),
 		'VideoPlayer': () => import( './components/video-player/pl.json' ),
-		'WordCloud': () => import( './components/word-cloud/pl.json' )
+		'WordCloud': () => import( './components/word-cloud/pl.json' ),
+		'Session': () => import( './session/pl.json' )
 	},
 	'ja': {
 		'Bibliography': () => import( './components/bibliography/ja.json' ),
@@ -502,7 +510,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/ja.json' ),
 		'VideoLecture': () => import( './components/video-lecture/ja.json' ),
 		'VideoPlayer': () => import( './components/video-player/ja.json' ),
-		'WordCloud': () => import( './components/word-cloud/ja.json' )
+		'WordCloud': () => import( './components/word-cloud/ja.json' ),
+		'Session': () => import( './session/ja.json' )
 	},
 	'zh': {
 		'Bibliography': () => import( './components/bibliography/zh.json' ),
@@ -557,7 +566,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/zh.json' ),
 		'VideoLecture': () => import( './components/video-lecture/zh.json' ),
 		'VideoPlayer': () => import( './components/video-player/zh.json' ),
-		'WordCloud': () => import( './components/word-cloud/zh.json' )
+		'WordCloud': () => import( './components/word-cloud/zh.json' ),
+		'Session': () => import( './session/zh.json' )
 	},
 	'pt': {
 		'Bibliography': () => import( './components/bibliography/pt.json' ),
@@ -612,7 +622,8 @@ const TRANSLATIONS = {
 		'VideoChatButton': () => import( './components/video-chat-button/pt.json' ),
 		'VideoLecture': () => import( './components/video-lecture/pt.json' ),
 		'VideoPlayer': () => import( './components/video-player/pt.json' ),
-		'WordCloud': () => import( './components/word-cloud/pt.json' )
+		'WordCloud': () => import( './components/word-cloud/pt.json' ),
+		'Session': () => import( './session/pt.json' )
 	}
 };
 

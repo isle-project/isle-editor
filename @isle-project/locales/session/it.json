@@ -1,0 +1,19 @@
+{
+	"deleted": "Cancellato",
+	"deleted-message": "L'azione è stata cancellata con successo.",
+	"error-encountered": "Errore riscontrato",
+	"file-upload": "Caricamento file",
+	"file-upload-signin-required": "Per poter caricare i file è necessario essere registrati.",
+	"grades-saved": "Gradi salvati",
+	"logout-title": "Disconnesso",
+	"logout-message": "Avete effettuato con successo il logout.",
+	"loggedin": "Loggato",
+	"loggedin-message": "Avete effettuato il login con successo.",
+	"message-saved": "Messaggio salvato",
+	"new-password-title": "Nuova password",
+	"new-password-message": "Controlla la tua casella di posta elettronica per trovare un link per scegliere una nuova password.",
+	"request-failed": "Richiesta fallita",
+	"user-created": "Creato dall'utente",
+	"user-created-message": "Ti sei iscritto con successo.",
+	"user-not-created": "Utente non creato"
+}

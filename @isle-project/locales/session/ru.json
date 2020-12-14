@@ -1,0 +1,19 @@
+{
+	"deleted": "Удалено",
+	"deleted-message": "Вы успешно удалили действие.",
+	"error-encountered": "Возникшая ошибка",
+	"file-upload": "Загрузка файлов",
+	"file-upload-signin-required": "Чтобы загрузить файлы, вы должны быть подписаны.",
+	"grades-saved": "Спасённые оценки",
+	"logout-title": "Выход из системы",
+	"logout-message": "Вы успешно вышли из системы.",
+	"loggedin": "Вход в систему",
+	"loggedin-message": "Вы успешно вошли в систему.",
+	"message-saved": "Сохраненное сообщение",
+	"new-password-title": "Новый пароль",
+	"new-password-message": "Проверьте свой почтовый ящик на наличие ссылки для выбора нового пароля.",
+	"request-failed": "Запрос не удался",
+	"user-created": "Пользователь создан",
+	"user-created-message": "Вы успешно записались.",
+	"user-not-created": "Пользователь не создан"
+}
