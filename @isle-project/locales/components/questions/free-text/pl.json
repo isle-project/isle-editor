@@ -1,0 +1,13 @@
+{
+	"answers": "Odpowiedzi",
+	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
+	"answer-submitted": "Odpowiedź nadesłana.",
+	"question-closed": "Pytanie jest już zamknięte.",
+	"resubmit": "Ponowne przedłożenie",
+	"solution": "Rozwiązanie:",
+	"submission-message-no-solution": "Możesz zmienić swoją odpowiedź i przesłać ją ponownie, jeśli chcesz.",
+	"submission-message-solution": "Porównaj swoją odpowiedź z rozwiązaniem za pomocą przycisku \"Pokaż rozwiązanie\". Następnie możesz zmienić swoją odpowiedź i w razie potrzeby przesłać ją ponownie.",
+	"submit": "Zgłoś się",
+	"submit-tooltip": "Kliknij przycisk Wyślij po wpisaniu odpowiedzi.",
+	"your-answer": "Twoja odpowiedź:"
+}

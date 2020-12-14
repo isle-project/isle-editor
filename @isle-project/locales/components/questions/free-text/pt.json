@@ -1,0 +1,13 @@
+{
+	"answers": "Respostas",
+	"answer-resubmitted": "Resposta re-submetida.",
+	"answer-submitted": "Resposta apresentada.",
+	"question-closed": "A pergunta está agora encerrada.",
+	"resubmit": "Enviar novamente",
+	"solution": "Solução:",
+	"submission-message-no-solution": "Você pode mudar sua resposta e reapresentar, se desejar.",
+	"submission-message-solution": "Compare sua resposta com a solução usando o botão \"Show Solution\". Você pode então alterar sua resposta e reapresentar, se necessário.",
+	"submit": "Enviar para",
+	"submit-tooltip": "Clique em enviar depois de ter digitado sua resposta.",
+	"your-answer": "Sua resposta:"
+}

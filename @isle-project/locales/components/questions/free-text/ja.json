@@ -1,0 +1,13 @@
+{
+	"answers": "回答",
+	"answer-resubmitted": "回答を再投稿しました。",
+	"answer-submitted": "回答を提出しました。",
+	"question-closed": "質問は終了しました。",
+	"resubmit": "再提出",
+	"solution": "解決策。",
+	"submission-message-no-solution": "回答を変更して再投稿しても構いません。",
+	"submission-message-solution": "解答を表示」ボタンを使用して、解答と比較してください。必要に応じて、答えを変更して再提出することができます。",
+	"submit": "提出",
+	"submit-tooltip": "答えを入力したら、送信をクリックしてください。",
+	"your-answer": "あなたの答えです。"
+}

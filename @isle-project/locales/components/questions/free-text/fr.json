@@ -1,0 +1,13 @@
+{
+	"answers": "Réponses",
+	"answer-resubmitted": "Réponse soumise à nouveau.",
+	"answer-submitted": "Réponse soumise.",
+	"question-closed": "La question est maintenant close.",
+	"resubmit": "Soumettre à nouveau",
+	"solution": "Solution :",
+	"submission-message-no-solution": "Vous pouvez modifier votre réponse et la soumettre à nouveau si vous le souhaitez.",
+	"submission-message-solution": "Comparez votre réponse avec la solution en utilisant le bouton \"Afficher la solution\". Vous pouvez ensuite modifier votre réponse et la soumettre à nouveau si nécessaire.",
+	"submit": "Soumettre",
+	"submit-tooltip": "Cliquez sur \"Envoyer\" après avoir saisi votre réponse.",
+	"your-answer": "Votre réponse :"
+}

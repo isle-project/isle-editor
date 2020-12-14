@@ -1,0 +1,13 @@
+{
+	"answers": "答案",
+	"answer-resubmitted": "答复重新提交。",
+	"answer-submitted": "提交的答复：",
+	"question-closed": "问题现已结束。",
+	"resubmit": "重新提交",
+	"solution": "解决办法：",
+	"submission-message-no-solution": "如果你想修改答案，可以重新提交。",
+	"submission-message-solution": "使用 \"显示解决方案 \"按钮比较您的答案和解决方案。然后，您可以修改您的答案，如有必要，可以重新提交。",
+	"submit": "提交",
+	"submit-tooltip": "输入答案后点击提交。",
+	"your-answer": "你的答案"
+}

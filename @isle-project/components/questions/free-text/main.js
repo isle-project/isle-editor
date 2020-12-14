@@ -28,7 +28,6 @@ import beforeUnload from '@isle-project/utils/before-unload';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import VOICE_COMMANDS from './voice_commands.json';
-import './load_translations.js';
 import './free-text-question.css';
 
 
@@ -430,4 +429,4 @@ FreeTextQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'free-text-question' )( FreeTextQuestion );
+export default withTranslation( 'FreeTextQuestion' )( FreeTextQuestion );
