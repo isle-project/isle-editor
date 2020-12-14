@@ -1,0 +1,21 @@
+{
+	"answers": "Odpowiedzi",
+	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
+	"answer-submitted": "Odpowiedź nadesłana.",
+	"invalid-answer": "Nieważna odpowiedź",
+	"invalid-range": "Twoja odpowiedź powinna być numerem pomiędzy {{min}} a {{max}}.",
+	"one-of": "jeden z",
+	"or": "lub",
+	"question-closed": "Pytanie jest już zamknięte.",
+	"resubmit": "Ponowne przedłożenie",
+	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
+	"solution": "Rozwiązanie",
+	"submission-correct": "Gratulacje, to prawda!",
+	"submission-incorrect": "Niezupełnie. Porównaj swoją odpowiedź z rozwiązaniem.",
+	"submission-try-again": "Twoja odpowiedź jest błędna. Proszę spróbować jeszcze raz.",
+	"tries": "Spróbuj w lewo.",
+	"tries_plural": "{{y:i}próbuje w lewo.",
+	"submission-message": "Twoja odpowiedź została złożona.",
+	"submit": "Zgłoś się",
+	"your-answer": "Twoja odpowiedź"
+}

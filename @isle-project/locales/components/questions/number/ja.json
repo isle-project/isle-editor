@@ -1,0 +1,21 @@
+{
+	"answers": "回答",
+	"answer-resubmitted": "回答を再投稿しました。",
+	"answer-submitted": "回答を提出しました。",
+	"invalid-answer": "無効な回答",
+	"invalid-range": "回答は{{{min}}から{{max}}の間の数字でお願いします。",
+	"one-of": "孰れか",
+	"or": "或いは",
+	"question-closed": "質問は終了しました。",
+	"resubmit": "再提出",
+	"resubmission-message": "回答の再提出に成功しました。",
+	"solution": "解決策",
+	"submission-correct": "おめでとうございます、その通りです。",
+	"submission-incorrect": "そうではありません。あなたの答えと解答を比較してみてください。",
+	"submission-try-again": "あなたの答えは間違っています。もう一度お試しください。",
+	"tries": "{{count}}} try left",
+	"tries_plural": "左に{{count}}がトライしています。",
+	"submission-message": "回答が提出されました。",
+	"submit": "提出",
+	"your-answer": "あなたの答え"
+}

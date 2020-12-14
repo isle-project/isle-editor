@@ -1,0 +1,21 @@
+{
+	"answers": "答案",
+	"answer-resubmitted": "答复重新提交。",
+	"answer-submitted": "提交的答复：",
+	"invalid-answer": "无效答案",
+	"invalid-range": "您的回答应该是一个介于{{min}}和{{max}之间的数字。}",
+	"one-of": "其一",
+	"or": "或",
+	"question-closed": "问题现已结束。",
+	"resubmit": "重新提交",
+	"resubmission-message": "你已经成功地重新提交了你的答案。",
+	"solution": "解决办法",
+	"submission-correct": "恭喜你，没错",
+	"submission-incorrect": "不尽然。将你的答案与解决方案进行比较。",
+	"submission-try-again": "您的答案是错误的。请再试一次",
+	"tries": "{{数}}尝试左",
+	"tries_plural": "{{数}}尝试左",
+	"submission-message": "您的答案已经提交。",
+	"submit": "提交",
+	"your-answer": "您的回答"
+}

@@ -25,7 +25,6 @@ import SessionContext from '@isle-project/session/context.js';
 import getLastAction from '@isle-project/utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import './load_translations.js';
 import './number-question.css';
 
 
@@ -439,4 +438,4 @@ NumberQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'number-question' )( NumberQuestion );
+export default withTranslation( 'NumberQuestion' )( NumberQuestion );
