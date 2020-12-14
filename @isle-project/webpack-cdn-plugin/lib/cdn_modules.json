@@ -25,7 +25,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "1.51.1"
+		"version": "1.58.2"
 	},
 	{
 		"name": "lodash",
@@ -39,7 +39,7 @@
 		"alias": "js-yaml",
 		"var": "jsyaml",
 		"path": "js-yaml.min.js",
-		"version": "3.13.1"
+		"version": "3.14.1"
 	},
 	{
 		"name": "moment",
@@ -83,14 +83,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "34.2.0"
+		"version": "35.3.5"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.62",
+		"version": "0.1.68",
 		"defer": true
 	},
 	{
@@ -98,7 +98,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.1.62",
+		"version": "0.1.68",
 		"defer": true
 	},
 	{
@@ -106,7 +106,7 @@
 		"alias": "localforage",
 		"var": "localforage",
 		"path": "localforage.min.js",
-		"version": "1.7.3"
+		"version": "1.9.0"
 	},
 	{
 		"name": "react-player",
@@ -114,7 +114,7 @@
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "2.0.1"
+		"version": "2.7.0"
 	},
 	{
 		"name": "react-draggable",
@@ -122,7 +122,7 @@
 		"var": "ReactDraggable",
 		"path": "build/web/react-draggable.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.2.0"
+		"version": "4.4.3"
 	},
 	{
 		"name": "socket.io-client",
