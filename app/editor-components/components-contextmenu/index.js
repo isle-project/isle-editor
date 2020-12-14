@@ -74,26 +74,26 @@ class EditorContextMenu extends Component {
 			out.push( this.renderMenuItem( obj, out.length ) );
 		}
 		if ( !searchValue ) {
-			return ( <SubMenu title={title} >
+			return ( <SubMenu key={title} title={title} >
 				{out}
 				{otherMenuEntries}
 			</SubMenu> );
 		}
 		if ( out.length > 0 ) {
-			return ( <Fragment>
+			return ( <div key={title} >
 				<span style={{ marginLeft: 6, fontSize: 12 }} >{title}</span>
 				<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 				{out}
 				{otherMenuEntries}
-			</Fragment> );
+			</div> );
 		}
 		return otherMenuEntries;
 	}
 
-	renderMenuItem = ( obj, idx ) => {
+	renderMenuItem = ( obj ) => {
 		const description = COMPONENT_DOCS[ obj.name ] ? COMPONENT_DOCS[ obj.name ].description : '';
 		return ( <MenuItem
-			key={idx}
+			key={obj.name}
 			data={obj}
 			onClick={this.handleContextMenuClick}
 		>
