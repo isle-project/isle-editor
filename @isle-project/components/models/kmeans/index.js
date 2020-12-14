@@ -6,12 +6,12 @@ import { addResources } from '@isle-project/locales';
 
 // VARIABLES //
 
-addResources( 'KMeans' );
+addResources( 'StatisticalModels' );
 
 
 // MAIN //
 
-const KMeans = Loadable( () => import( /* webpackChunkName: "StatisticalModels" */ './main.js' ) );
+const KMeans = Loadable( () => import( /* webpackChunkName: "KMeans" */ './main.js' ) );
 
 
 // EXPORTS //

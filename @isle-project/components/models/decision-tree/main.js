@@ -156,4 +156,4 @@ DecisionTree.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'DecisionTree' )( DecisionTree );
+export default withTranslation( 'StatisticalModels' )( DecisionTree );
