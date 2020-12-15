@@ -7,6 +7,7 @@ import logger from 'debug';
 // VARIABLES //
 
 const debug = logger( 'isle:locales' );
+const windowGlobal = typeof window !== 'undefined' && window;
 const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
@@ -710,7 +711,7 @@ export function changeLanguage( lng ) {
 }
 
 export function addResources( ns ) {
-	const lng = i18next.language || localStorage.getItem( 'i18nextLng' ) || 'en';
+	const lng = i18next.language || ( windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) ) || 'en';
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );
 	const res = TRANSLATIONS[ lng ][ ns ];
