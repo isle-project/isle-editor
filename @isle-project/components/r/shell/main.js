@@ -78,12 +78,12 @@ const showResult = ( res ) => {
 	return <span />;
 };
 
-const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluations ) => {
+const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluations, t ) => {
 	const tooltip = (
 		<Tooltip
 			id="tooltip"
 		>
-			Solution becomes available once you have tried the exercise and used all hints.
+			{t('solution-tooltip')}
 		</Tooltip>
 	);
 	if ( !exhaustedHints || nEvaluations < 1 ) {
@@ -102,7 +102,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 						style={{
 							pointerEvents: 'none'
 						}}
-					>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
+					>{ !displayed ? t('show-solution') : t('hide-solution') }</Button>
 				</span>
 			</OverlayTrigger>
 		);
@@ -116,12 +116,12 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 	);
 };
 
-const showResetButton = ( clickHandler ) => {
+const showResetButton = ( clickHandler, t ) => {
 	const tooltip = (
 		<Tooltip
 			id="tooltip"
 		>
-			Reset the shell input to its default value.
+			{t('reset-tooltip')}
 		</Tooltip>
 	);
 	return (
@@ -136,7 +136,7 @@ const showResetButton = ( clickHandler ) => {
 					variant="warning"
 					size="sm"
 					onClick={clickHandler}
-				>Reset</Button>
+				>{t('reset')}</Button>
 			</span>
 		</OverlayTrigger>
 	);
@@ -405,6 +405,7 @@ class RShell extends Component {
 	}
 
 	renderHelpModal() {
+		const { t } = this.props;
 		return ( <Modal
 			backdrop={false}
 			show={Boolean( this.state.help )}
@@ -422,7 +423,7 @@ class RShell extends Component {
 			enforceFocus={false}
 		>
 			<Modal.Header closeButton>
-				<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
+				<Modal.Title id="contained-modal-title-lg">{t('r-help')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body style={{
 				height: '400',
@@ -435,13 +436,14 @@ class RShell extends Component {
 				></span>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={this.hideHelp}>Close</Button>
+				<Button onClick={this.hideHelp}>{t('close')}</Button>
 			</Modal.Footer>
 		</Modal> );
 	}
 
 	render() {
 		const nHints = this.props.hints.length;
+		const { t } = this.props;
 		const style = {
 			lineHeight: '1.2em',
 			maxHeight: `${(max( 5, this.props.lines )*1.2) + 0.5}em`,
@@ -461,7 +463,7 @@ class RShell extends Component {
 							marginBottom: '8px'
 						}}
 						onClick={this.handleEvaluationClick}
-					>Evaluate</Button> :
+					>{t('evaluate')}</Button> :
 					<span />
 				}
 				<Spinner
@@ -497,7 +499,8 @@ class RShell extends Component {
 					}
 					{ ( this.props.resettable ) ?
 						showResetButton(
-							this.handleResetClick
+							this.handleResetClick,
+							t
 						) :
 						null
 					}
