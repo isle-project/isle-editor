@@ -192,5 +192,5 @@ const styleTransforms = [
 ];
 
 export function getStyles() {
-	return buildStyles(styleTransforms, this.props, this.context);
+	return buildStyles( styleTransforms, this.props, this.context ); // eslint-disable-line @babel/no-invalid-this
 }

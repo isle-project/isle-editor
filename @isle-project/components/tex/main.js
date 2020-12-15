@@ -1,3 +1,5 @@
+/* eslint-disable @babel/no-invalid-this */
+
 // MODULES //
 
 import React, { Component } from 'react';

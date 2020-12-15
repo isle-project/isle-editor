@@ -19,7 +19,7 @@ function score( x, y ) {
 	if ( !isArrayLike( y ) ) {
 		throw new TypeError( 'invalid argument. Second argument must be an array of labels for the test data. Value: `' + y + '`' );
 	}
-	const yhat = this.predict( x );
+	const yhat = this.predict( x ); // eslint-disable-line @babel/no-invalid-this
 	const n = y.length;
 	let accuracy = 0;
 	for ( let i = 0; i < n; i++ ) {

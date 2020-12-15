@@ -37,11 +37,11 @@ function _createWindow( options ) {
 
 // Should not need to be called directly (just in case window.destroy() is ever called)
 function _unref() {
-	delete _windows[ this.id ];
+	delete _windows[ this.id ]; // eslint-disable-line @babel/no-invalid-this
 }
 
 function _loadUrl( httpOrFileUrl, callback ) {
-	const self = this;
+	const self = this; // eslint-disable-line @babel/no-invalid-this
 	self.webContents.once( 'did-finish-load', ( ...args ) => {
 		callback( ...args );
 	});
