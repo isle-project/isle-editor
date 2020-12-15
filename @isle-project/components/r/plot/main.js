@@ -95,7 +95,7 @@ class RPlot extends Component {
 					}
 					ev.dataTransfer.setData( 'text/html', img );
 				}}
-			>Drag Plot</div>;
+			>{this.props.t('drag-plot')}</div>;
 		}
 		const { className, ...rest } = this.props;
 		return (

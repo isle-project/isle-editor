@@ -163,7 +163,8 @@ class FormulaTransformer extends Component {
 	}
 
 	render() {
-		const continousItems = this.props.quantitative.map( ( v, i ) => {
+		const { t } = this.props;
+		const continuousItems = this.props.quantitative.map( ( v, i ) => {
 			return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
 		});
 		return (
@@ -184,28 +185,28 @@ class FormulaTransformer extends Component {
 				>
 					<div className="formula-transformer-body">
 						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Example Guide' : 'Show Example Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
-							<p>Use the formula text area below to create a new variable. The following table illustrates a few use-cases:</p>
+							<p>{t('formula-transformer-example-intro')}</p>
 							<Table condensed >
 								<thead>
 									<tr>
-										<th>Type</th>
-										<th>Example</th>
-										<th>Description</th>
+										<th>{t('type')}</th>
+										<th>{t('example')}</th>
+										<th>{t('description')}</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>Interaction:</td>
+										<td>{t('interaction')}:</td>
 										<td><code>datum.{this.props.quantitative[0]} * datum.{this.props.quantitative[1]}</code></td>
 										<td>Multiply values of variables <code>{this.props.quantitative[0]}</code> and <code>{this.props.quantitative[1]}</code></td>
 									</tr>
 									<tr>
-										<td>Transformation:</td>
+										<td>{t('transformation')}:</td>
 										<td><code>exp( datum.{this.props.quantitative[0]} )</code></td>
 										<td>Natural exponential function of variable <code>{this.props.quantitative[0]}</code></td>
 									</tr>
 									<tr>
-										<td>Function:</td>
+										<td>{t('function')}:</td>
 										<td><code>9/5 * {this.props.quantitative[0]} + 32</code></td>
 										<td>Multiply values of <code>{this.props.quantitative[0]}</code> by <code>9/5</code> and add <code>32</code></td>
 									</tr>
@@ -217,15 +218,15 @@ class FormulaTransformer extends Component {
 							<ButtonToolbar style={{ marginBottom: 5 }} >
 								<Dropdown className="mr-2">
 									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-										Quantitative
+										{t('quantitative')}
 									</Dropdown.Toggle>
 									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-										{continousItems}
+										{continuousItems}
 									</Dropdown.Menu>
 								</Dropdown>
 								<Dropdown className="mr-2">
 									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-										Categorical
+										{t('categorical')}
 									</Dropdown.Toggle>
 									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
 										{this.props.categorical.map( ( v, i ) => {
@@ -255,9 +256,9 @@ class FormulaTransformer extends Component {
 										<Tooltip placement="top" tooltip="Division"><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >and</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >or</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' !')} >not</Button>
+										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button>
+										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >{t('or')}</Button>
+										<Button variant="light" onClick={this.insertLiteralFactory(' !')} >{t('not')}</Button>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="me-2">
 										{FUNCTION_KEYS.map( ( v, i ) => {
@@ -294,15 +295,15 @@ class FormulaTransformer extends Component {
 							</Card.Body>
 						</Card>
 						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
+							<FormLabel>{t('name-new-variable')}:</FormLabel>
 							<FormControl
 								type="text"
-								placeholder={this.props.t('select-name')}
+								placeholder={t('select-name')}
 								onChange={this.handleNameChange}
 								onKeyPress={this.handleKeyPress}
 							/>
 							<FormText>
-								{this.props.t('new-variable-appended')}
+								{t('new-variable-appended')}
 							</FormText>
 						</FormGroup>
 					</div>

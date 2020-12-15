@@ -119,7 +119,7 @@ const PropTest2Menu = ( props ) => {
 							}}
 						/>
 					</Col>
-					<Col md={2}><p>OR</p></Col>
+					<Col md={2}><p>{t('or')}</p></Col>
 					<Col md={5}>
 						<SelectInput
 							legend={t('second-variable')}

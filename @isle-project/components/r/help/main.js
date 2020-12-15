@@ -54,6 +54,7 @@ class RHelp extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<span
 				role="button" tabIndex={0}
@@ -63,13 +64,13 @@ class RHelp extends Component {
 				<Modal
 					backdrop={false}
 					show={this.state.visible}
-					title="R Help"
+					title={t('r-help')}
 					onHide={this.hideModal}
 					className="r-help-modal"
 					enforceFocus={false}
 				>
 					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">R Help</Modal.Title>
+						<Modal.Title id="contained-modal-title-lg">{t('r-help')}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body className="r-help-modal-body" >
 						<span dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
@@ -77,7 +78,7 @@ class RHelp extends Component {
 						}}></span>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.hideModal}>Close</Button>
+						<Button onClick={this.hideModal}>{t('close')}</Button>
 					</Modal.Footer>
 				</Modal>
 				<code style={{ cursor: 'pointer' }}>{this.props.children || this.props.func}</code>
