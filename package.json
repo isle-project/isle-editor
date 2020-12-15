@@ -56,6 +56,7 @@
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-components": "cross-env node ./scripts/bump_components_version.js && node -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.components.js --progress --colors",
+    "build-locales": "cross-env node ./scripts/bump_locales_version.js && node -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.locales.js --progress --colors",
     "build-session": "cross-env node ./scripts/bump_session_version.js && node -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.session.js --progress --colors",
     "build-main": "cross-env NODE_ENV=production node --max_old_space_size=16384 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --colors",
     "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=16384 -r @babel/register ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --colors",
