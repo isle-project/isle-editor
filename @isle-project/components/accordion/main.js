@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from '@isle-project/components/collapse';
@@ -34,13 +34,14 @@ const Accordion = ( props ) => {
 	debug( 'Rendering accordion...' );
 	const [ isActive, setIsActive ] = useState( props.active );
 	const [ prevActive, setPrevActive ] = useState( props.active );
+	const { t } = useTranslation( 'Accordion' );
 	if ( props.active !== prevActive ) {
 		setIsActive( props.active );
 		setPrevActive( props.active );
 		props.onChange( props.active );
 	}
 	if ( !isArray( props.children ) ) {
-		return <Alert variant="danger" >{this.props.t('children-missing')}</Alert>;
+		return <Alert variant="danger" >{t('children-missing')}</Alert>;
 	}
 	const clickFactory = ( len, idx ) => {
 		if ( props.canCloseAll ) {
@@ -131,4 +132,4 @@ Accordion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Accordion' )( Accordion );
+export default Accordion;
