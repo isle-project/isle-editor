@@ -494,7 +494,7 @@
     "react-hooks/exhaustive-deps": 1,
     "i18next/no-literal-string": [ 1, {
       "markupOnly": true,
-      "onlyAttribute": [ "text", "raw" ],
+      "onlyAttribute": [ "text", "tooltip", "title" ],
       "ignore": [ "ISLE", "<", ">", "=", "n:" ],
       "ignoreComponent": [ "Trans" ]
     }]
