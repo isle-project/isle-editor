@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.72.3](https://github.com/isle-project/isle-editor/releases/tag/v0.72.3) (2020-12-15)
+
+## [v0.72.2](https://github.com/isle-project/isle-editor/releases/tag/v0.72.2) (2020-12-15)
+
 ## [v0.72.1](https://github.com/isle-project/isle-editor/releases/tag/v0.72.1) (2020-12-15)
 
 This release fixes a bug that caused progress calculations to break for lessons containing match list questions and image questions due to re-assigned ids. It also updates the login behavior to support users who have enabled two-factor authentication. Finally, it comes with translations for several more languages.
