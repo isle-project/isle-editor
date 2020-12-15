@@ -262,6 +262,7 @@
     "xterm-addon-fit": "^0.4.0"
   },
   "devDependencies": {
+    "@babel/eslint-plugin": "^7.12.1",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/jest-dom": "^5.11.5",
