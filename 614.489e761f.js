@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[614],{3235:function(n){n.exports=JSON.parse('{"change-language":"\u66f4\u6539\u8bed\u8a00","choose-language":"\u9009\u62e9\u8bed\u8a00"}')}}]);

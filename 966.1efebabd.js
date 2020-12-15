@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[966],{2866:function(e){e.exports=JSON.parse('{"close":"Fermer","missing-children":"Le curseur n\xe9cessite au moins deux \xe9l\xe9ments enfants pour \xeatre rendu."}')}}]);

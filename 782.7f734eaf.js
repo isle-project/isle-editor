@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[782],{3023:function(e){e.exports=JSON.parse('{"change-orientation":"Verander Legenda Ori\xebntatie","close":"Sluit","drag-plot":"Sleep Plot","share":"Deel","toggle-fullscreen":"Schakelaar volledig scherm","toggle-legend":"Schakellegende"}')}}]);

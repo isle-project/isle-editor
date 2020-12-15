@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1009],{2812:function(e){e.exports=JSON.parse('{"disabled":"Video chat para discapacitados","join":"\xdanete el video","join-id":"\xdanete al video chat con ID {{id}}","leave":"Dejar el video","leave-id":"Deje el video chat con ID {{id}}","toggle":"Toggle video chat"}')}}]);

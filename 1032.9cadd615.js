@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1032],{2872:function(e){e.exports=JSON.parse('{"playback-disabled":"La lecture sur d\'autres sites web a \xe9t\xe9 d\xe9sactiv\xe9e par le propri\xe9taire de la vid\xe9o.","retry":"Retrouvez","url-missing":"L\'URL de la vid\xe9o est manquante.","video-not-loaded":"La vid\xe9o n\'a pas pu \xeatre charg\xe9e."}')}}]);

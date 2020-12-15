@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[778],{2791:function(e){e.exports=JSON.parse('{"change-orientation":"Orientaci\xf3n de la leyenda del cambio","close":"Cerca","drag-plot":"Drag Plot","share":"Compartir","toggle-fullscreen":"Alternar pantalla completa","toggle-legend":"Leyenda de la conmutaci\xf3n"}')}}]);

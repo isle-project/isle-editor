@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[786],{3251:function(e){e.exports=JSON.parse('{"change-orientation":"\u6539\u53d8\u56fe\u4f8b\u65b9\u5411","close":"\u5173\u95ed","drag-plot":"\u62d6\u62fd\u60c5\u8282","share":"\u5206\u4eab","toggle-fullscreen":"\u5207\u6362\u5168\u5c4f","toggle-legend":"\u5207\u6362\u4f20\u8bf4"}')}}]);

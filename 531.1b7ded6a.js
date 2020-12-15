@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[531],{2769:function(s){s.exports=JSON.parse('{"close-hint":"Una pista cercana","close-hints":"Pistas cercanas","get-hint":"Obtener una pista","hint":"Pista","next-hint":"Siguiente pista","show-hints":"Mostrar pistas"}')}}]);

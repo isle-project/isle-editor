@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[777],{2734:function(e){e.exports=JSON.parse('{"change-orientation":"Change Legend Orientation","close":"Close","drag-plot":"Drag Plot","share":"Share","toggle-fullscreen":"Toggle fullscreen","toggle-legend":"Toggle legend"}')}}]);
