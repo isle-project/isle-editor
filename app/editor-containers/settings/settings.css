@@ -14,3 +14,7 @@
 .settings-card {
 	margin-top: 20px;
 }
+
+.settings-card .container {
+	max-width: 100%;
+}
