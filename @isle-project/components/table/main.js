@@ -104,6 +104,8 @@ setupTypes([
 	}
 ]);
 
+/* eslint-disable @babel/no-invalid-this */
+
 function setupClickableTH( table, th, i ) {
 	const type = getColumnType(table, i);
 	function onClick( e ) {
@@ -188,6 +190,8 @@ function setupClickableTH( table, th, i ) {
 		addEventListener( th, eventName, onClick );
 	}
 }
+
+/* eslint-enable @babel/no-invalid-this */
 
 function getColumnType( table, i ) {
 	const _ref = table.querySelectorAll( 'th' )[ i ];

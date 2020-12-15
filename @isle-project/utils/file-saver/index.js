@@ -191,7 +191,7 @@ function saveFactory( view ) {
 const saveAs = saveFactory(
 	typeof self !== 'undefined' && self ||
 	typeof window !== 'undefined' && window ||
-	this.content
+	this.content // eslint-disable-line @babel/no-invalid-this
 );
 
 
