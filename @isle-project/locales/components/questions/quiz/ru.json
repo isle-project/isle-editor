@@ -16,12 +16,12 @@
 	"instructor-view": "Вид инструктора",
 	"next-question": "Следующий вопрос",
 	"open-instructor-view": "Открытый вид инструктора",
-	"time-up": "Ваше время вышло.",
 	"question": "Вопрос",
 	"quiz-finished": "Ты закончил викторину.",
 	"solution": "Решение",
 	"somewhat-sure": "Немного уверен",
 	"summary-label": " Вот краткое изложение ваших ответов",
+	"time-up": "Ваше время вышло.",
 	"your-answer": "Ваш ответ",
 	"your-confidence": "Твоя Уверенность"
 }

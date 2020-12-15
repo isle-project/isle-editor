@@ -2,10 +2,10 @@
 	"answer-resubmitted": "Ответьте заново.",
 	"answer-submitted": "Ответ получен.",
 	"correct-answer": "Правильный ответ",
-	"success-message": "Это правильный ответ!",
 	"failure-message": "Не совсем.",
 	"resubmit": "Повторная отправка",
 	"resubmit-message": "Вы успешно переслали свой ответ.",
 	"submit": "Отправить .",
-	"submit-message": "Ваш ответ был представлен."
+	"submit-message": "Ваш ответ был представлен.",
+	"success-message": "Это правильный ответ!"
 }

@@ -1,4 +1,4 @@
 {
-	"submit": "提交",
-	"missing-children": "问题表单至少需要两个子元素才能呈现。"
+	"missing-children": "问题表单至少需要两个子元素才能呈现。",
+	"submit": "提交"
 }

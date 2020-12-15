@@ -2,10 +2,10 @@
 	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
 	"answer-submitted": "Odpowiedź nadesłana.",
 	"correct-answer": "Prawidłowa odpowiedź",
-	"success-message": "To jest prawidłowa odpowiedź!",
 	"failure-message": "Niezupełnie.",
 	"resubmit": "Ponowne przedłożenie",
 	"resubmit-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
 	"submit": "Zgłoś się",
-	"submit-message": "Twoja odpowiedź została złożona."
+	"submit-message": "Twoja odpowiedź została złożona.",
+	"success-message": "To jest prawidłowa odpowiedź!"
 }

@@ -1,0 +1,10 @@
+{
+	"close": "Schließen",
+	"evaluate": "Evaluieren",
+	"hide-solution": "Lösung ausblenden",
+	"r-help": "R Hilfe",
+	"reset": "Zurücksetzen",
+	"reset-tooltip": "Setzen Sie die Shell-Eingabe auf ihren Standardwert zurück.",
+	"show-solution": "Lösung anzeigen",
+	"solution-tooltip": "Die Lösung wird verfügbar, sobald Sie die Übung ausprobiert und alle Hinweise genutzt haben."
+}

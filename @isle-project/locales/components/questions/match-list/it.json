@@ -1,11 +1,11 @@
 {
-	"answers": "Risposte",
 	"answer-resubmitted": "La risposta è stata ripresentata.",
 	"answer-submitted": "Risposta inviata.",
+	"answers": "Risposte",
 	"instructions": "Far corrispondere gli elementi {{complete}} dal lato sinistro con gli elementi corrispondenti sul lato destro cliccandoci sopra.",
 	"question-closed": "La domanda è chiusa.",
-	"resubmit": "Invia di nuovo",
 	"resubmission-message": "Lei ha ripresentato con successo la sua risposta.",
+	"resubmit": "Invia di nuovo",
 	"submit": "Invia a",
 	"submit-tooltip": "Potete inviare dopo aver abbinato tutti gli elementi dal lato sinistro con gli elementi corrispondenti dal lato destro"
 }

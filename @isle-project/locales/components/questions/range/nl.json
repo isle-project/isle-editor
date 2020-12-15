@@ -1,11 +1,11 @@
 {
-	"answers": "Antwoorden",
 	"answer-resubmitted": "Antwoord opnieuw ingediend.",
 	"answer-submitted": "Antwoord ingediend.",
+	"answers": "Antwoorden",
 	"lower": "Verlaagt",
 	"question-closed": "De vraag is nu gesloten.",
-	"resubmit": "Dien opnieuw  in.",
 	"resubmission-message": "U heeft uw antwoord met succes opnieuw ingediend.",
+	"resubmit": "Dien opnieuw  in.",
 	"solution": "Oplossing",
 	"submission-correct": "Gefeliciteerd, dat klopt!",
 	"submission-incorrect": "Niet helemaal. Vergelijk je antwoord met de oplossing.",

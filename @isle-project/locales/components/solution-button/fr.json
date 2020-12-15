@@ -1,6 +1,6 @@
 {
-	"show-solution": "Montrer la solution",
 	"hide-solution": "Cacher la solution",
+	"show-solution": "Montrer la solution",
 	"solution-available-tooltip": "La solution devient disponible après la soumission de la réponse",
 	"solution-available-tooltip-hints": "et tous les indices ont été demandés"
 }

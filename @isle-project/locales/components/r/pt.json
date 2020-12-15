@@ -1,0 +1,10 @@
+{
+	"close": "Fechar",
+	"evaluate": "Avalie",
+	"hide-solution": "Ocultar solução",
+	"r-help": "R Ajuda",
+	"reset": "Reinicialização",
+	"reset-tooltip": "Redefinir a entrada da casca para seu valor padrão.",
+	"show-solution": "Mostrar solução",
+	"solution-tooltip": "A solução torna-se disponível uma vez que você tenha experimentado o exercício e usado todas as dicas."
+}

@@ -16,12 +16,12 @@
 	"instructor-view": "Vista dell'istruttore",
 	"next-question": "Prossima domanda",
 	"open-instructor-view": "Vista aperta dell'istruttore",
-	"time-up": "Il tuo tempo è scaduto.",
 	"question": "Domanda",
 	"quiz-finished": "Hai finito il quiz.",
 	"solution": "Soluzione",
 	"somewhat-sure": "Abbastanza sicuro",
 	"summary-label": " Ecco una sintesi delle vostre risposte",
+	"time-up": "Il tuo tempo è scaduto.",
 	"your-answer": "La tua risposta",
 	"your-confidence": "La vostra fiducia"
 }

@@ -16,12 +16,12 @@
 	"instructor-view": "インストラクタービュー",
 	"next-question": "次の質問",
 	"open-instructor-view": "開く インストラクター ビュー",
-	"time-up": "時間切れだ",
 	"question": "質問",
 	"quiz-finished": "クイズを終了しました。",
 	"solution": "解決策",
 	"somewhat-sure": "何となくわかる",
 	"summary-label": "以下、皆さんの回答をまとめてみました。",
+	"time-up": "時間切れだ",
 	"your-answer": "あなたの答え",
 	"your-confidence": "あなたの自信"
 }

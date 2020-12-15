@@ -3,12 +3,12 @@
 	"mark-and-remove": "質問を回答としてマークし、削除します。",
 	"name": "名前",
 	"no-questions": "現在、キューに質問はありません。",
+	"question": "質問",
 	"queue": "キュー",
 	"queue-prompt": "下記に質問を提出することができます。",
-	"queue-status": "あなたの質問です。<1>{{question}}</1><br /> あなたは現在キューの<4>{{spot}}</4>にいます。",
 	"queue-size": "(現在キューの中に{{n}}人がいます)",
 	"queue-start-chat": "学生とのチャット開始",
-	"question": "質問",
+	"queue-status": "あなたの質問です。<1>{{question}}</1><br /> あなたは現在キューの<4>{{spot}}</4>にいます。",
 	"remove-myself-from-queue": "キューから削除",
 	"submit-question": "質問の提出"
 }

@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "Wybór, czy dane z badań powinny być zbierane anonimowo, czy też nie.",
 	"anonymous-survey": "Ankieta anonimowa",
+	"anonymous-survey-tooltip": "Wybór, czy dane z badań powinny być zbierane anonimowo, czy też nie.",
 	"answer-recorded": "Odpowiedź zarejestrowana",
 	"answer-recorded-message": "Twoja odpowiedź została pomyślnie zarejestrowana.",
 	"answer-slow-fast": "Czy prędkość jest \"Zbyt wolna\" czy \"Zbyt szybka\"?",
@@ -18,9 +18,10 @@
 	"documentation": "Dokumentacja",
 	"finish-poll": "Finish Poll",
 	"finish-survey": "Badanie końcowe",
-	"help-queue": "Kolejka pomocy",
 	"help-click-instruction": "Kliknij na pozycję w menu, aby dowiedzieć się więcej o...",
 	"help-data-explorer": "<0>Badarka danych ISLE pozwala na analizę zbiorów danych za pomocą interfejsu typu \"wskaż i kliknij\". Eksplorator danych jest podzielony na dwie szyby, lewą, gdzie można przełączać się pomiędzy widokiem arkusza kalkulacyjnego danych do analizy a innymi opcjonalnymi komponentami, takimi jak edytor zapisu raportów lub lista pytań. Po prawej stronie znajduje się okienko wyjściowe, które zawiera wszystkie dane wyjściowe (statystyki podsumowujące, wykresy, wyniki testu hipotez), które zostały utworzone.</0><2>Nowe dane wyjściowe można wygenerować za pomocą okienka narzędziowego, które można otworzyć klikając na przycisk &quot;Pokaż okienko narzędziowe&quot;. Nowo wygenerowany wykres lub tabela zostaną dołączone do listy elementów wyjściowych pokazanych po prawej stronie:</2><4>Czerwone przyciski z &quot;x&quot; ikony mogą być używane do usuwania poszczególnych elementów wyjściowych, natomiast przycisk &quot;Clear All&quot; na dole usunie wszystkie elementy wyjściowe.</4><5>Użycie przycisków ze znakiem zapytania w arkuszu danych, edytorze raportów lub skrzynce narzędziowej pozwoli na rozpoczęcie zwiedzania z przewodnikiem po możliwościach poszczególnych elementów.</5>",
+	"help-queue": "Kolejka pomocy",
+	"hide-toolbar": "Ukrycie paska narzędzi",
 	"like-dislike": "Like / Dislike",
 	"maximum-num-attachments": "Maksymalna osiągnięta liczba załączników",
 	"maximum-num-attachments-message": "Nie można przesłać więcej niż sześć załączników na jeden bilet.",
@@ -37,6 +38,7 @@
 	"queue": "Kolejka",
 	"range": "Zasięg",
 	"response": "Reakcja",
+	"show-toolbar": "Pokaż pasek narzędzi",
 	"sketchpad": "Sketchpad",
 	"slow-fast": "Zbyt wolno / Zbyt szybko",
 	"start-survey": "Start Survey",
@@ -53,7 +55,5 @@
 	"title": "Tytuł",
 	"title-placeholder": "Wybierz tytuł...",
 	"toggle-details": "Przełączanie szczegółów",
-	"show-toolbar": "Pokaż pasek narzędzi",
-	"hide-toolbar": "Ukrycie paska narzędzi",
 	"yes-no": "Tak / Nie"
 }

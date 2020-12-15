@@ -1,11 +1,11 @@
 {
-	"answers": "回答",
 	"answer-resubmitted": "回答を再投稿しました。",
 	"answer-submitted": "回答を提出しました。",
+	"answers": "回答",
 	"lower": "下",
 	"question-closed": "質問は終了しました。",
-	"resubmit": "再提出",
 	"resubmission-message": "回答の再提出に成功しました。",
+	"resubmit": "再提出",
 	"solution": "解決策",
 	"submission-correct": "おめでとうございます、その通りです。",
 	"submission-incorrect": "そうではありません。あなたの答えと解答を比較してみてください。",

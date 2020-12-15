@@ -1,0 +1,10 @@
+{
+	"close": "Close",
+	"evaluate": "Ocenić",
+	"hide-solution": "Ukrycie rozwiązania",
+	"r-help": "R Pomoc",
+	"reset": "Zresetować",
+	"reset-tooltip": "Resetuje wejście powłoki do jego domyślnej wartości.",
+	"show-solution": "Pokaż rozwiązanie",
+	"solution-tooltip": "Rozwiązanie staje się dostępne po wypróbowaniu ćwiczenia i wykorzystaniu wszystkich wskazówek."
+}

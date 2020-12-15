@@ -1,11 +1,11 @@
 {
-	"answers": "Respuestas",
 	"answer-resubmitted": "Respuesta presentada de nuevo.",
 	"answer-submitted": "Respuesta presentada.",
+	"answers": "Respuestas",
 	"lower": "Inferior",
 	"question-closed": "La pregunta está ahora cerrada.",
-	"resubmit": "Volver a presentar",
 	"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",
+	"resubmit": "Volver a presentar",
 	"solution": "Solución",
 	"submission-correct": "¡Felicidades, eso es correcto!",
 	"submission-incorrect": "No del todo. Compare su respuesta con la solución.",

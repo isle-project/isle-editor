@@ -16,12 +16,12 @@
 	"instructor-view": "指导老师查看",
 	"next-question": "下一个问题",
 	"open-instructor-view": "开放式教员查看",
-	"time-up": "你的时间到了",
 	"question": "问题",
 	"quiz-finished": "你已经完成了测验。",
 	"solution": "解决办法",
 	"somewhat-sure": "有点确定",
 	"summary-label": "下面是你的答案汇总",
+	"time-up": "你的时间到了",
 	"your-answer": "您的回答",
 	"your-confidence": "您的信心"
 }

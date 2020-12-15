@@ -1,7 +1,7 @@
 {
 	"join-chat": "チャットに参加する",
 	"join-chat-id": "ID {{id}}でチャットに参加する",
-	"leave-chat-id": "ID {{id}}でチャットを残す",
 	"leave-chat": "チャットを残す",
+	"leave-chat-id": "ID {{id}}でチャットを残す",
 	"toggle-chat": "トグルチャット"
 }

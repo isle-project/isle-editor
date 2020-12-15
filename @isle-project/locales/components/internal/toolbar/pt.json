@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "Escolha se os dados da pesquisa devem ser coletados anonimamente ou não",
 	"anonymous-survey": "Pesquisa anônima",
+	"anonymous-survey-tooltip": "Escolha se os dados da pesquisa devem ser coletados anonimamente ou não",
 	"answer-recorded": "Resposta registrada",
 	"answer-recorded-message": "Sua resposta foi registrada com sucesso.",
 	"answer-slow-fast": "A velocidade é \"Demasiado lenta\" ou \"Demasiado rápida\"?",
@@ -18,9 +18,10 @@
 	"documentation": "Documentação",
 	"finish-poll": "Pesquisa de acabamento",
 	"finish-survey": "Pesquisa de acabamento",
-	"help-queue": "Fila de ajuda",
 	"help-click-instruction": "Clique em um item do menu para saber mais sobre...",
 	"help-data-explorer": "<0>O explorador de dados ISLE permite analisar conjuntos de dados usando uma interface de apontar-e-clicar. O explorador de dados é dividido em dois painéis, um painel à esquerda onde você pode alternar entre uma visualização em planilha dos dados a serem analisados e outros componentes opcionais, tais como um editor de relatórios ou uma lista de perguntas. O lado direito é um painel de saída que contém todas as saídas (estatísticas resumidas, gráficos, resultados do teste de hipóteses) que você criou.</0><2>Novas saídas podem ser geradas através da caixa de ferramentas, que pode ser aberta clicando no &quot;Show Toolbox&quot; botão. Um gráfico ou tabela recentemente gerada será anexada à lista de elementos de saída mostrados no lado direito:</2><4>Os botões vermelhos com o &quot;x&quot; ícones podem ser usados para excluir elementos de saída individuais, enquanto o &quot;Clear All&quot; botão na parte inferior removerá todos os elementos de saída.</4><<5>Usando os botões com um ponto de interrogação na planilha de dados, editor de relatórios, ou a caixa de ferramentas permitirá iniciar uma visita guiada através das capacidades das diferentes peças.</5>",
+	"help-queue": "Fila de ajuda",
+	"hide-toolbar": "Esconder barra de ferramentas",
 	"like-dislike": "Gostar / Não gostar",
 	"maximum-num-attachments": "Atingido o número máximo de anexos",
 	"maximum-num-attachments-message": "Você não pode carregar mais de seis anexos por bilhete.",
@@ -37,6 +38,7 @@
 	"queue": "Fila",
 	"range": "Gama",
 	"response": "Resposta",
+	"show-toolbar": "Mostrar barra de ferramentas",
 	"sketchpad": "Sketchpad",
 	"slow-fast": "Demasiado lento / Demasiado rápido",
 	"start-survey": "Iniciar Pesquisa",
@@ -53,7 +55,5 @@
 	"title": "Título",
 	"title-placeholder": "Selecione o título...",
 	"toggle-details": "Alternar detalhes",
-	"show-toolbar": "Mostrar barra de ferramentas",
-	"hide-toolbar": "Esconder barra de ferramentas",
 	"yes-no": "Sim / Não"
 }

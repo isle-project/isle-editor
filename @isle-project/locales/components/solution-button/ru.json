@@ -1,6 +1,6 @@
 {
-	"show-solution": "Показать решение",
 	"hide-solution": "Скрытое решение",
+	"show-solution": "Показать решение",
 	"solution-available-tooltip": "Решение становится доступным после отправки ответа",
 	"solution-available-tooltip-hints": "и все намеки были запрошены"
 }

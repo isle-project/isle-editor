@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "选择是否以匿名方式收集调查数据。",
 	"anonymous-survey": "匿名调查",
+	"anonymous-survey-tooltip": "选择是否以匿名方式收集调查数据。",
 	"answer-recorded": "答复记录",
 	"answer-recorded-message": "您的回答已被成功记录。",
 	"answer-slow-fast": "速度是 \"太慢 \"还是 \"太快\"？",
@@ -18,9 +18,10 @@
 	"documentation": "文件资料",
 	"finish-poll": "完成投票",
 	"finish-survey": "完成调查",
-	"help-queue": "帮助队列",
 	"help-click-instruction": "点击菜单中的一个项目，了解更多关于... ...",
 	"help-data-explorer": "<0>ISLE数据资源管理器允许您使用点击界面分析数据集。数据资源管理器分为两个窗格，左侧窗格中，您可以在待分析数据的电子表格视图和其他可选组件（如报告编写编辑器或问题列表）之间进行切换。右侧是输出窗格，其中包含您创建的所有输出（摘要统计、绘图、假设检验结果）。</0><2>可通过工具箱生成新的输出，可通过单击&quot;显示工具箱&quot;按钮打开该工具箱。新生成的情节或表格将附加到右侧显示的输出元素列表中：</2><4>带有&quot;x&quot;图标的红色按钮可用于删除单个输出元素，而底部的&quot;Clear All&quot;按钮将删除所有输出元素。</4><5>使用数据电子表格、报表编辑器或工具箱上带有问号的按钮，将允许您开始对不同部件的功能进行引导。",
+	"help-queue": "帮助队列",
+	"hide-toolbar": "隐藏工具栏",
 	"like-dislike": "喜欢/不喜欢",
 	"maximum-num-attachments": "已达到附件的最大数量",
 	"maximum-num-attachments-message": "每张票据不能上传超过6个附件。",
@@ -37,6 +38,7 @@
 	"queue": "队列",
 	"range": "范围",
 	"response": "应对措施",
+	"show-toolbar": "显示工具栏",
 	"sketchpad": "草图板",
 	"slow-fast": "太慢 / 太快",
 	"start-survey": "开始调查",
@@ -53,7 +55,5 @@
 	"title": "标题",
 	"title-placeholder": "选择标题...",
 	"toggle-details": "Toggle Details",
-	"show-toolbar": "显示工具栏",
-	"hide-toolbar": "隐藏工具栏",
 	"yes-no": "是/否"
 }

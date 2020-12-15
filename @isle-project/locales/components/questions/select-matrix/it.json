@@ -2,10 +2,10 @@
 	"answer-resubmitted": "La risposta è stata ripresentata.",
 	"answer-submitted": "Risposta inviata.",
 	"correct-answer": "Risposta corretta",
-	"success-message": "Questa è la risposta giusta!",
 	"failure-message": "Non proprio.",
 	"resubmit": "Invia di nuovo",
 	"resubmit-message": "Lei ha ripresentato con successo la sua risposta.",
 	"submit": "Invia a",
-	"submit-message": "La sua risposta è stata inviata."
+	"submit-message": "La sua risposta è stata inviata.",
+	"success-message": "Questa è la risposta giusta!"
 }

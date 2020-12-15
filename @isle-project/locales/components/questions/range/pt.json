@@ -1,11 +1,11 @@
 {
-	"answers": "Respostas",
 	"answer-resubmitted": "Resposta re-submetida.",
 	"answer-submitted": "Resposta apresentada.",
+	"answers": "Respostas",
 	"lower": "Baixar",
 	"question-closed": "A pergunta está agora encerrada.",
-	"resubmit": "Enviar novamente",
 	"resubmission-message": "Você reapresentou com sucesso sua resposta.",
+	"resubmit": "Enviar novamente",
 	"solution": "Solução",
 	"submission-correct": "Parabéns, isso é correto!",
 	"submission-incorrect": "Não é bem assim. Compare sua resposta com a solução.",

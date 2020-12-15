@@ -1,6 +1,6 @@
 {
-	"show-solution": "显示解决方案",
 	"hide-solution": "隐藏解决方案",
+	"show-solution": "显示解决方案",
 	"solution-available-tooltip": "提交答案后即可获得解决方案",
 	"solution-available-tooltip-hints": "而所有的提示都已被要求"
 }

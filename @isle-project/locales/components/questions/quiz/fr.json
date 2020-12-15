@@ -16,12 +16,12 @@
 	"instructor-view": "Vue de l'instructeur",
 	"next-question": "Question suivante",
 	"open-instructor-view": "Ouvrir la vue de l'instructeur",
-	"time-up": "Votre temps est écoulé.",
 	"question": "Question",
 	"quiz-finished": "Vous avez terminé le quiz.",
 	"solution": "Solution",
 	"somewhat-sure": "Un peu sûr",
 	"summary-label": " Voici un résumé de vos réponses",
+	"time-up": "Votre temps est écoulé.",
 	"your-answer": "Votre réponse",
 	"your-confidence": "Votre confiance"
 }

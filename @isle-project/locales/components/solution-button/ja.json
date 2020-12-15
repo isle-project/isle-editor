@@ -1,6 +1,6 @@
 {
-	"show-solution": "ソリューションを表示",
 	"hide-solution": "解決策を隠す",
+	"show-solution": "ソリューションを表示",
 	"solution-available-tooltip": "解答を提出した後、解答が可能になります。",
 	"solution-available-tooltip-hints": "とすべてのヒントが要求されています"
 }

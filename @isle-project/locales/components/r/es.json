@@ -1,0 +1,10 @@
+{
+	"close": "Cerrar",
+	"evaluate": "Evaluar",
+	"hide-solution": "Solución de ocultamiento",
+	"r-help": "R Ayuda",
+	"reset": "Reiniciar",
+	"reset-tooltip": "Restablecer la entrada del shell a su valor por defecto.",
+	"show-solution": "Mostrar la solución",
+	"solution-tooltip": "La solución está disponible una vez que se ha probado el ejercicio y se han utilizado todos los consejos."
+}

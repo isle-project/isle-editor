@@ -1,11 +1,11 @@
 {
-	"answers": "Réponses",
 	"answer-resubmitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
+	"answers": "Réponses",
 	"lower": "En bas",
 	"question-closed": "La question est maintenant close.",
-	"resubmit": "Soumettre à nouveau",
 	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",
+	"resubmit": "Soumettre à nouveau",
 	"solution": "Solution",
 	"submission-correct": "Félicitations, c'est exact !",
 	"submission-incorrect": "Pas tout à fait. Comparez votre réponse avec la solution.",

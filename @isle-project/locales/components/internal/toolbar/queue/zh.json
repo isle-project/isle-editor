@@ -3,12 +3,12 @@
 	"mark-and-remove": "将问题标记为已回答并删除",
 	"name": "名称",
 	"no-questions": "目前队列中没有问题。",
+	"question": "问题",
 	"queue": "队列",
 	"queue-prompt": "您可以在下面提交问题，很快就会有人与您联系!",
-	"queue-status": "您的问题。<1>{{question}}</1><br /> 您目前在队列中的<4>{{spot}}</4>位置。<br />队列中还有<8>{{size}}</8>个人。",
 	"queue-size": "(目前有{{n}}个人在队列中)",
 	"queue-start-chat": "开始与学生聊天",
-	"question": "问题",
+	"queue-status": "您的问题。<1>{{question}}</1><br /> 您目前在队列中的<4>{{spot}}</4>位置。<br />队列中还有<8>{{size}}</8>个人。",
 	"remove-myself-from-queue": "从队列中删除我",
 	"submit-question": "提交问题"
 }

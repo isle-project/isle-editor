@@ -1,0 +1,10 @@
+{
+	"close": "Sluit",
+	"evaluate": "Evalueer",
+	"hide-solution": "Verberg de oplossing",
+	"r-help": "R Hulp",
+	"reset": "Reset",
+	"reset-tooltip": "Zet de shell-invoer terug naar de standaardwaarde.",
+	"show-solution": "Toon Oplossing",
+	"solution-tooltip": "Oplossing komt beschikbaar zodra je de oefening hebt geprobeerd en alle hints hebt gebruikt."
+}

@@ -1,0 +1,10 @@
+{
+	"close": "关闭",
+	"evaluate": "评估",
+	"hide-solution": "隐藏解决方案",
+	"r-help": "R 帮助",
+	"reset": "重置",
+	"reset-tooltip": "将shell输入重设为默认值。",
+	"show-solution": "显示解决方案",
+	"solution-tooltip": "一旦你尝试了练习并使用了所有的提示，就可以得到解决方案。"
+}

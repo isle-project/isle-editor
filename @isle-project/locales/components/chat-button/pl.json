@@ -1,7 +1,7 @@
 {
 	"join-chat": "Dołącz do czatu",
 	"join-chat-id": "Dołącz do czatu z ID {{id}}",
-	"leave-chat-id": "Zostaw czat z ID {{id}}",
 	"leave-chat": "Opuścić czat",
+	"leave-chat-id": "Zostaw czat z ID {{id}}",
 	"toggle-chat": "Przełączanie rozmów"
 }

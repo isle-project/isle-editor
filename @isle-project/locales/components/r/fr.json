@@ -1,0 +1,10 @@
+{
+	"close": "Fermer",
+	"evaluate": "Évaluer",
+	"hide-solution": "Cacher la solution",
+	"r-help": "R Aide",
+	"reset": "Réinitialiser",
+	"reset-tooltip": "Réinitialiser l'entrée du shell à sa valeur par défaut.",
+	"show-solution": "Montrer la solution",
+	"solution-tooltip": "La solution devient disponible une fois que vous avez essayé l'exercice et utilisé tous les indices."
+}

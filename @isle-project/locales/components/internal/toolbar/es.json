@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "Elegir si los datos de la encuesta deben recogerse de forma anónima o no",
 	"anonymous-survey": "Encuesta anónima",
+	"anonymous-survey-tooltip": "Elegir si los datos de la encuesta deben recogerse de forma anónima o no",
 	"answer-recorded": "Respuesta grabada",
 	"answer-recorded-message": "Su respuesta fue grabada con éxito.",
 	"answer-slow-fast": "¿Es la velocidad \"demasiado lenta\" o \"demasiado rápida\"?",
@@ -18,9 +18,10 @@
 	"documentation": "Documentación",
 	"finish-poll": "Encuesta final",
 	"finish-survey": "Terminar encuesta",
-	"help-queue": "Cola de ayuda",
 	"help-click-instruction": "Haga clic en un elemento del menú para obtener más información sobre...",
 	"help-data-explorer": "<0>El explorador de datos de la ISLE le permite analizar los conjuntos de datos usando una interfaz de apuntar y hacer clic. El explorador de datos está dividido en dos paneles, un panel izquierdo donde puede alternar entre una vista de hoja de cálculo de los datos a ser analizados y otros componentes opcionales como un editor de redacción de informes o una lista de preguntas. El lado derecho es un panel de salida que contiene todos los resultados (estadísticas de resumen, gráficos, resultados de la prueba de hipótesis) que se han creado.</0><2>Se pueden generar nuevos resultados a través de la caja de herramientas, que se puede abrir haciendo clic en el botón &quot;Mostrar caja de herramientas&quot;. Una nueva gráfica o tabla generada se añadirá a la lista de elementos de salida que se muestra a la derecha:</2><4>Los botones rojos con los iconos &quot;x&quot; pueden utilizarse para eliminar elementos de salida individuales, mientras que el botón &quot;Clear All&quot; de la parte inferior eliminará todos los elementos de salida.</4><5>El uso de los botones con un signo de interrogación en la hoja de cálculo de datos, en el editor de informes o en la caja de herramientas le permitirá iniciar una visita guiada a través de las capacidades de las diferentes piezas.</5>",
+	"help-queue": "Cola de ayuda",
+	"hide-toolbar": "Esconder barra de herramientas",
 	"like-dislike": "Me gusta / No me gusta",
 	"maximum-num-attachments": "Alcanzó el máximo número de adjuntos",
 	"maximum-num-attachments-message": "No puedes subir más de seis adjuntos por ticket.",
@@ -37,6 +38,7 @@
 	"queue": "Cola",
 	"range": "Rango",
 	"response": "Respuesta",
+	"show-toolbar": "Mostrar barra de herramientas",
 	"sketchpad": "Sketchpad",
 	"slow-fast": "Demasiado lento / Demasiado rápido",
 	"start-survey": "Encuesta de inicio",
@@ -53,7 +55,5 @@
 	"title": "Título",
 	"title-placeholder": "Seleccionar título...",
 	"toggle-details": "Alternar detalles",
-	"show-toolbar": "Mostrar barra de herramientas",
-	"hide-toolbar": "Esconder barra de herramientas",
 	"yes-no": "Sí / No"
 }

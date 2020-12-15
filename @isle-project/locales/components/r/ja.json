@@ -1,0 +1,10 @@
+{
+	"close": "クローズ",
+	"evaluate": "評価する",
+	"hide-solution": "解決策を隠す",
+	"r-help": "R ヘルプ",
+	"reset": "リセット",
+	"reset-tooltip": "シェル入力をデフォルト値にリセットします。",
+	"show-solution": "ソリューションを表示",
+	"solution-tooltip": "演習を試してみて、すべてのヒントを使用した後、解答が得られるようになります。"
+}

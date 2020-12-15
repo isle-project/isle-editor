@@ -1,11 +1,11 @@
 {
-	"answers": "Ответы",
 	"answer-resubmitted": "Ответьте заново.",
 	"answer-submitted": "Ответ получен.",
+	"answers": "Ответы",
 	"lower": "Нижний",
 	"question-closed": "Вопрос закрыт.",
-	"resubmit": "Повторная отправка",
 	"resubmission-message": "Вы успешно переслали свой ответ.",
+	"resubmit": "Повторная отправка",
 	"solution": "Решение",
 	"submission-correct": "Поздравляю, это верно!",
 	"submission-incorrect": "Не совсем. Сравните ваш ответ с решением.",

@@ -1,6 +1,6 @@
 {
-	"show-solution": "Mostrar la solución",
 	"hide-solution": "Solución de ocultamiento",
+	"show-solution": "Mostrar la solución",
 	"solution-available-tooltip": "La solución está disponible después de presentar la respuesta",
 	"solution-available-tooltip-hints": "y se han pedido todas las pistas"
 }

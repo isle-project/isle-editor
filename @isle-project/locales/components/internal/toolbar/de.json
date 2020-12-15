@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "Wähle, ob die Umfragedaten anonym gesammelt werden sollen oder nicht",
 	"anonymous-survey": "Anonyme Umfrage",
+	"anonymous-survey-tooltip": "Wähle, ob die Umfragedaten anonym gesammelt werden sollen oder nicht",
 	"answer-recorded": "Antwort aufgezeichnet",
 	"answer-recorded-message": "Deine Antwort wurde erfolgreich aufgezeichnet.",
 	"answer-slow-fast": "Ist die Geschwindigkeit \"Zu langsam\" oder \"Zu schnell\"?",
@@ -18,9 +18,10 @@
 	"documentation": "Dokumentation",
 	"finish-poll": "Abstimmung beenden",
 	"finish-survey": "Umfrage beenden",
-	"help-queue": "Hilfe-Warteschlange",
 	"help-click-instruction": "Klicken Sie auf einen Eintrag im Menü, um mehr über...",
 	"help-data-explorer": "<0>Mit dem ISLE-Daten-Explorer können Sie Datensätze mit einer Point-and-Click-Schnittstelle analysieren. Der Daten-Explorer ist in zwei Bereiche aufgeteilt, einen linken Bereich, in dem Sie zwischen einer Tabellenkalkulationsansicht der zu analysierenden Daten und anderen optionalen Komponenten wie einem Editor zum Schreiben von Berichten oder einer Liste von Fragen umschalten können. Die rechte Seite ist ein Ausgabefenster, das alle von Ihnen erstellten Ausgaben (zusammenfassende Statistiken, Diagramme, Ergebnisse des Hypothesentests) enthält.</0><2>Neue Ausgaben können über die Toolbox erzeugt werden, die durch Klicken auf die Schaltfläche &quot;Show Toolbox&quot; geöffnet werden kann. Ein neu generiertes Diagramm oder eine neu generierte Tabelle wird an die auf der rechten Seite gezeigte Liste der Ausgabeelemente angehängt:</2><4>Die roten Schaltflächen mit den Symbolen &quot;x&quot; können zum Löschen einzelner Ausgabeelemente verwendet werden, während die Schaltfläche &quot;Clear All&quot; am unteren Rand alle Ausgabeelemente entfernt.</4><5>Mit den Schaltflächen mit einem Fragezeichen auf dem Datenblatt, dem Berichtseditor oder der Toolbox können Sie eine Führung durch die Fähigkeiten der verschiedenen Stücke starten.</5>",
+	"help-queue": "Hilfe-Warteschlange",
+	"hide-toolbar": "Werkzeugleiste verbergen",
 	"like-dislike": "Like / Dislike",
 	"maximum-num-attachments": "Maximale Anzahl von Anhängen erreicht",
 	"maximum-num-attachments-message": "Du kannst nicht mehr als sechs Anhänge pro Ticket hochladen",
@@ -37,6 +38,7 @@
 	"queue": "Warteschlange",
 	"range": "Range",
 	"response": "Antwort",
+	"show-toolbar": "Werkzeugleiste anzeigen",
 	"sketchpad": "Skizzenblock",
 	"slow-fast": "Zu langsam / Zu schnell",
 	"start-survey": "Umfrage starten",
@@ -53,7 +55,5 @@
 	"title": "Titel",
 	"title-placeholder": "Titel auswählen...",
 	"toggle-details": "Details umschalten",
-	"show-toolbar": "Werkzeugleiste anzeigen",
-	"hide-toolbar": "Werkzeugleiste verbergen",
 	"yes-no": "Ja / Nein"
 }
