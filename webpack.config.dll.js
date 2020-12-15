@@ -167,13 +167,19 @@ const config = {
 			'@isle-project/components/internal/statusbar',
 			'@isle-project/components/internal/toolbar',
 			'@isle-project/components/internal/voice-control'
+		],
+		session: [
+			'@isle-project/session'
+		],
+		locales: [
+			'@isle-project/locales'
 		]
 	},
 	output: {
-		path: join( __dirname, '@isle-project', 'components', 'dist' ),
+		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/components@0.49.7/dist/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.0.1/'
 	},
 	optimization: {
 		minimize: true,
@@ -187,7 +193,7 @@ const config = {
 	},
 	plugins: [
 		new DllPlugin({
-			path: join( __dirname, '@isle-project', 'components', '[name]-manifest.json' ),
+			path: join( __dirname, '@isle-project', 'dll', '[name]-manifest.json' ),
 			name: '[name]_dll'
 		})
 	],

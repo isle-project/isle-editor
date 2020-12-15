@@ -25,8 +25,9 @@ import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import markdownToHTML from 'utils/markdown-to-html';
 import transformToPresentation from 'utils/transform-to-presentation';
 import REQUIRES from './requires.json';
-import COMPONENTS_MANIFEST from '@isle-project/components/components-manifest.json';
-import SESSION_MANIFEST from '@isle-project/session/session-manifest.json';
+import COMPONENTS_MANIFEST from '@isle-project/dll/components-manifest.json';
+import LOCALES_MANIFEST from '@isle-project/dll/locales-manifest.json';
+import SESSION_MANIFEST from '@isle-project/dll/session-manifest.json';
 import MANIFEST_TEMPLATE from './manifest.json';
 
 
@@ -376,6 +377,11 @@ function writeIndexFile({
 		})
 	];
 	if ( loadFromCDN ) {
+		plugins.push(
+			new webpack.DllReferencePlugin({
+				manifest: LOCALES_MANIFEST
+			})
+		);
 		plugins.push(
 			new webpack.DllReferencePlugin({
 				manifest: COMPONENTS_MANIFEST

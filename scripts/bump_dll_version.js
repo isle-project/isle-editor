@@ -25,7 +25,7 @@ if ( !contains( SEMVER, type ) ) {
 // MAIN //
 
 // Increment package versions:
-const pkgPath = join( __dirname, '..', '@isle-project', 'locales', 'package.json' );
+const pkgPath = join( __dirname, '..', '@isle-project', 'dll', 'package.json' );
 const pkg = require( pkgPath );
 
 pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
@@ -42,8 +42,8 @@ pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
 });
 fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 
-if ( type === 'major' || type === 'minor'|| type === 'patch' ) {
-	const configPath = join( __dirname, '..', 'webpack.config.locales.js' );
+if ( type === 'major' || type === 'minor' || type === 'patch' ) {
+	const configPath = join( __dirname, '..', 'webpack.config.components.js' );
 	const config = fs.readFileSync( configPath, 'utf8' );
 
 	console.log( `Replacing ${oldVersion} with ${newVersion} in webpack configuration...` );
@@ -54,17 +54,17 @@ if ( type === 'major' || type === 'minor'|| type === 'patch' ) {
 	const htmlPath = join( __dirname, '..', 'app', 'bundler', 'index.html' );
 	const html = fs.readFileSync( htmlPath, 'utf8' );
 
-	out = replace( html, `locales@${oldVersion}`, `locales@${newVersion}` );
+	out = replace( html, `dll@${oldVersion}`, `dll@${newVersion}` );
 	fs.writeFileSync( htmlPath, out );
 }
 
 // Delete current DLL files:
-fs.readdir( join( __dirname, '..', '@isle-project', 'locales', 'dist' ), ( error, files ) => {
+fs.readdir( join( __dirname, '..', '@isle-project', 'dll' ), ( error, files ) => {
 	if ( error ) {
 		throw error;
 	}
 	files.filter( name => RE_DLL_FILE.test( name ) ).forEach( x => {
-		fs.unlink( join( __dirname, '..', '@isle-project', 'locales', 'dist', x ), ( err ) => {
+		fs.unlink( join( __dirname, '..', '@isle-project', 'dll', x ), ( err ) => {
 			if ( err ) {
 				console.error( err );
 			}

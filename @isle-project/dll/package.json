@@ -1,0 +1,12 @@
+{
+	"name": "@isle-project/dll",
+	"version": "0.0.1",
+	"author": {
+		"name": "Philipp Burckhardt",
+		"email": "pburckhardt@outlook.com",
+		"url": "https://github.com/planeshifter"
+	},
+	"bundleDependencies": false,
+	"description": "ISLE dynamic linked libraries.",
+	"license": "AGPL-3.0-only"
+}
