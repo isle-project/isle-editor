@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.72.2",
+  "version": "0.72.3",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -345,6 +345,8 @@
       "!node_modules/@icons/**/*",
       "!@isle-project/components/dist/**/*",
       "!@isle-project/session/dist/*",
+      "!node_modules/@babel/eslint-plugin/**/*",
+      "!node_modules/eslint-rule-composer/**/*",
       "!node_modules/@babel/plugin-proposal-export-default-from/**/*",
       "!node_modules/@babel/plugin-syntax-export-default-from/**/*",
       "!node_modules/@pmmmwh/react-refresh-webpack-plugin/**/*",
@@ -911,7 +913,6 @@
       "!node_modules/html-encoding-sniffer/**/*",
       "!node_modules/is-potential-custom-element-name/**/*",
       "!node_modules/nwsapi/**/*",
-      "!node_modules/parse5/**/*",
       "!node_modules/request-promise-native/**/*",
       "!node_modules/request-promise-core/**/*",
       "!node_modules/stealthy-require/**/*",
@@ -1634,7 +1635,7 @@
       "!node_modules/detect-file/**/*",
       "!node_modules/findup-sync/node_modules/micromatch/**/*",
       "!node_modules/findup-sync/node_modules/braces/**/*",
-      "!node_modules/findup-sync/node_modules/braces/node_modules/extend-shallow/**/*",
+      "!node_modules/findup-sync/node_modules/fill-range/**/*",
       "!node_modules/findup-sync/node_modules/fill-range/node_modules/extend-shallow/**/*",
       "!node_modules/findup-sync/node_modules/is-number/**/*",
       "!node_modules/findup-sync/node_modules/is-number/node_modules/kind-of/**/*",
