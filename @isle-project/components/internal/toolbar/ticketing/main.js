@@ -143,7 +143,7 @@ class Ticketing extends Component {
 									onClick={this.removeFileFactory( idx )}
 									style={{ float: 'right' }}
 								>
-									x
+									<i className="fas fa-times"></i>
 								</Button>
 							</ListGroup.Item>
 						);
