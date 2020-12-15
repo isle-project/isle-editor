@@ -37,7 +37,6 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
-import merge from '@stdlib/utils/merge';
 import clamp from '@stdlib/math/base/special/clamp';
 import sample from '@stdlib/random/sample';
 import isElectron from '@isle-project/utils/is-electron';
@@ -1112,7 +1111,7 @@ class Session {
 					if ( !visitorData ) {
 						return ownerData;
 					}
-					return merge( visitorData, ownerData );
+					return { ...visitorData, ...ownerData };
 				});
 		});
 	}
