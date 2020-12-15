@@ -672,7 +672,7 @@ export function changeLanguage( lng ) {
 		if ( !i18next.hasResourceBundle( lng, ns ) ) {
 			const res = TRANSLATIONS[ lng ][ ns ];
 			if ( !res ) {
-				alert( `Missing translations for ${ns} in language ${lng}...` );
+				debug( `Missing translations for ${ns} in language ${lng}...` );
 			} else {
 				const promise = res();
 				promise.then( ( data ) => {
