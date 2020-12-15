@@ -43,7 +43,7 @@ pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
 fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 
 if ( type === 'major' || type === 'minor' || type === 'patch' ) {
-	const configPath = join( __dirname, '..', 'webpack.config.components.js' );
+	const configPath = join( __dirname, '..', 'webpack.config.dll.js' );
 	const config = fs.readFileSync( configPath, 'utf8' );
 
 	console.log( `Replacing ${oldVersion} with ${newVersion} in webpack configuration...` );
