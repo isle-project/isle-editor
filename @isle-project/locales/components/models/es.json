@@ -1,4 +1,17 @@
 {
+	"coefficient": "Coeficiente",
+	"cumulative-variance": "Proporción de la variación acumulada",
+	"intercept": "Interceptar",
 	"lambda-not-number": "`lambda` tiene que ser un número.",
-	"missing-attributes": "El modelo no pudo ser estimado. Por favor, compruebe que se han suministrado todos los atributos necesarios."
+	"missing-attributes": "El modelo no pudo ser estimado. Por favor, compruebe que se han suministrado todos los atributos necesarios.",
+	"model-diagnostics": "Diagnóstico de modelos",
+	"p-value": "Valor p",
+	"pca-summary": "Resumen del PCA",
+	"predictor": "Predictor",
+	"proportion-of-variance": "Proporción de la variación",
+	"standard-deviation": "Desviación estándar",
+	"threshold": "Umbral",
+	"use-model-to-predict": "Utilice este modelo para predecir para los datos actualmente seleccionados",
+	"use-model-to-predict-tooltip-logistic": "Las probabilidades, los residuos y las categorías de predicción (utilizando el umbral de probabilidad elegido que se superará para predecir un éxito) se adjuntarán al cuadro de datos",
+	"variable": "Variable"
 }

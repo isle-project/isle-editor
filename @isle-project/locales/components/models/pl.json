@@ -1,4 +1,17 @@
 {
+	"coefficient": "Współczynnik",
+	"cumulative-variance": "Proporcja skumulowanej zmienności",
+	"intercept": "Przechwytywanie",
 	"lambda-not-number": "`lambda` musi być numerem.",
-	"missing-attributes": "Model nie mógł być oszacowany. Proszę sprawdzić, czy wszystkie wymagane atrybuty zostały dostarczone."
+	"missing-attributes": "Model nie mógł być oszacowany. Proszę sprawdzić, czy wszystkie wymagane atrybuty zostały dostarczone.",
+	"model-diagnostics": "Diagnostyka modelowa",
+	"p-value": "wartość p- wartość",
+	"pca-summary": "Podsumowanie PCA",
+	"predictor": "Predictor",
+	"proportion-of-variance": "Proporcja wariancji",
+	"standard-deviation": "Odchylenie standardowe",
+	"threshold": "Próg",
+	"use-model-to-predict": "Użyj tego modelu do przewidywania dla aktualnie wybranych danych",
+	"use-model-to-predict-tooltip-logistic": "Prawdopodobieństwa, resztki i kategorie przewidywane (przy użyciu wybranego progu prawdopodobieństwa, który zostanie przekroczony w celu przewidzenia sukcesu) zostaną dołączone do tabeli danych.",
+	"variable": "Zmienna"
 }

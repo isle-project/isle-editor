@@ -138,7 +138,7 @@ class SimpleLinearRegression extends Component {
 
 	render() {
 		const { xd, yd, groups } = this.state;
-		const { x, y, group, data } = this.props;
+		const { x, y, group, data, t } = this.props;
 		let output;
 		try {
 			if ( group ) {
@@ -174,16 +174,16 @@ class SimpleLinearRegression extends Component {
 								<Table bordered size="sm" >
 									<thead>
 										<tr>
-											<th>Variable</th>
-											<th>Coefficient</th>
+											<th>{t('variable')}</th>
+											<th>{t('coefficient')}</th>
 											<th>Std. Error</th>
 											<th>t</th>
-											<th>p-value</th>
+											<th>{t('p-value')}</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>Intercept</td>
+											<td>{t('intercept')}</td>
 											<td>{yint.toFixed( 4 )}</td>
 											<td>{interceptSE.toFixed( 4 )}</td>
 											<td>{tIntercept.toFixed( 4 )}</td>
@@ -214,7 +214,7 @@ class SimpleLinearRegression extends Component {
 								resid[ i ] = yhat[ i ] - yd[ i ];
 							}
 							this.props.onPredict( yhat, resid, COUNTER );
-						}}>Use this model to predict for currently selected data</Button>
+						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
 						const xd = this.props.data[ x ];
@@ -263,7 +263,7 @@ class SimpleLinearRegression extends Component {
 						};
 						this.props.onDiagnostics([ qqPlot, residualPlot ]);
 					}} >
-						Model Diagnostics
+						{t('model-iagnostics')}
 					</Button> : null }
 				</div>;
 			}
@@ -327,7 +327,7 @@ class SimpleLinearRegression extends Component {
 								resid[ i ] = yhat[ i ] - yd[ i ];
 							}
 							this.props.onPredict( yhat, resid, COUNTER );
-						}}>Use this model to predict for currently selected data</Button>
+						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
 						const xd = this.props.data[ x ];
@@ -367,7 +367,7 @@ class SimpleLinearRegression extends Component {
 						/>;
 						this.props.onDiagnostics([ qqPlot, residualPlot ]);
 					}} >
-						Model Diagnostics
+						{t('model-diagnostics')}
 					</Button> : null }
 				</div>;
 			}

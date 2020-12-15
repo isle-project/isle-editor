@@ -1,4 +1,17 @@
 {
+	"coefficient": "Coefficient",
+	"cumulative-variance": "Proportion d'écart cumulé",
+	"intercept": "Intercepter",
 	"lambda-not-number": "Lambda\" doit être un numéro.",
-	"missing-attributes": "Le modèle n'a pas pu être estimé. Veuillez vérifier que tous les attributs requis sont fournis."
+	"missing-attributes": "Le modèle n'a pas pu être estimé. Veuillez vérifier que tous les attributs requis sont fournis.",
+	"model-diagnostics": "Diagnostics modèles",
+	"p-value": "p-value",
+	"pca-summary": "Résumé de l'APC",
+	"predictor": "Predictor",
+	"proportion-of-variance": "Proportion de la variation",
+	"standard-deviation": "Écart type",
+	"threshold": "Seuil",
+	"use-model-to-predict": "Utilisez ce modèle pour prévoir pour les données actuellement sélectionnées",
+	"use-model-to-predict-tooltip-logistic": "Les probabilités, les résidus et les catégories prévues (en utilisant le seuil de probabilité choisi à dépasser pour prédire un succès) seront joints au tableau des données",
+	"variable": "Variable"
 }

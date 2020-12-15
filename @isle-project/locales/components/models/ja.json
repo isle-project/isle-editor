@@ -1,4 +1,17 @@
 {
+	"coefficient": "係数",
+	"cumulative-variance": "累積変動比率",
+	"intercept": "インターセプト",
 	"lambda-not-number": "ラムダ`は数値でなければなりません。",
-	"missing-attributes": "モデルを推定できませんでした。必要な属性がすべて提供されていることを確認してください。"
+	"missing-attributes": "モデルを推定できませんでした。必要な属性がすべて提供されていることを確認してください。",
+	"model-diagnostics": "モデル診断",
+	"p-value": "ピーち",
+	"pca-summary": "PCAの概要",
+	"predictor": "予測器",
+	"proportion-of-variance": "分散の割合",
+	"standard-deviation": "標準偏差",
+	"threshold": "しきい値",
+	"use-model-to-predict": "このモデルを使用して、現在選択されているデータの予測を行います。",
+	"use-model-to-predict-tooltip-logistic": "確率、残差、および予測カテゴリ（成功を予測するために選択された確率閾値を使用）は、データテーブルに添付されます。",
+	"variable": "変数"
 }

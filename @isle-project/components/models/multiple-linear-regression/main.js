@@ -294,6 +294,7 @@ class MultipleLinearRegression extends Component {
 
 	render() {
 		const { y, predictors, nobs, result, adjRSquared, p, fScore, rSquared } = this.state;
+		const { t } = this.props;
 		if ( !result ) {
 			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
 		}
@@ -305,10 +306,10 @@ class MultipleLinearRegression extends Component {
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
 				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				{ this.props.onPredict ? <Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
+					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
 				</Tooltip> : null }
 				{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={this.handleDiagnostics} >
-					Model Diagnostics
+					{t('model-diagnostics')}
 				</Button> : null }
 			</div>
 		);

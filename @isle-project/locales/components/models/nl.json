@@ -1,4 +1,17 @@
 {
+	"coefficient": "Coëfficiënt",
+	"cumulative-variance": "Cumulatieve variatieverhouding",
+	"intercept": "Onderschep",
 	"lambda-not-number": "Lambda' moet een nummer zijn.",
-	"missing-attributes": "Het model kon niet worden ingeschat. Controleer of alle benodigde attributen zijn meegeleverd."
+	"missing-attributes": "Het model kon niet worden ingeschat. Controleer of alle benodigde attributen zijn meegeleverd.",
+	"model-diagnostics": "Modeldiagnose",
+	"p-value": "p-waarde",
+	"pca-summary": "PCA Samenvatting",
+	"predictor": "Voorspeller",
+	"proportion-of-variance": "Aandeel van de variatie",
+	"standard-deviation": "Standaardafwijking",
+	"threshold": "Drempelwaarde",
+	"use-model-to-predict": "Gebruik dit model om voorspellingen te doen voor de momenteel geselecteerde gegevens",
+	"use-model-to-predict-tooltip-logistic": "Waarschijnlijkheden, residuen en voorspelde categorieën (met behulp van de gekozen waarschijnlijkheidsdrempel die moet worden overschreden voor het voorspellen van een succes) zullen aan de gegevenstabel worden toegevoegd.",
+	"variable": "Variabele"
 }

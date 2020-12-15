@@ -26,18 +26,18 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-const summaryTable = ( x, intercept, result ) => {
+const summaryTable = ( x, intercept, result, t ) => {
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<th>Predictor</th>
-					<th>Coefficient</th>
+					<th>{t('predictor')}</th>
+					<th>{t('coefficient')}</th>
 				</tr>
 			</thead>
 			<tbody>
 				{ intercept ? <tr>
-					<th>Intercept</th>
+					<th>{t('intercept')}</th>
 					<td>{result.beta[ 0 ].toFixed( 6 )}</td>
 				</tr> : null }
 				{x.map( ( name, idx ) => {
@@ -219,10 +219,10 @@ class LassoRegression extends Component {
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >LASSO Regression for Response {y} (model id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
-				{summaryTable( predictors, intercept, result )}
+				{summaryTable( predictors, intercept, result, this.props.t )}
 				<p>Karush-Khun-Tucker (KKT) conditions for an optimal solution {result.testKKT() ? 'are' : 'are not'} satisfied</p>
 				{onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
+					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
 				</Tooltip> : null}
 			</div>
 		);

@@ -18,15 +18,15 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
-const summaryTable = ( stdev, variance, cumVariance ) => {
+const summaryTable = ( stdev, variance, cumVariance, t ) => {
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
 					<th></th>
-					<th>Standard Deviation</th>
-					<th>Proportion of Variance</th>
-					<th>Cumulative Variance Proportion</th>
+					<th>{t('standard-deviation')}</th>
+					<th>{t('proportion-of-variance')}</th>
+					<th>{t('cumulative-variance')}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -143,8 +143,8 @@ class PrincipalComponentAnalysis extends Component {
 			name: 'Proportion of variance'
 		};
 		return (<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >PCA Summary</span>
-				{summaryTable( stdev, variance, cumVariance )}
+				<span className="title" >{this.props.t('pca-summary')}</span>
+				{summaryTable( stdev, variance, cumVariance, this.props.t )}
 				<Plotly editable data={[ trace ]} layout={{
 					xaxis: {
 						title: 'Principal Component'

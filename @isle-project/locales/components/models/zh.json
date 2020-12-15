@@ -1,4 +1,17 @@
 {
+	"coefficient": "系数",
+	"cumulative-variance": "累计差异比例",
+	"intercept": "拦截",
 	"lambda-not-number": "`lambda`必须是一个数字。",
-	"missing-attributes": "无法估计模型。请检查是否提供了所有必要的属性。"
+	"missing-attributes": "无法估计模型。请检查是否提供了所有必要的属性。",
+	"model-diagnostics": "模型诊断",
+	"p-value": "p值",
+	"pca-summary": "PCA摘要",
+	"predictor": "预测器",
+	"proportion-of-variance": "差异比例",
+	"standard-deviation": "标准偏差",
+	"threshold": "阈值",
+	"use-model-to-predict": "使用该模型对当前选定的数据进行预测",
+	"use-model-to-predict-tooltip-logistic": "概率、残差和预测类别（使用所选的预测成功的概率阈值）将附在数据表中。",
+	"variable": "可变"
 }

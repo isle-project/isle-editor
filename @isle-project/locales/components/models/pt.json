@@ -1,4 +1,17 @@
 {
+	"coefficient": "Coeficiente",
+	"cumulative-variance": "Proporção de variação acumulada",
+	"intercept": "Interceptar",
 	"lambda-not-number": "\"lambda\" tem que ser um número.",
-	"missing-attributes": "O modelo não pôde ser estimado. Por favor, verifique se todos os atributos necessários são fornecidos."
+	"missing-attributes": "O modelo não pôde ser estimado. Por favor, verifique se todos os atributos necessários são fornecidos.",
+	"model-diagnostics": "Diagnóstico de modelos",
+	"p-value": "p-valor",
+	"pca-summary": "Resumo do PCA",
+	"predictor": "Preditor",
+	"proportion-of-variance": "Proporção de variação",
+	"standard-deviation": "Desvio padrão",
+	"threshold": "Threshold",
+	"use-model-to-predict": "Use este modelo para prever os dados atualmente selecionados",
+	"use-model-to-predict-tooltip-logistic": "Probabilidades, resíduos e categorias previstas (usando o limiar de probabilidade escolhido para ser excedido para prever um sucesso) serão anexados à tabela de dados",
+	"variable": "Variável"
 }

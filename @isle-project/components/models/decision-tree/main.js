@@ -119,7 +119,7 @@ class DecisionTree extends Component {
 				<span className="title" >Decision Tree for {this.props.y} (model id: tree{COUNTER})</span>
 				<TreePlot tree={tree.root} />
 				{this.props.onPredict ? <Tooltip tooltip="Predictions will be attached to data table">
-					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>Use this model to predict for currently selected data</Button>
+					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
 				</Tooltip> : null}
 			</div>
 		);

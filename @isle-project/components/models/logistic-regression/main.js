@@ -141,21 +141,21 @@ function designMatrixMissing( x, y, data, quantitative, intercept, success ) {
 	return { matrix, predictors, yvalues, nobs };
 }
 
-const summaryTable = ( x, intercept, result ) => {
+const summaryTable = ( x, intercept, result, t ) => {
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<Tooltip placement="right" tooltip="Name of predictor" ><th>Predictor</th></Tooltip>
-					<Tooltip placement="right" tooltip="Change in log odds associated with unit-increase in respective predictor"><th>Coefficient</th></Tooltip>
+					<Tooltip placement="right" tooltip="Name of predictor" ><th>{t('predictor')}</th></Tooltip>
+					<Tooltip placement="right" tooltip="Change in log odds associated with unit-increase in respective predictor"><th>{t('coefficient')}</th></Tooltip>
 					<Tooltip placement="left" tooltip="Standard deviation of coefficient estimate" ><th>Std. Error</th></Tooltip>
 					<Tooltip placement="left" tooltip={<span>Test statistic for hypothesis that coefficient is zero <TeX displayMode raw="t = \tfrac{\text{Coefficient}}{\text{Std. Error}}" /></span>} ><th>t</th></Tooltip>
-					<Tooltip placement="left" tooltip={<span>p-value for hypothesis that coefficient is zero <TeX displayMode raw="2 \Phi( |t| )" /></span>} ><th>p-value</th></Tooltip>
+					<Tooltip placement="left" tooltip={<span>p-value for hypothesis that coefficient is zero <TeX displayMode raw="2 \Phi( |t| )" /></span>} ><th>{t('p-value')}</th></Tooltip>
 				</tr>
 			</thead>
 			<tbody>
 				{ intercept ? <tr>
-					<th>Intercept</th>
+					<th>{t('intercept')}</th>
 					<td>{result.coefficients[ 0 ].toFixed( 6 )}</td>
 					<td>{result.stdErrors[ 0 ].toFixed( 4 )}</td>
 					<td>{( result.coefficients[ 0 ] / result.stdErrors[ 0 ] ).toFixed( 4 )}</td>
@@ -258,24 +258,25 @@ class LogisticRegression extends Component {
 
 	render() {
 		const { result } = this.state;
+		const { t } = this.props;
 		if ( !result ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {this.props.y} (model id: logis{COUNTER})</span>
-				{summaryTable( this.state.predictors, this.props.intercept, result )}
+				{summaryTable( this.state.predictors, this.props.intercept, result, this.props.t )}
 				<i>The algorithm {result.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {result.iterations} Fisher Scoring iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( result.aic, -3 )}</p>
 				{this.props.onPredict ? <ButtonGroup>
-					<Tooltip tooltip="Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table">
+					<Tooltip tooltip={t('use-mode-to-predict-tooltip-logistic')} >
 						<Button variant="secondary" size="sm" onClick={this.handlePredict} >
-							Use this model to predict for currently selected data
+							{this.props.t('use-model-to-predict')}
 						</Button>
 					</Tooltip>
 					<InputGroup size="sm" >
 						<InputGroup.Prepend>
-							<InputGroup.Text>Threshold:</InputGroup.Text>
+							<InputGroup.Text>{t('threshold')}:</InputGroup.Text>
 						</InputGroup.Prepend>
 						<FormControl
 							type="number"

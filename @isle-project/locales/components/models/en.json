@@ -1,4 +1,17 @@
 {
 	"lambda-not-number": "`lambda` has to be a number.",
-	"missing-attributes": "Model could not be estimated. Please check that all required attributes are supplied."
+	"missing-attributes": "Model could not be estimated. Please check that all required attributes are supplied.",
+	"use-model-to-predict": "Use this model to predict for currently selected data",
+	"pca-summary": "PCA Summary",
+	"variable": "Variable",
+	"coefficient": "Coefficient",
+	"intercept": "Intercept",
+	"model-diagnostics": "Model Diagnostics",
+	"predictor": "Predictor",
+	"proportion-of-variance": "Proportion of Variance",
+	"threshold": "Threshold",
+	"use-model-to-predict-tooltip-logistic": "Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table",
+	"standard-deviation": "Standard Deviation",
+	"cumulative-variance": "Cumulative Variance Proportion",
+	"p-value": "p-value"
 }

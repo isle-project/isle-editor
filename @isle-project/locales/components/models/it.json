@@ -1,4 +1,17 @@
 {
+	"coefficient": "Coefficiente",
+	"cumulative-variance": "Proporzione di variazione cumulativa",
+	"intercept": "Intercettare",
 	"lambda-not-number": "`lambda` deve essere un numero.",
-	"missing-attributes": "Non è stato possibile stimare il modello. Si prega di verificare che tutti gli attributi richiesti siano forniti."
+	"missing-attributes": "Non è stato possibile stimare il modello. Si prega di verificare che tutti gli attributi richiesti siano forniti.",
+	"model-diagnostics": "Diagnostica dei modelli",
+	"p-value": "p-valore",
+	"pca-summary": "Riepilogo PCA",
+	"predictor": "Predictor",
+	"proportion-of-variance": "Proporzione di variazione",
+	"standard-deviation": "Deviazione standard",
+	"threshold": "Soglia",
+	"use-model-to-predict": "Utilizzare questo modello per prevedere i dati attualmente selezionati",
+	"use-model-to-predict-tooltip-logistic": "Le probabilità, i residui e le categorie previste (utilizzando la soglia di probabilità scelta da superare per prevedere il successo) saranno allegati alla tabella dei dati",
+	"variable": "Variabile"
 }

@@ -1,4 +1,17 @@
 {
+	"coefficient": "Koeffizient",
+	"cumulative-variance": "Anteil der kumulativen Varianz",
+	"intercept": "abfangen",
 	"lambda-not-number": "`lambda` muss eine Zahl sein.",
-	"missing-attributes": "Modell konnte nicht geschätzt werden. Bitte überprüfen Sie, ob alle erforderlichen Attribute vorhanden sind."
+	"missing-attributes": "Modell konnte nicht geschätzt werden. Bitte überprüfen Sie, ob alle erforderlichen Attribute vorhanden sind.",
+	"model-diagnostics": "Modell-Diagnostik",
+	"p-value": "p-Wert",
+	"pca-summary": "PCA-Zusammenfassung",
+	"predictor": "Prädiktor",
+	"proportion-of-variance": "Anteil der Varianz",
+	"standard-deviation": "Standard-Abweichung",
+	"threshold": "Schwelle",
+	"use-model-to-predict": "Verwenden Sie dieses Modell zur Vorhersage für aktuell ausgewählte Daten",
+	"use-model-to-predict-tooltip-logistic": "Wahrscheinlichkeiten, Residuen und vorhergesagte Kategorien (unter Verwendung der gewählten Wahrscheinlichkeitsschwelle, die für die Vorhersage eines Erfolgs überschritten werden soll) werden der Datentabelle beigefügt",
+	"variable": "Variabel"
 }
