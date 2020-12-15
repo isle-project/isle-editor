@@ -165,12 +165,12 @@ function evaluate( arr, useDegrees ) {
 		const op = OPERATORS[ arr[i] ] || FUNCTIONS[ arr[i] ];
 		if ( op ) {
 			if ( useDegrees && TRIG_FUNCTIONS.includes( arr[ i ] ) ) {
-				const rad = deg2rad.apply( this, s.splice( -op.params ) );
+				const rad = deg2rad.apply( null, s.splice( -op.params ) );
 				let val = op.method( rad );
 				val = roundn( val, -15 );
 				s.push( val );
 			} else {
-				s.push( op.method.apply( this, s.splice( -op.params ) ) );
+				s.push( op.method.apply( null, s.splice( -op.params ) ) );
 			}
 		} else {
 			s.push( parseFloat( arr[ i ] ) );
