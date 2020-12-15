@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.72.1](https://github.com/isle-project/isle-editor/releases/tag/v0.72.1) (2020-12-15)
+
+This release fixes a bug that caused progress calculations to break for lessons containing match list questions and image questions due to re-assigned ids. It also updates the login behavior to support users who have enabled two-factor authentication. Finally, it comes with translations for several more languages.
+
 ## [v0.72.0](https://github.com/isle-project/isle-editor/releases/tag/v0.72.0) (2020-12-04)
 
 This release adds a new GUI for styling components and offers quite significant performance improvements of the editor pane. It also enables users to drag elements to new positions inside the preview pane. The styling GUI can be accessed by a new color palette symbol that shows when selecting an component in the editor pane or by hovering over an element in the preview pane, see below screenshot.
