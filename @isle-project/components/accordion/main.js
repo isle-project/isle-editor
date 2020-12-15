@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from '@isle-project/components/collapse';
@@ -39,7 +40,7 @@ const Accordion = ( props ) => {
 		props.onChange( props.active );
 	}
 	if ( !isArray( props.children ) ) {
-		return <Alert variant="danger" >The accordion requires at least two child elements for it to be rendered.</Alert>;
+		return <Alert variant="danger" >{this.props.t('children-missing')}</Alert>;
 	}
 	const clickFactory = ( len, idx ) => {
 		if ( props.canCloseAll ) {
@@ -130,4 +131,4 @@ Accordion.propTypes = {
 
 // EXPORTS //
 
-export default Accordion;
+export default withTranslation( 'Accordion' )( Accordion );
