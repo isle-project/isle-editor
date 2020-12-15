@@ -1,6 +1,8 @@
 {
 	"coefficient": "Koeffizient",
 	"cumulative-variance": "Anteil der kumulativen Varianz",
+	"drag-plot": "Schlepp-Plot",
+	"hierarchical-clustering-summary": "Hierarchische Cluster-Zusammenfassung",
 	"intercept": "abfangen",
 	"lambda-not-number": "`lambda` muss eine Zahl sein.",
 	"missing-attributes": "Modell konnte nicht geschätzt werden. Bitte überprüfen Sie, ob alle erforderlichen Attribute vorhanden sind.",

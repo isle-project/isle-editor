@@ -1,6 +1,8 @@
 {
 	"coefficient": "係数",
 	"cumulative-variance": "累積変動比率",
+	"drag-plot": "ドラッグプロット",
+	"hierarchical-clustering-summary": "階層型クラスタリングの概要",
 	"intercept": "インターセプト",
 	"lambda-not-number": "ラムダ`は数値でなければなりません。",
 	"missing-attributes": "モデルを推定できませんでした。必要な属性がすべて提供されていることを確認してください。",

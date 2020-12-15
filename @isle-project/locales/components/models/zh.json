@@ -1,6 +1,8 @@
 {
 	"coefficient": "系数",
 	"cumulative-variance": "累计差异比例",
+	"drag-plot": "拖拽情节",
+	"hierarchical-clustering-summary": "层次聚类总结",
 	"intercept": "拦截",
 	"lambda-not-number": "`lambda`必须是一个数字。",
 	"missing-attributes": "无法估计模型。请检查是否提供了所有必要的属性。",

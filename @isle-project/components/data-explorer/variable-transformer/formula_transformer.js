@@ -2,6 +2,7 @@
 
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Trans } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -184,7 +185,7 @@ class FormulaTransformer extends Component {
 					}}
 				>
 					<div className="formula-transformer-body">
-						<Collapse headerClassName="title" header={this.state.showGuide ? 'Hide Example Guide' : 'Show Example Guide'} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
+						<Collapse headerClassName="title" header={this.state.showGuide ? t('hide-example-guide') : t('show-example-guide')} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
 							<p>{t('formula-transformer-example-intro')}</p>
 							<Table condensed >
 								<thead>
@@ -198,17 +199,29 @@ class FormulaTransformer extends Component {
 									<tr>
 										<td>{t('interaction')}:</td>
 										<td><code>datum.{this.props.quantitative[0]} * datum.{this.props.quantitative[1]}</code></td>
-										<td>Multiply values of variables <code>{this.props.quantitative[0]}</code> and <code>{this.props.quantitative[1]}</code></td>
+										<td>
+											<Trans i18nKey="example-description-multiply" ns="DataExplorer" >
+												Multiply values of variables <code>{{ first: this.props.quantitative[0] }}</code> and <code>{{ second: this.props.quantitative[1] }}</code>
+											</Trans>
+										</td>
 									</tr>
 									<tr>
 										<td>{t('transformation')}:</td>
 										<td><code>exp( datum.{this.props.quantitative[0]} )</code></td>
-										<td>Natural exponential function of variable <code>{this.props.quantitative[0]}</code></td>
+										<td>
+											<Trans i18nKey="example-description-exponential" ns="DataExplorer" >
+												Natural exponential function of variable <code>{{ variable: this.props.quantitative[0] }}</code>
+											</Trans>
+										</td>
 									</tr>
 									<tr>
 										<td>{t('function')}:</td>
 										<td><code>9/5 * {this.props.quantitative[0]} + 32</code></td>
-										<td>Multiply values of <code>{this.props.quantitative[0]}</code> by <code>9/5</code> and add <code>32</code></td>
+										<td>
+											<Trans i18nKey="example-description-calculation" ns="DataExplorer" >
+												Multiply values of <code>{{ variable: this.props.quantitative[0] }}</code> by <code>9/5</code> and add <code>32</code>
+											</Trans>
+										</td>
 									</tr>
 								</tbody>
 							</Table>
@@ -250,10 +263,10 @@ class FormulaTransformer extends Component {
 										<Tooltip placement="top" tooltip="Closing parenthesis"><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
-										<Tooltip placement="top" tooltip="Addition"><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>
-										<Tooltip placement="top" tooltip="Subtraction"><Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button></Tooltip>
-										<Tooltip placement="top" tooltip="Multiplication"><Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button></Tooltip>
-										<Tooltip placement="top" tooltip="Division"><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('addition')}><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('subtraction')}><Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('multiplication')}><Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('division')}><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
 										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button>

@@ -1,6 +1,8 @@
 {
 	"coefficient": "Coeficiente",
 	"cumulative-variance": "Proporção de variação acumulada",
+	"drag-plot": "Lote de Arrastar",
+	"hierarchical-clustering-summary": "Resumo do Clustering Hierárquico",
 	"intercept": "Interceptar",
 	"lambda-not-number": "\"lambda\" tem que ser um número.",
 	"missing-attributes": "O modelo não pôde ser estimado. Por favor, verifique se todos os atributos necessários são fornecidos.",

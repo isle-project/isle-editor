@@ -1,6 +1,8 @@
 {
 	"coefficient": "Coëfficiënt",
 	"cumulative-variance": "Cumulatieve variatieverhouding",
+	"drag-plot": "Sleep Plot",
+	"hierarchical-clustering-summary": "Hiërarchische clusteringssamenvatting",
 	"intercept": "Onderschep",
 	"lambda-not-number": "Lambda' moet een nummer zijn.",
 	"missing-attributes": "Het model kon niet worden ingeschat. Controleer of alle benodigde attributen zijn meegeleverd.",

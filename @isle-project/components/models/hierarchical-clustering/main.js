@@ -86,21 +86,21 @@ class HierarchicalClustering extends Component {
 
 	render() {
 		const { result } = this.state;
+		const { t } = this.props;
 		if ( !result ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }} >
-				<span className="title" >Hierarchical Clustering Summary</span>
+				<span className="title" >{t('hierarchical-clustering-summary')}</span>
 				<div
 					className="hierarchical-clustering-draggable-bar"
 					draggable="true"
 					onDragStart={( ev ) => {
 						ev.dataTransfer.setData( 'text/html', this.plotValue );
-						console.log( this.plotValue );
 						ev.dataTransfer.setData( 'text/plain', this.plotKey );
 					}}
-				>Drag Plot</div>
+				>{t('drag-plot')}</div>
 				<FullscreenButton
 					variant="outline-danger"
 					size="sm"

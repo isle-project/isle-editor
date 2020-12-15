@@ -1,6 +1,8 @@
 {
 	"coefficient": "Coefficient",
 	"cumulative-variance": "Proportion d'écart cumulé",
+	"drag-plot": "Tracé",
+	"hierarchical-clustering-summary": "Résumé du regroupement hiérarchique",
 	"intercept": "Intercepter",
 	"lambda-not-number": "Lambda\" doit être un numéro.",
 	"missing-attributes": "Le modèle n'a pas pu être estimé. Veuillez vérifier que tous les attributs requis sont fournis.",

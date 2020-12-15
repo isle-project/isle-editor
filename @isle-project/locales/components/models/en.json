@@ -13,5 +13,7 @@
 	"use-model-to-predict-tooltip-logistic": "Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table",
 	"standard-deviation": "Standard Deviation",
 	"cumulative-variance": "Cumulative Variance Proportion",
-	"p-value": "p-value"
+	"p-value": "p-value",
+	"drag-plot": "Drag Plot",
+	"hierarchical-clustering-summary": "Hierarchical Clustering Summary"
 }

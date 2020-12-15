@@ -1,6 +1,8 @@
 {
 	"coefficient": "Коэффициент",
 	"cumulative-variance": "Доля кумулятивных вариаций",
+	"drag-plot": "Drag Plot",
+	"hierarchical-clustering-summary": "Иерархическое кластерное обобщение",
 	"intercept": "Перехватить",
 	"lambda-not-number": "\"Лямбда\" должна быть номером.",
 	"missing-attributes": "Модель не может быть оценена. Пожалуйста, убедитесь, что все необходимые атрибуты предоставлены.",

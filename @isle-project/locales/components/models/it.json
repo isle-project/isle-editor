@@ -1,6 +1,8 @@
 {
 	"coefficient": "Coefficiente",
 	"cumulative-variance": "Proporzione di variazione cumulativa",
+	"drag-plot": "Trascinare la trama",
+	"hierarchical-clustering-summary": "Riassunto del clustering gerarchico",
 	"intercept": "Intercettare",
 	"lambda-not-number": "`lambda` deve essere un numero.",
 	"missing-attributes": "Non è stato possibile stimare il modello. Si prega di verificare che tutti gli attributi richiesti siano forniti.",

@@ -229,5 +229,14 @@
 	"First Quartile": "First Quartile",
 	"Third Quartile": "Third Quartile",
 	"Quantile": "Quantile",
-	"variables-invalid-alert": "The <1>quantitative</1> or <3>categorical</3> data arrays contain variable names not present in the <5>data</5> object."
+	"variables-invalid-alert": "The <1>quantitative</1> or <3>categorical</3> data arrays contain variable names not present in the <5>data</5> object.",
+	"addition": "Addition",
+	"subtraction": "Subtraction",
+	"multiplication": "Multiplication",
+	"division": "Division",
+	"example-description-multiply": "Multiply values of variables <1>{{first}}</1> and <3>{{second}}</3>",
+	"example-description-exponential": "Natural exponential function of variable <1>{{variable}}</1>",
+	"example-description-calculation": "Multiply values of <1>{{variable}}</1> by <3>9/5</3> and add <5>32</5>",
+	"show-example-guide": "Show Example Guide",
+	"hide-example-guide": "Hide Example Guide"
 }

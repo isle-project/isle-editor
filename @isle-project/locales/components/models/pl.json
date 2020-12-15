@@ -1,6 +1,8 @@
 {
 	"coefficient": "Współczynnik",
 	"cumulative-variance": "Proporcja skumulowanej zmienności",
+	"drag-plot": "Wleczoną działkę",
+	"hierarchical-clustering-summary": "Hierarchiczne podsumowanie skupień (Hierarchical Clustering Summary)",
 	"intercept": "Przechwytywanie",
 	"lambda-not-number": "`lambda` musi być numerem.",
 	"missing-attributes": "Model nie mógł być oszacowany. Proszę sprawdzić, czy wszystkie wymagane atrybuty zostały dostarczone.",
