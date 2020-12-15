@@ -232,7 +232,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion, t }) => {
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
 				header={t( 'queue' )} onHide={handleHide} minimizable >
 				<p>
-				<Trans i18nKey="queue-status" >
+				<Trans i18nKey="queue-status" ns="Queue" >
 					Your question: <i>{{ question: text }}</i><br />
 					You are currently at position <strong>{{ spot }}</strong> on the queue.<br />
 					There are <strong>{{ size: session.questions.length }}</strong> individual(s) in the queue.

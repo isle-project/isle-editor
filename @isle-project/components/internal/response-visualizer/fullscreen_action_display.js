@@ -790,17 +790,17 @@ class FullscreenActionDisplay extends Component {
 				this.setState({ handleMultipleResponses: type });
 			}}>
 				<i>
-					<Trans i18nKey="include-first" >
+					<Trans i18nKey="include-first" ns="ResponseVisualizer" >
 						<b>Only</b> include first {label} for any student.
 					</Trans>
 				</i>
 				<i>
-					<Trans i18nKey="include-all" >
+					<Trans i18nKey="include-all" ns="ResponseVisualizer" >
 						Include <b>all</b> {label}s for any student.
 					</Trans>
 				</i>
 				<i>
-					<Trans i18nKey="include-latest" >
+					<Trans i18nKey="include-latest" ns="ResponseVisualizer" >
 						<b>Only</b> include latest {label} for any student.
 					</Trans>
 				</i>
