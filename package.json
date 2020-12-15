@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.72.1",
+  "version": "0.72.2",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -608,6 +608,7 @@
       "!node_modules/lie/**/*",
       "!node_modules/set-immediate-shim/**/*",
       "!node_modules/yaku/**/*",
+      "!node_modules/eslint-plugin-i18next/**/*",
       "!node_modules/eslint-plugin-import/**/*",
       "!node_modules/contains-path/**/*",
       "!node_modules/eslint-plugin-import/node_modules/debug/**/*",
@@ -1633,7 +1634,7 @@
       "!node_modules/findup-sync/node_modules/micromatch/**/*",
       "!node_modules/findup-sync/node_modules/braces/**/*",
       "!node_modules/findup-sync/node_modules/braces/node_modules/extend-shallow/**/*",
-      "!node_modules/findup-sync/node_modules/fill-range/**/*",
+      "!node_modules/findup-sync/node_modules/fill-range/node_modules/extend-shallow/**/*",
       "!node_modules/findup-sync/node_modules/is-number/**/*",
       "!node_modules/findup-sync/node_modules/is-number/node_modules/kind-of/**/*",
       "!node_modules/findup-sync/node_modules/to-regex-range/**/*",
