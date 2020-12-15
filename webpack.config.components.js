@@ -194,6 +194,7 @@ const config = {
 	externals: {
 		'axios': 'axios',
 		'localforage': 'localforage',
+		'i18next': 'i18next',
 		'react': 'React',
 		'react-dom': 'ReactDOM',
 		'pdfjs-dist/webpack': 'pdfjsLib',
