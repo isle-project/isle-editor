@@ -491,7 +491,11 @@
       "prop": "ignore"
     } ],
     "react-hooks/rules-of-hooks": 2,
-    "react-hooks/exhaustive-deps": 1
+    "react-hooks/exhaustive-deps": 1,
+    "i18next/no-literal-string": [ 1, {
+      "markupOnly": true,
+      "onlyAttribute": [ "text", "raw" ]
+    }]
   },
   "extends": [
     "plugin:jsx-a11y/recommended"
@@ -502,7 +506,8 @@
     "jest",
     "jsx-a11y",
     "react-hooks",
-    "spellcheck"
+    "spellcheck",
+    "i18next"
   ],
   "settings": {
     "react": {
@@ -519,5 +524,13 @@
         ]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [ "**/app/**/*.js", "**/test/**/*.js" ],
+      "rules": {
+          "i18next/no-literal-string": "off"
+      }
+    }
+  ]
 }
