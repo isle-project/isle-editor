@@ -269,7 +269,7 @@ class LogisticRegression extends Component {
 				<i>The algorithm {result.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {result.iterations} Fisher Scoring iterations</i>
 				<p>Akaike Information Criterion (AIC): {roundn( result.aic, -3 )}</p>
 				{this.props.onPredict ? <ButtonGroup>
-					<Tooltip tooltip={t('use-mode-to-predict-tooltip-logistic')} >
+					<Tooltip tooltip={t('use-model-to-predict-tooltip-logistic')} >
 						<Button variant="secondary" size="sm" onClick={this.handlePredict} >
 							{this.props.t('use-model-to-predict')}
 						</Button>
