@@ -10,6 +10,7 @@ const debug = logger( 'isle:locales' );
 const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
+		'Accordion': () => import( './components/accordion/de.json' ),
 		'Bibliography': () => import( './components/bibliography/de.json' ),
 		'ChatButton': () => import( './components/chat-button/de.json' ),
 		'Citation': () => import( './components/citation/de.json' ),
@@ -69,6 +70,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/de.json' )
 	},
 	'en': {
+		'Accordion': () => import( './components/accordion/en.json' ),
 		'Bibliography': () => import( './components/bibliography/en.json' ),
 		'ChatButton': () => import( './components/chat-button/en.json' ),
 		'Citation': () => import( './components/citation/en.json' ),
@@ -128,6 +130,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/en.json' )
 	},
 	'es': {
+		'Accordion': () => import( './components/accordion/es.json' ),
 		'Bibliography': () => import( './components/bibliography/es.json' ),
 		'ChatButton': () => import( './components/chat-button/es.json' ),
 		'Citation': () => import( './components/citation/es.json' ),
@@ -187,6 +190,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/es.json' )
 	},
 	'fr': {
+		'Accordion': () => import( './components/accordion/fr.json' ),
 		'Bibliography': () => import( './components/bibliography/fr.json' ),
 		'ChatButton': () => import( './components/chat-button/fr.json' ),
 		'Citation': () => import( './components/citation/fr.json' ),
@@ -246,6 +250,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/fr.json' )
 	},
 	'it': {
+		'Accordion': () => import( './components/accordion/it.json' ),
 		'Bibliography': () => import( './components/bibliography/it.json' ),
 		'ChatButton': () => import( './components/chat-button/it.json' ),
 		'Citation': () => import( './components/citation/it.json' ),
@@ -305,6 +310,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/it.json' )
 	},
 	'ja': {
+		'Accordion': () => import( './components/accordion/ja.json' ),
 		'Bibliography': () => import( './components/bibliography/ja.json' ),
 		'ChatButton': () => import( './components/chat-button/ja.json' ),
 		'Citation': () => import( './components/citation/ja.json' ),
@@ -364,6 +370,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/ja.json' )
 	},
 	'nl': {
+		'Accordion': () => import( './components/accordion/nl.json' ),
 		'Bibliography': () => import( './components/bibliography/nl.json' ),
 		'ChatButton': () => import( './components/chat-button/nl.json' ),
 		'Citation': () => import( './components/citation/nl.json' ),
@@ -423,6 +430,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/nl.json' )
 	},
 	'pl': {
+		'Accordion': () => import( './components/accordion/pl.json' ),
 		'Bibliography': () => import( './components/bibliography/pl.json' ),
 		'ChatButton': () => import( './components/chat-button/pl.json' ),
 		'Citation': () => import( './components/citation/pl.json' ),
@@ -482,6 +490,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/pl.json' )
 	},
 	'pt': {
+		'Accordion': () => import( './components/accordion/pt.json' ),
 		'Bibliography': () => import( './components/bibliography/pt.json' ),
 		'ChatButton': () => import( './components/chat-button/pt.json' ),
 		'Citation': () => import( './components/citation/pt.json' ),
@@ -541,6 +550,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/pt.json' )
 	},
 	'ru': {
+		'Accordion': () => import( './components/accordion/ru.json' ),
 		'Bibliography': () => import( './components/bibliography/ru.json' ),
 		'ChatButton': () => import( './components/chat-button/ru.json' ),
 		'Citation': () => import( './components/citation/ru.json' ),
@@ -600,6 +610,7 @@ const TRANSLATIONS = {
 		'session': () => import( './session/ru.json' )
 	},
 	'zh': {
+		'Accordion': () => import( './components/accordion/zh.json' ),
 		'Bibliography': () => import( './components/bibliography/zh.json' ),
 		'ChatButton': () => import( './components/chat-button/zh.json' ),
 		'Citation': () => import( './components/citation/zh.json' ),
