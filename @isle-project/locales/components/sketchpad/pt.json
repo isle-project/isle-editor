@@ -18,6 +18,7 @@
 	"encountered-error": "Encontrou um erro",
 	"export-pdf": "Exportar minhas anotações como PDF",
 	"export-png": "Exportar slide de corrente como PNG",
+	"feedback-modal-title": "Feedback do estudante para {{id}} (número de slides: {{noPages}})",
 	"fill-entire-width": "Clique para preencher toda a largura do sketchpad com página",
 	"fit-page": "Clique para caber na página do bloco de esboços",
 	"font-size": "Tamanho da fonte",

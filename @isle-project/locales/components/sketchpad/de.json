@@ -18,6 +18,7 @@
 	"encountered-error": "Fehler aufgetreten",
 	"export-pdf": "Meine Anmerkungen als PDF exportieren",
 	"export-png": "Aktuelle Folie als PNG exportieren",
+	"feedback-modal-title": "Studenten-Feedback für {{id}} (Anzahl der Folien: {{noPages}})",
 	"fill-entire-width": "Klicken, um die gesamte Skizzenblockbreite mit der Seite zu füllen",
 	"fit-page": "Zum Einpassen der Seite auf dem Skizzenblock anklicken",
 	"font-size": "Schriftgröße",

@@ -18,6 +18,7 @@
 	"encountered-error": "Encontré un error",
 	"export-pdf": "Exportar mis anotaciones como PDF",
 	"export-png": "Exportar diapositiva actual como PNG",
+	"feedback-modal-title": "Comentarios de los estudiantes para (número de diapositivas: {{noPáginas}})",
 	"fill-entire-width": "Haga clic para llenar todo el ancho del bloc de dibujo con la página",
 	"fit-page": "Haga clic para ajustar la página en el bloc de dibujo",
 	"font-size": "Tamaño de la fuente",

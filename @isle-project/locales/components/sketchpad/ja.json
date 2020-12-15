@@ -18,6 +18,7 @@
 	"encountered-error": "エラーが発生しました",
 	"export-pdf": "注釈をPDFにエクスポート",
 	"export-png": "現在のスライドをPNGとして書き出す",
+	"feedback-modal-title": "学生からのフィードバック{{{id}}}について(スライド数：{{noPages}})",
 	"fill-entire-width": "クリックしてスケッチパッドの幅全体をページで塗りつぶす",
 	"fit-page": "スケッチパッドのページをクリックしてフィットさせる",
 	"font-size": "文字サイズ",

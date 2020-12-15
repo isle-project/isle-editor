@@ -18,6 +18,7 @@
 	"encountered-error": "Ontmoette een fout",
 	"export-pdf": "Exporteer mijn aantekeningen als PDF",
 	"export-png": "Exporteer stroomglijbaan als PNG",
+	"feedback-modal-title": "Student Feedback voor {{id}} (aantal dia's: {{noPages}})",
 	"fill-entire-width": "Klik om de hele breedte van het schetsblok met pagina te vullen",
 	"fit-page": "Klik om de pagina op het schetsblok te passen",
 	"font-size": "Lettergrootte",

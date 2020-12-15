@@ -18,6 +18,7 @@
 	"encountered-error": "A rencontré une erreur",
 	"export-pdf": "Exporter mes annotations au format PDF",
 	"export-png": "Exporter la diapositive actuelle en PNG",
+	"feedback-modal-title": "Feedback des étudiants pour {{id}} (nombre de diapositives : {{noPages}})",
 	"fill-entire-width": "Cliquez pour remplir toute la largeur du carnet à dessin avec la page",
 	"fit-page": "Cliquez pour faire tenir la page sur le carnet de croquis",
 	"font-size": "Taille de la police",

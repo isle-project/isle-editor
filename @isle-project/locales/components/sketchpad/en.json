@@ -1,4 +1,5 @@
 {
+	"feedback-modal-title": "Student Feedback for {{id}} (number of slides: {{noPages}})",
 	"brush-size": "Brush Size",
 	"by": "by",
 	"change-brush-color": "Change brush color",

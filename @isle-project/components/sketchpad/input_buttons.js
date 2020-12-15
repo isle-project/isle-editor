@@ -72,6 +72,7 @@ class InputButtons extends Component {
 
 	render() {
 		const { t } = this.props;
+		/* eslint-disable i18next/no-literal-string */
 		return (
 			<Fragment>
 				<ButtonGroup size="sm" className="sketch-drag-delete-modes sketch-button-group" >
@@ -139,6 +140,7 @@ class InputButtons extends Component {
 				</div>
 			</Fragment>
 		);
+		/* eslint-enable i18next/no-literal-string */
 	}
 }
 

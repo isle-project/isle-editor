@@ -18,6 +18,7 @@
 	"encountered-error": "Napotkany błąd",
 	"export-pdf": "Eksportuj moje adnotacje jako PDF",
 	"export-png": "Eksportuj bieżący slajd jako PNG",
+	"feedback-modal-title": "{{id}}Przesyłam informację zwrotną dla studentów. (liczba slajdów: {{noPages}})",
 	"fill-entire-width": "Kliknij, aby wypełnić całą szerokość szkicownika stroną",
 	"fit-page": "Kliknij, aby dopasować stronę na szkicowniku",
 	"font-size": "Rozmiar czcionki",

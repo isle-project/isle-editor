@@ -81,7 +81,12 @@ class FeedbackModal extends Component {
 			dialogClassName="modal-100w"
 		>
 			<Modal.Header closeButton>
-				<Modal.Title as="h3" >Student Feedback for {this.props.id} (number of slides: {this.props.noPages})</Modal.Title>
+				<Modal.Title as="h3" >
+					{this.props.t('feedback-modal-title', {
+						id: this.props.id,
+						noPages: this.props.noPages
+					})}
+				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Plotly	data={this.state.data} removeButtons onClick={( data ) => {

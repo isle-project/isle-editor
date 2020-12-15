@@ -18,6 +18,7 @@
 	"encountered-error": "遇到错误",
 	"export-pdf": "将我的注释导出为PDF",
 	"export-png": "将当前幻灯片导出为PNG格式",
+	"feedback-modal-title": "学生对{{id}}的反馈(幻灯片数量：{{noPages}})",
 	"fill-entire-width": "单击以填满整个草图板宽度的页面。",
 	"fit-page": "单击以适合在草图板上的页面",
 	"font-size": "字体大小",
