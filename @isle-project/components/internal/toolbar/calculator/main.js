@@ -179,6 +179,7 @@ const Calculator = ( props ) => {
 		return null;
 	}
 	if ( showExtended ) {
+		/* eslint-disable i18next/no-literal-string */
 		return (
 			<Draggable
 				bounds="#Lesson"
@@ -335,6 +336,7 @@ const Calculator = ( props ) => {
 			</Panel>
 		</Draggable>
 	);
+	/* eslint-disable i18next/no-literal-string */
 };
 
 

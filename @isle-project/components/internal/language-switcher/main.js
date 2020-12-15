@@ -40,6 +40,8 @@ const SelectModal = ( props ) => {
 		};
 	};
 	const { t } = props;
+
+	/* eslint-disable  i18next/no-literal-string */
 	return (
 		<Modal show onHide={props.onHide} >
 			<Modal.Header closeButton >
@@ -60,6 +62,7 @@ const SelectModal = ( props ) => {
 			</Modal.Body>
 		</Modal>
 	);
+	/* eslint-enable  i18next/no-literal-string */
 };
 
 
