@@ -40,7 +40,7 @@ pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
 	}
 	return newVersion;
 });
-fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ) );
+fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 
 if ( type === 'major' || type === 'minor'|| type === 'patch' ) {
 	const configPath = join( __dirname, '..', 'webpack.config.session.js' );
