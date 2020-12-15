@@ -212,9 +212,6 @@ function createColumns( props, state ) {
 			</div>;
 		}
 		out.Header = header;
-		if ( contains( props.editable, key ) ) {
-			out.Cell = this.renderEditable;
-		}
 		let vals;
 		if ( !isArray( props.data ) ) {
 			vals = props.data[ key ].slice();
@@ -672,7 +669,17 @@ class DataTable extends Component {
 				</Modal.Body>
 			</Modal>;
 		}
-		let cols = this.state.columns.slice();
+		let cols;
+		if ( this.props.editable.length > 0 ) {
+			cols = this.state.columns.map( x => {
+				if ( contains( this.props.editable, x.id ) ) {
+					x.Cell = this.renderEditable;
+				}
+				return x;
+			});
+		} else {
+			cols = this.state.columns.slice();
+		}
 
 		// Run re-order events:
 		this.reorder.forEach( o => {
