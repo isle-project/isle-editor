@@ -222,6 +222,7 @@
 	"variable-s": "Variable(n):",
 	"variable-to-bin": "Variable zum Binnen:",
 	"variables": "Variablen:",
+	"variables-invalid-alert": "Die Datenfelder <1>quantitativ</1> oder <3>kategorisch</3> enthalten Variablennamen, die im Objekt <5>data</5> nicht vorhanden sind.",
 	"variables-statistics-tooltip": "Quantitative Variable, für die die Statistik(en) berechnet werden soll(en)",
 	"Variance": "Varianz",
 	"variation-measures": "Variationsmaße",

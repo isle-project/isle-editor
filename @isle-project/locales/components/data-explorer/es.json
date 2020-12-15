@@ -222,6 +222,7 @@
 	"variable-s": "Variable(s):",
 	"variable-to-bin": "Variable a la basura:",
 	"variables": "Variables:",
+	"variables-invalid-alert": "Las matrices de datos <1>cuantitativos</1> o <3>categóricos</3> contienen nombres de variables que no están presentes en el objeto <5>datos</5>.",
 	"variables-statistics-tooltip": "Variable cuantitativa para la que se calculan las estadísticas",
 	"Variance": "Variación",
 	"variation-measures": "Medidas de variación",

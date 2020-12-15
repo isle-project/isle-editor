@@ -222,6 +222,7 @@
 	"variable-s": "可变因素：",
 	"variable-to-bin": "变量到斌。",
 	"variables": "变量：",
+	"variables-invalid-alert": "<1>定量</1>或<3>分类</3>数据数组包含<5>data</5>对象中不存在的变量名称。",
 	"variables-statistics-tooltip": "计算统计数字的数量变量",
 	"Variance": "差异",
 	"variation-measures": "变化措施",

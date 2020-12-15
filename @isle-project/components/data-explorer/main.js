@@ -5,7 +5,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
@@ -925,7 +925,11 @@ class DataExplorer extends Component {
 			return <Alert variant="danger">{this.props.t('data-empty')}</Alert>;
 		}
 		if ( !this.state.validVariables ) {
-			return <Alert variant="danger">The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.</Alert>;
+			return ( <Alert variant="danger">
+				<Trans i18nKey="variables-invalid-alert" ns="DataExplorer" >
+					The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.
+				</Trans>
+			</Alert> );
 		}
 		let nStatistics = this.props.statistics.length;
 		let defaultActiveKey = '1';

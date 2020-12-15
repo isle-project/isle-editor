@@ -222,6 +222,7 @@
 	"variable-s": "Zmienna (zmienne):",
 	"variable-to-bin": "Zmienna do kosza:",
 	"variables": "Zmienne:",
+	"variables-invalid-alert": "<1>ilościowe</1> lub <3>kategoryczne</3> tablice danych zawierają nazwy zmiennych, które nie występują w obiekcie <5>danych</5>.",
 	"variables-statistics-tooltip": "Zmienna ilościowa, dla której oblicza się statystykę (statystyki)",
 	"Variance": "Variance",
 	"variation-measures": "Środki zmieniające",

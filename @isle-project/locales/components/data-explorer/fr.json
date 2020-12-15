@@ -222,6 +222,7 @@
 	"variable-s": "Variable(s) :",
 	"variable-to-bin": "Variable à la poubelle :",
 	"variables": "Les variables :",
+	"variables-invalid-alert": "Les tableaux de données <1>quantitatives</1> ou <3>catégoriques</3> contiennent des noms de variables non présents dans l'objet <5>données</5>.",
 	"variables-statistics-tooltip": "Variable quantitative pour laquelle calculer la/les statistique(s)",
 	"Variance": "Variance",
 	"variation-measures": "Mesures de variation",

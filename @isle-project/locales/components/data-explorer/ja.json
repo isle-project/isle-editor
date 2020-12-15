@@ -222,6 +222,7 @@
 	"variable-s": "変数。",
 	"variable-to-bin": "変数をbinにします。",
 	"variables": "変数です。",
+	"variables-invalid-alert": "<1>quantitative</1>または<3>categorical</3>データ配列には、<5>data</5>オブジェクトには存在しない変数名が含まれています。",
 	"variables-statistics-tooltip": "統計量を計算する量的変数",
 	"Variance": "バリエーション",
 	"variation-measures": "変動対策",

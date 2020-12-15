@@ -222,6 +222,7 @@
 	"variable-s": "Variabele(n):",
 	"variable-to-bin": "Variabel naar bak:",
 	"variables": "Variabelen:",
+	"variables-invalid-alert": "De <1>kwantitatieve</1> of <3>categorische</3> gegevensseries bevatten variabele namen die niet aanwezig zijn in het <5>data</5> object.",
 	"variables-statistics-tooltip": "Kwantitatieve variabele waarvoor statistieken moeten worden berekend",
 	"Variance": "Variant",
 	"variation-measures": "Afwijkende maatregelen",

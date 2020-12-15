@@ -222,6 +222,7 @@
 	"variable-s": "Variabile(i):",
 	"variable-to-bin": "Variabile a bin:",
 	"variables": "Variabili:",
+	"variables-invalid-alert": "Gli array di dati <1>quantitativi</1> o <3>categorici</3> contengono nomi di variabili non presenti nell'oggetto <5>dati</5>.",
 	"variables-statistics-tooltip": "Variabile quantitativa per la quale calcolare la(e) statistica(e)",
 	"Variance": "Varianza",
 	"variation-measures": "Misure di variazione",

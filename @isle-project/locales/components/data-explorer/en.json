@@ -228,5 +228,6 @@
 	"Excess Kurtosis": "Excess Kurtosis",
 	"First Quartile": "First Quartile",
 	"Third Quartile": "Third Quartile",
-	"Quantile": "Quantile"
+	"Quantile": "Quantile",
+	"variables-invalid-alert": "The <1>quantitative</1> or <3>categorical</3> data arrays contain variable names not present in the <5>data</5> object."
 }
