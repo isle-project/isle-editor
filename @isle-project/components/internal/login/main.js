@@ -157,7 +157,7 @@ class Login extends Component {
 				onHide={this.props.onClose}
 			>
 				<Modal.Header closeButton >
-					<Modal.Title as="h3">{this.props.t( 'login' )}</Modal.Title>
+					<Modal.Title as="h3" >{this.props.t( 'login' )}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form horizontal>
