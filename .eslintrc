@@ -496,7 +496,7 @@
       "markupOnly": true,
       "onlyAttribute": [ "text", "tooltip", "title" ],
       "ignore": [ "ISLE", "<", ">", "=", "n:" ],
-      "ignoreComponent": [ "Trans" ]
+      "ignoreComponent": [ "Trans", "code" ]
     }]
   },
   "extends": [
