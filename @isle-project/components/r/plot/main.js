@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
 import isNull from '@stdlib/assert/is-null';
@@ -160,4 +161,4 @@ RPlot.contextType = SessionContext;
 
 // EXPORTS //
 
-export default RPlot;
+export default withTranslation( 'R' )( RPlot );

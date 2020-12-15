@@ -68,28 +68,30 @@ class Guides extends Component {
 	}
 
 	renderCancelPanel() {
+		const { t } = this.props;
 		return (
 			<Card body>
-				<span className="title">{this.props.t('cancel-tour')}</span>
+				<span className="title">{t('cancel-tour')}</span>
 				<p>
-					{this.props.t('cancel-tour-msg')}
+					{t('cancel-tour-msg')}
 				</p>
 				<ButtonToolbar>
-					<Button variant="warning" onClick={this.handleStartClick} >{this.props.t('cancel')}</Button>
+					<Button variant="warning" onClick={this.handleStartClick} >{t('cancel')}</Button>
 				</ButtonToolbar>
 			</Card>
 		);
 	}
 
 	renderSelectionPanel() {
+		const { t } = this.props;
 		return (
 			<Card body>
-				<span className="title">{this.props.t('select-tour')}</span>
+				<span className="title">{t('select-tour')}</span>
 				<Form>
 					<FormGroup>
 						<Form.Check
 							type="radio"
-							label={this.props.t('editor-overview')}
+							label={t('editor-overview')}
 							name="overview"
 							value="overview"
 							onChange={this.handleOptionChange}
@@ -97,7 +99,7 @@ class Guides extends Component {
 						/>
 						<Form.Check
 							type="radio"
-							label={this.props.t('saving-progress')}
+							label={t('saving-progress')}
 							name="saving"
 							value="saving"
 							onChange={this.handleOptionChange}
@@ -105,7 +107,7 @@ class Guides extends Component {
 						/>
 						<Form.Check
 							type="radio"
-							label={this.props.t('creating-poster')}
+							label={t('creating-poster')}
 							name="poster"
 							value="poster"
 							onChange={this.handleOptionChange}
@@ -115,7 +117,7 @@ class Guides extends Component {
 				</Form>
 				<ButtonToolbar>
 					<Button variant="success" onClick={this.handleStartClick} >
-						{this.props.t('start-tour')}
+						{t('start-tour')}
 					</Button>
 				</ButtonToolbar>
 			</Card>
@@ -129,9 +131,9 @@ class Guides extends Component {
 		} else {
 			guidePanel = this.renderSelectionPanel();
 		}
-
+		const { t } = this.props;
 		const leftColumn = <Col sm={5}>
-			<h5>Headers</h5>
+			<h5>{t('headers')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
 					# This is a large header<br />
@@ -139,7 +141,7 @@ class Guides extends Component {
 					### Small header
 				</pre>
 			</Card>
-			<h5>Emphasis</h5>
+			<h5>{t('emphasis')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
 					<i>*This will be italic*</i><br />
@@ -149,7 +151,7 @@ class Guides extends Component {
 					<s>~~strikethrough~~</s><br />
 				</pre>
 			</Card>
-			<h5>Quotes</h5>
+			<h5>{t('quotes')}</h5>
 			<Card body >
 				<pre>
 					George Box said:<br />
@@ -160,24 +162,24 @@ class Guides extends Component {
 		</Col>;
 
 		const rightColumn = <Col sm={7}>
-			<h5>Lists</h5>
-			<h6>Unordered</h6>
+			<h5>{t('lists')}</h5>
+			<h6>{t('unordered')}</h6>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
-				* Item 1<br />
-				* Item 2<br />
-				&nbsp; &nbsp; * Item 2a<br />
-				&nbsp; &nbsp; * Item 2b
+				* {t('item')} 1<br />
+				* {t('item')} 2<br />
+				&nbsp; &nbsp; * {t('item')} 2a<br />
+				&nbsp; &nbsp; * {t('item')} 2b
 				</pre>
 			</Card>
-			<h6>Ordered</h6>
+			<h6>{t('ordered')}</h6>
 			<Card body>
 				<pre>
-				1. Item 1<br />
-				2. Item 2<br />
-				3. Item 3<br />
-				&nbsp; &nbsp;3a. Item 3a<br />
-				&nbsp; &nbsp;3b. Item 3b
+				1. {t('item')} 1<br />
+				2. {t('item')} 2<br />
+				3. {t('item')} 3<br />
+				&nbsp; &nbsp;3a. {t('item')} 3a<br />
+				&nbsp; &nbsp;3b. {t('item')} 3b
 				</pre>
 			</Card>
 		</Col>;
@@ -189,11 +191,13 @@ class Guides extends Component {
 				dialogClassName="modal-90w"
 			>
 				<Modal.Header closeButton>
-					<Modal.Title as="h4">Editor Guide</Modal.Title>
+					<Modal.Title as="h4">
+						{t('editor-guide')}
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Container>
-						<span className="title">{this.props.t('markdown-cheatsheet')}</span>
+						<span className="title">{t('markdown-cheatsheet')}</span>
 						<Row>
 							<Col sm={9}>
 								<Row>
@@ -208,7 +212,7 @@ class Guides extends Component {
 					</Container>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.clickHide} >{this.props.t('close')}</Button>
+					<Button onClick={this.clickHide} >{t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 		);

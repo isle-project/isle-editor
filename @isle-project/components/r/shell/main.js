@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Image from '@isle-project/components/image';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import Button from 'react-bootstrap/Button';
@@ -493,7 +494,8 @@ class RShell extends Component {
 							this.state.exhaustedHints,
 							this.handleSolutionClick,
 							this.state.solutionOpen,
-							this.state.nEvaluations
+							this.state.nEvaluations,
+							t
 						) :
 						null
 					}
@@ -572,4 +574,4 @@ RShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default RShell;
+export default withTranslation( 'R' )( RShell );

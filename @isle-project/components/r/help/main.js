@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import SessionContext from '@isle-project/session/context.js';
@@ -105,4 +106,4 @@ RHelp.contextType = SessionContext;
 
 // EXPORTS //
 
-export default RHelp;
+export default withTranslation( 'R' )( RHelp );
