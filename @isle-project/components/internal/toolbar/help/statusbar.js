@@ -7,8 +7,8 @@ import React from 'react';
 
 const main = ({ t }) => {
 	return (
-		<div>
-			<p>{t( 'statusbar-title' )}</p>
+		<div style={{ textAlign: 'center' }} >
+			<h2>{t( 'statusbar-title' )}</h2>
 			<p>{t( 'statusbar-p1' )}</p>
 		</div>
 	);

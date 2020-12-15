@@ -13,7 +13,7 @@ const main = ({ t }) => {
 			<p>{t( 'data-table-p1' )}</p>
 
 			<div className="centered" style={{ width: 'fit-content' }} >
-				<Image alt={t('data-table-title')} src="https://isle.stat.cmu.edu/data-explorers_data_table_student.png" width="400px" height="200px" />
+				<Image alt={t('data-table-title')} src="https://isle.stat.cmu.edu/data-explorers_data_table_student.png" width={400} height={200} />
 			</div>
 
 			<p>{t( 'data-explorer-p2' )}</p>
