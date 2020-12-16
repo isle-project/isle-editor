@@ -531,7 +531,7 @@
   },
   "overrides": [
     {
-      "files": [ "**/app/**/*.js", "**/test/**/*.js" ],
+      "files": [ "**/test/**/*.js" ],
       "rules": {
           "i18next/no-literal-string": "off"
       }
