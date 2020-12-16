@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Tooltip from '@isle-project/components/tooltip';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
@@ -11,7 +11,8 @@ import './panel.css';
 
 // FUNCTIONS //
 
-const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinimize, t }) => {
+const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinimize }) => {
+	const { t } = useTranslation( 'Panel' );
 	if ( !children ) {
 		return null;
 	}
@@ -46,7 +47,7 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, t, children, tReady, ...rest }) => {
+const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
 	const [ minimized, setMinimized ] = useState( false );
 	return ( <Card
 		{...rest}
@@ -61,7 +62,6 @@ const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideToolt
 			body={children}
 			footer={footer}
 			className={className}
-			t={t}
 			owner
 		/> : null }
 		<Header
@@ -70,7 +70,6 @@ const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideToolt
 				setMinimized( !minimized );
 			}}
 			hideTooltip={hideTooltip} onHide={onHide}
-			t={t}
 		>
 			{header}
 		</Header>
@@ -127,4 +126,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Panel' )( Wrapper );
+export default Wrapper;
