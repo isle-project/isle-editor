@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
