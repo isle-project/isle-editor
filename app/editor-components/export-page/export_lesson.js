@@ -140,24 +140,29 @@ class ExportLesson extends Component {
 	}
 
 	renderFinished = () => {
+		const { t } = this.props;
 		let card;
 		if ( this.state.finished ) {
 			card = this.state.error ? <Card bg="danger" text="white" >
 				<Card.Header as="h5">
-					Error encountered
+					{t('error-encountered')}
 				</Card.Header>
 				<Card.Body>
 					<p>{this.state.error.message}</p>
 				</Card.Body>
 			</Card> :
-			<Card bg="success" text="white">
+			<Card bg="success" text="white" >
 				<Card.Header as="h5">
-					App successfully exported!
+					{t('app-exported')}
 				</Card.Header>
 				<Card.Body>
 					<ButtonGroup style={{ position: 'relative', margin: 'auto' }} >
-						<Button variant="primary" onClick={this.openFolder}>Open containing folder</Button>
-						<Button variant="secondary" onClick={this.openLesson}>Open lesson in Browser</Button>
+						<Button variant="primary" onClick={this.openFolder}>
+							{t('open-folder')}
+						</Button>
+						<Button variant="secondary" onClick={this.openLesson}>
+							{t('open-in-browser')}
+						</Button>
 					</ButtonGroup>
 				</Card.Body>
 			</Card>;
@@ -176,27 +181,28 @@ class ExportLesson extends Component {
 		}
 		return ( <Card border="danger">
 			<Card.Header as="h3">
-				Directory already exists.
+				{this.props.t('directory-already-exists')}
 			</Card.Header>
 			<Card.Body>
-				<p>A directory with the chosen name already exists. Please pick a different name.</p>
+				<p>{this.props.t('directory-already-exists-msg')}</p>
 			</Card.Body>
 		</Card> );
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card border="primary">
 				<Card.Header as="h5" className="unselectable" >
-					Export Lesson
+					{t('export-lesson')}
 				</Card.Header>
 				<Card.Body>
-					<p>Package and export the currently opened lesson into a single-page application viewable in any web-browser.</p>
+					<p>{t('export-lesson-intro')}</p>
 					<FormGroup>
-						<FormLabel>Code Settings</FormLabel>
+						<FormLabel>{t('code-settings')}</FormLabel>
 						<CheckboxInput
-							legend="Minify code"
-							tooltip="Disabling this option slightly reduces build time but results in more data to be downloaded by users"
+							legend={t('minify-code')}
+							tooltip={t('minify-code-tooltip')}
 							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({
@@ -206,8 +212,8 @@ class ExportLesson extends Component {
 							disabled={this.state.spinning}
 						/>
 						<CheckboxInput
-							legend="Save bundle stats"
-							tooltip="Create a `stats.json` file with bundle statistics for debugging and analysis purposes"
+							legend={t('save-stats')}
+							tooltip={t('save-stats-tooltip')}
 							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({
@@ -217,8 +223,8 @@ class ExportLesson extends Component {
 							disabled={this.state.spinning}
 						/>
 						<CheckboxInput
-							legend="Load ISLE resources from CDN"
-							tooltip="WARNING: Disabling this option will massively increase upload time and bundle sizes"
+							legend={t('load-from-cdn')}
+							tooltip={t('load-from-cdn-tooltip')}
 							tooltipPlacement="left"
 							onChange={( value ) => {
 								this.setState({
@@ -230,7 +236,7 @@ class ExportLesson extends Component {
 						/>
 					</FormGroup>
 					<FormGroup>
-						<FormLabel>Directory Name</FormLabel>
+						<FormLabel>{t('directory-name')}</FormLabel>
 						<FormControl
 							type="text"
 							placeholder="Enter text"
@@ -250,9 +256,9 @@ class ExportLesson extends Component {
 						<Button
 							variant="primary"
 							onClick={this.handleFileInputClick}
-						>Select output</Button>
+						>{t('select-output')}</Button>
 						<InputGroup.Append>
-							<InputGroup.Text>Path: {this.state.outputPath}</InputGroup.Text>
+							<InputGroup.Text>{t('path')}: {this.state.outputPath}</InputGroup.Text>
 						</InputGroup.Append>
 					</InputGroup>
 					<Button
@@ -264,7 +270,7 @@ class ExportLesson extends Component {
 							marginTop: '15px'
 						}}
 						disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || ( this.state.finished && !this.state.error )}
-					> Generate lesson </Button>
+					>{t('generate-lesson')}</Button>
 					<br />
 					{this.renderFinished()}
 					{this.renderAlreadyExists()}

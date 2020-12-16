@@ -26,7 +26,7 @@ class ExportPage extends Component {
 						<UploadLesson {...this.props} />
 					</Col>
 					<Col md={2} >
-						<h1 style={{ textAlign: 'center' }}> {t('or')} </h1>
+						<h1 style={{ textAlign: 'center', fontVariantCaps: 'titling-caps' }}> {t('or')} </h1>
 					</Col>
 					<Col md={5} >
 						<ExportLesson {...this.props} />
