@@ -31,7 +31,7 @@ const displayHint = ( index, hints, id, t ) => {
 	return (
 		<Popover
 			id={`${id}-hint-popover`}
-			title="Hints"
+			title={t( 'hints' )}
 			style={{
 				minWidth: '400px',
 				padding: '3px',

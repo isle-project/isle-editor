@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import { toJpeg } from 'html-to-image';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isInteger from '@stdlib/assert/is-integer';
@@ -16,7 +17,7 @@ const RE_NUMBER = /^[+-]?[\d.]+e?[+-]?\d*$/;
 
 // FUNCTIONS //
 
-function treeToHtml( tree ) {
+function treeToHtml( tree, t ) {
 	if ( !tree ) {
 		return null;
 	}
@@ -31,7 +32,7 @@ function treeToHtml( tree ) {
 		return (
 			<ul>
 				<li >
-					<span className="decision-tree-leaf" > Predict: {value} </span>
+					<span className="decision-tree-leaf" >{t('predict')}: {value} </span>
 				</li>
 			</ul>
 		);
@@ -42,12 +43,12 @@ function treeToHtml( tree ) {
 				<span><b> {tree.attribute} {tree.predicateName} {tree.pivot} ?</b></span>
 				<ul>
 					<li>
-						<span>no ( {tree.notMatchedCount} obs) </span>
-						{treeToHtml(tree.notMatch)}
+						<span>{t('no')} ( {tree.notMatchedCount} {t('obs')}) </span>
+						{treeToHtml( tree.notMatch, t )}
 					</li>
 					<li>
-						<span>yes ( {tree.matchedCount} obs) </span>
-						{treeToHtml(tree.match)}
+						<span>{t('yes')} ( {tree.matchedCount} {t('obs')}) </span>
+						{treeToHtml( tree.match, t )}
 					</li>
 				</ul>
 			</li>
@@ -86,6 +87,7 @@ class TreePlot extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		const tree = treeToHtml( this.props.tree );
 		return (
 			<div
@@ -102,7 +104,7 @@ class TreePlot extends Component {
 						ev.dataTransfer.setData( 'text/plain', this.state.plotKey );
 					}}
 					style={{ float: 'left' }}
-				>Drag Plot</div>
+				>{t('drag-plot')}</div>
 				<FullscreenButton
 					variant="outline-danger"
 					size="sm"
@@ -127,4 +129,4 @@ class TreePlot extends Component {
 
 // EXPORTS //
 
-export default TreePlot;
+export default withTranslation( 'StatisticalModels' )( TreePlot );

@@ -201,7 +201,7 @@ class SimpleLinearRegression extends Component {
 							</div>
 						);
 					}) )}
-					{ this.props.onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table" >
+					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
 							const xd = data[ x ];
 							const yd = data[ y ];
@@ -292,8 +292,8 @@ class SimpleLinearRegression extends Component {
 					<Table bordered size="sm" >
 						<thead>
 							<tr>
-								<th>Variable</th>
-								<th>Coefficient</th>
+								<th>{t('variable')}</th>
+								<th>{t('coefficient')}</th>
 								<th>Std. Error</th>
 								<th>t</th>
 								<th>p-value</th>
@@ -301,7 +301,7 @@ class SimpleLinearRegression extends Component {
 						</thead>
 						<tbody>
 							<tr>
-								<td>Intercept</td>
+								<td>{t('intercept')}</td>
 								<td>{yint.toFixed( 4 )}</td>
 								<td>{interceptSE.toFixed( 4 )}</td>
 								<td>{tIntercept.toFixed( 4 )}</td>
@@ -316,7 +316,7 @@ class SimpleLinearRegression extends Component {
 							</tr>
 						</tbody>
 					</Table>
-					{ this.props.onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table">
+					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
 							const xd = data[ x ];
 							const yd = data[ y ];

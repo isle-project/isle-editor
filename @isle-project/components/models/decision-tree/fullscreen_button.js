@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from '@isle-project/components/tooltip';
@@ -25,12 +26,13 @@ class FullscreenButton extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<Tooltip
 					id="fullscreen_tooltip"
 					placement="bottom"
-					tooltip="Toggle FullScreen"
+					tooltip={t('toggle-fullscreen')}
 				>
 					<Button
 						variant="outline-danger"
@@ -48,7 +50,7 @@ class FullscreenButton extends Component {
 				>
 					<Modal.Header closeButton>
 						<Modal.Title as="h1">
-							Decision Tree
+							{t('decision-tree')}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
@@ -64,7 +66,7 @@ class FullscreenButton extends Component {
 						</div>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.toggleFullscreen}>Close</Button>
+						<Button onClick={this.toggleFullscreen}>{t('close')}</Button>
 					</Modal.Footer>
 				</Modal>
 			</Fragment>
@@ -82,4 +84,4 @@ FullscreenButton.propTypes = {
 
 // EXPORTS //
 
-export default FullscreenButton;
+export default withTranslation( 'StatisticalModels' )( FullscreenButton );

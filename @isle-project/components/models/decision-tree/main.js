@@ -111,14 +111,15 @@ class DecisionTree extends Component {
 
 	render() {
 		const { tree } = this.state;
+		const { t } = this.props;
 		if ( !tree ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Decision Tree for {this.props.y} (model id: tree{COUNTER})</span>
 				<TreePlot tree={tree.root} />
-				{this.props.onPredict ? <Tooltip tooltip="Predictions will be attached to data table">
+				{this.props.onPredict ? <Tooltip tooltip={t('predictions-attached')} >
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
 				</Tooltip> : null}
 			</div>

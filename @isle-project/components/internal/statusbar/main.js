@@ -75,21 +75,22 @@ class StatusBar extends Component {
 
 	componentDidMount() {
 		let sentNotification = false;
+		const { t } = this.props;
 		const promptLogin = () => {
 			const session = this.context;
 			if ( !isElectron && this.state.showStatusBar ) {
 				session.addNotification({
-					title: this.props.t( 'login' ),
-					message: this.props.t( 'please-connect-message' ),
+					title: t( 'login' ),
+					message: t( 'please-connect-message' ),
 					level: 'success',
 					autoDismiss: session.config.noLoginDismiss ? 0 : 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '30px' }}>
 						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>
-							{this.props.t( 'signup' )}
+							{t( 'signup' )}
 						</Button>
 						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>
-							{this.props.t( 'login' )}
+							{t( 'login' )}
 						</Button>
 					</div>
 				});
@@ -361,6 +362,7 @@ class StatusBar extends Component {
 
 	render() {
 		const session = this.context;
+		const { t } = this.props;
 		const finishedLesson = this.state.progress === 100;
 		const preventPropForUsers = ( evt ) => {
 			if ( !this.context.anonymous ) {
@@ -368,13 +370,13 @@ class StatusBar extends Component {
 			}
 		};
 		const isOwner = session.isOwner() || isElectron;
-		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions, i18next/no-literal-string  */
 		const picture = session.user.picture;
 		const duration = <Fragment>
 			{picture ? <img className="statusbar-profile" alt="User Profile Pic" src={picture} onClick={preventPropagation} /> : null}
-			<Tooltip placement="bottom" tooltip={this.props.t( 'time-spent-tooltip' )}>
+			<Tooltip placement="bottom" tooltip={t( 'time-spent-tooltip' )}>
 				<div className="progress-time" onClick={preventPropagation}>
-					DUR: {this.state.duration} MIN
+					<i className="fas fa-clock"></i> {this.state.duration} MIN
 				</div>
 			</Tooltip>
 		</Fragment>;
@@ -400,20 +402,20 @@ class StatusBar extends Component {
 					>
 						<div className="statusbar-left"></div>
 						<div className="statusbar-middle">
-							<VoiceControl session={this.context} t={this.props.t} />
+							<VoiceControl session={this.context} t={t} />
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={`${this.props.t( 'presentation-mode-tooltip' )} (F7)`} >
+								<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-tooltip' )} (F7)`} >
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
 										className="statusbar-presentation-mode statusbar-icon"
-										aria-label={this.props.t( 'presentation-mode-label' )}
+										aria-label={t( 'presentation-mode-label' )}
 									>
 										<span className="fa fa-xs fa-eye-slash" />
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={this.props.t( 'blackout-tooltip' )} >
-									<span role="button" tabIndex={0} aria-label={this.props.t( 'blackout-label' )}
+								<Tooltip placement="bottom" tooltip={t( 'blackout-tooltip' )} >
+									<span role="button" tabIndex={0} aria-label={t( 'blackout-label' )}
 										onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
 										className="statusbar-blackscreen-mode statusbar-icon"
 									>
@@ -421,8 +423,8 @@ class StatusBar extends Component {
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={this.props.t( 'group-manager' )} >
-									<span role="button" tabIndex={0} aria-label={this.props.t( 'group-manager' )}
+								<Tooltip placement="bottom" tooltip={t( 'group-manager' )} >
+									<span role="button" tabIndex={0} aria-label={t( 'group-manager' )}
 										onClick={this.toggleGroupManager} onKeyPress={this.toggleGroupManager}
 										className="statusbar-group-manager statusbar-icon"
 									>
@@ -430,7 +432,7 @@ class StatusBar extends Component {
 									</span>
 								</Tooltip> : null }
 							{ session.cohort ? <div className="statusbar-cohort" >{session.cohort}</div> : null }
-							<Tooltip placement="bottom" tooltip={session.live ? this.props.t( 'connection-active' ) : this.props.t( 'connection-broken' )} >
+							<Tooltip placement="bottom" tooltip={session.live ? t( 'connection-active' ) : t( 'connection-broken' )} >
 								<div className="statusbar-presence" style={{
 									backgroundColor: session.live ? SERVER_ACTIVE_COLOR : NO_RESPONSE_FROM_SERVER_COLOR
 								}}>
@@ -444,16 +446,16 @@ class StatusBar extends Component {
 								onClick={preventPropForUsers} onKeyPress={preventPropForUsers}
 								onMouseEnter={this.toggleProgress} onFocus={this.toggleProgress}
 								onMouseOut={this.toggleProgress} onBlur={this.toggleProgress}
-								aria-label={this.props.t( 'user-progress' )}
+								aria-label={t( 'user-progress' )}
 							>
-								{ session.anonymous ? `${this.props.t( 'anonymous' )} ${session.anonymousIdentifier}` : session.user.name }
+								{ session.anonymous ? `${t( 'anonymous' )} ${session.anonymousIdentifier}` : session.user.name }
 							</div>
 							{ !session.config.hideVideoChat ? <VideoChatButton
 								for={roomName}
 								buttonVariant="link"
 								buttonLabel={<i className="fa fa-xs fa-video"></i>}
 								tooltipPlacement="bottom"
-								tooltip={this.props.t( 'video-chat' )}
+								tooltip={t( 'video-chat' )}
 								className="statusbar-icon statusbar-video-chat"
 								onClick={preventPropagation}
 							/> : null }
@@ -463,7 +465,7 @@ class StatusBar extends Component {
 								anonymousSubmissions
 								buttonLabel={<i className="fas fa-comments"></i>}
 								tooltipPlacement="bottom"
-								tooltip={this.props.t( 'text-chat' )}
+								tooltip={t( 'text-chat' )}
 								className="statusbar-icon statusbar-text-chat"
 								onClick={preventPropagation}
 							/> : null }
@@ -476,7 +478,7 @@ class StatusBar extends Component {
 										style={{ float: 'right', marginRight: '-20px' }}
 										onClick={this.signup}
 										disabled={!session.live}
-									>{this.props.t( 'signup' )}</Button>
+									>{t( 'signup' )}</Button>
 									<Button
 										size="sm"
 										className="statusbar-button"
@@ -484,15 +486,15 @@ class StatusBar extends Component {
 										style={{ float: 'right', marginRight: '10px' }}
 										onClick={this.login}
 										disabled={!session.live}
-									>{this.props.t( 'login' )}</Button>
+									>{t( 'login' )}</Button>
 								</div> :
 								<Fragment>
 									<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>
-										{this.props.t( 'logout' )}
+										{t( 'logout' )}
 									</Button>
 									<a href={session.server} target="_blank">
 										<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>
-											{this.props.t( 'goto-dashboard' )}
+											{t( 'goto-dashboard' )}
 										</Button>
 									</a>
 								</Fragment> }
@@ -512,12 +514,12 @@ class StatusBar extends Component {
 								{ !isEmptyObject( session.responseVisualizers ) ?
 									<Tooltip
 										placement="bottom"
-										tooltip={!finishedLesson ? this.props.t( 'preview-unfinished' ) : this.props.t( 'completed' )}
+										tooltip={!finishedLesson ? t( 'preview-unfinished' ) : t( 'completed' )}
 										show={isArray( session.unfinished )}
 									>
 										<div className="outer-statusbar-progress-bar">
 											<ProgressBar
-												label={`${this.props.t( 'completion-rate' )}: ${this.state.progress}%`}
+												label={`${t( 'completion-rate' )}: ${this.state.progress}%`}
 												variant="success"
 												now={this.state.progress} style={{
 													animation: 'anim-fade-in 0.7s',
@@ -529,7 +531,7 @@ class StatusBar extends Component {
 									</Tooltip> :
 									<div className="outer-statusbar-progress-bar"></div>
 								}
-								<Score t={this.props.t} />
+								<Score t={t} />
 							</Gate>
 						</div>
 					</div>
@@ -539,7 +541,7 @@ class StatusBar extends Component {
 						</Gate>
 					</Suspense>
 					{!this.state.showStatusBar && ( isOwner || isElectron ) ?
-						<Tooltip placement="bottom" tooltip={`${this.props.t( 'presentation-mode-exit' )} (F7)`} >
+						<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-exit' )} (F7)`} >
 							<span className="statusbar-presentation-mode-lone-icon" role="button" tabIndex={0}
 								onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
 							>
@@ -554,10 +556,10 @@ class StatusBar extends Component {
 				<ConfirmModal
 					show={this.state.visibleLogout}
 					close={this.closeLogout}
-					title={this.props.t( 'logout')}
-					message={this.props.t( 'confirm-logout' )}
+					title={t( 'logout')}
+					message={t( 'confirm-logout' )}
 					onConfirm={this.handleLogout}
-					t={this.props.t}
+					t={t}
 				/>
 				<KeyControls
 					actions={{
@@ -567,8 +569,8 @@ class StatusBar extends Component {
 				{ finishedLesson && !session.config.hideProgressBar ?
 					<Seal
 						title="100%"
-						upper={this.props.t( 'congratulations' )}
-						lower={this.props.t( 'lesson-completed' )}
+						upper={t( 'congratulations' )}
+						lower={t( 'lesson-completed' )}
 						upperArc={120}
 						lowerArc={120}
 						noOrnaments

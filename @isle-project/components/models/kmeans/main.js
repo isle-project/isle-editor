@@ -17,12 +17,12 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
-const summaryTable = ( variables, centroids ) => {
+const summaryTable = ( variables, centroids, t ) => {
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<th>Cluster</th>
+					<th>{t('cluster')}</th>
 					{centroids.map( ( _, i ) => <th key={i} >{i+1}</th>)}
 				</tr>
 			</thead>
@@ -38,7 +38,7 @@ const summaryTable = ( variables, centroids ) => {
 			</tbody>
 			<tbody>
 				<tr>
-					<th>Size</th>
+					<th>{t('size')}</th>
 					{centroids.map( ( x, i ) => <th key={i} >{x.size}</th>)}
 				</tr>
 			</tbody>
@@ -131,14 +131,15 @@ class KMeans extends Component {
 
 	render() {
 		const { result } = this.state;
+		const { t, variables } = this.props;
 		if ( !result ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >kmeans Summary</span>
-				<p>The algorithm {result.converged ? 'converged' : 'did not converge'} after {result.iterations} iterations</p>
-				{summaryTable( this.props.variables, result.centroids )}
+				<span className="title" >{t('kmeans-summary')}</span>
+				<p>{result.converged ? t('algorithm-converged', { n: result.iterations }) : t('algorithm-not-converged', { n: result.iterations })}</p>
+				{summaryTable( variables, result.centroid, t )}
 			</div>
 		);
 	}

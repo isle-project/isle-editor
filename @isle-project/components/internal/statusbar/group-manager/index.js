@@ -400,9 +400,10 @@ class GroupManager extends Component {
 				</div> );
 			case 'answers':
 				return ( <div>
-					<p>Create groups by pairing students with {input} answers
-					<br />
-					to the question {questionSelect}.
+					<p>
+						Create groups by pairing students with {input} answers
+						<br />
+						to the question {questionSelect}.
 					</p>
 				</div> );
 			default:

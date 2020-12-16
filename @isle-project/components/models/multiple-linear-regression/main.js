@@ -302,11 +302,11 @@ class MultipleLinearRegression extends Component {
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Regression Summary for Response {y} (model id: lm{COUNTER})</span>
 				{summaryTable( y, predictors, nobs, result )}
-				<p>Residual standard error: {round( result.stdError )}</p>
+				<p>{t('residual-standard-error')}: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
-				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), p-value: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
-				{ this.props.onPredict ? <Tooltip placement="top" tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
+				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
+				{ this.props.onPredict ? <Tooltip placement="top" tooltip={t('use-model-to-predict-tooltip')} >
+					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{t('use-model-to-predict')}</Button>
 				</Tooltip> : null }
 				{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={this.handleDiagnostics} >
 					{t('model-diagnostics')}

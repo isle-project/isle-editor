@@ -208,20 +208,20 @@ class LassoRegression extends Component {
 	}
 
 	render() {
-		const { y, intercept, lambda, onPredict } = this.props;
+		const { y, intercept, lambda, onPredict, t } = this.props;
 		const { result, predictors } = this.state;
 		if ( !result ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		if ( !isNumber( lambda ) ) {
-			return <Alert variant="danger">{this.props.t('lambda-not-number')}</Alert>;
+			return <Alert variant="danger">{t('lambda-not-number')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >LASSO Regression for Response {y} (model id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
-				{summaryTable( predictors, intercept, result, this.props.t )}
-				<p>Karush-Khun-Tucker (KKT) conditions for an optimal solution {result.testKKT() ? 'are' : 'are not'} satisfied</p>
-				{onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table">
+				{summaryTable( predictors, intercept, result, t )}
+				<p>{result.testKKT() ? t('kkt-satisfied') : t('kkt-not-satisfied')}</p>
+				{onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>
 				</Tooltip> : null}
 			</div>

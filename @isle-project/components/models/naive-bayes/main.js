@@ -20,10 +20,10 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-const summaryTable = ( predictors, result, quantitative ) => {
+const summaryTable = ( predictors, result, quantitative, t ) => {
 	return (
 		<div>
-			<span className="title">A-priori probabilities:</span>
+			<span className="title">{t('apriori-probs')}:</span>
 			<Table bordered size="sm">
 				<thead>
 					<tr>
@@ -36,7 +36,7 @@ const summaryTable = ( predictors, result, quantitative ) => {
 					</tr>
 				</tbody>
 			</Table>
-			<span className="title">Conditionals:</span>
+			<span className="title">{t('conditionals')}:</span>
 			{predictors.map( ( pred, i ) => {
 				if ( contains( quantitative, pred ) ) {
 					return ( <Table bordered size="sm" key={i} >
@@ -48,13 +48,13 @@ const summaryTable = ( predictors, result, quantitative ) => {
 						</thead>
 						<tbody>
 							<tr>
-								<th>Mean</th>
+								<th>{t('mean')}</th>
 								{result.classes.map( ( _, j ) => {
 									return <td key={`${i}-${j}`}>{result.mu.get( i, j ).toFixed( 6 )}</td>;
 								})}
 							</tr>
 							<tr>
-								<th>SD</th>
+								<th>{t('sd')}</th>
 								{result.classes.map( ( _, j ) => {
 									return <td key={`${i}-${j}`}>{result.sigma.get( i, j ).toFixed( 6 )}</td>;
 								})}
@@ -71,13 +71,13 @@ const summaryTable = ( predictors, result, quantitative ) => {
 					</thead>
 					<tbody>
 						<tr>
-							<th>Yes</th>
+							<th>{t('yes')}</th>
 							{result.classes.map( ( _, j ) => {
 								return <td key={`${i}-${j}`}>{result.mu.get( i, j ).toFixed( 3 )}</td>;
 							})}
 						</tr>
 						<tr>
-							<th>No</th>
+							<th>{t('no')}</th>
 							{result.classes.map( ( _, j ) => {
 								return <td key={`${i}-${j}`}>{(1-result.mu.get( i, j )).toFixed( 3 )}</td>;
 							})}
@@ -151,15 +151,16 @@ class NaiveBayes extends Component {
 
 	render() {
 		const { result, predictors } = this.state;
+		const { t } = this.props;
 		if ( !result ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >Naive Bayes for Response {this.props.y} (model id: bayes{COUNTER})</span>
-				{summaryTable( predictors, result, this.props.quantitative )}
-				{this.props.onPredict ? <Tooltip tooltip="Predictions and residuals will be attached to data table">
-					<Button variant="secondary" size="sm" onClick={this.handlePrediction} >{this.props.t('use-model-to-predict')}</Button>
+				{summaryTable( predictors, result, this.props.quantitative, t )}
+				{this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
+					<Button variant="secondary" size="sm" onClick={this.handlePrediction} >{t('use-model-to-predict')}</Button>
 				</Tooltip> : null}
 			</div>
 		);
