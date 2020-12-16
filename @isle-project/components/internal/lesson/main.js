@@ -14,7 +14,6 @@ import { DELETE_STICKY_NOTE, INSERT_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
-import './i18n.js';
 
 
 // VARIABLES //

@@ -2,7 +2,7 @@
 
 import { findDOMNode } from 'react-dom';
 import startsWith from '@stdlib/string/starts-with';
-import i18next from 'i18next';
+import { i18n } from '@isle-project/locales';
 
 
 // MAIN //
@@ -17,7 +17,7 @@ function closeHintButtons( elem ) {
 	}
 	const hintButtons = node.getElementsByClassName( 'hint-button' );
 	for ( let i = 0; i < hintButtons.length; i++ ) {
-		if ( startsWith( hintButtons[ i ].innerText, i18next.t('components:close') ) ) {
+		if ( startsWith( hintButtons[ i ].innerText, i18n.t('components:close') ) ) {
 			hintButtons[ i ].click();
 		}
 	}

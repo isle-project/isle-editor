@@ -1,9 +1,9 @@
 // MODULES //
 
 import React from 'react';
-import i18next from 'i18next';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
+import { i18n } from '@isle-project/locales';
 import icons from './../icons.js';
 import menu from './../menu.js';
 
@@ -27,7 +27,7 @@ class TableCellMenu extends React.PureComponent {
 		<DropdownItem
 			key={`dropdown-item-${itemKey}`}
 			onMouseDown={this.onMenuMouseDown(item)}
-		>{i18next.t( `text-editor:${item.content}` )}</DropdownItem>
+		>{i18n.t( `text-editor:${item.content}` )}</DropdownItem>
 	)
 
 	render() {

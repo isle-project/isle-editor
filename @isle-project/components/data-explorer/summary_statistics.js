@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import i18next from 'i18next';
+import { i18n } from '@isle-project/locales';
 import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 import Card from 'react-bootstrap/Card';
@@ -39,12 +39,12 @@ const SORT_OPTS = {
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 const Option = props => {
 	const popover = <Popover id={`${props.data.label}-popover`}>
-		<PopoverContent>{STAT_DESCRIPTIONS[ i18next.language ][ props.data.label]}</PopoverContent>
+		<PopoverContent>{STAT_DESCRIPTIONS[ i18n.language ][ props.data.label]}</PopoverContent>
 	</Popover>;
 	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
-		}}>{i18next.t( 'data-explorer:'+props.data.label )}</span>
+		}}>{i18n.t( 'data-explorer:'+props.data.label )}</span>
 		<OverlayTrigger
 			trigger={['hover', 'click']}
 			placement="right" rootClose overlay={popover}
@@ -63,7 +63,7 @@ const Option = props => {
 };
 const GroupHeading = props => {
 	props = { ...props };
-	props.children = i18next.t( 'data-explorer:'+props.children );
+	props.children = i18n.t( 'data-explorer:'+props.children );
 	return <components.GroupHeading {...props} />;
 };
 
