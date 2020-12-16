@@ -39,7 +39,7 @@ const IN_ANGLE_LINK = 14;
 const RE_ALPHACHAR = /[A-Z]/i;
 const RE_NO_WRAPPER_TAGS = /^(?:SlideAppear)$/;
 const RE_INNER_TAGS = /^(?:th|td)$/;
-const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide)$/;
+const RE_FLEX_TAGS = /^(?:Col|Row|tr|Tab|Slide|Language\.[a-zA-z]+)$/;
 const RE_NO_LINE_ROW_COL = /<(?!\/?Row|\/?Col|LineButtons)/;
 const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
 const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
