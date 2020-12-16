@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { dirname } from 'path';
 import logger from 'debug';
@@ -117,6 +118,7 @@ class TerminalWrapper extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<div className="terminal-wrapper"
 				style={{
@@ -142,17 +144,17 @@ class TerminalWrapper extends Component {
 							this.xterm.clear();
 						}
 					}} >
-						Clear Terminal
+						{t('clear-terminal')}
 					</MenuItem>
 					<MenuItem onClick={() => {
 						this.props.onSplit( this.props.id );
 					}} >
-						Split Terminal
+						{t('split-terminal')}
 					</MenuItem>
 					{ !this.props.id.endsWith( '-0' ) ? <MenuItem onClick={() => {
 						this.props.onDelete( this.props.id );
 					}} >
-						Kill Terminal
+						{t('kill-terminal')}
 					</MenuItem> : null }
 				</ContextMenu>
 			</div>
@@ -181,4 +183,4 @@ TerminalWrapper.defaultProps = {
 
 // EXPORTS //
 
-export default TerminalWrapper;
+export default withTranslation( 'Editor' )( TerminalWrapper );

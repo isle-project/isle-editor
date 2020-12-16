@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { withTranslation } from 'react-i18next';
 import Terminal from 'editor-components/terminal';
 import SplitPane from 'react-split-pane';
 import './terminal_grid.css';
@@ -117,7 +118,7 @@ class TerminalGrid extends Component {
 		return (
 			<Fragment>
 				<div className="terminal-grid-header" >
-					<span>Terminals</span>
+					<span>{this.props.t('terminals')}</span>
 				</div>
 				{this.renderTerminals()}
 			</Fragment>
@@ -128,4 +129,4 @@ class TerminalGrid extends Component {
 
 // EXPORTS //
 
-export default TerminalGrid;
+export default withTranslation( 'Editor' )( TerminalGrid );

@@ -4,6 +4,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { EOL } from 'os';
 import logger from 'debug';
 import SplitPane from 'react-split-pane';
@@ -517,9 +518,10 @@ class ComponentConfigurator extends Component {
 	renderPropertyControls() {
 		debug( 'Rendering property controls...' );
 		const props = this.docProps;
+		const { t } = this.props;
 		const { searchValue } = this.state;
 		if ( props.length === 0 ) {
-			return <div style={{ marginBottom: 15 }}>Component has no properties.</div>;
+			return <div style={{ marginBottom: 15 }}>{t('component-no-properties')}</div>;
 		}
 		const controls = [];
 		for ( let i = 0; i < props.length; i++ ) {
@@ -659,11 +661,11 @@ class ComponentConfigurator extends Component {
 				<Table striped bordered size="sm" style={{ fontSize: '14px' }}>
 					<thead>
 						<tr>
-							<th className="configurator-column" >Option</th>
-							<th className="configurator-wide-column" >Description</th>
-							<th className="configurator-wide-column" >Value</th>
-							<th className="configurator-column" >Type</th>
-							<th className="configurator-column" >Default</th>
+							<th className="configurator-column" >{t('option')}</th>
+							<th className="configurator-wide-column" >{t('description')}</th>
+							<th className="configurator-wide-column" >{t('value')}</th>
+							<th className="configurator-column" >{t('type')}</th>
+							<th className="configurator-column" >{t('default')}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -679,6 +681,8 @@ class ComponentConfigurator extends Component {
 		const innerHTML = {
 			'__html': this.description
 		};
+		const { t } = this.props;
+
 		/* eslint-disable react/no-danger */
 		const componentDescription = <div>
 			<span className="configurator-title" dangerouslySetInnerHTML={innerHTML}></span>
@@ -692,7 +696,7 @@ class ComponentConfigurator extends Component {
 				enforceFocus={false}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title as="h5">{this.props.component.name} Component Wizard</Modal.Title>
+					<Modal.Title as="h5">{this.props.component.name} {t('component-wizard')}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
 					<SearchBar
@@ -712,7 +716,7 @@ class ComponentConfigurator extends Component {
 					/>
 					{componentDescription}
 					<Card.Subtitle style={{ fontSize: '12px', margin: 0 }} className="text-muted">
-						Click on the box to toggle the respective options on and off and set their values:
+						{t('wizard-table-instructions')}
 					</Card.Subtitle>
 					<div style={{ position: 'relative', height: 'calc(100% - 40px)' }}>
 						<SplitPane
@@ -760,14 +764,14 @@ class ComponentConfigurator extends Component {
 					<Button
 						variant="success"
 						onClick={this.handleClick}
-					>Insert</Button>
+					>{t('insert')}</Button>
 					<Button
 						variant="primary"
 						onClick={this.handleReset}
-					>Reset</Button>
+					>{t('reset')}</Button>
 					<Button
 						onClick={this.clickHide}
-					>Close</Button>
+					>{t('close')}</Button>
 				</Modal.Footer>
 				<ComponentStyler
 					show={this.state.showStyler}
@@ -809,4 +813,4 @@ ComponentConfigurator.defaultProps = {
 
 // EXPORTS //
 
-export default ComponentConfigurator;
+export default withTranslation( 'Editor' )( ComponentConfigurator );

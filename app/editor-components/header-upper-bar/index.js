@@ -2,6 +2,7 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { ipcRenderer } from 'electron';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
@@ -14,12 +15,13 @@ import './header_upper_bar.css';
 // MAIN //
 
 const HeaderUpperBar = ( props ) => {
+	const { t } = useTranslation( 'Editor' );
 	let updateTooltip;
 	let updateMsg;
 	switch ( props.updateStatus ) {
 		case 'available':
 			updateMsg = `Update available (${props.updateInfo.version}).`;
-			updateTooltip = 'Click on the button to the right to initiate download';
+			updateTooltip = t('update-available-tooltip');
 			break;
 		case 'downloading':
 			if ( props.updateDownloadPercent ) {
@@ -30,8 +32,8 @@ const HeaderUpperBar = ( props ) => {
 			updateTooltip = 'Please do not exit while download is in progress';
 			break;
 		case 'downloaded':
-			updateMsg = 'Update downloaded.';
-			updateTooltip = 'New version of ISLE editor will be installed upon closing the application';
+			updateMsg = t('update-downloaded');
+			updateTooltip = t('update-downloaded-tooltip');
 			break;
 		default:
 			break;
@@ -54,7 +56,7 @@ const HeaderUpperBar = ( props ) => {
 						}} style={{
 							display: props.updateStatus === 'available' ? 'inherit' : 'none'
 						}}>
-							Download
+							{t('download')}
 						</Button>
 					</Badge>
 				</Tooltip>
@@ -64,24 +66,24 @@ const HeaderUpperBar = ( props ) => {
 					to="/"
 					id="link-back-to-editor"
 					className="unselectable"
-				>Back to Editor</Link> :
+				>{t('back-to-editor')}</Link> :
 				null
 			}
 			<Link
 				id="link-export"
 				className="unselectable"
 				to="/export"
-			>Export</Link>
+			>{t('export')}</Link>
 			<Link
 				id="link-settings"
 				className="unselectable"
 				to="/settings"
-			>Settings</Link>
+			>{t('settings')}</Link>
 			<Link
 				id="link-docs"
 				className="unselectable"
 				to="/docs"
-			>Documentation</Link>
+			>{t('documentation')}</Link>
 		</div>
 	</div> );
 };

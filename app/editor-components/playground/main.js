@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ReactDom from 'react-dom';
 import {
 	LiveProvider,
@@ -122,7 +123,7 @@ class Playground extends PureComponent {
 		return (
 			<div className="component-documentation" style={this.props.style} >
 				<div className="playground-editable unselectable">
-					EDITABLE SOURCE
+					{this.props.t('editable-source')}
 				</div>
 				<LiveProvider code={value} scope={scope} theme={theme} transformCode={this.transformCode} >
 					<div className="playground-live-editor" >
@@ -183,4 +184,4 @@ Playground.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Playground;
+export default withTranslation( 'Editor' )( Playground );

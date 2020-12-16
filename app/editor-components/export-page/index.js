@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -17,6 +18,7 @@ class ExportPage extends Component {
 		super( props );
 	}
 	render() {
+		const { t } = this.props;
 		return (
 			<Container className="export-page">
 				<Row>
@@ -24,7 +26,7 @@ class ExportPage extends Component {
 						<UploadLesson {...this.props} />
 					</Col>
 					<Col md={2} >
-						<h1 style={{ textAlign: 'center' }}> OR </h1>
+						<h1 style={{ textAlign: 'center' }}> {t('or')} </h1>
 					</Col>
 					<Col md={5} >
 						<ExportLesson {...this.props} />
@@ -38,4 +40,4 @@ class ExportPage extends Component {
 
 // EXPORTS //
 
-export default ExportPage;
+export default withTranslation( 'Editor' )( ExportPage );

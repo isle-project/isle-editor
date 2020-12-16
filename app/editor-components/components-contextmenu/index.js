@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import logger from 'debug';
 import { ContextMenu, MenuItem, SubMenu } from 'react-contextmenu';
 import objectKeys from '@stdlib/utils/keys';
@@ -137,6 +138,7 @@ class EditorContextMenu extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		const main = this.createMenuEntries( GROUPED_SNIPPETS.main, 'Main' );
 		const layout = this.createMenuEntries( GROUPED_SNIPPETS.layout, 'Layout' );
 		const displayComponents = this.createMenuEntries( GROUPED_SNIPPETS.displayComponents, 'Display' );
@@ -160,7 +162,7 @@ class EditorContextMenu extends Component {
 		return (
 			<Fragment>
 				<ContextMenu className="components-contextmenu" id={this.props.id} onHide={this.handleHide} >
-					<span style={{ marginLeft: 6 }} >Select Component to Insert</span>
+					<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{main}
 					{basic}
@@ -194,7 +196,7 @@ class EditorContextMenu extends Component {
 						}}
 					/>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-					<SubMenu title="Translate selection to" disabled={!ISLE_SERVER_TOKEN} >
+					<SubMenu title={t('translate-selection')} disabled={!ISLE_SERVER_TOKEN} >
 						{LANGUAGE_NAMES.map( ( name, idx ) => {
 							return (
 								<MenuItem
@@ -225,4 +227,4 @@ EditorContextMenu.propTypes = {
 
 // EXPORTS //
 
-export default EditorContextMenu;
+export default withTranslation( 'Editor' )( EditorContextMenu );

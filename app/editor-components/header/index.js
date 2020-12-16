@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -57,6 +58,8 @@ class Header extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
+
 		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
 			<div>
@@ -124,8 +127,8 @@ class Header extends Component {
 									onSelect={this.handleModeSelection}
 									style={{ marginLeft: 25 }}
 								>
-									<DropdownItem eventKey="1">offline</DropdownItem>
-									<DropdownItem eventKey="2">online</DropdownItem>
+									<DropdownItem eventKey="1">{t('offline')}</DropdownItem>
+									<DropdownItem eventKey="2">{t('online')}</DropdownItem>
 								</DropdownButton>
 							</div>
 						</OverlayTrigger>
@@ -138,18 +141,18 @@ class Header extends Component {
 									variant="success"
 									onSelect={this.handleRoleSelection}
 								>
-									<DropdownItem eventKey="1">anonymous</DropdownItem>
-									<DropdownItem eventKey="2">user</DropdownItem>
-									<DropdownItem eventKey="3">enrolled</DropdownItem>
-									<DropdownItem eventKey="4">owner</DropdownItem>
+									<DropdownItem eventKey="1">{t('anonymous')}</DropdownItem>
+									<DropdownItem eventKey="2">{t('user')}</DropdownItem>
+									<DropdownItem eventKey="3">{t('enrolled')}</DropdownItem>
+									<DropdownItem eventKey="4">{t('owner')}</DropdownItem>
 								</DropdownButton>
 							</div>
 						</OverlayTrigger>
-						<OverlayTrigger placement="bottom" overlay={<Tooltip id="preview-tooltip">Click to toggle fullscreen preview of lesson</Tooltip>}>
+						<OverlayTrigger placement="bottom" overlay={<Tooltip id="preview-tooltip">{t('preview-tooltip')}</Tooltip>}>
 							<Button variant="secondary" onClick={this.props.onPreview} style={{
 								paddingTop: 4,
 								marginLeft: 25
-							}}>Preview</Button>
+							}}>{t('preview')}</Button>
 						</OverlayTrigger>
 					</ButtonGroup>
 				</div>
@@ -200,4 +203,4 @@ Header.propTypes = {
 
 // EXPORTS //
 
-export default Header;
+export default withTranslation( 'Editor' )( Header );

@@ -145,7 +145,7 @@ class SimpleLinearRegression extends Component {
 				const xmeans = by( xd, groups, mean );
 				const res = by2( xd, yd, groups, calculateCoefficients );
 				output = <div style={{ overflowX: 'auto', width: '100%' }}>
-					<label>Regression of {y} on {x}</label>
+					<label>{t('regression-y-on-x', { x, y })}</label>
 					<p>
 						<i>{t('grouped-by')} {group}:</i>
 					</p>
