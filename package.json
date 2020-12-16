@@ -91,6 +91,9 @@
       "app",
       "@isle-project"
     ],
+    "modulePathIgnorePatterns": [
+      "release"
+    ],
     "moduleDirectories": [
       "node_modules"
     ],
