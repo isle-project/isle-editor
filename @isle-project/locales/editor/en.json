@@ -45,10 +45,15 @@
 	"form-control-connect-with-isle-account": "Connect with your ISLE user account. If you do not have one\nyet, sign up at the ISLE dashboard, e.g. at ",
 	"enter-password": "Enter password",
 	"enter-password-isle-account": "Enter the password associated with your ISLE account.",
-	"linked-to-isle-server": "You are linked to the ISLE server at <1>{server}</1> with user <3>{email}</3>.",
+	"linked-to-isle-server": "You are linked to the ISLE server at <1>{{server}}</1> with user <3>{{email}}</3>.",
 	"unlink": " Unlink",
 	"connect-to-github": "Connect to GitHub (optional)",
 	"link-to-github-account-authenticated": "You will be able to link the ISLE editor to your GitHub</br>account after authenticating with an ISLE Server.",
 	"link-to-github-account": "You can link the ISLE editor with your GitHub account for</br>enhanced GitHub integration.",
-	"connected-to-github": "You are connected to GitHub."
+	"connected-to-github": "You are connected to GitHub.",
+	"email": "Email",
+	"password": "Password",
+	"connect": "Connect",
+	"invalid-server": "The server address must start with <1>http://</1> or <3>https://</3>.",
+	"isle-server": "The ISLE server address, e.g. <1>https://isle.stat.cmu.edu</1>."
 }
