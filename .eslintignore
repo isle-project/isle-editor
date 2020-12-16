@@ -1,2 +1,3 @@
 /main.js
-/dll/**/*
+/@isle-project/dll
+/release
