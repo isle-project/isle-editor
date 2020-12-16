@@ -35,6 +35,7 @@
 	"predictions-attached": "Die Vorhersagen werden an die Datentabelle angehängt",
 	"predictor": "Prädiktor",
 	"proportion-of-variance": "Anteil der Varianz",
+	"regression-y-on-x": "Regression von {{y}} auf {{x}}",
 	"residual-standard-error": "Residualer Standardfehler",
 	"residuals": "Residuen",
 	"residuals-vs-fitted": "Residuen vs. Angepasst",

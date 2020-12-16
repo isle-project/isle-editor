@@ -35,6 +35,7 @@
 	"predictions-attached": "Las predicciones se adjuntarán al cuadro de datos",
 	"predictor": "Predictor",
 	"proportion-of-variance": "Proporción de la variación",
+	"regression-y-on-x": "Regresión de {{y}} en {{x}}",
 	"residual-standard-error": "Error estándar residual",
 	"residuals": "Residuos",
 	"residuals-vs-fitted": "Residuales vs. Ajustados",

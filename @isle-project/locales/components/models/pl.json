@@ -35,6 +35,7 @@
 	"predictions-attached": "Prognozy zostaną dołączone do tabeli danych",
 	"predictor": "Predictor",
 	"proportion-of-variance": "Proporcja wariancji",
+	"regression-y-on-x": "Regresja {y} {y} na {x}",
 	"residual-standard-error": "Pozostały błąd standardowy",
 	"residuals": "Pozostałości",
 	"residuals-vs-fitted": "Pozostałości vs. Dopasowane",

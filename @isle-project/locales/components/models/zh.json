@@ -35,6 +35,7 @@
 	"predictions-attached": "预测将附在数据表中",
 	"predictor": "预测器",
 	"proportion-of-variance": "差异比例",
+	"regression-y-on-x": "{{y}}对{{x}}的回归。",
 	"residual-standard-error": "残余标准误差",
 	"residuals": "残留物",
 	"residuals-vs-fitted": "残余与贴合",

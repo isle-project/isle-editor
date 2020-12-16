@@ -49,5 +49,6 @@
 	"logistic-title": "Regression Summary for Response {{y}} (model id: logis{{counter}})",
 	"f-statistic": "F-statistic",
 	"multiple-regression-title": "Regression Summary for Response {{y}} (model id: lm{{counter}})",
-	"simple-regression-title": "Regression of {{y}} on {{x}} (model id: slm{{counter}})"
+	"simple-regression-title": "Regression of {{y}} on {{x}} (model id: slm{{counter}})",
+	"regression-y-on-x": "Regression of {{y}} on {{x}}"
 }

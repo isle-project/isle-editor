@@ -35,6 +35,7 @@
 	"predictions-attached": "Прогнозы будут приложены к таблице данных",
 	"predictor": "Предиктор",
 	"proportion-of-variance": "Доля Вариации",
+	"regression-y-on-x": "Регрессия {\"i1}на {\"i0}",
 	"residual-standard-error": "Остаточная стандартная ошибка",
 	"residuals": "Остатки",
 	"residuals-vs-fitted": "Остатки против установленных",
