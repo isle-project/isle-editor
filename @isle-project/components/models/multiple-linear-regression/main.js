@@ -134,22 +134,22 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 	return { matrix, predictors, yvalues, nobs };
 }
 
-const summaryTable = ( y, x, nobs, result ) => {
+const summaryTable = ( y, x, nobs, result, t ) => {
 	const cdf = tCDF.factory( nobs - x.length - 1 );
 	return (
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<th>Predictor</th>
-					<th>Coefficient</th>
-					<th>Std. Error</th>
+					<th>{t('predictor')}</th>
+					<th>{t('coefficient')}</th>
+					<th>{t('std-error')}</th>
 					<th>t</th>
-					<th>p-value</th>
+					<th>{t('p-value')}</th>
 				</tr>
 			</thead>
 			<tbody>
 				{ result.intercept ? <tr>
-					<th>Intercept</th>
+					<th>{t('intercept')}</th>
 					<td>{result.weights[ x.length ][ 0 ].toFixed( 6 )}</td>
 					<td>{result.stdErrors[ x.length ].toFixed( 4 )}</td>
 					<td>{result.tStats[ x.length ].toFixed( 4 )}</td>
@@ -252,7 +252,7 @@ class MultipleLinearRegression extends Component {
 	}
 
 	handleDiagnostics = () => {
-		const { x, y, intercept } = this.props;
+		const { x, y, intercept, t } = this.props;
 		const qqPlot = <Plotly
 			draggable
 			editable fit
@@ -271,12 +271,12 @@ class MultipleLinearRegression extends Component {
 			]}
 			layout={{
 				xaxis: {
-					title: 'Fitted Values'
+					title: t('fitted-values')
 				},
 				yaxis: {
-					title: 'Residuals'
+					title: t('residuals')
 				},
-				title: 'Residuals vs. Fitted'
+				title: t('residuals-vs-fitted')
 			}}
 			meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
 		/>;
@@ -300,11 +300,11 @@ class MultipleLinearRegression extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {y} (model id: lm{COUNTER})</span>
-				{summaryTable( y, predictors, nobs, result )}
+				<span className="title" >{t('multiple-regression-title', { y, counter: COUNTER })}</span>
+				{summaryTable( y, predictors, nobs, result, t )}
 				<p>{t('residual-standard-error')}: {round( result.stdError )}</p>
 				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
-				<p>F-statistic: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
+				<p>{t('f-statistic')}: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				{ this.props.onPredict ? <Tooltip placement="top" tooltip={t('use-model-to-predict-tooltip')} >
 					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{t('use-model-to-predict')}</Button>
 				</Tooltip> : null }

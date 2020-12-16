@@ -264,10 +264,10 @@ class LogisticRegression extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Regression Summary for Response {this.props.y} (model id: logis{COUNTER})</span>
+				<span className="title" >{t('logistic-title', { y: this.props.y, counter: COUNTER })}</span>
 				{summaryTable( this.state.predictors, this.props.intercept, result, this.props.t )}
-				<i>The algorithm {result.converged ? 'converged' : <Fragment>did <b>not</b> converge</Fragment>} after {result.iterations} Fisher Scoring iterations</i>
-				<p>Akaike Information Criterion (AIC): {roundn( result.aic, -3 )}</p>
+				<i>{result.converged ? t('fisher-scoring-converged', { n: result.iterations }) : t('fisher-scoring-not-converged', { n: result.iterations })}</i>
+				<p>{t('aic')}: {roundn( result.aic, -3 )}</p>
 				{this.props.onPredict ? <ButtonGroup>
 					<Tooltip tooltip={t('use-model-to-predict-tooltip-logistic')} >
 						<Button variant="secondary" size="sm" onClick={this.handlePredict} >

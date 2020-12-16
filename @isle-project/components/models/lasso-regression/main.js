@@ -218,7 +218,7 @@ class LassoRegression extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >LASSO Regression for Response {y} (model id: lasso{COUNTER}, lambda: {lambda.toFixed( 4 )})</span>
+				<span className="title" >{t('lasso-title', { y, lambda: lambda.toFixed( 4 ), counter: COUNTER })}</span>
 				{summaryTable( predictors, intercept, result, t )}
 				<p>{result.testKKT() ? t('kkt-satisfied') : t('kkt-not-satisfied')}</p>
 				{onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >

@@ -147,7 +147,7 @@ class SimpleLinearRegression extends Component {
 				output = <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>Regression of {y} on {x}</label>
 					<p>
-						<i>Grouped by {group}:</i>
+						<i>{t('grouped-by')} {group}:</i>
 					</p>
 					{objectValues( mapValues( res, ( elem, key ) => {
 						const [ yint, slope ] = elem;
@@ -176,7 +176,7 @@ class SimpleLinearRegression extends Component {
 										<tr>
 											<th>{t('variable')}</th>
 											<th>{t('coefficient')}</th>
-											<th>Std. Error</th>
+											<th>{t('std-error')}</th>
 											<th>t</th>
 											<th>{t('p-value')}</th>
 										</tr>
@@ -288,15 +288,15 @@ class SimpleLinearRegression extends Component {
 				const tSlope = slope / slopeSE;
 				const tIntercept = yint / interceptSE;
 				output = <div style={{ overflowX: 'auto', width: '100%' }} >
-					<label>Regression of {y} on {x} (model id: slm{COUNTER})</label>
+					<label>{t('simple-regression-title', { x, y, counter: COUNTER })}</label>
 					<Table bordered size="sm" >
 						<thead>
 							<tr>
 								<th>{t('variable')}</th>
 								<th>{t('coefficient')}</th>
-								<th>Std. Error</th>
+								<th>{t('std-error')}</th>
 								<th>t</th>
-								<th>p-value</th>
+								<th>{t('p-value')}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -356,10 +356,10 @@ class SimpleLinearRegression extends Component {
 							]}
 							layout={{
 								xaxis: {
-									title: 'Fitted Values'
+									title: t('fitted-values')
 								},
 								yaxis: {
-									title: 'Residuals'
+									title: t('residuals')
 								},
 								title: 'Residuals vs. Fitted'
 							}}
@@ -373,7 +373,7 @@ class SimpleLinearRegression extends Component {
 			}
 			return output;
 		} catch ( _ ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 	}
 }
