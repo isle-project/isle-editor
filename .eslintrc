@@ -495,9 +495,10 @@
     "react-hooks/exhaustive-deps": 1,
     "i18next/no-literal-string": [ 1, {
       "markupOnly": true,
-      "onlyAttribute": [ "text", "tooltip", "title" ],
+      "onlyAttribute": [ "tooltip", "title" ],
       "ignore": [ "ISLE", "<", ">", "=", "n:" ],
-      "ignoreComponent": [ "Trans", "code" ]
+      "ignoreComponent": [ "Trans", "code" ],
+      "validateTemplate": true
     }]
   },
   "extends": [
