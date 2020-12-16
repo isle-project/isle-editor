@@ -1179,6 +1179,9 @@ class Editor extends Component {
 	}
 
 	translateSelection = async ( language ) => {
+		if ( !this.state.hasSelection ) {
+			return vex.dialog.alert( 'No selection present' );
+		}
 		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
 		const selection = this.editor.getSelection();
 		const range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
@@ -1222,8 +1225,9 @@ class Editor extends Component {
 			});
 			this.editor.updateOptions({ readOnly: false });
 			editorDiv.style.opacity = 1.0;
-			const model = this.editor.getModel();
-			model.setValue( res.data.text );
+			this.setState({
+				value: res.data.text
+			});
 			this.props.onChange( res.data.text );
 		} catch ( err ) {
 			this.editor.updateOptions({ readOnly: false });

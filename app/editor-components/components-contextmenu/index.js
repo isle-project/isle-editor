@@ -194,7 +194,7 @@ class EditorContextMenu extends Component {
 						}}
 					/>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-					<SubMenu title="Translate selection to" disabled={!ISLE_SERVER_TOKEN || !this.props.hasSelection} >
+					<SubMenu title="Translate selection to" disabled={!ISLE_SERVER_TOKEN} >
 						{LANGUAGE_NAMES.map( ( name, idx ) => {
 							return (
 								<MenuItem
@@ -218,7 +218,6 @@ class EditorContextMenu extends Component {
 // PROPERTIES //
 
 EditorContextMenu.propTypes = {
-	hasSelection: PropTypes.bool.isRequired,
 	onContextMenuClick: PropTypes.func.isRequired,
 	onTranslateSelection: PropTypes.func.isRequired
 };
