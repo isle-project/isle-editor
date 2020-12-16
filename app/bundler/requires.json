@@ -75,6 +75,7 @@
 	"Image": "@isle-project/components/image",
 	"JSShell": "@isle-project/components/js-shell",
 	"KeyControls": "@isle-project/components/key-controls",
+	"Language": "@isle-project/components/language",
 	"LessonSubmit": "@isle-project/components/lesson-submit",
 	"LikertScale": "@isle-project/components/likert-scale",
 	"Link": "@isle-project/components/link",
