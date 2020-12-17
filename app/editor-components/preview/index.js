@@ -11,6 +11,8 @@ import { Portal } from 'react-portal';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { transformSync } from '@babel/core';
+import { i18n } from '@isle-project/locales';
+import { I18nextProvider } from 'react-i18next';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
 import isObjectArray from '@stdlib/assert/is-object-array';
@@ -300,9 +302,11 @@ class Preview extends Component {
 				>
 					<DragLayer />
 				</Portal>
-				<Provider session={this.session} currentRole={this.props.currentRole} >
-					{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
-				</Provider>
+				<I18nextProvider i18n={i18n} >
+					<Provider session={this.session} currentRole={this.props.currentRole} >
+						{ this.state.isLoading ? 'Loading...' : this.renderPreview()}
+					</Provider>
+				</I18nextProvider>
 			</DndProvider>
 		);
 	}
