@@ -498,6 +498,7 @@
       "onlyAttribute": [ "tooltip", "title" ],
       "ignore": [ "ISLE", "<", ">", "=", "n:" ],
       "ignoreComponent": [ "Trans", "code" ],
+      "ignoreCallee": [ "debug" ],
       "validateTemplate": true
     }]
   },
