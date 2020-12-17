@@ -83,6 +83,8 @@
 	"reset": "Zurücksetzen",
 	"save-stats": "Bündelstatistiken speichern",
 	"save-stats-tooltip": "Erstellen einer `stats.json`-Datei mit Bundle-Statistiken für Debugging- und Analysezwecke",
+	"search-for-components": "Suche nach Komponenten...",
+	"search-for-options": "Suche nach Optionen...",
 	"select-component-to-insert": "Komponente zum Einfügen auswählen",
 	"select-course": "Kurs wählen",
 	"select-output": "Ausgang wählen",

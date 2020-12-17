@@ -110,5 +110,7 @@
 	"open-tag-wizard": "Click to open component wizard for <{{tagName}} />",
 	"center-editor-line": "Center editor on line {{lineNumber}}",
 	"insert-at-line": "Click to insert component at line {{lineNumber}}",
-	"change-styling": "Change styling"
+	"change-styling": "Change styling",
+	"search-for-components": "Search for components...",
+	"search-for-options": "Search for options..."
 }

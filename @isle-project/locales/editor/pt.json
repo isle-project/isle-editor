@@ -83,6 +83,8 @@
 	"reset": "Reinicialização",
 	"save-stats": "Salvar as estatísticas do pacote",
 	"save-stats-tooltip": "Criar um arquivo `stats.json` com estatísticas de pacotes para fins de depuração e análise",
+	"search-for-components": "Busca de componentes...",
+	"search-for-options": "Busca de opções...",
 	"select-component-to-insert": "Selecione o componente a ser inserido",
 	"select-course": "Selecione o curso",
 	"select-output": "Selecione a saída",

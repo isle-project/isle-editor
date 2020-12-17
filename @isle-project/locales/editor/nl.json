@@ -83,6 +83,8 @@
 	"reset": "Reset",
 	"save-stats": "Bespaar bundelstatistieken",
 	"save-stats-tooltip": "Maak een `stats.json` bestand aan met bundelstatistieken voor debugging en analyse doeleinden",
+	"search-for-components": "Zoek naar onderdelen...",
+	"search-for-options": "Zoek naar opties...",
 	"select-component-to-insert": "Selecteer het in te voegen onderdeel",
 	"select-course": "Selecteer Cursus",
 	"select-output": "Selecteer output",

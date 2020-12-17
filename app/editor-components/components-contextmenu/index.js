@@ -181,7 +181,7 @@ class EditorContextMenu extends Component {
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					<SearchBar
 						value={this.state.searchValue}
-						placeholder="Search for components..."
+						placeholder={t('search-for-components')}
 						onChange={( event ) => {
 							this.setState({
 								searchValue: event.target.value

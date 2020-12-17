@@ -83,6 +83,8 @@
 	"reset": "リセット",
 	"save-stats": "バンドルの統計を保存",
 	"save-stats-tooltip": "デバッグや分析のために、バンドルの統計情報を含む `stats.json` ファイルを作成します。",
+	"search-for-components": "コンポーネントを検索する...",
+	"search-for-options": "オプションを検索...",
 	"select-component-to-insert": "挿入するコンポーネントを選択",
 	"select-course": "コース選択",
 	"select-output": "出力を選択",

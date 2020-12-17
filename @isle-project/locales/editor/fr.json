@@ -83,6 +83,8 @@
 	"reset": "Réinitialiser",
 	"save-stats": "Sauvegarder les statistiques sur les paquets",
 	"save-stats-tooltip": "Créer un fichier `stats.json` avec les statistiques du paquet pour le débogage et l'analyse",
+	"search-for-components": "Rechercher des composants...",
+	"search-for-options": "Rechercher des options...",
 	"select-component-to-insert": "Sélectionnez le composant à insérer",
 	"select-course": "Choisir un cours",
 	"select-output": "Sélectionner une sortie",

@@ -83,6 +83,8 @@
 	"reset": "重置",
 	"save-stats": "保存数据包统计",
 	"save-stats-tooltip": "创建一个`stats.json`文件，包含捆绑统计信息，用于调试和分析。",
+	"search-for-components": "搜索组件...",
+	"search-for-options": "搜索选项...",
 	"select-component-to-insert": "选择要插入的组件",
 	"select-course": "选择课程",
 	"select-output": "选择输出",

@@ -83,6 +83,8 @@
 	"reset": "Reset",
 	"save-stats": "Salva le statistiche del pacchetto",
 	"save-stats-tooltip": "Creare un file `stats.json` con le statistiche del bundle per il debug e l'analisi",
+	"search-for-components": "Ricerca dei componenti...",
+	"search-for-options": "Cerca le opzioni...",
 	"select-component-to-insert": "Selezionare il componente da inserire",
 	"select-course": "Seleziona il corso",
 	"select-output": "Selezionare l'uscita",
