@@ -138,6 +138,7 @@ const FontVariants = ( props ) => {
 					newStyle.textShadow = newTextShadows.join( ', ' );
 					props.onChange( newStyle );
 				}}
+				t={props.t}
 			/>
 		</Fragment>
 	);
