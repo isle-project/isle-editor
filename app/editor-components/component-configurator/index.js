@@ -462,7 +462,7 @@ class ComponentConfigurator extends Component {
 			if ( value[ value.length - 1 ] === ' ' || value[ value.length - 1 ] === '/' ) {
 				value = removeLast( value );
 			}
-			value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`;
+			value = rtrim( value ) + `\n  ${key}=${replacement}\n/>`; // eslint-disable-line i18next/no-literal-string
 		} else {
 			const idx = value.indexOf( '>' );
 			const rest = value.substring( idx + 1 );
@@ -470,7 +470,7 @@ class ComponentConfigurator extends Component {
 			if ( value[ value.length - 1 ] === ' ' ) {
 				value = removeLast( value );
 			}
-			value = rtrim( value ) + `\n  ${key}=${replacement}\n>`;
+			value = rtrim( value ) + `\n  ${key}=${replacement}\n>`; // eslint-disable-line i18next/no-literal-string
 			value = value + rest;
 		}
 		this.setState({

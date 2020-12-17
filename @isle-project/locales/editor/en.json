@@ -164,5 +164,17 @@
 	"font-size": "Font Size",
 	"preamble-template": "Preamble Template",
 	"rendering-interval-description": "Interval between renders (in seconds)",
-	"rendering-interval": "Rendering Interval"
+	"rendering-interval": "Rendering Interval",
+	"customize-style": "Customize style",
+	"move-to-preamble": "Move CSS ruleset to preamble",
+	"none": "None",
+	"left": "Left",
+	"right": "Right",
+	"float": "Float",
+	"position": "Position",
+	"both": "Both",
+	"clear": "Clear",
+	"z-index": "z-index",
+	"bottom": "Bottom",
+	"top": "Top"
 }

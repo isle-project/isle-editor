@@ -31,7 +31,7 @@ const Position = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={2} >
-					Position
+					{props.t('position')}
 				</Form.Label>
 				<Col sm={4} >
 					<SelectInput
@@ -46,7 +46,7 @@ const Position = ( props ) => {
 					/>
 				</Col>
 				<UnitInputBase
-					label="Top"
+					label={props.t('top')}
 					auto
 					defaultValue={props.style.top}
 					onChange={( top ) => {
@@ -59,7 +59,7 @@ const Position = ( props ) => {
 			<Form.Group as={Row} >
 				<Col sm={4} ></Col>
 				<UnitInputBase
-					label="Left"
+					label={props.t('left')}
 					auto
 					defaultValue={props.style.left}
 					onChange={( left ) => {
@@ -69,7 +69,7 @@ const Position = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Right"
+					label={props.t('right')}
 					auto
 					defaultValue={props.style.right}
 					onChange={( right ) => {
@@ -82,7 +82,7 @@ const Position = ( props ) => {
 			<Form.Group as={Row} >
 				<Col sm={5} ></Col>
 				<UnitInputBase
-					label="Bottom" labelWidth={2}
+					label={props.t('bottom')} labelWidth={2}
 					auto
 					defaultValue={props.style.bottom}
 					onChange={( bottom ) => {
@@ -94,7 +94,7 @@ const Position = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					z-index
+					{props.t('z-index')}
 				</Form.Label>
 				<Col sm={2} >
 					<Form.Control
@@ -111,7 +111,7 @@ const Position = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Float
+					{props.t('float')}
 				</Form.Label>
 				<Col sm={8} >
 					<ToggleButtonGroup
@@ -129,26 +129,26 @@ const Position = ( props ) => {
 							variant="outline-secondary"
 							value="none"
 						>
-							None
+							{props.t('none')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="left"
 						>
-							Left
+							{props.t('left')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="right"
 						>
-							Right
+							{props.t('right')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Clear
+					{props.t('clear')}
 				</Form.Label>
 				<Col sm={8} >
 					<ToggleButtonGroup
@@ -166,25 +166,25 @@ const Position = ( props ) => {
 							variant="outline-secondary"
 							value="none"
 						>
-							None
+							{props.t('none')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="left"
 						>
-							Left
+							{props.t('left')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="right"
 						>
-							Right
+							{props.t('right')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="both"
 						>
-							Both
+							{props.t('both')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
