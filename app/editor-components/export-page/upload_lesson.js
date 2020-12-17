@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Trans } from 'react-i18next';
 import logger from 'debug';
 import { createReadStream, createWriteStream } from 'fs';
 import { join } from 'path';
@@ -156,7 +157,7 @@ class UploadLesson extends Component {
 
 	upstreamData = ({ outputPath, outputDir, meta }) => {
 		let { lessonName } = this.state;
-		let { namespaceName } = this.props;
+		let { namespaceName, t } = this.props;
 
 		debug( 'Sending POST request to create lesson...' );
 		const form = new FormData();
@@ -205,7 +206,7 @@ class UploadLesson extends Component {
 			if ( res.statusCode === 200 ) {
 				const lessonLink = resolve( this.state.server, namespaceName + '/' + lessonName );
 				const msg = <span>
-					The lesson has been uploaded successfully and can be accessed at the following address: <a href={lessonLink}>{lessonLink}</a>
+					{t('lesson-uploaded')} <a href={lessonLink}>{lessonLink}</a>
 				</span>;
 				this.setState({
 					spinning: false,
@@ -297,16 +298,17 @@ class UploadLesson extends Component {
 	}
 
 	renderResponseModal = () => {
+		const { t } = this.props;
 		return (
 			<Modal show={this.state.showResponseModal} onHide={this.closeResponseModal}>
 				<Modal.Header closeButton>
-					<Modal.Title>Server Response</Modal.Title>
+					<Modal.Title>{t('server-response')}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					{this.state.modalMessage}
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.closeResponseModal}>Close</Button>
+					<Button onClick={this.closeResponseModal}>{t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 		);
@@ -316,16 +318,19 @@ class UploadLesson extends Component {
 		if ( !this.state.showConfirmModal ) {
 			return null;
 		}
+		const { t } = this.props;
 		return (
 			<Modal show={this.state.showConfirmModal} onHide={this.closeConfirmModal} >
 				<Modal.Header>
-					<Modal.Title>Overwrite Lesson?</Modal.Title>
+					<Modal.Title>{t('overwrite-lesson')}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					A lesson with the name <b>{this.state.lessonName}</b> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+					<Trans i18nKey="overwrite-lesson-msg" ns="Editor" values={{ lessonName: this.state.lessonName }}>
+						A lesson with the name <b>{{ lessonName: this.state.lessonName }}</b> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.
+					</Trans>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.closeConfirmModal}>Cancel</Button>
+					<Button onClick={this.closeConfirmModal}>{t('cancel')}</Button>
 					<Button variant="warning"
 						onClick={() => {
 							this.publishLesson();
@@ -333,7 +338,7 @@ class UploadLesson extends Component {
 								showConfirmModal: false
 							});
 						}}
-					>Overwrite</Button>
+					>{t('overwrite')}</Button>
 				</Modal.Footer>
 				<KeyControls
 					actions={{
@@ -359,7 +364,7 @@ class UploadLesson extends Component {
 			<Spinner width={128} height={64} running={this.state.spinning} />
 			{ this.state.error ? <Card bg="danger" text="white" >
 				<Card.Header as="h5">
-					Error encountered
+					{this.props.t('error-encountered')}
 				</Card.Header>
 				<Card.Body>
 					<p>{this.state.error.message}</p>
@@ -380,10 +385,11 @@ class UploadLesson extends Component {
 
 	renderUploadPanel = () => {
 		let formGroups;
+		const { t } = this.props;
 		if ( this.state.namespaces.length > 0 ) {
 			formGroups = <Fragment>
 				<FormGroup>
-					<FormLabel>Select Course</FormLabel>
+					<FormLabel>{t('select-course')}</FormLabel>
 					<FormControl
 						name="namespaceName"
 						onChange={this.handleSelectChange}
@@ -399,11 +405,11 @@ class UploadLesson extends Component {
 				<FormGroup
 					controlId="lesson-name"
 				>
-					<FormLabel>Lesson Name</FormLabel>
+					<FormLabel>{t('lesson-name')}</FormLabel>
 					<FormControl
 						name="lessonName"
 						type="text"
-						placeholder="Enter lesson name"
+						placeholder={t('lesson-name-placeholder')}
 						onChange={this.handleLessonChange}
 						value={this.state.lessonName}
 						disabled={this.state.spinning}
@@ -411,11 +417,11 @@ class UploadLesson extends Component {
 						isInvalid={this.state.invalidLessonName}
 					/>
 					<FormControl.Feedback type="invalid" >
-						Please provide a lesson name of lowercase characters without spaces.
+						{t('lesson-name-invalid')}
 					</FormControl.Feedback>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Release to Students?</FormLabel>
+					<FormLabel>{t('release-to-students')}</FormLabel>
 					<ToggleButtonGroup
 						name="Released"
 						onChange={( active ) => {
@@ -436,7 +442,7 @@ class UploadLesson extends Component {
 								fontWeight: this.state.active ? 600 : 200
 							}}
 						>
-							Active
+							{t('active')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
@@ -446,12 +452,12 @@ class UploadLesson extends Component {
 								fontWeight: this.state.active? 200 : 600
 							}}
 						>
-							Inactive
+							{t('inactive')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Show in Gallery?</FormLabel>
+					<FormLabel>{t('show-in-gallery')}</FormLabel>
 					<ToggleButtonGroup
 						name="Visibility"
 						onChange={( showInGallery ) => {
@@ -472,7 +478,7 @@ class UploadLesson extends Component {
 								fontWeight: this.state.showInGallery ? 600 : 200
 							}}
 						>
-							Public
+							{t('public')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
@@ -482,15 +488,15 @@ class UploadLesson extends Component {
 								fontWeight: this.state.showInGallery? 200 : 600
 							}}
 						>
-							Private
+							{t('private')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</FormGroup>
 				<FormGroup>
-					<FormLabel>Code Settings</FormLabel>
+					<FormLabel>{t('code-settings')}</FormLabel>
 					<CheckboxInput
-						legend="Minify code"
-						tooltip="Disabling this option slightly reduces build time but results in more data to be downloaded by users"
+						legend={t('minify-code')}
+						tooltip={t('minify-code-tooltip')}
 						onChange={( value ) => {
 							this.setState({
 								minify: value
@@ -500,8 +506,8 @@ class UploadLesson extends Component {
 						defaultValue={true}
 					/>
 					<CheckboxInput
-						legend="Load ISLE resources from CDN"
-						tooltip="WARNING: Disabling this option will massively increase upload time and bundle sizes"
+						legend={t('load-from-cdn')}
+						tooltip={t('load-from-cdn-tooltip')}
 						onChange={( value ) => {
 							this.setState({
 								loadFromCDN: value
@@ -515,20 +521,20 @@ class UploadLesson extends Component {
 		} else {
 			formGroups = <Card bg="danger" text="white">
 				<Card.Header as="h5">
-					No courses found
+					{t('no-courses-found')}
 				</Card.Header>
 				<Card.Body>
-					Please create a course on the ISLE dashboard or request to be added as an owner to an existing course.
+					{t('no-courses-found-msg')}
 				</Card.Body>
 			</Card>;
 		}
 		return (
 			<Card border="primary">
 				<Card.Header as="h5" className="unselectable" >
-					Upload Lesson
+					{t('upload-lesson')}
 				</Card.Header>
 				<Card.Body>
-					<p>Upload and deploy currently opened lesson directly to connected ISLE server.</p>
+					<p>{t('upload-lesson-msg')}</p>
 					{ this.state.token ?
 						<Fragment>
 							{formGroups}
@@ -538,12 +544,12 @@ class UploadLesson extends Component {
 								block
 								onClick={this.checkLesson}
 								disabled={this.state.spinning || !this.state.token || !this.state.lessonName || this.state.invalidLessonName}
-							>Upload</Button>
+							>{t('upload')}</Button>
 							<br />
 							{this.renderProgress()}
 						</Fragment>:
 						<Card bg="warning" body >
-							You need to connect the ISLE editor to an ISLE server under settings before you can upload lessons.
+							{t('upload-lesson-warning')}
 						</Card>
 					}
 				</Card.Body>
@@ -563,7 +569,7 @@ class UploadLesson extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 UploadLesson.defaultProps = {
 	content: '',
