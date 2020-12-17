@@ -117,13 +117,13 @@ const Cursor = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={2} >
-					Cursor
+					{props.t('cursor')}
 				</Form.Label>
 				<Col sm={4} >
 					<Select
 						isClearable
 						defaultValue={defaultValue}
-						placeholder="Select cursor"
+						placeholder={props.t('select-cursor')}
 						options={CURSOR_TYPES}
 						onChange={( elem ) => {
 							const newStyle = omit( props.style, 'cursor' );

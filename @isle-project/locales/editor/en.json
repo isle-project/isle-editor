@@ -176,5 +176,17 @@
 	"clear": "Clear",
 	"z-index": "z-index",
 	"bottom": "Bottom",
-	"top": "Top"
+	"top": "Top",
+	"add-shadow": "Add Shadow",
+	"angle": "Angle",
+	"color": "Color",
+	"distance": "Distance",
+	"blur": "Blur",
+	"cursor": "Cursor",
+	"select-cursor": "Select cursor...",
+	"no-box-shadows": "No box shadows currently applied",
+	"no-text-shadows": "No text shadows currently applied",
+	"break": "Break",
+	"transform": "Transform",
+	"font-variant": "Font Variant"
 }

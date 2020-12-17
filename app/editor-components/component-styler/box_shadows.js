@@ -42,13 +42,13 @@ const BoxShadows = ( props ) => {
 								}}
 								style={{ float: 'right' }}
 							>
-								x
+								<div className="fa fa-times" />
 							</Button>
 						</ListGroup.Item>
 					);
 				})}
 			</ListGroup>
-			{shadows.length === 0 ? <p>No box shadows currently applied</p> : null}
+			{shadows.length === 0 ? <p>{props.t('no-box-shadows')}</p> : null}
 			<hr />
 			<BoxShadowInput
 				style={props.style}

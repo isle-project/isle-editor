@@ -51,7 +51,7 @@ const FontVariants = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Transform
+					{props.t('transform')}
 				</Form.Label>
 				<Col sm={3}>
 					<SelectInput
@@ -66,7 +66,7 @@ const FontVariants = ( props ) => {
 					/>
 				</Col>
 				<Form.Label column sm="3">
-					Break
+					{props.t('break')}
 				</Form.Label>
 				<Col sm={3}>
 					<SelectInput
@@ -84,7 +84,7 @@ const FontVariants = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Font Variant
+					{props.t('font-variant')}
 				</Form.Label>
 				<Col sm={9}>
 					<SelectInput
@@ -120,13 +120,13 @@ const FontVariants = ( props ) => {
 								}}
 								style={{ float: 'right' }}
 							>
-								x
+								<div className="fa fa-times" />
 							</Button>
 						</ListGroup.Item>
 					);
 				})}
 			</ListGroup>
-			{textShadows.length === 0 ? <p>No text shadows currently applied</p> : null}
+			{textShadows.length === 0 ? <p>{props.t('no-text-shadows')}</p> : null}
 			<hr />
 			<TextShadowInput
 				style={props.style}

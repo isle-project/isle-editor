@@ -32,7 +32,7 @@ const TextShadowInput = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="1">
-					Angle
+					{props.t('angle')}
 				</Form.Label>
 				<Col sm={2} >
 					<Form.Control
@@ -48,7 +48,7 @@ const TextShadowInput = ( props ) => {
 					/>
 				</Col>
 				<UnitInputBase
-					label="Distance"
+					label={props.t('distance')}
 					defaultValue={state.distance}
 					labelWidth={2} style={props.style}
 					onChange={( value ) => {
@@ -60,7 +60,7 @@ const TextShadowInput = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Blur"
+					label={props.t('blur')}
 					defaultValue={state.blur}
 					labelWidth={1} style={props.style}
 					onChange={( value ) => {
@@ -74,7 +74,7 @@ const TextShadowInput = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="1">
-					Color
+					{props.t('color')}
 				</Form.Label>
 				<Col sm={1} >
 					<ColorPicker
@@ -105,7 +105,7 @@ const TextShadowInput = ( props ) => {
 					setState( DEFAULT_STATE );
 				}
 			}} >
-				Add Shadow
+				{props.t('add-shadow')}
 			</Button>
 		</Fragment>
 	);
