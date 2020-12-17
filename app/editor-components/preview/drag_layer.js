@@ -2,6 +2,7 @@
 
 import React, { memo } from 'react';
 import { useDragLayer } from 'react-dnd';
+import { Trans } from 'react-i18next';
 
 
 // VARIABLES //
@@ -9,7 +10,9 @@ import { useDragLayer } from 'react-dnd';
 const DragWrapper = memo( ({ title }) => {
 	return (
 		<div className="preview-drag-wrapper" >
-			Drag <code>{title}</code> to one of the <i className="fas fa-chevron-circle-down" style={{ color: '#258080' }} /> buttons
+			<Trans i18nKey="drag-preview-tooltip" ns="Editor" >
+				Drag <code>{title}</code> to one of the <i className="fas fa-chevron-circle-down" style={{ color: '#258080' }} /> buttons
+			</Trans>
 		</div>
 	);
 } );

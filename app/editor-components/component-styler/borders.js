@@ -59,7 +59,7 @@ const extractBorderStyle = ( style, activeBorder ) => {
 	}
 };
 
-const BorderInputs = ({ activeBorder, style, onChange }) => {
+const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 	const [ state, setState ] = useState( DEFAULT_BORDER_STATE );
 	const [ prevBorder, setPrevBorder ] = useState( activeBorder );
 	useEffect(() => {
@@ -77,7 +77,7 @@ const BorderInputs = ({ activeBorder, style, onChange }) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Border Color
+					{t('border-color')}
 				</Form.Label>
 				<Col sm={4} >
 					<ColorPicker

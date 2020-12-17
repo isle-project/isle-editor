@@ -188,5 +188,7 @@
 	"no-text-shadows": "No text shadows currently applied",
 	"break": "Break",
 	"transform": "Transform",
-	"font-variant": "Font Variant"
+	"font-variant": "Font Variant",
+	"border-color": "Border Color",
+	"drag-preview-tooltip": "Drag <1>{{title}}</1> to one of the <3></3> buttons"
 }
