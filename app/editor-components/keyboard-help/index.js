@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import ReactDraggable from 'react-draggable';
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
@@ -15,6 +16,7 @@ import './keyboard_help.css';
 */
 class KeyboardHelp extends Component {
 	render() {
+		const { t } = this.props;
 		return (
 			<ReactDraggable cancel=".cancel" >
 				<Panel
@@ -26,20 +28,20 @@ class KeyboardHelp extends Component {
 						<thead>
 							<tr>
 								<th>
-									Editing Commands
+									{t('editing-commands')}
 								</th>
 								<th>
-									Windows / Linux
+									{t('windows-linux')}
 								</th>
 								<th>
-									Mac
+									{t('mac')}
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
-									Cut line
+									{t('cut-line')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >X</Badge>
@@ -50,7 +52,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Copy line
+									{t('copy-line')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >C</Badge>
@@ -61,7 +63,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Delete line
+									{t('delete-line')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >K</Badge>
@@ -72,7 +74,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Scroll line up/down
+									{t('scroll-line')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >↑</Badge> / <Badge variant="secondary" >↓</Badge>
@@ -83,7 +85,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Go to beginning/end of line
+									{t('go-beginning-line')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Home</Badge> / <Badge variant="secondary" >End</Badge>
@@ -94,7 +96,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Go to beginning/end of file
+									{t('go-beginning-file')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Home</Badge> / <Badge variant="secondary" >End</Badge>
@@ -105,7 +107,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Fold/unfold region
+									{t('fold-region')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >[</Badge> / <Badge variant="secondary" >]</Badge>
@@ -116,7 +118,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Fold/unfold all regions
+									{t('fold-all-regions')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl+K</Badge> <Badge variant="secondary" >Ctrl+0</Badge> / <Badge variant="secondary" >Ctrl+K</Badge> <Badge variant="secondary" >Ctrl+J</Badge>
@@ -129,7 +131,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<th>
-									Search &amp; Replace
+									{t('search-replace')}
 								</th>
 								<th>
 								</th>
@@ -140,7 +142,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<td>
-									Find
+									{t('find')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >F</Badge>
@@ -151,7 +153,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Replace
+									{t('replace')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >H</Badge>
@@ -162,7 +164,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Select all occurrences of Find match
+									{t('select-all')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >Enter</Badge>
@@ -175,7 +177,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<th>
-									Multi-Cursors
+									{t('multi-cursors')}
 								</th>
 								<th>
 								</th>
@@ -186,7 +188,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<td>
-									Insert cursor
+									{t('insert-cursor')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >click</Badge>
@@ -197,7 +199,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Insert cursor above
+									{t('insert-cursor-above')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >↑</Badge>
@@ -208,7 +210,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Insert cursor below
+									{t('insert-cursor-below')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >↓</Badge>
@@ -219,7 +221,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Undo last cursor operation
+									{t('undo-last-cursor')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >U</Badge>
@@ -230,7 +232,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Insert cursor at end of each line selected
+									{t('insert-cursor-eol')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >I</Badge>
@@ -243,7 +245,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<th>
-									Other
+									{t('other')}
 								</th>
 								<th>
 								</th>
@@ -254,7 +256,7 @@ class KeyboardHelp extends Component {
 						<tbody>
 							<tr>
 								<td>
-									Command Panel
+									{t('command-panel')}
 								</td>
 								<td>
 									<Badge variant="secondary" >F1</Badge>
@@ -265,7 +267,7 @@ class KeyboardHelp extends Component {
 							</tr>
 							<tr>
 								<td>
-									Accessibility Help
+									{t('accessibility-help')}
 								</td>
 								<td>
 									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >F1</Badge>
@@ -285,5 +287,5 @@ class KeyboardHelp extends Component {
 
 // EXPORTS //
 
-export default React.memo( KeyboardHelp );
+export default React.memo( withTranslation( 'Editor' )( KeyboardHelp ) );
 

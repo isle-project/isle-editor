@@ -86,10 +86,10 @@ class Header extends Component {
 									...props.style
 								}}
 							>
-								{this.props.filePath || 'Please save file...'}
+								{this.props.filePath || t('please-save-file')}
 							</div> )}
 						>
-							<span style={{ paddingRight: 5 }}>{this.props.fileName || 'Untitled Document'}</span>
+							<span style={{ paddingRight: 5 }}>{this.props.fileName || t('untitled-document')}</span>
 						</OverlayTrigger>
 						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
 					</span>
@@ -174,7 +174,7 @@ class Header extends Component {
 
 Header.defaultProps = {
 	fileName: '',
-	filePath: 'Please save file...',
+	filePath: '',
 	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
