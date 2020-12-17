@@ -190,5 +190,17 @@
 	"transform": "Transform",
 	"font-variant": "Font Variant",
 	"border-color": "Border Color",
-	"drag-preview-tooltip": "Drag <1>{{title}}</1> to one of the <3></3> buttons"
+	"drag-preview-tooltip": "Drag <1>{{title}}</1> to one of the <3></3> buttons",
+	"German": "German",
+	"English": "English",
+	"French": "French",
+	"Italian": "Italian",
+	"Japanese": "Japanese",
+	"Spanish": "Spanish",
+	"Dutch": "Dutch",
+	"Polish": "Polish",
+	"Portuguese": "Portuguese",
+	"BrazilianPortuguese": "Brazilian Portuguese",
+	"Russian": "Russian",
+	"Chinese": "Chinese"
 }
