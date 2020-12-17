@@ -36,6 +36,9 @@ release
 /main.js
 /main.js.map
 /main.js.LICENSE.txt
+/*.main.js
+/*.main.js.map
+/*/main.js.LICENSE.txt
 
 # Visual Studio #
 #################
