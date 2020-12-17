@@ -112,5 +112,8 @@
 	"insert-at-line": "Click to insert component at line {{lineNumber}}",
 	"change-styling": "Change styling",
 	"search-for-components": "Search for components...",
-	"search-for-options": "Search for options..."
+	"trigger-update": "Trigger update of preview",
+	"search-for-options": "Search for options...",
+	"preview-lesson-role": "Preview lesson as user with selected role",
+	"switch-online-offline": "Switch between offline and online mode"
 }

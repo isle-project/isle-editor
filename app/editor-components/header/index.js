@@ -108,7 +108,7 @@ class Header extends Component {
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="trigger-update">Trigger update (F5)</Tooltip>}>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="trigger-update">{t('trigger-update')} (F5)</Tooltip>}>
 							<Button
 								onClick={this.props.triggerUpdate}
 								style={{
@@ -117,7 +117,7 @@ class Header extends Component {
 								variant="outline-secondary"
 							><i className="fas fa-sync"></i></Button>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">Switch between offline and online mode</Tooltip>}>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">{t('switch-online-offline')}</Tooltip>}>
 							<div onClick={stopPropagation} >
 								<DropdownButton
 									title={this.props.mode}
@@ -132,7 +132,7 @@ class Header extends Component {
 								</DropdownButton>
 							</div>
 						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">Preview lesson as user with selected role</Tooltip>}>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">{t('preview-lesson-role')}</Tooltip>}>
 							<div onClick={stopPropagation} >
 								<DropdownButton
 									title={this.props.role}
