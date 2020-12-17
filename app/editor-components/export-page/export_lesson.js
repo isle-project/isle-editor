@@ -239,7 +239,7 @@ class ExportLesson extends Component {
 						<FormLabel>{t('directory-name')}</FormLabel>
 						<FormControl
 							type="text"
-							placeholder="Enter text"
+							placeholder={t('directory-placeholder')}
 							defaultValue={this.state.outputDir}
 							onChange={( event ) => {
 								this.setState({

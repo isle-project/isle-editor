@@ -94,5 +94,7 @@
 	"show-in-gallery": "Show in Gallery?",
 	"overwrite-lesson-msg": "A lesson with the name <1>{{lessonName}}</1> is already present in the namespace. Please confirm that you wish to overwrite the lesson or cancel the upload procedure and choose a different name.",
 	"release-to-students": "Release to Students?",
-	"lesson-name-invalid": "Please provide a lesson name of lowercase characters without spaces."
+	"lesson-name-invalid": "Please provide a lesson name of lowercase characters without spaces.",
+	"select-course": "Select Course",
+	"directory-placeholder": "Enter directory name..."
 }
