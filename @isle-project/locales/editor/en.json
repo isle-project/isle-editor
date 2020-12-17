@@ -115,5 +115,19 @@
 	"trigger-update": "Trigger update of preview",
 	"search-for-options": "Search for options...",
 	"preview-lesson-role": "Preview lesson as user with selected role",
-	"switch-online-offline": "Switch between offline and online mode"
+	"switch-online-offline": "Switch between offline and online mode",
+	"change-to": "Change to",
+	"feature-request": "Feature Request for {{component}} component",
+	"issue-with": "Issue with {{component}} component",
+	"change-to-remote": "Change to remote",
+	"add-to-authors": "Add to authors",
+	"change-to-current-date": "Change to current date",
+	"installing": "Installing",
+	"linting-tooltip": "Click to cycle through lint error and spelling error messages",
+	"linting-and-spelling": "Linting and Spelling",
+	"keyboard-shortcuts": "Keyboard Shortcuts",
+	"markdown-help": "Markdown Help",
+	"animation-help": "Animation Help",
+	"translate-lesson": "Translate lesson",
+	"translate-entire-lesson": "Translate entire lesson to"
 }

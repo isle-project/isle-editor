@@ -57,9 +57,10 @@ class EditorFooter extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<div className="editor-footer" >
-				<Tooltip tooltip="Click to cycle through lint error and spelling error messages" placement="top" >
+				<Tooltip tooltip={t('linting-tooltip')} placement="top" >
 					<Button
 						variant="light" size="sm" className="editor-footer-button" style={{ marginRight: 18 }}
 						onClick={() => {
@@ -88,20 +89,20 @@ class EditorFooter extends Component {
 						}}
 						disabled={this.props.nErrors === 0}
 					>
-						Linting and Spelling: <Badge variant="secondary">{this.props.nErrors}</Badge>
+						{t('linting-and-spelling')}: <Badge variant="secondary">{this.props.nErrors}</Badge>
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Keyboard Shortcuts" placement="top">
+				<Tooltip tooltip={t('keyboard-shortcuts')} placement="top">
 					<Button className="editor-footer-button" variant="light" size="sm" onClick={this.toggleKeyboardHelp} >
 						<i className="far fa-keyboard"></i>
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Markdown Help" placement="top" >
+				<Tooltip tooltip={t('markdown-help')} placement="top" >
 					<Button className="editor-footer-button" variant="light" size="sm" onClick={this.toggleMarkdownHelp} >
 						<i className="fab fa-markdown" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip="Animation Help" placement="top" >
+				<Tooltip tooltip={t('animation-help')} placement="top" >
 					<Button className="editor-footer-button" variant="light" size="sm" onClick={this.toggleAnimationHelp} >
 						<i className="fas fa-theater-masks" />
 					</Button>
@@ -111,14 +112,14 @@ class EditorFooter extends Component {
 						id="language-menu" holdToDisplay={0}
 						renderTag="span"
 					>
-						<Tooltip tooltip="Translate lesson" placement="left" >
+						<Tooltip tooltip={t('translate-lesson')} placement="left" >
 							<Button className="editor-footer-button" variant="light" size="sm" >
 								<i className="fas fa-globe-europe" />
 							</Button>
 						</Tooltip>
 					</ContextMenuTrigger> : null }
-				<ContextMenu id="language-menu" title="Translate entire lesson to" >
-					<span style={{ marginLeft: 6 }}>Translate entire lesson to</span>
+				<ContextMenu id="language-menu" title={t('translate-entire-lesson')} >
+					<span style={{ marginLeft: 6 }}>{t('translate-entire-lesson')}</span>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{LANGUAGE_NAMES.map( ( name, idx ) => {
 						return (

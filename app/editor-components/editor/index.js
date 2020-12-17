@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import { EOL } from 'os';
 import { ipcRenderer, remote } from 'electron';
 import axios from 'axios';
@@ -198,7 +199,7 @@ class Editor extends Component {
 		this.editTextCommand = this.editor.addCommand( 'fix-spelling', ( _, text, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const fix = {
-				title: `Change to ${text}`,
+				title: `${this.props.t('change-to')} ${text}`,
 				range,
 				text: String( text )
 			};
@@ -208,7 +209,7 @@ class Editor extends Component {
 		this.changeToRemote = this.editor.addCommand( 'change-to-remote', ( _, resURL, entry, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const fix = {
-				title: 'Change to remote',
+				title: this.props.t('change-to-remote'),
 				range,
 				text: entry.origin
 			};
@@ -218,9 +219,9 @@ class Editor extends Component {
 		this.changeToCurrentDate = this.editor.addCommand( 'change-to-current-date', ( _, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const fix = {
-				title: 'Change to current date',
+				title: this.props.t('change-to-current-date'),
 				range,
-				text: `date: ${today()}`
+				text: `date: ${today()}` // eslint-disable-line i18next/no-literal-string
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
@@ -228,9 +229,9 @@ class Editor extends Component {
 		this.addAuthor = this.editor.addCommand( 'add-author', ( _, otherAuthors, p ) => {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const fix = {
-				title: 'Add to authors',
+				title: this.props.t('add-to-authors'),
 				range,
-				text: `author: ${this.props.author}, ${otherAuthors}`
+				text: `author: ${this.props.author}, ${otherAuthors}` // eslint-disable-line i18next/no-literal-string
 			};
 			this.editor.executeEdits( 'my-source', [ fix ] );
 		});
@@ -281,7 +282,7 @@ class Editor extends Component {
 						this.domNode.appendChild( button );
 
 						this.pre = document.createElement( 'pre' );
-						this.pre.innerHTML = `Installing ${deps.join( ', ')}... <br />`;
+						this.pre.innerHTML = `${this.props.t('installing')} ${deps.join( ', ')}... <br />`;
 						this.pre.style.background = 'lightgrey';
 						this.pre.style.whiteSpace = 'pre-wrap';
 						this.domNode.appendChild( this.pre );
@@ -299,7 +300,7 @@ class Editor extends Component {
 			}
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			if ( deps.length === 0 ) {
 				overlayInstallWidget.pre.innerHTML = 'No packages to install.';
@@ -399,7 +400,7 @@ class Editor extends Component {
 			let title;
 			let body;
 			if ( type === 'bug' ) {
-				title = `Issue with ${match[ 2 ]} component`;
+				title = this.props.t('issue-with', { component: match[ 2 ] });
 				labels = 'bug';
 				body = bugTemplate;
 				body = replace( body, '<code>', code );
@@ -412,12 +413,12 @@ class Editor extends Component {
 						}
 					});
 					const imgURL = await uploadBugImage( imgData );
-					body = replace( body, '<screenshot>', `![Screenshot](${imgURL})` );
+					body = replace( body, '<screenshot>', `![Screenshot](${imgURL})` ); // eslint-disable-line i18next/no-literal-string
 				} else {
 					body = replace( body, '<screenshot>', '' );
 				}
 			} else {
-				title = `Feature Request for ${match[ 2 ]} component`;
+				title = this.props.t('feature-request', { component: match[ 2 ] });
 				labels = 'enhancement';
 				body = featureRequestTemplate;
 			}
@@ -435,7 +436,7 @@ class Editor extends Component {
 		this.copyToLocal = this.editor.addCommand( 'copy-to-local', ( _, resURL, type, ext, p ) => {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			let subdir = type;
 			const resDir = join( isleDir, subdir );
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
@@ -481,7 +482,7 @@ class Editor extends Component {
 			const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, '.isle' );
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 
 			const manifestPath = join( isleDir, 'manifest.json' );
 			let manifest = readJSON.sync( manifestPath );
@@ -492,14 +493,14 @@ class Editor extends Component {
 			}
 			const includeName = basename( url );
 			const includePath = join( isleDir, 'include' );
-			const outPath = join( includePath, `${includeName}.isle` );
+			const outPath = join( includePath, `${includeName}.isle` ); // eslint-disable-line i18next/no-literal-string
 			const localPath = './' + relative( destDir, outPath );
 			manifest.include[ includeName ] = {
 				lastAccessed: new Date().toLocaleString(),
 				origin: url
 			};
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
-			const includeResources = join( includePath, `${includeName}-resources` );
+			const includeResources = join( includePath, `${includeName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			if ( !exists.sync( includeResources ) ) {
 				createResourcesDirectoryIfNeeded( includeResources, includeName );
 			}
@@ -879,7 +880,7 @@ class Editor extends Component {
 							title: 'Fix the spelling',
 							arguments: [ text, problem ]
 						},
-						title: `Change to ${text}`
+						title: `${this.props.t('change-to')} ${text}`
 					});
 				}
 			});
@@ -974,7 +975,7 @@ class Editor extends Component {
 							else if ( isRelativePath( imgURL ) ) {
 								const destDir = dirname( this.props.filePath );
 								const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
-								const isleDir = join( destDir, `${fileName}-resources` );
+								const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 								const manifestPath = join( isleDir, 'manifest.json' );
 								const manifest = readJSON.sync( manifestPath );
 								const entry = manifest.resources[ basename( imgURL ) ];
@@ -1013,7 +1014,7 @@ class Editor extends Component {
 					else if ( isRelativePath( lessonURL ) ) {
 						const destDir = dirname( this.props.filePath );
 						const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
-						const isleDir = join( destDir, `${fileName}-resources` );
+						const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 						const manifestPath = join( isleDir, 'manifest.json' );
 						const manifest = readJSON.sync( manifestPath );
 						const includeName = basename( lessonURL, extname( lessonURL ) );
@@ -1246,7 +1247,7 @@ class Editor extends Component {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
 			const { name, path } = file;
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			const pdf = join( isleDir, 'pdf' );
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( pdf, name );
@@ -1276,7 +1277,7 @@ class Editor extends Component {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
 			const { name, path } = file;
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			const imgDir = join( isleDir, 'img' );
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( imgDir, name );
@@ -1306,7 +1307,7 @@ class Editor extends Component {
 			const destDir = dirname( this.props.filePath );
 			const fileName = basename( this.props.filePath, extname( this.props.filePath ) );
 			const { name, path } = file;
-			const isleDir = join( destDir, `${fileName}-resources` );
+			const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 			const videoDir = join( isleDir, 'video' );
 			createResourcesDirectoryIfNeeded( isleDir, fileName );
 			const destPath = join( videoDir, name );
@@ -1522,6 +1523,7 @@ class Editor extends Component {
 							editor={this.editor}
 							nErrors={this.props.lintErrors.length + this.props.spellingErrors.length}
 							onTranslate={this.translateLesson}
+							t={this.props.t}
 						/>
 					</div>
 				</ContextMenuTrigger>
@@ -1604,4 +1606,4 @@ Editor.propTypes = {
 
 // EXPORTS //
 
-export default Editor;
+export default withTranslation( 'Editor' )( Editor );
