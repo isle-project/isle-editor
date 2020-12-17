@@ -38,6 +38,7 @@
 	"download": "ダウンロード",
 	"editable-source": "エディタブルソース",
 	"editing-commands": "編集コマンド",
+	"editor-keyboard-shortcuts": "エディタのキーボードショートカット",
 	"email": "電子メール",
 	"enrolled": "在籍",
 	"enter-password": "パスワードを入力",
@@ -60,6 +61,7 @@
 	"inactive": "非アクティブ",
 	"insert": "インサート",
 	"insert-at-line": "行{{lineNumber}}にコンポーネントを挿入するためにクリックします。",
+	"insert-cursor": "カーソルの挿入",
 	"insert-cursor-above": "カーソルを上に挿入",
 	"insert-cursor-below": "カーソルを下に挿入",
 	"insert-cursor-eol": "選択された各行の末尾にカーソルを挿入",
@@ -153,6 +155,6 @@
 	"upload-lesson-warning": "レッスンをアップロードする前に、設定でISLEエディターをISLEサーバーに接続する必要があります。",
 	"user": "利用者",
 	"value": "値",
-	"windows-linux": "Windows / Linux",
+	"windows-linux": "ウィンドウズオーエス / リナックス",
 	"wizard-table-instructions": "ボックスをクリックして、それぞれのオプションのオン/オフを切り替え、値を設定します。"
 }

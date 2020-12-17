@@ -20,7 +20,7 @@ class KeyboardHelp extends Component {
 		return (
 			<ReactDraggable cancel=".cancel" >
 				<Panel
-					header="Editor Keyboard Shortcuts"
+					header={t('editor-keyboard-shortcuts')}
 					className="keyboard-helper"
 					onHide={this.props.onHide}
 				>

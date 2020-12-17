@@ -140,6 +140,7 @@
 	"windows-linux": "Windows / Linux",
 	"mac": "Mac",
 	"insert-cursor-above": "Insert cursor above",
+	"insert-cursor": "Insert cursor",
 	"copy-line": "Copy line",
 	"delete-line": "Delete line",
 	"multi-cursors": "Multi-Cursors",
@@ -154,5 +155,6 @@
 	"search-replace": "Search & Replace",
 	"find": "Find",
 	"replace": "Replace",
-	"select-all": "Select all occurrences of Find match"
+	"select-all": "Select all occurrences of Find match",
+	"editor-keyboard-shortcuts": "Editor Keyboard Shortcuts"
 }
