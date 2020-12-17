@@ -1,7 +1,7 @@
 // MODULES //
 
+import React from 'react';
 import i18next from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import logger from 'debug';
 
@@ -13,7 +13,6 @@ const windowGlobal = typeof window !== 'undefined' && window;
 const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
-		'Editor': () => import( './editor/de.json' ),
 		'Accordion': () => import( './components/accordion/de.json' ),
 		'Bibliography': () => import( './components/bibliography/de.json' ),
 		'ChatButton': () => import( './components/chat-button/de.json' ),
@@ -74,7 +73,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/de.json' )
 	},
 	'en': {
-		'Editor': () => import( './editor/en.json' ),
 		'Accordion': () => import( './components/accordion/en.json' ),
 		'Bibliography': () => import( './components/bibliography/en.json' ),
 		'ChatButton': () => import( './components/chat-button/en.json' ),
@@ -135,7 +133,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/en.json' )
 	},
 	'es': {
-		'Editor': () => import( './editor/es.json' ),
 		'Accordion': () => import( './components/accordion/es.json' ),
 		'Bibliography': () => import( './components/bibliography/es.json' ),
 		'ChatButton': () => import( './components/chat-button/es.json' ),
@@ -196,7 +193,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/es.json' )
 	},
 	'fr': {
-		'Editor': () => import( './editor/fr.json' ),
 		'Accordion': () => import( './components/accordion/fr.json' ),
 		'Bibliography': () => import( './components/bibliography/fr.json' ),
 		'ChatButton': () => import( './components/chat-button/fr.json' ),
@@ -257,7 +253,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/fr.json' )
 	},
 	'it': {
-		'Editor': () => import( './editor/it.json' ),
 		'Accordion': () => import( './components/accordion/it.json' ),
 		'Bibliography': () => import( './components/bibliography/it.json' ),
 		'ChatButton': () => import( './components/chat-button/it.json' ),
@@ -318,7 +313,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/it.json' )
 	},
 	'ja': {
-		'Editor': () => import( './editor/ja.json' ),
 		'Accordion': () => import( './components/accordion/ja.json' ),
 		'Bibliography': () => import( './components/bibliography/ja.json' ),
 		'ChatButton': () => import( './components/chat-button/ja.json' ),
@@ -379,7 +373,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/ja.json' )
 	},
 	'nl': {
-		'Editor': () => import( './editor/nl.json' ),
 		'Accordion': () => import( './components/accordion/nl.json' ),
 		'Bibliography': () => import( './components/bibliography/nl.json' ),
 		'ChatButton': () => import( './components/chat-button/nl.json' ),
@@ -440,7 +433,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/nl.json' )
 	},
 	'pl': {
-		'Editor': () => import( './editor/pl.json' ),
 		'Accordion': () => import( './components/accordion/pl.json' ),
 		'Bibliography': () => import( './components/bibliography/pl.json' ),
 		'ChatButton': () => import( './components/chat-button/pl.json' ),
@@ -501,7 +493,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/pl.json' )
 	},
 	'pt': {
-		'Editor': () => import( './editor/pt.json' ),
 		'Accordion': () => import( './components/accordion/pt.json' ),
 		'Bibliography': () => import( './components/bibliography/pt.json' ),
 		'ChatButton': () => import( './components/chat-button/pt.json' ),
@@ -562,7 +553,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/pt.json' )
 	},
 	'ru': {
-		'Editor': () => import( './editor/ru.json' ),
 		'Accordion': () => import( './components/accordion/ru.json' ),
 		'Bibliography': () => import( './components/bibliography/ru.json' ),
 		'ChatButton': () => import( './components/chat-button/ru.json' ),
@@ -623,7 +613,6 @@ const TRANSLATIONS = {
 		'session': () => import( './session/ru.json' )
 	},
 	'zh': {
-		'Editor': () => import( './editor/zh.json' ),
 		'Accordion': () => import( './components/accordion/zh.json' ),
 		'Bibliography': () => import( './components/bibliography/zh.json' ),
 		'ChatButton': () => import( './components/chat-button/zh.json' ),
@@ -704,10 +693,9 @@ export const RESOURCES = {
 
 export const i18n = i18next.createInstance();
 i18n.use( LanguageDetector )
-	.use( initReactI18next )
 	.init({
 		debug: !!process.env.DEBUG_I18N, // eslint-disable-line no-process-env
-		lng: localStorage.getItem( 'i18nextLng' ) || 'en',
+		lng: windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) || 'en',
 		fallbackLng: 'en',
 		ns: [ 'components' ],
 		defaultNS: 'components',

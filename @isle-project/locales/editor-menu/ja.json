@@ -1,0 +1,17 @@
+{
+	"about": "について",
+	"bring-all-to-front": "すべてをフロントに持ってくる",
+	"check-for-updates": "更新をチェックして...",
+	"close": "クローズ",
+	"help": "ヘルプ",
+	"minimize": "最小化",
+	"reload": "リロード",
+	"report-bug": "バグ報告",
+	"request-new-feature": "新機能のリクエスト",
+	"search-issues": "問題の検索",
+	"toggle-developer-tools": "開発者ツールの切り替え",
+	"toggle-full-screen": "フルスクリーンを切り替える",
+	"toggle-toolbar": "ツールバーを切り替える",
+	"view": "ビュー",
+	"window": "窓"
+}

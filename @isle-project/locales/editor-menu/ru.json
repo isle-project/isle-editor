@@ -1,0 +1,17 @@
+{
+	"about": "О сайте",
+	"bring-all-to-front": "Принесите все на фронт",
+	"check-for-updates": "Проверьте обновления...",
+	"close": "Закрыть",
+	"help": "Помощь",
+	"minimize": "Минимизировать",
+	"reload": "Перезагрузить",
+	"report-bug": "Сообщить об ошибке",
+	"request-new-feature": "Запросить новую функцию",
+	"search-issues": "Вопросы поиска",
+	"toggle-developer-tools": "Инструменты для разработчиков переключателей",
+	"toggle-full-screen": "Полный экран переключателя",
+	"toggle-toolbar": "Панель инструментов Toggle",
+	"view": "Посмотреть",
+	"window": "Окно"
+}

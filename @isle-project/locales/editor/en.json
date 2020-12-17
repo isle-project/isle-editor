@@ -203,10 +203,5 @@
 	"BrazilianPortuguese": "Brazilian Portuguese",
 	"Russian": "Russian",
 	"Chinese": "Chinese",
-	"toggle-toolbar": "Toggle Toolbar",
-	"reload": "Reload",
-	"view": "View",
-	"toggle-developer-tools": "Toggle Developer Tools",
-	"toggle-full-screen": "Toggle Full Screen",
-	"bring-all-to-front": "Bring All to Front"
+	"switch-editor-language": "Switch Editor Language"
 }
