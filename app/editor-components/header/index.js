@@ -120,7 +120,7 @@ class Header extends Component {
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">{t('switch-online-offline')}</Tooltip>}>
 							<div onClick={stopPropagation} >
 								<DropdownButton
-									title={this.props.mode}
+									title={t(this.props.mode)}
 									id="bg-mode-dropdown"
 									size="sm"
 									variant="warning"
@@ -135,7 +135,7 @@ class Header extends Component {
 						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">{t('preview-lesson-role')}</Tooltip>}>
 							<div onClick={stopPropagation} >
 								<DropdownButton
-									title={this.props.role}
+									title={t(this.props.role)}
 									id="bg-user-dropdown"
 									size="sm"
 									variant="success"

@@ -1,7 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Loadable from '@isle-project/components/internal/loadable';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
@@ -11,28 +12,27 @@ import { convertMarkdown, toggleScrolling, changeNamespace, updateDownloading } 
 
 // MAIN //
 
-class Export extends Component {
-	render() {
-		return (
-			<Fragment>
-				<HeaderUpperBar
-					backToEditor
-					title="Export"
-					updateStatus={this.props.updateStatus}
-					updateInfo={this.props.updateInfo}
-					updateDownloading={this.props.updateDownloading}
-					updateDownloadPercent={this.props.updateDownloadPercent}
-				/>
-				<ExportPage
-					content={this.props.markdown}
-					filePath={this.props.filePath}
-					fileName={this.props.fileName}
-					namespaceName={this.props.namespaceName || ''}
-					changeNamespace={this.props.changeNamespace}
-				/>
-			</Fragment>
-		);
-	}
+const Export = ( props ) => {
+	const { t } = useTranslation( 'Editor' );
+	return (
+		<Fragment>
+			<HeaderUpperBar
+				backToEditor
+				title={t('export')}
+				updateStatus={props.updateStatus}
+				updateInfo={props.updateInfo}
+				updateDownloading={props.updateDownloading}
+				updateDownloadPercent={props.updateDownloadPercent}
+			/>
+			<ExportPage
+				content={props.markdown}
+				filePath={props.filePath}
+				fileName={props.fileName}
+				namespaceName={props.namespaceName || ''}
+				changeNamespace={props.changeNamespace}
+			/>
+		</Fragment>
+	);
 }
 
 

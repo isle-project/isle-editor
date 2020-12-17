@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { exec } from 'child_process';
+import { withTranslation } from 'react-i18next';
 import { ISLE_DOCS_LINK } from 'constants/links';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 
@@ -48,9 +49,10 @@ class Documentation extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<div>
-				<HeaderUpperBar backToEditor title="Documentation" />
+				<HeaderUpperBar backToEditor title={t('documentation')} />
 				<webview
 					id="DocumentationView"
 					src={ISLE_DOCS_LINK}
@@ -71,4 +73,4 @@ class Documentation extends Component {
 
 // EXPORTS //
 
-export default Documentation;
+export default withTranslation( 'Editor' )( Documentation );
