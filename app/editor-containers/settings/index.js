@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { changeRenderInterval, changeFontSize, changePreambleTemplate, updateDownloading } from 'actions';
+import { withTranslation } from 'react-i18next';
 import NumberInput from '@isle-project/components/input/number';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -32,11 +33,12 @@ class Settings extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<HeaderUpperBar
 					backToEditor
-					title="Settings"
+					title={t('settings')}
 					updateStatus={this.props.updateStatus}
 					updateInfo={this.props.updateInfo}
 					updateDownloading={this.props.updateDownloading}
@@ -46,14 +48,14 @@ class Settings extends Component {
 					<SettingsLogin />
 					<Card className="settings-card" >
 						<Card.Header as="h5">
-							Settings
+							{t('settings')}
 						</Card.Header>
 						<Card.Body>
 							<Container><Row>
 								<Col md={5}>
 									<NumberInput
-										description="Editor text height in number of pixels "
-										legend="Font Size"
+										description={t('font-size-description')}
+										legend={t('font-size')}
 										onChange={this.handleFontSizeChange}
 										min={8}
 										max={56}
@@ -61,8 +63,8 @@ class Settings extends Component {
 										defaultValue={this.props.fontSize}
 									/>
 									<NumberInput
-										description="Interval between renders (in seconds)"
-										legend="Rendering interval"
+										description={t('rendering-interval-description')}
+										legend={t('rendering-interval')}
 										onChange={this.handleRenderIntervalChange}
 										min={1}
 										max={100}
@@ -72,7 +74,7 @@ class Settings extends Component {
 								</Col>
 								<Col md={7}>
 									<FormGroup className="settings-preamble-form-group">
-										<Card.Subtitle className="mb-2" ><FormLabel>Preamble Template:</FormLabel></Card.Subtitle>
+										<Card.Subtitle className="mb-2" ><FormLabel>{t('preamble-template')}:</FormLabel></Card.Subtitle>
 										<FormControl
 											as="textarea"
 											onChange={this.handlePreambleTemplateChange}
@@ -98,7 +100,7 @@ export default connect( mapStateToProps, {
 	changePreambleTemplate,
 	changeRenderInterval,
 	updateDownloading
-})( Settings );
+})( withTranslation( 'Editor' )( Settings ) );
 
 function mapStateToProps({ editor, preview, updater }) {
 	return {

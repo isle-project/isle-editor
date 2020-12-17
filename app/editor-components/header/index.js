@@ -97,14 +97,14 @@ class Header extends Component {
 						<CheckboxInput
 							value={this.props.showLineButtons}
 							onChange={this.props.toggleLineButtons}
-							legend="Show line buttons"
+							legend={t('show-line-buttons')}
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
 						<CheckboxInput
 							value={this.props.autoUpdatePreview}
 							onChange={this.props.changeAutoUpdate}
-							legend="Automatically update preview"
+							legend={t('automatically-update-preview')}
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>

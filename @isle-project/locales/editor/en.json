@@ -156,5 +156,13 @@
 	"find": "Find",
 	"replace": "Replace",
 	"select-all": "Select all occurrences of Find match",
-	"editor-keyboard-shortcuts": "Editor Keyboard Shortcuts"
+	"editor-keyboard-shortcuts": "Editor Keyboard Shortcuts",
+	"automatically-update-preview": "Automatically update preview",
+	"show-line-buttons": "Show line buttons",
+	"editor": "Editor",
+	"font-size-description": "Editor text height in number of pixels",
+	"font-size": "Font Size",
+	"preamble-template": "Preamble Template",
+	"rendering-interval-description": "Interval between renders (in seconds)",
+	"rendering-interval": "Rendering Interval"
 }

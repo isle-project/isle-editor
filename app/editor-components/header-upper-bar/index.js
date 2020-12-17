@@ -46,7 +46,7 @@ const HeaderUpperBar = ( props ) => {
 		className="unselectable"
 	>
 		<h3>
-			ISLE {props.title ? props.title : 'Editor'}
+			ISLE {props.title ? props.title : t('editor')}
 		</h3>
 		<div>
 			{ props.updateStatus ? <Fragment>
