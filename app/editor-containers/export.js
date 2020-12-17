@@ -33,7 +33,7 @@ const Export = ( props ) => {
 			/>
 		</Fragment>
 	);
-}
+};
 
 
 // PROPERTIES //
