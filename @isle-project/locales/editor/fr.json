@@ -6,6 +6,7 @@
 	"back-to-editor": "Retour à l'éditeur",
 	"cancel": "Annuler",
 	"center-editor-line": "Editeur central en ligne {{lineNumber}}",
+	"change-styling": "Changer de style",
 	"clear-terminal": "Clear Terminal",
 	"close": "Fermer",
 	"code-settings": "Paramètres des codes",

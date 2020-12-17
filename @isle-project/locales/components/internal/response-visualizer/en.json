@@ -25,7 +25,7 @@
 	"in-focus": "Component in focus",
 	"include-all": "Include <2>all</2> {{label}}s for any student.",
 	"include-first": "<1>Only</1> include first {{label}} for any student",
-	"include-latest": "<1>Only</1> include latest {label} for any student.",
+	"include-latest": "<1>Only</1> include latest {{label}} for any student.",
 	"interaction-rate-tooltip": "Interaction rate for currently active students",
 	"many-clusters": "Many clusters",
 	"no-data-available": "No data available (yet) to be visualized",

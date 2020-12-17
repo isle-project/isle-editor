@@ -237,7 +237,7 @@ const LineWrapper = ( props ) => {
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-palette"
-			title="Change styling"
+			title={t('change-styling')}
 			onClick={toggleComponentStyler}
 			onKeyPress={toggleComponentStyler}
 		></span>

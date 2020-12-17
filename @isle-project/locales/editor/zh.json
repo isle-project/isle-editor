@@ -6,6 +6,7 @@
 	"back-to-editor": "返回编辑部",
 	"cancel": "取消",
 	"center-editor-line": "编辑器居中线{{行号}}。",
+	"change-styling": "改变风格",
 	"clear-terminal": "清理终端",
 	"close": "关闭",
 	"code-settings": "代码设置",

@@ -3,7 +3,7 @@
 	"answer-submitted": "Antwoord ingediend.",
 	"answers": "Antwoorden",
 	"invalid-answer": "Ongeldig antwoord",
-	"invalid-range": "Je antwoord moet een getal zijn tussen {{min} en {max}.",
+	"invalid-range": "Je antwoord moet een getal zijn tussen {{min}} en {{max}}.",
 	"one-of": "een van",
 	"or": "of",
 	"question-closed": "De vraag is nu gesloten.",

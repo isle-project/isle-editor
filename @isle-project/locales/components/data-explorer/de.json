@@ -60,7 +60,7 @@
 	"example": "Beispiel",
 	"example-description-calculation": "Multiplizieren Sie Werte von <1>{{variable}}</1> mit <3>9/5</3> und addieren Sie <5>32</5>",
 	"example-description-exponential": "Natürliche Exponentialfunktion der Variablen <1>{{variable}}</1>",
-	"example-description-multiply": "Multiplizieren Sie die Werte der Variablen <1>{{first}}}</1> und <3>{{second}}</3>",
+	"example-description-multiply": "Multiplizieren Sie die Werte der Variablen <1>{{first}}</1> und <3>{{second}}</3>",
 	"Excess Kurtosis": "Exzessive Kurtosis",
 	"explanatory-variable": "Erklärende Variable (X):",
 	"filtered": "Gefiltert",

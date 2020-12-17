@@ -35,7 +35,7 @@
 	"predictions-attached": "Voorspellingen worden bij de gegevenstabel gevoegd",
 	"predictor": "Voorspeller",
 	"proportion-of-variance": "Aandeel van de variatie",
-	"regression-y-on-x": "Regressie van {y} op {x}",
+	"regression-y-on-x": "Regressie van {{y}} op {{x}}",
 	"residual-standard-error": "Resterende standaardafwijking",
 	"residuals": "Residuen",
 	"residuals-vs-fitted": "Residu's vs. Aangepast",

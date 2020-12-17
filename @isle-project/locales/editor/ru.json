@@ -6,6 +6,7 @@
 	"back-to-editor": "Вернуться к редактору",
 	"cancel": "Отменить",
 	"center-editor-line": "Центральный редактор в строке {{номер строки}}",
+	"change-styling": "Изменить стиль",
 	"clear-terminal": "Чистый терминал",
 	"close": "Закрыть",
 	"code-settings": "Настройки кода",

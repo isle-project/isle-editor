@@ -15,7 +15,7 @@
 	"documentation": "Documentation",
 	"update-downloaded": "Update downloaded.",
 	"update-available-tooltip": "Click on the button to the right to initiate download",
-	"update-downloaded-tooltip": "'New version of ISLE editor will be installed upon closing the application",
+	"update-downloaded-tooltip": "New version of ISLE editor will be installed upon closing the application",
 	"editable-source": "EDITABLE SOURCE",
 	"default": "Default",
 	"description": "Description",
@@ -109,5 +109,6 @@
 	"confirm-tag-deletion": "Are you sure you want to delete this element from the lesson?",
 	"open-tag-wizard": "Click to open component wizard for <{{tagName}} />",
 	"center-editor-line": "Center editor on line {{lineNumber}}",
-	"insert-at-line": "Click to insert component at line {{lineNumber}}"
+	"insert-at-line": "Click to insert component at line {{lineNumber}}",
+	"change-styling": "Change styling"
 }

@@ -25,7 +25,7 @@
 	"in-focus": "Componente a fuoco",
 	"include-all": "Includere <2>tutti</2> {{label}}s per ogni studente.",
 	"include-first": "<1>Solo</1> includono prima {{label}} per ogni studente",
-	"include-latest": "<1>Solo</1> includono l'ultima {label} per ogni studente.",
+	"include-latest": "<1>Solo</1> includono l'ultima {{label}} per ogni studente.",
 	"interaction-rate-tooltip": "Tasso di interazione per gli studenti attualmente attivi",
 	"many-clusters": "Molti cluster",
 	"no-data-available": "Nessun dato disponibile (ancora) da visualizzare",
