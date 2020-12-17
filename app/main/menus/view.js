@@ -1,29 +1,30 @@
 // MODULES //
 
+import i18next from 'i18next';
 import * as actions from './../actions';
 
 
 // VIEW MENU //
 
 const viewMenu = {
-	label: 'View',
+	label: i18next.t('view'),
 	submenu: [
 		{
-			label: 'Reload',
+			label: i18next.t('reload'),
 			accelerator: 'CmdOrCtrl+R',
 			click( item, focusedWindow ) {
 				actions.reload( focusedWindow );
 			}
 		},
 		{
-			label: 'Toggle Toolbar',
+			label: i18next.t('toggle-toolbar'),
 			accelerator: 'CmdOrCtrl+T',
 			click( item, focusedWindow ) {
 				actions.hideToolbar( focusedWindow );
 			}
 		},
 		{
-			label: 'Toggle Developer Tools',
+			label: i18next.t('toggle-developer-tools'),
 			accelerator: ( function getAccelerator() {
 				if ( process.platform === 'darwin' ) {
 					return 'Alt+Command+I';
@@ -37,7 +38,7 @@ const viewMenu = {
 			}
 		},
 		{
-			label: 'Toggle Full Screen',
+			label: i18next.t('toggle-full-screen'),
 			accelerator: ( function getAccelerator() {
 				if ( process.platform === 'darwin' ) {
 					return 'Ctrl+Command+F';
@@ -57,7 +58,7 @@ if ( process.platform === 'darwin' ) {
 	viewMenu.submenu.push({
 		type: 'separator'
 	}, {
-		label: 'Bring All to Front',
+		label: i18next.t('bring-all-to-front'),
 		role: 'front'
 	});
 }
