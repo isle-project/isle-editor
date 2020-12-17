@@ -14,6 +14,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import Card from 'react-bootstrap/Card';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import SettingsLogin from 'editor-components/settings-login';
+import LanguageSwitcher from './language-switcher';
 import './settings.css';
 
 
@@ -71,6 +72,7 @@ class Settings extends Component {
 										step={1}
 										defaultValue={parseInt( this.props.renderInterval / 1000, 10 )}
 									/>
+									<LanguageSwitcher />
 								</Col>
 								<Col md={7}>
 									<FormGroup className="settings-preamble-form-group">
