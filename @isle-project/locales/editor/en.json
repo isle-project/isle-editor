@@ -96,5 +96,18 @@
 	"release-to-students": "Release to Students?",
 	"lesson-name-invalid": "Please provide a lesson name of lowercase characters without spaces.",
 	"select-course": "Select Course",
-	"directory-placeholder": "Enter directory name..."
+	"directory-placeholder": "Enter directory name...",
+	"update-downloading-tooltip": "Please do not exit while download is in progress",
+	"update-downloading-percent": "Download in progress: {{percent}}% ({{version}}).",
+	"update-downloading-version": "Download in progress... ({{version}})",
+	"update-available": "Update available ({{version}}).",
+	"outer-title-multiline": "Double-click to highlight source code for <{{tagName}} /> (L{{startLineNumber}}-{{endLineNumber}})",
+	"outer-title-single": "Double-click to highlight source code for <{{tagName}} /> (L{{startLineNumber}})",
+	"delete-tag": "Delete <{{tagName}} /> from lesson",
+	"switch-tag-next": "Switch <{{tagName}} /> with next element",
+	"switch-tag-previous": "Switch <{{tagName}} /> with previous element",
+	"confirm-tag-deletion": "Are you sure you want to delete this element from the lesson?",
+	"open-tag-wizard": "Click to open component wizard for <{{tagName}} />",
+	"center-editor-line": "Center editor on line {{lineNumber}}",
+	"insert-at-line": "Click to insert component at line {{lineNumber}}"
 }

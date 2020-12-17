@@ -20,16 +20,19 @@ const HeaderUpperBar = ( props ) => {
 	let updateMsg;
 	switch ( props.updateStatus ) {
 		case 'available':
-			updateMsg = `Update available (${props.updateInfo.version}).`;
+			updateMsg = t('update-available', { version: props.updateInfo.version });
 			updateTooltip = t('update-available-tooltip');
 			break;
 		case 'downloading':
 			if ( props.updateDownloadPercent ) {
-				updateMsg = `Download in progress: ${round( props.updateDownloadPercent )}% (${props.updateInfo.version}).`;
+				updateMsg = t('update-downloading-percent', {
+					percent: round( props.updateDownloadPercent ),
+					version: props.updateInfo.version
+				});
 			} else {
-				updateMsg = `Download in progress... (${props.updateInfo.version}).`;
+				updateMsg = t('update-downloading-version', { version: props.updateInfo.version });
 			}
-			updateTooltip = 'Please do not exit while download is in progress';
+			updateTooltip = t('update-downloading-tooltip');
 			break;
 		case 'downloaded':
 			updateMsg = t('update-downloaded');

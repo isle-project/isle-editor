@@ -3,6 +3,7 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
+import { useTranslation } from 'react-i18next';
 import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
@@ -36,6 +37,7 @@ function isDOMElement( elem ) {
 */
 const LineWrapper = ( props ) => {
 	const [ style, setStyle ] = useState( null );
+	const { t } = useTranslation( 'Editor' );
 	const isMounted = useIsMounted();
 	const lineWrapper = useRef( null );
 	const tagNameRef = useRef( null );
@@ -181,7 +183,7 @@ const LineWrapper = ( props ) => {
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	const deleteElement = useCallback( () => {
 		vex.dialog.confirm({
-			unsafeMessage: 'Are you sure you want to delete this element from the lesson?',
+			unsafeMessage: t('confirm-tag-deletion'),
 			callback: ( value ) => {
 				if ( value ) {
 					jumpToElementInEditor({
@@ -194,7 +196,7 @@ const LineWrapper = ( props ) => {
 				}
 			}
 		});
-	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor, t ] );
 	const handleDoubleClick = useCallback( ( event ) => {
 		event.stopPropagation();
 		jumpToElementInEditor({
@@ -214,12 +216,12 @@ const LineWrapper = ( props ) => {
 			elementRangeAction: 'trigger_configurator'
 		});
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
-	let outerTitle = `Double-click to highlight source code for <${tagName} />`;
+	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
-		outerTitle += ` (L${startLineNumber})`;
+		outerTitle = t('outer-title-single', { tagName, startLineNumber });
 	}
 	else {
-		outerTitle += ` (L${startLineNumber}-${endLineNumber})`;
+		outerTitle += t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
 	}
 	const wrapperBar = <Fragment>
 		<span className="line-wrapper-tagname" ref={tagNameRef} >
@@ -228,7 +230,7 @@ const LineWrapper = ( props ) => {
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-open-configurator fa fa-cogs"
-			title={`Click to open configurator menu for <${tagName} />`}
+			title={t('open-tag-wizard', { tagName })}
 			onClick={handleConfiguratorTrigger}
 			onKeyPress={handleConfiguratorTrigger}
 		></span>
@@ -242,21 +244,21 @@ const LineWrapper = ( props ) => {
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-up"
-			title={`Switch <${tagName} /> with previous element`}
+			title={t('switch-tag-previous', { tagName })}
 			onClick={handleSwitchWithPrevious}
 			onKeyPress={handleSwitchWithPrevious}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-down"
-			title={`Switch <${tagName} /> with next element`}
+			title={t('switch-tag-next', { tagName })}
 			onClick={handleSwitchWithNext}
 			onKeyPress={handleSwitchWithNext}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-trash"
-			title={`Delete <${tagName} /> from lesson`}
+			title={t('delete-tag', { tagName })}
 			onClick={deleteElement}
 			onKeyPress={deleteElement}
 		></span>
