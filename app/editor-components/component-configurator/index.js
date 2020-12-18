@@ -162,7 +162,8 @@ class ComponentConfigurator extends Component {
 		value = removePlaceholderMarkup( value );
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
-			const { name, type, defaultValue } = p;
+			const { name, type, defaultValue, description } = p;
+			docProps[ i ].description = props.t( 'ComponentDocs:'+description );
 			propValues[ 'prop:'+name ] = defaultValue;
 			propertyTypes[ p.name ] = extractType( type, defaultValue );
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
@@ -193,7 +194,7 @@ class ComponentConfigurator extends Component {
 		this.defaultStrings = defaultStrings;
 		this.docProps = docProps;
 		this.session = new Session( {}, props.currentMode === 'offline' );
-		this.description = md.renderInline( doc.description || 'Component description is missing.' );
+		this.description = md.renderInline( doc.description ? props.t( 'ComponentDocs:'+doc.description ) : 'Component description is missing.' );
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {

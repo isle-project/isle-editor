@@ -64,7 +64,7 @@ class EditorContextMenu extends Component {
 		}
 		for ( let i = 0; i < arr.length; i++ ) {
 			const obj = arr[ i ];
-			const description = COMPONENT_DOCS[ obj.name ] ? COMPONENT_DOCS[ obj.name ].description : '';
+			const description = COMPONENT_DOCS[ obj.name ] ? this.props.t( 'ComponentDocs:'+COMPONENT_DOCS[ obj.name ].description ) : '';
 			if (
 				searchValue &&
 				!contains( lowercase( obj.name ), strippedSearchValue ) &&
@@ -92,7 +92,7 @@ class EditorContextMenu extends Component {
 	}
 
 	renderMenuItem = ( obj ) => {
-		const description = COMPONENT_DOCS[ obj.name ] ? COMPONENT_DOCS[ obj.name ].description : '';
+		const description = COMPONENT_DOCS[ obj.name ] ? this.props.t( 'ComponentDocs:'+COMPONENT_DOCS[ obj.name ].description ) : '';
 		return ( <MenuItem
 			key={obj.name}
 			data={obj}

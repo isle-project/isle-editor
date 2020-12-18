@@ -1,4 +1,4 @@
-/* eslint-disable no-new-func */
+/* eslint-disable no-new-func, no-console */
 
 'use strict';
 
@@ -79,6 +79,7 @@ function generateDefaultString( defaultValue ) {
 // MAIN //
 
 const DOCS = {};
+const TRANSLATIONS = {};
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
 	const tagName = REQUIRES_MAP[ '@isle-project/components/'+component ];
@@ -129,10 +130,12 @@ for ( let i = 0; i < files.length; i++ ) {
 			if ( tag.name === 'children' ) {
 				continue;
 			}
-			description[ tag.name ] = tag.description;
+			description[ tag.name ] = `${tagName}-prop-${tag.name}`;
+			TRANSLATIONS[ `${tagName}-prop-${tag.name}` ] = tag.description;
 		}
 	}
-	DOCS[ tagName ].description = componentDescription;
+	DOCS[ tagName ].description = `${tagName}-description`;
+	TRANSLATIONS[ `${tagName}-description` ] = componentDescription;
 	let typeMatch = RE_TYPES.exec( file );
 	if ( typeMatch ) {
 		const extractTypes = new Function( ...SCOPE_KEYS, 'return '+typeMatch[ 1 ]);
@@ -145,10 +148,10 @@ for ( let i = 0; i < files.length; i++ ) {
 			continue;
 		}
 		const defaultStr = generateDefaultString( defaults[ key ] );
-		str += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`;
+		str += `* __${key}__ | \`${types[ key ] }\`: ${TRANSLATIONS[ description[ key ] ]}. ${defaultStr}`; // eslint-disable-line i18next/no-literal-string
 		str += '\n';
 		if ( isFunction( defaults[ key ] ) ) {
-			defaults[ key ] = `function ${defaults[ key ].toString()}`;
+			defaults[ key ] = `function ${defaults[ key ].toString()}`; // eslint-disable-line i18next/no-literal-string
 		}
 		DOCS[ tagName ].props.push({
 			name: key,
@@ -177,5 +180,8 @@ for ( let i = 0; i < files.length; i++ ) {
 
 console.log( 'Write `documentation.json` file...' );
 fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
+
+console.log( 'Write translation `en.json` file...' );
+fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( TRANSLATIONS, null, 2 ) );
 
 console.log( 'Finished updating docs.' );
