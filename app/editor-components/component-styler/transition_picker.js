@@ -120,12 +120,12 @@ const SELECT_STYLES = {
 // FUNCTIONS //
 
 function createTransition({ type, duration, easing, delay }) {
-	let out = `${type} ${duration}s`;
+	let out = `${type} ${duration}s`; // eslint-disable-line i18next/no-literal-string
 	if ( easing ) {
 		out += ` ${easing}`;
 	}
 	if ( isNumber( delay ) ) {
-		out += ` ${delay}s`;
+		out += ` ${delay}s`; // eslint-disable-line i18next/no-literal-string
 	}
 	return out;
 }
@@ -142,7 +142,7 @@ const TransitionPicker = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Type
+					{props.t('type')}
 				</Form.Label>
 				<Col sm={6} >
 					<Select
@@ -165,7 +165,7 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Duration (in seconds)
+					{props.t('duration-in-seconds')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
@@ -178,7 +178,7 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Easing
+					{props.t('easing')}
 				</Form.Label>
 				<Col sm={6} >
 					<Select
@@ -200,7 +200,7 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Delay (in seconds)
+					{props.t('delay-in-seconds')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
@@ -215,7 +215,7 @@ const TransitionPicker = ( props ) => {
 				const transition = createTransition({ type, duration, easing, delay });
 				props.onChange( transition );
 			}} >
-				Add Transition
+				{props.t('add-transition')}
 			</Button>
 		</Fragment>
 	);

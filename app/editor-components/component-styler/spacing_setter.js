@@ -13,7 +13,9 @@ const SpacingSetter = ( props ) => {
 	return (
 		<div className="component-styler-spacing-outer" >
 			<div className="component-styler-spacing-container" >
-				<div className="component-styler-margin-legend" >MARGIN</div>
+				<div className="component-styler-margin-legend" >
+					{props.t('margin')}
+				</div>
 				<input
 					type="number"
 					className="component-styler-margin-number-top"
@@ -110,7 +112,9 @@ const SpacingSetter = ( props ) => {
 						props.onChange( newStyle );
 					}}
 				/>
-				<div className="component-styler-padding-legend">PADDING</div>
+				<div className="component-styler-padding-legend">
+					{props('padding')}
+				</div>
 				<div className="component-styler-spacing-inner-border"></div>
 				<div className="component-styler-spacing-center"></div>
 				<div className="component-styler-top-trapezoid"></div>

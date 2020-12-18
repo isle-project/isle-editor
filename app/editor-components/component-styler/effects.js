@@ -91,6 +91,7 @@ const Effects = ( props ) => {
 					props.onChange( newStyle );
 					setTransitions( newTransitions );
 				}}
+				t={props.t}
 			/>
 		</Fragment>
 	);

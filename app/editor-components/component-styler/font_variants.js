@@ -101,7 +101,9 @@ const FontVariants = ( props ) => {
 				</Col>
 			</Form.Group>
 			<hr />
-			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Text Shadows</p>
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
+				{props.t('text-shadows')}
+			</p>
 			<ListGroup>
 				{textShadows.map( ( transition, idx ) => {
 					return (
