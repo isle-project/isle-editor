@@ -134,6 +134,10 @@ for ( let i = 0; i < files.length; i++ ) {
 			TRANSLATIONS[ `${tagName}-prop-${tag.name}` ] = tag.description;
 		}
 	}
+	if ( tagName === void 0 ) {
+		console.log( 'Missing tag name for: '+fpath );
+		continue;
+	}
 	DOCS[ tagName ].description = `${tagName}-description`;
 	TRANSLATIONS[ `${tagName}-description` ] = componentDescription;
 	let typeMatch = RE_TYPES.exec( file );
