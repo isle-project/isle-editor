@@ -2,7 +2,8 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, I18nextProvider } from 'react-i18next';
+import { i18n } from '@isle-project/locales';
 import ReactDom from 'react-dom';
 import {
 	LiveProvider,
@@ -97,23 +98,29 @@ class Playground extends PureComponent {
 			code = '<h2>No live preview for this component</h2>';
 		}
 		if ( session.config.type === 'presentation' ) {
-			return `<Provider session={session}>
-				<Lesson
-					className="Presentation"
-				><Deck>${code}</Deck></Lesson>
-			</Provider>`;
+			return `<I18nextProvider i18n={i18n} >
+				<Provider session={session}>
+					<Lesson
+						className="Presentation"
+					><Deck>${code}</Deck></Lesson>
+				</Provider>
+			</I18nextProvider>`;
 		}
-		return `<Provider session={session}>
-			<Lesson
-				className="Lesson"
-			>${code}</Lesson>
-		</Provider>`;
+		return `<I18nextProvider i18n={i18n} >
+			<Provider session={session}>
+				<Lesson
+					className="Lesson"
+				>${code}</Lesson>
+			</Provider>
+		</I18nextProvider>`;
 	}
 
 	render() {
 		const scope = {
 			React,
 			session: this.context,
+			i18n: i18n,
+			I18nextProvider,
 			...this.props.scope
 		};
 		let { value } = this.state;
