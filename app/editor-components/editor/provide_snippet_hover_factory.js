@@ -6,7 +6,7 @@ import COMPONENT_DOCS from '@isle-project/components/documentation.json';
 
 // MAIN //
 
-function factory( monaco ) {
+function factory( monaco, t ) {
 	return provideHoverItems;
 
 	function provideHoverItems( model, position ) {
@@ -19,7 +19,7 @@ function factory( monaco ) {
 		const doc = COMPONENT_DOCS[ word ];
 		if ( doc ) {
 			contents.push({
-				value: `__${word}__: ${doc.description}`
+				value: `__${word}__: ${t('ComponentDocs:'+doc.description)}`
 			});
 			return {
 				contents
@@ -39,7 +39,7 @@ function factory( monaco ) {
 					const prop = docs.props[ i ];
 					if ( prop.name === word ) {
 						contents.push({
-							value: `__${prop.name}__: ${prop.description}`
+							value: `__${prop.name}__: ${t('ComponentDocs:'+prop.description)}`
 						});
 						contents.push({
 							value: `__type__: _${prop.type}_` // eslint-disable-line i18next/no-literal-string

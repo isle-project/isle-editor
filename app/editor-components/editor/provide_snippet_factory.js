@@ -14,7 +14,7 @@ const RE_TAG_START = /<[a-z]*$/i;
 
 // MAIN //
 
-function factory( monaco ) {
+function factory( monaco, t ) {
 	return provideCompletionItems;
 
 	function provideCompletionItems( model, position ) {
@@ -34,9 +34,9 @@ function factory( monaco ) {
 		) {
 			suggestions = componentSnippets.map( x => {
 				const docs = COMPONENT_DOCS[ x.name ];
-				let description = 'No documentation available';
+				let description = t('ComponentDocs:no-documentation-available');
 				if ( docs ) {
-					description = docs.description;
+					description = t('ComponentDocs:'+docs.description );
 				}
 				return {
 					label: x.name,

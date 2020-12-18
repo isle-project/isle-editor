@@ -58,7 +58,7 @@ function generateReplacement( defaultValue ) {
 
 // MAIN //
 
-function factory( monaco ) {
+function factory( monaco, t ) {
 	return provideCompletionItems;
 
 	function provideCompletionItems( model, position ) {
@@ -92,7 +92,7 @@ function factory( monaco ) {
 								title: 'Trigger new suggestion',
 								id: 'editor.action.triggerSuggest'
 							},
-							documentation: x.description,
+							documentation: t('ComponentDocs:'+x.description ),
 							kind: monaco.languages.CompletionItemKind.Snippet,
 							detail: x.type,
 							insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,

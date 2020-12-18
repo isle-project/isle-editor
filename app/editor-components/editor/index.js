@@ -165,13 +165,13 @@ class Editor extends Component {
 		if ( !this._attributeProvider ) {
 			this._attributeProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 				triggerCharacters: [ ' ', '\n' ],
-				provideCompletionItems: provideAttributeFactory( this.monaco )
+				provideCompletionItems: provideAttributeFactory( this.monaco, this.props.t )
 			});
 		}
 		if ( !this._snippetProvider ) {
 			this._snippetProvider = this.monaco.languages.registerCompletionItemProvider( 'javascript', {
 				triggerCharacters: [ '<' ],
-				provideCompletionItems: provideSnippetFactory( this.monaco )
+				provideCompletionItems: provideSnippetFactory( this.monaco, this.props.t )
 			});
 		}
 		if ( !this._preambleProvider ) {
@@ -187,7 +187,7 @@ class Editor extends Component {
 		}
 		if ( !this._snippetHoverProvider ) {
 			this._snippetHoverProvider = this.monaco.languages.registerHoverProvider( 'javascript', {
-				provideHover: provideSnippetHoverFactory( this.monaco )
+				provideHover: provideSnippetHoverFactory( this.monaco, this.props.t )
 			});
 		}
 		if ( !this._requireProvider ) {
