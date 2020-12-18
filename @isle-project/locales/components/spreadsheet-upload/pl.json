@@ -6,5 +6,6 @@
 	"first-row-names": "Pierwszy wiersz zawiera nazwy zmiennych",
 	"no-csv": "Brak pliku CSV.",
 	"no-csv-message": "Dostarczony plik nie jest plikiem CSV.",
+	"or": "lub",
 	"title": "Przesyłanie plików"
 }

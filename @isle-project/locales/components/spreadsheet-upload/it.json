@@ -6,5 +6,6 @@
 	"first-row-names": "La prima riga contiene i nomi delle variabili",
 	"no-csv": "Nessun file CSV.",
 	"no-csv-message": "Il file fornito non è un file CSV.",
+	"or": "oppure",
 	"title": "Caricamento file"
 }

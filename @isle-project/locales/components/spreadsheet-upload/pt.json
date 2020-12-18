@@ -6,5 +6,6 @@
 	"first-row-names": "A primeira linha contém nomes variáveis",
 	"no-csv": "Sem arquivo CSV.",
 	"no-csv-message": "O arquivo fornecido não é um arquivo CSV.",
+	"or": "ou",
 	"title": "Upload de arquivos"
 }

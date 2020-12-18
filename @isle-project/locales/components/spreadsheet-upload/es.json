@@ -6,5 +6,6 @@
 	"first-row-names": "La primera fila contiene nombres de variables",
 	"no-csv": "No hay archivo CSV.",
 	"no-csv-message": "El archivo suministrado no es un archivo CSV.",
+	"or": "o",
 	"title": "Subida de archivos"
 }

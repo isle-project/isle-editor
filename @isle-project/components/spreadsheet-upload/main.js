@@ -156,7 +156,7 @@ class SpreadsheetUpload extends Component {
 					}}
 					style={{ margin: 'auto' }}
 				/>
-				<p>or</p>
+				<p>{(t('or')}</p>
 				<div
 					onDrop={this.onFileDrop}
 					onDragOver={this.ignoreDrag}

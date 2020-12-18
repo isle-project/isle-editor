@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
@@ -111,8 +112,8 @@ class AnimationHelp extends Component {
 		return list;
 	}
 
-	getTextCommand(ndx) {
-		const item = textCommands[ndx];
+	getTextCommand( ndx ) {
+		const item = textCommands[ ndx ];
 		const infinite = item.command + ' infinite';
 		const style = {
 			animation: infinite
@@ -121,7 +122,7 @@ class AnimationHelp extends Component {
 		return (
 			<div onMouseOver={fcn} onFocus={fcn} style={{ width: '100%' }}>
 				<h4>{item.name}</h4>
-				<div style={style} className="textCommand">Text Command</div>
+				<div style={style} className="textCommand">{this.props.t('text-command')}</div>
 				<div className="codeBlock">
 					<code>animation: {item.command}</code>
 				</div>
@@ -171,7 +172,6 @@ class AnimationHelp extends Component {
 		case 4:
 			page = 'text';
 			break;
-
 		case 5:
 			page = 'text-effects';
 			break;
@@ -184,33 +184,34 @@ class AnimationHelp extends Component {
 	}
 
 	renderMenu() {
+		const { t } = this.props;
 		return (
-			<div className="menu">
+			<div className="menu" style={{ fontVariantCaps: 'titling-caps' }}>
 				<div role="menuitem" tabIndex={0}
 					onClick={() => this.setPage(1)}
 					onKeyDown={() => this.setPage(1)}
 					className="menu-item"
-				>ANIMATIONS</div>
+				>{t('animations')}</div>
 				<div role="menuitem" tabIndex={0}
 					onClick={() => this.setPage(4)}
 					onKeyDown={() => this.setPage(4)}
 					className="menu-item"
-				>TEXT ANIMATIONS</div>
+				>{t('text-animations')}</div>
 				<div role="menuitem" tabIndex={0}
 					onClick={() => this.setPage(5)}
 					onKeyDown={() => this.setPage(5)}
 					className="menu-item"
-				>TEXT EFFECTS</div>
+				>{t('text-effects')}</div>
 				<div role="menuitem" tabIndex={0}
 					onClick={()=>this.setPage(2)}
 					onKeyDown={() => this.setPage(2)}
 					className="menu-item"
-				>SHORTHAND</div>
+				>{t('shorthand')}</div>
 				<div role="menuitem" tabIndex={0}
 					onClick={()=>this.setPage(3)}
 					onKeyDown={() => this.setPage(3)}
 					className="menu-item"
-				>PRINCIPLES</div>
+				>{t('principles')}</div>
 			</div>
 		);
 	}
@@ -218,7 +219,7 @@ class AnimationHelp extends Component {
 	render() {
 		return (
 			<ReactDraggable cancel=".animation-help" >
-				<Panel className="animation-helper" header="Animation Help" onHide={this.props.onHide} >
+				<Panel className="animation-helper" header={this.props.t('animation-help')} onHide={this.props.onHide} >
 					{this.renderMenu()}
 					<hr />
 					<div className="animation-help">
@@ -244,4 +245,4 @@ AnimationHelp.defaultProps = {
 
 // EXPORTS //
 
-export default AnimationHelp;
+export default withTranslation( 'Editor' )( AnimationHelp );

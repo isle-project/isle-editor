@@ -203,5 +203,11 @@
 	"BrazilianPortuguese": "Brazilian Portuguese",
 	"Russian": "Russian",
 	"Chinese": "Chinese",
-	"switch-editor-language": "Switch Editor Language"
+	"switch-editor-language": "Switch Editor Language",
+	"text-command": "Text Command",
+	"animations": "Animations",
+	"text-animations": "Text Animations",
+	"principles": "Principles",
+	"text-effects": "Text Effects",
+	"shorthand": "Shorthand"
 }

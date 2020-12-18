@@ -6,5 +6,6 @@
 	"first-row-names": "第一行包含变量名称",
 	"no-csv": "没有CSV文件。",
 	"no-csv-message": "提供的文件不是CSV文件。",
+	"or": "或",
 	"title": "文件上传"
 }
