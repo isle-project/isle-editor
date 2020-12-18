@@ -1253,7 +1253,7 @@
 	"StatusBar-description": "Il manque une description.",
 	"StickyNote-description": "Une note adhésive rendant un certain texte.",
 	"StickyNote-prop-body": "texte de la note",
-	"StickyNote-prop-color": "soit \"rouge\", \"vert\", \"bleu\", \"rose\" ou \"orange",
+	"StickyNote-prop-color": "soit \"red\", \"green\", \"blue\", \"pink\" ou \"orange",
 	"StickyNote-prop-date": "une date affichée pour la note",
 	"StickyNote-prop-draggable": "contrôle si l'on doit pouvoir faire glisser la note",
 	"StickyNote-prop-editable": "contrôle si le composant est éditable",

@@ -1253,7 +1253,7 @@
 	"StatusBar-description": "Brakuje opisu.",
 	"StickyNote-description": "Lepka notatka wydzielająca jakiś tekst.",
 	"StickyNote-prop-body": "tekst notatki",
-	"StickyNote-prop-color": "`czerwony`, `zielony`, `niebieski`, `różowy` lub`pomarańczowy`",
+	"StickyNote-prop-color": "`red`, `green`, `blue`, `pink` lub `orange`",
 	"StickyNote-prop-date": "data wyświetlana dla notatki",
 	"StickyNote-prop-draggable": "kontroluje, czy można przeciągnąć notatkę dookoła",
 	"StickyNote-prop-editable": "kontroluje, czy dany element jest edytowalny",

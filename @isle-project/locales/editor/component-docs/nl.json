@@ -1253,7 +1253,7 @@
 	"StatusBar-description": "Beschrijving ontbreekt.",
 	"StickyNote-description": "Een plakbriefje dat wat tekst weergeeft.",
 	"StickyNote-prop-body": "tekst van de nota",
-	"StickyNote-prop-color": "ofwel `rood`, `groen`, `blauw`, `roze`, of `oranje`",
+	"StickyNote-prop-color": "ofwel `red`, `green`, `blue`, `pink`, of `orange`",
 	"StickyNote-prop-date": "een getoonde datum voor de notitie",
 	"StickyNote-prop-draggable": "controleert of men in staat moet zijn om het briefje rond te slepen",
 	"StickyNote-prop-editable": "controleert of het onderdeel bewerkbaar is",

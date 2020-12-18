@@ -1253,7 +1253,7 @@
 	"StatusBar-description": "说明缺失。",
 	"StickyNote-description": "一张便签渲染一些文字。",
 	"StickyNote-prop-body": "照会内容",
-	"StickyNote-prop-color": "`红`、`绿`、`蓝`、`粉红`或`橙色`中的任何一种",
+	"StickyNote-prop-color": "`red`、`green`、`blue`、`pink`或者 `orange`",
 	"StickyNote-prop-date": "显示日期",
 	"StickyNote-prop-draggable": "控制是否可以拖动音符。",
 	"StickyNote-prop-editable": "控制该组件是否可编辑",

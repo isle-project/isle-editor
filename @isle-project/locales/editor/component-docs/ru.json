@@ -1253,7 +1253,7 @@
 	"StatusBar-description": "Описание отсутствует.",
 	"StickyNote-description": "Липкая заметка, передающая какой-то текст.",
 	"StickyNote-prop-body": "текст примечания",
-	"StickyNote-prop-color": "либо красный, зеленый, синий, розовый, либо оранжевый...",
+	"StickyNote-prop-color": "либо `red`, `green`, `blue`, `pink`, либо `orange`...",
 	"StickyNote-prop-date": "отображаемая для заметки дата",
 	"StickyNote-prop-draggable": "контролирует, можно ли перетаскивать записку.",
 	"StickyNote-prop-editable": "управляет редактируемым компонентом",

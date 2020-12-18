@@ -1029,7 +1029,7 @@
 	"RPlot-prop-onDone": "プロットが作成されると `err`, `img`, `body` 引数で呼び出されるコールバック",
 	"RPlot-prop-prependCode": "評価時に `code` に格納されているコードの前に `string` または `array` の R コードスニペットを追加します。",
 	"RPlot-prop-width": "プロットの幅",
-	"RShell-description": "OpenCPU](https://www.opencpu.org/)を使ってクラウド上でRコマンドを実行できる対話型Rシェル。",
+	"RShell-description": "[OpenCPU](https://www.opencpu.org/)を使ってクラウド上でRコマンドを実行できる対話型Rシェル。",
 	"RShell-prop-addPreceding": "true に設定されている場合、シェルは現在のコンポーネントのすべてのコードと、レッスン内で発生したすべての以前のコードを評価します。",
 	"RShell-prop-chat": "グループチャット機能を有効にするかどうかを制御します。",
 	"RShell-prop-code": "評価対象のRコード",
