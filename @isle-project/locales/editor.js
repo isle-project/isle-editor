@@ -18,37 +18,48 @@ const rendererStore = new Store( 'isle-renderer' );
 const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
-		'Editor': () => import( './editor/de.json' )
+		'Editor': () => import( './editor/de.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/de.json' )
 	},
 	'en': {
-		'Editor': () => import( './editor/en.json' )
+		'Editor': () => import( './editor/en.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/en.json' )
 	},
 	'es': {
-		'Editor': () => import( './editor/es.json' )
+		'Editor': () => import( './editor/es.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/es.json' )
 	},
 	'fr': {
-		'Editor': () => import( './editor/fr.json' )
+		'Editor': () => import( './editor/fr.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/fr.json' )
 	},
 	'it': {
-		'Editor': () => import( './editor/it.json' )
+		'Editor': () => import( './editor/it.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/it.json' )
 	},
 	'ja': {
-		'Editor': () => import( './editor/ja.json' )
+		'Editor': () => import( './editor/ja.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/ja.json' )
 	},
 	'nl': {
-		'Editor': () => import( './editor/nl.json' )
+		'Editor': () => import( './editor/nl.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/nl.json' )
 	},
 	'pl': {
-		'Editor': () => import( './editor/pl.json' )
+		'Editor': () => import( './editor/pl.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/pl.json' )
 	},
 	'pt': {
-		'Editor': () => import( './editor/pt.json' )
+		'Editor': () => import( './editor/pt.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/pt.json' )
 	},
 	'ru': {
-		'Editor': () => import( './editor/ru.json' )
+		'Editor': () => import( './editor/ru.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/ru.json' )
 	},
 	'zh': {
-		'Editor': () => import( './editor/zh.json' )
+		'Editor': () => import( './editor/zh.json' ),
+		'ComponentDocs': () => import( './editor/component-docs/zh.json' )
 	}
 };
 
@@ -85,6 +96,7 @@ i18n.use( LanguageDetector )
 	.then( () => {
 		debug( 'Localization initialized for renderer process...' );
 		addResources( 'Editor' );
+		addResources( 'ComponentDocs' );
 	});
 
 export function changeLanguage( lng ) {
