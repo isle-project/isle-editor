@@ -1,24 +1,30 @@
-// MENUS //
+// MODULES //
 
-import edit from './menus/edit';
-import file from './menus/file';
-import isle from './menus/isle';
-import view from './menus/view';
-import help from './menus/help';
-import windowMenu from './menus/window';
+import { addResources } from './../../@isle-project/locales/editor';
+import createEditMenu from './menus/edit';
+import createFileMenu from './menus/file';
+import createISLE from './menus/isle';
+import createViewMenu from './menus/view';
+import createHelpMenu from './menus/help';
+import createWindowMenu from './menus/window';
+
+
+// VARIABLES //
+
+addResources( 'EditorMenu' );
 
 
 // MAIN //
 
 function configureMenu({ app }) {
-	const template = process.platform === 'darwin' ? [ isle({ app }) ] : [];
+	const template = process.platform === 'darwin' ? [ createISLE({ app }) ] : [];
 	return [
 		...template,
-		file,
-		edit,
-		view,
-		windowMenu,
-		help
+		createFileMenu(),
+		createEditMenu(),
+		createViewMenu(),
+		createWindowMenu(),
+		createHelpMenu()
 	];
 }
 
