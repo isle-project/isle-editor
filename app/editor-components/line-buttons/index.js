@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDrop } from 'react-dnd';
+import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
-import { useTranslation } from 'react-i18next';
 import { ContextMenuTrigger } from 'react-contextmenu';
 import { connect } from 'react-redux';
 import PINF from '@stdlib/constants/math/float64-pinf';
@@ -24,7 +24,6 @@ const debug = logger( 'isle:line-buttons' );
 * A line wrapper for use in the editor.
 */
 const LineButtons = ( props ) => {
-	const { t } = useTranslation( 'Editor' );
 	const [ { canDrop, isOver }, drop ] = useDrop({
 		accept: 'component-wrapper',
 		drop: ( item, monitor ) => {
@@ -90,7 +89,7 @@ const LineButtons = ( props ) => {
 				role="button" tabIndex={0}
 				onClick={jumpToLine}
 				onKeyPress={jumpToLine}
-				title={t('center-editor-line', { lineNumber: props.lineNumber })}
+				title={i18n.t('Editor:center-editor-line', { lineNumber: props.lineNumber })}
 			>
 				<span
 					className="fa fa-arrow-circle-left"
@@ -112,7 +111,7 @@ const LineButtons = ( props ) => {
 			>
 				<i
 					className={`line-buttons-contextmenu fas ${icon}`}
-					title={t('insert-at-line', { lineNumber: props.lineNumber })}
+					title={i18n.t('Editor:insert-at-line', { lineNumber: props.lineNumber })}
 					style={{ color }}
 				></i>
 			</ContextMenuTrigger>

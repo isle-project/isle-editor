@@ -2,8 +2,8 @@
 
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales/editor';
 import { useDrag } from 'react-dnd';
-import { useTranslation } from 'react-i18next';
 import logger from 'debug';
 import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
@@ -37,7 +37,6 @@ function isDOMElement( elem ) {
 */
 const LineWrapper = ( props ) => {
 	const [ style, setStyle ] = useState( null );
-	const { t } = useTranslation( 'Editor' );
 	const isMounted = useIsMounted();
 	const lineWrapper = useRef( null );
 	const tagNameRef = useRef( null );
@@ -183,7 +182,7 @@ const LineWrapper = ( props ) => {
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	const deleteElement = useCallback( () => {
 		vex.dialog.confirm({
-			unsafeMessage: t('confirm-tag-deletion'),
+			unsafeMessage: i18n.t('confirm-tag-deletion'),
 			callback: ( value ) => {
 				if ( value ) {
 					jumpToElementInEditor({
@@ -196,7 +195,7 @@ const LineWrapper = ( props ) => {
 				}
 			}
 		});
-	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor, t ] );
+	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	const handleDoubleClick = useCallback( ( event ) => {
 		event.stopPropagation();
 		jumpToElementInEditor({
@@ -218,10 +217,10 @@ const LineWrapper = ( props ) => {
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
-		outerTitle = t('outer-title-single', { tagName, startLineNumber });
+		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
 	}
 	else {
-		outerTitle += t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
+		outerTitle += i18n.t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
 	}
 	const wrapperBar = <Fragment>
 		<span className="line-wrapper-tagname" ref={tagNameRef} >
@@ -230,35 +229,35 @@ const LineWrapper = ( props ) => {
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-open-configurator fa fa-cogs"
-			title={t('open-tag-wizard', { tagName })}
+			title={i18n.t('open-tag-wizard', { tagName })}
 			onClick={handleConfiguratorTrigger}
 			onKeyPress={handleConfiguratorTrigger}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-palette"
-			title={t('change-styling')}
+			title={i18n.t('change-styling')}
 			onClick={toggleComponentStyler}
 			onKeyPress={toggleComponentStyler}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-up"
-			title={t('switch-tag-previous', { tagName })}
+			title={i18n.t('switch-tag-previous', { tagName })}
 			onClick={handleSwitchWithPrevious}
 			onKeyPress={handleSwitchWithPrevious}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-caret-down"
-			title={t('switch-tag-next', { tagName })}
+			title={i18n.t('switch-tag-next', { tagName })}
 			onClick={handleSwitchWithNext}
 			onKeyPress={handleSwitchWithNext}
 		></span>
 		<span
 			role="button" tabIndex={0}
 			className="line-wrapper-delete fa fa-trash"
-			title={t('delete-tag', { tagName })}
+			title={i18n.t('delete-tag', { tagName })}
 			onClick={deleteElement}
 			onKeyPress={deleteElement}
 		></span>
