@@ -1,11 +1,6 @@
-// MODULES //
-
-import { i18n } from './../../../@isle-project/locales/editor';
-
-
 // MAIN //
 
-const createEditMenu = () => {
+const createEditMenu = ( i18n ) => {
 	return {
 		label: i18n.t('EditorMenu:edit'),
 		submenu: [

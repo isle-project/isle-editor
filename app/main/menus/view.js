@@ -1,12 +1,11 @@
 // MODULES //
 
-import { i18n } from './../../../@isle-project/locales/editor';
 import * as actions from './../actions';
 
 
 // VIEW MENU //
 
-const createViewMenu = () => {
+const createViewMenu = ( i18n ) => {
 	const out = {
 		label: i18n.t('EditorMenu:view'),
 		submenu: [

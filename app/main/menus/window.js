@@ -1,11 +1,6 @@
-// MODULES //
-
-import { i18n } from './../../../@isle-project/locales/editor';
-
-
 // MAIN //
 
-const createWindowMenu = () => {
+const createWindowMenu = ( i18n ) => {
 	return {
 		label: i18n.t('EditorMenu:window'),
 		role: 'window',

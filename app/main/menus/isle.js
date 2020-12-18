@@ -1,11 +1,6 @@
-// MODULES //
-
-import { i18n } from './../../../@isle-project/locales/editor';
-
-
 // EXPORTS //
 
-export default function isleMenu({ app }) {
+export default function isleMenu({ app, i18n }) {
 	return {
 		label: 'ISLE',
 		submenu: [ {

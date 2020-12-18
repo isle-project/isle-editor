@@ -2,14 +2,13 @@
 
 import { net } from 'electron';
 import os from 'os';
-import { i18n } from './../../../@isle-project/locales/editor';
 import * as actions from './../actions';
 import pkg from './../../../package.json';
 
 
 // MAIN //
 
-const createHelpMenu = () => {
+const createHelpMenu = ( i18n ) => {
 	const out = {
 		label: i18n.t('EditorMenu:help'),
 		submenu: [
