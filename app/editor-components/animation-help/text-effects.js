@@ -53,19 +53,19 @@ function getEffects() {
 
 // MAIN //
 
-const TextEffects = () => {
+const TextEffects = ({ t }) => {
 	const list = getEffects();
 	const template = 'style = {{ fontSize: 60, animationDuration: \'5s\', backgroundImage: \'url(linear-gradient( 45deg, blue, yellow, red, white)\' }}';
 	return (
 		<div>
-			<div>Click the Clipboard button and copy the value in the className attribute</div>
+			<div>{t('copy-animation-to-clipboard')}</div>
 			<br />
 			<CopyToClipboard text={template}>
-			<span title="copy to clipboard" className="copy" />
+				<span title="copy to clipboard" className="copy" />
 			</CopyToClipboard>
 			<br />
 			<br />
-			<div>In case you want to modify animation speed, background-image, you can copy the respective style template into your element</div>
+			<div>{t('modify-animation')}</div>
 			<hr />
 			<div>
 				{list}

@@ -143,20 +143,22 @@ class AnimationHelp extends Component {
 	}
 
 	renderContent() {
-		if ( this.state.explanation === 'list' ) {
+		const { explanation } = this.state;
+		const { t } = this.props;
+		if ( explanation === 'list' ) {
 			return this.renderCommands();
 		}
-		if ( this.state.explanation === 'shorthand' ) {
-			return <Shorthand />;
+		if ( explanation === 'shorthand' ) {
+			return <Shorthand t={t} />;
 		}
-		if ( this.state.explanation === 'principles' ) {
-			return <Principles />;
+		if ( explanation === 'principles' ) {
+			return <Principles t={t} />;
 		}
-		if ( this.state.explanation === 'text' ) {
+		if ( explanation === 'text' ) {
 			return this.renderTextAnimations();
 		}
-		if ( this.state.explanation === 'text-effects' ) {
-			return <TextEffects />;
+		if ( explanation === 'text-effects' ) {
+			return <TextEffects t={t} />;
 		}
 	}
 

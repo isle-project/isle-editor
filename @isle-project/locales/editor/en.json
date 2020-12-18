@@ -209,5 +209,17 @@
 	"text-animations": "Text Animations",
 	"principles": "Principles",
 	"text-effects": "Text Effects",
-	"shorthand": "Shorthand"
+	"shorthand": "Shorthand",
+	"animation-principles": "Animation Principles",
+	"copy-animation-to-clipboard": "Click the Clipboard button and copy the value in the className attribute",
+	"modify-animation": "In case you want to modify the animation speed or background-image, you can copy the respective style template into your element",
+	"animation-intro": "There animation parameters you can specify in the style are the following",
+	"animation-name": "specifies a name for the @keyframes animation",
+	"animation-delay": "specifies a delay for the start of an animation",
+	"animation-direction": "defines whether an animation should be played forwards, backwards or in alternate cycles",
+	"animation-duration": "defines how long an animation should take to complete one cycle",
+	"animation-iteration-count": "specifies the number of times an animation should be played",
+	"animation-fill-mode": "applies styles to its target before and after its execution",
+	"animation-play-state": "specifies whether the animation is running or paused",
+	"animation-timing-function": "specifies the speed curve of an animation"
 }
