@@ -299,7 +299,7 @@ class FreeTextQuestion extends Component {
 						<FormControl
 							id={`${this.id}-textarea`}
 							as="textarea"
-							placeholder={this.props.placeholder}
+							placeholder={this.props.placeholder || this.props.t('enter-your-answer-here')}
 							onChange={this.handleChange}
 							style={{
 								resize: this.props.resizable ? 'both' : 'none'
@@ -375,7 +375,7 @@ FreeTextQuestion.defaultProps = {
 	instantSolution: false,
 	rows: 5,
 	chat: false,
-	placeholder: 'Enter your answer here...',
+	placeholder: '',
 	resizable: false,
 	disableSubmitNotification: false,
 	submissionMsg: '',
