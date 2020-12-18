@@ -8,6 +8,7 @@ import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
 import { autoUpdater } from 'electron-updater';
+import { i18n, addResources } from './@isle-project/locales/editor.main';
 import pkg from './package.json';
 import installExtensions from './app/utils/install-extensions';
 import addRecentFilesMenu from './app/main/add_recent_files_menu.js';
@@ -17,6 +18,7 @@ import addCustomTemplates from './app/main/add_custom_templates.js';
 // VARIABLES //
 
 const mainConfig = new Store( 'isle-main' );
+addResources( 'EditorMenu' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 
@@ -83,10 +85,18 @@ function onReady() {
 			}
 		}
 	});
-	Menu.setApplicationMenu( Menu.buildFromTemplate( configureMenu({ app }) ) );
-	addRecentFilesMenu();
-	addCustomTemplates();
 	installExtensions();
+
+	i18n.on( 'loaded', ( loaded ) => {
+		i18n.changeLanguage( i18n.language );
+	});
+
+	i18n.on( 'languageChanged', () => {
+		const menuTemplate = configureMenu({ app });
+		Menu.setApplicationMenu( Menu.buildFromTemplate( menuTemplate ) );
+		addRecentFilesMenu();
+		addCustomTemplates();
+	});
 }
 
 

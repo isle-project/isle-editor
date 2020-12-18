@@ -19,6 +19,7 @@
 
 import React, { Fragment, useState } from 'react';
 import { withTranslation } from 'react-i18next';
+import { ipcRenderer } from 'electron';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { changeLanguage } from '@isle-project/locales/editor';
@@ -34,6 +35,7 @@ const SelectModal = ( props ) => {
 		return () => {
 			props.onHide();
 			changeLanguage( lng );
+			ipcRenderer.send( 'change-language', { lng });
 		};
 	};
 	const { t } = props;
