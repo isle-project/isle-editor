@@ -2,10 +2,10 @@
 	"answer-resubmitted": "Answer re-submitted.",
 	"answer-submitted": "Answer submitted.",
 	"correct-answer": "Correct answer",
-	"success-message": "That's the correct answer!",
 	"failure-message": "Not quite.",
 	"resubmit": "Resubmit",
 	"resubmit-message": "You have successfully re-submitted your answer.",
 	"submit": "Submit",
-	"submit-message": "Your answer has been submitted."
+	"submit-message": "Your answer has been submitted.",
+	"success-message": "That's the correct answer!"
 }

@@ -4,8 +4,8 @@
 	"evaluate": "Evaluate",
 	"hide-solution": "Hide Solution",
 	"r-help": "R Help",
-	"reset-tooltip": "Reset the shell input to its default value.",
 	"reset": "Reset",
+	"reset-tooltip": "Reset the shell input to its default value.",
 	"show-solution": "Show Solution",
 	"solution-tooltip": "Solution becomes available once you have tried the exercise and used all hints."
 }

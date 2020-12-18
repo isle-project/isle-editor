@@ -1,6 +1,6 @@
 {
-	"anonymous-survey-tooltip": "Choose whether survey data should be collected anonymously or not",
 	"anonymous-survey": "Anonymous survey",
+	"anonymous-survey-tooltip": "Choose whether survey data should be collected anonymously or not",
 	"answer-recorded": "Answer recorded",
 	"answer-recorded-message": "Your answer was recorded successfully.",
 	"answer-slow-fast": "Is the speed \"Too Slow\" or \"Too Fast\"?",
@@ -18,9 +18,10 @@
 	"documentation": "Documentation",
 	"finish-poll": "Finish Poll",
 	"finish-survey": "Finish survey",
-	"help-queue": "Help Queue",
 	"help-click-instruction": "Click on an item in the menu to learn more about...",
 	"help-data-explorer": "<0>The ISLE data explorer allows you to analyze datasets using a point-and-click interface. The data explorer is split into two panes, a left-hand pane where you can toggle between a spreadsheet view of the data to be analyzed and other optional components such as a report writing editor or a list of questions. The right-hand side is an output pane that contains all the output (summary statistics, plots, results of hypothesis test) that you have created.</0><2>New outputs can be generated via the toolbox, which can be opened by clicking on the &quot;Show Toolbox&quot; button. A newly generated plot or table will be appended to the list of output elements show on the right-hand side:</2><4>The red buttons with the &quot;x&quot; icons can be used to delete individual output elements, whereas the &quot;Clear All&quot; button at the bottom will remove all output elements.</4><5>Using the buttons with a question mark on the data spreadsheet, report editor, or the toolbox will allow you to start a guided tour through the capabilities of the different pieces.</5>",
+	"help-queue": "Help Queue",
+	"hide-toolbar": "Hide toolbar",
 	"like-dislike": "Like / Dislike",
 	"maximum-num-attachments": "Reached maximum number of attachments",
 	"maximum-num-attachments-message": "You cannot upload more than six attachments per ticket.",
@@ -37,6 +38,7 @@
 	"queue": "Queue",
 	"range": "Range",
 	"response": "Response",
+	"show-toolbar": "Show toolbar",
 	"sketchpad": "Sketchpad",
 	"slow-fast": "Too slow / Too fast",
 	"start-survey": "Start Survey",
@@ -53,7 +55,5 @@
 	"title": "Title",
 	"title-placeholder": "Select title...",
 	"toggle-details": "Toggle Details",
-	"show-toolbar": "Show toolbar",
-	"hide-toolbar": "Hide toolbar",
 	"yes-no": "Yes / No"
 }

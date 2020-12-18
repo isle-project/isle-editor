@@ -6,6 +6,6 @@
 	"first-row-names": "First row contains variable names",
 	"no-csv": "No CSV file.",
 	"no-csv-message": "The supplied file is not a CSV file.",
-	"title": "File Upload",
-	"or": "or"
+	"or": "or",
+	"title": "File Upload"
 }

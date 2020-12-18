@@ -16,12 +16,12 @@
 	"instructor-view": "Instructor View",
 	"next-question": "Next Question",
 	"open-instructor-view": "Open Instructor View",
-	"time-up": "Your time is up.",
 	"question": "Question",
 	"quiz-finished": "You have finished the quiz.",
 	"solution": "Solution",
 	"somewhat-sure": "Somewhat sure",
 	"summary-label": " Here is a summary of your answers",
+	"time-up": "Your time is up.",
 	"your-answer": "Your answer",
 	"your-confidence": "Your Confidence"
 }
