@@ -3,6 +3,7 @@
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import logger from 'debug';
+import normalizeLanguageCode from './normalize_language_code.js';
 
 
 // VARIABLES //
@@ -710,6 +711,7 @@ i18n.use( LanguageDetector )
 	});
 
 export function changeLanguage( lng ) {
+	lng = normalizeLanguageCode( lng || 'en' );
 	const promises = [];
 	NAMESPACES.forEach( ns => {
 		if ( !i18n.hasResourceBundle( lng, ns ) ) {
@@ -732,11 +734,7 @@ export function changeLanguage( lng ) {
 
 export function addResources( ns ) {
 	let lng = i18n.language || ( windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) ) || 'en';
-	if ( lng === 'en-gb' || lng === 'en-us' ) {
-		lng = 'en';
-	} else if ( lng === 'pt-br' ) {
-		lng = 'pt';
-	}
+	lng = normalizeLanguageCode( lng );
 
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );

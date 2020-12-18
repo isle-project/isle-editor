@@ -1,13 +1,16 @@
 // MODULES // //
 
 import i18next from 'i18next';
+import Store from 'electron-store';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import logger from 'debug';
+import normalizeLanguageCode from './normalize_language_code.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:locales-editor-main' );
+const mainStore = new Store( 'isle-main' );
 
 
 // MAIN //
@@ -70,6 +73,7 @@ export const i18n = i18next.createInstance();
 i18n.use( LanguageDetector )
 	.init({
 		debug: !!process.env.DEBUG_I18N, // eslint-disable-line no-process-env
+		lng: mainStore.get( 'i18nLanguage' ),
 		fallbackLng: 'en',
 		ns: [ 'EditorMenu' ],
 		defaultNS: 'EditorMenu',
@@ -77,9 +81,14 @@ i18n.use( LanguageDetector )
 		interpolation: {
 			escapeValue: false // Not needed for React!
 		}
+	})
+	.then( () => {
+		debug( 'Localization initialized for main process...' );
+		addResources( 'EditorMenu' );
 	});
 
 export function changeLanguage( lng ) {
+	lng = normalizeLanguageCode( lng || 'en' );
 	const promises = [];
 	NAMESPACES.forEach( ns => {
 		if ( !i18n.hasResourceBundle( lng, ns ) ) {
@@ -101,12 +110,7 @@ export function changeLanguage( lng ) {
 }
 
 export function addResources( ns ) {
-	let lng = i18n.language || 'en';
-	if ( lng === 'en-gb' || lng === 'en-us' ) {
-		lng = 'en';
-	} else if ( lng === 'pt-br' ) {
-		lng = 'pt';
-	}
+	const lng = normalizeLanguageCode( i18n.language || 'en' );
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );
 	if ( !TRANSLATIONS[ lng ] ) {

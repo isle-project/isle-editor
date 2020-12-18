@@ -5,7 +5,6 @@ import { createHashHistory } from 'history';
 import Root from 'editor-containers/root';
 import configureStore from 'store/configure_store.js';
 import configureIpcRenderer from './configure_ipc_renderer.js';
-import { addResources } from '@isle-project/locales';
 import './app.global.css';
 
 
@@ -13,7 +12,6 @@ import './app.global.css';
 
 const history = createHashHistory();
 const store = configureStore();
-addResources( 'Editor' );
 configureIpcRenderer( store );
 
 

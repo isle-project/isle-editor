@@ -1,17 +1,12 @@
 // MODULES //
 
-import { addResources, i18n } from './../../@isle-project/locales/editor.main';
+import { i18n } from './../../@isle-project/locales/editor.main';
 import createEditMenu from './menus/edit';
 import createFileMenu from './menus/file';
 import createISLE from './menus/isle';
 import createViewMenu from './menus/view';
 import createHelpMenu from './menus/help';
 import createWindowMenu from './menus/window';
-
-
-// VARIABLES //
-
-addResources( 'EditorMenu' );
 
 
 // MAIN //
