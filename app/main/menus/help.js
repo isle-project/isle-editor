@@ -90,4 +90,4 @@ const createHelpMenu = ( i18n ) => {
 
 // EXPORTS //
 
-export default createHelpMenu
+export default createHelpMenu;
