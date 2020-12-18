@@ -1,6 +1,7 @@
 // MODULES //
 
 import { Menu, MenuItem } from 'electron';
+import { i18n } from './../../@isle-project/locales/editor.main';
 import objectKeys from '@stdlib/utils/keys';
 import * as actions from './actions.js';
 import config from './../store/main.js';
@@ -56,14 +57,14 @@ function addCustomTemplates() {
 
 	for ( let i = 0; i < currentMenu.items.length; i++ ) {
 		const item = currentMenu.items[ i ];
-		if ( item.label === 'File' ) {
+		if ( item.label === i18n.t('file') ) {
 			fileMenu = currentMenu.items[ i ];
 		}
 	}
 	if ( fileMenu ) {
 		for ( let i = 0; i < fileMenu.submenu.items.length; i++ ) {
 			const item = fileMenu.submenu.items[ i ];
-			if ( item.label === 'New From Template' ) {
+			if ( item.label === i18n.t('new-from-template') ) {
 				customTemplates = fileMenu.submenu.items[ i ];
 			}
 		}
