@@ -42,7 +42,7 @@ function factory( monaco ) {
 							value: `__${prop.name}__: ${prop.description}`
 						});
 						contents.push({
-							value: `__type__: _${prop.type}_`
+							value: `__type__: _${prop.type}_` // eslint-disable-line i18next/no-literal-string
 						});
 					}
 				}
