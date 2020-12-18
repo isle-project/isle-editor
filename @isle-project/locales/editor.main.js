@@ -110,7 +110,7 @@ export function changeLanguage( lng ) {
 }
 
 export function addResources( ns ) {
-	const lng = normalizeLanguageCode( i18n.language || 'en' );
+	let lng = normalizeLanguageCode( i18n.language || 'en' );
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );
 	if ( !TRANSLATIONS[ lng ] ) {
