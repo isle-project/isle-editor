@@ -145,7 +145,7 @@ class ComponentConfigurator extends Component {
 			name: 'id',
 			type: 'string',
 			defaultValue: '',
-			description: 'Component identifier. Has to begin with a letter followed by letters, digits, hyphens ( - ), underscores ( _ ), colons ( : ), and periods ( . ).'
+			description: this.props.t('id-description')
 		});
 
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
@@ -184,7 +184,7 @@ class ComponentConfigurator extends Component {
 				name: 'children',
 				type: '(string|node)',
 				defaultValue: '',
-				description: 'Content between opening and closing tag'
+				description: this.props.t('children-description')
 			});
 			this.RE_CHILDREN = new RegExp( '^\\s*<'+name+'\\s*>'+EOL+'?([\\s\\S]*?)'+EOL+'?</'+name+'>' );
 			isRequired[ 'children' ] = true;
@@ -528,6 +528,7 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < props.length; i++ ) {
 			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
+			prop.description = this.props.t( 'ComponentDocs:'+description );
 			if (
 				searchValue &&
 				!contains( lowercase( name || '' ), searchValue ) &&
