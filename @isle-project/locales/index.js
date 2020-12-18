@@ -1,6 +1,5 @@
 // MODULES //
 
-import React from 'react';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import logger from 'debug';
@@ -732,9 +731,18 @@ export function changeLanguage( lng ) {
 }
 
 export function addResources( ns ) {
-	const lng = i18n.language || ( windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) ) || 'en';
+	let lng = i18n.language || ( windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) ) || 'en';
+	if ( lng === 'en-gb' || lng === 'en-us' ) {
+		lng = 'en';
+	} else if ( lng === 'pt-br' ) {
+		lng = 'pt';
+	}
+
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );
+	if ( !TRANSLATIONS[ lng ] ) {
+		lng = 'en';
+	}
 	const res = TRANSLATIONS[ lng ][ ns ];
 	if ( res ) {
 		res().then( ( data ) => {

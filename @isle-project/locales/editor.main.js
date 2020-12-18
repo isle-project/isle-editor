@@ -101,9 +101,17 @@ export function changeLanguage( lng ) {
 }
 
 export function addResources( ns ) {
-	const lng = i18n.language || 'en';
+	let lng = i18n.language || 'en';
+	if ( lng === 'en-gb' || lng === 'en-us' ) {
+		lng = 'en';
+	} else if ( lng === 'pt-br' ) {
+		lng = 'pt';
+	}
 	debug( `Loading translations for ${ns} in language ${lng}...` );
 	NAMESPACES.add( ns );
+	if ( !TRANSLATIONS[ lng ] ) {
+		lng = 'en';
+	}
 	const res = TRANSLATIONS[ lng ][ ns ];
 	if ( res ) {
 		res().then( ( data ) => {
