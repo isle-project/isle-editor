@@ -113,7 +113,7 @@ const SpacingSetter = ( props ) => {
 					}}
 				/>
 				<div className="component-styler-padding-legend">
-					{props('padding')}
+					{props.t('padding')}
 				</div>
 				<div className="component-styler-spacing-inner-border"></div>
 				<div className="component-styler-spacing-center"></div>

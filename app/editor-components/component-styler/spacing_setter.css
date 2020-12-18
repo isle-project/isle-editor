@@ -81,6 +81,7 @@
 	font-size: 14px;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
+	font-variant-caps: titling-caps;
 }
 
 .component-styler-margin-number-top {
@@ -150,6 +151,7 @@
 	font-size: 14px;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
+	font-variant-caps: titling-caps;
 }
 
 .component-styler-padding-number-left {
