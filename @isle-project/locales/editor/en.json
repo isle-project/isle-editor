@@ -221,5 +221,7 @@
 	"animation-iteration-count": "specifies the number of times an animation should be played",
 	"animation-fill-mode": "applies styles to its target before and after its execution",
 	"animation-play-state": "specifies whether the animation is running or paused",
-	"animation-timing-function": "specifies the speed curve of an animation"
+	"animation-timing-function": "specifies the speed curve of an animation",
+	"no-update-available": "There is currently no update available...",
+	"new-version-available": "A new version ({{newVersion}}) is available for download:"
 }

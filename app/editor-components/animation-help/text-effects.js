@@ -58,14 +58,18 @@ const TextEffects = ({ t }) => {
 	const template = 'style = {{ fontSize: 60, animationDuration: \'5s\', backgroundImage: \'url(linear-gradient( 45deg, blue, yellow, red, white)\' }}';
 	return (
 		<div>
-			<div>{t('copy-animation-to-clipboard')}</div>
+			<div>
+				{t('copy-animation-to-clipboard')}
+			</div>
 			<br />
 			<CopyToClipboard text={template}>
 				<span title="copy to clipboard" className="copy" />
 			</CopyToClipboard>
 			<br />
 			<br />
-			<div>{t('modify-animation')}</div>
+			<div>
+				{t('modify-animation')}
+			</div>
 			<hr />
 			<div>
 				{list}
