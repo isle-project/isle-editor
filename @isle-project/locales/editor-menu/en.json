@@ -32,7 +32,13 @@
 	"save-file-as": "Save File As",
 	"import-from-gist": "Import Templates from Gist",
 	"new-from-template": "New From Template",
-	"create-template-with-template": "From this File with Preamble",
-	"create-template-without-template": "From this File without Preamble",
-	"please-connect-to-github": "Please link to your GitHub account in order to use this feature"
+	"create-template-with-preamble": "From this File with Preamble",
+	"create-template-without-preamble": "From this File without Preamble",
+	"please-connect-to-github": "Please link to your GitHub account in order to use this feature",
+	"cut": "Cut",
+	"copy": "Copy",
+	"paste": "Paste",
+	"delete": "Delete",
+	"select-all": "Select all"
 }
+
