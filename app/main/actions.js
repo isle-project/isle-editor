@@ -5,7 +5,7 @@ import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
 import { autoUpdater } from 'electron-updater';
-import { i18n } from './../../@isle-project/locales/editor.main';
+import { changeLanguage } from './../../@isle-project/locales/editor.main';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
 import window from './window_manager.js';
@@ -105,7 +105,8 @@ ipcMain.on( 'download-update', () => {
 });
 
 ipcMain.on( 'change-language', ( e, { lng } ) => {
-	i18n.changeLanguage( lng );
+	debug( `Switch to "${lng}" in main process...` ); // eslint-disable-line no-console
+	changeLanguage( lng );
 });
 
 
@@ -118,7 +119,7 @@ export function hideToolbar( browserWindow ) {
 }
 
 export function openBrowser( url ) {
-	debug( `Should open ${url} in the default browser...` ); // eslint-disable-line no-console
+	debug( `Should open ${url} in the default browser...` );
 	exec( 'xdg-open ' + url );
 }
 
