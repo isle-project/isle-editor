@@ -242,7 +242,7 @@ class Preview extends Component {
 			let elements = '[';
 			if ( isObjectArray( preamble.toolbar ) ) {
 				preamble.toolbar.forEach( ( x, i ) => {
-					elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`;
+					elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`; // eslint-disable-line i18next/no-literal-string
 					if ( i < preamble.toolbar.length - 1 ) {
 						elements += ', ';
 					}
@@ -257,6 +257,8 @@ class Preview extends Component {
 
 		// Prepend empty lines so line numbers in error stack traces match:
 		code = repeat( '\n', noEmptyLines ) + code;
+
+		// eslint-disable-next-line i18next/no-literal-string
 		code = `<Lesson
 			className="${preamble.type === 'presentation' ? 'Presentation' : 'Lesson'}"
 			style={{

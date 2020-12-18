@@ -20,7 +20,7 @@ async function listGists( page = 0 ) {
 	{
 		headers: {
 			'Accept': 'application/vnd.github.v3+json',
-			'Authorization': `token ${accessToken}`
+			'Authorization': `token ${accessToken}` // eslint-disable-line i18next/no-literal-string
 		}
 	});
 	return res;
