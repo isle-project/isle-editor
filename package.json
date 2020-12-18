@@ -1858,8 +1858,6 @@
       "app/app.ico",
       "app/app.png",
       "package.json",
-      "main.js",
-      "main.js.map",
       "!node_modules/**/*"
     ],
     "fileAssociations": {
