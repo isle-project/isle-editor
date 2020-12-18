@@ -6,6 +6,7 @@ import React from 'react';
 // MAIN //
 
 const AnimationPrinciples = ({ t }) => {
+	/* eslint-disable i18next/no-literal-string */
 	return (
 		<div>
 			<h4>{t('animation-principles')}</h4>
@@ -22,6 +23,7 @@ const AnimationPrinciples = ({ t }) => {
 			<li><a href="https://www.w3schools.com/cssref/css3_pr_animation-play-state.asp" target="_blank">animationPlayState</a>  <span className="param">&apos;paused&apos;</span> ({t('animation-play-state')})</li>
 		</div>
 	);
+	/* eslint-enable i18next/no-literal-string */
 };
 
 
