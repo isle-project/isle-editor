@@ -17,7 +17,7 @@ const smp = new SpeedMeasurePlugin({
 	disable: !process.env.MEASURE // eslint-disable-line no-process-env
 });
 const port = process.env.PORT || 1212; // eslint-disable-line no-process-env
-const publicPath = `http://localhost:${port}/dist`;
+const publicPath = `http://localhost:${port}/dist`; // eslint-disable-line i18next/no-literal-string
 
 
 // MAIN //
@@ -34,7 +34,7 @@ const config = smp.wrap({
 
 	output: {
 		...baseConfig.output,
-		publicPath: `http://localhost:${port}/dist/`,
+		publicPath: `http://localhost:${port}/dist/`, // eslint-disable-line i18next/no-literal-string
 		pathinfo: false,
 		filename: 'renderer.dev.js'
 	},

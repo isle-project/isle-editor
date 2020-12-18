@@ -121,19 +121,19 @@ function configureIpcRenderer( store ) {
 					if ( !includePreamble ) {
 						text = replace( text, RE_PREAMBLE, '---\n<preamble>\n---' );
 					}
-					if ( config.has( `templates.${value}` ) ) {
+					if ( config.has( `templates.${value}` ) ) { // eslint-disable-line i18next/no-literal-string
 						vex.dialog.confirm({
 							message: 'A template with the chosen name already exists. Do you wish to proceed and overwrite the existing template?',
 							callback( bool ) {
 								if ( bool ) {
-									config.set( `templates.${value}`, text );
+									config.set( `templates.${value}`, text ); // eslint-disable-line i18next/no-literal-string
 									vex.dialog.alert( 'Template successfully created!' );
 									ipcRenderer.send( 'redraw-templates-menu' );
 								}
 							}
 						});
 					} else {
-						config.set( `templates.${value}`, text );
+						config.set( `templates.${value}`, text ); // eslint-disable-line i18next/no-literal-string
 						vex.dialog.alert( 'Template successfully created!' );
 						ipcRenderer.send( 'redraw-templates-menu' );
 					}
@@ -158,7 +158,7 @@ function configureIpcRenderer( store ) {
 					for ( let i = 0; i < keys.length; i++ ) {
 						const key = keys[ i ];
 						const { content } = files[ key ];
-						let name = `templates.${basename( key, extname( key ) )}`;
+						let name = `templates.${basename( key, extname( key ) )}`; // eslint-disable-line i18next/no-literal-string
 						let freeName = name;
 						let idx = 2;
 						while ( config.has( freeName ) ) {

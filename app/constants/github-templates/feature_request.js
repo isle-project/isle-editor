@@ -1,3 +1,5 @@
+/* eslint-disable i18next/no-literal-string */
+
 // MAIN //
 
 const template = `**Is your feature request related to a problem? Please describe.**
