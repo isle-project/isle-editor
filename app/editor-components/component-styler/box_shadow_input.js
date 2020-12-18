@@ -35,7 +35,7 @@ const BoxShadowInput = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					Type
+					{props.t('type')}
 				</Form.Label>
 				<Col sm={10} >
 					<ToggleButtonGroup
@@ -55,20 +55,20 @@ const BoxShadowInput = ( props ) => {
 							variant="outline-secondary"
 							value={false}
 						>
-							Outside
+							{props.t('outside')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value={true}
 						>
-							Inside
+							{props.t('inside')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					Angle
+					{props.t('angle')}
 				</Form.Label>
 				<Col sm={2} >
 					<Form.Control
@@ -114,7 +114,7 @@ const BoxShadowInput = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					Color
+					{props.t('color')}
 				</Form.Label>
 				<Col sm={1} >
 					<ColorPicker
@@ -145,7 +145,7 @@ const BoxShadowInput = ( props ) => {
 				}
 				setState( DEFAULT_STATE );
 			}} >
-				Add Shadow
+				{props.t('add-shadow')}
 			</Button>
 		</Fragment>
 	);

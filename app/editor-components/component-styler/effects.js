@@ -34,7 +34,7 @@ const Effects = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					Opacity (in %)
+					{props.t('opacity')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
@@ -52,7 +52,9 @@ const Effects = ( props ) => {
 				</Col>
 			</Form.Group>
 			<hr />
-			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Transitions</p>
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
+				{props.t('transitions')}
+			</p>
 			<ListGroup>
 				{transitions.map( ( transition, idx ) => {
 					return (
@@ -71,13 +73,13 @@ const Effects = ( props ) => {
 								}}
 								style={{ float: 'right' }}
 							>
-								x
+								<div className="fa fa-times" />
 							</Button>
 						</ListGroup.Item>
 					);
 				})}
 			</ListGroup>
-			{transitions.length === 0 ? <p>No transitions currently applied</p> : null}
+			{transitions.length === 0 ? <p>{props.t('no-transitions')}</p> : null}
 			<hr />
 			<TransitionPicker
 				style={props.style}

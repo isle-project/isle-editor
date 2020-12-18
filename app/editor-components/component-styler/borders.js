@@ -112,7 +112,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={5} >
-					Border Style
+					{t('border-style')}
 				</Form.Label>
 				<Col sm={7} >
 					<ToggleButtonGroup
@@ -131,14 +131,14 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="none"
-							title="None"
+							title={t('none')}
 						>
 							<i className="fas fa-times"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="solid"
-							title="Solid"
+							title={t('solid')}
 							style={{ width: 42 }}
 						>
 							<span className="component-styler-unicode-solid">&#9135;</span>
@@ -146,14 +146,14 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="dotted"
-							title="Dotted"
+							title={t('dotted')}
 						>
 							<i className="fas fa-ellipsis-h"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="dashed"
-							title="Dashed"
+							title={t('dashed')}
 							style={{ width: 42 }}
 						>
 							<span className="component-styler-unicode-dashed">&#65101;</span>
@@ -194,7 +194,7 @@ const Borders = ( props ) => {
 				<Col sm={3} >
 					<div className="component-styler-border-selector" >
 						<div className="component-styler-border-graphical-box" >
-							<Tooltip tooltip="Change all borders" >
+							<Tooltip tooltip={props.t('change-all-borders')} >
 								<div
 									role="button" tabIndex={0}
 									className={`component-styler-border-graphical-box-inside ${activeBorder === 'all' ? 'active' : ''}`}
@@ -202,28 +202,28 @@ const Borders = ( props ) => {
 								/>
 							</Tooltip>
 						</div>
-						<Tooltip tooltip="Change left border" >
+						<Tooltip tooltip={props.t('change-left-border')} >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-left ${activeBorder === 'left' ? 'active' : ''}`}
 								onClick={handleLeftClick} onKeyPress={handleLeftClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip="Change top border" placement="top" >
+						<Tooltip tooltip={props.t('change-top-border')} placement="top" >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-top ${activeBorder === 'top' ? 'active' : ''}`}
 								onClick={handleTopClick} onKeyPress={handleTopClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip="Change bottom border" >
+						<Tooltip tooltip={props.t('change-bottom-border')} >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-bottom ${activeBorder === 'bottom' ? 'active' : ''}`}
 								onClick={handleBottomClick} onKeyPress={handleBottomClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip="Change right border" placement="bottom" >
+						<Tooltip tooltip={props.t('change-right-border')} placement="bottom" >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-right ${activeBorder === 'right' ? 'active' : ''}`}
@@ -235,6 +235,7 @@ const Borders = ( props ) => {
 				<Col sm={9} >
 					<BorderInputs
 						activeBorder={activeBorder}
+						t={props.t}
 						style={props.style} onChange={( border ) => {
 							const newStyle = omit( props.style, [ 'border', 'borderLeft', 'borderTop', 'borderRight', 'borderBottom' ] );
 							if ( activeBorder === 'all' ) {
@@ -275,6 +276,7 @@ const Borders = ( props ) => {
 					newStyle.borderRadius = borderRadius;
 					props.onChange( newStyle );
 				}}
+				t={props.t}
 			/>
 		</Fragment>
 	);

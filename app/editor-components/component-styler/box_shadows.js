@@ -60,6 +60,7 @@ const BoxShadows = ( props ) => {
 					newStyle.boxShadow = newShadows.join( ', ' );
 					props.onChange( newStyle );
 				}}
+				t={props.t}
 			/>
 		</Fragment>
 	);

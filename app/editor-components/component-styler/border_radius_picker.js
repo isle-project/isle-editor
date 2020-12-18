@@ -78,7 +78,9 @@ const BorderRadiusPicker = ( props ) => {
 	const [ radii, setRadii ] = useState( initial.radii );
 	return (
 		<Fragment>
-			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Border Radius</p>
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
+				{props.t('border-radius')}
+			</p>
 			<Row>
 				<UnitInputBase
 					label="All"
