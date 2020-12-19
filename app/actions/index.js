@@ -44,6 +44,12 @@ export function createdFromTemplate({ template, preamble, preambleText }) {
 	};
 }
 
+export function createdNewFile() {
+	return {
+		type: types.CREATED_NEW_FILE
+	};
+}
+
 export function saveSpellingErrors( errors ) {
 	return {
 		type: types.SPELLING_ERRORS,
