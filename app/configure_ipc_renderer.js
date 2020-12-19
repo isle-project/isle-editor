@@ -67,6 +67,10 @@ function configureIpcRenderer( store ) {
 		config.set( 'recentFiles', fileList );
 	});
 
+	ipcRenderer.on( 'create-new-file', () => {
+		store.dispatch( actions.createdNewFile() );
+	});
+
 	ipcRenderer.on( 'created-from-template', ( e, { name }) => {
 		let template;
 		let preambleAdditions;
@@ -107,6 +111,10 @@ function configureIpcRenderer( store ) {
 			preamble = mergePrambles( preamble, preambleAdditions );
 			const preambleText = trim( yaml.safeDump( preamble ) );
 			store.dispatch( actions.createdFromTemplate({ template, preamble, preambleText }) );
+			store.dispatch( actions.updatePreamble({
+				preamble,
+				preambleText
+			}) );
 		});
 	});
 
@@ -262,6 +270,7 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'prepare-reload', () => {
 		debug( 'Prepare reload...' );
+		config.set( 'shouldReload', true );
 		const state = store.getState().editor;
 		const { markdown, filePath, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );

@@ -19,36 +19,43 @@ import today from '@isle-project/utils/today';
 const mainStore = new Store( 'isle-main' );
 const debug = logger( 'isle-editor:reducers' );
 const RE_CLASSNAME = /(\.[a-z][_a-z0-9-]*)(?=[^}"]*{)/gi;
-let filePath = mainStore.get( 'mostRecentFilePath' );
-if ( !exists.sync( filePath ) ) {
-	filePath = null;
-}
-let preambleText;
-let preamble;
-let fileName;
-let md = mainStore.get( 'mostRecentFileData' );
-const preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
-if ( filePath ) {
-	if ( !md ) {
-		debug( `Reading file at ${filePath}` );
-		md = readFileSync( filePath, 'utf-8' );
+
+let preambleText = '';
+let preamble = {};
+let fileName = null;
+let filePath = null;
+let md = '';
+let authorMatch;
+if ( mainStore.get( 'shouldReload' ) ) {
+	filePath = mainStore.get( 'mostRecentFilePath' );
+	if ( !exists.sync( filePath ) ) {
+		filePath = null;
 	}
-	preamble = mainStore.get( 'mostRecentPreamble' );
-	preambleText = mainStore.get( 'mostRecentPreambleText' );
-	fileName = basename( filePath );
+	md = mainStore.get( 'mostRecentFileData' );
+	const preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
+	if ( filePath ) {
+		if ( !md ) {
+			debug( `Reading file at ${filePath}` );
+			md = readFileSync( filePath, 'utf-8' );
+		}
+		preamble = mainStore.get( 'mostRecentPreamble' );
+		preambleText = mainStore.get( 'mostRecentPreambleText' );
+		fileName = basename( filePath );
+	}
+	else {
+		md = template;
+		md = replace( md, '<preamble>', preambleTemplate );
+		md = replace( md, '<today>', today() );
+	}
+	const RE_AUTHOR = /author: ([^\n]+)/;
+	authorMatch = preambleTemplate.match( RE_AUTHOR );
+	mainStore.set( 'shouldReload', false );
 }
-else {
-	md = template;
-	md = replace( md, '<preamble>', preambleTemplate );
-	md = replace( md, '<today>', today() );
-}
-const RE_AUTHOR = /author: ([^\n]+)/;
-const authorMatch = preambleTemplate.match( RE_AUTHOR );
 
 const initialState = {
 	markdown: md,
-	preamble: preamble || {},
-	preambleText: preambleText || '',
+	preamble,
+	preambleText,
 	preambleClassNames: [],
 	isScrolling: true,
 	hideToolbar: false,
@@ -63,7 +70,7 @@ const initialState = {
 	splitPos: parseFloat( electronStore.get( 'splitPos' ) ) || 0.5,
 	error: null,
 	fontSize: mainStore.get( 'fontSize' ) || 14,
-	preambleTemplate: preambleTemplate,
+	preambleTemplate: '',
 	author: authorMatch ? authorMatch[ 1 ] : '',
 	unsaved: false,
 	documentVersion: 0,
@@ -108,8 +115,21 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			markdown: md,
-			preamble: action.payload.preamble,
-			preambleText: action.payload.preambleText,
+			unsaved: false
+		};
+	}
+	case types.CREATED_NEW_FILE: {
+		debug( 'Creating new file...' );
+		const preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
+		let md = template;
+		md = replace( md, '<preamble>', preambleTemplate );
+		md = replace( md, '<today>', today() );
+		const RE_AUTHOR = /author: ([^\n]+)/;
+		const authorMatch = preambleTemplate.match( RE_AUTHOR );
+		return {
+			...state,
+			markdown: md,
+			author: authorMatch ? authorMatch[ 1 ] : '',
 			unsaved: false
 		};
 	}

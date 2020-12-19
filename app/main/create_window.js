@@ -75,6 +75,7 @@ function createWindow({ filePath, callback, fromTemplate } = {}) {
 				});
 			} else {
 				debug( 'Should create browser window for new file.' );
+				mainWindow.webContents.send( 'create-new-file' );
 			}
 		}
 		if ( callback ) {
