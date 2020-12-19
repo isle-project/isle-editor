@@ -5,7 +5,7 @@ import NAMESPACE from './stdlib/namespace.json';
 
 // MAIN //
 
-function factory( monaco ) {
+function factory( monaco, t ) {
 	return provideCompletionItems;
 
 	function provideCompletionItems( model, position ) {
@@ -25,14 +25,14 @@ function factory( monaco ) {
 				) {
 					suggestions.push({
 						label: x.alias,
-						documentation: `Require ${x.alias} in preamble`,
+						documentation: t('require-in-preamble', { alias: x.alias }),
 						kind: monaco.languages.CompletionItemKind.Reference,
 						insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 						insertText: '',
 						additionalTextEdits: [
 							{
 								range: range,
-								text: `require:\n    ${x.alias}: "${x.path}"`
+								text: `require:\n    ${x.alias}: "${x.path}"` // eslint-disable-line i18next/no-literal-string
 							}
 						]
 					});

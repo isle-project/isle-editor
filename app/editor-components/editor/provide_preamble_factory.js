@@ -40,7 +40,7 @@ function factory( monaco ) {
 									documentation: x.description,
 									kind: monaco.languages.CompletionItemKind.Snippet,
 									insertTextRules: monaco.languages.CompletionItemInsertTextRule.KeepWhitespace,
-									insertText: `${x.alias}: "${x.path}"`,
+									insertText: `${x.alias}: "${x.path}"`, // eslint-disable-line i18next/no-literal-string
 									sortText: 'a'+x.alias
 								};
 							});

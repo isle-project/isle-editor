@@ -53,7 +53,7 @@ const Cursor = ({ active, style, onChange, t }) => {
 				]
 			},
 			{
-				label: t('Editor-selection' ),
+				label: t('selection' ),
 				options: [
 					{ label: 'cell', value: 'cell' },
 					{ label: 'crosshair', value: 'crosshair' },
