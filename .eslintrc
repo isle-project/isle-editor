@@ -498,7 +498,7 @@
       "onlyAttribute": [ "tooltip", "title" ],
       "ignore": [ "ISLE", "<", ">", "=", "n:", "&#" ],
       "ignoreComponent": [ "Trans", "code", "Badge" ],
-      "ignoreCallee": [ "debug", "console.error", "console.log" ],
+      "ignoreCallee": [ "debug", "error", "log" ],
       "validateTemplate": true
     }]
   },
