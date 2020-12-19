@@ -15,8 +15,6 @@ TODO
 * Consider adding vertical gridlines to plots
 * Automatic email reminders for uncompleted labs
 * Allow expressions in number question input fields
-* Add option to toggle between counts or densities in histogram of data explorer
-* Add option for multiple correct answers to question types like number
 * Mobile responsiveness
 * Remove any R dependencies for the mosaic plot
 * Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
