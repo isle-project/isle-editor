@@ -18,7 +18,6 @@ const KeyboardHelp = Loadable( () => import( 'editor-components/keyboard-help' )
 // VARIABLES //
 
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
-console.log( LANGUAGE_NAMES );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 
 
