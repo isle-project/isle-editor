@@ -20,6 +20,7 @@ const mainStore = new Store( 'isle-main' );
 const debug = logger( 'isle-editor:reducers' );
 const RE_CLASSNAME = /(\.[a-z][_a-z0-9-]*)(?=[^}"]*{)/gi;
 
+let preambleTemplate = '';
 let preambleText = '';
 let preamble = {};
 let fileName = null;
@@ -32,21 +33,9 @@ if ( mainStore.get( 'shouldReload' ) ) {
 		filePath = null;
 	}
 	md = mainStore.get( 'mostRecentFileData' );
-	const preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
-	if ( filePath ) {
-		if ( !md ) {
-			debug( `Reading file at ${filePath}` );
-			md = readFileSync( filePath, 'utf-8' );
-		}
-		preamble = mainStore.get( 'mostRecentPreamble' );
-		preambleText = mainStore.get( 'mostRecentPreambleText' );
-		fileName = basename( filePath );
-	}
-	else {
-		md = template;
-		md = replace( md, '<preamble>', preambleTemplate );
-		md = replace( md, '<today>', today() );
-	}
+	preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
+	preamble = mainStore.get( 'mostRecentPreamble' );
+	preambleText = mainStore.get( 'mostRecentPreambleText' );
 	const RE_AUTHOR = /author: ([^\n]+)/;
 	authorMatch = preambleTemplate.match( RE_AUTHOR );
 	mainStore.set( 'shouldReload', false );
@@ -70,7 +59,7 @@ const initialState = {
 	splitPos: parseFloat( electronStore.get( 'splitPos' ) ) || 0.5,
 	error: null,
 	fontSize: mainStore.get( 'fontSize' ) || 14,
-	preambleTemplate: '',
+	preambleTemplate,
 	author: authorMatch ? authorMatch[ 1 ] : '',
 	unsaved: false,
 	documentVersion: 0,
