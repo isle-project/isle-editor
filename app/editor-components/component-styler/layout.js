@@ -93,7 +93,7 @@ const GradientPicker = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 					<Form.Label column sm={3} >
-						Linear Gradient
+						{props.t('linear-gradient')}:
 					</Form.Label>
 					<Col sm={9} >
 						<BaseGradientPicker
@@ -109,7 +109,7 @@ const GradientPicker = ( props ) => {
 				background += `(${gradient.angle}deg, ${gradient.palette.map( x => `${x.color} ${round( Number( x.offset ) * 100 )}%` ).join( ', ')})`;
 				props.onCreate( background );
 			}} >
-				Add Background
+				{props.t('add-background')}
 			</Button> : null}
 		</Fragment>
 	);
@@ -124,7 +124,7 @@ const RadialGradientPicker = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={3} >
-					Radial Gradient
+					{props.t('radial-gradient')}:
 				</Form.Label>
 				<Col sm={9} >
 					<Form.Group as={Row} >
@@ -136,7 +136,7 @@ const RadialGradientPicker = ( props ) => {
 							/>
 						</Col>
 						<Form.Label column sm={1} >
-							Size:
+							{props.t('size')}:
 						</Form.Label>
 						<Col sm={5} >
 							<SelectInput defaultValue="farthest-corner" options={SIZE_OPTIONS} onChange={setSize} />
@@ -147,7 +147,7 @@ const RadialGradientPicker = ( props ) => {
 					</Form.Group>
 					<Form.Group as={Row} >
 						<Form.Label column sm={2} >
-							Position:
+							{props.t('position')}
 						</Form.Label>
 						<Col sm={4} >
 							<div className="radial-gradient-position-box">
@@ -171,7 +171,7 @@ const RadialGradientPicker = ( props ) => {
 						<Col sm={6} >
 							<Row>
 								<UnitInputBase
-									label="Top"
+									label={props.t('top')}
 									defaultValue={top}
 									labelWidth={3}
 									colWidth={5}
@@ -180,7 +180,7 @@ const RadialGradientPicker = ( props ) => {
 							</Row>
 							<Row>
 								<UnitInputBase
-									label="Left"
+									label={props.t('left')}
 									defaultValue={left}
 									labelWidth={3}
 									colWidth={5}
@@ -206,7 +206,7 @@ const RadialGradientPicker = ( props ) => {
 				background += ')';
 				props.onCreate( background );
 			}} >
-				Add Background
+				{props.t('add-background')}
 			</Button>
 		</Fragment>
 	);
@@ -218,7 +218,7 @@ const BackgroundPicker = ( props ) => {
 		case 'image':
 			input = <Form.Group as={Row} >
 				<Form.Label column sm={3} >
-					Background Image
+					{props.t('background-image')}
 				</Form.Label>
 				<Col sm={9} >
 
@@ -236,7 +236,7 @@ const BackgroundPicker = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={6} >
-					Background Type
+				{props.t('background-type')}
 				</Form.Label>
 				<Col sm={6} >
 					<ToggleButtonGroup
@@ -248,21 +248,21 @@ const BackgroundPicker = ( props ) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="image"
-							title="Image"
+							title={props.t('image')}
 						>
 							<i className="far fa-image fa-lg"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="linear-gradient"
-							title="Linear Gradient"
+							title={props.t('linear-gradient')}
 						>
 							<div className="component-styler-box linear-gradient-box" ></div>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="radial-gradient"
-							title="Radial Gradient"
+							title={props.t('radial-gradient')}
 						>
 							<div className="component-styler-box radial-gradient-box" ></div>
 						</ToggleButton>
@@ -286,7 +286,7 @@ const Layout = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
-					Display
+					{props.t('display')}:
 				</Form.Label>
 				<Col sm="8">
 					<SelectInput
@@ -302,7 +302,7 @@ const Layout = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
-					Background Color
+					{props.t('background-color')}
 				</Form.Label>
 				<Col sm={1} >
 					<ColorPicker
@@ -319,7 +319,9 @@ const Layout = ( props ) => {
 				</Col>
 			</Form.Group>
 			<hr />
-			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>Backgrounds</p>
+			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
+				{props.t('backgrounds')}
+			</p>
 			<ListGroup>
 				{backgrounds.map( ( background, idx ) => {
 					return (

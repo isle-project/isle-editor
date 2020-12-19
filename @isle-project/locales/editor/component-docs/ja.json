@@ -1476,5 +1476,14 @@
 	"WordCloud-prop-height": "語高",
 	"WordCloud-prop-language": "げんごしきべつし",
 	"WordCloud-prop-minCount": "セットされている場合、指定されたデータの中で `minCount` 回以上出現する単語のみを含む。",
-	"WordCloud-prop-onClick": "クリックされた単語のコールバック関数"
+	"WordCloud-prop-onClick": "クリックされた単語のコールバック関数",
+	"WordCloud-prop-padding": "各単語の数値パディングを示すアクセサ関数または定数",
+	"WordCloud-prop-precalculated": "は、ワードクラウドが事前に計算された単語数の配列を期待するか、与えられたテキストに対して単語数を生成するかを制御します。",
+	"WordCloud-prop-rotate": "各単語の回転角度（度数）を表すアクセサ関数。関数の代わりに定数を受け取ることもできます。",
+	"WordCloud-prop-saveButton": "ワードクラウドを画像として保存するためのボタンを表示するかどうかを制御します。",
+	"WordCloud-prop-stopwords": "単語の雲をレンダリングする前に削除する追加のストップワード",
+	"WordCloud-prop-style": "CSSインラインスタイル",
+	"WordCloud-prop-triggerRender": "データセットを交換する際のレンダー",
+	"WordCloud-prop-updateThreshold": "ワードクラウドが再レンダリングされる前の `data` の新しいドキュメントのバッチサイズ",
+	"WordCloud-prop-width": "語雲の幅"
 }
