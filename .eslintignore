@@ -1,4 +1,4 @@
-main.js
-*.main.js
+/main.js
+/*.main.js
 @isle-project/dll
 release
