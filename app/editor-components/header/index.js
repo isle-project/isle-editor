@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
@@ -14,6 +15,11 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import KeyControls from '@isle-project/components/key-controls';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import './header.css';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:header' );
 
 
 // MAIN //
@@ -59,7 +65,7 @@ class Header extends Component {
 
 	render() {
 		const { t } = this.props;
-		console.log( 'Rendering editor header...' );
+		debug( 'Rendering editor header...' );
 
 		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (

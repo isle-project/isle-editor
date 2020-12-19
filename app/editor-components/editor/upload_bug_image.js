@@ -21,7 +21,7 @@ async function uploadBugImage( blob ) {
 	formData.append( 'namespaceName', 'demonstrations' );
 	const res = await axios.post( ISLE_SERVER+'/upload_file', formData, {
 		headers: {
-			'Authorization': `JWT ${ISLE_TOKEN}`
+			'Authorization': `JWT ${ISLE_TOKEN}` // eslint-disable-line i18next/no-literal-string
 		}
 	});
 	return `${ISLE_SERVER}/${res.data.filename}`;
