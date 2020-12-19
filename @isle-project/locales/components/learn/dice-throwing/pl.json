@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "Wybierz niestandardowe prawdopodobieństwa dla boków, a następnie rzuć kilka kostek!",
+	"count": "Hrabia",
+	"dice": "Kostki do gry",
+	"invalid-probs": "Proszę upewnić się, że wszystkie prawdopodobieństwa sumują się do jednego",
+	"probabilities": "Prawdopodobieństwa",
+	"relative-frequency": "Częstotliwość względna",
+	"reset": "Zresetować",
+	"side": "Strona",
+	"simulate-random-dice-throws": "Symuluj losowe rzuty kostką",
+	"throw": "Rzuć",
+	"total-number-of-throws": "Całkowita liczba rzutów"
+}

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import JSONTree from 'react-json-tree';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
@@ -359,7 +360,9 @@ class JSShell extends Component {
 
 	renderResetButton() {
 		return (
-			<button className="js-shell-reset" onClick={this.resetConsole} >☒</button>
+			<button className="js-shell-reset" onClick={this.resetConsole} >
+				<i className="fas fa-times"></i>
+			</button>
 		);
 	}
 
@@ -387,8 +390,8 @@ class JSShell extends Component {
 		</ButtonToolbar>;
 		const style = {
 			lineHeight: '1.2em',
-			maxHeight: `${max( 5, this.props.lines )*1.2}em`,
-			height: `${this.props.lines*1.2}em`,
+			maxHeight: `${max( 5, this.props.lines )*1.2}em`, // eslint-disable-line i18next/no-literal-string
+			height: `${this.props.lines*1.2}em`, // eslint-disable-line i18next/no-literal-string
 			...this.props.style
 		};
 		const editor = <div className="js-shell-edit" style={style} ref={( div ) => {
@@ -408,7 +411,7 @@ class JSShell extends Component {
 									marginBottom: '8px'
 								}}
 								onClick={this.handleEvaluationClick}
-							>Evaluate</Button> :
+							>{this.props.t('evaluate')}</Button> :
 							<span />
 						}
 						{ toolbar }
@@ -471,4 +474,4 @@ JSShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default JSShell;
+export default withTranslation( 'JSShell' )( JSShell );

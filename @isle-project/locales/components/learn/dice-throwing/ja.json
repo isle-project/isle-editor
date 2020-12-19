@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "側面のカスタム確率を選択して、いくつかのサイコロを投げる",
+	"count": "伯爵",
+	"dice": "サイコロ",
+	"invalid-probs": "すべての確率が1になるようにしてください。",
+	"probabilities": "確率",
+	"relative-frequency": "相対的な頻度",
+	"reset": "リセット",
+	"side": "サイド",
+	"simulate-random-dice-throws": "ランダムなサイコロ投げのシミュレーション",
+	"throw": "投げ",
+	"total-number-of-throws": "総投球数"
+}

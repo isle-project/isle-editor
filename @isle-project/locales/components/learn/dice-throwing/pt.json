@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "Escolha probabilidades personalizadas para os lados e depois jogue alguns dados!",
+	"count": "Conde",
+	"dice": "Dados",
+	"invalid-probs": "Por favor, certifique-se de que todas as probabilidades se somem a uma",
+	"probabilities": "Probabilidades",
+	"relative-frequency": "Freqüência Relativa",
+	"reset": "Reinicialização",
+	"side": "Lado",
+	"simulate-random-dice-throws": "Simular Lançamentos Aleatórios de Dados",
+	"throw": "Jogue",
+	"total-number-of-throws": "Número total de arremessos"
+}

@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "为双方选择自定义概率，然后投掷一些骰子!",
+	"count": "计数",
+	"dice": "骰子",
+	"invalid-probs": "请确保所有的概率加起来都是1。",
+	"probabilities": "概率",
+	"relative-frequency": "相对频率",
+	"reset": "重置",
+	"side": "侧面",
+	"simulate-random-dice-throws": "模拟随机投掷骰子",
+	"throw": "扔",
+	"total-number-of-throws": "总投掷次数"
+}

@@ -235,8 +235,8 @@ class ConditionalProbability extends Component {
 
 	render() {
 		const { A, B, pA, pB } = this.state;
-		const victoryData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ];
-		const victoryLineData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ];
+		const victoryData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ]; // eslint-disable-line i18next/no-literal-string
+		const victoryLineData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ]; // eslint-disable-line i18next/no-literal-string
 		return (
 			<Card body>
 				<p>Consider events <TextInput inline defaultValue={A} onChange={( A ) => this.setState({ A })} /> and <TextInput inline defaultValue={B} onChange={( B ) => this.setState({ B })} />. Let <TeX raw={`P(\\text{${A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> and  <TeX raw={`P(\\text{${B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. Then we have <TeX raw={`P(\\text{${A}}^C) = ${roundn( 1-pA, -4 )}`} /> and <TeX raw={`P(\\text{${B}}^C) = ${roundn( 1-pB, -4 )}`} />. These form the marginals in the following probability table.</p>

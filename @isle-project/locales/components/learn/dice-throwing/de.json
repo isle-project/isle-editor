@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "Wählen Sie benutzerdefinierte Wahrscheinlichkeiten für die Seiten und werfen Sie dann einige Würfel!",
+	"count": "Zählen Sie",
+	"dice": "Würfel",
+	"invalid-probs": "Bitte achten Sie darauf, dass sich alle Wahrscheinlichkeiten zu eins addieren",
+	"probabilities": "Wahrscheinlichkeiten",
+	"relative-frequency": "Relative Häufigkeit",
+	"reset": "Zurücksetzen",
+	"side": "Seite",
+	"simulate-random-dice-throws": "Zufällige Würfelwürfe simulieren",
+	"throw": "Wurf",
+	"total-number-of-throws": "Gesamtzahl der Würfe"
+}

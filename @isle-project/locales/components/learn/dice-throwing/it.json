@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "Scegliete delle probabilità personalizzate per i lati e poi tirate qualche dado!",
+	"count": "Contate",
+	"dice": "Dadi",
+	"invalid-probs": "Assicuratevi che tutte le probabilità siano pari a una",
+	"probabilities": "Probabilità",
+	"relative-frequency": "Frequenza relativa",
+	"reset": "Reset",
+	"side": "Lato",
+	"simulate-random-dice-throws": "Simulare lanci di dadi casuali",
+	"throw": "Lancia",
+	"total-number-of-throws": "Numero totale di lanci"
+}

@@ -1,0 +1,13 @@
+{
+	"choose-custom-probs": "Choisissez des probabilités personnalisées pour les côtés et lancez ensuite quelques dés !",
+	"count": "Compter",
+	"dice": "Dice",
+	"invalid-probs": "Veuillez vous assurer que toutes les probabilités s'additionnent pour atteindre un",
+	"probabilities": "Probabilités",
+	"relative-frequency": "Fréquence relative",
+	"reset": "Réinitialiser",
+	"side": "Côté",
+	"simulate-random-dice-throws": "Simuler des lancers de dés aléatoires",
+	"throw": "Lancez",
+	"total-number-of-throws": "Nombre total de lancers"
+}

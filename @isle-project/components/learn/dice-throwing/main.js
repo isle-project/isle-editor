@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Col from 'react-bootstrap/Col';
@@ -71,7 +72,7 @@ class DiceThrowing extends Component {
 			<Container fluid={true}>
 				<Row>
 					<Col md={5}>
-						<h3>Probabilities:</h3>
+						<h3>{this.props.t('probabilities')}:</h3>
 						{inmap( this.state.sides, ( x, i ) => ( <NumberInput
 							key={i}
 							legend={`Side ${i+1}`}
@@ -103,7 +104,7 @@ class DiceThrowing extends Component {
 								tally: this.state.tally.map( x => 0 ),
 								nThrows: 0
 							});
-						}}>Reset</Button>
+						}}>{this.props.t('reset')}</Button>
 					</Col>
 					<Col md={6}>
 						{this.renderDice()}
@@ -122,26 +123,28 @@ class DiceThrowing extends Component {
 	renderDice() {
 		if ( !this.state.valid ) {
 			return ( <Card body>
-				<h3>Please make sure that all probabilities add up to one</h3>
+				<h3>{this.props.t('invalid-probs')}</h3>
 			</Card> );
 		}
+		/* eslint-disable i18next/no-literal-string */
 		return ( <Card fluid={true}>
-			<Card.Header>Dice</Card.Header>
+			<Card.Header>{this.props.t('dice')}</Card.Header>
 			<Card.Body>
 				<Card body>{ this.state.draw ? this.state.draw.join( ' - ' ) : 'X' }</Card>
 				<ButtonGroup>
 					<Button onClick={() => {
 						this.throwDice( 1 );
-					}}>Throw ⚅ 1x</Button>
+					}}>{this.props.t('throw')} ⚅ 1x</Button>
 					<Button onClick={() => {
 						this.throwDice( 5 );
-					}}>Throw ⚅ 5x</Button>
+					}}>{this.props.t('throw')} ⚅ 5x</Button>
 					<Button onClick={() => {
 						this.throwDice( 10 );
-					}}>Throw ⚅ 10x</Button>
+					}}>{this.props.t('throw')} ⚅ 10x</Button>
 				</ButtonGroup>
 			</Card.Body>
 		</Card> );
+		/* eslint-enable i18next/no-literal-string */
 	}
 
 	renderTable() {
@@ -149,15 +152,15 @@ class DiceThrowing extends Component {
 			<table className="table table-bordered table-responsive-sm">
 				<tbody>
 					<tr>
-						<th>Side:</th>
+						<th>{this.props.t('side')}:</th>
 						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{idx+1}</td>; })}
 					</tr>
 					<tr>
-						<th>Count:</th>
+						<th>{this.props.t('count')}:</th>
 						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{elem}</td>; })}
 					</tr>
 					<tr>
-						<th>Relative Frequency:</th>
+						<th>{this.props.t('relative-frequency')}:</th>
 						{ this.state.tally.map( ( elem, idx ) => { return <td key={idx}>{roundn( elem/this.state.tally.reduce( ( a, b ) => a+b ), -3 ) || '0.000' }</td>; })}
 					</tr>
 				</tbody>
@@ -169,7 +172,7 @@ class DiceThrowing extends Component {
 		return (
 			<Card id="diceThrowingModule" style={{ maxWidth: 1200, margin: '0 auto' }}>
 				<Card.Header as="h4">
-					Simulate Random Dice Throws
+					{this.props.t('simulate-random-dice-throws')}
 				</Card.Header>
 				<Card.Body>
 					<NumberInput
@@ -180,10 +183,10 @@ class DiceThrowing extends Component {
 						min={2}
 						onChange={this.chooseNSides}
 					/>
-					<p>Choose custom probabilities for the sides and then throw some dice!</p>
+					<p>{this.props.t('choose-custom-probs')}</p>
 						{this.renderGrid()}
 						{this.renderTable()}
-					<p>Total number of throws: {this.state.nThrows}</p>
+					<p>{this.props.t('total-number-of-throws')}: {this.state.nThrows}</p>
 				</Card.Body>
 			</Card>
 		);
@@ -193,4 +196,4 @@ class DiceThrowing extends Component {
 
 // EXPORTS //
 
-export default DiceThrowing;
+export default withTranslation( 'LearnDiceThrowing' )( DiceThrowing );
