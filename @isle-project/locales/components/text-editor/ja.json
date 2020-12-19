@@ -94,6 +94,8 @@
 	"submitted-msg": "あなたのレポートは正常に送信されました。",
 	"subscript": "添え字",
 	"superscript": "上付き文字",
+	"this-will-be-bold": "此れは大胆に",
+	"this-will-be-italic": "これはイタリック体になります",
 	"toggle-fullscreen": "フルスクリーンを切り替える",
 	"toggle-header-column": "ヘッダー列の切り替え",
 	"toggle-header-row": "ヘッダーの行を切り替える",

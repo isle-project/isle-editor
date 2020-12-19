@@ -94,6 +94,8 @@
 	"submitted-msg": "Your report has been successfully submitted.",
 	"subscript": "Subscript",
 	"superscript": "Superscript",
+	"this-will-be-bold": "This will be bold",
+	"this-will-be-italic": "This will be italic",
 	"toggle-fullscreen": "Toggle fullscreen",
 	"toggle-header-column": "Toggle header column",
 	"toggle-header-row": "Toggle header row",

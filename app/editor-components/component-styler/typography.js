@@ -40,7 +40,7 @@ const Typography = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="1">
-					Color
+					{props.t('color')}
 				</Form.Label>
 				<Col sm="2">
 					<ColorPicker
@@ -56,13 +56,13 @@ const Typography = ( props ) => {
 					/>
 				</Col>
 				<UnitInput
-					label="Size"
+					label={props.t('size')}
 					property="fontSize"
 					onChange={props.onChange}
 					style={props.style}
 				/>
 				<UnitInput
-					label="Height"
+					label={props.t('height')}
 					property="lineHeight"
 					onChange={props.onChange}
 					style={props.style}
@@ -71,7 +71,7 @@ const Typography = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="2">
-					Font
+					{props.t('font')}
 				</Form.Label>
 				<Col sm="5">
 					<SelectInput
@@ -79,7 +79,7 @@ const Typography = ( props ) => {
 						options={FONTS}
 						defaultValue={props.style.fontFamily}
 						components={{ Option, SingleValue }}
-						placeholder="Inherit"
+						placeholder={props.t('inherit')}
 						onChange={( fontFamily ) => {
 							const newStyle = { ...props.style };
 							newStyle.fontFamily = fontFamily;
@@ -88,14 +88,14 @@ const Typography = ( props ) => {
 					/>
 				</Col>
 				<Form.Label column sm="2">
-					Weight
+					{props.t('weight')}
 				</Form.Label>
 				<Col sm="3">
 					<SelectInput
 						clearable
 						options={FONT_WEIGHTS}
 						defaultValue={props.style.fontWeight}
-						placeholder="Inherit"
+						placeholder={props.t('inherit')}
 						onChange={( fontWeight ) => {
 							const newStyle = { ...props.style };
 							newStyle.fontWeight = fontWeight;
@@ -106,7 +106,7 @@ const Typography = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="2">
-					Align
+					{props.t('align')}
 				</Form.Label>
 				<Col sm="10">
 					<ToggleButtonGroup
@@ -149,7 +149,7 @@ const Typography = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="2">
-					Style
+					{props.t('style')}
 				</Form.Label>
 				<Col sm="10">
 					<ToggleButtonGroup
@@ -217,14 +217,14 @@ const Typography = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInput
-					label="Letter Spacing"
+					label={props.t('letter-spacing')}
 					property="letterSpacing"
 					onChange={props.onChange}
 					style={props.style}
 					labelWidth={3} colWidth={4}
 				/>
 				<UnitInput
-					label="Indent"
+					label={props.t('indent')}
 					property="textIndent"
 					onChange={props.onChange}
 					style={props.style}

@@ -94,6 +94,8 @@
 	"submitted-msg": "Dein Bericht wurde erfolgreich eingereicht.",
 	"subscript": "Tiefgestellt",
 	"superscript": "Hochgestellt",
+	"this-will-be-bold": "Dies wird fett sein",
+	"this-will-be-italic": "Dies wird kursiv dargestellt",
 	"toggle-fullscreen": "Vollbildschirm umschalten",
 	"toggle-header-column": "Kopfzeilen-Spalte umschalten",
 	"toggle-header-row": "Kopfzeile umschalten",

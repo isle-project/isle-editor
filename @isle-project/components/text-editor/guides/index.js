@@ -144,8 +144,8 @@ class Guides extends Component {
 			<h5>{t('emphasis')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
-					<i>*This will be italic*</i><br />
-					<b>**This will be bold**</b><br />
+					<i>*{t('this-will-be-italic')}*</i><br />
+					<b>**{t('this-will-be-bold')}**</b><br />
 					<i>*We <b>**can**</b> combine them*</i><br />
 					<u>++Underlined++</u><br />
 					<s>~~strikethrough~~</s><br />
