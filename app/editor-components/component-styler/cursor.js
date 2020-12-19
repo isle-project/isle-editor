@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,83 +10,6 @@ import omit from '@stdlib/utils/omit';
 
 // VARIABLES //
 
-const CURSOR_TYPES = [
-	{
-		label: 'General',
-		options: [
-			{ label: 'auto', value: 'auto' },
-			{ label: 'default', value: 'default' },
-			{ label: 'none', value: 'none' }
-		]
-	},
-	{
-		label: 'Links',
-		options: [
-			{ label: 'pointer', value: 'pointer' }
-		]
-	},
-	{
-		label: 'Status',
-		options: [
-			{ label: 'context-menu', value: 'context-menu' },
-			{ label: 'help', value: 'help' },
-			{ label: 'wait', value: 'wait' },
-			{ label: 'progress', value: 'progress' }
-		]
-	},
-	{
-		label: 'Selection',
-		options: [
-			{ label: 'cell', value: 'cell' },
-			{ label: 'crosshair', value: 'crosshair' },
-			{ label: 'text', value: 'text' },
-			{ label: 'vertical-text', value: 'vertical-text' }
-		]
-	},
-	{
-		label: 'Drag & Drop Cursors',
-		options: [
-			{ label: 'alias', value: 'alias' },
-			{ label: 'copy', value: 'copy' },
-			{ label: 'move', value: 'move' },
-			{ label: 'no-drop', value: 'no-drop' },
-			{ label: 'not-allowed', value: 'not-allowed' }
-		]
-	},
-	{
-		label: 'Grab Cursors',
-		options: [
-			{ label: 'grab', value: 'grab' },
-			{ label: 'grabbing', value: 'grabbing' }
-		]
-	},
-	{
-		label: 'Zooming',
-		options: [
-			{ label: 'zoom-in', value: 'zoom-in' },
-			{ label: 'zoom-out', value: 'zoom-out' }
-		]
-	},
-	{
-		label: 'Resizing',
-		options: [
-			{ label: 'col-resize', value: 'col-resize' },
-			{ label: 'row-resize', value: 'row-resize' },
-			{ label: 'e-resize', value: 'e-resize' },
-			{ label: 'n-resize', value: 'n-resize' },
-			{ label: 'ne-resize', value: 'ne-resize' },
-			{ label: 'nw-resize', value: 'nw-resize' },
-			{ label: 's-resize', value: 's-resize' },
-			{ label: 'se-resize', value: 'se-resize' },
-			{ label: 'sw-resize', value: 'sw-resize' },
-			{ label: 'w-resize', value: 'w-resize' },
-			{ label: 'ew-resize', value: 'ew-resize' },
-			{ label: 'ns-resize', value: 'ns-resize' },
-			{ label: 'nesw-resize', value: 'nesw-resize' },
-			{ label: 'nwse-resize', value: 'nwse-resize' }
-		]
-	}
-];
 const Option = props => {
 	return ( <components.Option key={props.data.label} {...props} >
 		<div style={{
@@ -102,35 +25,115 @@ const SELECT_STYLES = {
 
 // MAIN //
 
-const Cursor = ( props ) => {
-	if ( !props.active ) {
+const Cursor = ({ active, style, onChange, t }) => {
+	const cursorTypesRef = useRef();
+	useEffect(() => {
+		cursorTypesRef.current = [
+			{
+				label: t( 'general' ),
+				options: [
+					{ label: 'auto', value: 'auto' },
+					{ label: 'default', value: 'default' },
+					{ label: 'none', value: 'none' }
+				]
+			},
+			{
+				label: t( 'links' ),
+				options: [
+					{ label: 'pointer', value: 'pointer' }
+				]
+			},
+			{
+				label: t( 'status' ),
+				options: [
+					{ label: 'context-menu', value: 'context-menu' },
+					{ label: 'help', value: 'help' },
+					{ label: 'wait', value: 'wait' },
+					{ label: 'progress', value: 'progress' }
+				]
+			},
+			{
+				label: t('Editor-selection' ),
+				options: [
+					{ label: 'cell', value: 'cell' },
+					{ label: 'crosshair', value: 'crosshair' },
+					{ label: 'text', value: 'text' },
+					{ label: 'vertical-text', value: 'vertical-text' }
+				]
+			},
+			{
+				label: t('drag-drop-cursors'),
+				options: [
+					{ label: 'alias', value: 'alias' },
+					{ label: 'copy', value: 'copy' },
+					{ label: 'move', value: 'move' },
+					{ label: 'no-drop', value: 'no-drop' },
+					{ label: 'not-allowed', value: 'not-allowed' }
+				]
+			},
+			{
+				label: t('grab-cursors'),
+				options: [
+					{ label: 'grab', value: 'grab' },
+					{ label: 'grabbing', value: 'grabbing' }
+				]
+			},
+			{
+				label: t('zooming'),
+				options: [
+					{ label: 'zoom-in', value: 'zoom-in' },
+					{ label: 'zoom-out', value: 'zoom-out' }
+				]
+			},
+			{
+				label: t('resizing'),
+				options: [
+					{ label: 'col-resize', value: 'col-resize' },
+					{ label: 'row-resize', value: 'row-resize' },
+					{ label: 'e-resize', value: 'e-resize' },
+					{ label: 'n-resize', value: 'n-resize' },
+					{ label: 'ne-resize', value: 'ne-resize' },
+					{ label: 'nw-resize', value: 'nw-resize' },
+					{ label: 's-resize', value: 's-resize' },
+					{ label: 'se-resize', value: 'se-resize' },
+					{ label: 'sw-resize', value: 'sw-resize' },
+					{ label: 'w-resize', value: 'w-resize' },
+					{ label: 'ew-resize', value: 'ew-resize' },
+					{ label: 'ns-resize', value: 'ns-resize' },
+					{ label: 'nesw-resize', value: 'nesw-resize' },
+					{ label: 'nwse-resize', value: 'nwse-resize' }
+				]
+			}
+		];
+	}, [ t ]);
+	if ( !active ) {
 		return null;
 	}
 	let defaultValue;
-	if ( props.style.cursor ) {
+	if ( style.cursor ) {
 		defaultValue = {
-			label: props.style.cursor,
-			value: props.style.cursor
+			label: style.cursor,
+			value: style.cursor
 		};
 	}
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={2} >
-					{props.t('cursor')}
+					{t('cursor')}
 				</Form.Label>
 				<Col sm={4} >
 					<Select
 						isClearable
 						defaultValue={defaultValue}
-						placeholder={props.t('select-cursor')}
-						options={CURSOR_TYPES}
+						placeholder={t('select-cursor')}
+						options={cursorTypesRef.current}
 						onChange={( elem ) => {
-							const newStyle = omit( props.style, 'cursor' );
+							const newStyle = omit( style, 'cursor' );
 							if ( elem ) {
 								newStyle.cursor = elem.value;
 							}
-							props.onChange( newStyle );
+							onChange( newStyle );
 						}}
 						menuPortalTarget={document.body}
 						styles={SELECT_STYLES}
