@@ -17,79 +17,80 @@ import './markdown_help.css';
 */
 class MarkdownHelp extends Component {
 	render() {
+		const { t } = this.props;
 		const leftColumn = <Col sm={5}>
 			<Card body>
-				<Card.Title>Headers</Card.Title>
+				<Card.Title>{t('headers')}</Card.Title>
 				<pre className="cancel">
-					# This is a large header<br />
-					## Medium header<br />
-					### Small header
+					# {t('large-header')}<br />
+					## {t('medium-header')}<br />
+					### {t('small-header')}
 				</pre>
 			</Card>
 			<Card body>
-				<Card.Title>Emphasis</Card.Title>
+				<Card.Title>{t('emphasis')}</Card.Title>
 				<pre className="cancel">
-					<i>*This will be italic*</i><br />
-					<b>**This will be bold**</b><br />
+					<i>*{t('markup-italic')}*</i><br />
+					<b>**{t('markup-bold')}**</b><br />
 					<i>*We <b>**can**</b> combine them*</i><br />
-					<u>++Underlined++</u><br />
-					<s>~~strikethrough~~</s><br />
+					<u>++{t('markup-underlined')}++</u><br />
+					<s>~~{t('markup-strikethrough')}~~</s><br />
 				</pre>
 			</Card>
 			<Card body>
-				<Card.Title>Quotes</Card.Title>
+				<Card.Title>{t('quotes')}</Card.Title>
 				<pre className="cancel">
-					George Box said:<br />
-					&gt; All models are wrong.<br />
-					&gt; But some are useful.
+			    {t('george-box')}<br />
+					&gt; {t('models-wrong')}<br />
+					&gt; {t('models-useful')}
 				</pre>
 			</Card>
 		</Col>;
 		const rightColumn = <Col sm={7}>
-			<h5>Lists</h5>
+			<h5>{t('lists')}</h5>
 			<Row>
 				<Col sm={6} >
-					<h6>Unordered</h6>
+					<h6>{t('unordered')}</h6>
 					<Card body>
 						<pre className="cancel">
-						* Item 1<br />
-						* Item 2<br />
-						&nbsp; &nbsp; * Item 2a<br />
-						&nbsp; &nbsp; * Item 2b
+						* {t('item-1')}<br />
+						* {t('item-2')}<br />
+						&nbsp; &nbsp; * {t('item-2a')}<br />
+						&nbsp; &nbsp; * {t('item-2b')}
 						</pre>
 					</Card>
 				</Col>
 				<Col sm={6} >
-					<h6>Ordered</h6>
+					<h6>{ t('ordered')}</h6>
 					<Card body>
 						<pre className="cancel">
-						1. Item 1<br />
-						2. Item 2<br />
-						3. Item 3<br />
-						&nbsp; &nbsp;3a. Item 3a<br />
-						&nbsp; &nbsp;3b. Item 3b
+						1. {t('item-1')}<br />
+						2. {t('item-2')}<br />
+						3. {t('item-3')}<br />
+						&nbsp; &nbsp;3a. {t('item-3a')}<br />
+						&nbsp; &nbsp;3b. {t('item-3b')}
 						</pre>
 					</Card>
 				</Col>
 			</Row>
 			<Card body>
-				<Card.Title>Links</Card.Title>
+				<Card.Title>{t('links')}</Card.Title>
 				<pre className="cancel">[Google](https://google.com)</pre>
 			</Card>
 			<Card body>
-				<Card.Title>Tables</Card.Title>
+				<Card.Title>{ t('tables')}</Card.Title>
 				<pre className="cancel">
-				| Column 1 | Column 2 | Column 3 |<br />
+				| {t('column')} 1 | {t('column')} 2 | {t('column')} 3 |<br />
 				| -------- | -------- | -------- |<br />
-				| Gertrude | Cox      | Female   |<br />
-				| Karl     | Pearson  | Male     |
+				| Gertrude | Cox      | {t('female')}   |<br />
+				| Karl     | Pearson  | {t('male')}     |
 				</pre>
 			</Card>
 		</Col>;
 		return (
 			<ReactDraggable cancel=".cancel" >
 				<Panel
-					header="Markdown Cheatsheet"
+					header={t('markdown-cheatsheet')}
 					className="markdown-helper"
 					onHide={this.props.onHide}
 				>

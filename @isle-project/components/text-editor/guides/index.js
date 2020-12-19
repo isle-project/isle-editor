@@ -136,27 +136,27 @@ class Guides extends Component {
 			<h5>{t('headers')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
-					# This is a large header<br />
-					## Medium header<br />
-					### Small header
+					# {t('large-header')}<br />
+					## {t('medium-header')}<br />
+					### {t('small-header')}
 				</pre>
 			</Card>
 			<h5>{t('emphasis')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
 				<pre>
-					<i>*{t('this-will-be-italic')}*</i><br />
-					<b>**{t('this-will-be-bold')}**</b><br />
+					<i>*{t('markup-italic')}*</i><br />
+					<b>**{t('markup-bold')}**</b><br />
 					<i>*We <b>**can**</b> combine them*</i><br />
-					<u>++Underlined++</u><br />
-					<s>~~strikethrough~~</s><br />
+					<u>++{t('markup-underlined')}++</u><br />
+					<s>~~{t('markup-strikethrough')}~~</s><br />
 				</pre>
 			</Card>
 			<h5>{t('quotes')}</h5>
 			<Card body >
 				<pre>
-					George Box said:<br />
-					&gt; All models are wrong.<br />
-					&gt; But some are useful.
+					{t('george-box')}<br />
+					&gt; {t('models-wrong')}<br />
+					&gt; {t('models-useful')}
 				</pre>
 			</Card>
 		</Col>;
