@@ -1,7 +1,5 @@
 // MODULES //
 
-import { readFileSync } from 'fs';
-import { basename } from 'path';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
 import removeFirst from '@stdlib/string/remove-first';
