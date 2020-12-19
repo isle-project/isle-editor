@@ -338,7 +338,7 @@ const Layout = ( props ) => {
 								}}
 								style={{ float: 'right' }}
 							>
-								x
+								<i className="fas fa-times"></i>
 							</Button>
 						</ListGroup.Item>
 					);
