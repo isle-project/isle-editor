@@ -29,7 +29,7 @@ async function loadRequires( libs, filePath ) {
 	debug( 'Should require files or modules...' );
 	let dir = dirname( filePath );
 	const fileName = basename( filePath, '.isle' );
-	const isleDir = join( dir, `${fileName}-resources` );
+	const isleDir = join( dir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 	const asyncOps = [];
 	const asyncKeys = [];
 	const asyncExtensions = [];
@@ -94,7 +94,7 @@ async function loadRequires( libs, filePath ) {
 						debug( `Resolved library path: ${str}` );
 
 						// Use `eval` to bypass Webpack and use Electron runtime module resolution:
-						eval( `global[ '${key}' ] = require( '${str}' );` );
+						eval( `global[ '${key}' ] = require( '${str}' );` ); // eslint-disable-line i18next/no-literal-string
 					}
 				}
 			}

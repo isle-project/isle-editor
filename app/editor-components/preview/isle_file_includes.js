@@ -47,7 +47,7 @@ async function isleFileIncludes( code, preamble, filePath ) {
 	}
 	const destDir = dirname( filePath );
 	const fileName = basename( filePath, '.isle' );
-	const isleDir = join( destDir, `${fileName}-resources` );
+	const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 	createResourcesDirectoryIfNeeded( isleDir, fileName );
 	const manifestPath = join( isleDir, 'manifest.json' );
 	let manifest = readJSON.sync( manifestPath );
