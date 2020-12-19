@@ -49,7 +49,7 @@ class GroupTransformer extends Component {
 		const groupProbs = new Array( nGroups ).fill( 1/nGroups );
 		const labels = new Array( nGroups );
 		for ( let i = 0; i < labels.length; i++ ) {
-			labels[ i ] = `Group ${i+1}`;
+			labels[ i ] = `${this.props.t('group')} ${i+1}`;
 		}
 		this.setState({
 			groupProbs,

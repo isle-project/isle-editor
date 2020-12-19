@@ -2,6 +2,7 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
@@ -20,7 +21,7 @@ const SORT_OPTS = {
 
 // FUNCTIONS //
 
-const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) => {
+const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display, t ) => {
 	const freqs = {};
 	const relFreqs = {};
 	const rowValues = data[ rowVar ];
@@ -92,7 +93,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 			<tr>
 				<th>{rowVar} \ {colVar}</th>
 				{colKeys.map( (e, i) => <th key={i}>{e}</th> )}
-				<th>Row Totals</th>
+				<th>{t('row-totals')}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -139,7 +140,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 		</tbody>
 		<tbody>
 			<tr>
-				<th>Column Totals</th>
+				<th>{t('column-totals')}</th>
 				{columnTotals}
 				<th>
 					{ !relativeFreqs ? nobs : ( 1.0 ).toFixed( nDecimalPlaces ) }
@@ -158,7 +159,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 	return table;
 };
 
-const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display ) => {
+const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display, t ) => {
 	const groupedData = {};
 	for ( let i = 0; i < data[ group ].length; i++ ) {
 		const v = data[ group ][ i ];
@@ -176,12 +177,12 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
-		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display ) );
+		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display, t ) );
 	}
 
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>{`Grouped by ${group}:`}</label>
+			<label>{ t('grouped-by')} {group}:</label>
 			{table.map( ( x, i ) => {
 				return ( <div key={i}>
 					<label>{`${keys[ i ]}`}: </label>
@@ -195,12 +196,12 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 
 // MAIN //
 
-function ContingencyTable({ data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display }) {
+function ContingencyTable({ data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display, t }) {
 	let table;
 	if ( !group ) {
-		table = createContingencyTable( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display );
+		table = createContingencyTable( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display, t );
 	} else {
-		table = createGroupedContingencyTable( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display );
+		table = createGroupedContingencyTable( data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display, t );
 	}
 	return table;
 }
@@ -239,4 +240,4 @@ ContingencyTable.propTypes = {
 * @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
 */
-export default ContingencyTable;
+export default withTranslation( 'Tables' )( ContingencyTable );

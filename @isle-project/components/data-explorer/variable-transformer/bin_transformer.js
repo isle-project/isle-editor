@@ -97,7 +97,7 @@ const createCategoryNames = ( breakpoints, customNames ) => {
 	if ( customNames[ 0 ] ) {
 		out[ 0 ] = customNames[ 0 ];
 	} else {
-		out[ 0 ] = `(-\u221E,${breakpoints[0]})`;
+		out[ 0 ] = `(-\u221E,${breakpoints[0]})`; // eslint-disable-line i18next/no-literal-string
 	}
 	for ( let i = 1; i < customNames.length; i++ ) {
 		if ( customNames[ i ] ) {
@@ -110,7 +110,7 @@ const createCategoryNames = ( breakpoints, customNames ) => {
 	if ( customNames[ last ] ) {
 		out[ last ] = customNames[ last ];
 	} else {
-		out[ last ] = `[${breakpoints[ breakpoints.length - 1 ]},\u221E)`;
+		out[ last ] = `[${breakpoints[ breakpoints.length - 1 ]},\u221E)`; // eslint-disable-line i18next/no-literal-string
 	}
 	return out;
 };

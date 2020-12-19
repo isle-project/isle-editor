@@ -259,8 +259,8 @@ class FormulaTransformer extends Component {
 										<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
-										<Tooltip placement="top" tooltip="Open parenthesis"><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
-										<Tooltip placement="top" tooltip="Closing parenthesis"><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('open-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
+										<Tooltip placement="top" tooltip={t('closing-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
 									</ButtonGroup>
 									<ButtonGroup size="sm" className="mr-2" >
 										<Tooltip placement="top" tooltip={t('addition')}><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>

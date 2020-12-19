@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Table from '@isle-project/components/table';
 import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
@@ -51,7 +52,7 @@ function getFrequencies( variable, x, calculateCounts, calculateRelative ) {
 	};
 }
 
-const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
+const frequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 	let nTotal = 0;
 	if ( freqs.absoluteFreqs && !freqs.relativeFreqs ) {
 		return (
@@ -59,8 +60,8 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 				<thead>
 					<tr>
 						<th className="not-sortable" >{variable}</th>
-						<th>Category</th>
-						<th>Count</th>
+						<th>{ t('category') }</th>
+						<th>{ t('count') }</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,7 +76,7 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 				</tbody>
 				<tbody>
 					<tr key="total">
-						<th>Total</th>
+						<th>{t('total')}</th>
 						<td></td>
 						<td>{nTotal}</td>
 					</tr>
@@ -88,8 +89,8 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 			<thead>
 				<tr>
 					<th className="not-sortable" >{variable}</th>
-					<th>Category</th>
-					<th>Relative Frequency</th>
+					<th>{ t('category') }</th>
+					<th>{ t('relative-frequency')}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,7 +105,7 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 			</tbody>
 			<tbody>
 				<tr key="total">
-					<th>Total</th>
+					<th>{t('total')}</th>
 					<td></td>
 					<td>1.0</td>
 				</tr>
@@ -116,8 +117,8 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 			<thead>
 				<tr>
 					<th className="not-sortable" >{variable}</th>
-					<th>Category</th>
-					<th>Count (Relative Frequency)</th>
+					<th>{t('category') }</th>
+					<th>{t('count-relative-frequency')}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -133,7 +134,7 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 			</tbody>
 			<tbody>
 				<tr key="total">
-					<th>Total</th>
+					<th>{t('total')}</th>
 					<td></td>
 					<td>{nTotal} (1.0)</td>
 				</tr>
@@ -142,7 +143,7 @@ const frequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 	);
 };
 
-const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
+const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
@@ -189,9 +190,9 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 					<Table bordered size="sm">
 						<thead>
 							<tr>
-								<th>Category</th>
+								<th>{t('category')}</th>
 								{categories}
-								<th>Total</th>
+								<th>{t('total')}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -210,7 +211,7 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces ) => {
 
 // MAIN //
 
-function FrequencyTable({ data, variable, group, calculateCounts, calculateRelative, nDecimalPlaces }) {
+function FrequencyTable({ data, variable, group, calculateCounts, calculateRelative, nDecimalPlaces, t }) {
 	let freqs;
 	if ( !group ) {
 		freqs = getFrequencies( variable, data[ variable ], calculateCounts, calculateRelative );
@@ -230,9 +231,9 @@ function FrequencyTable({ data, variable, group, calculateCounts, calculateRelat
 		}
 	}
 	if ( !group ) {
-		return frequencyTable( variable, freqs, nDecimalPlaces );
+		return frequencyTable( variable, freqs, nDecimalPlaces, t );
 	}
-	return groupedFrequencyTable( variable, freqs, nDecimalPlaces );
+	return groupedFrequencyTable( variable, freqs, nDecimalPlaces, t );
 }
 
 
@@ -267,4 +268,4 @@ FrequencyTable.propTypes = {
 * @property {boolean} calculateRelative - controls whether to display relative frequencies
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
 */
-export default FrequencyTable;
+export default withTranslation( 'Tables' )( FrequencyTable );
