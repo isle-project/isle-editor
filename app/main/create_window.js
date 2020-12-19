@@ -13,6 +13,14 @@ import window from './window_manager.js';
 const debug = logger( 'isle-editor' );
 
 
+// FUNCTIONS //
+
+function openExternal( e, url ) {
+	e.preventDefault();
+	shell.openExternal( url );
+}
+
+
 // MAIN //
 
 function createWindow({ filePath, callback, fromTemplate } = {}) {
@@ -75,11 +83,6 @@ function createWindow({ filePath, callback, fromTemplate } = {}) {
 	});
 
 	mainWindowState.manage( mainWindow );
-
-	function openExternal( e, url ) {
-		e.preventDefault();
-		shell.openExternal( url );
-	}
 	mainWindow.webContents.on( 'new-window', openExternal );
 	mainWindow.webContents.on( 'will-navigate', openExternal );
 	return mainWindow;
