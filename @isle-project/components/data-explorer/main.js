@@ -1657,6 +1657,7 @@ class DataExplorer extends Component {
 								data={this.state.data}
 								quantitative={this.state.quantitative}
 								categorical={this.state.categorical}
+								t={this.props.t}
 							/> : null
 						}
 						{ this.props.editor ?

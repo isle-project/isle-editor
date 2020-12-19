@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "第一标准偏差",
 	"2nd-stdev": "第二标准偏差",
+	"actions": "行动",
 	"addition": "加法",
 	"alternate-color-scheme": "备用色方案",
 	"and": "和",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "Kruskal-Wallis秩和检验评估多个样本的中位数相同的零假设。Kruskal-Wallis检验是一种非参数检验，不要求数据是正态分布。",
 	"LASSO": "LASSO",
 	"LASSO-description": "拟合一个回归模型，其中非零的回归系数使用L1正则化惩罚。LASSO执行自动模型选择，因为它会将一些变量的回归系数缩小为零。",
+	"leave-note": "请注意",
 	"Line Plot": "线路图",
 	"Line Plot-description": "线图可以用来显示一个定量变量或两个定量变量之间的关系，用数字线表示。如果没有提供X轴的变量，则根据数据表中的指数显示Y轴变量的值。",
 	"linkage": "联动性",

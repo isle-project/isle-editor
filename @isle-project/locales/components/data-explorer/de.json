@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1. Standardabweichung",
 	"2nd-stdev": "2. Standardabweichung",
+	"actions": "Aktionen",
 	"addition": "Addition",
 	"alternate-color-scheme": "Alternatives Farbschema",
 	"and": "und",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "Der Kruskal-Wallis-Rangsummentest bewertet für mehrere Stichproben die Nullhypothese, dass ihre Mediane identisch sind. Der Kruskal-Wallis-Test ist ein nichtparametrischer Test, der keine Normalverteilung der Daten voraussetzt.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Passt ein Regressionsmodell an, in dem Nicht-Null-Regressionskoeffizienten mit der Regularisierungsstrafe L1 bestraft werden. Das LASSO führt eine automatische Modellauswahl durch, da es die Regressionskoeffizienten einiger Variablen auf Null schrumpfen lässt.",
+	"leave-note": "Notiz hinterlassen",
 	"Line Plot": "Liniendiagramm",
 	"Line Plot-description": "Ein Liniendiagramm kann verwendet werden, um eine quantitative Variable oder die Beziehung zwischen zwei quantitativen Variablen als eine Zahlenlinie darzustellen. Wenn keine Variable für die x-Achse geliefert wird, werden die Werte der y-Achsen-Variablen entsprechend ihrer Indizes in der Datentabelle angezeigt.",
 	"linkage": "Verbindung",

@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1er écart type",
 	"2nd-stdev": "2e écart type",
+	"actions": "actions",
 	"addition": "Ajout",
 	"alternate-color-scheme": "Système de couleurs alternatives",
 	"and": "et",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "Le test de la somme des rangs de Kruskal-Wallis évalue pour plusieurs échantillons l'hypothèse nulle que leurs médianes sont identiques. Le test de Kruskal-Wallis est un test non paramétrique qui n'exige pas que les données soient normalement distribuées.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Ajuster un modèle de régression dans lequel les coefficients de régression non nuls sont pénalisés en utilisant la pénalité de régularisation L1. Le LASSO effectue une sélection automatique du modèle car il réduira les coefficients de régression de certaines variables à zéro.",
+	"leave-note": "Note de congé",
 	"Line Plot": "Tracé de ligne",
 	"Line Plot-description": "Un tracé linéaire peut être utilisé pour afficher une variable quantitative ou la relation entre deux variables quantitatives sous forme de ligne numérique. Si aucune variable n'est fournie pour l'axe des x, les valeurs de la variable de l'axe des y sont affichées en fonction de leurs indices dans le tableau des données.",
 	"linkage": "Lien",

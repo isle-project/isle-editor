@@ -126,7 +126,7 @@ class HistoryPanel extends Component {
 		const date = new Date( elem.absoluteTime );
 		let printout = '';
 		const value = elem.value;
-		const title = `${elem.type} | Time: ${date.toLocaleTimeString()} - ${date.toLocaleDateString()}`;
+		const title = `${elem.type} | Time: ${date.toLocaleTimeString()} - ${date.toLocaleDateString()}`; // eslint-disable-line i18next/no-literal-string
 		for ( let key in value ) {
 			if ( hasOwnProp( value, key ) && key !== 'showDecision' ) {
 				const val = value[ key ];
@@ -137,7 +137,7 @@ class HistoryPanel extends Component {
 			}
 		}
 		const popover = <Popover id={`history-note-popover-${index}`} style={{ width: 250 }} >
-			<PopoverTitle>Leave Note</PopoverTitle>
+			<PopoverTitle>{this.props.t('leave-note')}</PopoverTitle>
 			<PopoverContent>
 				<TextSelect options={[
 					'Did you consider any confounding variables?',
@@ -337,7 +337,7 @@ class HistoryPanel extends Component {
 					/>
 				</div>
 				<span className="title" style={{ float: 'right', marginRight: 20 }} >
-					{this.state.filtered.length} actions
+					{this.state.filtered.length} {this.props.t('actions')}
 				</span>
 			</div>
 		);

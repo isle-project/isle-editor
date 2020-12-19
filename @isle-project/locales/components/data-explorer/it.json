@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1° Deviazione standard",
 	"2nd-stdev": "2° Deviazione standard",
+	"actions": "azioni",
 	"addition": "Aggiunta",
 	"alternate-color-scheme": "Schema cromatico alternativo",
 	"and": "e",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "Il test di Kruskal-Wallis rank sum test valuta per più campioni l'ipotesi nulla che le loro mediane siano identiche. Il test di Kruskal-Wallis è un test non parametrico che non richiede la normale distribuzione dei dati.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Inserire un modello di regressione in cui i coefficienti di regressione non zero sono penalizzati con la penalità di regolarizzazione L1. Il LASSO esegue la selezione automatica del modello in quanto riduce a zero i coefficienti di regressione di alcune variabili.",
+	"leave-note": "Lasciare nota",
 	"Line Plot": "Trama della linea",
 	"Line Plot-description": "Un line plot può essere utilizzato per visualizzare una variabile quantitativa o la relazione tra due variabili quantitative come linea numerica. Se non viene fornita alcuna variabile per l'asse delle x, i valori della variabile dell'asse delle y vengono visualizzati secondo i loro indici nella tabella dei dati.",
 	"linkage": "Linkage",

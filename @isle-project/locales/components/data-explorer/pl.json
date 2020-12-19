@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1. odchylenie standardowe",
 	"2nd-stdev": "2. odchylenie standardowe",
+	"actions": "Działania",
 	"addition": "Dodatek",
 	"alternate-color-scheme": "Schemat kolorów zastępczych",
 	"and": "oraz",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "Test sumy rang Kruskala-Wallisa ocenia dla wielu próbek hipotezę zerową, że ich mediany są identyczne. Test Kruskala-Wallisa jest testem nieparametrycznym, który nie wymaga normalnego rozkładu danych.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Dopasuj model regresji, w którym niezerowe współczynniki regresji są karane przy użyciu kary regularyzacyjnej L1. LASSO dokonuje automatycznego wyboru modelu, ponieważ zmniejsza współczynniki regresji niektórych zmiennych do zera.",
+	"leave-note": "Zostaw notatkę",
 	"Line Plot": "Działka liniowa",
 	"Line Plot-description": "Wykres liniowy może być użyty do wyświetlenia jednej zmiennej ilościowej lub relacji między dwoma zmiennymi ilościowymi jako linia liczbowa. Jeśli nie podano zmiennej dla osi x, wartości zmiennej osi y są wyświetlane zgodnie z ich indeksami w tabeli danych.",
 	"linkage": "Powiązanie",

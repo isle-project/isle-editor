@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1e Standaard Afwijking",
 	"2nd-stdev": "2de standaardafwijking",
+	"actions": "maatregelen",
 	"addition": "Toevoeging",
 	"alternate-color-scheme": "Alternatief kleurenschema",
 	"and": "en",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "De Kruskal-Wallis rank sum test evalueert voor meerdere steekproeven de nulhypothese dat hun medians identiek zijn. De Kruskal-Wallis-test is een niet-parametrische test waarbij de gegevens niet normaal verdeeld hoeven te worden.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Pas een regressiemodel toe waarbij niet-nul-regressiecoëfficiënten worden bestraft met de L1-regelmatigheidssanctie. De LASSO voert een automatische modelselectie uit omdat het de regressiecoëfficiënten van sommige variabelen tot nul reduceert.",
+	"leave-note": "Verlofbriefje",
 	"Line Plot": "Lijnplaatje",
 	"Line Plot-description": "Een lijnplot kan worden gebruikt om één kwantitatieve variabele weer te geven of de relatie tussen twee kwantitatieve variabelen als een getallenlijn. Als er geen variabele wordt geleverd voor de x-as, worden de waarden van de y-asvariabele weergegeven volgens hun indexen in de gegevenstabel.",
 	"linkage": "Koppeling",

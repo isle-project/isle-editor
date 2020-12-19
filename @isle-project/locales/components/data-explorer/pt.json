@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1º Desvio Padrão",
 	"2nd-stdev": "2º Desvio Padrão",
+	"actions": "ações",
 	"addition": "Acréscimo",
 	"alternate-color-scheme": "Esquema de cores alternativas",
 	"and": "e",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "O teste Kruskal-Wallis avalia para múltiplas amostras a hipótese nula de que suas medianas são idênticas. O teste Kruskal-Wallis é um teste não-paramétrico que não requer que os dados sejam normalmente distribuídos.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Ajustar um modelo de regressão no qual os coeficientes de regressão não zero são penalizados usando a penalidade de regularização L1. O LASSO realiza a seleção automática do modelo, uma vez que reduz a zero os coeficientes de regressão de algumas variáveis.",
+	"leave-note": "Deixe Nota",
 	"Line Plot": "Lote de linha",
 	"Line Plot-description": "Um gráfico de linha pode ser usado para exibir uma variável quantitativa ou a relação entre duas variáveis quantitativas como uma linha numérica. Se nenhuma variável for fornecida para o eixo x, os valores da variável do eixo y são exibidos de acordo com seus índices na tabela de dados.",
 	"linkage": "Linkage",

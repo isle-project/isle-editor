@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1ª Desviación Estándar",
 	"2nd-stdev": "2ª Desviación Estándar",
+	"actions": "acciones",
 	"addition": "Adición",
 	"alternate-color-scheme": "Esquema de colores alternativos",
 	"and": "y",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "La prueba de suma de rango de Kruskal-Wallis evalúa para múltiples muestras la hipótesis nula de que sus medianas son idénticas. La prueba de Kruskal-Wallis es una prueba no paramétrica que no requiere que los datos se distribuyan normalmente.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Ajustar un modelo de regresión en el que los coeficientes de regresión no nulos se penalicen usando la penalización de regularización L1. El LASSO realiza una selección automática del modelo ya que reducirá a cero los coeficientes de regresión de algunas variables.",
+	"leave-note": "Deje la nota",
 	"Line Plot": "Line Plot",
 	"Line Plot-description": "Se puede utilizar un trazado lineal para mostrar una variable cuantitativa o la relación entre dos variables cuantitativas como una línea numérica. Si no se suministra ninguna variable para el eje x, los valores de la variable del eje y se muestran según sus índices en la tabla de datos.",
 	"linkage": "Vinculación",

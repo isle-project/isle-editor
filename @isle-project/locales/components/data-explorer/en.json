@@ -1,6 +1,7 @@
 {
 	"1st-stdev": "1st Standard Deviation",
 	"2nd-stdev": "2nd Standard Deviation",
+	"actions": "actions",
 	"addition": "Addition",
 	"alternate-color-scheme": "Alternate Color Scheme",
 	"and": "and",
@@ -99,6 +100,7 @@
 	"Kruskal-Wallis Test-description": "The Kruskal-Wallis rank sum test evaluates for multiple samples the null hypothesis that their medians are identical. The Kruskal-Wallis test is a nonparametric test which does not require the data to be normally distributed.",
 	"LASSO": "LASSO",
 	"LASSO-description": "Fit a regression model in which non-zero regression coefficients are penalized using the L1 regularization penalty. The LASSO performs automatic model selection as it will shrink the regression coefficients of some variables to zero.",
+	"leave-note": "Leave Note",
 	"Line Plot": "Line Plot",
 	"Line Plot-description": "A line plot can be used to display one quantitative variable or the relationship between two quantitative variables as a number line. If no variable is supplied for the x-axis, the values of the y-axis variable are displayed according to their indices in the data table.",
 	"linkage": "Linkage",

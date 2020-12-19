@@ -35,7 +35,7 @@ const Size = ( props ) => {
 		<Fragment>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label="Width"
+					label={props.t('width')}
 					labelWidth={3}
 					colWidth={3}
 					auto
@@ -47,7 +47,7 @@ const Size = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Height"
+					label={props.t('height')}
 					labelWidth={3}
 					colWidth={3}
 					auto
@@ -61,7 +61,7 @@ const Size = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label="Min Width"
+					label={props.t('min-width')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minWidth ) ? '0px' : minWidth}
@@ -73,7 +73,7 @@ const Size = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Min Height"
+					label={props.t('min-height')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minHeight ) ? '0px' : minHeight}
@@ -87,7 +87,7 @@ const Size = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label="Max Width"
+					label={props.t('max-width')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxWidth ) ? 'none' : maxWidth}
@@ -99,7 +99,7 @@ const Size = ( props ) => {
 					}}
 				/>
 				<UnitInputBase
-					label="Max Height"
+					label={props.t('max-height')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxHeight ) ? 'none' : maxHeight}
@@ -113,7 +113,7 @@ const Size = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Overflow
+					{props.t('overflow')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
@@ -137,38 +137,38 @@ const Size = ( props ) => {
 						<ToggleButton
 							variant="outline-secondary"
 							value="visible"
-							title="Visible"
+							title={props.t('visible')}
 						>
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="hidden"
-							title="Hidden"
+							title={props.t('hidden')}
 						>
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="scroll"
-							title="Scroll"
+							title={props.t('scroll')}
 						>
-							<i className="fas fa-align-justify"></i>  &#8613;
+							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="auto"
-							title="Auto"
+							title={props.t('auto')}
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							auto
+							{props.t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Overflow-X
+					{props.t('overflow-x')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
@@ -207,21 +207,21 @@ const Size = ( props ) => {
 							variant="outline-secondary"
 							value="scroll"
 						>
-							<i className="fas fa-align-justify"></i>  &#8613;
+							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							auto
+							{props.t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Overflow-Y
+					{props.t('overflow-y')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
@@ -260,21 +260,21 @@ const Size = ( props ) => {
 							variant="outline-secondary"
 							value="scroll"
 						>
-							<i className="fas fa-align-justify"></i>  &#8613;
+							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							auto
+							{props.t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					Fit
+					{props.t( 'fit' )}
 				</Form.Label>
 				<Col sm={4} >
 					<SelectInput
