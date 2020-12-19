@@ -130,6 +130,15 @@ class Editor extends Component {
 		};
 	}
 
+	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( nextProps.value && !prevState.value ) {
+			return {
+				value: nextProps.value
+			};
+		}
+		return null;
+	}
+
 	async componentDidMount() {
 		window.addEventListener( 'resize', this.updateDimensions );
 
