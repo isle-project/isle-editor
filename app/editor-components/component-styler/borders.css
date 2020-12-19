@@ -75,7 +75,7 @@
 	left: 0;
 	top: var(--marginboxsize);
 	width: var(--marginboxsize);
-	height:  var(--borderboxsize);
+	height: var(--borderboxsize);
 	outline: solid 1px black;
 }
 
