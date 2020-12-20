@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
+import { withTranslation } from 'react-i18next';
 
 
 // VARIABLES //
@@ -39,11 +40,19 @@ class Wrapper extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return ( <Joyride
 			run={this.props.run}
 			steps={this.props.steps}
 			styles={STYLES}
 			showSkipButton
+			locale={{
+				back: t('back'),
+				close: t('close'),
+				last: t('last'),
+				next: t('next'),
+				skip: t('skip')
+			}}
 			{...this.props}
 		/> );
 	}
@@ -66,4 +75,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default Wrapper;
+export default withTranslation( 'Joyride' )( Wrapper );

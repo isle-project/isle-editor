@@ -1,29 +1,24 @@
 [
 	{
 		"target": ".prosemirror-icon.fa.fa-save",
-		"content": "When writing a document, we want to regularly save our work and then eventually create a final document. Clicking this button allows you to save a copy of your document as an HTML document. ",
 		"placement": "right",
 		"placementBeacon": "center"
 	},
 	{
 		"target": ".prosemirror-icon.fa.fa-save",
-		"content": "The editor also saves your document in the browser locally at regular intervals, which means that they will be restored once you open the editor in the same browser on the same computer. Warning: Should you clear the browser cache, you will lose your progress. It is thus advisable to often download the document as an HTML file.",
 		"placement": "right",
 		"placementBeacon": "center"
 	},
 	{
 		"target": ".prosemirror-icon.fas.fa-file-pdf",
-		"content": "You may also export your report as a PDF document. When exporting as a PDF document, you can choose among several standard page sizes or even supply your custom width and height (in inches). A PDF document cannot be loaded back into the editor, so don't forget to export the HTML document.",
 		"placement": "right"
 	},
 	{
 		"target": ".prosemirror-icon.fa.fa-folder-open",
-		"content": "When you return to working on your report, you can load your saved HTML report back into the report editor using this icon.",
 		"placement": "right"
 	},
 	{
 		"target": ".prosemirror-icon.fa.fa-share-square",
-		"content": "Once you are satisfied with your work, submit it on the platform by clicking this button. You will receive an email with your report shortly after submission. Alternatively, you can manually export the report to see what it looks like.",
 		"placement": "right"
 	}
 ]

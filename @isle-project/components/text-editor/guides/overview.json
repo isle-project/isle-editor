@@ -1,18 +1,15 @@
 [
 	{
 		"target": ".ProseMirror",
-		"content": "Type your text in the editor window. A vertical scrollbar will appear once your number of lines exceeds the height of the editor window.",
 		"placement": "right",
 		"placementBeacon": "right"
 	},
 	{
 		"target": ".prose-menu-bar",
-		"content": "The toolbar provides various buttons to help with formatting your document and saving it",
 		"placement": "bottom",
 		"placementBeacon": "bottom"
 	},
 	{
-		"target": ".prose-statusbar",
-		"content": "The statusbar at the bottom displays information on the number of characters and total amount of words in the current document."
+		"target": ".prose-statusbar"
 	}
 ]
