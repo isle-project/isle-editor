@@ -264,7 +264,7 @@ class Recorder extends Component {
 						position: 'tl',
 						autoDismiss: 0,
 						children: <span>
-							<a href={link} target="_blank" >{this.props.t('open-link')}</a>
+							<a href={link} target="_blank" rel="noopener noreferrer" >{this.props.t('open-link')}</a>
 						</span>
 					});
 					this.setState({

@@ -492,7 +492,7 @@ class StatusBar extends Component {
 									<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>
 										{t( 'logout' )}
 									</Button>
-									<a href={session.server} target="_blank">
+									<a href={session.server} target="_blank" rel="noopener noreferrer" >
 										<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>
 											{t( 'goto-dashboard' )}
 										</Button>

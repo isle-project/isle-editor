@@ -1526,7 +1526,7 @@ class Sketchpad extends Component {
 								isExporting: false,
 								showUploadModal: true,
 								modalMessage: <span>
-									{this.props.t('upload-successful')}: <a href={link} target="_blank" >{link}</a>
+									{this.props.t('upload-successful')}: <a href={link} target="_blank" rel="noopener noreferrer" >{link}</a>
 								</span>
 							});
 							const msg = {
