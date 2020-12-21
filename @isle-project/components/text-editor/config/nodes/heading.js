@@ -46,7 +46,7 @@ const TAG_NAME_TO_LEVEL = {
 function toDOM( node ) {
 	const dom = toParagraphDOM( node );
 	const level = node.attrs.level || 1;
-	dom[ 0 ] = `h${level}`;
+	dom[ 0 ] = `h${level}`; // eslint-disable-line i18next/no-literal-string
 	return dom;
 }
 

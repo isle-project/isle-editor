@@ -85,7 +85,7 @@ const fontSize = {
 	toDOM( node ) {
 		const { pt } = node.attrs;
 		const domAttrs = pt ? {
-			style: `font-size: ${pt}pt;`,
+			style: `font-size: ${pt}pt;`, // eslint-disable-line i18next/no-literal-string
 			class: 'pm-font-size-mark'
 		} : null;
 		return [ 'span', domAttrs, 0 ];

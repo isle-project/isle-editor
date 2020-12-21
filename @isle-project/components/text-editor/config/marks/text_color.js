@@ -20,7 +20,7 @@ const textColor = {
 		const { color } = node.attrs;
 		let style = '';
 		if ( color ) {
-			style += `color: ${color};`;
+			style += `color: ${color};`; // eslint-disable-line i18next/no-literal-string
 		}
 		return [ 'span', { style }, 0 ];
 	}
