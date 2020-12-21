@@ -82,7 +82,7 @@ class FProbs extends Component {
 			<Fragment>
 				<NumberInput
 					key={`${type}-d1`}
-					legend="D1 Degrees of Freedom"
+					legend={`D1 ${this.props.t('degrees-of-freedom')}`}
 					defaultValue={d1}
 					min={1e-3}
 					step={this.props.step}
@@ -90,7 +90,7 @@ class FProbs extends Component {
 				/>
 				<NumberInput
 					key={`${type}-d2`}
-					legend="D2 Degrees of Freedom"
+					legend={`D2 ${this.props.t('degrees-of-freedom')}`}
 					defaultValue={d2}
 					step={this.props.step}
 					min={1e-3}
@@ -285,7 +285,7 @@ class FProbs extends Component {
 						{this.renderInputs( 'range' )}
 						{ x1 >= x0 ?
 							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pf( x1, d1, d2 ) - pf( x0, d1, d2 ), -4 )}`} displayMode tag="" /> :
-							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+							<Alert variant="warning">{this.props.t('lower-bound-smaller-equal-upper-bound') }</Alert>
 						}
 					</Panel>
 				</Col>
@@ -360,7 +360,7 @@ class FProbs extends Component {
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				F Distribution
+				{this.props.t('f-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="f-tabs">
