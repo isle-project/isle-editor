@@ -141,7 +141,7 @@
 	"DataExplorer-description": "このコンポーネントは、学生が提示されたデータを簡単に要約し、様々な統計的検定を行うために使用されます。",
 	"DataExplorer-prop-categorical": "各カテゴリ変数の名前を示す文字列の配列",
 	"DataExplorer-prop-data": "は、表示するデータオブジェクトまたは配列を指定します。オブジェクトの場合はキーが列の値に対応し、配列の場合は各列に対応する名前付きフィールドを持つオブジェクトの配列を期待します。学生に `.csv` ファイルをインポートできるようにしたい場合は、`data` オプションを `false` に設定してください。",
-	"DataExplorer-prop-dataInfo": "",
+	"DataExplorer-prop-dataInfo": "キーを含むオブジェクト `name`, 値が文字列である `info`, 値が文字列の配列である `info`, 配列の各要素が改行されたものである `variables`, キーが変数名、値が変数の説明である `variables` を持つオブジェクト。",
 	"DataExplorer-prop-dataTable": "データテーブルをビューから隠すかどうかを示すブール値",
 	"DataExplorer-prop-dataTableProps": "プロパティはデータテーブルコンポーネントに渡されます (<DataTable /> のドキュメントを参照してください)。",
 	"DataExplorer-prop-editor": "エディタをユーザに表示するかどうかを示すブール値",
