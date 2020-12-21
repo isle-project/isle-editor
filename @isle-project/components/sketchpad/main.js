@@ -385,8 +385,8 @@ class Sketchpad extends Component {
 									sh += sy;
 								}
 								this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
-								const xPos = `${x-sw+this.leftMargin}px`;
-								const yPos = `${y-sh}px`;
+								const xPos = `${x-sw+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+								const yPos = `${y-sh}px`; // eslint-disable-line i18next/no-literal-string
 								this.zoom.style.top = yPos;
 								this.zoom.style.left = xPos;
 								this.zoom.style.display = 'block';

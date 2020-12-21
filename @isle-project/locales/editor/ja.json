@@ -194,7 +194,7 @@
 	"modify-animation": "アニメーションの速度や背景画像を変更したい場合は、それぞれのスタイルテンプレートを要素にコピーすることができます。",
 	"move-to-preamble": "CSSルールセットをプリアンブルに移動",
 	"multi-cursors": "マルチカーソル",
-	"new-version-available": "新しいバージョン（{{newVersion}}}をダウンロードできます。",
+	"new-version-available": "新しいバージョン（{{newVersion}}をダウンロードできます。",
 	"no-box-shadows": "現在適用されているボックスシャドウはありません",
 	"no-courses-found": "コースが見つかりませんでした",
 	"no-courses-found-msg": "アイルのダッシュボードにコースを作成するか、既存のコースにオーナーとして追加してほしいとの依頼をしてください。",

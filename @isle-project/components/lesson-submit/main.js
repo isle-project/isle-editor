@@ -28,11 +28,15 @@ const debug = logger( 'isle:lesson-submit' );
 
 // FUNCTIONS //
 
-function createMessage( session, message ) {
-	let msg = message || '';
+function createMessage( session, message, t ) {
 	return {
-		text: `Dear ${session.user.name}, this is an automatic confirmation email to inform you that you have successfully completed lesson "${session.lessonName}" of course "${session.namespaceName}". ${msg}`,
-		subject: `${session.lessonName} successfully completed!`
+		text: t('lesson-completed-msg', {
+			name: session.user.name,
+			lessonName: session.lessonName,
+			namespaceName: session.namespaceName,
+			msg: message || ''
+		}),
+		subject: `${session.lessonName} ${t('successfully-completed')}!`
 	};
 }
 
@@ -136,7 +140,7 @@ class LessonSubmit extends Component {
 			style: 'date'
 		});
 		doc.content.push({
-			text: `${this.props.t('elapsed')}: ${round( session.duration / 60000 )}min`,
+			text: `${this.props.t('elapsed')}: ${round( session.duration / 60000 )}min`, // eslint-disable-line i18next/no-literal-string
 			style: 'elapsed'
 		});
 		if ( session.currentUserActions ) {
@@ -247,7 +251,7 @@ class LessonSubmit extends Component {
 		let notificationMesage = this.props.t('lesson-successfully-completed');
 		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
 			notificationMesage += this.props.t('confirmation-email');
-			const msg = createMessage( session, this.props.message );
+			const msg = createMessage( session, this.props.message, this.props.t );
 			session.sendMail( msg, session.user.email );
 		}
 		session.addNotification({

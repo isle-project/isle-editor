@@ -242,7 +242,7 @@
 	"rendering-interval": "Intervalo de representación",
 	"rendering-interval-description": "Intervalo entre renders (en segundos)",
 	"replace": "Reemplazar",
-	"require-in-preamble": "Requiere {{{alias}} en el preámbulo",
+	"require-in-preamble": "Requiere {{alias}} en el preámbulo",
 	"reset": "Reiniciar",
 	"resizing": "Redimensionamiento",
 	"right": "Derecho",

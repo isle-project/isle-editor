@@ -7,10 +7,12 @@
 	"confirmation-email": " Wkrótce otrzymasz wiadomość e-mail z potwierdzeniem.",
 	"download-pdf": "Pobierz PDF z odpowiedziami",
 	"elapsed": "upłynął",
+	"lesson-completed-msg": "{{name}}, jest to automatyczny email potwierdzający, który informuje o pomyślnym zakończeniu lekcji \"{{lessonName}}\", oczywiście \"{{namespaceName}}\". {{msg}}",
 	"lesson-submitted": "Lekcja zgłoszona!",
 	"lesson-successfully-completed": "Lekcja zakończona sukcesem.",
 	"login": "Login",
 	"responses-header": "Odpowiedzi na lekcję ISLE",
 	"signup": "Zarejestruj się",
-	"submit": "Zgłoś się"
+	"submit": "Zgłoś się",
+	"successfully-completed": "pomyślnie zakończony"
 }

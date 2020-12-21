@@ -59,10 +59,10 @@ const getLastAction = ( val, id ) => {
 	return null;
 };
 
-const insertImages = ( imgs ) => {
+const insertImages = ( imgs, t ) => {
 	const ret = [];
 	for ( let i = 0; i < imgs.length; i++ ) {
-		ret[ i ] = ( <Image width="60%" height="auto" key={i} src={imgs[ i ]} title="R Plot" /> );
+		ret[ i ] = ( <Image width="60%" height="auto" key={i} src={imgs[ i ]} title={t('r-plot')} /> );
 	}
 	return ret;
 };
@@ -186,7 +186,7 @@ class RShell extends Component {
 		rCode.push( props.code );
 
 		this.insertPlot = ( url, id ) => {
-			return ( <Image key={id} src={url} title="R Plot" /> );
+			return ( <Image key={id} src={url} title={props.t('r-plot')} /> );
 		};
 
 		this.handleSolutionClick = () => {
@@ -369,7 +369,7 @@ class RShell extends Component {
 				let match = /matrix\(([0-9.]*)/.exec( transform );
 				if ( isArray( match ) && match.length > 1 ) {
 					let scaleFactor = match[ 1 ];
-					node.style.transform = `scale(${1/scaleFactor})`;
+					node.style.transform = `scale(${1/scaleFactor})`; // eslint-disable-line i18next/no-literal-string
 				}
 			}
 		}
@@ -410,7 +410,7 @@ class RShell extends Component {
 		return ( <Modal
 			backdrop={false}
 			show={Boolean( this.state.help )}
-			title="R Help"
+			title={t('r-help')}
 			onHide={this.hideHelp}
 			style={{
 				left: 'auto',
@@ -447,8 +447,8 @@ class RShell extends Component {
 		const { t } = this.props;
 		const style = {
 			lineHeight: '1.2em',
-			maxHeight: `${(max( 5, this.props.lines )*1.2) + 0.5}em`,
-			height: `${(this.props.lines*1.2) + 0.5}em`,
+			maxHeight: `${(max( 5, this.props.lines )*1.2) + 0.5}em`, // eslint-disable-line i18next/no-literal-string
+			height: `${(this.props.lines*1.2) + 0.5}em`, // eslint-disable-line i18next/no-literal-string
 			...this.props.style
 		};
 		return (
@@ -516,7 +516,7 @@ class RShell extends Component {
 				</ButtonToolbar> : null }
 				<div id="output">
 					{ showResult( this.state.result ) }
-					{ insertImages( this.state.plots ) }
+					{ insertImages( this.state.plots, t ) }
 				</div>
 				<ResponseVisualizer id={this.id} info={RSHELL_EVALUATION} />
 				{this.renderHelpModal()}

@@ -7,10 +7,12 @@
 	"confirmation-email": " You will receive a confirmation email shortly.",
 	"download-pdf": "Download PDF of Responses",
 	"elapsed": "elapsed",
+	"lesson-completed-msg": "Dear {{name}}, this is an automatic confirmation email to inform you that you have successfully completed lesson \"{{lessonName}}\" of course \"{{namespaceName}}\". {{msg}}",
 	"lesson-submitted": "Lesson submitted!",
 	"lesson-successfully-completed": "Lesson successfully completed.",
 	"login": "Login",
 	"responses-header": "Responses for ISLE lesson",
 	"signup": "Sign up",
-	"submit": "Submit"
+	"submit": "Submit",
+	"successfully-completed": "successfully completed"
 }

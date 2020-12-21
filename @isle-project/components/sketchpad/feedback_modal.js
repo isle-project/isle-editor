@@ -26,7 +26,7 @@ class FeedbackModal extends Component {
 		if ( isNull( state.data ) ) {
 			const session = props.session;
 			const actions = session.socketActions;
-			const name = `${props.id}-slide-`;
+			const name = `${props.id}-slide-`; // eslint-disable-line i18next/no-literal-string
 			const slides = {};
 			for ( let i = 0; i < actions.length; i++ ) {
 				const id = actions[ i ].id;
@@ -45,7 +45,7 @@ class FeedbackModal extends Component {
 				const yVals = new Array( keys.length );
 				for ( let j = 0; j < props.noPages; j++ ) {
 					xVals[ j ] = 'Slide '+(j+1);
-					const key = `${props.id}-slide-${props.toOriginalPage( j )}`;
+					const key = `${props.id}-slide-${props.toOriginalPage( j )}`; // eslint-disable-line i18next/no-literal-string
 					if ( slides[ key ] ) {
 						const counts = countBy( slides[ key ], identity );
 						yVals[ j ] = counts[ cats[ i ] ];

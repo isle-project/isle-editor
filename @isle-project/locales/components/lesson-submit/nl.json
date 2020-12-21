@@ -7,10 +7,12 @@
 	"confirmation-email": " U ontvangt binnenkort een bevestigingsmail.",
 	"download-pdf": "Download PDF van reacties",
 	"elapsed": "verlopen",
+	"lesson-completed-msg": "Beste {{name}}, dit is een automatische bevestigingsmail om u te informeren dat u de les \"{{lessonName}}\" met succes heeft afgerond natuurlijk \"{{namespaceName}}\". {{msg}}",
 	"lesson-submitted": "Ingediende les!",
 	"lesson-successfully-completed": "Les met succes afgerond.",
 	"login": "Inloggen",
 	"responses-header": "Reacties voor ISLE-les",
 	"signup": "Aanmelden",
-	"submit": "Stuur een bericht naar"
+	"submit": "Stuur een bericht naar",
+	"successfully-completed": "succesvol afgerond"
 }
