@@ -118,19 +118,20 @@ class NormalProbs extends Component {
 	}
 
 	renderInputs( type ) {
+		const { t } = this.props;
 		const { mean, sd, x0, x1 } = this.state;
 		return (
 			<Fragment>
 				<NumberInput
 					key={`${type}-mean`}
-					legend="Mean"
+					legend={t('mean')}
 					defaultValue={0}
 					step={this.props.step}
 					onChange={this.handleMeanChange}
 				/>
 				<NumberInput
 					key={`${type}-sd`}
-					legend="Standard Deviation"
+					legend={t('standard-deviation')}
 					defaultValue={this.props.minStDev}
 					step={this.props.step}
 					min={this.props.minStDev}
@@ -165,6 +166,7 @@ class NormalProbs extends Component {
 		const domain = this.props.domain;
 		const tabs = this.props.tabs;
 		const { mean, sd, x0, x1 } = this.state;
+		const { t } = this.props;
 		const tabSmaller = contains( tabs, 'smaller' ) ? <Tab eventKey="smaller" title={<TeX raw="P(X \le x_0)" />}>
 			<Container><Row>
 				<Col>
@@ -323,7 +325,7 @@ class NormalProbs extends Component {
 						{this.renderInputs( 'range' )}
 						{ x1 >= x0 ?
 							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnorm( x1, mean, sd ) - pnorm( x0, mean, sd ), -4 )}`} displayMode tag="" /> :
-							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+							<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 						}
 					</Panel>
 				</Col>
@@ -395,7 +397,7 @@ class NormalProbs extends Component {
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Normal Distribution
+				{t('normal-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="normal-tabs">

@@ -105,11 +105,12 @@ class NegativeBinomial extends Component {
 	}
 
 	renderInputs( type ) {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<NumberInput
 					key={`${type}-r`}
-					legend="Successes until stop (r)"
+					legend={`${t('success-until-stop')} (r)`}
 					defaultValue={this.state.r}
 					min={1}
 					step={1}
@@ -117,7 +118,7 @@ class NegativeBinomial extends Component {
 				/>
 				<NumberInput
 					key={`${type}-p`}
-					legend="Success probability (p)"
+					legend={`${t('success-probability')} (p)`}
 					defaultValue={this.state.p}
 					step={this.props.step}
 					max={0.99}
@@ -150,10 +151,11 @@ class NegativeBinomial extends Component {
 
 	render() {
 		const { x, x0, x1, r, p, max } = this.state;
+		const { t } = this.props;
 		const minValue = this.props.countTrials ? r : 0;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Negative Binomial Distribution
+				{ t('negative-binomial-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={0} id="negative-binomial-tabs">
@@ -161,8 +163,8 @@ class NegativeBinomial extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title="Negative binomial probabilities" >
-									<span>For number of successes until experiment is stopped </span><NumberInput
+								<Panel title={t('negative-binomial-probabilities')} >
+									<span>{ t('number-of-successes-until-experiment-stopped')} </span><NumberInput
 										inline
 										legend="r"
 										defaultValue={this.state.r}
@@ -170,7 +172,7 @@ class NegativeBinomial extends Component {
 										min={1}
 										max={999}
 										onChange={this.handleSuccessesChange}
-									/><span> and a success probability of</span>
+									/><span> {t('success-probability-of')}</span>
 									<NumberInput
 										inline
 										legend="p"
@@ -180,12 +182,12 @@ class NegativeBinomial extends Component {
 										min={0.01}
 										onChange={this.handleProbChange}
 									/>
-									<span>we get</span>
+									<span>{t('we-get')}</span>
 									{this.props.countTrials ?
 										<TeX raw={`P(X=x)= \\Large \\tbinom{x - 1}{${r}-1} ${p}^{${r}} ${roundn(1-p, -4)}^{x-${r}}`} displayMode /> :
 										<TeX raw={`P(X=x)= \\Large \\tbinom{x + ${r} - 1}{x} ${p}^{${r}} ${roundn(1-p, -4)}^{x}`} displayMode />
 									}
-									<span>Evaluated at </span><NumberInput
+									<span>{t('evaluated-at')} </span><NumberInput
 										inline
 										legend="x"
 										defaultValue={this.state.x}
@@ -193,12 +195,14 @@ class NegativeBinomial extends Component {
 										max={max}
 										min={0}
 										onChange={( x ) => this.setState({ x })}
-									/> <span>we get</span>
+									/> <span>{t('we-get')}</span>
 									{this.props.countTrials ?
 										<TeX raw={`P(X=${x}) = \\Large \\tbinom{${x-1}}{${r-1}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x-r}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode /> :
 										<TeX raw={`P(X=${x}) = \\Large \\tbinom{${r+x-1}}{${x}} ${p}^{${r}} ${roundn(1-p, -4 )}^{${x}} \\approx ${dnbinom(x - minValue, r, p).toFixed(4)}`} displayMode />
 									}
-									<p>The random variable X denotes the number of {this.props.countTrials ? 'trials' : 'failures' } until the r-th success is reached.</p>
+									<p>
+										{this.props.countTrials ? t('random-variable-denotes-trials') : t('random-variable-denotes-failures')}
+									</p>
 								</Panel>
 								</Col>
 								<Col md={7} >
@@ -346,7 +350,7 @@ class NegativeBinomial extends Component {
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -416,12 +420,12 @@ class NegativeBinomial extends Component {
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnbinom( x1 - minValue, r, p ) - pnbinom( x0 - minValue - 1, r, p ), -4 )}`} displayMode tag="" /> :
-											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+											<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 										}
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>

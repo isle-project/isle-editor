@@ -79,11 +79,12 @@ class PoissonDistribution extends Component {
 	}
 
 	renderInputs( type ) {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<SliderInput
 					key={`${type}-rate`}
-					legend="Rate"
+					legend={t('rate')}
 					defaultValue={this.state.rate}
 					min={1e-12}
 					step={this.props.step}
@@ -115,9 +116,10 @@ class PoissonDistribution extends Component {
 
 	render() {
 		const { x0, x1, rate } = this.state;
+		const { t } = this.props;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Poisson Distribution
+				{t('poisson-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={0} id="poisson-tabs">
@@ -125,11 +127,11 @@ class PoissonDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title="Poisson probabilities" >
+								<Panel title={t('poisson-probabilities')} >
 									<p>
-										Let <TeX raw="X" /> be the number of occurrences.
+										{t('let')} <TeX raw="X" /> {t('number-of-occurrences')}
 									</p>
-									<span>For rate parameter </span>
+									<span>{t('rate-parameter')}</span>
 									<NumberInput
 										inline
 										legend={<TeX raw="\lambda" />}
@@ -139,9 +141,9 @@ class PoissonDistribution extends Component {
 										min={0}
 										onChange={this.handleRateChange}
 									/>
-									<span>we get</span>
+									<span>{t('we-get')}</span>
 									<TeX raw={`P(X=x)= \\Large \\frac{${rate}^x e^{-${rate}}}{x!}`} displayMode />
-									<span>Evaluated at </span><NumberInput
+									<span>{t('evaluated-at')}</span><NumberInput
 										inline
 										legend="x"
 										defaultValue={1}
@@ -149,7 +151,7 @@ class PoissonDistribution extends Component {
 										max={qpois( NEAR_ONE, rate ) + 1}
 										min={0}
 										onChange={this.handleLowerChange}
-									/> <span>we get</span>
+									/> <span>{t('we-get')}</span>
 									<TeX raw={`P(X=${x0})= \\Large \\frac{${rate}^${x0} e^{-${rate}}}{${x0}!} = ${dpois( x0, rate ).toFixed(4)}`} displayMode />
 								</Panel>
 								</Col>
@@ -376,7 +378,7 @@ class PoissonDistribution extends Component {
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( ppois( x1, rate ) - ppois( x0 - 1, rate ), -4 )}`} /> :
-											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+											<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 										}
 									</Panel>
 								</Col>
