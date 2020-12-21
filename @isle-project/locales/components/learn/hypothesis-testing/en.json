@@ -6,8 +6,11 @@
 	"parameters": "Parameters",
 	"plugging-in": "Plugging in our values, we have:",
 	"proportion": "Proportion",
+	"sample-mean": "Sample mean",
 	"sample-proportion": "Sample proportion",
 	"sample-size": "Sample size",
+	"sample-standard-deviation": "Sample standard deviation",
+	"second-sample": "Second Sample",
 	"test-result": "Test Result",
 	"test-statistic": "Test Statistic"
 }

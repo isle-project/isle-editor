@@ -6,8 +6,11 @@
 	"parameters": "Parametry",
 	"plugging-in": "Podtrzymując nasze wartości, mamy:",
 	"proportion": "Proporcja",
+	"sample-mean": "Przykładowy średni",
 	"sample-proportion": "Proporcja próbek",
 	"sample-size": "Wielkość próbki",
+	"sample-standard-deviation": "Odchylenie standardowe próbki",
+	"second-sample": "Druga próbka",
 	"test-result": "Wynik testu",
 	"test-statistic": "Statystyka testów"
 }

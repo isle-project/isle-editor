@@ -6,8 +6,11 @@
 	"parameters": "Parameters",
 	"plugging-in": "Het inpluggen van onze waarden, hebben we:",
 	"proportion": "Aandeel",
+	"sample-mean": "Steekproefgemiddelde",
 	"sample-proportion": "Steekproefpercentage",
 	"sample-size": "Monstergrootte",
+	"sample-standard-deviation": "Voorbeeld standaardafwijking",
+	"second-sample": "Tweede monster",
 	"test-result": "Testresultaat",
 	"test-statistic": "Test Statistisch"
 }

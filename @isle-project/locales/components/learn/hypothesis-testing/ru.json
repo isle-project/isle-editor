@@ -6,8 +6,11 @@
 	"parameters": "Параметры",
 	"plugging-in": "Подключаем наши ценности, так и есть:",
 	"proportion": "Доля",
+	"sample-mean": "Среднее значение образца",
 	"sample-proportion": "Пропорция выборки",
 	"sample-size": "Размер выборки",
+	"sample-standard-deviation": "Стандартное отклонение образца",
+	"second-sample": "Второй образец",
 	"test-result": "Результат теста",
 	"test-statistic": "Тестовая статистика"
 }

@@ -130,13 +130,13 @@ class MeanTest extends Component {
 			areaData = linspace( -3, zStat, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( ${statChar} < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`;
+			probFormula = `P( ${statChar} < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( ${statChar} > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`;
+			probFormula = `P( ${statChar} > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
@@ -145,7 +145,7 @@ class MeanTest extends Component {
 			areaData2 = linspace( -3, -abs( zStat ), 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( |${statChar}| > ${abs( zStat )}) = ${roundn( ( 1-cdf( abs( zStat ) ) )+cdf( -abs( zStat ) ), -3 )}`;
+			probFormula = `P( |${statChar}| > ${abs( zStat )}) = ${roundn( ( 1-cdf( abs( zStat ) ) )+cdf( -abs( zStat ) ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		}
 		this.setState({
@@ -219,12 +219,13 @@ class MeanTest extends Component {
 	}
 
 	renderParametersPanel() {
+		const { t } = this.props;
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
 		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		const firstSampleParams = <div>
 			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
 			<NumberInput
-				legend="Sample mean"
+				legend={t('sample-mean')}
 				defaultValue={xbar}
 				step="any"
 				onChange={( value ) => {
@@ -234,7 +235,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : 'Sample standard deviation'}
+				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : t('sample-standard-deviation')}
 				defaultValue={sigma}
 				min={0.1}
 				step="any"
@@ -245,7 +246,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample size"
+				legend={t('sample-size')}
 				defaultValue={n}
 				step={1}
 				min={1}
@@ -257,9 +258,9 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			{ samples === 'Two-Sample' ? <Badge variant="secondary">Second Sample</Badge> : null }
+			{ samples === 'Two-Sample' ? <Badge variant="secondary">{t('second-sample')}</Badge> : null }
 			<NumberInput
-				legend="Sample mean"
+				legend={t('sample-mean')}
 				defaultValue={xbar2}
 				step="any"
 				onChange={( value ) => {
@@ -269,7 +270,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : 'Sample standard deviation'}
+				legend={selectedTest === 'Z-Test' ? <span>Sigma <TeX raw="\left( \sigma \right)" /></span> : t('sample-standard-deviation')}
 				defaultValue={sigma2}
 				min={0.1}
 				step="any"
@@ -280,7 +281,7 @@ class MeanTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample size"
+				legend={t('sample-size')}
 				defaultValue={n2}
 				step={1}
 				min={1}
@@ -296,7 +297,7 @@ class MeanTest extends Component {
 		const sSym = selectedTest === 'Z-Test' ? '\\sigma' : 's';
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
-				Parameters
+				{t('parameters')}
 			</Card.Header>
 			<Card.Body>
 				<Card body className="bg-light">
@@ -329,18 +330,18 @@ class MeanTest extends Component {
 						}}
 					/>
 				</Card>
-				<p>Let&#39;s assume that we have observed data with the following characteristics</p>
+				<p>{t('lets-assume')}</p>
 				<Card body className="bg-light">
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null}
 				</Card>
-				<p>We conduct the following test (click on the hypotheses below to switch between the one-sided variants and the two-sided test):</p>
+				<p>{t('conduct-the-following-test')}</p>
 				<Switch onChange={this.onDirectionChange} style={{ width: '100%' }} >
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${mu0} \\; vs. \\; H_1: ${testStat} \\ne ${mu0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${mu0} \\; vs. \\; H_1: ${testStat} > ${mu0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${mu0} \\; vs. \\; H_1: ${testStat} < ${mu0}`} />
 				</Switch>
-				<p>We calculate the following test statistic:</p>
+				<p>{t('calculate-test-statistic')}</p>
 				{ samples === 'Two-Sample' ?
 					<TeX
 						displayMode
@@ -367,11 +368,12 @@ class MeanTest extends Component {
 
 	renderResultPanel() {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, zStat, selectedTest } = this.state;
+		const { t } = this.props;
 		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		return ( <Card>
-			<Card.Header as="h4">Test Result</Card.Header>
+			<Card.Header as="h4">{t('test-result')}</Card.Header>
 			<Card.Body>
-				<p>Plugging in our values, we have:</p>
+				<p>{t('plugging-in')}</p>
 				{ samples === 'Two-Sample' ?
 					<TeX
 						tag=""
@@ -384,7 +386,7 @@ class MeanTest extends Component {
 						raw={`${statChar} = \\frac{${xbar} - ${mu0}}{${sigma} / \\sqrt{${n}}} = ${zStat}`}
 					/>
 				}
-				<p>Under the null hypothesis, we calculate the p-value:</p>
+				<p>{t('calculate-p-value')}</p>
 				<TeX raw={this.state.probFormula} />
 				<VictoryChart
 					domain={{ x: [ -3, 3 ]}}

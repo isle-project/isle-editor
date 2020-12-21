@@ -6,8 +6,11 @@
 	"parameters": "Parametri",
 	"plugging-in": "Abbiamo inserito i nostri valori:",
 	"proportion": "Proporzione",
+	"sample-mean": "Media del campione",
 	"sample-proportion": "Proporzione del campione",
 	"sample-size": "Dimensione del campione",
+	"sample-standard-deviation": "Esempio di deviazione standard",
+	"second-sample": "Secondo campione",
 	"test-result": "Risultato del test",
 	"test-statistic": "Statistiche dei test"
 }

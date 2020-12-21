@@ -6,8 +6,11 @@
 	"parameters": "パラメータ",
 	"plugging-in": "自分たちの価値観を突っ込んで",
 	"proportion": "比例",
+	"sample-mean": "サンプル平均",
 	"sample-proportion": "サンプルの割合",
 	"sample-size": "サンプルサイズ",
+	"sample-standard-deviation": "サンプル標準偏差",
+	"second-sample": "セカンドサンプル",
 	"test-result": "試験結果",
 	"test-statistic": "検定統計量"
 }

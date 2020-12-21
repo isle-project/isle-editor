@@ -6,8 +6,11 @@
 	"parameters": "Parámetros",
 	"plugging-in": "Conectando nuestros valores, lo hemos hecho:",
 	"proportion": "Proporción",
+	"sample-mean": "La muestra significa",
 	"sample-proportion": "Proporción de la muestra",
 	"sample-size": "Tamaño de la muestra",
+	"sample-standard-deviation": "Desviación estándar de la muestra",
+	"second-sample": "Segunda muestra",
 	"test-result": "Resultado de la prueba",
 	"test-statistic": "Estadística de prueba"
 }

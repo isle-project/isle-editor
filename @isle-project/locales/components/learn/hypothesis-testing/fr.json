@@ -6,8 +6,11 @@
 	"parameters": "Paramètres",
 	"plugging-in": "En nous branchant sur nos valeurs, nous l'avons fait :",
 	"proportion": "Proportion",
+	"sample-mean": "Moyenne de l'échantillon",
 	"sample-proportion": "Proportion de l'échantillon",
 	"sample-size": "Taille de l'échantillon",
+	"sample-standard-deviation": "Exemple d'écart type",
+	"second-sample": "Deuxième échantillon",
 	"test-result": "Résultat du test",
 	"test-statistic": "Statistiques des tests"
 }

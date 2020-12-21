@@ -6,8 +6,11 @@
 	"parameters": "Parameter",
 	"plugging-in": "Wenn wir unsere Werte einfügen, haben wir:",
 	"proportion": "Anteil",
+	"sample-mean": "Stichprobenmittelwert",
 	"sample-proportion": "Anteil der Probe",
 	"sample-size": "Stichprobengröße",
+	"sample-standard-deviation": "Standardabweichung der Probe",
+	"second-sample": "Zweite Probe",
 	"test-result": "Testergebnis",
 	"test-statistic": "Teststatistik"
 }

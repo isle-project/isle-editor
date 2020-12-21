@@ -6,8 +6,11 @@
 	"parameters": "参数",
 	"plugging-in": "插上我们的价值观，我们有。",
 	"proportion": "比例",
+	"sample-mean": "样本平均值",
 	"sample-proportion": "样本比例",
 	"sample-size": "样本量",
+	"sample-standard-deviation": "样本标准差",
+	"second-sample": "第二个样本",
 	"test-result": "测试结果",
 	"test-statistic": "测试统计"
 }

@@ -60,11 +60,12 @@ class ExponentialProbs extends Component {
 
 	renderInputs( type ) {
 		const { rate, x0, x1 } = this.state;
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<SliderInput
 					key={`${type}-rate`}
-					legend="Rate"
+					legend={t('rate')}
 					defaultValue={rate}
 					min={this.props.minRate}
 					step={this.props.step}
@@ -96,9 +97,10 @@ class ExponentialProbs extends Component {
 
 	render() {
 		const { rate, x0, x1 } = this.state;
+		const { t } = this.props;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Exponential Distribution
+				{t('exponential-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="exponential-tabs">
@@ -282,7 +284,7 @@ class ExponentialProbs extends Component {
 									{this.renderInputs( 'range' )}
 									{ x1 >= x0 ?
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pexp( x1, rate ) - pexp( x0, rate ), -4 )}`} displayMode /> :
-										<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+										<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 									}
 								</Panel>
 							</Col>
