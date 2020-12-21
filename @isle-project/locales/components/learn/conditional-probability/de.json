@@ -1,0 +1,8 @@
+{
+	"choose": "Wählen Sie",
+	"conditional-probabilities": "Was ist mit den bedingten Wahrscheinlichkeiten?",
+	"conditional-probability-undefined": "Die bedingte Wahrscheinlichkeit ist undefiniert, wenn",
+	"events-independent": "Die Ereignisse sind unabhängig, weil",
+	"events-not-independent": "Die Ereignisse sind <1>nicht</1> unabhängig, weil",
+	"inner-cells-equal": "Wofür sind die inneren Zellen gleich? Wenn die Ereignisse zufällig sind, haben wir"
+}

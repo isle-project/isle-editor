@@ -1,0 +1,8 @@
+{
+	"choose": "Kies",
+	"conditional-probabilities": "Hoe zit het met de voorwaardelijke kansen?",
+	"conditional-probability-undefined": "De voorwaardelijke waarschijnlijkheid is niet gedefinieerd wanneer",
+	"events-independent": "De evenementen zijn onafhankelijk omdat",
+	"events-not-independent": "De gebeurtenissen zijn <1>niet</1> onafhankelijk omdat",
+	"inner-cells-equal": "Waar zijn de binnenste cellen gelijk aan? Als de gebeurtenissen willekeurig zijn, hebben we"
+}

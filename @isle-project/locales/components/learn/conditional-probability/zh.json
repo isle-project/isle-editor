@@ -1,0 +1,8 @@
+{
+	"choose": "选择",
+	"conditional-probabilities": "那条件概率呢？",
+	"conditional-probability-undefined": "在以下情况下，条件概率是不确定的",
+	"events-independent": "这些事件是独立的，因为",
+	"events-not-independent": "这些事件是<1>不</1>独立的，因为",
+	"inner-cells-equal": "里面的单元格等于什么？如果事件是随机的，我们有"
+}

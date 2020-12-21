@@ -1,0 +1,8 @@
+{
+	"choose": "Scegliere",
+	"conditional-probabilities": "E le probabilità condizionali?",
+	"conditional-probability-undefined": "La probabilità condizionale non è definita quando",
+	"events-independent": "Gli eventi sono indipendenti perché",
+	"events-not-independent": "Gli eventi sono <1>non</1> indipendenti perché",
+	"inner-cells-equal": "A cosa sono uguali le celle interne? Se gli eventi sono casuali, abbiamo"
+}

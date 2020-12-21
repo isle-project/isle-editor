@@ -1,0 +1,8 @@
+{
+	"choose": "Choose",
+	"conditional-probabilities": "What about the conditional probabilities?",
+	"conditional-probability-undefined": "The conditional probability is undefined when",
+	"events-independent": "The events are independent because",
+	"events-not-independent": "The events are <1>not</1> independent because",
+	"inner-cells-equal": "What are the inner cells equal to? If the events are random, we have "
+}

@@ -1,0 +1,8 @@
+{
+	"choose": "Выберите .",
+	"conditional-probabilities": "А как же условные вероятности?",
+	"conditional-probability-undefined": "Условная вероятность не определена, когда",
+	"events-independent": "События независимы, потому что",
+	"events-not-independent": "События <1>not</1> независимы, потому что",
+	"inner-cells-equal": "На что равны внутренние клетки? Если события случайны, у нас есть"
+}

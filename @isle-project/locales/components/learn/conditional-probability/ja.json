@@ -1,0 +1,8 @@
+{
+	"choose": "選ぶ",
+	"conditional-probabilities": "条件付き確率は？",
+	"conditional-probability-undefined": "条件付き確率は",
+	"events-independent": "イベントは独立しているので",
+	"events-not-independent": "イベントは <1>独立していません。",
+	"inner-cells-equal": "内側のセルは何に等しいのか？イベントがランダムであれば"
+}

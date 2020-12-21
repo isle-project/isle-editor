@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { withTranslation, Trans } from 'react-i18next';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
@@ -235,6 +236,7 @@ class ConditionalProbability extends Component {
 
 	render() {
 		const { A, B, pA, pB } = this.state;
+		const { t } = this.props;
 		const victoryData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ]; // eslint-disable-line i18next/no-literal-string
 		const victoryLineData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ]; // eslint-disable-line i18next/no-literal-string
 		return (
@@ -243,13 +245,13 @@ class ConditionalProbability extends Component {
 				<Container>
 					<Row>
 						<Col sm={6}>
-							<p>What are the inner cells equal to? If the events are random, we have <TeX raw={`P(\\text{${A}} \\cap \\text{${B}} ) = P(\\text{${A}}) \\cdot P(\\text{${B}}) = ${roundn( pA*pB, -4 )}`} />. </p>
+							<p>{ t('inner-cells-equal')} <TeX raw={`P(\\text{${A}} \\cap \\text{${B}} ) = P(\\text{${A}}) \\cdot P(\\text{${B}}) = ${roundn( pA*pB, -4 )}`} />. </p>
 							{this.renderTable()}
 							<br />
 							{probabilityTableLabels({ A: A, B: B })}
 							<br />
 							<Row>
-								<span>Choose</span>
+								<span>{ t('choose')}</span>
 								<NumberInput
 									legend={<TeX raw={`P(\\text{${A}} \\mid \\text{${B})}`} />}
 									min={max( ( pA-1+pB )/pB, 0 )}
@@ -271,11 +273,11 @@ class ConditionalProbability extends Component {
 							</Row>
 						</Col>
 						<Col sm={5}>
-							<p>What about the conditional probabilities?</p>
+							<p>{ t('conditional-probabilities')}</p>
 							{ pB === 0 || pA === 0 ?
 								<Card>
-									{ pB === 0 ? <span>The conditional probability is undefined when <TeX raw={`P( \\text{${B}}) = 0`} /></span> : <span>
-											When <TeX raw={`P( ${A}) = 0`} />, we must have <TeX raw={`P( \\text{${A}} \\mid \\text{${B}} ) = P( \\text{${A}} \\mid \\text{${B}}^C ) = 0`} /> in case B has non-zero probability.
+									{ pB === 0 ? <span>{ t('conditional-probability-undefined')} <TeX raw={`P( \\text{${B}}) = 0`} /></span> : <span>
+										When <TeX raw={`P( ${A}) = 0`} />, we must have <TeX raw={`P( \\text{${A}} \\mid \\text{${B}} ) = P( \\text{${A}} \\mid \\text{${B}}^C ) = 0`} /> in case B has non-zero probability.
 									</span>}
 								</Card> :
 								<Container>
@@ -301,8 +303,12 @@ class ConditionalProbability extends Component {
 									</Row>
 									<Row>
 										{ this.state.independent ?
-											<Fragment><p>The events are independent because</p><TeX raw={`P( \\text{${A}} \\mid \\text{ ${B} } ) = P( \\text{${A}} \\mid \\text{ ${B} }^C )`} /></Fragment> :
-											<Fragment><p>The events are <b>not</b> independent because </p>
+											<Fragment><p>{ t('events-independent')}</p><TeX raw={`P( \\text{${A}} \\mid \\text{ ${B} } ) = P( \\text{${A}} \\mid \\text{ ${B} }^C )`} /></Fragment> :
+											<Fragment><p>
+												<Trans i18nKey="events-not-independent" >
+													The events are <b>not</b> independent because
+												</Trans>
+											</p>
 											<TeX raw={this.state.pAgivenB === 0 && this.state.pAgivenNotB === 0 ? `P( \\text{ ${A} } \\mid \\text{ ${B} } ) = P( \\text{${A}} \\mid \\text{ ${B} }^C \\neq P( \\text{${A}})` : `P( \\text{ ${A} } \\mid \\text{ ${B} } ) \\neq P( \\text{${A}} \\mid \\text{ ${B} }^C )`} /></Fragment>
 										}
 									</Row>
@@ -325,4 +331,4 @@ class ConditionalProbability extends Component {
 
 // EXPORTS //
 
-export default ConditionalProbability;
+export default withTranslation( 'LearnConditionalProbability' )( ConditionalProbability );

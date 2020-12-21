@@ -1,0 +1,8 @@
+{
+	"choose": "Wybierz",
+	"conditional-probabilities": "A co z prawdopodobieństwem warunkowym?",
+	"conditional-probability-undefined": "Warunkowe prawdopodobieństwo jest niezdefiniowane, gdy",
+	"events-independent": "Wydarzenia te są niezależne, ponieważ",
+	"events-not-independent": "Wydarzenia te są <1>nie</1> niezależne, ponieważ",
+	"inner-cells-equal": "Ile wynoszą komórki wewnętrzne? Jeśli zdarzenia są przypadkowe, mamy"
+}
