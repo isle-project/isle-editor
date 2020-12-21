@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Aktive Verteilung:",
+	"clear": "Klar",
+	"draw-25-samples": "Ziehen Sie 25 Proben",
+	"draw-sample": "Probe ziehen",
+	"draw-two-samples": "Bitte ziehen Sie mindestens zwei Proben.",
+	"exponential": "Exponential",
+	"histogram-of": "Histogramm von",
+	"maximum": "Maximum",
+	"mean": "Mittelwert",
+	"minimum": "Minimum",
+	"normal": "Normal",
+	"number-of-samples": "Anzahl der Stichproben:",
+	"overlay-normal-density": "Overlay normale Dichte",
+	"population-density": "Bevölkerungsdichte",
+	"population-distribution": "Verteilung der Bevölkerung",
+	"population-mean": "Populationsmittelwert:",
+	"population-standard-deviation": "Standardabweichung der Population:",
+	"probability-calculations-for": "Wahrscheinlichkeitsberechnungen für",
+	"rate-parameter": "Parameter Rate",
+	"sample-size": "Stichprobengröße",
+	"standard-deviation": "Standardabweichung",
+	"uniform": "Uniform",
+	"values": "Werte"
+}

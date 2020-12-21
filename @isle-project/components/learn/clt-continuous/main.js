@@ -183,25 +183,26 @@ class ContinuousCLT extends Component {
 	}
 
 	handleSelect = ( key ) => {
+		const { t } = this.props;
 		let formula;
 		key = parseInt( key, 10 );
 		switch ( key ) {
 		default:
 		case 1:
 			formula = <TeX
-				elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+				elems={{ a: { tooltip: t('minimum') }, b: { tooltip: t('maximum') }}}
 				raw={`\\text{Uniform}(a = ${this.state.a}, b = ${this.state.b})`}
 			/>;
 			break;
 		case 2:
 			formula = <TeX
-				elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+				elems={{ 'λ': { tooltip: t('rate-parameter') }}}
 				raw={`\\text{Exponential}( \\lambda = ${this.state.lambda})`}
 			/>;
 			break;
 		case 3:
 			formula = <TeX
-				elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+				elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
 				raw={`\\text{Normal}( \\mu = ${this.state.mu}, \\sigma = ${this.state.sigma })`}
 			/>;
 			break;
@@ -362,13 +363,14 @@ class ContinuousCLT extends Component {
 	}
 
 	renderDistSelectionPanel() {
+		const { t } = this.props;
 		const exponential = <div>
-			<NumberInput legend={<span>Rate parameter <TeX raw="\lambda" /></span>}
+			<NumberInput legend={<span>{t('rate-parameter')} <TeX raw="\lambda" /></span>}
 				max={100} min={0.01} step={0.01} defaultValue={this.state.lambda}
 				onChange={( lambda ) => {
 					const formula = <TeX
 						raw={`\\text{Exponential}(\\lambda = ${lambda})`}
-						elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+						elems={{ 'λ': { tooltip: t('rate-parameter') }}}
 					/>;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
 				}}
@@ -384,13 +386,13 @@ class ContinuousCLT extends Component {
 				onChange={( a ) => {
 					const formula = <TeX
 						raw={`\\text{Uniform}(a = ${a}, b = ${this.state.b})`}
-						elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+						elems={{ a: { tooltip: t('minimum') }, b: { tooltip: t('maximum') }}}
 					/>;
 					this.setState({ 'a': a, 'distFormula': formula });
 				}}
 			/>
 			<NumberInput
-				legend={<span>Maximum <TeX raw="b" /></span>}
+				legend={<span>{t('maximum')} <TeX raw="b" /></span>}
 				step={0.01}
 				min={this.state.a}
 				max={500}
@@ -398,7 +400,7 @@ class ContinuousCLT extends Component {
 				onChange={( b ) => {
 					const formula = <TeX
 						raw={`\\text{Uniform}(a = ${this.state.a}, b = ${b})`}
-						elems={{ a: { tooltip: 'Minimum' }, b: { tooltip: 'Maximum' }}}
+						elems={{ a: { tooltip: t('minimum') }, b: { tooltip: t('maximum') }}}
 					/>;
 					this.setState({ 'b': b, 'distFormula': formula });
 				}}
@@ -411,7 +413,7 @@ class ContinuousCLT extends Component {
 				onChange={( mu ) => {
 					const formula = <TeX
 						raw={`\\text{Normal}( \\mu = ${mu}, \\sigma = ${this.state.sigma})`}
-						elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+						elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
 					/>;
 					this.setState({ 'mu': mu, 'distFormula': formula });
 				}}
@@ -422,7 +424,7 @@ class ContinuousCLT extends Component {
 				onChange={( sigma ) => {
 					const formula = <TeX
 						raw={`\\text{Normal}(${this.state.mu},${sigma})`}
-						elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+						elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
 					/>;
 					this.setState({ 'sigma': sigma, 'distFormula': formula });
 				}}
@@ -434,20 +436,20 @@ class ContinuousCLT extends Component {
 		default:
 		case 1:
 			populationParams = <div>
-				<p><span className="title">Population mean: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{2} (a + b) =' : '' } ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
-				<p><span className="title">Population standard deviation: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\sqrt{12}}| b - a | =' : ''} ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">{t('population-mean')} </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{2} (a + b) =' : '' } ${( 0.5*( this.state.b + this.state.a ) ).toFixed( 3 )}`} /></p>
+				<p><span className="title">{t('population-standard-deviation')} </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\sqrt{12}}| b - a | =' : ''} ${( ( 1.0/sqrt( 12.0 ) )*abs( this.state.b-this.state.a ) ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 2:
 			populationParams = <div>
-				<p><span className="title">Population mean: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
-				<p><span className="title">Population standard deviation: </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
+				<p><span className="title">{t('population-mean')} </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /></p>
+				<p><span className="title">{t('population-standard-deviation')} </span> <TeX raw={`${!this.props.hideFormulas ? '\\tfrac{1}{\\lambda} =' : ''} ${( 1/this.state.lambda ).toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		case 3:
 			populationParams = <div>
-				<p><span className="title">Population mean: </span> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
-				<p><span className="title">Population standard deviation: </span> <TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
+				<p><span className="title">{t('population-mean')} </span> <TeX raw={`\\mu = ${this.state.mu.toFixed( 3 )}`} /></p>
+				<p><span className="title">{t('population-standard-deviation')} </span> <TeX raw={`\\sigma = ${this.state.sigma.toFixed( 3 )}`} /> </p>
 			</div>;
 			break;
 		}
@@ -486,16 +488,16 @@ class ContinuousCLT extends Component {
 				<Row>
 					<Col md={4}>
 						<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
-							{this.props.distributions.includes('uniform') ? <Tab eventKey={1} title="Uniform">{uniform}</Tab> : null}
-							{this.props.distributions.includes('exponential') ? <Tab eventKey={2} title="Exponential">{exponential}</Tab> : null}
-							{this.props.distributions.includes('normal') ? <Tab eventKey={3} title="Normal">{normal}</Tab>: null}
+							{this.props.distributions.includes('uniform') ? <Tab eventKey={1} title={t('uniform')}>{uniform}</Tab> : null}
+							{this.props.distributions.includes('exponential') ? <Tab eventKey={2} title={t('exponential')}>{exponential}</Tab> : null}
+							{this.props.distributions.includes('normal') ? <Tab eventKey={3} title={t('normal')}>{normal}</Tab>: null}
 						</Tabs>
 					</Col>
 					<Col md={4}>
-						<label>Active Distribution: {this.state.distFormula}</label>
+						<label>{t('active-distribution')} {this.state.distFormula}</label>
 						{populationParams}
 						<NumberInput
-							legend="Sample Size"
+							legend={t('sample-size')}
 							step={1} min={1} defaultValue={10} max={500}
 							onChange={( n ) => {
 								this.setState({ 'n': n });
@@ -503,7 +505,7 @@ class ContinuousCLT extends Component {
 						/>
 					</Col>
 					<Col>
-						<VictoryChart domain={domain} title="Population Density" >
+						<VictoryChart domain={domain} title={t('population-density')} >
 							<VictoryAxis label="x" />
 							<VictoryAxis dependentAxis />
 							<VictoryLine samples={600} y={( data ) => {
@@ -513,21 +515,21 @@ class ContinuousCLT extends Component {
 					</Col>
 				</Row>
 				<Card body>
-					<label>Number of Samples: {this.state.xbars.length}</label>
+					<label>{t('number-of-samples')} {this.state.xbars.length}</label>
 					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<ButtonGroup>
 						<Button onClick={() => {
 							this.generateSamples( 1 );
 						}}>
-							Draw Sample
+							{t('draw-sample')}
 						</Button>
 						<Button onClick={() => {
 							this.generateSamples( 25 );
 						}}>
-							Draw 25 Samples
+							{t('draw-25-samples')}
 						</Button>
 						<Button onClick={this.clear.bind( this )}>
-							Clear
+							{t('clear')}
 						</Button>
 					</ButtonGroup>
 				</Card>
@@ -536,6 +538,7 @@ class ContinuousCLT extends Component {
 	}
 
 	renderXbarHistogram() {
+		const { t } = this.props;
 		const plotlyData = [
 			{
 				x: this.state.xbars,
@@ -552,7 +555,7 @@ class ContinuousCLT extends Component {
 			});
 		}
 		return ( <Card body>
-			<span className="title">Histogram of <TeX raw="\bar x" />&#39;s</span>
+			<span className="title">{t('histogram-of')} <TeX raw="\bar x" />&#39;s</span>
 			{ this.state.xbars.length > 1 ?
 				<Plotly data={plotlyData} layout={{
 					width: 400,
@@ -572,9 +575,9 @@ class ContinuousCLT extends Component {
 						}
 					]
 				}} removeButtons toggleFullscreen={false} /> :
-				<p>Please draw at least two samples.</p>
+				<p>{t('draw-two-samples')}</p>
 			}
-			<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
+			<CheckboxInput legend={t('overlay-normal-density')} onChange={( value ) => {
 				this.setState({
 					overlayNormal: value
 				});
@@ -587,19 +590,20 @@ class ContinuousCLT extends Component {
 			}
 			{ this.state.stdevXBars ?
 				<p>
-					<span className="title">Standard deviation of <TeX raw="\bar x" />&#39;s: </span>
+					<span className="title">{t('standard-deviation')} <TeX raw="\bar x" />&#39;s: </span>
 					&nbsp;{this.state.stdevXBars.toFixed( 3 )}
 				</p> : null
 			}
 			<div>
-				<span className="title"><TeX raw="\bar{x}" /> Values </span>
+				<span className="title"><TeX raw="\bar{x}" /> {t('values')} </span>
 				{ this.state.xbars.length > 0 ? <pre style={{ 'fontFamily': 'monospace' }}>{makeVisibleData(this.state.xbars)}</pre> : null }
 			</div>
 		</Card> );
 	}
 
 	render() {
-		const title = <span>Probability Calculations for {this.state.distFormula}</span>;
+		const { t } = this.props;
+		const title = <span>{t('probability-calculations-for')} {this.state.distFormula}</span>;
 		return (
 			<div style={{ maxWidth: 1200, margin: '0 auto' }} >
 				<Container>
@@ -639,12 +643,12 @@ class ContinuousCLT extends Component {
 					</Row>
 					<Row>
 						<Col md={6}>
-							<h4 className="center">Population Distribution</h4>
+							<h4 className="center">{t('population-distribution"')}</h4>
 							<PopProbability {...this.state} />
 							<ProbabilityRange {...this.state} />
 						</Col>
 						<Col md={6}>
-							<h4 className="center">Mean Distribution</h4>
+							<h4 className="center">{t('mean-distribution')}</h4>
 							<ProbMean {...this.state} />
 							<ProbMeanRange {...this.state} />
 						</Col>

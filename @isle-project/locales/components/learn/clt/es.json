@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Distribución activa:",
+	"clear": "Despejado",
+	"draw-25-samples": "Saca 25 muestras",
+	"draw-sample": "Dibujar la muestra",
+	"draw-two-samples": "Por favor, tome al menos dos muestras.",
+	"exponential": "Exponencial",
+	"histogram-of": "Histograma de",
+	"maximum": "Máximo",
+	"mean": "Significa",
+	"minimum": "Mínimo",
+	"normal": "Normal",
+	"number-of-samples": "Número de muestras:",
+	"overlay-normal-density": "Superponer la densidad normal",
+	"population-density": "Densidad de la población",
+	"population-distribution": "Distribución de la población",
+	"population-mean": "Media de la población:",
+	"population-standard-deviation": "Desviación estándar de la población:",
+	"probability-calculations-for": "Cálculos de probabilidad para",
+	"rate-parameter": "Parámetro de la tasa",
+	"sample-size": "Tamaño de la muestra",
+	"standard-deviation": "Desviación estándar",
+	"uniform": "Uniforme",
+	"values": "Valores"
+}

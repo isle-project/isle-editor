@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Actieve distributie:",
+	"clear": "Duidelijk",
+	"draw-25-samples": "Tekening 25 Monsters",
+	"draw-sample": "Tekenen van een monster",
+	"draw-two-samples": "Gelieve ten minste twee monsters te nemen.",
+	"exponential": "Exponentieel",
+	"histogram-of": "Histogram van",
+	"maximum": "Maximaal",
+	"mean": "Betekenis",
+	"minimum": "Minimaal",
+	"normal": "Normaal",
+	"number-of-samples": "Aantal monsters:",
+	"overlay-normal-density": "Overlay normale dichtheid",
+	"population-density": "Bevolkingsdichtheid",
+	"population-distribution": "Bevolkingsspreiding",
+	"population-mean": "Bevolkingsgemiddelde:",
+	"population-standard-deviation": "Standaardafwijking van de bevolking:",
+	"probability-calculations-for": "Waarschijnlijkheidsberekeningen voor",
+	"rate-parameter": "Tariefparameter",
+	"sample-size": "Steekproefgrootte",
+	"standard-deviation": "Standaardafwijking",
+	"uniform": "Uniform",
+	"values": "Waarden"
+}

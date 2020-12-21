@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Distribuzione attiva:",
+	"clear": "Cancella",
+	"draw-25-samples": "Disegnare 25 campioni",
+	"draw-sample": "Disegnare il campione",
+	"draw-two-samples": "Si prega di prelevare almeno due campioni.",
+	"exponential": "Esponenziale",
+	"histogram-of": "Istogramma di",
+	"maximum": "Massimo",
+	"mean": "Significato",
+	"minimum": "Minimo",
+	"normal": "Normale",
+	"number-of-samples": "Numero di campioni:",
+	"overlay-normal-density": "Sovrapposizione densità normale",
+	"population-density": "Densità della popolazione",
+	"population-distribution": "Distribuzione della popolazione",
+	"population-mean": "Media della popolazione:",
+	"population-standard-deviation": "Deviazione standard della popolazione:",
+	"probability-calculations-for": "Calcoli di probabilità per",
+	"rate-parameter": "Parametro del tasso",
+	"sample-size": "Dimensione del campione",
+	"standard-deviation": "Deviazione standard",
+	"uniform": "Uniforme",
+	"values": "Valori"
+}

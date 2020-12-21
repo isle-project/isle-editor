@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Aktywna dystrybucja:",
+	"clear": "Jasne",
+	"draw-25-samples": "Rys. 25 Próbki",
+	"draw-sample": "Rysuj Próbkę",
+	"draw-two-samples": "Proszę narysować co najmniej dwie próbki.",
+	"exponential": "Wykładniczy",
+	"histogram-of": "Histogram",
+	"maximum": "Maksymalnie",
+	"mean": "Mean",
+	"minimum": "Minimum",
+	"normal": "Normalny",
+	"number-of-samples": "Liczba próbek:",
+	"overlay-normal-density": "Nakładanie normalnej gęstości",
+	"population-density": "Populacja Gęstość zaludnienia",
+	"population-distribution": "Populacja Dystrybucja",
+	"population-mean": "Populacja znaczy:",
+	"population-standard-deviation": "Odchylenie standardowe populacji:",
+	"probability-calculations-for": "Obliczenia prawdopodobieństwa dla",
+	"rate-parameter": "Parametr stawki",
+	"sample-size": "Wielkość próbki",
+	"standard-deviation": "odchylenie standardowe",
+	"uniform": "Uniform",
+	"values": "Wartości"
+}

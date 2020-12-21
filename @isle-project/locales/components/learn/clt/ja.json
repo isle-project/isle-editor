@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "積極的に配布しています。",
+	"clear": "クリア",
+	"draw-25-samples": "25のサンプルを描く",
+	"draw-sample": "ドローサンプル",
+	"draw-two-samples": "サンプルを2枚以上描いてください。",
+	"exponential": "指数的",
+	"histogram-of": "のヒストグラム",
+	"maximum": "最大",
+	"mean": "平均",
+	"minimum": "最小",
+	"normal": "通常",
+	"number-of-samples": "サンプル数",
+	"overlay-normal-density": "通常の密度をオーバーレイします。",
+	"population-density": "人口密度",
+	"population-distribution": "人口分布",
+	"population-mean": "人口平均。",
+	"population-standard-deviation": "人口の標準偏差。",
+	"probability-calculations-for": "のための確率計算",
+	"rate-parameter": "レートパラメータ",
+	"sample-size": "サンプルサイズ",
+	"standard-deviation": "標準偏差",
+	"uniform": "制服",
+	"values": "値"
+}

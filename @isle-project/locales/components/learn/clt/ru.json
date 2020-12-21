@@ -1,1 +1,25 @@
-{}
+{
+	"active-distribution": "Активное распределение:",
+	"clear": "Clear",
+	"draw-25-samples": "Нарисуйте 25 образцов",
+	"draw-sample": "Образец рисунка",
+	"draw-two-samples": "Пожалуйста, нарисуйте как минимум два образца.",
+	"exponential": "Экспоненциальный",
+	"histogram-of": "Гистограмма",
+	"maximum": "Максимум",
+	"mean": "Средний",
+	"minimum": "Минимум",
+	"normal": "Нормальный",
+	"number-of-samples": "Количество проб:",
+	"overlay-normal-density": "Нормальная плотность перекрытия",
+	"population-density": "Плотность населения",
+	"population-distribution": "Распределение населения",
+	"population-mean": "Средняя численность населения:",
+	"population-standard-deviation": "Стандартное отклонение населения:",
+	"probability-calculations-for": "Расчёты вероятности для",
+	"rate-parameter": "Параметр скорости",
+	"sample-size": "Размер образца",
+	"standard-deviation": "среднеквадратическое отклонение",
+	"uniform": "Форма",
+	"values": "Значения"
+}
