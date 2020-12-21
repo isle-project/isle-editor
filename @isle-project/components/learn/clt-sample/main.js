@@ -391,11 +391,12 @@ class SampleCLT extends Component {
 	}
 
 	renderMeanHistogram() {
+		const { t } = this.props;
 		let label;
 		if ( this.state.type === 'numeric' ) {
-			label = <span> Histogram of <TeX raw="\bar x" />&#39;s</span>;
+			label = <span> {t('histogram-of')} <TeX raw="\bar x" />&#39;s</span>; // eslint-disable-line i18next/no-literal-string
 		} else if ( this.state.type === 'binary' ) {
-			label = <span> Histogram of <TeX raw="\hat p" />&#39;s</span>;
+			label = <span> {t('histogram-of')} <TeX raw="\hat p" />&#39;s</span>; // eslint-disable-line i18next/no-literal-string
 		}
 		return ( <Panel header={label} >
 			{ this.state.xbars.length > 1 ?
@@ -425,18 +426,18 @@ class SampleCLT extends Component {
 					}
 					removeButtons
 				/> :
-				<p>Please draw at least two samples.</p>
+				<p>{t('draw-two-samples')}</p>
 			}
-			<p><label>Number of Samples: {this.state.xbars.length} </label></p>
+			<p><label>{t('number-of-samples')} {this.state.xbars.length} </label></p>
 			{ this.state.avg_xbars ?
 				<p>
-					<label> Mean of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
-					<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} (shown as the red line)</span>
+					<label> {t('mean-of')} { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
+					<span>&nbsp;{this.state.avg_xbars.toFixed( 3 )} ({t('shown-as-red-line')})</span>
 				</p> : null
 			}
 			{ this.state.stdev_xbars ?
 				<p>
-					<label>Standard deviation of { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
+					<label>{t('standard-deviation-of')} { this.state.type === 'numeric' ? <TeX raw="\bar x" /> : <TeX raw="\hat p" />}&#39;s: </label>
 					&nbsp;{this.state.stdev_xbars.toFixed( 3 )}
 				</p> : null
 			}
@@ -444,9 +445,10 @@ class SampleCLT extends Component {
 	}
 
 	renderPopulationProbabilities() {
+		const { t } = this.props;
 		return ( <Card>
 			<Card.Header as="h4">
-				Population Distribution of {this.state.variable}
+				{t('population-distribution-of')} {this.state.variable}
 			</Card.Header>
 			<Card.Body>
 				<Plotly
@@ -457,12 +459,12 @@ class SampleCLT extends Component {
 					removeButtons
 				/>
 				<p>
-					<span className="title">Population { this.state.type === 'numeric' ? 'mean' : 'proportion' }: </span>
+					<span className="title">{ this.state.type === 'numeric' ? t('population-mean') : t('population-proportion') }: </span>
 					{' '}
 					{this.state.trueMean.toFixed( 3 )}
 				</p>
 				{!this.props.hidePopulationStdev ? <p>
-					<span className="title">Population standard deviation: </span>
+					<span className="title">{t('population-standard-deviation')} </span>
 					{' '}
 					{this.state.trueStdev.toFixed( 3 )}
 				</p> : null}
@@ -471,6 +473,7 @@ class SampleCLT extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Container style={{ maxWidth: 1200 }}>
 				<Row>
@@ -491,23 +494,23 @@ class SampleCLT extends Component {
 											<Button onClick={() => {
 												this.drawSamples( 1 );
 											}}>
-												Draw Sample
+												{t('"draw-sample')}
 											</Button>
 											{isNumberArray( this.props.samples ) ?
 												this.props.samples.map( ( n, idx ) => {
 													return ( <Button key={idx} onClick={() => {
 														this.drawSamples( n );
 													}}>
-														Draw {n} Samples
+														{t('draw-n-samples', { n })}
 													</Button> );
 												}) : <Button onClick={() => {
 														this.drawSamples( this.props.samples );
 													}}>
-														Draw {this.props.samples} Samples
+														{t('draw-n-samples', { n: this.props.samples })}
 													</Button>
 											}
 											<Button onClick={this.clear.bind( this )}>
-												Clear
+												{t('clear')}
 											</Button>
 										</ButtonGroup>
 									</span> : null
@@ -522,7 +525,7 @@ class SampleCLT extends Component {
 							{ this.props.populationProbabilities ?
 								this.renderPopulationProbabilities() :
 								<div>
-									<Panel header="Drawn Samples" style={{ height: '400px' }} >
+									<Panel header={t('drawn-samples')} style={{ height: '400px' }} >
 										<GridLayout
 											className="layout"
 											layout={this.state.layout}
@@ -544,7 +547,7 @@ class SampleCLT extends Component {
 								</div>
 							}
 							{this.state.type === 'numeric' ? <Card body >
-								<NumberInput step="any" legend={<span>Evaluate probabilities for <TeX raw="X" /></span>} onChange={this.onXChange} />
+								<NumberInput step="any" legend={<span>{t('evaluate-probabilities-for')} <TeX raw="X" /></span>} onChange={this.onXChange} />
 								<TeX raw={`P( X < ${this.state.cutoffPop} ) = ${this.state.leftProb.toFixed( 3 )}`} displayMode />
 								<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 							</Card> : null}
@@ -557,19 +560,19 @@ class SampleCLT extends Component {
 							<div>
 								{this.renderMeanHistogram()}
 								{this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body>
-									<NumberInput step="any" legend={<span>Estimate probabilities for <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
+									<NumberInput step="any" legend={<span>{t('estimate-probabilities-for')} <TeX raw="\bar X" /></span>} onChange={this.onXbarChange} />
 									<TeX raw={`\\hat P(\\bar X < ${this.state.cutoff} ) = ${this.state.leftXbarProb.toFixed( 3 )}`} displayMode />
 									<TeX raw={`\\hat P( \\bar X \\ge ${this.state.cutoff} ) = ${this.state.rightXbarProb.toFixed( 3 )}`} displayMode />
 								</Card> : null }
 								{this.props.quantiles && this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body style={{ marginTop: 6 }} >
-									<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.phat} legend={<span>Calculate percentiles for <TeX raw="\bar X" /></span>} onChange={this.onSamplePercentileChange} />
+									<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.phat} legend={<span>{t('calculate-percentiles-for')} <TeX raw="\bar X" /></span>} onChange={this.onSamplePercentileChange} />
 									{ this.state.samplePercentile ? <TeX raw={roundn( this.state.samplePercentile, -3 )} /> : null }
 								</Card> : null }
 							</div>
 						</Col>
 					</Row> :
 					<Alert variant="info" style={{ fontSize: 24 }}>
-						Please sample from either a numeric variable or a categorical variable with two categories.
+						{t('require-numeric-or-binary')}
 					</Alert>
 				}
 			</Container>
