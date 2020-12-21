@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "测试版分布",
+	"binomial-distribution": "二项式分布",
+	"binomial-probabilities": "二项式概率",
 	"chi-squared-distribution": "秩方分布",
 	"degrees-of-freedom": "自由度",
 	"evaluated-at": "评价时间",
+	"exponential-distribution": "指数分布",
 	"f-distribution": "F 分销",
 	"for-population-size": "人口规模",
 	"for-success-probability": "对于成功的概率",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "是出现的次数。",
 	"number-of-successes": "成数",
 	"number-of-successes-until-experiment-stopped": "实验停止前的成功次数",
+	"number-of-trials": "审判次数",
 	"number-trials-until-success": "让<1/>为第一次成功之前的试验次数。",
 	"poisson-distribution": "泊松分布",
 	"poisson-probabilities": "泊松概率",
@@ -37,6 +41,7 @@
 	"success-probability": "成功概率",
 	"success-probability-of": "和成功概率为",
 	"successes-until-stop": "成功，直至停止",
+	"trials-and-success-probability": "试验，成功概率为",
 	"uniform-distribution": "统一分配",
 	"we-get": "我们得到"
 }

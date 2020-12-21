@@ -87,11 +87,12 @@ class BinomialProps extends Component {
 	}
 
 	renderInputs( type) {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<NumberInput
 					key={`${type}-n`}
-					legend="Number of trials (n)"
+					legend={`${t('number-of-trials')} (n)`}
 					defaultValue={this.state.n}
 					min={1}
 					step={1}
@@ -99,7 +100,7 @@ class BinomialProps extends Component {
 				/>
 				<NumberInput
 					key={`${type}-p`}
-					legend="Success probability (p)"
+					legend={`${t('success-probability')} (p)`}
 					defaultValue={this.state.p}
 					step={this.props.step}
 					onChange={this.handlePropChange}
@@ -131,9 +132,10 @@ class BinomialProps extends Component {
 
 	render() {
 		const { x0, x1, n, p } = this.state;
+		const { t } = this.props;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Binomial Distribution
+				{t('binomial-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={0} id="binomial-tabs">
@@ -141,8 +143,8 @@ class BinomialProps extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title="Binomial probabilities">
-									<span>For</span><NumberInput
+								<Panel title={t('binomial-probabilities')}>
+									<span>{t('for')}</span><NumberInput
 										inline
 										legend="n"
 										defaultValue={n}
@@ -150,7 +152,7 @@ class BinomialProps extends Component {
 										min={0}
 										max={999}
 										onChange={this.handleTrialsChange}
-									/><span>trials and a success probability of</span>
+									/><span>{t('trials-and-success-probability')}</span>
 									<NumberInput
 										inline
 										legend="p"
@@ -160,9 +162,9 @@ class BinomialProps extends Component {
 										min={0}
 										onChange={this.handlePropChange}
 									/>
-									<span>we get</span>
+									<span>{t('we-get')}</span>
 									<TeX raw={`P(X=x)= \\Large \\tbinom{${n}}{x} ${p}^x ${roundn(1-p, -4)}^{${n}-x}`} displayMode />
-									<span>Evaluated at </span><NumberInput
+									<span>{t('evaluated-at')} </span><NumberInput
 										inline
 										legend="x"
 										defaultValue={0}
@@ -170,12 +172,12 @@ class BinomialProps extends Component {
 										max={n}
 										min={0}
 										onChange={this.handleLowerChange}
-									/> <span>we get</span>
+									/> <span>{t('we-get')}</span>
 									<TeX raw={`P(X=${x0})= \\Large \\tbinom{${n}}{${x0}} ${p}^{${x0}} ${roundn(1-p, -4 )}^{${n}-${x0}} \\approx ${dbinom(x0, this.state.n, p).toFixed(4)}`} displayMode />
 								</Panel>
 								</Col>
 								<Col md={7} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -247,7 +249,7 @@ class BinomialProps extends Component {
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -319,7 +321,7 @@ class BinomialProps extends Component {
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -389,12 +391,12 @@ class BinomialProps extends Component {
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbinom( x1, n, p ) - pbinom( x0 - 1, n, p ), -4 )}`} displayMode tag="" /> :
-											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+											<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 										}
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>

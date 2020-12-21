@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "Bètadistributie",
+	"binomial-distribution": "Binomiale distributie",
+	"binomial-probabilities": "Binomiale waarschijnlijkheid",
 	"chi-squared-distribution": "Chi-kwadraatverdeling",
 	"degrees-of-freedom": "Graden van vrijheid",
 	"evaluated-at": "Geëvalueerd op",
+	"exponential-distribution": "Exponentiële verdeling",
 	"f-distribution": "F Distributie",
 	"for-population-size": "Voor de bevolkingsomvang",
 	"for-success-probability": "Voor succes waarschijnlijkheid van",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "zijn het aantal voorvallen.",
 	"number-of-successes": "aantal successen",
 	"number-of-successes-until-experiment-stopped": "Voor het aantal successen totdat het experiment wordt stopgezet",
+	"number-of-trials": "Aantal proeven",
 	"number-trials-until-success": "Laat <1/> het aantal proeven zijn tot het eerste succes.",
 	"poisson-distribution": "Poisson distributie",
 	"poisson-probabilities": "Poisson waarschijnlijkheid",
@@ -37,6 +41,7 @@
 	"success-probability": "Succeskans",
 	"success-probability-of": "en een kans op succes van",
 	"successes-until-stop": "Successen tot aan de stop",
+	"trials-and-success-probability": "proeven en een kans op succes",
 	"uniform-distribution": "Uniforme verdeling",
 	"we-get": "we krijgen"
 }

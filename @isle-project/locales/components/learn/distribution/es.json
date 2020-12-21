@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "Distribución Beta",
+	"binomial-distribution": "Distribución Binomial",
+	"binomial-probabilities": "Probabilidades del binomio",
 	"chi-squared-distribution": "Distribución de Chi-cuadrado",
 	"degrees-of-freedom": "Grados de libertad",
 	"evaluated-at": "Evaluado en",
+	"exponential-distribution": "Distribución exponencial",
 	"f-distribution": "F Distribución",
 	"for-population-size": "Para el tamaño de la población",
 	"for-success-probability": "Para la probabilidad de éxito de",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "el número de ocurrencias.",
 	"number-of-successes": "número de éxitos",
 	"number-of-successes-until-experiment-stopped": "Por el número de éxitos hasta que el experimento se detenga",
+	"number-of-trials": "Número de ensayos",
 	"number-trials-until-success": "Que <1/> sea el número de pruebas hasta el primer éxito.",
 	"poisson-distribution": "Distribución de Poisson",
 	"poisson-probabilities": "Probabilidades de Poisson",
@@ -37,6 +41,7 @@
 	"success-probability": "Probabilidad de éxito",
 	"success-probability-of": "y una probabilidad de éxito de",
 	"successes-until-stop": "Los éxitos hasta el final",
+	"trials-and-success-probability": "y una probabilidad de éxito de",
 	"uniform-distribution": "Distribución uniforme",
 	"we-get": "tenemos"
 }

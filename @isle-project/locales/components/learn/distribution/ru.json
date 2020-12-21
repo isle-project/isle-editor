@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "Бета-дистрибуция",
+	"binomial-distribution": "биномиальное распределение",
+	"binomial-probabilities": "биномиальные вероятности",
 	"chi-squared-distribution": "Распределение хи-квадрат",
 	"degrees-of-freedom": "Степени свободы",
 	"evaluated-at": "Оценивается по",
+	"exponential-distribution": "Экспоненциальное распределение",
 	"f-distribution": "F Распределение",
 	"for-population-size": "Для размера популяции",
 	"for-success-probability": "Для вероятности успеха",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "количество случаев.",
 	"number-of-successes": "ряд успехов",
 	"number-of-successes-until-experiment-stopped": "Для ряда успехов до тех пор, пока эксперимент не будет остановлен",
+	"number-of-trials": "Количество испытаний",
 	"number-trials-until-success": "Пусть <1/> будет числом проб до первого успеха.",
 	"poisson-distribution": "Пуассонское распределение",
 	"poisson-probabilities": "пуассоновские вероятности",
@@ -37,6 +41,7 @@
 	"success-probability": "Вероятность успеха",
 	"success-probability-of": "и вероятность успеха",
 	"successes-until-stop": "Успехи до остановки",
+	"trials-and-success-probability": "испытания и вероятность успеха",
 	"uniform-distribution": "Равномерное распределение",
 	"we-get": "получаем"
 }

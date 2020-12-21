@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "Beta Distribution",
+	"binomial-distribution": "Binomial Distribution",
+	"binomial-probabilities": "Binomial probabilities",
 	"chi-squared-distribution": "Chi-squared Distribution",
 	"degrees-of-freedom": "Degrees of Freedom",
 	"evaluated-at": "Evaluated at",
+	"exponential-distribution": "Exponential Distribution",
 	"f-distribution": "F Distribution",
 	"for-population-size": "For population size",
 	"for-success-probability": "For success probability of",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "be the number of occurrences.",
 	"number-of-successes": "number of successes",
 	"number-of-successes-until-experiment-stopped": "For number of successes until experiment is stopped",
+	"number-of-trials": "Number of trials ",
 	"number-trials-until-success": "Let <1/> be the number of trials until the first success.",
 	"poisson-distribution": "Poisson Distribution",
 	"poisson-probabilities": "Poisson probabilities",
@@ -37,6 +41,7 @@
 	"success-probability": "Success probability",
 	"success-probability-of": "and a success probability of",
 	"successes-until-stop": "Successes until stop",
+	"trials-and-success-probability": "trials and a success probability of",
 	"uniform-distribution": "Uniform Distribution",
 	"we-get": "we get"
 }

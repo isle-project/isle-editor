@@ -1,8 +1,11 @@
 {
 	"beta-distribution": "ベータ配布",
+	"binomial-distribution": "二項分布",
+	"binomial-probabilities": "二項確率",
 	"chi-squared-distribution": "カイ二乗分布",
 	"degrees-of-freedom": "自由度",
 	"evaluated-at": "で評価されています。",
+	"exponential-distribution": "指数分布",
 	"f-distribution": "F ディストリビューション",
 	"for-population-size": "人口規模の場合",
 	"for-success-probability": "の成功確率のために",
@@ -23,6 +26,7 @@
 	"number-of-occurrences": "は発生数である。",
 	"number-of-successes": "成功数",
 	"number-of-successes-until-experiment-stopped": "実験を中止するまでの成功回数",
+	"number-of-trials": "試行回数",
 	"number-trials-until-success": "<1/>を最初の成功までの試行回数とする。",
 	"poisson-distribution": "ポアソン分布",
 	"poisson-probabilities": "ポアソン確率",
@@ -37,6 +41,7 @@
 	"success-probability": "成功確率",
 	"success-probability-of": "の成功確率と",
 	"successes-until-stop": "停止するまでの成功",
+	"trials-and-success-probability": "の成功確率で試験を行います。",
 	"uniform-distribution": "一様分布",
 	"we-get": "貰える"
 }
