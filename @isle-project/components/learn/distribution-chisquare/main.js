@@ -62,7 +62,7 @@ class ChisquareProbs extends Component {
 			<Fragment>
 				<SliderInput
 					key={`${type}-df`}
-					legend="Degrees of Freedom"
+					legend={this.props.t('degrees-of-freedom')}
 					defaultValue={df}
 					min={this.props.minDF}
 					step={this.props.step}
@@ -96,7 +96,7 @@ class ChisquareProbs extends Component {
 		const { df, x0, x1 } = this.state;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Chi-squared Distribution
+				{this.props.t('chi-squared-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="chisquared-tabs">
@@ -284,7 +284,7 @@ class ChisquareProbs extends Component {
 									{this.renderInputs( 'range' )}
 									{ x1 >= x0 ?
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pchisq( x1, df ) - pchisq( x0, df ), -4 )}`} displayMode /> :
-										<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+										<Alert variant="warning">{this.props.t('lower-bound-smaller-equal-uppen-bound.')}</Alert>
 									}
 								</Panel>
 							</Col>

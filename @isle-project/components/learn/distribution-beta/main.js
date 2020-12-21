@@ -278,7 +278,7 @@ class BetaProbs extends Component {
 						{this.renderInputs( 'range' )}
 						{ x1 >= x0 ?
 							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbeta( x1, alpha, beta ) - pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" /> :
-							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+							<Alert variant="warning">{ t('lower-bold')}</Alert>
 						}
 					</Panel>
 				</Col>
@@ -353,7 +353,7 @@ class BetaProbs extends Component {
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Beta Distribution
+				{ t('beta-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="beta-tabs">
