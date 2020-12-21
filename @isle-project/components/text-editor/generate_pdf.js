@@ -68,7 +68,7 @@ function isPoster( config ) {
 function generatePDF( html, config, standardFontSize, editorWidth ) {
 	const widthReplacer = ( match, p1 ) => {
 		const width = parseFloat( p1 ) * max( config.pageSize.width / editorWidth, 1 );
-		return `width: ${width}px`;
+		return `width: ${width}px`; // eslint-disable-line i18next/no-literal-string
 	};
 	html = replace( html, RE_WIDTH, widthReplacer );
 	html = replace( html, RE_IMG_TOOLTIP, '' );

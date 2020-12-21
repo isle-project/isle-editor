@@ -20,7 +20,7 @@ function timerID( id ) {
 	if ( !id ) {
 		return null;
 	}
-	return `timer::${id}`;
+	return `timer::${id}`; // eslint-disable-line i18next/no-literal-string
 }
 
 

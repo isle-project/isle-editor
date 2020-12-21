@@ -348,8 +348,8 @@ class Sketchpad extends Component {
 							if ( sessionID !== session.sessionID ) {
 								x *= this.canvas.width / DPR;
 								y *= this.canvas.height / DPR;
-								x = `${x+this.leftMargin}px`;
-								y = `${y}px`;
+								x = `${x+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+								y = `${y}px`; // eslint-disable-line i18next/no-literal-string
 								this.pointer.style.left = x;
 								this.pointer.style.top = y;
 								this.pointer.style.opacity = 0.7;
@@ -767,6 +767,7 @@ class Sketchpad extends Component {
 	}
 
 	renderBackground = ( pageNumber ) => {
+		/* eslint-disable i18next/no-literal-string */
 		if ( this.renderingTask ) {
 			this.renderingTask.cancel();
 		}
@@ -861,6 +862,7 @@ class Sketchpad extends Component {
 		}
 		// Return promise that immediately resolves as no background needs to be drawn:
 		return Promise.resolve();
+		/* eslint-enable i18next/no-literal-string */
 	}
 
 	redraw = () => {
@@ -1711,7 +1713,7 @@ class Sketchpad extends Component {
 
 	drawText = ({ x, y, value, color, drawID, user, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
-		ctx.font = `${fontSize}px ${fontFamily}`;
+		ctx.font = `${fontSize}px ${fontFamily}`; // eslint-disable-line i18next/no-literal-string
 		ctx.shadowBlur = 0;
 		ctx.fillStyle = selected ? 'orange' : color;
 		const xval = round( x*(this.canvas.width/DPR) );
@@ -1755,7 +1757,7 @@ class Sketchpad extends Component {
 			input.style.top = y + 'px';
 			const width = max( this.state.canvasWidth - x, 60 );
 			debug( `Resize to width ${width}...` );
-			input.style.width = `${width}px`;
+			input.style.width = `${width}px`; // eslint-disable-line i18next/no-literal-string
 			input.focus();
 		}
 		else if ( this.state.mode === 'deletion' ) {
@@ -2407,8 +2409,8 @@ class Sketchpad extends Component {
 		let { x, y } = this.mousePosition( event );
 		if ( this.state.mode === 'pointer' ) {
 			this.pointer.style.opacity = 0.7;
-			this.pointer.style.left = `${x+this.leftMargin}px`;
-			this.pointer.style.top = `${y}px`;
+			this.pointer.style.left = `${x+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+			this.pointer.style.top = `${y}px`; // eslint-disable-line i18next/no-literal-string
 		}
 		else if ( this.state.mode === 'zoom' ) {
 			let { width, height } = this.zoom;
@@ -2436,8 +2438,8 @@ class Sketchpad extends Component {
 			}
 			this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
 			this.zoom.style.display = 'block';
-			this.zoom.style.left = `${x-sw+this.leftMargin}px`;
-			this.zoom.style.top = `${y-sh}px`;
+			this.zoom.style.left = `${x-sw+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+			this.zoom.style.top = `${y-sh}px`; // eslint-disable-line i18next/no-literal-string
 		}
 		const action = {
 			id: this.id,
