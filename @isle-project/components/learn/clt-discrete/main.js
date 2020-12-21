@@ -199,12 +199,13 @@ class DiscreteCLT extends Component {
 	}
 
 	renderDistSelectionPanel() {
+		const { t } = this.props;
 		return (
 			<Card body>
 				<Container>
 					<Row>
 						<Col md={6}>
-							<span className="title">Binomial Distribution</span>
+							<span className="title">{t('binomial-distribution')}</span>
 							<NumberInput
 								legend="n"
 								step={1} min={1} defaultValue={10} max={500}
@@ -220,24 +221,24 @@ class DiscreteCLT extends Component {
 							/>
 						</Col>
 						<Col md={6}>
-							<p><span className="title">Population proportion</span> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
+							<p><span className="title">{t('population-proportion')}</span> <TeX raw={`${this.state.p.toFixed( 3 )}`} /></p>
 							{this.props.showPopStdev ? <p>
-								<span className="title">Population standard deviation:</span>
+								<span className="title">{t('population-standard-deviation')}</span>
 								<TeX raw={`\\sqrt{ n \\cdot p \\cdot (1-p) } = ${sqrt( this.state.n * this.state.p*( 1-this.state.p ) ).toFixed( 3 )}`} />
 							</p> : null }
 							<ButtonGroup size="sm" >
 								<Button variant="primary" onClick={() => {
 									this.generateSamples( 1 );
 								}}>
-									Draw Sample
+									{t('draw-sample')}
 								</Button>
 								<Button variant="primary" size="sm" onClick={() => {
 									this.generateSamples( 25 );
 								}}>
-									Draw 25 Samples
+									{t('draw-25-samples')}
 								</Button>
 								<Button variant="primary" size="sm" onClick={this.clear.bind( this )}>
-									Clear
+									{t('clear')}
 								</Button>
 							</ButtonGroup>
 						</Col>
@@ -248,6 +249,7 @@ class DiscreteCLT extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		const plotlyData = [
 			{
 				x: this.state.phats,
@@ -263,7 +265,6 @@ class DiscreteCLT extends Component {
 				name: 'density'
 			});
 		}
-
 		return (
 			<div style={{ maxWidth: 1200, margin: '0 auto' }} >
 				<Container>
@@ -275,17 +276,17 @@ class DiscreteCLT extends Component {
 					<Row>
 						<Col md={this.state.showDataDistributions ? 6 : 12}>
 							<Card body>
-								<span className="title">Number of Samples: {this.state.phats.length} </span>
+								<span className="title">{t('number-of-samples')} {this.state.phats.length} </span>
 								<Button
 									variant="secondary" size="sm"
 									onClick={this.toggleDataDistributions}
 									style={{ marginLeft: '80px' }}
 								>
-									{ this.state.showDataDistributions ? 'Hide ' : 'Show '} Data Distributions
+									{ this.state.showDataDistributions ? t('hide-data-dists') : t('show-data-dists') }
 								</Button>
 							</Card>
 							<Card body>
-								<span className="title">Histogram of <TeX raw="\hat p" />&#39;s</span>
+								<span className="title">{t('histogram-of')} <TeX raw="\hat p" />&#39;s</span>
 								{ this.state.phats.length > 1 ?
 									<Plotly data={plotlyData} layout={{
 										width: 400,
@@ -307,20 +308,20 @@ class DiscreteCLT extends Component {
 									}} removeButtons toggleFullscreen={false} /> :
 									null
 								}
-								<CheckboxInput legend="Overlay normal density" onChange={( value ) => {
+								<CheckboxInput legend={t('overlay-normal-density')} onChange={( value ) => {
 									this.setState({
 										overlayNormal: value
 									});
 								}} />
 								{ this.state.avgPHats ?
 									<p>
-										<span className="title"> Mean of <TeX raw="\hat p" />&#39;s: </span>
-										&nbsp;{this.state.avgPHats.toFixed( 3 )} (shown as the blue line)
+										<span className="title"> {t('mean-of')} <TeX raw="\hat p" />&#39;s: </span>
+										&nbsp;{this.state.avgPHats.toFixed( 3 )} ({t('shown-as-blue-line')})
 									</p> : null
 								}
 								{ this.state.stdevPHats ?
 									<p>
-										<span className="title">Standard deviation of <TeX raw="\hat p" />&#39;s: </span>
+										<span className="title">{t('standard-deviation-of')} <TeX raw="\hat p" />&#39;s: </span>
 										&nbsp;{this.state.stdevPHats.toFixed( 3 )}
 									</p> : null
 								}
