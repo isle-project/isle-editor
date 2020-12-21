@@ -58,11 +58,12 @@ class TProbs extends Component {
 
 	renderInputs( type ) {
 		const { df, x0, x1, p } = this.state;
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<SliderInput
 					key={`${type}-df`}
-					legend="Degrees of Freedom"
+					legend={t('degrees-of-freedom')}
 					defaultValue={df}
 					min={1e-3}
 					step={this.props.step}
@@ -102,6 +103,7 @@ class TProbs extends Component {
 
 	renderQuantileTab() {
 		const { df, p } = this.state;
+		const { t } = this.props;
 		const quantile = qt( p, df );
 		return (
 			<Container>
@@ -122,7 +124,7 @@ class TProbs extends Component {
 						>
 							<VictoryAxis dependentAxis />
 							<VictoryAxis
-								label="Quantile Function" tickFormat={(x) => `${x}`} crossAxis={false}
+								label={t('quantile-function')} tickFormat={(x) => `${x}`} crossAxis={false}
 								style={{ axisLabel: { padding: 40 }}}
 							/>
 							<VictoryLine
@@ -159,9 +161,10 @@ class TProbs extends Component {
 
 	render() {
 		const { df, x0, x1 } = this.state;
+		const { t } = this.props;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Student&apos;s T Distribution
+				{t('students-t-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={1} id="student-tabs">
@@ -349,7 +352,7 @@ class TProbs extends Component {
 									{this.renderInputs( 'range' )}
 									{ x1 >= x0 ?
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pt( x1, df ) - pt( x0, df ), -4 )}`} displayMode tag="" /> :
-										<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+										<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 									}
 								</Panel>
 							</Col>
@@ -429,7 +432,7 @@ class TProbs extends Component {
 							</Col>
 						</Row></Container>
 					</Tab>
-					{ this.props.quantile ? <Tab eventKey={4} title="Quantile Function" >
+					{ this.props.quantile ? <Tab eventKey={4} title={t('quantile-function')} >
 						{this.renderQuantileTab()}
 					</Tab> : null }
 				</Tabs>
