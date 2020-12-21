@@ -1,8 +1,15 @@
 {
+	"and": "und",
 	"choose": "Wählen Sie",
 	"conditional-probabilities": "Was ist mit den bedingten Wahrscheinlichkeiten?",
 	"conditional-probability-undefined": "Die bedingte Wahrscheinlichkeit ist undefiniert, wenn",
+	"consider-events": "Ereignisse berücksichtigen",
 	"events-independent": "Die Ereignisse sind unabhängig, weil",
 	"events-not-independent": "Die Ereignisse sind <1>nicht</1> unabhängig, weil",
-	"inner-cells-equal": "Wofür sind die inneren Zellen gleich? Wenn die Ereignisse zufällig sind, haben wir"
+	"inner-cells-equal": "Wofür sind die inneren Zellen gleich? Wenn die Ereignisse zufällig sind, haben wir",
+	"let": "Lassen Sie",
+	"must-have-nonzero-probability": "Wenn <1 />, müssen wir <3 /> haben, falls B eine Wahrscheinlichkeit ungleich Null hat.",
+	"not": "nicht",
+	"then-we-have": "Dann haben wir",
+	"these-form-marginals": "Diese bilden die Randwerte in der folgenden Wahrscheinlichkeitstabelle"
 }

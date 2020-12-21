@@ -1,8 +1,15 @@
 {
+	"and": "oraz",
 	"choose": "Wybierz",
 	"conditional-probabilities": "A co z prawdopodobieństwem warunkowym?",
 	"conditional-probability-undefined": "Warunkowe prawdopodobieństwo jest niezdefiniowane, gdy",
+	"consider-events": "Weź pod uwagę wydarzenia",
 	"events-independent": "Wydarzenia te są niezależne, ponieważ",
 	"events-not-independent": "Wydarzenia te są <1>nie</1> niezależne, ponieważ",
-	"inner-cells-equal": "Ile wynoszą komórki wewnętrzne? Jeśli zdarzenia są przypadkowe, mamy"
+	"inner-cells-equal": "Ile wynoszą komórki wewnętrzne? Jeśli zdarzenia są przypadkowe, mamy",
+	"let": "Niech",
+	"must-have-nonzero-probability": "Kiedy <1 />, musimy mieć <3 /> w przypadku, gdy B ma niezerowe prawdopodobieństwo.",
+	"not": "Nie",
+	"then-we-have": "Wtedy mamy",
+	"these-form-marginals": "Tworzą one marginesy w następującej tabeli prawdopodobieństwa"
 }

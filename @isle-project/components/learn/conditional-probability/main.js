@@ -173,7 +173,7 @@ class ConditionalProbability extends Component {
 					<tr>
 						<th></th>
 						<th>{B}</th>
-						<th>not {B}</th>
+						<th>{this.props.t('not')} {B}</th>
 					</tr>
 					<tr>
 						<th>{A}</th>
@@ -200,7 +200,7 @@ class ConditionalProbability extends Component {
 						<td>{pA}</td>
 					</tr>
 					<tr>
-						<th>not {A}</th>
+						<th>{this.props.t('not')} {A}</th>
 						<td>
 							<NumberInput
 								inline
@@ -241,7 +241,7 @@ class ConditionalProbability extends Component {
 		const victoryLineData = [ { x: `P(${A}|${B})`, y: 100*this.state.pAgivenB }, { x: `P(${A}|not ${B})`, y: this.state.pAgivenNotB*100 } ]; // eslint-disable-line i18next/no-literal-string
 		return (
 			<Card body>
-				<p>Consider events <TextInput inline defaultValue={A} onChange={( A ) => this.setState({ A })} /> and <TextInput inline defaultValue={B} onChange={( B ) => this.setState({ B })} />. Let <TeX raw={`P(\\text{${A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> and  <TeX raw={`P(\\text{${B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. Then we have <TeX raw={`P(\\text{${A}}^C) = ${roundn( 1-pA, -4 )}`} /> and <TeX raw={`P(\\text{${B}}^C) = ${roundn( 1-pB, -4 )}`} />. These form the marginals in the following probability table.</p>
+				<p>{t('consider-events')} <TextInput inline defaultValue={A} onChange={( A ) => this.setState({ A })} /> {t('and')} <TextInput inline defaultValue={B} onChange={( B ) => this.setState({ B })} />. {t('let')} <TeX raw={`P(\\text{${A}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbA} /> {t('and')} <TeX raw={`P(\\text{${B}}) = `} /><NumberInput min={0} max={1} step={0.01} defaultValue={0.5} inline onChange={this.changeProbB} />. {t('then-we-have')} <TeX raw={`P(\\text{${A}}^C) = ${roundn( 1-pA, -4 )}`} /> {t('and')} <TeX raw={`P(\\text{${B}}^C) = ${roundn( 1-pB, -4 )}`} />. {t('these-form-marginals')}</p>
 				<Container>
 					<Row>
 						<Col sm={6}>
@@ -260,7 +260,7 @@ class ConditionalProbability extends Component {
 									onChange={this.changeProbAgivenB}
 									defaultValue={this.state.pAgivenB}
 									inline
-								/><span>and</span>
+								/><span>{t('and')}</span>
 								<NumberInput
 									legend={<TeX raw={`P( \\text{${A}} \\mid \\text{ ${B} }^C)`} />}
 									min={max( ( pA-pB ) / ( 1-pB ), 0 )}
@@ -276,9 +276,9 @@ class ConditionalProbability extends Component {
 							<p>{ t('conditional-probabilities')}</p>
 							{ pB === 0 || pA === 0 ?
 								<Card>
-									{ pB === 0 ? <span>{ t('conditional-probability-undefined')} <TeX raw={`P( \\text{${B}}) = 0`} /></span> : <span>
+									{ pB === 0 ? <span>{ t('conditional-probability-undefined')} <TeX raw={`P( \\text{${B}}) = 0`} /></span> : <Trans i18nKey="must-have-nonzero-probability" >
 										When <TeX raw={`P( ${A}) = 0`} />, we must have <TeX raw={`P( \\text{${A}} \\mid \\text{${B}} ) = P( \\text{${A}} \\mid \\text{${B}}^C ) = 0`} /> in case B has non-zero probability.
-									</span>}
+									</Trans>}
 								</Card> :
 								<Container>
 									<Row>

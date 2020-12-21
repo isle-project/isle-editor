@@ -1,8 +1,15 @@
 {
+	"and": "そして",
 	"choose": "選ぶ",
 	"conditional-probabilities": "条件付き確率は？",
 	"conditional-probability-undefined": "条件付き確率は",
+	"consider-events": "イベントを考える",
 	"events-independent": "イベントは独立しているので",
 	"events-not-independent": "イベントは <1>独立していません。",
-	"inner-cells-equal": "内側のセルは何に等しいのか？イベントがランダムであれば"
+	"inner-cells-equal": "内側のセルは何に等しいのか？イベントがランダムであれば",
+	"let": "ましょう",
+	"must-have-nonzero-probability": "<1 />の場合、Bが0以外の確率である場合には<3 />を持たなければならない。",
+	"not": "否",
+	"then-we-have": "それから、私たちは",
+	"these-form-marginals": "これらは、以下の確率表のマージンを形成します。"
 }
