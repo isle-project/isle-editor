@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -333,4 +334,4 @@ MeanVSMedian.contextType = SessionContext;
 
 // EXPORTS //
 
-export default MeanVSMedian;
+export default withTranslation( 'LearnMeanVSMedian' )( MeanVSMedian );

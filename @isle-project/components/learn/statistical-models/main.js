@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import FlippableCard from '@isle-project/components/flippable-card';
@@ -199,4 +200,4 @@ LearnStatisticalModels.defaultProps = {
 
 // EXPORTS //
 
-export default LearnStatisticalModels;
+export default withTranslation( 'LearnStatisticalModels' )( LearnStatisticalModels );

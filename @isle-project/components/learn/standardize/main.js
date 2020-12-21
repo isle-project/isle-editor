@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -320,4 +321,4 @@ Standardize.defaultProps = {
 
 // EXPORTS //
 
-export default Standardize;
+export default withTranslation( 'LearnStandardize' )( Standardize );

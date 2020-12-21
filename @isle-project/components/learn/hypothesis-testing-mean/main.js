@@ -444,4 +444,4 @@ MeanTest.propTypes = {
 
 // EXPORTS //
 
-export default MeanTest;
+export default withTranslation( 'LearnHypothesisTesting' )( MeanTest );

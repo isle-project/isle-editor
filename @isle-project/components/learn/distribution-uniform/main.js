@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -394,4 +395,4 @@ UniformProbs.defaultProps = {
 
 // EXPORTS //
 
-export default UniformProbs;
+export default withTranslation( 'LearnDistribution' )( UniformProbs );

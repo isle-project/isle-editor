@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import logger from 'debug';
 import uniq from 'uniq';
 import sotu from '@stdlib/datasets/sotu';
@@ -173,4 +174,4 @@ SOTU.defaultProps = {
 
 // EXPORTS //
 
-export default SOTU;
+export default withTranslation( 'LearnSOTU' )( SOTU );
