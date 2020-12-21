@@ -637,7 +637,7 @@ class Editor extends Component {
 		if (
 			this.props.filePath !== prevProps.filePath ||
 			this.props.elementRangeVersion !== prevProps.elementRangeVersion ||
-			this.props.preamble.title !== prevProps.preamble.title ||
+			this.props.preamble !== prevProps.preamble ||
 			this.props.lintErrors.revision !== prevProps.lintErrors.revision ||
 			this.props.spellingErrors.revision !== prevProps.spellingErrors.revision ||
 			this.props.splitPos !== prevProps.splitPos ||

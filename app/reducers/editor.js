@@ -102,6 +102,8 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			markdown: md,
+			preamble: {},
+			preambleText: action.payload.preambleTemplate,
 			unsaved: false
 		};
 	}
@@ -117,6 +119,8 @@ export default function markdown( state = initialState, action ) {
 			...state,
 			markdown: md,
 			author: authorMatch ? authorMatch[ 1 ] : '',
+			preamble: {},
+			preambleText: preambleTemplate,
 			unsaved: false
 		};
 	}
