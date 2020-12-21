@@ -8,6 +8,7 @@
 	"histogram-of": "Histogram",
 	"maximum": "Maksymalnie",
 	"mean": "Mean",
+	"mean-of": "Mean of",
 	"minimum": "Minimum",
 	"normal": "Normalny",
 	"number-of-samples": "Liczba próbek:",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "Obliczenia prawdopodobieństwa dla",
 	"rate-parameter": "Parametr stawki",
 	"sample-size": "Wielkość próbki",
+	"shown-as-red-line": "pokazany jako czerwona linia",
 	"standard-deviation": "odchylenie standardowe",
 	"uniform": "Uniform",
 	"values": "Wartości"

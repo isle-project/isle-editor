@@ -8,6 +8,7 @@
 	"histogram-of": "直方图",
 	"maximum": "最多",
 	"mean": "平均值",
+	"mean-of": "平均值",
 	"minimum": "最低限度",
 	"normal": "正常",
 	"number-of-samples": "样本数量：",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "的概率计算",
 	"rate-parameter": "速率参数",
 	"sample-size": "样本量",
+	"shown-as-red-line": "红线",
 	"standard-deviation": "标准偏差",
 	"uniform": "统一",
 	"values": "价值观"

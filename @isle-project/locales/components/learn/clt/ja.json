@@ -8,6 +8,7 @@
 	"histogram-of": "のヒストグラム",
 	"maximum": "最大",
 	"mean": "平均",
+	"mean-of": "平均値",
 	"minimum": "最小",
 	"normal": "通常",
 	"number-of-samples": "サンプル数",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "のための確率計算",
 	"rate-parameter": "レートパラメータ",
 	"sample-size": "サンプルサイズ",
+	"shown-as-red-line": "赤線",
 	"standard-deviation": "標準偏差",
 	"uniform": "制服",
 	"values": "値"

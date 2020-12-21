@@ -8,6 +8,7 @@
 	"histogram-of": "Histogram van",
 	"maximum": "Maximaal",
 	"mean": "Betekenis",
+	"mean-of": "Betekenis van",
 	"minimum": "Minimaal",
 	"normal": "Normaal",
 	"number-of-samples": "Aantal monsters:",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "Waarschijnlijkheidsberekeningen voor",
 	"rate-parameter": "Tariefparameter",
 	"sample-size": "Steekproefgrootte",
+	"shown-as-red-line": "weergegeven als de rode lijn",
 	"standard-deviation": "Standaardafwijking",
 	"uniform": "Uniform",
 	"values": "Waarden"

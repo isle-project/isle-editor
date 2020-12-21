@@ -554,6 +554,7 @@ class ContinuousCLT extends Component {
 				name: 'density'
 			});
 		}
+		/* eslint-disable i18next/no-literal-string */
 		return ( <Card body>
 			<span className="title">{t('histogram-of')} <TeX raw="\bar x" />&#39;s</span>
 			{ this.state.xbars.length > 1 ?
@@ -584,8 +585,8 @@ class ContinuousCLT extends Component {
 			}} />
 			{ this.state.avgXBars ?
 				<p>
-					<span className="title"> Mean of <TeX raw="\bar x" />&#39;s: </span>
-					&nbsp;{this.state.avgXBars.toFixed( 3 )} (shown as the red line)
+					<span className="title"> {t('mean-of')} <TeX raw="\bar x" />&#39;s: </span>
+					&nbsp;{this.state.avgXBars.toFixed( 3 )} ({t('shown-as-red-line')})
 				</p> : null
 			}
 			{ this.state.stdevXBars ?

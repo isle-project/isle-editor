@@ -8,6 +8,7 @@
 	"histogram-of": "Histogramme de",
 	"maximum": "Maximum",
 	"mean": "Moyenne",
+	"mean-of": "Moyenne des",
 	"minimum": "Au minimum",
 	"normal": "Normal",
 	"number-of-samples": "Nombre d'échantillons :",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "Calculs de probabilité pour",
 	"rate-parameter": "Paramètre de taux",
 	"sample-size": "Taille de l'échantillon",
+	"shown-as-red-line": "représenté par la ligne rouge",
 	"standard-deviation": "Écart-type",
 	"uniform": "Uniforme",
 	"values": "Valeurs"

@@ -8,6 +8,7 @@
 	"histogram-of": "Гистограмма",
 	"maximum": "Максимум",
 	"mean": "Средний",
+	"mean-of": "Среднее значение",
 	"minimum": "Минимум",
 	"normal": "Нормальный",
 	"number-of-samples": "Количество проб:",
@@ -19,6 +20,7 @@
 	"probability-calculations-for": "Расчёты вероятности для",
 	"rate-parameter": "Параметр скорости",
 	"sample-size": "Размер образца",
+	"shown-as-red-line": "показанный красной линией",
 	"standard-deviation": "среднеквадратическое отклонение",
 	"uniform": "Форма",
 	"values": "Значения"
