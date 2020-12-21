@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
@@ -321,4 +322,4 @@ WordVennDiagram.defaultProps = {
 
 // EXPORTS //
 
-export default WordVennDiagram;
+export default withTranslation( 'LearnVennDiagram' )( WordVennDiagram );
