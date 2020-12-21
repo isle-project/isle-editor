@@ -16,6 +16,7 @@ import './markdown_help.css';
 * An ISLE component that shows information about Markdown syntax.
 */
 class MarkdownHelp extends Component {
+	/* eslint-disable i18next/no-literal-string */
 	render() {
 		const { t } = this.props;
 		const leftColumn = <Col sm={5}>
@@ -87,6 +88,7 @@ class MarkdownHelp extends Component {
 				</pre>
 			</Card>
 		</Col>;
+		/* eslint-enable i18next/no-literal-string */
 		return (
 			<ReactDraggable cancel=".cancel" >
 				<Panel

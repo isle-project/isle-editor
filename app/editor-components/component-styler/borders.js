@@ -73,6 +73,8 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 			setPrevBorder( activeBorder );
 		}
 	}, [ activeBorder, prevBorder, style ] );
+
+	/* eslint-disable i18next/no-literal-string */
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
@@ -163,6 +165,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 			</Form.Group>
 		</Fragment>
 	);
+	/* eslint-enable i18next/no-literal-string */
 };
 
 

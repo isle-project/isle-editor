@@ -561,7 +561,7 @@ class Quiz extends Component {
 		}
 		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
 			return React.cloneElement( child, {
-				id: `${child.props.id}-footer-${id}`,
+				id: `${child.props.id}-footer-${id}`, // eslint-disable-line i18next/no-literal-string
 				key: `${this.state.current}-${idx}`
 			});
 		});

@@ -20,6 +20,7 @@ const createLayout = ( props ) => {
 	if ( !isArray( props.children ) ) {
 		return null;
 	}
+	/* eslint-disable i18next/no-literal-string */
 	let layouts = props.children.map( ( e, i ) => {
 		return {
 			lg: { i: `cell-${i}`, x: i*6 % 18, y: floor( i / 3 ) * 4, w: 6, h: 4 },
@@ -29,6 +30,7 @@ const createLayout = ( props ) => {
 			xxs: { i: `cell-${i}`, x: i*4 % 6, y: floor( i / 1 ) * 4, w: 6, h: 4 }
 		};
 	});
+	/* eslint-enable i18next/no-literal-string */
 	layouts = {
 		lg: pluck( layouts, 'lg' ),
 		md: pluck( layouts, 'md' ),

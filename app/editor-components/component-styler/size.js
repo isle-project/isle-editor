@@ -31,6 +31,7 @@ const Size = ( props ) => {
 		return null;
 	}
 	const { width, height, maxHeight, maxWidth, minWidth, minHeight } = props.style;
+	/* eslint-disable i18next/no-literal-string */
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
@@ -290,6 +291,7 @@ const Size = ( props ) => {
 			</Form.Group>
 		</Fragment>
 	);
+	/* eslint-enable i18next/no-literal-string */
 };
 
 
