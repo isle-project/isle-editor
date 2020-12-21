@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation, Trans } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -306,7 +307,7 @@ class GammaProbs extends Component {
 						{this.renderInputs( 'range' )}
 						{ x1 >= x0 ?
 							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pgamma( x1, alpha, beta ) - pgamma( x0, alpha, beta ), -4 )}`} displayMode tag="" /> :
-							<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+							<Alert variant="warning">{this.props.t('lower-bound-smaller-equal-upper-bound')}</Alert>
 						}
 					</Panel>
 				</Col>
@@ -381,7 +382,7 @@ class GammaProbs extends Component {
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Gamma Distribution
+				{this.props.t('gamma-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="beta-tabs">
@@ -421,4 +422,4 @@ GammaProbs.defaultProps = {
 
 // EXPORTS //
 
-export default GammaProbs;
+export default withTranslation( 'LearnDistribution' )( GammaProbs );

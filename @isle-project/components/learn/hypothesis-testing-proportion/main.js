@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -380,4 +381,4 @@ ProportionTest.propTypes = {
 
 // EXPORTS //
 
-export default ProportionTest;
+export default withTranslation( 'LearnHypothesisTesting' )( ProportionTest );

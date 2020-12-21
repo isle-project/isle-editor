@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -525,4 +526,4 @@ DiscreteDistribution.defaultProps = {
 
 // EXPORTS //
 
-export default DiscreteDistribution;
+export default withTranslation( 'LearnDistribution' )( DiscreteDistribution );

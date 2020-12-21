@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -147,9 +148,10 @@ class HypergeometricProbs extends Component {
 
 	render() {
 		const { x0, x1, N, K, n } = this.state;
+		const { t } = this.props;
 		return ( <Card style={{ maxWidth: 1200, margin: '0 auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Hypergeometric Distribution
+				{ t('hypergeometric-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={0} id="hypergeometric-tabs">
@@ -157,8 +159,8 @@ class HypergeometricProbs extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title="Hypergeometric probabilities">
-									<span>For population size </span><NumberInput
+								<Panel title={t('hypergeometric-probabilities')} >
+									<span>{t('for-population-size')} </span><NumberInput
 										inline
 										legend="N"
 										defaultValue={N}
@@ -166,7 +168,7 @@ class HypergeometricProbs extends Component {
 										min={0}
 										max={999}
 										onChange={this.handlePopSizeChange}
-									/><span>, number of successes</span>
+									/><span>, {t('number-of-successes')}</span>
 									<NumberInput
 										inline
 										legend="r"
@@ -176,7 +178,7 @@ class HypergeometricProbs extends Component {
 										min={0}
 										onChange={this.handleSuccessesChange}
 									/>
-									<span>and number of draws</span>
+									<span>{ t('number-of-draws')}</span>
 									<NumberInput
 										inline
 										legend="n"
@@ -186,9 +188,9 @@ class HypergeometricProbs extends Component {
 										max={N}
 										onChange={this.handleDrawsChange}
 									/>
-									<span>we get</span>
+									<span>{t('we-get')}</span>
 									<TeX raw={`P(X=x)= \\Large {{r \\choose x}{{ N-r \\choose {n-x}}} \\over {N \\choose n}} = \\Large {{${K} \\choose x}{{${N-K} \\choose {${n}-x}}} \\over {${N} \\choose ${n}}}`} displayMode />
-									<span>Evaluated at </span><NumberInput
+									<span>{t('evaluated-at')} </span><NumberInput
 										inline
 										legend="x"
 										defaultValue={0}
@@ -196,12 +198,12 @@ class HypergeometricProbs extends Component {
 										max={n+1}
 										min={0}
 										onChange={this.handleLowerChange}
-									/> <span>we get</span>
+									/> <span>{t('we-get')}</span>
 									<TeX raw={`P(X=x)= \\Large {{${K} \\choose ${x0}}{{${N-K} \\choose {${n}-${x0}}}} \\over {${N} \\choose ${n}}} \\approx ${dhypergeom(x0, N, K, n).toFixed(4)}`} displayMode />
 								</Panel>
 								</Col>
 								<Col md={7} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -345,7 +347,7 @@ class HypergeometricProbs extends Component {
 									</Panel>
 								</Col>
 								<Col md={8} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -415,7 +417,7 @@ class HypergeometricProbs extends Component {
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( phypergeom( x1, N, K, n ) - phypergeom( x0 - 1, N, K, n ), -4 )}`} displayMode tag="" /> :
-											<Alert variant="warning">Lower bound must be smaller than or equal to upper bound.</Alert>
+											<Alert variant="warning">{t('lower-bound-smaller-equal-upper-bound')}</Alert>
 										}
 									</Panel>
 								</Col>
@@ -487,4 +489,4 @@ HypergeometricProbs.defaultProps = {
 
 // EXPORTS //
 
-export default HypergeometricProbs;
+export default withTranslation( 'LearnDistribution' )( HypergeometricProbs );

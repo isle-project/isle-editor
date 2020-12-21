@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Container from 'react-bootstrap/Container';
@@ -670,4 +671,4 @@ ContinuousCLT.propTypes = {
 
 // EXPORTS //
 
-export default ContinuousCLT;
+export default withTranslation( 'LearnCLT' )( ContinuousCLT );

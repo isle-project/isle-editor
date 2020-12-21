@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -389,4 +390,4 @@ ExponentialProbs.defaultProps = {
 
 // EXPORTS //
 
-export default ExponentialProbs;
+export default withTranslation( 'LearnDistribution' )( ExponentialProbs );

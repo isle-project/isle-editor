@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation, Trans } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -84,7 +85,7 @@ class GeometricDistribution extends Component {
 			<Fragment>
 				<SliderInput
 					key={`${type}-p`}
-					legend="Success probability"
+					legend={type('success-probability')}
 					defaultValue={this.state.p}
 					min={0.01}
 					step={this.props.step}
@@ -116,11 +117,11 @@ class GeometricDistribution extends Component {
 
 	render() {
 		const { x0, x1, p } = this.state;
-		const { countTrials } = this.props;
+		const { countTrials, t } = this.props;
 		const minValue = countTrials ? 1 : 0;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				Geometric Distribution
+				{t('geometric-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={0} id="poisson-tabs">
@@ -128,13 +129,18 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title="Geometric probabilities" >
+								<Panel title={this.props.t('geometric-probabilities')}>
 									<p>
-										Let <TeX raw="X" /> be the number of
-										{this.props.countTrials ? ' trials ' : ' failures ' }
-										until the first success.
+										{this.props.countTrials ?
+											<Trans i18nKey="number-trials-until-success" >
+												Let <TeX raw="X" /> be the number of trials until the first success.
+											</Trans> :
+											<Trans i18nKey="number-failures-until-success" >
+												Let <TeX raw="X" /> be the number of failures until the first success.
+											</Trans>
+										}
 									</p>
-									<span>For success probability of</span>
+									<span>{t('for-success-probability')}</span>
 									<NumberInput
 										inline
 										legend="p"
@@ -144,9 +150,9 @@ class GeometricDistribution extends Component {
 										min={0.01}
 										onChange={this.handleProbChange}
 									/>
-									<span>we get</span>
+									<span>{t('we-get')}</span>
 									<TeX raw={`P(X=x)= \\Large \\left( 1 - ${p} \\right)^{x-1} ${p}`} displayMode />
-									<span>Evaluated at </span><NumberInput
+									<span>{ t('evaluated-at')} </span><NumberInput
 										inline
 										legend="x"
 										defaultValue={minValue}
@@ -154,12 +160,12 @@ class GeometricDistribution extends Component {
 										max={qgeom( NEAR_ONE, p ) + 1}
 										min={minValue}
 										onChange={this.handleLowerChange}
-									/> <span>we get</span>
+									/> <span>{t('we-get')}</span>
 									<TeX raw={`P(X=${x0})= \\Large \\left( 1 - ${p} \\right)^{${x0}${countTrials ? '-1' : ''}} ${p} = ${dgeom( countTrials ? x0 - 1 : x0, p ).toFixed(4)}`} displayMode />
 								</Panel>
 								</Col>
 								<Col md={7} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')}>
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
@@ -457,4 +463,4 @@ GeometricDistribution.defaultProps = {
 
 // EXPORTS //
 
-export default GeometricDistribution;
+export default withTranslation( 'LearnDistribution' )( GeometricDistribution );

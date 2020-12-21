@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -467,4 +468,4 @@ BinomialProps.defaultProps = {
 
 // EXPORTS //
 
-export default BinomialProps;
+export default withTranslation( 'LearnDistribution' )( BinomialProps );

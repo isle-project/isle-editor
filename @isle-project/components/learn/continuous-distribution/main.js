@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import { withTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -566,4 +567,4 @@ class ContinuousDistributions extends Component {
 
 // EXPORTS //
 
-export default ContinuousDistributions;
+export default withTranslation( 'LearnDistribution' )( ContinuousDistributions );

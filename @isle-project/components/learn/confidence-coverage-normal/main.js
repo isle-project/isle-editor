@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -270,4 +271,4 @@ ConfidenceCoverageNormal.propTypes = {
 
 // EXPORTS //
 
-export default ConfidenceCoverageNormal;
+export default withTranslation( 'LearnConfidenceCoverage' )( ConfidenceCoverageNormal );

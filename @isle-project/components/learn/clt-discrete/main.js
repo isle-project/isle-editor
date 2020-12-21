@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Container from 'react-bootstrap/Container';
@@ -369,4 +370,4 @@ DiscreteCLT.propTypes = {
 
 // EXPORTS //
 
-export default DiscreteCLT;
+export default withTranslation( 'LearnCLT' )( DiscreteCLT );

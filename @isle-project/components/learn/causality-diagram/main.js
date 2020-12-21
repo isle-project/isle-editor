@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -652,4 +653,4 @@ LearnCausalityDiagram.propTypes = {
 
 // EXPORTS //
 
-export default LearnCausalityDiagram;
+export default withTranslation( 'LearnCausalityDiagram' )( LearnCausalityDiagram );

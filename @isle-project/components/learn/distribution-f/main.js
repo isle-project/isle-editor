@@ -4,6 +4,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -396,4 +397,4 @@ FProbs.defaultProps = {
 
 // EXPORTS //
 
-export default FProbs;
+export default withTranslation( 'LearnDistribution' )( FProbs );

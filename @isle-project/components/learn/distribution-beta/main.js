@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -278,7 +279,7 @@ class BetaProbs extends Component {
 						{this.renderInputs( 'range' )}
 						{ x1 >= x0 ?
 							<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbeta( x1, alpha, beta ) - pbeta( x0, alpha, beta ), -4 )}`} displayMode tag="" /> :
-							<Alert variant="warning">{ t('lower-bold')}</Alert>
+							<Alert variant="warning">{this.props.t('lower-bound-smaller-equal-upper-bound')}</Alert>
 						}
 					</Panel>
 				</Col>
@@ -353,7 +354,7 @@ class BetaProbs extends Component {
 		</Tab> : null;
 		return ( <Card style={{ maxWidth: 1200, margin: '10px auto', ...this.props.style }}>
 			<Card.Header as="h3">
-				{ t('beta-distribution')}
+				{this.props.t('beta-distribution')}
 			</Card.Header>
 			<Card.Body>
 				<Tabs defaultActiveKey={this.props.tabs[ 0 ]} id="beta-tabs">
@@ -389,4 +390,4 @@ BetaProbs.defaultProps = {
 
 // EXPORTS //
 
-export default BetaProbs;
+export default withTranslation( 'LearnDistribution' )( BetaProbs );
