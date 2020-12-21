@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import isArray from '@stdlib/assert/is-array';
 import isNull from '@stdlib/assert/is-null';
@@ -18,11 +19,12 @@ import VideoPlayer from '@isle-project/components/video-player';
 */
 const RandomVideo = ( props ) => {
 	const [ choice, setChoice ] = useState( null );
+	const { t } = useTranslation( 'Video' );
 	useEffect( () => {
 		setChoice( runif( 0, props.videos.length-1 ) );
 	}, [ props.videos ]);
 	if ( !isArray( props.videos ) || props.videos.length === 0 ) {
-		return <Alert variant="danger" >Please supply at least two URLs to the <code>videos</code> attribute.</Alert>;
+		return <Alert variant="danger" >{t('supply-two-videos')}: <code>videos</code>.</Alert>;
 	}
 	if ( isNull( choice ) ) {
 		return null;

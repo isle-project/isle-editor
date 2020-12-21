@@ -1,0 +1,20 @@
+{
+	"back": "Voltar",
+	"close-and-to-dashboard": "Fechar e ir para o painel de instrumentos",
+	"close-instructor-view": "Fechar Vista do Instrutor",
+	"disabled": "Bate-papo com vídeo para deficientes",
+	"join": "Junte-se ao vídeo",
+	"join-id": "Junte-se ao chat de vídeo com ID {{id}}",
+	"leave": "Deixe o vídeo",
+	"leave-id": "Deixar chat de vídeo com ID {{id}}",
+	"next": "Próximo",
+	"open-instructor-view": "Vista do instrutor aberto",
+	"playback-disabled": "A reprodução em outros sites foi desativada pelo proprietário do vídeo.",
+	"reached-end": "Você chegou ao final desta palestra em vídeo.",
+	"retry": "Tentativa",
+	"supply-two-videos": "Favor fornecer pelo menos duas URLs para o seguinte atributo",
+	"to-previous": "Ir para a parte anterior",
+	"toggle": "Troca de Vídeo Chat",
+	"url-missing": "Falta a URL do vídeo.",
+	"video-not-loaded": "O vídeo não pôde ser carregado."
+}

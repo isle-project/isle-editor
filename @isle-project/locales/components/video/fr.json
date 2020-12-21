@@ -1,0 +1,20 @@
+{
+	"back": "Retour",
+	"close-and-to-dashboard": "Fermer et aller au tableau de bord",
+	"close-instructor-view": "Fermer la vue de l'instructeur",
+	"disabled": "Chat vidéo pour les personnes handicapées",
+	"join": "Joindre la vidéo",
+	"join-id": "Rejoignez le chat vidéo avec ID {{id}}",
+	"leave": "Laisser la vidéo",
+	"leave-id": "Quitter le chat vidéo avec ID {{id}}",
+	"next": "Suivant",
+	"open-instructor-view": "Ouvrir la vue de l'instructeur",
+	"playback-disabled": "La lecture sur d'autres sites web a été désactivée par le propriétaire de la vidéo.",
+	"reached-end": "Vous êtes arrivé à la fin de cette conférence vidéo.",
+	"retry": "Retrouvez",
+	"supply-two-videos": "Veuillez fournir au moins deux URL pour l'attribut suivant",
+	"to-previous": "Aller à la partie précédente",
+	"toggle": "Basculer le chat vidéo",
+	"url-missing": "L'URL de la vidéo est manquante.",
+	"video-not-loaded": "La vidéo n'a pas pu être chargée."
+}

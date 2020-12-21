@@ -1,8 +1,0 @@
-{
-	"disabled": "Wyłączony czat wideo",
-	"join": "Dołącz do wideo",
-	"join-id": "Dołącz do czatu wideo z ID {{id}}",
-	"leave": "Zostaw wideo",
-	"leave-id": "Zostaw czat wideo z ID {{id}}",
-	"toggle": "Przełączanie czatu wideo (Toggle Video Chat)"
-}

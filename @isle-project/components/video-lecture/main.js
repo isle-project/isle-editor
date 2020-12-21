@@ -297,4 +297,4 @@ VideoLecture.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'VideoLecture' )( VideoLecture );
+export default withTranslation( 'Video' )( VideoLecture );

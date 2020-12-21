@@ -1,8 +1,0 @@
-{
-	"disabled": "Uitgeschakelde videochat",
-	"join": "Doe mee met de video",
-	"join-id": "Doe mee aan de videochat met ID {{id}}",
-	"leave": "Verlaat de video",
-	"leave-id": "Verlaat de videochat met ID {{id}}",
-	"toggle": "Schakel videochat"
-}

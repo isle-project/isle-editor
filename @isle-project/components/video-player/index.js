@@ -6,7 +6,7 @@ import { addResources } from '@isle-project/locales';
 
 // VARIABLES //
 
-addResources( 'VideoPlayer' );
+addResources( 'Video' );
 
 
 // MAIN //

@@ -1,0 +1,20 @@
+{
+	"back": "Z powrotem",
+	"close-and-to-dashboard": "Zamknij się i przejdź do deski rozdzielczej",
+	"close-instructor-view": "Zamknij widok instruktora",
+	"disabled": "Wyłączony czat wideo",
+	"join": "Dołącz do wideo",
+	"join-id": "Dołącz do czatu wideo z ID {{id}}",
+	"leave": "Zostaw wideo",
+	"leave-id": "Zostaw czat wideo z ID {{id}}",
+	"next": "Następnie",
+	"open-instructor-view": "Otwórz widok instruktora",
+	"playback-disabled": "Odtwarzanie na innych stronach internetowych zostało wyłączone przez właściciela filmu.",
+	"reached-end": "Doszedłeś do końca tego wykładu wideo.",
+	"retry": "Retry",
+	"supply-two-videos": "Proszę podać co najmniej dwa adresy URL do następującego atrybutu",
+	"to-previous": "Przejdź do poprzedniej części",
+	"toggle": "Przełączanie czatu wideo (Toggle Video Chat)",
+	"url-missing": "Brakuje adresu URL wideo.",
+	"video-not-loaded": "Wideo nie mogło być załadowane."
+}

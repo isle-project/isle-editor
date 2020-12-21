@@ -1,0 +1,20 @@
+{
+	"back": "返回",
+	"close-and-to-dashboard": "关闭并进入仪表盘",
+	"close-instructor-view": "关闭导师查看",
+	"disabled": "禁用视频聊天",
+	"join": "加盟视频",
+	"join-id": "用ID{{id}}加入视频聊天。",
+	"leave": "留下视频",
+	"leave-id": "与ID{{id}}留下视频聊天。",
+	"next": "下一个",
+	"open-instructor-view": "开放式教员查看",
+	"playback-disabled": "其他网站上的播放已被视频所有者禁用。",
+	"reached-end": "你已经到了这个视频讲座的最后。",
+	"retry": "重试",
+	"supply-two-videos": "请为以下属性提供至少两个URL。",
+	"to-previous": "转到上一部分",
+	"toggle": "切换视频聊天",
+	"url-missing": "视频URL缺失。",
+	"video-not-loaded": "视频无法加载。"
+}

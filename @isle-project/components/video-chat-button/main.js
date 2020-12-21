@@ -177,4 +177,4 @@ VideoChatButton.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'VideoChatButton' )( VideoChatButton );
+export default withTranslation( 'Video' )( VideoChatButton );

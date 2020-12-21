@@ -1,0 +1,20 @@
+{
+	"back": "Zurück",
+	"close-and-to-dashboard": "Schließen und zum Dashboard gehen",
+	"close-instructor-view": "Instruktor-Ansicht schließen",
+	"disabled": "Inaktiver Video Chat",
+	"join": "Video beitreten",
+	"join-id": "Nimm an Video-Chat mit ID {{id}} teil",
+	"leave": "Video verlassen",
+	"leave-id": "Verlasse Video-Chat mit ID {{id}}",
+	"next": "Weiter",
+	"open-instructor-view": "Instruktor-Ansicht öffnen",
+	"playback-disabled": "Die Wiedergabe auf anderen Websites wurde vom Videobesitzer deaktiviert.",
+	"reached-end": "Du hast das Ende dieser Videovorlesung erreicht.",
+	"retry": "Erneut versuchen",
+	"supply-two-videos": "Bitte liefern Sie mindestens zwei URLs für das folgende Attribut",
+	"to-previous": "Gehe zum vorherigen Teil",
+	"toggle": "Video Chat betreten/verlassen",
+	"url-missing": "Video URL fehlt.",
+	"video-not-loaded": "Video konnte nicht geladen werden."
+}
