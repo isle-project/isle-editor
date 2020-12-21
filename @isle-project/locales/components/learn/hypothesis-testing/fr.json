@@ -1,0 +1,13 @@
+{
+	"calculate-p-value": "Sous l'hypothèse nulle, nous calculons la p-value :",
+	"calculate-test-statistic": "Nous calculons la statistique de test suivante :",
+	"conduct-the-following-test": "Nous effectuons le test suivant (cliquez sur les hypothèses ci-dessous pour passer des variantes unilatérales au test bilatéral) :",
+	"lets-assume": "Supposons que nous ayons observé des données présentant les caractéristiques suivantes :",
+	"parameters": "Paramètres",
+	"plugging-in": "En nous branchant sur nos valeurs, nous l'avons fait :",
+	"proportion": "Proportion",
+	"sample-proportion": "Proportion de l'échantillon",
+	"sample-size": "Taille de l'échantillon",
+	"test-result": "Résultat du test",
+	"test-statistic": "Statistiques des tests"
+}

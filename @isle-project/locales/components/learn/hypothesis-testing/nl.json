@@ -1,0 +1,13 @@
+{
+	"calculate-p-value": "Onder de nulhypothese berekenen we de p-waarde:",
+	"calculate-test-statistic": "We berekenen de volgende teststatistieken:",
+	"conduct-the-following-test": "We voeren de volgende test uit (klik op de onderstaande hypotheses om te wisselen tussen de eenzijdige en de tweezijdige test):",
+	"lets-assume": "Laten we aannemen dat we gegevens hebben waargenomen met de volgende kenmerken:",
+	"parameters": "Parameters",
+	"plugging-in": "Het inpluggen van onze waarden, hebben we:",
+	"proportion": "Aandeel",
+	"sample-proportion": "Steekproefpercentage",
+	"sample-size": "Monstergrootte",
+	"test-result": "Testresultaat",
+	"test-statistic": "Test Statistisch"
+}

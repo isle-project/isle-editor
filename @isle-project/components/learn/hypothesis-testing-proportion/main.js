@@ -170,10 +170,11 @@ class ProportionTest extends Component {
 
 	renderParametersPanel() {
 		const { p0, samples } = this.state;
+		const { t } = this.props;
 		const firstSampleParams = <div>
 			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
 			<NumberInput
-				legend="Sample proportion"
+				legend={t('sample-proportion')}
 				defaultValue={this.state.phat}
 				step={0.001}
 				min={0}
@@ -185,7 +186,7 @@ class ProportionTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample size"
+				legend={t('sample-size')}
 				defaultValue={this.state.n}
 				step={1}
 				min={1}
@@ -199,7 +200,7 @@ class ProportionTest extends Component {
 		const secondSampleParams = <div>
 			{ samples === 'Two-Sample' ? <Badge variant="secondary">Second Sample</Badge> : null }
 			<NumberInput
-				legend="Sample proportion"
+				legend={t('sample-proportion')}
 				defaultValue={this.state.phat2}
 				step={0.001}
 				min={0.001}
@@ -211,7 +212,7 @@ class ProportionTest extends Component {
 				}}
 			/>
 			<NumberInput
-				legend="Sample size"
+				legend={t('sample-size')}
 				defaultValue={this.state.n2}
 				step={1}
 				min={1}
@@ -226,7 +227,7 @@ class ProportionTest extends Component {
 		const asValue = this.props.nullHypothesisAsValue;
 		return ( <Card maxWidth={1600}>
 			<Card.Header as="h4">
-				Parameters
+				{t('parameters')}
 			</Card.Header>
 			<Card.Body>
 				<Card body className="bg-light">
@@ -253,18 +254,18 @@ class ProportionTest extends Component {
 						}}
 					/>
 				</Card>
-				Let&#39;s assume that we have observed data with the following characteristics:
+				{t('lets-assume')}
 				<Card body className="bg-light">
 					{firstSampleParams}
 					{samples === 'Two-Sample' ? secondSampleParams : null }
 				</Card>
-				<p>We conduct the following test (click on the hypotheses below to switch between the one-sided variants and the two-sided test):</p>
+				<p>{t('conduct-the-following-test')}</p>
 				<Switch onChange={this.onDirectionChange} style={{ width: '100%' }} >
 					<TeX displayMode tag="" raw={`H_0: ${testStat} = ${p0} \\; vs. \\; H_1: ${testStat} \\ne ${p0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\le'} ${p0} \\; vs. \\; H_1: ${testStat} > ${p0}`} />
 					<TeX displayMode tag="" raw={`H_0: ${testStat} ${asValue ? '=' : '\\ge'} ${p0} \\; vs. \\; H_1: ${testStat} < ${p0}`} />
 				</Switch>
-				<p>We calculate the following test statistic:</p>
+				<p>{t('calculate-test-statistic')}</p>
 				{ samples === 'Two-Sample' ?
 					<TeX
 						displayMode
@@ -273,13 +274,13 @@ class ProportionTest extends Component {
 						raw="z  = \frac{(\hat p_1 - \hat p_2) - (p_1 - p_2)}{\sqrt{\tfrac{\hat p_1 (1- \hat p_1)}{n_1} + \tfrac{\hat p_2 (1 - \hat p_2)}{n_2} }}"
 						elems={{
 							'n': {
-								tooltip: 'Sample Size'
+								tooltip: t('sample-size')
 							},
 							'p': {
-								tooltip: 'Proportion'
+								tooltip: t('proportion')
 							},
 							'z': {
-								tooltip: 'Test Statistic'
+								tooltip: t('test-statistic')
 							}
 						}}
 					/> :
@@ -290,13 +291,13 @@ class ProportionTest extends Component {
 						raw="z = \frac{\hat p - p}{\sqrt{p (1-p) / n}}"
 						elems={{
 							'n': {
-								tooltip: 'Sample Size'
+								tooltip: t('sample-size')
 							},
 							'p': {
-								tooltip: 'Proportion'
+								tooltip: t('proportion')
 							},
 							'z': {
-								tooltip: 'Test Statistic'
+								tooltip: t('test-statistic')
 							}
 						}}
 					/>
@@ -307,10 +308,11 @@ class ProportionTest extends Component {
 
 	renderResultPanel() {
 		const { p0, phat, phat2, pStat, samples, n, stderr } = this.state;
+		const { t } = this.props;
 		return ( <Card>
-			<Card.Header as="h4">Test Result</Card.Header>
+			<Card.Header as="h4">{t('test-result')}</Card.Header>
 			<Card.Body>
-				<p>Plugging in our values, we have:</p>
+				<p>{t('plugging-in')}</p>
 				{ samples === 'Two-Sample' ?
 					<TeX
 						tag=""
@@ -323,7 +325,7 @@ class ProportionTest extends Component {
 						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{\\frac{${roundn( p0, -3 )} \\cdot ${roundn( 1-p0, -3 )}}{${n}} }} = ${pStat}`}
 					/>
 				}
-				<p>Under the null hypothesis, we calculate the p-value: </p>
+				<p>{t('calculate-p-value')}</p>
 				<TeX raw={this.state.probFormula} />
 				<VictoryChart
 					domain={{ x: [ -3, 3 ]}}

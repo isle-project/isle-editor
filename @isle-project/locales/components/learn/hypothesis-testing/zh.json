@@ -1,0 +1,13 @@
+{
+	"calculate-p-value": "在零假设下，我们计算p值。",
+	"calculate-test-statistic": "我们计算出以下检验统计量。",
+	"conduct-the-following-test": "我们进行如下检验（点击下面的假设，可以切换单边变异和双边检验）。",
+	"lets-assume": "假设我们观察到的数据具有以下特征。",
+	"parameters": "参数",
+	"plugging-in": "插上我们的价值观，我们有。",
+	"proportion": "比例",
+	"sample-proportion": "样本比例",
+	"sample-size": "样本量",
+	"test-result": "测试结果",
+	"test-statistic": "测试统计"
+}

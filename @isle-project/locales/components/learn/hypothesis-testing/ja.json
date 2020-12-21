@@ -1,0 +1,13 @@
+{
+	"calculate-p-value": "帰無仮説のもと、p値を計算します。",
+	"calculate-test-statistic": "以下のような検定統計量を計算します。",
+	"conduct-the-following-test": "以下のような検定を行います（以下の仮説をクリックすると、片側検定と両側検定が切り替わります）。",
+	"lets-assume": "以下のような特徴を持つデータを観測したとしましょう。",
+	"parameters": "パラメータ",
+	"plugging-in": "自分たちの価値観を突っ込んで",
+	"proportion": "比例",
+	"sample-proportion": "サンプルの割合",
+	"sample-size": "サンプルサイズ",
+	"test-result": "試験結果",
+	"test-statistic": "検定統計量"
+}
