@@ -1,8 +1,15 @@
 {
+	"and": "e",
 	"choose": "Escolha",
 	"conditional-probabilities": "E quanto às probabilidades condicionais?",
 	"conditional-probability-undefined": "A probabilidade condicional é indefinida quando",
+	"consider-events": "Considere eventos",
 	"events-independent": "Os eventos são independentes porque",
 	"events-not-independent": "Os eventos são <1>não</1> independentes porque",
-	"inner-cells-equal": "A que são iguais as células internas? Se os eventos forem aleatórios, temos"
+	"inner-cells-equal": "A que são iguais as células internas? Se os eventos forem aleatórios, temos",
+	"let": "Deixe",
+	"must-have-nonzero-probability": "Quando <1 />, devemos ter <3 /> no caso de B ter probabilidade não nula.",
+	"not": "não",
+	"then-we-have": "Então nós temos",
+	"these-form-marginals": "Estes formam os marginais na seguinte tabela de probabilidade"
 }

@@ -1,8 +1,15 @@
 {
+	"and": "et",
 	"choose": "Choisissez",
 	"conditional-probabilities": "Qu'en est-il des probabilités conditionnelles ?",
 	"conditional-probability-undefined": "La probabilité conditionnelle est indéfinie lorsque",
+	"consider-events": "Considérez les événements",
 	"events-independent": "Les événements sont indépendants car",
 	"events-not-independent": "Les événements sont <1>pas</1> indépendants car",
-	"inner-cells-equal": "À quoi correspondent les cellules internes ? Si les événements sont aléatoires, nous avons"
+	"inner-cells-equal": "À quoi correspondent les cellules internes ? Si les événements sont aléatoires, nous avons",
+	"let": "Laissez",
+	"must-have-nonzero-probability": "Lorsque <1 />, nous devons avoir <3 /> dans le cas où B a une probabilité non nulle.",
+	"not": "pas",
+	"then-we-have": "Ensuite, nous avons",
+	"these-form-marginals": "Celles-ci forment les marges du tableau de probabilité suivant"
 }
