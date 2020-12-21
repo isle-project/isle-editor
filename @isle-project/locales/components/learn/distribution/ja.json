@@ -23,5 +23,13 @@
 	"number-trials-until-success": "<1/>を最初の成功までの試行回数とする。",
 	"poisson-distribution": "ポアソン分布",
 	"poisson-probabilities": "ポアソン確率",
-	"probability-plot": "確率プロット"
+	"probability-plot": "確率プロット",
+	"random-variable-denotes-failures": "ランダム変数Ｘは、ｒ番目の成功までの失敗回数を示す。",
+	"random-variable-denotes-trials": "ランダム変数Xは、r番目の成功までの試行回数を示す。",
+	"rate": "レート",
+	"standard-deviation": "標準偏差",
+	"success-probability": "成功確率",
+	"success-probability-of": "の成功確率と",
+	"successes-until-stop": "停止するまでの成功",
+	"we-get": "貰える"
 }
