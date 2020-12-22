@@ -1,1 +1,8 @@
-{}
+{
+	"average-distance-from-mean": "Average Distance from Mean:",
+	"average-distance-from-median": "Average Distance from Median:",
+	"generate-new-data": "Generate new data",
+	"group": "Group",
+	"median": "Median",
+	"you": "You"
+}

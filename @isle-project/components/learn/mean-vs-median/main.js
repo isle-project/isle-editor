@@ -176,9 +176,10 @@ class MeanVSMedian extends Component {
 	}
 
 	renderMeanPanel() {
+		const { t } = this.props;
 		return ( <Card>
 			<Card.Header as="h4">
-				Mean
+				{t('mean')}
 			</Card.Header>
 			<Card.Body>
 				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
@@ -213,9 +214,10 @@ class MeanVSMedian extends Component {
 	}
 
 	renderMedianPanel() {
+		const { t } = this.props;
 		return ( <Card>
 			<Card.Header as="h4">
-				Median
+				{t('median')}
 			</Card.Header>
 			<Card.Body>
 				<VictoryChart domain={this.state.lognormalDomain} containerComponent={
@@ -249,6 +251,7 @@ class MeanVSMedian extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Card style={this.props.style} >
 				<Card.Header as="h3">
@@ -267,7 +270,9 @@ class MeanVSMedian extends Component {
 						</Row>
 						<Row>
 							<div style={{ paddingTop: '20px', maxWidth: 400, margin: '0 auto 10px' }}>
-								<Button variant="primary" size="lg" onClick={this.generateData} >Generate new data</Button>
+								<Button variant="primary" size="lg" onClick={this.generateData} >
+									{t('generate-new-data')}
+								</Button>
 							</div>
 						</Row>
 						<Row>
@@ -276,18 +281,18 @@ class MeanVSMedian extends Component {
 								<thead>
 									<tr>
 										<th></th>
-										<th>You</th>
-										<th>Group</th>
+										<th>{t('you')}</th>
+										<th>{t('group')}</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<th>Average Distance from Mean:</th>
+										<th>{t('average-distance-from-mean')}</th>
 										<td>{roundn( this.singleAccMean(), -2 )}</td>
 										<td>{roundn( this.groupAccMean(), -2 )}</td>
 									</tr>
 									<tr>
-										<th>Average Distance from Median:</th>
+										<th>{t('average-distance-from-median')}</th>
 										<td>{roundn( this.singleAccMedian(), -2 )}</td>
 										<td>{roundn( this.groupAccMedian(), -2 )}</td>
 									</tr>

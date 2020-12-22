@@ -251,6 +251,7 @@ class ConfidenceCoverageSample extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		const nobs = this.state.errorBars.length;
 		const center = this.state.type === 'numeric' ? 'mean' : 'proportion';
 		return (
@@ -260,7 +261,7 @@ class ConfidenceCoverageSample extends Component {
 					<Row>
 						<Col md={6}>
 							<Panel
-								header={<span>Confidence Intervals for {this.state.variable}</span>}
+								header={<span>{t('confidence-intervals-for')} {this.state.variable}</span>}
 								style={{
 									height: '85vh'
 								}}
@@ -270,9 +271,9 @@ class ConfidenceCoverageSample extends Component {
 						</Col>
 						<Col md={6}>
 							{ this.state.type === 'numeric' || this.state.type === 'binary' ?
-								<Panel header="Parameters">
+								<Panel header={t('parameters')}>
 									<NumberInput
-										legend="Sample Size"
+										legend={t('sample-size')}
 										step={1}
 										min={1}
 										value={this.state.sampleSize}
@@ -280,7 +281,7 @@ class ConfidenceCoverageSample extends Component {
 										onChange={( sampleSize ) => this.setState({ 'sampleSize': sampleSize })}
 									/>
 									<NumberInput
-										legend="Confidence Level"
+										legend={t('confidence-level')}
 										step={0.01} min={0} max={1}
 										value={this.state.level}
 										onChange={( level ) => this.setState({ 'level': level })}
@@ -291,36 +292,36 @@ class ConfidenceCoverageSample extends Component {
 												return ( <Button key={idx} onClick={() => {
 													this.drawSamples( n );
 												}}>
-													Draw {n} Samples
+													{t('draw-samples', { n }) }
 												</Button> );
 											}) : <Button onClick={() => {
 													this.drawSamples( this.props.samples );
 												}}>
-													Draw {this.props.samples} Samples
+													{t('draw-samples', { n: this.props.samples }) }
 												</Button>
 										}
 										<Button onClick={this.clear.bind( this )}>
-											Clear
+											{ t('clear')}
 										</Button>
 									</ButtonGroup>
 								</Panel> : null
 							}
-							<Panel header="Statistics">
-								Number of confidence intervals covering the population {center} of
+							<Panel header={t('statistics')}>
+								{t('number-of-confidence-intervals-of', { center })}
 								&nbsp;<TeX raw={roundn( this.state.trueMean, -3 )} />: <br />
 								<TeX raw={`\\text{Covering population ${center}: }${this.state.nTrapped} \\text{ out of } ${nobs}`} displayMode />
 								{ this.state.errorBars.length > 0 ?
 									<Fragment>
 										<TeX raw={`\\text{Coverage: }${roundn( this.state.nTrapped / nobs, -3 )}\\%`} displayMode />
-										Number of confidence intervals not covering the population {center}: <br />
-										<TeX raw={`\\text{Interval above population ${center}: }${this.state.nHigher}`} displayMode />
-										<TeX raw={`\\text{Interval below population ${center}: }${this.state.nLower}`} displayMode />
+										{t('number-of-confidence-intervals', { center })} <br />
+										<TeX raw={`\\text{${t('interval-above-population')} ${center}: }${this.state.nHigher}`} displayMode />
+										<TeX raw={`\\text{${t('interval-below-population')} ${center}: }${this.state.nLower}`} displayMode />
 									</Fragment> : null }
 							</Panel>
 						</Col>
 					</Row> :
 					<Alert variant="info" style={{ fontSize: 24 }}>
-						Please sample from either a numeric variable or a categorical variable with two categories.
+						{t('please-sample')}
 					</Alert>
 				}
 			</Container>
