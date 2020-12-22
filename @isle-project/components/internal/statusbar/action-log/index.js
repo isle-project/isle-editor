@@ -30,6 +30,8 @@ import CustomFilter from './custom_filter.js';
 // VARIABLES //
 
 const debug = logger( 'isle:statusbar:action-log' );
+const EMAIL = 'email';
+const ID = 'id';
 moment.locale( 'us' );
 
 
@@ -99,7 +101,7 @@ class ActionLog extends Component {
 						onClick={this.handleEmailFilterClick}
 						onKeyPress={this.handleEmailFilterClick}
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-					>{'email'}: {this.props.selectedEmail}</span>
+					>{EMAIL}: {this.props.selectedEmail}</span>
 				</span>
 			</Fragment>
 			});
@@ -115,7 +117,7 @@ class ActionLog extends Component {
 						onClick={this.handleIDFilterClick}
 						onKeyPress={this.handleIDFilterClick}
 						style={{ marginLeft: 10, background: 'lightcoral', cursor: 'pointer' }}
-					>{'id'}: {this.props.selectedID}</span>
+					>{ID}: {this.props.selectedID}</span>
 				</span>
 			</Fragment>
 			});
@@ -287,7 +289,7 @@ class ActionLog extends Component {
 		const blob = new Blob([ JSON.stringify( actions ) ], {
 			type: 'application/json'
 		});
-		const name = `actions_${session.namespaceName}_${session.lessonName}.json`;
+		const name = `actions_${session.namespaceName}_${session.lessonName}.json`; // eslint-disable-line i18next/no-literal-string
 		saveAs( blob, name );
 	}
 
@@ -308,7 +310,7 @@ class ActionLog extends Component {
 			const blob = new Blob([ output ], {
 				type: 'text/plain'
 			});
-			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`;
+			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`; // eslint-disable-line i18next/no-literal-string
 			saveAs( blob, name );
 		});
 	}
