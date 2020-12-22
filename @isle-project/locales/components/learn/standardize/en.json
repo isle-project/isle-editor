@@ -1,1 +1,10 @@
-{}
+{
+	"evaluate-probabilities": "Evaluate probabilities:",
+	"normal-to-standard-normal": "From Normal to Standard Normal",
+	"reset": "Reset",
+	"standard-deviation": "standard deviation",
+	"standardize-values": "Standardize values",
+	"standardized": "Standardized",
+	"unstandardized": "Unstandardized",
+	"x-value": "X value"
+}

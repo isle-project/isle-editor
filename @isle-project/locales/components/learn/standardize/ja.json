@@ -1,1 +1,10 @@
-{}
+{
+	"evaluate-probabilities": "確率を評価する。",
+	"normal-to-standard-normal": "ノーマルからスタンダードノーマルへ",
+	"reset": "リセット",
+	"standard-deviation": "標準偏差",
+	"standardize-values": "価値観の標準化",
+	"standardized": "標準化された",
+	"unstandardized": "標準化されていない",
+	"x-value": "エックス値"
+}

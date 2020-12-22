@@ -124,9 +124,10 @@ class Standardize extends Component {
 	}
 
 	renderNumberInputPanel() {
+		const { t } = this.props;
 		return ( <Card style={{ marginBottom: 10 }}>
 			<Card.Header as="h4">
-				From Normal to Standard Normal
+				{t('normal-to-standard-normal')}
 			</Card.Header>
 			<Card.Body>
 				<NumberInput
@@ -140,7 +141,7 @@ class Standardize extends Component {
 					}}
 				/>
 				<NumberInput
-					legend="Standard Deviation"
+					legend={t('standard-deviation')}
 					defaultValue={3}
 					step={this.props.step}
 					min={1}
@@ -154,9 +155,10 @@ class Standardize extends Component {
 	}
 
 	renderUnstandardizedPlot() {
+		const { t } = this.props;
 		return ( <Card>
 			<Card.Header as="h4">
-				Unstandardized
+				{t('unstandardized')}
 			</Card.Header>
 			<Card.Body>
 				<VictoryChart domain={{
@@ -170,15 +172,16 @@ class Standardize extends Component {
 					<VictoryAxis label="x" />
 					{this.state.unstandardizedLines}
 				</VictoryChart>
-				<Button variant="secondary" onClick={this.reset}>Reset</Button>
+				<Button variant="secondary" onClick={this.reset}>{t('reset')}</Button>
 			</Card.Body>
 		</Card> );
 	}
 
 	renderStandardizedPlot() {
+		const { t } = this.props;
 		return ( <Card>
 			<Card.Header as="h4">
-				Standardized
+				{t('standardized')}
 			</Card.Header>
 			<Card.Body>
 				<VictoryChart domain={{
@@ -206,7 +209,7 @@ class Standardize extends Component {
 					{this.state.standardizedLines}
 				</VictoryChart>
 				{ this.props.showProbabilities ? <Fragment>
-					<span>Evaluate probabilities:</span>
+					<span>{t('evaluate-probabilities')}</span>
 					<TeX
 						raw={`P( L = ${this.state.lower} < Z < U = ${this.state.upper}) = ${this.state.rangeProb.toFixed( 3 )}`}
 						elems={{
@@ -262,6 +265,7 @@ class Standardize extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Container>
 				<Row>
@@ -274,10 +278,10 @@ class Standardize extends Component {
 						{this.renderUnstandardizedPlot()}
 					</Col>
 					<Col md={4}>
-						<Dashboard autoStart={false} title="Standardize values" label="Compute" id="learn_standardize" onGenerate={this.onStandardize}>
+						<Dashboard autoStart={false} title={t('standardize-values')} label="Compute" id="learn_standardize" onGenerate={this.onStandardize}>
 							<TeX raw={this.state.eqn} displayMode tag="" />
 							<NumberInput
-								legend="X value"
+								legend={t('x-value')}
 								defaultValue={0}
 								step={this.props.step}
 								min={-30}

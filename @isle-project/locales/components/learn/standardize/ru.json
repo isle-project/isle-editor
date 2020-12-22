@@ -1,1 +1,10 @@
-{}
+{
+	"evaluate-probabilities": "Оценивать вероятности:",
+	"normal-to-standard-normal": "От нормального к стандартному",
+	"reset": "Сброс",
+	"standard-deviation": "среднеквадратическое отклонение",
+	"standardize-values": "Стандартизировать значения",
+	"standardized": "Стандартизированный",
+	"unstandardized": "Нестандартизированный",
+	"x-value": "значение Х"
+}
