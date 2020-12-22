@@ -80,10 +80,10 @@ function toDOM( node ) {
 		style += `text-align: ${align};`;
 	}
 	if ( paddingTop && !EMPTY_CSS_VALUE.has(paddingTop) ) {
-		style += `padding-top: ${paddingTop};`;
+		style += `padding-top: ${paddingTop};`;  // eslint-disable-line i18next/no-literal-string
 	}
 	if ( paddingBottom && !EMPTY_CSS_VALUE.has(paddingBottom) ) {
-		style += `padding-bottom: ${paddingBottom};`;
+		style += `padding-bottom: ${paddingBottom};`;  // eslint-disable-line i18next/no-literal-string
 	}
 	if ( style ) {
 		attrs.style = style;

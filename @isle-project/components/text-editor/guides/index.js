@@ -109,6 +109,7 @@ class Guides extends Component {
 	}
 
 	renderModal() {
+		/* eslint-disable i18next/no-literal-string */
 		let guidePanel;
 		if ( this.state.running ) {
 			guidePanel = this.renderCancelPanel();
@@ -200,6 +201,7 @@ class Guides extends Component {
 				</Modal.Footer>
 			</Modal>
 		);
+		/* eslint-enable i18next/no-literal-string */
 	}
 
 	render() {

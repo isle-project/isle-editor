@@ -22,7 +22,7 @@ function animatePosition( element, prop, to, duration ) {
 	const perTick = difference / duration * 10.0;
 	setTimeout( function onTimeout() {
 		const newVal = pixelsToNumber( element.style[ prop ] ) + perTick;
-		element.style[ prop ] = `${newVal}px`;
+		element.style[ prop ] = `${newVal}px`; // eslint-disable-line i18next/no-literal-string
 		if ( newVal === to ) {
 			return;
 		}

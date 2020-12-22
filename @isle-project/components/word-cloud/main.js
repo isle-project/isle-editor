@@ -259,7 +259,7 @@ class Wrapper extends Component {
 				.attr( 'height', this.props.height )
 				.style( 'background', '#ffffff' );
 		this.svg.append( 'g' )
-			.attr( 'transform', `translate(${this.props.width / 2},${this.props.height / 2})` );
+			.attr( 'transform', `translate(${this.props.width / 2},${this.props.height / 2})` ); // eslint-disable-line i18next/no-literal-string
 		this.cloudLayout = cloud()
 			.size([ this.props.width, this.props.height ])
 			.font( this.props.font )

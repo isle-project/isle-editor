@@ -30,6 +30,7 @@ import cx from 'classnames';
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import CustomButton from './custom_button.js';
+import { i18n } from '@isle-project/locales';
 import generateUID from '@isle-project/utils/uid/incremental';
 import './image_upload_editor.css';
 import './form.css';
@@ -140,7 +141,7 @@ class ImageUploadEditor extends React.PureComponent {
 			<div className={className}>
 				<form className="editor-form">
 					<fieldset>
-						<legend>Upload Image</legend>
+						<legend>{i18n.t('upload-image')}</legend>
 						<div className="editor-image-upload-editor-body">
 							<div className="editor-image-upload-editor-label">{label}</div>
 							<input

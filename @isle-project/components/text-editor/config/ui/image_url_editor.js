@@ -27,6 +27,7 @@
 // MODULES //
 
 import React from 'react';
+import { i18n } from '@isle-project/locales';
 import CustomButton from './custom_button.js';
 import preventEventDefault from './prevent_event_default.js';
 import resolveImage from './resolve_image.js';
@@ -97,7 +98,7 @@ class ImageURLEditor extends React.PureComponent {
 			<div className="editor-image-url-editor">
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>Insert Image</legend>
+						<legend>{i18n.t('insert-image')}</legend>
 						<div className="editor-image-url-editor-src-input-row">
 							<input
 								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
@@ -110,7 +111,7 @@ class ImageURLEditor extends React.PureComponent {
 							{preview}
 						</div>
 						<em>
-							Only select image that you have confirmed the license to use
+							{i18n.t('require-license')}
 						</em>
 					</fieldset>
 					<div className="editor-form-buttons">

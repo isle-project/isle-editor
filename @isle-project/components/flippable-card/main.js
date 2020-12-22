@@ -112,12 +112,12 @@ class FlippableCard extends Component {
 				left: '0',
 				position: 'absolute',
 				top: '0',
-				transform: `rotateY(${isFlipped ? 180 : 0 }deg)`,
+				transform: `rotateY(${isFlipped ? 180 : 0 }deg)`, // eslint-disable-line i18next/no-literal-string
 				transformStyle: 'preserve-3d',
 				width: '100%',
 				height: '100%',
 				zIndex: '2',
-				transition: `${this.props.flipSpeedBackToFront}s`,
+				transition: `${this.props.flipSpeedBackToFront}s`, // eslint-disable-line i18next/no-literal-string
 				...this.props.cardStyles.front
 			},
 			back: {
@@ -125,13 +125,13 @@ class FlippableCard extends Component {
 				backfaceVisibility: 'hidden',
 				left: '0',
 				position: 'absolute',
-				transform: `rotateY(${isFlipped ? 0 : -180 }deg)`,
+				transform: `rotateY(${isFlipped ? 0 : -180 }deg)`, // eslint-disable-line i18next/no-literal-string
 				transformStyle: 'preserve-3d',
 				top: '0',
 				width: '100%',
 				height: '100%',
 				zIndex: 2,
-				transition: `${this.props.flipSpeedFrontToBack}s`,
+				transition: `${this.props.flipSpeedFrontToBack}s`, // eslint-disable-line i18next/no-literal-string
 				...this.props.cardStyles.back
 			}
 		};

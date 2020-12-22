@@ -42,13 +42,13 @@ const collaborativeCursorPlugin = new Plugin({
 					widget.className = 'editor-collaborative-cursor';
 					const line = document.createElement( 'span' );
 					line.className = 'editor-collaborative-cursor-line';
-					line.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`;
+					line.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`; // eslint-disable-line i18next/no-literal-string
 					widget.appendChild( line );
 
 					const text = document.createElement( 'span' );
 					text.innerHTML = id;
 					text.className = 'editor-collaborative-cursor-text';
-					text.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`;
+					text.style = `background-color: ${CAT20[ i % NUM_COLORS ]}`; // eslint-disable-line i18next/no-literal-string
 					widget.appendChild( text );
 
 					const cursor = action.cursors[ id ];
@@ -67,7 +67,7 @@ const collaborativeCursorPlugin = new Plugin({
 							}),
 							Decoration.inline(
 								from, to,
-								{ style: `background-color: ${CAT20_FADED[ i % NUM_COLORS ]};` }
+								{ style: `background-color: ${CAT20_FADED[ i % NUM_COLORS ]};` } // eslint-disable-line i18next/no-literal-string
 							)
 						]);
 					} else {

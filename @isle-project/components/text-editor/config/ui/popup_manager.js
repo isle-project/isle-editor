@@ -157,11 +157,9 @@ class PopUpManager {
 			if (!bodyRect && !anchorRect) {
 				continue;
 			}
-
 			const { x, y } = position(anchorRect, bodyRect);
 			const positionKey = `${x}-${y}`;
-
-			if (body && bodyRect && this._positions.get(bridge) !== positionKey) {
+			if ( body && bodyRect && this._positions.get(bridge) !== positionKey ) {
 				const ax = anchorRect ? clamp(
 					0,
 					anchorRect.x - x + anchorRect.w / 2,
@@ -170,9 +168,9 @@ class PopUpManager {
 				this._positions.set( bridge, positionKey );
 				const bodyStyle = body.style;
 				bodyStyle.position = 'absolute';
-				bodyStyle.left = `${x}px`;
-				bodyStyle.top = `${y}px`;
-				bodyStyle.setProperty('--editor-pop-up-anchor-offset-left', `${ax}px`);
+				bodyStyle.left = `${x}px`; // eslint-disable-line i18next/no-literal-string
+				bodyStyle.top = `${y}px`; // eslint-disable-line i18next/no-literal-string
+				bodyStyle.setProperty('--editor-pop-up-anchor-offset-left', `${ax}px`); // eslint-disable-line i18next/no-literal-string
 				bodyRect.x = x;
 				bodyRect.y = y;
 			}

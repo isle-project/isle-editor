@@ -30,6 +30,7 @@ import cx from 'classnames';
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import generateUID from '@isle-project/utils/uid/incremental';
+import { i18n } from '@isle-project/locales';
 import CustomNodeView from './custom_node_view.js';
 import { FRAMESET_BODY_CLASSNAME } from './editor_frameset.js';
 import Icons from './../icons.js';
@@ -335,7 +336,7 @@ class ImageViewBody extends React.PureComponent {
 		}
 
 		if ( rotate ) {
-			clipStyle.transform = `rotate(${rotate}rad)`;
+			clipStyle.transform = `rotate(${rotate}rad)`; // eslint-disable-line i18next/no-literal-string
 		}
 
 		let tooltip = null;
@@ -345,7 +346,7 @@ class ImageViewBody extends React.PureComponent {
 		const errorView = error ?
 			<span className="editor-image-view-error" >{Icons.error} </span> :
 			null;
-		const errorTitle = error ? `Unable to load image from ${attrs.src || ''}` : void 0;
+		const errorTitle = error ? `${i18n.t('unable-to-load-image')} ${attrs.src || ''}` : void 0;
 		const img = <img
 			alt=""
 			className="editor-image-view-body-img"

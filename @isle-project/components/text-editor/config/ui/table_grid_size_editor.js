@@ -217,7 +217,7 @@ class TableGridSizeEditor extends React.PureComponent {
 					{cells}
 				</div>
 				<div className="editor-table-grid-size-editor-footer">
-					{rows} X {cols}
+					{rows} <i className="fa fa-times" /> {cols}
 				</div>
 			</div>
 		);

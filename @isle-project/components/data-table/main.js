@@ -617,7 +617,7 @@ class DataTable extends Component {
 				if ( !dataInfo || !dataInfo.name ) {
 					name = 'dataset.csv';
 				} else {
-					name = `${dataInfo.name}.csv`;
+					name = `${dataInfo.name}.csv`; // eslint-disable-line i18next/no-literal-string
 				}
 				saveAs( blob, name );
 			});
