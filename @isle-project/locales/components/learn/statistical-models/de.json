@@ -1,1 +1,22 @@
-{}
+{
+	"bagging-description": "Die Bootstrap-Aggregation wird häufig mit Entscheidungsbaummethoden verwendet. Dabei werden Bootstrap-Stichproben aus den ursprünglichen Trainingsdaten gezogen und ein Modell für jede gezogene Stichprobe geschätzt. Die Vorhersagen dieser Modelle werden dann gemittelt, um Vorhersagen mit geringerer Varianz zu erhalten, die nicht so anfällig für Überanpassungen sind.",
+	"boosting-description": "Boosting-Algorithmen wie AdaBoost lernen iterativ schwache Klassifikatoren und fügen sie durch Gewichtung zu einem endgültigen starken Klassifikator hinzu. Beim Hinzufügen von Klassifikatoren erhalten falsch klassifizierte Eingabedaten ein höheres Gewicht und Beispiele, die richtig klassifiziert wurden, verlieren an Gewicht. So konzentrieren sich zukünftige schwache Lerner mehr auf die Beispiele, die vorherige schwache Lerner falsch klassifiziert haben.",
+	"cart-description": "Die Klassifizierungs- und Regressionsbaumanalyse (CART) baut einen Baum auf, der von den Merkmalen einer Beobachtung (in den Zweigen dargestellt) zu einem vorhergesagten Wert (in den Blättern dargestellt) führt.",
+	"classification": "Klassifizierung",
+	"clustering": "Clustering",
+	"dimensionality-reduction": "Dimensionalitätsreduktion",
+	"elastic-net-description": "Das elastische Netz ist eine regularisierte Regressionsmethode, die die L1- und L2-Penalties der Lasso- und Ridge-Methode linear kombiniert.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Gruppieren Sie die Beobachtungen in eine feste Anzahl (k) von Clustern, so dass die Mitglieder eines Clusters einander ähnlicher sind als die Beobachtungen in anderen Clustern.",
+	"knn-description": "Wird sowohl für die Regression als auch für die Klassifizierung verwendet. Verwendet die Mehrheitsabstimmung unter den k-nächsten Punkten für die kNN-Klassifizierung. Bei der Regression ist die Ausgabe der Durchschnitt der k-nächsten Werte.",
+	"lasso-description": "Regularisierte Regressionsmethode, die Regressionskoeffizienten mithilfe der L1-Norm bestraft. Tauscht geringere Varianz gegen ein wenig Verzerrung. Führt zu einem spärlichen Modell.",
+	"linear-regression-description": "Modelliert die Beziehung zwischen einer skalaren Antwort und einer oder mehreren erklärenden Variablen. Die einfache lineare Regression bezieht sich auf den Fall, dass ein Prädiktor vorhanden ist, die multiple lineare Regression wird mit mehreren erklärenden Variablen verwendet. Sie wird linear genannt, weil die geschätzte Funktion in ihren Koeffizienten linear ist.",
+	"logistic-regression-description": "Die logistische Regression ist eine Klassifizierungsmethode, die verwendet wird, um Beobachtungen einer von zwei Klassen zuzuordnen. Die logistische Regression verwendet die logistische Sigmoid-Funktion, um einen Wahrscheinlichkeitswert für jede Klasse zurückzugeben",
+	"naive-bayes-description": "Naive Bayes-Methoden sind eine Reihe von Klassifizierungsalgorithmen, die auf der Anwendung des Bayes-Theorems mit der \"naiven\" Annahme der bedingten Unabhängigkeit zwischen jedem Merkmalspaar bei gegebenem Wert der Klassenvariablen basieren.",
+	"neural-networks-description": "Künstliche neuronale Netze werden verwendet, um komplexe Beziehungen zwischen Eingängen und Ausgängen zu modellieren, indem eine nichtlineare Funktion ohne manuelles Feature Engineering gelernt wird.",
+	"random-forest-description": "Random Forests konstruieren zur Trainingszeit eine Vielzahl von Entscheidungsbäumen und geben die Klasse zurück, die den Modus der Klassen (Klassifikation) oder die mittlere Vorhersage (Regression) der einzelnen Bäume darstellt.",
+	"regression": "Regression",
+	"ridge-description": "Regularisierte Regressionsmethode, die Regressionskoeffizienten mithilfe der L2-Norm bestraft. Tauscht geringere Varianz gegen ein wenig Verzerrung. Ergibt kein spärliches Modell, d. h. die Koeffizienten werden nicht auf Null gesetzt.",
+	"svm-description": "Support-Vektor-Maschinen sind diskriminative Klassifikatoren. Bei gelabelten Trainingsdaten findet der Algorithmus eine optimale Hyperebene, um neue Beispiele zu kategorisieren. In zwei Dimensionen ist diese Hyperebene eine Linie, die sie in zwei Teile teilt.",
+	"üca-description": "Die Hauptkomponentenanalyse (PCA) verwendet eine orthogonale Transformation, um möglicherweise korrelierte Variablen in eine Menge von Werten linear unkorrelierter Variablen umzuwandeln, die Hauptkomponenten genannt werden."
+}

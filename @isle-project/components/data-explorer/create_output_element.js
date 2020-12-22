@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { i18n } from '@isle-project/locales';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Table from '@isle-project/components/table';
 import logger from 'debug';
@@ -50,6 +51,8 @@ import DatasetButton from './dataset_button.js';
 
 const debug = logger( 'isle:data-explorer' );
 const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
+const N = 'N';
+const IQR = 'IQR';
 
 
 // FUNCTIONS //
@@ -83,7 +86,7 @@ const makeDraggable = ( div ) => {
 					ev.dataTransfer.setData( 'text/html', markup );
 				}}
 			>
-				Drag Table
+				{i18n.t('drag-table')}
 			</div>
 			{div}
 		</Fragment>
@@ -94,11 +97,11 @@ const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
-				<th>Variable</th>
-				<th>IQR</th>
-				<th>Lower</th>
-				<th>Upper</th>
-				<th>N</th>
+				<th>{i18n.t('variable')}</th>
+				<th>{IQR}</th>
+				<th>{i18n.t('lower')}</th>
+				<th>{i18n.t('upper')}</th>
+				<th>{N}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -123,11 +126,11 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) =>
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
-				<th>Variable</th>
-				<th>Range</th>
-				<th>Min</th>
-				<th>Max</th>
-				<th>N</th>
+				<th>{i18n.t('variable')}</th>
+				<th>{i18n.t('range')}</th>
+				<th>{i18n.t('min')}</th>
+				<th>{i18n.t('max')}</th>
+				<th>{N}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -314,21 +317,21 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 			let header;
 			if ( e.statistics.length === 1 && e.statistics[0] === 'Range' ) {
 				header = <tr>
-					<th className="not-sortable" >Variable</th>
+					<th className="not-sortable" >{i18n.t('variable')}</th>
 					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					<th>Range</th>
-					<th>Min</th>
-					<th>Max</th>
-					<th>N</th>
+					<th>{i18n.t('range')}</th>
+					<th>{i18n.t('min')}</th>
+					<th>{i18n.t('max')}</th>
+					<th>{N}</th>
 				</tr>;
 			} else if ( e.statistics.length === 1 && e.statistics[0] === 'Interquartile Range' ) {
 				header = <tr>
-					<th className="not-sortable" >Variable</th>
+					<th className="not-sortable" >{i18n.t('variable')}</th>
 					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					<th>IQR</th>
-					<th>Lower</th>
-					<th>Upper</th>
-					<th>N</th>
+					<th>{IQR}</th>
+					<th>{i18n.t('lower')}</th>
+					<th>{i18n.t('upper')}</th>
+					<th>{N}</th>
 				</tr>;
 			} else {
 				header = <tr>
@@ -337,7 +340,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 					{e.statistics.map( ( name, i ) => {
 						return <th key={i}>{name}</th>;
 					})}
-					<th>N</th>
+					<th>{N}</th>
 				</tr>;
 			}
 			const table = <Table bordered size="sm" >
@@ -400,11 +403,11 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		const table = <Table bordered size="sm">
 			<thead>
 				<tr>
-					<th className="not-sortable" >Variable</th>
+					<th className="not-sortable" >{i18n.t('variable')}</th>
 					{e.statistics.map( ( name, i ) => {
 						return <th key={i}>{name}</th>;
 					})}
-					<th>N</th>
+					<th>{N}</th>
 				</tr>
 			</thead>
 			<tbody>

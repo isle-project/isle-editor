@@ -1,1 +1,22 @@
-{}
+{
+	"bagging-description": "A agregação do bootstrap é freqüentemente usada com métodos de árvore de decisão. Ao extrair amostras de bootstrap a partir dos dados originais de treinamento estimando um modelo para cada amostra retirada, as previsões de tais modelos são então calculadas como média para produzir previsões de menor variação não tão propensas a sobreajustes.",
+	"boosting-description": "Algoritmos de reforço como o AdaBoost iterativamente aprendem classificadores fracos e os adicionam a um classificador final forte, pesando-os. À medida que os classificadores são adicionados, os dados de entrada mal classificados ganham um peso maior e os exemplos que são classificados corretamente perdem peso. Assim, os futuros alunos fracos se concentram mais nos exemplos que os alunos fracos anteriores classificaram erroneamente.",
+	"cart-description": "A análise da árvore de classificação e regressão (CART) constrói uma árvore que vai das características de uma observação (representada nos galhos) a um valor previsto (representado nas folhas).",
+	"classification": "Classificação",
+	"clustering": "Clustering",
+	"dimensionality-reduction": "Redução da dimensionalidade",
+	"elastic-net-description": "A rede elástica é um método de regressão regularizada que combina linearmente as penalidades L1 e L2 dos métodos laço e cumeeira.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Agrupar observações em um número fixo (k) de agrupamentos de forma que os membros do agrupamento sejam mais semelhantes uns aos outros do que as observações em outros agrupamentos.",
+	"knn-description": "Utilizado tanto para a regressão quanto para a classificação. Utiliza o voto majoritário entre os pontos k-nearest para a classificação kNN. Para a regressão, o resultado é a média dos valores k-nearest.",
+	"lasso-description": "Método de regressão regularizada que penaliza os coeficientes de regressão usando a norma L1. Comercializa uma variação menor para um pouco de viés. Conduz a um modelo esparso.",
+	"linear-regression-description": "Modela a relação entre uma resposta escalar e uma ou mais variáveis explicativas. A regressão linear simples refere-se ao caso em que um preditor está presente, a regressão linear múltipla é usada com múltiplas variáveis explicativas. É chamada linear porque a função estimada é linear em seus coeficientes.",
+	"logistic-regression-description": "A regressão logística é um método de classificação utilizado para atribuir observações a uma de duas classes. A regressão logística usa a função sigmóide logística para retornar um valor de probabilidade para cada classe.",
+	"naive-bayes-description": "Os métodos Bayes ingênuos são um conjunto de algoritmos de classificação baseados na aplicação do teorema de Bayes com a suposição \"ingênua\" de independência condicional entre cada par de características dado o valor da variável de classe.",
+	"neural-networks-description": "As redes neurais artificiais são usadas para modelar relações complexas entre entradas e saídas, aprendendo uma função não linear sem engenharia manual de características.",
+	"random-forest-description": "As Florestas Aleatórias constroem uma multidão de árvores de decisão em tempo de treinamento e retornam a classe que é o modo das classes (classificação) ou previsão média (regressão) das árvores individuais.",
+	"regression": "Regressão",
+	"ridge-description": "Método de regressão regularizada que penaliza os coeficientes de regressão usando a norma L2. Comercializa uma variação menor para um pouco de viés. Não produz um modelo esparso, ou seja, os coeficientes não são levados a zero.",
+	"svm-description": "As máquinas Vector de apoio são classificadoras discriminatórias. Dados os dados de treinamento rotulados, o algoritmo encontra um hiperplano ideal para categorizar novos exemplos. Em duas dimensões, este hiperplano é uma linha que o divide em duas partes.",
+	"üca-description": "A Análise de Componentes Principais (PCA) usa uma transformação ortogonal para converter variáveis possivelmente correlacionadas em um conjunto de valores de variáveis linearmente não correlacionadas chamadas componentes principais."
+}

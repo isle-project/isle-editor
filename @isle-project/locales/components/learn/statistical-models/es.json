@@ -1,1 +1,22 @@
-{}
+{
+	"bagging-description": "La agregación por medio de un árbol de decisión se utiliza a menudo. Al extraer muestras de bootstrap de los datos originales de capacitación, estimando un modelo para cada muestra extraída, las predicciones de dichos modelos se promedian para obtener predicciones de menor varianza y no tan propensas a la sobrecarga.",
+	"boosting-description": "Los algoritmos de potenciación como el AdaBoost aprenden iterativamente los clasificadores débiles y los añaden a un clasificador fuerte final mediante su ponderación. A medida que se añaden los clasificadores, los datos de entrada mal clasificados ganan más peso y los ejemplos que se clasifican correctamente pierden peso. Así, los futuros alumnos débiles se centran más en los ejemplos que los anteriores alumnos débiles clasificaron incorrectamente.",
+	"cart-description": "El análisis del Árbol de Clasificación y Regresión (CART) construye un árbol que va desde las características de una observación (representadas en las ramas) hasta un valor predicho (representado en las hojas).",
+	"classification": "Clasificación",
+	"clustering": "Agrupación",
+	"dimensionality-reduction": "Reducción de la dimensionalidad",
+	"elastic-net-description": "La red elástica es un método de regresión regularizado que combina linealmente las penalizaciones L1 y L2 de los métodos de lazo y cresta.",
+	"ensemble": "Conjunto",
+	"kmeans-description": "Agrupar las observaciones en un número fijo (k) de cúmulos, de manera que los miembros del cúmulo sean más similares entre sí que a las observaciones en otros cúmulos.",
+	"knn-description": "Se utiliza tanto para la regresión como para la clasificación. Utiliza el voto mayoritario entre los puntos más cercanos para la clasificación kNN. Para la regresión, el resultado es el promedio de los valores más cercanos.",
+	"lasso-description": "Método de regresión regularizada que penaliza los coeficientes de regresión usando la norma L1. Reduce la varianza por un poco de sesgo. Conduce a un modelo disperso.",
+	"linear-regression-description": "Modela la relación entre una respuesta escalar y una o más variables explicativas. La regresión lineal simple se refiere al caso en que hay un predictor presente, la regresión lineal múltiple se utiliza con múltiples variables explicativas. Se denomina lineal porque la función estimada es lineal en sus coeficientes.",
+	"logistic-regression-description": "La regresión logística es un método de clasificación utilizado para asignar observaciones a cualquiera de las dos clases. La regresión logística utiliza la función sigmoide logística para devolver un valor de probabilidad para cada clase",
+	"naive-bayes-description": "Los métodos ingenuos de Bayes son un conjunto de algoritmos de clasificación basados en la aplicación del teorema de Bayes con el supuesto \"ingenuo\" de independencia condicional entre cada par de características dado el valor de la variable de clase.",
+	"neural-networks-description": "Las redes neuronales artificiales se utilizan para modelar relaciones complejas entre entradas y salidas mediante el aprendizaje de una función no lineal sin ingeniería de características manuales.",
+	"random-forest-description": "Los bosques aleatorios construyen una multitud de árboles de decisión en el momento de la formación y devuelven la clase que es el modo de las clases (clasificación) o la predicción media (regresión) de los árboles individuales.",
+	"regression": "Regresión",
+	"ridge-description": "Método de regresión regularizada que penaliza los coeficientes de regresión usando la norma L2. Reduce la varianza por un poco de sesgo. No da un modelo disperso, es decir, los coeficientes no se llevan a cero.",
+	"svm-description": "Las Máquinas Vectoriales de Apoyo son clasificadores discriminatorios. Dados los datos de entrenamiento etiquetados, el algoritmo encuentra un hiperplano óptimo para categorizar nuevos ejemplos. En dos dimensiones este hiperplano es una línea que lo divide en dos partes.",
+	"üca-description": "El análisis de componentes principales (PCA) utiliza una transformación ortogonal para convertir las variables posiblemente correlacionadas en un conjunto de valores de variables linealmente no correlacionadas llamadas componentes principales."
+}

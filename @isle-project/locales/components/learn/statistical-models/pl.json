@@ -1,1 +1,22 @@
-{}
+{
+	"bagging-description": "Agregacja pasków startowych jest często stosowana przy użyciu metod drzewa decyzyjnego. Rysując próbki bootstrapów z oryginalnych danych szkoleniowych szacujących model dla każdej wylosowanej próbki, przewidywania tych modeli są następnie uśredniane, aby uzyskać przewidywania o mniejszej zmienności, a nie tak podatne na przepełnienie.",
+	"boosting-description": "Algorytmy wzmacniające, takie jak AdaBoost, uczą się iteracyjnie słabych klasyfikatorów i dodają je do końcowego silnego klasyfikatora poprzez ich ważenie. W miarę dodawania klasyfikatorów, źle sklasyfikowane dane wejściowe zyskują większą wagę, a przykłady, które są prawidłowo sklasyfikowane, tracą na wadze. W związku z tym przyszli słabi uczący się koncentrują się bardziej na przykładach, które poprzednio słabi uczący się błędnie sklasyfikowali.",
+	"cart-description": "Analiza drzewa klasyfikacji i regresji (CART) buduje drzewo, które przechodzi od cech obserwacji (reprezentowanych w gałęziach) do wartości przewidywanej (reprezentowanej w liściach).",
+	"classification": "Klasyfikacja",
+	"clustering": "Tworzenie klastrów",
+	"dimensionality-reduction": "Redukcja wymiarowa",
+	"elastic-net-description": "Siatka elastyczna jest metodą regresji regularnej, łączącą liniowo kary L1 i L2 metody lasso i kalenicy.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Grupowanie obserwacji w stałą liczbę (k) klastrów w taki sposób, aby członkowie klastra byli bardziej do siebie podobni niż do obserwacji w innych klastrach.",
+	"knn-description": "Używany zarówno do regresji jak i klasyfikacji. Wykorzystuje większość głosów wśród k-najlepszych punktów dla klasyfikacji kNN. W przypadku regresji, wynik jest średnią z wartości k-najbliższych.",
+	"lasso-description": "Metoda regresji regularnej, która penalizuje współczynniki regresji przy użyciu normy L1. Obniża odchylenie dla odrobiny stronniczości. Prowadzi do powstania skąpego modelu.",
+	"linear-regression-description": "Modeluje zależność między skalarną odpowiedzią a jedną lub kilkoma zmiennymi objaśniającymi. Prosta regresja liniowa odnosi się do przypadku, w którym występuje jeden predykator, stosuje się wielokrotną regresję liniową z wieloma zmiennymi objaśniającymi. Nazywana jest liniową, ponieważ funkcja estymowana jest liniowa w swoich współczynnikach.",
+	"logistic-regression-description": "Regresja logistyczna jest metodą klasyfikacji stosowaną do przypisywania obserwacji do jednej z dwóch klas. Regresja logistyczna wykorzystuje funkcję sigmoidów logistycznych do zwrócenia wartości prawdopodobieństwa dla każdej klasy.",
+	"naive-bayes-description": "Metody naiwne Bayes'a są zbiorem algorytmów klasyfikacyjnych opartych na zastosowaniu twierdzenia Bayes'a z \"naiwnym\" założeniem warunkowej niezależności pomiędzy każdą parą cech przy założeniu wartości zmiennej klasy.",
+	"neural-networks-description": "Sztuczne sieci neuronowe są wykorzystywane do modelowania złożonych relacji pomiędzy wejściami i wyjściami poprzez uczenie się nieliniowej funkcji bez ręcznej inżynierii funkcji.",
+	"random-forest-description": "Lasy losowe konstruują wiele drzew decyzyjnych w czasie treningu i zwracają klasę, która jest trybem klas (klasyfikacja) lub średniej prognozy (regresja) poszczególnych drzew.",
+	"regression": "Regresja",
+	"ridge-description": "Metoda regresji regularnej, która penalizuje współczynniki regresji przy użyciu normy L2. Prowadzi do niższej wariancji dla odrobiny stronniczości. Nie daje skąpego modelu, tzn. współczynniki nie są kierowane do zera.",
+	"svm-description": "Support Vector Machines są dyskryminującymi klasyfikatorami. Biorąc pod uwagę oznaczone dane szkoleniowe, algorytm znajduje optymalną hiperpłaszczyznę do kategoryzacji nowych przykładów. W dwóch wymiarach ta hiperpłaszczyzna jest linią dzielącą ją na dwie części.",
+	"üca-description": "Analiza Składników Głównych (PCA) wykorzystuje transformację ortogonalną do przekształcenia ewentualnie skorelowanych zmiennych w zbiór wartości liniowo nieskorelowanych zmiennych zwanych składnikami głównymi."
+}
