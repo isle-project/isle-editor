@@ -236,18 +236,19 @@ class WordVennDiagram extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		const inputs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
 			inputs[ i ] = <div key={`outer-${i}`}>
 				<TextInput
 					key={`text-${i}`}
-					legend={`Word ${i+1}`}
+					legend={`${t('word')} ${i+1}`}
 					defaultValue={this.state.words[ i ]}
 					width={120}
 					onChange={this.wordChangeFactory( i )}
 				/><NumberInput
 					key={`number-${i}`}
-					legend="Min # of times "
+					legend={t('min-of-times')}
 					defaultValue={1}
 					max={50}
 					min={1}
@@ -266,30 +267,32 @@ class WordVennDiagram extends Component {
 			<Fragment>
 				<Card>
 					<Card.Header as="h4">
-						Settings
+						{t('settings')}
 					</Card.Header>
 					<Card.Body>
 						<p>
-							<span className="title">Number of Words: </span>
+							<span className="title">{t('number-of-words')}</span>
 						</p>
 						<ButtonGroup>
-							{[ 'One', 'Two', 'Three' ].map( ( w, i ) => (<Button key={i} variant={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>{w}</Button>))}
+							{[ t('one'), t('two'), t('three') ].map( ( w, i ) => (<Button key={i} variant={( i === this.state.nWords-1 ) ? 'success' : 'default'} onClick={this.wordNumberClickFactory( i )}>
+								{w}
+							</Button>))}
 						</ButtonGroup>
 						{inputs}
-						<Button onClick={this.updatePlot} disabled={this.state.disabled}>Draw Venn Diagram</Button>
+						<Button onClick={this.updatePlot} disabled={this.state.disabled}>{t('draw-venn-diagram')}</Button>
 					</Card.Body>
 				</Card>
 				<br />
 				<Card>
 					<Card.Header as="h4">
-						Venn Diagram
+						{t('venn-diagram')}
 					</Card.Header>
 					<Card.Body style={{ minHeight: 200 }}>
 						<span style={{
 							position: 'absolute',
 							right: 40,
 							top: 50
-						}}>Total # of Texts: {this.props.nTexts}</span>
+						}}>{t('total-texts')}: {this.props.nTexts}</span>
 						<div id={this.state.id}></div>
 					</Card.Body>
 				</Card>

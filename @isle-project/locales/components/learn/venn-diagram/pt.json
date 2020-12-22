@@ -1,1 +1,17 @@
-{}
+{
+	"draw-venn-diagram": "Diagrama de desenho Venn",
+	"label-first-set": "Rótulo do primeiro conjunto",
+	"label-second-set": "Rótulo do segundo conjunto",
+	"label-third-set": "Rótulo do terceiro conjunto",
+	"min-of-times": "Mín # de vezes",
+	"number-of-words": "Número de palavras:",
+	"one": "Um",
+	"settings": "Configurações",
+	"three": "Três",
+	"total-number-observations": "Total # de observações",
+	"total-texts": "Total # de Textos",
+	"two": "Dois",
+	"venn-diagram": "Diagrama Venn",
+	"venn-diagram-builder": "Construtor de Diagramas Venn",
+	"word": "Palavra"
+}

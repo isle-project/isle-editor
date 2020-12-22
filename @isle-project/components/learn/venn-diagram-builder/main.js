@@ -163,21 +163,22 @@ class VennDiagramBuilder extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		let dashboard;
 		if ( !this.props.three ) {
 			const { first, second, sizeA, sizeB, sizeAB } = this.state;
 			dashboard = <Dashboard
-				title="Venn Diagram Builder"
+				title={t('venn-diagram-builder')}
 				autoUpdate
 				onGenerate={this.generateTwoCategories.bind( this )}
 			>
 				<TextInput
-					legend="Label of first set"
+					legend={t('label-first-set')}
 					defaultValue="A"
 					width={120}
 				/>
 				<TextInput
-					legend="Label of second set"
+					legend={t('label-second-set')}
 					defaultValue="B"
 					width={120}
 				/>
@@ -207,22 +208,22 @@ class VennDiagramBuilder extends Component {
 		else {
 			const { first, second, third, sizeA, sizeB, sizeC, sizeAB, sizeAC, sizeBC, sizeABC } = this.state;
 			dashboard = <Dashboard
-				title="Venn Diagram Builder"
+				title={t('venn-diagram-builder')}
 				autoUpdate
 				onGenerate={this.generateThreeCategories.bind( this )}
 			>
 				<TextInput
-					legend="Label of first set"
+					legend={t('label-first-set')}
 					defaultValue="A"
 					width={120}
 				/>
 				<TextInput
-					legend="Label of second set"
+					legend={t('label-second-set')}
 					defaultValue="B"
 					width={120}
 				/>
 				<TextInput
-					legend="Label of third set"
+					legend={t('label-third-set')}
 					defaultValue="C"
 					width={120}
 				/>
@@ -281,7 +282,7 @@ class VennDiagramBuilder extends Component {
 			count = <span style={{
 				position: 'absolute',
 				right: 40
-			}}>Total # of observations: {this.props.nobs}</span>;
+			}}>{t('total-number-observations')}: {this.props.nobs}</span>;
 		}
 		return (
 			<div>

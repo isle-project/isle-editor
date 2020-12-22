@@ -1,1 +1,17 @@
-{}
+{
+	"draw-venn-diagram": "ベン図を描く",
+	"label-first-set": "最初のセットのラベル",
+	"label-second-set": "第2セットのラベル",
+	"label-third-set": "第3セットのラベル",
+	"min-of-times": "最小回数",
+	"number-of-words": "言葉の数。",
+	"one": "一つの",
+	"settings": "設定",
+	"three": "三",
+	"total-number-observations": "観測の総数",
+	"total-texts": "総テキスト数",
+	"two": "二つの",
+	"venn-diagram": "ベン図",
+	"venn-diagram-builder": "ベン図ビルダー",
+	"word": "ワード"
+}

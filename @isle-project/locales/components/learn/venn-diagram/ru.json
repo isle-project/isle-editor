@@ -1,1 +1,17 @@
-{}
+{
+	"draw-venn-diagram": "Нарисовать диаграмму Венна",
+	"label-first-set": "Этикетка первого набора",
+	"label-second-set": "Этикетка второго комплекта",
+	"label-third-set": "Этикетка третьего комплекта",
+	"min-of-times": "Мин # времен",
+	"number-of-words": "Количество слов:",
+	"one": "Один",
+	"settings": "Настройки",
+	"three": "Три",
+	"total-number-observations": "Всего # наблюдений",
+	"total-texts": "Всего # Текстов",
+	"two": "Два",
+	"venn-diagram": "Диаграмма Венна",
+	"venn-diagram-builder": "Венн Строитель Диаграмм",
+	"word": "Word"
+}

@@ -245,7 +245,7 @@ class ConfidenceCoverageNormal extends Component {
 									</Card.Header>
 									<Card.Body>
 										{this.renderChart()}
-										<p>{t('capture-true-proportion', {nTrapped: this.state.nTrapped})} <b>({t('coverage')}:  {this.state.nTrapped/20}).</b></p>
+										<p>{t('capture-true-proportion', { nTrapped: this.state.nTrapped })} <b>({t('coverage')}:  {this.state.nTrapped/20}).</b></p>
 									</Card.Body>
 								</Card>
 							</Col>

@@ -1,1 +1,17 @@
-{}
+{
+	"draw-venn-diagram": "绘制维恩图",
+	"label-first-set": "第一组的标签",
+	"label-second-set": "第二组的标签",
+	"label-third-set": "第三组的标签",
+	"min-of-times": "最少次数",
+	"number-of-words": "字数：",
+	"one": "一",
+	"settings": "设置",
+	"three": "三",
+	"total-number-observations": "意见总数",
+	"total-texts": "文本总数",
+	"two": "两个",
+	"venn-diagram": "维恩图",
+	"venn-diagram-builder": "维恩图生成器",
+	"word": "字"
+}

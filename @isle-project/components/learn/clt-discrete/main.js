@@ -265,6 +265,7 @@ class DiscreteCLT extends Component {
 				name: 'density'
 			});
 		}
+		/* eslint-disable i18next/no-literal-string */
 		return (
 			<div style={{ maxWidth: 1200, margin: '0 auto' }} >
 				<Container>
@@ -353,6 +354,7 @@ class DiscreteCLT extends Component {
 				</Container>
 			</div>
 		);
+		/* eslint-enable i18next/no-literal-string */
 	}
 }
 

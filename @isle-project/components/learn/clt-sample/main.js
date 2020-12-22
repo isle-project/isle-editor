@@ -398,6 +398,7 @@ class SampleCLT extends Component {
 		} else if ( this.state.type === 'binary' ) {
 			label = <span> {t('histogram-of')} <TeX raw="\hat p" />&#39;s</span>; // eslint-disable-line i18next/no-literal-string
 		}
+		/* eslint-disable i18next/no-literal-string */
 		return ( <Panel header={label} >
 			{ this.state.xbars.length > 1 ?
 				<Plotly
@@ -470,6 +471,7 @@ class SampleCLT extends Component {
 				</p> : null}
 			</Card.Body>
 		</Card> );
+		/* eslint-enable i18next/no-literal-string */
 	}
 
 	render() {
@@ -552,7 +554,7 @@ class SampleCLT extends Component {
 								<TeX raw={`P( X \\ge ${this.state.cutoffPop} ) = ${this.state.rightProb.toFixed( 3 )}`} displayMode />
 							</Card> : null}
 							{this.props.quantiles && this.state.type === 'numeric' && this.state.xbars.length > 1 ? <Card body style={{ marginTop: 6 }} >
-								<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.p} legend={<span>Calculate percentiles for <TeX raw="X" /></span>} onChange={this.onPercentileChange} />
+								<NumberInput step={0.01} min={0} max={1} defaultValue={this.state.p} legend={<span>{t('calculate-percentiles-for')} <TeX raw="X" /></span>} onChange={this.onPercentileChange} />
 								<TeX raw={roundn( this.state.percentile, -3 )} />
 							</Card> : null }
 						</Col>

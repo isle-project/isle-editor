@@ -73,6 +73,7 @@
 	"num-cohort-actions": "# アクションの数 ({{cohort}})",
 	"num-students-answered": "# 回答した学生の数({{cohort}})",
 	"number-of-groups": "グループ数",
+	"of": "の",
 	"only-show-users-from": "からのユーザーのみを表示します。",
 	"open-actions": "オープンアクション",
 	"open-transcript": "トランスクリプトを開く",
