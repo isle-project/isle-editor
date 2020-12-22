@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -162,26 +162,32 @@ class ConfidenceCoverageBinomial extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		let intro;
 		if ( this.props.intro ) {
 			intro = this.props.intro;
 		} else {
 			intro = <div>
-				<p>Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? 'Click to use population proportion' : 'Click to use sample proportion'}`} active={this.props.sampleStats} onChange={( pos ) => {
+				<p>
+					<Trans i18nKey="binomial-into" ns="LearnConfidenceCoverage" >Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? t('click-pop-proportion') : t('click-sample-proportion')}`} active={this.props.sampleStats} onChange={( pos ) => {
 					this.setState({
 						useSampleProp: pos === 1
 					});
 				}}>
 					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{p(1-p)}{n}}`} elems={ELEM_TOOLTIPS} />
 					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{\\hat p(1-\\hat p)}{n}}`} elems={ELEM_TOOLTIPS} />
-				</Switch>.</p>
-				<p>For our choice of sample size (n), true proportion  <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.</p>
+				</Switch>.</Trans></p>
+				<p>
+					<Trans i18nKey="binomial-intro-end" ns="LearnConfidenceCoverage" >
+						For our choice of sample size (n), true proportion <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.
+					</Trans>
+				</p>
 			</div>;
 		}
 		return (
 			<Card className="coverage-card">
 				<Card.Header as="h4">
-					Confidence Interval Coverage for Sample Proportion
+					{t('confidence-interval-coverage')}
 				</Card.Header>
 				<Card.Body>
 					<Container>
@@ -191,26 +197,26 @@ class ConfidenceCoverageBinomial extends Component {
 						<Row>
 							<Col md={4}>
 								<Dashboard
-									title="Change parameters"
+									title={t('change-parameter')}
 									onGenerate={this.onGenerate}
 									autoStart={true}
 									id="confidence_coverage_binomial"
 								>
 									<NumberInput
-										legend="Sample size (n)"
+										legend={`${t('sample-size')} (n)`}
 										defaultValue={30}
 										max={999}
 										step={1}
 									/>
 									<NumberInput
-										legend="True proportion p"
+										legend={`${t('true-proportion')} (p)`}
 										defaultValue={0.5}
 										max={1}
 										min={0}
 										step={0.01}
 									/>
 									<SliderInput
-										legend="Confidence level"
+										legend={('confidence-level')}
 										defaultValue={0.95}
 										min={0.01}
 										max={0.99}
@@ -225,11 +231,11 @@ class ConfidenceCoverageBinomial extends Component {
 							<Col md={8}>
 								<Card>
 									<Card.Header as="h4">
-										Confidence Intervals
+										{t('confidence-intervals')}
 									</Card.Header>
 									<Card.Body>
 										{this.renderChart()}
-										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true proportion <b>(coverage: {this.state.nTrapped/20}).</b></p>
+										<p>{t('capture-true-proportion', { nTrapped: this.state.nTrapped })} <b>({t('coverage')}: {this.state.nTrapped/20}).</b></p>
 									</Card.Body>
 								</Card>
 							</Col>

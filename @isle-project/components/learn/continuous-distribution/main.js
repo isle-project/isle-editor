@@ -46,6 +46,7 @@ const RE_POWER = /([\S]+)\^([\S]+)/g;
 const RE_POWER_NO_PARENS = /([^()+-/*^\s]+)\^([^()\s+-/*^]+)/g;
 const RE_POWER_PARENS = /([^()\s]+)\^(\([^()\s]+\))/g;
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
+const ERASE_TO_LEFT = '&#9003;';
 
 
 // FUNCTIONS //
@@ -289,12 +290,14 @@ class ContinuousDistributions extends Component {
 	}
 
 	renderEquation() {
+		/* eslint-disable i18next/no-literal-string */
 		let eqn = `f(x) = \\begin{cases} \\frac{1}{${roundn( this.state.normalizingConstant, -4 )}} \\cdot`;
 		eqn += `\\left( ${generateLaTeX( this.state.code )} \\right)`;
 		eqn += `& \\text{ for } x \\in [ ${this.state.lowerX}, ${this.state.upperX} ] \\\\ 0 & \\text{ otherwise } \\end{cases}`;
+		/* eslint-enable i18next/no-literal-string */
 		return (
 			<Fragment>
-				<h4>Normalized PDF:</h4>
+				<h4>{this.props.t('normalized-pdf')}:</h4>
 				<TeX
 					raw={eqn}
 					displayMode
@@ -326,7 +329,9 @@ class ContinuousDistributions extends Component {
 				<Panel>
 					<ButtonToolbar style={{ marginBottom: 5 }} >
 						<ButtonGroup size="sm" className="mr-2" >
-							<Button variant="light" onClick={this.insertLiteralFactory('x')} >x</Button>
+							<Button variant="light" onClick={this.insertLiteralFactory('x')} >
+								<i className="fas fa-times"></i>
+							</Button>
 						</ButtonGroup>
 						<ButtonGroup size="sm" className="mr-10">
 							<Button variant="light" size="sm" onClick={() => {
@@ -334,7 +339,7 @@ class ContinuousDistributions extends Component {
 								this.setState({
 									selection: 3
 								});
-							}} >Reset</Button>
+							}} >{this.props.t('reset')}</Button>
 							<Button variant="light" size="sm" onClick={() => {
 								let newCode = this.state.code.substring( 0, this.state.selection - 1 );
 								newCode += this.state.code.substring( this.state.selection );
@@ -342,7 +347,7 @@ class ContinuousDistributions extends Component {
 								this.setState({
 									selection: this.state.selection - 1
 								});
-							}} >&#9003;</Button>
+							}} >{ERASE_TO_LEFT}</Button>
 						</ButtonGroup>
 					</ButtonToolbar>
 					<ButtonToolbar style={{ marginBottom: 5 }} >
@@ -400,7 +405,7 @@ class ContinuousDistributions extends Component {
 			return <Alert variant="danger" >{this.state.encounteredError.message}</Alert>;
 		}
 		if ( this.state.hasNegativeValues ) {
-			return <Alert variant="warning" >The supplied function can not yield valid PDF as it does take on negative values.</Alert>;
+			return <Alert variant="warning" >{this.props.t('no-valid-pdf')}</Alert>;
 		}
 		return (
 			<Tabs defaultActiveKey={1} id="continuous-distribution-tabs">
@@ -545,7 +550,7 @@ class ContinuousDistributions extends Component {
 		return (
 			<Card style={{ maxWidth: 1200, margin: '10px auto' }}>
 				<Card.Header as="h2">
-					Continuous Distribution Probabilities
+					{this.props.t('continuous-distribution-probabilities')}
 				</Card.Header>
 				<Card.Body>
 					<Container>

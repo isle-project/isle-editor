@@ -108,11 +108,12 @@ class DiscreteDistribution extends Component {
 	}
 
 	renderGrid() {
+		const { t } = this.props;
 		return (
 			<Container fluid={true}>
 				<Row>
 					<Col md={5}>
-						<h3>Value:</h3>
+						<h3>{t('value')}:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`value-${i}`}
 							defaultValue={this.state.data[ i ].x}
@@ -135,7 +136,7 @@ class DiscreteDistribution extends Component {
 						/> ) )}
 					</Col>
 					<Col md={5}>
-						<h3>Prob:</h3>
+						<h3>{t('prob')}:</h3>
 						{this.state.data.map( ( x, i ) => ( <NumberInput
 							key={`prob-${i}`}
 							defaultValue={1/this.state.data.length}
@@ -172,7 +173,7 @@ class DiscreteDistribution extends Component {
 
 	renderTabs() {
 		if ( !this.state.valid ) {
-			return <Alert variant="danger"> Probabilities must add up to one.</Alert>;
+			return <Alert variant="danger">{this.props.t('must-add-to-one')}.</Alert>;
 		}
 		const cdf = papplyRight( evaluateCDF, this.state.data );
 		const vals = this.state.data.map( o => o.x );
@@ -485,7 +486,7 @@ class DiscreteDistribution extends Component {
 		return (
 			<Card style={{ maxWidth: 1200, margin: '10px auto' }}>
 				<Card.Header as="h2">
-					Discrete Distribution Probabilities
+					{this.props.t('discrete-distribution-probabilities')}
 				</Card.Header>
 				<Card.Body>
 					<Container>

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -168,24 +168,28 @@ class ConfidenceCoverageNormal extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		let intro;
 		if ( this.props.intro ) {
 			intro = this.props.intro;
 		} else {
-			intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />.  Our confidence interval is then <Switch tooltip={`${this.state.useSampleSD ? 'Click to use population standard deviation' : 'Click to use sample standard deviation'}`} active={this.props.sampleStats} onChange={( pos ) => {
+			intro = <p><TeX raw="X \sim \text{Normal}\left( \mu, \sigma \right)" elems={ELEM_TOOLTIPS} />. {t('then')} <TeX raw="\bar X \sim \text{Normal}\left( \mu, \tfrac{\sigma}{\sqrt{n}} \right)" elems={ELEM_TOOLTIPS} />. {t('normal-intro')} <Switch tooltip={`${this.state.useSampleSD ? t('click-pop-stdev') : t('click-sample-stdev')}`} active={this.props.sampleStats} onChange={( pos ) => {
 					this.setState({
 						useSampleSD: pos === 1
 					});
 				}}>
 				<TeX raw={`\\bar X \\pm Z_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{\\sigma}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
 				<TeX raw={`\\bar X \\pm t_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{S}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
-			</Switch>. For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
+			</Switch>.
+				<Trans i18nKey="normal-intro-end" ns="LearnConfidenceCoverage" >
+				For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
+				</Trans>
 			</p>;
 		}
 		return (
 			<Card className="coverage-card" >
 				<Card.Header as="h4">
-					Confidence Interval Coverage for Sample Mean
+					{ test('confidence-Interval-coverage-mean')}
 				</Card.Header>
 				<Card.Body>
 					<Container>
@@ -195,34 +199,34 @@ class ConfidenceCoverageNormal extends Component {
 						<Row>
 							<Col md={4}>
 								<Dashboard
-									title="Change parameters"
+									title={t('change-parameters')}
 									onGenerate={this.onGenerate}
 									autoStart={true}
 									id="confidence_coverage_normal"
 								>
 									<NumberInput
-										legend="Sample size (n)"
+										legend={`${t('sample-size')} (n) `}
 										defaultValue={30}
 										max={100}
 										step={1}
 										min={1}
 									/>
 									<NumberInput
-										legend="Mean (mu)"
+										legend={`${t('mean')} (mu)" `}
 										defaultValue={1}
 										max={5}
 										min={-5}
 										step={0.1}
 									/>
 									<NumberInput
-										legend="Standard deviation"
+										legend={t('standard-deviation')}
 										defaultValue={1}
 										max={20}
 										min={0.1}
 										step={0.1}
 									/>
 									<SliderInput
-										legend="Confidence level"
+										legend={t('confidence-level')}
 										defaultValue={0.95}
 										min={0.01}
 										max={0.99}
@@ -237,11 +241,11 @@ class ConfidenceCoverageNormal extends Component {
 							<Col md={8}>
 								<Card>
 									<Card.Header as="h4">
-										Confidence Intervals
+										{t('confidence-intervals')}
 									</Card.Header>
 									<Card.Body>
 										{this.renderChart()}
-										<p>Of the 20 confidence intervals, {this.state.nTrapped} capture the true mean <b>(coverage:  {this.state.nTrapped/20}).</b></p>
+										<p>{t('capture-true-proportion', {nTrapped: this.state.nTrapped})} <b>({t('coverage')}:  {this.state.nTrapped/20}).</b></p>
 									</Card.Body>
 								</Card>
 							</Col>
