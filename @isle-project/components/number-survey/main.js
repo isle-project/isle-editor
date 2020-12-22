@@ -28,6 +28,7 @@ import './number-survey.css';
 
 const debug = logger( 'isle:number-survey' );
 const uid = generateUID( 'number-survey' );
+const SD = 'SD';
 
 
 // MAIN //
@@ -54,6 +55,7 @@ class NumberSurvey extends Component {
 	}
 
 	submitQuestion = () => {
+		const { t } = this.props;
 		const session = this.context;
 		session.log({
 			id: this.id,
@@ -65,8 +67,8 @@ class NumberSurvey extends Component {
 			submitted: true
 		});
 		session.addNotification({
-			title: 'Submitted',
-			message: 'Your answer has been submitted.',
+			title: t('submitted'),
+			message: t('answer-submitted'),
 			level: 'success'
 		});
 		this.props.onSubmit( this.state.value );
@@ -84,9 +86,10 @@ class NumberSurvey extends Component {
 	}
 
 	renderChart() {
+		const { t } = this.props;
 		const { data } = this.state;
 		if ( isEmptyArray( data ) ) {
-			return <h3>No responses yet</h3>;
+			return <h3>{t('no-responses-yet')}</h3>;
 		}
 		return ( <Plotly
 			data={[{
@@ -103,6 +106,7 @@ class NumberSurvey extends Component {
 
 	render() {
 		const props = this.props;
+		const { t } = props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
 			<Gate user banner={<h2>Please sign in...</h2>} >
@@ -113,7 +117,7 @@ class NumberSurvey extends Component {
 								<Col md={6}>
 									<Card className="number-survey" body>
 										<Card.Title as="h5">{props.question}</Card.Title>
-										<label htmlFor={`number-survey-input-${this.id}`}>Your answer:</label>
+										<label htmlFor={`number-survey-input-${this.id}`}>{t('your-answer')}:</label>
 										<NumberInput
 											{...props}
 											inline
@@ -138,14 +142,14 @@ class NumberSurvey extends Component {
 									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
 									{this.renderChart()}
 									{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-										<p>The average is {this.state.avg.toFixed( 3 )} (SD: {this.state.sd.toFixed( 3 )}).
+										<p>{t('average-is')} {this.state.avg.toFixed( 3 )} ({SD}: {this.state.sd.toFixed( 3 )}).
 										</p> : null
 									}
 								</Col>
 							</Row>
 						</Container>
 						<ResponseVisualizer
-							buttonLabel="Responses" id={this.id}
+							buttonLabel={t('responses')} id={this.id}
 							info={NUMBER_SURVEY_SUBMISSION}
 						/>
 					</Card.Body>

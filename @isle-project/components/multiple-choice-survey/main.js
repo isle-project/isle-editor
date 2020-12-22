@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -264,4 +265,4 @@ MultipleChoiceSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default MultipleChoiceSurvey;
+export default withTranslation( 'Survey' )( MultipleChoiceSurvey );

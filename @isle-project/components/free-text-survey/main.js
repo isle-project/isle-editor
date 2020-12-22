@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -74,12 +75,13 @@ class FreeTextSurvey extends Component {
 	}
 
 	submitQuestion = () => {
+		const { t } = this.props;
 		const session = this.context;
 		const val = containsProfanity( this.state.value );
 		if ( val ) {
 			session.addNotification({
-				title: 'Action required',
-				message: `Your answer contains an offensive word: ${val}. Please remove.`,
+				title: t('action-required'),
+				message: t('offensive-word', { w: val }),
 				level: 'warning'
 			});
 		} else {
@@ -93,8 +95,8 @@ class FreeTextSurvey extends Component {
 				submitted: true
 			});
 			session.addNotification({
-				title: 'Submitted',
-				message: 'Your answer has been submitted.',
+				title: t('submitted'),
+				message: t('answer-submitted'),
 				level: 'success'
 			});
 			this.props.onSubmit( this.state.value );
@@ -158,9 +160,10 @@ class FreeTextSurvey extends Component {
 
 	render() {
 		const props = this.props;
+		const { t } = props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate user banner={<h2>Please sign in...</h2>} >
+			<Gate user banner={<h2>{t('sign-in')}</h2>} >
 				<Card id={this.id} className={this.props.className} style={this.props.style} >
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
@@ -185,7 +188,7 @@ class FreeTextSurvey extends Component {
 											block fill
 											onClick={this.submitQuestion}
 											disabled={disabled}
-										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+										>{ disabled ? t('submitted') : t('submit')}</Button>
 									</Card>
 								</Col>
 								<Col md={6}>
@@ -196,7 +199,7 @@ class FreeTextSurvey extends Component {
 							</Row>
 						</Container>
 						<ResponseVisualizer
-							buttonLabel="Responses" id={this.id}
+							buttonLabel={t('Responses')} id={this.id}
 							info={TEXT_SURVEY_SUBMISSION}
 						/>
 					</Card.Body>
@@ -237,4 +240,4 @@ FreeTextSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default FreeTextSurvey;
+export default withTranslation( 'Survey' )( FreeTextSurvey );
