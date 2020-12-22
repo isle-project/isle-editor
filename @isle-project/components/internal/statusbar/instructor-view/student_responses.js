@@ -65,7 +65,7 @@ function formatAnswer( value, visualizer ) {
 			}
 			break;
 		case 'range':
-			out = `lower: ${value[ 0 ]}, upper: ${value[ 1 ]}`;
+			out = `lower: ${value[ 0 ]}, upper: ${value[ 1 ]}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 'number':
 			out = String( value );
@@ -212,7 +212,7 @@ class StudentResponses extends Component {
 		const blob = new Blob([ JSON.stringify( questions ) ], {
 			type: 'application/json'
 		});
-		const name = `questions_${session.namespaceName}_${session.lessonName}.json`;
+		const name = `questions_${session.namespaceName}_${session.lessonName}.json`; // eslint-disable-line i18next/no-literal-string
 		saveAs( blob, name );
 	}
 
@@ -233,7 +233,7 @@ class StudentResponses extends Component {
 			const blob = new Blob([ output ], {
 				type: 'text/plain'
 			});
-			const name = `questions_${session.namespaceName}_${session.lessonName}.csv`;
+			const name = `questions_${session.namespaceName}_${session.lessonName}.csv`; // eslint-disable-line i18next/no-literal-string
 			saveAs( blob, name );
 		});
 	}

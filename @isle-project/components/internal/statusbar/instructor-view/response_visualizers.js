@@ -138,15 +138,16 @@ class ResponseVisualizers extends Component {
 
 	render() {
 		debug( 'Render response visualizer statistics...' );
+		const { t } = this.props;
 		let completionTooltip;
 		let nUsers;
 		const session = this.props.session;
 		if ( session.selectedCohort ) {
 			nUsers = session.activeCohortMembers.length;
-			completionTooltip = this.props.t( 'completion-rate-cohort', { cohort: session.selectedCohort.title });
+			completionTooltip = t( 'completion-rate-cohort', { cohort: session.selectedCohort.title });
 		} else {
 			nUsers = session.userList.length;
-			completionTooltip = this.props.t( 'completion-rate-all' );
+			completionTooltip = t( 'completion-rate-all' );
 		}
 		const visualizers = session.responseVisualizers;
 		const { means } = this.state;
@@ -163,7 +164,7 @@ class ResponseVisualizers extends Component {
 			const infoRate = ( nInfo / nUsers ) * 100.0;
 			overallProgress += infoRate;
 			const id = ids[ i ];
-			const time = `time: ${means[ id ] ? formatTime( means[ id ]() ) : ''}`;
+			const time = `${t('time')}: ${means[ id ] ? formatTime( means[ id ]() ) : ''}`;
 			let timeBadgeVariant;
 			if (
 				nInfo > 0 &&
@@ -182,7 +183,7 @@ class ResponseVisualizers extends Component {
 			}
 			let infoRateLabel;
 			if ( session.selectedCohort ) {
-				infoRateLabel = `${nInfo} / ${nUsers} (of ${session.selectedCohort.members.length})`;
+				infoRateLabel = `${nInfo} / ${nUsers} (${t('of')} ${session.selectedCohort.members.length})`;
 			} else {
 				infoRateLabel = `${nInfo} / ${nUsers}`;
 			}
@@ -196,21 +197,21 @@ class ResponseVisualizers extends Component {
 					}}
 					onClick={this.highlightFactory( id )}
 				>
-					<Tooltip placement="right" tooltip={this.props.t( 'question-id-tooltip' )}>
+					<Tooltip placement="right" tooltip={t( 'question-id-tooltip' )}>
 						<label style={{ margin: 0 }}>{id}</label>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={this.props.t( 'open-actions' )} >
+					<Tooltip placement="left" tooltip={t( 'open-actions' )} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }} onClick={this.thumbnailClickFactory( id )}>
-							{this.props.t( 'open' )}
+							{t( 'open' )}
 						</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={this.props.t( 'num-cohort-actions', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
+					<Tooltip placement="left" tooltip={t( 'num-cohort-actions', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={this.props.t( 'num-students-answered', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
+					<Tooltip placement="left" tooltip={t( 'num-students-answered', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
 						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
-					<Tooltip placement="left" tooltip={this.props.t( 'elapsed-time' )}>
+					<Tooltip placement="left" tooltip={t( 'elapsed-time' )}>
 						<Badge
 							variant={timeBadgeVariant}
 							style={{ float: 'right', margin: '2px' }}
@@ -238,7 +239,7 @@ class ResponseVisualizers extends Component {
 			<ProgressBar
 				striped
 				variant="success"
-				label={this.props.t( 'class-progress', { progress: round( overallProgress ) })}
+				label={t( 'class-progress', { progress: round( overallProgress ) })}
 				now={overallProgress}
 			/>
 			<ListGroup style={{
