@@ -60,6 +60,7 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	submitQuestion = () => {
+		const { t } = this.props;
 		const session = this.context;
 		session.log({
 			id: this.id,
@@ -73,14 +74,15 @@ class MultipleChoiceSurvey extends Component {
 			});
 		}
 		session.addNotification({
-			title: 'Submitted',
-			message: 'Your answer has been submitted.',
+			title: t('submitted'),
+			message: t('answer-submitted'),
 			level: 'success'
 		});
 		this.props.onSubmit( this.state.active );
 	}
 
 	onData = ( data ) => {
+		const { t } = this.props;
 		debug( 'MultipleChoiceSurvey is receiving data: ' + JSON.stringify( data ) );
 		let tabulated = tabulate( data );
 		let freqTable;
@@ -92,9 +94,9 @@ class MultipleChoiceSurvey extends Component {
 		});
 		freqTable = <table className="table table-bordered">
 			<tr>
-				<th>Category</th>
-				<th>Count</th>
-				<th>Relative Frequency</th>
+				<th>{t('category')}</th>
+				<th>{t('count')}</th>
+				<th>{t('relative-frequency')}</th>
 			</tr>
 			{tabulated.map( ( elem, row ) => {
 				return ( <tr key={row}>
@@ -117,8 +119,9 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	renderChart() {
+		const { t } = this.props;
 		if ( isEmptyArray( this.state.data ) ) {
-			return <h3>No responses yet</h3>;
+			return <h3>{t('no-responses-yet')}</h3>;
 		}
 		return (
 			<Plotly
@@ -178,7 +181,7 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	render() {
-		const { answers, id, multipleAnswers, question } = this.props;
+		const { answers, id, multipleAnswers, question, t } = this.props;
 		let disabled;
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
@@ -186,7 +189,7 @@ class MultipleChoiceSurvey extends Component {
 			disabled = this.state.submitted || !this.state.answerSelected;
 		}
 		return (
-			<Gate user banner={<h2>Please sign in...</h2>} >
+			<Gate user banner={<h2>{t('sign-in')}</h2>} >
 				<Card id={this.id} style={this.props.style} >
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
@@ -194,7 +197,7 @@ class MultipleChoiceSurvey extends Component {
 								<Col md={6}>
 									<Card body className="multiple-choice-survey">
 										<p><label>{question}</label></p>
-										{ multipleAnswers ? <span>You may select multiple answers</span> : null }
+										{ multipleAnswers ? <span>{t('multiple-answers')}</span> : null }
 										<ListGroup fill >
 											{ multipleAnswers ?
 												answers.map( this.renderAnswerOptionsMultiple ) :
@@ -220,7 +223,7 @@ class MultipleChoiceSurvey extends Component {
 							</Row>
 						</Container>
 						<ResponseVisualizer
-							buttonLabel="Responses" id={id}
+							buttonLabel={t('responses')} id={id}
 							data={{
 								type: 'factor',
 								levels: this.props.answers
