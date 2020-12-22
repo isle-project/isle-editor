@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -124,23 +124,34 @@ class Networks extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Container style={{ maxWidth: 1200, margin: '0 auto' }}>
 				<Row>
 					<Col md={6}>
 						<Dashboard id="networks-dashboard" onGenerate={this.handleGenerate}>
-							<p>In a network, the nodes are assumed to be fixed but the edges are random, i.e. there is some random process which determines whether there is an edge connecting two nodes.</p>
-							<p>Let us consider one of the simplest available network models. In the Erdős–Rényi model, there is a fixed probability <TeX raw="p" /> that an edge exists between any two nodes. We also assume that whether or not an edge exists between two nodes is independent of whether or not other edges exist.</p>
-							<p>In this model, if we have <TeX raw="m" /> nodes, each node can be connected to <TeX raw="m-1" /> other nodes.  The number of edges attached to each node (the degree) is then <TeX raw="\text{Binomial}(m-1,p)" />.</p>
+							<p>
+								{t('intro-1')}
+							</p>
+							<p>
+								<Trans i18nKey="intro-2" ns="LearnNetworks" >
+									Let us consider one of the simplest available network models. In the Erdős–Rényi model, there is a fixed probability <TeX raw="p" /> that an edge exists between any two nodes. We also assume that whether or not an edge exists between two nodes is independent of whether or not other edges exist.
+								</Trans>
+							</p>
+							<p>
+								<Trans i18nKey="intro-3" ns="LearnNetworks" >
+									In this model, if we have <TeX raw="m" /> nodes, each node can be connected to <TeX raw="m-1" /> other nodes.  The number of edges attached to each node (the degree) is then <TeX raw="\text{Binomial}(m-1,p)" />.
+								</Trans>
+							</p>
 							<NumberInput
-								legend="m (number of nodes)"
+								legend={`m (${t('number-of-nodes')})`}
 								defaultValue={10}
 								step={1}
 								min={0}
 								max={this.props.maxNumNodes}
 							/>
 							<NumberInput
-								legend="p (probability of an edge between two nodes)"
+								legend={`p (${t('edge-probability')})`}
 								defaultValue={0.5}
 								step={0.01}
 								max={1}

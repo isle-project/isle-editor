@@ -1,1 +1,7 @@
-{}
+{
+	"edge-probability": "Wahrscheinlichkeit für eine Kante zwischen zwei Knoten",
+	"intro-1": "In einem Netzwerk werden die Knoten als fest angenommen, aber die Kanten sind zufällig, d. h. es gibt einen Zufallsprozess, der bestimmt, ob es eine Kante gibt, die zwei Knoten verbindet.",
+	"intro-2": "Betrachten wir eines der einfachsten verfügbaren Netzwerkmodelle. Im Erdős-Rényi-Modell gibt es eine feste Wahrscheinlichkeit <1 />, dass eine Kante zwischen zwei beliebigen Knoten existiert. Wir nehmen außerdem an, dass die Existenz einer Kante zwischen zwei Knoten unabhängig davon ist, ob andere Kanten existieren oder nicht.",
+	"intro-3": "Wenn wir in diesem Modell <1 /> Knoten haben, kann jeder Knoten mit <3 /> anderen Knoten verbunden sein.  Die Anzahl der mit jedem Knoten verbundenen Kanten (der Grad) ist dann <5 />.",
+	"number-of-nodes": "Anzahl der Knoten"
+}

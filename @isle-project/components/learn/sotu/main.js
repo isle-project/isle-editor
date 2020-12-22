@@ -85,13 +85,14 @@ class SOTU extends Component {
 
 	render() {
 		const { vennWords, timeseries, tdm } = this.state;
+		const { t } = this.props;
 		let hasQuestions = isArray( this.props.questions );
 		return (
 			<Fragment>
 				<Container>
 					<Row>
 					<Col md={8 - ( hasQuestions ? 0 : 2 )}>
-						{ hasQuestions ? <Pages title="Questions" height={300} style={{ paddingBottom: 0 }}>
+						{ hasQuestions ? <Pages title={t('questions')} height={300} style={{ paddingBottom: 0 }}>
 							{this.props.questions}
 						</Pages> : null }
 						{ vennWords.length > 0 ? <Panel header={`${vennWords.join( ', ')} over Time`}>
@@ -121,14 +122,14 @@ class SOTU extends Component {
 					</Col>
 				</Row>
 				</Container>
-				<Dashboard autoUpdate autoStart maxWidth={900} title="State of the Union Addresses"
+				<Dashboard autoUpdate autoStart maxWidth={900} title={t('state-of-the-union-addresses')}
 					onGenerate={( year ) => {
 						if ( year === 1933 ) {
 							return this.setState({
 								speech: {
-									name: 'Not available',
-									text: 'Not available',
-									party: 'Not available'
+									name: t('not-available'),
+									text: t('not-available'),
+									party: t('not-available')
 								}
 							});
 						}
@@ -141,15 +142,15 @@ class SOTU extends Component {
 					}}
 				>
 					<NumberInput
-						legend="Year"
+						legend={t('year')}
 						min={1900}
 						max={2018}
 						defaultValue={2018}
 						step={1}
 					/>
 					<Container>
-						<h4>President: {this.state.speech.name}, {this.state.speech.party} Party</h4>
-						<h4>Speech:</h4>
+						<h4>{t('president')} {this.state.speech.name}, {this.state.speech.party} {t('party')}</h4>
+						<h4>{t('speech')}</h4>
 						<Panel style={{ height: 400, overflow: 'scroll', fontSize: '14px' }}>
 							{this.state.speech.text}
 						</Panel>
