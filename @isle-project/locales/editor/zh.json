@@ -299,7 +299,7 @@
 	"update-available-tooltip": "点击右边的按钮，开始下载。",
 	"update-downloaded": "下载的最新资料。",
 	"update-downloaded-tooltip": "'关闭应用程序时将安装新版本的ISLE编辑器。",
-	"update-downloading-percent": "下载中。{{percent%}}%（{{version}}）。",
+	"update-downloading-percent": "下载中。{{percent}}%（{{version}}）。",
 	"update-downloading-tooltip": "下载过程中请不要退出",
 	"update-downloading-version": "下载中...({{version}})",
 	"upload": "上传",

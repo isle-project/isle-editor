@@ -83,7 +83,7 @@
 	"redo-last-undone-change": "Refaire la dernière modification annulée",
 	"report-deleted-msg": "Votre rapport a été supprimé avec succès et l'éditeur a été réinitialisé à sa valeur par défaut",
 	"report-submitted": "Rapport présenté",
-	"report-submitted-msg": "Chère {{nom}}, votre rapport a été enregistré avec succès. Pour votre confort, votre rapport et le fichier HTML généré sont joints à ce courriel.",
+	"report-submitted-msg": "Chère {{name}}, votre rapport a été enregistré avec succès. Pour votre confort, votre rapport et le fichier HTML généré sont joints à ce courriel.",
 	"require-license": "Ne sélectionnez que les images pour lesquelles vous avez confirmé la licence d'utilisation",
 	"reset-modal-body": "Êtes-vous sûr de vouloir réinitialiser le contenu de l'éditeur à sa valeur par défaut ? Cette action est irréversible et tout votre travail sera perdu à moins que vous n'ayez enregistré le fichier source Markdown.",
 	"reset-modal-button-label": "Réinitialiser",

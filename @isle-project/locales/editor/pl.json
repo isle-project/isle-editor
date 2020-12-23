@@ -38,7 +38,7 @@
 	"BrazilianPortuguese": "Brazylijczyk-Portugalczyk",
 	"break": "Przerwa",
 	"cancel": "Anuluj",
-	"center-editor-line": "Edytor centralny na linii {{numer linii}}",
+	"center-editor-line": "Edytor centralny na linii {{lineNumber}}",
 	"change-all-borders": "Zmiana wszystkich granic",
 	"change-bottom-border": "Zmiana dolnej granicy",
 	"change-left-border": "Zmiana lewej granicy",

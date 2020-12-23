@@ -83,7 +83,7 @@
 	"redo-last-undone-change": "Rehacer el último cambio deshecho",
 	"report-deleted-msg": "Su informe se ha borrado con éxito y el editor ha vuelto a su valor por defecto",
 	"report-submitted": "Informe presentado",
-	"report-submitted-msg": "Estimado {{nombre}}, su informe ha sido grabado con éxito. Para su comodidad, su informe y el archivo HTML generado se adjuntan a este correo electrónico.",
+	"report-submitted-msg": "Estimado {{name}}, su informe ha sido grabado con éxito. Para su comodidad, su informe y el archivo HTML generado se adjuntan a este correo electrónico.",
 	"require-license": "Sólo seleccione la imagen que ha confirmado la licencia de uso",
 	"reset-modal-body": "¿Estás seguro de que quieres restablecer el contenido del editor a su valor por defecto? Esta acción es irreversible y todo tu trabajo se perderá a menos que hayas guardado el archivo fuente de Markdown.",
 	"reset-modal-button-label": "Reset",

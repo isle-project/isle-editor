@@ -54,7 +54,7 @@
 	"show-only-own-annotations": "Afficher uniquement les propres annotations",
 	"text-mode": "Mode texte",
 	"undo": "Annuler",
-	"upload-email": "Cher {{nom}}, vos notes ont été téléchargées avec succès et sont maintenant disponibles à",
+	"upload-email": "Cher {{name}}, vos notes ont été téléchargées avec succès et sont maintenant disponibles à",
 	"upload-successful": "Le fichier a été téléchargé avec succès et peut être consulté à l'adresse suivante",
 	"upload-to-server": "Téléchargement sur le serveur"
 }
