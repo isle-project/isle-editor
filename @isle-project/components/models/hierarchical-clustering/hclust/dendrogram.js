@@ -12,6 +12,7 @@ import D3blackbox from './blackbox.js';
 // MAIN //
 
 const Dendrogram = D3blackbox( ( anchor, props, state ) => {
+	/* eslint-disable i18next/no-literal-string */
 	const svg = d3.select( anchor.current );
 
 	const { width, height, data } = props;
@@ -120,6 +121,7 @@ const Dendrogram = D3blackbox( ( anchor, props, state ) => {
 			.lower()
 			.attr('stroke', 'white');
 	}
+	/* eslint-enable i18next/no-literal-string */
 });
 
 

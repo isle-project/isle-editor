@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "このアルゴリズムは{{n}}の後に収束しませんでした。フィッシャースコアリング反復",
 	"fitted-values": "フィットした値",
 	"grouped-by": "グループ化された",
+	"hierarchical-clustering": "階層型クラスタリング",
 	"hierarchical-clustering-summary": "階層型クラスタリングの概要",
 	"importance": "重要性",
 	"intercept": "インターセプト",

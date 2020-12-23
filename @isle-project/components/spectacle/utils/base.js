@@ -150,14 +150,14 @@ export const transformBgImage = ({
 	}
 	if (bgDarken) {
 		return {
-			backgroundImage: `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})`
+			backgroundImage: `linear-gradient( rgba(0, 0, 0, ${bgDarken}), rgba(0, 0, 0, ${bgDarken}) ), url(${bgImage})` // eslint-disable-line i18next/no-literal-string
 		};
 	} else if (bgLighten) {
 		return {
-			backgroundImage: `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})`
+			backgroundImage: `linear-gradient( rgba(255, 255, 255, ${bgLighten}), rgba(255, 255, 255, ${bgLighten}) ), url(${bgImage})` // eslint-disable-line i18next/no-literal-string
 		};
 	}
-	return { backgroundImage: `url(${bgImage})` };
+	return { backgroundImage: `url(${bgImage})` }; // eslint-disable-line i18next/no-literal-string
 };
 
 const textTransforms = [

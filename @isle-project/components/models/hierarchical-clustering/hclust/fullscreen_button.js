@@ -25,12 +25,13 @@ class FullscreenButton extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<Tooltip
 					id="fullscreen_tooltip"
 					placement="bottom"
-					tooltip="Toggle FullScreen"
+					tooltip={t('toggle-fullscreen')}
 				>
 					<Button
 						variant="outline-danger"
@@ -48,7 +49,7 @@ class FullscreenButton extends Component {
 				>
 					<Modal.Header closeButton>
 						<Modal.Title as="h1">
-							Hierarchical Clustering
+							{t('hierarchical-clustering')}
 						</Modal.Title>
 					</Modal.Header>
 					<Modal.Body
@@ -62,7 +63,7 @@ class FullscreenButton extends Component {
 						{this.props.dendrogram}
 					</Modal.Body>
 					<Modal.Footer>
-						<Button onClick={this.toggleFullscreen}>Close</Button>
+						<Button onClick={this.toggleFullscreen}>{t('close')}</Button>
 					</Modal.Footer>
 				</Modal>
 			</Fragment>

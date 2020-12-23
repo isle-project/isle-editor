@@ -1,1 +1,9 @@
-{}
+{
+	"end": "结束",
+	"slide-message": "使用左右方向键或橙色箭头按钮在幻灯片之间浏览",
+	"slide-navigation": "幻灯片导航",
+	"slide-no": "幻灯片{{slideIndex}}中的幻灯片",
+	"toggle-overview-mode": "切换概览模式",
+	"toggle-slide-presenter-mode": "切换幻灯片演示模式",
+	"total": "共计："
+}

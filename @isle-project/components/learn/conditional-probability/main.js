@@ -248,7 +248,7 @@ class ConditionalProbability extends Component {
 							<p>{ t('inner-cells-equal')} <TeX raw={`P(\\text{${A}} \\cap \\text{${B}} ) = P(\\text{${A}}) \\cdot P(\\text{${B}}) = ${roundn( pA*pB, -4 )}`} />. </p>
 							{this.renderTable()}
 							<br />
-							{probabilityTableLabels({ A: A, B: B })}
+							{probabilityTableLabels({ A: A, B: B }, t)}
 							<br />
 							<Row>
 								<span>{ t('choose')}</span>

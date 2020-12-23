@@ -109,9 +109,10 @@ class CustomDeck extends Component {
 				});
 			}
 		});
+		const { t } = this.props;
 		session.addNotification({
-			title: 'Slide Navigation',
-			message: 'Use the left- and right arrow keys or the orange arrow buttons to navigate between slides',
+			title: t('slide-navigation'),
+			message: t('slide-message'),
 			level: 'success',
 			position: 'tl'
 		});
@@ -129,7 +130,7 @@ class CustomDeck extends Component {
 	}
 
 	render() {
-		let { children, ...rest } = this.props;
+		let { children, t, ...rest } = this.props;
 		if ( isElectron ) {
 			children = [];
 			React.Children.forEach( this.props.children, ( child ) => {
@@ -141,7 +142,7 @@ class CustomDeck extends Component {
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
 			<Gate owner >
-				<Tooltip tooltip="Toggle Slide Presenter Mode" placement="right" >
+				<Tooltip tooltip={t('toggle-slide-presenter-mode')} placement="right" >
 					<div
 						tabIndex={0} role="button"
 						className="presenter-mode-button"
@@ -152,7 +153,7 @@ class CustomDeck extends Component {
 					</div>
 				</Tooltip>
 			</Gate>
-			<Tooltip tooltip="Toggle Overview Mode" placement="bottom" >
+			<Tooltip tooltip={t('toggle-overview-mode')} placement="bottom" >
 				<div
 					tabIndex={0} role="button"
 					className="overview-mode-button"

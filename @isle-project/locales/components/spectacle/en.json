@@ -1,1 +1,9 @@
-{}
+{
+	"end": "END",
+	"slide-message": "Use the left- and right arrow keys or the orange arrow buttons to navigate between slides",
+	"slide-navigation": "Slide Navigation",
+	"slide-no": "Slide {{slideIndex}} of ",
+	"toggle-overview-mode": "Toggle Overview Mode",
+	"toggle-slide-presenter-mode": "Toggle Slide Presenter Mode",
+	"total": "Total: "
+}

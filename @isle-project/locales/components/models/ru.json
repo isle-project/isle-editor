@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "Алгоритм не сходился после {{n}} Итерации Фишера",
 	"fitted-values": "Установленные значения",
 	"grouped-by": "сгруппированный по",
+	"hierarchical-clustering": "иерархическая кластеризация",
 	"hierarchical-clustering-summary": "Иерархическое кластерное обобщение",
 	"importance": "Важность",
 	"intercept": "Перехватить",

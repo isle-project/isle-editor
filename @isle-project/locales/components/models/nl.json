@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "Het algoritme kwam niet overeen na {{n}} Fisher Scoren iteraties",
 	"fitted-values": "Aangepaste waarden",
 	"grouped-by": "Gegroepeerd door",
+	"hierarchical-clustering": "Hiërarchische clustering",
 	"hierarchical-clustering-summary": "Hiërarchische clusteringssamenvatting",
 	"importance": "Belang",
 	"intercept": "Onderschep",

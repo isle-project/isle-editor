@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import VictoryChart from '@isle-project/components/victory/chart';
 import saveAs from '@isle-project/utils/file-saver';
@@ -35,7 +36,7 @@ class VictoryWrapper extends Component {
 		return ( <div ref={( div ) => {
 			this.victoryWrapper = div;
 		}} style={{ position: 'relative' }}>
-			<Tooltip placement="left" tooltip="Save Plot" >
+			<Tooltip placement="left" tooltip={this.props.t('save-plot')} >
 				<Button size="sm" variant="light" onClick={this.saveToPNG} style={{
 						position: 'absolute',
 						right: -12,
@@ -66,4 +67,4 @@ VictoryWrapper.defaultProps = {
 
 // EXPORTS //
 
-export default VictoryWrapper;
+export default withTranslation( 'Victory' )( VictoryWrapper );

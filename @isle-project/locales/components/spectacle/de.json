@@ -1,1 +1,9 @@
-{}
+{
+	"end": "ENDE",
+	"slide-message": "Verwenden Sie die Links- und Rechtspfeiltasten oder die orangefarbenen Pfeiltasten, um zwischen den Folien zu navigieren",
+	"slide-navigation": "Dia-Navigation",
+	"slide-no": "Dia {{slideIndex}} von",
+	"toggle-overview-mode": "Übersichtsmodus umschalten",
+	"toggle-slide-presenter-mode": "Diapräsentationsmodus umschalten",
+	"total": "Gesamt:"
+}

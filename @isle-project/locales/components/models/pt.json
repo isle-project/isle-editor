@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "O algoritmo não convergiu após {{n}} Iterações de pontuação dos pescadores",
 	"fitted-values": "Valores ajustados",
 	"grouped-by": "Agrupado por",
+	"hierarchical-clustering": "Agrupamento Hierárquico",
 	"hierarchical-clustering-summary": "Resumo do Clustering Hierárquico",
 	"importance": "Importância",
 	"intercept": "Interceptar",

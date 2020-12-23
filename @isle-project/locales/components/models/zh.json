@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "该算法在{{n}}后没有收敛。费雪评分迭代",
 	"fitted-values": "装配值",
 	"grouped-by": "按组别划分",
+	"hierarchical-clustering": "层次化聚类",
 	"hierarchical-clustering-summary": "层次聚类总结",
 	"importance": "重要性",
 	"intercept": "拦截",

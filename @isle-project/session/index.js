@@ -153,7 +153,7 @@ class Session {
 			config.headers[ 'Accept-Language' ] = i18n.language;
 			const token = JWT.token;
 			if ( token && startsWith( config.url, this.server ) ) {
-				config.headers.Authorization = `JWT ${token}`;
+				config.headers.Authorization = `JWT ${token}`; // eslint-disable-line i18next/no-literal-string
 			}
 			return config;
 		});

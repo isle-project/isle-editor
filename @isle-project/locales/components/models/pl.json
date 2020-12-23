@@ -19,6 +19,7 @@
 	"fisher-scoring-not-converged": "Algorytm nie zbiegł się po {{n}} Iteracje punktacji Fishera",
 	"fitted-values": "Wartości dopasowane",
 	"grouped-by": "Zgrupowane przez",
+	"hierarchical-clustering": "Hierarchiczne klastry",
 	"hierarchical-clustering-summary": "Hierarchiczne podsumowanie skupień (Hierarchical Clustering Summary)",
 	"importance": "Znaczenie",
 	"intercept": "Przechwytywanie",

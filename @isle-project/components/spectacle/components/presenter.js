@@ -30,6 +30,7 @@
 
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Timer from '@isle-project/components/timer';
 import { getSlideByIndex } from '../utils/slides';
 import Time from './time';
@@ -111,7 +112,7 @@ class Presenter extends Component {
 				appearOff: true
 			})
 		) : (
-			<p className="spectacle-end-header">END</p>
+			<p className="spectacle-end-header">{this.props.t('end')}</p>
 		);
 	}
 
@@ -135,16 +136,17 @@ class Presenter extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<div className="spectacle-presenter-content" >
 				<div className="spectacle-header-container" >
 					<h2 className="spectacle-slide-info" >
-						Slide {this.props.slideIndex + 1} of{' '}
+						{t('slide-no', { slideIndex: this.props.slideIndex + 1 })}
 						{this.props.slideReference.length}
 					</h2>
 					{this._renderCurrentSlideDuration()}
 					<Timer
-						legend="Total: "
+						legend={t('total')}
 						duration={this.props.totalDuration}
 						style={{
 							top: '0px',
@@ -187,4 +189,4 @@ Presenter.contextType = SpectacleContext;
 
 // EXPORTS //
 
-export default Presenter;
+export default withTranslation( 'Spectacle' )( Presenter );
