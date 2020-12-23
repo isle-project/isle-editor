@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
@@ -51,9 +52,9 @@ export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 	const config = {
 		data: traces,
 		layout: {
-			title: x ? `${y} against ${x}` : y,
+			title: x ? `${y} ${i18n.t('Plotly:vs')} ${x}` : y,
 			xaxis: {
-				title: x ? x : 'Index'
+				title: x ? x : i18n.t('Plotly:index')
 			},
 			yaxis: {
 				title: y

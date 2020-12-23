@@ -117,7 +117,7 @@ class DecisionTree extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >{t('decision-tree-for', {y: this.props.y, counter: COUNTER})}</span>
+				<span className="title" >{t('decision-tree-for', { y: this.props.y, counter: COUNTER })}</span>
 				<TreePlot tree={tree.root} />
 				{this.props.onPredict ? <Tooltip tooltip={t('predictions-attached')} >
 					<Button variant="secondary" size="sm" style={{ marginTop: 10 }} onClick={this.handlePredict}>{this.props.t('use-model-to-predict')}</Button>

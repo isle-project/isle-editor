@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
 import isnan from '@stdlib/assert/is-nan';
@@ -187,7 +188,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
-			title: `${variable} given ${group}`,
+			title: `${variable} ${i18n.t('Plotly:given')} ${group}`,
 			...SETTINGS
 		};
 		if ( groupMode === 'Facets' ) {

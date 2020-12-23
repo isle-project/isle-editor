@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -233,7 +234,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 			y: y,
 			type: nobs > 2000 ? 'scattergl' : 'scatter',
 			mode: mode,
-			name: 'Points',
+			name: i18n.t('Plotly:points'),
 			marker: {
 				symbol: 'circle',
 				size: size ? scale( data[ size ], 5.0, 10.0 ) : 5.0
@@ -341,9 +342,9 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				traces.push({
 					x: values,
 					y: predictedLinear,
-					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 					mode: 'lines',
-					name: 'Linear Fit',
+					name: i18n.t('Plotly:linear-fit'),
 					type: 'line'
 				});
 			}
@@ -355,7 +356,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 					x: values,
 					y: predictedSmooth,
 					mode: 'lines',
-					name: 'Smoothed Fit',
+					name: i18n.t('Plotly:smoothed-fit'),
 					type: 'line'
 				});
 			}
@@ -381,7 +382,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				bordercolor: '#E2E2E2',
 				borderwidth: 2
 			},
-			title: `${yval} against ${xval}`
+			title: `${yval} ${i18n.t('vs')} ${xval}`
 		}
 	};
 }

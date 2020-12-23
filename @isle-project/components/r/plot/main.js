@@ -108,7 +108,7 @@ class RPlot extends Component {
 						<Image
 							src={this.state.plotURL}
 							body={this.state.plot}
-							title="R Plot"
+							title={this.props.t('r-plot')}
 							{...rest}
 						/>
 					</Fragment>

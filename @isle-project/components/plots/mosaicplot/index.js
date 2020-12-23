@@ -3,6 +3,7 @@
 import React from 'react';
 import RPlot from '@isle-project/components/r/plot';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 
@@ -55,7 +56,7 @@ export function generateMosaicPlotCode({ data, variables, showColors, axisLabels
 	}
 	const code = `dat = data.frame( counts = c(${objectValues( counts )}), ${varArr.map( ( arr, idx ) => `${variables[ idx ]} = c( ${arr} )` ) })
 		xytable = xtabs( counts ~ ., data = dat )
-		mosaicplot( xytable, main = "${`Mosaic Plot of ${variables.join( ', ' )}`}",
+		mosaicplot( xytable, main = "${`${i18n.t('R:mosaic-plot-of')} ${variables.join( ', ' )}`}",
 		cex=1, las=${las}, shade=${ showColors ? 'TRUE' : 'FALSE' } )`;
 	return code;
 }

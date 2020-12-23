@@ -1,5 +1,6 @@
 // MODULES //
 
+import { i18n } from '@isle-project/locales';
 import argmax from 'compute-argmax';
 import chebyshev from 'compute-chebyshev-distance';
 import cosine from 'compute-cosine-distance';
@@ -198,7 +199,7 @@ function hclust( data, opts ) {
 			const cluster = clusters[ i ];
 			for ( let j = 0; j < cluster.length; j++ ) {
 				const idx = cluster[ j ];
-				out[ idx ] = `Cluster ${i+1}`;
+				out[ idx ] = `${i18n.t('StatisticalModels:cluster')} ${i+1}`;
 			}
 		}
 		return out;

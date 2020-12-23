@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -78,7 +79,7 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 	}
 	const layout = {
 		annotations,
-		title: group ? `${variable} given ${group}` : variable
+		title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable
 	};
 	return {
 		layout,

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
@@ -43,7 +44,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 	return {
 		data: traces,
 		layout: {
-			title: group ? `${variable} given ${group}` : variable,
+			title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable,
 			xaxis: {
 				type: 'category'
 			}
