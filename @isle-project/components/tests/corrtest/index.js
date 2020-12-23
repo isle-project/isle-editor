@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TeX from '@isle-project/components/tex';
+import { useTranslation } from 'react-i18next';
 import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -11,6 +12,7 @@ import isnan from '@stdlib/assert/is-nan';
 // MAIN //
 
 function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	const x = data[ var1 ];
 	const y = data[ var2 ];
 	const xFiltered = [];
@@ -37,7 +39,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 	}
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Correlation test between {var1} and {var2}:</label>
+			<label>{t('correlation-test', { var1, var2 })}:</label>
 			<TeX displayMode raw={`H_0: \\rho = ${rho0} \\; vs. \\; H_1: \\rho ${arrow} ${rho0}`} tag="" />
 			<pre>
 				{result.print({

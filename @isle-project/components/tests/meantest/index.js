@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
@@ -38,6 +39,7 @@ function extractValues( data, variable ) {
 // MAIN //
 
 function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	const xvalues = extractValues( data, variable );
 	let sd;
 	if ( type === 'Z Test' && stdev ) {
@@ -72,7 +74,7 @@ function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDeci
 	printout = replace( printout, RE_ONESIDED_GREATER, '' );
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for {variable}:</label>
+			<label>{t('hypothesis-test-for', { variable })}:</label>
 			<TeX displayMode raw={`H_0: \\mu = ${mu0} \\; vs. \\; H_1: \\mu ${arrow} ${mu0}`} tag="" />
 			<pre>
 				{printout}

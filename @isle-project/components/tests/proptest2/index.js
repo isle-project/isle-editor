@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation, Trans } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import ztest2 from '@stdlib/stats/ztest2';
@@ -23,6 +24,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[-?\d.]+,Infinity\]/;
 // MAIN //
 
 function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecision, success }) {
+	const { t } = useTranslation( 'Test' );
 	let firstCategory;
 	let secondCategory;
 	let value;
@@ -52,7 +54,9 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		}
 		if ( !secondCategory ) {
 			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
-				Grouping variable <code>{group}</code> must have at least two different values.
+				<Trans i18nKey="must-have-two-different-values" ns="Test" values={{ group }} >
+					Grouping variable <code>{{ group }}</code> must have at least two different values.
+				</Trans>
 			</Alert> );
 		}
 		const splitted = bifurcateBy( binary, function splitter( x, idx ) {
@@ -76,21 +80,24 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		});
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
-		const title = `Hypothesis test for equality of ${var1} proportion by ${group}`;
+		const title = t('proptest2-title-grouped', { var1, group });
 		const c1Label = escapeLatex( firstCategory );
 		const c2Label = escapeLatex( secondCategory );
 		const gLabel = escapeLatex( group );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{title}</label><br />
 			<span>
-				Let <TeX raw={`p_{${c1Label}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group, <br />
-				and <TeX raw={`p_{${c2Label}}`} /> the probability in the second group, respectively. We test
+				<Trans i18nKey="pop-prob-first-group" ns="Test" values={{ var1, success }} >
+					Let <TeX raw={`p_{${c1Label}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code> in the first group,
+				</Trans>
+				<br />
+				{t('and')} <TeX raw={`p_{${c2Label}}`} /> {t('probability-second-group')}
 			</span>
 			<TeX
 				displayMode
 				raw={`H_0: p_{\\text{${gLabel}:${c1Label}}} - p_{\\text{${gLabel}:${c2Label}}} = ${diff}`}
 				tag="" />
-			<span> vs. </span>
+			<span> {t('vs')} </span>
 			<TeX
 				displayMode
 				raw={`H_1: p_{\\text{${gLabel}:${c1Label}}} - p_{\\text{${gLabel}:${c2Label}}} ${arrow} ${diff}`}
@@ -99,9 +106,9 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 			<pre>
 				{printout}
 				<br />
-				Sample proportion in group &quot;{firstCategory}&quot;: {roundn( mean( x ), -3 )}
+				{t('sample-proportion-in-group')} &quot;{firstCategory}&quot;: {roundn( mean( x ), -3 )}
 				<br />
-				Sample proportion in group &quot;{secondCategory}&quot;: {roundn( mean( y ), -3 )}
+				{t('sample-proportion-in-group')} &quot;{secondCategory}&quot;: {roundn( mean( y ), -3 )}
 			</pre>
 		</div>;
 	} else if ( var2 ) {
@@ -132,26 +139,28 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		} else if ( direction === 'greater' ){
 			arrow = '>';
 		}
-		const title = `Hypothesis test for equality of proportion ${var1} against proportion ${var2}`;
+		const title = t('proptest2-title', { var1, var2 });
 		const evar1 = escapeLatex( var1 );
 		const evar2 = escapeLatex( var2 );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{title}</label><br />
 			<p>
-				Let <TeX raw={`p_{${evar1}}`} /> be the population probability of <code>{var1}</code> being <code>{success}</code>, <br />
-				and <TeX raw={`p_{${evar2}}`} /> the probability <code>{var2}</code> being <code>{success}</code>, respectively. We test
+				<Trans i18nKey="probtest2-being-success" ns="Test" values={{ success, var1, var2 }} >
+					Let <TeX raw={`p_{${evar1}}`} /> be the population probability of <code>{{ var1 }}</code> being <code>{{ success }}</code>, <br />
+					and <TeX raw={`p_{${evar2}}`} /> the probability <code>{{ var2 }}</code> being <code>{{ success }}</code>, respectively. We test
+				</Trans>
 			</p>
 			<TeX displayMode raw={`H_0: p_{${evar1}} - p_{${evar2}} = ${diff}`} tag="" />
-			<span> vs. </span>
+			<span> {t('vs')} </span>
 			<TeX displayMode raw={`H_1: p_{${evar1}} - p_{${evar2}} ${arrow} ${diff}`} tag="" />
 			<pre style={{ fontSize: '11px' }}>
 				{result.print({
 					decision: showDecision
 				})}
 				<br />
-				Sample proportion in group &quot;{var1}&quot;: {roundn( mean( x ), -3 )}
+				{t('sample-proportion-in-group')} &quot;{var1}&quot;: {roundn( mean( x ), -3 )}
 				<br />
-				Sample proportion in group &quot;{var2}&quot;: {roundn( mean( y ), -3 )}
+				{t('sample-proportion-in-group')} &quot;{var2}&quot;: {roundn( mean( y ), -3 )}
 			</pre>
 		</div>;
 	}

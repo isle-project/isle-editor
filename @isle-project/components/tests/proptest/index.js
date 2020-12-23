@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
@@ -19,6 +20,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 // MAIN //
 
 function PropTest({ data, variable, alpha, direction, success, p0, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	const x = data[ variable ];
 	const binary = x.map( x => x === success ? 1 : 0 );
 	const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {
@@ -39,15 +41,17 @@ function PropTest({ data, variable, alpha, direction, success, p0, showDecision 
 	printout = replace( printout, RE_ONESIDED_GREATER, '' );
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for {variable}:</label>
+			<label>{t('hypothesis-test-for', { variable } )}</label>
 			<p>
-				Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
+				<Trans i18nKey="probtest-success-prob" ns="Test" >
+					Let p be the population probability of <code>{variable}</code> being <code>{success}</code>.
+				</Trans>
 			</p>
 			<span>
-				We test
+				{t('we-test')}
 			</span>
 			<TeX displayMode raw={`H_0: p = ${p0} \\; vs. \\; H_1: p ${arrow} ${p0}`} tag="" />
-			<label>Sample proportion: {roundn( mean( binary ), -3 )}</label>
+			<label>{t('sample-proportion')}: {roundn( mean( binary ), -3 )}</label>
 			<pre>
 				{printout}
 			</pre>

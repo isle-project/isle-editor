@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import kruskalTest from '@stdlib/stats/kruskal-test';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -11,6 +12,7 @@ import isNull from '@stdlib/assert/is-null';
 // MAIN //
 
 function Kruskal({ data, variable, group, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	const values = data[ variable ];
 	const groups = data[ group ];
 	const groupsFiltered = [];
@@ -26,7 +28,7 @@ function Kruskal({ data, variable, group, showDecision }) {
 	}
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Kruskal Wallis Test of {variable} between {group}</label>
+			<label>{t('kruskal-wallis-test', { variable, group })}</label>
 			<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
 				decision: showDecision
 			})}</pre>

@@ -4,7 +4,7 @@
 	"calculate-percentiles-for": "のパーセンタイルを計算する",
 	"clear": "クリア",
 	"draw-25-samples": "25のサンプルを描く",
-	"draw-n-samples": "ドロー{{{n}}}を描くサンプル",
+	"draw-n-samples": "ドロー{{n}}を描くサンプル",
 	"draw-sample": "ドローサンプル",
 	"draw-two-samples": "サンプルを2枚以上描いてください。",
 	"drawn-samples": "描画サンプル",

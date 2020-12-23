@@ -1,7 +1,7 @@
 {
 	"binomial-intro": "Nous allons maintenant passer à une question Oui/Non sur une population. Nous souhaitons estimer la proportion réelle de la population <1 /> des réponses \"Oui\" (par exemple, quelle proportion de la population a les yeux bleus ?). Nous pouvons prendre un échantillon de taille <3 />, trouver combien d'observations dans notre échantillon sont un \"Oui\" (X), et ensuite estimer la proportion réelle <5 /> avec <7 />. Puis <9 />. Notre intervalle de confiance est alors <11 />",
 	"binomial-intro-end": "Pour notre choix de la taille de l'échantillon (n), de la proportion réelle <1 /> et du niveau de confiance, nous simulerons <3 /> différents échantillons à partir de notre distribution normale et calculerons les proportions d'échantillon et les intervalles de confiance correspondants.",
-	"capture-true-proportion": "Sur les 20 intervalles de confiance, {{{nTrapped}}} saisissent la proportion réelle",
+	"capture-true-proportion": "Sur les 20 intervalles de confiance, {{nTrapped}} saisissent la proportion réelle",
 	"change-parameters": "Modifier les paramètres",
 	"clear": "Clair",
 	"click-pop-proportion": "Cliquez pour utiliser la proportion de la population",

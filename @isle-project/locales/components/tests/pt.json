@@ -1,1 +1,22 @@
-{}
+{
+	"and": "e",
+	"anova": "ANOVA para {{variable}} entre {{group}}",
+	"correlation-test": "Teste de correlação entre {{var1}} e {{var2}}",
+	"hypothesis-test-between": "Teste de hipótese para {{x}} entre {{group}}",
+	"hypothesis-test-for": "Teste de hipotese para {{variable}}",
+	"hypothesis-test-for-independence": "Teste de hipótese de independência entre {{var1}} e {{var2}}",
+	"hypothesis-test-x-y": "Teste de hipótese para {{x}} contra {{y}}",
+	"kruskal-wallis-test": "Teste Kruskal Wallis de {{variable}} entre {{group}}",
+	"must-have-two-different-values": "A variável de agrupamento <1>{{group}}</1> deve ter pelo menos dois valores diferentes.",
+	"pop-prob-first-group": "Que <1 /> seja a probabilidade da população de <3>{{var1}}</3> ser <5>{{success}}</5> no primeiro grupo,",
+	"probability-second-group": "a probabilidade no segundo grupo, respectivamente. Nós testamos",
+	"probtest-success-prob": "Seja p a probabilidade da população de <1>{{variable}}</1> ser <3>{{success}}</3>",
+	"probtest2-being-success": "Seja <1 /> a probabilidade da população de <3>{{var1}}</3> ser <5>{{success}</5>, <7 /> e <9 /> a probabilidade de <11>{{var2}}</11> ser <13>{{success}}</13>, respectivamente. Nós testamos",
+	"proptest2-title": "Teste de hipótese para igualdade de proporção {{var1}} contra proporção {{var2}}",
+	"proptest2-title-grouped": "Teste de hipotese para igualdade de proporção de {{var1}} por {{group}}",
+	"sample-mean-in-group": "Amostra média em grupo",
+	"sample-proportion": "Proporção da amostra:",
+	"sample-proportion-in-group": "Proporção de amostras no grupo",
+	"vs": "vs.",
+	"we-test": "Nós testamos"
+}

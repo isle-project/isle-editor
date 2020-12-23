@@ -4,7 +4,7 @@
 	"calculate-percentiles-for": "Calculer les percentiles pour",
 	"clear": "Clair",
 	"draw-25-samples": "Tirage au sort de 25 échantillons",
-	"draw-n-samples": "Dessiner {{{n}} Échantillons",
+	"draw-n-samples": "Dessiner {{n}} Échantillons",
 	"draw-sample": "Échantillon de dessin",
 	"draw-two-samples": "Veuillez tirer au moins deux échantillons.",
 	"drawn-samples": "Échantillons prélevés",

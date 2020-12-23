@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { useTranslation, Trans } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
@@ -61,12 +62,15 @@ function retrieveGroupedValues( data, x, group ) {
 // MAIN //
 
 function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	let out;
 	if ( group ) {
 		out = retrieveGroupedValues( data, x, group );
 		if ( !out ) {
 			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
-				Grouping variable <code>{group}</code> must have at least two different values.
+				<Trans i18nKey="must-have-two-different-values" ns="Test" values={{ group }} >
+					Grouping variable <code>{{ group }}</code> must have at least two different values.
+				</Trans>
 			</Alert> );
 		}
 	} else {
@@ -122,13 +126,13 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 		const ecat1 = escapeLatex( out.firstCategory );
 		const ecat2 = escapeLatex( out.secondCategory );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<span className="title" >Hypothesis test for {x} between {group}:</span>
+			<span className="title" >{t('hypothesis-test-between', { x, group })}:</span>
 			<TeX
 				displayMode
 				raw={`H_0: \\mu_{\\text{${egrouping}:${ecat1}}} - \\mu_{\\text{${egrouping}:${ecat2}}} = ${diff}`}
 				tag=""
 			/>
-			<span> vs. </span>
+			<span> {t('vs')} </span>
 			<TeX
 				displayMode
 				raw={`H_1: \\mu_{\\text{${egrouping}:${ecat1}}} - \\mu_{\\text{${egrouping}:${ecat2}}} ${arrow} ${diff}`}
@@ -137,9 +141,9 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 			<pre>
 				{printout}
 				<br />
-				Sample mean in group &quot;{out.firstCategory}&quot;: {roundn( result.xmean, -3 )}
+				{t('sample-mean-in-group')} &quot;{out.firstCategory}&quot;: {roundn( result.xmean, -3 )}
 				<br />
-				Sample mean in group &quot;{out.secondCategory}&quot;: {roundn( result.ymean, -3 )}
+				{t('sample-mean-in-group')} &quot;{out.secondCategory}&quot;: {roundn( result.ymean, -3 )}
 			</pre>
 		</div>;
 	} else if ( y ) {
@@ -171,13 +175,13 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 		const exvar = escapeLatex( x );
 		const eyvar = escapeLatex( y );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for {x} against {y}:</label>
+			<label>{t('hypothesis-test-x-y', { x, y })}:</label>
 			<TeX
 				displayMode
 				raw={`H_0: \\mu_{${exvar}} - \\mu_{${eyvar}} = ${diff}`}
 				tag=""
 			/>
-			<span>vs.</span>
+			<span>{t('vs')}</span>
 			<TeX
 				displayMode
 				raw={`\\; H_1: \\mu_{${exvar}} - \\mu_{${eyvar}} ${arrow} ${diff}`}
@@ -186,9 +190,9 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 			<pre>
 				{printout}
 				<br />
-				Sample mean in group &quot;{x}&quot;: {roundn( result.xmean, -3 )}
+				{t('sample-mean-in-group')} &quot;{x}&quot;: {roundn( result.xmean, -3 )}
 				<br />
-				Sample mean in group &quot;{y}&quot;: {roundn( result.ymean, -3 )}
+				{t('sample-mean-in-group')} &quot;{y}&quot;: {roundn( result.ymean, -3 )}
 			</pre>
 		</div>;
 	}

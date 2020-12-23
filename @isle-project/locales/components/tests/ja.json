@@ -1,1 +1,22 @@
-{}
+{
+	"and": "そして",
+	"anova": "{{group}}間の{{variable}}のANOVA",
+	"correlation-test": "{{var1}}と{{var2}}の相関検定",
+	"hypothesis-test-between": "グループ}}間の{{x}}の仮説検定",
+	"hypothesis-test-for": "{{variable}}に対する仮説検定",
+	"hypothesis-test-for-independence": "と{{var1}}と{{var2}}の間の独立性の仮説検定",
+	"hypothesis-test-x-y": "{{x}}に対する{{y}}の仮説検定",
+	"kruskal-wallis-test": "{{group}}間の{{variable}}のクルスカルワリス検定",
+	"must-have-two-different-values": "グループ化変数<1>{{group}}</1>は、少なくとも2つの異なる値を持つ必要があります。",
+	"pop-prob-first-group": "<1 />を、<3>{{var1}}</3>が第1群で<5>{{success}}</5>になる母集団確率とします。",
+	"probability-second-group": "はそれぞれ第2群の確率である。我々は",
+	"probtest-success-prob": "<1>{{variable}}</1>が<3>{{success}}</3>になる母集団の確率をpとします。",
+	"probtest2-being-success": "<1 />を<3>{{var1}}</3>が<5>{{success}}</5>となる母集団の確率、<7 />を<7 />、<9 />を<11>{var2}}</11>が<13>{{success}}</13>となる確率とする。我々は次のように検定する。",
+	"proptest2-title": "割合{{var1}}と割合{{var2}}の等しさの仮説検定",
+	"proptest2-title-grouped": "グループ}による{{var1}}の割合が等しいことの仮説検定",
+	"sample-mean-in-group": "グループ内のサンプル平均",
+	"sample-proportion": "サンプルの割合。",
+	"sample-proportion-in-group": "グループ内のサンプルの割合",
+	"vs": "対",
+	"we-test": "テスト"
+}

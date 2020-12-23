@@ -2,17 +2,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import ROutput from '@isle-project/components/r/output';
 
 
 // MAIN //
 
 function Chi2Test({ data, var1, var2 }) {
+	const { t } = useTranslation( 'Test' );
 	const x = data[ var1 ].map( x => `"${x}"` );
 	const y = data[ var2 ].map( x => `"${x}"` );
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>Hypothesis test for independence between {var1} and {var2}:</label>
+			<label>{t('hypothesis-test-for-independence', { var1, var2 })}:</label>
 			<ROutput code={`
 				\`${var1}\` = c(${x})
 				\`${var2}\` = c(${y})

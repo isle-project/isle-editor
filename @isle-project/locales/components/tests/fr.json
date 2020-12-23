@@ -1,1 +1,22 @@
-{}
+{
+	"and": "et",
+	"anova": "ANOVA pour {{variable}} entre {{group}}",
+	"correlation-test": "Test de corrélation entre {{var1}} et {{var2}}",
+	"hypothesis-test-between": "Test d'hypothèse pour {{x}} entre {{group}}",
+	"hypothesis-test-for": "Test d'hypothèse pour {{variable}}",
+	"hypothesis-test-for-independence": "Test d'hypothèse pour l'indépendance entre {{var1}} et {{var2}}",
+	"hypothesis-test-x-y": "Test d'hypothèse pour {{x}} contre {{y}}",
+	"kruskal-wallis-test": "Test de Kruskal Wallis de {{variable}} entre {{group}}",
+	"must-have-two-different-values": "La variable de regroupement <1>{{group}}</1> doit avoir au moins deux valeurs différentes.",
+	"pop-prob-first-group": "Soit <1 /> la probabilité de la population de <3>{{var1}}</3> d'être <5>{{réussite}}</5> dans le premier groupe,",
+	"probability-second-group": "la probabilité dans le deuxième groupe, respectivement. Nous testons",
+	"probtest-success-prob": "Soit p la probabilité de population de <1>{{variable}}</1> étant <3>{{réussite}}</3>",
+	"probtest2-being-success": "Soit <1 /> la probabilité de la population que <3>{{var1}}</3> soit <5>{{\\r}</5>, <7 /> et <9 /> la probabilité que <11>{{var2}}</11> soit <13>{{success}}</13>, respectivement. Nous testons",
+	"proptest2-title": "Test d'hypothèse pour l'égalité de la proportion {{var1}} par rapport à la proportion {{var2}}",
+	"proptest2-title-grouped": "Test d'hypothèse pour l'égalité de la proportion {{var1}} par {{group}}",
+	"sample-mean-in-group": "Moyenne de l'échantillon dans le groupe",
+	"sample-proportion": "Proportion de l'échantillon :",
+	"sample-proportion-in-group": "Proportion de l'échantillon dans le groupe",
+	"vs": "contre",
+	"we-test": "Nous testons"
+}

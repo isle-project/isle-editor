@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import anova1 from '@stdlib/stats/anova1';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -11,6 +12,7 @@ import isNull from '@stdlib/assert/is-null';
 // MAIN //
 
 function Anova({ data, variable, group, showDecision }) {
+	const { t } = useTranslation( 'Test' );
 	const vals = data[ variable ];
 	const groups = data[ group ];
 	const groupsFiltered = [];
@@ -26,7 +28,7 @@ function Anova({ data, variable, group, showDecision }) {
 	}
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
-			<label>ANOVA for {variable} between {group}</label>
+			<label>{t('anova', { variable, group })}</label>
 			<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
 				decision: showDecision
 			})}</pre>
