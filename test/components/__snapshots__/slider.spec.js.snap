@@ -27,6 +27,7 @@ exports[`renders a slider for child elements (dragging disabled) 1`] = `
         <NextArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       onClick={[Function]}
@@ -34,6 +35,7 @@ exports[`renders a slider for child elements (dragging disabled) 1`] = `
         <PreviousArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       slidesToScroll={1}
@@ -97,6 +99,7 @@ exports[`renders a slider for child elements (with title) 1`] = `
         <NextArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       onClick={[Function]}
@@ -104,6 +107,7 @@ exports[`renders a slider for child elements (with title) 1`] = `
         <PreviousArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       slidesToScroll={1}
@@ -151,6 +155,7 @@ exports[`renders a slider for child elements (without dots for navigation) 1`] =
         <NextArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       onClick={[Function]}
@@ -158,6 +163,7 @@ exports[`renders a slider for child elements (without dots for navigation) 1`] =
         <PreviousArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       slidesToScroll={1}
@@ -205,6 +211,7 @@ exports[`renders a slider for child elements 1`] = `
         <NextArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       onClick={[Function]}
@@ -212,6 +219,7 @@ exports[`renders a slider for child elements 1`] = `
         <PreviousArrow
           className=""
           onClick={[Function]}
+          t={[Function]}
         />
       }
       slidesToScroll={1}
