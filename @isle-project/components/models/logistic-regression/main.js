@@ -28,6 +28,7 @@ import irls from './logistic_regression.js';
 // VARIABLES //
 
 let COUNTER = 0;
+const T = 't';
 
 
 // FUNCTIONS //
@@ -146,11 +147,11 @@ const summaryTable = ( x, intercept, result, t ) => {
 		<Table bordered size="sm">
 			<thead>
 				<tr>
-					<Tooltip placement="right" tooltip="Name of predictor" ><th>{t('predictor')}</th></Tooltip>
-					<Tooltip placement="right" tooltip="Change in log odds associated with unit-increase in respective predictor"><th>{t('coefficient')}</th></Tooltip>
-					<Tooltip placement="left" tooltip="Standard deviation of coefficient estimate" ><th>Std. Error</th></Tooltip>
-					<Tooltip placement="left" tooltip={<span>Test statistic for hypothesis that coefficient is zero <TeX displayMode raw="t = \tfrac{\text{Coefficient}}{\text{Std. Error}}" /></span>} ><th>t</th></Tooltip>
-					<Tooltip placement="left" tooltip={<span>p-value for hypothesis that coefficient is zero <TeX displayMode raw="2 \Phi( |t| )" /></span>} ><th>{t('p-value')}</th></Tooltip>
+					<Tooltip placement="right" tooltip={t('name-of-predictor')} ><th>{t('predictor')}</th></Tooltip>
+					<Tooltip placement="right" tooltip={t('change-in-log')}><th>{t('coefficient')}</th></Tooltip>
+					<Tooltip placement="left" tooltip={t('standard-deviation-coefficient')} ><th>{t('std-error')}</th></Tooltip>
+					<Tooltip placement="left" tooltip={<span>{t('Test statistic for hypothesis that coefficient is zero')}<TeX displayMode raw="t = \tfrac{\text{Coefficient}}{\text{Std. Error}}" /></span>} ><th>{T}</th></Tooltip>
+					<Tooltip placement="left" tooltip={<span>{t('p-value-coefficient-zero')}<TeX displayMode raw="2 \Phi( |t| )" /></span>} ><th>{t('p-value')}</th></Tooltip>
 				</tr>
 			</thead>
 			<tbody>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -75,9 +76,9 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 			traces.push({
 				x: values,
 				y: predictedLinear,
-				text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+				text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 				mode: 'lines',
-				name: 'Linear Fit',
+				name: i18n.t('Plotly:linear-fit'),
 				type: 'line',
 				line: {
 					color: 'steelblue'
@@ -92,7 +93,7 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 				x: values,
 				y: predictedSmooth,
 				mode: 'lines',
-				name: 'Smoothed Fit',
+				name: i18n.t('Plotly:smoothed-fit'),
 				type: 'line',
 				line: {
 					color: 'tomato'
@@ -101,7 +102,7 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 		}
 	}
 	const layout = {
-		title: `${x} vs. ${y}`,
+		title: `${x} ${i18n.t('Plotly:vs')} ${y}`,
 		xaxis: {
 			showgrid: true,
 			zeroline: true,

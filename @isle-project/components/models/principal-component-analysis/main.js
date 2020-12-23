@@ -19,6 +19,7 @@ function isNonMissingNumber( x ) {
 }
 
 const summaryTable = ( stdev, variance, cumVariance, t ) => {
+	/* eslint-disable i18next/no-literal-string */
 	return (
 		<Table bordered size="sm">
 			<thead>
@@ -43,6 +44,7 @@ const summaryTable = ( stdev, variance, cumVariance, t ) => {
 			</tbody>
 		</Table>
 	);
+	/* eslint-enable i18next/no-literal-string */
 };
 
 const fitModel = ({ data, variables, scale, center, noComponents }) => {
@@ -130,8 +132,9 @@ class PrincipalComponentAnalysis extends Component {
 
 	render() {
 		const { pca } = this.state;
+		const { t } = this.props;
 		if ( !pca ) {
-			return <Alert variant="danger">{this.props.t('missing-attributes')}</Alert>;
+			return <Alert variant="danger">{t('missing-attributes')}</Alert>;
 		}
 		const stdev = pca.getStandardDeviations();
 		const variance = pca.getExplainedVariance();
@@ -140,17 +143,17 @@ class PrincipalComponentAnalysis extends Component {
 			x: incrspace( 0, variance.length, 1 ),
 			y: variance,
 			type: 'scatter',
-			name: 'Proportion of variance'
+			name: t('proportion-of-variance')
 		};
 		return (<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >{this.props.t('pca-summary')}</span>
-				{summaryTable( stdev, variance, cumVariance, this.props.t )}
+				<span className="title" >{t('pca-summary')}</span>
+				{summaryTable( stdev, variance, cumVariance, t )}
 				<Plotly editable data={[ trace ]} layout={{
 					xaxis: {
-						title: 'Principal Component'
+						title: t('principal-component')
 					},
 					yaxis: {
-						title: 'Explained Proportion'
+						title: t('explained-proportion')
 					}
 				}} />
 			</div>

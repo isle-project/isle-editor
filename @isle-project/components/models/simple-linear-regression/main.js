@@ -26,6 +26,7 @@ import by from '@isle-project/utils/by';
 // VARIABLES //
 
 let COUNTER = 0;
+const T = 't';
 
 
 // FUNCTIONS //
@@ -177,7 +178,7 @@ class SimpleLinearRegression extends Component {
 											<th>{t('variable')}</th>
 											<th>{t('coefficient')}</th>
 											<th>{t('std-error')}</th>
-											<th>t</th>
+											<th>{T}</th>
 											<th>{t('p-value')}</th>
 										</tr>
 									</thead>
@@ -295,7 +296,7 @@ class SimpleLinearRegression extends Component {
 								<th>{t('variable')}</th>
 								<th>{t('coefficient')}</th>
 								<th>{t('std-error')}</th>
-								<th>t</th>
+								<th>{T}</th>
 								<th>{t('p-value')}</th>
 							</tr>
 						</thead>

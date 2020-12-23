@@ -122,18 +122,18 @@ class RandomForest extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Random Forest for {this.props.y} (model id: forest{COUNTER})</span>
-				<p>Created from {this.props.nTrees} trees by checking {this.props.nTry} features at each split.</p>
+				<span className="title" >{t('random-forest-for', { y: this.props.y, counter: COUNTER })}</span>
+				<p>{t('created-from-trees', { nTrees: this.props.nTrees, nTry: this.props.nTry })}</p>
 				<Plotly editable data={[{
 					type: 'bar',
 					x: this.state.predictors,
 					y: this.state.importances
 				}]} layout={{
 					xaxis: {
-						title: 'Variable'
+						title: t('variable')
 					},
 					yaxis: {
-						title: 'Importance'
+						title: t('importance')
 					}
 				}} />
 				{ this.props.onPredict ? <Tooltip tooltip={t('predictions-attached')} >

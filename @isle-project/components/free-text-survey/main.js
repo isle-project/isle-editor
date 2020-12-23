@@ -113,11 +113,12 @@ class FreeTextSurvey extends Component {
 				y: d[ 1 ]
 			};
 		});
-		freqTable = <table className="table table-bordered">
+		const { t } = this.props;
+		freqTable = <table className="table table-bordered" >
 			<tr>
-				<th>Category</th>
-				<th>Count</th>
-				<th>Relative Frequency</th>
+				<th>{t('category')}</th>
+				<th>{t('count')}</th>
+				<th>{t('relative-frequency')}</th>
 			</tr>
 			{tabulated.map( ( elem, id ) => {
 				return ( <tr key={id}>
@@ -139,7 +140,7 @@ class FreeTextSurvey extends Component {
 	renderChart() {
 		if ( isEmptyArray( this.state.data ) ) {
 			return (
-				<h3>No responses yet</h3>
+				<h3>{this.props.t('no-responses-yet')}</h3>
 			);
 		}
 		return (

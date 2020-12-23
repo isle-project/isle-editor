@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -98,9 +99,9 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 				traces.push({
 					x: values,
 					y: predictedLinear,
-					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 					mode: 'lines',
-					name: 'Linear Fit',
+					name: i18n.t('Plotly:linear-fit'),
 					type: 'line'
 				});
 			}
@@ -112,13 +113,13 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					x: values,
 					y: predictedSmooth,
 					mode: 'lines',
-					name: 'Smoothed Fit',
+					name: i18n.t('Plotly:smoothed-fit'),
 					type: 'line'
 				});
 			}
 		}
 		layout = {
-			title: `${x} vs. ${y}`,
+			title: `${x} ${i18n.t('Plotly:vs')} ${y}`,
 			xaxis: {
 				showgrid: true,
 				zeroline: true,
@@ -161,15 +162,15 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 			let xAxisID;
 			let yAxisID;
 			if ( commonXAxis ) {
-				xAxisID = `x${col === 0 ? '' : col+1}`;
+				xAxisID = `x${col === 0 ? '' : col+1}`; // eslint-disable-line i18next/no-literal-string
 			} else {
-				xAxisID = `x${i === 0 ? '' : i+1}`;
+				xAxisID = `x${i === 0 ? '' : i+1}`; // eslint-disable-line i18next/no-literal-string
 			}
 
 			if ( commonYAxis ) {
-				yAxisID = `y${row === 0 ? '' : row+1}`;
+				yAxisID = `y${row === 0 ? '' : row+1}`; // eslint-disable-line i18next/no-literal-string
 			} else {
-				yAxisID = `y${i === 0 ? '' : i+1}`;
+				yAxisID = `y${i === 0 ? '' : i+1}`; // eslint-disable-line i18next/no-literal-string
 			}
 			traces.push(
 				{
@@ -211,7 +212,7 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					traces.push({
 						x: values,
 						y: predictedLinear,
-						text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`,
+						text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 						mode: 'lines',
 						name: 'Linear Fit',
 						type: 'line',
@@ -254,7 +255,7 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 				subplots: subplots
 			},
 			annotations: annotations,
-			title: `${x} vs. ${y} given ${group}`
+			title: `${x} ${i18n.t('Plotly:vs')} ${y} ${i18n.t('Plotly:given')} ${group}`
 		};
 	}
 	return {

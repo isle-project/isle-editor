@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -136,7 +137,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	let yaxis;
 	if ( horizontal ) {
 		xaxis = {
-			title: ( totalPercent || relative ) ? 'Proportion' : 'Count'
+			title: ( totalPercent || relative ) ? i18n.t('Plotly:proportion') : i18n.t('Plotly:count')
 		};
 		yaxis = {
 			title: group ? group : variable,
@@ -160,7 +161,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			tickcolor: 'white'
 		};
 		yaxis = {
-			title: ( totalPercent || relative ) ? 'Proportion' : 'Count'
+			title: ( totalPercent || relative ) ? i18n.t('Plotly:proportion') : i18n.t('Plotly:Count')
 		};
 	}
 	return {
@@ -169,7 +170,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			barmode: stackBars ? 'stack' : null,
 			xaxis,
 			yaxis,
-			title: group ? `${variable} given ${group}` : variable,
+			title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable,
 			hovermode: 'closest'
 		}
 	};

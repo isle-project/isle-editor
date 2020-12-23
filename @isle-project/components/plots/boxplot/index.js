@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -114,7 +115,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		}
 	}
 	const layout = {
-		title: group.length > 0 ? `${variable} given ${group.join( ', ')}` : variable,
+		title: group.length > 0 ? `${variable} ${i18n.t('Plotly:given')} ${group.join( ', ')}` : variable,
 		xaxis: {
 			title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
 			type: orientation === 'vertical' ? 'category' : null,

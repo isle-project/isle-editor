@@ -157,7 +157,7 @@ class NaiveBayes extends Component {
 		}
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }}>
-				<span className="title" >Naive Bayes for Response {this.props.y} (model id: bayes{COUNTER})</span>
+				<span className="title" >{t('naive-bayes-for-response', { y: this.props.y, counter: COUNTER })}</span>
 				{summaryTable( predictors, result, this.props.quantitative, t )}
 				{this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 					<Button variant="secondary" size="sm" onClick={this.handlePrediction} >{t('use-model-to-predict')}</Button>
