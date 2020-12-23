@@ -76,14 +76,14 @@ const MapMenu = ( props ) => {
 			<Row>
 				<Col>
 					<SelectInput
-						legend="Locations:"
+						legend={t('locations')}
 						options={groupingVariables}
 						clearable
 					/>
 				</Col>
 				<Col>
 					<SelectInput
-						legend="Location encoding"
+						legend={t('location-encoding')}
 						options={LOCATION_MODES}
 						defaultValue="country names"
 					/>
@@ -92,31 +92,31 @@ const MapMenu = ( props ) => {
 			<Row>
 				<Col>
 					<SelectInput
-						legend="Scope:"
+						legend={t('scope')}
 						defaultValue="world"
 						options={SCOPES}
 					/>
 				</Col>
 				<Col>
 					<CheckboxInput
-						legend="Show Land"
+						legend={t('show-land')}
 						defaultValue={false}
 						style={{ marginTop: 35 }}
 					/>
 				</Col>
 			</Row>
-			<h4 className="center">or</h4>
+			<h4 className="center">{t('or')}</h4>
 			<Row>
 				<Col>
 					<SelectInput
-						legend="Longitude:"
+						legend={t('longitude')}
 						options={variables}
 						clearable
 					/>
 				</Col>
 				<Col>
 					<SelectInput
-						legend="Latitude:"
+						legend={t('latitude')}
 						options={variables}
 						clearable
 					/>

@@ -58,12 +58,12 @@ const FrequencyTableMenu = ( props ) => {
 					clearable={true}
 					menuPlacement="top"
 					onChange={setGroup}
-					tooltip="Generate a frequency table for each category of a chosen grouping variable"
+					tooltip={t('freq-table-group-by-tooltip')}
 				/>
 				<Row>
 					<Col>
 						<CheckboxInput
-							legend="Counts"
+							legend={t('counts')}
 							defaultValue={calculateCounts}
 							onChange={() => {
 								setCalculateCounts( !calculateCounts );

@@ -391,19 +391,20 @@ class GroupManager extends Component {
 			options={extractQuestions( this.context )} inline
 			style={{ width: 412 }}
 		/>;
+		const { t } = this.props;
 		switch ( this.state.activeMode ) {
 			case 'progress':
 				return ( <div>
 					<p>
-						Create groups by pairing students with {input} progress.
+					{t('create-groups-pairing-students', { input })}
 					</p>
 				</div> );
 			case 'answers':
 				return ( <div>
 					<p>
-						Create groups by pairing students with {input} answers
+						{t('create-groups-with-answers', { input })}
 						<br />
-						to the question {questionSelect}.
+						{t('to-the-question', { questionSelect })}
 					</p>
 				</div> );
 			default:

@@ -46,7 +46,7 @@ class Progress extends Component {
 	getPointPosition(i) {
 		return {
 			top: '-20px',
-			left: `${5 + 20 * (i - this.props.items.length / 2)}px`
+			left: `${5 + 20 * (i - this.props.items.length / 2)}px` // eslint-disable-line i18next/no-literal-string
 		};
 	}
 

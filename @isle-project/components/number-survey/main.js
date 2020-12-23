@@ -2,6 +2,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -109,7 +110,7 @@ class NumberSurvey extends Component {
 		const { t } = props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate user banner={<h2>Please sign in...</h2>} >
+			<Gate user banner={<h2>{t('sign-in')}</h2>} >
 				<Card id={this.id} style={this.props.style} >
 					<Card.Body style={{ overflowY: 'auto' }}>
 						<Container>
@@ -135,7 +136,7 @@ class NumberSurvey extends Component {
 											block fill
 											onClick={this.submitQuestion}
 											disabled={disabled}
-										>{ disabled ? 'Submitted' : 'Submit'}</Button>
+										>{ disabled ? t('submitted') : t('submit') }</Button>
 									</Card>
 								</Col>
 								<Col md={6}>
@@ -191,4 +192,4 @@ NumberSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default NumberSurvey;
+export default withTranslation( 'Survey' )( NumberSurvey );

@@ -94,18 +94,18 @@ class SlideWrapper extends React.PureComponent {
 			styles = { ...styles, opacity: transitioning ? 0 : 1 };
 		}
 		if ( transition.indexOf('zoom') !== -1 ) {
-			transformValue += ` scale(${transitioning ? 0.1 : 1.0})`;
+			transformValue += ` scale(${transitioning ? 0.1 : 1.0})`; // eslint-disable-line i18next/no-literal-string
 		}
 		if ( transition.indexOf('slide') !== -1 ) {
 			const offset = this.transitionDirection() ? 100 : -100;
-			transformValue += ` translate3d(${transitioning ? offset : 0}%, 0, 0)`;
+			transformValue += ` translate3d(${transitioning ? offset : 0}%, 0, 0)`; // eslint-disable-line i18next/no-literal-string
 		} else {
 			transformValue += ' translate3d(0px, 0px, 0px)';
 		}
 
 		if (transition.indexOf('spin') !== -1) {
 			const angle = this.transitionDirection() ? 90 : -90;
-			transformValue += ` rotateY(${transitioning ? angle : 0}deg)`;
+			transformValue += ` rotateY(${transitioning ? angle : 0}deg)`; // eslint-disable-line i18next/no-literal-string
 		}
 		const functionStyles = transition.reduce((memo, current) => {
 			if ( isFunction( current ) ) {
@@ -132,7 +132,7 @@ class SlideWrapper extends React.PureComponent {
 	render() {
 		const { children, transitionDuration } = this.props;
 		if ( !this.props.viewerScaleMode ) {
-			document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
+			document.documentElement.style.fontSize = `${16 * this.state.zoom}px`; // eslint-disable-line i18next/no-literal-string
 		}
 		return (
 			<Transition

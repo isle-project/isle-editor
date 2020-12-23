@@ -209,15 +209,15 @@ class News extends Component {
 				enforceFocus={false}
 			>
 				<Modal.Header>
-					<span className="article-header">NEWS</span>
+					<span className="article-header">{test('news')}</span>
 					{ !this.props.invisible ? <VoiceInput
-						placeholder="Pick a newspaper"
+						placeholder={t('pick-newspaper')}
 						style={{ float: 'left', width: '45%', marginTop: 10 }}
 						language={this.props.language}
 						onSubmit={this.find}
 						onFinalText={this.trigger}
 					/> : null }
-					{ this.state.articles ? <Button onClick={this.hide} className="articles-exit">Clear</Button> : null }
+					{ this.state.articles ? <Button onClick={this.hide} className="articles-exit">{test('clear')}</Button> : null }
 				</Modal.Header>
 				{this.renderArticles()}
 			</Modal>
