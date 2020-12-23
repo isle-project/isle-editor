@@ -100,8 +100,8 @@ class DefaultSlider extends Component {
 			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			prevArrow: <PrevArrow onClick={this.props.onClick} />,
-			nextArrow: <NextArrow onClick={this.props.onClick} />,
+			prevArrow: <PrevArrow onClick={this.props.onClick} t={this.props.t} />,
+			nextArrow: <NextArrow onClick={this.props.onClick} t={this.props.t} />,
 			...this.props,
 			beforeChange: ( oldIndex, newIndex ) => {
 				this.setState({ currentSlide: newIndex+1 });
