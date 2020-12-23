@@ -40,7 +40,7 @@
 	"residuals": "残留物",
 	"residuals-vs-fitted": "残余与贴合",
 	"sd": "自毁",
-	"simple-regression-title": "{{y}}对{{x}}的回归。(型号id：slm{{计数器}})",
+	"simple-regression-title": "{{y}}对{{x}}的回归。(型号id：slm{{counter}})",
 	"size": "尺寸",
 	"standard-deviation": "标准偏差",
 	"std-error": "标准误差",

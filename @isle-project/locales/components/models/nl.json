@@ -1,7 +1,7 @@
 {
 	"aic": "Akaike Informatie Criterium (AIC)",
-	"algorithm-converged": "Het algoritme kwam samen na {{n} iteraties",
-	"algorithm-not-converged": "Het algoritme kwam niet overeen na {{n} iteraties",
+	"algorithm-converged": "Het algoritme kwam samen na {{n}} iteraties",
+	"algorithm-not-converged": "Het algoritme kwam niet overeen na {{n}} iteraties",
 	"apriori-probs": "A-priori-kansen",
 	"close": "Sluit",
 	"cluster": "Cluster",

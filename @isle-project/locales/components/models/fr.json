@@ -26,7 +26,7 @@
 	"mean": "Moyenne",
 	"missing-attributes": "Le modèle n'a pas pu être estimé. Veuillez vérifier que tous les attributs requis sont fournis.",
 	"model-diagnostics": "Diagnostics modèles",
-	"multiple-regression-title": "Résumé de la régression pour la réponse {{y}} (modèle id : lm{{contre}})",
+	"multiple-regression-title": "Résumé de la régression pour la réponse {{y}} (modèle id : lm{{counter}})",
 	"no": "non",
 	"obs": "obs",
 	"p-value": "p-value",

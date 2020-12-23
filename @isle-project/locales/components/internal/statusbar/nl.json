@@ -12,7 +12,7 @@
 	"broadcast-message-tooltip": "Uitzendingsbericht naar alle groepen",
 	"by": "via",
 	"cancel": "Annuleer",
-	"chat-members": "Leden van {{name} chat:",
+	"chat-members": "Leden van {{name}} chat:",
 	"chat-with": "Chat met {{name}}",
 	"class-progress": "Huidige klasse vooruitgang: {{progress}}%",
 	"close-groups": "Groepen sluiten",
@@ -68,7 +68,7 @@
 	"minimize": "Minimaliseer",
 	"name": "Naam",
 	"no-feedback-yet": "Er is nog geen feedback gegeven.",
-	"nonassigned-students": "Er zijn momenteel {{n} gebruikers die niet aan een groep zijn toegewezen.",
+	"nonassigned-students": "Er zijn momenteel {{n}} gebruikers die niet aan een groep zijn toegewezen.",
 	"num-actions": "# van acties: {{n}}",
 	"num-cohort-actions": "# van acties ({{cohort}})",
 	"num-students-answered": "# van de studenten die antwoordde ({{cohort}})",
@@ -123,5 +123,5 @@
 	"value": "Waarde",
 	"video-active": "Video actief",
 	"video-chat": "Videopraatje",
-	"video-chat-with": "Videochat met {{naam}"
+	"video-chat-with": "Videochat met {{name}}"
 }

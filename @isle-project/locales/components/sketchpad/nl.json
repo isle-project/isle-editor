@@ -54,7 +54,7 @@
 	"show-only-own-annotations": "Toon alleen eigen aantekeningen",
 	"text-mode": "Tekstmodus",
 	"undo": "Maak  ongedaan",
-	"upload-email": "Beste {{naam}}, je notities zijn succesvol geüpload en zijn nu beschikbaar op",
+	"upload-email": "Beste {{name}}, je notities zijn succesvol geüpload en zijn nu beschikbaar op",
 	"upload-successful": "Het bestand is met succes geüpload en kan worden geraadpleegd op het volgende adres",
 	"upload-to-server": "Upload naar de server"
 }

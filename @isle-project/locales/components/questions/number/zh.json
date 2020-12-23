@@ -3,7 +3,7 @@
 	"answer-submitted": "提交的答复：",
 	"answers": "答案",
 	"invalid-answer": "无效答案",
-	"invalid-range": "您的回答应该是一个介于{{min}}和{{max}之间的数字。}",
+	"invalid-range": "您的回答应该是一个介于{{min}}和{{max}}之间的数字。",
 	"one-of": "其一",
 	"or": "或",
 	"question-closed": "问题现已结束。",

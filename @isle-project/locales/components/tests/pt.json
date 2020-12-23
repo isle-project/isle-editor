@@ -11,7 +11,7 @@
 	"pop-prob-first-group": "Que <1 /> seja a probabilidade da população de <3>{{var1}}</3> ser <5>{{success}}</5> no primeiro grupo,",
 	"probability-second-group": "a probabilidade no segundo grupo, respectivamente. Nós testamos",
 	"probtest-success-prob": "Seja p a probabilidade da população de <1>{{variable}}</1> ser <3>{{success}}</3>",
-	"probtest2-being-success": "Seja <1 /> a probabilidade da população de <3>{{var1}}</3> ser <5>{{success}</5>, <7 /> e <9 /> a probabilidade de <11>{{var2}}</11> ser <13>{{success}}</13>, respectivamente. Nós testamos",
+	"probtest2-being-success": "Seja <1 /> a probabilidade da população de <3>{{var1}}</3> ser <5>{{success}}</5>, <7 /> e <9 /> a probabilidade de <11>{{var2}}</11> ser <13>{{success}}</13>, respectivamente. Nós testamos",
 	"proptest2-title": "Teste de hipótese para igualdade de proporção {{var1}} contra proporção {{var2}}",
 	"proptest2-title-grouped": "Teste de hipotese para igualdade de proporção de {{var1}} por {{group}}",
 	"sample-mean-in-group": "Amostra média em grupo",

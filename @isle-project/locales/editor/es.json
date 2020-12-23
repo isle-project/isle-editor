@@ -143,7 +143,7 @@
 	"installing": "Instalando",
 	"invalid-server": "La dirección del servidor debe comenzar con <1>http://</1> o <3>https://</3>.",
 	"isle-server": "La dirección del servidor de ISLE, por ejemplo, <1>https://isle.stat.cmu.edu</1>.",
-	"issue-with": "Problema con el componente {{componente}}",
+	"issue-with": "Problema con el componente {{component}}",
 	"Italian": "Italiano",
 	"item-1": "Artículo 1.",
 	"item-2": "Punto 2.",

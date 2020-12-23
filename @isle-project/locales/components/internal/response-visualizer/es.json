@@ -33,7 +33,7 @@
 	"no-matching-data": "No hay datos que coincidan con los parámetros seleccionados",
 	"num-actions": "# de la {{label}} visualizada: {{n}}",
 	"on": "sobre",
-	"open-tooltip": "Abrir {{label}} para el componente con ID {{id}",
+	"open-tooltip": "Abrir {{label}} para el componente con ID {{id}}",
 	"orange": "Naranja",
 	"rate": "Rate",
 	"red": "Rojo",

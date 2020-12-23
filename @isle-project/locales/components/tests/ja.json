@@ -11,7 +11,7 @@
 	"pop-prob-first-group": "<1 />を、<3>{{var1}}</3>が第1群で<5>{{success}}</5>になる母集団確率とします。",
 	"probability-second-group": "はそれぞれ第2群の確率である。我々は",
 	"probtest-success-prob": "<1>{{variable}}</1>が<3>{{success}}</3>になる母集団の確率をpとします。",
-	"probtest2-being-success": "<1 />を<3>{{var1}}</3>が<5>{{success}}</5>となる母集団の確率、<7 />を<7 />、<9 />を<11>{var2}}</11>が<13>{{success}}</13>となる確率とする。我々は次のように検定する。",
+	"probtest2-being-success": "<1 />を<3>{{var1}}</3>が<5>{{success}}</5>となる母集団の確率、<7 />を<7 />、<9 />を<11>{{var2}}</11>が<13>{{success}}</13>となる確率とする。我々は次のように検定する。",
 	"proptest2-title": "割合{{var1}}と割合{{var2}}の等しさの仮説検定",
 	"proptest2-title-grouped": "グループ}による{{var1}}の割合が等しいことの仮説検定",
 	"sample-mean-in-group": "グループ内のサンプル平均",

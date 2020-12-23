@@ -40,7 +40,7 @@
 	"residuals": "Residuos",
 	"residuals-vs-fitted": "Residuales vs. Ajustados",
 	"sd": "SD",
-	"simple-regression-title": "Regresión de {{y}} en {{x}} (identificación del modelo: slm{{contratista}})",
+	"simple-regression-title": "Regresión de {{y}} en {{x}} (identificación del modelo: slm{{counter}})",
 	"size": "Tamaño",
 	"standard-deviation": "Desviación estándar",
 	"std-error": "Error estándar",

@@ -1,7 +1,7 @@
 {
 	"and": "oraz",
 	"anova": "ANOVA dla {{variable}} pomiędzy {{group}}",
-	"correlation-test": "Test korelacji między {{var1}} i {var2}}",
+	"correlation-test": "Test korelacji między {{var1}} i {{var2}}",
 	"hypothesis-test-between": "Test hipotezy na {{x}} pomiędzy {{group}}",
 	"hypothesis-test-for": "Test hipotezy na {{variable}}",
 	"hypothesis-test-for-independence": "Test na niezależność między {{var1}} i {{var2}}.",
@@ -12,7 +12,7 @@
 	"probability-second-group": "prawdopodobieństwo w drugiej grupie, odpowiednio. Testujemy",
 	"probtest-success-prob": "Niech p będzie prawdopodobieństwem populacyjnym <1>{{variable}}</1> będącym <3>{{success}}</3>",
 	"probtest2-being-success": "Niech <1 /> będzie prawdopodobieństwem populacji <3>{{var1}}</3> będącą <5>{{success}}</5>, <7 /> i <9 /> prawdopodobieństwo <11>{{var2}}</11> będącą <13>{{success}}</13>, odpowiednio. Testujemy",
-	"proptest2-title": "Test hipotezy na równość proporcji {{var1}} w stosunku do proporcji {var2}}",
+	"proptest2-title": "Test hipotezy na równość proporcji {{var1}} w stosunku do proporcji {{var2}}",
 	"proptest2-title-grouped": "Test hipotezy na równość proporcji {{var1}} przez {{group}}",
 	"sample-mean-in-group": "Średnia próbka w grupie",
 	"sample-proportion": "Proporcja próbek:",

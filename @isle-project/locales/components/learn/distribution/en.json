@@ -16,7 +16,7 @@
 	"geometric-probabilities": "Geometric probabilities",
 	"hypergeometric-distribution": "Hypergeometric Distribution",
 	"hypergeometric-probabilities": "Hypergeometric probabilities",
-	"lower-bound-smaller-equal-upper-bound": "{t('lower-bound-smaller-equal-upper-bound')}",
+	"lower-bound-smaller-equal-upper-bound": "The lower limit must be less than or equal to the upper limit.",
 	"maximum": "Maximum",
 	"mean": "Mean",
 	"minimum": "Minimum",
