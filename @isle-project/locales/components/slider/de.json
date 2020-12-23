@@ -1,4 +1,6 @@
 {
 	"close": "Schließen",
-	"missing-children": "Der Schieberegler benötigt mindestens zwei untergeordnete Elemente, damit er gerendert werden kann."
+	"missing-children": "Der Schieberegler benötigt mindestens zwei untergeordnete Elemente, damit er gerendert werden kann.",
+	"next": "Weiter",
+	"previous": "Vorherige"
 }

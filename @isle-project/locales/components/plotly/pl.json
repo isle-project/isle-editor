@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Zmiana orientacji legendy",
 	"close": "Close",
+	"count": "Hrabia",
 	"drag-plot": "Wleczoną działkę",
+	"given": "podany",
+	"linear-fit": "Dopasowanie liniowe",
+	"proportion": "Proporcja",
 	"share": "Podziel się",
+	"smoothed-fit": "Smoothed Fit",
 	"toggle-fullscreen": "Przełączanie trybu pełnoekranowego",
-	"toggle-legend": "Legenda przełączania"
+	"toggle-legend": "Legenda przełączania",
+	"vs": "vs."
 }

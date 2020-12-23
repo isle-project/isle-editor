@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Mudar a orientação da legenda",
 	"close": "Fechar",
+	"count": "Conde",
 	"drag-plot": "Lote de Arrastar",
+	"given": "dado",
+	"linear-fit": "Ajuste Linear",
+	"proportion": "Proporção",
 	"share": "Compartilhe",
+	"smoothed-fit": "Ajuste suavizado",
 	"toggle-fullscreen": "Alternar tela cheia",
-	"toggle-legend": "Lenda da alternância"
+	"toggle-legend": "Lenda da alternância",
+	"vs": "vs."
 }

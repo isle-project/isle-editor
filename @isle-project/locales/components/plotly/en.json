@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Change Legend Orientation",
 	"close": "Close",
+	"count": "Count",
 	"drag-plot": "Drag Plot",
+	"given": "given",
+	"linear-fit": "Linear Fit",
+	"proportion": "Proportion",
 	"share": "Share",
+	"smoothed-fit": "Smoothed Fit",
 	"toggle-fullscreen": "Toggle fullscreen",
-	"toggle-legend": "Toggle legend"
+	"toggle-legend": "Toggle legend",
+	"vs": "vs."
 }

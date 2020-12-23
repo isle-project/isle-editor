@@ -1,4 +1,6 @@
 {
 	"close": "Sluit",
-	"missing-children": "De schuifregelaar heeft ten minste twee kinderelementen nodig om hem te kunnen weergeven."
+	"missing-children": "De schuifregelaar heeft ten minste twee kinderelementen nodig om hem te kunnen weergeven.",
+	"next": "Volgende",
+	"previous": "Vorige"
 }

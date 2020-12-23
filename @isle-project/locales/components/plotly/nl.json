@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Verander Legenda Oriëntatie",
 	"close": "Sluit",
+	"count": "Tel",
 	"drag-plot": "Sleep Plot",
+	"given": "gezien",
+	"linear-fit": "Lineaire pasvorm",
+	"proportion": "Aandeel",
 	"share": "Deel",
+	"smoothed-fit": "Gladde pasvorm",
 	"toggle-fullscreen": "Schakelaar volledig scherm",
-	"toggle-legend": "Schakellegende"
+	"toggle-legend": "Schakellegende",
+	"vs": "vs."
 }

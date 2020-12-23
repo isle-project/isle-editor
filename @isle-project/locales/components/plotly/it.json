@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Cambiare l'orientamento della leggenda",
 	"close": "Chiudere",
+	"count": "Contate",
 	"drag-plot": "Trascinare la trama",
+	"given": "dato",
+	"linear-fit": "In forma lineare",
+	"proportion": "Proporzione",
 	"share": "Condividi",
+	"smoothed-fit": "Vestibilità levigata",
 	"toggle-fullscreen": "Attivare e disattivare lo schermo intero",
-	"toggle-legend": "Attivare la leggenda"
+	"toggle-legend": "Attivare la leggenda",
+	"vs": "contro"
 }

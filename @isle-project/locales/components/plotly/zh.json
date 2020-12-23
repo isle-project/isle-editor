@@ -1,8 +1,14 @@
 {
 	"change-orientation": "改变图例方向",
 	"close": "关闭",
+	"count": "计数",
 	"drag-plot": "拖拽情节",
+	"given": "鉴于",
+	"linear-fit": "线性拟合",
+	"proportion": "比例",
 	"share": "分享",
+	"smoothed-fit": "平滑贴身",
 	"toggle-fullscreen": "切换全屏",
-	"toggle-legend": "切换传说"
+	"toggle-legend": "切换传说",
+	"vs": "与"
 }

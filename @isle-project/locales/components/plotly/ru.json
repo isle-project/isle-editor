@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Изменить Легенду Ориентация",
 	"close": "Закрыть",
+	"count": "Посчитать",
 	"drag-plot": "Drag Plot",
+	"given": "с учётом",
+	"linear-fit": "Линейный монтаж",
+	"proportion": "Доля",
 	"share": "Поделиться",
+	"smoothed-fit": "Smoothed Fit",
 	"toggle-fullscreen": "полноэкранный режим",
-	"toggle-legend": "легенда Тоггле"
+	"toggle-legend": "легенда Тоггле",
+	"vs": "против"
 }

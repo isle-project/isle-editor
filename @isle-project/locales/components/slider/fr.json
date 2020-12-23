@@ -1,4 +1,6 @@
 {
 	"close": "Fermer",
-	"missing-children": "Le curseur nécessite au moins deux éléments enfants pour être rendu."
+	"missing-children": "Le curseur nécessite au moins deux éléments enfants pour être rendu.",
+	"next": "Suivant",
+	"previous": "Précédent"
 }

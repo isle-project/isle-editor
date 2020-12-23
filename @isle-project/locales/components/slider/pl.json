@@ -1,4 +1,6 @@
 {
 	"close": "Close",
-	"missing-children": "Suwak wymaga do jego wykonania co najmniej dwóch elementów dziecięcych."
+	"missing-children": "Suwak wymaga do jego wykonania co najmniej dwóch elementów dziecięcych.",
+	"next": "Następnie",
+	"previous": "Poprzedni"
 }

@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Ausrichtung der Legende ändern",
 	"close": "Schließen",
+	"count": "Zählen Sie",
 	"drag-plot": "Plot ziehen",
+	"given": "gegeben",
+	"linear-fit": "Lineare Anpassung",
+	"proportion": "Anteil",
 	"share": "Teilen",
+	"smoothed-fit": "Geglättete Passung",
 	"toggle-fullscreen": "Vollbildansicht umschalten",
-	"toggle-legend": "Legende ein-/ausschalten"
+	"toggle-legend": "Legende ein-/ausschalten",
+	"vs": "vs."
 }

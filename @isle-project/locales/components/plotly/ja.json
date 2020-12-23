@@ -1,8 +1,14 @@
 {
 	"change-orientation": "凡例の方向を変更",
 	"close": "クローズ",
+	"count": "伯爵",
 	"drag-plot": "ドラッグプロット",
+	"given": "授けられた",
+	"linear-fit": "線形フィット",
+	"proportion": "比例",
 	"share": "シェア",
+	"smoothed-fit": "スムーズフィット",
 	"toggle-fullscreen": "フルスクリーンを切り替える",
-	"toggle-legend": "凡例のトグル"
+	"toggle-legend": "凡例のトグル",
+	"vs": "対"
 }

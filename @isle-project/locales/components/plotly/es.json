@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Orientación de la leyenda del cambio",
 	"close": "Cerca",
+	"count": "Cuenta",
 	"drag-plot": "Drag Plot",
+	"given": "dado",
+	"linear-fit": "Ajuste lineal",
+	"proportion": "Proporción",
 	"share": "Compartir",
+	"smoothed-fit": "Suave ajuste",
 	"toggle-fullscreen": "Alternar pantalla completa",
-	"toggle-legend": "Leyenda de la conmutación"
+	"toggle-legend": "Leyenda de la conmutación",
+	"vs": "contra"
 }

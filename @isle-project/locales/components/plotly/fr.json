@@ -1,8 +1,14 @@
 {
 	"change-orientation": "Changer l'orientation de la légende",
 	"close": "Fermer",
+	"count": "Compter",
 	"drag-plot": "Tracé",
+	"given": "donné",
+	"linear-fit": "Ajustement linéaire",
+	"proportion": "Proportion",
 	"share": "Partager",
+	"smoothed-fit": "L'ajustement en douceur",
 	"toggle-fullscreen": "Basculer en plein écran",
-	"toggle-legend": "Légende de la bascule"
+	"toggle-legend": "Légende de la bascule",
+	"vs": "contre"
 }

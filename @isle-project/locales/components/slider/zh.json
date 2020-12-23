@@ -1,4 +1,6 @@
 {
 	"close": "关闭",
-	"missing-children": "滑块至少需要两个子元素才能呈现。"
+	"missing-children": "滑块至少需要两个子元素才能呈现。",
+	"next": "下一个",
+	"previous": "上一篇"
 }
