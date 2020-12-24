@@ -211,7 +211,7 @@ class News extends Component {
 				<Modal.Header>
 					<span className="article-header">{test('news')}</span>
 					{ !this.props.invisible ? <VoiceInput
-						placeholder={t('pick-newspaper')}
+						placeholder={this.props.t('pick-newspaper')}
 						style={{ float: 'left', width: '45%', marginTop: 10 }}
 						language={this.props.language}
 						onSubmit={this.find}

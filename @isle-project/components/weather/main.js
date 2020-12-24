@@ -27,6 +27,7 @@ const VOICE_COMMANDS = [
 		description: 'Close weather modal window'
 	}
 ];
+const DEGREES = '°';
 
 
 // MAIN //
@@ -141,7 +142,7 @@ class Weather extends Component {
 			type = 'F';
 		}
 		return (
-			<div className="weather-temperature">{label}°
+			<div className="weather-temperature">{label}{DEGREES}
 				<span
 					role="button"
 					onClick={this.changeTemperatureType}
@@ -156,9 +157,9 @@ class Weather extends Component {
 	renderWind( current ) {
 		let content;
 		if ( this.state.temperature === 'celsius' ) {
-			content = `wind: ${current.wind_kph} kmh / ${current.wind_dir}`;
+			content = `wind: ${current.wind_kph} kmh / ${current.wind_dir}`; // eslint-disable-line i18next/no-literal-string
 		} else {
-			content = `wind: ${current.wind_mph} mph / ${current.wind_dir}`;
+			content = `wind: ${current.wind_mph} mph / ${current.wind_dir}`; // eslint-disable-line i18next/no-literal-string
 		}
 		return <div className="weather-wind">{content}</div>;
 	}
@@ -178,7 +179,7 @@ class Weather extends Component {
 		return (
 			<div className="weather-details">
 				<div className="weather-humidity">
-					humidity: {current.humidity}%
+					{this.props.t('humidity')}{current.humidity}%
 				</div>
 				{this.renderWind( current )}
 				{this.renderPrecipitation( current )}
