@@ -23,7 +23,6 @@ import uploadGist from 'utils/gist/upload';
 import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
-import i18next from 'i18next';
 
 
 // VARIABLES //
