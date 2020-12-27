@@ -1219,14 +1219,7 @@ class Session {
 					}
 				}
 			})
-			.catch( error => {
-				this.addNotification({
-					title: i18n.t( 'session:error-encountered' ),
-					message: error.message,
-					level: 'error',
-					position: 'tl'
-				});
-			});
+			.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	/**
@@ -1254,14 +1247,7 @@ class Session {
 					}
 				}
 			})
-			.catch( error => {
-				this.addNotification({
-					title: i18n.t( 'session:error-encountered' ),
-					message: error.message,
-					level: 'error',
-					position: 'tl'
-				});
-			});
+			.catch( error => debug( 'Encountered an error: '+error.message ) );
 	}
 
 	updateMetadata = ( type, key, value ) => {
