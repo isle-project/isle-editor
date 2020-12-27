@@ -1,5 +1,7 @@
 {
-	"add-note": "Adicionar Nota",
+	"add-instructor-note": "Adicionar nota para instrutores",
+	"add-personal-note": "Adicionar nota pessoal",
+	"add-student-note": "Adicionar nota para estudantes",
 	"clipboard-empty": "A prancheta está vazia",
 	"clipboard-empty-message": "Falha na inserção de texto. A prancheta está atualmente vazia.",
 	"copy": "Cópia",

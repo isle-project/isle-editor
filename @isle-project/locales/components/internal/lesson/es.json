@@ -1,5 +1,7 @@
 {
-	"add-note": "Añade una nota",
+	"add-instructor-note": "Añadir nota para los instructores",
+	"add-personal-note": "Añadir nota personal",
+	"add-student-note": "Añadir nota para los estudiantes",
 	"clipboard-empty": "El portapapeles está vacío",
 	"clipboard-empty-message": "No se insertó el texto. El portapapeles está actualmente vacío.",
 	"copy": "Kopieren",

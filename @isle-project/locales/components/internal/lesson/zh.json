@@ -1,5 +1,7 @@
 {
-	"add-note": "补充说明",
+	"add-instructor-note": "添加讲师须知",
+	"add-personal-note": "添加个人说明",
+	"add-student-note": "给学生加注",
 	"clipboard-empty": "剪贴板是空的",
 	"clipboard-empty-message": "插入文本失败。目前剪贴板为空。",
 	"copy": "复制",

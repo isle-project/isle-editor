@@ -1,5 +1,7 @@
 {
-	"add-note": "Opmerking toevoegen",
+	"add-instructor-note": "Opmerking voor instructeurs toevoegen",
+	"add-personal-note": "Persoonlijke opmerking toevoegen",
+	"add-student-note": "Notitie toevoegen voor studenten",
 	"clipboard-empty": "Klembord is leeg",
 	"clipboard-empty-message": "Er is geen tekst ingevoegd. Het klembord is momenteel leeg.",
 	"copy": "Kopieer",

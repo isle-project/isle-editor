@@ -1,5 +1,7 @@
 {
-	"add-note": "Aggiungi nota",
+	"add-instructor-note": "Aggiungi nota per gli istruttori",
+	"add-personal-note": "Aggiungi nota personale",
+	"add-student-note": "Aggiungi una nota per gli studenti",
 	"clipboard-empty": "La bacheca è vuota",
 	"clipboard-empty-message": "Impossibile inserire il testo. La clipboard è attualmente vuota.",
 	"copy": "Copia",

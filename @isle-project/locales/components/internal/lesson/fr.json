@@ -1,5 +1,7 @@
 {
-	"add-note": "Ajouter une note",
+	"add-instructor-note": "Ajouter une note pour les instructeurs",
+	"add-personal-note": "Ajouter une note personnelle",
+	"add-student-note": "Ajouter une note pour les étudiants",
 	"clipboard-empty": "Le presse-papiers est vide",
 	"clipboard-empty-message": "Le texte n'a pas été inséré. Le presse-papiers est actuellement vide.",
 	"copy": "Copie",

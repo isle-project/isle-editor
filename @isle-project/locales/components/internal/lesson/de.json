@@ -1,5 +1,7 @@
 {
-	"add-note": "Notiz hinzufügen",
+	"add-instructor-note": "Hinweis für Ausbilder hinzufügen",
+	"add-personal-note": "Persönliche Notiz hinzufügen",
+	"add-student-note": "Hinweis für Studenten hinzufügen",
 	"clipboard-empty": "Zwischenablage ist leer",
 	"clipboard-empty-message": "Das Einfügen von Text ist fehlgeschlagen. Die Zwischenablage ist derzeit leer.",
 	"copy": "Kopieren",

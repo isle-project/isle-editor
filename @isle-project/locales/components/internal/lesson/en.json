@@ -1,5 +1,7 @@
 {
-	"add-note": "Add Note",
+	"add-instructor-note": "Add Note for Instructors",
+	"add-personal-note": "Add Personal Note",
+	"add-student-note": "Add Note for Students",
 	"clipboard-empty": "Clipboard is empty",
 	"clipboard-empty-message": "Failed to insert text. The clipboard is currently empty.",
 	"copy": "Copy",

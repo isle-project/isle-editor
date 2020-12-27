@@ -1,5 +1,7 @@
 {
-	"add-note": "Dodaj notatkę",
+	"add-instructor-note": "Dodaj notatkę dla instruktorów",
+	"add-personal-note": "Dodaj notatkę osobistą",
+	"add-student-note": "Dodaj notatkę dla studentów",
 	"clipboard-empty": "Schowek jest pusty",
 	"clipboard-empty-message": "Nie udało się wstawić tekstu. Schowek jest obecnie pusty.",
 	"copy": "Kopia",
