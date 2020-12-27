@@ -202,11 +202,33 @@ class LessonContextMenu extends Component {
 		} else if ( !el.isContentEditable ) {
 			menuItems.push(
 				<MenuItem key={6} onClick={( event ) => {
-					this.props.addNote({ left: event.pageX, top: event.pageY });
+					const xPercent = event.pageX / window.innerWidth;
+					const yPercent = event.pageY / window.innerHeight;
+					this.props.addNote({ left: xPercent, top: yPercent, visibility: 'private' });
 				}}>
-					{this.props.t( 'add-note' )}
+					{this.props.t( 'add-personal-note' )}
 				</MenuItem>
 			);
+			if ( this.props.session.isOwner() ) {
+				menuItems.push(
+					<MenuItem key={7} onClick={( event ) => {
+						const xPercent = event.pageX / window.innerWidth;
+						const yPercent = event.pageY / window.innerHeight;
+						this.props.addNote({ left: xPercent, top: yPercent, visibility: 'instructor' });
+					}}>
+						{this.props.t( 'add-instructor-note' )}
+					</MenuItem>
+				);
+				menuItems.push(
+					<MenuItem key={8} onClick={( event ) => {
+						const xPercent = event.pageX / window.innerWidth;
+						const yPercent = event.pageY / window.innerHeight;
+						this.props.addNote({ left: xPercent, top: yPercent, visibility: 'public' });
+					}}>
+						{this.props.t( 'add-student-note' )}
+					</MenuItem>
+				);
+				}
 		}
 		return ( <ContextMenu
 			id="lessonWindow"

@@ -82,6 +82,7 @@ class StickyNote extends Component {
 				value: true
 			});
 		}
+		this.props.onDelete();
 	}
 
 	minimize = ( event ) => {
@@ -179,6 +180,7 @@ class StickyNote extends Component {
 					value: title
 				});
 			}
+			this.props.onTitleChange( title );
 			this.setState({
 				title,
 				editTitle: false
@@ -195,6 +197,7 @@ class StickyNote extends Component {
 				value: this.state.title
 			});
 		}
+		this.props.onTitleChange( this.state.title );
 		this.setState({
 			editTitle: false
 		});
@@ -226,6 +229,7 @@ class StickyNote extends Component {
 				}
 			});
 		}
+		this.props.onMove({ left: data.lastX / window.innerWidth, top: data.lastY / window.innerHeight });
 	}
 
 	showEditableTitle = () => {
@@ -267,6 +271,7 @@ class StickyNote extends Component {
 				value: body
 			});
 		}
+		this.props.onBodyChange( body );
 		this.setState({
 			body,
 			editBody: false
@@ -344,6 +349,9 @@ class StickyNote extends Component {
 				cancel=".noDrag"
 				onStop={this.handleDragStop}
 				onDrag={this.handleDrag}
+				style={{
+					position: 'absolute'
+				}}
 				{...props}
 			>{out}</Draggable> );
 		}
@@ -374,7 +382,11 @@ StickyNote.propTypes = {
 	minimizable: PropTypes.bool,
 	minimized: PropTypes.bool,
 	stain: PropTypes.bool,
+	onBodyChange: PropTypes.func,
 	onClick: PropTypes.func,
+	onDelete: PropTypes.func,
+	onMove: PropTypes.func,
+	onTitleChange: PropTypes.func,
 	removable: PropTypes.bool
 };
 
@@ -389,7 +401,11 @@ StickyNote.defaultProps = {
 	minimized: false,
 	style: {},
 	stain: false,
+	onBodyChange() {},
 	onClick: null,
+	onDelete() {},
+	onMove() {},
+	onTitleChange() {},
 	removable: false
 };
 

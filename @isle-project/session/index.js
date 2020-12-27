@@ -52,7 +52,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_QUEUE_QUESTIONS, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, STICKY_NOTES_UPDATED, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
 	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import POINTS from '@isle-project/constants/points.js';
 import ANIMALS from '@isle-project/constants/animals.js';
@@ -252,6 +252,9 @@ class Session {
 
 		// Instructor-student communication regarding grades:
 		this.lessonGradeMessages = {};
+
+		// Instructor, student, and public sticky notes for the lesson:
+		this.stickyNotes = [];
 
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
@@ -722,6 +725,8 @@ class Session {
 				if ( !JITSI ) {
 					this.getJitsiToken();
 				}
+
+				this.getStickyNotes();
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
@@ -1134,6 +1139,129 @@ class Session {
 			sketchpadID: id
 		});
 		return axios.get( url ).then( res => res.data );
+	}
+
+	/**
+	* Saves sticky note.
+	*
+	* @param {Object} note - sticky note data
+	* @returns {Promise} server response
+	*/
+	saveStickyNote({ title, body, left, top, visibility }) {
+		return axios.post( this.server+'/save_sticky_note', {
+			namespaceID: this.namespaceID,
+			lessonID: this.lessonID,
+			title,
+			body,
+			left,
+			top,
+			visibility
+		})
+		.then( res => {
+			if ( res.data.message === 'ok' ) {
+				this.stickyNotes.push( res.data.note );
+				this.update( STICKY_NOTES_UPDATED );
+			}
+		})
+		.catch( error => {
+			this.addNotification({
+				title: i18n.t( 'session:error-encountered' ),
+				message: error.message,
+				level: 'error',
+				position: 'tl'
+			});
+		});
+	}
+
+	/**
+	* Retrieves sticky notes for the lesson.
+	*/
+	getStickyNotes = () => {
+		axios.get( this.server+'/get_sticky_notes?'+qs.stringify({
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		}) )
+			.then( res => {
+				if ( res.data.message === 'ok' && res.data.notes.length > 0 ) {
+					this.stickyNotes = res.data.notes;
+					this.update( STICKY_NOTES_UPDATED );
+				}
+			})
+			.catch( error => {
+				this.addNotification({
+					title: i18n.t( 'session:error-encountered' ),
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
+	}
+
+	/**
+	* Updates a sticky note.
+	*
+	* @param {Object} note - sticky note
+	* @returns {Promise} server response
+	*/
+	updateStickyNote = ( note ) => {
+		return axios.post( this.server+'/update_sticky_note', {
+			...note,
+			namespaceID: this.namespaceID
+		})
+			.then( res => {
+				if ( res.data.message === 'ok' ) {
+					const newNote = res.data.note;
+					for ( let i = 0; i < this.stickyNotes.length; i++ ) {
+						if ( this.stickyNotes[ i ]._id === newNote._id ) {
+							this.stickyNotes[ i ] = newNote;
+						}
+						this.update( STICKY_NOTES_UPDATED );
+					}
+				}
+			})
+			.catch( error => {
+				this.addNotification({
+					title: i18n.t( 'session:error-encountered' ),
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
+	}
+
+	/**
+	* Deletes a sticky note.
+	*
+	* @param {string} id - sticky note identifier
+	* @returns {Promise} server response
+	*/
+	deleteStickyNote = ( id ) => {
+		return axios.post( this.server+'/delete_sticky_note', {
+			noteID: id,
+			namespaceID: this.namespaceID
+		})
+			.then( res => {
+				if ( res.data.message === 'ok' ) {
+					let foundPos = null;
+					for ( let i = 0; i < this.stickyNotes.length; i++ ) {
+						if ( this.stickyNotes[ i ]._id === id ) {
+							foundPos = i;
+						}
+					}
+					if ( foundPos ) {
+						this.stickyNotes.splice( foundPos, 1 );
+						this.update( STICKY_NOTES_UPDATED );
+					}
+				}
+			})
+			.catch( error => {
+				this.addNotification({
+					title: i18n.t( 'session:error-encountered' ),
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
 	}
 
 	updateMetadata = ( type, key, value ) => {

@@ -348,5 +348,6 @@
 	"windows-linux": "Windows / Linux",
 	"wizard-table-instructions": "Click on the box to toggle the respective options on and off and set their values:",
 	"z-index": "z-index",
-	"zooming": "Zooming"
+	"zooming": "Zooming",
+	"form-control-server": "Please enter server address..."
 }
