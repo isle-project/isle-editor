@@ -339,7 +339,7 @@ class SummaryStatisticsMenu extends Component {
 	}
 
 	generateStatistics = () => {
-		const { data } = this.props;
+		const { data, t } = this.props;
 		let { selectedStats, variables, secondVariable, group, omit } = this.state;
 		group = group ? group.map( x => x.value ) : null;
 		const funs = [];
