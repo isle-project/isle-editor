@@ -39,6 +39,7 @@ const md = markdownit({
 	breaks: false,
 	typographer: false
 });
+const ESC = '(Esc)';
 
 
 // MAIN //
@@ -316,7 +317,7 @@ class Chat extends Component {
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />
-						{ chat.canLeave ? <Tooltip tooltip={`${this.props.t( 'close' )} (Esc)`} placement="bottom" >
+						{ chat.canLeave ? <Tooltip tooltip={`${this.props.t( 'close' )} ${ESC}`} placement="bottom" >
 							<button
 								className="chat-header-button" onClick={this.closeChat}
 								aria-label={`${this.props.t( 'close' )} (Esc)`}

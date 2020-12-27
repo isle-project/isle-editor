@@ -48,16 +48,16 @@ const PropTest2Menu = ( props ) => {
 	const calculateTwoSamplePropTest = () => {
 		if ( var1 === group || var1 === var2 ) {
 			return props.session.addNotification({
-				title: 'Action required',
-				message: 'Please make sure that the group variable or second variable is not equal to your variable of interest.',
+				title: t('action-required'),
+				message: t('group-variable-must-be-different'),
 				level: 'warning',
 				position: 'tr'
 			});
 		}
 		if ( !group && !var2 ) {
 			props.session.addNotification({
-				title: 'Action required',
-				message: `Please select either a grouping variable or a second variable to compare ${var1} against.`,
+				title: t('action-required'),
+				message: t('select-grouping-or-second-variable', { var: var1 }),
 				level: 'warning',
 				position: 'tr'
 			});

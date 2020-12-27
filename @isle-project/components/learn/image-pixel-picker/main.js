@@ -76,6 +76,7 @@ class ImagePixelPicker extends Component {
 			break;
 		}
 
+		// eslint-disable-next-line i18next/no-literal-string
 		image.src = `data:image/jpeg;base64,${buf.toString( 'base64' )}`;
 		const zoomctx = document.getElementById( 'zoom' ).getContext( '2d' );
 		zoomctx.imageSmoothingEnabled = false;

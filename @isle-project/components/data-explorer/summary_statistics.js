@@ -353,7 +353,7 @@ class SummaryStatisticsMenu extends Component {
 						papplyRight( stat.value, quantile, 5 )
 					);
 					statLabels.push(
-						`${round( quantile*100 )}% Quantile`
+						`${round( quantile*100 )}% ${t('quantile')}`
 					);
 				}
 			} else {
@@ -483,7 +483,7 @@ class SummaryStatisticsMenu extends Component {
 						// Extract correlation coefficient from correlation matrix:
 						res[ key ].value = res[ key ].value.map( mat => mat[ 0 ][ 1 ] );
 					}
-					variable = `${variable} vs. ${secondVariable}`;
+					variable = `${variable} ${t('vs')} ${secondVariable}`;
 				} else {
 					res = byWithCount( x, groupData, funs, group );
 				}
@@ -527,7 +527,7 @@ class SummaryStatisticsMenu extends Component {
 						value,
 						size: x.length
 					};
-					variable = `${variable} vs. ${secondVariable}`;
+					variable = `${variable} ${t('vs')} ${secondVariable}`;
 				}
 				else {
 					res = {

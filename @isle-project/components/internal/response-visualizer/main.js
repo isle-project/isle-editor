@@ -338,6 +338,8 @@ class ResponseVisualizer extends Component {
 			nUsers = session.userList.length;
 		}
 		const focusUsers = usersWithFocus( session.userFocuses, this.emailHash, this.props.id );
+
+		// eslint-disable-next-line i18next/no-literal-string
 		let tooltip = `${this.props.t('interaction-rate-tooltip')}:\n\n`;
 		const table = <table className="table table-bordered table-condensed" >
 			<thead>

@@ -33,8 +33,8 @@ const MeanTest2Menu = ( props ) => {
 		const { data, showDecision } = props;
 		if ( !y && !group ) {
 			return props.session.addNotification({
-				title: 'Action required',
-				message: `Please select either a grouping variable or a second variable to compare ${x} against.`,
+				title: t('action-required'),
+				message: t('select-grouping-or-second-variable', { var: x }),
 				level: 'warning',
 				position: 'tr'
 			});

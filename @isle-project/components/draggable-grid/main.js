@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import isArray from '@stdlib/assert/is-array';
@@ -67,7 +68,9 @@ class DraggableGrid extends Component {
 
 	render() {
 		if ( !isArray( this.props.children ) ) {
-			return <Alert variant="danger" >The draggable grid requires at least two child elements for it to be rendered.</Alert>;
+			return ( <Alert variant="danger" >
+				{this.props.t('grid-requires-two-children')}
+			</Alert> );
 		}
 		return ( <ResponsiveReactGridLayout
 			layouts={this.state.layouts}
@@ -104,4 +107,4 @@ DraggableGrid.propTypes = {
 
 // EXPORTS //
 
-export default DraggableGrid;
+export default withTranslation( 'General' )( DraggableGrid );
