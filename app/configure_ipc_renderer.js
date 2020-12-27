@@ -4,6 +4,7 @@ import * as actions from 'actions';
 import logger from 'debug';
 import { ipcRenderer } from 'electron';
 import { basename, extname } from 'path';
+import { i18n } from '@isle-project/locales/editor';
 import vex from 'vex-js';
 import vexDialog from 'vex-dialog';
 import isArray from '@stdlib/assert/is-array';
@@ -22,6 +23,7 @@ import uploadGist from 'utils/gist/upload';
 import config from 'store/main.js';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-plain.css';
+import i18next from 'i18next';
 
 
 // VARIABLES //
@@ -120,8 +122,8 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'create-template-prompt', ( e, { includePreamble }) => {
 		vex.dialog.prompt({
-			message: `Create a lesson template from the current file ${includePreamble ? 'with the preamble' : 'without the preamble'}:`,
-			placeholder: 'Enter template name',
+			message: includePreamble ? i18n.t('create-template-prompt-with-preamble' ) : i18n.t('create-template-prompt-without-preamble' ),
+			placeholder: i18n.t('enter-template-name'),
 			callback( value ) {
 				if ( value ) {
 					const state = store.getState().editor;
@@ -131,18 +133,18 @@ function configureIpcRenderer( store ) {
 					}
 					if ( config.has( `templates.${value}` ) ) { // eslint-disable-line i18next/no-literal-string
 						vex.dialog.confirm({
-							message: 'A template with the chosen name already exists. Do you wish to proceed and overwrite the existing template?',
+							message: i18n.t('template-already-exists'),
 							callback( bool ) {
 								if ( bool ) {
 									config.set( `templates.${value}`, text ); // eslint-disable-line i18next/no-literal-string
-									vex.dialog.alert( 'Template successfully created!' );
+									vex.dialog.alert( i18n.t('template-successfully-created') );
 									ipcRenderer.send( 'redraw-templates-menu' );
 								}
 							}
 						});
 					} else {
 						config.set( `templates.${value}`, text ); // eslint-disable-line i18next/no-literal-string
-						vex.dialog.alert( 'Template successfully created!' );
+						vex.dialog.alert( i18n.t('template-successfully-created') );
 						ipcRenderer.send( 'redraw-templates-menu' );
 					}
 				}
@@ -152,8 +154,8 @@ function configureIpcRenderer( store ) {
 
 	ipcRenderer.on( 'import-templates-from-gist', ( e ) => {
 		vex.dialog.prompt({
-			message: 'Please enter Gist URL',
-			placeholder: 'GitHub Gist URL',
+			message: i18n.t('please-enter-gist-url'),
+			placeholder: i18n.t('git-hub-gist-url'),
 			callback: async ( value ) => {
 				if ( value ) {
 					const match = RE_GIST_URL.exec( value );
@@ -175,7 +177,7 @@ function configureIpcRenderer( store ) {
 						}
 						config.set( freeName, content );
 					}
-					vex.dialog.alert( 'Templates successfully loaded!' );
+					vex.dialog.alert( i18n.t('templates-successfully-loaded') );
 					ipcRenderer.send( 'redraw-templates-menu' );
 				}
 			}
@@ -192,17 +194,17 @@ function configureIpcRenderer( store ) {
 		}
 		const result = await uploadGist( files );
 		vex.dialog.alert({
-			unsafeMessage: `Templates successfully uploaded. <a href="${result.data.html_url}">Open Link</a>.`
+			unsafeMessage: `${i18n.t('templates-successfully-uploaded')}. <a href="${result.data.html_url}">${i18n.t('open-link')}</a>.`
 		});
 	});
 
 	ipcRenderer.on( 'open-template-dialog', ( e, { name } ) => {
 		vex.dialog.open({
-			message: 'Please confirm that you want to create a new file with the chosen template',
+			message: i18n.t('confirm-template-creation'),
 			buttons: [
 				{
 					type: 'text',
-					text: 'Confirm',
+					text: i18n.t('confirm'),
 					className: 'vex-dialog-button-primary',
 					click() {
 						ipcRenderer.send( 'create-from-user-template', name );
@@ -214,8 +216,8 @@ function configureIpcRenderer( store ) {
 					className: 'vex-dialog-button-secondary',
 					click() {
 						vex.dialog.prompt({
-							unsafeMessage: `<p>Please enter new name for template <b>${name}</b></p>`,
-							placeholder: 'New template name',
+							unsafeMessage: `<p>${i18n.t('enter-new-template-name')} <b>${name}</b></p>`,
+							placeholder: i18n.t('new-template-name'),
 							callback( value ) {
 								if ( value ) {
 									const oldName = 'templates.'+name;
@@ -223,7 +225,7 @@ function configureIpcRenderer( store ) {
 									config.delete( oldName );
 									const newName = 'templates.'+value;
 									config.set( newName, tmp );
-									vex.dialog.alert( 'Template successfully renamed.' );
+									vex.dialog.alert( i18n.t( 'template-successfully-renamed' ) );
 									ipcRenderer.send( 'redraw-templates-menu' );
 								}
 							}
@@ -232,23 +234,23 @@ function configureIpcRenderer( store ) {
 				},
 				{
 					type: 'text',
-					text: 'Cancel',
+					text: i18n.n('cancel'),
 					className: 'vex-dialog-button-secondary'
 				},
 				{
 					type: 'text',
-					text: 'Delete Template',
+					text: i18n.t('delete-template'),
 					className: 'vex-bottom-left-button vex-dialog-button-danger',
 					click() {
 						vex.dialog.confirm({
-							unsafeMessage: '<p>Are you sure you want to delete the <b>'+name+'</b> template?</p>',
+							unsafeMessage: '<p>'+i18n.t('please-confirm-template-deletion')+'<b>'+name+'</b>?</p>',
 							buttons: [
 								{ ...vex.dialog.buttons.YES, className: 'vex-dialog-button-danger' },
 								vex.dialog.buttons.NO
 							],
 							callback( value ) {
 								if ( value ) {
-									vex.dialog.alert( 'Template successfully deleted.' );
+									vex.dialog.alert( i18n.t('template-successfully-deleted') );
 									config.delete( 'templates.'+name );
 									ipcRenderer.send( 'redraw-templates-menu' );
 								}
@@ -323,11 +325,11 @@ function configureIpcRenderer( store ) {
 		const unsaved = state.editor.unsaved;
 		if ( unsaved ) {
 			vex.dialog.open({
-				message: 'Do you want to save the changes made to the current file?',
+				message: i18n.t('confirm-close-when-unsaved-prompt'),
 				buttons: [
 					{
 						type: 'text',
-						text: 'Save',
+						text: i18n.t('save'),
 						className: 'vex-dialog-button-primary',
 						click() {
 							const filePath = state.editor.filePath;
@@ -346,12 +348,12 @@ function configureIpcRenderer( store ) {
 					},
 					{
 						type: 'text',
-						text: 'Cancel',
+						text: i18n.t('cancel'),
 						className: 'vex-dialog-button-secondary'
 					},
 					{
 						type: 'text',
-						text: 'Don\'t save',
+						text: i18n.t('don-t-save'),
 						className: 'vex-dialog-button-secondary',
 						click() {
 							ipcRenderer.send( 'close-window', { windowID });
@@ -392,7 +394,7 @@ function configureIpcRenderer( store ) {
 					if ( !unsaved ) {
 						ipcRenderer.send( 'quit-and-install' );
 					} else {
-						vex.dialog.alert( 'You have unsaved changes. Please save your file and manually close the application whenever you are ready to trigger the update.' );
+						vex.dialog.alert( i18n.t('save-before-update') );
 					}
 				}
 			},
