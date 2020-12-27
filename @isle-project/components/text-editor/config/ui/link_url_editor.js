@@ -27,6 +27,7 @@
 // MODULES //
 
 import React from 'react';
+import { i18n } from '@isle-project/locales';
 import sanitizeURL from './../sanitize_url.js';
 import CustomButton from './custom_button.js';
 import preventEventDefault from './prevent_event_default.js';
@@ -89,19 +90,19 @@ class LinkURLEditor extends React.PureComponent {
 			<div className="image-url-editor">
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>Add a Link</legend>
+						<legend>{i18n.t('TextEditor:add-link')}</legend>
 						<input
 							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 							onChange={this._onURLChange}
 							onKeyDown={this._onKeyDown}
-							placeholder="Paste a URL"
+							placeholder={i18n.t('paste-url')}
 							spellCheck={false}
 							type="text"
 							value={url || ''}
 						/>
 					</fieldset>
 					<div className="editor-form-buttons">
-						<CustomButton label="Cancel" onClick={this._cancel} />
+						<CustomButton label={i18n.t('TextEditor:cancel')} onClick={this._cancel} />
 						<CustomButton
 							active={true}
 							disabled={disabled}

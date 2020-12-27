@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Regroupement hiérarchique",
 	"Histogram": "Histogramme",
 	"Histogram-description": "Un histogramme permet de visualiser la distribution d'une variable quantitative. Afin de créer un histogramme, la plage de valeurs observée est divisée en différents intervalles qui ne se chevauchent pas, appelés \"bacs\" ; la hauteur de chaque bac correspond au nombre d'observations dans cette plage de bacs.",
+	"history": "Histoire",
 	"impurity-measure": "Mesure des impuretés",
 	"include-intercept": "Inclure l'interception ?",
 	"insert-break-line": "Insérer une ligne de rupture",

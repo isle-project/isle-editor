@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "层次化聚类",
 	"Histogram": "直方图",
 	"Histogram-description": "直方图使人们能够直观地看到一个定量变量的分布情况。为了创建一个直方图，观察到的数值范围被划分为不同的、不重叠的区间，称为 \"仓\"；每个仓的高度对应于该仓范围内的观测值的数量。",
+	"history": "历程",
 	"impurity-measure": "杂质测量",
 	"include-intercept": "包括拦截?",
 	"insert-break-line": "插入分界线",

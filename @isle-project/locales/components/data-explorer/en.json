@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Hierarchical Clustering",
 	"Histogram": "Histogram",
 	"Histogram-description": "A histogram allows one to visualize the distribution of a quantitative variable. In order to create a histogram, the observed range of values is divided into different, non-overlapping intervals called \"bins\"; the height of each bin corresponds to how many observations are in that bin range.",
+	"history": "History",
 	"impurity-measure": "Impurity Measure",
 	"include-intercept": "Include intercept?",
 	"insert-break-line": "Insert break line",

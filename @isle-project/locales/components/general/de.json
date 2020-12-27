@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "Das verschiebbare Raster benötigt mindestens zwei untergeordnete Elemente, damit es gerendert werden kann."
+	"grid-requires-two-children": "Das verschiebbare Raster benötigt mindestens zwei untergeordnete Elemente, damit es gerendert werden kann.",
+	"search": "Suche",
+	"supply-component-id": "Bitte geben Sie eine ID für die zu überwachende Komponente an."
 }

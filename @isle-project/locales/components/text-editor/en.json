@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Add an annotation",
+	"add-link": "Add a Link",
 	"align-center": "Align center",
 	"align-left": "Align left",
 	"align-right": "Align right",
@@ -37,6 +38,7 @@
 	"font-color": "Font Color",
 	"george-box": "George Box said:",
 	"headers": "Headers",
+	"insert": "Insert",
 	"insert-code-block": "Insert code block",
 	"insert-column-after": "Insert column after",
 	"insert-column-before": "Insert column before",
@@ -74,6 +76,7 @@
 	"overview-0": "Type your text in the editor window. A vertical scrollbar will appear once your number of lines exceeds the height of the editor window.",
 	"overview-1": "The toolbar provides various buttons to help with formatting your document and saving it.",
 	"overview-2": "The statusbar at the bottom displays information on the number of characters and total amount of words in the current document.",
+	"paste-url": "Paste a URL",
 	"pdf-modal-title": "Export as PDF",
 	"pick-height": "Pick the height (Inches)",
 	"pick-predefined-value": "Pick a predefined value",

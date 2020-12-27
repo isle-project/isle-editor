@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Voeg een aantekening toe",
+	"add-link": "Een link toevoegen",
 	"align-center": "Uitlijnen centrum",
 	"align-left": "Links uitlijnen",
 	"align-right": "Goed uitlijnen",
@@ -37,6 +38,7 @@
 	"font-color": "Kleur van het lettertype",
 	"george-box": "George Box zei:",
 	"headers": "Kopteksten",
+	"insert": "Plaatsen",
 	"insert-code-block": "Codeblok invoegen",
 	"insert-column-after": "Kolom invoegen na",
 	"insert-column-before": "Kolom invoegen voor",
@@ -74,6 +76,7 @@
 	"overview-0": "Typ uw tekst in het venster van de editor. Een verticale schuifbalk verschijnt zodra uw aantal regels hoger is dan de hoogte van het redactievenster.",
 	"overview-1": "De werkbalk biedt verschillende knoppen om u te helpen bij het opmaken van uw document en het opslaan ervan.",
 	"overview-2": "De statusbalk onderaan geeft informatie weer over het aantal tekens en het totale aantal woorden in het huidige document.",
+	"paste-url": "Plakken van een URL",
 	"pdf-modal-title": "Exporteren als PDF",
 	"pick-height": "Kies de hoogte (Inches)",
 	"pick-predefined-value": "Kies een vooraf gedefinieerde waarde",

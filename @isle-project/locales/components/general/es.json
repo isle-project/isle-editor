@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "La rejilla arrastrable requiere al menos dos elementos hijos para que se renderice."
+	"grid-requires-two-children": "La rejilla arrastrable requiere al menos dos elementos hijos para que se renderice.",
+	"search": "Busca en",
+	"supply-component-id": "Por favor, proporcione una identificación para el componente que se va a vigilar."
 }

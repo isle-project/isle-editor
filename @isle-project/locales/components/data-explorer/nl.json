@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Hiërarchische clustering",
 	"Histogram": "Histogram",
 	"Histogram-description": "Met een histogram kan men de verdeling van een kwantitatieve variabele visualiseren. Om een histogram te maken, wordt het waargenomen bereik van waarden verdeeld in verschillende, niet-overlappende intervallen die \"bins\" worden genoemd; de hoogte van elke bin komt overeen met het aantal waarnemingen in dat binbereik.",
+	"history": "Geschiedenis",
 	"impurity-measure": "Onzuiverheidsmaatregel",
 	"include-intercept": "Onderscheppen?",
 	"insert-break-line": "Breeklijn invoegen",

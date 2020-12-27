@@ -976,7 +976,7 @@ class DataExplorer extends Component {
 			}
 			{ this.props.plots.length > 0 ?
 				<NavDropdown
-					title="Plots"
+					title={this.props.t('plots')}
 					className="nav-plots"
 				>
 					{ this.props.plots.map( ( e, i ) => {
@@ -1530,7 +1530,7 @@ class DataExplorer extends Component {
 										active={this.state.openedNav === 'history'}
 										eventKey="history"
 									>
-										History
+										{this.props.t('history')}
 									</Nav.Link>
 								</Nav.Item> : null
 							}

@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "A grade arrastável requer pelo menos dois elementos infantis para que ela seja entregue."
+	"grid-requires-two-children": "A grade arrastável requer pelo menos dois elementos infantis para que ela seja entregue.",
+	"search": "Busca",
+	"supply-component-id": "Favor fornecer uma identificação para o componente a ser vigiado."
 }

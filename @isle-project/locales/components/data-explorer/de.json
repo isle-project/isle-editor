@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Hierarchisches Clustering",
 	"Histogram": "Histogramm",
 	"Histogram-description": "Ein Histogramm ermöglicht es, die Verteilung einer quantitativen Variablen zu visualisieren. Um ein Histogramm zu erstellen, wird der beobachtete Wertebereich in verschiedene, sich nicht überlappende Intervalle unterteilt, die \"Bins\" genannt werden; die Höhe jedes Bin entspricht der Anzahl der Beobachtungen in diesem Bin-Bereich.",
+	"history": "Geschichte",
 	"impurity-measure": "Unreinheit-Maß",
 	"include-intercept": "Intercept-Term einbeziehen?",
 	"insert-break-line": "Bruchpunkt einfügen",

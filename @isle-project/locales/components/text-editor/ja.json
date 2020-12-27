@@ -1,5 +1,6 @@
 {
 	"add-annotation": "注釈の追加",
+	"add-link": "リンクの追加",
 	"align-center": "中央揃え",
 	"align-left": "左揃え",
 	"align-right": "右揃え",
@@ -37,6 +38,7 @@
 	"font-color": "フォントの色",
 	"george-box": "ジョージ・ボックスは言った。",
 	"headers": "ヘッダー",
+	"insert": "インサート",
 	"insert-code-block": "コードブロックの挿入",
 	"insert-column-after": "カラムの後に挿入",
 	"insert-column-before": "カラムの前に挿入",
@@ -74,6 +76,7 @@
 	"overview-0": "エディタウィンドウにテキストを入力します。行数がエディタウィンドウの高さを超えると、垂直スクロールバーが表示されます。",
 	"overview-1": "ツールバーには、文書の書式設定や保存に役立つ様々なボタンが用意されています。",
 	"overview-2": "下部のステータスバーには、現在の文書の文字数と総語数の情報が表示されます。",
+	"paste-url": "URLを貼り付ける",
 	"pdf-modal-title": "PDFとしてエクスポート",
 	"pick-height": "高さを選択してください (インチ)",
 	"pick-predefined-value": "定義済みの値を選択します。",

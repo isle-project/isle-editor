@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import SessionContext from '@isle-project/session/context.js';
 import isObject from '@stdlib/assert/is-object';
@@ -45,7 +46,7 @@ class Reaction extends Component {
 		debug( 'Render component...' );
 		const session = this.context;
 		if ( !this.props.actionID ) {
-			return <Alert variant="danger">Please supply an ID for component to be watched.</Alert>;
+			return <Alert variant="danger">{this.props.t('supply-component-id')}</Alert>;
 		}
 		if ( session.currentUserActions ) {
 			const visualizer = session.responseVisualizers[ this.props.actionID ];
@@ -87,4 +88,4 @@ Reaction.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Reaction;
+export default withTranslation( 'General' )( Reaction );

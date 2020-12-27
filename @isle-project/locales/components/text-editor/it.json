@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Aggiungi un'annotazione",
+	"add-link": "Aggiungi un link",
 	"align-center": "Allineare il centro",
 	"align-left": "Allineati a sinistra",
 	"align-right": "Allineare a destra",
@@ -37,6 +38,7 @@
 	"font-color": "Colore del carattere",
 	"george-box": "George Box ha detto:",
 	"headers": "Testate",
+	"insert": "Inserire",
 	"insert-code-block": "Inserire il blocco di codice",
 	"insert-column-after": "Inserire la colonna dopo",
 	"insert-column-before": "Inserire la colonna prima di",
@@ -74,6 +76,7 @@
 	"overview-0": "Digitare il testo nella finestra dell'editor. Una barra di scorrimento verticale apparirà una volta che il vostro numero di righe supera l'altezza della finestra dell'editor.",
 	"overview-1": "La barra degli strumenti fornisce vari pulsanti per aiutare a formattare il documento e a salvarlo.",
 	"overview-2": "La barra di stato in basso visualizza le informazioni sul numero di caratteri e sulla quantità totale di parole del documento corrente.",
+	"paste-url": "Incolla un URL",
 	"pdf-modal-title": "Esportazione in PDF",
 	"pick-height": "Scegliere l'altezza (pollici)",
 	"pick-predefined-value": "Scegliere un valore predefinito",

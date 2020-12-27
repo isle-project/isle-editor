@@ -1,5 +1,6 @@
 {
 	"add-annotation": "添加注释",
+	"add-link": "添加链接",
 	"align-center": "对准中心",
 	"align-left": "向左对齐",
 	"align-right": "对准右边",
@@ -37,6 +38,7 @@
 	"font-color": "字体颜色",
 	"george-box": "乔治-博克斯说。",
 	"headers": "标题",
+	"insert": "插入",
 	"insert-code-block": "插入代码块",
 	"insert-column-after": "插入列后",
 	"insert-column-before": "前面插入一列",
@@ -74,6 +76,7 @@
 	"overview-0": "在编辑器窗口中输入你的文本。一旦你的行数超过编辑器窗口的高度，就会出现一个垂直滚动条。",
 	"overview-1": "工具栏提供了各种按钮，以帮助您格式化文档并保存它。",
 	"overview-2": "底部的状态栏显示当前文档中的字符数和总字数信息。",
+	"paste-url": "粘贴一个网址",
 	"pdf-modal-title": "导出为PDF",
 	"pick-height": "选择高度(英寸)",
 	"pick-predefined-value": "选择一个预定义的值",

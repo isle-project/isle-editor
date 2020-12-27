@@ -115,11 +115,11 @@ class ImageURLEditor extends React.PureComponent {
 						</em>
 					</fieldset>
 					<div className="editor-form-buttons">
-						<CustomButton label="Cancel" onClick={this._cancel} />
+						<CustomButton label={i18n.t('TextEditor:cancel')} onClick={this._cancel} />
 						<CustomButton
 							active={!!validValue}
 							disabled={!validValue}
-							label="Insert"
+							label={i18n.t('TextEditor:insert')}
 							onClick={this._insert}
 						/>
 					</div>

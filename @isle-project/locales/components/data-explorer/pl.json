@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Hierarchiczne klastry",
 	"Histogram": "Histogram",
 	"Histogram-description": "Histogram pozwala na wizualizację rozkładu zmiennej ilościowej. W celu stworzenia histogramu, obserwowany zakres wartości jest podzielony na różne, nie nakładające się na siebie przedziały nazywane \"bins\"; wysokość każdego bina odpowiada liczbie obserwacji w tym zakresie.",
+	"history": "Historia",
 	"impurity-measure": "Zanieczyszczenie Środek",
 	"include-intercept": "Włączyć przechwytywanie?",
 	"insert-break-line": "Wstawić linię przerwania",

@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Ajouter une annotation",
+	"add-link": "Ajouter un lien",
 	"align-center": "Aligner le centre",
 	"align-left": "Aligner à gauche",
 	"align-right": "Aligner à droite",
@@ -37,6 +38,7 @@
 	"font-color": "Couleur de la police",
 	"george-box": "a déclaré George Box :",
 	"headers": "En-têtes",
+	"insert": "Insérer",
 	"insert-code-block": "Insérer un bloc de code",
 	"insert-column-after": "Insérer la colonne après",
 	"insert-column-before": "Insérer la colonne avant",
@@ -74,6 +76,7 @@
 	"overview-0": "Tapez votre texte dans la fenêtre de l'éditeur. Une barre de défilement verticale apparaîtra dès que votre nombre de lignes dépassera la hauteur de la fenêtre de l'éditeur.",
 	"overview-1": "La barre d'outils propose différents boutons pour vous aider à formater votre document et à l'enregistrer.",
 	"overview-2": "La barre d'état en bas affiche des informations sur le nombre de caractères et la quantité totale de mots du document en cours.",
+	"paste-url": "Coller une URL",
 	"pdf-modal-title": "Exporter en PDF",
 	"pick-height": "Choisissez la hauteur (en pouces)",
 	"pick-predefined-value": "Choisissez une valeur prédéfinie",

@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Acrescentar uma anotação",
+	"add-link": "Adicione um link",
 	"align-center": "Alinhar centro",
 	"align-left": "Alinhar à esquerda",
 	"align-right": "Alinhar direito",
@@ -37,6 +38,7 @@
 	"font-color": "Cor da fonte",
 	"george-box": "George Box disse:",
 	"headers": "Cabeçalhos",
+	"insert": "Inserir",
 	"insert-code-block": "Inserir bloco de código",
 	"insert-column-after": "Inserir coluna após",
 	"insert-column-before": "Inserir coluna antes de",
@@ -74,6 +76,7 @@
 	"overview-0": "Digite seu texto na janela do editor. Uma barra de rolagem vertical aparecerá assim que seu número de linhas exceder a altura da janela do editor.",
 	"overview-1": "A barra de ferramentas fornece vários botões para ajudar na formatação e salvamento de seu documento.",
 	"overview-2": "A barra de status na parte inferior exibe informações sobre o número de caracteres e a quantidade total de palavras no documento atual.",
+	"paste-url": "Colar uma URL",
 	"pdf-modal-title": "Exportar como PDF",
 	"pick-height": "Escolha a altura (Polegadas)",
 	"pick-predefined-value": "Escolha um valor pré-definido",

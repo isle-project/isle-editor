@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Clustering gerarchico",
 	"Histogram": "Istogramma",
 	"Histogram-description": "Un istogramma permette di visualizzare la distribuzione di una variabile quantitativa. Per creare un istogramma, l'intervallo di valori osservati viene diviso in diversi intervalli non sovrapposti, chiamati \"bidoni\"; l'altezza di ogni bidone corrisponde a quante osservazioni si trovano in quell'intervallo di bidone.",
+	"history": "Storia",
 	"impurity-measure": "Misura delle impurità",
 	"include-intercept": "Includere l'intercettazione?",
 	"insert-break-line": "Inserire la linea di rottura",

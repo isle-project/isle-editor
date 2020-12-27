@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import SortableTree from 'react-sortable-tree';
 import Card from 'react-bootstrap/Card';
 import FormControl from 'react-bootstrap/FormControl';
@@ -40,7 +41,7 @@ class Tree extends Component {
 					<Card.Title as="h2">{this.props.title}</Card.Title>
 					<div style={{ position: 'absolute', top: 10, right: 30, padding: 10 }}>
 						<FormControl style={{ float: 'right', width: 200, marginLeft: 20 }} type="text" onChange={this.handleSearchOnChange} />
-						<span className="title" style={{ float: 'right' }}>Search: </span>
+						<span className="title" style={{ float: 'right' }}>{this.props.t('search')}: </span>
 					</div>
 				</Card.Header>
 				<Card.Body>
@@ -74,4 +75,4 @@ Tree.defaultProps = {
 
 // EXPORTS //
 
-export default Tree;
+export default withTranslation( 'General' )( Tree );

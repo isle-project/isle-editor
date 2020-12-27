@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "Agrupamento Hierárquico",
 	"Histogram": "Histograma",
 	"Histogram-description": "Um histograma permite visualizar a distribuição de uma variável quantitativa. Para criar um histograma, a faixa de valores observada é dividida em diferentes intervalos não sobrepostos chamados de \"caixas\"; a altura de cada caixa corresponde a quantas observações estão nessa faixa de caixas.",
+	"history": "História",
 	"impurity-measure": "Medida de impureza",
 	"include-intercept": "Incluir interceptação?",
 	"insert-break-line": "Inserir linha de quebra",

@@ -299,7 +299,9 @@ class StickyNote extends Component {
 				tabIndex={0}
 				onClick={this.remove} onKeyPress={this.remove}
 				title="Click to remove"
-			>×</div>
+			>
+				<i className="fas fa-times"></i>
+			</div>
 		);
 	}
 
@@ -326,7 +328,9 @@ class StickyNote extends Component {
 							onClick={this.minimize} className="sticky-note-minimizable"
 							tabIndex={0} role="button" onKeyPress={this.minimize}
 							title="Click to minimize"
-						>–</div> : null }
+						>
+							<i className="fas fa-window-minimize"></i>
+						</div> : null }
 						{ this.props.removable ? this.removeButton() : null }
 					</div>
 					{ this.props.editable ? this.showEditableContent() : this.showContent() }

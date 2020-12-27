@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Anmerkung hinzufügen",
+	"add-link": "Einen Link hinzufügen",
 	"align-center": "Zentriert ausrichten",
 	"align-left": "Links ausrichten",
 	"align-right": "Rechts ausrichten",
@@ -37,6 +38,7 @@
 	"font-color": "Schriftfarbe",
 	"george-box": "George Box sagte:",
 	"headers": "Überschriften",
+	"insert": "einfügen",
 	"insert-code-block": "Code-Block einfügen",
 	"insert-column-after": "Spalte danach einfügen",
 	"insert-column-before": "Spalte davor einfügen",
@@ -74,6 +76,7 @@
 	"overview-0": "Geben Sie Ihren Text im Editorfenster ein. Eine vertikale Bildlaufleiste wird angezeigt, sobald Ihre Zeilenanzahl die Höhe des Editorfensters überschreitet.",
 	"overview-1": "Die Symbolleiste bietet verschiedene Schaltflächen, die Ihnen bei der Formatierung Ihres Dokuments und beim Speichern helfen.",
 	"overview-2": "Die Statusleiste am unteren Rand zeigt Informationen über die Anzahl der Zeichen und die Gesamtanzahl der Wörter im aktuellen Dokument an.",
+	"paste-url": "Einfügen einer URL",
 	"pdf-modal-title": "Als PDF exportieren",
 	"pick-height": "Wähle die Höhe (in Zoll)",
 	"pick-predefined-value": "Wähle einen vordefinierten Wert",

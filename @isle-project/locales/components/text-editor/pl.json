@@ -1,5 +1,6 @@
 {
 	"add-annotation": "Dodaj adnotację",
+	"add-link": "Dodaj link",
 	"align-center": "Wyrównać centrum",
 	"align-left": "Wyrównaj w lewo",
 	"align-right": "Wyrównaj w prawo",
@@ -37,6 +38,7 @@
 	"font-color": "Kolor czcionki",
 	"george-box": "George Box powiedział:",
 	"headers": "Nagłówki",
+	"insert": "Wstawić",
 	"insert-code-block": "Wstawić blok z kodem",
 	"insert-column-after": "Wstawić kolumnę po",
 	"insert-column-before": "Wstawić kolumnę przed",
@@ -74,6 +76,7 @@
 	"overview-0": "Wpisz swój tekst w oknie edytora. Pionowy pasek przewijania pojawi się, gdy Twoja liczba linii przekroczy wysokość okna edytora.",
 	"overview-1": "Na pasku narzędzi znajdują się różne przyciski, które pomagają w formatowaniu i zapisywaniu dokumentu.",
 	"overview-2": "Na pasku stanu u dołu wyświetlane są informacje o liczbie znaków i łącznej ilości słów w bieżącym dokumencie.",
+	"paste-url": "Wklej adres URL",
 	"pdf-modal-title": "Eksport w formacie PDF",
 	"pick-height": "Wybierz wysokość (w calach)",
 	"pick-predefined-value": "Wybierz wstępnie zdefiniowaną wartość",

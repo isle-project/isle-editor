@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "Wciągana siatka wymaga do jej renderowania co najmniej dwóch elementów dziecięcych."
+	"grid-requires-two-children": "Wciągana siatka wymaga do jej renderowania co najmniej dwóch elementów dziecięcych.",
+	"search": "Szukaj",
+	"supply-component-id": "Prosimy o dostarczenie identyfikatora elementu, który ma być oglądany."
 }

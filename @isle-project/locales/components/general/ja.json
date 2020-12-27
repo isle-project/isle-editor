@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "ドラッグ可能なグリッドをレンダリングするには、少なくとも2つの子要素が必要です。"
+	"grid-requires-two-children": "ドラッグ可能なグリッドをレンダリングするには、少なくとも2つの子要素が必要です。",
+	"search": "検索",
+	"supply-component-id": "視聴する部品のIDをご提示ください。"
 }

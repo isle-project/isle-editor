@@ -94,6 +94,7 @@
 	"Hierarchical Clustering": "階層型クラスタリング",
 	"Histogram": "ヒストグラム",
 	"Histogram-description": "ヒストグラムは、量的変数の分布を可視化することを可能にする。ヒストグラムを作成するために、観察された値の範囲が、\"ビン \"と呼ばれる異なる、重複しない間隔に分割されます；各ビンの高さは、そのビンの範囲内にどれだけのオブザベーションがあるかに対応します。",
+	"history": "歴史",
 	"impurity-measure": "不純物対策",
 	"include-intercept": "迎撃を含めて？",
 	"insert-break-line": "改行の挿入",

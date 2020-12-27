@@ -1,3 +1,5 @@
 {
-	"grid-requires-two-children": "La grille glissable nécessite au moins deux éléments enfants pour être rendue."
+	"grid-requires-two-children": "La grille glissable nécessite au moins deux éléments enfants pour être rendue.",
+	"search": "Recherchez",
+	"supply-component-id": "Veuillez fournir un identifiant pour le composant à surveiller."
 }
