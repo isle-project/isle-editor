@@ -138,6 +138,7 @@
 	"font-variant": "フォントの種類",
 	"form-control-connect-with-isle-account": "ISLEユーザーアカウントで接続してください。アカウントをお持ちでない場合は\nISLEのダッシュボードでサインアップしてください。",
 	"form-control-placeholder": "テキストを入力してください",
+	"form-control-server": "サーバーアドレスを入力してください...",
 	"French": "フレンチ",
 	"general": "一般的な",
 	"generate-lesson": "レッスンの生成",

@@ -138,6 +138,7 @@
 	"font-variant": "Font Variant",
 	"form-control-connect-with-isle-account": "Connect with your ISLE user account. If you do not have one\nyet, sign up at the ISLE dashboard, e.g. at ",
 	"form-control-placeholder": "Enter text",
+	"form-control-server": "Please enter server address...",
 	"French": "French",
 	"general": "General",
 	"generate-lesson": "Generate lesson",
@@ -348,6 +349,5 @@
 	"windows-linux": "Windows / Linux",
 	"wizard-table-instructions": "Click on the box to toggle the respective options on and off and set their values:",
 	"z-index": "z-index",
-	"zooming": "Zooming",
-	"form-control-server": "Please enter server address..."
+	"zooming": "Zooming"
 }
