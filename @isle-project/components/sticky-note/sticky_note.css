@@ -111,9 +111,7 @@
 .sticky-note-minimizable {
 	position: relative;
 	float: left;
-	width: 16px;
-	height: 16px;
-	font-size: 32px;
+	font-size: 24px;
 	z-index: 2;
 }
 
