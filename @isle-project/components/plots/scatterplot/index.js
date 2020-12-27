@@ -382,7 +382,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				bordercolor: '#E2E2E2',
 				borderwidth: 2
 			},
-			title: `${yval} ${i18n.t('vs')} ${xval}`
+			title: `${yval} ${i18n.t('Plotly:vs')} ${xval}`
 		}
 	};
 }

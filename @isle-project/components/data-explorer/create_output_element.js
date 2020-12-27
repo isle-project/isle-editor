@@ -86,7 +86,7 @@ const makeDraggable = ( div ) => {
 					ev.dataTransfer.setData( 'text/html', markup );
 				}}
 			>
-				{i18n.t('drag-table')}
+				{i18n.t('DataExplorer:drag-table')}
 			</div>
 			{div}
 		</Fragment>
@@ -97,10 +97,10 @@ const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
-				<th>{i18n.t('variable')}</th>
+				<th>{i18n.t('DataExplorer:variable')}</th>
 				<th>{IQR}</th>
-				<th>{i18n.t('lower')}</th>
-				<th>{i18n.t('upper')}</th>
+				<th>{i18n.t('DataExplorer:lower')}</th>
+				<th>{i18n.t('DataExplorer:upper')}</th>
 				<th>{N}</th>
 			</tr>
 		</thead>
@@ -126,10 +126,10 @@ const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) =>
 	const table = <Table bordered size="sm">
 		<thead>
 			<tr>
-				<th>{i18n.t('variable')}</th>
-				<th>{i18n.t('range')}</th>
-				<th>{i18n.t('min')}</th>
-				<th>{i18n.t('max')}</th>
+				<th>{i18n.t('DataExplorer:variable')}</th>
+				<th>{i18n.t('DataExplorer:range')}</th>
+				<th>{i18n.t('DataExplorer:min')}</th>
+				<th>{i18n.t('DataExplorer:max')}</th>
 				<th>{N}</th>
 			</tr>
 		</thead>
@@ -317,20 +317,20 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 			let header;
 			if ( e.statistics.length === 1 && e.statistics[0] === 'Range' ) {
 				header = <tr>
-					<th className="not-sortable" >{i18n.t('variable')}</th>
+					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
 					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					<th>{i18n.t('range')}</th>
-					<th>{i18n.t('min')}</th>
-					<th>{i18n.t('max')}</th>
+					<th>{i18n.t('DataExplorer:range')}</th>
+					<th>{i18n.t('DataExplorer:min')}</th>
+					<th>{i18n.t('DataExplorer:max')}</th>
 					<th>{N}</th>
 				</tr>;
 			} else if ( e.statistics.length === 1 && e.statistics[0] === 'Interquartile Range' ) {
 				header = <tr>
-					<th className="not-sortable" >{i18n.t('variable')}</th>
+					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
 					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
 					<th>{IQR}</th>
-					<th>{i18n.t('lower')}</th>
-					<th>{i18n.t('upper')}</th>
+					<th>{i18n.t('DataExplorer:lower')}</th>
+					<th>{i18n.t('DataExplorer:upper')}</th>
 					<th>{N}</th>
 				</tr>;
 			} else {
@@ -403,7 +403,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		const table = <Table bordered size="sm">
 			<thead>
 				<tr>
-					<th className="not-sortable" >{i18n.t('variable')}</th>
+					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
 					{e.statistics.map( ( name, i ) => {
 						return <th key={i}>{name}</th>;
 					})}

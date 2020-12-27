@@ -44,7 +44,7 @@ const Option = props => {
 	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
-		}}>{i18n.t( 'data-explorer:'+props.data.label )}</span>
+		}}>{i18n.t( 'DataExplorer:'+props.data.label )}</span>
 		<OverlayTrigger
 			trigger={['hover', 'click']}
 			placement="right" rootClose overlay={popover}
@@ -63,7 +63,7 @@ const Option = props => {
 };
 const GroupHeading = props => {
 	props = { ...props };
-	props.children = i18n.t( 'data-explorer:'+props.children );
+	props.children = i18n.t( 'DataExplorer:'+props.children );
 	return <components.GroupHeading {...props} />;
 };
 
@@ -564,8 +564,8 @@ class SummaryStatisticsMenu extends Component {
 		return (
 			<Card>
 				<Card.Header as="h4">
-					{t('Summary Statistics')}
-					<QuestionButton title={t('Summary Statistics')} content={DESCRIPTION} />
+					{t('summary-statistics')}
+					<QuestionButton title={t('summary-statistics')} content={DESCRIPTION} />
 				</Card.Header>
 				<Card.Body>
 					<FormGroup controlId="statistics-form-select">
