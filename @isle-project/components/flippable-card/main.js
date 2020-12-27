@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import ReactDraggable from 'react-draggable';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -88,7 +89,7 @@ class FlippableCard extends Component {
 
 	render() {
 		if ( !isArray( this.props.children ) ) {
-			return <Alert variant="danger" >The flippable card requires two child elements.</Alert>;
+			return <Alert variant="danger" >{this.props.t('flippable-requires-two-children')}</Alert>;
 		}
 		const isFlipped = this.props.value !== void 0? this.props.value : this.state.isFlipped;
 		const styles = {
@@ -169,6 +170,7 @@ FlippableCard.propTypes = {
 	}),
 	children: ( props, propName, componentName ) => {
 		if ( React.Children.count( props[ propName ] ) !== 2 ) {
+			// eslint-disable-next-line i18next/no-literal-string
 			return new Error( `${componentName} requires two children.` );
 		}
 		return null;
@@ -204,4 +206,4 @@ FlippableCard.defaultProps = {
 
 // EXPORTS //
 
-export default FlippableCard;
+export default withTranslation( 'General' )( FlippableCard );

@@ -1,4 +1,5 @@
 {
+	"flippable-requires-two-children": "The flippable card requires two child elements.",
 	"grid-requires-two-children": "The draggable grid requires at least two child elements for it to be rendered.",
 	"search": "Search",
 	"supply-component-id": "Please supply an ID for component to be watched."

@@ -1,4 +1,5 @@
 {
+	"adjusted": "Ajustado",
 	"aic": "Criterio de información de Akaike (AIC)",
 	"algorithm-converged": "El algoritmo convergió después de {{n}} iteraciones",
 	"algorithm-not-converged": "El algoritmo no convergió después de las iteraciones...",

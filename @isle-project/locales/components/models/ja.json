@@ -1,4 +1,5 @@
 {
+	"adjusted": "調整済み",
 	"aic": "赤池情報基準(AIC)",
 	"algorithm-converged": "アルゴリズムは{{n}}回の繰り返しで収束します。",
 	"algorithm-not-converged": "アルゴリズムは {{n}} 回の繰り返しで収束しなかった",

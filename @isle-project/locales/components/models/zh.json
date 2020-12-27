@@ -1,4 +1,5 @@
 {
+	"adjusted": "调整后",
 	"aic": "阿卡克信息标准(AIC)",
 	"algorithm-converged": "该算法在{{n}}次迭代后收敛。",
 	"algorithm-not-converged": "该算法在{{n}}次迭代后没有收敛。",

@@ -28,6 +28,9 @@ import extractCategoriesFromValues from '@isle-project/utils/extract-categories-
 // VARIABLES //
 
 let COUNTER = 0;
+const TSTAT = 't';
+const DF = 'df';
+const R2 = 'R&#178;:';
 
 
 // FUNCTIONS //
@@ -143,7 +146,7 @@ const summaryTable = ( y, x, nobs, result, t ) => {
 					<th>{t('predictor')}</th>
 					<th>{t('coefficient')}</th>
 					<th>{t('std-error')}</th>
-					<th>t</th>
+					<th>{TSTAT}</th>
 					<th>{t('p-value')}</th>
 				</tr>
 			</thead>
@@ -303,8 +306,8 @@ class MultipleLinearRegression extends Component {
 				<span className="title" >{t('multiple-regression-title', { y, counter: COUNTER })}</span>
 				{summaryTable( y, predictors, nobs, result, t )}
 				<p>{t('residual-standard-error')}: {round( result.stdError )}</p>
-				<p>R&#178;: {rSquared.toFixed( 6 )}, Adjusted R&#178;: {adjRSquared.toFixed( 6 )}</p>
-				<p>{t('f-statistic')}: {fScore.toFixed( 3 )} (df: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
+				<p>{R2} {rSquared.toFixed( 6 )}, {t('adjusted')} {R2} {adjRSquared.toFixed( 6 )}</p>
+				<p>{t('f-statistic')}: {fScore.toFixed( 3 )} (${DF}: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				{ this.props.onPredict ? <Tooltip placement="top" tooltip={t('use-model-to-predict-tooltip')} >
 					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{t('use-model-to-predict')}</Button>
 				</Tooltip> : null }

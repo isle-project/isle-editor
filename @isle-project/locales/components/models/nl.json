@@ -1,4 +1,5 @@
 {
+	"adjusted": "Aangepast",
 	"aic": "Akaike Informatie Criterium (AIC)",
 	"algorithm-converged": "Het algoritme kwam samen na {{n}} iteraties",
 	"algorithm-not-converged": "Het algoritme kwam niet overeen na {{n}} iteraties",
