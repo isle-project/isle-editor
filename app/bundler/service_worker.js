@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import { Trans } from 'react-i18next';
 import './update_notification.css';
 
 
@@ -181,7 +182,9 @@ function handleClick() {
 const Notification = () => {
 	return (
 		<div id="pwa-notification" >
-			A new version of this lesson is available. Click <button onClick={handleClick}>here</button> to update.
+			<Trans i18nKey="new-version-of-lesson-available" ns="session" >
+				A new version of this lesson is available. Click <button onClick={handleClick}>here</button> to update.
+			</Trans>
 		</div>
 	);
 };

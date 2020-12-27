@@ -12,6 +12,7 @@
 	"message-saved": "保存されたメッセージ",
 	"new-password-message": "新しいパスワードを選択するためのリンクがあるかどうか、メールの受信箱を確認してください。",
 	"new-password-title": "新しいパスワード",
+	"new-version-of-lesson-available": "このレッスンの新しいバージョンを公開しました。更新するには、<1>こちら</1>をクリックしてください。",
 	"request-failed": "リクエストに失敗しました。",
 	"user-created": "ユーザー作成",
 	"user-created-message": "正常にサインアップされました。",
