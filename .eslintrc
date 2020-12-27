@@ -328,6 +328,7 @@
           "libs",
           "loc",
           "localhost",
+          "locationmode",
           "maxdepth",
           "maxlength",
           "minify",
