@@ -152,7 +152,7 @@ class HistoryPanel extends Component {
 					this.setState({
 						notes
 					});
-				}} />
+				}} t={this.props.t} />
 			</PopoverContent>
 		</Popover>;
 		return ( <ListGroupItem>

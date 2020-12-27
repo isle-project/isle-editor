@@ -25,6 +25,11 @@ import Queue from './queue';
 import './toolbar.css';
 
 
+// VARIABLES //
+
+const F2 = '(F2)';
+
+
 // MAIN //
 
 /**
@@ -290,7 +295,7 @@ class Toolbar extends Component {
 						</Button>
 					</Tooltip>
 					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
-					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} (F2)`} placement="top" >
+					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} ${F2}`} placement="top" >
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
 							className="toolbar-button"

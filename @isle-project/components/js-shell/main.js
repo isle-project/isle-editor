@@ -59,12 +59,12 @@ const THEME = {
 
 // FUNCTIONS //
 
-const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluations ) => {
+const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluations, t ) => {
 	const tooltip = (
 		<Tooltip
 			id="tooltip"
 		>
-			Solution becomes available once you have tried the exercise and used all hints.
+			{t('SolutionButton:solution-available-tooltip')}
 		</Tooltip>
 	);
 	if ( !exhaustedHints || nEvaluations < 1 ) {
@@ -83,7 +83,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 						style={{
 							pointerEvents: 'none'
 						}}
-					>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
+					>{ !displayed ? t('SolutionButton:show-solution') : t('SolutionButton:hide-solution') }</Button>
 				</span>
 			</OverlayTrigger>
 		);
@@ -93,7 +93,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 			variant="warning"
 			size="sm"
 			onClick={clickHandler}
-		>{ !displayed ? 'Show Solution' : 'Hide Solution' }</Button>
+		>{ !displayed ? t('SolutionButton:show-solution') : t('SolutionButton:hide-solution') }</Button>
 	);
 };
 
@@ -375,7 +375,8 @@ class JSShell extends Component {
 					this.state.exhaustedHints,
 					this.handleSolutionClick,
 					this.state.solutionOpen,
-					this.state.nEvaluations
+					this.state.nEvaluations,
+					this.props.t
 				) :
 				null
 			}
@@ -474,4 +475,4 @@ JSShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'JSShell' )( JSShell );
+export default withTranslation( 'R' )( JSShell );

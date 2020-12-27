@@ -12,7 +12,7 @@ const ClearButton = ( props ) => (
 	<Tooltip
 		id="clear_tooltip"
 		placement={props.tooltipPlacement}
-		tooltip="Delete"
+		tooltip={props.t('DataExplorer:delete')}
 	>
 		<Button
 			variant="outline-danger"

@@ -41,7 +41,9 @@ const FilterList = ( props ) => {
 				onClick={() => {
 					props.onRemove( i );
 				}}
-			>x</Button> : null}
+			>
+				<i className="fas fa-times"></i>
+			</Button> : null}
 		</ListGroup.Item> );
 	}
 	return (

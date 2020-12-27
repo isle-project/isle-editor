@@ -59,6 +59,8 @@ class HelpPage extends Component {
 			pageMargins: [ 40, 60, 40, 60 ] // left top right bottom
 		};
 		const session = this.props.session;
+
+		// eslint-disable-next-line i18next/no-literal-string
 		pdfMake.createPdf( doc ).download( `ISLE_${session.lessonName}_Documentation.pdf` );
 	}
 

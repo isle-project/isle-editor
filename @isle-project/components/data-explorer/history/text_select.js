@@ -67,7 +67,7 @@ class TextSelect extends Component {
 					size="sm"
 					onClick={this.handleSubmission}
 					style={{ marginTop: 4 }}
-				>Submit</Button>
+				>{this.props.t('submit')}</Button>
 			</Fragment>
 		);
 	}

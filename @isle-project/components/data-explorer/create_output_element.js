@@ -64,7 +64,7 @@ const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilter
 		<ClearButton onClick={() => {
 			debug( `Clear element with ID ${idx}` );
 			clearOutput( idx );
-		}} />
+		}} t={t} />
 	</ButtonGroup> );
 };
 
@@ -229,6 +229,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 				<DatasetButton filters={subsetFilters} onActivateFilters={onFilters} t={t} />
 				<ClearButton
 					onClick={() => { clearOutput( idx ); }}
+					t={t}
 				/>
 			</ButtonGroup>
 			<div style={{
@@ -302,6 +303,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 					style={{
 						right: -5, position: 'absolute'
 					}}
+					t={t}
 				/>
 			</ButtonGroup>
 			<div style={{ marginTop: 25 }}>{e}</div>
