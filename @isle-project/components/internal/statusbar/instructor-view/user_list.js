@@ -241,6 +241,9 @@ class UserList extends Component {
 				} else {
 					exitTime = isString( user.exitTime ) ? user.exitTime : new Date( user.exitTime ).toLocaleTimeString();
 				}
+
+				// eslint-disable-next-line i18next/no-literal-string
+				const infoString = `${user.name} (${user.email}) | ${joinTime} - ${exitTime}`;
 				return (
 					<ListGroupItem
 						className="user-list-item"
@@ -273,7 +276,7 @@ class UserList extends Component {
 							/> : null }
 						</div>
 						<div style={{ width: '100%', color }} >
-							{user.name} ({user.email}) | {joinTime} - {exitTime}
+							{infoString}
 							{ focusedID ? <Tooltip placement="left" tooltip={this.props.t( 'element-interacting-with' )} >
 								<Button
 									className="user-list-active-button"

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { i18n } from '@isle-project/locales';
 import objectEntries from '@stdlib/utils/entries';
 import removeFactory from './remove_factory.js';
 import './create_filters.css';
@@ -11,7 +12,7 @@ import './create_filters.css';
 function createFilters( filter, callback ) {
 	let entries = filter ? objectEntries( filter ) : [];
 	let newFilters = <Fragment>
-		<span className="title">Filters:</span>
+		<span className="title">{i18n.t('StatusBar:filters')}</span>
 		<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 			{entries.map( ( arr, idx ) => {
 				return ( <button

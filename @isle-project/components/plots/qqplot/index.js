@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { i18n } from '@isle-project/locales';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
@@ -56,7 +57,7 @@ export function generateQQPlotConfig( y, variable ) {
 	];
 	const layout = {
 		annotations,
-		title: `Normal QQ Plot of ${variable}`,
+		title: i18n.t('Plotly:qqplot-title', { x: variable }),
 		xaxis: {
 			title: 'Theoretical Quantiles',
 			range: [ normalQuantiles[ 0 ] - 0.3, normalQuantiles[ normalQuantiles.length-1 ] + 0.3 ]
