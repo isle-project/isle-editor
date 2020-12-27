@@ -2354,7 +2354,7 @@ class Sketchpad extends Component {
 					});
 				}} glyph="save" size="sm" />
 				<TooltipButton tooltip={t('upload-to-server')} onClick={this.uploadSketches} glyph="upload" size="sm" />
-				{ hasTouch ? <TooltipButton tooltip={`${this.state.swiping ? 'Disable' : 'Enable'} two-finger swiping gestures for changing slides`} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
+				{ hasTouch ? <TooltipButton tooltip={this.state.swiping ? t('disable-swiping') : t('enable-swiping')} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
 			</ButtonGroup>
 		);
 	}

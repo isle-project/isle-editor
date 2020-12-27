@@ -28,6 +28,7 @@
 
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
+import { i18n } from '@isle-project/locales';
 
 
 // MAIN //
@@ -156,7 +157,7 @@ export const addAnnotation = ( state, dispatch ) => {
 		return false;
 	}
 	if ( dispatch ) {
-		let text = prompt( 'Annotation text', '' );
+		let text = prompt( i18n.t('TextEditor:annotation-text'), '' );
 		if ( text ) {
 			dispatch( state.tr.setMeta( commentPlugin, {
 				type: 'newComment',

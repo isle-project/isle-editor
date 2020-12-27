@@ -98,7 +98,7 @@ class ImageURLEditor extends React.PureComponent {
 			<div className="editor-image-url-editor">
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>{i18n.t('insert-image')}</legend>
+						<legend>{i18n.t('TextEditor:insert-image')}</legend>
 						<div className="editor-image-url-editor-src-input-row">
 							<input
 								autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
@@ -111,7 +111,7 @@ class ImageURLEditor extends React.PureComponent {
 							{preview}
 						</div>
 						<em>
-							{i18n.t('require-license')}
+							{i18n.t('TextEditor:require-license')}
 						</em>
 					</fieldset>
 					<div className="editor-form-buttons">
