@@ -496,7 +496,7 @@
     "i18next/no-literal-string": [ 1, {
       "markupOnly": true,
       "onlyAttribute": [ "tooltip", "title" ],
-      "ignore": [ "ISLE", "<", ">", "=", "n:", "&#" ],
+      "ignore": [ "ISLE", "<", ">", "=", "n:", "&#", "(", ")" ],
       "ignoreComponent": [ "Trans", "code", "Badge" ],
       "ignoreCallee": [ "debug", "error", "log" ],
       "validateTemplate": true
