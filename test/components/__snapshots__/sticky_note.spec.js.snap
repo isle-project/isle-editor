@@ -73,7 +73,9 @@ exports[`renders a minimizable sticky note 1`] = `
           tabIndex={0}
           title="Click to minimize"
         >
-          –
+          <i
+            className="fas fa-window-minimize"
+          />
         </div>
       </div>
       <div
