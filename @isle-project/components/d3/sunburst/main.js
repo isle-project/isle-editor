@@ -76,7 +76,7 @@ class Sunburst extends Component {
 		const trail = d3.select( this.sequence ).append( 'svg:svg' )
 			.attr( 'width', this.props.width )
 			.attr( 'height', 50 )
-			.attr( 'id', `${this.id}_trail` );
+			.attr( 'id', `${this.id}_trail` ); // eslint-disable-line i18next/no-literal-string
 		// Add the label at the end, for the percentage.
 		trail.append( 'svg:text' )
 			.attr( 'id', `${this.id}_endlabel` )

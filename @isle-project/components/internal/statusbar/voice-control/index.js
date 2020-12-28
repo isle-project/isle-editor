@@ -144,8 +144,10 @@ class VoiceControl extends Component {
 			const date = new Date();
 			transcriptText += `# ${this.props.t( 'transcript-header' )} ${session.namespaceName+'/'+session.lessonName}`;
 			if ( !isEmptyObject( session.user ) ) {
+				// eslint-disable-next-line i18next/no-literal-string
 				transcriptText += `\n## ${this.props.t( 'by' )} ${session.user.name} (${session.user.email})`;
 			}
+			// eslint-disable-next-line i18next/no-literal-string
 			transcriptText += `\n### ${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
 			transcriptText += '\n\n\n';
 			transcriptText += this.state.transcript.join( '\n' );
