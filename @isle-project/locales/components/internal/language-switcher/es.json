@@ -1,4 +1,5 @@
 {
 	"change-language": "Cambiar Idioma",
-	"choose-language": "Elegir Idioma"
+	"choose-language": "Elegir Idioma",
+	"loading-translations": "Cargando las traducciones... Podría tomar un par de segundos hasta que todas las traducciones estén cargadas."
 }

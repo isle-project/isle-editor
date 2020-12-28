@@ -814,7 +814,7 @@ i18n.use( LanguageDetector )
 		}
 	});
 
-export function changeLanguage( lng ) {
+export function changeLanguage( lng, callback = () => {} ) {
 	lng = normalizeLanguageCode( lng || 'en' );
 	const promises = [];
 	NAMESPACES.forEach( ns => {
@@ -833,6 +833,7 @@ export function changeLanguage( lng ) {
 	});
 	Promise.all( promises ).then( () => {
 		i18n.changeLanguage( lng );
+		callback();
 	});
 }
 

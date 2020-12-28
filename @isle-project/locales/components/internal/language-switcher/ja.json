@@ -1,4 +1,5 @@
 {
 	"change-language": "言語の変更",
-	"choose-language": "言語を選択してください"
+	"choose-language": "言語を選択してください",
+	"loading-translations": "翻訳の読み込み中...すべての翻訳が読み込まれるまで数秒かかる場合があります。"
 }
