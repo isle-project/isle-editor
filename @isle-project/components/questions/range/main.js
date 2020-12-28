@@ -94,7 +94,7 @@ const RangeQuestion = ( props ) => {
 		});
 	};
 	const submitHandler = () => {
-		const { digits, solution } = props;
+		const { digits, solution = []} = props;
 		let correct;
 		const lowerVal = parseFloat( lower );
 		const upperVal = parseFloat( upper );
@@ -150,7 +150,7 @@ const RangeQuestion = ( props ) => {
 		}
 	};
 	useEffect(() => {
-		if ( !isnan( solution[ 1 ] ) && !isnan( solution[ 0 ] ) ) {
+		if ( solution && !isnan( solution[ 1 ] ) && !isnan( solution[ 0 ] ) ) {
 			setLower( min );
 			setUpper( max );
 			setSubmitted( false );
