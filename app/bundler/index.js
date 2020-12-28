@@ -122,8 +122,6 @@ import Lesson from '@isle-project/components/internal/lesson';
 import Provider from '@isle-project/components/provider';
 import factor from '@isle-project/utils/factor-variable';
 import obsToVar from '@isle-project/utils/obs-to-var';
-import { i18n } from '@isle-project/locales';
-import { I18nextProvider } from 'react-i18next';
 import 'css/lesson.css';
 `;
 
@@ -222,11 +220,9 @@ class LessonWrapper extends Component {
 document.body.style[ 'overflow-y' ] = 'hidden';
 
 render(
-	<I18nextProvider i18n={i18n} >
-		<Provider session={session} >
-			<LessonWrapper />
-		</Provider>
-	</I18nextProvider>,
+	<Provider session={session} >
+		<LessonWrapper />
+	</Provider>,
 	document.getElementById( 'App' )
 );
 

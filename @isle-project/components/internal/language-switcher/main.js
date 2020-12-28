@@ -36,7 +36,10 @@ const SelectModal = ( props ) => {
 	const changeLanguageFactory = ( lng ) => {
 		return () => {
 			props.onHide();
-			changeLanguage( lng );
+			props.setIsLoading( true );
+			changeLanguage( lng, () => {
+				props.setIsLoading( false );
+			});
 		};
 	};
 	const { t } = props;
@@ -70,12 +73,16 @@ const SelectModal = ( props ) => {
 
 const LanguageSwitcher = ( props ) => {
 	const [ showSelectModal, setShowSelectModal ] = useState( false );
+	const [ isLoading, setIsLoading ] = useState( false );
 	const toggleSelectModal = () => {
 		setShowSelectModal( !showSelectModal );
 	};
 	const { t } = props;
 	return (
 		<Fragment>
+			{isLoading ? <div className="language-switcher-notification" >
+				{t('loading-translations')}
+			</div> : null}
 			<OverlayTrigger placement="left" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
 				<button
 					onClick={toggleSelectModal} className="language-switcher"
@@ -86,6 +93,7 @@ const LanguageSwitcher = ( props ) => {
 			</OverlayTrigger>
 			<SelectModal
 				show={showSelectModal} onHide={toggleSelectModal} t={t}
+				setIsLoading={setIsLoading}
 			/>
 		</Fragment>
 	);

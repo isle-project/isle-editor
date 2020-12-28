@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, I18nextProvider } from 'react-i18next';
+import { i18n } from '@isle-project/locales';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
 import StickyNote from '@isle-project/components/sticky-note';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
@@ -104,7 +105,7 @@ class Lesson extends Component {
 			return <Forbidden t={this.props.t} />;
 		}
 		return (
-			<Fragment>
+			<I18nextProvider i18n={i18n} >
 				<ContextMenuTrigger
 					attributes={{
 						className: 'contextmenu-fullscreen'
@@ -171,7 +172,7 @@ class Lesson extends Component {
 					allowHTML={true}
 					style={NOTIFICATION_STYLE}
 				/>
-			</Fragment>
+			</I18nextProvider>
 		);
 	}
 }
