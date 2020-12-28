@@ -200,7 +200,7 @@
 	"scope": "Escopo:",
 	"second-variable": "Segunda variável:",
 	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
-	"select-grouping-or-second-variable": "Favor selecionar uma variável de agrupamento ou uma segunda variável para comparar {{{var}}.",
+	"select-grouping-or-second-variable": "Favor selecionar uma variável de agrupamento ou uma segunda variável para comparar {{var}}.",
 	"select-name": "Selecione o nome",
 	"select-quantitative-categorical": "Favor selecionar quais variáveis devem ser tratadas como quantitativas e quais variáveis como categóricas",
 	"select-variable-bin": "Por favor, selecione uma variável para o depósito...",

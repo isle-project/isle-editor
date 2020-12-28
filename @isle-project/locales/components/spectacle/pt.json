@@ -2,7 +2,7 @@
 	"end": "FIM",
 	"slide-message": "Use as teclas de seta esquerda e direita ou as teclas de seta laranja para navegar entre os slides",
 	"slide-navigation": "Navegação de slides",
-	"slide-no": "Slide {{{slideIndex}} de",
+	"slide-no": "Slide {{slideIndex}} de",
 	"toggle-overview-mode": "Modo de alternância de visão geral",
 	"toggle-slide-presenter-mode": "Alternar o modo apresentador de slides",
 	"total": "Total:"

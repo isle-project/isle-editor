@@ -200,7 +200,7 @@
 	"scope": "Scope:",
 	"second-variable": "Tweede Variabele:",
 	"second-variable-statistic-tooltip": "Zweite Variabele zur Berechnung der bivariaten Statistik",
-	"select-grouping-or-second-variable": "Kies een groepsvariabele of een tweede variabele om {{{var}} mee te vergelijken.",
+	"select-grouping-or-second-variable": "Kies een groepsvariabele of een tweede variabele om {{var}} mee te vergelijken.",
 	"select-name": "Selecteer Naam",
 	"select-quantitative-categorical": "Selecteer welke variabelen als kwantitatief en welke als categorisch moeten worden behandeld.",
 	"select-variable-bin": "Selecteer een variabele voor de bak...",

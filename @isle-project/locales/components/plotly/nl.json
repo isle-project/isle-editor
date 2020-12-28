@@ -9,7 +9,7 @@
 	"of": "van",
 	"points": "Punten",
 	"proportion": "Aandeel",
-	"qqplot-title": "Normaal QQ-plaatje van {x}",
+	"qqplot-title": "Normaal QQ-plaatje van {{x}}",
 	"share": "Deel",
 	"smoothed-fit": "Gladde pasvorm",
 	"toggle-fullscreen": "Schakelaar volledig scherm",

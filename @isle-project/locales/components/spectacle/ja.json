@@ -2,7 +2,7 @@
 	"end": "終了",
 	"slide-message": "スライド間を移動するには、左右の矢印キーまたはオレンジ色の矢印ボタンを使用します。",
 	"slide-navigation": "スライドナビゲーション",
-	"slide-no": "のスライド{{slideIndex}}}。",
+	"slide-no": "のスライド{{slideIndex}}。",
 	"toggle-overview-mode": "トグル概要モード",
 	"toggle-slide-presenter-mode": "スライドプレゼンターモードの切り替え",
 	"total": "合計。"

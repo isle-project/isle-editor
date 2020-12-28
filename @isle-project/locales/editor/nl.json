@@ -126,7 +126,7 @@
 	"error-during-require": "Fout bij het inladen van verklaringen \"vereisen\":",
 	"error-encountered": "Fout opgetreden",
 	"error-encountered-message": "De volgende fout werd aangetroffen tijdens de verbinding met",
-	"error-loading-lib": "Foutje dat we tegenkwamen bij het lezen {{lib}:",
+	"error-loading-lib": "Foutje dat we tegenkwamen bij het lezen {{lib}}:",
 	"export": "Exporteer",
 	"export-lesson": "Exporteren van de les",
 	"export-lesson-intro": "Pak de huidige geopende les in en exporteer deze naar een enkele pagina applicatie die in elke web-browser te bekijken is.",

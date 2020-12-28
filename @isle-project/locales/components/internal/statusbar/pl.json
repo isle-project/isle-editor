@@ -112,7 +112,7 @@
 	"text-chat": "Czat tekstowy",
 	"time": "Czas",
 	"time-spent-tooltip": "Czas spędzony w bieżącej sesji",
-	"to-the-question": "{\\i1}do pytania.{\\i0}",
+	"to-the-question": "Do pytania {{questionSelect}}.",
 	"transcript": "Transkrypt",
 	"transcript-click-discard": "Kliknięcie tego przycisku spowoduje odrzucenie bieżącego pliku i załadowanie najnowszej transkrypcji.",
 	"transcript-discard-notification": "Bieżący plik został pomyślnie odrzucony, a najnowsza transkrypcja załadowana do edytora.",

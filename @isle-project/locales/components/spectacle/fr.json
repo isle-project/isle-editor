@@ -2,7 +2,7 @@
 	"end": "FIN",
 	"slide-message": "Utilisez les touches fléchées gauche et droite ou les touches fléchées oranges pour naviguer entre les diapositives",
 	"slide-navigation": "Navigation des diapositives",
-	"slide-no": "Diapositive {{{l'index des diapositives}} de",
+	"slide-no": "Diapositive {{slideIndex}} de",
 	"toggle-overview-mode": "Basculer le mode de vue d'ensemble",
 	"toggle-slide-presenter-mode": "Basculer le mode de présentation des diapositives",
 	"total": "Total :"

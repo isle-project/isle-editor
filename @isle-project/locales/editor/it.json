@@ -74,7 +74,7 @@
 	"component-wizard": "Componente Wizard",
 	"confirm": "Confermare",
 	"confirm-close-when-unsaved-prompt": "Volete salvare le modifiche apportate al file corrente?",
-	"confirm-exit-and-update": "{{releaseName}}} dell'ISLE Editor è stato scaricato con successo. Desiderate uscire ora dall'applicazione e installare l'aggiornamento?",
+	"confirm-exit-and-update": "{{releaseName}} dell'ISLE Editor è stato scaricato con successo. Desiderate uscire ora dall'applicazione e installare l'aggiornamento?",
 	"confirm-tag-deletion": "Sei sicuro di voler eliminare questo elemento dalla lezione?",
 	"confirm-template-creation": "Si prega di confermare che si desidera creare un nuovo file con il modello scelto.",
 	"connect": "Collegati a",

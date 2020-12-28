@@ -2,7 +2,7 @@
 	"end": "END",
 	"slide-message": "Do poruszania się między slajdami służą przyciski strzałek w lewo i w prawo lub pomarańczowe przyciski strzałek.",
 	"slide-navigation": "Nawigacja ślizgowa",
-	"slide-no": "Slide {slideIndex}} z",
+	"slide-no": "Slide {{slideIndex}} z",
 	"toggle-overview-mode": "Przełączanie trybu przeglądania (Toggle Overview Mode)",
 	"toggle-slide-presenter-mode": "Przełączanie trybu prezentera slajdów",
 	"total": "Razem:"

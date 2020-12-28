@@ -2,7 +2,7 @@
 	"end": "FINE",
 	"slide-message": "Utilizzare i tasti freccia sinistra e destra o i tasti freccia arancione per navigare tra le diapositive",
 	"slide-navigation": "Navigazione a scorrimento",
-	"slide-no": "Diapositiva {{{slideIndex}} di",
+	"slide-no": "Diapositiva {{slideIndex}} di",
 	"toggle-overview-mode": "Modalità Panoramica",
 	"toggle-slide-presenter-mode": "Attivare la modalità Presentatore a slitta",
 	"total": "Totale:"

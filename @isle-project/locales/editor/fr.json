@@ -330,7 +330,7 @@
 	"translate-entire-lesson": "Traduire la leçon entière en",
 	"translate-lesson": "Traduire la leçon",
 	"translate-selection": "Traduire la sélection en",
-	"translation-failed": "La traduction a échoué. Assurez-vous que vous avez accès au service de traduction par l'intermédiaire de votre serveur ISLE. Erreur rencontrée : {{{msg}}",
+	"translation-failed": "La traduction a échoué. Assurez-vous que vous avez accès au service de traduction par l'intermédiaire de votre serveur ISLE. Erreur rencontrée : {{msg}}",
 	"trigger-update": "Déclenchement de la mise à jour de l'aperçu",
 	"type": "Tapez",
 	"undo-last-cursor": "Annuler la dernière opération du curseur",

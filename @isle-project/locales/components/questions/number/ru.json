@@ -3,7 +3,7 @@
 	"answer-submitted": "Ответ получен.",
 	"answers": "Ответы",
 	"invalid-answer": "Неверный ответ",
-	"invalid-range": "Ваш ответ должен быть числом между {{min}} и {{max}.",
+	"invalid-range": "Ваш ответ должен быть числом между {{min}} и {{max}}.",
 	"one-of": "один из",
 	"or": "или",
 	"question-closed": "Вопрос закрыт.",

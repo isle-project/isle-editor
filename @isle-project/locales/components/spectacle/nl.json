@@ -2,7 +2,7 @@
 	"end": "END",
 	"slide-message": "Gebruik de linker- en rechter pijltjestoetsen of de oranje pijltjestoetsen om tussen de dia's te navigeren.",
 	"slide-navigation": "Diabolische navigatie",
-	"slide-no": "Schuif {slideIndex}} van",
+	"slide-no": "Schuif {{slideIndex}} van",
 	"toggle-overview-mode": "Omschakelen naar de overzichtsmodus",
 	"toggle-slide-presenter-mode": "Schuifuifpresentator-modus",
 	"total": "Totaal:"

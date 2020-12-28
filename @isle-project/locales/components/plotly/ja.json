@@ -9,7 +9,7 @@
 	"of": "の",
 	"points": "ポイント",
 	"proportion": "比例",
-	"qqplot-title": "{{{x}}}の法線QQプロット",
+	"qqplot-title": "{{x}}の法線QQプロット",
 	"share": "シェア",
 	"smoothed-fit": "スムーズフィット",
 	"toggle-fullscreen": "フルスクリーンを切り替える",
