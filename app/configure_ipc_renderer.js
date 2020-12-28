@@ -385,7 +385,7 @@ function configureIpcRenderer( store ) {
 	ipcRenderer.on( 'update-downloaded', ( event, info ) => {
 		store.dispatch( actions.updateDownloaded() );
 		vex.dialog.confirm({
-			message: `${info.releaseName} of the ISLE Editor was successfully downloaded. Do you wish to exit the application now and install the update?`,
+			message: i18n.t('confirm-exit-and-update', { releaseName: info.releaseName }),
 			callback( value ) {
 				if ( value ) {
 					const state = store.getState();

@@ -1190,7 +1190,7 @@ class Editor extends Component {
 
 	translateSelection = async ( language ) => {
 		if ( !this.state.hasSelection ) {
-			return vex.dialog.alert( 'No selection present' );
+			return vex.dialog.alert( this.props.t('no-selection-present') );
 		}
 		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
 		const selection = this.editor.getSelection();
@@ -1216,7 +1216,7 @@ class Editor extends Component {
 		} catch ( err ) {
 			this.editor.updateOptions({ readOnly: false });
 			editorDiv.style.opacity = 1.0;
-			vex.dialog.alert( 'Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: '+err.message );
+			vex.dialog.alert( this.props.t('translation-failed', { msg: err.message }) );
 		}
 	}
 
@@ -1242,7 +1242,7 @@ class Editor extends Component {
 		} catch ( err ) {
 			this.editor.updateOptions({ readOnly: false });
 			editorDiv.style.opacity = 1.0;
-			vex.dialog.alert( 'Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: '+err.message );
+			vex.dialog.alert( this.props.t('translation-failed', { msg: err.message }) );
 		}
 	}
 
