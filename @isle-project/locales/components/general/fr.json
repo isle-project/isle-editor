@@ -1,6 +1,8 @@
 {
+	"encountered-an-error": "A rencontré une erreur...",
 	"flippable-requires-two-children": "La carte à feuilleter nécessite deux éléments enfantins.",
 	"grid-requires-two-children": "La grille glissable nécessite au moins deux éléments enfants pour être rendue.",
+	"retry": "Retrouvez",
 	"search": "Recherchez",
 	"supply-component-id": "Veuillez fournir un identifiant pour le composant à surveiller."
 }

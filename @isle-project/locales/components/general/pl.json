@@ -1,6 +1,8 @@
 {
+	"encountered-an-error": "Napotkano błąd...",
 	"flippable-requires-two-children": "Suwakowa karta wymaga dwóch elementów dziecięcych.",
 	"grid-requires-two-children": "Wciągana siatka wymaga do jej renderowania co najmniej dwóch elementów dziecięcych.",
+	"retry": "Retry",
 	"search": "Szukaj",
 	"supply-component-id": "Prosimy o dostarczenie identyfikatora elementu, który ma być oglądany."
 }

@@ -1,6 +1,8 @@
 {
+	"encountered-an-error": "遇到一个错误...",
 	"flippable-requires-two-children": "可翻转卡片需要两个子元素。",
 	"grid-requires-two-children": "可拖动网格至少需要两个子元素才能呈现。",
+	"retry": "重试",
 	"search": "检索",
 	"supply-component-id": "请提供要观看的组件的ID。"
 }

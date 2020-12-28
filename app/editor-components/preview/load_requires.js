@@ -2,6 +2,7 @@
 
 import { basename, dirname, join, extname, resolve } from 'path';
 import resolveFrom from 'resolve-from';
+import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
@@ -68,7 +69,7 @@ async function loadRequires( libs, filePath ) {
 					if ( ext === '.json' ) {
 						const json = readJSON.sync( lib );
 						if ( isError( json ) ) {
-							throw new Error(`\n Error encountered while reading ${lib}: ` + json.message);
+							throw new Error( '\n' + i18n('error-loading-lib', { lib }) + json.message );
 						} else {
 							global[ key ] = json;
 						}

@@ -1,6 +1,8 @@
 {
+	"encountered-an-error": "エラーに遭遇しました...",
 	"flippable-requires-two-children": "フリッパブルカードには2つの子要素が必要です。",
 	"grid-requires-two-children": "ドラッグ可能なグリッドをレンダリングするには、少なくとも2つの子要素が必要です。",
+	"retry": "リトライ",
 	"search": "検索",
 	"supply-component-id": "視聴する部品のIDをご提示ください。"
 }

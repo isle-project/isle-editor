@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { Portal } from 'react-portal';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -154,7 +155,7 @@ class Preview extends Component {
 	}
 
 	async loadRequires( preamble, filePath ) {
-		const { encounteredError } = this.props;
+		const { encounteredError, t } = this.props;
 		try {
 			const err = await loadRequires( preamble.require, filePath || '' );
 			if ( !err && !this._isMounted ) {
@@ -164,7 +165,7 @@ class Preview extends Component {
 				isLoading: false
 			}, () => {
 				if ( err ) {
-					encounteredError( new Error( `Error encountered while loading 'require' statements: ${err.message}` ) );
+					encounteredError( new Error( `${t('error-during-require')} ${err.message}` ) );
 				}
 				debug( 'Finished loading all `requires`...' );
 			});
@@ -334,4 +335,4 @@ Preview.propTypes = {
 
 // EXPORTS //
 
-export default Preview;
+export default withTranslation( 'Editor' )( Preview );

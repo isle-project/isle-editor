@@ -1,6 +1,8 @@
 {
+	"encountered-an-error": "Encontrou um erro...",
 	"flippable-requires-two-children": "O cartão virável requer dois elementos infantis.",
 	"grid-requires-two-children": "A grade arrastável requer pelo menos dois elementos infantis para que ela seja entregue.",
+	"retry": "Tentativa",
 	"search": "Busca",
 	"supply-component-id": "Favor fornecer uma identificação para o componente a ser vigiado."
 }
