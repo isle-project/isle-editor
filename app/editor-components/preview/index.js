@@ -50,7 +50,9 @@ function clearGlobalVariables( oldPreamble ) {
 	const { require } = oldPreamble;
 	let keys = objectKeys( require );
 	for ( let i = 0; i < keys.length; i++ ) {
-		global[ keys[ i ] ] = void 0;
+		if ( global[ keys[ i ] ] ) {
+			global[ keys[ i ] ] = void 0;
+		}
 	}
 }
 
