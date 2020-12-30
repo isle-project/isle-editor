@@ -356,7 +356,9 @@ const Layout = ( props ) => {
 					newStyle.backgroundImage = newBackgrounds.join( ', ' );
 					props.onChange( newStyle );
 					setBackgrounds( newBackgrounds );
-				}} />
+				}}
+				t={props.t}
+			/>
 		</Fragment>
 	);
 };
