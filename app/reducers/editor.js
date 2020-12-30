@@ -30,6 +30,7 @@ if ( mainStore.get( 'shouldReload' ) ) {
 	if ( !exists.sync( filePath ) ) {
 		filePath = null;
 	}
+	fileName = mainStore.get( 'mostRecentFileName' );
 	md = mainStore.get( 'mostRecentFileData' );
 	preambleTemplate = mainStore.get( 'preambleTemplate' ) || PREAMBLE;
 	preamble = mainStore.get( 'mostRecentPreamble' );

@@ -273,8 +273,9 @@ function configureIpcRenderer( store ) {
 		debug( 'Prepare reload...' );
 		config.set( 'shouldReload', true );
 		const state = store.getState().editor;
-		const { markdown, filePath, preamble, preambleText } = state;
+		const { markdown, fileName, filePath, preamble, preambleText } = state;
 		config.set( 'mostRecentFilePath', filePath );
+		config.set( 'mostRecentFileName', fileName );
 		config.set( 'mostRecentFileData', markdown );
 		config.set( 'mostRecentPreamble', preamble );
 		config.set( 'mostRecentPreambleText', preambleText );
