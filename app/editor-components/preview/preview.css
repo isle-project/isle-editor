@@ -2,17 +2,6 @@
 	position: relative;
 }
 
-.error-message {
-	position: absolute;
-	width: 80%;
-	left: 0;
-	right: 0;
-	top: 50px;
-	margin: auto;
-	color: red;
-	font-size: 14px;
-}
-
 .preview-drag-wrapper {
 	background: white;
 	border: 1px dashed #258080;
