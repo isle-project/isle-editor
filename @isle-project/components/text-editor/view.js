@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { DOMParser as ProseMirrorParser, Node } from 'prosemirror-model';
+import { Node } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
@@ -17,6 +17,7 @@ import ImageNodeView from './config/ui/image_node_view.js';
 import { toggleCursorParking } from './config/cursor_parking';
 import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
+import parser from './parser.js';
 
 
 // VARIABLES //
@@ -31,12 +32,6 @@ const StatusBar = ( props ) => {
 		<span>{props.t('words')}: {props.nWords}</span>
 		<span style={{ marginLeft: 5 }}>{props.t('characters')}: {props.nChars}</span>
 	</div> );
-};
-
-const parser = ( content ) => {
-	const domNode = document.createElement( 'div' );
-	domNode.innerHTML = content;
-	return ProseMirrorParser.fromSchema( schema ).parse( domNode );
 };
 
 

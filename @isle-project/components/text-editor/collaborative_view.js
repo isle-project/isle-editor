@@ -5,10 +5,9 @@ import logger from 'debug';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { collab, receiveTransaction, sendableSteps, getVersion } from 'prosemirror-collab';
-import { DOMParser as ProseMirrorParser } from 'prosemirror-model';
 import { Step } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
-import { EditorState } from 'prosemirror-state';
+import { EditorState, AllSelection } from 'prosemirror-state';
 import { fixTables } from 'prosemirror-tables';
 import isJSON from '@stdlib/assert/is-json';
 import objectKeys from '@stdlib/utils/keys';
@@ -24,6 +23,7 @@ import { toggleCursorParking } from './config/cursor_parking';
 import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
+import parser from './parser.js';
 import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
 	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from '@isle-project/constants/events.js';
 import '@isle-project/components/plotly/tooltip.css';
@@ -81,12 +81,6 @@ const StatusBar = ( props ) => {
 		{ props.nWords ? <span>{props.t('words')}: {props.nWords}</span> : null }
 		{ props.nChars ? <span style={{ marginLeft: 5 }}>{props.t('characters')}: {props.nChars}</span> : null }
 	</div> );
-};
-
-const parser = ( content ) => {
-	const domNode = document.createElement( 'div' );
-	domNode.innerHTML = content;
-	return ProseMirrorParser.fromSchema( schema ).parse( domNode );
 };
 
 
@@ -154,6 +148,12 @@ class ProseMirrorCollaborative extends Component {
 			this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 			session.joinCollaborativeEditing( this.props.id, this.doc );
 		}
+		if (
+			this.props.defaultValue !== prevProps.defaultValue ||
+			this.props.docId !== prevProps.docId
+		) {
+			this.replaceEditorState();
+		}
 	}
 
 	componentWillUnmount() {
@@ -163,6 +163,15 @@ class ProseMirrorCollaborative extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
+	}
+
+	replaceEditorState = () => {
+		const state = this.dispatchState.edit;
+		const selection = new AllSelection( state.doc );
+		const doc = isJSON( this.props.defaultValue ) ?
+			Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
+			parser( this.props.defaultValue );
+		this.dispatch({ type: 'transaction', transaction: state.tr.replaceWith( selection.from, selection.to, doc ) });
 	}
 
 	// All state changes go through this:
