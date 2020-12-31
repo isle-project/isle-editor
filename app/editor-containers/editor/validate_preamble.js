@@ -1,6 +1,7 @@
 // MODULES //
 
 import isObject from '@stdlib/assert/is-object';
+import { i18n } from '@isle-project/locales/editor';
 
 
 // FUNCTION //
@@ -17,16 +18,16 @@ export class PreambleError extends Error {
 
 function validatePreamble( preamble ) {
 	if ( !isObject( preamble ) ) {
-		return new PreambleError( 'Make sure the preamble is valid YAML code and not empty.' );
+		return new PreambleError( i18n.t('valid-and-nonempty-preamble') );
 	}
 	if ( preamble.require && !isObject( preamble.require ) ) {
-		return new PreambleError( '`require` has to be an object of key-value pairs, with each pair written as an indented `key: value`.\n Please make sure to include a space after the colon.' );
+		return new PreambleError( i18n.t('preamble-object-field', { key: 'require' }) );
 	}
 	if ( preamble.state && !isObject( preamble.state ) ) {
-		return new PreambleError( '`state` has to be an object of key-value pairs, with each pair written as an indented `key: value`.\n Please make sure to include a space after the colon.' );
+		return new PreambleError( i18n.t('preamble-object-field', { key: 'state' }) );
 	}
 	if ( preamble.references && !isObject( preamble.references ) ) {
-		return new PreambleError( '`references` has to be an object of key-value pairs, with each pair written as an indented `key: value`.\n Please make sure to include a space after the colon.' );
+		return new PreambleError( i18n.t('preamble-object-field', { key: 'references' }) );
 	}
 	return null;
 }
