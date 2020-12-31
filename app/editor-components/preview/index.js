@@ -92,11 +92,12 @@ class Preview extends Component {
 			await this.loadRequires( preamble, filePath );
 		}
 		const includes = await isleFileIncludes( this.props.code, preamble, filePath );
-
-		// eslint-disable-next-line react/no-did-mount-set-state
-		this.setState({
-			includes
-		});
+		if ( this._isMounted ) {
+			// eslint-disable-next-line react/no-did-mount-set-state
+			this.setState({
+				includes
+			});
+		}
 	}
 
 	shouldComponentUpdate( nextProps, nextState ) {
@@ -163,14 +164,16 @@ class Preview extends Component {
 			if ( !err && !this._isMounted ) {
 				return this.props.resetError();
 			}
-			this.setState({
-				isLoading: false
-			}, () => {
-				if ( err ) {
-					encounteredError( new Error( `${t('error-during-require')} ${err.message}` ) );
-				}
-				debug( 'Finished loading all `requires`...' );
-			});
+			if ( this._isMounted ) {
+				this.setState({
+					isLoading: false
+				}, () => {
+					if ( err ) {
+						encounteredError( new Error( `${t('error-during-require')} ${err.message}` ) );
+					}
+					debug( 'Finished loading all `requires`...' );
+				});
+			}
 		} catch ( err ) {
 			if ( this._isMounted ) {
 				this.setState({
