@@ -7,7 +7,6 @@ import debounce from 'lodash.debounce';
 import SplitPane from 'react-split-pane';
 import logger from 'debug';
 import replace from '@stdlib/string/replace';
-import isObject from '@stdlib/assert/is-object';
 import SplitPanel from 'editor-components/split-panel';
 import Loadable from '@isle-project/components/internal/loadable';
 import electronStore from 'store/electron.js';
@@ -25,6 +24,7 @@ const Editor = Loadable( () => import( 'editor-components/editor' ) );
 const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
 const DevTools = Loadable( () => import( '../dev_tools.js' ) );
 const ComponentConfigurator = Loadable( () => import( 'editor-components/component-configurator' ) );
+import validatePreamble, { PreambleError } from './validate_preamble.js';
 
 
 // VARIABLES //
@@ -65,6 +65,11 @@ class App extends Component {
 			innerWidth: window.innerWidth
 		};
 		this.debouncedLinting = debounce( this.lintCode, LINTING_INTERVAL );
+
+		const error = validatePreamble( props.preamble );
+		if ( error ) {
+			props.encounteredError( error );
+		}
 	}
 
 	async componentDidMount() {
@@ -152,25 +157,24 @@ class App extends Component {
 			debug( 'Check whether preamble has changed: '+preambleHasChanged );
 			if ( preambleHasChanged && yaml ) {
 				debug( 'Preamble has changed...' );
+				let newPreamble;
 				try {
-					const newPreamble = yaml.load( preamble );
-					if ( !isObject( newPreamble ) ) {
-						const err = new Error( 'Make sure the preamble is valid YAML code and not empty.' );
-						err.name = 'PreambleMissing';
-						return this.props.encounteredError( err );
-					}
-					this.props.updatePreamble({
-						preamble: newPreamble,
-						preambleText: preamble
-					});
+					newPreamble = yaml.load( preamble );
 				}
 				catch ( err ) {
 					this.props.encounteredError( err );
 				}
+				const error = validatePreamble( newPreamble );
+				if ( error ) {
+					return this.props.encounteredError( error );
+				}
+				this.props.updatePreamble({
+					preamble: newPreamble,
+					preambleText: preamble
+				});
 			}
 		} else {
-			const err = new Error( 'File is missing a preamble.' );
-			err.name = 'PreambleMissing';
+			const err = new PreambleError( 'File is missing a preamble.' );
 			this.props.encounteredError( err );
 		}
 	}
@@ -199,7 +203,7 @@ class App extends Component {
 		if (
 			this.props.error &&
 			this.props.error.name !== 'YAMLException' &&
-			this.props.error.name !== 'PreambleMissing'
+			this.props.error.name !== 'PreambleError'
 		) {
 			this.props.resetError();
 		}
