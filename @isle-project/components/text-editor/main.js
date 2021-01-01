@@ -15,6 +15,7 @@ import { DOMSerializer } from 'prosemirror-model';
 import repeat from '@stdlib/string/repeat';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
 import generateUID from '@isle-project/utils/uid';
@@ -37,7 +38,7 @@ import applyMark from './config/apply_mark.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
-import { CREATED_GROUPS, DELETED_GROUPS } from '@isle-project/constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
@@ -272,15 +273,13 @@ class TextEditor extends Component {
 				title: 'open-tutorials',
 				run: this.toggleGuides,
 				content: icons.guides
-			}
-		]);
-		if ( this.props.mode === 'group' || this.props.mode === 'collaborative' ) {
-			this.menu.addons.push({
+			},
+			{
 				title: 'add-annotation',
 				content: icons.annotation,
 				run: addAnnotation
-			});
-		}
+			}
+		]);
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
 			let tooltip;
 			let icon;
@@ -323,7 +322,10 @@ class TextEditor extends Component {
 		}
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === CREATED_GROUPS ) {
+			if ( type === LOGGED_IN || type === LOGGED_OUT ) {
+				this.forceUpdate();
+			}
+			else if ( type === CREATED_GROUPS ) {
 				const allGroups = session.allGroups.map( x => x.name );
 				this.setState({
 					group: session.group ? session.group.name : allGroups[ 0 ],
@@ -538,11 +540,24 @@ class TextEditor extends Component {
 		});
 	}
 
+	generateDocumentId() {
+		if ( this.props.mode === 'group' ) {
+			return this.state.group + '-' + this.id;
+		}
+		const session = this.context;
+		if ( this.props.mode === 'individual' ) {
+			return ( session.user.email || session.anonymousIdentifier ) + '-' + this.id;
+		}
+		// Case: mode === 'collaborative'
+		return this.id;
+	}
+
 	render() {
 		const session = this.context;
 		if ( this.props.mode === 'group' && !this.state.group ) {
 			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
+		const useCollaborativeView = isString( session.server );
 		return (
 			<Fragment>
 				{ this.props.mode === 'group' ? <Gate owner >
@@ -562,7 +577,7 @@ class TextEditor extends Component {
 					ref={( div ) => { this.editorWrapper = div; }}
 					style={this.props.style}
 				>
-					{ this.props.mode === 'group' || this.props.mode === 'collaborative' ?
+					{useCollaborativeView ?
 						<ProseMirrorCollaborativeView
 							defaultValue={this.state.value}
 							menu={this.menu}
@@ -573,7 +588,7 @@ class TextEditor extends Component {
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}
-							id={this.props.mode === 'group' ? this.state.group + '-' + this.id : this.id}
+							id={this.generateDocumentId()}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
