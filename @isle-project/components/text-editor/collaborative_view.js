@@ -146,7 +146,7 @@ class ProseMirrorCollaborative extends Component {
 			this.props.id !== prevProps.id
 		) {
 			this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
-			session.joinCollaborativeEditing( this.props.id, this.doc );
+			this.dispatchState = null;
 		}
 		if (
 			this.props.defaultValue !== prevProps.defaultValue ||
