@@ -525,7 +525,7 @@ class TextEditor extends Component {
 		}
 		const session = this.context;
 		if ( this.props.mode === 'individual' ) {
-			return ( session.user.email || session.anonymousIdentifier ) + '-' + this.id;
+			return this.id + '-' + ( session.user.email || session.anonymousIdentifier );
 		}
 		// Case: mode === 'collaborative'
 		return this.id;
