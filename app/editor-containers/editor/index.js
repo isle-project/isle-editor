@@ -226,6 +226,7 @@ class App extends Component {
 			changeAutoUpdate,
 			currentRole,
 			currentMode,
+			preamble,
 			unsaved,
 			showLineButtons,
 			toggleLineButtons,
@@ -237,14 +238,14 @@ class App extends Component {
 
 		const preview = <ErrorBoundary
 			code={markdown}
-			preamble={this.props.preamble}
+			preamble={preamble}
 			resetError={this.props.resetError}
 		>
 			<Preview
 				code={markdown}
 				autoUpdatePreview={autoUpdatePreview}
 				filePath={filePath}
-				preamble={this.props.preamble}
+				preamble={preamble}
 				currentRole={currentRole}
 				currentMode={currentMode}
 				onCode={this.debouncedLinting}
@@ -267,6 +268,7 @@ class App extends Component {
 						role={currentRole}
 						onSelectMode={changeMode}
 						mode={currentMode}
+						preamble={preamble}
 						unsaved={unsaved}
 						triggerUpdate={this.props.incrementDocumentVersion}
 						autoUpdatePreview={autoUpdatePreview}
@@ -329,7 +331,7 @@ class App extends Component {
 								name="monaco_editor"
 								fontSize={this.props.fontSize}
 								elementRange={this.props.elementRange}
-								preamble={this.props.preamble}
+								preamble={preamble}
 								author={this.props.author}
 								currentRole={currentRole}
 								currentMode={currentMode}

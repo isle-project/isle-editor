@@ -115,7 +115,7 @@ class Session {
 		debug( 'Should create session...' );
 
 		// Address where ISLE server is running:
-		this.server = offline ? null : window.location.origin;
+		this.server = offline ? null : ( isElectron ? config.server : window.location.origin );
 
 		// Set whether the session tries to communicate with the server
 		this._offline = offline || false;

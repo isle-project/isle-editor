@@ -10,6 +10,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import KeyControls from '@isle-project/components/key-controls';
@@ -133,6 +134,7 @@ class Header extends Component {
 									variant="warning"
 									onSelect={this.handleModeSelection}
 									style={{ marginLeft: 25 }}
+									disabled={!this.props.preamble || !isString( this.props.preamble.server)}
 								>
 									<DropdownItem eventKey="1">{t('offline')}</DropdownItem>
 									<DropdownItem eventKey="2">{t('online')}</DropdownItem>
@@ -182,6 +184,7 @@ class Header extends Component {
 Header.defaultProps = {
 	fileName: '',
 	filePath: '',
+	preamble: null,
 	updateDownloadPercent: null,
 	updateInfo: null,
 	updateStatus: null
@@ -192,6 +195,7 @@ Header.propTypes = {
 	fileName: PropTypes.string,
 	unsaved: PropTypes.bool.isRequired,
 	mode: PropTypes.string.isRequired,
+	preamble: PropTypes.object,
 	autoUpdatePreview: PropTypes.bool.isRequired,
 	changeAutoUpdate: PropTypes.func.isRequired,
 	showLineButtons: PropTypes.bool.isRequired,
