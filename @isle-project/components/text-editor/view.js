@@ -37,12 +37,20 @@ const StatusBar = ( props ) => {
 
 // MAIN //
 
+/**
+* A localstorage based individual editor view.
+*
+* @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
+* @property {number} intervalTime - time between auto saves
+*/
 class ProseMirror extends Component {
 	constructor( props ) {
 		super( props );
-		const doc = isJSON( props.defaultValue ) ?
-		Node.fromJSON( schema, JSON.parse( props.defaultValue ) ) :
-			parser( props.defaultValue );
+
+		const value = localStorage.getItem( props.id ) || props.defaultValue;
+		const doc = isJSON( value ) ?
+		Node.fromJSON( schema, JSON.parse( value ) ) :
+			parser( value );
 		this.state = {
 			editorState: EditorState.create({
 				doc,
@@ -50,6 +58,13 @@ class ProseMirror extends Component {
 				plugins
 			})
 		};
+	}
+
+	componentDidMount() {
+		if ( this.props.autoSave ) {
+			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
+		}
+		window.addEventListener( 'unload', this.saveInBrowser );
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -78,6 +93,10 @@ class ProseMirror extends Component {
 		if ( this.editorView ) {
 			this.editorView.destroy();
 		}
+		if ( this.saveInterval ) {
+			clearInterval( this.saveInterval );
+		}
+		window.removeEventListener( 'unload', this.saveInBrowser );
 	}
 
 	_createEditorView = ( element ) => {
@@ -145,6 +164,13 @@ class ProseMirror extends Component {
 		}
 	}
 
+	saveInBrowser = () => {
+		console.log( 'Saving document state to local storage...' );
+		if ( this.state.editorState ) {
+			localStorage.setItem( this.props.id, JSON.stringify( this.state.editorState.doc.toJSON() ) );
+		}
+	}
+
 	render() {
 		return ( <Fragment>
 			<MenuBar
@@ -172,6 +198,8 @@ class ProseMirror extends Component {
 // PROPERTIES //
 
 ProseMirror.propTypes = {
+	autoSave: PropTypes.bool,
+	intervalTime: PropTypes.number,
 	defaultValue: PropTypes.string.isRequired,
 	docId: PropTypes.number.isRequired,
 	fullscreen: PropTypes.bool.isRequired,
@@ -186,6 +214,8 @@ ProseMirror.propTypes = {
 };
 
 ProseMirror.defaultProps = {
+	autoSave: true,
+	intervalTime: 10000,
 	showStatusBar: true,
 	t() {},
 	onColorChoice() {},

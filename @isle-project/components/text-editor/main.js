@@ -77,9 +77,7 @@ async function toDataURL( url ){
 * @property {boolean} allowSubmissions - controls whether students may submit their reports to the server
 * @property {string} defaultValue - default text of the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
-* @property {boolean} autoSave - controls whether the editor should save the current text to the local storage of the browser at a given time interval
 * @property {string} mode - controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`)
-* @property {number} intervalTime - time between auto saves
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
 * @property {string} language - language identifier
 * @property {Object} style - CSS inline styles
@@ -91,9 +89,6 @@ class TextEditor extends Component {
 
 		this.id = props.id || uid( props );
 		let value;
-		if ( props.autoSave ) {
-			value = localStorage.getItem( this.id );
-		}
 		if ( !value ) {
 			value = md.render( props.defaultValue );
 		}
@@ -317,9 +312,6 @@ class TextEditor extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoSave && this.props.mode === 'individual' ) {
-			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
-		}
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === LOGGED_IN || type === LOGGED_OUT ) {
@@ -339,23 +331,11 @@ class TextEditor extends Component {
 				});
 			}
 		});
-		window.addEventListener( 'unload', this.saveInBrowser );
 	}
 
 	componentWillUnmount() {
-		if ( this.saveInterval ) {
-			clearInterval( this.saveInterval );
-		}
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
-		}
-		window.removeEventListener( 'unload', this.saveInBrowser );
-	}
-
-	saveInBrowser = () => {
-		debug( 'Saving document state to local storage...' );
-		if ( this.editorState ) {
-			localStorage.setItem( this.id, JSON.stringify( this.editorState.doc.toJSON() ) );
 		}
 	}
 
@@ -514,7 +494,6 @@ class TextEditor extends Component {
 	}
 
 	resetEditor = () => {
-		localStorage.removeItem( this.id );
 		this.setState({
 			value: md.render( this.props.defaultValue ),
 			docId: this.state.docId + 1
@@ -658,14 +637,12 @@ class TextEditor extends Component {
 // PROPERTIES //
 
 TextEditor.propTypes= {
-	autoSave: PropTypes.bool,
 	allowSubmissions: PropTypes.bool,
 	canLoadHTML: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	mode: PropTypes.oneOf([
 		'group', 'collaborative', 'individual'
 	]),
-	intervalTime: PropTypes.number,
 	resetModal: PropTypes.shape({
 		title: PropTypes.string,
 		body: PropTypes.string,
@@ -680,12 +657,10 @@ TextEditor.propTypes= {
 };
 
 TextEditor.defaultProps = {
-	autoSave: true,
 	allowSubmissions: true,
 	canLoadHTML: true,
 	defaultValue: DEFAULT_VALUE,
 	mode: 'individual',
-	intervalTime: 10000,
 	voiceTimeout: 5000,
 	language: 'en-US',
 	resetModal: null,
