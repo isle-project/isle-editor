@@ -281,7 +281,7 @@ class TextEditor extends Component {
 				run: addAnnotation
 			});
 		}
-		if ( this.props.mode === 'individual' && props.defaultValue !== DEFAULT_VALUE ) {
+		if ( props.defaultValue !== DEFAULT_VALUE ) {
 			let tooltip;
 			let icon;
 			const resetModal = this.props.resetModal;
