@@ -52,7 +52,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	RECEIVED_JITSI_TOKEN, RECEIVED_LESSON_INFO, RECEIVED_QUEUE_QUESTIONS, RECEIVED_USERS, RETRIEVED_CURRENT_USER_ACTIONS,
 	RETRIEVED_USER_ACTIONS, RECEIVED_USER_RIGHTS, REMOVED_CHAT, RETRIEVED_COHORTS, SELF_HAS_JOINED_CHAT,
 	SELF_HAS_LEFT_CHAT, SELECTED_COHORT, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
-	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, STICKY_NOTES_UPDATED, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
+	SENT_COLLABORATIVE_EDITING_EVENTS, SERVER_IS_LIVE, STICKY_NOTES_UPDATED, TEXT_EDITOR_DOCUMENTS_UPDATED, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT, USER_PROGRESS,
 	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import POINTS from '@isle-project/constants/points.js';
 import ANIMALS from '@isle-project/constants/animals.js';
@@ -255,6 +255,9 @@ class Session {
 
 		// Instructor, student, and public sticky notes for the lesson:
 		this.stickyNotes = [];
+
+		// List of text editor document identifiers:
+		this.textEditorDocuments = [];
 
 		// Extract namespace and lesson name from URL:
 		this.namespaceName = null;
@@ -727,6 +730,9 @@ class Session {
 				}
 
 				this.getStickyNotes();
+				if ( userRights.owner ) {
+					this.getTextEditorDocuments();
+				}
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
@@ -1248,6 +1254,30 @@ class Session {
 				}
 			})
 			.catch( error => debug( 'Encountered an error: '+error.message ) );
+	}
+
+	/**
+	* Retrieves text document identifiers for the lesson.
+	*/
+	getTextEditorDocuments = () => {
+		axios.get( this.server+'/text_editor_document_list?'+qs.stringify({
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		}) )
+			.then( res => {
+				if ( res.data.message === 'ok' && res.data.documents.length > 0 ) {
+					this.textEditorDocuments = res.data.documents.map( x => x.id );
+					this.update( TEXT_EDITOR_DOCUMENTS_UPDATED );
+				}
+			})
+			.catch( error => {
+				this.addNotification({
+					title: i18n.t( 'session:error-encountered' ),
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
 	}
 
 	updateMetadata = ( type, key, value ) => {

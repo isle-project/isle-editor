@@ -38,7 +38,7 @@ import applyMark from './config/apply_mark.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
-import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED } from '@isle-project/constants/events.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
@@ -103,7 +103,8 @@ class TextEditor extends Component {
 			originalDefaultValue: props.defaultValue,
 			docId: 0,
 			group: null,
-			allGroups: null
+			allGroups: null,
+			selectedReportId: null
 		};
 
 		this.menu = copy( menu, 2 );
@@ -314,7 +315,7 @@ class TextEditor extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === LOGGED_IN || type === LOGGED_OUT ) {
+			if ( type === LOGGED_IN || type === LOGGED_OUT || type === TEXT_EDITOR_DOCUMENTS_UPDATED ) {
 				this.forceUpdate();
 			}
 			else if ( type === CREATED_GROUPS ) {
@@ -524,6 +525,9 @@ class TextEditor extends Component {
 			return this.state.group + '-' + this.id;
 		}
 		const session = this.context;
+		if ( this.state.selectedReportId ) {
+			return this.state.selectedReportId;
+		}
 		if ( this.props.mode === 'individual' ) {
 			return this.id + '-' + ( session.user.email || session.anonymousIdentifier );
 		}
@@ -536,21 +540,10 @@ class TextEditor extends Component {
 		if ( this.props.mode === 'group' && !this.state.group ) {
 			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
+		console.log( session.textEditorDocuments );
 		const useCollaborativeView = isString( session.server );
 		return (
 			<Fragment>
-				{ this.props.mode === 'group' ? <Gate owner >
-					<SelectInput
-						legend={this.props.t('select-group')}
-						options={this.state.allGroups}
-						value={this.state.group}
-						onChange={( group ) => {
-							this.setState({
-								group
-							});
-						}}
-					/>
-				</Gate> : null }
 				<div
 					id={this.id} className="editorview-wrapper"
 					ref={( div ) => { this.editorWrapper = div; }}
@@ -590,19 +583,46 @@ class TextEditor extends Component {
 							docId={this.state.docId}
 						/>
 					}
+					{ this.props.mode === 'group' ?
+						<Gate owner >
+							<SelectInput
+								legend={this.props.t('select-group')}
+								options={this.state.allGroups}
+								value={this.state.group}
+								onChange={( group ) => {
+									this.setState({
+										group
+									});
+								}}
+								style={{ marginLeft: '20px', width: '300px', display: 'inline-block' }}
+							/>
+						</Gate> :
+						<Gate owner >
+							<SelectInput
+								options={session.textEditorDocuments}
+								value={null}
+								onChange={( id ) => {
+									this.setState({
+										selectedReportId: id
+									});
+								}}
+								style={{ marginLeft: '20px', width: '300px', display: 'inline-block' }}
+							/>
+						</Gate>
+					}
+					{ this.props.allowSubmissions ? <div
+						style={{ float: 'right', marginRight: '8px', marginTop: '-8px' }}
+					>
+						<ResponseVisualizer
+							id={this.id}
+							data={{
+								type: 'text'
+							}}
+							info={EDITOR_SUBMIT}
+							style={{ padding: 5 }}
+						/>
+					</div>: null }
 				</div>
-				{ this.props.allowSubmissions ? <div
-					style={{ textAlign: 'center', width: '100%' }}
-				>
-					<ResponseVisualizer
-						id={this.id}
-						data={{
-							type: 'text'
-						}}
-						info={EDITOR_SUBMIT}
-						style={{ padding: 5 }}
-					/>
-				</div>: null }
 				{this.state.showResetModal ? <ResetModal
 					show={this.state.showResetModal}
 					onHide={this.toggleResetModal}
