@@ -541,6 +541,7 @@ class TextEditor extends Component {
 			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
 		const useCollaborativeView = isString( session.server );
+		const docId = this.generateDocumentId();
 		return (
 			<Fragment>
 				<div
@@ -559,7 +560,7 @@ class TextEditor extends Component {
 							fullscreen={this.state.isFullscreen}
 							showColorPicker={this.state.showColorPicker}
 							onColorChoice={this.onColorChoice}
-							id={this.generateDocumentId()}
+							id={docId} key={docId}
 							onEditorState={( editorState ) => {
 								this.editorState = editorState;
 							}}
