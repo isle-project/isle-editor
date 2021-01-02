@@ -861,7 +861,7 @@ class Session {
 	* @param {string} [doc] - default document
 	*/
 	joinCollaborativeEditing( name, doc ) {
-		name = `${this.namespaceName}-${this.lessonName}-${name}`;
+		name = `${this.namespaceID}-${this.lessonID}-${name}`;
 		if ( this.socket ) {
 			debug( 'Join collaborative editing for '+name );
 			if ( doc ) {
@@ -880,7 +880,7 @@ class Session {
 	*/
 	sendCollaborativeEvents( name, data ) {
 		if ( this.socket ) {
-			name = `${this.namespaceName}-${this.lessonName}-${name}`;
+			name = `${this.namespaceID}-${this.lessonID}-${name}`;
 			this.socket.emit( 'send_collaborative_editing_events', {
 				docID: name,
 				data: data
@@ -896,7 +896,7 @@ class Session {
 	*/
 	pollCollaborativeEditingEvents( name, data ) {
 		if ( this.socket ) {
-			name = `${this.namespaceName}-${this.lessonName}-${name}`;
+			name = `${this.namespaceID}-${this.lessonID}-${name}`;
 			this.socket.emit( 'poll_collaborative_editing_events', {
 				docID: name,
 				data

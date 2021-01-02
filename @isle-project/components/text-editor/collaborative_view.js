@@ -104,7 +104,6 @@ class ProseMirrorCollaborative extends Component {
 
 	componentDidMount() {
 		const session = this.props.session;
-		this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === USER_JOINED ) {
 				if ( !this.dispatchState ) {
@@ -112,21 +111,21 @@ class ProseMirrorCollaborative extends Component {
 					this.props.session.joinCollaborativeEditing( this.props.id, this.doc );
 				}
 			}
-			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === this.docID ) {
+			if ( type === JOINED_COLLABORATIVE_EDITING && action.id === `${session.namespaceID}-${session.lessonID}-${this.props.id}` ) {
 				debug( 'Joined collaborative editing...' );
 				this.handleStart( action.data );
 			}
-			else if ( type === POLLED_COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
+			else if ( type === POLLED_COLLABORATIVE_EDITING_EVENTS && action.id === `${session.namespaceID}-${session.lessonID}-${this.props.id}` ) {
 				if ( this.dispatchState.comm === 'polling' ) {
 					this.handlePollResponse( action.data );
 				}
-			} else if ( type === SENT_COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
+			} else if ( type === SENT_COLLABORATIVE_EDITING_EVENTS && action.id === `${session.namespaceID}-${session.lessonID}-${this.props.id}` ) {
 				debug( 'Received response after sending collaborative editing events...' );
 				if ( this.dispatchState.comm === 'send' ) {
 					this.handleSendResponse( action.data );
 				}
 			}
-			else if ( type === COLLABORATIVE_EDITING_EVENTS && action.id === this.docID ) {
+			else if ( type === COLLABORATIVE_EDITING_EVENTS && action.id === `${session.namespaceID}-${session.lessonID}-${this.props.id}` ) {
 				debug( 'Received info that other user updated the document '+JSON.stringify( action.data )+'[comm='+this.dispatchState.comm+']' );
 				if ( this.dispatchState.comm === 'listening' ) {
 					this.dispatch({ type: 'polling' });
@@ -141,11 +140,9 @@ class ProseMirrorCollaborative extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const session = this.props.session;
 		if (
 			this.props.id !== prevProps.id
 		) {
-			this.docID = `${session.namespaceName}-${session.lessonName}-${this.props.id}`;
 			this.dispatchState = null;
 		}
 		if (
