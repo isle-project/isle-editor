@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import logger from 'debug';
 import { ContextMenu, MenuItem } from 'react-contextmenu';
 import replace from '@stdlib/string/replace';
@@ -257,4 +258,4 @@ LessonContextMenu.propTypes = {
 
 // EXPORTS //
 
-export default LessonContextMenu;
+export default withTranslation( 'Lesson' )( LessonContextMenu );

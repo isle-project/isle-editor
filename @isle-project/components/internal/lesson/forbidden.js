@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import './forbidden.css';
 
 
@@ -17,4 +18,4 @@ const Forbidden = ( props ) => {
 
 // EXPORTS //
 
-export default Forbidden;
+export default withTranslation( 'Lesson' )( Forbidden );

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { ContextMenuTrigger } from 'react-contextmenu';
-import { withTranslation, I18nextProvider } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@isle-project/locales';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
 import StickyNote from '@isle-project/components/sticky-note';
@@ -102,7 +102,7 @@ class Lesson extends Component {
 	render() {
 		const session = this.context;
 		if ( !this.state.visible ) {
-			return <Forbidden t={this.props.t} />;
+			return <Forbidden />;
 		}
 		return (
 			<I18nextProvider i18n={i18n} >
@@ -163,7 +163,6 @@ class Lesson extends Component {
 				<LessonContextMenu
 					addNote={this.addNote}
 					session={this.context}
-					t={this.props.t}
 				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
@@ -195,4 +194,4 @@ Lesson.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Lesson' )( Lesson );
+export default Lesson;
