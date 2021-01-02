@@ -104,6 +104,7 @@
 	"saving-3": "Po powrocie do pracy nad raportem, za pomocą tej ikony można ponownie załadować zapisany raport HTML do edytora raportów.",
 	"saving-4": "Kiedy już będziesz zadowolony ze swojej pracy, wyślij ją na platformę, klikając ten przycisk. Wkrótce po zgłoszeniu otrzymasz wiadomość e-mail z raportem. Alternatywnie, możesz ręcznie wyeksportować raport, aby zobaczyć, jak wygląda.",
 	"saving-progress": "Oszczędzanie postępu",
+	"select-document-to-display": "Wybierz dokument do wyświetlenia...",
 	"select-group": "Wybierz grupę",
 	"select-parent-node": "Wybierz węzeł macierzysty",
 	"select-tour": "Wybierz wycieczkę",

@@ -104,6 +104,7 @@
 	"saving-3": "Cuando vuelva a trabajar en su informe, puede cargar su informe HTML guardado en el editor de informes usando este icono.",
 	"saving-4": "Una vez que esté satisfecho con su trabajo, envíelo a la plataforma haciendo clic en este botón. Recibirás un correo electrónico con tu informe poco después de la presentación. Alternativamente, puede exportar manualmente el informe para ver cómo se ve.",
 	"saving-progress": "Salvar el progreso",
+	"select-document-to-display": "Seleccione el documento a mostrar...",
 	"select-group": "Seleccione el grupo...",
 	"select-parent-node": "Seleccione el nodo padre",
 	"select-tour": "Seleccione un tour",

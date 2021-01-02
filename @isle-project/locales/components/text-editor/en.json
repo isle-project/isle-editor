@@ -104,6 +104,7 @@
 	"saving-3": "When you return to working on your report, you can load your saved HTML report back into the report editor using this icon.",
 	"saving-4": "Once you are satisfied with your work, submit it on the platform by clicking this button. You will receive an email with your report shortly after submission. Alternatively, you can manually export the report to see what it looks like.",
 	"saving-progress": "Saving Progress",
+	"select-document-to-display": "Select document to display...",
 	"select-group": "Select group",
 	"select-parent-node": "Select parent node",
 	"select-tour": "Select a Tour",

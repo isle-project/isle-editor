@@ -104,7 +104,7 @@ class TextEditor extends Component {
 			docId: 0,
 			group: null,
 			allGroups: null,
-			selectedReportId: null
+			selectedUserReport: null
 		};
 
 		this.menu = copy( menu, 2 );
@@ -525,8 +525,8 @@ class TextEditor extends Component {
 			return this.state.group + '-' + this.id;
 		}
 		const session = this.context;
-		if ( this.state.selectedReportId ) {
-			return this.state.selectedReportId;
+		if ( this.state.selectedUserReport ) {
+			return this.id + '-'+ this.state.selectedUserReport;
 		}
 		if ( this.props.mode === 'individual' ) {
 			return this.id + '-' + ( session.user.email || session.anonymousIdentifier );
@@ -540,7 +540,6 @@ class TextEditor extends Component {
 		if ( this.props.mode === 'group' && !this.state.group ) {
 			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
-		console.log( session.textEditorDocuments );
 		const useCollaborativeView = isString( session.server );
 		return (
 			<Fragment>
@@ -586,7 +585,7 @@ class TextEditor extends Component {
 					{ this.props.mode === 'group' ?
 						<Gate owner >
 							<SelectInput
-								legend={this.props.t('select-group')}
+								placeholder={this.props.t('select-group')}
 								options={this.state.allGroups}
 								value={this.state.group}
 								onChange={( group ) => {
@@ -594,21 +593,23 @@ class TextEditor extends Component {
 										group
 									});
 								}}
-								style={{ marginLeft: '20px', width: '300px', display: 'inline-block' }}
+								style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
 							/>
-						</Gate> :
-						<Gate owner >
+						</Gate> : null }
+					{ this.props.mode === 'individual' ? <Gate owner >
 							<SelectInput
-								options={session.textEditorDocuments}
-								value={null}
+								placeholder={this.props.t('select-document-to-display')}
+								options={session.textEditorDocuments.filter( x => x.startsWith( this.id )).map( x => x.slice( this.id.length + 1 ))}
+								value={this.state.selectedUserReport}
 								onChange={( id ) => {
 									this.setState({
-										selectedReportId: id
+										selectedUserReport: id
 									});
 								}}
-								style={{ marginLeft: '20px', width: '300px', display: 'inline-block' }}
+								clearable
+								style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
 							/>
-						</Gate>
+						</Gate> : null
 					}
 					{ this.props.allowSubmissions ? <div
 						style={{ float: 'right', marginRight: '8px', marginTop: '-8px' }}
