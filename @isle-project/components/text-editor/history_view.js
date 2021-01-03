@@ -198,7 +198,7 @@ class HistoryView extends Component {
 					<Button variant="light" onClick={this.reset} >
 						<i className="far fa-times-circle"></i>
 					</Button>
-					<Button variant="light" onClick={this.playBackward} disabled={!document || counter === 0 } >
+					<Button variant="light" onClick={this.playBackward} disabled={!document || counter === 0} >
 						<i className="fas fa-fast-backward" ></i>
 					</Button>
 					<Button variant="light" onClick={this.stop} >
