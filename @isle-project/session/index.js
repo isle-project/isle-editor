@@ -1280,6 +1280,22 @@ class Session {
 			});
 	}
 
+	/**
+	* Retrieves contents and history of a text document.
+	*
+	* @returns {Promise} request result
+	*/
+	getTextEditorDocument = ( id ) => {
+		const url = this.server+'/text_editor_document?'+qs.stringify({
+			id: id,
+			lessonID: this.lessonID,
+			namespaceID: this.namespaceID
+		});
+		return axios.get( url ).catch( error =>
+			debug( 'Encountered an error: '+error.message )
+		);
+	}
+
 	updateMetadata = ( type, key, value ) => {
 		if ( !this.isOwner() ) {
 			return null;
