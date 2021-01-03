@@ -134,7 +134,7 @@
 	"underline": "Underline",
 	"undo-last-change": "Undo last change",
 	"unordered": "Unordered",
-	"update-time-in-ms": "Update Time: {{ms}}ms",
+	"update-time": "Update Time:",
 	"upload-image": "Upload Image",
 	"words": "Words",
 	"wrap-block-quote": "Wrap in block quote",

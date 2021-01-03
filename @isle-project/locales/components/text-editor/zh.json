@@ -134,7 +134,7 @@
 	"underline": "下划线",
 	"undo-last-change": "撤消上一次更改",
 	"unordered": "无序",
-	"update-time-in-ms": "更新时间：{{ms}}ms",
+	"update-time": "更新时间。",
 	"upload-image": "上传图片",
 	"words": "词条",
 	"wrap-block-quote": "用方块引号包装",

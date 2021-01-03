@@ -134,7 +134,7 @@
 	"underline": "下線",
 	"undo-last-change": "最後の変更を元に戻す",
 	"unordered": "無秩序",
-	"update-time-in-ms": "更新時間：{{ms}}ms",
+	"update-time": "更新時間。",
 	"upload-image": "画像のアップロード",
 	"words": "言葉",
 	"wrap-block-quote": "ブロック引用でラップ",
