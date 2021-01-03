@@ -640,7 +640,7 @@ class TextEditor extends Component {
 						</Gate> : null
 					}
 					{ this.props.allowSubmissions ? <div
-						style={{ float: 'right', marginRight: '8px', marginTop: '-8px' }}
+						style={{ float: 'right' }}
 					>
 						<ResponseVisualizer
 							id={this.id}
