@@ -9,6 +9,7 @@ import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import isJSON from '@stdlib/assert/is-json';
 import SliderInput from '@isle-project/components/input/slider';
+import collaborativeCursorPlugin from './config/collab_cursor.js';
 import plugins from './config/plugins';
 import schema from './config/schema';
 import FootnoteView from './views/footnote';
@@ -37,22 +38,25 @@ class HistoryView extends Component {
 			editorState: EditorState.create({
 				doc,
 				schema,
-				plugins
+				plugins: plugins.concat([
+					collaborativeCursorPlugin
+				])
 			}),
 			document: null,
 			counter: 0,
-			interval: 50,
+			interval: 100,
 			running: false,
 			nWords: 0,
 			nChars: 0,
-			invertedSteps: []
+			invertedSteps: [],
+			cursors: {}
 		};
 	}
 
 	async componentDidMount() {
 		const res = await this.props.session.getTextEditorDocument( this.props.docId );
-		console.log( res.data );
 		if ( res.data.message === 'ok' ) {
+			// eslint-disable-next-line react/no-did-mount-set-state
 			this.setState({
 				document: res.data.document
 			});
@@ -82,9 +86,25 @@ class HistoryView extends Component {
 		}
 		const state = this.state.editorState;
 		const tr = state.tr;
-		const step = Step.fromJSON( schema, this.state.document.steps[ this.state.counter ] );
+		const jsonStep = this.state.document.steps[ this.state.counter ];
+		const cursors = {
+			...this.state.cursors,
+			[jsonStep.clientID]: {
+				from: jsonStep.from,
+				to: jsonStep.to
+			}
+		};
+		tr.setMeta( collaborativeCursorPlugin, {
+			cursors,
+			version: 1,
+			clientID: ''
+		});
+
+		const step = Step.fromJSON( schema, jsonStep );
 		const invertedStep = step.invert( tr.doc );
+		invertedStep.clientID = jsonStep.clientID;
 		tr.maybeStep( step );
+
 		const newState = state.apply( tr );
 		this.editorView.updateState( newState );
 		const newCounter = this.state.counter + 1;
@@ -107,7 +127,8 @@ class HistoryView extends Component {
 			editorState: newState,
 			nChars,
 			nWords,
-			invertedSteps
+			invertedSteps,
+			cursors
 		}, () => {
 			if ( newCounter < this.state.document.steps.length ) {
 				setTimeout( this.addStep, this.state.interval );
@@ -123,6 +144,19 @@ class HistoryView extends Component {
 		const tr = state.tr;
 		const newCounter = this.state.counter - 1;
 		const step = this.state.invertedSteps[ newCounter ];
+
+		const cursors = {
+			...this.state.cursors,
+			[step.clientID]: {
+				from: step.from,
+				to: step.to
+			}
+		};
+		tr.setMeta( collaborativeCursorPlugin, {
+			cursors,
+			version: 1,
+			clientID: ''
+		});
 		tr.maybeStep( step );
 		const newState = state.apply( tr );
 		this.editorView.updateState( newState );
@@ -157,7 +191,10 @@ class HistoryView extends Component {
 		const newState = EditorState.create({
 			doc,
 			schema,
-			plugins
+			plugins: plugins.concat([
+				collaborativeCursorPlugin
+			]),
+			cursors: {}
 		});
 		this.editorView.updateState( newState );
 		this.setState({
@@ -211,7 +248,7 @@ class HistoryView extends Component {
 				<span style={{ marginLeft: 20, marginRight: 10 }} >
 					{this.props.t('update-time')}
 				</span>
-				<SliderInput inline defaultValue={this.state.interval} min={20} max={200} onChange={( value ) => {
+				<SliderInput inline defaultValue={this.state.interval} min={50} max={1000} onChange={( value ) => {
 					this.setState({ interval: value });
 				}} numberInputStyle={{ display: 'none' }} />
 				<span>{`${this.state.interval}${MS}`}</span>
