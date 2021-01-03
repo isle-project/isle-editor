@@ -31,6 +31,7 @@ import menu from './config/menu';
 import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
 import ProseMirrorCollaborativeView from './collaborative_view.js';
+import HistoryView from './history_view.js';
 import { addAnnotation } from './config/comments';
 import createHTML from './create_html.js';
 import schema from './config/schema';
@@ -104,7 +105,8 @@ class TextEditor extends Component {
 			docId: 0,
 			group: null,
 			allGroups: null,
-			selectedUserReport: null
+			selectedUserReport: null,
+			showHistory: false
 		};
 
 		this.menu = copy( menu, 2 );
@@ -274,6 +276,11 @@ class TextEditor extends Component {
 				title: 'add-annotation',
 				content: icons.annotation,
 				run: addAnnotation
+			},
+			{
+				title: 'show-history',
+				content: icons.history,
+				run: this.toggleHistory
 			}
 		]);
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
@@ -387,6 +394,10 @@ class TextEditor extends Component {
 		this.setState({
 			showPDFModal: !this.state.showPDFModal
 		}, clbk );
+	}
+
+	toggleHistory = () => {
+		this.setState({ showHistory: !this.state.showHistory });
 	}
 
 	submitReport = async ( additionalRecipientObj = null, message = null ) => {
@@ -535,13 +546,62 @@ class TextEditor extends Component {
 		return this.id;
 	}
 
+	renderView() {
+		const session = this.context;
+		const useCollaborativeView = isString( session.server );
+		const docId = this.generateDocumentId();
+		if ( this.state.showHistory ) {
+			return ( <HistoryView
+				defaultValue={this.state.value}
+				onClose={this.toggleHistory}
+				editorState={this.editorState}
+				docId={docId}
+				session={session}
+				t={this.props.t}
+				key={docId}
+			/> );
+		}
+		if ( useCollaborativeView ) {
+			return ( <ProseMirrorCollaborativeView
+				defaultValue={this.state.value}
+				menu={this.menu}
+				onMount={( div ) => {
+					this.editorDiv = div;
+				}}
+				session={session}
+				fullscreen={this.state.isFullscreen}
+				showColorPicker={this.state.showColorPicker}
+				onColorChoice={this.onColorChoice}
+				id={docId} key={docId}
+				onEditorState={( editorState ) => {
+					this.editorState = editorState;
+				}}
+			/> );
+		}
+		return ( <ProseMirrorEditorView
+			defaultValue={this.state.value}
+			menu={this.menu}
+			className="cancel"
+			onMount={( div ) => {
+				this.editorDiv = div;
+			}}
+			t={this.props.t}
+			fullscreen={this.state.isFullscreen}
+			showColorPicker={this.state.showColorPicker}
+			onColorChoice={this.onColorChoice}
+			id={this.id}
+			onEditorState={( editorState ) => {
+				this.editorState = editorState;
+			}}
+			docId={this.state.docId}
+		/> );
+	}
+
 	render() {
 		const session = this.context;
 		if ( this.props.mode === 'group' && !this.state.group ) {
 			return <h3 style={this.props.style} >{this.props.t('available-when-grouped')}</h3>;
 		}
-		const useCollaborativeView = isString( session.server );
-		const docId = this.generateDocumentId();
 		return (
 			<Fragment>
 				<div
@@ -549,40 +609,7 @@ class TextEditor extends Component {
 					ref={( div ) => { this.editorWrapper = div; }}
 					style={this.props.style}
 				>
-					{useCollaborativeView ?
-						<ProseMirrorCollaborativeView
-							defaultValue={this.state.value}
-							menu={this.menu}
-							onMount={( div ) => {
-								this.editorDiv = div;
-							}}
-							session={session}
-							fullscreen={this.state.isFullscreen}
-							showColorPicker={this.state.showColorPicker}
-							onColorChoice={this.onColorChoice}
-							id={docId} key={docId}
-							onEditorState={( editorState ) => {
-								this.editorState = editorState;
-							}}
-						/> :
-						<ProseMirrorEditorView
-							defaultValue={this.state.value}
-							menu={this.menu}
-							className="cancel"
-							onMount={( div ) => {
-								this.editorDiv = div;
-							}}
-							t={this.props.t}
-							fullscreen={this.state.isFullscreen}
-							showColorPicker={this.state.showColorPicker}
-							onColorChoice={this.onColorChoice}
-							id={this.id}
-							onEditorState={( editorState ) => {
-								this.editorState = editorState;
-							}}
-							docId={this.state.docId}
-						/>
-					}
+					{this.renderView()}
 					{ this.props.mode === 'group' ?
 						<Gate owner >
 							<SelectInput

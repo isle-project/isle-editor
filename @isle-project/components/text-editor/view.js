@@ -15,6 +15,7 @@ import schema from './config/schema';
 import FootnoteView from './views/footnote';
 import ImageNodeView from './config/ui/image_node_view.js';
 import { toggleCursorParking } from './config/cursor_parking';
+import StatusBar from './statusbar.js';
 import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
 import parser from './parser.js';
@@ -23,16 +24,6 @@ import parser from './parser.js';
 // VARIABLES //
 
 const debug = logger( 'isle:text-editor' );
-
-
-// FUNCTIONS //
-
-const StatusBar = ( props ) => {
-	return ( <div className="prose-statusbar">
-		<span>{props.t('words')}: {props.nWords}</span>
-		<span style={{ marginLeft: 5 }}>{props.t('characters')}: {props.nChars}</span>
-	</div> );
-};
 
 
 // MAIN //
@@ -165,7 +156,7 @@ class ProseMirror extends Component {
 	}
 
 	saveInBrowser = () => {
-		console.log( 'Saving document state to local storage...' );
+		debug( 'Saving document state to local storage...' );
 		if ( this.state.editorState ) {
 			localStorage.setItem( this.props.id, JSON.stringify( this.state.editorState.doc.toJSON() ) );
 		}
