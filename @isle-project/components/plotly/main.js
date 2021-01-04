@@ -200,7 +200,7 @@ class Wrapper extends Component {
 					meta = omitBy( meta, ( _, value ) => {
 						return isNull( value );
 					});
-					meta = jsyaml.safeDump( meta );
+					meta = jsyaml.dump( meta );
 					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
 				}
 				this.plotData = value;

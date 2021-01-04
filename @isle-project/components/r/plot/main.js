@@ -90,7 +90,7 @@ class RPlot extends Component {
 						meta = omitBy( meta, ( _, value ) => {
 							return isNull( value );
 						});
-						meta = jsyaml.safeDump( meta );
+						meta = jsyaml.dump( meta );
 						img = `<img src="${this.state.plot}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
 					}
 					ev.dataTransfer.setData( 'text/html', img );

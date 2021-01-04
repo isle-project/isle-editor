@@ -110,7 +110,7 @@ function configureIpcRenderer( store ) {
 		import( 'js-yaml' ).then( yaml => {
 			let preamble = yaml.load( preambleTemplate );
 			preamble = mergePrambles( preamble, preambleAdditions );
-			const preambleText = trim( yaml.safeDump( preamble ) );
+			const preambleText = trim( yaml.dump( preamble ) );
 			store.dispatch( actions.createdFromTemplate({ template, preamble, preambleText }) );
 			store.dispatch( actions.updatePreamble({
 				preamble,
