@@ -39,6 +39,7 @@
 	"font-color": "Color de la fuente",
 	"george-box": "George Box dijo:",
 	"headers": "Encabezados",
+	"history-only-available-for-users": "El historial del documento sólo está disponible para los usuarios que hayan iniciado la sesión.",
 	"insert": "Insertar",
 	"insert-code-block": "Insertar el bloque de código",
 	"insert-column-after": "Insertar columna después",

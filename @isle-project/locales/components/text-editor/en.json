@@ -39,6 +39,7 @@
 	"font-color": "Font Color",
 	"george-box": "George Box said:",
 	"headers": "Headers",
+	"history-only-available-for-users": "The document history is only available for signed-in users.",
 	"insert": "Insert",
 	"insert-code-block": "Insert code block",
 	"insert-column-after": "Insert column after",

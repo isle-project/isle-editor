@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Step } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
@@ -54,12 +55,15 @@ class HistoryView extends Component {
 	}
 
 	async componentDidMount() {
-		const res = await this.props.session.getTextEditorDocument( this.props.docId );
-		if ( res.data.message === 'ok' ) {
-			// eslint-disable-next-line react/no-did-mount-set-state
-			this.setState({
-				document: res.data.document
-			});
+		const session = this.props.session;
+		if ( !session.anonymous ) {
+			const res = await session.getTextEditorDocument( this.props.docId );
+			if ( res.data.message === 'ok' ) {
+				// eslint-disable-next-line react/no-did-mount-set-state
+				this.setState({
+					document: res.data.document
+				});
+			}
 		}
 	}
 
@@ -223,25 +227,34 @@ class HistoryView extends Component {
 
 	render() {
 		const { document, counter } = this.state;
+		const notSignedIn = this.props.session.anonymous;
+		let editorDiv;
+		if ( !notSignedIn ) {
+			editorDiv = <div
+				ref={this._createEditorView}
+			/>;
+		} else {
+			editorDiv = <Jumbotron>{this.props.t('history-only-available-for-users')}</Jumbotron>;
+		}
 		return (
 			<Fragment>
-				<Button size="sm" variant="light" onClick={this.props.onClose}>
+				<Button size="sm" variant="light" onClick={this.props.onClose} >
 					<i className="fas fa-arrow-left"></i>
 				</Button>
 				<span className="title text-editor-playback-title" >
 					{this.props.t('document-history')}
 				</span>
 				<ButtonGroup size="sm" >
-					<Button variant="light" onClick={this.reset} >
+					<Button variant="light" onClick={this.reset} disabled={notSignedIn} >
 						<i className="far fa-times-circle"></i>
 					</Button>
-					<Button variant="light" onClick={this.playBackward} disabled={!document || counter === 0} >
+					<Button variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0} >
 						<i className="fas fa-fast-backward" ></i>
 					</Button>
-					<Button variant="light" onClick={this.stop} >
+					<Button variant="light" onClick={this.stop} disabled={notSignedIn} >
 						<i className="fas fa-pause"></i>
 					</Button>
-					<Button variant="light" onClick={this.playForward} disabled={!document || ( document.steps.length <= counter )} >
+					<Button variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
 						<i className="fas fa-fast-forward" ></i>
 					</Button>
 				</ButtonGroup>
@@ -252,9 +265,7 @@ class HistoryView extends Component {
 					this.setState({ interval: value });
 				}} numberInputStyle={{ display: 'none' }} />
 				<span>{`${this.state.interval}${MS}`}</span>
-				<div
-					ref={this._createEditorView}
-				/>
+				{editorDiv}
 				<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} t={this.props.t} />
 			</Fragment>
 		);
