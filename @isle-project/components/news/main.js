@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import capitalize from '@stdlib/string/capitalize';
@@ -200,6 +201,7 @@ class News extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Modal
 				show={this.state.visible || !this.props.invisible}
@@ -209,7 +211,7 @@ class News extends Component {
 				enforceFocus={false}
 			>
 				<Modal.Header>
-					<span className="article-header">{test('news')}</span>
+					<span className="article-header">{t('news')}</span>
 					{ !this.props.invisible ? <VoiceInput
 						placeholder={this.props.t('pick-newspaper')}
 						style={{ float: 'left', width: '45%', marginTop: 10 }}
@@ -217,7 +219,7 @@ class News extends Component {
 						onSubmit={this.find}
 						onFinalText={this.trigger}
 					/> : null }
-					{ this.state.articles ? <Button onClick={this.hide} className="articles-exit">{test('clear')}</Button> : null }
+					{ this.state.articles ? <Button onClick={this.hide} className="articles-exit">{t('clear')}</Button> : null }
 				</Modal.Header>
 				{this.renderArticles()}
 			</Modal>
@@ -249,4 +251,4 @@ News.contextType = SessionContext;
 
 // EXPORTS //
 
-export default News;
+export default withTranslation( 'News' )( News );
