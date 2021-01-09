@@ -263,7 +263,7 @@ class HistoryView extends Component {
 	}
 
 	handleRestore = () => {
-		this.props.onRestore( this.editorState.doc.content );
+		this.props.onRestore( this.state.editorState.doc.content );
 	}
 
 	render() {
