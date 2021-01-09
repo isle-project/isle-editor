@@ -552,7 +552,7 @@ class TextEditor extends Component {
 		const docId = this.generateDocumentId();
 		if ( this.state.showHistory ) {
 			return ( <HistoryView
-				defaultValue={this.state.value}
+				defaultValue={this.props.defaultValue}
 				onClose={this.toggleHistory}
 				onRestore={( content ) => {
 					this.setState({ showHistory: !this.state.showHistory }, () => {
