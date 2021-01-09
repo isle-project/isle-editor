@@ -297,8 +297,8 @@ class HistoryView extends Component {
 							<i className="fas fa-play fa-rotate-180" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('stop')} show={!notSignedIn || this.stater.running} placement="bottom" >
-						<Button variant="light" onClick={this.stop} disabled={notSignedIn && !this.stater.running} >
+					<Tooltip tooltip={t('stop')} show={!notSignedIn && this.stater.running} placement="bottom" >
+						<Button variant="light" onClick={this.stop} disabled={notSignedIn || !this.stater.running} >
 							<i className="fas fa-pause" ></i>
 						</Button>
 					</Tooltip>
