@@ -158,6 +158,9 @@ class ProseMirrorCollaborative extends Component {
 	}
 
 	replaceEditorState = () => {
+		if ( !this.dispatchState ) {
+			return setTimeout( this.replaceEditorState, 100 );
+		}
 		const state = this.dispatchState.edit;
 		const selection = new AllSelection( state.doc );
 		const doc = isJSON( this.props.defaultValue ) ?

@@ -554,9 +554,15 @@ class TextEditor extends Component {
 			return ( <HistoryView
 				defaultValue={this.state.value}
 				onClose={this.toggleHistory}
-				onRestore={( value ) => {
-					this.setState({
-						value
+				onRestore={( content ) => {
+					this.setState({ showHistory: !this.state.showHistory }, () => {
+						const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( content );
+						const tmp = document.createElement( 'div' );
+						tmp.appendChild( domNode );
+						this.setState({
+							value: tmp.innerHTML,
+							docId: this.state.docId + 1
+						});
 					});
 				}}
 				editorState={this.editorState}

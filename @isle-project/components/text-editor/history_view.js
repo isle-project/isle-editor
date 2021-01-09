@@ -173,7 +173,8 @@ class HistoryView extends Component {
 			editorState: newState,
 			nWords,
 			nChars,
-			invertedSteps
+			invertedSteps,
+			running: false
 		});
 	}
 
@@ -242,7 +243,8 @@ class HistoryView extends Component {
 			editorState: newState,
 			counter: 0,
 			nChars: 0,
-			nWords: 0
+			nWords: 0,
+			running: false
 		});
 	}
 
