@@ -262,6 +262,10 @@ class HistoryView extends Component {
 		this.setState({ running: false });
 	}
 
+	handleRestore = () => {
+		this.props.onRestore( this.editorState.doc.content );
+	}
+
 	render() {
 		const { document, counter } = this.state;
 		const { t, session } = this.props;
@@ -283,27 +287,27 @@ class HistoryView extends Component {
 					{t('document-history')}
 				</span>
 				<ButtonGroup>
-					<Tooltip tooltip={t('jump-to-beginning')} disabled={notSignedIn} >
+					<Tooltip tooltip={t('jump-to-beginning')} show={!notSignedIn} placement="bottom" >
 						<Button variant="light" onClick={this.reset} disabled={notSignedIn} >
 							<i className="fas fa-fast-backward" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('play-in-reverse')} disabled={notSignedIn || !document || counter === 0} >
+					<Tooltip tooltip={t('play-in-reverse')} show={!notSignedIn && document && counter !== 0} placement="bottom" >
 						<Button variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0} >
 							<i className="fas fa-play fa-rotate-180" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('stop')} disabled={notSignedIn} >
-						<Button variant="light" onClick={this.stop} disabled={notSignedIn} >
+					<Tooltip tooltip={t('stop')} show={!notSignedIn || this.stater.running} placement="bottom" >
+						<Button variant="light" onClick={this.stop} disabled={notSignedIn && !this.stater.running} >
 							<i className="fas fa-pause" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('play')} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
+					<Tooltip tooltip={t('play')} show={!notSignedIn && document && ( document.steps.length > counter )} placement="bottom" >
 						<Button variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
 							<i className="fas fa-play" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('jump-to-end')} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
+					<Tooltip tooltip={t('jump-to-end')} show={!notSignedIn && document && ( document.steps.length > counter )} placement="bottom" >
 						<Button variant="light" onClick={this.fastForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
 							<i className="fas fa-fast-forward" ></i>
 						</Button>
@@ -316,8 +320,11 @@ class HistoryView extends Component {
 					this.setState({ interval: value });
 				}} numberInputStyle={{ display: 'none' }} />
 				<span>{`${this.state.interval}${MS}`}</span>
-				<Tooltip tooltip={t('restore-tooltip')} >
-					<Button variant="secondary" style={{ margin: 4, marginLeft: 8 }} >{t('restore')}</Button>
+				<Tooltip tooltip={t('restore-tooltip')} placement="bottom" >
+					<Button
+						variant="secondary" style={{ margin: 4, marginLeft: 8 }}
+						onClick={this.handleRestore}
+					>{t('restore')}</Button>
 				</Tooltip>
 				{editorDiv}
 				<StatusBar nWords={this.state.nWords} nChars={this.state.nChars} t={t} />
@@ -331,6 +338,7 @@ class HistoryView extends Component {
 
 HistoryView.propTypes = {
 	onClose: PropTypes.func.isRequired,
+	onRestore: PropTypes.func.isRequired,
 	defaultValue: PropTypes.string.isRequired,
 	docId: PropTypes.string.isRequired
 };

@@ -554,6 +554,11 @@ class TextEditor extends Component {
 			return ( <HistoryView
 				defaultValue={this.state.value}
 				onClose={this.toggleHistory}
+				onRestore={( value ) => {
+					this.setState({
+						value
+					});
+				}}
 				editorState={this.editorState}
 				docId={docId}
 				session={session}
