@@ -32,6 +32,34 @@ class Guides extends Component {
 			selected: 'overview',
 			running: false
 		};
+		this.createSteps( props );
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.for !== prevProps.for ) {
+			this.createSteps( this.props );
+		}
+	}
+
+	createSteps( props ) {
+		this.saving = saving.map( ( x, idx ) => {
+			const out = { ...x };
+			out.content = props.t( `saving-${idx}` );
+			out.target = `#${props.for} ` + out.target;
+			return out;
+		});
+		this.overview = overview.map( ( x, idx ) => {
+			const out = { ...x };
+			out.content = props.t( `overview-${idx}` );
+			out.target = `#${props.for} ` + out.target;
+			return out;
+		});
+		this.poster = poster.map( ( x, idx ) => {
+			const out = { ...x };
+			out.content = props.t( `poster-${idx}` );
+			out.target = `#${props.for} ` + out.target;
+			return out;
+		});
 	}
 
 	clickHide = () => {
@@ -39,6 +67,7 @@ class Guides extends Component {
 	}
 
 	handleStartClick = () => {
+		debug( `${this.state.running ? 'Stopping' : 'Starting'} the selected tour...` );
 		this.props.onHide();
 		this.setState({
 			running: !this.state.running
@@ -205,25 +234,7 @@ class Guides extends Component {
 	}
 
 	render() {
-		this.saving = saving.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = this.props.t( `saving-${idx}` );
-			out.target = `#${this.props.for} ` + out.target;
-			return out;
-		});
-		this.overview = overview.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = this.props.t( `overview-${idx}` );
-			out.target = `#${this.props.for} ` + out.target;
-			return out;
-		});
-		this.poster = poster.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = this.props.t( `poster-${idx}` );
-			out.target = `#${this.props.for} ` + out.target;
-			return out;
-		});
-		let modal = this.renderModal();
+		const modal = this.renderModal();
 		debug( `Selected tutorial ${this.state.selected} is${this.state.running ? ' ' : ' not ' }running` );
 		return (
 			<Fragment>

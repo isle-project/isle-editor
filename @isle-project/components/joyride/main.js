@@ -42,6 +42,7 @@ class Wrapper extends Component {
 	render() {
 		const { t } = this.props;
 		return ( <Joyride
+			{...this.props}
 			run={this.props.run}
 			steps={this.props.steps}
 			styles={STYLES}
@@ -53,7 +54,6 @@ class Wrapper extends Component {
 				next: t('next'),
 				skip: t('skip')
 			}}
-			{...this.props}
 		/> );
 	}
 }
