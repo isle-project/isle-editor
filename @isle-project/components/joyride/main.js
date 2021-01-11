@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
 import { withTranslation } from 'react-i18next';
+import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
 
 
 // VARIABLES //
@@ -37,24 +38,35 @@ const STYLES = {
 class Wrapper extends Component {
 	constructor( props ) {
 		super( props );
+		this.zIndexAdjustment = zIndexAdjustment( props.parentNode );
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.parentNode !== prevProps.parentNode ) {
+			this.zIndexAdjustment = zIndexAdjustment( this.props.parentNode );
+		}
 	}
 
 	render() {
 		const { t } = this.props;
-		return ( <Joyride
-			{...this.props}
-			run={this.props.run}
-			steps={this.props.steps}
-			styles={STYLES}
-			showSkipButton
-			locale={{
-				back: t('back'),
-				close: t('close'),
-				last: t('last'),
-				next: t('next'),
-				skip: t('skip')
-			}}
-		/> );
+		const styles = { ...STYLES };
+		styles.options.zIndex = this.zIndexAdjustment + 100;
+		return (
+			<Joyride
+				{...this.props}
+				run={this.props.run}
+				steps={this.props.steps}
+				styles={styles}
+				showSkipButton
+				locale={{
+					back: t('back'),
+					close: t('close'),
+					last: t('last'),
+					next: t('next'),
+					skip: t('skip')
+				}}
+			/>
+		);
 	}
 }
 
@@ -64,12 +76,14 @@ class Wrapper extends Component {
 Wrapper.propTypes = {
 	run: PropTypes.bool,
 	scrollToSteps: PropTypes.bool,
-	steps: PropTypes.array.isRequired
+	steps: PropTypes.array.isRequired,
+	parentNode: PropTypes.node
 };
 
 Wrapper.defaultProps = {
 	run: false,
-	scrollToSteps: true
+	scrollToSteps: true,
+	parentNode: null
 };
 
 

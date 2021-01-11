@@ -32,12 +32,19 @@ class Guides extends Component {
 			selected: 'overview',
 			running: false
 		};
+		debug( `Creating guides modal for "${this.props.for}" text editor` );
 		this.createSteps( props );
+	}
+
+	componentDidMount() {
+		debug( `Rendering guides modal for "${this.props.for}" text editor` );
+		this.editorNode = document.getElementById( this.props.for );
 	}
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.for !== prevProps.for ) {
 			this.createSteps( this.props );
+			this.editorNode = document.getElementById( this.props.for );
 		}
 	}
 
@@ -245,6 +252,7 @@ class Guides extends Component {
 						showProgress
 						disableScrolling
 						run={this.state.running}
+						parentNode={this.editorNode}
 						callback={( tour ) => {
 							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
@@ -260,6 +268,7 @@ class Guides extends Component {
 						disableScrolling
 						continuous
 						run={this.state.running}
+						parentNode={this.editorNode}
 						callback={( tour ) => {
 							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
@@ -274,6 +283,7 @@ class Guides extends Component {
 						showProgress
 						disableScrolling
 						run={this.state.running}
+						parentNode={this.editorNode}
 						callback={( tour ) => {
 							const type = tour.type;
 							if ( type === EVENTS.TOUR_END ) {
