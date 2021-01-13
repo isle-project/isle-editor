@@ -2473,6 +2473,11 @@
         "name": "steps",
         "type": "array (required)",
         "description": "Joyride-prop-steps"
+      },
+      {
+        "name": "parentNode",
+        "type": "node",
+        "defaultValue": null
       }
     ],
     "description": "Joyride-description"
@@ -4766,43 +4771,36 @@
     "props": [
       {
         "name": "data",
-        "type": "object (required)",
-        "description": "Map-prop-data"
+        "type": "object (required)"
       },
       {
         "name": "scope",
         "type": "string",
-        "description": "Map-prop-scope",
         "defaultValue": "world"
       },
       {
         "name": "locations",
         "type": "string",
-        "description": "Map-prop-locations",
         "defaultValue": null
       },
       {
         "name": "locationmode",
         "type": "string",
-        "description": "Map-prop-locationmode",
         "defaultValue": "country names"
       },
       {
         "name": "longitude",
         "type": "string",
-        "description": "Map-prop-longitude",
         "defaultValue": null
       },
       {
         "name": "latitude",
         "type": "string",
-        "description": "Map-prop-latitude",
         "defaultValue": null
       },
       {
         "name": "showLand",
         "type": "boolean",
-        "description": "Map-prop-showLand",
         "defaultValue": false
       }
     ],
@@ -7456,10 +7454,30 @@
         "defaultValue": false
       },
       {
+        "name": "onBodyChange",
+        "type": "function",
+        "defaultValue": "function onBodyChange() {}"
+      },
+      {
         "name": "onClick",
         "type": "function",
         "description": "StickyNote-prop-onClick",
         "defaultValue": null
+      },
+      {
+        "name": "onDelete",
+        "type": "function",
+        "defaultValue": "function onDelete() {}"
+      },
+      {
+        "name": "onMove",
+        "type": "function",
+        "defaultValue": "function onMove() {}"
+      },
+      {
+        "name": "onTitleChange",
+        "type": "function",
+        "defaultValue": "function onTitleChange() {}"
       },
       {
         "name": "removable",
@@ -8040,12 +8058,6 @@
   "TextEditor": {
     "props": [
       {
-        "name": "autoSave",
-        "type": "boolean",
-        "description": "TextEditor-prop-autoSave",
-        "defaultValue": true
-      },
-      {
         "name": "allowSubmissions",
         "type": "boolean",
         "description": "TextEditor-prop-allowSubmissions",
@@ -8067,12 +8079,6 @@
         "type": "string",
         "description": "TextEditor-prop-mode",
         "defaultValue": "individual"
-      },
-      {
-        "name": "intervalTime",
-        "type": "number",
-        "description": "TextEditor-prop-intervalTime",
-        "defaultValue": 10000
       },
       {
         "name": "resetModal",

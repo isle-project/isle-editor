@@ -14,12 +14,10 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 
 ## Options
 
-* __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
 * __allowSubmissions__ | `boolean`: controls whether students may submit their reports to the server. Default: `true`.
 * __canLoadHTML__ | `boolean`: undefined. Default: `true`.
 * __defaultValue__ | `string`: default text of the editor. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
 * __mode__ | `string`: controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`). Default: `'individual'`.
-* __intervalTime__ | `number`: time between auto saves. Default: `10000`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: undefined. Default: `none`.
 * __voiceTimeout__ | `number`: time in milliseconds after a chunk of recorded voice input is inserted. Default: `5000`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
