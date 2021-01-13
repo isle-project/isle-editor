@@ -57,6 +57,7 @@
 .sticky-note-editable-body {
 	border: none;
 	background: rgba(255, 255, 255, 0.3);
+	width: 100%;
 }
 
 .sticky-note-date {
@@ -78,13 +79,13 @@
 }
 
 .sticky-note-watermark {
-	position: absolute;
+	position: fixed;
 	font-family: Arial;
 	font-variant: all-petite-caps;
 	color: #000;
 	opacity: 0.24;
 	font-size: 1.5em;
-	right: 12px;
+	right: 20px;
 	bottom: 0px;
 	text-align: center;
 	z-index: -1;

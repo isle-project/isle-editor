@@ -44,8 +44,8 @@ class StickyNote extends Component {
 		let body = null;
 		let title = null;
 		if ( props.editable ) {
-			title = props.title || props.t('type-in-the-title');
-			body = props.body || props.t('type-in-your-notes');
+			title = props.title || props.t( 'type-in-the-title' );
+			body = props.body || props.t( 'type-in-your-note' );
 		}
 		this.state = {
 			exit: false,
@@ -284,7 +284,7 @@ class StickyNote extends Component {
 
 	showEditableBody = () => {
 		return (
-			<div className="sticky-note-body">
+			<div className="sticky-note-body" style={{ overflow: 'hidden' }}>
 				<textarea ref={this.textareaRef} className="sticky-note-editable-body noDrag" rows="6" cols="28">{ this.state.body }</textarea>
 				<input onClick={this.submitBody} type="submit" value={this.props.t('save')} />
 			</div>
