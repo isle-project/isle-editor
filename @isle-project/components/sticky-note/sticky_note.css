@@ -72,6 +72,22 @@
 	padding-left: 15px;
 	font-family: 'Indie Flower', cursive;
 	font-size: 1em;
+	height: 80%;
+	overflow-y: auto;
+	width: 100%;
+}
+
+.sticky-note-watermark {
+	position: absolute;
+	font-family: Arial;
+	font-variant: all-petite-caps;
+	color: #000;
+	opacity: 0.24;
+	font-size: 1.5em;
+	right: 12px;
+	bottom: 0px;
+	text-align: center;
+	z-index: -1;
 }
 
 .sticky-note-minimized {

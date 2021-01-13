@@ -123,6 +123,7 @@ class Lesson extends Component {
 						{session.stickyNotes.map( ( elem, idx ) => {
 							return ( <StickyNote
 								color={STICKY_NOTE_COLORS[ elem.visibility ]}
+								watermark={elem.visibility}
 								editable minimizable removable
 								key={idx}
 								draggable={{

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from '@isle-project/components/draggable';
 import SessionContext from '@isle-project/session/context.js';
@@ -43,8 +44,8 @@ class StickyNote extends Component {
 		let body = null;
 		let title = null;
 		if ( props.editable ) {
-			title = props.title || 'Type in the title';
-			body = props.body || 'Type in your notes';
+			title = props.title || props.t('type-in-the-title');
+			body = props.body || props.t('type-in-your-notes');
 		}
 		this.state = {
 			exit: false,
@@ -257,6 +258,9 @@ class StickyNote extends Component {
 				tabIndex={0}
 			>
 				{this.state.body}
+				{this.props.watermark ? <div className="sticky-note-watermark" >
+					{this.props.t( this.props.watermark )}
+				</div> : null }
 			</div>
 		);
 	}
@@ -282,7 +286,7 @@ class StickyNote extends Component {
 		return (
 			<div className="sticky-note-body">
 				<textarea ref={this.textareaRef} className="sticky-note-editable-body noDrag" rows="6" cols="28">{ this.state.body }</textarea>
-				<input onClick={this.submitBody} type="submit" value="save" />
+				<input onClick={this.submitBody} type="submit" value={this.props.t('save')} />
 			</div>
 		);
 	}
@@ -303,7 +307,7 @@ class StickyNote extends Component {
 				role="button"
 				tabIndex={0}
 				onClick={this.remove} onKeyPress={this.remove}
-				title="Click to remove"
+				title={this.props.t('click-to-remove')}
 			>
 				<i className="fas fa-times"></i>
 			</div>
@@ -332,7 +336,7 @@ class StickyNote extends Component {
 						{this.props.minimizable ? <div
 							onClick={this.minimize} className="sticky-note-minimizable"
 							tabIndex={0} role="button" onKeyPress={this.minimize}
-							title="Click to minimize"
+							title={this.props.t('click-to-minimize')}
 						>
 							<i className="fas fa-window-minimize"></i>
 						</div> : null }
@@ -371,6 +375,7 @@ StickyNote.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	watermark: PropTypes.string,
 	color: PropTypes.string,
 	style: PropTypes.object,
 	date: PropTypes.string,
@@ -393,6 +398,7 @@ StickyNote.propTypes = {
 StickyNote.defaultProps = {
 	title: 'Enter a title',
 	body: 'Body of the note',
+	watermark: null,
 	color: null,
 	date: '',
 	draggable: false,
@@ -414,4 +420,4 @@ StickyNote.contextType = SessionContext;
 
 // EXPORTS //
 
-export default StickyNote;
+export default withTranslation( 'StickyNote' )( StickyNote );
