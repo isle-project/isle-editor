@@ -125,7 +125,7 @@ class Lesson extends Component {
 								color={STICKY_NOTE_COLORS[ elem.visibility ]}
 								watermark={elem.visibility}
 								editable minimizable removable
-								key={idx}
+								key={elem._id}
 								draggable={{
 									default: {
 										x: elem.left * window.innerWidth,

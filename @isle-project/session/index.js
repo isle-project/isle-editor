@@ -1235,6 +1235,7 @@ class Session {
 	* @returns {Promise} server response
 	*/
 	deleteStickyNote = ( id ) => {
+		debug( 'Deleting sticky note...' );
 		return axios.post( this.server+'/delete_sticky_note', {
 			noteID: id,
 			namespaceID: this.namespaceID
@@ -1247,9 +1248,12 @@ class Session {
 							foundPos = i;
 						}
 					}
-					if ( foundPos ) {
+					if ( foundPos !== null ) {
+						debug( 'Remove note at position '+foundPos );
 						this.stickyNotes.splice( foundPos, 1 );
-						this.update( STICKY_NOTES_UPDATED );
+						setTimeout( () => {
+							this.update( STICKY_NOTES_UPDATED );
+						}, 1100 );
 					}
 				}
 			})
