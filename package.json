@@ -273,7 +273,7 @@
     "codecov": "^3.8.1",
     "concurrently": "^5.3.0",
     "doctrine": "^3.0.0",
-    "electron": "11.1.1",
+    "electron": "11.2.0",
     "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.0.0",
     "eslint-plugin-i18next": "^5.0.0",
