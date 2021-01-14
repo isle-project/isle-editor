@@ -12,6 +12,7 @@ import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import SessionContext from '@isle-project/session/context.js';
 import { INSERT_STICKY_NOTE } from '@isle-project/constants/actions.js';
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, STICKY_NOTES_UPDATED } from '@isle-project/constants/events.js';
+import InterfaceTourButton from './interface_tour_button.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
 
@@ -159,6 +160,7 @@ class Lesson extends Component {
 							/> );
 						})}
 						<LanguageSwitcher />
+						<InterfaceTourButton />
 					</div>
 				</ContextMenuTrigger>
 				<LessonContextMenu

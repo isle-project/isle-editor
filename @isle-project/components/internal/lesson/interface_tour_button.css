@@ -1,0 +1,15 @@
+.interface-tour-button {
+	position: fixed;
+	bottom: 5px;
+	right: 32px;
+	font-size: 19px;
+	color: #c95d0a;
+	border: none;
+	background: none;
+	cursor: pointer;
+	transform: scale(1);
+}
+
+.interface-tour-button:hover {
+	transform: scale(1.2);
+}
