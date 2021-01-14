@@ -14,5 +14,11 @@
 	"statusbar-username": "Aqui você deve ver seu nome afixado se estiver logado. Se você ainda não estiver logado, ser-lhe-á atribuído um identificador único criado para você, precedido por Anônimo.",
 	"statusbar-video-chat": "ISLE tem uma ferramenta de conferência integrada que permite conversar por vídeo com outros usuários que estão lá ao mesmo tempo. E se o penteado não couber, você simplesmente desliga a câmera - e a outra pessoa ainda pode ouvi-lo.",
 	"statusbar-voice-info": "Para criar legendas em tempo real ou elementos de interface de controle por voz, você pode usar seu microfone. Basta clicar sobre o ícone e ele ficará vermelho para indicar que está gravando. Você também verá uma transcrição que lhe diz o que foi compreendido. Para copiar e colar a transcrição, basta clicar sobre o ícone CC que aparecerá à direita dela. Uma janela com um editor se abrirá e nela você encontrará seu texto gravado. Se você quiser parar o modo de gravação, basta clicar novamente no microfone e ele ficará cinza novamente.",
-	"toolbar-buttongroup": "Com o seguinte botão, você pode abrir ou fechar a barra de ferramentas. Lá você encontrará algumas ferramentas muito úteis..."
+	"sticky-note": "Se você clicar com o botão direito do mouse, você pode criar notas pessoais permanentes para a lição (que aparecerão em verde). Além disso, os professores poderão deixar notas para todos os alunos, que serão coloridas em laranja.",
+	"toolbar-buttongroup": "Com o seguinte botão, você pode abrir ou fechar a barra de ferramentas. Lá você encontrará algumas ferramentas muito úteis...",
+	"toolbar-calculator": "Aqui você pode acessar uma calculadora que lhe permite fazer cálculos simples, mas também científicos.",
+	"toolbar-help": "As pesquisas permitem que o instrutor faça pequenas pesquisas entre os participantes. Há quatro tipos: uma pergunta de sim/não, uma pergunta rápida, uma alternativa parecida/desejada, finalmente vários tipos de pesquisas: pesquisas de texto livre, de múltipla escolha e de número.",
+	"toolbar-queue": "A fila permite que o estudante faça perguntas. Todas elas estão organizadas em seqüência, daí o nome.",
+	"toolbar-sketchpad": "O sketchpad permite que você faça anotações de forma gráfica. Eles são persistentes, para que possam ser recuperados posteriormente. As anotações do professor são transmitidas a todos os alunos em tempo real e, portanto, visíveis publicamente.",
+	"toolbar-ticketing": "Aqui os usuários podem criar um ticket apontando um erro de programação ou outro problema na lição."
 }

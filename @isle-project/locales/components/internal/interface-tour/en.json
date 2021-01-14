@@ -14,5 +14,11 @@
 	"statusbar-username": "Here you should see your name displayed if logged in. If you are not logged in yet, you will be assigned a unique identifier created for you preceded by Anonymous.",
 	"statusbar-video-chat": "ISLE has a built-in conferencing tool that allows you to video chat with other users who are there at the same time. And if the hairstyle doesn't fit, you just turn off the camera - and the other person can still hear you.",
 	"statusbar-voice-info": "To create real-time captions or control interface elements via voice, you can use your microphone. Just click on the icon and it will turn red to indicate that it is recording. You will also see a transcription telling you what is has understood. To copy & paste the transcript, just click on the CC icon that will show to the right of it. A window with an editor will open and in it you will find your recorded text. If you want to stop the recording mode, just click on the microphone again and it will turn grey again.",
-	"toolbar-buttongroup": "With the following button you can open or close the toolbar. There you will find some very helpful tools..."
+	"sticky-note": "If you right click, you can create permanent personal sticky notes for the lesson (which will show up in green). Additionally, teachers may leave notes for all students, which will be colored orange.",
+	"toolbar-buttongroup": "With the following button you can open or close the toolbar. There you will find some very helpful tools...",
+	"toolbar-calculator": "Here you can access a calculator that allows you to make simple, but also scientific calculations.",
+	"toolbar-help": "Polls allow the instructor to take small surveys among the participants. There are four types: a yes/no question, a speed question, a like/dislike alternative, finally various survey types: free-text, multiple-choice, and number surveys.",
+	"toolbar-queue": "The queue allows the student to ask questions. They are all arranged in sequence, hence the name.",
+	"toolbar-sketchpad": "The sketchpad allows you to make notes in a graphical form. They are persistent, so they can be retrieved later. The teacher's notes are transmitted to all students in real-time, therefore publicly visible.",
+	"toolbar-ticketing": "Here users can create a ticket pointing out a programming error or other issue in the lesson."
 }
