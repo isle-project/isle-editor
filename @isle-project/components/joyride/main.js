@@ -53,11 +53,11 @@ class Wrapper extends Component {
 		styles.options.zIndex = this.zIndexAdjustment + 100;
 		return (
 			<Joyride
+				showSkipButton
 				{...this.props}
 				run={this.props.run}
 				steps={this.props.steps}
 				styles={styles}
-				showSkipButton
 				locale={{
 					back: t('back'),
 					close: t('close'),

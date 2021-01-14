@@ -28,8 +28,8 @@ import './interface_tour_button.css';
 
 // MAIN //
 
-const InterfaceTourButton = ( props ) => {
-	const { t } = useTranslation();
+const InterfaceTourButton = () => {
+	const { t } = useTranslation( 'Lesson' );
 	const [ showTour, setShowTour ] = useState( false );
 	return (
 		<Fragment>
