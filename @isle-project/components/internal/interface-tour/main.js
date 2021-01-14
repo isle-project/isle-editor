@@ -13,7 +13,7 @@ const InterfaceTour = ( props ) => {
 		{...props}
 		showProgress
 		continuous
-		disableOverlayClose
+		disableScrolling
 		steps={[
 			{
 				target: '.statusbar',
@@ -70,15 +70,45 @@ const InterfaceTour = ( props ) => {
 			},
 			{
 				target: '.language-switcher',
-				content: t('language-switcher')
+				content: t('language-switcher'),
+				placement: 'top-start',
+				offset: 30
 			},
 			{
 				target: '.instructor-view-handler',
 				content: t('instructor-view-handler')
 			},
 			{
-				target: '.toolbar-buttongroup',
-				content: t('toolbar-buttongroup')
+				target: '.toolbar-buttongroup.btn-group',
+				content: t('toolbar-toggle'),
+				placement: 'top-end',
+				offset: 10
+			},
+			{
+				target: '.toolbar-calculator',
+				content: t('toolbar-calculator')
+			},
+			{
+				target: '.toolbar-queue',
+				content: t('toolbar-queue')
+			},
+			{
+				target: '.toolbar-sketchpad',
+				content: t('toolbar-sketchpad')
+			},
+			{
+				target: '.toolbar-help',
+				content: t('toolbar-help')
+			},
+			{
+				target: '.toolbar-ticketing',
+				content: t('toolbar-ticketing')
+			},
+			{
+				target: '#Lesson',
+				content: t('sticky-note'),
+				placement: 'left-start',
+				offset: 30
 			}
 		]}
 		callback={( tour ) => {

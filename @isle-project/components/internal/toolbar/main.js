@@ -272,7 +272,7 @@ class Toolbar extends Component {
 				<Tooltip tooltip={t('show-toolbar')} placement="top" >
 					<Button
 						variant="warning"
-						className="toolbar-buttongroup"
+						className="toolbar-buttongroup toolbar-toggle"
 						onClick={this.toggleToolbar}
 						onKeyPress={this.toggleToolbar}
 						style={{
@@ -288,6 +288,7 @@ class Toolbar extends Component {
 					<Tooltip tooltip={t('hide-toolbar')} placement="top" >
 						<Button
 							variant="secondary"
+							className="toolbar-toggle"
 							onClick={this.toggleToolbar}
 							onKeyPress={this.toggleToolbar}
 						>
@@ -298,7 +299,7 @@ class Toolbar extends Component {
 					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} ${F2}`} placement="top" >
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
-							className="toolbar-button"
+							className="toolbar-button toolbar-calculator"
 							onClick={this.toggleCalculator}
 							onKeyPress={this.toggleCalculator}
 							style={{
@@ -312,7 +313,7 @@ class Toolbar extends Component {
 					{( session.hasOwner || isElectron ) ?
 						<Button
 							variant={this.state.queue ? 'success' : 'light'}
-							className="toolbar-button"
+							className="toolbar-button toolbar-queue"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
 							style={{
 								display: !this.state.hideQueue ? 'inline-block' : 'none'
@@ -330,7 +331,7 @@ class Toolbar extends Component {
 					<Tooltip tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`} placement="top" >
 						<Button
 							variant={this.state.sketchpad ? 'success' : 'light'}
-							className="toolbar-button"
+							className="toolbar-button toolbar-sketchpad"
 							onClick={this.toggleSketchpad}
 							onKeyPress={this.toggleSketchpad}
 							style={{
@@ -344,7 +345,7 @@ class Toolbar extends Component {
 					<Tooltip tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`} placement="top" >
 						<Button
 							variant={this.state.help ? 'success' : 'light'}
-							className="toolbar-button"
+							className="toolbar-button toolbar-help"
 							onClick={this.toggleHelp}
 							onKeyPress={this.toggleHelp}
 							aria-label={`${this.state.help ? close : open} ${t( 'documentation' )}`}
@@ -356,7 +357,7 @@ class Toolbar extends Component {
 						<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
 							<Button
 								variant={this.state.ticketing ? 'success' : 'light'}
-								className="toolbar-button"
+								className="toolbar-button toolbar-ticketing"
 								onClick={this.toggleTicketing}
 								onKeyPress={this.toggleTicketing}
 								aria-label={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`}
@@ -372,7 +373,7 @@ class Toolbar extends Component {
 						>
 							<Button
 								variant={this.state.engagementInProgress ? 'warning' : ( this.state.engagementMenu ? 'success' : 'light' )}
-								className="toolbar-button"
+								className="toolbar-button toolbar-engagement"
 								onClick={this.toggleEngagement}
 								ref={( div ) => {
 									this.engagementButton = div;
