@@ -53,7 +53,7 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	return config;
 }
 
-export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins = {}}) {
+export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins = {}}) {
 	let traces;
 	let layout;
 
@@ -72,7 +72,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			type: 'histogram',
 			name: 'histogram'
 		} ];
-		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xbins );
+		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xBins );
 		if ( displayDensity ) {
 			if ( densityType ) {
 				const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
@@ -123,7 +123,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 						xaxis: 'x'+(i+1),
 						yaxis: 'y'+(i+1)
 					};
-					setBins( config, vals, binStrategy, nBins, xbins );
+					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
 					if ( densityType ) {
 						const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
@@ -144,7 +144,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 						xaxis: 'x'+(i+1),
 						yaxis: 'y'+(i+1)
 					};
-					setBins( config, vals, binStrategy, nBins, xbins );
+					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
 				}
 			}
@@ -160,7 +160,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 						name: densityType ? key+':histogram' : key,
 						opacity: 0.5
 					};
-					setBins( config, vals, binStrategy, nBins, xbins );
+					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
 					if ( densityType ) {
 						const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
@@ -178,7 +178,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 						name: key,
 						opacity: 0.5
 					};
-					setBins( config, vals, binStrategy, nBins, xbins );
+					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
 				}
 			}
@@ -208,8 +208,22 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins, action, onShare, onSelected }) {
-	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xbins });
+/**
+* A histogram.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
+* @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
+* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
+* @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
+* @property {number} nBins - custom number of bins
+* @property {number} nCols - number of columns when displaying a facetted grouped histogram
+* @property {Object} xBins - object with `start`, `size`, and `end` properties governing binning behavior
+*/
+function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, action, onShare, onSelected }) {
+	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
 	return (
 		<Plotly
 			editable
@@ -265,18 +279,4 @@ Histogram.propTypes = {
 
 // EXPORTS //
 
-/**
-* A histogram.
-*
-* @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {string} group - grouping variable
-* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
-* @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
-* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
-* @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
-* @property {number} nBins - custom number of bins
-* @property {number} nCols - number of columns when displaying a facetted grouped histogram
-* @property {Object} xbins - object with `start`, `size`, and `end` properties governing binning behavior
-*/
 export default Histogram;
