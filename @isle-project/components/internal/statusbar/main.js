@@ -86,10 +86,10 @@ class StatusBar extends Component {
 					autoDismiss: session.config.noLoginDismiss ? 0 : 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '30px' }}>
-						<Button size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>
+						<Button id="statusbar-signup-button" size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>
 							{t( 'signup' )}
 						</Button>
-						<Button size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>
+						<Button id="statusbar-login-button" size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>
 							{t( 'login' )}
 						</Button>
 					</div>
@@ -493,7 +493,7 @@ class StatusBar extends Component {
 										{t( 'logout' )}
 									</Button>
 									<a href={session.server} target="_blank" rel="noopener noreferrer" >
-										<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>
+										<Button id="statusbar-dashboard-button" size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>
 											{t( 'goto-dashboard' )}
 										</Button>
 									</a>
