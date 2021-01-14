@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "テキストの挿入に失敗しました。クリップボードは現在空です。",
 	"copy": "コピー",
 	"cut": "カット",
+	"end-interface-tour": "現在進行中のインターフェイスツアーを終了するにはクリックしてください。",
 	"highlight": "ハイライト",
 	"not-available-yet": "レッスンはありません(まだありません)",
 	"paste": "貼り付け",

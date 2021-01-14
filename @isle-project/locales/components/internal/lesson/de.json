@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "Das Einfügen von Text ist fehlgeschlagen. Die Zwischenablage ist derzeit leer.",
 	"copy": "Kopieren",
 	"cut": "Ausschneiden",
+	"end-interface-tour": "Klicken Sie auf , um die aktuell laufende Schnittstellentour zu beenden",
 	"highlight": "Hervorheben",
 	"not-available-yet": "Lektion (noch) nicht verfügbar",
 	"paste": "Einfügen",
