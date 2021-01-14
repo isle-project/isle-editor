@@ -11,6 +11,7 @@
 	"paste": "Pegar",
 	"read-aloud": "Lea en voz alta",
 	"remove-highlight": "Eliminar el resalte",
+	"start-interface-tour": "Comienza el tour explicando los diferentes elementos de la interfaz",
 	"voice-not-supported": "No se apoya.",
 	"voice-not-supported-message": "La función de texto a voz no es actualmente compatible con su navegador. Prueba con Google Chrome."
 }

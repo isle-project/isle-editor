@@ -11,6 +11,7 @@
 	"paste": "Coller",
 	"read-aloud": "Lire à haute voix",
 	"remove-highlight": "Supprimer le surlignage",
+	"start-interface-tour": "Commencer la visite en expliquant les différents éléments de l'interface",
 	"voice-not-supported": "Non soutenu.",
 	"voice-not-supported-message": "La fonction de synthèse vocale n'est pas encore prise en charge par votre navigateur. Veuillez essayer Google Chrome."
 }

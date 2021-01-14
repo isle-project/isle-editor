@@ -11,6 +11,7 @@
 	"paste": "Einfügen",
 	"read-aloud": "Vorlesen",
 	"remove-highlight": "Hervorhebung entfernen",
+	"start-interface-tour": "Starttour zur Erklärung der verschiedenen Oberflächenelemente",
 	"voice-not-supported": "Nicht unterstützt.",
 	"voice-not-supported-message": "Die Text-to-Speech-Funktionalität wird derzeit von Ihrem Browser nicht unterstützt. Bitte versuchen Sie Google Chrome."
 }

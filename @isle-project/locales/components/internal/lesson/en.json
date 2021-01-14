@@ -11,6 +11,7 @@
 	"paste": "Paste",
 	"read-aloud": "Read aloud",
 	"remove-highlight": "Remove Highlight",
+	"start-interface-tour": "Start tour explaining the various interface elements",
 	"voice-not-supported": "Not supported.",
 	"voice-not-supported-message": "The text-to-speech functionality is currently not supported on your browser. Please try Google Chrome."
 }

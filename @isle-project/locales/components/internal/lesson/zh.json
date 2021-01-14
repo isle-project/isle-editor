@@ -11,6 +11,7 @@
 	"paste": "粘贴",
 	"read-aloud": "朗读",
 	"remove-highlight": "移除高光",
+	"start-interface-tour": "开始参观解释各种界面元素",
 	"voice-not-supported": "不支持。",
 	"voice-not-supported-message": "您的浏览器目前不支持文本到语音功能。请尝试使用谷歌浏览器。"
 }

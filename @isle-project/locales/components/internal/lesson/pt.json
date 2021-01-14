@@ -11,6 +11,7 @@
 	"paste": "Colar",
 	"read-aloud": "Leia em voz alta",
 	"remove-highlight": "Remover Destaque",
+	"start-interface-tour": "Iniciar tour explicando os vários elementos de interface",
 	"voice-not-supported": "Não é suportado.",
 	"voice-not-supported-message": "A funcionalidade texto-para-fala não é atualmente suportada em seu navegador. Por favor, tente o Google Chrome."
 }

@@ -11,6 +11,7 @@
 	"paste": "Pasta",
 	"read-aloud": "Czytaj na głos",
 	"remove-highlight": "Usuń podświetlenie",
+	"start-interface-tour": "Wycieczka początkowa wyjaśniająca różne elementy interfejsu",
 	"voice-not-supported": "Nie ma wsparcia.",
 	"voice-not-supported-message": "Funkcja text-to-speech nie jest obecnie obsługiwana w Twojej przeglądarce. Wypróbuj Google Chrome."
 }
