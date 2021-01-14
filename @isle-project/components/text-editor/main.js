@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { withTranslation } from 'react-i18next';
+import debounce from 'lodash.debounce';
 import Loadable from '@isle-project/components/internal/loadable';
 import VoiceInput from '@isle-project/components/input/voice';
 import Gate from '@isle-project/components/gate';
@@ -608,6 +609,14 @@ class TextEditor extends Component {
 		/> );
 	}
 
+	requestTextDocuments = () => {
+		const session = this.context;
+		if ( !this.getTextEditorDocuments ) {
+			this.getTextEditorDocuments = debounce( session.getTextEditorDocuments, 1000 );
+		}
+		this.getTextEditorDocuments();
+	}
+
 	render() {
 		const session = this.context;
 		if ( this.props.mode === 'group' && !this.state.group ) {
@@ -636,18 +645,20 @@ class TextEditor extends Component {
 							/>
 						</Gate> : null }
 					{ this.props.mode === 'individual' ? <Gate owner >
-							<SelectInput
-								placeholder={this.props.t('select-document-to-display')}
-								options={session.textEditorDocuments.filter( x => x.startsWith( this.id )).map( x => x.slice( this.id.length + 1 ))}
-								value={this.state.selectedUserReport}
-								onChange={( id ) => {
-									this.setState({
-										selectedUserReport: id
-									});
-								}}
-								clearable
-								style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
-							/>
+							<div onFocus={this.requestTextDocuments} onMouseOver={this.requestTextDocuments} >
+								<SelectInput
+									placeholder={this.props.t('select-document-to-display')}
+									options={session.textEditorDocuments.filter( x => x.startsWith( this.id )).map( x => x.slice( this.id.length + 1 ))}
+									value={this.state.selectedUserReport}
+									onChange={( id ) => {
+										this.setState({
+											selectedUserReport: id
+										});
+									}}
+									clearable
+									style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
+								/>
+							</div>
 						</Gate> : null
 					}
 					{ this.props.allowSubmissions ? <div

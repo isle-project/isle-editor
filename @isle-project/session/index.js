@@ -730,9 +730,7 @@ class Session {
 				}
 
 				this.getStickyNotes();
-				if ( userRights.owner ) {
-					this.getTextEditorDocuments();
-				}
+				this.getTextEditorDocuments();
 			})
 			.catch( err => {
 				this.userRightsQuestionPosed = false;
@@ -1264,6 +1262,9 @@ class Session {
 	* Retrieves text document identifiers for the lesson.
 	*/
 	getTextEditorDocuments = () => {
+		if ( !userRights.owner ) {
+			return;
+		}
 		axios.get( this.server+'/text_editor_document_list?'+qs.stringify({
 			lessonID: this.lessonID,
 			namespaceID: this.namespaceID
