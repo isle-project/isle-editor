@@ -19,12 +19,14 @@ import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';
 import { ENTER_QUEUE } from '@isle-project/constants/actions.js';
 import { RECEIVED_QUEUE_QUESTIONS } from '@isle-project/constants/events.js';
+import { addResources } from '@isle-project/locales';
 import 'react-table/react-table.css';
 import './queue.css';
 
 
 // VARIABLES //
 
+addResources( 'Queue' );
 const debug = logger( 'isle:queue' );
 const uid = generateUID( 'queue' );
 

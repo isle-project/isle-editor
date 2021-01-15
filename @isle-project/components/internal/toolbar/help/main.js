@@ -16,10 +16,12 @@ import StatusBarHelp from './statusbar.js';
 import QuestionsHelp from './questions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import { OPEN_DOCUMENTATION } from '@isle-project/constants/actions';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'HelpPage' );
 const debug = logger( 'isle:toolbar:help' );
 
 
