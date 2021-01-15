@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.73.1](https://github.com/isle-project/isle-editor/releases/tag/v0.73.1) (2021-01-15)
+
 ## [v0.73.0](https://github.com/isle-project/isle-editor/releases/tag/v0.73.0) (2021-01-15)
 
 This release contains a refactored text editor component, which saves documents in the cloud, alongside a document history tab for the editor, which allows one to retrace the origin of the document (see screenshot below).
