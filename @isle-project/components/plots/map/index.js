@@ -107,17 +107,6 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 
 // MAIN //
 
-/**
-* A geographic map which can be either supplied location names or longitude/latitude values.
-*
-* @property {Object} data - object of value arrays for each variable
-* @property {string} scope - scope of map to be displayed
-* @property {string} locations - name of variable in `data` holding location names
-* @property {string} locationmode - either `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded
-* @property {string} longitude - name of variable in `data` holding longitude values
-* @property {string} latitude - name of variable in `data` holding latitude values
-* @property {boolean} showLand - whether to show geographic features on map
-*/
 function Map({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, id, action, onShare }) {
 	const config = generateMapConfig({ data, locationmode, longitude, latitude, locations, variable, scope, showLand });
 	return (
@@ -167,4 +156,15 @@ Map.propTypes = {
 
 // EXPORTS //
 
+/**
+* A geographic map which can be either supplied location names or longitude/latitude values.
+*
+* @property {Object} data - object of value arrays for each variable
+* @property {string} scope - scope of map to be displayed
+* @property {string} locations - name of variable in `data` holding location names
+* @property {string} locationmode - either `ISO-3`, `USA-states`, or `country names` denoting how values in `locations` are encoded
+* @property {string} longitude - name of variable in `data` holding longitude values
+* @property {string} latitude - name of variable in `data` holding latitude values
+* @property {boolean} showLand - whether to show geographic features on map
+*/
 export default Map;

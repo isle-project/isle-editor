@@ -208,20 +208,6 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-/**
-* A histogram.
-*
-* @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {string} group - grouping variable
-* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
-* @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
-* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
-* @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
-* @property {number} nBins - custom number of bins
-* @property {number} nCols - number of columns when displaying a facetted grouped histogram
-* @property {Object} xBins - object with `start`, `size`, and `end` properties governing binning behavior
-*/
 function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, action, onShare, onSelected }) {
 	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
 	return (
@@ -279,4 +265,18 @@ Histogram.propTypes = {
 
 // EXPORTS //
 
+/**
+* A histogram.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable to display
+* @property {string} group - grouping variable
+* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
+* @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
+* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
+* @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
+* @property {number} nBins - custom number of bins
+* @property {number} nCols - number of columns when displaying a facetted grouped histogram
+* @property {Object} xBins - object with `start`, `size`, and `end` properties governing binning behavior
+*/
 export default Histogram;
