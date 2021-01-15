@@ -14,11 +14,13 @@ import KeyControls from '@isle-project/components/key-controls';
 import VideoPlayer from '@isle-project/components/video-player';
 import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import './video_lecture.css';
 
 
 // VARIABLES //
 
+addResources( 'Video' );
 const debug = logger( 'isle:video-lecture' );
 
 

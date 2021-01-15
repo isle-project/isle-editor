@@ -43,11 +43,13 @@ import { EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED } from '@isle-project/constants/events.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
+import { addResources } from '@isle-project/locales';
 import './editor.css';
 
 
 // VARIABLES //
 
+addResources( 'TextEditor' );
 const debug = logger( 'isle:text-editor' );
 const RE_BODY = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
 const uid = generateUID( 'text-editor' );
