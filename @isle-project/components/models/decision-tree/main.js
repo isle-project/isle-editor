@@ -7,11 +7,13 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
+import { addResources } from '@isle-project/locales';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 

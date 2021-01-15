@@ -9,10 +9,12 @@ import isArray from '@stdlib/assert/is-array';
 import Plotly from '@isle-project/components/plotly';
 import Tooltip from '@isle-project/components/tooltip';
 import { RandomForestClassifier } from '@isle-project/components/models/decision-tree/tree.js';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 

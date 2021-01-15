@@ -23,10 +23,12 @@ import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import subtract from '@isle-project/utils/subtract';
 import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const TSTAT = 't';
 const DF = 'df';

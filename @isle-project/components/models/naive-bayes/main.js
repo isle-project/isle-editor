@@ -9,12 +9,14 @@ import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
 import exp from '@stdlib/math/base/special/exp';
 import Tooltip from '@isle-project/components/tooltip';
+import { addResources } from '@isle-project/locales';
 import { gaussian } from './naive_bayes.js';
 import { designMatrix, designMatrixMissing } from './design_matrix.js';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
