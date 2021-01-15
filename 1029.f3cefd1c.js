@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1029],{2700:function(e){e.exports=JSON.parse('{"playback-disabled":"Die Wiedergabe auf anderen Websites wurde vom Videobesitzer deaktiviert.","retry":"Erneut versuchen","url-missing":"Video URL fehlt.","video-not-loaded":"Video konnte nicht geladen werden."}')}}]);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1013],{3044:function(e){e.exports=JSON.parse('{"disabled":"Uitgeschakelde videochat","join":"Doe mee met de video","join-id":"Doe mee aan de videochat met ID {{id}}","leave":"Verlaat de video","leave-id":"Verlaat de videochat met ID {{id}}","toggle":"Schakel videochat"}')}}]);

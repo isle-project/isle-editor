@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1019],{2756:function(e){e.exports=JSON.parse('{"back":"Back","close-and-to-dashboard":"Close and go to dashboard","close-instructor-view":"Close Instructor View","next":"Next","open-instructor-view":"Open Instructor View","reached-end":"You have reached the end of this video lecture.","to-previous":"Go to previous part"}')}}]);

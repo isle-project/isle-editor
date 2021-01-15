@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[971],{3152:function(e){e.exports=JSON.parse('{"close":"Fechar","missing-children":"O deslizador requer pelo menos dois elementos infantis para que seja entregue."}')}}]);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[970],{3096:function(e){e.exports=JSON.parse('{"close":"Close","missing-children":"Suwak wymaga do jego wykonania co najmniej dw\xf3ch element\xf3w dzieci\u0119cych."}')}}]);

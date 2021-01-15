@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1007],{2698:function(e){e.exports=JSON.parse('{"disabled":"Inaktiver Video Chat","join":"Video beitreten","join-id":"Nimm an Video-Chat mit ID {{id}} teil","leave":"Video verlassen","leave-id":"Verlasse Video-Chat mit ID {{id}}","toggle":"Video Chat betreten/verlassen"}')}}]);

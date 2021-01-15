@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[779],{2849:function(e){e.exports=JSON.parse('{"change-orientation":"Changer l\'orientation de la l\xe9gende","close":"Fermer","drag-plot":"Trac\xe9","share":"Partager","toggle-fullscreen":"Basculer en plein \xe9cran","toggle-legend":"L\xe9gende de la bascule"}')}}]);

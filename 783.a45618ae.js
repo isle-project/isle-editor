@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[783],{3079:function(e){e.exports=JSON.parse('{"change-orientation":"Zmiana orientacji legendy","close":"Close","drag-plot":"Wleczon\u0105 dzia\u0142k\u0119","share":"Podziel si\u0119","toggle-fullscreen":"Prze\u0142\u0105czanie trybu pe\u0142noekranowego","toggle-legend":"Legenda prze\u0142\u0105czania"}')}}]);

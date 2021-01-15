@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[608],{2891:function(a){a.exports=JSON.parse('{"change-language":"Cambia lingua","choose-language":"Scegliere la lingua"}')}}]);

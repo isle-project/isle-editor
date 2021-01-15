@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[500],{2924:function(e){e.exports=JSON.parse('{"draw-sample":"Disegnare il campione","sample-size":"Dimensione del campione"}')}}]);

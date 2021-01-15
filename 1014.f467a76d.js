@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1014],{3100:function(o){o.exports=JSON.parse('{"disabled":"Wy\u0142\u0105czony czat wideo","join":"Do\u0142\u0105cz do wideo","join-id":"Do\u0142\u0105cz do czatu wideo z ID {id}}","leave":"Zostaw wideo","leave-id":"Zostaw czat wideo z ID {id}}","toggle":"Prze\u0142\u0105czanie czatu wideo (Toggle Video Chat)"}')}}]);

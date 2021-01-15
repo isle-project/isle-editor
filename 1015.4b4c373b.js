@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1015],{3156:function(e){e.exports=JSON.parse('{"disabled":"Bate-papo com v\xeddeo para deficientes","join":"Junte-se ao v\xeddeo","join-id":"Junte-se ao chat de v\xeddeo com ID {{id}}","leave":"Deixe o v\xeddeo","leave-id":"Deixar chat de v\xeddeo com ID {{id}}","toggle":"Troca de V\xeddeo Chat"}')}}]);

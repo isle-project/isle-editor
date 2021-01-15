@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[742],{3086:function(e){e.exports=JSON.parse('{"back":"Terug naar","close":"Sluit","last":"Laatste","next":"Volgende","skip":"Sla  over."}')}}]);

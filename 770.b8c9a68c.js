@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[770],{2964:function(i){i.exports=JSON.parse('{"maximize":"\u6700\u5927\u5316","minimize":"\u6700\u5c0f\u5316"}')}}]);

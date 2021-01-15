@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1033],{2930:function(i){i.exports=JSON.parse('{"playback-disabled":"La riproduzione su altri siti web \xe8 stata disabilitata dal proprietario del video.","retry":"Riprova","url-missing":"Manca l\'URL del video.","video-not-loaded":"Non \xe8 stato possibile caricare il video."}')}}]);

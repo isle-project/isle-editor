@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[453],{2705:function(a){a.exports=JSON.parse('{"join-chat":"Join Chat","join-chat-id":"Join chat with ID {{id}}","leave-chat-id":"Leave chat with ID {{id}}","leave-chat":"Leave Chat","toggle-chat":"Toggle Chat"}')}}]);

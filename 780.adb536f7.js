@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[780],{2907:function(e){e.exports=JSON.parse('{"change-orientation":"Cambiare l\'orientamento della leggenda","close":"Chiudere","drag-plot":"Trascinare la trama","share":"Condividi","toggle-fullscreen":"Attivare e disattivare lo schermo intero","toggle-legend":"Attivare la leggenda"}')}}]);
