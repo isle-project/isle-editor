@@ -31,12 +31,14 @@ import Panel from '@isle-project/components/panel';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 import FUNCTION_KEYS from './function_keys.json';
 import integrate from './integrate_simpson.js';
 
 
 // VARIABLES //
 
+addResources( 'LearnDistribution' );
 const FUNCTIONS = [
 	exp,
 	ln,

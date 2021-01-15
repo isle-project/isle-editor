@@ -15,6 +15,12 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import incrspace from '@stdlib/math/utils/incrspace';
 import NumberInput from '@isle-project/components/input/number';
 import FeedbackButtons from '@isle-project/components/feedback';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'LearnDiceThrowing' );
 
 
 // MAIN //

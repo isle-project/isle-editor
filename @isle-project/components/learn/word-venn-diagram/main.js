@@ -16,7 +16,13 @@ import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
+import { addResources } from '@isle-project/locales';
 import './venn_diagram.css';
+
+
+// VARIABLES //
+
+addResources( 'LearnVennDiagram' );
 
 
 // MAIN //

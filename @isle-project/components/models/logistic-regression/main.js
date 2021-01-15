@@ -22,11 +22,13 @@ import Table from '@isle-project/components/table';
 import TeX from '@isle-project/components/tex';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import subtract from '@isle-project/utils/subtract';
+import { addResources } from '@isle-project/locales';
 import irls from './logistic_regression.js';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const T = 't';
 
