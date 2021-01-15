@@ -1,4 +1,5 @@
 {
+	"finish": "Ora avete completato il tour dei vari elementi di interfaccia di una lezione ISLE. Fate attenzione ai pulsanti di tutorial aggiuntivi collegati ai singoli componenti all'interno della lezione per saperne di più sulla loro funzionalità e sul loro utilizzo.",
 	"instructor-view-handler": "Il pannello Istruttore è lo strumento più importante per l'insegnante. Qui potete vedere esattamente cosa stanno facendo i vostri studenti e avere una visione d'insieme di ciò che succede in classe",
 	"language-switcher": "Il selezionatore di lingua consente di impostare l'interfaccia nella lingua desiderata. Se il contenuto della lezione è disponibile in più lingue, potreste essere fortunati - e vedere il tutto in cinese, per esempio. In ogni caso, l'interfaccia sarà visualizzata nella vostra lingua.",
 	"statusbar-blackscreen-mode": "Di tanto in tanto, ha senso concentrarsi interamente sulla voce dell'oratore. Da qui il blackout, un arresto programmato, per così dire. Con esso, non solo si oscura il proprio schermo, ma anche quello dei propri studenti. Un altro clic - e la vita continua!",
@@ -15,10 +16,10 @@
 	"statusbar-video-chat": "ISLE ha uno strumento di conferenza integrato che permette di videochiamare con altri utenti che sono lì allo stesso tempo. E se l'acconciatura non ti sta bene, basta spegnere la videocamera - e l'altra persona può ancora sentirti.",
 	"statusbar-voice-info": "Per creare didascalie in tempo reale o elementi di interfaccia di controllo via voce, è possibile utilizzare il microfono. Basta cliccare sull'icona e diventerà rossa per indicare che sta registrando. Vedrete anche una trascrizione che vi dirà cosa è stato compreso. Per copiare e incollare la trascrizione, basta cliccare sull'icona CC che apparirà a destra. Si aprirà una finestra con un editor e in essa troverete il testo registrato. Se volete interrompere la modalità di registrazione, basta cliccare di nuovo sul microfono e diventerà di nuovo grigio.",
 	"sticky-note": "Cliccando con il tasto destro del mouse, è possibile creare appunti personali e permanenti per la lezione (che appariranno in verde). Inoltre, gli insegnanti possono lasciare appunti per tutti gli studenti, che saranno di colore arancione.",
-	"toolbar-toggle": "Con il seguente pulsante è possibile aprire o chiudere la barra degli strumenti. Qui troverete alcuni strumenti molto utili...",
 	"toolbar-calculator": "Qui si può accedere a una calcolatrice che consente di effettuare calcoli semplici, ma anche scientifici.",
 	"toolbar-help": "I sondaggi permettono all'istruttore di effettuare piccoli sondaggi tra i partecipanti. Ci sono quattro tipi: una domanda sì/no, una domanda veloce, un'alternativa simile/diversa, infine vari tipi di sondaggi: a testo libero, a scelta multipla e numerici.",
 	"toolbar-queue": "La coda permette allo studente di fare domande. Sono tutte disposte in sequenza, da cui il nome.",
 	"toolbar-sketchpad": "Il blocco di schizzi permette di prendere appunti in forma grafica. Sono persistenti, quindi possono essere recuperate in un secondo momento. Le note dell'insegnante sono trasmesse a tutti gli studenti in tempo reale, quindi visibili pubblicamente.",
-	"toolbar-ticketing": "Qui gli utenti possono creare un ticket che segnala un errore di programmazione o un altro problema nella lezione."
+	"toolbar-ticketing": "Qui gli utenti possono creare un ticket che segnala un errore di programmazione o un altro problema nella lezione.",
+	"toolbar-toggle": "Con il seguente pulsante è possibile aprire o chiudere la barra degli strumenti. Qui troverete alcuni strumenti molto utili..."
 }

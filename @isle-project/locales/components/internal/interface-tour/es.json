@@ -1,4 +1,5 @@
 {
+	"finish": "Ya ha completado el recorrido por los distintos elementos de la interfaz de una lección de ISLE. Tengan cuidado con los botones adicionales del tutorial que se adjuntan a los componentes individuales dentro de la lección para aprender más sobre su funcionalidad y uso.",
 	"instructor-view-handler": "El panel del instructor es la herramienta más importante para el profesor. Aquí puede ver exactamente lo que sus estudiantes están haciendo y tener una visión general de lo que está pasando en clase",
 	"language-switcher": "El selector de idiomas le permite configurar la interfaz en el idioma de su elección. Si el contenido de la lección está disponible en varios idiomas, puede que tengas suerte y veas todo en chino, por ejemplo. En cualquier caso, la interfaz se mostrará en tu idioma.",
 	"statusbar-blackscreen-mode": "De vez en cuando, tiene sentido centrarse completamente en la voz del orador. De ahí el apagón, una parada programada, por así decirlo. Con ello, no sólo oscurecerá su propia pantalla, sino también la de sus alumnos. Un clic más y la vida continúa.",
@@ -15,10 +16,10 @@
 	"statusbar-video-chat": "ISLE tiene una herramienta de conferencia incorporada que le permite chatear por video con otros usuarios que están allí al mismo tiempo. Y si el peinado no te queda bien, sólo tienes que apagar la cámara - y la otra persona todavía puede oírte.",
 	"statusbar-voice-info": "Para crear subtítulos en tiempo real o controlar los elementos de la interfaz mediante la voz, puedes usar tu micrófono. Sólo tienes que hacer clic en el icono y se pondrá rojo para indicar que está grabando. También verás una transcripción que te dirá lo que se ha entendido. Para copiar y pegar la transcripción, sólo tienes que hacer clic en el icono CC que se muestra a la derecha de la misma. Se abrirá una ventana con un editor y en ella encontrarás el texto grabado. Si quieres detener el modo de grabación, sólo tienes que hacer clic en el micrófono de nuevo y se volverá gris otra vez.",
 	"sticky-note": "Si haces clic con el botón derecho del ratón, puedes crear notas adhesivas personales permanentes para la lección (que aparecerán en verde). Además, los profesores pueden dejar notas para todos los estudiantes, que serán de color naranja.",
-	"toolbar-toggle": "Con el siguiente botón puedes abrir o cerrar la barra de herramientas. Allí encontrarás algunas herramientas muy útiles...",
 	"toolbar-calculator": "Aquí puedes acceder a una calculadora que te permite hacer cálculos simples, pero también científicos.",
 	"toolbar-help": "Las encuestas permiten al instructor hacer pequeñas encuestas entre los participantes. Hay cuatro tipos: una pregunta de sí/no, una pregunta de velocidad, una alternativa de gusto/deseo, finalmente varios tipos de encuestas: de texto libre, de opción múltiple y encuestas numéricas.",
 	"toolbar-queue": "La cola permite al estudiante hacer preguntas. Están todas dispuestas en secuencia, de ahí el nombre.",
 	"toolbar-sketchpad": "El bloc de dibujo permite tomar notas de forma gráfica. Son persistentes, por lo que pueden ser recuperadas más tarde. Las notas del profesor se transmiten a todos los estudiantes en tiempo real, por lo tanto son visibles públicamente.",
-	"toolbar-ticketing": "Aquí los usuarios pueden crear un boleto señalando un error de programación u otro problema en la lección."
+	"toolbar-ticketing": "Aquí los usuarios pueden crear un boleto señalando un error de programación u otro problema en la lección.",
+	"toolbar-toggle": "Con el siguiente botón puedes abrir o cerrar la barra de herramientas. Allí encontrarás algunas herramientas muy útiles..."
 }

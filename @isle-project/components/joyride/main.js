@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
 import { withTranslation } from 'react-i18next';
+import merge from '@stdlib/utils/merge';
 import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
 import { addResources } from '@isle-project/locales';
 
@@ -51,8 +52,10 @@ class Wrapper extends Component {
 
 	render() {
 		const { t } = this.props;
-		const styles = { ...STYLES };
-		styles.options.zIndex = this.zIndexAdjustment + 100;
+		const styles = merge( {}, STYLES, this.props.styles );
+		if ( styles.options && styles.options.zIndex === 100 ) {
+			styles.options.zIndex = this.zIndexAdjustment + 100;
+		}
 		return (
 			<Joyride
 				showSkipButton
@@ -79,13 +82,15 @@ Wrapper.propTypes = {
 	run: PropTypes.bool,
 	scrollToSteps: PropTypes.bool,
 	steps: PropTypes.array.isRequired,
-	parentNode: PropTypes.node
+	parentNode: PropTypes.node,
+	styles: PropTypes.object
 };
 
 Wrapper.defaultProps = {
 	run: false,
 	scrollToSteps: true,
-	parentNode: null
+	parentNode: null,
+	styles: {}
 };
 
 

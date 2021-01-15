@@ -85,7 +85,7 @@ const LanguageSwitcher = ( props ) => {
 			{isLoading ? <div className="language-switcher-notification" >
 				{t('loading-translations')}
 			</div> : null}
-			<OverlayTrigger placement="left" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
+			<OverlayTrigger placement="top" overlay={<Tooltip id="language-switcher">{t('change-language')}</Tooltip>} >
 				<button
 					onClick={toggleSelectModal} className="language-switcher"
 					aria-label={t('choose-language')}
