@@ -17,11 +17,13 @@ import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } 
 import Confused from '-!svg-react-loader!./img/confused.svg';
 import Understood from '-!svg-react-loader!./img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./img/feedback.svg';
+import { addResources } from '@isle-project/locales';
 import './feedback.css';
 
 
 // VARIABLES //
 
+addResources( 'Feedback' );
 const ORIGINAL_STATE = {
 	showModal: false,
 	needsExplanation: false,

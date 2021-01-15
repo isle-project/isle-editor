@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
 import { withTranslation } from 'react-i18next';
 import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Joyride' );
 const STYLES = {
 	options: {
 		arrowColor: '#fff',

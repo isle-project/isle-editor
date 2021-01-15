@@ -25,12 +25,14 @@ import stdev from '@isle-project/utils/statistic/stdev';
 import mean from '@isle-project/utils/statistic/mean';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
+import { addResources } from '@isle-project/locales';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 
 // VARIABLES //
 
+addResources( 'LearnCLT' );
 const GridLayout = WidthProvider( ReactGridLayout );
 
 

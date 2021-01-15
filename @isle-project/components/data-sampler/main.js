@@ -14,6 +14,12 @@ import isFunction from '@stdlib/assert/is-function';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'DataSampler' );
 
 
 // MAIN //

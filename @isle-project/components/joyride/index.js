@@ -2,12 +2,6 @@
 
 import Loadable from '@isle-project/components/internal/loadable';
 import { ACTIONS, EVENTS } from 'react-joyride';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'Joyride' );
 
 
 // MAIN //

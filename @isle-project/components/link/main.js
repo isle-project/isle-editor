@@ -9,6 +9,12 @@ import startsWith from '@stdlib/string/starts-with';
 import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
 import { OPEN_LINK } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Link' );
 
 
 // MAIN //
