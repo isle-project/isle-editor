@@ -6,10 +6,12 @@ import { withTranslation } from 'react-i18next';
 import trim from '@stdlib/string/trim';
 import contains from '@stdlib/assert/contains';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Citation' );
 const WARNING_STYLE = {
 	background: 'red',
 	color: 'white'

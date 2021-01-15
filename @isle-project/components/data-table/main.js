@@ -52,6 +52,7 @@ import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
 import FilterInputRange from './input_range.js';
+import { addResources } from '@isle-project/locales';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -60,6 +61,7 @@ import './data_table.css';
 
 // VARIABLES //
 
+addResources( 'DataTable' );
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,

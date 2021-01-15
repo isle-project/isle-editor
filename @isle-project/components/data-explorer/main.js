@@ -61,6 +61,7 @@ import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
+import { addResources } from '@isle-project/locales';
 import './data_explorer.css';
 
 
@@ -122,6 +123,7 @@ const PropTest2 = Loadable( () => import( '@isle-project/components/data-explore
 
 // VARIABLES //
 
+addResources( 'DataExplorer' );
 const debug = logger( 'isle:data-explorer' );
 const uid = generateUID( 'data-explorer' );
 

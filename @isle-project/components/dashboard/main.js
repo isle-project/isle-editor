@@ -16,11 +16,13 @@ import SliderInput from '@isle-project/components/input/slider';
 import TextInput from '@isle-project/components/input/text';
 import SessionContext from '@isle-project/session/context.js';
 import { DASHBOARD_CLICK_GENERATE } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './dashboard.css';
 
 
 // VARIABLES //
 
+addResources( 'Dashboard' );
 const debug = logger( 'isle:dashboard' );
 const uid = generateUID( 'dashboard' );
 
