@@ -9,6 +9,12 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import Table from '@isle-project/components/table';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'StatisticalModels' );
 
 
 // FUNCTIONS //

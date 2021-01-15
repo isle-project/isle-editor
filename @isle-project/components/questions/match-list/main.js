@@ -19,12 +19,14 @@ import Text from '@isle-project/components/text';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
 
 // VARIABLES //
 
+addResources( 'MatchListQuestion' );
 const debug = logger( 'isle:match-list-question' );
 const uid = generateUID( 'match-list-question' );
 

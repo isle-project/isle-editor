@@ -19,11 +19,13 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './select-question.css';
 
 
 // VARIABLES //
 
+addResources( 'SelectQuestion' );
 const uid = generateUID( 'select-question' );
 
 

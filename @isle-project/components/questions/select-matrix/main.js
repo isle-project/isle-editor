@@ -25,11 +25,13 @@ import Text from '@isle-project/components/text';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './select-question-matrix.css';
 
 
 // VARIABLES //
 
+addResources( 'SelectQuestionMatrix' );
 const debug = logger( 'isle:select-question-matrix' );
 const uid = generateUID( 'select-question-matrix' );
 

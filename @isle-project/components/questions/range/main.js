@@ -24,11 +24,13 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './range-question.css';
 
 
 // VARIABLES //
 
+addResources( 'RangeQuestion' );
 const debug = logger( 'isle:range-question' );
 const uid = generateUID( 'range-question' );
 

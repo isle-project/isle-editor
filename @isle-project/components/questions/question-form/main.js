@@ -9,11 +9,13 @@ import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import SessionContext from '@isle-project/session/context.js';
 import isLineWrapper from '@isle-project/utils/is-line-wrapper';
+import { addResources } from '@isle-project/locales';
 import './question_form.css';
 
 
 // VARIABLES //
 
+addResources( 'QuestionForm' );
 const debug = logger( 'isle:question-form' );
 
 

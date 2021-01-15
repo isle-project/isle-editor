@@ -8,10 +8,16 @@ import round from '@stdlib/math/base/special/round';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
+import { addResources } from '@isle-project/locales';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
 import './hierarchical_clustering.css';
+
+
+// VARIABLES //
+
+addResources( 'StatisticalModels' );
 
 
 // FUNCTIONS //
