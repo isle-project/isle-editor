@@ -10,6 +10,12 @@ import incrspace from '@stdlib/math/utils/incrspace';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import Plotly from '@isle-project/components/plotly';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'StatisticalModels' );
 
 
 // FUNCTIONS //

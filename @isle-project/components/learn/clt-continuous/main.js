@@ -37,6 +37,7 @@ import NumberInput from '@isle-project/components/input/number';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import { VictoryArea, VictoryAxis, VictoryChart, VictoryLine } from 'victory';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 import ProbabilityRange from './probability_range.js';
 import ProbMeanRange from './prob_mean_range.js';
 import ProbMean from './prob_mean.js';
@@ -47,6 +48,7 @@ import 'react-resizable/css/styles.css';
 
 // VARIABLES //
 
+addResources( 'LearnCLT' );
 const NEAR_ONE = 0.999999;
 const GridLayout = WidthProvider( ReactGridLayout );
 

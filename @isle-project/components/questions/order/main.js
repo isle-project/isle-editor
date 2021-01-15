@@ -16,11 +16,13 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import permute from '@isle-project/utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './order-question.css';
 
 
 // VARIABLES //
 
+addResources( 'OrderQuestion' );
 const uid = generateUID( 'order-question' );
 const debug = logger( 'isle:order-question' );
 

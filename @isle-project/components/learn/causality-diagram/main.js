@@ -11,6 +11,12 @@ import Plotly from '@isle-project/components/plotly';
 import Dashboard from '@isle-project/components/dashboard';
 import SliderInput from '@isle-project/components/input/slider';
 import CheckboxInput from '@isle-project/components/input/checkbox';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'LearnCausalityDiagram' );
 
 
 // MAIN //

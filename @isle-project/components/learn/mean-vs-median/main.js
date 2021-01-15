@@ -20,10 +20,12 @@ import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'LearnMeanVSMedian' );
 const debug = logger( 'isle:mean-vs-median' );
 
 

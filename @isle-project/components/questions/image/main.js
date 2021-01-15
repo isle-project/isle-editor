@@ -23,11 +23,13 @@ import SessionContext from '@isle-project/session/context.js';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './image_question.css';
 
 
 // VARIABLES //
 
+addResources( 'ImageQuestion' );
 const uid = generateUID( 'image-question' );
 const debug = logger( 'isle:image-question' );
 const RE_IMAGE_SRC = /src="([^"]*)"/;

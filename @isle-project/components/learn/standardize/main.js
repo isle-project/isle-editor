@@ -16,10 +16,12 @@ import linspace from '@stdlib/math/utils/linspace';
 import TeX from '@isle-project/components/tex';
 import NumberInput from '@isle-project/components/input/number';
 import Dashboard from '@isle-project/components/dashboard';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'LearnStandardize' );
 const colors = [
 	'#e41a1c',
 	'#377eb8',
