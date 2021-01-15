@@ -22,11 +22,13 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './number-survey.css';
 
 
 // VARIABLES //
 
+addResources( 'Survey' );
 const debug = logger( 'isle:number-survey' );
 const uid = generateUID( 'number-survey' );
 const SD = 'SD';

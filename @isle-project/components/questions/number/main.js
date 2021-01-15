@@ -25,11 +25,13 @@ import SessionContext from '@isle-project/session/context.js';
 import getLastAction from '@isle-project/utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './number-question.css';
 
 
 // VARIABLES //
 
+addResources( 'NumberQuestion' );
 const uid = generateUID( 'number-question' );
 const debug = logger( 'isle:number-question' );
 

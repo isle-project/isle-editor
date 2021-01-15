@@ -21,10 +21,12 @@ import Plotly from '@isle-project/components/plotly';
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const T = 't';
 

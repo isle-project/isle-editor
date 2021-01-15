@@ -16,11 +16,13 @@ import Tooltip from '@isle-project/components/tooltip';
 import Table from '@isle-project/components/table';
 import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
+import { addResources } from '@isle-project/locales';
 import LASSO from './lasso.js';
 
 
 // VARIABLES //
 
+addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
