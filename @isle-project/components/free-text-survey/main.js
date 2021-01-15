@@ -23,11 +23,13 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import './free-text-survey.css';
 
 
 // VARIABLES //
 
+addResources( 'Survey' );
 const debug = logger( 'isle:free-text-survey' );
 const uid = generateUID( 'free-text-survey' );
 

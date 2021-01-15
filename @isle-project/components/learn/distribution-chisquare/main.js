@@ -18,10 +18,12 @@ import qchisq from '@stdlib/stats/base/dists/chisquare/quantile';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'LearnDistribution' );
 const NEAR_ONE = 0.99999;
 
 

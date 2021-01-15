@@ -19,7 +19,13 @@ import TextInput from '@isle-project/components/input/text';
 import Dashboard from '@isle-project/components/dashboard';
 import FeedbackButtons from '@isle-project/components/feedback';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 import './venn_diagram_builder.css';
+
+
+// VARIABLES //
+
+addResources( 'LearnVennDiagram' );
 
 
 // MAIN //

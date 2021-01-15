@@ -15,7 +15,13 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 import probabilityTableLabels from './table_labels.js';
+
+
+// VARIABLES //
+
+addResources( 'LearnConditionalProbability' );
 
 
 // MAIN //

@@ -17,7 +17,13 @@ import Panel from '@isle-project/components/panel';
 import NetworkPlot from '@isle-project/components/d3/network-plot';
 import Plotly from '@isle-project/components/plotly';
 import TeX from '@isle-project/components/tex';
+import { addResources } from '@isle-project/locales';
 import calculateTransitivity from './calculate_transitivity.js';
+
+
+// VARIABLES //
+
+addResources( 'LearnNetworks' );
 
 
 // MAIN //
