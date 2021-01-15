@@ -9,6 +9,7 @@ const fs = require( 'fs' );
 const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
+const contains = require( '@stdlib/assert/contains' );
 const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
@@ -130,8 +131,13 @@ for ( let i = 0; i < files.length; i++ ) {
 			if ( tag.name === 'children' ) {
 				continue;
 			}
-			description[ tag.name ] = `${tagName}-prop-${tag.name}`;
-			TRANSLATIONS[ `${tagName}-prop-${tag.name}` ] = tag.description;
+			const propKey = `${tagName}-prop-${tag.name}`;
+			if ( !contains( propKey, 'undefined' ) ) {
+				description[ tag.name ] = propKey;
+				TRANSLATIONS[ propKey ] = tag.description;
+			} else {
+				console.log( 'Encountered an illegal key: '+propKey );
+			}
 		}
 	}
 	if ( tagName === void 0 ) {
