@@ -24,7 +24,6 @@ const config = smp.wrap({
 
 	output: {
 		path: __dirname,
-		publicPath: '../dist/',
 		filename: 'main.js'
 	},
 
