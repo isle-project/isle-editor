@@ -8,12 +8,14 @@ import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from '@isle-project/components/collapse';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
+import { addResources } from '@isle-project/locales';
 import './accordion.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:accordion' );
+addResources( 'Accordion' );
 
 
 // MAIN //

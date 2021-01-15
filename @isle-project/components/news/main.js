@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import capitalize from '@stdlib/string/capitalize';
 import VoiceInput from '@isle-project/components/input/voice';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import newslist from './list.json';
 import EXCEPTIONS from './exceptions.json';
 import './styles.css';
@@ -17,6 +18,7 @@ import './styles.css';
 // VARIABLES //
 
 const debug = logger( 'isle:news' );
+addResources( 'News' );
 
 
 // FUNCTIONS //

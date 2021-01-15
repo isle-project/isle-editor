@@ -6,6 +6,12 @@ import { withTranslation } from 'react-i18next';
 import endsWith from '@stdlib/string/ends-with';
 import objectKeys from '@stdlib/utils/keys';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Bibliography' );
 
 
 // FUNCTIONS //

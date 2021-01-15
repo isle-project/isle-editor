@@ -11,11 +11,13 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { RECEIVED_CHAT_HISTORY, CHAT_STATISTICS, REMOVED_CHAT,
 	SELF_HAS_JOINED_CHAT, SELF_HAS_LEFT_CHAT } from '@isle-project/constants/events.js';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:chat-button' );
+addResources( 'ChatButton' );
 
 
 // MAIN //
