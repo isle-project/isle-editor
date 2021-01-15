@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.73.0](https://github.com/isle-project/isle-editor/releases/tag/v0.73.0) (2021-01-15)
+
+This release contains a refactored text editor component, which saves documents in the cloud, alongside a document history tab for the editor, which allows one to retrace the origin of the document (see screenshot below).
+
+![image](https://user-images.githubusercontent.com/1913638/104691386-22b0ce00-56d4-11eb-92a7-49312175636d.png)
+
+The new release also comes with a redesigned and fleshed out system for leaving persistent sticky notes when right-clicking inside a lesson. Last but not least, lessons now contain a short guide giving an overview of the various interface elements, which can be triggered by clicking on the respective button in the lower-right corner of a lesson.
+
 ## [v0.72.3](https://github.com/isle-project/isle-editor/releases/tag/v0.72.3) (2020-12-15)
 
 ## [v0.72.2](https://github.com/isle-project/isle-editor/releases/tag/v0.72.2) (2020-12-15)
