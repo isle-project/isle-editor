@@ -13,6 +13,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } from 'recordrtc';
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import VOICE_COMMANDS from './voice_commands.json';
 import './ebml.js';
 import './recorder.css';
@@ -20,6 +21,7 @@ import './recorder.css';
 
 // VARIABLES //
 
+addResources( 'Recorder' );
 const debug = logger( 'isle:recorder' );
 
 

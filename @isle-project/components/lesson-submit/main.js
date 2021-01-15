@@ -19,10 +19,12 @@ import SessionContext from '@isle-project/session/context.js';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
 import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'LessonSubmit' );
 const debug = logger( 'isle:lesson-submit' );
 
 

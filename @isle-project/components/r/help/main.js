@@ -6,7 +6,13 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import './rhelp.css';
+
+
+// VARIABLES //
+
+addResources( 'R' );
 
 
 // MAIN //

@@ -8,6 +8,12 @@ import isArray from '@stdlib/assert/is-array';
 import isNull from '@stdlib/assert/is-null';
 import runif from '@stdlib/random/base/discrete-uniform';
 import VideoPlayer from '@isle-project/components/video-player';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Video' );
 
 
 // MAIN //

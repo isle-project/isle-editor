@@ -12,6 +12,12 @@ import isNull from '@stdlib/assert/is-null';
 import round from '@stdlib/math/base/special/round';
 import SessionContext from '@isle-project/session/context.js';
 import CheckboxInput from '@isle-project/components/input/checkbox';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'SpreadsheetUpload' );
 
 
 // MAIN //

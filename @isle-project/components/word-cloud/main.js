@@ -30,10 +30,12 @@ import STOPWORDS_SP from '@stdlib/datasets/savoy-stopwords-sp';
 import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
 import Tooltip from '@isle-project/components/tooltip';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'WordCloud' );
 const fill = scaleOrdinal( schemeCategory10 );
 const RE_NUMBERS = /[+-]?[\d.]+e?[+-]?\d*/g;
 
