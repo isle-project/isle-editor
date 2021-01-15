@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Iframe' );
 
 
 // MAIN //

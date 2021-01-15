@@ -25,6 +25,7 @@ import SessionContext from '@isle-project/session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -33,6 +34,8 @@ import './js_shell.css';
 
 // VARIABLES //
 
+addResources( 'R' );
+addResources( 'SolutionButton' );
 const RE_CONSOLE = /console\.(error|warn|debug|log|info)/g;
 const uid = generateUID( 'js-shell' );
 const THEME = {

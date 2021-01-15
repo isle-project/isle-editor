@@ -4,6 +4,12 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'DeleteModal' );
 
 
 // MAIN //
