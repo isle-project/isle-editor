@@ -2478,6 +2478,11 @@
         "name": "parentNode",
         "type": "node",
         "defaultValue": null
+      },
+      {
+        "name": "styles",
+        "type": "object",
+        "defaultValue": {}
       }
     ],
     "description": "Joyride-description"
@@ -4728,7 +4733,6 @@
       {
         "name": "xbins",
         "type": "{start,size,end}",
-        "description": "Histogram-prop-xbins",
         "defaultValue": {}
       }
     ],
@@ -4771,36 +4775,43 @@
     "props": [
       {
         "name": "data",
-        "type": "object (required)"
+        "type": "object (required)",
+        "description": "Map-prop-data"
       },
       {
         "name": "scope",
         "type": "string",
+        "description": "Map-prop-scope",
         "defaultValue": "world"
       },
       {
         "name": "locations",
         "type": "string",
+        "description": "Map-prop-locations",
         "defaultValue": null
       },
       {
         "name": "locationmode",
         "type": "string",
+        "description": "Map-prop-locationmode",
         "defaultValue": "country names"
       },
       {
         "name": "longitude",
         "type": "string",
+        "description": "Map-prop-longitude",
         "defaultValue": null
       },
       {
         "name": "latitude",
         "type": "string",
+        "description": "Map-prop-latitude",
         "defaultValue": null
       },
       {
         "name": "showLand",
         "type": "boolean",
+        "description": "Map-prop-showLand",
         "defaultValue": false
       }
     ],
@@ -7404,6 +7415,11 @@
         "type": "(string|node)",
         "description": "StickyNote-prop-body",
         "defaultValue": "Body of the note"
+      },
+      {
+        "name": "watermark",
+        "type": "string",
+        "defaultValue": null
       },
       {
         "name": "color",
