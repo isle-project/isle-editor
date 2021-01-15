@@ -6,6 +6,12 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'SolutionButton' );
 
 
 // MAIN //

@@ -10,7 +10,13 @@ import createPrependCode from '@isle-project/components/r/utils/create-prepend-c
 import Spinner from '@isle-project/components/internal/spinner';
 import Image from '@isle-project/components/image';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import './plot.css';
+
+
+// VARIABLES //
+
+addResources( 'R' );
 
 
 // MAIN //

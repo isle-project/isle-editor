@@ -8,7 +8,13 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
+import { addResources } from '@isle-project/locales';
 import './_datepicker.css';
+
+
+// VARIABLES //
+
+addResources( 'RangePicker' );
 
 
 // MAIN //
