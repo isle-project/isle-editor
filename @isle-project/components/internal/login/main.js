@@ -16,12 +16,14 @@ import Popover from 'react-bootstrap/Popover';
 import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import './login.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:login' );
+addResources( 'Login' );
 
 
 // MAIN //

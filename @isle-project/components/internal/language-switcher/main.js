@@ -24,11 +24,13 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { changeLanguage } from '@isle-project/locales';
+import { addResources } from '@isle-project/locales';
 import './language_switcher.css';
 
 
 // VARIABLES //
 
+addResources( 'LanguageSwitcher' );
 const SelectModal = ( props ) => {
 	if ( !props.show ) {
 		return null;
