@@ -199,7 +199,7 @@ class ConfidenceCoverageBinomial extends Component {
 						<Row>
 							<Col md={4}>
 								<Dashboard
-									title={t('change-parameter')}
+									title={t('change-parameters')}
 									onGenerate={this.onGenerate}
 									autoStart={true}
 									id="confidence_coverage_binomial"

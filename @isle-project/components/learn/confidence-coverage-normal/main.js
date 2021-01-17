@@ -191,7 +191,7 @@ class ConfidenceCoverageNormal extends Component {
 		return (
 			<Card className="coverage-card" >
 				<Card.Header as="h4">
-					{t('confidence-Interval-coverage-mean')}
+					{t('confidence-interval-coverage-mean')}
 				</Card.Header>
 				<Card.Body>
 					<Container>
