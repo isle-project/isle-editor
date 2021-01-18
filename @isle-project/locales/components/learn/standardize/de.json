@@ -1,5 +1,7 @@
 {
+	"compute": "Berechnen Sie",
 	"evaluate-probabilities": "Bewerten Sie Wahrscheinlichkeiten:",
+	"mean": "Mittelwert",
 	"normal-to-standard-normal": "Von Normal bis Standard Normal",
 	"reset": "Zurücksetzen",
 	"standard-deviation": "Standardabweichung",

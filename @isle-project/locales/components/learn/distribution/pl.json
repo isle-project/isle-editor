@@ -42,6 +42,7 @@
 	"poisson-distribution": "Dystrybucja Poisson",
 	"poisson-probabilities": "Prawdopodobieństwa poissonowe",
 	"prob": "Prob",
+	"probability-density-function": "Funkcja gęstości prawdopodobieństwa (PDF)",
 	"probability-plot": "Działka prawdopodobieństwa",
 	"quantile-function": "Funkcja Quantile",
 	"random-variable-denotes-failures": "Zmienna losowa X oznacza liczbę niepowodzeń do momentu osiągnięcia r-tego sukcesu.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Sukcesy do końca",
 	"trials-and-success-probability": "próby i prawdopodobieństwo sukcesu",
 	"uniform-distribution": "Jednolita dystrybucja",
+	"upper-bound": "Górna granica",
 	"value": "Wartość",
 	"we-get": "dostajemy"
 }

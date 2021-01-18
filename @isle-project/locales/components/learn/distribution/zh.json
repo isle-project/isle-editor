@@ -42,6 +42,7 @@
 	"poisson-distribution": "泊松分布",
 	"poisson-probabilities": "泊松概率",
 	"prob": "可能",
+	"probability-density-function": "概率密度函数 (PDF)",
 	"probability-plot": "概率图",
 	"quantile-function": "量子函数",
 	"random-variable-denotes-failures": "随机变量X表示失败的次数，直到达到第r次成功。",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "成功，直至停止",
 	"trials-and-success-probability": "试验，成功概率为",
 	"uniform-distribution": "统一分配",
+	"upper-bound": "上限",
 	"value": "价值",
 	"we-get": "我们得到"
 }

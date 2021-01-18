@@ -98,7 +98,7 @@ class Networks extends Component {
 		}
 		return ( <Plotly removeButtons
 			layout={{
-				title: 'Number of edges per generated network',
+				title: this.props.t('number-of-edges-per-generated-network'),
 				height: 250
 			}}
 			data={[

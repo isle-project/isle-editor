@@ -1,5 +1,7 @@
 {
+	"compute": "Calcule",
 	"evaluate-probabilities": "Avaliar as probabilidades:",
+	"mean": "Média",
 	"normal-to-standard-normal": "Do Normal ao Normal Padrão",
 	"reset": "Reinicialização",
 	"standard-deviation": "desvio padrão",

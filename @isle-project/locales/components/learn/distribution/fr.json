@@ -42,6 +42,7 @@
 	"poisson-distribution": "Distribution de Poisson",
 	"poisson-probabilities": "Probabilités de Poisson",
 	"prob": "Prob",
+	"probability-density-function": "Fonction de densité de probabilité (PDF)",
 	"probability-plot": "Graphique de probabilité",
 	"quantile-function": "Fonction de Quantile",
 	"random-variable-denotes-failures": "La variable aléatoire X indique le nombre d'échecs jusqu'à ce que le rième succès soit atteint.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Des succès jusqu'au bout",
 	"trials-and-success-probability": "et une probabilité de succès de",
 	"uniform-distribution": "Distribution uniforme",
+	"upper-bound": "Limite supérieure",
 	"value": "Valeur",
 	"we-get": "nous obtenons"
 }

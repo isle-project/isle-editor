@@ -42,6 +42,7 @@
 	"poisson-distribution": "Distribuição de Poisson",
 	"poisson-probabilities": "Probabilidades de Poisson",
 	"prob": "Prob",
+	"probability-density-function": "Função Densidade de Probabilidade (PDF)",
 	"probability-plot": "Lote de Probabilidade",
 	"quantile-function": "Função de quantidade",
 	"random-variable-denotes-failures": "A variável aleatória X denota o número de falhas até que o r-ésimo sucesso seja alcançado.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Sucessos até a parada",
 	"trials-and-success-probability": "provas e uma probabilidade de sucesso de",
 	"uniform-distribution": "Distribuição Uniforme",
+	"upper-bound": "Limite superior",
 	"value": "Valor",
 	"we-get": "obtemos"
 }

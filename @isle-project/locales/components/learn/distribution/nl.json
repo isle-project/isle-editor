@@ -42,6 +42,7 @@
 	"poisson-distribution": "Poisson distributie",
 	"poisson-probabilities": "Poisson waarschijnlijkheid",
 	"prob": "Prob",
+	"probability-density-function": "Waarschijnlijkheidsfunctie (PDF)",
 	"probability-plot": "Waarschijnlijkheidsplaatje",
 	"quantile-function": "Kwantitatieve functie",
 	"random-variable-denotes-failures": "De willekeurige variabele X geeft het aantal mislukkingen aan tot het r-succes is bereikt.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Successen tot aan de stop",
 	"trials-and-success-probability": "proeven en een kans op succes",
 	"uniform-distribution": "Uniforme verdeling",
+	"upper-bound": "Bovengrens",
 	"value": "Waarde",
 	"we-get": "we krijgen"
 }

@@ -42,6 +42,7 @@
 	"poisson-distribution": "Poisson-Verteilung",
 	"poisson-probabilities": "Poisson-Wahrscheinlichkeiten",
 	"prob": "Wahrscheinlich",
+	"probability-density-function": "Wahrscheinlichkeits-Dichte-Funktion (PDF)",
 	"probability-plot": "Wahrscheinlichkeitsdiagramm",
 	"quantile-function": "Quantil-Funktion",
 	"random-variable-denotes-failures": "Die Zufallsvariable X bezeichnet die Anzahl der Ausfälle bis zum Erreichen des r-ten Erfolgs.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Erfolge bis zum Anschlag",
 	"trials-and-success-probability": "Versuche und eine Erfolgswahrscheinlichkeit von",
 	"uniform-distribution": "Gleichmäßige Verteilung",
+	"upper-bound": "Obere Schranke",
 	"value": "Wert",
 	"we-get": "erhalten wir"
 }

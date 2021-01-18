@@ -42,6 +42,7 @@
 	"poisson-distribution": "Distribuzione di Poisson",
 	"poisson-probabilities": "Probabilità di Poisson",
 	"prob": "Prob",
+	"probability-density-function": "Funzione di densità di probabilità (PDF)",
 	"probability-plot": "Trama di probabilità",
 	"quantile-function": "Funzione Quantile",
 	"random-variable-denotes-failures": "La variabile casuale X indica il numero di fallimenti fino al raggiungimento del r-esimo successo.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Successi fino alla fine",
 	"trials-and-success-probability": "prove e una probabilità di successo di",
 	"uniform-distribution": "Distribuzione uniforme",
+	"upper-bound": "In alto",
 	"value": "Valore",
 	"we-get": "otteniamo"
 }

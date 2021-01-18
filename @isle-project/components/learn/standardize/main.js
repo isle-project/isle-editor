@@ -133,7 +133,7 @@ class Standardize extends Component {
 			</Card.Header>
 			<Card.Body>
 				<NumberInput
-					legend="Mean"
+					legend={t.props('mean')}
 					defaultValue={4}
 					step={this.props.step}
 					min={-25}
@@ -280,7 +280,11 @@ class Standardize extends Component {
 						{this.renderUnstandardizedPlot()}
 					</Col>
 					<Col md={4}>
-						<Dashboard autoStart={false} title={t('standardize-values')} label="Compute" id="learn_standardize" onGenerate={this.onStandardize}>
+						<Dashboard
+							autoStart={false} title={t('standardize-values')}
+							label={this.props.t('compute')} id="learn_standardize"
+							onGenerate={this.onStandardize}
+						>
 							<TeX raw={this.state.eqn} displayMode tag="" />
 							<NumberInput
 								legend={t('x-value')}

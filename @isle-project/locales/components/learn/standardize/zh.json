@@ -1,5 +1,7 @@
 {
+	"compute": "计算",
 	"evaluate-probabilities": "评价概率。",
+	"mean": "平均值",
 	"normal-to-standard-normal": "从正常到标准正常",
 	"reset": "重置",
 	"standard-deviation": "标准差",

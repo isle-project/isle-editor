@@ -1,5 +1,7 @@
 {
+	"compute": "Obliczenie",
 	"evaluate-probabilities": "Ocenić prawdopodobieństwo:",
+	"mean": "Mean",
 	"normal-to-standard-normal": "Od normalnego do standardowego Normalny",
 	"reset": "Zresetować",
 	"standard-deviation": "odchylenie standardowe",

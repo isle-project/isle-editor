@@ -1,5 +1,7 @@
 {
+	"compute": "計算",
 	"evaluate-probabilities": "確率を評価する。",
+	"mean": "平均",
 	"normal-to-standard-normal": "ノーマルからスタンダードノーマルへ",
 	"reset": "リセット",
 	"standard-deviation": "標準偏差",

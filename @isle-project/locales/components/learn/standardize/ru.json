@@ -1,5 +1,7 @@
 {
+	"compute": "Рассчитать",
 	"evaluate-probabilities": "Оценивать вероятности:",
+	"mean": "Средний",
 	"normal-to-standard-normal": "От нормального к стандартному",
 	"reset": "Сброс",
 	"standard-deviation": "среднеквадратическое отклонение",

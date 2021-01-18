@@ -42,6 +42,7 @@
 	"poisson-distribution": "Distribución de Poisson",
 	"poisson-probabilities": "Probabilidades de Poisson",
 	"prob": "Prob",
+	"probability-density-function": "Función de densidad de probabilidad (PDF)",
 	"probability-plot": "Diagrama de probabilidad",
 	"quantile-function": "Función de la Cuadrícula",
 	"random-variable-denotes-failures": "La variable aleatoria X denota el número de fracasos hasta que se alcanza el r-ésimo éxito.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Los éxitos hasta el final",
 	"trials-and-success-probability": "y una probabilidad de éxito de",
 	"uniform-distribution": "Distribución uniforme",
+	"upper-bound": "Límite superior",
 	"value": "Valor",
 	"we-get": "tenemos"
 }

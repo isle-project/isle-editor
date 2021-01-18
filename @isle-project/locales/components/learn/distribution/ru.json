@@ -42,6 +42,7 @@
 	"poisson-distribution": "Пуассонское распределение",
 	"poisson-probabilities": "пуассоновские вероятности",
 	"prob": "Зонд",
+	"probability-density-function": "Функция плотности вероятностей (PDF/англ.)",
 	"probability-plot": "Слот вероятности",
 	"quantile-function": "Количественная функция",
 	"random-variable-denotes-failures": "Случайная переменная X обозначает количество неудач до достижения r-го успеха.",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "Успехи до остановки",
 	"trials-and-success-probability": "испытания и вероятность успеха",
 	"uniform-distribution": "Равномерное распределение",
+	"upper-bound": "Верхняя граница",
 	"value": "Значение",
 	"we-get": "получаем"
 }

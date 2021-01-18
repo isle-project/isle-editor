@@ -42,6 +42,7 @@
 	"poisson-distribution": "ポアソン分布",
 	"poisson-probabilities": "ポアソン確率",
 	"prob": "確率",
+	"probability-density-function": "確率密度関数 (PDF)",
 	"probability-plot": "確率プロット",
 	"quantile-function": "分位関数",
 	"random-variable-denotes-failures": "ランダム変数Ｘは、ｒ番目の成功までの失敗回数を示す。",
@@ -56,6 +57,7 @@
 	"successes-until-stop": "停止するまでの成功",
 	"trials-and-success-probability": "の成功確率で試験を行います。",
 	"uniform-distribution": "一様分布",
+	"upper-bound": "上界",
 	"value": "値",
 	"we-get": "貰える"
 }

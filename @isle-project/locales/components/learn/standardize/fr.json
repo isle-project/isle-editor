@@ -1,5 +1,7 @@
 {
+	"compute": "Calculer",
 	"evaluate-probabilities": "Évaluer les probabilités :",
+	"mean": "Moyenne",
 	"normal-to-standard-normal": "De la normale à la normale standard",
 	"reset": "Réinitialiser",
 	"standard-deviation": "écart type",

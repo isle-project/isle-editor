@@ -73,7 +73,7 @@ class VennDiagramBuilder extends Component {
 				tooltip.transition().
 					duration( 400 ).
 					style( 'opacity', 0.9 );
-				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
+				tooltip.text( d.sets.join( ` ${this.props.t('and')} ` ) + ' (' + d.size + ')' );
 				const selection = d3.select( this ).
 					transition( 'tooltip' ).
 					duration( 400 );

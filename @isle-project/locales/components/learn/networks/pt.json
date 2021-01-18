@@ -3,5 +3,6 @@
 	"intro-1": "Em uma rede, assume-se que os nós são fixos, mas as bordas são aleatórias, ou seja, há algum processo aleatório que determina se há uma borda conectando dois nós.",
 	"intro-2": "Vamos considerar um dos modelos de rede mais simples disponíveis. No modelo Erdős-Rényi, há uma probabilidade fixa <1 /> de que exista uma borda entre quaisquer dois nós. Também assumimos que a existência ou não de uma borda entre dois nós é independente da existência ou não de outras bordas.",
 	"intro-3": "Neste modelo, se tivermos <1 /> nós, cada nó pode ser conectado a <3 /> outros nós.  O número de bordas ligadas a cada nó (o grau) é então <5 />.",
+	"number-of-edges-per-generated-network": "Número de bordas por rede gerada",
 	"number-of-nodes": "número de nós"
 }
