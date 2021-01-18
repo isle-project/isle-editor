@@ -3,6 +3,7 @@
 	"count": "Tel",
 	"dice": "Dobbelstenen",
 	"invalid-probs": "Zorg ervoor dat alle waarschijnlijkheden optellen tot één",
+	"number-of-sides": "Aantal zijden",
 	"probabilities": "Waarschijnlijkheid",
 	"relative-frequency": "Relatieve Frequentie",
 	"reset": "Reset",

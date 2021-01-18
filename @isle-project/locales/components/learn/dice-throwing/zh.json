@@ -3,6 +3,7 @@
 	"count": "计数",
 	"dice": "骰子",
 	"invalid-probs": "请确保所有的概率加起来都是1。",
+	"number-of-sides": "侧面数量",
 	"probabilities": "概率",
 	"relative-frequency": "相对频率",
 	"reset": "重置",

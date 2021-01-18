@@ -3,6 +3,7 @@
 	"count": "Conde",
 	"dice": "Dados",
 	"invalid-probs": "Por favor, certifique-se de que todas as probabilidades se somem a uma",
+	"number-of-sides": "Número de Lados",
 	"probabilities": "Probabilidades",
 	"relative-frequency": "Freqüência Relativa",
 	"reset": "Reinicialização",

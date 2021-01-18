@@ -3,6 +3,7 @@
 	"count": "伯爵",
 	"dice": "サイコロ",
 	"invalid-probs": "すべての確率が1になるようにしてください。",
+	"number-of-sides": "サイド数",
 	"probabilities": "確率",
 	"relative-frequency": "相対的な頻度",
 	"reset": "リセット",

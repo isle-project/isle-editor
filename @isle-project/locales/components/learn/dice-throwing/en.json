@@ -3,6 +3,7 @@
 	"count": "Count",
 	"dice": "Dice",
 	"invalid-probs": "Please make sure that all probabilities add up to one",
+	"number-of-sides": "Number of Sides",
 	"probabilities": "Probabilities",
 	"relative-frequency": "Relative Frequency",
 	"reset": "Reset",

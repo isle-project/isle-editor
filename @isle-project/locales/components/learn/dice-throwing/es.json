@@ -3,6 +3,7 @@
 	"count": "Cuenta",
 	"dice": "Dados",
 	"invalid-probs": "Por favor, asegúrese de que todas las probabilidades se suman a una",
+	"number-of-sides": "Número de lados",
 	"probabilities": "Probabilidades",
 	"relative-frequency": "Frecuencia relativa",
 	"reset": "Reiniciar",
