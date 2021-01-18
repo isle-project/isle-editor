@@ -26,6 +26,7 @@
 	"no-valid-pdf": "La función suministrada no puede dar un PDF válido ya que toma valores negativos.",
 	"normal-distribution": "Distribución normal",
 	"normalized-pdf": "PDF normalizado",
+	"number-distinct-values": "Número de valores distintos",
 	"number-failures-until-success": "Dejemos que <1/> sea el número de fracasos hasta el primer éxito.",
 	"number-of-draws": "y el número de sorteos",
 	"number-of-occurrences": "el número de ocurrencias.",

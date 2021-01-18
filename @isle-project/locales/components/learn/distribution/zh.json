@@ -26,6 +26,7 @@
 	"no-valid-pdf": "提供的函数不能产生有效的PDF，因为它取的是负值。",
 	"normal-distribution": "正态分布",
 	"normalized-pdf": "归一化的PDF",
+	"number-distinct-values": "不同数值的数量",
 	"number-failures-until-success": "让<1/>为第一次成功之前的失败次数。",
 	"number-of-draws": "和抽签次数",
 	"number-of-occurrences": "是出现的次数。",

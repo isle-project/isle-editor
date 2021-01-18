@@ -26,6 +26,7 @@
 	"no-valid-pdf": "De meegeleverde functie kan geen geldige PDF opleveren omdat deze wel negatieve waarden aanneemt.",
 	"normal-distribution": "Normale verdeling",
 	"normalized-pdf": "Genormaliseerde PDF",
+	"number-distinct-values": "Aantal verschillende waarden",
 	"number-failures-until-success": "Laat <1/> het aantal mislukkingen zijn tot het eerste succes.",
 	"number-of-draws": "en aantal trekkingen",
 	"number-of-occurrences": "zijn het aantal voorvallen.",

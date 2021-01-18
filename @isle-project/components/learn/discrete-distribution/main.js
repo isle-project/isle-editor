@@ -192,7 +192,7 @@ class DiscreteDistribution extends Component {
 		return (
 			<Tabs defaultActiveKey={1} id="discrete-distribution-tabs">
 				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />} disabled={this.state.disableTabs} >
-					<Panel header="Probability Plot">
+					<Panel header={this.props.t('probability-plot')} >
 						<TeX raw={`P( X \\le x = ${this.state.x}) = ${this.state.lowerProb.toFixed( 3 )}`}
 							elems={{
 								x: {
@@ -499,7 +499,7 @@ class DiscreteDistribution extends Component {
 						<Row>
 							<Col md={4} >
 								<NumberInput
-									legend="Number of distinct values"
+									legend={this.props.t('number-distinct-values')}
 									defaultValue={this.props.numValues}
 									step={1}
 									max={20}

@@ -26,6 +26,7 @@
 	"no-valid-pdf": "Die gelieferte Funktion kann kein gültiges PDF liefern, da sie negative Werte annimmt.",
 	"normal-distribution": "Normalverteilung",
 	"normalized-pdf": "Normalisiertes PDF",
+	"number-distinct-values": "Anzahl der eindeutigen Werte",
 	"number-failures-until-success": "Seien Sie <1/> die Anzahl der Fehlschläge bis zum ersten Erfolg.",
 	"number-of-draws": "und Anzahl der Ziehungen",
 	"number-of-occurrences": "die Anzahl der Vorkommnisse sein.",

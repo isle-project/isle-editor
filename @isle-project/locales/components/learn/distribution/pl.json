@@ -26,6 +26,7 @@
 	"no-valid-pdf": "Dostarczona funkcja nie może dać poprawnego pliku PDF, ponieważ przyjmuje wartości ujemne.",
 	"normal-distribution": "Dystrybucja normalna",
 	"normalized-pdf": "Znormalizowany PDF",
+	"number-distinct-values": "Liczba odrębnych wartości",
 	"number-failures-until-success": "Niech <1/> będzie liczbą niepowodzeń do pierwszego sukcesu.",
 	"number-of-draws": "i liczba losowań",
 	"number-of-occurrences": "to liczba zdarzeń.",
