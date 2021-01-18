@@ -214,7 +214,7 @@ class ConfidenceCoverageNormal extends Component {
 										min={1}
 									/>
 									<NumberInput
-										legend={`${t('mean')} (mu)" `}
+										legend={`${t('mean')} (mu)`}
 										defaultValue={1}
 										max={5}
 										min={-5}
