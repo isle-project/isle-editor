@@ -7,6 +7,7 @@
 	"confirmation-email": " Wkrótce otrzymasz wiadomość e-mail z potwierdzeniem.",
 	"download-pdf": "Pobierz PDF z odpowiedziami",
 	"elapsed": "upłynął",
+	"finish-lesson": "Lekcja końcowa",
 	"lesson-completed-msg": "{{name}}, jest to automatyczny email potwierdzający, który informuje o pomyślnym zakończeniu lekcji \"{{lessonName}}\", oczywiście \"{{namespaceName}}\". {{msg}}",
 	"lesson-submitted": "Lekcja zgłoszona!",
 	"lesson-successfully-completed": "Lekcja zakończona sukcesem.",

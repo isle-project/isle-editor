@@ -3,6 +3,8 @@
 	"average-distance-from-median": "与中位数的平均距离。",
 	"generate-new-data": "生成新数据",
 	"group": "集团",
+	"mean": "平均值",
+	"measures-of-location-header": "地点的衡量标准。平均数与中位数",
 	"median": "中位数",
 	"you": "你"
 }

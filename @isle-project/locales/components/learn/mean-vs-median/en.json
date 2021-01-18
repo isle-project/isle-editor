@@ -3,6 +3,8 @@
 	"average-distance-from-median": "Average Distance from Median:",
 	"generate-new-data": "Generate new data",
 	"group": "Group",
+	"mean": "Mean",
+	"measures-of-location-header": "Measures of Location: Mean vs. Median",
 	"median": "Median",
 	"you": "You"
 }

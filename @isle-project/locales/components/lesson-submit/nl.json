@@ -7,6 +7,7 @@
 	"confirmation-email": " U ontvangt binnenkort een bevestigingsmail.",
 	"download-pdf": "Download PDF van reacties",
 	"elapsed": "verlopen",
+	"finish-lesson": "Eindig Les",
 	"lesson-completed-msg": "Beste {{name}}, dit is een automatische bevestigingsmail om u te informeren dat u de les \"{{lessonName}}\" met succes heeft afgerond natuurlijk \"{{namespaceName}}\". {{msg}}",
 	"lesson-submitted": "Ingediende les!",
 	"lesson-successfully-completed": "Les met succes afgerond.",

@@ -7,6 +7,7 @@
 	"confirmation-email": "您将很快收到一封确认邮件。",
 	"download-pdf": "下载PDF格式的答复",
 	"elapsed": "逝去的",
+	"finish-lesson": "完成课程",
 	"lesson-completed-msg": "亲爱的{{name}}，这是一封自动确认邮件，通知您已经成功完成了课程\"{{lessonName}}\"，课程名称为\"{{namespaceName}}\"。{{msg}}",
 	"lesson-submitted": "课件提交！",
 	"lesson-successfully-completed": "课程成功完成。",

@@ -7,6 +7,7 @@
 	"confirmation-email": "まもなく確認のメールが届きます。",
 	"download-pdf": "回答のPDFをダウンロード",
 	"elapsed": "経過",
+	"finish-lesson": "レッスン終了",
 	"lesson-completed-msg": "親愛なる{{name}}様、このメールは、コース「{{namespaceName}}」のレッスン「{{lessonName}}」が正常に完了したことをお知らせする自動確認メールです。{{msg}}です。",
 	"lesson-submitted": "レッスンを提出しました!",
 	"lesson-successfully-completed": "レッスンは無事終了しました。",

@@ -257,7 +257,7 @@ class MeanVSMedian extends Component {
 		return (
 			<Card style={this.props.style} >
 				<Card.Header as="h3">
-					{this.props.header}
+					{this.props.header ? this.props.header : t('measures-of-location-header')}
 				</Card.Header>
 				<Card.Body>
 					<Container>
@@ -318,7 +318,7 @@ class MeanVSMedian extends Component {
 
 MeanVSMedian.defaultProps = {
 	feedback: false,
-	header: 'Measures of Location: Mean vs. Median',
+	header: null,
 	id: 'mean_vs_median',
 	intro: null,
 	seed: null,

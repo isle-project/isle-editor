@@ -3,6 +3,8 @@
 	"average-distance-from-median": "Среднее расстояние от Медианы:",
 	"generate-new-data": "Генерировать новые данные",
 	"group": "Группа",
+	"mean": "Средний",
+	"measures-of-location-header": "Меры местоположения: Средний против Медиана",
 	"median": "Медиан",
 	"you": "Вы"
 }

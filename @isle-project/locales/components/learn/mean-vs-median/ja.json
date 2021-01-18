@@ -3,6 +3,8 @@
 	"average-distance-from-median": "中央値からの平均距離",
 	"generate-new-data": "新しいデータの生成",
 	"group": "グループ",
+	"mean": "平均",
+	"measures-of-location-header": "ロケーションの測定。平均値と中央値",
 	"median": "中央値",
 	"you": "あなたは"
 }

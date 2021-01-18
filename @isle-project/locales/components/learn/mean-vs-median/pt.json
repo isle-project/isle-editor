@@ -3,6 +3,8 @@
 	"average-distance-from-median": "Distância média em relação à mediana:",
 	"generate-new-data": "Gerar novos dados",
 	"group": "Grupo",
+	"mean": "Média",
+	"measures-of-location-header": "Medidas de Localização: Média vs. Mediana",
 	"median": "Mediana",
 	"you": "Você"
 }

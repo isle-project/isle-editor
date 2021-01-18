@@ -309,7 +309,15 @@ class LessonSubmit extends Component {
 				fontFamily: 'Arial',
 				...this.props.style
 			}}>
-				<Button disabled={disabled} variant="primary" size="large" onClick={this.handleClick} block>{this.props.label}</Button>
+				<Button
+					disabled={disabled}
+					variant="primary"
+					size="large"
+					onClick={this.handleClick}
+					block
+				>
+					{this.props.label ? this.props.label : this.props.t('finish-lesson')}
+				</Button>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
 						<Modal.Title>{this.props.t('authentication')}</Modal.Title>
@@ -335,7 +343,7 @@ class LessonSubmit extends Component {
 // PROPERTIES //
 
 LessonSubmit.defaultProps = {
-	label: 'Finish lesson',
+	label: null,
 	message: '',
 	requireLogin: true,
 	sendConfirmationEmail: true,
