@@ -205,7 +205,7 @@ class DiscreteDistribution extends Component {
 										});
 									},
 									defaultValue: this.state.x,
-									tooltip: 'Click to change value'
+									tooltip: this.props.t('click-to-change-value')
 								}
 							}}
 							displayMode
@@ -280,7 +280,7 @@ class DiscreteDistribution extends Component {
 										});
 									},
 									defaultValue: this.state.x,
-									tooltip: 'Click to change value'
+									tooltip: this.props.t('click-to-change-value')
 								}
 							}}
 							displayMode
@@ -355,7 +355,7 @@ class DiscreteDistribution extends Component {
 										});
 									},
 									defaultValue: this.state.x,
-									tooltip: 'Click to change value'
+									tooltip: this.props.t('click-to-change-value')
 								}
 							}}
 							onPopover={this.handlePopover}

@@ -48,7 +48,6 @@ const RE_POWER = /([\S]+)\^([\S]+)/g;
 const RE_POWER_NO_PARENS = /([^()+-/*^\s]+)\^([^()\s+-/*^]+)/g;
 const RE_POWER_PARENS = /([^()\s]+)\^(\([^()\s]+\))/g;
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
-const ERASE_TO_LEFT = '&#9003;';
 
 
 // FUNCTIONS //
@@ -295,7 +294,7 @@ class ContinuousDistributions extends Component {
 		/* eslint-disable i18next/no-literal-string */
 		let eqn = `f(x) = \\begin{cases} \\frac{1}{${roundn( this.state.normalizingConstant, -4 )}} \\cdot`;
 		eqn += `\\left( ${generateLaTeX( this.state.code )} \\right)`;
-		eqn += `& \\text{ for } x \\in [ ${this.state.lowerX}, ${this.state.upperX} ] \\\\ 0 & \\text{ otherwise } \\end{cases}`;
+		eqn += `& \\text{ ${this.props.t('for')} } x \\in [ ${this.state.lowerX}, ${this.state.upperX} ] \\\\ 0 & \\text{ ${this.props.t('otherwise')} } \\end{cases}`;
 		/* eslint-enable i18next/no-literal-string */
 		return (
 			<Fragment>
@@ -310,10 +309,11 @@ class ContinuousDistributions extends Component {
 	}
 
 	renderGenerate() {
+		/* eslint-disable i18next/no-literal-string */
 		return (
 			<div>
 				<NumberInput
-					legend="Lower bound"
+					legend={this.props.t('lower-bound')}
 					value={this.state.lowerX}
 					step={0.1}
 					onChange={this.setLowerDomain}
@@ -321,7 +321,7 @@ class ContinuousDistributions extends Component {
 					width={120}
 				/>
 				<NumberInput
-					legend="Upper bound"
+					legend={this.props.t('upper-bound')}
 					value={this.state.upperX}
 					step={0.1}
 					onChange={this.setUpperDomain}
@@ -349,7 +349,7 @@ class ContinuousDistributions extends Component {
 								this.setState({
 									selection: this.state.selection - 1
 								});
-							}} >{ERASE_TO_LEFT}</Button>
+							}} >&#9003;</Button>
 						</ButtonGroup>
 					</ButtonToolbar>
 					<ButtonToolbar style={{ marginBottom: 5 }} >
@@ -385,7 +385,7 @@ class ContinuousDistributions extends Component {
 					</ButtonToolbar>
 					<TextInput
 						ref={div => { this.textarea = div; }}
-						legend="(non-normalized) PDF f(x)"
+						legend={`(${this.props.t('non-normalized')}) PDF f(x)`}
 						placeholder="Enter formula..."
 						defaultValue={this.state.code}
 						onChange={this.handlePDFChange}
@@ -412,7 +412,7 @@ class ContinuousDistributions extends Component {
 		return (
 			<Tabs defaultActiveKey={1} id="continuous-distribution-tabs">
 				<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />} disabled={this.state.disableTabs} >
-					<Panel header="Probability Density Function (PDF)">
+					<Panel header={this.props.t('probability-density-function')}>
 						<TeX raw={`P( X \\le x = ${this.state.xval}) = ${this.state.lowerProb.toFixed( 3 )}`}
 							elems={{
 								x: {

@@ -182,7 +182,7 @@ class DiceThrowing extends Component {
 				</Card.Header>
 				<Card.Body>
 					<NumberInput
-						legend="Number of Sides"
+						legend={this.props.t('number-of-sides')}
 						defaultValue={6}
 						step={1}
 						max={20}
