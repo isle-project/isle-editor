@@ -16,12 +16,6 @@ A list of draggable elements that can be re-ordered by the students.
         { id: 2, text: "Midsize" },
         { id: 3, text: "Small" }
     ]}
-    onChange={ ( data ) => {
-        let str = data
-            .map( x => '"'+x.text+'"' )
-            .join( ', ');
-        alert( str );
-    }}
 />
 ```
 
