@@ -646,7 +646,7 @@ class ContinuousCLT extends Component {
 					</Row>
 					<Row>
 						<Col md={6}>
-							<h4 className="center">{t('population-distribution"')}</h4>
+							<h4 className="center">{t('population-distribution')}</h4>
 							<PopProbability {...this.state} />
 							<ProbabilityRange {...this.state} />
 						</Col>
