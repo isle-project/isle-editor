@@ -86,7 +86,7 @@ class GammaProbs extends Component {
 					<Fragment>
 						<NumberInput
 							key={`${type}-alpha`}
-							legend={this.props.symbols ? <span><TeX raw="k" /> (shape)</span> : 'Shape'}
+							legend={this.props.symbols ? <span><TeX raw="k" /> ({this.props.t('shape')})</span> : this.props.t('shape')}
 							defaultValue={alpha}
 							min={1e-3}
 							step={this.props.step}
@@ -94,7 +94,7 @@ class GammaProbs extends Component {
 						/>
 						<NumberInput
 							key={`${type}-beta`}
-							legend={this.props.symbols ? <span><TeX raw="\theta" /> (scale)</span> : 'Scale'}
+							legend={this.props.symbols ? <span><TeX raw="\theta" /> ({this.props.t('scale')})</span> : this.props.t('scale')}
 							defaultValue={beta}
 							step={this.props.step}
 							min={1e-3}
@@ -104,7 +104,7 @@ class GammaProbs extends Component {
 					<Fragment>
 						<NumberInput
 							key={`${type}-alpha`}
-							legend={this.props.symbols ? <span><TeX raw="\alpha" /> (shape)</span> : 'Shape'}
+							legend={this.props.symbols ? <span><TeX raw="\alpha" /> ({this.props.t('shape')})</span> : this.props.t('shape')}
 							defaultValue={alpha}
 							min={1e-3}
 							step={this.props.step}
@@ -112,7 +112,7 @@ class GammaProbs extends Component {
 						/>
 						<NumberInput
 							key={`${type}-beta`}
-							legend={this.props.symbols ? <span><TeX raw="\beta" /> (rate)</span> : 'Rate'}
+							legend={this.props.symbols ? <span><TeX raw="\beta" /> ({this.props.t('rate')})</span> : this.props.t('rate')}
 							defaultValue={beta}
 							step={this.props.step}
 							min={1e-3}

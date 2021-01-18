@@ -87,7 +87,7 @@ class UniformProbs extends Component {
 				/>
 				<NumberInput
 					key={`${type}-max`}
-					legend={t('Maximum')}
+					legend={t('maximum')}
 					defaultValue={max}
 					step={0.1}
 					onChange={this.handleMaxChange}

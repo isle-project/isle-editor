@@ -15,6 +15,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import incrspace from '@stdlib/math/utils/incrspace';
 import dbinom from '@stdlib/stats/base/dists/binomial/pmf';
 import pbinom from '@stdlib/stats/base/dists/binomial/cdf';
+import capitalize from '@stdlib/string/capitalize';
 import FeedbackButtons from '@isle-project/components/feedback';
 import NumberInput from '@isle-project/components/input/number';
 import SliderInput from '@isle-project/components/input/slider';
@@ -150,7 +151,7 @@ class BinomialProps extends Component {
 							<Row>
 								<Col md={5} >
 								<Panel title={t('binomial-probabilities')}>
-									<span>{t('for')}</span><NumberInput
+									<span>{capitalize( t('for') )}</span><NumberInput
 										inline
 										legend="n"
 										defaultValue={n}

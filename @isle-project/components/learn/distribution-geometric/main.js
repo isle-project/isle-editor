@@ -87,7 +87,7 @@ class GeometricDistribution extends Component {
 			<Fragment>
 				<SliderInput
 					key={`${type}-p`}
-					legend={type('success-probability')}
+					legend={this.props.t('success-probability')}
 					defaultValue={this.state.p}
 					min={0.01}
 					step={this.props.step}
@@ -131,13 +131,13 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={5} >
-								<Panel title={this.props.t('geometric-probabilities')}>
+								<Panel title={t('geometric-probabilities')}>
 									<p>
 										{this.props.countTrials ?
-											<Trans i18nKey="number-trials-until-success" >
+											<Trans i18nKey="number-trials-until-success" ns="LearnDistribution" >
 												Let <TeX raw="X" /> be the number of trials until the first success.
 											</Trans> :
-											<Trans i18nKey="number-failures-until-success" >
+											<Trans i18nKey="number-failures-until-success" ns="LearnDistribution" >
 												Let <TeX raw="X" /> be the number of failures until the first success.
 											</Trans>
 										}

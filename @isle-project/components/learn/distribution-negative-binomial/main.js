@@ -208,7 +208,7 @@ class NegativeBinomial extends Component {
 								</Panel>
 								</Col>
 								<Col md={7} >
-									<Panel header="Probability Plot">
+									<Panel header={t('probability-plot')} >
 										<Row>
 											<Col md={6} >
 												<VictoryChart theme={VictoryTheme.material}>
