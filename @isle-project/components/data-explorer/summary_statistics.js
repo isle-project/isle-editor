@@ -723,7 +723,11 @@ class SummaryStatisticsMenu extends Component {
 								isClearable
 								isMulti
 								onChange={( value ) => {
-									if ( !value || value.length <= 2 ) {
+									if ( !value || value.length === 0 ) {
+										this.setState({
+											group: null
+										});
+									} else if ( value.length <= 2 ) {
 										this.setState({
 											group: value
 										});
