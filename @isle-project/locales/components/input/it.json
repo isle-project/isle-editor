@@ -6,6 +6,7 @@
 	"integer": "intero",
 	"larger-or-equal-to": "più grande o uguale a",
 	"number": "numero",
+	"select-placeholder": "Selezionare...",
 	"slider-disabled": "In questo momento l'ingresso del cursore è disabilitato.",
 	"smaller-or-equal-to": "più piccolo o uguale a"
 }

@@ -6,6 +6,7 @@
 	"integer": "Ganzzahl",
 	"larger-or-equal-to": "größer oder gleich",
 	"number": "Nummer",
+	"select-placeholder": "Wählen Sie...",
 	"slider-disabled": "Die Schiebereglereingabe ist im Moment deaktiviert.",
 	"smaller-or-equal-to": "kleiner oder gleich"
 }
