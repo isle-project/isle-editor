@@ -14,6 +14,7 @@ const replace = require( '@stdlib/string/replace' );
 const repeat = require( '@stdlib/string/repeat' );
 const endsWith = require( '@stdlib/string/ends-with' );
 const noop = require( '@stdlib/utils/noop' );
+const objectKeys = require( '@stdlib/utils/keys' );
 const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
 const merge = require( '@stdlib/utils/merge' );
@@ -192,6 +193,16 @@ console.log( 'Write `documentation.json` file...' );
 fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
 
 console.log( 'Write translation `en.json` file...' );
-fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( TRANSLATIONS, null, 2 ) );
+
+const translationKeys = objectKeys( TRANSLATIONS );
+translationKeys.sort( ( a, b ) => {
+	return a.localeCompare(b);
+});
+const out = {};
+for ( let i = 0; i < translationKeys.length; i++ ) {
+	const key = translationKeys[ i ];
+	out[ key ] = TRANSLATIONS[ key ];
+}
+fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, 2 ).concat( '\n' ) );
 
 console.log( 'Finished updating docs.' );
