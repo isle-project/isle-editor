@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import noop from '@stdlib/utils/noop';
 import Tooltip from '@isle-project/components/tooltip';
@@ -25,7 +25,7 @@ import './checkbox.css';
 * @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
 */
 const CheckboxInput = ( props ) => {
-	const { bind, defaultValue, disabled } = props;
+	const { bind, defaultValue, disabled, onChange } = props;
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState(
 		bind && session.state ? session.state[ bind ]: defaultValue
@@ -46,22 +46,22 @@ const CheckboxInput = ( props ) => {
 			}
 		}
 	}, [ bind, value ]);
-	const updateValue = ( newValue ) => {
+	const updateValue = useCallback( ( newValue ) => {
 		setValue( newValue );
 		if ( bind ) {
 			global.lesson.setState({
 				[ bind ]: newValue
 			});
 		}
-	};
-	const handleChange = ( event ) => {
+	}, [ bind ] );
+	const handleChange = useCallback( ( event ) => {
 		const newValue = event.target.checked;
-		props.onChange( newValue );
+		onChange( newValue );
 		updateValue( newValue );
-	};
-	const handleSpanChange = ( event ) => {
+	}, [ onChange, updateValue ] );
+	const handleSpanChange = () => {
 		const newValue = props.value !== null ? !props.value : !value;
-		props.onChange( newValue );
+		onChange( newValue );
 		updateValue( newValue );
 	};
 	const input = <input

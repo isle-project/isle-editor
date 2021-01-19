@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { useTranslation } from 'react-i18next';
@@ -71,7 +71,7 @@ const transformValue = ( value ) => {
 * @property {Object} style - CSS inline styles
 */
 const SelectInput = ( props ) => {
-	const { bind, defaultValue, multi } = props;
+	const { bind, defaultValue, multi, onChange } = props;
 	let initialValue = null;
 	if ( defaultValue ) {
 		initialValue = multi ?
@@ -107,22 +107,22 @@ const SelectInput = ( props ) => {
 	const options = props.options.map( e => {
 		return { 'label': e, 'value': e };
 	});
-	const handleChange = ( newValue ) => {
+	const handleChange = useCallback( ( newValue ) => {
 		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
 		setValue( newValue );
 		let val = null;
 		if ( isObject( newValue ) || isArray( newValue ) ) {
-			val = props.multi ?
+			val = multi ?
 				newValue.map( x => x.value ) :
 				newValue.value;
 		}
-		props.onChange( val );
-		if ( props.bind ) {
+		onChange( val );
+		if ( bind ) {
 			global.lesson.setState({
-				[ props.bind ]: val
+				[ bind ]: val
 			});
 		}
-	};
+	}, [ bind, multi, onChange ] );
 
 	debug( 'Render select component...' );
 	let renderedValue;
@@ -152,7 +152,7 @@ const SelectInput = ( props ) => {
 			...props.style
 		};
 	}
-	let clearable = props.multi ? true : false;
+	let clearable = multi ? true : false;
 	if ( isBoolean( props.clearable ) ) {
 		clearable = props.clearable;
 	}
@@ -173,7 +173,7 @@ const SelectInput = ( props ) => {
 					options={options}
 					onChange={handleChange}
 					placeholder={isString( props.placeholder ) ? props.placeholder : t('select-placeholder')}
-					isMulti={props.multi}
+					isMulti={multi}
 					styles={customStyles}
 					isClearable={clearable}
 					isDisabled={props.disabled}

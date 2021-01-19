@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import NumberInput from '@isle-project/components/input/number';
 import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
+import './proportions.css';
 
 
 // FUNCTIONS //
@@ -86,8 +87,8 @@ function checkLegends( legends, nElements ) {
 * @property {Function} onChange - callback function to be invoked when a choice is made
 */
 const ProportionInput = ( props ) => {
-	const { colors, nElements } = props;
-	const legends = checkLegends( props.legends, nElements );
+	const { colors, nElements, legends: propsLegends, onChange } = props;
+	const legends = checkLegends( propsLegends, nElements );
 	let values = null;
 	if ( props.values ) {
 		values = props.values;
@@ -96,7 +97,7 @@ const ProportionInput = ( props ) => {
 		values = setValues( nElements );
 	}
 	const [ state, setState ] = useState({
-		visualData: pieData( values, nElements, props.legends ),
+		visualData: pieData( values, nElements, propsLegends ),
 		colors: colorsArray( props.colors, nElements )
 	});
 	useEffect( () => {
@@ -106,30 +107,25 @@ const ProportionInput = ( props ) => {
 		});
 	}, [ colors, legends, nElements, values ] );
 
-	const checkPercentage = ( ndx, value ) => {
+	const checkPercentage = useCallback( ( ndx, value ) => {
 		const newValues = values.slice();
 		newValues[ ndx ] = value;
-		props.onChange( newValues );
+		onChange( newValues );
 		setState({
-			visualData: pieData( newValues, nElements, props.legends ),
+			visualData: pieData( newValues, nElements, propsLegends ),
 			colors: state.colors
 		});
-	};
+	}, [ nElements, propsLegends, state.colors, values, onChange ] );
 	const pos = {
 		marginLeft: props.margin
 	};
 	const inputs = [];
 	const n = nElements;
-	const inputStyle = {
-		float: 'left',
-		width: '120px',
-		textAlign: 'center'
-	};
 	for ( let i = 0; i < n; i++ ) {
 		const free = 100.0 - sum( state.values );
 		let maxValue = state.values[ i ] + free;
 		maxValue = Number( maxValue.toFixed( props.precision ) );
-		inputs.push( <div style={inputStyle} key={i} >
+		inputs.push( <div className="proportions-input" key={i} >
 			<NumberInput
 				key={i}
 				legend={legends[ i ]}

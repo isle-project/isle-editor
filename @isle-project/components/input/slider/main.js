@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
@@ -64,7 +64,8 @@ const SliderInput = ( props ) => {
 			setValue( global.lesson.state[ bind ] );
 		}
 	}, [ bind ]);
-	const finishChange = ( event ) => {
+
+	const finishChange = useCallback( ( event ) => {
 		debug( 'Finalizing change...' );
 		let newValue = event.target.value;
 		if ( newValue !== '' ) {
@@ -89,8 +90,9 @@ const SliderInput = ( props ) => {
 				});
 			}
 		}
-	};
-	const handleInputChange = ( event ) => {
+	}, [ bind, max, min, step, value, onChange ] );
+
+	const handleInputChange = useCallback( ( event ) => {
 		const valid = event.target.validity.valid;
 		let newValue = event.target.value;
 		debug( `Input value changed to ${value}` );
@@ -109,7 +111,8 @@ const SliderInput = ( props ) => {
 				[ bind ]: newValue
 			});
 		}
-	};
+	}, [ bind, value, onChange ] );
+
 	let tooltip = `${t('enter')} ${ step === 1 ? t('integer') : t('number')} `;
 	if ( max !== PINF && min !== NINF ) {
 		tooltip += `${t('between')} ${min} ${t('and')} ${max}:`;

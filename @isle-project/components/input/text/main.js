@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -37,7 +37,7 @@ const uid = generateUID( 'text-input' );
 const TextInput = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
-	const { bind, defaultValue, placeholder } = props;
+	const { bind, defaultValue, placeholder, onChange } = props;
 	const { t } = useTranslation( 'Input' );
 	const [ value, setValue ] = useState(
 		props.bind && session.state ? session.state[ props.bind ]: props.defaultValue
@@ -59,16 +59,18 @@ const TextInput = ( props ) => {
 			}
 		}
 	}, [ bind, value ]);
-	const handleChange = ( event ) => {
+
+	const handleChange = useCallback( ( event ) => {
 		const value = event.target.value;
-		props.onChange( value );
+		onChange( value );
 		setValue( value );
 		if ( bind ) {
 			global.lesson.setState({
 				[ bind ]: value
 			});
 		}
-	};
+	}, [ bind, onChange ] );
+
 	if ( props.inline ) {
 		return (
 			<span className="input" style={props.style} >

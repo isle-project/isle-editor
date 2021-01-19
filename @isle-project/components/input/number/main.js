@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
@@ -51,11 +51,11 @@ const uid = generateUID( 'number-input' );
 */
 const NumberInput = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { bind, defaultValue, min, max, step } = props;
+	const { bind, defaultValue, min, max, step, value: propValue, onBlur, onChange } = props;
 	const { t } = useTranslation( 'Input' );
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState(
-		props.value || ( bind && session.state ?
+		propValue || ( bind && session.state ?
 			session.state[ bind ]:
 			defaultValue ),
 	);
@@ -76,20 +76,20 @@ const NumberInput = ( props ) => {
 		}
 	}, [ bind ] );
 
-	const handleChange = ( event ) => {
+	const handleChange = useCallback( ( event ) => {
 		debug( 'Handle change of input field...' );
 		let valid = event.target.validity.valid;
 		let newValue = event.target.value;
 		setValue( newValue );
-		if ( props.value ||
-			(valid && newValue !== '' &&
+		if ( propValue ||
+			( valid && newValue !== '' &&
 			newValue !== '-' && newValue !== '.' && newValue !== '-.' )
 		) {
 			newValue = parseFloat( newValue );
 			if ( isnan( newValue ) ) {
 				newValue = '';
 			}
-			props.onChange( newValue );
+			onChange( newValue );
 			if ( bind ) {
 				global.lesson.setState({
 					[ bind ]: newValue
@@ -100,15 +100,15 @@ const NumberInput = ( props ) => {
 				[ bind ]: newValue
 			});
 		}
-	};
-	const finishChange = ( event ) => {
+	}, [ bind, propValue, onChange ] );
+	const finishChange = useCallback( ( event ) => {
 		debug( 'Finished change...' );
 		let newValue = event.target.value;
 		if ( contains( newValue, '/' ) ) {
 			debug( 'Encountered a fraction...' );
-			let vals = newValue.split( '/' );
-			if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
-				newValue = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
+			const splitted = newValue.split( '/' );
+			if ( splitted[ 0 ] !== '' && splitted[ 1 ] !== '' ) {
+				newValue = parseFloat( splitted[ 0 ]) / parseFloat( splitted[ 1 ]);
 			}
 		}
 		if ( isnan( newValue ) ) {
@@ -130,10 +130,10 @@ const NumberInput = ( props ) => {
 			step === 1.0 && newValue !== '' &&
 			newValue !== '-' && newValue !== '.' && newValue !== '-.'
 		) {
-			newValue = newValue - newValue % props.step;
+			newValue = newValue - newValue % step;
 		}
-		props.onChange( newValue );
-		props.onBlur( newValue );
+		onChange( newValue );
+		onBlur( newValue );
 		if ( newValue !== value ) {
 			setValue( newValue );
 			if ( bind ) {
@@ -142,7 +142,7 @@ const NumberInput = ( props ) => {
 				});
 			}
 		}
-	};
+	}, [ bind, min, max, step, value, onBlur, onChange ] );
 	const tooltip = isNull( props.tooltip ) ? createTooltip({
 		min, max, step, t
 	}) : props.tooltip;
@@ -156,7 +156,7 @@ const NumberInput = ( props ) => {
 					name="input"
 					className="number-number-input"
 					disabled={props.disabled}
-					value={props.value !== null ? props.value : value}
+					value={propValue !== null ? propValue : value}
 					step={props.step}
 					min={props.min}
 					max={props.max}
@@ -190,7 +190,7 @@ const NumberInput = ( props ) => {
 		name="input"
 		className="number-number-input"
 		disabled={props.disabled}
-		value={props.value !== null ? props.value : value}
+		value={propValue !== null ? propValue : value}
 		step={props.step}
 		min={props.min}
 		max={props.max}

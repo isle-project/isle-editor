@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import FormControl from 'react-bootstrap/FormControl';
@@ -33,7 +33,7 @@ const uid = generateUID( 'text-area' );
 */
 const TextArea = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { defaultValue, placeholder } = props;
+	const { defaultValue, placeholder, onChange } = props;
 	const [ value, setValue ] = useState( props.value || defaultValue );
 	const { t } = useTranslation( 'Input' );
 	const textarea = useRef();
@@ -42,10 +42,11 @@ const TextArea = ( props ) => {
 		setValue( defaultValue );
 	}, [ defaultValue ]);
 
-	const handleChange = ( event ) => {
+	const handleChange = useCallback( ( event ) => {
 		setValue( event.target.value );
-		props.onChange( event.target.value );
-	};
+		onChange( event.target.value );
+	}, [ onChange ] );
+
 	let legend;
 	if ( props.legend ) {
 		legend = <FormLabel htmlFor={id} >
