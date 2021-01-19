@@ -279,7 +279,6 @@ class FreeTextQuestion extends Component {
 	* React component render method.
 	*/
 	render() {
-		console.log( 'RENDER QUESTION' );
 		const nHints = this.props.hints.length;
 		const solutionButton = <SolutionButton
 			disabled={!this.props.instantSolution && (!this.state.submitted || !this.state.exhaustedHints)}
