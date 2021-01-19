@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -16,6 +17,13 @@ import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
 // VARIABLES //
 
 const uid = generateUID( 'likert-scale' );
+const DEFAULT_OPTIONS = [
+	'strongly-disagree',
+	'disagree',
+	'neither-agree-nor-disagree',
+	'agree',
+	'strongly-agree'
+];
 
 
 // MAIN //
@@ -24,7 +32,7 @@ const uid = generateUID( 'likert-scale' );
 * A component showing a question and a five-point scale for students to answer.
 *
 * @property {(string|node)} question - question to be printed
-* @property {Array} options - an array of five elements holding the labels for the different scale levels
+* @property {Array} options - an array of five elements holding custom labels for the different scale levels
 * @property {boolean} noMultipleResponses - disallow multiple submissions from a single student
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} className - class name
@@ -35,12 +43,14 @@ const LikertScale = ( props ) => {
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
+	const { t } = useTranslation( 'LikertScale' );
+	const options = props.options || DEFAULT_OPTIONS;
 
 	const submitHandler = () => {
 		if ( !props.disableSubmitNotification ) {
 			session.addNotification({
-				title: 'Answer submitted.',
-				message: 'Your answer was successfully stored',
+				title: t('answer-submitted'),
+				message: t('answer-submitted-msg'),
 				level: 'success'
 			});
 		}
@@ -48,7 +58,7 @@ const LikertScale = ( props ) => {
 		session.log({
 			id: id,
 			type: LIKERT_SCALE_SUBMISSION,
-			value: indexOf( props.options, value )
+			value: indexOf( options, value )
 		});
 	};
 	const handleChange = ( event ) => {
@@ -61,7 +71,7 @@ const LikertScale = ( props ) => {
 				<FormGroup className="center" >
 					<label>{props.question}</label>
 					<br />
-					{props.options.map( ( elem, idx ) => {
+					{options.map( ( elem, idx ) => {
 						return (
 							<Form.Check
 								type="radio"
@@ -87,14 +97,14 @@ const LikertScale = ( props ) => {
 						marginRight: '5px'
 					}}
 				>
-					{ ( submitted && !props.noMultipleResponses ) ? 'Resubmit' : 'Submit' }
+					{ ( submitted && !props.noMultipleResponses ) ? t('resubmit') : t('submit') }
 				</Button>
 				<ResponseVisualizer
-					buttonLabel="Responses"
+					buttonLabel={t('responses')}
 					id={id}
 					data={{
 						type: 'factor',
-						levels: props.options
+						levels: options
 					}}
 					info={LIKERT_SCALE_SUBMISSION}
 				/>
@@ -120,13 +130,7 @@ LikertScale.propTypes = {
 
 LikertScale.defaultProps = {
 	question: '',
-	options: [
-		'Strongly disagree',
-		'Disagree',
-		'Neither agree nor disagree',
-		'Agree',
-		'Strongly agree'
-	],
+	options: null,
 	noMultipleResponses: false,
 	disableSubmitNotification: false,
 	className: '',
