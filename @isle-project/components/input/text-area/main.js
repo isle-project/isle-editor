@@ -1,12 +1,13 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import generateUID from '@isle-project/utils/uid';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 
 
 // VARIABLES //
@@ -30,84 +31,48 @@ const uid = generateUID( 'text-area' );
 * @property {Function} onBlur - callback function invoked when the text area loses focus
 * @property {Function} onChange - callback function invoked with the new text when the area text changes
 */
-class TextArea extends Component {
-	/**
-	* Create a text area
-	*
-	* @param {Object} props - component properties (`onChange` callback and `text`)
-	*/
-	constructor( props ) {
-		super( props );
+const TextArea = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const { defaultValue, placeholder } = props;
+	const [ value, setValue ] = useState( props.value || defaultValue );
+	const { t } = useTranslation( 'Input' );
+	const textarea = useRef();
 
-		this.id = props.id || uid( props );
+	useEffect( () => {
+		setValue( defaultValue );
+	}, [ defaultValue ]);
 
-		// Initialize state variables...
-		this.state = {
-			value: props.value || props.defaultValue,
-			...props
-		};
+	const handleChange = ( event ) => {
+		setValue( event.target.value );
+		props.onChange( event.target.value );
+	};
+	let legend;
+	if ( props.legend ) {
+		legend = <FormLabel htmlFor={id} >
+			{props.legend}
+		</FormLabel>;
 	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== prevState.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		}
-		if ( !isEmptyObject( newState ) ) {
-			return newState;
-		}
-		return null;
-	}
-
-	/*
-	* Event handler invoked when text area value changes. Updates `text` and invokes
-	* `onChange` callback with the new text as its first argument
-	*/
-	handleChange = ( event ) => {
-		const value = event.target.value;
-		this.setState({ value });
-		this.props.onChange( value );
-	}
-
-	renderLegend() {
-		if ( this.props.legend ) {
-			return ( <FormLabel htmlFor={this.id} >
-				{this.props.legend}
-			</FormLabel> );
-		}
-		return null;
-	}
-
-	/*
-	* React component render method.
-	*/
-	render() {
-		let { value } = this.state;
-		if ( this.props.value !== null ) {
-			value = this.props.value;
-		}
-		return (
-			<FormGroup className="input" id={`${this.id}-form`} >
-				{this.renderLegend()}
-				<FormControl
-					id={this.id}
-					as="textarea"
-					placeholder={this.props.placeholder}
-					ref={div => { this.textarea = div; }}
-					onBlur={this.props.onBlur}
-					onChange={this.handleChange}
-					style={{
-						resize: this.props.resizable,
-						...this.props.style
-					}}
-					rows={this.props.rows}
-					value={value}
-					disabled={this.props.disabled}
-				/>
-			</FormGroup>
-		);
-	}
-}
+	return (
+		<FormGroup className="input" id={`${id}-form`} >
+			{legend}
+			<FormControl
+				id={id}
+				as="textarea"
+				placeholder={isString( placeholder ) ? placeholder : t('enter-text')}
+				ref={div => { textarea.current = div; }}
+				onBlur={props.onBlur}
+				onChange={handleChange}
+				style={{
+					resize: props.resizable,
+					...props.style
+				}}
+				rows={props.rows}
+				value={props.value !== null ? props.value : value}
+				disabled={props.disabled}
+			/>
+		</FormGroup>
+	);
+};
 
 
 // PROPERTIES //
@@ -119,7 +84,7 @@ TextArea.defaultProps = {
 	legend: '',
 	onBlur() {},
 	onChange() {},
-	placeholder: 'Enter text',
+	placeholder: null,
 	resizable: 'none',
 	rows: 5,
 	style: {}
