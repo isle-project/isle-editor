@@ -1,3 +1,8 @@
 {
-	"enter-text": "Text eingeben..."
+	"and": "und",
+	"between": "zwischen",
+	"enter": "Eingabe",
+	"enter-text": "Text eingeben...",
+	"integer": "Ganzzahl",
+	"larger-or-equal-to": "größer oder gleich"
 }

@@ -1,3 +1,8 @@
 {
-	"enter-text": "Introduce el texto..."
+	"and": "y",
+	"between": "entre",
+	"enter": "Entra en",
+	"enter-text": "Introduce el texto...",
+	"integer": "entero",
+	"larger-or-equal-to": "más grande o igual a"
 }

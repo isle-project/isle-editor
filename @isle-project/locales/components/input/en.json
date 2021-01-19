@@ -1,3 +1,11 @@
 {
-	"enter-text": "Enter text..."
+	"and": "and",
+	"between": "between",
+	"enter": "Enter",
+	"enter-text": "Enter text...",
+	"integer": "integer",
+	"larger-or-equal-to": "larger or equal to",
+	"number": "number",
+	"slider-disabled": "The slider input is disabled right now.",
+	"smaller-or-equal-to": "smaller or equal to"
 }
