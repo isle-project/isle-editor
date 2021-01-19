@@ -4,5 +4,8 @@
 	"enter": "进入",
 	"enter-text": "输入文字...",
 	"integer": "整数",
-	"larger-or-equal-to": "大于或等于"
+	"larger-or-equal-to": "大于或等于",
+	"number": "数目",
+	"slider-disabled": "滑块输入现在是禁用的。",
+	"smaller-or-equal-to": "小于或等于"
 }

@@ -4,5 +4,8 @@
 	"enter": "Saisissez",
 	"enter-text": "Entrez le texte...",
 	"integer": "entier",
-	"larger-or-equal-to": "supérieur ou égal à"
+	"larger-or-equal-to": "supérieur ou égal à",
+	"number": "numéro",
+	"slider-disabled": "L'entrée du curseur est désactivée pour le moment.",
+	"smaller-or-equal-to": "inférieur ou égal à"
 }

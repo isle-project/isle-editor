@@ -4,5 +4,8 @@
 	"enter": "Digite",
 	"enter-text": "Digite o texto...",
 	"integer": "inteiro",
-	"larger-or-equal-to": "maior ou igual a"
+	"larger-or-equal-to": "maior ou igual a",
+	"number": "número",
+	"slider-disabled": "A entrada do controle deslizante está desativada no momento.",
+	"smaller-or-equal-to": "menor ou igual a"
 }

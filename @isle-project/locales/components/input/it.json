@@ -4,5 +4,8 @@
 	"enter": "Entra in",
 	"enter-text": "Inserire il testo...",
 	"integer": "intero",
-	"larger-or-equal-to": "più grande o uguale a"
+	"larger-or-equal-to": "più grande o uguale a",
+	"number": "numero",
+	"slider-disabled": "In questo momento l'ingresso del cursore è disabilitato.",
+	"smaller-or-equal-to": "più piccolo o uguale a"
 }

@@ -4,5 +4,8 @@
 	"enter": "Введите",
 	"enter-text": "Введите текст...",
 	"integer": "целое число",
-	"larger-or-equal-to": "больше или равнозначный"
+	"larger-or-equal-to": "больше или равнозначный",
+	"number": "номер",
+	"slider-disabled": "Вход ползунка сейчас отключен.",
+	"smaller-or-equal-to": "меньший или равный"
 }

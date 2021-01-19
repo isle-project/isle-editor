@@ -4,5 +4,8 @@
 	"enter": "Entra en",
 	"enter-text": "Introduce el texto...",
 	"integer": "entero",
-	"larger-or-equal-to": "más grande o igual a"
+	"larger-or-equal-to": "más grande o igual a",
+	"number": "número",
+	"slider-disabled": "La entrada del deslizador está desactivada ahora mismo.",
+	"smaller-or-equal-to": "más pequeño o igual a"
 }

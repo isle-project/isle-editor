@@ -4,5 +4,8 @@
 	"enter": "Wejdź na stronę",
 	"enter-text": "Wpisz tekst...",
 	"integer": "Liczba całkowita",
-	"larger-or-equal-to": "większy lub równy"
+	"larger-or-equal-to": "większy lub równy",
+	"number": "numer",
+	"slider-disabled": "Wejście suwaka jest teraz wyłączone.",
+	"smaller-or-equal-to": "mniejszy lub równy"
 }
