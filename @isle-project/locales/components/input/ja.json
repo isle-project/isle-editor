@@ -1,6 +1,8 @@
 {
 	"and": "そして",
 	"between": "間",
+	"click-to-start-recording": "クリックして録画を開始",
+	"click-to-stop-recording": "クリックして録画を停止",
 	"enter": "入る",
 	"enter-text": "テキストを入力してください...",
 	"integer": "整数",

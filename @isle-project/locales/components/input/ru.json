@@ -1,6 +1,8 @@
 {
 	"and": "и",
 	"between": "между",
+	"click-to-start-recording": "Нажмите, чтобы начать запись",
+	"click-to-stop-recording": "Нажмите, чтобы остановить запись",
 	"enter": "Введите",
 	"enter-text": "Введите текст...",
 	"integer": "целое число",

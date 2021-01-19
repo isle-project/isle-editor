@@ -1,6 +1,8 @@
 {
 	"and": "和",
 	"between": "之间",
+	"click-to-start-recording": "点击开始录制",
+	"click-to-stop-recording": "点击停止录制",
 	"enter": "进入",
 	"enter-text": "输入文字...",
 	"integer": "整数",

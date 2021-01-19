@@ -1,6 +1,8 @@
 {
 	"and": "and",
 	"between": "between",
+	"click-to-start-recording": "Click to start recording",
+	"click-to-stop-recording": "Click to stop recording",
 	"enter": "Enter",
 	"enter-text": "Enter text...",
 	"integer": "integer",
