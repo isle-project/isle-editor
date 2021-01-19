@@ -1,4 +1,5 @@
 {
+	"click-to-cycle-through-options": "Click to cycle through available options.",
 	"encountered-an-error": "Encountered an error...",
 	"flippable-requires-two-children": "The flippable card requires two child elements.",
 	"grid-requires-two-children": "The draggable grid requires at least two child elements for it to be rendered.",

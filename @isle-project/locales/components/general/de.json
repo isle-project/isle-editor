@@ -1,4 +1,5 @@
 {
+	"click-to-cycle-through-options": "Klicken Sie auf , um die verfügbaren Optionen zu durchlaufen.",
 	"encountered-an-error": "Es ist ein Fehler aufgetreten...",
 	"flippable-requires-two-children": "Die kippbare Karte benötigt zwei untergeordnete Elemente.",
 	"grid-requires-two-children": "Das verschiebbare Raster benötigt mindestens zwei untergeordnete Elemente, damit es gerendert werden kann.",

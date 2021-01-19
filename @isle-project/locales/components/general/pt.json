@@ -1,4 +1,5 @@
 {
+	"click-to-cycle-through-options": "Clique para percorrer as opções disponíveis.",
 	"encountered-an-error": "Encontrou um erro...",
 	"flippable-requires-two-children": "O cartão virável requer dois elementos infantis.",
 	"grid-requires-two-children": "A grade arrastável requer pelo menos dois elementos infantis para que ela seja entregue.",

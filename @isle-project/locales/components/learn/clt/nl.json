@@ -30,6 +30,7 @@
 	"rate-parameter": "Tariefparameter",
 	"require-numeric-or-binary": "Gelieve een steekproef te nemen van een numerieke variabele of een categorische variabele met twee categorieën.",
 	"sample-size": "Steekproefgrootte",
+	"select-variable": "Selecteer een variabele",
 	"show-data-dists": "Toon Data Distributie",
 	"shown-as-blue-line": "weergegeven als de blauwe lijn",
 	"shown-as-red-line": "weergegeven als de rode lijn",

@@ -30,6 +30,7 @@
 	"rate-parameter": "Parámetro de la tasa",
 	"require-numeric-or-binary": "Por favor, tome una muestra de una variable numérica o de una variable categórica con dos categorías.",
 	"sample-size": "Tamaño de la muestra",
+	"select-variable": "Seleccione una variable",
 	"show-data-dists": "Mostrar las distribuciones de datos",
 	"shown-as-blue-line": "que se muestra como la línea azul",
 	"shown-as-red-line": "que se muestra como la línea roja",

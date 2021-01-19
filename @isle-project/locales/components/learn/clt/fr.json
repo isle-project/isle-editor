@@ -30,6 +30,7 @@
 	"rate-parameter": "Paramètre de taux",
 	"require-numeric-or-binary": "Veuillez choisir une variable numérique ou une variable catégorielle avec deux catégories.",
 	"sample-size": "Taille de l'échantillon",
+	"select-variable": "Sélectionnez une variable",
 	"show-data-dists": "Afficher les distributions de données",
 	"shown-as-blue-line": "représenté par la ligne bleue",
 	"shown-as-red-line": "représenté par la ligne rouge",

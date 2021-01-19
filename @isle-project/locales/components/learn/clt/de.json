@@ -30,6 +30,7 @@
 	"rate-parameter": "Parameter Rate",
 	"require-numeric-or-binary": "Bitte wählen Sie entweder eine numerische Variable oder eine kategorische Variable mit zwei Kategorien aus.",
 	"sample-size": "Stichprobengröße",
+	"select-variable": "Wählen Sie eine Variable",
 	"show-data-dists": "Datenverteilungen anzeigen",
 	"shown-as-blue-line": "dargestellt als blaue Linie",
 	"shown-as-red-line": "dargestellt als rote Linie",

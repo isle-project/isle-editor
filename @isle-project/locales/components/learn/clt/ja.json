@@ -30,6 +30,7 @@
 	"rate-parameter": "レートパラメータ",
 	"require-numeric-or-binary": "数値変数または2つのカテゴリを持つカテゴリ変数のどちらかからサンプリングしてください。",
 	"sample-size": "サンプルサイズ",
+	"select-variable": "変数の選択",
 	"show-data-dists": "データの分布を表示",
 	"shown-as-blue-line": "青線",
 	"shown-as-red-line": "赤線",

@@ -30,6 +30,7 @@
 	"rate-parameter": "Parametr stawki",
 	"require-numeric-or-binary": "Proszę pobrać próbkę ze zmiennej numerycznej lub zmiennej kategorycznej z dwóch kategorii.",
 	"sample-size": "Wielkość próbki",
+	"select-variable": "Wybierz zmienną",
 	"show-data-dists": "Pokaż dystrybucję danych",
 	"shown-as-blue-line": "pokazany jako niebieska linia",
 	"shown-as-red-line": "pokazany jako czerwona linia",

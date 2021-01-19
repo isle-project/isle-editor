@@ -30,6 +30,7 @@
 	"rate-parameter": "速率参数",
 	"require-numeric-or-binary": "请从一个数字变量或两个类别的分类变量中抽取样本。",
 	"sample-size": "样本量",
+	"select-variable": "选择一个变量",
 	"show-data-dists": "显示数据分布",
 	"shown-as-blue-line": "为蓝线",
 	"shown-as-red-line": "红线",

@@ -1,8 +1,9 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { useTranslation } from 'react-i18next';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
 import './switch.css';
@@ -27,6 +28,7 @@ const debug = logger( 'isle:switch' );
 */
 const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, children }) => {
 	const [ pos, setPos ] = useState( 0 );
+	const { t } = useTranslation( 'General' );
 
 	const mappedChildren = React.Children.map( children, ( elem, idx ) => {
 		const props = { style: {}};
@@ -39,7 +41,7 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 		}
 		return React.cloneElement( elem, props );
 	});
-	const handleClick = () => {
+	const handleClick = useCallback( () => {
 		if ( !isArray( children ) ) {
 			return null;
 		}
@@ -53,7 +55,7 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 			setPos( newPos );
 			onChange( newPos );
 		}
-	};
+	}, [ children, pos, onChange ] );
 	let fullClassName = active ? 'switch active' : 'switch';
 	if ( className ) {
 		fullClassName += ' '+className;
@@ -76,7 +78,9 @@ const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, child
 		>
 			{mappedChildren}
 		</span>;
-
+	if ( tooltip === null ) {
+		tooltip = t( 'click-to-cycle-through-options' );
+	}
 	if ( tooltip === '' || !active ) {
 		return content;
 	}
@@ -104,7 +108,7 @@ Switch.propTypes = {
 
 Switch.defaultProps = {
 	active: true,
-	tooltip: 'Click to cycle through available options.',
+	tooltip: null,
 	tooltipPos: 'top',
 	className: '',
 	style: {},

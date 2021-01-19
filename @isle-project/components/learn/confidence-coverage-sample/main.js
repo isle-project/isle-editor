@@ -262,7 +262,7 @@ class ConfidenceCoverageSample extends Component {
 		const center = this.state.type === 'numeric' ? 'mean' : 'proportion';
 		return (
 			<Container style={{ maxWidth: 1200 }}>
-				<SelectInput legend="Select a variable" options={this.props.variables} onChange={this.onSelectVariable} />
+				<SelectInput legend={t('select-variable')} options={this.props.variables} onChange={this.onSelectVariable} />
 				{ this.state.type === 'numeric' || this.state.type === 'binary' ?
 					<Row>
 						<Col md={6}>
@@ -315,10 +315,10 @@ class ConfidenceCoverageSample extends Component {
 							<Panel header={t('statistics')}>
 								{t('number-of-confidence-intervals-of', { center })}
 								&nbsp;<TeX raw={roundn( this.state.trueMean, -3 )} />: <br />
-								<TeX raw={`\\text{Covering population ${center}: }${this.state.nTrapped} \\text{ out of } ${nobs}`} displayMode />
+								<TeX raw={`\\text{${t('covering-population')} ${t(center)}: }${this.state.nTrapped} \\text{ out of } ${nobs}`} displayMode />
 								{ this.state.errorBars.length > 0 ?
 									<Fragment>
-										<TeX raw={`\\text{Coverage: }${roundn( this.state.nTrapped / nobs, -3 )}\\%`} displayMode />
+										<TeX raw={`\\text{${t('coverage')}: }${roundn( this.state.nTrapped / nobs, -3 )}\\%`} displayMode />
 										{t('number-of-confidence-intervals', { center })} <br />
 										<TeX raw={`\\text{${t('interval-above-population')} ${center}: }${this.state.nHigher}`} displayMode />
 										<TeX raw={`\\text{${t('interval-below-population')} ${center}: }${this.state.nLower}`} displayMode />

@@ -30,6 +30,7 @@
 	"rate-parameter": "Parâmetro de taxa",
 	"require-numeric-or-binary": "Por favor, faça uma amostra de uma variável numérica ou de uma variável categórica com duas categorias.",
 	"sample-size": "Tamanho da amostra",
+	"select-variable": "Selecione uma variável",
 	"show-data-dists": "Mostrar distribuição de dados",
 	"shown-as-blue-line": "mostrado como a linha azul",
 	"shown-as-red-line": "mostrado como a linha vermelha",

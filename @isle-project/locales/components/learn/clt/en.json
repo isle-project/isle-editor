@@ -30,6 +30,7 @@
 	"rate-parameter": "Rate parameter",
 	"require-numeric-or-binary": "Please sample from either a numeric variable or a categorical variable with two categories.",
 	"sample-size": "Sample Size",
+	"select-variable": "Select a variable",
 	"show-data-dists": "Show Data Distributions",
 	"shown-as-blue-line": "shown as the blue line",
 	"shown-as-red-line": "shown as the red line",

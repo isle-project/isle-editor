@@ -484,13 +484,13 @@ class SampleCLT extends Component {
 					<Card body style={{ margin: '2%', width: '96%' }}>
 						<Row>
 							<Col md={6}>
-								<SelectInput legend="Select a variable" options={this.props.variables} onChange={this.onSelectVariable} />
+								<SelectInput legend={t('select-variable')} options={this.props.variables} onChange={this.onSelectVariable} />
 							</Col>
 							<Col md={6}>
 								{ this.state.type === 'numeric' || this.state.type === 'binary' ?
 									<span style={{ float: 'right' }}>
 										<NumberInput
-											legend="Sample Size"
+											legend={t('sample-size')}
 											step={1} min={1} defaultValue={10} max={500}
 											onChange={( n ) => this.setState({ 'n': n })}
 										/>
@@ -498,7 +498,7 @@ class SampleCLT extends Component {
 											<Button onClick={() => {
 												this.drawSamples( 1 );
 											}}>
-												{t('"draw-sample')}
+												{t('draw-sample')}
 											</Button>
 											{isNumberArray( this.props.samples ) ?
 												this.props.samples.map( ( n, idx ) => {

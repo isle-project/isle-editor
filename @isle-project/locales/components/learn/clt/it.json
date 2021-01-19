@@ -30,6 +30,7 @@
 	"rate-parameter": "Parametro del tasso",
 	"require-numeric-or-binary": "Si prega di campionare da una variabile numerica o da una variabile categoriale con due categorie.",
 	"sample-size": "Dimensione del campione",
+	"select-variable": "Selezionare una variabile",
 	"show-data-dists": "Mostra le distribuzioni di dati",
 	"shown-as-blue-line": "mostrata come la linea blu",
 	"shown-as-red-line": "mostrata come la linea rossa",
