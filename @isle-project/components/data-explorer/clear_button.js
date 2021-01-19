@@ -33,13 +33,15 @@ ClearButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
 	tooltipPlacement: PropTypes.string,
 	style: PropTypes.object,
-	disabled: PropTypes.bool
+	disabled: PropTypes.bool,
+	t: PropTypes.func
 };
 
 ClearButton.defaultProps = {
 	tooltipPlacement: 'bottom',
 	style: {},
-	disabled: false
+	disabled: false,
+	t() {}
 };
 
 
