@@ -339,7 +339,7 @@ class ConfidenceCoverageSample extends Component {
 // PROPERTIES //
 
 ConfidenceCoverageSample.propTypes = {
-	data: PropTypes.array.isRequired,
+	data: PropTypes.object.isRequired,
 	samples: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.number ]),
 	variables: PropTypes.array.isRequired
 };

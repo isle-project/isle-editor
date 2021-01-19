@@ -588,7 +588,7 @@ class SampleCLT extends Component {
 // PROPERTIES //
 
 SampleCLT.propTypes = {
-	data: PropTypes.array.isRequired,
+	data: PropTypes.object.isRequired,
 	hidePopulationStdev: PropTypes.bool,
 	samples: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.number ]),
 	populationProbabilities: PropTypes.bool,
