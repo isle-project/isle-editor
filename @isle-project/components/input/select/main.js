@@ -1,17 +1,17 @@
 // MODULES //
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import logger from 'debug';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isObject from '@stdlib/assert/is-object';
 import Tooltip from '@isle-project/components/tooltip';
-import Input from '@isle-project/components/input/base';
 import generateUID from '@isle-project/utils/uid';
 import customStyles from './styles.js';
 
@@ -70,159 +70,127 @@ const transformValue = ( value ) => {
 * @property {string} tooltip - text displayed when hovering over legend
 * @property {Object} style - CSS inline styles
 */
-class SelectInput extends Input {
-	/**
-	* Create a select input field.
-	*
-	* @param {Object} props - component properties (`onChange` callback and `defaultValue`)
-	*/
-	constructor( props ) {
-		super( props );
-
-		const { defaultValue } = props;
-		let value = null;
-		if ( defaultValue ) {
-			value = props.multi ?
-			transformMultiValue( defaultValue ) :
-			transformValue( defaultValue );
-		}
-		this.id = props.id || uid( props );
-		this.state = {
-			value,
-			options: props.options.map( e => {
-				return { 'label': e, 'value': e };
-			}),
-			prevProps: props
-		};
+const SelectInput = ( props ) => {
+	const { bind, defaultValue, multi } = props;
+	let initialValue = null;
+	if ( defaultValue ) {
+		initialValue = multi ?
+		transformMultiValue( defaultValue ) :
+		transformValue( defaultValue );
 	}
+	const [ value, setValue ] = useState( initialValue );
+	const { t } = useTranslation( 'Input' );
+	const id = useRef( props.id || uid( props ) );
 
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		const newState = {};
-		const { prevProps } = prevState;
-		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
-			debug( 'Default value has changed...' );
-			newState.value = nextProps.multi ?
-				transformMultiValue( nextProps.defaultValue ) :
-				transformValue( nextProps.defaultValue );
+	useEffect( () => {
+		if ( bind ) {
+			const globalValue = global.lesson.state[ bind ];
+			if ( globalValue !== value ) {
+				setValue( globalValue );
+			}
 		}
-		else if ( nextProps.bind !== prevProps.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
+	}, [ bind, value ]);
+	useEffect( () => {
+		debug( 'Default value has changed...' );
+		setValue(
+			multi ?
+			transformMultiValue( defaultValue ) :
+			transformValue( defaultValue )
+		);
+	}, [ defaultValue, multi ] );
+	useEffect( () => {
+		if ( bind ) {
+			setValue( global.lesson.state[ bind ] );
 		}
-		if ( nextProps.options !== prevProps.options ) {
-			debug( 'Options have changed...' );
-			newState.options = nextProps.options.map( e => {
-				return { 'label': e, 'value': e };
+	}, [ bind ]);
+
+	const options = props.options.map( e => {
+		return { 'label': e, 'value': e };
+	});
+	const handleChange = ( newValue ) => {
+		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
+		setValue( newValue );
+		let val = null;
+		if ( isObject( newValue ) || isArray( newValue ) ) {
+			val = props.multi ?
+				newValue.map( x => x.value ) :
+				newValue.value;
+		}
+		props.onChange( val );
+		if ( props.bind ) {
+			global.lesson.setState({
+				[ props.bind ]: val
 			});
 		}
-		if ( !isEmptyObject( newState ) ) {
-			newState.prevProps = nextProps;
-			return newState;
-		}
-		return null;
-	}
+	};
 
-	componentDidUpdate() {
-		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
-				this.setState({
-					value: globalVal
-				});
-			}
-		}
-	}
-
-	handleChange = ( newValue ) => {
-		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
-		this.setState({
-			value: newValue
-		}, () => {
-			let val = null;
-			if ( isObject( newValue ) || isArray( newValue ) ) {
-				val = this.props.multi ?
-					newValue.map( x => x.value ) :
-					newValue.value;
-			}
-			this.props.onChange( val );
-			if ( this.props.bind ) {
-				global.lesson.setState({
-					[ this.props.bind ]: val
-				});
-			}
-		});
-	}
-
-	/*
-	* React component render method.
-	*/
-	render() {
-		debug( 'Render select component...' );
-		let style;
-		let value;
-		if ( this.props.value !== void 0 ) {
-			if ( isArray( this.props.value ) ) {
-				value = ( this.props.value ).map( e => {
-					return { 'label': e, 'value': e };
-				});
-			} else if ( isString( this.props.value ) ) {
-				value = { 'label': this.props.value, 'value': this.props.value };
-			} else {
-				value = [];
-			}
-		}
-		else {
-			value = this.state.value;
-		}
-		if ( this.props.inline ) {
-			style = {
-				width: '180px',
-				display: 'inline-block',
-				...this.props.style
-			};
+	debug( 'Render select component...' );
+	let renderedValue;
+	let style;
+	if ( props.value !== void 0 ) {
+		if ( isArray( props.value ) ) {
+			renderedValue = ( props.value ).map( e => {
+				return { 'label': e, 'value': e };
+			});
+		} else if ( isString( props.value ) ) {
+			renderedValue = { 'label': props.value, 'value': props.value };
 		} else {
-			style = {
-				...this.props.style
-			};
+			renderedValue = [];
 		}
-		let clearable = this.props.multi ? true : false;
-		if ( this.props.clearable ) {
-			clearable = this.props.clearable;
-		}
-		return (
-				<Form className="input" style={{ ...style }} >
-					<FormGroup controlId={`${this.id}-form`} >
-						{ this.props.legend ?
-							<Tooltip tooltip={this.props.tooltip}>
-								<label htmlFor={this.id} >{this.props.legend}</label>
-							</Tooltip> :
-							null
-						}
-						<Select
-							id={this.id}
-							name="form-field-name"
-							{...this.props}
-							value={value}
-							options={this.state.options}
-							onChange={this.handleChange}
-							placeholder={this.props.placeholder}
-							isMulti={this.props.multi}
-							styles={customStyles}
-							isClearable={clearable}
-							isDisabled={this.props.disabled}
-							menuPlacement={this.props.menuPlacement}
-							menuPortalTarget={document.body}
-						/>
-					</FormGroup>
-				</Form>
-		);
 	}
-}
+	else {
+		renderedValue = value;
+	}
+	if ( props.inline ) {
+		style = {
+			width: '180px',
+			display: 'inline-block',
+			...props.style
+		};
+	} else {
+		style = {
+			...props.style
+		};
+	}
+	let clearable = props.multi ? true : false;
+	if ( isBoolean( props.clearable ) ) {
+		clearable = props.clearable;
+	}
+	return (
+		<Form className="input" style={{ ...style }} >
+			<FormGroup controlId={`${id}-form`} >
+				{ props.legend ?
+					<Tooltip tooltip={props.tooltip}>
+						<label htmlFor={id} >{props.legend}</label>
+					</Tooltip> :
+					null
+				}
+				<Select
+					id={id}
+					name="form-field-name"
+					{...props}
+					value={renderedValue}
+					options={options}
+					onChange={handleChange}
+					placeholder={isString( props.placeholder ) ? props.placeholder : t('select-placeholder')}
+					isMulti={props.multi}
+					styles={customStyles}
+					isClearable={clearable}
+					isDisabled={props.disabled}
+					menuPlacement={props.menuPlacement}
+					menuPortalTarget={document.body}
+				/>
+			</FormGroup>
+		</Form>
+	);
+};
 
 
 // PROPERTIES //
 
 SelectInput.defaultProps = {
 	bind: '',
+	clearable: null,
 	onChange() {},
 	defaultValue: null,
 	disabled: false,
@@ -231,7 +199,7 @@ SelectInput.defaultProps = {
 	menuPlacement: 'auto',
 	options: [],
 	multi: false,
-	placeholder: 'Select...',
+	placeholder: null,
 	tooltip: null,
 	style: {}
 };
