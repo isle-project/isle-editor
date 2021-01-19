@@ -139,7 +139,6 @@ const SliderInput = ( props ) => {
 		disabled={disabled}
 		onChange={handleInputChange}
 		style={{
-			width: '160px',
 			float: inline ? 'none' : 'left',
 			display: inline ? 'inline' : 'block',
 			...rangeInputStyle
