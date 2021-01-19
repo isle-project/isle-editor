@@ -380,7 +380,7 @@ class DataTable extends Component {
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
 		debug( 'Generating derived state...' );
-		const newState = {};
+		let newState = null;
 		if ( nextProps.data !== prevState.data ) {
 			debug( 'Data is new...' );
 			let rows;
@@ -414,6 +414,7 @@ class DataTable extends Component {
 					}
 					keys.push( 'id' );
 				}
+				newState = {};
 				newState.rows = rows;
 				newState.keys = keys;
 				newState.filtered = nextProps.filters;
@@ -422,19 +423,20 @@ class DataTable extends Component {
 				newState.columns = createColumns( nextProps, newState );
 			}
 		}
-		if ( nextProps.dataInfo !== prevState.dataInfo ) {
+		if (
+			nextProps.dataInfo && prevState.dataInfo &&
+			nextProps.dataInfo.name !== prevState.dataInfo.name
+		) {
 			debug( 'Data information has changed...' );
-			if ( nextProps.dataInfo ) {
-				newState.dataInfo = {
-					info: nextProps.dataInfo.info || [],
-					name: nextProps.dataInfo.name || '',
-					variables: nextProps.dataInfo.variables || null,
-					showOnStartup: nextProps.dataInfo.showOnStartup || null
-				};
+			if ( !newState ) {
+				newState = {};
 			}
-		}
-		if ( isEmptyObject( newState ) ) {
-			return null;
+			newState.dataInfo = {
+				info: nextProps.dataInfo.info || [],
+				name: nextProps.dataInfo.name || '',
+				variables: nextProps.dataInfo.variables || null,
+				showOnStartup: nextProps.dataInfo.showOnStartup || null
+			};
 		}
 		return newState;
 	}
