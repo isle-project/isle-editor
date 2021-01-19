@@ -3,11 +3,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import generateUID from '@isle-project/utils/uid';
 import ProportionsInput from '@isle-project/components/input/proportions';
 import Gate from '@isle-project/components/gate';
@@ -15,12 +18,29 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { PROPORTIONS_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { addResources } from '@isle-project/locales';
+import './proportions_survey.css';
 
 
 // VARIABLES //
 
+addResources( 'Survey' );
 const debug = logger( 'isle:proportions-survey' );
 const uid = generateUID( 'proportions-survey' );
+
+
+// FUNCTIONS //
+
+function sum( arr ) {
+	let out = 0.0;
+	if ( !arr ) {
+		return out;
+	}
+	for ( let n = 0; n < arr.length; n++ ) {
+		out += arr[ n ];
+	}
+	return out;
+}
 
 
 // MAIN //
@@ -29,19 +49,16 @@ const uid = generateUID( 'proportions-survey' );
 * Component that allows a group of people to vote on the weights and importance of given options.
 *
 * @property {number} question - the question to be displayed
+* @property {Array} legends - legend labels that describe the options to be weighed
 * @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - controls whether student answers are anonymized
 * @property {boolean} disabled - controls whether the survey is deactivated
-* @property {number} nElements - number of elements that shall be weighed
-* @property {Array} legends - legend labels that describe the options to be weighed
 * @property {number} group - group display heading
 * @property {number} precision - displayed precision of proportion values
 * @property {number} step - the step of the arrows seen when hovering the cursor above the input box
-* @property {number} colors - array of colors for the pie chart components. If not defined, a custom color scale will be used
+* @property {number} colors - array of colors for the pie chart components. If not defined, a pre-defined color scale will be used
 * @property {number} personalHeight - proportions input height for individual student (in px)
-* @property {number} personalInnerRadius - inner radius of proportions pie chart for individual student (in px)
 * @property {number} groupHeight - proportions input height for group display (in px)
-* @property {number} groupInnerRadius - inner radius of proportions pie chart for group display (in px)
 * @property {number} margin - proportion input margin (in px)
 * @property {Function} onSubmit - callback function invoked once students submits an answer
 */
@@ -72,8 +89,8 @@ class ProportionsSurvey extends Component {
 			submitted: true
 		});
 		session.addNotification({
-			title: 'Submitted',
-			message: 'Your answer has been submitted.',
+			title: this.props.t( 'submitted' ),
+			message: this.props.t( 'answer-submitted' ),
 			level: 'success'
 		});
 		this.props.onSubmit( this.state.value );
@@ -90,8 +107,9 @@ class ProportionsSurvey extends Component {
 		for ( let i = 0; i < data.length; i++ ) {
 			list[ i ] = JSON.parse( data[ i ] );
 		}
-		const sum = new Array( this.props.nElements ).fill( 0 );
-		const mean = new Array( this.props.nElements ).fill( 0 );
+		const nElements = this.props.legends.length;
+		const sum = new Array( nElements ).fill( 0 );
+		const mean = new Array( nElements ).fill( 0 );
 		for ( let i = 0; i < list.length; i++ ) {
 			// Reflects arrays of arrays = results
 			for ( let j = 0; j < list[ i ].length; j++ ) {
@@ -99,7 +117,7 @@ class ProportionsSurvey extends Component {
 			}
 		}
 		debug( 'The sum is '+ sum );
-		for ( let j = 0; j < this.props.nElements; j++ ) {
+		for ( let j = 0; j < nElements; j++ ) {
 			mean[ j ] = sum[ j ] / list.length;
 		}
 		debug( 'The mean is ' + mean );
@@ -112,68 +130,60 @@ class ProportionsSurvey extends Component {
 	render() {
 		const disabled = (
 			( this.state.submitted && !this.props.allowMultipleAnswers ) ||
-			this.props.disabled
+			this.props.disabled ||
+			absdiff( sum( this.state.value ), 100 ) > 0.1
 		);
 		return (
-			<Gate user banner={<h2>Please sign in...</h2>} >
+			<Gate user banner={<h2>{this.props.t('sign-in')}</h2>} >
 				<Container>
-					<Col md={6}>
-						<Card body className="ProportionsSurvey" style={{
-							margin: '0 auto 10px',
-							maxWidth: 600,
-							marginTop: '8px'
-						}}>
-							<h3>{this.props.question}</h3>
-							<ProportionsInput
-								legends={this.props.legends}
-								precision={this.props.precision}
-								step={this.props.step}
-								height={this.props.personalHeight}
-								innerRadius={this.props.personalInnerRadius}
-								colors={this.props.colors}
-								margin={this.props.margin}
-								nElements={this.props.nElements}
-								onChange={( value ) => {
-									this.setState({
-										value
-									});
-								}}
-							/>
-							<Button
-								size="small"
-								variant="success"
-								block fill
-								onClick={this.submitQuestion}
-								disabled={disabled}
-							>{ disabled ? 'Submitted' : 'Submit'}</Button>
-						</Card>
-					</Col>
-
-					<Col md={6}>
-						<Card body className="ProportionsSurvey" style={{
-							margin: '0 auto 10px',
-							maxWidth: 600,
-							marginTop: '8px'
-						}}>
-							<h3>{ this.props.group}</h3>
-							<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-							<h4>Number of votes: { this.state.nResults } </h4>
-							<ProportionsInput
-								legends={this.props.legends}
-								precision={this.props.precision}
-								step={this.props.step}
-								height={this.props.groupHeight}
-								innerRadius={this.props.groupInnerRadius}
-								colors={this.props.colors}
-								disabled={true}
-								margin={this.props.margin}
-								values={this.state.resultValues}
-								nElements={this.props.nElements}
-							/>
-						</Card>
-					</Col>
+					<Row>
+						<Col md={6}>
+							<Card body className="proportions-survey" >
+								<h3>{this.props.question}</h3>
+								<ProportionsInput
+									legends={this.props.legends}
+									precision={this.props.precision}
+									step={this.props.step}
+									height={this.props.personalHeight}
+									colors={this.props.colors}
+									margin={this.props.margin}
+									onChange={( value ) => {
+										this.setState({
+											value
+										});
+									}}
+								/>
+								<Button
+									size="small"
+									variant="success"
+									block fill
+									onClick={this.submitQuestion}
+									disabled={disabled}
+								>
+									{this.props.t( disabled ? 'submitted' : 'submit' )}
+								</Button>
+							</Card>
+						</Col>
+						<Col md={6}>
+							<Card body className="proportions-survey" >
+								<h3>{ this.props.group}</h3>
+								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
+								<h4>{this.props.t('number-of-votes')}: { this.state.nResults } </h4>
+								<ProportionsInput
+									legends={this.props.legends}
+									precision={this.props.precision}
+									step={this.props.step}
+									height={this.props.groupHeight}
+									colors={this.props.colors}
+									disabled={true}
+									margin={this.props.margin}
+									values={this.state.resultValues}
+								/>
+							</Card>
+						</Col>
+					</Row>
 				</Container>
-				<ResponseVisualizer buttonLabel="Responses" id={this.id} />
+				<ResponseVisualizer buttonLabel={this.props.t('responses')} id={this.id} />
 			</Gate>
 		);
 	}
@@ -188,27 +198,13 @@ ProportionsSurvey.defaultProps = {
 	question: '',
 	anonymous: false,
 	disabled: false,
-	nElements: 6,
-	legends: null,
+	legends: [],
 	group: 'group results',
 	precision: 2,
 	step: 0.25,
-	colors: [
-		'tomato',
-		'orange',
-		'gold',
-		'darkcyan',
-		'salmon',
-		'lightgreen',
-		'gainsboro',
-		'lightpurple',
-		'darkkhaki',
-		'darkseagreen'
-	],
+	colors: null,
 	personalHeight: 200,
-	personalInnerRadius: 60,
 	groupHeight: 100,
-	groupInnerRadius: 40,
 	margin: '40px'
 };
 
@@ -219,13 +215,10 @@ ProportionsSurvey.propTypes = {
 	disabled: PropTypes.bool,
 	group: PropTypes.string,
 	groupHeight: PropTypes.number,
-	groupInnerRadius: PropTypes.number,
 	legends: PropTypes.array,
 	margin: PropTypes.string,
-	nElements: PropTypes.number,
 	onSubmit: PropTypes.func,
 	personalHeight: PropTypes.number,
-	personalInnerRadius: PropTypes.number,
 	precision: PropTypes.number,
 	question: PropTypes.oneOfType([
 		PropTypes.string,
@@ -239,4 +232,4 @@ ProportionsSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default ProportionsSurvey;
+export default withTranslation( 'Survey' )( ProportionsSurvey );
