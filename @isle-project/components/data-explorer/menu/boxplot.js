@@ -62,7 +62,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 					onChange={setVariable}
 				/>
 				<FormGroup controlId="boxplot-form-select">
-					<FormLabel>{t('group-by')}:</FormLabel>
+					<FormLabel>{t('group-by')}</FormLabel>
 					<Select
 						value={group}
 						options={groupingVariables.map( e => ( { 'label': e, 'value': e } ))}
