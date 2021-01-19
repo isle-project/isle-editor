@@ -1,13 +1,12 @@
 // MODULES //
 
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { useTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
-import Input from '@isle-project/components/input/base';
 import Tooltip from '@isle-project/components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import SessionContext from '@isle-project/session/context.js';
@@ -17,23 +16,6 @@ import './slider.css';
 // VARIABLES //
 
 const debug = logger( 'isle:slider-input' );
-
-
-// FUNCTIONS //
-
-function createTooltip( props ) {
-	let tooltip = `Enter a${ props.step === 1 ? 'n integer' : ' number'} `;
-	if ( props.max !== PINF && props.min !== NINF ) {
-		tooltip += `between ${props.min} and ${props.max}:`;
-	} else if ( props.min !== NINF ) {
-		tooltip += `larger or equal to ${props.min}:`;
-	} else if ( props.max !== PINF ) {
-		tooltip += `smaller or equal to ${props.max}:`;
-	} else {
-		tooltip += ':';
-	}
-	return tooltip;
-}
 
 
 // MAIN //
@@ -57,195 +39,175 @@ function createTooltip( props ) {
 * @property {Object} rangeInputStyle - CSS inline style for range input component
 * @property {Function} onChange - callback invoked with the new value when the slider value changes
 */
-class SliderInput extends Input {
-	constructor( props, context ) {
-		super( props );
+const SliderInput = ( props ) => {
+	const { bind, defaultValue, legend, disabled, hideTooltip, inline, min, max, onChange, precision, step,
+		minLabel, maxLabel, numberInputStyle, rangeInputStyle, style } = props;
 
-		const session = context;
-		this.state = {
-			tooltip: createTooltip( props ),
-			value: props.bind && session.state ?
-				session.state[ props.bind ]:
-				props.defaultValue,
-			prevProps: props
-		};
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		let newState = {};
-		const { prevProps } = prevState;
-		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		} else if ( nextProps.bind !== prevProps.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-		}
-		if ( nextProps.min !== prevProps.min || nextProps.max !== prevProps.max ) {
-			newState.tooltip = createTooltip( nextProps );
-		}
-		if ( !isEmptyObject( newState ) ) {
-			newState.prevProps = nextProps;
-			return newState;
-		}
-		return null;
-	}
-
-	componentDidUpdate() {
-		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
-				this.setState({
-					value: globalVal
-				});
+	const { t } = useTranslation( 'Input' );
+	const session = useContext( SessionContext );
+	const [ value, setValue ] = useState(
+		bind && session.state ? session.state[ bind ] : defaultValue
+	);
+	useEffect( () => {
+		if ( bind ) {
+			const globalValue = global.lesson.state[ bind ];
+			if ( globalValue !== value ) {
+				setValue( globalValue );
 			}
 		}
-	}
-
-	finishChange = ( event ) => {
+	}, [ bind, value ] );
+	useEffect( () => {
+		setValue( defaultValue );
+	}, [ defaultValue ] );
+	useEffect( () => {
+		setValue( global.lesson.state[ bind ] );
+	}, [ bind ]);
+	const finishChange = ( event ) => {
 		debug( 'Finalizing change...' );
-		const { max, min, step } = this.props;
-		let value = event.target.value;
-		if ( value !== '' ) {
-			value = parseFloat( value );
+		let newValue = event.target.value;
+		if ( newValue !== '' ) {
+			newValue = parseFloat( newValue );
 		}
-		if ( value > max ) {
-			value = max;
+		if ( newValue > max ) {
+			newValue = max;
 		}
-		else if ( value < min ) {
-			value = min;
+		else if ( newValue < min ) {
+			newValue = min;
 		}
-		else if ( step === 1.0 && value !== '' ) {
-			value = value - value % this.props.step;
+		else if ( step === 1.0 && newValue !== '' ) {
+			newValue = newValue - newValue % step;
 		}
 		debug( `Setting state value to: ${value}...` );
-		if ( value !== this.state.value ) {
-			this.setState({
-				value
-			}, () => {
-				this.props.onChange( value );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
-			});
-		}
-	}
-
-	handleInputChange = ( event ) => {
-		const valid = event.target.validity.valid;
-		let value = event.target.value;
-		debug( `Input value changed to ${value}` );
-		this.setState({
-			value
-		}, () => {
-			if ( valid && value !== '' ) {
-				value = parseFloat( value );
-				this.props.onChange( value );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
-			} else if ( this.props.bind ) {
+		if ( newValue !== value ) {
+			setValue( newValue );
+			onChange( newValue );
+			if ( bind ) {
 				global.lesson.setState({
-					[ this.props.bind ]: value
+					[ bind ]: value
 				});
 			}
-		});
+		}
+	};
+	const handleInputChange = ( event ) => {
+		const valid = event.target.validity.valid;
+		let newValue = event.target.value;
+		debug( `Input value changed to ${value}` );
+		setValue( newValue );
+
+		if ( valid && newValue !== '' ) {
+			newValue = parseFloat( newValue );
+			onChange( newValue );
+			if ( bind ) {
+				global.lesson.setState({
+					[ bind ]: newValue
+				});
+			}
+		} else if ( bind ) {
+			global.lesson.setState({
+				[ bind ]: newValue
+			});
+		}
+	};
+	let tooltip = `${t('enter')} ${ step === 1 ? t('integer') : t('number')} `;
+	if ( max !== PINF && min !== NINF ) {
+		tooltip += `${t('between')} ${min} ${t('and')} ${max}:`;
+	} else if ( min !== NINF ) {
+		tooltip += `${t('larger-or-equal-to')} ${min}:`;
+	} else if ( max !== PINF ) {
+		tooltip += `${t('smaller-or-equal-to')} ${max}:`;
+	} else {
+		tooltip += ':';
 	}
-
-	render() {
-		let { value } = this.state;
-		const { legend, disabled, inline, min, max, precision, step, minLabel, maxLabel } = this.props;
-		if ( value !== '' ) {
-			roundn( value, ( -1.0 )*precision );
-		}
-		const rangeInput = <input
-			type="range"
-			className="slider-range-input"
-			min={min}
-			max={max}
-			step={step}
-			value={value}
-			disabled={disabled}
-			onChange={this.handleInputChange}
-			style={{
-				width: '160px',
-				float: inline ? 'none' : 'left',
-				display: inline ? 'inline' : 'block',
-				...this.props.rangeInputStyle
-			}}
-		/>;
-		const numberInput = <input
-			type="number"
-			name="input"
-			className="slider-number-input"
-			disabled={disabled}
-			min={min}
-			max={max}
-			step={step}
-			value={value}
-			onChange={this.handleInputChange}
-			onBlur={this.finishChange}
-			style={{
-				float: inline ? 'none' : 'right',
-				marginTop: legend && !inline ? -22 : 0,
-				...this.props.numberInputStyle
-			}}
-			autoComplete="off"
-		/>;
-
-		if ( inline ) {
-			return (
-				<span className="input" style={{
-					padding: '5px',
-					opacity: disabled ? 0.2 : 1.0,
-					...this.props.style
-				}}>
-					{ legend ?
-						<label>{legend}:</label> :
-						null
-					}
-					<span className="slider-range-wrapper" >
-						<Badge variant="secondary" >{minLabel || min}</Badge>
-						{rangeInput}
-						<Badge variant="secondary" >{maxLabel || max}</Badge>
-					</span>
-					{numberInput}
-				</span>
-			);
-		}
+	let roundedValue;
+	if ( value !== '' ) {
+		roundedValue = roundn( value, ( -1.0 )*precision );
+	} else {
+		roundedValue = value;
+	}
+	const rangeInput = <input
+		type="range"
+		className="slider-range-input"
+		min={min}
+		max={max}
+		step={step}
+		value={roundedValue}
+		disabled={disabled}
+		onChange={handleInputChange}
+		style={{
+			width: '160px',
+			float: inline ? 'none' : 'left',
+			display: inline ? 'inline' : 'block',
+			...rangeInputStyle
+		}}
+	/>;
+	const numberInput = <input
+		type="number"
+		name="input"
+		className="slider-number-input"
+		disabled={disabled}
+		min={min}
+		max={max}
+		step={step}
+		value={roundedValue}
+		onChange={handleInputChange}
+		onBlur={finishChange}
+		style={{
+			float: inline ? 'none' : 'right',
+			marginTop: legend && !inline ? -22 : 0,
+			...numberInputStyle
+		}}
+		autoComplete="off"
+	/>;
+	if ( inline ) {
 		return (
-			<Tooltip
-				id="sliderTooltip"
-				placement="top"
-				show={!this.props.hideTooltip}
-				tooltip={disabled ? 'The slider input is disabled right now.' : this.state.tooltip}
-			>
-				<div
-					className="slider-outer-div input"
-					style={{
-						opacity: disabled ? 0.2 : 1.0,
-						...this.props.style
-					}}
-				>
-					{ legend ?
-						<label>{legend}:</label> :
-						null
-					}
-					<br />
-					<span className="slider-range-wrapper" >
-						<Badge variant="secondary" style={{ float: 'left' }} >{minLabel || min}</Badge>
-						{rangeInput}
-						<Badge variant="secondary" style={{ float: 'left' }} >{maxLabel || max}</Badge>
-					</span>
-					{numberInput}
-					<br />
-				</div>
-			</Tooltip>
+			<span className="input" style={{
+				padding: '5px',
+				opacity: disabled ? 0.2 : 1.0,
+				...style
+			}}>
+				{ legend ?
+					<label>{legend}:</label> :
+					null
+				}
+				<span className="slider-range-wrapper" >
+					<Badge variant="secondary" >{minLabel || min}</Badge>
+					{rangeInput}
+					<Badge variant="secondary" >{maxLabel || max}</Badge>
+				</span>
+				{numberInput}
+			</span>
 		);
 	}
-}
+	return (
+		<Tooltip
+			id="sliderTooltip"
+			placement="top"
+			show={!hideTooltip}
+			tooltip={disabled ? t('slider-disabled') : tooltip}
+		>
+			<div
+				className="slider-outer-div input"
+				style={{
+					opacity: disabled ? 0.2 : 1.0,
+					...style
+				}}
+			>
+				{ legend ?
+					<label>{legend}:</label> :
+					null
+				}
+				<br />
+				<span className="slider-range-wrapper" >
+					<Badge variant="secondary" style={{ float: 'left' }} >{minLabel || min}</Badge>
+					{rangeInput}
+					<Badge variant="secondary" style={{ float: 'left' }} >{maxLabel || max}</Badge>
+				</span>
+				{numberInput}
+				<br />
+			</div>
+		</Tooltip>
+	);
+};
 
 
 // PROPERTIES //
@@ -291,8 +253,6 @@ SliderInput.propTypes = {
 	numberInputStyle: PropTypes.object,
 	rangeInputStyle: PropTypes.object
 };
-
-SliderInput.contextType = SessionContext;
 
 
 // EXPORTS //
