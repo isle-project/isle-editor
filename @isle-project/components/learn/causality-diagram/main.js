@@ -195,7 +195,7 @@ class LearnCausalityDiagram extends Component {
 	renderMosaicPlots() {
 		return (
 			<Row>
-				<Col md={4} >
+				<Col>
 					<Plotly
 						data={[
 							{
@@ -309,7 +309,7 @@ class LearnCausalityDiagram extends Component {
 						}}
 					/>
 				</Col>
-				<Col md={4} >
+				<Col>
 					<Plotly
 						data={[
 							{
@@ -423,7 +423,7 @@ class LearnCausalityDiagram extends Component {
 						}}
 					/>
 				</Col>
-				<Col md={4} >
+				<Col>
 					<Plotly
 						data={[
 							{
@@ -542,9 +542,9 @@ class LearnCausalityDiagram extends Component {
 	}
 
 	render() {
-		return ( <Container style={{ backgroundColor: 'white', border: '2px solid black' }}>
+		return ( <Container style={{ backgroundColor: 'white', border: '2px solid black', maxWidth: 1600 }}>
 			<Row>
-				<Col md={3} style={{ height: '450px' }} >
+				<Col sm={3} style={{ height: '450px' }} >
 					<Dashboard autoUpdate onGenerate={( randomized, beta1, beta2 ) => {
 						const { alpha0, beta0, ea0, eb0, alpha1 } = this.state;
 
@@ -619,16 +619,15 @@ class LearnCausalityDiagram extends Component {
 						/>
 					</Dashboard>
 				</Col>
-				<Col md={3} style={{ height: '450px' }} >
+				<Col sm={3} style={{ height: '450px' }} >
 					{this.renderCausalityDiagram()}
 				</Col>
-				<Col md={6} style={{ height: '450px' }} >
+				<Col sm={6} style={{ height: '450px' }} >
 					{this.renderSankeyDiagram()}
 				</Col>
 			</Row>
 			{this.renderMosaicPlots()}
-			</Container>
-		);
+		</Container> );
 	}
 }
 
