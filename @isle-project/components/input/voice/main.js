@@ -1,10 +1,10 @@
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
-import Input from '@isle-project/components/input/base';
+import { useTranslation } from 'react-i18next';
+import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
 import Microphone from './microphone.js';
@@ -28,6 +28,16 @@ function getSpeechRecognition() {
 	} catch ( error) {
 		return false;
 	}
+}
+
+function createGrammarList( grammars ) {
+	const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
+	const grammarList = new SpeechGrammarList();
+	for ( let i = 0; i < grammars.length; i++ ) {
+		const { src, weight } = grammars[ i ];
+		grammarList.addFromString( src, weight );
+	}
+	return grammarList;
 }
 
 
@@ -60,267 +70,226 @@ function getSpeechRecognition() {
 * @property {number} height - voice input height (in px)
 * @property {Object} style - CSS inline styles
 */
-class VoiceInput extends Input {
-	constructor( props, context ) {
-		super( props );
-		const session = context;
-		this.state = {
-			value: props.bind && session.state ?
-				session.state[ props.bind ]:
-				props.defaultValue,
-			isRecording: props.autorecord
-		};
+const VoiceInput = ( props ) => {
+	const { autorecord, bind, defaultValue, grammars, id, language,
+		maxAlternatives, remote, startTooltip, stopTooltip,
+		onChange, onClick, onFinalText, onRecordingStart, onRecordingStop, onSegment, onSubmit, timeout } = props;
+	const [ isRecording, setIsRecording ] = useState( autorecord );
+	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'Input' );
+	const [ value, setValue ] = useState(
+		bind && session.state ? session.state[ bind ]: defaultValue,
+	);
+	const recognizerRef = useRef();
+	const timerRef = useRef();
 
-		if ( props.remote ) {
-			window.onkeydown = this.remoteControl;
+	const handleChange = useCallback( ( event ) => {
+		const newValue = event.target.value;
+		setValue( newValue );
+		onChange( newValue );
+		if ( bind ) {
+			global.lesson.setState({
+				[ bind ]: newValue
+			});
 		}
-		if ( props.autorecord ) {
-			debug( 'Should record voice...' );
-			this.start();
-		}
-	}
+	}, [ bind, onChange ] );
 
-	remoteControl = ( event ) => {
-		switch ( event.keyCode ) {
-			case this.props.remote.stop:
-				this.stop();
-			break;
-			case this.props.remote.start:
-				if ( !this.state.isRecording ) {
-					this.start();
-				}
-			break;
-			case this.props.remote.toggle:
-				if ( !this.state.isRecording ) {
-					this.start();
-				} else {
-					this.stop();
-				}
-			break;
-		}
-	}
-
-	setTimeout() {
-		this.timer = setTimeout( this.stop, this.props.timeout );
-	}
-
-	segment( results ) {
-		if ( this.timer ) {
-			clearTimeout( this.timer );
-		}
-		let text;
-		if ( this.props.maxAlternatives > 1 ) {
-			text = new Array( results.length );
-			for ( let i = 0; i < results.length; i++ ) {
-				text[ i ] = results[ i ].transcript;
-			}
-		} else {
-			text = results[ 0 ].transcript;
-		}
-		this.setState({
-			value: text
-		});
-		this.props.onSegment( text );
-	}
-
-	finalText( results ) {
-		if ( this.props.timeout ) {
-			this.setTimeout();
-		}
-		debug( 'Received final text' );
-		let text;
-		if ( this.props.maxAlternatives > 1 ) {
-			text = new Array( results.length );
-			for ( let i = 0; i < results.length; i++ ) {
-				text[ i ] = results[ i ].transcript;
-			}
-		} else {
-			text = results[ 0 ].transcript;
-		}
-		this.setState({
-			value: text
-		});
-		this.props.onFinalText( text );
-	}
-
-	onResult = ( event ) => {
-		debug( 'Processing result...' );
-		if ( typeof ( event.results ) === 'undefined' ) {
-			debug( 'Something went wrong...' );
-			return;
-		}
-		for ( let i = event.resultIndex; i < event.results.length; ++i ) {
-			if ( event.results[ i ].isFinal ) {
-				this.finalText( event.results[ i ] );
-			}
-			else {
-				this.segment( event.results[ i ] );
-			}
-		}
-	}
-
-	createGrammarList() {
-		const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
-		const grammarList = new SpeechGrammarList();
-		for ( let i = 0; i < this.props.grammars.length; i++ ) {
-			const { src, weight } = this.props.grammars[ i ];
-			grammarList.addFromString( src, weight );
-		}
-		return grammarList;
-	}
-
-	start() {
-		this.recognizer = null;
-		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
-		if ( SpeechRecognition ) {
-			const recognizer = new SpeechRecognition();
-			recognizer.lang = this.props.language;
-			recognizer.continuous = true;
-			recognizer.interimResults = true;
-			recognizer.maxAlternatives = this.props.maxAlternatives;
-			this.recognizer = recognizer;
-			this.recognizer.grammars = this.createGrammarList();
-
-			this.recognizer.onerror = ( event ) => {
-				debug( 'Encountered an error...' );
-				if (
-					event.error === 'not-allowed' ||
-					event.error === 'service-not-allowed'
-				) {
-					this.setState({
-						isRecording: false
-					});
-					return this.context.addNotification({
-						title: 'Not allowed',
-						message: 'No permission to use the speech recognition service',
-						level: 'error',
-						position: 'tr'
-					});
-				}
-				try {
-					this.recognizer.start();
-				} catch ( err ) {
-					debug( err );
-				}
-			};
-
-			this.recognizer.onend = () => {
-				debug('onend: %s', this.props.id );
-				if ( this.state.isRecording ) {
-					// Restart recording after it stopped due to no voice input for a few seconds:
-					this.recognizer.start();
-				}
-			};
-
-			this.recognizer.onstart = () => {
-				debug('onstart: %s', this.props.id );
-				this.props.onRecordingStart();
-			};
-
-			recognizer.onresult = this.onResult;
-			recognizer.start();
-		}
-
-		debug( 'Set `isRecording` to true...' );
-		this.setState({
-			isRecording: true
-		});
-	}
-
-	stop = () => {
-		debug( 'Set `isRecording` to false...' );
-		this.setState({
-			isRecording: false
-		}, () => {
-			if ( this.recognizer ) {
-				this.recognizer.stop();
-			}
-			this.props.onRecordingStop();
-		});
-	}
-
-	handleChange = ( event ) => {
-		const value = event.target.value;
-		this.setState({
-			value
-		}, () => {
-			this.props.onChange( value );
-			if ( this.props.bind ) {
-				global.lesson.setState({
-					[ this.props.bind ]: value
-				});
-			}
-		});
-	}
-
-	handleKeyDown = ( event ) => {
+	const handleKeyDown = useCallback( ( event ) => {
 		switch ( event.keyCode ) {
 		case 13:
-			this.props.onSubmit( this.state.value );
+			onSubmit( value );
 			break;
 		default:
 			break;
 		}
-	}
+	}, [ value, onSubmit ] );
 
-	handleClick = ( event ) => {
-		this.props.onClick( event );
-		if ( this.state.isRecording ){
-			this.stop();
+	const segment = useCallback( ( results ) => {
+		if ( timerRef.current ) {
+			clearTimeout( timerRef.current );
 		}
-		else {
-			this.start();
+		let text;
+		if ( maxAlternatives > 1 ) {
+			text = new Array( results.length );
+			for ( let i = 0; i < results.length; i++ ) {
+				text[ i ] = results[ i ].transcript;
+			}
+		} else {
+			text = results[ 0 ].transcript;
 		}
-	}
+		setValue( text );
+		onSegment( text );
+	}, [ maxAlternatives, onSegment ] );
 
-	tooltipMessage( recognizable ) {
+	const stop = useCallback( () => {
+		debug( 'Set `isRecording` to false...' );
+		setIsRecording( false );
+		if ( recognizerRef.current ) {
+			recognizerRef.current.stop();
+		}
+		onRecordingStop();
+	}, [ onRecordingStop ] );
+
+	const finalText = useCallback( ( results ) => {
+		if ( timeout ) {
+			timerRef.current = setTimeout( stop, timeout );
+		}
+		debug( 'Received final text' );
+		let text;
+		if ( maxAlternatives > 1 ) {
+			text = new Array( results.length );
+			for ( let i = 0; i < results.length; i++ ) {
+				text[ i ] = results[ i ].transcript;
+			}
+		} else {
+			text = results[ 0 ].transcript;
+		}
+		setValue( text );
+		onFinalText( text );
+	}, [ maxAlternatives, stop, timeout, onFinalText ] );
+
+	const start = useCallback( () => {
+		recognizerRef.current = null;
+		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
+		if ( SpeechRecognition ) {
+			const recognizer = new SpeechRecognition();
+			recognizer.lang = language;
+			recognizer.continuous = true;
+			recognizer.interimResults = true;
+			recognizer.maxAlternatives = maxAlternatives;
+			recognizer.grammars = createGrammarList( grammars );
+
+			recognizer.onerror = ( event ) => {
+				debug( 'Encountered an error...' );
+				if (
+					event.error === 'not-allowed' ||
+					event.error === 'service-not-allowed'
+				)
+					{
+						setIsRecording( false );
+						return session.addNotification({
+							title: 'Not allowed',
+							message: 'No permission to use the speech recognition service',
+							level: 'error',
+							position: 'tr'
+						});
+					}
+				try {
+					recognizer.start();
+				} catch ( err ) {
+					debug( err );
+				}
+			};
+			recognizer.onend = () => {
+				debug('onend: %s', id );
+				if ( isRecording ) {
+					// Restart recording after it stopped due to no voice input for a few seconds:
+					recognizer.start();
+				}
+			};
+			recognizer.onstart = () => {
+				debug('onstart: %s', id );
+				onRecordingStart();
+			};
+			recognizer.onresult = ( event ) => {
+				debug( 'Processing result...' );
+				if ( typeof ( event.results ) === 'undefined' ) {
+					debug( 'Something went wrong...' );
+					return;
+				}
+				for ( let i = event.resultIndex; i < event.results.length; ++i ) {
+					if ( event.results[ i ].isFinal ) {
+						finalText( event.results[ i ] );
+					}
+					else {
+						segment( event.results[ i ] );
+					}
+				}
+			};
+			recognizer.start();
+			recognizerRef.current = recognizer;
+		}
+		debug( 'Set `isRecording` to true...' );
+		setIsRecording( true );
+	}, [ finalText, grammars, id, isRecording, language, maxAlternatives, onRecordingStart, segment, session ] );
+
+	const tooltipMessage = useCallback( ( recognizable ) => {
 		let text = '';
 		if ( !recognizable ) {
 			text = 'Your browser does not support voice recognition. You may use the Chrome Browser instead';
 		}
-		else if ( this.state.isRecording === true ) {
-			text = this.props.stopTooltip;
+		else if ( isRecording === true ) {
+			text = stopTooltip || t('click-to-stop-recording');
 		}
 		else {
-			text = this.props.startTooltip;
+			text = startTooltip || t('click-to-start-recording');
 		}
 		return text;
-	}
+	}, [ isRecording, startTooltip, stopTooltip, t ] );
 
-	renderTooltip() {
-		const x = getSpeechRecognition();
-		const text = this.tooltipMessage( x );
-		return (
-			<Tooltip id={`${this.props.id}-voice-input-tooltip`} >
-				{text}
-			</Tooltip>
-		);
-	}
-
-	render() {
-		let mike = 'voice-microphone';
-		if ( this.state.isRecording === true ) {
-			mike = 'voice-microphone voice-recording';
+	useEffect( () => {
+		if ( remote ) {
+			window.onkeydown = ( event ) => {
+				switch ( event.keyCode ) {
+					case remote.stop:
+						stop();
+					break;
+					case remote.start:
+						if ( !isRecording ) {
+							start();
+						}
+					break;
+					case remote.toggle:
+						if ( !isRecording ) {
+							start();
+						} else {
+							stop();
+						}
+					break;
+				}
+			};
 		}
-		switch ( this.props.mode ) {
+		if ( autorecord ) {
+			debug( 'Should record voice...' );
+			start();
+		}
+	}, [ autorecord, remote, isRecording, start, stop ] );
+
+	const handleClick = useCallback( ( event ) => {
+		onClick( event );
+		if ( isRecording ){
+			stop();
+		}
+		else {
+			start();
+		}
+	}, [ isRecording, start, stop, onClick ] );
+
+	let mike = 'voice-microphone';
+	if ( isRecording === true ) {
+		mike = 'voice-microphone voice-recording';
+	}
+	const x = getSpeechRecognition();
+	const text = tooltipMessage( x );
+	const tooltip = <Tooltip id={`${props.id}-voice-input-tooltip`} >
+		{text}
+	</Tooltip>;
+	switch ( props.mode ) {
 		case 'full':
 			return (
 				<Fragment>
-					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="input voice-input" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
+					{ props.legend ? <label>{props.legend}</label> : null }
+					<div className="input voice-input" style={{ height: props.height, width: props.width, ...props.style }} >
 						<input
 							className="voice-input-text"
 							type="text"
-							onKeyDown={this.handleKeyDown}
-							onChange={this.handleChange}
-							placeholder={this.props.placeholder}
-							value={this.state.value}
-							ref={( input ) => {
-								this.textInput = input;
-							}}
+							onKeyDown={handleKeyDown}
+							onChange={handleChange}
+							placeholder={props.placeholder !== null ? props.placeholder : t('enter-text')}
+							value={value}
 						/>
-						<OverlayTrigger placement={this.props.tooltipPlacement} overlay={this.renderTooltip()}>
-							<Microphone onClick={this.handleClick} className={mike} />
+						<OverlayTrigger placement={props.tooltipPlacement} overlay={tooltip}>
+							<Microphone onClick={handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
 				</Fragment>
@@ -328,15 +297,15 @@ class VoiceInput extends Input {
 		case 'status':
 			return (
 				<Fragment>
-					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-input-status-text" style={{ height: this.props.height, width: this.props.width, ...this.props.style }} >
+					{ props.legend ? <label>{props.legend}</label> : null }
+					<div className="voice-input-status-text" style={{ height: props.height, width: props.width, ...props.style }} >
 						<div
 							className="voice-input-status"
 						>
-							{this.state.value}
+							{value}
 						</div>
-						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-							<Microphone onClick={this.handleClick} className={mike} />
+						<OverlayTrigger placement="bottom" overlay={tooltip}>
+							<Microphone onClick={handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
 				</Fragment>
@@ -344,19 +313,18 @@ class VoiceInput extends Input {
 		case 'microphone':
 			return (
 				<Fragment>
-					{ this.props.legend ? <label>{this.props.legend}</label> : null }
-					<div className="voice-solo-microphone" style={{ height: this.props.height, width: this.props.width, ...this.props.style }}>
-						<OverlayTrigger placement="bottom" overlay={this.renderTooltip()}>
-							<Microphone onClick={this.handleClick} className={mike} />
+					{ props.legend ? <label>{props.legend}</label> : null }
+					<div className="voice-solo-microphone" style={{ height: props.height, width: props.width, ...props.style }}>
+						<OverlayTrigger placement="bottom" overlay={tooltip}>
+							<Microphone onClick={handleClick} className={mike} />
 						</OverlayTrigger>
 					</div>
 				</Fragment>
 			);
 		case 'none':
 			return null;
-		}
 	}
-}
+};
 
 
 // PROPERTIES //
@@ -376,12 +344,12 @@ VoiceInput.defaultProps = {
 	onRecordingStart() {},
 	onRecordingStop() {},
 	onSubmit() {},
-	placeholder: 'Enter text',
+	placeholder: null,
 	remote: null,
 	style: {},
 	timeout: null,
-	stopTooltip: 'Click to stop recording',
-	startTooltip: 'Click to start recording',
+	stopTooltip: null,
+	startTooltip: null,
 	tooltipPlacement: 'left',
 	width: 500,
 	height: 36
@@ -415,8 +383,6 @@ VoiceInput.propTypes = {
 	width: PropTypes.number,
 	height: PropTypes.number
 };
-
-VoiceInput.contextType = SessionContext;
 
 
 // EXPORTS //
