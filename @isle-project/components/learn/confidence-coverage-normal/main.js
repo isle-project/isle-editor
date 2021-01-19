@@ -184,7 +184,7 @@ class ConfidenceCoverageNormal extends Component {
 				<TeX raw={`\\bar X \\pm t_{${this.props.quartileNotation ? '\\tfrac{\\alpha}{2}' : '\\text{critical}'}} \\cdot \\frac{S}{\\sqrt{n}}`} elems={ELEM_TOOLTIPS} />
 			</Switch>.
 				<Trans i18nKey="normal-intro-end" ns="LearnConfidenceCoverage" >
-				For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
+					For our choice of sample size (n), <TeX raw="\mu" />, <TeX raw="\sigma" />, and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
 				</Trans>
 			</p>;
 		}
@@ -199,7 +199,7 @@ class ConfidenceCoverageNormal extends Component {
 							{intro}
 						</Row>
 						<Row>
-							<Col md={4}>
+							<Col md={5}>
 								<Dashboard
 									title={t('change-parameters')}
 									onGenerate={this.onGenerate}
@@ -240,7 +240,7 @@ class ConfidenceCoverageNormal extends Component {
 									id="coverage-module-normal"
 								/>
 							</Col>
-							<Col md={8}>
+							<Col md={7}>
 								<Card>
 									<Card.Header as="h4">
 										{t('confidence-intervals')}

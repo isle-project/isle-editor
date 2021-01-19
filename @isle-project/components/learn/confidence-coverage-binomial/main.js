@@ -171,14 +171,15 @@ class ConfidenceCoverageBinomial extends Component {
 		} else {
 			intro = <div>
 				<p>
-					<Trans i18nKey="binomial-into" ns="LearnConfidenceCoverage" >Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? t('click-pop-proportion') : t('click-sample-proportion')}`} active={this.props.sampleStats} onChange={( pos ) => {
+					<Trans i18nKey="binomial-intro" ns="LearnConfidenceCoverage" >Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? t('click-pop-proportion') : t('click-sample-proportion')}`} active={this.props.sampleStats} onChange={( pos ) => {
 					this.setState({
 						useSampleProp: pos === 1
 					});
 				}}>
 					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{p(1-p)}{n}}`} elems={ELEM_TOOLTIPS} />
 					<TeX raw={`\\hat p \\pm Z_{${this.props.quartileNotation ? '\\alpha/2' : '\\text{critical}'}} \\cdot \\sqrt{ \\frac{\\hat p(1-\\hat p)}{n}}`} elems={ELEM_TOOLTIPS} />
-				</Switch>.</Trans></p>
+				</Switch>.</Trans>
+				</p>
 				<p>
 					<Trans i18nKey="binomial-intro-end" ns="LearnConfidenceCoverage" >
 						For our choice of sample size (n), true proportion <TeX raw="p" />, and confidence level, we will simulate <TeX raw="20" /> different samples from our normal distribution and calculate the corresponding sample proportions and confidence intervals.
@@ -197,7 +198,7 @@ class ConfidenceCoverageBinomial extends Component {
 							{intro}
 						</Row>
 						<Row>
-							<Col md={4}>
+							<Col md={5} >
 								<Dashboard
 									title={t('change-parameters')}
 									onGenerate={this.onGenerate}
@@ -218,7 +219,7 @@ class ConfidenceCoverageBinomial extends Component {
 										step={0.01}
 									/>
 									<SliderInput
-										legend={('confidence-level')}
+										legend={t('confidence-level')}
 										defaultValue={0.95}
 										min={0.01}
 										max={0.99}
@@ -230,7 +231,7 @@ class ConfidenceCoverageBinomial extends Component {
 									id="coverage-module-binomial"
 								/>
 							</Col>
-							<Col md={8}>
+							<Col md={7} >
 								<Card>
 									<Card.Header as="h4">
 										{t('confidence-intervals')}
