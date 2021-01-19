@@ -6,6 +6,7 @@
 	"count": "Compter",
 	"multiple-answers": "Vous pouvez sélectionner plusieurs réponses",
 	"no-responses-yet": "pas encore de réponses",
+	"number-of-votes": "Nombre de voix",
 	"offensive-word": "Votre réponse contient un mot offensant : {{w}}. Veuillez le supprimer.",
 	"relative-frequency": "Fréquence relative",
 	"responses": "Réponses",

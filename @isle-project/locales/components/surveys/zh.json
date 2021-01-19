@@ -6,6 +6,7 @@
 	"count": "计数",
 	"multiple-answers": "您可以选择多个答案",
 	"no-responses-yet": "尚无回应",
+	"number-of-votes": "票数",
 	"offensive-word": "你的答案中包含了一个攻击性词语：{{w}}。请删除。",
 	"relative-frequency": "相对频率",
 	"responses": "应对措施",
