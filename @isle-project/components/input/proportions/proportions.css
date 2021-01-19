@@ -1,4 +1,9 @@
 .proportions-input {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.proportions-number-input {
 	float: left;
 	width: 120px;
 	text-align: center;

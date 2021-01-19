@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 import NumberInput from '@isle-project/components/input/number';
+import { CAT20 } from '@isle-project/constants/colors';
 import { VictoryPie } from 'victory';
-import isArray from '@stdlib/assert/is-array';
 import './proportions.css';
 
 
@@ -18,118 +19,54 @@ function sum( arr ) {
 	return out;
 }
 
-function pieData( arr, nElements, legends ) {
-	const list = [];
-	const total = sum( arr );
-	const no = nElements + 1;
-	for ( let i = 0; i < no; i++ ) {
-		if ( i < no -1 ) {
-			let o = {
-				x: legends[ i ],
-				y: arr[ i ]
-			};
-			list.push( o );
-		}
-		else {
-			let o = {
-				x: ' ',
-				y: 100 - sum( arr )
-			};
-			if ( total !== 100 ) {
-				list.push( o );
-			}
-		}
-	}
-	return list;
-}
-
-function setValues( nElements ) {
-	const values = new Array( nElements );
-	const initial = 100 / nElements;
-	for ( let i = 0; i < nElements; i++ ) {
-		values[ i ] = initial;
-	}
-	return values;
-}
-
-function colorsArray( colors, nElements ) {
-	const c = colors.slice( 0, nElements );
-	c.push( 'transparent' );
-	return c;
-}
-
-function checkLegends( legends, nElements ) {
-	if ( isArray( legends ) ) {
-		return legends;
-	}
-	const list = [];
-	for ( let i = 0; i < nElements; i++ ) {
-		list.push( 'EL ' + i );
-	}
-	return list;
-}
-
 
 // MAIN //
 
 /**
 * A proportions input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 *
-* @property {number} nElements - number of elements
 * @property {Array} legends - group labels
 * @property {boolean} disabled - controls whether the input field is deactivated
 * @property {number} precision - displayed precision of proportion values
 * @property {number} step - the step of the arrows seen when hovering the cursor above the input box
 * @property {Array} colors - array of colors for the pie chart components. If not defined, a custom color scale will be used
 * @property {number} height - proportions input height (in px)
-* @property {number} innerRadius - inner radius of proportions pie chart (in px)
 * @property {number} margin - proportion input margin (in px)
 * @property {Function} onChange - callback function to be invoked when a choice is made
 */
 const ProportionInput = ( props ) => {
-	const { colors, nElements, legends: propsLegends, onChange } = props;
-	const legends = checkLegends( propsLegends, nElements );
-	let values = null;
-	if ( props.values ) {
-		values = props.values;
-	}
-	else {
-		values = setValues( nElements );
-	}
+	const { colors, legends, values, onChange } = props;
+	const nElements = legends.length;
 	const [ state, setState ] = useState({
-		visualData: pieData( values, nElements, propsLegends ),
-		colors: colorsArray( props.colors, nElements )
+		values: values ? values : new Array( nElements ).fill( 100 / nElements ),
+		colors: ( colors ? colors : CAT20.slice( 0, nElements ) ).concat( [ 'transparent' ] )
 	});
 	useEffect( () => {
+		const n = legends.length;
 		setState({
-			visualData: pieData( values, nElements, legends ),
-			colors: colorsArray( colors, nElements )
+			values: values ? values : new Array( n ).fill( 100 / n ),
+			colors: ( colors ? colors : CAT20.slice( 0, n ) ).concat( [ 'transparent' ] )
 		});
-	}, [ colors, legends, nElements, values ] );
+	}, [ colors, legends, values ] );
 
-	const checkPercentage = useCallback( ( ndx, value ) => {
-		const newValues = values.slice();
-		newValues[ ndx ] = value;
-		onChange( newValues );
-		setState({
-			visualData: pieData( newValues, nElements, propsLegends ),
-			colors: state.colors
-		});
-	}, [ nElements, propsLegends, state.colors, values, onChange ] );
-	const pos = {
-		marginLeft: props.margin
-	};
 	const inputs = [];
-	const n = nElements;
-	for ( let i = 0; i < n; i++ ) {
-		const free = 100.0 - sum( state.values );
+	const free = 100.0 - sum( state.values );
+	for ( let i = 0; i < nElements; i++ ) {
 		let maxValue = state.values[ i ] + free;
 		maxValue = Number( maxValue.toFixed( props.precision ) );
-		inputs.push( <div className="proportions-input" key={i} >
+		inputs.push( <div className="proportions-number-input" key={i} >
 			<NumberInput
 				key={i}
 				legend={legends[ i ]}
-				onChange={( event ) => checkPercentage( i, event )}
+				onChange={( value ) => {
+					const newValues = state.values.slice();
+					newValues[ i ] = value;
+					onChange( newValues );
+					setState({
+						values: newValues,
+						colors: state.colors
+					});
+				}}
 				min={0}
 				max={maxValue}
 				step={props.step}
@@ -138,18 +75,28 @@ const ProportionInput = ( props ) => {
 			/>
 		</div> );
 	}
+	const visualData = legends.map( ( legend, idx ) => {
+		return {
+			x: legend,
+			y: state.values[ idx ]
+		};
+	});
+	if ( free > 0 ) {
+		visualData.push({
+			x: ' ',
+			y: free
+		});
+	}
 	return (
-		<div className="input" >
+		<Card body className="proportions-input" >
 			<VictoryPie
 				colorScale={state.colors}
-				data={state.visualData}
+				data={visualData}
 				height={props.height}
-				innerRadius={props.innerRadius}
+				innerRadius={0.375 * props.height}
 			/>
-			<div style={pos}>
-				{inputs}
-			</div>
-		</div>
+			{inputs}
+		</Card>
 	);
 };
 
@@ -157,15 +104,12 @@ const ProportionInput = ( props ) => {
 // PROPERTIES //
 
 ProportionInput.defaultProps = {
-	nElements: 6,
-	legends: null,
+	legends: [],
 	precision: 1,
 	step: 0.1,
 	disabled: false,
-	colors: [ 'tomato', 'orange', 'gold', 'darkcyan', 'salmon', 'lightgreen', 'gainsboro', 'lightpurple', 'darkkhaki', 'darkseagreen' ],
+	colors: null,
 	height: 200,
-	innerRadius: 75,
-	margin: 0,
 	onChange(){}
 };
 
@@ -173,10 +117,7 @@ ProportionInput.propTypes = {
 	colors: PropTypes.arrayOf( PropTypes.string ),
 	disabled: PropTypes.bool,
 	height: PropTypes.number,
-	innerRadius: PropTypes.number,
 	legends: PropTypes.array,
-	margin: PropTypes.string,
-	nElements: PropTypes.number,
 	onChange: PropTypes.func,
 	precision: PropTypes.number,
 	step: PropTypes.number
