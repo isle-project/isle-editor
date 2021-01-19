@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
-import Tooltip from '@isle-project/components/tooltip';
 import roundn from '@stdlib/math/base/special/roundn';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
+import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import './slider.css';
 
@@ -60,7 +60,9 @@ const SliderInput = ( props ) => {
 		setValue( defaultValue );
 	}, [ defaultValue ] );
 	useEffect( () => {
-		setValue( global.lesson.state[ bind ] );
+		if ( bind ) {
+			setValue( global.lesson.state[ bind ] );
+		}
 	}, [ bind ]);
 	const finishChange = ( event ) => {
 		debug( 'Finalizing change...' );

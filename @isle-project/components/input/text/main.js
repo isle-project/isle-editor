@@ -44,16 +44,18 @@ const TextInput = ( props ) => {
 	);
 	const textInput = useRef();
 	useEffect( () => {
-		setValue( global.lesson.state[ bind ] );
+		if ( bind ) {
+			setValue( global.lesson.state[ bind ] );
+		}
 	}, [ bind ]);
 	useEffect( () => {
 		setValue( defaultValue );
 	}, [ defaultValue ]);
 	useEffect( () => {
 		if ( bind ) {
-			const globalVal = global.lesson.state[ bind ];
-			if ( globalVal !== value ) {
-				setValue( globalVal );
+			const globalValue = global.lesson.state[ bind ];
+			if ( globalValue !== value ) {
+				setValue( globalValue );
 			}
 		}
 	}, [ bind, value ]);
