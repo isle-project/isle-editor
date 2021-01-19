@@ -1,9 +1,9 @@
 // MODULES //
 
-import React from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
-import Input from '@isle-project/components/input/base';
+import { useTranslation } from 'react-i18next';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import './text.css';
@@ -34,136 +34,107 @@ const uid = generateUID( 'text-input' );
 * @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
 * @property {Function} onKeyUp - callback function to be invoked when key is released
 */
-class TextInput extends Input {
-	constructor( props, context ) {
-		super( props );
-
-		const session = context;
-		this.state = {
-			value: props.bind && session.state ?
-				session.state[ props.bind ]:
-				props.defaultValue,
-			prevProps: props
-		};
-
-		this.id = props.id || uid( props );
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		const newState = {};
-		const { prevProps } = prevState;
-		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		} else if ( nextProps.bind !== prevProps.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-		}
-		if ( !isEmptyObject( newState ) ) {
-			newState.prevProps = nextProps;
-			return newState;
-		}
-		return null;
-	}
-
-	componentDidUpdate() {
-		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
-				this.setState({
-					value: globalVal
-				});
+const TextInput = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const session = useContext( SessionContext );
+	const { bind, defaultValue, placeholder } = props;
+	const { t } = useTranslation( 'Input' );
+	const [ value, setValue ] = useState(
+		props.bind && session.state ? session.state[ props.bind ]: props.defaultValue
+	);
+	const textInput = useRef();
+	useEffect( () => {
+		setValue( global.lesson.state[ bind ] );
+	}, [ bind ]);
+	useEffect( () => {
+		setValue( defaultValue );
+	}, [ defaultValue ]);
+	useEffect( () => {
+		if ( bind ) {
+			const globalVal = global.lesson.state[ bind ];
+			if ( globalVal !== value ) {
+				setValue( globalVal );
 			}
 		}
-	}
-
-	handleChange = ( event ) => {
+	}, [ bind, value ]);
+	const handleChange = ( event ) => {
 		const value = event.target.value;
-		this.props.onChange( value );
-		this.setState({
-			value
-		}, () => {
-			if ( this.props.bind ) {
-				global.lesson.setState({
-					[ this.props.bind ]: value
-				});
-			}
-		});
+		props.onChange( value );
+		setValue( value );
+		if ( bind ) {
+			global.lesson.setState({
+				[ bind ]: value
+			});
+		}
 	};
-
-	focus = () => {
-		this.textInput.focus();
+	if ( props.value !== null ) {
+		value = props.value;
 	}
-
-	render() {
-		let { value } = this.state;
-		if ( this.props.value !== null ) {
-			value = this.props.value;
-		}
-		if ( this.props.inline ) {
-			return (
-				<span className="input" style={this.props.style} >
-					{ this.props.legend ? <label htmlFor={this.id} >
-						{this.props.legend}:
-					</label> : <span /> }
-					<input
-						id={this.id}
-						className="text-inline-input"
-						type="text"
-						name="input"
-						placeholder={this.props.placeholder}
-						value={value}
-						ref={( input ) => {
-							this.textInput = input;
-						}}
-						style={{
-							width: this.props.width
-						}}
-						onChange={this.handleChange}
-						onKeyPress={this.props.onKeyPress}
-						onKeyDown={this.props.onKeyDown}
-						onKeyUp={this.props.onKeyUp}
-					/>
-					{ this.props.description ?
-						<span> ({this.props.description}) </span> :
-						<span />
-					}
-				</span>
-			);
-		}
+	if ( props.inline ) {
 		return (
-			<div className="input text-container-div" style={this.props.style} >
-				<span>
-					{ this.props.legend ?
-						<label htmlFor={this.id} >{this.props.legend}:</label> :
-						null
-					}
-					{ this.props.description ?
-						<span> {this.props.description}</span> :
-						<span />
-					}
-				</span>
+			<span className="input" style={props.style} >
+				{ props.legend ? <label htmlFor={id} >
+					{props.legend}:
+				</label> : <span /> }
 				<input
-					id={this.id}
-					className="text-input"
+					id={id}
+					className="text-inline-input"
 					type="text"
 					name="input"
-					placeholder={this.props.placeholder}
+					placeholder={isString( placeholder ) ? placeholder : t('enter-text')}
 					value={value}
 					ref={( input ) => {
-						this.textInput = input;
+						textInput.current = input;
 					}}
 					style={{
-						width: this.props.width
+						width: props.width
 					}}
-					onBlur={this.props.onBlur}
-					onChange={this.handleChange}
-					onKeyPress={this.props.onKeyPress}
-					onKeyDown={this.props.onKeyDown}
-					onKeyUp={this.props.onKeyUp}
+					onChange={handleChange}
+					onKeyPress={props.onKeyPress}
+					onKeyDown={props.onKeyDown}
+					onKeyUp={props.onKeyUp}
 				/>
-			</div>
+				{ props.description ?
+					<span> ({props.description}) </span> :
+					<span />
+				}
+			</span>
 		);
 	}
-}
+	return (
+		<div className="input text-container-div" style={props.style} >
+			<span>
+				{ props.legend ?
+					<label htmlFor={id} >{props.legend}:</label> :
+					null
+				}
+				{ props.description ?
+					<span> {props.description}</span> :
+					<span />
+				}
+			</span>
+			<input
+				id={id}
+				className="text-input"
+				type="text"
+				name="input"
+				placeholder={isString( placeholder ) ? placeholder : t('enter-text')}
+				value={value}
+				ref={( input ) => {
+					textInput.current = input;
+				}}
+				style={{
+					width: props.width
+				}}
+				onBlur={props.onBlur}
+				onChange={handleChange}
+				onKeyPress={props.onKeyPress}
+				onKeyDown={props.onKeyDown}
+				onKeyUp={props.onKeyUp}
+			/>
+		</div>
+	);
+};
 
 
 // PROPERTIES //
@@ -180,7 +151,7 @@ TextInput.defaultProps = {
 	onKeyPress() {},
 	onKeyUp() {},
 	inline: false,
-	placeholder: 'Enter text',
+	placeholder: null,
 	style: {}
 };
 
@@ -202,8 +173,6 @@ TextInput.propTypes = {
 	width: PropTypes.number,
 	style: PropTypes.object
 };
-
-TextInput.contextType = SessionContext;
 
 
 // EXPORTS //
