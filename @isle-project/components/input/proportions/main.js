@@ -1,8 +1,7 @@
 // MODULES //
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Input from '@isle-project/components/input/base';
 import NumberInput from '@isle-project/components/input/number';
 import { VictoryPie } from 'victory';
 import isArray from '@stdlib/assert/is-array';
@@ -52,6 +51,23 @@ function setValues( nElements ) {
 	return values;
 }
 
+function colorsArray( colors, nElements ) {
+	const c = colors.slice( 0, nElements );
+	c.push( 'transparent' );
+	return c;
+}
+
+function checkLegends( legends, nElements ) {
+	if ( isArray( legends ) ) {
+		return legends;
+	}
+	const list = [];
+	for ( let i = 0; i < nElements; i++ ) {
+		list.push( 'EL ' + i );
+	}
+	return list;
+}
+
 
 // MAIN //
 
@@ -69,134 +85,77 @@ function setValues( nElements ) {
 * @property {number} margin - proportion input margin (in px)
 * @property {Function} onChange - callback function to be invoked when a choice is made
 */
-class ProportionInput extends Input {
-	constructor( props ) {
-		super( props );
-
-		this.legends = this.checkLegends();
-		let values = null;
-		if ( props.values ) {
-			values = props.values;
-		}
-		else {
-			values = setValues( props.nElements );
-		}
-		this.state = {
-			values: values,
-			propValues: props.values,
-			visualData: pieData( values, props.nElements, props.legends ),
-			colors: this.setColors()
-		};
-		this.checkPercentage.bind( this );
+const ProportionInput = ( props ) => {
+	const { colors, nElements } = props;
+	const legends = checkLegends( props.legends, nElements );
+	let values = null;
+	if ( props.values ) {
+		values = props.values;
 	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.values !== prevState.propValues ) {
-			const newState = {
-				values: nextProps.values,
-				propValues: nextProps.values,
-				visualData: pieData( nextProps.values, nextProps.nElements, nextProps.legends )
-			};
-			return newState;
-		}
-		return null;
+	else {
+		values = setValues( nElements );
 	}
-
-	componentDidUpdate( prevProps ) {
-		if ( prevProps.legends !== this.props.legends ) {
-			this.legends = this.checkLegends();
-		}
-	}
-
-	setColors() {
-		const no = this.props.nElements;
-		const c = this.props.colors.slice( 0, no );
-		c.push( 'transparent' );
-		return c;
-	}
-
-	checkLegends() {
-		const list = [];
-		const no = this.props.nElements;
-		if ( isArray( this.props.legends ) ) {
-			return this.props.legends;
-		}
-		for ( let i = 0; i < no; i++ ) {
-			list.push( 'EL ' + i );
-		}
-		return list;
-	}
-
-	checkPercentage( ndx, value ) {
-		const newValues = this.state.values.slice();
-		newValues[ ndx ] = value;
-
-		this.props.onChange( newValues );
-		this.setState({
-			values: newValues,
-			visualData: pieData( newValues, this.props.nElements, this.props.legends )
+	const [ state, setState ] = useState({
+		visualData: pieData( values, nElements, props.legends ),
+		colors: colorsArray( props.colors, nElements )
+	});
+	useEffect( () => {
+		setState({
+			visualData: pieData( values, nElements, legends ),
+			colors: colorsArray( colors, nElements )
 		});
-	}
+	}, [ colors, legends, nElements, values ] );
 
-	getNumber( ndx ) {
-		const style = {
-			float: 'left',
-			width: '120px',
-			textAlign: 'center'
-		};
-		const free = 100.0 - sum( this.state.values );
-		let maxValue = this.state.values[ ndx ] + free;
-		maxValue = Number( maxValue.toFixed( this.props.precision ) );
-		return (
-			<div style={style} key={ndx} >
-				<NumberInput
-					key={ndx}
-					legend={this.legends[ ndx ]}
-					onChange={( event ) => this.checkPercentage( ndx, event )}
-					min={0}
-					max={maxValue}
-					step={this.props.step}
-					disabled={this.props.disabled}
-					defaultValue={this.state.values[ ndx ]}
-				/>
-			</div>
-		);
-	}
-
-	renderInputs() {
-		const list = [];
-		const n = this.props.nElements;
-		for ( let i = 0; i < n; i++ ) {
-			list.push( this.getNumber( i ) );
-		}
-		return list;
-	}
-
-	renderPie() {
-		return (
-			<VictoryPie
-				colorScale={this.state.colors}
-				data={this.state.visualData}
-				height={this.props.height}
-				innerRadius={this.props.innerRadius}
+	const checkPercentage = ( ndx, value ) => {
+		const newValues = values.slice();
+		newValues[ ndx ] = value;
+		props.onChange( newValues );
+		setState({
+			visualData: pieData( newValues, nElements, props.legends ),
+			colors: state.colors
+		});
+	};
+	const pos = {
+		marginLeft: props.margin
+	};
+	const inputs = [];
+	const n = nElements;
+	const inputStyle = {
+		float: 'left',
+		width: '120px',
+		textAlign: 'center'
+	};
+	for ( let i = 0; i < n; i++ ) {
+		const free = 100.0 - sum( state.values );
+		let maxValue = state.values[ i ] + free;
+		maxValue = Number( maxValue.toFixed( props.precision ) );
+		inputs.push( <div style={inputStyle} key={i} >
+			<NumberInput
+				key={i}
+				legend={legends[ i ]}
+				onChange={( event ) => checkPercentage( i, event )}
+				min={0}
+				max={maxValue}
+				step={props.step}
+				disabled={props.disabled}
+				defaultValue={state.values[ i ]}
 			/>
-		);
+		</div> );
 	}
-
-	render() {
-		const pos = {
-			marginLeft: this.props.margin
-		};
-		return (
-			<div className="input" >
-				{ this.renderPie() }
-				<div style={pos}>
-					{ this.renderInputs() }
-				</div>
+	return (
+		<div className="input" >
+			<VictoryPie
+				colorScale={state.colors}
+				data={state.visualData}
+				height={props.height}
+				innerRadius={props.innerRadius}
+			/>
+			<div style={pos}>
+				{inputs}
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
@@ -210,10 +169,12 @@ ProportionInput.defaultProps = {
 	colors: [ 'tomato', 'orange', 'gold', 'darkcyan', 'salmon', 'lightgreen', 'gainsboro', 'lightpurple', 'darkkhaki', 'darkseagreen' ],
 	height: 200,
 	innerRadius: 75,
+	margin: 0,
 	onChange(){}
 };
 
 ProportionInput.propTypes = {
+	colors: PropTypes.arrayOf( PropTypes.string ),
 	disabled: PropTypes.bool,
 	height: PropTypes.number,
 	innerRadius: PropTypes.number,
