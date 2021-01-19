@@ -72,7 +72,7 @@ function createGrammarList( grammars ) {
 */
 const VoiceInput = ( props ) => {
 	const { autorecord, bind, defaultValue, grammars, id, language,
-		maxAlternatives, remote, startTooltip, stopTooltip,
+		maxAlternatives, remote, startTooltip, stopTooltip, speechInterface,
 		onChange, onClick, onFinalText, onRecordingStart, onRecordingStop, onSegment, onSubmit, timeout } = props;
 	const [ isRecording, setIsRecording ] = useState( autorecord );
 	const session = useContext( SessionContext );
@@ -104,23 +104,6 @@ const VoiceInput = ( props ) => {
 		}
 	}, [ value, onSubmit ] );
 
-	const segment = useCallback( ( results ) => {
-		if ( timerRef.current ) {
-			clearTimeout( timerRef.current );
-		}
-		let text;
-		if ( maxAlternatives > 1 ) {
-			text = new Array( results.length );
-			for ( let i = 0; i < results.length; i++ ) {
-				text[ i ] = results[ i ].transcript;
-			}
-		} else {
-			text = results[ 0 ].transcript;
-		}
-		setValue( text );
-		onSegment( text );
-	}, [ maxAlternatives, onSegment ] );
-
 	const stop = useCallback( () => {
 		debug( 'Set `isRecording` to false...' );
 		setIsRecording( false );
@@ -129,24 +112,6 @@ const VoiceInput = ( props ) => {
 		}
 		onRecordingStop();
 	}, [ onRecordingStop ] );
-
-	const finalText = useCallback( ( results ) => {
-		if ( timeout ) {
-			timerRef.current = setTimeout( stop, timeout );
-		}
-		debug( 'Received final text' );
-		let text;
-		if ( maxAlternatives > 1 ) {
-			text = new Array( results.length );
-			for ( let i = 0; i < results.length; i++ ) {
-				text[ i ] = results[ i ].transcript;
-			}
-		} else {
-			text = results[ 0 ].transcript;
-		}
-		setValue( text );
-		onFinalText( text );
-	}, [ maxAlternatives, stop, timeout, onFinalText ] );
 
 	const start = useCallback( () => {
 		recognizerRef.current = null;
@@ -198,11 +163,49 @@ const VoiceInput = ( props ) => {
 					return;
 				}
 				for ( let i = event.resultIndex; i < event.results.length; ++i ) {
+					const results = event.results[ i ];
 					if ( event.results[ i ].isFinal ) {
-						finalText( event.results[ i ] );
+						if ( timeout ) {
+							timerRef.current = setTimeout( stop, timeout );
+						}
+						debug( 'Received final text' );
+						let text;
+						if ( maxAlternatives > 1 ) {
+							text = new Array( results.length );
+							for ( let i = 0; i < results.length; i++ ) {
+								text[ i ] = results[ i ].transcript;
+							}
+						} else {
+							text = results[ 0 ].transcript;
+						}
+						setValue( text );
+						onFinalText( text );
+						if ( speechInterface ) {
+							speechInterface.check( text, {
+								onStart: () => {
+									stop();
+								},
+								onEnd: () => {
+									start();
+								}
+							});
+						}
 					}
 					else {
-						segment( event.results[ i ] );
+						if ( timerRef.current ) {
+							clearTimeout( timerRef.current );
+						}
+						let text;
+						if ( maxAlternatives > 1 ) {
+							text = new Array( results.length );
+							for ( let i = 0; i < results.length; i++ ) {
+								text[ i ] = results[ i ].transcript;
+							}
+						} else {
+							text = results[ 0 ].transcript;
+						}
+						setValue( text );
+						onSegment( text );
 					}
 				}
 			};
@@ -211,7 +214,7 @@ const VoiceInput = ( props ) => {
 		}
 		debug( 'Set `isRecording` to true...' );
 		setIsRecording( true );
-	}, [ finalText, grammars, id, isRecording, language, maxAlternatives, onRecordingStart, segment, session ] );
+	}, [ grammars, id, isRecording, language, maxAlternatives, onRecordingStart, session, speechInterface, stop, timeout, onFinalText, onSegment ] );
 
 	const tooltipMessage = useCallback( ( recognizable ) => {
 		let text = '';
