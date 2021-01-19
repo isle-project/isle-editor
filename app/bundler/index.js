@@ -175,6 +175,7 @@ class LessonWrapper extends Component {
 		this.setState({
 			isLoading: false
 		});
+		serviceWorker.register();
 	}
 
 	componentDidUpdate() {
@@ -224,9 +225,7 @@ render(
 		<LessonWrapper />
 	</Provider>,
 	document.getElementById( 'App' )
-);
-
-serviceWorker.register();`;
+);`;
 
 /**
 * Generates a list of components used in the lesson.
