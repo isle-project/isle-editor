@@ -1,10 +1,8 @@
 // MODULES //
 
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import noop from '@stdlib/utils/noop';
-import Input from '@isle-project/components/input/base';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import './checkbox.css';
@@ -26,120 +24,89 @@ import './checkbox.css';
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback function to be invoked when checkbox is clicked. The function is called with the current checkbox value
 */
-class CheckboxInput extends Input {
-	constructor( props, context ) {
-		super( props );
-
-		const session = context;
-		this.state = {
-			value: props.bind && session.state ?
-				session.state[ props.bind ]:
-				props.defaultValue,
-			bind: props.bind,
-			defaultValue: props.defaultValue
-		};
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		let newState = {};
-		if ( nextProps.defaultValue !== prevState.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-			newState.defaultValue = nextProps.defaultValue;
+const CheckboxInput = ( props ) => {
+	const { bind, defaultValue, disabled } = props;
+	const session = useContext( SessionContext );
+	const [ value, setValue ] = useState(
+		bind && session.state ? session.state[ bind ]: defaultValue
+	);
+	useEffect( () => {
+		setValue( defaultValue );
+	}, [ defaultValue ] );
+	useEffect( () => {
+		if ( bind ) {
+			setValue( global.lesson.state[ bind ] );
 		}
-		else if ( nextProps.bind !== prevState.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-			newState.bind = nextProps.bind;
-		}
-		if ( !isEmptyObject( newState ) ) {
-			return newState;
-		}
-		return null;
-	}
-
-	componentDidUpdate() {
-		if ( this.props.bind ) {
-			let globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value ) {
-				this.setState({
-					value: globalVal
-				});
+	}, [ bind ] );
+	useEffect( () => {
+		if ( bind ) {
+			let globalValue = global.lesson.state[ bind ];
+			if ( globalValue !== value ) {
+				setValue( globalValue );
 			}
 		}
-	}
-
-	updateValue = ( newValue ) => {
-		this.setState({
-			value: newValue
-		}, () => {
-			if ( this.props.bind ) {
-				global.lesson.setState({
-					[ this.props.bind ]: newValue
-				});
-			}
-		});
-	}
-
-	handleChange = ( event ) => {
+	}, [ bind, value ]);
+	const updateValue = ( newValue ) => {
+		setValue( newValue );
+		if ( bind ) {
+			global.lesson.setState({
+				[ bind ]: newValue
+			});
+		}
+	};
+	const handleChange = ( event ) => {
 		const newValue = event.target.checked;
-		this.props.onChange( newValue );
-		this.updateValue( newValue );
-	}
-
-	handleSpanChange = ( event ) => {
-		const newValue = this.props.value !== null ? !this.props.value : !this.state.value;
-		this.props.onChange( newValue );
-		this.updateValue( newValue );
-	}
-
-	render() {
-		let { value } = this.state;
-		if ( this.props.value !== null ) {
-			value = this.props.value;
-		}
-		const input = <input
-			className="checkbox-input"
-			type="checkbox"
-			checked={value}
-			value="checkbox"
-			onChange={this.handleChange}
-			disabled={this.props.disabled}
-			aria-label={this.props.tooltip}
-		></input>;
-		if ( this.props.inline === true ) {
-			return (
-				<Tooltip tooltip={this.props.tooltip} placement={this.props.tooltipPlacement} >
-					<span style={{ marginLeft: '8px', ...this.props.style }}>
-						{input}
-						<span
-							role="button" tabIndex={0}
-							className="checkbox-legend"
-							style={{
-								color: this.props.disabled ? 'darkgray' : null
-							}}
-							onClick={this.handleSpanChange} onKeyPress={this.handleSpanChange}
-						>{this.props.legend}</span>
-					</span>
-				</Tooltip>
-			);
-		}
-		const onSpanChange = this.props.disabled ? noop : this.handleSpanChange;
+		props.onChange( newValue );
+		updateValue( newValue );
+	};
+	const handleSpanChange = ( event ) => {
+		const newValue = props.value !== null ? !props.value : !value;
+		props.onChange( newValue );
+		updateValue( newValue );
+	};
+	const input = <input
+		className="checkbox-input"
+		type="checkbox"
+		checked={props.value !== null ? props.value : value}
+		value="checkbox"
+		onChange={handleChange}
+		disabled={disabled}
+		aria-label={props.tooltip}
+	></input>;
+	if ( props.inline === true ) {
 		return (
-			<Tooltip tooltip={this.props.tooltip} placement={this.props.tooltipPlacement} >
-				<div className="input checkbox-input-div" style={this.props.style}>
+			<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
+				<span style={{ marginLeft: '8px', ...props.style }}>
 					{input}
 					<span
 						role="button" tabIndex={0}
 						className="checkbox-legend"
 						style={{
-							color: this.props.disabled ? 'darkgray' : null
+							color: disabled ? 'darkgray' : null
 						}}
-						onClick={onSpanChange} onKeyPress={onSpanChange}
-					>{this.props.legend}</span>
-				</div>
+						onClick={handleSpanChange} onKeyPress={handleSpanChange}
+					>{props.legend}</span>
+				</span>
 			</Tooltip>
 		);
 	}
-}
+	const onSpanChange = disabled ? noop : handleSpanChange;
+	return (
+		<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
+			<div className="input checkbox-input-div" style={props.style}>
+				{input}
+				<span
+					role="button" tabIndex={0}
+					className="checkbox-legend"
+					style={{
+						color: disabled ? 'darkgray' : null
+					}}
+					onClick={onSpanChange} onKeyPress={onSpanChange}
+				>{props.legend}</span>
+			</div>
+		</Tooltip>
+	);
+};
 
 
 // PROPERTIES //
@@ -172,8 +139,6 @@ CheckboxInput.propTypes = {
 	tooltipPlacement: PropTypes.oneOf([ 'left', 'top', 'right', 'bottom' ]),
 	style: PropTypes.object
 };
-
-CheckboxInput.contextType = SessionContext;
 
 
 // EXPORTS //
