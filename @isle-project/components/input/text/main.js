@@ -67,9 +67,6 @@ const TextInput = ( props ) => {
 			});
 		}
 	};
-	if ( props.value !== null ) {
-		value = props.value;
-	}
 	if ( props.inline ) {
 		return (
 			<span className="input" style={props.style} >
@@ -82,7 +79,7 @@ const TextInput = ( props ) => {
 					type="text"
 					name="input"
 					placeholder={isString( placeholder ) ? placeholder : t('enter-text')}
-					value={value}
+					value={props.value !== null ? props.value : value}
 					ref={( input ) => {
 						textInput.current = input;
 					}}
@@ -119,7 +116,7 @@ const TextInput = ( props ) => {
 				type="text"
 				name="input"
 				placeholder={isString( placeholder ) ? placeholder : t('enter-text')}
-				value={value}
+				value={props.value !== null ? props.value : value}
 				ref={( input ) => {
 					textInput.current = input;
 				}}
