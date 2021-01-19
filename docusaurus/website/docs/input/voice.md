@@ -33,12 +33,12 @@ A voice input component.
 * __onRecordingStop__ | `function`: callback function invoked once recording is stopped. Default: `onRecordingStop() {}`.
 * __onSegment__ | `function`: callback function invoked with text segments. Default: `onSegment() {}`.
 * __onSubmit__ | `function`: callback function when submitting text input value by hitting "Enter". Default: `onSubmit() {}`.
-* __placeholder__ | `string`: text input placeholder. Default: `'Enter text'`.
+* __placeholder__ | `string`: text input placeholder. Default: `none`.
 * __remote__ | `object`: object with `start`, `stop`, and `toggle` and associated hotkeys. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __timeout__ | `number`: number of milliseconds after which to timeout the recording. Default: `none`.
-* __stopTooltip__ | `string`: tooltip message displayed while recording. Default: `'Click to stop recording'`.
-* __startTooltip__ | `string`: tooltip message displayed while not recording. Default: `'Click to start recording'`.
+* __stopTooltip__ | `string`: tooltip message displayed while recording. Default: `none`.
+* __startTooltip__ | `string`: tooltip message displayed while not recording. Default: `none`.
 * __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
 * __width__ | `number`: voice input width (in px). Default: `500`.
 * __height__ | `number`: voice input height (in px). Default: `36`.

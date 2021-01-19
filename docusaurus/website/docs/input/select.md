@@ -32,6 +32,6 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 * __multi__ | `boolean`: controls whether one may select multiple answers. Default: `false`.
 * __onChange__ | `function`: callback function to be invoked when a choice is made. Default: `onChange() {}`.
 * __options__ | `array`: array of indicating the choices available the user. Default: `[]`.
-* __placeholder__ | `string`: value to be displayed before an initial choice is made. Default: `'Select...'`.
+* __placeholder__ | `string`: value to be displayed before an initial choice is made. Default: `none`.
 * __tooltip__ | `string`: text displayed when hovering over legend. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

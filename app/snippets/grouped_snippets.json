@@ -146,7 +146,7 @@
     },
     {
       "name": "ProportionsInput",
-      "value": "<ProportionsInput\n  legends = {${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}\n  precision={${2:2}}\n  step={${3:0.25}}\n  nElements={${4:6}}\n/>\n"
+      "value": "<ProportionsInput\n  legends={${1:[ 'Robotics', 'Bitcoin', 'Gold', 'Diamonds', 'Vegetables', 'Fruits' ]}}\n  precision={${2:2}}\n  step={${3:0.25}}\n/>\n"
     },
     {
       "name": "SelectInput",
@@ -384,7 +384,7 @@
     },
     {
       "name": "ProportionsSurvey",
-      "value": "<ProportionsSurvey\n  user\n  question=\"${1:Invest now!}\"\n  group=\"${2:Group Decision}\"\n  nElements ={${3:3}}\n  personalHeight={${4:300}}\n  colors = {${5:['red', 'blue', 'gold']}}\n  legends = {${6:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
+      "value": "<ProportionsSurvey\n  user\n  question=\"${1:Invest now!}\"\n  group=\"${2:Group Decision}\"\n  personalHeight={${3:300}}\n  colors={${4:['red', 'blue', 'gold']}}\n  legends={${5:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
     }
   ],
   "basicHeadings": [

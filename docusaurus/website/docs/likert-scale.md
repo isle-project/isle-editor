@@ -19,13 +19,7 @@ A component showing a question and a five-point scale for students to answer.
 ## Options
 
 * __question__ | `(string|node)`: question to be printed. Default: `''`.
-* __options__ | `array`: an array of five elements holding the labels for the different scale levels. Default: `[
-  'Strongly disagree',
-  'Disagree',
-  'Neither agree nor disagree',
-  'Agree',
-  'Strongly agree'
-]`.
+* __options__ | `array`: an array of five elements holding custom labels for the different scale levels. Default: `none`.
 * __noMultipleResponses__ | `boolean`: disallow multiple submissions from a single student. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.

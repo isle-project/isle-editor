@@ -1890,6 +1890,12 @@
   "ProportionsInput": {
     "props": [
       {
+        "name": "colors",
+        "type": "array<string>",
+        "description": "ProportionsInput-prop-colors",
+        "defaultValue": null
+      },
+      {
         "name": "disabled",
         "type": "boolean",
         "description": "ProportionsInput-prop-disabled",
@@ -1902,27 +1908,10 @@
         "defaultValue": 200
       },
       {
-        "name": "innerRadius",
-        "type": "number",
-        "description": "ProportionsInput-prop-innerRadius",
-        "defaultValue": 75
-      },
-      {
         "name": "legends",
         "type": "array",
         "description": "ProportionsInput-prop-legends",
-        "defaultValue": null
-      },
-      {
-        "name": "margin",
-        "type": "string",
-        "description": "ProportionsInput-prop-margin"
-      },
-      {
-        "name": "nElements",
-        "type": "number",
-        "description": "ProportionsInput-prop-nElements",
-        "defaultValue": 6
+        "defaultValue": []
       },
       {
         "name": "onChange",
@@ -1956,7 +1945,8 @@
       {
         "name": "clearable",
         "type": "boolean",
-        "description": "SelectInput-prop-clearable"
+        "description": "SelectInput-prop-clearable",
+        "defaultValue": null
       },
       {
         "name": "defaultValue",
@@ -2010,7 +2000,7 @@
         "name": "placeholder",
         "type": "string",
         "description": "SelectInput-prop-placeholder",
-        "defaultValue": "Select..."
+        "defaultValue": null
       },
       {
         "name": "tooltip",
@@ -2164,7 +2154,7 @@
         "name": "placeholder",
         "type": "string",
         "description": "TextArea-prop-placeholder",
-        "defaultValue": "Enter text"
+        "defaultValue": null
       },
       {
         "name": "resizable",
@@ -2253,7 +2243,7 @@
         "name": "placeholder",
         "type": "string",
         "description": "TextInput-prop-placeholder",
-        "defaultValue": "Enter text"
+        "defaultValue": null
       },
       {
         "name": "width",
@@ -2360,7 +2350,7 @@
         "name": "placeholder",
         "type": "string",
         "description": "VoiceInput-prop-placeholder",
-        "defaultValue": "Enter text"
+        "defaultValue": null
       },
       {
         "name": "remote",
@@ -2384,13 +2374,13 @@
         "name": "stopTooltip",
         "type": "string",
         "description": "VoiceInput-prop-stopTooltip",
-        "defaultValue": "Click to stop recording"
+        "defaultValue": null
       },
       {
         "name": "startTooltip",
         "type": "string",
         "description": "VoiceInput-prop-startTooltip",
-        "defaultValue": "Click to start recording"
+        "defaultValue": null
       },
       {
         "name": "tooltipPlacement",
@@ -2656,7 +2646,7 @@
     "props": [
       {
         "name": "data",
-        "type": "array (required)",
+        "type": "object (required)",
         "description": "LearnSampleCLT-prop-data"
       },
       {
@@ -2745,7 +2735,7 @@
     "props": [
       {
         "name": "data",
-        "type": "array (required)",
+        "type": "object (required)",
         "description": "LearnConfidenceCoverageSample-prop-data"
       },
       {
@@ -3231,7 +3221,7 @@
         "name": "header",
         "type": "string",
         "description": "LearnMeanVSMedian-prop-header",
-        "defaultValue": "Measures of Location: Mean vs. Median"
+        "defaultValue": null
       },
       {
         "name": "id",
@@ -3388,7 +3378,7 @@
         "name": "label",
         "type": "string",
         "description": "LessonSubmit-prop-label",
-        "defaultValue": "Finish lesson"
+        "defaultValue": null
       },
       {
         "name": "message",
@@ -3441,13 +3431,7 @@
         "name": "options",
         "type": "array",
         "description": "LikertScale-prop-options",
-        "defaultValue": [
-          "Strongly disagree",
-          "Disagree",
-          "Neither agree nor disagree",
-          "Agree",
-          "Strongly agree"
-        ]
+        "defaultValue": null
       },
       {
         "name": "noMultipleResponses",
@@ -5074,18 +5058,7 @@
         "name": "colors",
         "type": "array",
         "description": "ProportionsSurvey-prop-colors",
-        "defaultValue": [
-          "tomato",
-          "orange",
-          "gold",
-          "darkcyan",
-          "salmon",
-          "lightgreen",
-          "gainsboro",
-          "lightpurple",
-          "darkkhaki",
-          "darkseagreen"
-        ]
+        "defaultValue": null
       },
       {
         "name": "disabled",
@@ -5106,28 +5079,16 @@
         "defaultValue": 100
       },
       {
-        "name": "groupInnerRadius",
-        "type": "number",
-        "description": "ProportionsSurvey-prop-groupInnerRadius",
-        "defaultValue": 40
-      },
-      {
         "name": "legends",
         "type": "array",
         "description": "ProportionsSurvey-prop-legends",
-        "defaultValue": null
+        "defaultValue": []
       },
       {
         "name": "margin",
         "type": "string",
         "description": "ProportionsSurvey-prop-margin",
         "defaultValue": "40px"
-      },
-      {
-        "name": "nElements",
-        "type": "number",
-        "description": "ProportionsSurvey-prop-nElements",
-        "defaultValue": 6
       },
       {
         "name": "onSubmit",
@@ -5140,12 +5101,6 @@
         "type": "number",
         "description": "ProportionsSurvey-prop-personalHeight",
         "defaultValue": 200
-      },
-      {
-        "name": "personalInnerRadius",
-        "type": "number",
-        "description": "ProportionsSurvey-prop-personalInnerRadius",
-        "defaultValue": 60
       },
       {
         "name": "precision",
@@ -7516,7 +7471,7 @@
         "name": "tooltip",
         "type": "string",
         "description": "Switch-prop-tooltip",
-        "defaultValue": "Click to cycle through available options."
+        "defaultValue": null
       },
       {
         "name": "tooltipPos",

@@ -12,7 +12,7 @@ In creating a data explorer, one needs a *.json dataset. This step may be accomp
 
 ```js
 require:
-	dataName: "./dataName.json"
+    dataName: "./dataName.json"
 ```
 
 Consider a dataset called "heartdisease" with the following variables:
@@ -30,11 +30,11 @@ We will include the explorer with the following code:
 
 ```jsx live
 <DataExplorer 
-	id="heartdisease"
-	data={heartdisease} 
-	categorical={[ 'Gender', 'Drugs', 'Complications' ]}
-	quantitative={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
-	tests={[]}
+    id="heartdisease"
+    data={heartdisease} 
+    categorical={[ 'Gender', 'Drugs', 'Complications' ]}
+    quantitative={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+    tests={[]}
 />
 ```
 

@@ -27,6 +27,6 @@ A text input component. Can be used as part of an ISLE dashboard or standalone. 
 * __onKeyDown__ | `function`: callback function to be invoked when any key is pressed down. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: callback function to be invoked when any key is entered. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: callback function to be invoked when key is released. Default: `onKeyUp() {}`.
-* __placeholder__ | `string`: A string indicating the value to be displayed before an initial choice is made. Default: `'Enter text'`.
+* __placeholder__ | `string`: A string indicating the value to be displayed before an initial choice is made. Default: `none`.
 * __width__ | `number`: A number indicating the width of the input in pixels. Default: `80`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
