@@ -1,14 +1,14 @@
 // MODULES //
 
-import React from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Input from '@isle-project/components/input/base';
+import { useTranslation } from 'react-i18next';
 import contains from '@stdlib/assert/contains';
 import isnan from '@stdlib/math/base/assert/is-nan';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isNull from '@stdlib/assert/is-null';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isEmptyObject from '@stdlib/assert/is-empty-object';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import NINF from '@stdlib/constants/math/float64-ninf';
 import Tooltip from '@isle-project/components/tooltip';
@@ -49,223 +49,188 @@ const uid = generateUID( 'number-input' );
 * @property {Function} onKeyDown - callback function to be invoked when any key is pressed down
 * @property {Function} onKeyUp - callback function to be invoked when key is released
 */
-class NumberInput extends Input {
-	constructor( props, context ) {
-		super( props );
-
-		const session = context;
-		this.id = props.id || uid( props );
-		this.state = {
-			value: props.value || (props.bind && session.state ?
-				session.state[ props.bind ]:
-				props.defaultValue),
-			tooltip: props.tooltip || createTooltip( props ),
-			prevProps: props
-		};
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		let newState = {};
-		const { prevProps } = prevState;
-		if ( nextProps.defaultValue !== prevProps.defaultValue ) {
-			newState.value = nextProps.defaultValue;
-		}
-		else if ( nextProps.bind !== prevProps.bind ) {
-			newState.value = global.lesson.state[ nextProps.bind ];
-		}
-		if ( nextProps.min !== prevProps.min || nextProps.max !== prevProps.max ) {
-			newState.tooltip = nextProps.tooltip || createTooltip( nextProps );
-		}
-		else if ( nextProps.tooltip && nextProps.tooltip !== prevState.tooltip ) {
-			newState.tooltip = nextProps.tooltip;
-		}
-		if ( !isEmptyObject( newState ) ) {
-			debug( 'Created new state from props...' );
-			newState.prevProps = nextProps;
-			return newState;
-		}
-		return null;
-	}
-
-	componentDidUpdate() {
-		debug( 'Component did update...' );
-		if ( this.props.bind ) {
-			const globalVal = global.lesson.state[ this.props.bind ];
-			if ( globalVal !== this.state.value && isNumber( this.state.value ) ) {
-				this.setState({
-					value: globalVal
-				});
+const NumberInput = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const { bind, defaultValue, min, max, step } = props;
+	const { t } = useTranslation( 'Input' );
+	const session = useContext( SessionContext );
+	const [ value, setValue ] = useState(
+		props.value || ( bind && session.state ?
+			session.state[ bind ]:
+			defaultValue ),
+	);
+	useEffect( () => {
+		if ( bind ) {
+			const globalValue = global.lesson.state[ bind ];
+			if ( globalValue !== value && isNumber( value ) ) {
+				setValue( globalValue );
 			}
 		}
-	}
+	}, [ bind, value ] );
+	useEffect( () => {
+		setValue( defaultValue );
+	}, [ defaultValue ] );
+	useEffect( () => {
+		if ( bind ) {
+			setValue( global.lesson.state[ bind ] );
+		}
+	}, [ bind ] );
 
-	handleChange = ( event ) => {
+	const handleChange = ( event ) => {
 		debug( 'Handle change of input field...' );
 		let valid = event.target.validity.valid;
-		let value = event.target.value;
-		this.setState({
-			value
-		}, () => {
-			if ( this.props.value ||
-				(valid && value !== '' &&
-				value !== '-' && value !== '.' && value !== '-.' )
-			) {
-				value = parseFloat( value );
-				if ( isnan( value ) ) {
-					value = '';
-				}
-				this.props.onChange( value );
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
-			} else if ( this.props.bind ) {
+		let newValue = event.target.value;
+		setValue( newValue );
+		if ( props.value ||
+			(valid && newValue !== '' &&
+			newValue !== '-' && newValue !== '.' && newValue !== '-.' )
+		) {
+			newValue = parseFloat( newValue );
+			if ( isnan( newValue ) ) {
+				newValue = '';
+			}
+			props.onChange( newValue );
+			if ( bind ) {
 				global.lesson.setState({
-					[ this.props.bind ]: value
+					[ bind ]: newValue
 				});
 			}
-		});
-	}
-
-	finishChange = ( event ) => {
-		const { max, min, step } = this.props;
-		debug( 'Finished change...' );
-		let value = event.target.value;
-		if ( contains( value, '/' ) ) {
-			debug( 'Encountered a fraction...' );
-			let vals = value.split( '/' );
-			if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
-				value = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
-			}
-		}
-		if ( isnan( value ) ) {
-			value = '';
-		}
-		else if (
-			value !== '' && value !== '-' &&
-			value !== '.' && value !== '-.'
-		) {
-			value = parseFloat( value );
-		}
-		if ( value > max ) {
-			value = max;
-		}
-		else if ( value < min ) {
-			value = min;
-		}
-		else if (
-			step === 1.0 && value !== '' &&
-			value !== '-' && value !== '.' && value !== '-.'
-		) {
-			value = value - value % this.props.step;
-		}
-		this.props.onChange( value );
-		this.props.onBlur( value );
-		if ( value !== this.state.value ) {
-			this.setState({
-				value
-			}, () => {
-				if ( this.props.bind ) {
-					global.lesson.setState({
-						[ this.props.bind ]: value
-					});
-				}
+		} else if ( bind ) {
+			global.lesson.setState({
+				[ bind ]: newValue
 			});
 		}
-	}
-
-	render() {
-		let { value } = this.state;
-		if ( this.props.value !== null ) {
-			value = this.props.value;
-		}
-		if ( this.props.inline === true ) {
-			const input =
-				<span className="input" style={{ padding: '5px', ...this.props.style }}>
-					{ this.props.legend ? <label htmlFor={this.id} > {this.props.legend} =  </label> : null }
-					<input
-						id={this.id}
-						type={this.props.numbersOnly ? 'number' : 'text'}
-						name="input"
-						className="number-number-input"
-						disabled={this.props.disabled}
-						value={value}
-						step={this.props.step}
-						min={this.props.min}
-						max={this.props.max}
-						style={{
-							width: '80px',
-							paddingLeft: '6px',
-							marginLeft: '3px',
-							...this.props.inputStyle
-						}}
-						onChange={this.handleChange}
-						onBlur={this.finishChange}
-						onKeyPress={this.props.onKeyPress}
-						onKeyDown={this.props.onKeyDown}
-						onKeyUp={this.props.onKeyUp}
-						autoComplete="off"
-					/>
-					{ this.props.description ?
-						<span>({this.props.description})</span> :
-						<span />
-					}
-				</span>;
-			return this.props.disabled ?
-				input:
-				<Tooltip id="number-input-tooltip-inline" placement="top" tooltip={this.state.tooltip} >
-					{input}
-				</Tooltip>;
-		}
-		let input = <input
-			id={this.id}
-			type={this.props.numbersOnly ? 'number' : 'text'}
-			name="input"
-			className="number-number-input"
-			disabled={this.props.disabled}
-			value={value}
-			step={this.props.step}
-			min={this.props.min}
-			max={this.props.max}
-			style={{
-				width: '80px',
-				marginLeft: '24px',
-				...this.props.inputStyle
-			}}
-			onChange={this.handleChange}
-			onBlur={this.finishChange}
-			onKeyPress={this.props.onKeyPress}
-			onKeyDown={this.props.onKeyDown}
-			onKeyUp={this.props.onKeyUp}
-			autoComplete="off"
-		/>;
-		return ( <div className="input" style={{
-			marginBottom: '4px',
-			marginTop: '4px',
-			...this.props.style
-		}}>
-			{ this.props.legend ?
-				<span>
-					<label htmlFor={this.id} >
-						{isString( this.props.legend ) ?
-							this.props.legend+':' :
-							this.props.legend
-						}
-					</label>
-					{ this.props.description ?
-						<span> {this.props.description}</span> :
-						null
-					}
-				</span> : null
+	};
+	const finishChange = ( event ) => {
+		debug( 'Finished change...' );
+		let newValue = event.target.value;
+		if ( contains( newValue, '/' ) ) {
+			debug( 'Encountered a fraction...' );
+			let vals = newValue.split( '/' );
+			if ( vals[ 0 ] !== '' && vals[ 1 ] !== '' ) {
+				newValue = parseFloat( vals[ 0 ]) / parseFloat( vals[ 1 ]);
 			}
-			<Tooltip
-				id="number-input-tooltip" placement={this.props.tooltipPlacement}
-				tooltip={this.state.tooltip}
-			><span className="number-input-span" >{input}</span></Tooltip>
-		</div> );
+		}
+		if ( isnan( newValue ) ) {
+			newValue = '';
+		}
+		else if (
+			newValue !== '' && newValue !== '-' &&
+			newValue !== '.' && newValue !== '-.'
+		) {
+			newValue = parseFloat( newValue );
+		}
+		if ( newValue > max ) {
+			newValue = max;
+		}
+		else if ( newValue < min ) {
+			newValue = min;
+		}
+		else if (
+			step === 1.0 && newValue !== '' &&
+			newValue !== '-' && newValue !== '.' && newValue !== '-.'
+		) {
+			newValue = newValue - newValue % props.step;
+		}
+		props.onChange( newValue );
+		props.onBlur( newValue );
+		if ( newValue !== value ) {
+			setValue( newValue );
+			if ( bind ) {
+				global.lesson.setState({
+					[ bind ]: newValue
+				});
+			}
+		}
+	};
+	const tooltip = isNull( props.tooltip ) ? createTooltip({
+		min, max, step, t
+	}) : props.tooltip;
+	if ( props.inline === true ) {
+		const input =
+			<span className="input" style={{ padding: '5px', ...props.style }}>
+				{ props.legend ? <label htmlFor={id} > {props.legend} =  </label> : null }
+				<input
+					id={id}
+					type={props.numbersOnly ? 'number' : 'text'}
+					name="input"
+					className="number-number-input"
+					disabled={props.disabled}
+					value={props.value !== null ? props.value : value}
+					step={props.step}
+					min={props.min}
+					max={props.max}
+					style={{
+						width: '80px',
+						paddingLeft: '6px',
+						marginLeft: '3px',
+						...props.inputStyle
+					}}
+					onChange={handleChange}
+					onBlur={finishChange}
+					onKeyPress={props.onKeyPress}
+					onKeyDown={props.onKeyDown}
+					onKeyUp={props.onKeyUp}
+					autoComplete="off"
+				/>
+				{ props.description ?
+					<span>({props.description})</span> :
+					<span />
+				}
+			</span>;
+		return props.disabled ?
+			input:
+			<Tooltip id="number-input-tooltip-inline" placement="top" tooltip={tooltip} >
+				{input}
+			</Tooltip>;
 	}
-}
+	const input = <input
+		id={id}
+		type={props.numbersOnly ? 'number' : 'text'}
+		name="input"
+		className="number-number-input"
+		disabled={props.disabled}
+		value={props.value !== null ? props.value : value}
+		step={props.step}
+		min={props.min}
+		max={props.max}
+		style={{
+			width: '80px',
+			marginLeft: '24px',
+			...props.inputStyle
+		}}
+		onChange={handleChange}
+		onBlur={finishChange}
+		onKeyPress={props.onKeyPress}
+		onKeyDown={props.onKeyDown}
+		onKeyUp={props.onKeyUp}
+		autoComplete="off"
+	/>;
+	return ( <div className="input" style={{
+		marginBottom: '4px',
+		marginTop: '4px',
+		...props.style
+	}}>
+		{ props.legend ?
+			<span>
+				<label htmlFor={id} >
+					{isString( props.legend ) ?
+						props.legend+':' :
+						props.legend
+					}
+				</label>
+				{ props.description ?
+					<span> {props.description}</span> :
+					null
+				}
+			</span> : null
+		}
+		<Tooltip
+			id="number-input-tooltip" placement={props.tooltipPlacement}
+			tooltip={tooltip}
+		><span className="number-input-span" >{input}</span></Tooltip>
+	</div> );
+};
 
 
 // PROPERTIES //
@@ -319,8 +284,6 @@ NumberInput.propTypes = {
 	tooltip: PropTypes.string,
 	tooltipPlacement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
 };
-
-NumberInput.contextType = SessionContext;
 
 
 // EXPORTS //
