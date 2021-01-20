@@ -10,7 +10,6 @@ import Loadable from '@isle-project/components/internal/loadable';
 import VoiceInput from '@isle-project/components/input/voice';
 import Gate from '@isle-project/components/gate';
 import SelectInput from '@isle-project/components/input/select';
-import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import logger from 'debug';
 import { DOMSerializer } from 'prosemirror-model';
 import repeat from '@stdlib/string/repeat';
@@ -664,18 +663,6 @@ class TextEditor extends Component {
 							</div>
 						</Gate> : null
 					}
-					{ this.props.allowSubmissions ? <div
-						style={{ float: 'right' }}
-					>
-						<ResponseVisualizer
-							id={this.id}
-							data={{
-								type: 'text'
-							}}
-							info={EDITOR_SUBMIT}
-							style={{ padding: 5 }}
-						/>
-					</div>: null }
 				</div>
 				{this.state.showResetModal ? <ResetModal
 					show={this.state.showResetModal}
