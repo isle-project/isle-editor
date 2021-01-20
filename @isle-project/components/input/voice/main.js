@@ -68,6 +68,7 @@ function createGrammarList( grammars ) {
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {number} width - voice input width (in px)
 * @property {number} height - voice input height (in px)
+* @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
 const VoiceInput = ( props ) => {
@@ -282,7 +283,7 @@ const VoiceInput = ( props ) => {
 			return (
 				<Fragment>
 					{ props.legend ? <label>{props.legend}</label> : null }
-					<div className="input voice-input" style={{ height: props.height, width: props.width, ...props.style }} >
+					<div className={`input voice-input ${props.className}`} style={{ height: props.height, width: props.width, ...props.style }} >
 						<input
 							className="voice-input-text"
 							type="text"
@@ -301,7 +302,7 @@ const VoiceInput = ( props ) => {
 			return (
 				<Fragment>
 					{ props.legend ? <label>{props.legend}</label> : null }
-					<div className="voice-input-status-text" style={{ height: props.height, width: props.width, ...props.style }} >
+					<div className={`voice-input-status-text ${props.className}`} style={{ height: props.height, width: props.width, ...props.style }} >
 						<div
 							className="voice-input-status"
 						>
@@ -317,7 +318,7 @@ const VoiceInput = ( props ) => {
 			return (
 				<Fragment>
 					{ props.legend ? <label>{props.legend}</label> : null }
-					<div className="voice-solo-microphone" style={{ height: props.height, width: props.width, ...props.style }}>
+					<div className={`voice-solo-microphone ${props.className}`} style={{ height: props.height, width: props.width, ...props.style }}>
 						<OverlayTrigger placement="bottom" overlay={tooltip}>
 							<Microphone onClick={handleClick} className={mike} />
 						</OverlayTrigger>
@@ -349,6 +350,7 @@ VoiceInput.defaultProps = {
 	onSubmit() {},
 	placeholder: null,
 	remote: null,
+	className: '',
 	style: {},
 	timeout: null,
 	stopTooltip: null,
@@ -378,6 +380,7 @@ VoiceInput.propTypes = {
 	onSubmit: PropTypes.func,
 	placeholder: PropTypes.string,
 	remote: PropTypes.object,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	timeout: PropTypes.number,
 	stopTooltip: PropTypes.string,
