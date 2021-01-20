@@ -29,6 +29,7 @@ addResources( 'Slider' );
 * @property {string} title - title for the slideshow / carousel to be displayed at its top
 * @property {boolean} dots - display dots at the bottom for quickly navigating to any slide
 * @property {boolean} fade - controls whether fading is used for transitioning between the slides
+* @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both
 * @property {boolean} draggable - controls whether users can drag the slides to navigate between them
 * @property {number} goto - If property is changed, the component jumps to the slide with the selected index
 * @property {boolean} infinite - controls whether the slideshow wraps around it's contents
@@ -106,8 +107,8 @@ class DefaultSlider extends Component {
 			speed: 1000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			prevArrow: <PrevArrow onClick={this.props.onClick} t={this.props.t} />,
-			nextArrow: <NextArrow onClick={this.props.onClick} t={this.props.t} />,
+			prevArrow: <PrevArrow pagination={this.props.pagination} onClick={this.props.onClick} t={this.props.t} />,
+			nextArrow: <NextArrow pagination={this.props.pagination} onClick={this.props.onClick} t={this.props.t} />,
 			...this.props,
 			beforeChange: ( oldIndex, newIndex ) => {
 				this.setState({ currentSlide: newIndex+1 });
@@ -128,7 +129,7 @@ class DefaultSlider extends Component {
 				style={this.props.style}
 			>
 				{this.renderTitle()}
-				<Card.Body style={{ paddingBottom: '40px' }}>
+				<Card.Body style={{ paddingBottom: 40, paddingTop: this.props.pagination !== 'bottom' ? 40 : 0 }}>
 					<Slider
 						ref={( slider ) => { this.slider = slider; }}
 						{...settings}
@@ -149,6 +150,7 @@ DefaultSlider.defaultProps = {
 	dots: true,
 	fade: false,
 	draggable: false,
+	pagination: 'bottom',
 	goto: 0,
 	infinite: false,
 	interval: null,
@@ -162,6 +164,11 @@ DefaultSlider.propTypes = {
 	dots: PropTypes.bool,
 	fade: PropTypes.bool,
 	draggable: PropTypes.bool,
+	pagination: PropTypes.oneOf([
+		'top',
+		'bottom',
+		'both'
+	]),
 	goto: PropTypes.number,
 	infinite: PropTypes.bool,
 	interval: PropTypes.number,

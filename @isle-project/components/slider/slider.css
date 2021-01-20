@@ -3,6 +3,8 @@
 }
 
 .slider-previous-button {
+	display: block;
+	z-index: 100;
 	transition: 0.5s;
 	padding-top: 3px;
 	margin-right: 6px;
@@ -38,6 +40,8 @@
 }
 
 .slider-next-button {
+	display: block;
+	z-index: 100;
 	transition: 0.5s;
 	padding-top: 3px;
 	margin-right: 6px;

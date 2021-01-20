@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 
@@ -12,21 +12,31 @@ const RE = /disabled/;
 
 // MAIN //
 
-const NextArrow = ({ className, onClick, t }) => {
+const NextArrow = ({ pagination, className, onClick, t }) => {
 	const disabled = RE.test( className );
 	return (
-		<Button className='slider-next-button'
-			size="small"
-			onClick={onClick}
-			style={{
-				position: 'absolute',
-				display: 'block',
-				right: '-10px',
-				bottom: '-25px',
-				zIndex: 100
-			}}
-			disabled={disabled}
-		>{t('next')}</Button>
+		<Fragment>
+			{ pagination !== 'bottom' ? <Button className='slider-next-button'
+				size="small"
+				onClick={onClick}
+				style={{
+					position: 'absolute',
+					right: '-10px',
+					top: '-30px'
+				}}
+				disabled={disabled}
+			>{t('next')}</Button> : null }
+			{ pagination !== 'top' ? <Button className='slider-next-button'
+				size="small"
+				onClick={onClick}
+				style={{
+					position: 'absolute',
+					right: '-10px',
+					bottom: '-25px'
+				}}
+				disabled={disabled}
+			>{t('next')}</Button> : null }
+		</Fragment>
 	);
 };
 
