@@ -1,5 +1,7 @@
 .weather {
-	width: 580px;
+	position: absolute;
+	top: 12px;
+	width: 360px;
 	background: white;
 	height: 120px;
 	padding: 3px;
@@ -9,9 +11,15 @@
 	box-shadow: 0 0 4px rgba(92, 92, 92, 0.5);
 }
 
+.weather-loading {
+	margin-top: 36px;
+	text-align: center;
+	width: 100%;
+}
+
 .weather-details {
-	width: 50%;
-	margin-top: -30px;
+	margin-top: -35px;
+	margin-right: 5px;
 	float: right;
 }
 
@@ -24,7 +32,7 @@
 
 .weather-icon {
 	width: 40px;
-	margin-left: 20px;
+	margin-left: 5px;
 	height: auto;
 }
 

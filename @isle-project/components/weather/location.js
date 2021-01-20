@@ -5,17 +5,14 @@ import React from 'react';
 
 // MAIN //
 
-function Location( props ) {
+function Location({ name, sys }) {
 	return (
 		<div className="weather-location">
 			<div className="weather-place">
-				{props.name}
-			</div>
-			<div className="weather-location-region">
-				{props.region},
+				{name},
 			</div>
 			<div className="weather-location-country">
-				{props.country}
+				{sys.country}
 			</div>
 		</div>
 	);

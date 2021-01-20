@@ -5,11 +5,13 @@ import React from 'react';
 
 // MAIN //
 
-function Description( props ) {
-	let icon = 'http:' + props.condition.icon;
+function Description({ weather }) {
+	if ( !weather ) {
+		return null;
+	}
 	return (
-		<div className="weather-description">{ props.condition.text }
-			<img className="weather-icon" alt="Weather icon" src={icon} />
+		<div className="weather-description">
+			{weather.main} ({weather.description})
 		</div>
 	);
 }

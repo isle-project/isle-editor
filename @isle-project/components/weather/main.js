@@ -1,11 +1,14 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import axios from 'axios';
+import { withTranslation } from 'react-i18next';
+import round from '@stdlib/math/base/special/round';
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import Description from './description.js';
 import Location from './location.js';
 import './weather.css';
@@ -13,6 +16,7 @@ import './weather.css';
 
 // VARIABLES //
 
+addResources( 'Weather' );
 const debug = logger( 'isle:weather' );
 const VOICE_COMMANDS = [
 	{
@@ -28,6 +32,51 @@ const VOICE_COMMANDS = [
 	}
 ];
 const DEGREES = '°';
+const MSEC = 'm/sec';
+const Temperature = ({ main, weather }) => {
+	const [ unit, setUnit ] = useState( 'fahrenheit' );
+	const toggleUnit = () => {
+		setUnit( unit === 'celsius' ? 'fahrenheit' : 'celsius' );
+	};
+	let label;
+	let type;
+	if ( unit === 'celsius' ) {
+		label = round( ( main.temp - 32 ) * (5/9), -2 );
+		type = 'C';
+	} else {
+		label = round( main.temp );
+		type = 'F';
+	}
+	const icon = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+	return (
+		<div className="weather-temperature">{label}{DEGREES}
+			<span
+				role="button"
+				onClick={toggleUnit}
+				onKeyPress={toggleUnit}
+				className="weather-temperature-type"
+				tabIndex={0}
+			>
+				{type}
+			</span>
+			<img className="weather-icon" alt="Weather icon" src={icon} />
+		</div>
+	);
+};
+const Details = ({ main, wind, t }) => {
+	return (
+		<div className="weather-details" >
+			<div className="weather-humidity" >
+				{t('humidity')}: {main.humidity}%
+			</div>
+			<div className="weather-wind">
+				{t('wind')}: {wind.speed} {MSEC}
+				<br />
+				{t('direction')}: {wind.deg}
+			</div>
+		</div>
+	);
+};
 
 
 // MAIN //
@@ -43,10 +92,8 @@ const DEGREES = '°';
 class Weather extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
-			data: null,
-			temperature: 'celsius'
+			data: null
 		};
 	}
 
@@ -73,7 +120,7 @@ class Weather extends Component {
 	}
 
 	trigger = ( text, callback ) => {
-		debug( 'Trigger weather retrieveal...' );
+		debug( 'Trigger weather retrieval...' );
 		if ( callback ) {
 			this.callback = callback;
 		} else {
@@ -122,71 +169,6 @@ class Weather extends Component {
 		});
 	}
 
-	changeTemperatureType = () => {
-		const temperature = this.state.temperature === 'celsius' ?
-			'fahrenheit' :
-			'celsius';
-		this.setState({
-			temperature
-		});
-	}
-
-	renderTemperature( current ) {
-		let label;
-		let type;
-		if ( this.state.temperature === 'celsius' ) {
-			label = current.temp_c;
-			type = 'C';
-		} else {
-			label = current.temp_f;
-			type = 'F';
-		}
-		return (
-			<div className="weather-temperature">{label}{DEGREES}
-				<span
-					role="button"
-					onClick={this.changeTemperatureType}
-					onKeyPress={this.changeTemperatureType}
-					className="weather-temperature-type"
-					tabIndex={0}
-				>{type}</span>
-			</div>
-		);
-	}
-
-	renderWind( current ) {
-		let content;
-		if ( this.state.temperature === 'celsius' ) {
-			content = `wind: ${current.wind_kph} kmh / ${current.wind_dir}`; // eslint-disable-line i18next/no-literal-string
-		} else {
-			content = `wind: ${current.wind_mph} mph / ${current.wind_dir}`; // eslint-disable-line i18next/no-literal-string
-		}
-		return <div className="weather-wind">{content}</div>;
-	}
-
-	renderPrecipitation( current ) {
-		return (
-			<div className="weather-wind">
-				precipitation: {this.state.temperature === 'celsius' ?
-					current.precip_mm + ' mm':
-					current.precip_in + ' in'
-				}
-			</div>
-		);
-	}
-
-	renderDetails( current ) {
-		return (
-			<div className="weather-details">
-				<div className="weather-humidity">
-					{this.props.t('humidity')}{current.humidity}%
-				</div>
-				{this.renderWind( current )}
-				{this.renderPrecipitation( current )}
-			</div>
-		);
-	}
-
 	render() {
 		let voice = null;
 		if ( this.props.voiceID ) {
@@ -196,18 +178,24 @@ class Weather extends Component {
 				commands={VOICE_COMMANDS}
 			/>;
 		}
-		if ( !this.state.data ) {
-			return voice;
+		const data = this.state.data;
+		if ( !data ) {
+			return (
+				<div className="weather" style={this.props.style} >
+					<div className="weather-loading title" >
+						{this.props.t('loading-weather-data-for', { loc: this.props.location })}
+					</div>
+				</div>
+			);
 		}
-		let current = this.state.data.current;
 		return (
 			<div className="weather" style={this.props.style} >
 				{voice}
-				<Location {...this.state.data.location} />
-				<Description {...current} />
+				<Location name={data.name} sys={data.sys} />
+				<Description weather={data.weather[ 0 ]} />
+				<Temperature main={data.main} weather={data.weather[ 0 ]} />
+				<Details main={data.main} wind={data.wind} t={this.props.t} />
 				<br />
-				{this.renderTemperature(current)}
-				{this.renderDetails(current)}
 			</div>
 		);
 	}
@@ -235,4 +223,4 @@ Weather.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Weather;
+export default withTranslation( 'Weather' )( Weather );
