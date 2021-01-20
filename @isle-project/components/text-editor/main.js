@@ -157,7 +157,8 @@ class TextEditor extends Component {
 					const blob = new Blob([ text ], {
 						type: 'text/html'
 					});
-					saveAs( blob, `${title}.html` ); // eslint-disable-line i18next/no-literal-string
+					saveAs( blob, `${title}_${this.state.docId}.html` ); // eslint-disable-line i18next/no-literal-string
+					this.setState({ docId: this.state.docId + 1 });
 				}
 			},
 			{
