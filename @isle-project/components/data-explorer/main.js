@@ -868,80 +868,9 @@ class DataExplorer extends Component {
 		}
 	}
 
-	/**
-	* React component render method.
-	*/
-	render() {
-		debug( 'Render component...' );
-		if ( !this.state.data ) {
-			return (
-				<SpreadsheetUpload
-					title={this.props.t('data-explorer')}
-					onUpload={this.onFileUpload}
-				/>
-			);
-		}
-		if ( !this.state.ready ) {
-			const variableNames = objectKeys( this.state.data );
-			return ( <Card>
-				<Card.Header as="h3">
-					{this.props.t('data-explorer')}
-				</Card.Header>
-				<Card.Body>
-					<h4>{this.props.t('select-quantitative-categorical')}:</h4>
-					<SelectInput
-						legend={this.props.t('quantitative')}
-						options={variableNames}
-						defaultValue={this.state.quantitative}
-						multi
-						onChange={( quantitative ) => {
-							this.setState({ quantitative });
-						}}
-					/>
-					<SelectInput
-						legend={this.props.t('categorical')}
-						options={variableNames}
-						defaultValue={this.state.categorical}
-						multi
-						onChange={( categorical ) => {
-							this.setState({ categorical });
-						}}
-					/>
-					<Button onClick={() => {
-						const groupVars = this.state.categorical.slice();
-						const ready = true;
-						this.setState({
-							groupVars,
-							ready
-						}, () => {
-							const session = this.context;
-							session.store.setItem( this.id+'_quantitative', this.state.quantitative, debug );
-							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
-						});
-					}}>{this.props.t('submit')}</Button>
-					<DataTable data={this.state.data} id={this.id + '_table'} />
-				</Card.Body>
-			</Card> );
-		}
-		if ( isEmptyObject( this.state.data ) ) {
-			return <Alert variant="danger">{this.props.t('data-empty')}</Alert>;
-		}
-		if ( !this.state.validVariables ) {
-			return ( <Alert variant="danger">
-				<Trans i18nKey="variables-invalid-alert" ns="DataExplorer" >
-					The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.
-				</Trans>
-			</Alert> );
-		}
-		let nStatistics = this.props.statistics.length;
-		let defaultActiveKey = '1';
-		if ( nStatistics === 0 ) {
-			if ( this.props.tables.length > 0 ) {
-				defaultActiveKey = '2.1';
-			}
-			else {
-				defaultActiveKey = '3.1';
-			}
+	renderToolbox() {
+		if ( !this.state.showToolbox ) {
+			return null;
 		}
 		const categoricalProps = {
 			data: this.state.data,
@@ -957,6 +886,16 @@ class DataExplorer extends Component {
 			onCreated: this.addToOutputs,
 			onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
 		};
+		const nStatistics = this.props.statistics.length;
+		let defaultActiveKey = '1';
+		if ( nStatistics === 0 ) {
+			if ( this.props.tables.length > 0 ) {
+				defaultActiveKey = '2.1';
+			}
+			else {
+				defaultActiveKey = '3.1';
+			}
+		}
 
 		const navbar = <Nav variant="tabs">
 			{ nStatistics > 0 ?
@@ -1501,6 +1440,120 @@ class DataExplorer extends Component {
 				</Tab.Pane> : null
 			}
 		</Tab.Content>;
+
+		return (
+			<Draggable
+				cancel=".input" disabled={this.state.disableToolbarDragging}
+			>
+				<Card
+					border="secondary"
+					id={`${this.id}-toolbox`}
+					className="data-explorer-toolbox"
+					role="button" tabIndex={0}
+				>
+					<Card.Header className="data-explorer-toolbox-header" >
+						<Card.Title
+							as="h3" unselectable="on" className="data-explorer-toolbox-title"
+						>
+							{this.props.t('toolbox')}
+						</Card.Title>
+						<ToolboxTutorialButton
+							onTutorialStart={() => {
+								this.setState({
+									disableToolbarDragging: true
+								});
+								this.props.onTutorialStart();
+							}}
+							onTutorialCompletion={() => {
+								this.setState({
+									disableToolbarDragging: false
+								});
+								this.props.onTutorialCompletion();
+							}}
+							id={`${this.id}-toolbox`}
+							t={this.props.t}
+						/>
+						<Button
+							variant="secondary"
+							size="sm"
+							style={{ position: 'absolute', right: '20px' }}
+							onClick={this.toggleToolbox}
+						>{this.props.t('hide-toolbox')}</Button>
+					</Card.Header>
+					<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
+						<Tab.Container defaultActiveKey={defaultActiveKey}>
+							{navbar}
+							{tabs}
+						</Tab.Container>
+					</Card.Body>
+				</Card>
+			</Draggable>
+		);
+	}
+
+	render() {
+		debug( 'Render component...' );
+		if ( !this.state.data ) {
+			return (
+				<SpreadsheetUpload
+					title={this.props.t('data-explorer')}
+					onUpload={this.onFileUpload}
+				/>
+			);
+		}
+		if ( !this.state.ready ) {
+			const variableNames = objectKeys( this.state.data );
+			return ( <Card>
+				<Card.Header as="h3">
+					{this.props.t('data-explorer')}
+				</Card.Header>
+				<Card.Body>
+					<h4>{this.props.t('select-quantitative-categorical')}:</h4>
+					<SelectInput
+						legend={this.props.t('quantitative')}
+						options={variableNames}
+						defaultValue={this.state.quantitative}
+						multi
+						onChange={( quantitative ) => {
+							this.setState({ quantitative });
+						}}
+					/>
+					<SelectInput
+						legend={this.props.t('categorical')}
+						options={variableNames}
+						defaultValue={this.state.categorical}
+						multi
+						onChange={( categorical ) => {
+							this.setState({ categorical });
+						}}
+					/>
+					<Button onClick={() => {
+						const groupVars = this.state.categorical.slice();
+						const ready = true;
+						this.setState({
+							groupVars,
+							ready
+						}, () => {
+							const session = this.context;
+							session.store.setItem( this.id+'_quantitative', this.state.quantitative, debug );
+							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
+						});
+					}}>{this.props.t('submit')}</Button>
+					<DataTable data={this.state.data} id={this.id + '_table'} />
+				</Card.Body>
+			</Card> );
+		}
+		if ( isEmptyObject( this.state.data ) ) {
+			return <Alert variant="danger">{this.props.t('data-empty')}</Alert>;
+		}
+		if ( !this.state.validVariables ) {
+			return ( <Alert variant="danger">
+				<Trans i18nKey="variables-invalid-alert" ns="DataExplorer" >
+					The <b>quantitative</b> or <b>categorical</b> data arrays contain variable names not present in the <b>data</b> object.
+				</Trans>
+			</Alert> );
+		}
+
 		const hasQuestions = isArray( this.props.questions ) && this.props.questions.length > 0;
 		const pagesHeight = this.props.style.height || ( window.innerHeight*0.9 ) - 165;
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
@@ -1752,55 +1805,7 @@ class DataExplorer extends Component {
 		return (
 			<Fragment>
 				{mainContainer}
-				<Draggable
-					cancel=".input" disabled={this.state.disableToolbarDragging}
-					style={{
-						display: this.state.showToolbox ? 'inline' : 'none'
-					}}
-				>
-					<Card
-						border="secondary"
-						id={`${this.id}-toolbox`}
-						className="data-explorer-toolbox"
-						role="button" tabIndex={0}
-					>
-						<Card.Header className="data-explorer-toolbox-header" >
-							<Card.Title
-								as="h3" unselectable="on" className="data-explorer-toolbox-title"
-							>
-								{this.props.t('toolbox')}
-							</Card.Title>
-							<ToolboxTutorialButton
-								onTutorialStart={() => {
-									this.setState({
-										disableToolbarDragging: true
-									});
-									this.props.onTutorialStart();
-								}}
-								onTutorialCompletion={() => {
-									this.setState({
-										disableToolbarDragging: false
-									});
-									this.props.onTutorialCompletion();
-								}}
-								id={`${this.id}-toolbox`}
-								t={this.props.t}
-							/>
-							<Button
-								variant="secondary"
-								size="sm"
-								style={{ position: 'absolute', right: '20px' }}
-								onClick={this.toggleToolbox}
-							>{this.props.t('hide-toolbox')}</Button>
-						</Card.Header>
-						<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
-							<Tab.Container defaultActiveKey={defaultActiveKey}>
-								{navbar}
-								{tabs}
-							</Tab.Container>
-						</Card.Body>
-					</Card>
-				</Draggable>
+				{this.renderToolbox()}
 			</Fragment>
 		);
 	}
