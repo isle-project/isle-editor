@@ -38,8 +38,8 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 		config.autobinx = false;
 		config.xbins = {
 			size: sizeVal,
-			start: minVal,
-			end: maxVal
+			start: minVal - sizeVal,
+			end: maxVal + sizeVal
 		};
 	}
 	else if ( binStrategy === 'Set bin width' ) {
