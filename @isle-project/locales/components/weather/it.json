@@ -1,3 +1,6 @@
 {
-	"humidity": "umidità:"
+	"direction": "direzione",
+	"humidity": "umidità",
+	"loading-weather-data-for": "Caricamento dei dati meteo per {{loc}}...",
+	"wind": "vento"
 }

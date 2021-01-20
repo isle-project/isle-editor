@@ -1,3 +1,6 @@
 {
-	"humidity": "Влажность:"
+	"direction": "распоряжение",
+	"humidity": "Влажность",
+	"loading-weather-data-for": "Загрузка данных о погоде для {{loc}}...",
+	"wind": "ветер"
 }

@@ -1,3 +1,6 @@
 {
-	"humidity": "湿度；"
+	"direction": "方向",
+	"humidity": "湿度",
+	"loading-weather-data-for": "正在加载{{loc}}的天气数据。",
+	"wind": "风"
 }

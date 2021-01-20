@@ -1,3 +1,6 @@
 {
-	"humidity": "湿度。"
+	"direction": "ほうこう",
+	"humidity": "湿度",
+	"loading-weather-data-for": "の天気データを読み込み中 {{loc}}...",
+	"wind": "風"
 }
