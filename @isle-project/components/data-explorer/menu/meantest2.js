@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import memoize from '@stdlib/utils/memoize';
+import objectKeys from '@stdlib/utils/keys';
 import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
@@ -13,6 +15,13 @@ import MeanTest2 from '@isle-project/components/tests/meantest2';
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
+
+
+// VARIABLES //
+
+const memoizedBinaryVars = memoize( getBinaryVars, ( args ) => {
+	return `${args[ 0 ]}-${objectKeys( args[ 1 ])}`;
+});
 
 
 // MAIN //
@@ -50,7 +59,7 @@ const MeanTest2Menu = ( props ) => {
 		props.onCreated( output );
 	};
 
-	const binary = getBinaryVars( categorical, data );
+	const binary = memoizedBinaryVars( categorical, data );
 	return (
 		<Card
 			style={{ fontSize: '14px' }}

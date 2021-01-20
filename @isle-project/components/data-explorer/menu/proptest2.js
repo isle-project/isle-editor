@@ -10,6 +10,7 @@ import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import contains from '@stdlib/assert/contains';
+import memoize from '@stdlib/utils/memoize';
 import isArray from '@stdlib/assert/is-array';
 import unique from 'uniq';
 import PropTest2 from '@isle-project/components/tests/proptest2';
@@ -17,6 +18,13 @@ import extractCategoriesFromValues from '@isle-project/utils/extract-categories-
 import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
+
+
+// VARIABLES //
+
+const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
+	return args[ 1 ];
+});
 
 
 // MAIN //
@@ -29,7 +37,7 @@ const PropTest2Menu = ( props ) => {
 	if ( isArray( categorical ) && categorical.length > 0 ) {
 		const values = data[ defaultVar1 ];
 		if ( values ) {
-			defaultCategories = extractCategoriesFromValues( values, defaultVar1 );
+			defaultCategories = extractCategories( values, defaultVar1 );
 		} else {
 			defaultCategories = [];
 		}

@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
+import memoize from '@stdlib/utils/memoize';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import { DATA_EXPLORER_LOGISTIC_REGRESSION } from '@isle-project/constants/actions.js';
@@ -21,6 +22,9 @@ import QuestionButton from './../question_button.js';
 // VARIABLES //
 
 const DESCRIPTION = 'Predict a categorical response variable using one or more explanatory variables.';
+const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
+	return args[ 1 ];
+});
 
 
 // MAIN //
@@ -34,7 +38,7 @@ class LogisticRegressionMenu extends Component {
 		let success;
 		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
 			y = props.categorical[ 0 ];
-			categories = extractCategoriesFromValues( props.data[ y ], y );
+			categories = extractCategories( props.data[ y ], y );
 			success = categories[ categories.length-1 ];
 		} else {
 			categories = [];
