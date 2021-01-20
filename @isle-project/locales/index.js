@@ -889,7 +889,6 @@ i18n.use( LanguageDetector )
 		resources: RESOURCES,
 		react: {
 			bindI18n: 'languageChanged',
-			bindI18nStore: 'added',
 			wait: false
 		},
 		interpolation: {
@@ -925,18 +924,21 @@ export function addResources( ns ) {
 	lng = normalizeLanguageCode( lng );
 
 	debug( `Loading translations for ${ns} in language ${lng}...` );
-	NAMESPACES.add( ns );
-	if ( !TRANSLATIONS[ lng ] ) {
-		lng = 'en';
-	}
-	const res = TRANSLATIONS[ lng ][ ns ];
-	if ( res ) {
-		res().then( ( data ) => {
-			if ( i18n.addResources ) {
-				i18n.addResources( lng, ns, data );
-			} else {
-				RESOURCES[ lng ][ ns ] = data;
-			}
-		});
+	if ( !NAMESPACES.has( ns ) ) {
+		NAMESPACES.add( ns );
+		if ( !TRANSLATIONS[ lng ] ) {
+			lng = 'en';
+		}
+		const res = TRANSLATIONS[ lng ][ ns ];
+		if ( res ) {
+			res().then( ( data ) => {
+				if ( i18n.addResources ) {
+					i18n.addResources( lng, ns, data );
+					i18n.changeLanguage( lng );
+				} else {
+					RESOURCES[ lng ][ ns ] = data;
+				}
+			});
+		}
 	}
 }
