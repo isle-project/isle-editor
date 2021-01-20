@@ -2,24 +2,28 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import VoiceInput from '@isle-project/components/input/voice';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
+import Card from 'react-bootstrap/Card';
+import VoiceInput from '@isle-project/components/input/voice';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import './wikipedia.css';
 
 
 // VARIABLES //
 
+addResources( 'Wikipedia' );
 const debug = logger( 'isle:wikipedia' );
 
 
 // MAIN //
 
 /**
-* The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search term.
+* The **Wikipedia** component scans the **Wikipedia** and returns an article if anything valid is found under the entered search term.
 *
-* @property {boolean} invisible - controls whether to display a text input field to search for Wikipedia articles
 * @property {string} language - language identifier
+* @property {Object} style - CSS inline styles
 */
 class Wikipedia extends Component {
 	constructor( props ) {
@@ -105,11 +109,12 @@ class Wikipedia extends Component {
 		if ( !this.props.invisible ) {
 			return (
 				<VoiceInput
-					style={{ float: 'left' }}
+					className="wikipedia-voice-input"
 					language={this.props.language}
 					onChange={this.changeVoiceHandler}
 					onSubmit={this.getResult}
 					onFinalText={this.getResult}
+					placeholder={this.props.t('enter-text-and-click-globe')}
 				/>
 			);
 		}
@@ -120,7 +125,8 @@ class Wikipedia extends Component {
 			return (
 				<button
 					onClick={this.handleClick}
-					className="wikipedia-logo">
+					className="wikipedia-logo"
+				>
 				</button>
 			);
 		}
@@ -131,9 +137,9 @@ class Wikipedia extends Component {
 			return null;
 		}
 		return (
-			<div className="wikipedia-result">
+			<div className="wikipedia-result" >
 				<iframe
-					title="Wikipedia Page"
+					title={this.props.t('wikipedia-page')}
 					src={this.state.response}
 					width="100%"
 					height={600}
@@ -144,12 +150,19 @@ class Wikipedia extends Component {
 
 	render() {
 		return (
-			<div className="wikipedia" >
-				{this.renderSpeech()}
-				{this.renderLogo()}
-				<div className="wikipedia-separator"></div>
-				{this.renderResult()}
-			</div>
+			<Card className="wikipedia" style={this.props.style} >
+				<Card.Header>
+					<Card.Title as="h3">
+						{this.props.t('browse-wikipedia')}
+					</Card.Title>
+				</Card.Header>
+				<Card.Body>
+					{this.renderSpeech()}
+					{this.renderLogo()}
+					<div className="wikipedia-separator"></div>
+					{this.renderResult()}
+				</Card.Body>
+			</Card>
 		);
 	}
 }
@@ -158,13 +171,13 @@ class Wikipedia extends Component {
 // PROPERTIES //
 
 Wikipedia.defaultProps = {
-	invisible: false,
-	language: 'en-US'
+	language: 'en-US',
+	style: {}
 };
 
 Wikipedia.propTypes = {
-	invisible: PropTypes.bool,
-	language: PropTypes.string
+	language: PropTypes.string,
+	style: PropTypes.object
 };
 
 Wikipedia.contextType = SessionContext;
@@ -172,4 +185,4 @@ Wikipedia.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Wikipedia;
+export default withTranslation( 'Wikipedia' )( Wikipedia );
