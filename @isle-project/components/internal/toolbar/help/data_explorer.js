@@ -14,13 +14,13 @@ const main = ({ t }) => {
 			<p>{t( 'data-explorer-p1' )}</p>
 
 			<div className="centered" style={{ width: 'fit-content' }} >
-				<Image alt="Explorer View" src="https://isle.heinz.cmu.edu/paris21_data_explorer_view.jpg" width={400} height={200} />
+				<Image alt="Explorer View" src={`${location.origin}/screenshots/data_explorer_view.jpg`} width={400} height={200} />
 			</div>
 
 			<p>{t( 'data-explorer-p2' )}</p>
 
 			<div className="centered" style={{ width: 'fit-content' }} >
-				<Image className="centered" alt="Explorer Output" src="https://isle.heinz.cmu.edu/paris21_data_explorer_outputs.jpg" width={400} height={200} />
+				<Image className="centered" alt="Explorer Output" src={`${location.origin}/screenshots/data_explorer_outputs.jpg`} width={400} height={200} />
 			</div>
 
 			<p>{t( 'data-explorer-p3' )}</p>
