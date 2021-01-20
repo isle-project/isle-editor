@@ -103,7 +103,7 @@ class Weather extends Component {
 	getData = ( location ) => {
 		const session = this.context;
 		if ( location && session.server ) {
-			axios.get( `${session.server}/apixu_weather?location=${location}` )
+			axios.get( `${session.server}/weather?location=${location}` )
 				.then( response => {
 					this.setWeatherData( response.data );
 				})
