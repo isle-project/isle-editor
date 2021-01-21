@@ -1581,7 +1581,7 @@ class DataExplorer extends Component {
 									<Nav.Link
 										active={this.state.openedNav === 'editor'}
 										eventKey="editor"
-									>{this.props.editorTitle}</Nav.Link>
+									>{this.props.editorTitle ? this.props.editorTitle : this.props.t('report')}</Nav.Link>
 								</Nav.Item> : null
 							}
 							{ this.props.history ?
@@ -1896,7 +1896,7 @@ DataExplorer.defaultProps = {
 	quantitative: [],
 	editor: true,
 	editorProps: null,
-	editorTitle: 'Report',
+	editorTitle: null,
 	reportMode: 'individual',
 	histogramDensities: true,
 	showTestDecisions: true,

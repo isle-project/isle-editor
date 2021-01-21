@@ -209,6 +209,7 @@
 	"relative-frequencies-inside-each-group": "每组内的相对频率",
 	"relative-frequency": "相对频率",
 	"rename-or-combine": "重新命名或合并类别",
+	"report": "报告",
 	"report-relative-frequencies": "报告相对频率",
 	"restore-dataset": "还原数据集",
 	"restore-dataset-tooltip": "在数据表中使用给定的过滤器还原数据集。",

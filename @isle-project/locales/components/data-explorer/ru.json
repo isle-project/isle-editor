@@ -209,6 +209,7 @@
 	"relative-frequencies-inside-each-group": "Относительные частоты внутри каждой группы",
 	"relative-frequency": "относительная частота",
 	"rename-or-combine": "Переименовать или объединить категории",
+	"report": "Сообщить",
 	"report-relative-frequencies": "Сообщайте об относительных частотах к",
 	"restore-dataset": "Восстановление набора данных",
 	"restore-dataset-tooltip": "Восстановление набора данных с помощью заданных фильтров в таблице данных",

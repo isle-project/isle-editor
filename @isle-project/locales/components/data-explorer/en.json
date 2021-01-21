@@ -209,6 +209,7 @@
 	"relative-frequencies-inside-each-group": "Relative frequencies inside each group",
 	"relative-frequency": "Relative Frequency",
 	"rename-or-combine": "Rename or combine categories",
+	"report": "Report",
 	"report-relative-frequencies": "Report relative frequencies to",
 	"restore-dataset": "Restore dataset",
 	"restore-dataset-tooltip": "Restore dataset with the given filters in the data table",

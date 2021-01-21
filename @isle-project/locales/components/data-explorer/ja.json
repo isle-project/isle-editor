@@ -209,6 +209,7 @@
 	"relative-frequencies-inside-each-group": "各グループ内の相対度数",
 	"relative-frequency": "相対的な頻度",
 	"rename-or-combine": "カテゴリの名前を変更または結合する",
+	"report": "報告書",
 	"report-relative-frequencies": "相対的な頻度を報告します。",
 	"restore-dataset": "データセットの復元",
 	"restore-dataset-tooltip": "データテーブル内の与えられたフィルタでデータセットをリストアします。",

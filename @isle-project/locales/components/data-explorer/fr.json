@@ -209,6 +209,7 @@
 	"relative-frequencies-inside-each-group": "Fréquences relatives à l'intérieur de chaque groupe",
 	"relative-frequency": "Fréquence relative",
 	"rename-or-combine": "Renommer ou combiner des catégories",
+	"report": "Rapport",
 	"report-relative-frequencies": "Signalez les fréquences relatives à",
 	"restore-dataset": "Restaurer l'ensemble des données",
 	"restore-dataset-tooltip": "Restaurer l'ensemble des données avec les filtres donnés dans le tableau des données",
