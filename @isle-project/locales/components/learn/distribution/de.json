@@ -34,6 +34,7 @@
 	"number-distinct-values": "Anzahl der eindeutigen Werte",
 	"number-failures-until-success": "Seien Sie <1/> die Anzahl der Fehlschläge bis zum ersten Erfolg.",
 	"number-of-draws": "und Anzahl der Ziehungen",
+	"number-of-draws-trials": "Anzahl der Ziehungen / Versuche",
 	"number-of-occurrences": "die Anzahl der Vorkommnisse sein.",
 	"number-of-successes": "Anzahl der Erfolge",
 	"number-of-successes-until-experiment-stopped": "Für die Anzahl der Erfolge bis zum Abbruch des Experiments",

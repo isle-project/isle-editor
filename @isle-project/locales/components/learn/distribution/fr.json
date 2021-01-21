@@ -34,6 +34,7 @@
 	"number-distinct-values": "Nombre de valeurs distinctes",
 	"number-failures-until-success": "Soit <1/> le nombre d'échecs jusqu'au premier succès.",
 	"number-of-draws": "et le nombre de tirages",
+	"number-of-draws-trials": "Nombre de tirages / procès",
 	"number-of-occurrences": "être le nombre d'occurrences.",
 	"number-of-successes": "nombre de succès",
 	"number-of-successes-until-experiment-stopped": "Pour un certain nombre de succès jusqu'à l'arrêt de l'expérience",

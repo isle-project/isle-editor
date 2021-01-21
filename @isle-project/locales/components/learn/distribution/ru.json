@@ -34,6 +34,7 @@
 	"number-distinct-values": "Количество различных значений",
 	"number-failures-until-success": "Пусть <1/> будет числом неудач до первого успеха.",
 	"number-of-draws": "и количество розыгрышей",
+	"number-of-draws-trials": "Количество розыгрышей / испытаний",
 	"number-of-occurrences": "количество случаев.",
 	"number-of-successes": "ряд успехов",
 	"number-of-successes-until-experiment-stopped": "Для ряда успехов до тех пор, пока эксперимент не будет остановлен",

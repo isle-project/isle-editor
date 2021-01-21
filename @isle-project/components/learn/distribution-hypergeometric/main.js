@@ -122,7 +122,7 @@ class HypergeometricProbs extends Component {
 				/>
 				<NumberInput
 					key={`${type}-n`}
-					legend="Number of draws / trials"
+					legend={this.props.t('number-of-draws-trials')}
 					defaultValue={this.state.n}
 					step={1}
 					min={0}

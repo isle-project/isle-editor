@@ -34,6 +34,7 @@
 	"number-distinct-values": "異なる値の数",
 	"number-failures-until-success": "<1/>を最初の成功までの失敗回数とする。",
 	"number-of-draws": "と抽選回数",
+	"number-of-draws-trials": "ドロー数／トライアル数",
 	"number-of-occurrences": "は発生数である。",
 	"number-of-successes": "成功数",
 	"number-of-successes-until-experiment-stopped": "実験を中止するまでの成功回数",

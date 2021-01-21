@@ -34,6 +34,7 @@
 	"number-distinct-values": "Número de valores distintos",
 	"number-failures-until-success": "Que <1/> seja o número de fracassos até o primeiro sucesso.",
 	"number-of-draws": "e número de sorteios",
+	"number-of-draws-trials": "Número de sorteios / testes",
 	"number-of-occurrences": "ser o número de ocorrências.",
 	"number-of-successes": "número de sucessos",
 	"number-of-successes-until-experiment-stopped": "Para número de sucessos até que a experiência seja interrompida",

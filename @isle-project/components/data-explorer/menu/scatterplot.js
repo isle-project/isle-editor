@@ -124,7 +124,7 @@ const ScatterplotMenu = ( props ) => {
 						onChange={setType}
 					/>
 					<SelectInput
-						legend="Size:"
+						legend={`${t('size')}:`}
 						options={variables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
@@ -145,7 +145,7 @@ const ScatterplotMenu = ( props ) => {
 					/>
 					<div style={{ width: '100%' }}>
 						<SelectInput
-							legend="Method:"
+							legend={`${t('method')}:`}
 							defaultValue="linear"
 							multi={true}
 							options={[ 'linear', 'smooth' ]}
@@ -159,7 +159,7 @@ const ScatterplotMenu = ( props ) => {
 							}}
 						/>
 						<SelectInput
-							legend="Split By:"
+							legend={`${t('split-by')}:`}
 							options={props.groupingVariables}
 							clearable={true}
 							style={{ float: 'right', paddingLeft: 10, width: '45%' }}

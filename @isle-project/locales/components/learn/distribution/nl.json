@@ -34,6 +34,7 @@
 	"number-distinct-values": "Aantal verschillende waarden",
 	"number-failures-until-success": "Laat <1/> het aantal mislukkingen zijn tot het eerste succes.",
 	"number-of-draws": "en aantal trekkingen",
+	"number-of-draws-trials": "Aantal trekkingen / proeven",
 	"number-of-occurrences": "zijn het aantal voorvallen.",
 	"number-of-successes": "aantal successen",
 	"number-of-successes-until-experiment-stopped": "Voor het aantal successen totdat het experiment wordt stopgezet",

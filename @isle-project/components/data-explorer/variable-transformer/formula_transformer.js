@@ -294,7 +294,7 @@ class FormulaTransformer extends Component {
 								<TextArea
 									ref={div => { this.textarea = div; }}
 									legend="Expression:"
-									placeholder="Enter formula..."
+									placeholder={t('enter-formula')}
 									value={this.state.code}
 									onChange={this.handleCodeChange}
 									onBlur={( event ) => {

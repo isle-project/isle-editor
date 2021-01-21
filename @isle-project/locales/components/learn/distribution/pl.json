@@ -34,6 +34,7 @@
 	"number-distinct-values": "Liczba odrębnych wartości",
 	"number-failures-until-success": "Niech <1/> będzie liczbą niepowodzeń do pierwszego sukcesu.",
 	"number-of-draws": "i liczba losowań",
+	"number-of-draws-trials": "Liczba losowań / prób",
 	"number-of-occurrences": "to liczba zdarzeń.",
 	"number-of-successes": "liczba sukcesów",
 	"number-of-successes-until-experiment-stopped": "Za liczbę sukcesów do czasu zakończenia eksperymentu",

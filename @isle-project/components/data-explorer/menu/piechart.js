@@ -78,7 +78,7 @@ const PieChartMenu = ( props ) => {
 				/>
 				{ mode === MODES[ 1 ] ?
 					<SelectInput
-						legend="Set slice sizes to sum of summary variable:"
+						legend={t('set-slice-sizes')}
 						defaultValue={summaryVariable}
 						options={quantitative}
 						onChange={setSummaryVariable}

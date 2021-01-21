@@ -146,7 +146,7 @@ class RandomForestMenu extends Component {
 						min={1}
 					/>
 					<NumberInput
-						legend="# of predictors to check at each split"
+						legend={t('predictors-to-check')}
 						defaultValue={nTry}
 						inputStyle={{ float: 'right' }}
 						onChange={( nTry ) => this.setState({ nTry })}
@@ -155,7 +155,7 @@ class RandomForestMenu extends Component {
 						max={isArray( x ) ? x.length : 1}
 					/>
 					<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
-						<NumberInput legend="Score threshold for split"
+						<NumberInput legend={t('score-threshold-for-split')}
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
 						/>

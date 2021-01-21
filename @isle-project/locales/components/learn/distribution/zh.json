@@ -34,6 +34,7 @@
 	"number-distinct-values": "不同数值的数量",
 	"number-failures-until-success": "让<1/>为第一次成功之前的失败次数。",
 	"number-of-draws": "和抽签次数",
+	"number-of-draws-trials": "抽签/审判次数",
 	"number-of-occurrences": "是出现的次数。",
 	"number-of-successes": "成数",
 	"number-of-successes-until-experiment-stopped": "实验停止前的成功次数",
