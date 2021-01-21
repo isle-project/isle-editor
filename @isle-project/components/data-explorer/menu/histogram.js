@@ -100,7 +100,7 @@ const HistogramMenu = ( props ) => {
 					</Col>
 					<Col md={4} >
 						{ group ? <SelectInput
-							legend="Mode:"
+							legend={`${t('mode')}:`}
 							defaultValue={groupMode}
 							options={[ 'Overlay', 'Facets' ]}
 							onChange={setGroupMode}
@@ -108,7 +108,7 @@ const HistogramMenu = ( props ) => {
 					</Col>
 					<Col md={3} >
 						{ group && groupMode === 'Facets' ? <NumberInput
-							legend="Columns"
+							legend={t('columns')}
 							defaultValue={2}
 							min={1}
 							onChange={setNCols}
@@ -138,7 +138,7 @@ const HistogramMenu = ( props ) => {
 					{ binStrategy !== 'Automatic' ?
 						<div>
 							<NumberInput
-								legend="Start"
+								legend={t('start')}
 								inline
 								defaultValue={xBins.start}
 								onChange={( val ) => {
@@ -153,7 +153,7 @@ const HistogramMenu = ( props ) => {
 							/>
 							{ binStrategy === 'Select # of bins' ?
 								<NumberInput
-									legend="Bins"
+									legend={t('bins')}
 									defaultValue={nBins}
 									min={1}
 									step={1}
@@ -166,7 +166,7 @@ const HistogramMenu = ( props ) => {
 							}
 							{ binStrategy === 'Set bin width' ?
 								<NumberInput
-									legend="Size"
+									legend={t('size')}
 									inline
 									defaultValue={xBins.size}
 									onChange={( val ) => {
@@ -181,7 +181,7 @@ const HistogramMenu = ( props ) => {
 								/> : null
 							}
 							<NumberInput
-								legend="End"
+								legend={t('end')}
 								inline
 								defaultValue={xBins.end}
 								onChange={( val ) => {
@@ -214,7 +214,7 @@ const HistogramMenu = ( props ) => {
 						/>
 						{densityType === 'Data-driven' ?
 							<NumberInput
-								legend="Bandwidth adjustment"
+								legend={t('bandwidth-adjustment')}
 								defaultValue={bandwidthAdjust}
 								min={0} step={0.1}
 								onChange={setBandwidthAdjust}

@@ -101,7 +101,7 @@ const ScatterplotMenu = ( props ) => {
 						onChange={setYval}
 					/>
 					<SelectInput
-						legend="Labels:"
+						legend={`${t('labels')}:`}
 						style={{ float: 'left', paddingLeft: 10, width: '33.3%' }}
 						clearable={true}
 						options={groupingVariables}
@@ -110,7 +110,7 @@ const ScatterplotMenu = ( props ) => {
 				</div>
 				<div style={{ width: '100%' }}>
 					<SelectInput
-						legend="Color:"
+						legend={`${t('color')}:`}
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'left', paddingRight: 10, width: '33.3%' }}
@@ -137,7 +137,7 @@ const ScatterplotMenu = ( props ) => {
 				}}>
 					<CheckboxInput
 						inline
-						legend="Show Regression Model"
+						legend={t('show-regression-model')}
 						defaultValue={false}
 						onChange={() => {
 							setRegressionLine( !regressionLine );

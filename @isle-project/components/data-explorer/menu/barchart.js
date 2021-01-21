@@ -163,7 +163,7 @@ const BarchartMenu = ( props ) => {
 				<Row>
 					<Col>
 						<FormGroup controlId="barchart-order-select">
-							<FormLabel>{group ? 'Order outer groups' : 'Order x-axis'}:</FormLabel>
+							<FormLabel>{group ? t('order-outer-groups') : t('order-x-axis')}:</FormLabel>
 							<Select
 								defaultValue={xOrder}
 								options={ORDER_OPTIONS}
