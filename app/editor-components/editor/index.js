@@ -987,16 +987,18 @@ class Editor extends Component {
 								const isleDir = join( destDir, `${fileName}-resources` ); // eslint-disable-line i18next/no-literal-string
 								const manifestPath = join( isleDir, 'manifest.json' );
 								const manifest = readJSON.sync( manifestPath );
-								const entry = manifest.resources[ basename( imgURL ) ];
-								if ( entry ) {
-									actions.push({
-										command: {
-											id: this.changeToRemote,
-											title: 'Replace local resource by remote file',
-											arguments: [ imgURL, entry, range ]
-										},
-										title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
-									});
+								if ( manifest.resources ) {
+									const entry = manifest.resources[ basename( imgURL ) ];
+									if ( entry ) {
+										actions.push({
+											command: {
+												id: this.changeToRemote,
+												title: 'Replace local resource by remote file',
+												arguments: [ imgURL, entry, range ]
+											},
+											title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+										});
+									}
 								}
 							}
 						}
