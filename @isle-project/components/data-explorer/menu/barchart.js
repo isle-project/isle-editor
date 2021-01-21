@@ -227,7 +227,7 @@ const BarchartMenu = ( props ) => {
 					</Col>
 					<Col>
 						<CheckboxInput
-							legend="Relative frequencies inside each group"
+							legend={t('relative-frequencies-inside-each-group')}
 							defaultValue={relative}
 							disabled={hideRelativeFrequencies}
 							onChange={setRelative}

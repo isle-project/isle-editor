@@ -81,7 +81,7 @@ const MosaicPlotMenu = ({ data, variables, session, t, logAction, onCreated, onP
 				defaultValue={false}
 			/>
 			<SelectInput
-				legend="Axis Label Rotation"
+				legend={t('axis-label-rotation')}
 				options={AXIS_OPTIONS}
 			/>
 		</Dashboard>

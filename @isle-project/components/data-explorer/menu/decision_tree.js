@@ -114,7 +114,7 @@ const DecisionTreeMenu = ( props ) => {
 					onChange={setImpurityMeasure}
 				/> : null }
 				<Collapse header={t('change-tree-features')} headerStyle={{ fontSize: '1rem' }} >
-					<NumberInput legend="Score threshold for split"
+					<NumberInput legend={t('score-threshold-for-split')}
 						min={0} max={1} step={0.001}
 						defaultValue={scoreThreshold} onChange={setScoreThreshold}
 					/>

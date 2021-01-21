@@ -107,7 +107,7 @@ class RandomForestMenu extends Component {
 				</Card.Header>
 				<Card.Body>
 					<SelectInput
-						legend="Type"
+						legend={t('type')}
 						options={[ 'Classification' ]}
 						defaultValue={type}
 						onChange={( type ) => {

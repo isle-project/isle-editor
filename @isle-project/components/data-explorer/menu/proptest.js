@@ -54,7 +54,7 @@ const PropTestMenu = ( props ) => {
 					}}
 				/>
 				{ categories ? <SelectInput
-					legend="Success:"
+					legend={`${t('success')}:`}
 					defaultValue={success}
 					options={categories}
 					onChange={setSuccess}

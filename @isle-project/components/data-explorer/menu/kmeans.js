@@ -69,7 +69,7 @@ const KMeansMenu = ( props ) => {
 				defaultValue={false}
 			/>
 			<SelectInput
-				legend="Initialization method"
+				legend={t('initialization-method')}
 				options={[ 'kmeans++', 'random', 'mostDistant' ]}
 				defaultValue="kmeans++"
 			/>

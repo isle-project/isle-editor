@@ -105,7 +105,7 @@ class HypergeometricProbs extends Component {
 			<Fragment>
 				<NumberInput
 					key={`${type}-N`}
-					legend="Population size"
+					legend={this.props.t('population-size')}
 					defaultValue={this.state.N}
 					min={1}
 					step={1}
@@ -113,7 +113,7 @@ class HypergeometricProbs extends Component {
 				/>
 				<NumberInput
 					key={`${type}-K`}
-					legend="Number of successes"
+					legend={this.props.t('number-of-successes')}
 					defaultValue={this.state.K}
 					step={1}
 					onChange={this.handleSuccessesChange}

@@ -84,14 +84,14 @@ const HierarchicalClusteringMenu = ( props ) => {
 			<Row>
 				<Col>
 					<SelectInput
-						legend="Linkage"
+						legend={t('linkage')}
 						defaultValue={LINKAGE[ 0 ]}
 						options={LINKAGE}
 					/>
 				</Col>
 				<Col>
 					<SelectInput
-						legend="Distance"
+						legend={t('distance')}
 						defaultValue={DISTANCES[ 0 ]}
 						options={DISTANCES}
 					/>

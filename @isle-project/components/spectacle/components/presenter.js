@@ -58,7 +58,7 @@ class Presenter extends Component {
 		const child = this._getSlideByIndex(slideIndex);
 		if ( child.props.duration ) {
 			return ( <Timer
-				legend="Current: "
+				legend={this.props.t('current')}
 				duration={child.props.duration}
 				style={{
 					top: '0px',

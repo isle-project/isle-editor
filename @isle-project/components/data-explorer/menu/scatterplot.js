@@ -117,7 +117,7 @@ const ScatterplotMenu = ( props ) => {
 						onChange={setColor}
 					/>
 					<SelectInput
-						legend="Type:"
+						legend={`${t('type')}:`}
 						options={groupingVariables}
 						clearable={true}
 						style={{ float: 'left', paddingLeft: 10, paddingRight: 10, width: '33.3%' }}
