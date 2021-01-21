@@ -101,7 +101,7 @@ const GradientPicker = ( props ) => {
 								setGradient({ angle, palette });
 							}}
 						/>
-						<CheckboxInput legend="Repeating?" defaultValue={repeating} onChange={setRepeating} />
+						<CheckboxInput legend={props.t('repeating')} defaultValue={repeating} onChange={setRepeating} />
 					</Col>
 			</Form.Group>
 			{props.onCreate ? <Button variant="secondary" onClick={() => {
@@ -142,7 +142,7 @@ const RadialGradientPicker = ( props ) => {
 							<SelectInput defaultValue="farthest-corner" options={SIZE_OPTIONS} onChange={setSize} />
 						</Col>
 						<Col sm={4} >
-							<CheckboxInput legend="Repeating?" defaultValue={repeating} onChange={setRepeating} />
+							<CheckboxInput legend={props.t('repeating')} defaultValue={repeating} onChange={setRepeating} />
 						</Col>
 					</Form.Group>
 					<Form.Group as={Row} >

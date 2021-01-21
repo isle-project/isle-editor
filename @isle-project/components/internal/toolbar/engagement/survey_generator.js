@@ -202,14 +202,14 @@ class SurveyGenerator extends Component {
 				</FormGroup>
 				<FormGroup>
 					<TextArea
-						legend="Question"
+						legend={this.props.t('question')}
 						onChange={this.setQuestion}
 						rows={2}
 					/>
 				</FormGroup>
 				{ this.state.type === 'multiple-choice' ?
 					<FormGroup>
-						<TextArea legend="Answer Options (new-line delimited)" onChange={this.getAnswers} />
+						<TextArea legend={this.props.t('answer-options-new-line-delimited')} onChange={this.getAnswers} />
 					</FormGroup> : null
 				}
 				<CheckboxInput

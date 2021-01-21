@@ -219,7 +219,7 @@ const BinningTransformer = ( props ) => {
 			<Col md={4}>
 				<TextInput
 					key={0}
-					legend="Label 1"
+					legend={`${props.t('label')} 1`}
 					defaultValue={state.categories[ 0 ]}
 					onChange={categoryChangeFactory( 0 )}
 					style={{ width: 200 }}
@@ -249,7 +249,7 @@ const BinningTransformer = ( props ) => {
 					<Col md={4}>
 						<TextInput
 							key={1+i}
-							legend={`Label ${i+2}`}
+							legend={`${props.t('label')} ${i+2}`}
 							defaultValue={state.categories[ i+1 ]}
 							onChange={changeFn}
 							style={{ width: 200 }}

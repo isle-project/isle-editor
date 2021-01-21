@@ -63,15 +63,15 @@ const PrincipalComponentAnalysisMenu = ( props ) => {
 				closeMenuOnSelect={false}
 			/>
 			<CheckboxInput
-				legend="Center values (= subtract the mean)?"
+				legend={t('center-values-subtract-the-mean')}
 				defaultValue={true}
 			/>
 			<CheckboxInput
-				legend="Scale values (= divide by standard deviation)?"
+				legend={t('scale-values')}
 				defaultValue={false}
 			/>
 			<NumberInput
-				legend="# of components to add to data table"
+				legend={t('components-to-add')}
 				min={0}
 				defaultValue={0}
 			/>

@@ -107,7 +107,7 @@ class GroupTransformer extends Component {
 				</Col>
 				<Col>
 					<NumberInput
-						legend="Group Proportion"
+						legend={this.props.t('group-proportion')}
 						onChange={( val ) => {
 							const groupProbs = this.state.groupProbs.slice();
 							groupProbs[ i ] = val;

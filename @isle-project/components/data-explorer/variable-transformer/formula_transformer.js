@@ -293,7 +293,7 @@ class FormulaTransformer extends Component {
 							<Card.Body>
 								<TextArea
 									ref={div => { this.textarea = div; }}
-									legend="Expression:"
+									legend={`${t('expression')}:`}
 									placeholder={t('enter-formula')}
 									value={this.state.code}
 									onChange={this.handleCodeChange}
