@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "匿名调查",
 	"anonymous-survey-tooltip": "选择是否以匿名方式收集调查数据。",
+	"answer-options-new-line-delimited": "答案选项（以新行分隔",
 	"answer-recorded": "答复记录",
 	"answer-recorded-message": "您的回答已被成功记录。",
 	"answer-slow-fast": "速度是 \"太慢 \"还是 \"太快\"？",
@@ -35,6 +36,7 @@
 	"poll-responses": "投票回复",
 	"polls": "民意调查",
 	"posted-to-queue": "有人在队列上发布了一个问题",
+	"question": "问题",
 	"queue": "队列",
 	"range": "范围",
 	"response": "应对措施",

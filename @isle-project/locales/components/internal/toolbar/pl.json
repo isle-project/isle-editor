@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Ankieta anonimowa",
 	"anonymous-survey-tooltip": "Wybór, czy dane z badań powinny być zbierane anonimowo, czy też nie.",
+	"answer-options-new-line-delimited": "Odpowiedź Opcje (wyznaczona nowa linia)",
 	"answer-recorded": "Odpowiedź zarejestrowana",
 	"answer-recorded-message": "Twoja odpowiedź została pomyślnie zarejestrowana.",
 	"answer-slow-fast": "Czy prędkość jest \"Zbyt wolna\" czy \"Zbyt szybka\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Odpowiedzi na pytania zawarte w sondażu",
 	"polls": "Sondaże",
 	"posted-to-queue": "Ktoś postawił pytanie w kolejce",
+	"question": "Pytanie",
 	"queue": "Kolejka",
 	"range": "Zasięg",
 	"response": "Reakcja",

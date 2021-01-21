@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Anonymous survey",
 	"anonymous-survey-tooltip": "Choose whether survey data should be collected anonymously or not",
+	"answer-options-new-line-delimited": "Answer Options (new-line delimited)",
 	"answer-recorded": "Answer recorded",
 	"answer-recorded-message": "Your answer was recorded successfully.",
 	"answer-slow-fast": "Is the speed \"Too Slow\" or \"Too Fast\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Poll Responses",
 	"polls": "Polls",
 	"posted-to-queue": "Someone posted a question on the queue",
+	"question": "Question",
 	"queue": "Queue",
 	"range": "Range",
 	"response": "Response",

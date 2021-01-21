@@ -277,6 +277,7 @@
 	"release-to-students": "¿Liberar a los estudiantes?",
 	"rendering-interval": "Intervalo de representación",
 	"rendering-interval-description": "Intervalo entre renders (en segundos)",
+	"repeating": "¿Repitiendo?",
 	"replace": "Reemplazar",
 	"require-in-preamble": "Requiere {{alias}} en el preámbulo",
 	"reset": "Reiniciar",

@@ -277,6 +277,7 @@
 	"release-to-students": "Release to Students?",
 	"rendering-interval": "Rendering Interval",
 	"rendering-interval-description": "Interval between renders (in seconds)",
+	"repeating": "Repeating?",
 	"replace": "Replace",
 	"require-in-preamble": "Require {{alias}} in preamble",
 	"reset": "Reset",

@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Encuesta anónima",
 	"anonymous-survey-tooltip": "Elegir si los datos de la encuesta deben recogerse de forma anónima o no",
+	"answer-options-new-line-delimited": "Opciones de respuesta (nueva línea delimitada)",
 	"answer-recorded": "Respuesta grabada",
 	"answer-recorded-message": "Su respuesta fue grabada con éxito.",
 	"answer-slow-fast": "¿Es la velocidad \"demasiado lenta\" o \"demasiado rápida\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Respuestas a las encuestas",
 	"polls": "Encuestas",
 	"posted-to-queue": "Alguien puso una pregunta en la cola",
+	"question": "Pregunta",
 	"queue": "Cola",
 	"range": "Rango",
 	"response": "Respuesta",

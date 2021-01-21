@@ -277,6 +277,7 @@
 	"release-to-students": "Освобождение для студентов?",
 	"rendering-interval": "Интервал рендеринга",
 	"rendering-interval-description": "Интервал между рендерами (в секундах)",
+	"repeating": "Повторяешь?",
 	"replace": "Заменить",
 	"require-in-preamble": "Требовать {{alias}} в преамбуле.",
 	"reset": "Сброс",

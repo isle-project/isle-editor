@@ -277,6 +277,7 @@
 	"release-to-students": "学生へのリリース？",
 	"rendering-interval": "レンダリング間隔",
 	"rendering-interval-description": "レンダリング間の間隔（秒",
+	"repeating": "リピートですか？",
 	"replace": "置き換え",
 	"require-in-preamble": "前文に{{alias}}を要求する",
 	"reset": "リセット",

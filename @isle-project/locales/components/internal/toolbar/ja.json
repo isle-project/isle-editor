@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "匿名アンケート",
 	"anonymous-survey-tooltip": "アンケートデータを匿名で収集するかどうかを選択します。",
+	"answer-options-new-line-delimited": "回答オプション(改行で区切られたもの)",
 	"answer-recorded": "記録された回答",
 	"answer-recorded-message": "あなたの回答は無事に記録されました。",
 	"answer-slow-fast": "スピードは「遅い」か「速い」か？",
@@ -35,6 +36,7 @@
 	"poll-responses": "世論調査の回答",
 	"polls": "世論調査",
 	"posted-to-queue": "誰かがキューに質問を投稿しました",
+	"question": "質問",
 	"queue": "キュー",
 	"range": "範囲",
 	"response": "レスポンス",

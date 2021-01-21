@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Anoniem onderzoek",
 	"anonymous-survey-tooltip": "Kies of de enquêtegegevens al dan niet anoniem moeten worden verzameld",
+	"answer-options-new-line-delimited": "Beantwoordingsopties (nieuwe lijn afgebakend)",
 	"answer-recorded": "Antwoord opgenomen",
 	"answer-recorded-message": "Je antwoord is met succes opgenomen.",
 	"answer-slow-fast": "Is de snelheid \"Te langzaam\" of \"Te snel\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Reacties van de opiniepeiling",
 	"polls": "Opiniepeilingen",
 	"posted-to-queue": "Iemand heeft een vraag in de wachtrij geplaatst",
+	"question": "Vraag",
 	"queue": "Wachtrij",
 	"range": "Reeks",
 	"response": "Reactie",

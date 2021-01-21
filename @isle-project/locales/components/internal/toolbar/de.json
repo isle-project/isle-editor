@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Anonyme Umfrage",
 	"anonymous-survey-tooltip": "Wähle, ob die Umfragedaten anonym gesammelt werden sollen oder nicht",
+	"answer-options-new-line-delimited": "Antwortoptionen (durch neue Zeilen getrennt)",
 	"answer-recorded": "Antwort aufgezeichnet",
 	"answer-recorded-message": "Deine Antwort wurde erfolgreich aufgezeichnet.",
 	"answer-slow-fast": "Ist die Geschwindigkeit \"Zu langsam\" oder \"Zu schnell\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Abstimmungsantworten",
 	"polls": "Abstimmungen",
 	"posted-to-queue": "Jemand hat eine Frage in die Warteschlange geschrieben",
+	"question": "Frage",
 	"queue": "Warteschlange",
 	"range": "Range",
 	"response": "Antwort",

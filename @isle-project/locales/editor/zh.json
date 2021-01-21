@@ -277,6 +277,7 @@
 	"release-to-students": "释放给学生？",
 	"rendering-interval": "渲染间隔",
 	"rendering-interval-description": "渲染之间的时间间隔(秒)",
+	"repeating": "重复？",
 	"replace": "替换",
 	"require-in-preamble": "要求在序言中加入{{alias}}。",
 	"reset": "重置",

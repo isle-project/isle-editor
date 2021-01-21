@@ -277,6 +277,7 @@
 	"release-to-students": "Zwolnienie dla studentów?",
 	"rendering-interval": "Odstęp czasu między kolejnymi przetargami",
 	"rendering-interval-description": "Odstęp czasu między renderami (w sekundach)",
+	"repeating": "Powtarzasz?",
 	"replace": "Zastąpić",
 	"require-in-preamble": "Wymóg {{alias}} w preambule",
 	"reset": "Zresetować",

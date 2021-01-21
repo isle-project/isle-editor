@@ -1,6 +1,7 @@
 {
 	"anonymous-survey": "Анонимный опрос",
 	"anonymous-survey-tooltip": "Выберите, следует ли собирать данные опросов анонимно или нет.",
+	"answer-options-new-line-delimited": "Параметры ответа (новая строка разделена)",
 	"answer-recorded": "Запись ответа",
 	"answer-recorded-message": "Ваш ответ был успешно записан.",
 	"answer-slow-fast": "Скорость \"Слишком медленная\" или \"Слишком быстрая\"?",
@@ -35,6 +36,7 @@
 	"poll-responses": "Ответы на опросы",
 	"polls": "Опросы",
 	"posted-to-queue": "Кто-то поставил вопрос в очередь",
+	"question": "Вопрос",
 	"queue": "Очередь",
 	"range": "Диапазон",
 	"response": "Ответ",
