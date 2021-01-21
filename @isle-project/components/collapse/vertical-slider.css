@@ -26,6 +26,7 @@
 	transform-origin: left top;
 	animation: swing-in-top-fwd 0.5s;
 	border: 1px solid rgba(92, 92, 92, 0.6);
+	padding: 5px;
 }
 
 .vs-hidden {
