@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -37,7 +37,11 @@ const MeanTest2Menu = ( props ) => {
 	const [ type, setType ] = useState( 'T Test' );
 	const [ xstdev, setXstdev ] = useState( null );
 	const [ ystdev, setYstdev ] = useState( null );
+	const [ binary, setBinary ] = useState( [] );
 
+	useEffect( () => {
+		setBinary( memoizedBinaryVars( categorical, data ) );
+	}, [ categorical, data ]);
 	const calculateTwoSampleZTest = () => {
 		const { data, showDecision } = props;
 		if ( !y && !group ) {
@@ -58,8 +62,6 @@ const MeanTest2Menu = ( props ) => {
 		});
 		props.onCreated( output );
 	};
-
-	const binary = memoizedBinaryVars( categorical, data );
 	return (
 		<Card
 			style={{ fontSize: '14px' }}

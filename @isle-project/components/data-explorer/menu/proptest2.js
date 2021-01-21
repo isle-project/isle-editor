@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -32,26 +32,25 @@ const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
 const PropTest2Menu = ( props ) => {
 	const { categorical, data, showDecision, t } = props;
 
-	const defaultVar1 = categorical[ 0 ];
-	let defaultCategories;
-	if ( isArray( categorical ) && categorical.length > 0 ) {
-		const values = data[ defaultVar1 ];
-		if ( values ) {
-			defaultCategories = extractCategories( values, defaultVar1 );
-		} else {
-			defaultCategories = [];
-		}
-	} else {
-		defaultCategories = [];
-	}
-	const [ categories, setCategories ] = useState( defaultCategories );
-	const [ var1, setVar1 ] = useState( defaultVar1 );
+	const [ categories, setCategories ] = useState( [] );
+	const [ var1, setVar1 ] = useState( categorical[ 0 ] );
 	const [ success, setSuccess ] = useState( categories[ 0 ] );
 	const [ group, setGroup ] = useState( null );
 	const [ var2, setVar2 ] = useState( null );
 	const [ diff, setDiff ] = useState( 0 );
 	const [ direction, setDirection ] = useState( 'two-sided' );
 	const [ alpha, setAlpha ] = useState( 0.05 );
+
+	useEffect( () => {
+		if ( isArray( categorical ) && categorical.length > 0 ) {
+			const values = data[ categorical[ 0 ] ];
+			if ( values ) {
+				setCategories( extractCategories( values, categorical[ 0 ] ) );
+			} else {
+				setCategories();
+			}
+		}
+	}, [ categorical, data ] );
 
 	const calculateTwoSamplePropTest = () => {
 		if ( var1 === group || var1 === var2 ) {

@@ -32,26 +32,36 @@ const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
 class LogisticRegressionMenu extends Component {
 	constructor( props ) {
 		super( props );
+		this.state = {
+			categories: [],
+			y: null,
+			success: null,
+			x: props.quantitative[ 0 ],
+			intercept: true,
+			omitMissing: false
+		};
+	}
 
+	componentDidMount() {
 		let categories;
-		let y;
 		let success;
-		if ( isArray( props.categorical ) && props.categorical.length > 0 ) {
-			y = props.categorical[ 0 ];
-			categories = extractCategories( props.data[ y ], y );
+		let y;
+		const { categorical, data } = this.props;
+		if ( isArray( categorical ) && categorical.length > 0 ) {
+			y = categorical[ 0 ];
+			categories = extractCategories( data[ y ], y );
 			success = categories[ categories.length-1 ];
 		} else {
 			categories = [];
 			success = null;
 		}
-		this.state = {
-			categories,
+
+		// eslint-disable-next-line react/no-did-mount-set-state
+		this.setState({
 			y,
 			success,
-			x: props.quantitative[ 0 ],
-			intercept: true,
-			omitMissing: false
-		};
+			categories
+		});
 	}
 
 	compute = () => {
