@@ -57,7 +57,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 					onChange={setVariables}
 				/>
 				<SelectInput
-					legend={`${color}:`}
+					legend={`${t('color')}:`}
 					options={props.groupingVariables}
 					clearable={true}
 					onChange={setColor}
