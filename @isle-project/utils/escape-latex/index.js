@@ -5,7 +5,7 @@ import replace from '@stdlib/string/replace';
 
 // VARIABLES //
 
-const RE_SPECIAL_CHARS = /([$#&%_{}])/;
+const RE_SPECIAL_CHARS = /([$#&%_{}])/g;
 
 
 // MAIN //
