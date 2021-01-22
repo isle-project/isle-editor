@@ -2390,7 +2390,7 @@ class Session {
 	* @param {boolean} [options.showNotification] - controls whether to show upload notification
 	* @returns {void}
 	*/
-	uploadFile({ formData, callback = () => {}, showNotification = true }) {
+	uploadFile = ({ formData, callback = () => {}, showNotification = true }) => {
 		if ( this.lessonName ) {
 			formData.append( 'lessonName', this.lessonName );
 		}
@@ -2413,6 +2413,7 @@ class Session {
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + JWT.token );
 		xhr.onreadystatechange = () => {
+			console.log( xhr.readyState );
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;

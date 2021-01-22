@@ -32,6 +32,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import CustomButton from './custom_button.js';
 import { i18n } from '@isle-project/locales';
 import generateUID from '@isle-project/utils/uid/incremental';
+import loadBinaryImage from '@isle-project/utils/load-binary-image';
 import './image_upload_editor.css';
 import './form.css';
 
@@ -39,31 +40,6 @@ import './form.css';
 // VARIABLES //
 
 const uid = generateUID( 'image-upload-editor' );
-
-
-// FUNCTIONS //
-
-function uploadImage( file ) {
-	return new Promise((resolve, reject) => {
-		const { FileReader } = window;
-		if ( FileReader ) {
-			const reader = new FileReader();
-			reader.onload = event => {
-				// base64 encoded url.
-				const src = event.target.result;
-				resolve({
-					src, height: 0, width: 0, id: ''
-				});
-			};
-			reader.onerror = () => {
-				reject(new Error('FileReader failed'));
-			};
-			reader.readAsDataURL(file);
-		} else {
-			reject(new Error('FileReader is not available'));
-		}
-	});
-}
 
 
 // MAIN //
@@ -87,9 +63,9 @@ class ImageUploadEditor extends React.PureComponent {
 	}
 
 	_onSelectFile = ( event ) => {
-		const file = event.target.files && event.target.files[0];
+		const file = event.target.files && event.target.files[ 0 ];
 		if ( file && typeof file === 'object' ) {
-			this._upload(file);
+			this._upload( file );
 		}
 	}
 
@@ -111,13 +87,33 @@ class ImageUploadEditor extends React.PureComponent {
 		});
 	}
 
-	_upload = async ( file ) => {
-		try {
-			this.setState({ pending: true, error: null });
-			const image = await uploadImage( file );
-			this._onSuccess( image );
-		} catch ( ex ) {
-			this._onError(ex);
+	_upload = ( file ) => {
+		this.setState({ pending: true, error: null });
+		const session = global.session;
+		if ( session.server && session.uploadFile ) {
+			const formData = new FormData();
+			formData.append( 'file', file );
+			session.uploadFile({
+				formData,
+				callback: ( err, body ) => {
+					if ( err ) {
+						return this._onError( err );
+					}
+					if ( body && body.filename ) {
+						return this._onSuccess({ src: session.server + '/' + body.filename });
+					}
+					return this._onSuccess({ src: null });
+				},
+				showNotification: false
+			});
+		} else {
+			loadBinaryImage( file )
+				.then( ( image ) => {
+					this._onSuccess( image );
+				})
+				.catch( ( ex ) => {
+					this._onError( ex );
+				});
 		}
 	}
 

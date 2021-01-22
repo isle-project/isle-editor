@@ -31,6 +31,7 @@ import { TextSelection } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import isNull from '@stdlib/assert/is-null';
 import generateUID from '@isle-project/utils/uid/incremental';
+import loadBinaryImage from '@isle-project/utils/load-binary-image';
 import './ui/image_upload_placeholder.css';
 
 
@@ -78,26 +79,6 @@ function defer(fn) {
 	};
 }
 
-function uploadImage( file ) {
-	return new Promise( ( resolve, reject ) => {
-		const { FileReader } = window;
-		if ( FileReader ) {
-			const reader = new FileReader();
-			reader.onload = event => {
-				// base64 encoded url.
-				const src = event.target.result;
-				resolve({ src, height: 0, width: 0, id: '' });
-			};
-			reader.onerror = () => {
-				reject( new Error( 'FileReader failed' ) );
-			};
-			reader.readAsDataURL( file );
-		} else {
-			reject( new Error( 'FileReader is not available' ) );
-		}
-	});
-}
-
 export function uploadImageFiles(
 	view,
 	files,
@@ -130,7 +111,7 @@ export function uploadImageFiles(
 			const pos = findImageUploadPlaceholder(placeholderPlugin, view.state, id);
 			let trNext = view.state.tr;
 			if (pos && !view.readOnly && !view.disabled) {
-				const imageNode = imageType.create(imageInfo);
+				const imageNode = imageType.create( imageInfo );
 				trNext = trNext.replaceWith(pos, pos, imageNode);
 			} else {
 				// Upload was cancelled:
@@ -150,9 +131,28 @@ export function uploadImageFiles(
 		if ( isNull( ff ) ) {
 			throw new Error( 'unexpected null value' );
 		}
-		uploadImage( ff )
-			.then( done )
-			.catch( done.bind( null, { src: null }) );
+		const session = global.session;
+		if ( session.server && session.uploadFile ) {
+			const formData = new FormData();
+			formData.append( 'file', ff );
+			session.uploadFile({
+				formData,
+				callback: ( err, body ) => {
+					if ( err ) {
+						return done({ src: null });
+					}
+					if ( body && body.filename ) {
+						return done({ src: session.server + '/' + body.filename });
+					}
+					return done({ src: null });
+				},
+				showNotification: false
+			});
+		} else {
+			loadBinaryImage( ff )
+				.then( done )
+				.catch( done.bind( null, { src: null }) );
+		}
 	});
 
 	uploadNext();
