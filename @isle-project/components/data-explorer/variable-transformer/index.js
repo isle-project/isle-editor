@@ -102,7 +102,7 @@ const Transformer = ( props ) => {
 				<div style={{ padding: 12 }} >
 					<Button
 						onClick={toggleBinModal}
-						disabled={quantitative.length === 0}
+						disabled={!quantitative || quantitative.length === 0}
 						variant="primary"
 						block
 						style={{ fontSize: '1.2em' }}
@@ -113,7 +113,7 @@ const Transformer = ( props ) => {
 				<div style={{ padding: 12 }} >
 					<Button
 						onClick={toggleCategoricalModal}
-						disabled={categorical.length === 0}
+						disabled={!categorical || categorical.length === 0}
 						variant="primary"
 						block
 						style={{ fontSize: '1.2em' }}
