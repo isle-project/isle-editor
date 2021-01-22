@@ -59,6 +59,7 @@
 	"decimal-places": "Nachkommastelle(n)",
 	"Decision Tree": "Entscheidungsbaum",
 	"Decision Tree-description": "Lass einen Entscheidungsbaum entweder für ein Regressions- oder Klassifizierungsproblem wachsen. Bei quantitativen Antworten werden die Daten bei jeder Iteration des Algorithmus durch die Variable geteilt, die zu Splits mit der größten Verringerung der Varianz für die Antwort führt. Bei kategorialen Antworten werden die Daten nach dem Merkmal geteilt, das zum größten Informationsgewinn führt (gemessen entweder am Gini-Index oder an der Entropie).",
+	"delete": "Löschen",
 	"description": "Beschreibung",
 	"difference-h0": "Differenz unter H0",
 	"digits-after-comma-snap": "Ziffern nach dem Komma zum Einrasten",

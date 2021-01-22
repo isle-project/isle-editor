@@ -59,6 +59,7 @@
 	"decimal-places": "décimale(s).",
 	"Decision Tree": "Arbre de décision",
 	"Decision Tree-description": "Créez un arbre de décision pour un problème de régression ou de classification. Pour les réponses quantitatives, à chaque itération de l'algorithme, les données sont divisées par la variable qui conduit aux divisions avec la plus grande réduction de variance pour la réponse. Pour les réponses catégorielles, les données sont divisées en fonction de la caractéristique qui entraîne le gain d'information le plus important (mesuré soit en termes d'indice de Gini, soit en termes d'entropie)",
+	"delete": "Supprimer",
 	"description": "Description",
 	"difference-h0": "Différence sous H0",
 	"digits-after-comma-snap": "les chiffres après la virgule pour s'accrocher à",

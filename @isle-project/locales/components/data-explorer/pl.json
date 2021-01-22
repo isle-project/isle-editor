@@ -59,6 +59,7 @@
 	"decimal-places": "Miejsce dziesiętne (miejsca dziesiętne).",
 	"Decision Tree": "Drzewo decyzyjne",
 	"Decision Tree-description": "Wyhodować drzewo decyzyjne dla problemu regresji lub klasyfikacji. Dla ilościowych odpowiedzi, przy każdej iteracji algorytmu dane są dzielone przez zmienną, co prowadzi do podziałów z największą redukcją wariancji dla odpowiedzi. W przypadku odpowiedzi kategorycznych dane są dzielone na cechy, które prowadzą do największego przyrostu informacji (mierzonego albo w kategoriach indeksu Giniego albo entropii)",
+	"delete": "Skreślić",
 	"description": "Opis",
 	"difference-h0": "Różnica pod H0",
 	"digits-after-comma-snap": "cyfry po przecinku, aby pstryknąć do",

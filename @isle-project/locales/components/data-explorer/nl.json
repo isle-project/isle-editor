@@ -59,6 +59,7 @@
 	"decimal-places": "decimaal(s).",
 	"Decision Tree": "Beslissingsboom",
 	"Decision Tree-description": "Laat een beslisboom groeien voor een regressie- of classificatieprobleem. Voor kwantitatieve antwoorden worden de gegevens bij elke iteratie van het algoritme gesplitst door de variabele, wat leidt tot splitsingen met de grootste vermindering van de variantie voor de respons. Voor categorische antwoorden worden de gegevens gesplitst op het kenmerk dat leidt tot de grootste informatiewinst (gemeten in termen van de Gini-index of entropie).",
+	"delete": "Verwijder",
 	"description": "Beschrijving",
 	"difference-h0": "Verschil onder H0",
 	"digits-after-comma-snap": "cijfers na de komma om te klikken naar",
