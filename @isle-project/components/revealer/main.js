@@ -1,9 +1,9 @@
 // MODULES //
 
-import React, { useContext, useEffect, useState, Fragment } from 'react';
+import React, { useContext, useEffect, useRef, useState, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import Panel from '@isle-project/components/panel';
@@ -32,9 +32,11 @@ const uid = generateUID( 'revealer' );
 * @property {(string|node)} message - message to be displayed when content is hidden
 * @property {boolean} show - controls whether to initially display child elements
 */
-const Revealer = ({ id, message, show, t, children }) => {
-	id = id || uid({ id, message, show });
+const Revealer = ( props ) => {
+	const { message, show, children } = props;
+	const id = useRef( props.id || uid({ id: props.id, message, show }) );
 	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'Revealer' );
 
 	const [ showChildren, setShowChildren ] = useState( show );
 	const [ prevShow, setPrevShow ] = useState( show );
@@ -50,9 +52,9 @@ const Revealer = ({ id, message, show, t, children }) => {
 				session &&
 				session.metadata &&
 				session.metadata.revealer &&
-				session.metadata.revealer[ id ]
+				session.metadata.revealer[ id.current ]
 			) {
-				const show = session.metadata.revealer[ id ][ session.cohort || 'all' ];
+				const show = session.metadata.revealer[ id.current ][ session.cohort || 'all' ];
 				if ( show === true || show === false ) {
 					setShowChildren( show );
 				}
@@ -70,7 +72,7 @@ const Revealer = ({ id, message, show, t, children }) => {
 					readMetadata();
 				}
 				else if ( type === MEMBER_ACTION ) {
-					if ( action.id === id ) {
+					if ( action.id === id.current ) {
 						const cohortName = action.value;
 						debug( `Received action for cohort ${cohortName}: ` );
 						if (
@@ -78,19 +80,19 @@ const Revealer = ({ id, message, show, t, children }) => {
 							( session.cohort && session.cohort === cohortName )
 						) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content for ${id}...` );
+								debug( `Reveal content for ${id.current}...` );
 								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content for ${id}...` );
+								debug( `Hide content for ${id.current}...` );
 								setShowChildren( false );
 							}
 						}
 						else if ( selectedCohort === cohortName ) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content of ${id} for cohort ${cohortName}...` );
+								debug( `Reveal content of ${id.current} for cohort ${cohortName}...` );
 								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content of ${id} for cohort ${cohortName}...` );
+								debug( `Hide content of ${id.current} for cohort ${cohortName}...` );
 								setShowChildren( false );
 							}
 						}
@@ -125,28 +127,28 @@ const Revealer = ({ id, message, show, t, children }) => {
 			session &&
 			session.metadata &&
 			session.metadata.revealer &&
-			session.metadata.revealer[ id ]
+			session.metadata.revealer[ id.current ]
 		) {
-			status = session.metadata.revealer[ id ];
+			status = session.metadata.revealer[ id.current ];
 		} else {
 			status = {};
 		}
 		if ( newShowChildren ) {
 			session.log({
-				id: id,
+				id: id.current,
 				type: REVEAL_CONTENT,
 				value: selectedCohort
 			}, 'members' );
 			status[ selectedCohort || 'all' ] = true;
-			session.updateMetadata( 'revealer', id, status );
+			session.updateMetadata( 'revealer', id.current, status );
 		} else {
 			session.log({
-				id: id,
+				id: id.current,
 				type: HIDE_CONTENT,
 				value: selectedCohort
 			}, 'members' );
 			status[ selectedCohort || 'all' ] = false;
-			session.updateMetadata( 'revealer', id, status );
+			session.updateMetadata( 'revealer', id.current, status );
 		}
 	};
 	const cohorts = session.cohorts || [];
@@ -159,7 +161,7 @@ const Revealer = ({ id, message, show, t, children }) => {
 					className="revealer-button"
 					onClick={toggleContent}
 				>{showChildren ? t('hide') : t('reveal')}</Button>
-				{t('contents-of')}<i>{id}</i> {showChildren ? t('from') : t('to')}
+				{t('contents-of')}<i>{id.current}</i> {showChildren ? t('from') : t('to')}
 				<select
 					className="revealer-select"
 					onChange={handleCohortChange}
@@ -205,4 +207,4 @@ Revealer.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Revealer' )( Revealer );
+export default Revealer;
