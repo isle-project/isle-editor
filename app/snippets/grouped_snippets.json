@@ -506,7 +506,7 @@
     },
     {
       "name": "Weather",
-      "value": "<Weather location=\"${1:location}\" />\n"
+      "value": "<Weather location=\"${1:New York}\" />\n"
     },
     {
       "name": "Wikipedia",
