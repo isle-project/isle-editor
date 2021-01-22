@@ -161,7 +161,7 @@ class EditorContextMenu extends Component {
 		const data = this.createMenuEntries( [], 'Data', models, tables, tests );
 		return (
 			<Fragment>
-				<ContextMenu className="components-contextmenu" id={this.props.id} onHide={this.handleHide} >
+				<ContextMenu className="components-contextmenu" id={this.props.id} onHide={this.handleHide} disableIfShiftIsPressed >
 					<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{main}

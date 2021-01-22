@@ -241,6 +241,7 @@ class LessonContextMenu extends Component {
 				debug( 'Context menu has been closed...' );
 				this.setState({ contextMenuIsOpen: false });
 			}}
+			disableIfShiftIsPressed
 		>
 			{menuItems}
 		</ContextMenu> );
