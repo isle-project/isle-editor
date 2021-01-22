@@ -130,14 +130,14 @@ const SelectInput = ( props ) => {
 	let renderedValue;
 	let style;
 	if ( props.value !== void 0 ) {
-		if ( isArray( props.value ) ) {
+		if ( isArray( props.value ) && props.value.length > 0 ) {
 			renderedValue = ( props.value ).map( e => {
 				return { 'label': e, 'value': e };
 			});
 		} else if ( isString( props.value ) ) {
 			renderedValue = { 'label': props.value, 'value': props.value };
 		} else {
-			renderedValue = [];
+			renderedValue = null;
 		}
 	}
 	else {
