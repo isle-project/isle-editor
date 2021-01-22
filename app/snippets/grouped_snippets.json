@@ -538,7 +538,7 @@
   "language": [
     {
       "name": "Language",
-      "value": "<Language>\n  ${1:<Language.English>\n  ${2:}\n</Language.English>}\n</Language>"
+      "value": "<Language>\n  ${1:<Language.English>\n  ${2:}\n  </Language.English>}\n</Language>"
     },
     {
       "name": "Language.Chinese",
