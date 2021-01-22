@@ -26,6 +26,7 @@ export function generateQQPlotConfig( y, variable ) {
 	let annotations;
 	let traces;
 
+	y = y.slice();
 	const len = y.length;
 	const yq = y.sort( ascending );
 	const lowerQuartile = qnorm( 0.25, 0, 1 );
