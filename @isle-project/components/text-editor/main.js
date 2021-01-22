@@ -582,7 +582,7 @@ class TextEditor extends Component {
 				fullscreen={this.state.isFullscreen}
 				showColorPicker={this.state.showColorPicker}
 				onColorChoice={this.onColorChoice}
-				id={docId} key={docId}
+				id={docId} key={`${docId}-{session.anonymous}`}
 				onEditorState={( editorState ) => {
 					this.editorState = editorState;
 				}}

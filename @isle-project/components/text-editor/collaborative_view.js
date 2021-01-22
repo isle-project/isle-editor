@@ -24,8 +24,8 @@ import ImageNodeView from './config/ui/image_node_view.js';
 import countWords from './count_words.js';
 import handleDrop from './handle_drop.js';
 import parser from './parser.js';
-import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, POLLED_COLLABORATIVE_EDITING_EVENTS,
-	SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from '@isle-project/constants/events.js';
+import { COLLABORATIVE_EDITING_EVENTS, JOINED_COLLABORATIVE_EDITING, LOGGED_OUT,
+	POLLED_COLLABORATIVE_EDITING_EVENTS, SENT_COLLABORATIVE_EDITING_EVENTS, USER_JOINED } from '@isle-project/constants/events.js';
 import '@isle-project/components/plotly/tooltip.css';
 
 
@@ -105,7 +105,7 @@ class ProseMirrorCollaborative extends Component {
 	componentDidMount() {
 		const session = this.props.session;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === USER_JOINED ) {
+			if ( type === USER_JOINED || type === LOGGED_OUT ) {
 				if ( !this.dispatchState ) {
 					// Load the document from the server and start up:
 					this.props.session.joinCollaborativeEditing( this.props.id, this.doc );
