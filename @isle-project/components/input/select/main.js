@@ -92,11 +92,13 @@ const SelectInput = ( props ) => {
 	}, [ bind, value ]);
 	useEffect( () => {
 		debug( 'Default value has changed...' );
-		setValue(
-			multi ?
-			transformMultiValue( defaultValue ) :
-			transformValue( defaultValue )
-		);
+		if ( defaultValue ) {
+			setValue(
+				multi ?
+				transformMultiValue( defaultValue ) :
+				transformValue( defaultValue )
+			);
+		}
 	}, [ defaultValue, multi ] );
 	useEffect( () => {
 		if ( bind ) {
@@ -156,6 +158,9 @@ const SelectInput = ( props ) => {
 	if ( isBoolean( props.clearable ) ) {
 		clearable = props.clearable;
 	}
+	console.log( defaultValue );
+	console.log( props.value );
+	console.log( value );
 	return (
 		<Form className="input" style={{ ...style }} >
 			<FormGroup controlId={`${id}-form`} >
