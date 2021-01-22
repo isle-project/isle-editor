@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.74.3](https://github.com/isle-project/isle-editor/releases/tag/v0.74.3) (2021-01-22)
+
+## [v0.74.2](https://github.com/isle-project/isle-editor/releases/tag/v0.74.2) (2021-01-22)
+
+## [v0.74.1](https://github.com/isle-project/isle-editor/releases/tag/v0.74.1) (2021-01-22)
+
 ## [v0.74.0](https://github.com/isle-project/isle-editor/releases/tag/v0.74.0) (2021-01-22)
 
 This release contains several performance improvements for the data explorer, especially when used with large datasets, and fixes a bunch of bugs. Solved issues include identifiers for revealer components not being persistent, the residuals vs. fitted values plot of linear regression, handling of empty data in a custom data explorer, and translations not being loaded correctly or being missing. 
