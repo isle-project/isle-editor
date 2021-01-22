@@ -22,6 +22,7 @@ import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isNull from '@stdlib/assert/is-null';
 import isJSON from '@stdlib/assert/is-json';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
@@ -232,12 +233,19 @@ class DataExplorer extends Component {
 			const promiseCategorical = session.store.getItem( this.id+'_categorical' );
 			Promise.all([ promiseData, promisequantitative, promiseCategorical ])
 				.then( ( values ) => {
-					const data = values[ 0 ] || null;
+					let data = values[ 0 ] || null;
+					let ready = false;
+					if ( isEmptyObject( data ) ) {
+						data = null;
+					}
+					if ( !isNull( data ) ) {
+						ready = true;
+					}
 					const quantitative = values[ 1 ] || [];
 					const categorical = values[ 2 ] || [];
 					const groupVars = ( categorical || [] ).slice();
 					this.setState({
-						data, quantitative, categorical, groupVars, ready: true
+						data, quantitative, categorical, groupVars, ready
 					});
 				})
 				.catch( ( err ) => {
