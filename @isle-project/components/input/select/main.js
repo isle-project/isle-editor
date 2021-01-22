@@ -137,7 +137,7 @@ const SelectInput = ( props ) => {
 		} else if ( isString( props.value ) ) {
 			renderedValue = { 'label': props.value, 'value': props.value };
 		} else {
-			renderedValue = null;
+			renderedValue = [];
 		}
 	}
 	else {
