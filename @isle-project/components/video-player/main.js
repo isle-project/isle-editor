@@ -77,8 +77,17 @@ class Video extends Component {
 	}
 
 	componentDidMount() {
-		const node = isElectron ? document.getElementById( 'Lesson' ) : document;
-		node.addEventListener( 'scroll', this.isInViewport );
+		if ( this.props.playing ) {
+			const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+			node.addEventListener( 'scroll', this.isInViewport );
+		}
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.playing && !prevProps.playing ) {
+			const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+			node.addEventListener( 'scroll', this.isInViewport );
+		}
 	}
 
 	componentWillUnmount() {
@@ -231,6 +240,7 @@ class Video extends Component {
 		const hidden = isHidden( this.videoPlayer );
 		let player;
 		if (
+			!this.props.playing ||
 			( this.state.inViewport && !hidden ) ||
 			this.player // Keep video player in case it was ready before...
 		) {
