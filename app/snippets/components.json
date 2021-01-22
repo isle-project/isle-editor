@@ -436,47 +436,47 @@
 		"value": "<Language>\n  ${1:<Language.English>\n  ${2:}\n</Language.English>}\n</Language>"
 	},
 	{
-		"name": "Language Chinese",
+		"name": "Language.Chinese",
 		"value": "<Language.Chinese>\n  ${1:}\n</Language.Chinese>"
 	},
 	{
-		"name": "Language English",
+		"name": "Language.English",
 		"value": "<Language.English>\n  ${1:}\n</Language.English>"
 	},
 	{
-		"name": "Language French",
+		"name": "Language.French",
 		"value": "<Language.French>\n  ${1:}\n</Language.French>"
 	},
 	{
-		"name": "Language German",
+		"name": "Language.German",
 		"value": "<Language.German>\n  ${1:}\n</Language.German>"
 	},
 	{
-		"name": "Language Italian",
+		"name": "Language.Italian",
 		"value": "<Language.Italian>\n  ${1:}\n</Language.Italian>"
 	},
 	{
-		"name": "Language Japanese",
+		"name": "Language.Japanese",
 		"value": "<Language.Japanese>\n  ${1:}\n</Language.Japanese>"
 	},
 	{
-		"name": "Language Netherlandish",
+		"name": "Language.Netherlandish",
 		"value": "<Language.Netherlandish>\n  ${1:}\n</Language.Netherlandish>"
 	},
 	{
-		"name": "Language Polish",
+		"name": "Language.Polish",
 		"value": "<Language.Polish>\n  ${1:}\n</Language.Polish>"
 	},
 	{
-		"name": "Language Portuguese",
+		"name": "Language.Portuguese",
 		"value": "<Language.Portuguese>\n  ${1:}\n</Language.Portuguese>"
 	},
 	{
-		"name": "Language Russian",
+		"name": "Language.Russian",
 		"value": "<Language.Russian>\n  ${1:}\n</Language.Russian>"
 	},
 	{
-		"name": "Language Spanish",
+		"name": "Language.Spanish",
 		"value": "<Language.Spanish>\n  ${1:}\n</Language.Spanish>"
 	},
 	{

@@ -141,7 +141,7 @@ class EditorContextMenu extends Component {
 		const { t } = this.props;
 		const main = this.createMenuEntries( GROUPED_SNIPPETS.main, 'Main' );
 		const layout = this.createMenuEntries( GROUPED_SNIPPETS.layout, 'Layout' );
-		const displayComponents = this.createMenuEntries( GROUPED_SNIPPETS.displayComponents, 'Display' );
+		const displayComponents = this.createMenuEntries( GROUPED_SNIPPETS.displayComponents, 'Display', this.createMenuEntries( GROUPED_SNIPPETS.language, 'Language' ) );
 		const inputs = this.createMenuEntries( GROUPED_SNIPPETS.inputs, 'Inputs' );
 		const questions = this.createMenuEntries( GROUPED_SNIPPETS.questions, 'Questions' );
 		const surveys = this.createMenuEntries( GROUPED_SNIPPETS.surveys, 'Surveys' );

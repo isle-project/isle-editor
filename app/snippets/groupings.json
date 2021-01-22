@@ -49,6 +49,20 @@
 		"TextInput",
 		"VoiceInput"
 	],
+	"LANGUAGE": [
+		"Language",
+		"Language.Chinese",
+		"Language.English",
+		"Language.French",
+		"Language.German",
+		"Language.Italian",
+		"Language.Japanese",
+		"Language.Netherlandish",
+		"Language.Polish",
+		"Language.Portuguese",
+		"Language.Russian",
+		"Language.Spanish"
+	],
 	"LAYOUT": [
 		"Container",
 		"Row",

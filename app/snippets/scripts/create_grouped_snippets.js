@@ -41,6 +41,9 @@ function groupIndicator( v ) {
 	if ( contains( GROUPINGS.VICTORY, v.name ) ) {
 		return 'victory';
 	}
+	if ( contains( GROUPINGS.LANGUAGE, v.name ) ) {
+		return 'language';
+	}
 	if ( contains( GROUPINGS.LEARNING, v.name ) ) {
 		if ( contains( v.name, 'Distribution' ) ) {
 			return 'learningDistribution';
