@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isNull from '@stdlib/assert/is-null';
 import isnan from '@stdlib/assert/is-nan';
 import replace from '@stdlib/string/replace';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -36,10 +37,20 @@ function isNonMissingNumber( x ) {
 function retrieveGroupedValues( data, x, group ) {
 	debug( 'Updating the variable when supplying groups...' );
 	const categories = data[ group ];
-	let firstCategory = categories[ 0 ];
+	let firstCategory;
+	for ( let i = 1; i < categories.length; i++ ) {
+		if ( !isNull( categories[ i ] ) && !isnan( categories[ i ] ) ) {
+			firstCategory = categories[ i ];
+			break;
+		}
+	}
 	let secondCategory;
 	for ( let i = 1; i < categories.length; i++ ) {
-		if ( categories[ i ] !== firstCategory ) {
+		if (
+			categories[ i ] !== firstCategory &&
+			!isNull( categories[ i ] ) &&
+			!isnan( categories[ i ] )
+		) {
 			secondCategory = categories[ i ];
 			break;
 		}
@@ -125,7 +136,7 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
 		const egrouping = escapeLatex( group );
-		console.log( out.firstCategory );
+		console.log( egrouping );
 		console.log( out );
 		const ecat1 = escapeLatex( out.firstCategory );
 		console.log( ecat1 );
