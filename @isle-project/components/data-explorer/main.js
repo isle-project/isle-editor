@@ -17,6 +17,7 @@ import Card from 'react-bootstrap/Card';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
+import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import isArray from '@stdlib/assert/is-array';
@@ -957,7 +958,9 @@ class DataExplorer extends Component {
 						defaultValue={this.state.quantitative}
 						multi
 						onChange={( quantitative ) => {
-							this.setState({ quantitative });
+							this.setState({
+								quantitative: quantitative || []
+							});
 						}}
 					/>
 					<SelectInput
@@ -966,10 +969,12 @@ class DataExplorer extends Component {
 						defaultValue={this.state.categorical}
 						multi
 						onChange={( categorical ) => {
-							this.setState({ categorical });
+							this.setState({
+								categorical: categorical || []
+							});
 						}}
 					/>
-					<Button onClick={() => {
+					<Button disabled={isEmptyArray( this.state.categorical ) && isEmptyArray( this.state.quantitative )} onClick={() => {
 						const groupVars = this.state.categorical.slice();
 						const ready = true;
 						this.setState({
