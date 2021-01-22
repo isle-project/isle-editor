@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in French.
+*/
 const French = ( props ) => {
 	return props.children;
 };

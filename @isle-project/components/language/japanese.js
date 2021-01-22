@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in Japanese.
+*/
 const Japanese = ( props ) => {
 	return props.children;
 };

@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in German.
+*/
 const German = ( props ) => {
 	return props.children;
 };

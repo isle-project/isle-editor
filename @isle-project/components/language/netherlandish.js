@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in Netherlandish.
+*/
 const Netherlandish = ( props ) => {
 	return props.children;
 };

@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in Portuguese.
+*/
 const Polish = ( props ) => {
 	return props.children;
 };

@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in Chinese.
+*/
 const Chinese = ( props ) => {
 	return props.children;
 };

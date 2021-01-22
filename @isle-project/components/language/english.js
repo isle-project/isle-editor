@@ -1,5 +1,8 @@
 // MAIN //
 
+/**
+* Lesson Contents in English.
+*/
 const English = ( props ) => {
 	return props.children;
 };
