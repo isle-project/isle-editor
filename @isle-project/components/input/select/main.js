@@ -106,9 +106,9 @@ const SelectInput = ( props ) => {
 		}
 	}, [ bind ]);
 
-	const options = props.options.map( e => {
+	const options = props.options ? props.options.map( e => {
 		return { 'label': e, 'value': e };
-	});
+	}) : [];
 	const handleChange = useCallback( ( newValue ) => {
 		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
 		setValue( newValue );
