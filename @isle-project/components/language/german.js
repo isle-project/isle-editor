@@ -4,7 +4,7 @@
 * Lesson Contents in German.
 */
 const German = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 German.languageCode = 'de';

@@ -4,7 +4,7 @@
 * Lesson Contents in French.
 */
 const French = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 French.languageCode = 'fr';

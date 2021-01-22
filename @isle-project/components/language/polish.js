@@ -4,7 +4,7 @@
 * Lesson Contents in Portuguese.
 */
 const Polish = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 Polish.languageCode = 'pl';

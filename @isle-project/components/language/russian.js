@@ -4,7 +4,7 @@
 * Lesson Contents in Russian.
 */
 const Russian = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 Russian.languageCode = 'ru';

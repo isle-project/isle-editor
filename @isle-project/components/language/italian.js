@@ -4,7 +4,7 @@
 * Lesson Contents in Italian.
 */
 const Italian = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 Italian.languageCode = 'it';

@@ -4,7 +4,7 @@
 * Lesson Contents in Spanish.
 */
 const Spanish = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 Spanish.languageCode = 'es';

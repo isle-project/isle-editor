@@ -4,7 +4,7 @@
 * Lesson Contents in English.
 */
 const English = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 English.languageCode = 'en';

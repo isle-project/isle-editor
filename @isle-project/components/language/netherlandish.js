@@ -4,7 +4,7 @@
 * Lesson Contents in Netherlandish.
 */
 const Netherlandish = ( props ) => {
-	return props.children;
+	return props.children || null;
 };
 
 Netherlandish.languageCode = 'nl';
