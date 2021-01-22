@@ -11,12 +11,9 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DropdownItem from 'react-bootstrap/DropdownItem';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
-import Tab from 'react-bootstrap/Tab';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isNumberArray from '@stdlib/assert/is-number-array';
@@ -28,17 +25,13 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isJSON from '@stdlib/assert/is-json';
 import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
-import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
+import objectKeys from '@stdlib/utils/keys';
 import incrspace from '@stdlib/math/utils/incrspace';
 import generateUID from '@isle-project/utils/uid';
 import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
 import SelectInput from '@isle-project/components/input/select';
-const ContingencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/contingency_table' ) );
-const FrequencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/frequency_table' ) );
-const SummaryStatistics = Loadable( () => import( '@isle-project/components/data-explorer/summary_statistics' ) );
-const VariableTransformer = Loadable( () => import( '@isle-project/components/data-explorer/variable-transformer' ) );
 const ToolboxTutorialButton = Loadable( () => import( '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
 const TextEditor = Loadable( () => import( '@isle-project/components/text-editor' ) );
 import GridLayout from './grid_layout.js';
@@ -50,6 +43,7 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 const SpreadsheetUpload = Loadable( () => import( '@isle-project/components/spreadsheet-upload' ) );
 const RPlot = Loadable( () => import( '@isle-project/components/r/plot' ) );
 const DataTable = Loadable( () => import( '@isle-project/components/data-table' ) );
+const ToolboxTabs = Loadable( () => import( './toolbox_tabs.js' ) );
 import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
@@ -65,60 +59,21 @@ import { addResources } from '@isle-project/locales';
 import './data_explorer.css';
 
 
-// MODEL COMPONENTS //
-
-const DecisionTree = Loadable( () => import( '@isle-project/components/data-explorer/menu/decision_tree.js' ) );
-const LassoRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/lasso_regression.js' ) );
-const LogisticRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/logistic_regression' ) );
-const MultipleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/multiple_linear_regression' ) );
-const RandomForest = Loadable( () => import( '@isle-project/components/data-explorer/menu/random_forest.js' ) );
-const SimpleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/simple_linear_regression' ) );
-const PrincipalComponentAnalysis = Loadable( () => import( '@isle-project/components/data-explorer/menu/principal_component_analysis' ) );
-const HierarchicalClustering = Loadable( () => import( '@isle-project/components/data-explorer/menu/hierarchical_clustering.js' ) );
-const KMeans = Loadable( () => import( '@isle-project/components/data-explorer/menu/kmeans' ) );
-const NaiveBayes = Loadable( () => import( '@isle-project/components/data-explorer/menu/naive_bayes.js' ) );
-
-
 // PLOT COMPONENTS //
 
-const Barchart = Loadable( () => import( '@isle-project/components/data-explorer/menu/barchart' ) );
 import { generateBarchartConfig } from '@isle-project/components/plots/barchart';
-const Boxplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/boxplot' ) );
 import { generateBoxplotConfig } from '@isle-project/components/plots/boxplot';
-const Heatmap = Loadable( () => import( '@isle-project/components/data-explorer/menu/heatmap' ) );
 import { generateHeatmapConfig } from '@isle-project/components/plots/heatmap';
-const Histogram = Loadable( () => import( '@isle-project/components/data-explorer/menu/histogram' ) );
 import { generateHistogramConfig } from '@isle-project/components/plots/histogram';
-const Lineplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/lineplot' ) );
 import { generateLineplotConfig } from '@isle-project/components/plots/lineplot';
-const Map = Loadable( () => import( '@isle-project/components/data-explorer/menu/map' ) );
 import { generateMapConfig } from '@isle-project/components/plots/map';
-const MosaicPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/mosaicplot' ) );
 import { generateMosaicPlotCode } from '@isle-project/components/plots/mosaicplot';
-const Piechart = Loadable( () => import( '@isle-project/components/data-explorer/menu/piechart' ) );
 import { generatePiechartConfig } from '@isle-project/components/plots/piechart';
-const QQPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/qqplot' ) );
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
-const Scatterplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot' ) );
 import { generateScatterplotConfig } from '@isle-project/components/plots/scatterplot';
-const ScatterplotMatrix = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot_matrix' ) );
 import { generateScatterplotMatrixConfig } from '@isle-project/components/plots/scatterplot-matrix';
-const Violinplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/violinplot' ) );
 import { generateViolinplotConfig } from '@isle-project/components/plots/violinplot';
-const ContourChart = Loadable( () => import( '@isle-project/components/data-explorer/menu/contourchart.js' ) );
 import { generateContourChart } from '@isle-project/components/plots/contourchart';
-
-
-// TEST COMPONENTS //
-
-const Anova = Loadable( () => import( '@isle-project/components/data-explorer/menu/anova' ) );
-const Chi2Test = Loadable( () => import( '@isle-project/components/data-explorer/menu/chi2' ) );
-const CorrTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/corrtest' ) );
-const Kruskal = Loadable( () => import( '@isle-project/components/data-explorer/menu/kruskal' ) );
-const MeanTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest' ) );
-const MeanTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest2' ) );
-const PropTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest' ) );
-const PropTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest2' ) );
 
 
 // VARIABLES //
@@ -869,580 +824,6 @@ class DataExplorer extends Component {
 	}
 
 	renderToolbox() {
-		const nStatistics = this.props.statistics.length;
-		let defaultActiveKey = '1';
-		let navbar;
-		let tabs;
-		if ( nStatistics === 0 ) {
-			if ( this.props.tables.length > 0 ) {
-				defaultActiveKey = '2.1';
-			}
-			else {
-				defaultActiveKey = '3.1';
-			}
-		}
-		if ( this.state.showToolbox ) {
-			const categoricalProps = {
-				data: this.state.data,
-				variables: this.state.categorical,
-				groupingVariables: this.state.groupVars,
-				onCreated: this.addToOutputs,
-				onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
-			};
-			const quantitativeProps = {
-				data: this.state.data,
-				variables: this.state.quantitative,
-				groupingVariables: this.state.groupVars,
-				onCreated: this.addToOutputs,
-				onPlotDone: this.outputPanel ? this.outputPanel.scrollToBottom : noop
-			};
-			navbar = <Nav variant="tabs">
-				{ nStatistics > 0 ?
-					<Nav.Item className="nav-statistics" >
-						<Nav.Link eventKey="1">{this.props.t('statistics')}</Nav.Link>
-					</Nav.Item> : null
-				}
-				{ this.props.tables.length > 0 && this.state.categorical.length > 0 ?
-					<NavDropdown
-						title={this.props.t('tables')}
-						className="nav-tables"
-					>
-						{ this.props.tables.map(
-							( e, i ) => ( <DropdownItem key={i} eventKey={`2.${i+1}`} >
-								{this.props.t( e )}
-							</DropdownItem> )
-						) }
-					</NavDropdown> : null
-				}
-				{ this.props.plots.length > 0 ?
-					<NavDropdown
-						title={this.props.t('plots')}
-						className="nav-plots"
-					>
-						{ this.props.plots.map( ( e, i ) => {
-							const item = <DropdownItem key={i} eventKey={`3.${i+1}`}>{this.props.t( e )}</DropdownItem>;
-							if (
-								e === 'Histogram' && this.props.plots[ i-1 ] === 'Mosaic Plot' ||
-								e === 'Line Plot' && this.props.plots[ i-1 ] === 'Box Plot'
-							) {
-								return ( <Fragment key={i} >
-									<NavDropdown.Divider key={`${i}-div`} />
-									{item}
-								</Fragment> );
-							}
-							return item;
-						})}
-					</NavDropdown> : null
-				}
-				{ this.props.tests.length > 0 ?
-					<NavDropdown
-						title={this.props.t('tests')}
-						className="nav-tests"
-					>
-						{ this.props.tests.map( ( e, i ) => {
-							const item = <DropdownItem key={i} eventKey={`4.${i+1}`}>{this.props.t( e )}</DropdownItem>;
-							if (
-								e === 'One-Sample Proportion Test' && this.props.tests[ i-1 ] === 'One-Way ANOVA' ||
-								e === 'Correlation Test' && this.props.tests[ i-1 ] === 'Two-Sample Proportion Test'
-							) {
-								return ( <Fragment key={i} >
-									<NavDropdown.Divider key={`${i}-div`} />
-									{item}
-								</Fragment> );
-							}
-							return item;
-						}) }
-					</NavDropdown> : null
-				}
-				{ this.props.models.length > 0 ?
-					<NavDropdown
-						title={this.props.t('models')}
-						className="nav-models"
-					>
-						{this.props.models.map( ( e, i ) => {
-							const item = <DropdownItem key={i} eventKey={`5.${i+1}`}>{this.props.t( e )}</DropdownItem>;
-							if (
-								e === 'Decision Tree' && this.props.models[ i-1 ] === 'LASSO' ||
-								e === 'PCA' && this.props.models[ i-1 ] === 'Naive Bayes'
-							) {
-								return ( <Fragment key={i} >
-									<NavDropdown.Divider key={`${i}-div`} />
-									{item}
-								</Fragment> );
-							}
-							return item;
-						})}
-					</NavDropdown> : null
-				}
-				{ this.props.transformer ?
-					<Nav.Item className="nav-transform" >
-						<Nav.Link eventKey="6">{this.props.t('transform')}</Nav.Link>
-					</Nav.Item> : null
-				}
-			</Nav>;
-			tabs = <Tab.Content>
-				<Tab.Pane eventKey="1">
-					<SummaryStatistics
-						{...quantitativeProps}
-						statistics={this.props.statistics}
-						logAction={this.logAction}
-						t={this.props.t}
-					/>
-				</Tab.Pane>
-				{this.props.tables.map( ( e, i ) => {
-					let content = null;
-					switch ( e ) {
-					case 'Frequency Table':
-						content = <FrequencyTable
-							{...categoricalProps}
-							logAction={this.logAction}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Contingency Table':
-						content = <ContingencyTable
-							{...categoricalProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					}
-					return ( <Tab.Pane key={i} eventKey={`2.${i+1}`}>
-						{content}
-					</Tab.Pane> );
-				})}
-				{this.props.plots.map( ( e, i ) => {
-					let content = null;
-					switch ( e ) {
-					case 'Bar Chart':
-						content = <Barchart
-							{...categoricalProps}
-							quantitative={this.state.quantitative}
-							logAction={this.logAction}
-							session={this.context}
-							onSelected={this.onBarchartSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Box Plot':
-						content = <Boxplot
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Contour Chart':
-						content = <ContourChart
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							onSelected={this.on2dSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Heat Map':
-						content = <Heatmap
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							onSelected={this.on2dSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Histogram':
-						content = <Histogram
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							showDensityOption={this.props.histogramDensities}
-							onSelected={this.onHistogramSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Line Plot':
-						content = <Lineplot
-							{...quantitativeProps}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Mosaic Plot':
-						content = <MosaicPlot
-							{...categoricalProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Pie Chart':
-						content = <Piechart
-							{...categoricalProps}
-							quantitative={this.state.quantitative}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'QQ Plot':
-						content = <QQPlot
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Scatterplot':
-						content = <Scatterplot
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							onSelected={this.on2dSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Scatterplot Matrix':
-						content = <ScatterplotMatrix
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							onSelected={this.on2dSelection}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Violin Plot':
-						content = <Violinplot
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Map':
-						content = <Map
-							{...quantitativeProps}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					}
-					return ( <Tab.Pane key={i} eventKey={`3.${i+1}`}>
-						{content}
-					</Tab.Pane> );
-				})}
-				{this.props.tests.map( ( e, i ) => {
-					let content = null;
-					switch ( e ) {
-					case 'One-Sample Mean Test':
-						content = <MeanTest
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Two-Sample Mean Test':
-						content = <MeanTest2
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							session={this.context}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'One-Sample Proportion Test':
-						content = <PropTest
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Two-Sample Proportion Test':
-						content = <PropTest2
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							session={this.context}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'One-Way ANOVA':
-						content = <Anova
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Correlation Test':
-						content = <CorrTest
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Chi-squared Independence Test':
-						content = <Chi2Test
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Kruskal-Wallis Test':
-						content = <Kruskal
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							showDecision={this.props.showTestDecisions}
-							t={this.props.t}
-						/>;
-						break;
-					}
-					return ( <Tab.Pane key={i} eventKey={`4.${i+1}`}>
-						{content}
-					</Tab.Pane> );
-				})}
-				{this.props.models.map( ( e, i ) => {
-					let content = null;
-					switch ( e ) {
-					case 'Multiple Linear Regression':
-						content = <MultipleLinearRegression
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, data ) => {
-								this.setState({
-									quantitative,
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-					break;
-					case 'Decision Tree':
-						content = <DecisionTree
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, categorical, data ) => {
-								this.setState({
-									quantitative,
-									categorical,
-									groupVars: categorical.slice(),
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-					break;
-					case 'Random Forest':
-						content = <RandomForest
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, categorical, data ) => {
-								this.setState({
-									quantitative,
-									categorical,
-									groupVars: categorical.slice(),
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-					break;
-					case 'LASSO':
-						content = <LassoRegression
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, data ) => {
-								this.setState({
-									quantitative,
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-					break;
-					case 'Logistic Regression':
-						content = <LogisticRegression
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, categorical, data ) => {
-								this.setState({
-									quantitative,
-									categorical,
-									groupVars: categorical.slice(),
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-					break;
-					case 'Simple Linear Regression':
-						content = <SimpleLinearRegression
-							categorical={this.state.categorical}
-							quantitative={this.state.quantitative}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={( quantitative, data ) => {
-								this.setState({
-									quantitative,
-									data
-								});
-							}}
-							t={this.props.t}
-						/>;
-						break;
-					case 'PCA':
-						content = <PrincipalComponentAnalysis
-							quantitative={this.state.quantitative}
-							originalQuantitative={this.props.quantitative}
-							onCreated={this.addToOutputs}
-							onGenerate={( quantitative, data ) => {
-								this.setState({
-									quantitative,
-									data
-								});
-							}}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'Hierarchical Clustering':
-						content = <HierarchicalClustering
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							originalQuantitative={this.props.quantitative}
-							onCreated={this.addToOutputs}
-							onGenerate={( categorical, data ) => {
-								const groupVars = categorical.slice();
-								this.setState({
-									categorical,
-									groupVars,
-									data
-								});
-							}}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-					case 'kmeans':
-						content = <KMeans
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							originalQuantitative={this.props.quantitative}
-							onCreated={this.addToOutputs}
-							onGenerate={( categorical, data ) => {
-								const groupVars = categorical.slice();
-								this.setState({
-									categorical,
-									groupVars,
-									data
-								});
-							}}
-							data={this.state.data}
-							logAction={this.logAction}
-							session={this.context}
-							t={this.props.t}
-						/>;
-						break;
-						case 'Naive Bayes':
-							content = <NaiveBayes
-								categorical={this.state.categorical}
-								quantitative={this.state.quantitative}
-								onCreated={this.addToOutputs}
-								data={this.state.data}
-								logAction={this.logAction}
-								session={this.context}
-								onGenerate={( quantitative, categorical, data ) => {
-									this.setState({
-										quantitative,
-										categorical,
-										groupVars: categorical.slice(),
-										data
-									});
-								}}
-								t={this.props.t}
-							/>;
-						break;
-					}
-					return ( <Tab.Pane key={i} eventKey={`5.${i+1}`}>
-						{content}
-					</Tab.Pane> );
-				})}
-				{ this.props.transformer ?
-					<Tab.Pane eventKey="6" >
-						<VariableTransformer
-							data={this.state.data}
-							quantitative={this.state.quantitative}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							session={this.context}
-							onGenerate={this.onGenerateTransformedVariable}
-							onActive={( active ) => {
-								this.setState({
-									disableToolbarDragging: active
-								});
-							}}
-							t={this.props.t}
-						/>
-					</Tab.Pane> : null
-				}
-			</Tab.Content>;
-		}
-		else {
-			tabs = null;
-			navbar = null;
-		}
 		return (
 			<Draggable
 				cancel=".input" disabled={this.state.disableToolbarDragging}
@@ -1486,10 +867,58 @@ class DataExplorer extends Component {
 						>{this.props.t('hide-toolbox')}</Button>
 					</Card.Header>
 					<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
-						<Tab.Container defaultActiveKey={defaultActiveKey}>
-							{navbar}
-							{tabs}
-						</Tab.Container>
+						{ this.state.showToolbox ?
+							<ToolboxTabs
+								models={this.props.models}
+								tables={this.props.tables}
+								statistics={this.props.statistics}
+								plots={this.props.plots}
+								tests={this.props.tests}
+								quantitative={this.state.quantitative}
+								originalQuantitative={this.props.quantitative}
+								categorical={this.state.categorical}
+								logAction={this.logAction}
+								onCreated={this.addToOutputs}
+								data={this.state.data}
+								showTestDecisions={this.props.showTestDecisions}
+								onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
+								groupingVariables={this.state.groupVars}
+								on2dSelection={this.on2dSelection}
+								transformer={this.props.transformer}
+								onBarchartSelection={this.onBarchartSelection}
+								showHistogramDensityOption={this.props.histogramDensities}
+								onGenerateTransformedVariable={this.onGenerateTransformedVariable}
+								onHistogramSelection={this.onHistogramSelection}
+								onTransformerBeingActive={( active ) => {
+									this.setState({
+										disableToolbarDragging: active
+									});
+								}}
+								onCategoricalGenerate={( categorical, data ) => {
+									const groupVars = categorical.slice();
+									this.setState({
+										categorical,
+										groupVars,
+										data
+									});
+								}}
+								onQuantitativeGenerate={( quantitative, data ) => {
+									this.setState({
+										quantitative,
+										data
+									});
+								}}
+								onBothGenerate={( quantitative, categorical, data ) => {
+									this.setState({
+										quantitative,
+										categorical,
+										groupVars: categorical.slice(),
+										data
+									});
+								}}
+							/> :
+							null
+						}
 					</Card.Body>
 				</Card>
 			</Draggable>
