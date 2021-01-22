@@ -19,6 +19,7 @@
 	"minimize": "Minimiser",
 	"new-file": "Nouveau dossier",
 	"new-from-template": "Nouveau à partir du modèle",
+	"no-update-available": "Il n'y a actuellement aucune mise à jour disponible...",
 	"open-file": "Dossier public",
 	"open-recent": "Ouvrir récent",
 	"paste": "Coller",

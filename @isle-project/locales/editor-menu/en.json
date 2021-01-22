@@ -19,6 +19,7 @@
 	"minimize": "Minimize",
 	"new-file": "New File",
 	"new-from-template": "New From Template",
+	"no-update-available": "There is currently no update available...",
 	"open-file": "Open File",
 	"open-recent": "Open Recent",
 	"paste": "Paste",
