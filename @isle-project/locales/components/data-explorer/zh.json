@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "在数据表中使用给定的过滤器还原数据集。",
 	"restore-original-dataset": "恢复原始数据集",
 	"restore-original-dataset-tooltip": "恢复所有观测值的原始数据集",
+	"row-variable": "行变量。",
 	"scale-values": "比例值（=除以标准差）？",
 	"Scatterplot": "散点图",
 	"Scatterplot Matrix": "散点图矩阵",

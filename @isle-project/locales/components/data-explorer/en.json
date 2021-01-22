@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Restore dataset with the given filters in the data table",
 	"restore-original-dataset": "Restore original dataset",
 	"restore-original-dataset-tooltip": "Restore original dataset with all observations",
+	"row-variable": "Row Variable:",
 	"scale-values": "Scale values (= divide by standard deviation)?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Scatterplot Matrix",

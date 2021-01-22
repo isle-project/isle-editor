@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Wiederherstellen des Datensatzes mit den gegebenen Filtern in der Datentabelle",
 	"restore-original-dataset": "Original-Datensatz wiederherstellen",
 	"restore-original-dataset-tooltip": "Original-Datensatz mit allen Beobachtungen wiederherstellen",
+	"row-variable": "Zeile Variable:",
 	"scale-values": "Werte skalieren (= durch Standardabweichung dividieren)?",
 	"Scatterplot": "Streudiagramm",
 	"Scatterplot Matrix": "Streudiagramm-Matrix",

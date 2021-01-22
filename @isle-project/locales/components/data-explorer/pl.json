@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Przywracanie zbioru danych z podanymi filtrami w tabeli danych",
 	"restore-original-dataset": "Przywrócenie oryginalnego zbioru danych",
 	"restore-original-dataset-tooltip": "Przywrócenie oryginalnego zbioru danych ze wszystkimi obserwacjami",
+	"row-variable": "Rzędy zmienne:",
 	"scale-values": "Wartości skali (= dzielenie przez odchylenie standardowe)?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Matryca rozproszona",

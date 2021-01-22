@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Restaurer l'ensemble des données avec les filtres donnés dans le tableau des données",
 	"restore-original-dataset": "Restaurer le jeu de données original",
 	"restore-original-dataset-tooltip": "Restaurer le jeu de données original avec toutes les observations",
+	"row-variable": "Rangée Variable :",
 	"scale-values": "Valeurs d'échelle (= diviser par l'écart type) ?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Matrice des nuages de points",

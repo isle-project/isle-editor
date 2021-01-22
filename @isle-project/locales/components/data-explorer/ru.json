@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Восстановление набора данных с помощью заданных фильтров в таблице данных",
 	"restore-original-dataset": "Восстановление оригинального набора данных",
 	"restore-original-dataset-tooltip": "Восстановление исходного набора данных со всеми наблюдениями",
+	"row-variable": "Row Variable:",
 	"scale-values": "Значения шкалы (= деление на стандартное отклонение)?",
 	"Scatterplot": "Скэттерплот",
 	"Scatterplot Matrix": "Матрица рассеяния",

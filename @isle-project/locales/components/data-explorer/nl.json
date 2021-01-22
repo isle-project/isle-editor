@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Herstel de dataset met de gegeven filters in de gegevenstabel",
 	"restore-original-dataset": "Herstel van de originele dataset",
 	"restore-original-dataset-tooltip": "Herstel van de oorspronkelijke dataset met alle waarnemingen",
+	"row-variable": "Rijvariabele:",
 	"scale-values": "Schaalwaarden (= delen door de standaardafwijking)?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Scatterplot Matrix",

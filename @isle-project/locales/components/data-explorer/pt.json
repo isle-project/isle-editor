@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Restaurar o conjunto de dados com os filtros indicados na tabela de dados",
 	"restore-original-dataset": "Restaurar o conjunto de dados original",
 	"restore-original-dataset-tooltip": "Restaurar o conjunto de dados original com todas as observações",
+	"row-variable": "Variável da linha:",
 	"scale-values": "Valores da escala (= dividir por desvio padrão)?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Matriz de dispersão",

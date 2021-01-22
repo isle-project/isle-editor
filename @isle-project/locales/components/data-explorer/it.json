@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "Ripristinare il set di dati con i filtri indicati nella tabella dei dati",
 	"restore-original-dataset": "Ripristinare il set di dati originale",
 	"restore-original-dataset-tooltip": "Ripristinare il dataset originale con tutte le osservazioni",
+	"row-variable": "Fila variabile:",
 	"scale-values": "Valori della scala (= dividere per la deviazione standard)?",
 	"Scatterplot": "Scatterplot",
 	"Scatterplot Matrix": "Matrice Scatterplot",

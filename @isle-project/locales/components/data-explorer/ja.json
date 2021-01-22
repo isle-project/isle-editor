@@ -215,6 +215,7 @@
 	"restore-dataset-tooltip": "データテーブル内の与えられたフィルタでデータセットをリストアします。",
 	"restore-original-dataset": "元のデータセットを復元",
 	"restore-original-dataset-tooltip": "すべてのオブザベーションで元のデータセットを復元",
+	"row-variable": "行変数",
 	"scale-values": "スケール値（＝標準偏差で割った値）？",
 	"Scatterplot": "散布図",
 	"Scatterplot Matrix": "散布図行列",
