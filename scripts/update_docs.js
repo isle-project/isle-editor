@@ -60,7 +60,20 @@ const HTML_ELEMENTS = {
 	'@isle-project/components/html/span': 'span',
 	'@isle-project/components/html/ul': 'ul'
 };
-const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS );
+const LANGUAGE_ELEMENTS = {
+	'@isle-project/components/language/chinese.js': 'Language.Chinese',
+	'@isle-project/components/language/english.js': 'Language.English',
+	'@isle-project/components/language/french': 'Language.French',
+	'@isle-project/components/language/german': 'Language.German',
+	'@isle-project/components/language/italian': 'Language.Italian',
+	'@isle-project/components/language/japanese': 'Language.Japanese',
+	'@isle-project/components/language/netherlandish': 'Language.Netherlandish',
+	'@isle-project/components/language/polish': 'Language.Polish',
+	'@isle-project/components/language/portuguese': 'Language.Portuguese',
+	'@isle-project/components/language/russian': 'Language.Russian',
+	'@isle-project/components/language/spanish': 'Language.Spanish'
+};
+const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS, LANGUAGE_ELEMENTS );
 
 
 // FUNCTIONS //
@@ -190,7 +203,7 @@ for ( let i = 0; i < files.length; i++ ) {
 }
 
 console.log( 'Write `documentation.json` file...' );
-fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, 2 ) );
+fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, '\t' ) );
 
 console.log( 'Write translation `en.json` file...' );
 
@@ -203,6 +216,6 @@ for ( let i = 0; i < translationKeys.length; i++ ) {
 	const key = translationKeys[ i ];
 	out[ key ] = TRANSLATIONS[ key ];
 }
-fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, 2 ).concat( '\n' ) );
+fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, '\t' ).concat( '\n' ) );
 
 console.log( 'Finished updating docs.' );
