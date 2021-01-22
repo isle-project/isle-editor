@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.74.0](https://github.com/isle-project/isle-editor/releases/tag/v0.74.0) (2021-01-22)
+
+This release contains several performance improvements for the data explorer, especially when used with large datasets, and fixes a bunch of bugs. Solved issues include identifiers for revealer components not being persistent, the residuals vs. fitted values plot of linear regression, handling of empty data in a custom data explorer, and translations not being loaded correctly or being missing. 
+
+The new `<Language />` tag allows one to include several translations of a lesson. The currently selected language will determine which translations are shown.
+
+![image](https://user-images.githubusercontent.com/1913638/105536005-add62900-5cbd-11eb-95a3-d48a8c159191.png)
+
+Lastly, the release comes with several improvements and fixes for the new text document history view.
+
+
+**Implemented enhancements:**
+
+- request ability to show navigation at both top and bottom of questions panel [\#1538](https://github.com/isle-project/isle-editor/issues/1538)
+
 ## [v0.73.1](https://github.com/isle-project/isle-editor/releases/tag/v0.73.1) (2021-01-15)
 
 ## [v0.73.0](https://github.com/isle-project/isle-editor/releases/tag/v0.73.0) (2021-01-15)
