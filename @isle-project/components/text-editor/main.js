@@ -32,10 +32,10 @@ import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
 import ProseMirrorCollaborativeView from './collaborative_view.js';
 import HistoryView from './history_view.js';
-import { addAnnotation } from './config/comments';
 import createHTML from './create_html.js';
 import schema from './config/schema';
 import applyMark from './config/apply_mark.js';
+import AnnotationCommand from './config/annotation_command.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
@@ -275,11 +275,7 @@ class TextEditor extends Component {
 				run: this.toggleGuides,
 				content: icons.guides
 			},
-			{
-				title: 'add-annotation',
-				content: icons.annotation,
-				run: addAnnotation
-			},
+			new AnnotationCommand(),
 			{
 				title: 'show-history',
 				content: icons.history,

@@ -1,5 +1,5 @@
 /*
-* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/LinkURLEditor.js
+* Adapted from: https://github.com/chanzuckerberg/czi-prosemirror/blob/master/src/ui/AAnn.js
 *
 * MIT License
 *
@@ -28,7 +28,7 @@
 
 import React from 'react';
 import { i18n } from '@isle-project/locales';
-import sanitizeURL from './../sanitize_url.js';
+import FormControl from 'react-bootstrap/FormControl';
 import CustomButton from './custom_button.js';
 import preventEventDefault from './prevent_event_default.js';
 import './image_url_editor.css';
@@ -37,15 +37,14 @@ import './form.css';
 
 // VARIABLES //
 
-const BAD_CHARACTER_PATTERN = /\s/;
 const ENTER_KEYCODE = 13;
 
 
 // MAIN //
 
-class LinkURLEditor extends React.PureComponent {
+class AnnotationEditor extends React.PureComponent {
 	state = {
-		url: this.props.href
+		annotation: ''
 	};
 
 	_onKeyDown = ( e ) => {
@@ -55,10 +54,10 @@ class LinkURLEditor extends React.PureComponent {
 		}
 	};
 
-	_onURLChange = ( e ) => {
-		const url = e.target.value;
+	_onTextChange = ( e ) => {
+		const annotation = e.target.value;
 		this.setState({
-			url
+			annotation
 		});
 	};
 
@@ -67,46 +66,34 @@ class LinkURLEditor extends React.PureComponent {
 	};
 
 	_apply = () => {
-		const { url } = this.state;
-		if ( url && !BAD_CHARACTER_PATTERN.test( url ) ) {
-			this.props.close( sanitizeURL( url ) );
-		}
-	};
+		this.props.close( this.state.annotation );
+	}
 
 	render() {
-		const { href } = this.props;
-		const { url } = this.state;
-		const error = url ? BAD_CHARACTER_PATTERN.test( url ) : false;
-
-		let label = i18n.t('TextEditor:apply');
-		let disabled = !!error;
-		if ( href ) {
-			label = url ? i18n.t('TextEditor:apply') : i18n.t('TextEditor:remove');
-			disabled = error;
-		} else {
-			disabled = error || !url;
-		}
+		const { annotation } = this.state;
 		return (
-			<div className="image-url-editor">
+			<div className="annotation-editor" >
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>{i18n.t('TextEditor:add-link')}</legend>
-						<input
+						<legend>{i18n.t('TextEditor:annotation-text')}</legend>
+						<FormControl
 							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
-							onChange={this._onURLChange}
+							onChange={this._onTextChange}
 							onKeyDown={this._onKeyDown}
-							placeholder={i18n.t('TextEditor:paste-url')}
+							placeholder={i18n.t('TextEditor:enter-annotation')}
 							spellCheck={false}
-							type="text"
-							value={url || ''}
+							as="textarea"
+							rows={5}
+							value={annotation || ''}
+							style={{ marginBottom: 20 }}
 						/>
 					</fieldset>
 					<div className="editor-form-buttons">
 						<CustomButton label={i18n.t('TextEditor:cancel')} onClick={this._cancel} />
 						<CustomButton
 							active={true}
-							disabled={disabled}
-							label={label}
+							disabled={annotation.length === 0}
+							label={i18n.t('TextEditor:submit')}
 							onClick={this._apply}
 						/>
 					</div>
@@ -119,4 +106,4 @@ class LinkURLEditor extends React.PureComponent {
 
 // EXPORTS //
 
-export default LinkURLEditor;
+export default AnnotationEditor;

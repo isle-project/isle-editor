@@ -28,12 +28,11 @@
 
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import { i18n } from '@isle-project/locales';
 
 
 // MAIN //
 
-class Comment {
+export class Comment {
 	constructor( text, id ) {
 		this.id = id;
 		this.text = text;
@@ -145,30 +144,6 @@ export const commentPlugin = new Plugin({
 		}
 	}
 });
-
-function randomID() {
-	return Math.floor(Math.random() * 0xffffffff );
-}
-
-// Command for adding an annotation
-export const addAnnotation = ( state, dispatch ) => {
-	let sel = state.selection;
-	if ( sel.empty ) {
-		return false;
-	}
-	if ( dispatch ) {
-		let text = prompt( i18n.t('TextEditor:annotation-text'), '' );
-		if ( text ) {
-			dispatch( state.tr.setMeta( commentPlugin, {
-				type: 'newComment',
-				from: sel.from,
-				to: sel.to,
-				comment: new Comment( text, randomID() )
-			}));
-		}
-	}
-	return true;
-};
 
 // Comment UI
 

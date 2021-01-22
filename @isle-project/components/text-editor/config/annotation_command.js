@@ -27,37 +27,32 @@
 // MODULES //
 
 import { TextSelection } from 'prosemirror-state';
-import isUndefined from '@stdlib/assert/is-undefined';
 import { hideSelectionPlaceholder, showSelectionPlaceholder } from './selection_placeholder_plugin.js';
-import applyMark from './apply_mark.js';
-import findNodesWithSameMark from './find_nodes_with_same_mark.js';
-import LinkURLEditor from './ui/link_url_editor.js';
+import AnnotationEditor from './ui/annotation_editor.js';
+import { commentPlugin, Comment } from './comments.js';
 import icons from './icons.js';
 import UICommand from './ui/ui_command.js';
 import createPopUp from './ui/create_popup.js';
 
 
-// VARIABLES //
+// FUNCTIONS //
 
-const MARK_LINK = 'link';
+function randomID() {
+	return Math.floor( Math.random() * 0xffffffff );
+}
 
 
 // MAIN //
 
-class LinkSetURLCommand extends UICommand {
+class AnnotationCommand extends UICommand {
 	_popUp = null;
 
-	title = 'apply-link';
-	content = icons.link;
+	title = 'add-annotation';
+	content = icons.annotation;
 
 	enable = ( state ) => {
-		if ( !( state.selection instanceof TextSelection ) ) {
+		if (!(state.selection instanceof TextSelection)) {
 			// Could be a NodeSelection or CellSelection.
-			return false;
-		}
-
-		const markType = state.schema.marks[MARK_LINK];
-		if (!markType) {
 			return false;
 		}
 		const { from, to } = state.selection;
@@ -76,16 +71,8 @@ class LinkSetURLCommand extends UICommand {
 		if ( dispatch ) {
 			dispatch( showSelectionPlaceholder( state ) );
 		}
-		const { doc, schema, selection } = state;
-		const markType = schema.marks[MARK_LINK];
-		if (!markType) {
-			return Promise.resolve( void 0 );
-		}
-		const { from, to } = selection;
-		const result = findNodesWithSameMark( doc, from, to, markType );
-		const href = result ? result.mark.attrs.href : null;
 		return new Promise( resolve => {
-			this._popUp = createPopUp( LinkURLEditor, { href }, {
+			this._popUp = createPopUp( AnnotationEditor, {}, {
 				modal: true,
 				onClose: ( val ) => {
 					if ( this._popUp ) {
@@ -101,23 +88,19 @@ class LinkSetURLCommand extends UICommand {
 		state,
 		dispatch,
 		view,
-		href
+		annotation
 	) => {
 		if ( dispatch ) {
-			const { selection, schema } = state;
+			const { selection } = state;
 			let { tr } = state;
-			tr = view ? hideSelectionPlaceholder(view.state) : tr;
-			tr = tr.setSelection(selection);
-			if ( !isUndefined( href ) ) {
-				const markType = schema.marks[MARK_LINK];
-				const attrs = href ? { href } : null;
-				tr = applyMark(
-					tr.setSelection( state.selection ),
-					schema,
-					markType,
-					attrs,
-				);
-			}
+			tr = view ? hideSelectionPlaceholder( view.state ) : tr;
+			tr = tr.setSelection( selection );
+			tr = tr.setMeta( commentPlugin, {
+				type: 'newComment',
+				from: selection.from,
+				to: selection.to,
+				comment: new Comment( annotation, randomID() )
+			});
 			dispatch( tr );
 		}
 		if ( view ) {
@@ -130,4 +113,4 @@ class LinkSetURLCommand extends UICommand {
 
 // EXPORTS //
 
-export default LinkSetURLCommand;
+export default AnnotationCommand;
