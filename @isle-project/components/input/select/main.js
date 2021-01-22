@@ -158,9 +158,6 @@ const SelectInput = ( props ) => {
 	if ( isBoolean( props.clearable ) ) {
 		clearable = props.clearable;
 	}
-	console.log( defaultValue );
-	console.log( props.value );
-	console.log( value );
 	return (
 		<Form className="input" style={{ ...style }} >
 			<FormGroup controlId={`${id}-form`} >

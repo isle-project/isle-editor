@@ -2413,7 +2413,6 @@ class Session {
 		xhr.open( 'POST', this.server+'/upload_file', true );
 		xhr.setRequestHeader( 'Authorization', 'JWT ' + JWT.token );
 		xhr.onreadystatechange = () => {
-			console.log( xhr.readyState );
 			if ( xhr.readyState === XMLHttpRequest.DONE ) {
 				let message;
 				let level;
