@@ -1,6 +1,7 @@
 // MODULES //
 
 import { basename, dirname, join, extname, resolve } from 'path';
+import url from 'url';
 import resolveFrom from 'resolve-from';
 import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
@@ -47,9 +48,9 @@ async function loadRequires( libs, filePath ) {
 						lib = replace( lib, '\\', '\\\\' );
 					}
 				}
-				const ext = extname( lib );
 				if ( isURI( lib ) ) {
 					debug( 'Load file from online location: '+lib );
+					const ext = extname( url.parse( lib ).pathname );
 					asyncExtensions.push( ext );
 					if ( global[ key ] ) {
 						continue;
@@ -66,6 +67,7 @@ async function loadRequires( libs, filePath ) {
 					}
 				} else {
 					debug( 'Load file from disk...' );
+					const ext = extname( lib );
 					if ( ext === '.json' ) {
 						const json = readJSON.sync( lib );
 						if ( isError( json ) ) {

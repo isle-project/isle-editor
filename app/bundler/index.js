@@ -93,7 +93,7 @@ const prepareAsyncRequires = ( libs ) => {
 				if ( isURI( lib ) ) {
 					asyncOps.resources.push( lib );
 					asyncOps.keys.push( key );
-					out += `global.${key} = null;\n`;
+					out += `global.${key} = {};\n`;
 				}
 			}
 		}
@@ -115,6 +115,7 @@ import React, { Component } from 'react';
 import { json, csv } from 'd3';
 import { render } from 'react-dom';
 import { extname } from 'path';
+import url from 'url';
 import * as serviceWorker from 'bundler/service_worker.js';
 import { UpdateNotification } from 'bundler/service_worker.js';
 import TextClustering from '@isle-project/components/internal/text-clustering';
@@ -137,69 +138,68 @@ const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500 ) =>
 global.session = new Session( preamble );
 global.TextClustering = TextClustering;
 
+const asyncOps = [];
+const extensions = [];
+if ( asyncRequires ) {
+	for ( let i = 0; i < asyncRequires.resources.length; i++ ) {
+		const lib = asyncRequires.resources[ i ];
+		const ext = extname( url.parse( lib ).pathname );
+		extensions[ i ] = ext;
+		if ( ext === '.json' ) {
+			asyncOps[ i ] = json( lib );
+		}
+		else if ( ext === '.csv' ) {
+			asyncOps[ i ] = csv( lib );
+		}
+	}
+}
+
 class LessonWrapper extends Component {
 	constructor() {
 		super();
 		const initialState = preamble.state || {};
 		this.state = {
-			isLoading: true,
 			...initialState
 		};
 		global.lesson = this;
 	}
 
 	async componentDidMount() {
-		const asyncOps = [];
-		const extensions = [];
-		if ( asyncRequires ) {
-			for ( let i = 0; i < asyncRequires.resources.length; i++ ) {
-				const lib = asyncRequires.resources[ i ];
-				const ext = extname( lib );
-				extensions[ i ] = ext;
-				if ( ext === '.json' ) {
-					asyncOps[ i ] = json( lib );
-				}
-				else if ( ext === '.csv' ) {
-					asyncOps[ i ] = csv( lib );
-				}
+		console.log( 'Lesson has mounted...' );
+		const res = await Promise.all( asyncOps );
+		console.log( 'All async operations are now completed...' );
+		for ( let i = 0; i < res.length; i++ ) {
+			let v = res[ i ];
+			if ( extensions[ i ] === '.csv' ) {
+				v = obsToVar( v );
 			}
-			const res = await Promise.all( asyncOps );
-			for ( let i = 0; i < res.length; i++ ) {
-				let v = res[ i ];
-				if ( extensions[ i ] === '.csv' ) {
-					v = obsToVar( v );
-				}
-				global[ asyncRequires.keys[ i ] ] = v;
-			}
+			global[ asyncRequires.keys[ i ] ] = v;
 		}
-		this.setState({
-			isLoading: false
-		});
-		serviceWorker.register();
+		const loader = document.getElementById( 'loading' );
+		if ( loader ) {
+			setTimeout(function onFadeOut() {
+				loader.style.animation = 'anim-fade-out 0.5s forwards';
+			}, ${max( loaderTimeout - 750, 0 )});
+			setTimeout(function onRemove() {
+				console.log( 'Remove landing page...' );
+				if ( loader && loader.parentElement ) {
+					loader.parentElement.removeChild( loader );
+				}
+				document.body.style[ 'overflow-y' ] = 'auto';
+			}, ${loaderTimeout} );
+		}
+		this.forceUpdate();
 	}
 
 	componentDidUpdate() {
-		if ( !this.state.isLoading ) {
-			const loader = document.getElementById( 'loading' );
-			if ( loader ) {
-				setTimeout(function onFadeOut() {
-					loader.style.animation = 'anim-fade-out 0.5s forwards';
-				}, ${max( loaderTimeout - 750, 0 )});
-				setTimeout(function onRemove() {
-					if ( loader && loader.parentElement ) {
-						loader.parentElement.removeChild( loader );
-					}
-					document.body.style[ 'overflow-y' ] = 'auto';
-				}, ${loaderTimeout} );
-			}
-		}
+		serviceWorker.register();
 	}
 
 	componentWillUnmount() {
 		this.unmounted = true;
 	}
 
-	renderLesson() {
+	render() {
 		return (
 			<Lesson
 				className="${className}"
@@ -208,13 +208,6 @@ class LessonWrapper extends Component {
 				<UpdateNotification />
 			</Lesson>
 		);
-	}
-
-	render() {
-		if ( this.state.isLoading ) {
-			return <Lesson className="${className}" ></Lesson>;
-		}
-		return this.renderLesson();
 	}
 }
 
