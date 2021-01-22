@@ -364,7 +364,7 @@ class SimpleLinearRegression extends Component {
 								yaxis: {
 									title: t('residuals')
 								},
-								title: 'Residuals vs. Fitted'
+								title: t('residuals-vs-fitted')
 							}}
 							meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 						/>;
