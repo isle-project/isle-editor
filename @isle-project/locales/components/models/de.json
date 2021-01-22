@@ -46,6 +46,7 @@
 	"predictor": "Prädiktor",
 	"principal-component": "Hauptkomponente",
 	"proportion-of-variance": "Anteil der Varianz",
+	"qq-plot-of-residuals": "QQ-Plot der Residuen",
 	"random-forest-for": "Random Forest für {{y}} (Modell-ID: forest{{counter}})",
 	"regression-y-on-x": "Regression von {{y}} auf {{x}}",
 	"residual-standard-error": "Residualer Standardfehler",

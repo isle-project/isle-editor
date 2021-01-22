@@ -46,6 +46,7 @@
 	"predictor": "预测器",
 	"principal-component": "主要成分",
 	"proportion-of-variance": "差异比例",
+	"qq-plot-of-residuals": "QQ残局",
 	"random-forest-for": "{{y}}的随机森林(模型id：forest{{counter}})",
 	"regression-y-on-x": "{{y}}对{{x}}的回归。",
 	"residual-standard-error": "残余标准误差",

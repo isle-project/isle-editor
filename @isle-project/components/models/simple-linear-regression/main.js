@@ -214,24 +214,24 @@ class SimpleLinearRegression extends Component {
 							for ( let i = 0; i < yhat.length; i++ ) {
 								const [ yint, slope ] = res[ groups[ i ] ];
 								yhat[ i ] = yint + slope * xd[ i ];
-								resid[ i ] = yhat[ i ] - yd[ i ];
+								resid[ i ] = yd[ i ] - yhat[ i ];
 							}
 							this.props.onPredict( yhat, resid, COUNTER );
 						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
-						const xd = this.props.data[ x ];
-						const yd = this.props.data[ y ];
+						const xd = data[ x ];
+						const yd = data[ y ];
 						const yhat = new Float64Array( yd.length );
 						const resid = new Float64Array( yd.length );
-						const groups = this.props.data[ group ];
+						const groups = data[ group ];
 						for ( let i = 0; i < yhat.length; i++ ) {
 							const [ yint, slope ] = res[ groups[ i ] ];
 							yhat[ i ] = yint + slope * xd[ i ];
-							resid[ i ] = yhat[ i ] - yd[ i ];
+							resid[ i ] = yd[ i ] - yhat[ i ];
 						}
 						const qqPlot = {
-							variable: 'QQ Plot of Residuals',
+							variable: t('qq-plot-of-residuals'),
 							type: 'Chart',
 							value: <Plotly
 								draggable
@@ -241,7 +241,7 @@ class SimpleLinearRegression extends Component {
 							/>
 						};
 						const residualPlot = {
-							variable: 'Residuals vs. Fitted',
+							variable: t('residuals-vs-fitted'),
 							type: 'Chart',
 							value: <Plotly
 								draggable editable fit
@@ -254,19 +254,19 @@ class SimpleLinearRegression extends Component {
 								]}
 								layout={{
 									xaxis: {
-										title: 'Fitted Values'
+										title: t('fitted-values')
 									},
 									yaxis: {
-										title: 'Residuals'
+										title: t('residuals')
 									},
-									title: 'Residuals vs. Fitted'
+									title: t('residuals-vs-fitted')
 								}}
 								meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 							/>
 						};
 						this.props.onDiagnostics([ qqPlot, residualPlot ]);
 					}} >
-						{t('model-iagnostics')}
+						{t('model-diagnostics')}
 					</Button> : null }
 				</div>;
 			}
@@ -327,19 +327,19 @@ class SimpleLinearRegression extends Component {
 							const resid = new Array( yd.length );
 							for ( let i = 0; i < yhat.length; i++ ) {
 								yhat[ i ] = yint + slope * xd[ i ];
-								resid[ i ] = yhat[ i ] - yd[ i ];
+								resid[ i ] = yd[ i ] - yhat[ i ];
 							}
 							this.props.onPredict( yhat, resid, COUNTER );
 						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
-						const xd = this.props.data[ x ];
-						const yd = this.props.data[ y ];
+						const xd = data[ x ];
+						const yd = data[ y ];
 						const yhat = new Array( yd.length );
 						const resid = new Array( yd.length );
 						for ( let i = 0; i < yhat.length; i++ ) {
 							yhat[ i ] = yint + slope * xd[ i ];
-							resid[ i ] = yhat[ i ] - yd[ i ];
+							resid[ i ] = yd[ i ] - yhat[ i ];
 						}
 						const qqPlot = <Plotly
 							draggable

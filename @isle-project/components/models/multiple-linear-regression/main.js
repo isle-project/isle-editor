@@ -191,7 +191,7 @@ const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
 		for ( let i = 0; i < yhat.length; i++ ) {
 			mss += pow( yhat[ i ] - avgFitted, 2 );
 		}
-		const resid = subtract( yhat, yvalues );
+		const resid = subtract( yvalues, yhat );
 		let rss = 0;
 		for ( let i = 0; i < resid.length; i++ ) {
 			rss += pow( resid[ i ], 2 );
@@ -293,7 +293,7 @@ class MultipleLinearRegression extends Component {
 		let { x, y } = this.props;
 		const { matrix } = designMatrix( x, y, data, quantitative, intercept );
 		const yhat = this.state.result.predict( matrix ).map( v => v[ 0 ] );
-		const resid = subtract( yhat, data[ y ] );
+		const resid = subtract( data[ y ], yhat );
 		this.props.onPredict( yhat, resid, COUNTER );
 	}
 

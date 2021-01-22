@@ -46,6 +46,7 @@
 	"predictor": "予測器",
 	"principal-component": "主な構成要素",
 	"proportion-of-variance": "分散の割合",
+	"qq-plot-of-residuals": "QQプロットの残差",
 	"random-forest-for": "ランダムフォレストで{{y}}の(モデルID: forest{{counter}})",
 	"regression-y-on-x": "{{y}}の{{x}}に対する回帰",
 	"residual-standard-error": "残留標準誤差",

@@ -46,6 +46,7 @@
 	"predictor": "Предиктор",
 	"principal-component": "Главный компонент",
 	"proportion-of-variance": "Доля Вариации",
+	"qq-plot-of-residuals": "Остатки по QQ",
 	"random-forest-for": "\"Случайный лес\". (номер модели: лес{{counter}})",
 	"regression-y-on-x": "Регрессия {{y}} на {{x}}",
 	"residual-standard-error": "Остаточная стандартная ошибка",

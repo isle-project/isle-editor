@@ -46,6 +46,7 @@
 	"predictor": "Voorspeller",
 	"principal-component": "Hoofdcomponent",
 	"proportion-of-variance": "Aandeel van de variatie",
+	"qq-plot-of-residuals": "QQ Plot van Residuen",
 	"random-forest-for": "Willekeurig bos voor {{y}} (model id: bos{{counter}))",
 	"regression-y-on-x": "Regressie van {{y}} op {{x}}",
 	"residual-standard-error": "Resterende standaardafwijking",
