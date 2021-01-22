@@ -33,11 +33,11 @@ const main = ({ t }) => {
 			<p>{t('questions-p7')}</p>
 
 			<div className="centered" style={{ width: 'fit-content' }} >
-				<Image alt="Next Question Navigation" src="https://isle.stat.cmu.edu/data-explorers_question_nav_next.gif" width={600} height={209} />
+				<Image alt="Next Question Navigation" src={`${location.origin}/screenshots/question_nav_next.gif`} width={600} height={209} />
 			</div>
 
 			<div className="centered" style={{ width: 'fit-content' }} >
-				<Image alt="Question Number Navigation" src="https://isle.stat.cmu.edu/data-explorers_question_nav_num.gif" width={600} height={300} />
+				<Image alt="Question Number Navigation" src={`${location.origin}/screenshots/question_nav_num.gif`} width={600} height={300} />
 			</div>
 
 		</div>
