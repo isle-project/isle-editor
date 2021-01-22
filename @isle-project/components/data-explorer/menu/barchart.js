@@ -237,7 +237,10 @@ const BarchartMenu = ( props ) => {
 						/>
 					</Col>
 				</Row>
-				<Button variant="primary" block onClick={generateBarchart}>
+				<Button
+					variant="primary" block onClick={generateBarchart}
+					disabled={!variable}
+				>
 					{t('generate')}
 				</Button>
 			</Card.Body>
