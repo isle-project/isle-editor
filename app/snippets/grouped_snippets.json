@@ -123,6 +123,54 @@
       "value": "<SortableTree treeData={[\n  {title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3' }] }]}\n/>"
     },
     {
+      "name": "Language",
+      "value": "<Language>\n  ${1:<Language.English>\n  ${2:}\n</Language.English>}\n</Language>"
+    },
+    {
+      "name": "Language Chinese",
+      "value": "<Language.Chinese>\n  ${1:}\n</Language.Chinese>"
+    },
+    {
+      "name": "Language English",
+      "value": "<Language.English>\n  ${1:}\n</Language.English>"
+    },
+    {
+      "name": "Language French",
+      "value": "<Language.French>\n  ${1:}\n</Language.French>"
+    },
+    {
+      "name": "Language German",
+      "value": "<Language.German>\n  ${1:}\n</Language.German>"
+    },
+    {
+      "name": "Language Italian",
+      "value": "<Language.Italian>\n  ${1:}\n</Language.Italian>"
+    },
+    {
+      "name": "Language Japanese",
+      "value": "<Language.Japanese>\n  ${1:}\n</Language.Japanese>"
+    },
+    {
+      "name": "Language Netherlandish",
+      "value": "<Language.Netherlandish>\n  ${1:}\n</Language.Netherlandish>"
+    },
+    {
+      "name": "Language Polish",
+      "value": "<Language.Polish>\n  ${1:}\n</Language.Polish>"
+    },
+    {
+      "name": "Language Portugese",
+      "value": "<Language.Portugese>\n  ${1:}\n</Language.Portugese>"
+    },
+    {
+      "name": "Language Russian",
+      "value": "<Language.Russian>\n  ${1:}\n</Language.Russian>"
+    },
+    {
+      "name": "Language Spanish",
+      "value": "<Language.Spanish>\n  ${1:}\n</Language.Spanish>"
+    },
+    {
       "name": "Bibliography",
       "value": "<Bibliography />"
     },

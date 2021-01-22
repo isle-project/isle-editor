@@ -4,7 +4,7 @@ title: Wikipedia
 sidebar_label: Wikipedia
 ---
 
-The **Wikipedia** component scans the **Wikipedia** and returns an article - if anything valid is found under the entered search term.
+The **Wikipedia** component scans the **Wikipedia** and returns an article if anything valid is found under the entered search term.
 
 ## Example
 
@@ -18,5 +18,5 @@ The **Wikipedia** component scans the **Wikipedia** and returns an article - if 
 
 ## Options
 
-* __invisible__ | `boolean`: controls whether to display a text input field to search for Wikipedia articles. Default: `false`.
 * __language__ | `string`: language identifier. Default: `'en-US'`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.

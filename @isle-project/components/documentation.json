@@ -609,7 +609,7 @@
         "name": "editorTitle",
         "type": "string",
         "description": "DataExplorer-prop-editorTitle",
-        "defaultValue": "Report"
+        "defaultValue": null
       },
       {
         "name": "dataTable",
@@ -2357,6 +2357,12 @@
         "type": "object",
         "description": "VoiceInput-prop-remote",
         "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "description": "VoiceInput-prop-className",
+        "defaultValue": ""
       },
       {
         "name": "style",
@@ -4228,10 +4234,10 @@
         "defaultValue": ""
       },
       {
-        "name": "paginationBelow",
-        "type": "boolean",
-        "description": "Pages-prop-paginationBelow",
-        "defaultValue": false
+        "name": "pagination",
+        "type": "string",
+        "description": "Pages-prop-pagination",
+        "defaultValue": "top"
       },
       {
         "name": "size",
@@ -7072,6 +7078,12 @@
         "defaultValue": false
       },
       {
+        "name": "pagination",
+        "type": "string",
+        "description": "Slider-prop-pagination",
+        "defaultValue": "bottom"
+      },
+      {
         "name": "goto",
         "type": "number",
         "description": "Slider-prop-goto",
@@ -8616,16 +8628,16 @@
   "Wikipedia": {
     "props": [
       {
-        "name": "invisible",
-        "type": "boolean",
-        "description": "Wikipedia-prop-invisible",
-        "defaultValue": false
-      },
-      {
         "name": "language",
         "type": "string",
         "description": "Wikipedia-prop-language",
         "defaultValue": "en-US"
+      },
+      {
+        "name": "style",
+        "type": "object",
+        "description": "Wikipedia-prop-style",
+        "defaultValue": {}
       }
     ],
     "description": "Wikipedia-description"

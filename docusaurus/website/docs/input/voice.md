@@ -35,6 +35,7 @@ A voice input component.
 * __onSubmit__ | `function`: callback function when submitting text input value by hitting "Enter". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: text input placeholder. Default: `none`.
 * __remote__ | `object`: object with `start`, `stop`, and `toggle` and associated hotkeys. Default: `none`.
+* __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __timeout__ | `number`: number of milliseconds after which to timeout the recording. Default: `none`.
 * __stopTooltip__ | `string`: tooltip message displayed while recording. Default: `none`.

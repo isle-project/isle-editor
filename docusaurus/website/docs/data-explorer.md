@@ -53,7 +53,7 @@ We will include the explorer with the following code:
 }`.
 * __editor__ | `boolean`: boolean indicating whether to show the editor to the user. Default: `true`.
 * __editorProps__ | `object`: object of properties to be passed to the `TextEditor` (see documentation for <TextEditor />). Default: `none`.
-* __editorTitle__ | `string`: string indicating the title of the explorer to be displayed. Default: `'Report'`.
+* __editorTitle__ | `string`: string indicating the title of the explorer to be displayed. Default: `none`.
 * __dataTable__ | `boolean`: boolean value indicating whether to hide the data table from view. Default: `true`.
 * __dataTableProps__ | `object`: properties passed to the data table component (see documentation for <DataTable />). Default: `{}`.
 * __history__ | `boolean`: controls whether to display a history log of carried out actions. Default: `false`.
