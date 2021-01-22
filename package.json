@@ -328,7 +328,7 @@
   "build": {
     "appId": "isle.editor",
     "productName": "isle-editor",
-    "copyright": "Copyright © 2016-2020 ${author}",
+    "copyright": "Copyright © 2016-2021 ${author}",
     "asar": true,
     "npmRebuild": false,
     "extraResources": [
