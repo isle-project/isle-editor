@@ -4,12 +4,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import ROutput from '@isle-project/components/r/output';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Tests' );
 
 
 // MAIN //
 
 function Chi2Test({ data, var1, var2 }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	const x = data[ var1 ].map( x => `"${x}"` );
 	const y = data[ var2 ].map( x => `"${x}"` );
 	return (

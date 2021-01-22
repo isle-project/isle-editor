@@ -9,10 +9,12 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import mean from '@isle-project/utils/statistic/mean';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Tests' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
@@ -20,7 +22,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 // MAIN //
 
 function PropTest({ data, variable, alpha, direction, success, p0, showDecision }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	const x = data[ variable ];
 	const binary = x.map( x => x === success ? 1 : 0 );
 	const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {

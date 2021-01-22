@@ -10,10 +10,12 @@ import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Tables' );
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };

@@ -7,12 +7,18 @@ import { useTranslation } from 'react-i18next';
 import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
+import { addResources } from '@isle-project/locales';
+
+
+// VARIABLES //
+
+addResources( 'Tests' );
 
 
 // MAIN //
 
 function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	const x = data[ var1 ];
 	const y = data[ var2 ];
 	const xFiltered = [];

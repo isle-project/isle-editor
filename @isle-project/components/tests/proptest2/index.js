@@ -13,10 +13,12 @@ import TeX from '@isle-project/components/tex';
 import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import escapeLatex from '@isle-project/utils/escape-latex';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Tests' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,[-?\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[-?\d.]+,Infinity\]/;
 
@@ -24,7 +26,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[-?\d.]+,Infinity\]/;
 // MAIN //
 
 function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecision, success }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	let firstCategory;
 	let secondCategory;
 	let value;

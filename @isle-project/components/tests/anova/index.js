@@ -12,7 +12,7 @@ import isNull from '@stdlib/assert/is-null';
 // MAIN //
 
 function Anova({ data, variable, group, showDecision }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	const vals = data[ variable ];
 	const groups = data[ group ];
 	const groupsFiltered = [];

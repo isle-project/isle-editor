@@ -11,10 +11,12 @@ import replace from '@stdlib/string/replace';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import standardDeviation from '@isle-project/utils/statistic/stdev';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Tests' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
@@ -39,7 +41,7 @@ function extractValues( data, variable ) {
 // MAIN //
 
 function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDecision }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	const xvalues = extractValues( data, variable );
 	let sd;
 	if ( type === 'Z Test' && stdev ) {

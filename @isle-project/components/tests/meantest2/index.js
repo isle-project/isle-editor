@@ -16,10 +16,12 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import stdev from '@isle-project/utils/statistic/stdev';
 import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
+addResources( 'Tests' );
 const debug = logger( 'isle:tests:meantest2' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
@@ -62,7 +64,7 @@ function retrieveGroupedValues( data, x, group ) {
 // MAIN //
 
 function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
-	const { t } = useTranslation( 'Test' );
+	const { t } = useTranslation( 'Tests' );
 	let out;
 	if ( group ) {
 		out = retrieveGroupedValues( data, x, group );
@@ -123,7 +125,10 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
 		const egrouping = escapeLatex( group );
+		console.log( out.firstCategory );
+		console.log( out );
 		const ecat1 = escapeLatex( out.firstCategory );
+		console.log( ecat1 );
 		const ecat2 = escapeLatex( out.secondCategory );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
 			<span className="title" >{t('hypothesis-test-between', { x, group })}:</span>
