@@ -235,6 +235,8 @@
 	"none": "なし",
 	"offline": "オフライン",
 	"online": "オンライン",
+	"only-active": "アクティブなものだけを表示",
+	"only-inactive": "非アクティブなものだけを表示",
 	"opacity": "不透明度 (%)",
 	"open-folder": "含むフォルダを開く",
 	"open-in-browser": "ブラウザでレッスンを開く",

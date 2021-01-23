@@ -235,6 +235,8 @@
 	"none": "Nenhum",
 	"offline": "offline",
 	"online": "online",
+	"only-active": "Mostrar somente ativo",
+	"only-inactive": "Mostrar apenas inativo",
 	"opacity": "Opacidade (em %)",
 	"open-folder": "Abrir pasta contendo",
 	"open-in-browser": "Aula aberta no Browser",

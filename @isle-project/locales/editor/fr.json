@@ -235,6 +235,8 @@
 	"none": "Aucune",
 	"offline": "hors ligne",
 	"online": "en ligne",
+	"only-active": "Afficher uniquement les actifs",
+	"only-inactive": "Afficher seulement inactif",
 	"opacity": "Opacité (en %)",
 	"open-folder": "Ouvrir le dossier contenant",
 	"open-in-browser": "Leçon ouverte dans le navigateur",

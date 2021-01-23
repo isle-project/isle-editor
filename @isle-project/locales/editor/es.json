@@ -235,6 +235,8 @@
 	"none": "Ninguno",
 	"offline": "fuera de línea",
 	"online": "en línea",
+	"only-active": "Mostrar sólo activo",
+	"only-inactive": "Mostrar sólo inactivo",
 	"opacity": "Opacidad (en %)",
 	"open-folder": "Abrir la carpeta que contiene",
 	"open-in-browser": "Lección abierta en el Navegador",

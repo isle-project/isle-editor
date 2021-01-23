@@ -235,6 +235,8 @@
 	"none": "Geen",
 	"offline": "offline",
 	"online": "online",
+	"only-active": "Toon alleen actief",
+	"only-inactive": "Toon alleen inactief",
 	"opacity": "Opaciteit (in %)",
 	"open-folder": "Openen met map",
 	"open-in-browser": "Open les in Browser",

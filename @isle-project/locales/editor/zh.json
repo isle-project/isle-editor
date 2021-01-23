@@ -235,6 +235,8 @@
 	"none": "无",
 	"offline": "离线",
 	"online": "在线",
+	"only-active": "只显示活动",
+	"only-inactive": "只显示不活动",
 	"opacity": "不透明度(%)",
 	"open-folder": "打开包含文件夹",
 	"open-in-browser": "在浏览器中打开课程",
