@@ -23,6 +23,10 @@
 	background: rgba(129, 226, 129, 0.2) !important;
 }
 
+.configurator-tr-invalid {
+	background: rgba(255, 134, 134, 0.993) !important;
+}
+
 .style-button {
 	position: absolute;
 	right: 6px;
