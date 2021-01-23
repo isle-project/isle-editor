@@ -10,6 +10,7 @@ import logger from 'debug';
 import SplitPane from 'react-split-pane';
 import markdownit from 'markdown-it';
 import debounce from 'lodash.debounce';
+import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
@@ -145,7 +146,9 @@ class ComponentConfigurator extends Component {
 			name: 'id',
 			type: 'string',
 			defaultValue: '',
-			description: this.props.t('id-description')
+			description: this.props.t('id-description'),
+			encounteredError: null,
+			showProperties: null
 		});
 
 		this.selfClosing = endsWith( rtrim( value ), '/>' );
@@ -520,7 +523,7 @@ class ComponentConfigurator extends Component {
 		debug( 'Rendering property controls...' );
 		const props = this.docProps;
 		const { t } = this.props;
-		const { searchValue } = this.state;
+		const { searchValue, showProperties } = this.state;
 		if ( props.length === 0 ) {
 			return <div style={{ marginBottom: 15 }}>{t('component-no-properties')}</div>;
 		}
@@ -529,6 +532,17 @@ class ComponentConfigurator extends Component {
 			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
 			prop.description = this.props.t( 'ComponentDocs:'+description );
+			const isActive = this.state.propActive[ name ];
+			const isRequired = this.isRequired[ name ];
+			if (
+				showProperties &&
+				(
+					( showProperties.value === 'active' && !isActive ) ||
+					( showProperties.value === 'inactive' && isActive )
+				)
+			) {
+				continue;
+			}
 			if (
 				searchValue &&
 				!contains( lowercase( name || '' ), searchValue ) &&
@@ -537,8 +551,6 @@ class ComponentConfigurator extends Component {
 			) {
 				continue;
 			}
-			const isActive = this.state.propActive[ name ];
-			const isRequired = this.isRequired[ name ];
 			const className = isActive ? 'configurator-tr-active' : '';
 			let input;
 			const propValue = this.state[ 'prop:'+name ];
@@ -716,6 +728,26 @@ class ComponentConfigurator extends Component {
 						}}
 						style={{ width: '14vw', minWidth: '120px', float: 'right', marginBottom: 2 }}
 					/>
+					<div style={{ float: 'right', width: '200px', marginRight: 6 }} >
+						<Select
+							options={[
+								{
+									label: t('only-active'),
+									value: 'active'
+								},
+								{
+									label: t('only-inactive'),
+									value: 'inactive'
+								}
+							]}
+							onChange={( x ) => {
+								this.setState({
+									showProperties: x
+								});
+							}}
+							isClearable
+						/>
+					</div>
 					{componentDescription}
 					<Card.Subtitle style={{ fontSize: '12px', margin: 0 }} className="text-muted">
 						{t('wizard-table-instructions')}
@@ -730,35 +762,40 @@ class ComponentConfigurator extends Component {
 							<div style={{ width: '100%', overflowY: 'scroll', padding: 10 }} >
 								{this.renderPropertyControls()}
 							</div>
-							<Provider session={this.session} currentRole={this.props.currentRole} >
-								<Playground
-									value={this.state.value}
-									scope={SCOPE}
-									onChange={this.handleChange}
-									editorProps={{
-										onMouseOut: this.handleMouseOut
-									}}
-									style={{
-										marginTop: '12px',
-										maxWidth: '100vw',
-										height: '100%',
-										overflowX: 'hidden'
-									}}
-									transformCode={( code ) => {
-										try {
-											code = replace( code, RE_BEFORE_TAG, '' );
-											let out = markdownToHTML( code );
-											out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
-												const raw = replace( p1, '\\', '\\\\' );
-												return `String.raw({ raw: \`${raw}\` })`;
-											});
-											return out;
-										} catch ( err ) {
-											return err;
-										}
-									}}
-								/>
-							</Provider>
+							{ this.state.encounteredError ?
+								<div className="invalid-type-error">
+									{this.state.encounteredError}
+								</div> :
+								<Provider session={this.session} currentRole={this.props.currentRole} >
+									<Playground
+										value={this.state.value}
+										scope={SCOPE}
+										onChange={this.handleChange}
+										editorProps={{
+											onMouseOut: this.handleMouseOut
+										}}
+										style={{
+											marginTop: '12px',
+											maxWidth: '100vw',
+											height: '100%',
+											overflowX: 'hidden'
+										}}
+										transformCode={( code ) => {
+											try {
+												code = replace( code, RE_BEFORE_TAG, '' );
+												let out = markdownToHTML( code );
+												out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+													const raw = replace( p1, '\\', '\\\\' );
+													return `String.raw({ raw: \`${raw}\` })`;
+												});
+												return out;
+											} catch ( err ) {
+												return err;
+											}
+										}}
+									/>
+								</Provider>
+							}
 						</SplitPane>
 					</div>
 				</Modal.Body>
