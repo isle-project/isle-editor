@@ -396,8 +396,8 @@ StickyNote.propTypes = {
 };
 
 StickyNote.defaultProps = {
-	title: 'Enter a title',
-	body: 'Body of the note',
+	title: null,
+	body: null,
 	watermark: null,
 	color: null,
 	date: '',
