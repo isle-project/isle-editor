@@ -232,7 +232,7 @@
     "react-rnd": "^10.2.4",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-select": "3.0.8",
+    "react-select": "4.0.2",
     "react-slick": "0.27.14",
     "react-sortable-tree": "^2.8.0",
     "react-split-pane": "0.1.92",
