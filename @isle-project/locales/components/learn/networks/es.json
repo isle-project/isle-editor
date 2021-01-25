@@ -1,5 +1,6 @@
 {
 	"edge-probability": "probabilidad de un borde entre dos nodos",
+	"global-clustering-coefficient": "Coeficiente de agrupación global",
 	"intro-1": "En una red, se supone que los nodos son fijos pero los bordes son aleatorios, es decir, hay un proceso aleatorio que determina si hay un borde que conecta dos nodos.",
 	"intro-2": "Consideremos uno de los modelos de red más simples disponibles. En el modelo Erdős-Rényi, hay una probabilidad fija <1 /> de que exista un borde entre dos nodos cualesquiera. También asumimos que la existencia o no de un borde entre dos nodos es independiente de la existencia o no de otros bordes.",
 	"intro-3": "En este modelo, si tenemos <1 /> nodos, cada nodo puede ser conectado a <3 /> otros nodos.  El número de bordes unidos a cada nodo (el grado) es entonces <5 />.",

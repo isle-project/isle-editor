@@ -1,5 +1,6 @@
 {
 	"edge-probability": "la probabilité d'un bord entre deux nœuds",
+	"global-clustering-coefficient": "Coefficient de regroupement mondial",
 	"intro-1": "Dans un réseau, les nœuds sont supposés être fixes mais les bords sont aléatoires, c'est-à-dire qu'il existe un processus aléatoire qui détermine s'il y a un bord reliant deux nœuds.",
 	"intro-2": "Considérons l'un des modèles de réseau les plus simples disponibles. Dans le modèle Erdős-Rényi, il y a une probabilité fixe <1 /> qu'un bord existe entre deux nœuds quelconques. Nous supposons également que l'existence ou non d'un bord entre deux nœuds est indépendante de l'existence ou non d'autres bords.",
 	"intro-3": "Dans ce modèle, si nous avons <1 /> nœuds, chaque nœud peut être connecté à <3 /> d'autres nœuds.  Le nombre d'arêtes attachées à chaque nœud (le degré) est alors <5 />.",

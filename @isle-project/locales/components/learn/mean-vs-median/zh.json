@@ -1,10 +1,14 @@
 {
+	"a-bit-off": "有点不对...再试一次！",
 	"average-distance-from-mean": "平均距离平均值。",
 	"average-distance-from-median": "与中位数的平均距离。",
 	"generate-new-data": "生成新数据",
+	"good": "很好！",
 	"group": "集团",
 	"mean": "平均值",
 	"measures-of-location-header": "地点的衡量标准。平均数与中位数",
 	"median": "中位数",
+	"score": "分数",
+	"very-good": "很好！",
 	"you": "你"
 }

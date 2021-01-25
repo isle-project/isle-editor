@@ -10,8 +10,10 @@
 	"points": "Punten",
 	"proportion": "Aandeel",
 	"qqplot-title": "Normaal QQ-plaatje van {{x}}",
+	"sample-quantiles": "Steekproefkwartsen",
 	"share": "Deel",
 	"smoothed-fit": "Gladde pasvorm",
+	"theoretical-quantiles": "Theoretische Kwantels",
 	"toggle-fullscreen": "Schakelaar volledig scherm",
 	"toggle-legend": "Schakellegende",
 	"vs": "vs."

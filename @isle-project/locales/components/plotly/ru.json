@@ -10,8 +10,10 @@
 	"points": "Баллы",
 	"proportion": "Доля",
 	"qqplot-title": "Нормальный участок QQ из {{x}}",
+	"sample-quantiles": "Образцы квантилей",
 	"share": "Поделиться",
 	"smoothed-fit": "Smoothed Fit",
+	"theoretical-quantiles": "Теоретические квантилы",
 	"toggle-fullscreen": "полноэкранный режим",
 	"toggle-legend": "легенда Тоггле",
 	"vs": "против"

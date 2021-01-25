@@ -1,8 +1,10 @@
 {
 	"answer-resubmitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
+	"correct": "Correct",
 	"correct-answer": "Réponse correcte",
 	"failure-message": "Pas tout à fait.",
+	"incorrect": "Incorrect",
 	"resubmit": "Soumettre à nouveau",
 	"resubmit-message": "Vous avez soumis à nouveau votre réponse avec succès.",
 	"submit": "Soumettre",

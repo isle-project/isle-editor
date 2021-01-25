@@ -60,11 +60,11 @@ export function generateQQPlotConfig( y, variable ) {
 		annotations,
 		title: i18n.t('Plotly:qqplot-title', { x: variable }),
 		xaxis: {
-			title: 'Theoretical Quantiles',
+			title: i18n.t('Plotly:theoretical-quantiles'),
 			range: [ normalQuantiles[ 0 ] - 0.3, normalQuantiles[ normalQuantiles.length-1 ] + 0.3 ]
 		},
 		yaxis: {
-			title: 'Sample Quantiles',
+			title: i18n.t('Plotly:sample-quantiles'),
 			range: [ ymin - 1, ymax + 1 ]
 		},
 		showlegend: false

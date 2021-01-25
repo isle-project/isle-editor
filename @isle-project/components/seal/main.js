@@ -203,7 +203,7 @@ class Seal extends Component {
 				{ !this.props.noOrnaments ? <div className="seal-logo" /> : null }
 				{ !this.props.noOrnaments ? <div className="seal-lower-logo" /> : null }
 				<div className="seal-wrapper">
-					<div className="seal-title">{ this.props.title}</div>
+					<div className="seal-title">{this.props.title}</div>
 				</div>
 				<div className="seal-lower-line">{this.getLowerLine()}</div>
 				<div className="seal-upper">{this.getUpperLine()}</div>

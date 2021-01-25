@@ -10,8 +10,10 @@
 	"points": "Pontos",
 	"proportion": "Proporção",
 	"qqplot-title": "QQ normal Plot de {{x}}",
+	"sample-quantiles": "Quantis de amostra",
 	"share": "Compartilhe",
 	"smoothed-fit": "Ajuste suavizado",
+	"theoretical-quantiles": "Quantis Teóricos",
 	"toggle-fullscreen": "Alternar tela cheia",
 	"toggle-legend": "Lenda da alternância",
 	"vs": "vs."

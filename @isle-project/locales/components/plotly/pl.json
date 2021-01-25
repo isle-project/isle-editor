@@ -10,8 +10,10 @@
 	"points": "Punkty",
 	"proportion": "Proporcja",
 	"qqplot-title": "Normalne QQ Wykres {{x}}",
+	"sample-quantiles": "Przykładowe Kwantyle",
 	"share": "Podziel się",
 	"smoothed-fit": "Smoothed Fit",
+	"theoretical-quantiles": "Teoretyczne Quantiles",
 	"toggle-fullscreen": "Przełączanie trybu pełnoekranowego",
 	"toggle-legend": "Legenda przełączania",
 	"vs": "vs."

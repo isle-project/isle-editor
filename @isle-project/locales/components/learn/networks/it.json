@@ -1,5 +1,6 @@
 {
 	"edge-probability": "probabilità di uno spigolo tra due nodi",
+	"global-clustering-coefficient": "Coefficiente di clustering globale",
 	"intro-1": "In una rete si suppone che i nodi siano fissi, ma i bordi sono casuali, cioè c'è un processo casuale che determina se c'è un bordo che collega due nodi.",
 	"intro-2": "Consideriamo uno dei modelli di rete più semplici disponibili. Nel modello Erdős-Rényi, c'è una probabilità fissa <1 /> che esista un bordo tra due nodi qualsiasi. Supponiamo anche che l'esistenza o meno di un bordo tra due nodi sia indipendente dall'esistenza o meno di altri bordi.",
 	"intro-3": "In questo modello, se abbiamo nodi <1 />, ogni nodo può essere collegato ad altri nodi <3 />.  Il numero di bordi collegati ad ogni nodo (il grado) è quindi <5 />.",

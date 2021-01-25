@@ -99,18 +99,18 @@ class MeanVSMedian extends Component {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMedian ) {
 			let distance = abs( lognormal.median( this.state.mu, this.state.sigma ) - this.state.medianLognormalGuess );
-			let msg = 'A bit off... Try again!';
+			let msg = this.props.t('a-bit-off');
 			let xmax = this.state.lognormalDomain.x[ 1 ];
 			if ( distance < xmax/10 ) {
-				msg = 'Good!';
+				msg = this.props.t('good');
 			}
 			if ( distance < xmax/20 ) {
-				msg = 'Very Good!';
+				msg = this.props.t('very-good');
 			}
 			this.singleAccMedian( distance );
 			const session = this.context;
 			session.addNotification({
-				title: 'Score',
+				title: this.props.t('score'),
 				message: msg,
 				position: 'tc',
 				level: 'success'
@@ -128,18 +128,18 @@ class MeanVSMedian extends Component {
 		evt.stopPropagation();
 		if ( !this.state.showLognormalMean ) {
 			let distance = abs( lognormal.mean( this.state.mu, this.state.sigma ) - this.state.meanLognormalGuess );
-			let msg = 'A bit off... Try again!';
+			let msg = this.props.t('a-bit-off');
 			let xmax = this.state.lognormalDomain.x[ 1 ];
 			if ( distance < xmax/10 ) {
-				msg = 'Good!';
+				msg = this.props.t('good');
 			}
 			if ( distance < xmax/20 ) {
-				msg = 'Very Good!';
+				msg = this.props.t('very-good');
 			}
 			this.singleAccMean( distance );
 			const session = this.context;
 			session.addNotification({
-				title: 'Score',
+				title: this.props.t('score'),
 				message: msg,
 				position: 'tc',
 				level: 'success'

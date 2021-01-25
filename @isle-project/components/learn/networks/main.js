@@ -122,7 +122,7 @@ class Networks extends Component {
 		];
 		return ( <Plotly removeButtons
 			layout={{
-				title: 'Global Clustering Coefficient',
+				title: this.props.t('global-clustering-coefficient'),
 				height: 250
 			}}
 			data={data}

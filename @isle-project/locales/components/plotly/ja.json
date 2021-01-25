@@ -10,8 +10,10 @@
 	"points": "ポイント",
 	"proportion": "比例",
 	"qqplot-title": "{{x}}の法線QQプロット",
+	"sample-quantiles": "サンプルの量的分布",
 	"share": "シェア",
 	"smoothed-fit": "スムーズフィット",
+	"theoretical-quantiles": "理論的な量論",
 	"toggle-fullscreen": "フルスクリーンを切り替える",
 	"toggle-legend": "凡例のトグル",
 	"vs": "対"

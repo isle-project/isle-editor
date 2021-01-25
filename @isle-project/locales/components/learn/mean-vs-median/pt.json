@@ -1,10 +1,14 @@
 {
+	"a-bit-off": "Um pouco fora... Tente novamente!",
 	"average-distance-from-mean": "Distância média da média:",
 	"average-distance-from-median": "Distância média em relação à mediana:",
 	"generate-new-data": "Gerar novos dados",
+	"good": "Ótimo!",
 	"group": "Grupo",
 	"mean": "Média",
 	"measures-of-location-header": "Medidas de Localização: Média vs. Mediana",
 	"median": "Mediana",
+	"score": "Pontuação",
+	"very-good": "Muito Bom!",
 	"you": "Você"
 }

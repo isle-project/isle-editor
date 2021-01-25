@@ -10,8 +10,10 @@
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Graphique QQ normal de {{x}}",
+	"sample-quantiles": "Exemples de quantiles",
 	"share": "Partager",
 	"smoothed-fit": "L'ajustement en douceur",
+	"theoretical-quantiles": "Quantiles théoriques",
 	"toggle-fullscreen": "Basculer en plein écran",
 	"toggle-legend": "Légende de la bascule",
 	"vs": "contre"

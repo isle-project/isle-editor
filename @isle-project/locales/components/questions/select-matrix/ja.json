@@ -1,8 +1,10 @@
 {
 	"answer-resubmitted": "回答を再投稿しました。",
 	"answer-submitted": "回答を提出しました。",
+	"correct": "正解",
 	"correct-answer": "正解",
 	"failure-message": "そうでもない",
+	"incorrect": "不正解",
 	"resubmit": "再提出",
 	"resubmit-message": "回答の再提出に成功しました。",
 	"submit": "提出",

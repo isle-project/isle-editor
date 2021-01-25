@@ -1,8 +1,10 @@
 {
 	"answer-resubmitted": "Antwoord opnieuw ingediend.",
 	"answer-submitted": "Antwoord ingediend.",
+	"correct": "Correct",
 	"correct-answer": "Correct antwoord",
 	"failure-message": "Niet helemaal.",
+	"incorrect": "Onjuiste",
 	"resubmit": "Dien opnieuw  in.",
 	"resubmit-message": "U heeft uw antwoord met succes opnieuw ingediend.",
 	"submit": "Stuur een bericht naar",

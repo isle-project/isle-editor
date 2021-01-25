@@ -1,10 +1,14 @@
 {
+	"a-bit-off": "少しずれている...もう一度やってみてください！",
 	"average-distance-from-mean": "平均からの距離。",
 	"average-distance-from-median": "中央値からの平均距離",
 	"generate-new-data": "新しいデータの生成",
+	"good": "いいね！",
 	"group": "グループ",
 	"mean": "平均",
 	"measures-of-location-header": "ロケーションの測定。平均値と中央値",
 	"median": "中央値",
+	"score": "スコア",
+	"very-good": "非常に良い！",
 	"you": "あなたは"
 }

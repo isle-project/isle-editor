@@ -130,13 +130,13 @@ class SelectQuestionMatrix extends Component {
 		if ( this.props.provideFeedback !== 'none' && hasSolution ) {
 			if ( correct ) {
 				session.addNotification({
-					title: 'Correct',
+					title: this.props.t('correct'),
 					message: this.props.successMsg || this.props.t('success-message'),
 					level: 'success'
 				});
 			} else {
 				session.addNotification({
-					title: 'Incorrect',
+					title: this.props.t('incorrect'),
 					message: this.props.failureMsg || this.props.t('failure-message'),
 					level: 'error'
 				});

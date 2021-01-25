@@ -10,8 +10,10 @@
 	"points": "点数",
 	"proportion": "比例",
 	"qqplot-title": "正常QQ图的{{x}}。",
+	"sample-quantiles": "样本数量级",
 	"share": "分享",
 	"smoothed-fit": "平滑贴身",
+	"theoretical-quantiles": "理论数量级",
 	"toggle-fullscreen": "切换全屏",
 	"toggle-legend": "切换传说",
 	"vs": "与"

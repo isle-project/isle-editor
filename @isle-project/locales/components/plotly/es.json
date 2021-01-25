@@ -10,8 +10,10 @@
 	"points": "Puntos",
 	"proportion": "Proporción",
 	"qqplot-title": "Gráfico QQ normal de {{x}}",
+	"sample-quantiles": "Quantiles de muestra",
 	"share": "Compartir",
 	"smoothed-fit": "Suave ajuste",
+	"theoretical-quantiles": "Quantiles teóricos",
 	"toggle-fullscreen": "Alternar pantalla completa",
 	"toggle-legend": "Leyenda de la conmutación",
 	"vs": "contra"

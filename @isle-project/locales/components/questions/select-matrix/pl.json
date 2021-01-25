@@ -1,8 +1,10 @@
 {
 	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
 	"answer-submitted": "Odpowiedź nadesłana.",
+	"correct": "Poprawnie",
 	"correct-answer": "Prawidłowa odpowiedź",
 	"failure-message": "Niezupełnie.",
+	"incorrect": "Błędny",
 	"resubmit": "Ponowne przedłożenie",
 	"resubmit-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
 	"submit": "Zgłoś się",

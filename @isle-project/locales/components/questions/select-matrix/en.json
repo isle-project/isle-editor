@@ -1,8 +1,10 @@
 {
 	"answer-resubmitted": "Answer re-submitted.",
 	"answer-submitted": "Answer submitted.",
+	"correct": "Correct",
 	"correct-answer": "Correct answer",
 	"failure-message": "Not quite.",
+	"incorrect": "Incorrect",
 	"resubmit": "Resubmit",
 	"resubmit-message": "You have successfully re-submitted your answer.",
 	"submit": "Submit",

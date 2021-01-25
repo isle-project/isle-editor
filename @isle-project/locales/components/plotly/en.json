@@ -10,8 +10,10 @@
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Normal QQ Plot of {{x}}",
+	"sample-quantiles": "Sample Quantiles",
 	"share": "Share",
 	"smoothed-fit": "Smoothed Fit",
+	"theoretical-quantiles": "Theoretical Quantiles",
 	"toggle-fullscreen": "Toggle fullscreen",
 	"toggle-legend": "Toggle legend",
 	"vs": "vs."

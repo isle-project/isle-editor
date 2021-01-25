@@ -10,8 +10,10 @@
 	"points": "Punti",
 	"proportion": "Proporzione",
 	"qqplot-title": "Normale QQ Plot di {{x}} normale",
+	"sample-quantiles": "Quantità del campione",
 	"share": "Condividi",
 	"smoothed-fit": "Vestibilità levigata",
+	"theoretical-quantiles": "Quantità teoriche",
 	"toggle-fullscreen": "Attivare e disattivare lo schermo intero",
 	"toggle-legend": "Attivare la leggenda",
 	"vs": "contro"

@@ -51,8 +51,8 @@ class ContingencyTableMenu extends Component {
 		const { rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display } = this.state;
 		if ( !rowVar || !colVar ) {
 			return this.props.session.addNotification({
-				title: 'Select Variables',
-				message: 'You need to select a row and column variable for the contingency table',
+				title: this.props.t('select-variables'),
+				message: this.props.t('select-row-and-column-variable'),
 				level: 'warning',
 				position: 'tr'
 			});

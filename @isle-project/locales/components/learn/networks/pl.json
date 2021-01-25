@@ -1,5 +1,6 @@
 {
 	"edge-probability": "prawdopodobieństwo wystąpienia krawędzi między dwoma węzłami",
+	"global-clustering-coefficient": "Globalny Współczynnik Grupowania (Global Clustering Coefficient)",
 	"intro-1": "W sieci zakłada się, że węzły są stałe, ale krawędzie są losowe, tzn. istnieje pewien losowy proces, który określa, czy istnieje krawędź łącząca dwa węzły.",
 	"intro-2": "Weźmy pod uwagę jeden z najprostszych dostępnych modeli sieci. W modelu Erdős-Rényi istnieje stałe prawdopodobieństwo <1 />, że pomiędzy dwoma dowolnymi węzłami istnieje granica. Zakładamy również, że to, czy krawędź istnieje pomiędzy dwoma węzłami, czy też nie, jest niezależne od tego, czy istnieją inne krawędzie, czy też nie.",
 	"intro-3": "W tym modelu, jeśli mamy <1 /> węzłów, każdy węzeł może być podłączony do <3 /> innych węzłów.  Liczba krawędzi dołączonych do każdego węzła (stopień) wynosi wtedy <5 />.",
