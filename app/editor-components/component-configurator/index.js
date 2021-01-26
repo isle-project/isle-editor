@@ -11,6 +11,7 @@ import SplitPane from 'react-split-pane';
 import markdownit from 'markdown-it';
 import debounce from 'lodash.debounce';
 import Select from 'react-select';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
@@ -31,6 +32,7 @@ import replace from '@stdlib/string/replace';
 import removeLast from '@stdlib/string/remove-last';
 import rtrim from '@stdlib/string/right-trim';
 import endsWith from '@stdlib/string/ends-with';
+import startsWith from '@stdlib/string/starts-with';
 import lowercase from '@stdlib/string/lowercase';
 import contains from '@stdlib/assert/contains';
 import rescape from '@stdlib/utils/escape-regexp-string';
@@ -54,6 +56,7 @@ const RE_STYLE_KEY = /([ \t]*)style=({{[\s\S]*?}})/;
 const SPACES_AFTER_NEW_LINE = /\n +(?=[^ ])/;
 const SPACES_BEFORE_CLOSING_TAG = /\s*(\n\/?>)/;
 const RE_CLASSNAME = /className=(['"])[\s\S]+?\1/;
+const RE_NUMBERS = /[+-]?[\d.]+e?[+-]?\d*/;
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -133,6 +136,29 @@ function removePlaceholderMarkup( str ) {
 	return replace( str, RE_SNIPPET_PLACEHOLDER, '$1' );
 }
 
+function checkPropType( value, propType ) {
+	if ( !value ) {
+		return null;
+	}
+	let msg;
+	if ( propType === 'boolean' && value !== 'true' && value !== 'false' ) {
+		msg = 'Value has to be a boolean';
+	}
+	else if ( propType === 'number' && !RE_NUMBERS.test( value ) ) {
+		msg = 'Value has to be a number';
+	}
+	else if ( propType === 'array' && !startsWith( value, '[' ) ) {
+		msg = 'Value has to be a an array';
+	}
+	if ( msg ) {
+		msg += '. Current value: '+value+'.';
+		return ( <Alert variant="danger">
+			{msg}
+		</Alert> );
+	}
+	return null;
+}
+
 
 // MAIN //
 
@@ -193,6 +219,7 @@ class ComponentConfigurator extends Component {
 			isRequired[ 'children' ] = true;
 		}
 		this.propertyTypes = propertyTypes;
+		this.textPropertyValues = {};
 		this.isRequired = isRequired;
 		this.defaultStrings = defaultStrings;
 		this.docProps = docProps;
@@ -249,8 +276,7 @@ class ComponentConfigurator extends Component {
 				if ( value === oldValue ) {
 					break;
 				}
-				debug( 'Current value: ' );
-				debug( value );
+				this.textPropertyValues[ propName ] = val;
 				const propertyType = this.propertyTypes[ propName ] || '';
 				switch ( propertyType ) {
 					case 'boolean':
@@ -337,6 +363,7 @@ class ComponentConfigurator extends Component {
 			this.setState({
 				value
 			});
+			this.textPropertyValues[ name ] = null;
 			oldValue = null;
 		}, 300 );
 		return ( newValue ) => {
@@ -370,6 +397,7 @@ class ComponentConfigurator extends Component {
 			this.setState({ value });
 		}, 300 );
 		return ( newValue ) => {
+			this.textPropertyValues[ key ] = null;
 			this.setState({
 				[ 'prop:'+key ]: newValue
 			}, () => {
@@ -388,6 +416,7 @@ class ComponentConfigurator extends Component {
 		return ({ updated_src }) => {
 			let { value } = this.state;
 			value = replace( value, RE_FULL_KEY, '$1' + key + '={' + JSON.stringify( updated_src, null, 2 ) + '}$3' );
+			this.textPropertyValues[ key ] = null;
 			this.setState({
 				value,
 				[ 'prop:'+key ]: updated_src
@@ -403,6 +432,7 @@ class ComponentConfigurator extends Component {
 			RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)(?=[a-z]+=|>)', 'i' );
 		}
 		return ( newValue ) => {
+			this.textPropertyValues[ key ] = null;
 			this.setState({
 				[ 'prop:'+key ]: newValue
 			}, () => {
@@ -414,6 +444,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	replaceStyle = ( newValue ) => {
+		this.textPropertyValues[ 'style' ] = null;
 		this.setState({
 			[ 'prop:style' ]: newValue
 		}, () => {
@@ -551,10 +582,10 @@ class ComponentConfigurator extends Component {
 			) {
 				continue;
 			}
-			const className = isActive ? 'configurator-tr-active' : '';
 			let input;
 			const propValue = this.state[ 'prop:'+name ];
 			const propType = this.propertyTypes[ name ];
+			const typeMismatch = checkPropType( this.textPropertyValues[ name ], propType );
 			if ( name === 'children' ) {
 				input = <TextArea
 					value={propValue}
@@ -606,7 +637,7 @@ class ComponentConfigurator extends Component {
 								resizable="vertical"
 							/>;
 						} else {
-							if ( !propValue ) {
+							if ( !propValue || typeMismatch ) {
 								propValue = ( propType === 'array' ) ? [] : {};
 							}
 							const changeHandler = this.handleJSONChangeFactory( name );
@@ -634,6 +665,14 @@ class ComponentConfigurator extends Component {
 						/>;
 				}
 			}
+			let className;
+			if ( isActive ) {
+				if ( typeMismatch ) {
+					className = 'configurator-tr-invalid';
+				} else {
+					className = 'configurator-tr-active';
+				}
+			}
 			const elem = <tr className={className} style={{ marginBottom: 5 }} key={i}>
 				<td>
 					{!isRequired ?
@@ -648,7 +687,10 @@ class ComponentConfigurator extends Component {
 						/>
 					}
 				</td>
-				<td>{description}</td>
+				<td>
+					{description}
+					{typeMismatch ? <b>{typeMismatch}</b>: null}
+				</td>
 				<td style={{ position: 'relative' }} >
 					{(isActive || isRequired ) ?
 						<Fragment>
