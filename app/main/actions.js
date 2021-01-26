@@ -5,7 +5,7 @@ import fs from 'fs';
 import { extname, basename } from 'path';
 import logger from 'debug';
 import { autoUpdater } from 'electron-updater';
-import { changeLanguage } from './../../@isle-project/locales/editor.main';
+import { i18n, changeLanguage } from './../../@isle-project/locales/editor.main';
 import { EXTENSIONS } from './globals.js';
 import createWindow from './create_window.js';
 import window from './window_manager.js';
@@ -138,10 +138,10 @@ export function openFile( filePath, browserWindow ) {
 		if ( fileSize >= 1048576 ) { // 1MB
 			const confirm = dialog.showMessageBox( browserWindow, {
 				type: 'error',
-				title: 'Unsupported File',
-				message: 'You are trying to load a large file, ISLE Editor will be unresponsive',
-				detail: 'Do you still want to load this file?',
-				buttons: [ 'Proceed', 'Cancel' ]
+				title: i18n.t('unsupported-file'),
+				message: i18n.t('trying-to-load-a-large-file'),
+				detail: i18n.t('do-you-still-want-to-load-this-file'),
+				buttons: [ i18n.t('proceed'), i18n.t('cancel') ]
 			});
 			if ( confirm === 1 ) return;
 		}
@@ -155,9 +155,9 @@ export function openFile( filePath, browserWindow ) {
 	}
 	dialog.showMessageBox( browserWindow, {
 		type: 'error',
-		title: 'Unsupported File',
-		message: 'You are trying to load a not supported file',
-		detail: 'The supported file extensions are \n\n' + EXTENSIONS.join( ' ,' ),
+		title: i18n.t('unsupported-file'),
+		message: i18n.t('you-are-trying-to-load-a-non-supported-file-type'),
+		detail: i18n.t('supported-file-extensions-are') +'\n\n' + EXTENSIONS.join( ' ,' ),
 		buttons: [ 'Ok' ]
 	});
 }
@@ -165,7 +165,7 @@ export function openFile( filePath, browserWindow ) {
 export function open({ browserWindow }) {
 	const filePath = config.get( 'mostRecentFilePath' );
 	const opts = {
-		buttonLabel: 'Open file',
+		buttonLabel: i18n.t('open-file'),
 		filters: [
 			{ name: 'isle', extensions: [ 'isle' ]},
 			{ name: 'markdown', extensions: [ 'markdown', 'md', 'mdown', 'mkd', 'mdwn' ]},
