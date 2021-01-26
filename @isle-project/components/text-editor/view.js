@@ -38,7 +38,13 @@ class ProseMirror extends Component {
 	constructor( props ) {
 		super( props );
 
-		const value = localStorage.getItem( props.id ) || props.defaultValue;
+		let value;
+		if ( props.id ) {
+			value = localStorage.getItem( props.id );
+		}
+		if ( !value ) {
+			value = props.defaultValue;
+		}
 		const doc = isJSON( value ) ?
 		Node.fromJSON( schema, JSON.parse( value ) ) :
 			parser( value );
@@ -52,7 +58,7 @@ class ProseMirror extends Component {
 	}
 
 	componentDidMount() {
-		if ( this.props.autoSave ) {
+		if ( this.props.autoSave && this.props.id ) {
 			this.saveInterval = setInterval( this.saveInBrowser, this.props.intervalTime );
 		}
 		window.addEventListener( 'unload', this.saveInBrowser );

@@ -22,6 +22,7 @@ import generateUID from '@isle-project/utils/uid';
 import saveAs from '@isle-project/utils/file-saver';
 import base64toBlob from '@isle-project/utils/base64-to-blob';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
+import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
 const SubmitModal = Loadable( () => import( './submit_modal.js' ) );
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
@@ -310,7 +311,7 @@ class TextEditor extends Component {
 		if ( nextProps.defaultValue !== prevState.originalDefaultValue ) {
 			debug( 'Default value has changed...' );
 			const newState = {
-				defaultValue: nextProps.defaultValue,
+				value: nextProps.defaultValue ? md.render( nextProps.defaultValue ) : nextProps.defaultValue,
 				originalDefaultValue: nextProps.defaultValue
 			};
 			return newState;
@@ -588,6 +589,8 @@ class TextEditor extends Component {
 				}}
 			/> );
 		}
+		console.log( 'DEFAULT' );
+		console.log( this.state.value );
 		return ( <ProseMirrorEditorView
 			defaultValue={this.state.value}
 			menu={this.menu}
@@ -599,7 +602,7 @@ class TextEditor extends Component {
 			fullscreen={this.state.isFullscreen}
 			showColorPicker={this.state.showColorPicker}
 			onColorChoice={this.onColorChoice}
-			id={this.id}
+			id={!isElectron ? this.id : null}
 			onEditorState={( editorState ) => {
 				this.editorState = editorState;
 			}}
