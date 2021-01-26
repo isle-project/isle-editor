@@ -264,6 +264,7 @@ class Editor extends Component {
 				}
 			}
 			const self = this;
+			const t = this.props.t;
 			overlayInstallWidget = {
 				domNode: null,
 				pre: null,
@@ -291,7 +292,7 @@ class Editor extends Component {
 						this.domNode.appendChild( button );
 
 						this.pre = document.createElement( 'pre' );
-						this.pre.innerHTML = `${this.props.t('installing')} ${deps.join( ', ')}... <br />`;
+						this.pre.innerHTML = `${t('installing')} ${deps.join( ', ')}... <br />`;
 						this.pre.style.background = 'lightgrey';
 						this.pre.style.whiteSpace = 'pre-wrap';
 						this.domNode.appendChild( this.pre );
@@ -477,7 +478,7 @@ class Editor extends Component {
 					}
 					const range = new this.monaco.Range( p.startLineNumber, p.startColumn, p.endLineNumber, p.endColumn );
 					const fix = {
-						title: 'Copy to local',
+						title: this.props.t('copy-to-local'),
 						range,
 						text: './' + relative( destDir, destFilePath ) + ( search || '' )
 					};
@@ -525,7 +526,7 @@ class Editor extends Component {
 					if ( !files ) {
 						writeFileSync( outPath, res );
 						const fix = {
-							title: 'Copy to local',
+							title: this.props.t('copy-to-local'),
 							range,
 							text: localPath
 						};
@@ -548,7 +549,7 @@ class Editor extends Component {
 								if ( done === files.length ) {
 									writeFileSync( outPath, res );
 									const fix = {
-										title: 'Copy to local',
+										title: this.props.t('copy-to-local'),
 										range,
 										text: localPath
 									};
@@ -886,7 +887,7 @@ class Editor extends Component {
 					actions.push({
 						command: {
 							id: this.editTextCommand,
-							title: 'Fix the spelling',
+							title: this.props.t('fix-the-spelling'),
 							arguments: [ text, problem ]
 						},
 						title: `${this.props.t('change-to')} ${text}`
@@ -902,10 +903,10 @@ class Editor extends Component {
 				actions.push({
 					command: {
 						id: this.changeToCurrentDate,
-						title: 'Change to current date',
+						title: this.props.t('change-to-current-date'),
 						arguments: [ range ]
 					},
-					title: 'Change to current date'
+					title: this.props.t('change-to-current-date')
 				});
 			}
 			else if ( startsWith( line, 'author: ' ) ) {
@@ -913,28 +914,28 @@ class Editor extends Component {
 				actions.push({
 					command: {
 						id: this.addAuthor,
-						title: 'Add myself to author list (as specified in preamble template)',
+						title: this.props.t('add-myself-to-author-list'),
 						arguments: [ matches[ 1 ], range ]
 					},
-					title: 'Add myself to author list (as specified in preamble template)'
+					title: this.props.t('add-myself-to-author-list')
 				});
 			}
 			else if ( startsWith( line, 'require:' ) ) {
 				actions.push({
 					command: {
 						id: this.installDependencies,
-						title: 'Install dependencies',
+						title: this.props.t('install-dependencies'),
 						arguments: [ this.props.preamble.require, range ]
 					},
-					title: 'Install dependencies'
+					title: this.props.t('install-dependencies')
 				});
 				actions.push({
 					command: {
 						id: this.updateRemoteResources,
-						title: 'Update remote resources',
+						title: this.props.t('update-remote-resources'),
 						arguments: [ this.props.preamble.require, range ]
 					},
-					title: 'Update remote resources'
+					title: this.props.t('update-remote-resources')
 				});
 			}
 			const selectedText = model.getValueInRange( selection );
@@ -944,19 +945,19 @@ class Editor extends Component {
 					actions.push({
 						command: {
 							id: this.copyToLocal,
-							title: 'Copy image to local location',
+							title: this.props.t('copy-image-to-local-location'),
 							arguments: [ selectedText, 'img', ext, selection ]
 						},
-						title: 'Copy image to local location'
+						title: this.props.t('copy-image-to-local-location')
 					});
 				} else if ( contains( VIDEO_EXTENSIONS, ext ) ) {
 					actions.push({
 						command: {
 							id: this.copyToLocal,
-							title: 'Copy video to local location',
+							title: this.props.t('copy-video-to-local-location'),
 							arguments: [ selectedText, 'video', ext, selection ]
 						},
-						title: 'Copy video to local location'
+						title: this.props.t('copy-video-to-local-location')
 					});
 				}
 			}
@@ -975,10 +976,10 @@ class Editor extends Component {
 								actions.push({
 									command: {
 										id: this.copyToLocal,
-										title: 'Copy image to local location',
+										title: this.props.t('copy-image-to-local-location'),
 										arguments: [ imgURL, 'img', ext, range ]
 									},
-									title: 'Copy image to local location'
+									title: this.props.t('copy-image-to-local-location')
 								});
 							}
 							else if ( isRelativePath( imgURL ) ) {
@@ -993,10 +994,10 @@ class Editor extends Component {
 										actions.push({
 											command: {
 												id: this.changeToRemote,
-												title: 'Replace local resource by remote file',
+												title: this.props.t('replace-local-resource-by-remote-file'),
 												arguments: [ imgURL, entry, range ]
 											},
-											title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+											title: `${this.props.t('replace-local-resource-by-remote-file')} (${this.props.t('pinned-version')}: ${entry.lastAccessed})`
 										});
 									}
 								}
@@ -1016,10 +1017,10 @@ class Editor extends Component {
 						actions.push({
 							command: {
 								id: this.copyIncludeToLocal,
-								title: 'Download included lesson and all associated resources',
+								title: this.props.t('download-included-lesson-and-all-associated-resources'),
 								arguments: [ lessonURL, range ]
 							},
-							title: 'Download included lesson and all associated resources'
+							title: this.props.t('download-included-lesson-and-all-associated-resources')
 						});
 					}
 					else if ( isRelativePath( lessonURL ) ) {
@@ -1034,19 +1035,19 @@ class Editor extends Component {
 							actions.push({
 								command: {
 									id: this.changeToRemote,
-									title: 'Replace local resource by remote file',
+									title: this.props.t('replace-local-resource-by-remote-file'),
 									arguments: [ lessonURL, entry, range ]
 								},
-								title: 'Replace local resource by remote file (pinned version: '+entry.lastAccessed+')'
+								title: `${this.props.t('replace-local-resource-by-remote-file')} (${this.props.t('pinned-version')}: ${entry.lastAccessed})`
 							});
 						}
 						actions.push({
 							command: {
 								id: this.openISLEFile,
-								title: 'Load ISLE file in new window',
+								title: this.props.t('load-isle-file-in-new-window'),
 								arguments: [ lessonURL ]
 							},
-							title: 'Load ISLE file in new window'
+							title: this.props.t('load-isle-file-in-new-window')
 						});
 					}
 				}
@@ -1059,37 +1060,37 @@ class Editor extends Component {
 					{
 						command: {
 							id: this.scrollIntoViewInPreview,
-							title: 'Scroll component into view (double-click)',
+							title: this.props.t('scroll-component-into-view'),
 							arguments: [ selection.startLineNumber, startColumn ]
 						},
-						title: 'Scroll component into view (double-click)'
+						title: this.props.t('scroll-component-into-view')
 					},
 					{
 						command: {
 							id: this.reportGitHub,
-							title: 'Report issue on GitHub',
+							title: this.props.t('report-issue-on-git-hub'),
 							arguments: [ this.props.elementRange, match, 'bug', false ]
 						},
 						disabled,
-						title: 'Report issue on GitHub'
+						title: this.props.t('report-issue-on-git-hub')
 					},
 					{
 						command: {
 							id: this.reportGitHub,
-							title: 'Report issue on GitHub (include screenshot)',
+							title: this.props.t('report-issue-on-git-hub-include-screenshot'),
 							arguments: [ this.props.elementRange, match, 'bug', true ]
 						},
 						disabled,
-						title: 'Report issue on GitHub (include screenshot)'
+						title: this.props.t('report-issue-on-git-hub-include-screenshot')
 					},
 					{
 						command: {
 							id: this.reportGitHub,
-							title: 'Report issue on GitHub (include screenshot)',
+							title: this.props.t('file-feature-request-on-github'),
 							arguments: [ this.props.elementRange, match, 'feature-request', false ]
 						},
 						disabled,
-						title: 'File Feature Request on GitHub'
+						title: this.props.t('file-feature-request-on-github')
 					}
 				]);
 			}
