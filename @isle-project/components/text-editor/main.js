@@ -589,8 +589,6 @@ class TextEditor extends Component {
 				}}
 			/> );
 		}
-		console.log( 'DEFAULT' );
-		console.log( this.state.value );
 		return ( <ProseMirrorEditorView
 			defaultValue={this.state.value}
 			menu={this.menu}
