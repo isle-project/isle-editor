@@ -61,8 +61,8 @@ class SaveModal extends Component {
 				<Modal.Title as="h4">{t('download')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				{ this.props.pdf ? <Button size="large" variant="secondary" block onClick={this.clickHide} >
-					<a className="unstyled-link" href={this.props.pdf} download >
+				{ this.props.pdf ? <Button className="sketchpad-download-link-btn" size="large" variant="secondary" block onClick={this.clickHide} >
+					<a className="unstyled-link sketchpad-download-link" href={this.props.pdf} download >
 						{t('download-original')}
 					</a>
 				</Button> : null }
