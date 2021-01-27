@@ -7375,13 +7375,13 @@
 				"name": "title",
 				"type": "(string|node)",
 				"description": "StickyNote-prop-title",
-				"defaultValue": "Enter a title"
+				"defaultValue": null
 			},
 			{
 				"name": "body",
 				"type": "(string|node)",
 				"description": "StickyNote-prop-body",
-				"defaultValue": "Body of the note"
+				"defaultValue": null
 			},
 			{
 				"name": "watermark",
