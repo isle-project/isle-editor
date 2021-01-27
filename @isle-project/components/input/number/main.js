@@ -149,9 +149,9 @@ const NumberInput = ( props ) => {
 	if ( props.inline === true ) {
 		const input =
 			<span className="input" style={{ padding: '5px', ...props.style }}>
-				{ props.legend ? <label htmlFor={id} > {props.legend} =  </label> : null }
+				{ props.legend ? <label htmlFor={id.current} > {props.legend} =  </label> : null }
 				<input
-					id={id}
+					id={id.current}
 					type={props.numbersOnly ? 'number' : 'text'}
 					name="input"
 					className="number-number-input"
@@ -185,7 +185,7 @@ const NumberInput = ( props ) => {
 			</Tooltip>;
 	}
 	const input = <input
-		id={id}
+		id={id.current}
 		type={props.numbersOnly ? 'number' : 'text'}
 		name="input"
 		className="number-number-input"
@@ -213,7 +213,7 @@ const NumberInput = ( props ) => {
 	}}>
 		{ props.legend ?
 			<span>
-				<label htmlFor={id} >
+				<label htmlFor={id.current} >
 					{isString( props.legend ) ?
 						props.legend+':' :
 						props.legend
