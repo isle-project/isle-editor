@@ -71,7 +71,7 @@ async function loadRequires( libs, filePath ) {
 					if ( ext === '.json' ) {
 						const json = readJSON.sync( lib );
 						if ( isError( json ) ) {
-							throw new Error( '\n' + i18n('error-loading-lib', { lib }) + json.message );
+							throw new Error( '\n' + i18n.t('error-loading-lib', { lib }) + json.message );
 						} else {
 							global[ key ] = json;
 						}
