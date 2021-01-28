@@ -592,8 +592,16 @@
 		"value": "<LearnMeanTest />\n"
 	},
 	{
+		"name": "LearnNetworks",
+		"value": "<LearnNetworks />\n"
+	},
+	{
 		"name": "LearnProportionTest",
 		"value": "<LearnProportionTest />\n"
+	},
+	{
+		"name": "LearnSOTU",
+		"value": "<LearnSOTU />\n"
 	},
 	{
 		"name": "LearnVennDiagramBuilder",
