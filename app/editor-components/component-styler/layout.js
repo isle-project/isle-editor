@@ -226,10 +226,10 @@ const BackgroundPicker = ( props ) => {
 			</Form.Group>;
 			break;
 		case 'linear-gradient':
-			input = <GradientPicker onCreate={props.onCreate} />;
+			input = <GradientPicker onCreate={props.onCreate} t={props.t} />;
 			break;
 		case 'radial-gradient':
-			input = <RadialGradientPicker onCreate={props.onCreate} />;
+			input = <RadialGradientPicker onCreate={props.onCreate} t={props.t} />;
 			break;
 	}
 	return (
