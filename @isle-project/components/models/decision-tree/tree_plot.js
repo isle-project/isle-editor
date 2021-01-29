@@ -88,7 +88,7 @@ class TreePlot extends Component {
 
 	render() {
 		const { t } = this.props;
-		const tree = treeToHtml( this.props.tree );
+		const tree = treeToHtml( this.props.tree, t );
 		return (
 			<div
 				className="decision-tree-wrapper"
