@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import contains from '@stdlib/assert/contains';
@@ -42,6 +43,14 @@ function toArrayArray( arr ) {
 	return out;
 }
 
+function isMissing( x ) {
+	return isnan( x ) || isUndefinedOrNull( x );
+}
+
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
 export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan }) {
 	let annotations;
 	let traces;
@@ -49,7 +58,20 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 	const xvals = data[ x ];
 	const yvals = data[ y ];
 	if ( !group ) {
-		const out = kde2d( xvals, yvals );
+		const xc = [];
+		const yc = [];
+		for ( let j = 0; j < xvals.length; j++ ) {
+			const xval = xvals[ j ];
+			const yval = yvals[ j ];
+			if (
+				isNumber( xval ) && isNumber( yval ) &&
+				!isnan( xval ) && !isnan( yval )
+			) {
+				xc.push( xval );
+				yc.push( yval );
+			}
+		}
+		const out = kde2d( xc, yc );
 		traces = [
 			{
 				x: out.x,
@@ -76,19 +98,6 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 			traces.push( points );
 		}
 		if ( regressionMethod && regressionMethod.length > 0 ) {
-			let xc = [];
-			let yc = [];
-			for ( let j = 0; j < xvals.length; j++ ) {
-				let xval = xvals[ j ];
-				let yval = yvals[ j ];
-				if (
-					isNumber( xval ) && isNumber( yval ) &&
-					!isnan( xval ) && !isnan( yval )
-				) {
-					xc.push( xval );
-					yc.push( yval );
-				}
-			}
 			let predictedLinear;
 			let predictedSmooth;
 			let values;
@@ -132,9 +141,25 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 			}
 		};
 	} else {
+		const xc = [];
+		const yc = [];
+		const groupvals = [];
+		const groups = data[ group ];
+		for ( let i = 0; i < xvals.length; i++ ) {
+			if (
+				!isMissing( groups[ i ] ) &&
+				isNonMissingNumber( xvals[ i ] ) &&
+				isNonMissingNumber( yvals[ i ] )
+			) {
+				xc.push( xvals[ i ] );
+				yc.push( yvals[ i ] );
+				groupvals.push( groups[ i ] );
+			}
+		}
+
 		let xgrouped;
 		let ygrouped;
-		const densities = by2( xvals, yvals, data[ group ], kde2d );
+		const densities = by2( xc, yc, groupvals, kde2d );
 		const keys = extractUsedCategories( densities, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / 2 );
@@ -147,10 +172,10 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 		}
 
 		if ( regressionMethod && regressionMethod.length > 0 ) {
-			xgrouped= by( xvals, data[ group ], arr => {
+			xgrouped= by( xc, groupvals, arr => {
 				return arr;
 			});
-			ygrouped = by( yvals, data[ group ], arr => {
+			ygrouped = by( yc, groupvals, arr => {
 				return arr;
 			});
 		}
@@ -187,27 +212,14 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 			);
 			subplots[ row ][ col ] = xAxisID + yAxisID;
 			if ( regressionMethod && regressionMethod.length > 0 ) {
-				let xvals = xgrouped[ key ];
-				let yvals = ygrouped[ key ];
-				let xc = [];
-				let yc = [];
-				for ( let j = 0; j < xvals.length; j++ ) {
-					let x = xvals[ j ];
-					let y = yvals[ j ];
-					if (
-						isNumber( x ) && isNumber( y ) &&
-						!isnan( x ) && !isnan( y )
-					) {
-						xc.push( x );
-						yc.push( y );
-					}
-				}
+				const xvals = xgrouped[ key ];
+				const yvals = ygrouped[ key ];
 				let predictedLinear;
 				let predictedSmooth;
 				let values;
 				if ( contains( regressionMethod, 'linear' ) ) {
-					values = linspace( min( xc ), max( xc ), 100 );
-					const coefs = calculateCoefficients( xc, yc );
+					values = linspace( min( xvals ), max( xvals ), 100 );
+					const coefs = calculateCoefficients( xvals, yvals );
 					predictedLinear = values.map( x => coefs[ 0 ] + coefs[ 1 ]*x );
 					traces.push({
 						x: values,
@@ -221,7 +233,7 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					});
 				}
 				if ( contains( regressionMethod, 'smooth' ) ) {
-					const out = lowess( xc, yc, { 'f': smoothSpan } );
+					const out = lowess( xvals, yvals, { 'f': smoothSpan } );
 					values = out.x;
 					predictedSmooth = out.y;
 					traces.push({
