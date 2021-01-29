@@ -159,15 +159,14 @@ class LessonWrapper extends Component {
 		super();
 		const initialState = preamble.state || {};
 		this.state = {
+			isLoading: true,
 			...initialState
 		};
 		global.lesson = this;
 	}
 
 	async componentDidMount() {
-		console.log( 'Lesson has mounted...' );
 		const res = await Promise.all( asyncOps );
-		console.log( 'All async operations are now completed...' );
 		for ( let i = 0; i < res.length; i++ ) {
 			let v = res[ i ];
 			if ( extensions[ i ] === '.csv' ) {
@@ -175,31 +174,34 @@ class LessonWrapper extends Component {
 			}
 			global[ asyncRequires.keys[ i ] ] = v;
 		}
-		const loader = document.getElementById( 'loading' );
-		if ( loader ) {
-			setTimeout(function onFadeOut() {
-				loader.style.animation = 'anim-fade-out 0.5s forwards';
-			}, ${max( loaderTimeout - 750, 0 )});
-			setTimeout(function onRemove() {
-				console.log( 'Remove landing page...' );
-				if ( loader && loader.parentElement ) {
-					loader.parentElement.removeChild( loader );
-				}
-				document.body.style[ 'overflow-y' ] = 'auto';
-			}, ${loaderTimeout} );
-		}
-		this.forceUpdate();
+		this.setState({
+			isLoading: false
+		});
 	}
 
 	componentDidUpdate() {
 		serviceWorker.register();
+		if ( !this.state.isLoading ) {
+			const loader = document.getElementById( 'loading' );
+			if ( loader ) {
+				setTimeout(function onFadeOut() {
+					loader.style.animation = 'anim-fade-out 0.5s forwards';
+				}, ${max( loaderTimeout - 750, 0 )});
+				setTimeout(function onRemove() {
+					if ( loader && loader.parentElement ) {
+						loader.parentElement.removeChild( loader );
+					}
+					document.body.style[ 'overflow-y' ] = 'auto';
+				}, ${loaderTimeout} );
+			}
+		}
 	}
 
 	componentWillUnmount() {
 		this.unmounted = true;
 	}
 
-	render() {
+	renderLesson() {
 		return (
 			<Lesson
 				className="${className}"
@@ -208,6 +210,13 @@ class LessonWrapper extends Component {
 				<UpdateNotification />
 			</Lesson>
 		);
+	}
+
+	render() {
+		if ( this.state.isLoading ) {
+			return <Lesson className="${className}" ></Lesson>;
+		}
+		return this.renderLesson();
 	}
 }
 
