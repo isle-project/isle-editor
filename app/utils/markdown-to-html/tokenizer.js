@@ -749,7 +749,7 @@ class Tokenizer {
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
 			this.columnNumber += 1;
-			if ( char === '\n' ) {
+			if ( ( char === '\n' && str.charAt( this.pos - 1 ) !== '\r' ) || ( char === '\r' && str.charAt( this.pos + 1 ) === '\n' ) ) {
 				this.lineNumber += 1;
 				this.columnNumber = 0;
 			}
