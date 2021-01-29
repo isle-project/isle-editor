@@ -145,7 +145,7 @@ class KMeans extends Component {
 			<div style={{ overflowX: 'auto', width: '100%' }}>
 				<span className="title" >{t('kmeans-summary')}</span>
 				<p>{result.converged ? t('algorithm-converged', { n: result.iterations }) : t('algorithm-not-converged', { n: result.iterations })}</p>
-				{summaryTable( variables, result.centroid, t )}
+				{summaryTable( variables, result.centroids, t )}
 			</div>
 		);
 	}
