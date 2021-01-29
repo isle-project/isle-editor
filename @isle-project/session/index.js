@@ -1774,7 +1774,7 @@ class Session {
 		VIDEO_CHATS = [];
 		this.actions = [];
 		this.socketActions = [];
-		this.currentUserActions = null;
+		this.currentUserActions = {};
 		this.userList = [];
 		this.removeUserRights();
 	}
@@ -2029,7 +2029,7 @@ class Session {
 			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];
-			if ( ref ) {
+			if ( actions && ref ) {
 				const type = ref.type;
 				for ( let j = 0; j < actions.length; j++ ) {
 					if ( actions[ j ].type === type ) {
@@ -2129,7 +2129,9 @@ class Session {
 			.then( res => {
 				this.lessonGrades = res.data.grades;
 			})
-			.catch( err => debug( 'Encountered an error: '+err.message ) );
+			.catch( err => {
+				debug( 'Encountered an error: '+err.message )
+			});
 	}
 
 	getLessonGradeMessages = () => {
@@ -2140,7 +2142,9 @@ class Session {
 			.then( res => {
 				this.lessonGradeMessages = res.data.gradeMessages;
 			})
-			.catch( err => debug( 'Encountered an error: '+err.message ) );
+			.catch( err => {
+				debug( 'Encountered an error: '+err.message )
+			});
 	}
 
 	/**
@@ -2230,7 +2234,9 @@ class Session {
 			.then( ( res ) => {
 				debug( '/update_user_session returns: '+res.status );
 			})
-			.catch( err => debug( 'Encountered an error: '+err.message ) );
+			.catch( err => {
+				debug( 'Encountered an error: '+err.message );
+			});
 		}
 	}
 
