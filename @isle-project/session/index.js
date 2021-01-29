@@ -2130,7 +2130,7 @@ class Session {
 				this.lessonGrades = res.data.grades;
 			})
 			.catch( err => {
-				debug( 'Encountered an error: '+err.message )
+				debug( 'Encountered an error: '+err.message );
 			});
 	}
 
@@ -2143,7 +2143,7 @@ class Session {
 				this.lessonGradeMessages = res.data.gradeMessages;
 			})
 			.catch( err => {
-				debug( 'Encountered an error: '+err.message )
+				debug( 'Encountered an error: '+err.message );
 			});
 	}
 
