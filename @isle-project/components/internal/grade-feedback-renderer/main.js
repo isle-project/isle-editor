@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import SessionContext from '@isle-project/session/context.js';
 import Badge from 'react-bootstrap/Badge';
 import Overlay from 'react-bootstrap/Overlay';
@@ -114,7 +115,7 @@ class GradeFeedbackRenderer extends Component {
 			return null;
 		}
 		const grades = session.user.lessonGrades[ session.lessonID ];
-		if ( !grades || !grades[ this.props.for ] ) {
+		if ( !grades || !isNumber( grades[ this.props.for ] ) ) {
 			return null;
 		}
 		const gradeMessages = session.user.lessonGradeMessages[ session.lessonID ];
