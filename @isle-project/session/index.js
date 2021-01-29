@@ -2040,6 +2040,9 @@ class Session {
 							const progress = clamp( this.get( 'progress' ) + 1.0 / ids.length, 0, 1 );
 							PRIVATE_VARS[ 'progress' ] = progress;
 							this.update( SELF_UPDATED_PROGRESS, progress );
+							if ( !this.unfinished ) {
+								this.initializeProgress();
+							}
 							this.unfinished = this.unfinished.filter( x => x !== id );
 							this.socket.emit( 'progress', progress );
 							this.logSession();
