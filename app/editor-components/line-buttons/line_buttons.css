@@ -1,10 +1,13 @@
 .line-buttons {
 	color: rgb(235, 97, 62);
 	opacity: 1;
+	display: inline-block;
 	z-index: 1051;
 	font-size: 13px;
+	height: 20px;
+	width: 100%;
 	padding: 1px;
-	cursor: pointer;
+	border-radius: 6px;
 }
 
 .line-buttons-jump {
@@ -15,6 +18,7 @@
 }
 
 .line-buttons-contextmenu {
+	cursor: pointer;
 	position: absolute;
 	left: 50%;
 	padding: 3px;

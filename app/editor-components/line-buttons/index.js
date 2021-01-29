@@ -67,15 +67,18 @@ const LineButtons = ( props ) => {
 		});
 	};
 	const isActive = canDrop && isOver;
+	let background;
 	let color;
 	let icon;
 	if ( isActive ) {
 		color = 'green';
-		icon = 'fa-check-circle fa-2x';
+		icon = 'fa-check-circle fa-lg';
+		background = 'rgba(0, 102, 0, 0.3)';
 	}
 	else if ( canDrop ) {
 		color = '#258080';
-		icon = 'fa-chevron-circle-down fa-2x';
+		icon = 'fa-chevron-circle-down fa-lg';
+		background = 'rgba(37, 128, 128, 0.2)';
 	}
 	else {
 		icon = 'fa-plus-circle fa-lg';
@@ -83,7 +86,7 @@ const LineButtons = ( props ) => {
 
 	/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 	return (
-		<span className="line-buttons" onClick={stopPropagation} ref={drop} >
+		<span className="line-buttons" onClick={stopPropagation} ref={drop} style={{ background }}>
 			{ props.splitPos !== 1 ? <span
 				className="line-buttons-jump"
 				role="button" tabIndex={0}
