@@ -16,7 +16,7 @@ import today from '@isle-project/utils/today';
 
 const mainStore = new Store( 'isle-main' );
 const debug = logger( 'isle-editor:reducers' );
-const RE_CLASSNAME = /(\.[a-z][_a-z0-9-]*)(?=[^}"]*{)/gi;
+const RE_CLASS_NAME = /(\.[a-z][_a-z0-9-]*)(?=[^}"]*{)/gi;
 
 let preambleTemplate = '';
 let preambleText = '';
@@ -84,7 +84,7 @@ const extractClassNames = ( style ) => {
 	if ( !style ) {
 		return [];
 	}
-	const matches = style.match( RE_CLASSNAME );
+	const matches = style.match( RE_CLASS_NAME );
 	if ( !matches ) {
 		return [];
 	}
