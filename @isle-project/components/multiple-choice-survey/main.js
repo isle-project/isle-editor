@@ -183,7 +183,7 @@ class MultipleChoiceSurvey extends Component {
 	}
 
 	render() {
-		const { answers, id, multipleAnswers, question, t } = this.props;
+		const { answers, multipleAnswers, question, t } = this.props;
 		let disabled;
 		if ( multipleAnswers ) {
 			disabled = this.state.submitted;
@@ -216,7 +216,7 @@ class MultipleChoiceSurvey extends Component {
 									</Card>
 								</Col>
 								<Col md={6}>
-									<RealtimeMetrics for={[ id ]} onData={this.onData} />
+									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
 									{this.renderChart()}
 									<p>
 										{this.state.freqTable}
@@ -225,7 +225,7 @@ class MultipleChoiceSurvey extends Component {
 							</Row>
 						</Container>
 						<ResponseVisualizer
-							buttonLabel={t('responses')} id={id}
+							buttonLabel={t('responses')} id={this.id}
 							data={{
 								type: 'factor',
 								levels: this.props.answers
