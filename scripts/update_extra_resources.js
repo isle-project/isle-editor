@@ -72,6 +72,6 @@ listDevDeps.stdout.on( 'close', ( code ) => {
 		console.log( extraResources );
 		pkg.build.extraResources = extraResources;
 
-		fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, 2 ) );
+		fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, 2 ).concat( '\n' ) );
 	});
 });
