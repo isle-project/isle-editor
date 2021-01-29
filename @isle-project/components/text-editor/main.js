@@ -81,7 +81,7 @@ async function toDataURL( url ){
 * @property {boolean} allowSubmissions - controls whether students may submit their reports to the server
 * @property {string} defaultValue - default text of the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
-* @property {string} mode - controls whether to enable text editing for groups (when set to `group`) or for everyone (when set to `collaborative`)
+* @property {string} mode - controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort)
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
 * @property {string} language - language identifier
 * @property {Object} style - CSS inline styles
@@ -542,6 +542,9 @@ class TextEditor extends Component {
 		if ( this.props.mode === 'individual' ) {
 			return this.id + '-' + ( session.user.email || session.anonymousIdentifier );
 		}
+		if ( this.props.mode === 'cohort' && session.cohort ) {
+			return this.id + '-' + session.cohort;
+		}
 		// Case: mode === 'collaborative'
 		return this.id;
 	}
@@ -699,7 +702,7 @@ TextEditor.propTypes= {
 	canLoadHTML: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	mode: PropTypes.oneOf([
-		'group', 'collaborative', 'individual'
+		'group', 'collaborative', 'individual', 'cohort'
 	]),
 	resetModal: PropTypes.shape({
 		title: PropTypes.string,
