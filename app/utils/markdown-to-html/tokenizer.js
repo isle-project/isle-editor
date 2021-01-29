@@ -100,6 +100,10 @@ class Tokenizer {
 				this._buffer.charAt( pos-3 ) !== '='
 			)
 		) {
+			if ( char === '\r' && nextChar === '\n' ) {
+				this.lineNumber += 1;
+				this.pos += 1;
+			}
 			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
 		}
 		else if (
@@ -749,7 +753,7 @@ class Tokenizer {
 		for ( this.pos = 0; this.pos < str.length; this.pos++ ) {
 			let char = str.charAt( this.pos );
 			this.columnNumber += 1;
-			if ( ( char === '\n' && str.charAt( this.pos - 1 ) !== '\r' ) || ( char === '\r' && str.charAt( this.pos + 1 ) === '\n' ) ) {
+			if ( char === '\n' ) {
 				this.lineNumber += 1;
 				this.columnNumber = 0;
 			}
