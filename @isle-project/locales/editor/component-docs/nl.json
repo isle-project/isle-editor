@@ -1310,7 +1310,7 @@
 	"TextEditor-prop-allowSubmissions": "controleert of de leerlingen hun rapporten mogen indienen bij de server",
 	"TextEditor-prop-defaultValue": "standaardtekst van de redacteur",
 	"TextEditor-prop-language": "taalidentificatiecode",
-	"TextEditor-prop-mode": "bepaalt of tekstbewerking voor groepen (indien ingesteld op `groep`) of voor iedereen (indien ingesteld op `collaboratief`) moet worden ingeschakeld",
+	"TextEditor-prop-mode": "bepaalt de tekstbewerkingsmodus (`individual` voor een persoonlijk document, `group` voor een document per groep, `collaborative` voor een enkel document voor iedereen, of `cohort` voor een document per cohort)",
 	"TextEditor-prop-onChange": "callback aangeroepen wanneer de tekst van de redacteur verandert; ontvangt de huidige tekst als enige argument",
 	"TextEditor-prop-sendSubmissionEmails": "controleert of er bevestigingsmails met PDF/HTML-uitvoer moeten worden verzonden bij de indiening ervan",
 	"TextEditor-prop-style": "CSS inline-stijlen",

@@ -1310,7 +1310,7 @@
 	"TextEditor-prop-allowSubmissions": "steuert, ob Schüler ihre Berichte an den Server senden dürfen",
 	"TextEditor-prop-defaultValue": "Standardtext des Editors",
 	"TextEditor-prop-language": "Sprachkennzeichen",
-	"TextEditor-prop-mode": "steuert, ob die Textbearbeitung für Gruppen (bei Einstellung `group`) oder für alle (bei Einstellung `collaborative`) aktiviert werden soll",
+	"TextEditor-prop-mode": "steuert den Textbearbeitungsmodus (entweder `individual` für ein persönliches Dokument, `group` für ein Dokument pro Gruppe, `collaborative` für ein einzelnes Dokument für alle oder `cohort` für ein Dokument pro Kohorte)",
 	"TextEditor-prop-onChange": "Callback, der aufgerufen wird, wenn sich der Editortext ändert; erhält den aktuellen Text als einziges Argument",
 	"TextEditor-prop-sendSubmissionEmails": "steuert, ob bei der Übermittlung Bestätigungs-E-Mails mit PDF/HTML-Ausgabe gesendet werden sollen",
 	"TextEditor-prop-style": "CSS-Inline-Stile",

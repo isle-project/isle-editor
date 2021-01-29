@@ -1310,7 +1310,7 @@
 	"TextEditor-prop-allowSubmissions": "控制学生是否可以向服务器提交他们的报告",
 	"TextEditor-prop-defaultValue": "编辑器默认文本",
 	"TextEditor-prop-language": "语言标识符",
-	"TextEditor-prop-mode": "控制是否为团体（当设置为 \"团体 \"时）或为所有人（当设置为 \"合作 \"时）启用文本编辑。",
+	"TextEditor-prop-mode": "控制文本编辑模式(`individual`代表个人文件，`group`代表每个小组的文件，`collaborative`代表每个人的单一文件，或 `cohort`代表每个群体的文件)",
 	"TextEditor-prop-onChange": "当编辑器文本发生变化时调用回调；接收当前文本作为唯一的参数。",
 	"TextEditor-prop-sendSubmissionEmails": "控制是否在提交时发送带有PDF/HTML输出的确认邮件。",
 	"TextEditor-prop-style": "CSS内联样式",

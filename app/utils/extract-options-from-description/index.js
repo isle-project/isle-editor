@@ -1,3 +1,8 @@
+// MODULES //
+
+import { i18n } from '@isle-project/locales/editor';
+
+
 // MAIN //
 
 /**
@@ -7,7 +12,7 @@
 * @returns {Array} array of values
 */
 function extractOptionsFromDescription( description = '' ) {
-	const listStart = description.indexOf( 'either ' );
+	const listStart = description.indexOf( i18n.t( 'Editor:either' ) );
 	if ( listStart === -1 ) {
 		return null;
 	}

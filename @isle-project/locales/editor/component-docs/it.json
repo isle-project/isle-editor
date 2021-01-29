@@ -1310,7 +1310,7 @@
 	"TextEditor-prop-allowSubmissions": "controlla se gli studenti possono inviare i loro rapporti al server",
 	"TextEditor-prop-defaultValue": "testo predefinito dell'editor",
 	"TextEditor-prop-language": "identificatore di lingua",
-	"TextEditor-prop-mode": "controlla se abilitare la modifica del testo per i gruppi (quando è impostato su `gruppo`) o per tutti (quando è impostato su `collaborative`)",
+	"TextEditor-prop-mode": "controlla la modalità di modifica del testo (sia `individual` per un documento personale, `group` per un documento per gruppi, `collaborative` per un singolo documento per tutti, o `cohort` per un documento per coorte)",
 	"TextEditor-prop-onChange": "richiamata quando il testo dell'editor cambia; riceve il testo corrente come unico argomento",
 	"TextEditor-prop-sendSubmissionEmails": "controlla se inviare e-mail di conferma con l'output PDF/HTML al momento dell'invio",
 	"TextEditor-prop-style": "Stili in linea CSS",

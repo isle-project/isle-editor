@@ -1310,7 +1310,7 @@
 	"TextEditor-prop-allowSubmissions": "学生がレポートをサーバーに提出するかどうかを制御します。",
 	"TextEditor-prop-defaultValue": "エディタのデフォルトテキスト",
 	"TextEditor-prop-language": "げんごしきべつし",
-	"TextEditor-prop-mode": "グループに対してテキスト編集を有効にするか（`group`に設定した場合）、全員に対してテキスト編集を有効にするか（`collaborative`に設定した場合）を制御します。",
+	"TextEditor-prop-mode": "テキスト編集モードを制御します (個人文書であれば `individual`、グループ文書であれば `group`、全員の文書であれば `collaborative`、コホート文書であれば `cohort` のいずれか)。",
 	"TextEditor-prop-onChange": "エディタのテキストが変更されたときに呼び出されるコールバック; 現在のテキストを唯一の引数として受け取ります。",
 	"TextEditor-prop-sendSubmissionEmails": "送信時にPDF/HTML出力で確認メールを送信するかどうかを制御します。",
 	"TextEditor-prop-style": "CSSインラインスタイル",
