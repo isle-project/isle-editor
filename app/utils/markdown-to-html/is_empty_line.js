@@ -1,9 +1,29 @@
 // MODULES //
 
+import IS_WINDOWS from '@stdlib/assert/is-windows';
 import isWhitespace from './is_whitespace.js';
 
 
-// MAIN //
+// FUNCTIONS //
+
+function isEmptyLineWin32( buffer, pos ) {
+	if ( buffer[ pos ] !== '\r' || buffer[ pos+1] !== '\n' ) {
+		return false;
+	}
+	pos += 2;
+	let eol = false;
+	while ( !eol ) {
+		const char = buffer[ pos ];
+		const char2 = buffer[ pos +1 ];
+		if ( char === '\r' && char2 === '\n' ) {
+			eol = true;
+		} else if ( !isWhitespace( char ) || !isWhitespace( char2 ) ) {
+			return false;
+		}
+		pos += 2;
+	}
+	return true;
+}
 
 /**
 * Tests whether an empty line starts at the specified position.
@@ -12,7 +32,7 @@ import isWhitespace from './is_whitespace.js';
 * @param {number} pos - start position
 * @returns {boolean} boolean indicating whether character is whitespace
 */
-function isEmptyLine( buffer, pos ) {
+function isEmptyLinePosix( buffer, pos ) {
 	if (
 		buffer[ pos ] !== '\n' ||
 		( buffer[ pos ] !== '\r' && buffer[ pos+1 ] !== '\n' )
@@ -34,6 +54,11 @@ function isEmptyLine( buffer, pos ) {
 }
 
 
+// MAIN //
+
+const main = IS_WINDOWS ? isEmptyLineWin32 : isEmptyLinePosix;
+
+
 // EXPORTS //
 
-export default isEmptyLine;
+export default main;
