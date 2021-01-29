@@ -119,6 +119,7 @@ class HierarchicalClustering extends Component {
 							cutoff={round( this.state.matrix.length / 20 )} fontSize={24}
 						/>;
 					</svg>}
+					t={t}
 				>
 					<div className="fa fa-times" />
 				</FullscreenButton>
