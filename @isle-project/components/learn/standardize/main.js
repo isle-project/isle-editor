@@ -133,7 +133,7 @@ class Standardize extends Component {
 			</Card.Header>
 			<Card.Body>
 				<NumberInput
-					legend={t.props('mean')}
+					legend={t('mean')}
 					defaultValue={4}
 					step={this.props.step}
 					min={-25}
