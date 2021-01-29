@@ -102,6 +102,7 @@ class Tokenizer {
 		) {
 			if ( char === '\r' && nextChar === '\n' ) {
 				this.lineNumber += 1;
+				this.columnNumber = 0;
 				this.pos += 1;
 			}
 			this._current += `${EOL}<LineButtons show={${!endsWith( this._current, `${this.lineNumber-1}} />${EOL}${EOL}` )}} lineNumber={${this.lineNumber}} />${EOL}`;
