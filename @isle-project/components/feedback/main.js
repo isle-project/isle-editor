@@ -28,7 +28,8 @@ const ORIGINAL_STATE = {
 	showModal: false,
 	needsExplanation: false,
 	noUnderstanding: false,
-	noLogic: false
+	noLogic: false,
+	comments: ''
 };
 const uid = generateUID( 'feedback' );
 
@@ -109,7 +110,7 @@ class FeedbackButtons extends Component {
 			noUnderstanding: this.state.noUnderstanding,
 			needsExplanation: this.state.needsExplanation,
 			noLogic: this.state.noLogic,
-			comments: this.textarea.state.value
+			comments: this.state.comments
 		};
 		session.log({
 			id: this.id,
@@ -227,7 +228,11 @@ class FeedbackButtons extends Component {
 							/>
 						</FormGroup>
 						<TextArea
-							ref={( div ) => { this.textarea = div; }}
+							onChange={( comments ) => {
+								this.setState({
+									comments
+								});
+							}}
 							legend={this.props.t('textarea-legend')}
 							text={this.props.t('enter-text')}
 							resizable="none"
