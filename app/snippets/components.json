@@ -425,7 +425,7 @@
 	},
 	{
 		"name": "Wikipedia",
-		"value": "<Wikipedia\n defaultArticle=\"${1:Johann Heinrich Pestalozzi}\" />\n"
+		"value": "<Wikipedia\n defaultEntry=\"${1:Johann Heinrich Pestalozzi}\" />\n"
 	},
 	{
 		"name": "Language",

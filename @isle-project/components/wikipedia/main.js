@@ -34,12 +34,12 @@ function extractTopic( value ) {
 // MAIN //
 
 /**
-* The **Wikipedia** component scans the **Wikipedia** and returns an article if anything valid is found under the entered search term.
+* The **Wikipedia** component scans the **Wikipedia** and returns an entry if anything valid is found under the entered search term.
 *
-* @property {string} defaultArticle - default article to display
+* @property {string} defaultEntry - default entry to display
 * @property {Object} style - CSS inline styles
 */
-const Wikipedia = ({ defaultArticle, style }) => {
+const Wikipedia = ({ defaultEntry, style }) => {
 	const [ text, setText ] = useState( '' );
 	const [ response, setResponse ] = useState( '' );
 	const { t } = useTranslation( 'Wikipedia' );
@@ -58,10 +58,10 @@ const Wikipedia = ({ defaultArticle, style }) => {
 	}, [ session ] );
 
 	useEffect(() => {
-		if ( isString( defaultArticle ) ) {
-			getResult( defaultArticle );
+		if ( isString( defaultEntry ) ) {
+			getResult( defaultEntry );
 		}
-	}, [ defaultArticle, getResult ] );
+	}, [ defaultEntry, getResult ] );
 
 	return (
 		<Card className="wikipedia" style={style} >
@@ -69,11 +69,11 @@ const Wikipedia = ({ defaultArticle, style }) => {
 				<Card.Title as="h3">
 					{t('browse-wikipedia')}
 				</Card.Title>
-				{ isString( defaultArticle ) ? <Button
+				{ isString( defaultEntry ) ? <Button
 					className="wikipedia-reset-button"
 					variant="secondary"
 					onClick={() => {
-						getResult( defaultArticle );
+						getResult( defaultEntry );
 					}}
 				>{t('reset')}</Button> : null }
 			</Card.Header>
@@ -111,12 +111,12 @@ const Wikipedia = ({ defaultArticle, style }) => {
 // PROPERTIES //
 
 Wikipedia.defaultProps = {
-	defaultArticle: null,
+	defaultEntry: null,
 	style: {}
 };
 
 Wikipedia.propTypes = {
-	defaultArticle: PropTypes.string,
+	defaultEntry: PropTypes.string,
 	style: PropTypes.object
 };
 
