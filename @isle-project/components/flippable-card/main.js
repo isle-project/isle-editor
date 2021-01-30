@@ -57,6 +57,7 @@ const FlippableCard = ( props ) => {
 	const flipped = props.value !== void 0 ? props.value : isFlipped;
 	const styles = {
 		container: {
+			float: 'left',
 			perspective: props.perspective,
 			transformStyle: 'preserve-3d',
 			width: props.size,
@@ -71,6 +72,7 @@ const FlippableCard = ( props ) => {
 			height: '100%'
 		},
 		front: {
+			background: 'gainsboro',
 			WebkitBackfaceVisibility: 'hidden',
 			backfaceVisibility: 'hidden',
 			left: '0',
@@ -85,6 +87,7 @@ const FlippableCard = ( props ) => {
 			...props.frontStyle
 		},
 		back: {
+			background: 'pink',
 			WebkitBackfaceVisibility: 'hidden',
 			backfaceVisibility: 'hidden',
 			left: '0',
@@ -159,18 +162,12 @@ FlippableCard.defaultProps = {
 	flipSpeedFrontToBack: 1,
 	oneTime: false,
 	perspective: 1000,
-	size: 400,
+	size: 250,
 	value: void 0,
 	defaultValue: false,
-	containerStyle: {
-		float: 'left'
-	},
-	frontStyle: {
-		background: 'gainsboro'
-	},
-	backStyle: {
-		background: 'pink'
-	},
+	containerStyle: {},
+	frontStyle: {},
+	backStyle: {},
 	onChange() {}
 };
 
