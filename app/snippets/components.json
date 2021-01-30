@@ -204,10 +204,6 @@
 		"value": "<Nav defaultActiveKey={${1:1}} >\n  <NavItem eventKey={1} >${2:NavItem 1 content}</NavItem>\n  <NavItem eventKey={2} >${3:NavItem 2 content}</NavItem>\n  ${4:}\n</Nav>\n"
 	},
 	{
-		"name": "News",
-		"value": "<News />\n"
-	},
-	{
 		"name": "NumberInput",
 		"value": "<NumberInput\n  legend=\"${1:}\"\n  defaultValue={${2:0}}\n  step={${3:1}}\n/>\n"
 	},
@@ -429,7 +425,7 @@
 	},
 	{
 		"name": "Wikipedia",
-		"value": "<Wikipedia\n  speech={${1:true}}\n  language = \"en-US\"\n/>\n"
+		"value": "<Wikipedia\n defaultArticle=\"${1:Johann Heinrich Pestalozzi}\" />\n"
 	},
 	{
 		"name": "Language",

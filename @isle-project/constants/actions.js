@@ -167,4 +167,5 @@ export const VIDEO_PAUSE = 'VIDEO_PAUSE';
 export const VIDEO_START = 'VIDEO_START';
 export const VIDEO_SEEK = 'VIDEO_SEEK';
 export const VIDEO_END = 'VIDEO_END';
+export const WIKIPEDIA_SEARCH = 'WIKIPEDIA_SEARCH';
 export const GROUP_MODE_END = 'GROUP_MODE_END';
