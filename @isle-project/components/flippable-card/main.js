@@ -130,11 +130,6 @@ const FlippableCard = ( props ) => {
 
 FlippableCard.propTypes = {
 	button: PropTypes.string,
-	cardStyles: PropTypes.shape({
-		container: PropTypes.object,
-		front: PropTypes.object,
-		back: PropTypes.object
-	}),
 	children: ( props, propName, componentName ) => {
 		if ( React.Children.count( props[ propName ] ) !== 2 ) {
 			// eslint-disable-next-line i18next/no-literal-string
@@ -145,35 +140,38 @@ FlippableCard.propTypes = {
 	draggable: PropTypes.bool,
 	flipSpeedBackToFront: PropTypes.number,
 	flipSpeedFrontToBack: PropTypes.number,
-	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
 	perspective: PropTypes.number,
 	size: PropTypes.number,
 	value: PropTypes.bool,
-	defaultValue: PropTypes.bool
+	defaultValue: PropTypes.bool,
+	containerStyle: PropTypes.object,
+	frontStyle: PropTypes.object,
+	backStyle: PropTypes.object,
+	onChange: PropTypes.func
 };
 
 FlippableCard.defaultProps = {
-	backStyle: {
-		background: 'pink'
-	},
 	button: null,
 	children: null,
-	containerStyle: {
-		float: 'left'
-	},
 	draggable: false,
 	flipSpeedBackToFront: 1,
 	flipSpeedFrontToBack: 1,
-	frontStyle: {
-		background: 'gainsboro'
-	},
-	onChange() {},
 	oneTime: false,
 	perspective: 1000,
 	size: 400,
 	value: void 0,
-	defaultValue: false
+	defaultValue: false,
+	containerStyle: {
+		float: 'left'
+	},
+	frontStyle: {
+		background: 'gainsboro'
+	},
+	backStyle: {
+		background: 'pink'
+	},
+	onChange() {}
 };
 
 

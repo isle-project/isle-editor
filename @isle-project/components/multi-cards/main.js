@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import copy from '@stdlib/utils/copy';
 import FlippableCard from '@isle-project/components/flippable-card';
 import SessionContext from '@isle-project/session/context.js';
 import VoiceInput from '@isle-project/components/input/voice';
@@ -33,13 +32,14 @@ function falseArray( n ) {
 * An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory).
 *
 * @property {Array<Object>} values - the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component
-* @property {Array<Object>} cardStyles - allows to override the given styles. Handles objects with  `container`, `front` and `back` keys
 * @property {string} game - multi-card games. Can be either `memory` or `bingo`.
-* @property {string} language - voice recognition language identifier
-* @property {Function} onChange - a function that receives the matrix of the flippable cards
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
 * @property {Object} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
 * @property {Object} style - CSS inline styles
+* @property {Object} containerStyle - CSS style of the card containers
+* @property {Object} frontStyle - CSS style of the front of the cards
+* @property {Object} backStyle - CSS style of the back of the cards
+* @property {Function} onChange - a function that receives the matrix of the flippable cards
 */
 class MultiCards extends Component {
 	constructor( props ) {
@@ -73,14 +73,18 @@ class MultiCards extends Component {
 				back = values[ ndx ].back;
 			}
 		}
-		const styles = copy( this.props.cardStyles );
+		const containerStyle = {
+			...this.props.containerStyle
+		};
 		if ( this.state.shaking.includes( ndx ) ) {
-			styles.container.animation = 'shake-top 1.2s';
+			containerStyle.animation = 'shake-top 1.2s';
 		}
 		return (
 			<FlippableCard
 				value={this.state.cardList[ ndx ]}
-				cardStyles={styles}
+				containerStyle={containerStyle}
+				frontStyle={this.props.frontStyle}
+				backStyle={this.props.backStyle}
 				onChange={this.changeFactory( ndx )}
 				oneTime={this.props.oneTime}
 				id={id}
@@ -177,7 +181,7 @@ class MultiCards extends Component {
 		}
 		if ( needVoice ) {
 			list.push( <VoiceInput
-				mode="none" autorecord language={this.props.language}
+				mode="none" autorecord
 				onSegment={this.trigger}
 			/> );
 		}
@@ -207,32 +211,26 @@ class MultiCards extends Component {
 
 MultiCards.propTypes = {
 	animation: PropTypes.object,
-	cardStyles: PropTypes.shape({
-		container: PropTypes.object,
-		front: PropTypes.object,
-		back: PropTypes.object
-	}),
 	game: PropTypes.string,
-	language: PropTypes.string,
 	onChange: PropTypes.func,
 	oneTime: PropTypes.bool,
 	values: PropTypes.arrayOf( PropTypes.object ),
-	style: PropTypes.object
+	style: PropTypes.object,
+	containerStyle: PropTypes.object,
+	frontStyle: PropTypes.object,
+	backStyle: PropTypes.object
 };
 
 MultiCards.defaultProps = {
 	animation: {},
-	cardStyles: {
-		container: {},
-		front: {},
-		back: {}
-	},
 	game: null,
 	onChange() {},
-	language: 'en-US',
 	oneTime: false,
 	values: [],
-	style: {}
+	style: {},
+	containerStyle: {},
+	frontStyle: {},
+	backStyle: {}
 };
 
 MultiCards.contextType = SessionContext;
