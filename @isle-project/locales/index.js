@@ -89,6 +89,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/de.json' ),
 		'Video': () => import( './components/video/de.json' ),
 		'Weather': () => import( './components/weather/de.json' ),
+		'Wikipedia': () => import( './components/wikipedia/de.json' ),
 		'WordCloud': () => import( './components/word-cloud/de.json' ),
 		'session': () => import( './session/de.json' )
 	},
@@ -169,6 +170,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/en.json' ),
 		'Video': () => import( './components/video/en.json' ),
 		'Weather': () => import( './components/weather/en.json' ),
+		'Wikipedia': () => import( './components/wikipedia/en.json' ),
 		'WordCloud': () => import( './components/word-cloud/en.json' ),
 		'session': () => import( './session/en.json' )
 	},
@@ -249,6 +251,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/es.json' ),
 		'Video': () => import( './components/video/es.json' ),
 		'Weather': () => import( './components/weather/es.json' ),
+		'Wikipedia': () => import( './components/wikipedia/es.json' ),
 		'WordCloud': () => import( './components/word-cloud/es.json' ),
 		'session': () => import( './session/es.json' )
 	},
@@ -329,6 +332,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/fr.json' ),
 		'Video': () => import( './components/video/fr.json' ),
 		'Weather': () => import( './components/weather/fr.json' ),
+		'Wikipedia': () => import( './components/wikipedia/fr.json' ),
 		'WordCloud': () => import( './components/word-cloud/fr.json' ),
 		'session': () => import( './session/fr.json' )
 	},
@@ -409,6 +413,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/it.json' ),
 		'Video': () => import( './components/video/it.json' ),
 		'Weather': () => import( './components/weather/it.json' ),
+		'Wikipedia': () => import( './components/wikipedia/it.json' ),
 		'WordCloud': () => import( './components/word-cloud/it.json' ),
 		'session': () => import( './session/it.json' )
 	},
@@ -489,6 +494,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/ja.json' ),
 		'Video': () => import( './components/video/ja.json' ),
 		'Weather': () => import( './components/weather/ja.json' ),
+		'Wikipedia': () => import( './components/wikipedia/ja.json' ),
 		'WordCloud': () => import( './components/word-cloud/ja.json' ),
 		'session': () => import( './session/ja.json' )
 	},
@@ -569,6 +575,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/nl.json' ),
 		'Video': () => import( './components/video/nl.json' ),
 		'Weather': () => import( './components/weather/nl.json' ),
+		'Wikipedia': () => import( './components/wikipedia/nl.json' ),
 		'WordCloud': () => import( './components/word-cloud/nl.json' ),
 		'session': () => import( './session/nl.json' )
 	},
@@ -649,6 +656,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/pl.json' ),
 		'Video': () => import( './components/video/pl.json' ),
 		'Weather': () => import( './components/weather/pl.json' ),
+		'Wikipedia': () => import( './components/wikipedia/pl.json' ),
 		'WordCloud': () => import( './components/word-cloud/pl.json' ),
 		'session': () => import( './session/pl.json' )
 	},
@@ -729,6 +737,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/pt.json' ),
 		'Video': () => import( './components/video/pt.json' ),
 		'Weather': () => import( './components/weather/pt.json' ),
+		'Wikipedia': () => import( './components/wikipedia/pt.json' ),
 		'WordCloud': () => import( './components/word-cloud/pt.json' ),
 		'session': () => import( './session/pt.json' )
 	},
@@ -809,6 +818,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/ru.json' ),
 		'Video': () => import( './components/video/ru.json' ),
 		'Weather': () => import( './components/weather/ru.json' ),
+		'Wikipedia': () => import( './components/wikipedia/ru.json' ),
 		'WordCloud': () => import( './components/word-cloud/ru.json' ),
 		'session': () => import( './session/ru.json' )
 	},
@@ -889,6 +899,7 @@ const TRANSLATIONS = {
 		'TextEditor': () => import( './components/text-editor/zh.json' ),
 		'Video': () => import( './components/video/zh.json' ),
 		'Weather': () => import( './components/weather/zh.json' ),
+		'Wikipedia': () => import( './components/wikipedia/zh.json' ),
 		'WordCloud': () => import( './components/word-cloud/zh.json' ),
 		'session': () => import( './session/zh.json' )
 	}
