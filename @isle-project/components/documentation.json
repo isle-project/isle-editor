@@ -4137,41 +4137,6 @@
 		],
 		"description": "MultipleChoiceSurvey-description"
 	},
-	"News": {
-		"props": [
-			{
-				"name": "invisible",
-				"type": "boolean",
-				"description": "News-prop-invisible",
-				"defaultValue": false
-			},
-			{
-				"name": "key",
-				"type": "string",
-				"description": "News-prop-key",
-				"defaultValue": "2987fd19bd374249979c4e38e40ef8b8"
-			},
-			{
-				"name": "language",
-				"type": "string",
-				"description": "News-prop-language",
-				"defaultValue": "en-US"
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "News-prop-voiceID",
-				"defaultValue": null
-			},
-			{
-				"name": "onArticles",
-				"type": "function",
-				"description": "News-prop-onArticles",
-				"defaultValue": "function onArticles() {}"
-			}
-		],
-		"description": "News-description"
-	},
 	"NumberSurvey": {
 		"props": [
 			{

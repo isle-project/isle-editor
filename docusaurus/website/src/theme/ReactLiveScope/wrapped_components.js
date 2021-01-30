@@ -96,7 +96,6 @@ import MultipleChoiceMatrix from '@isle-project/components/questions/multiple-ch
 import MultipleChoiceQuestion from '@isle-project/components/questions/multiple-choice';
 import MultipleChoiceSurvey from '@isle-project/components/multiple-choice-survey';
 import NetworkPlot from '@isle-project/components/d3/network-plot';
-import News from '@isle-project/components/news';
 import NumberQuestion from '@isle-project/components/questions/number';
 import NumberSurvey from '@isle-project/components/number-survey';
 import OrderQuestion from '@isle-project/components/questions/order';
@@ -251,7 +250,6 @@ const Components = {
 	MultipleChoiceQuestion,
 	MultipleChoiceSurvey,
 	NetworkPlot,
-	News,
 	NumberQuestion,
 	NumberSurvey,
 	OrderQuestion,

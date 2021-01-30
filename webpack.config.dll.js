@@ -104,7 +104,6 @@ const config = {
 			'@isle-project/components/questions/multiple-choice-matrix',
 			'@isle-project/components/questions/multiple-choice',
 			'@isle-project/components/multiple-choice-survey',
-			'@isle-project/components/news',
 			'@isle-project/components/questions/number',
 			'@isle-project/components/number-survey',
 			'@isle-project/components/questions/order',

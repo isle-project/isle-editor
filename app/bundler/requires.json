@@ -92,7 +92,6 @@
 	"NavItem": "react-bootstrap/NavItem",
 	"NavLink": "react-bootstrap/NavLink",
 	"NetworkPlot": "@isle-project/components/d3/network-plot",
-	"News": "@isle-project/components/news",
 	"NumberInput": "@isle-project/components/input/number",
 	"NumberQuestion": "@isle-project/components/questions/number",
 	"NumberSurvey": "@isle-project/components/number-survey",
