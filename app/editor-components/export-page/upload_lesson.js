@@ -3,11 +3,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
+import axios from 'axios';
 import logger from 'debug';
 import { createReadStream, createWriteStream } from 'fs';
 import { join } from 'path';
 import https from 'https';
-import http from 'http';
 import os from 'os';
 import { resolve } from 'url';
 import qs from 'querystring';
@@ -73,16 +73,15 @@ class UploadLesson extends Component {
 
 	componentDidMount() {
 		if ( this.state.token ) {
-			fetch( this.state.server+'/get_namespaces', {
+			axios.get( this.state.server+'/get_namespaces', {
 				headers: {
 					'Authorization': 'JWT ' + this.state.token
 				}
 			})
-			.then( res => res.json() )
-			.then( body => {
+			.then( res => {
 				debug( 'Received namespaces...' );
 				this.setState({
-					namespaces: body.namespaces
+					namespaces: res.data.namespaces
 				}, () => {
 					if (
 						this.state.namespaces.length > 0 &&
@@ -184,7 +183,7 @@ class UploadLesson extends Component {
 			headers: headers
 		};
 		let request;
-		const re = /^https?:\/\/([^:]+):?([0-9]{0,5})/i;
+		const re = /^https:\/\/([^:]+):?([0-9]{0,5})/i;
 		const matches = this.state.server.match( re );
 		debug( 'Matches %s', matches );
 		options.host = matches[ 1 ];
@@ -194,12 +193,8 @@ class UploadLesson extends Component {
 		if ( matches[ 2 ]) {
 			options.port = matches[ 2 ];
 		}
-		if ( contains( this.state.server, 'https' ) ) {
-			options.rejectUnauthorized = false;
-			request = https.request( options );
-		} else {
-			request = http.request( options );
-		}
+		options.rejectUnauthorized = false;
+		request = https.request( options );
 		form.pipe( request );
 
 		request.on( 'response', ( res ) => {
@@ -234,14 +229,9 @@ class UploadLesson extends Component {
 		};
 		const query = qs.stringify( form );
 		debug( 'Querystring: '+query );
-		fetch( this.state.server + '/get_lesson?'+query )
+		axios.get( this.state.server + '/get_lesson?'+query )
 			.then( res => {
-				if ( res.status === 200 ) {
-					return res.json();
-				}
-			})
-			.then( body => {
-				if ( body.lesson ) {
+				if ( res.data.lesson ) {
 					this.setState({
 						showConfirmModal: true
 					});
@@ -360,14 +350,16 @@ class UploadLesson extends Component {
 	}
 
 	renderProgress() {
+		const { error, spinning } = this.state;
 		return ( <Fragment>
-			<Spinner width={128} height={64} running={this.state.spinning} />
-			{ this.state.error ? <Card bg="danger" text="white" >
+			<Spinner width={128} height={64} running={spinning} />
+			{ error ? <Card bg="danger" text="white" >
 				<Card.Header as="h5">
 					{this.props.t('error-encountered')}
 				</Card.Header>
 				<Card.Body>
-					<p>{this.state.error.message}</p>
+					<p>
+						{error.response ? error.response.data : error.message}</p>
 				</Card.Body>
 			</Card> : null }
 		</Fragment>);
