@@ -15,17 +15,6 @@ import Bingo from './bingo.js';
 const debug = logger( 'isle:multi-cards' );
 
 
-// FUNCTIONS //
-
-function falseArray( n ) {
-	const arr = [];
-	for ( let i = 0; i < n; i++ ) {
-		arr.push( false );
-	}
-	return arr;
-}
-
-
 // MAIN //
 
 /**
@@ -46,7 +35,7 @@ class MultiCards extends Component {
 		super( props );
 
 		this.state = {
-			cardList: falseArray( this.props.values.length ),
+			cardList: new Array( this.props.values.length ).fill( false ),
 			shaking: []
 		};
 	}
@@ -191,13 +180,10 @@ class MultiCards extends Component {
 	render() {
 		const style = {
 			overflow: 'auto',
-			...{
-				animationName: this.props.animation.name,
-				animationDuration: this.props.animation.duration
-			},
+			animationName: this.props.animation.name,
+			animationDuration: this.props.animation.duration,
 			...this.props.style
 		};
-
 		return (
 			<div style={style} >
 				{this.renderCards()}
