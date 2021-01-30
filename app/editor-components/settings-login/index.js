@@ -188,9 +188,7 @@ class SettingsLogin extends Component {
 		const { server, email, password, encounteredError } = this.state;
 		const inputsAreEntered =
 			server.length > 6 && email.length > 3 && password.length > 3;
-		const invalidServer =
-			!startsWith( this.state.server, 'https://' ) &&
-			!startsWith( this.state.server, 'http://' );
+		const invalidServer = !startsWith( this.state.server, 'https://' );
 		const hasToken = electronStore.has( 'token' );
 		return (
 			<Fragment>
@@ -218,8 +216,7 @@ class SettingsLogin extends Component {
 							</FormText>
 							<FormControl.Feedback type="invalid">
 								<Trans i18nKey="invalid-server" >
-									The server address must start with <code>http://</code> or
-								<code>https://</code>.
+									The server address must start with <code>https://</code>.
 								</Trans>
 							</FormControl.Feedback>
 						</FormGroup>

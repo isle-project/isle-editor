@@ -179,7 +179,7 @@
 	"inside": "Binnenin",
 	"install-dependencies": "Installeer afhankelijkheden",
 	"installing": "Het installeren van",
-	"invalid-server": "Het serveradres moet beginnen met <1>http://</1> of <3>https://</3>.",
+	"invalid-server": "Het serveradres moet beginnen met <1>https://</1>.",
 	"isle-server": "Het ISLE-serveradres, bijvoorbeeld <1>https://isle.stat.cmu.edu</1>.",
 	"issue-with": "Probleem met {{component}} onderdeel",
 	"Italian": "Italiaans",

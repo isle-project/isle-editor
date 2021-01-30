@@ -179,7 +179,7 @@
 	"inside": "Wewnątrz",
 	"install-dependencies": "Zależności instalacyjne",
 	"installing": "Instalacja",
-	"invalid-server": "Adres serwera musi zaczynać się od <1>http://</1> lub <3>https://</3>.",
+	"invalid-server": "Adres serwera musi zaczynać się od <1>https://</1>.",
 	"isle-server": "Adres serwera ISLE, np. <1>https://isle.stat.cmu.edu</1>.",
 	"issue-with": "Problem z komponentem {{component}}.",
 	"Italian": "Włoski",

@@ -179,7 +179,7 @@
 	"inside": "Внутри",
 	"install-dependencies": "Зависимости при установке",
 	"installing": "Установка",
-	"invalid-server": "Адрес сервера должен начинаться с <1>http://</1> или <3>https://</3>.",
+	"invalid-server": "Адрес сервера должен начинаться с <1>https://</1>.",
 	"isle-server": "Адрес ISLE-сервера, например <1>https://isle.stat.cmu.edu</1>.",
 	"issue-with": "Выпуск с компонентом {{component}}",
 	"Italian": "итальянский",

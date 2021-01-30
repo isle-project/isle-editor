@@ -179,7 +179,7 @@
 	"inside": "Dentro de",
 	"install-dependencies": "Instalar dependencias",
 	"installing": "Instalando",
-	"invalid-server": "La dirección del servidor debe comenzar con <1>http://</1> o <3>https://</3>.",
+	"invalid-server": "La dirección del servidor debe comenzar con <1>https://</1>.",
 	"isle-server": "La dirección del servidor de ISLE, por ejemplo, <1>https://isle.stat.cmu.edu</1>.",
 	"issue-with": "Problema con el componente {{component}}",
 	"Italian": "Italiano",

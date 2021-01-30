@@ -179,7 +179,7 @@
 	"inside": "内部",
 	"install-dependencies": "安装依赖性",
 	"installing": "安装",
-	"invalid-server": "服务器地址必须以<1>http://</1>或<3>https://</3>开头。",
+	"invalid-server": "服务器地址必须以<1>https://</1>开头。",
 	"isle-server": "ISLE服务器地址，例如：<1>https://isle.stat.cmu.edu</1>。",
 	"issue-with": "{{component}}组件的问题",
 	"Italian": "意大利",

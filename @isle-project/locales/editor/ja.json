@@ -179,7 +179,7 @@
 	"inside": "内部",
 	"install-dependencies": "依存関係のインストール",
 	"installing": "インストール",
-	"invalid-server": "サーバアドレスは<1>http://</1>または<3>https://</3>で始まる必要があります。",
+	"invalid-server": "サーバアドレスは<1>https://</1>で始まる必要があります。",
 	"isle-server": "ISLEサーバのアドレス、例えば<1>https://isle.stat.cmu.edu</1>。",
 	"issue-with": "{{component}}コンポーネントの問題",
 	"Italian": "イタリア語",
