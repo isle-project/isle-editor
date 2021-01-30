@@ -69,7 +69,7 @@
 	},
 	{
 		"name": "FlippableCard",
-		"value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
+		"value": "<FlippableCard>\n  ${1:<div>Question</div>}\n  ${2:<div>Answer</div>}\n</FlippableCard>\n"
 	},
 	{
 		"name": "FreeTextQuestion",
