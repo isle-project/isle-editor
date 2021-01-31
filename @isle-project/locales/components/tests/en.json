@@ -18,5 +18,6 @@
 	"sample-proportion": "Sample proportion: ",
 	"sample-proportion-in-group": "Sample proportion in group",
 	"vs": "vs.",
-	"we-test": "We test"
+	"we-test": "We test",
+	"data-missing": "Data are missing."
 }

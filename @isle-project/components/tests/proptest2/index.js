@@ -27,6 +27,9 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[[-?\d.]+,Infinity\]/;
 
 function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecision, success }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	let firstCategory;
 	let secondCategory;
 	let value;

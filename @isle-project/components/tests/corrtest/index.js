@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import TeX from '@isle-project/components/tex';
 import { useTranslation } from 'react-i18next';
 import pcorrtest from '@stdlib/stats/pcorrtest';
@@ -19,6 +20,9 @@ addResources( 'Tests' );
 
 function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const x = data[ var1 ];
 	const y = data[ var2 ];
 	const xFiltered = [];

@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
 import ttest from '@stdlib/stats/ttest';
@@ -42,6 +43,9 @@ function extractValues( data, variable ) {
 
 function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const xvalues = extractValues( data, variable );
 	let sd;
 	if ( type === 'Z Test' && stdev ) {

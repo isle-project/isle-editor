@@ -76,6 +76,9 @@ function retrieveGroupedValues( data, x, group ) {
 
 function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	let out;
 	if ( group ) {
 		out = retrieveGroupedValues( data, x, group );

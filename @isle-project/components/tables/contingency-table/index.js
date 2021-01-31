@@ -3,6 +3,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
@@ -199,6 +200,9 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 // MAIN //
 
 function ContingencyTable({ data, rowVar, colVar, group, relativeFreqs, nDecimalPlaces, display, t }) {
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	let table;
 	if ( !group ) {
 		table = createContingencyTable( data, rowVar, colVar, relativeFreqs, nDecimalPlaces, display, t );

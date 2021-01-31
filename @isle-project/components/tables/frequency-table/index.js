@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import Table from '@isle-project/components/table';
 import objectKeys from '@stdlib/utils/keys';
 import entries from '@stdlib/utils/entries';
@@ -214,6 +215,9 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 // MAIN //
 
 function FrequencyTable({ data, variable, group, calculateCounts, calculateRelative, nDecimalPlaces, t }) {
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	let freqs;
 	if ( !group ) {
 		freqs = getFrequencies( variable, data[ variable ], calculateCounts, calculateRelative );

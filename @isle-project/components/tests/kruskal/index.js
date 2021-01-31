@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import kruskalTest from '@stdlib/stats/kruskal-test';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -19,6 +20,9 @@ addResources( 'Tests' );
 
 function Kruskal({ data, variable, group, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const values = data[ variable ];
 	const groups = data[ group ];
 	const groupsFiltered = [];

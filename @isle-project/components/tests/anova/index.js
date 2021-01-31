@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import anova1 from '@stdlib/stats/anova1';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
@@ -13,6 +14,9 @@ import isNull from '@stdlib/assert/is-null';
 
 function Anova({ data, variable, group, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const vals = data[ variable ];
 	const groups = data[ group ];
 	const groupsFiltered = [];

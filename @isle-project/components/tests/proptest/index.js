@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import TeX from '@isle-project/components/tex';
 import ztest from '@stdlib/stats/ztest';
 import sqrt from '@stdlib/math/base/special/sqrt';
@@ -23,6 +24,9 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
 function PropTest({ data, variable, alpha, direction, success, p0, showDecision }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const x = data[ variable ];
 	const binary = x.map( x => x === success ? 1 : 0 );
 	const result = ztest( binary, sqrt( p0 * ( 1.0 - p0 ) ), {

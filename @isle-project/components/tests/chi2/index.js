@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import ROutput from '@isle-project/components/r/output';
 import { addResources } from '@isle-project/locales';
 
@@ -16,6 +17,9 @@ addResources( 'Tests' );
 
 function Chi2Test({ data, var1, var2 }) {
 	const { t } = useTranslation( 'Tests' );
+	if ( !data ) {
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
+	}
 	const x = data[ var1 ].map( x => `"${x}"` );
 	const y = data[ var2 ].map( x => `"${x}"` );
 	return (
