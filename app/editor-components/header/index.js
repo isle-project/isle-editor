@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
-import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -12,6 +11,7 @@ import DropdownItem from 'react-bootstrap/DropdownItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import HeaderUpperBar from 'editor-components/header-upper-bar';
+import Tooltip from '@isle-project/components/tooltip';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import KeyControls from '@isle-project/components/key-controls';
 import stopPropagation from '@isle-project/utils/stop-propagation';
@@ -116,7 +116,7 @@ class Header extends Component {
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="trigger-update">{t('trigger-update')} (F5)</Tooltip>}>
+						<Tooltip placement="top" tooltip={`${t('trigger-update')} (F5)`} >
 							<Button
 								onClick={this.props.triggerUpdate}
 								style={{
@@ -124,8 +124,8 @@ class Header extends Component {
 								}}
 								variant="outline-secondary"
 							><i className="fas fa-sync"></i></Button>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-online">{t('switch-online-offline')}</Tooltip>}>
+						</Tooltip>
+						<Tooltip placement="top" tooltip={t('switch-online-offline')} show={this.props.preamble && isString( this.props.preamble.server)} >
 							<div onClick={stopPropagation} >
 								<DropdownButton
 									title={t(this.props.mode)}
@@ -140,8 +140,8 @@ class Header extends Component {
 									<DropdownItem eventKey="2">{t('online')}</DropdownItem>
 								</DropdownButton>
 							</div>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="user-role-dropdown">{t('preview-lesson-role')}</Tooltip>}>
+						</Tooltip>
+						<Tooltip placement="top" tooltip={t('preview-lesson-role')} >
 							<div onClick={stopPropagation} >
 								<DropdownButton
 									title={t(this.props.role)}
@@ -156,13 +156,13 @@ class Header extends Component {
 									<DropdownItem eventKey="4">{t('owner')}</DropdownItem>
 								</DropdownButton>
 							</div>
-						</OverlayTrigger>
-						<OverlayTrigger placement="bottom" overlay={<Tooltip id="preview-tooltip">{t('preview-tooltip')}</Tooltip>}>
+						</Tooltip>
+						<Tooltip placement="bottom" tooltip={t('preview-tooltip')} >
 							<Button variant="secondary" onClick={this.props.onPreview} style={{
 								paddingTop: 4,
 								marginLeft: 25
 							}}>{t('preview')}</Button>
-						</OverlayTrigger>
+						</Tooltip>
 					</ButtonGroup>
 				</div>
 				<KeyControls
