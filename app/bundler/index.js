@@ -85,7 +85,6 @@ const prepareAsyncRequires = ( libs ) => {
 		resources: [],
 		keys: []
 	};
-	let out = '';
 	if ( isObject( libs ) ) {
 		for ( let key in libs ) {
 			if ( hasOwnProp( libs, key ) ) {
@@ -93,14 +92,19 @@ const prepareAsyncRequires = ( libs ) => {
 				if ( isURI( lib ) ) {
 					asyncOps.resources.push( lib );
 					asyncOps.keys.push( key );
-					out += `global.${key} = {};\n`;
 				}
 			}
 		}
 	}
-	out += `const asyncRequires = ${JSON.stringify( asyncOps )};`;
-	return out;
+	return asyncOps;
 };
+
+function replaceImplicitGlobals( lessonContent, asyncKeys ) {
+	for ( let i = 0; i < asyncKeys.length; i++ ) {
+		lessonContent = replace( lessonContent, '{'+asyncKeys[ i ]+'}', '{global.'+asyncKeys[ i ]+'}' );
+	}
+	return lessonContent;
+}
 
 const getMainImports = () => `
 // POLYFILLS //
@@ -180,7 +184,6 @@ class LessonWrapper extends Component {
 	}
 
 	componentDidUpdate() {
-		serviceWorker.register();
 		if ( !this.state.isLoading ) {
 			const loader = document.getElementById( 'loading' );
 			if ( loader ) {
@@ -195,6 +198,7 @@ class LessonWrapper extends Component {
 				}, ${loaderTimeout} );
 			}
 		}
+		serviceWorker.register();
 	}
 
 	componentWillUnmount() {
@@ -269,9 +273,14 @@ const getComponentList = ( code ) => {
 */
 function generateIndexJS( lessonContent, components, meta, basePath, filePath ) {
 	let res = getMainImports();
+	let asyncOps;
 	if ( meta.require ) {
 		res += loadSyncRequires( meta.require, filePath );
-		res += prepareAsyncRequires( meta.require );
+		asyncOps = prepareAsyncRequires( meta.require );
+		res += `const asyncRequires = ${JSON.stringify( asyncOps )};`;
+		for ( let i = 0; i < asyncOps.keys.length; i++ ) {
+			res += `global.${asyncOps.keys[ i ]} = null;\n`;
+		}
 	} else {
 		res += 'const asyncRequires = null';
 	}
@@ -286,6 +295,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 
 	res += `global.COMPONENT_LIST = ${JSON.stringify( components )};`;
 	res += getComponents( components );
+	lessonContent = replaceImplicitGlobals( lessonContent, asyncOps.keys );
 	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );
 	return res;
 }
