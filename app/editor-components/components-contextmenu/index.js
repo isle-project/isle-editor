@@ -159,25 +159,38 @@ class EditorContextMenu extends Component {
 		);
 		const presentation = this.createMenuEntries( GROUPED_SNIPPETS.presentation, 'Presentation' );
 		const data = this.createMenuEntries( [], 'Data', models, tables, tests );
+		let searchStyle = null;
+		if ( this.state.searchValue ) {
+			searchStyle = {
+				maxHeight: '75vh',
+				overflowY: 'auto',
+				overflowX: 'hidden'
+			};
+		}
 		return (
 			<Fragment>
-				<ContextMenu className="components-contextmenu" id={this.props.id} onHide={this.handleHide} disableIfShiftIsPressed >
+				<ContextMenu
+					className="components-contextmenu" id={this.props.id}
+					onHide={this.handleHide} disableIfShiftIsPressed
+				>
 					<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
-					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-					{main}
-					{basic}
-					{displayComponents}
-					{layout}
-					{inputs}
-					{questions}
-					{surveys}
-					{rComponents}
-					{programmatic}
-					{learning}
-					{general}
-					{presentation}
-					{data}
-					{plots}
+					<div style={searchStyle} >
+						<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+						{main}
+						{basic}
+						{displayComponents}
+						{layout}
+						{inputs}
+						{questions}
+						{surveys}
+						{rComponents}
+						{programmatic}
+						{learning}
+						{general}
+						{presentation}
+						{data}
+						{plots}
+					</div>
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					<SearchBar
 						value={this.state.searchValue}
