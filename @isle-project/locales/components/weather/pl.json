@@ -1,6 +1,7 @@
 {
 	"direction": "Kierunek",
 	"humidity": "wilgoć",
+	"in": "w",
 	"loading-weather-data-for": "Ładowanie danych pogodowych dla {{loc}}...",
 	"wind": "Wiatr"
 }

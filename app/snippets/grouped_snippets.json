@@ -88,7 +88,7 @@
     },
     {
       "name": "FlippableCard",
-      "value": "<FlippableCard>\n  ${1:}\n  ${2:}\n</FlippableCard>\n"
+      "value": "<FlippableCard>\n  ${1:<div>Question</div>}\n  ${2:<div>Answer</div>}\n</FlippableCard>\n"
     },
     {
       "name": "Joyride",
@@ -507,20 +507,6 @@
       "value": "<Col md={${1:12}}>\n  ${2:}\n</Col>\n"
     }
   ],
-  "services": [
-    {
-      "name": "News",
-      "value": "<News />\n"
-    },
-    {
-      "name": "Weather",
-      "value": "<Weather location=\"${1:New York}\" />\n"
-    },
-    {
-      "name": "Wikipedia",
-      "value": "<Wikipedia\n  speech={${1:true}}\n  language = \"en-US\"\n/>\n"
-    }
-  ],
   "rComponents": [
     {
       "name": "RHelp",
@@ -541,6 +527,16 @@
     {
       "name": "RTable",
       "value": "<RTable code=\"${1:}\" />\n"
+    }
+  ],
+  "services": [
+    {
+      "name": "Weather",
+      "value": "<Weather location=\"${1:New York}\" />\n"
+    },
+    {
+      "name": "Wikipedia",
+      "value": "<Wikipedia\n defaultEntry=\"${1:Johann Heinrich Pestalozzi}\" />\n"
     }
   ],
   "language": [

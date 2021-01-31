@@ -1,6 +1,7 @@
 {
 	"direction": "ほうこう",
 	"humidity": "湿度",
+	"in": "に於いて",
 	"loading-weather-data-for": "の天気データを読み込み中 {{loc}}...",
 	"wind": "風"
 }

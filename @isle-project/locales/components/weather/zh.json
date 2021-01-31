@@ -1,6 +1,7 @@
 {
 	"direction": "方向",
 	"humidity": "湿度",
+	"in": "在",
 	"loading-weather-data-for": "正在加载{{loc}}的天气数据。",
 	"wind": "风"
 }

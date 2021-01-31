@@ -1107,16 +1107,6 @@
 				"defaultValue": null
 			},
 			{
-				"name": "cardStyles",
-				"type": "{container,front,back}",
-				"description": "FlippableCard-prop-cardStyles",
-				"defaultValue": {
-					"container": {},
-					"front": {},
-					"back": {}
-				}
-			},
-			{
 				"name": "draggable",
 				"type": "boolean",
 				"description": "FlippableCard-prop-draggable",
@@ -1135,12 +1125,6 @@
 				"defaultValue": 1
 			},
 			{
-				"name": "onChange",
-				"type": "function",
-				"description": "FlippableCard-prop-onChange",
-				"defaultValue": "function onChange() {}"
-			},
-			{
 				"name": "oneTime",
 				"type": "boolean",
 				"description": "FlippableCard-prop-oneTime",
@@ -1153,6 +1137,17 @@
 				"defaultValue": 1000
 			},
 			{
+				"name": "size",
+				"type": "number",
+				"defaultValue": 250
+			},
+			{
+				"name": "disabled",
+				"type": "boolean",
+				"description": "FlippableCard-prop-disabled",
+				"defaultValue": false
+			},
+			{
 				"name": "value",
 				"type": "boolean",
 				"description": "FlippableCard-prop-value"
@@ -1162,6 +1157,30 @@
 				"type": "boolean",
 				"description": "FlippableCard-prop-defaultValue",
 				"defaultValue": false
+			},
+			{
+				"name": "containerStyle",
+				"type": "object",
+				"description": "FlippableCard-prop-containerStyle",
+				"defaultValue": {}
+			},
+			{
+				"name": "frontStyle",
+				"type": "object",
+				"description": "FlippableCard-prop-frontStyle",
+				"defaultValue": {}
+			},
+			{
+				"name": "backStyle",
+				"type": "object",
+				"description": "FlippableCard-prop-backStyle",
+				"defaultValue": {}
+			},
+			{
+				"name": "onChange",
+				"type": "function",
+				"description": "FlippableCard-prop-onChange",
+				"defaultValue": "function onChange() {}"
 			}
 		],
 		"description": "FlippableCard-description"
@@ -2279,12 +2298,6 @@
 				"type": "array",
 				"description": "VoiceInput-prop-grammars",
 				"defaultValue": []
-			},
-			{
-				"name": "language",
-				"type": "string",
-				"description": "VoiceInput-prop-language",
-				"defaultValue": "en-US"
 			},
 			{
 				"name": "legend",
@@ -4042,32 +4055,22 @@
 				"defaultValue": {}
 			},
 			{
-				"name": "cardStyles",
-				"type": "{container,front,back}",
-				"description": "MultiCards-prop-cardStyles",
-				"defaultValue": {
-					"container": {},
-					"front": {},
-					"back": {}
-				}
-			},
-			{
-				"name": "game",
-				"type": "string",
-				"description": "MultiCards-prop-game",
+				"name": "memory",
+				"type": "boolean",
+				"description": "MultiCards-prop-memory",
 				"defaultValue": null
-			},
-			{
-				"name": "language",
-				"type": "string",
-				"description": "MultiCards-prop-language",
-				"defaultValue": "en-US"
 			},
 			{
 				"name": "onChange",
 				"type": "function",
 				"description": "MultiCards-prop-onChange",
 				"defaultValue": "function onChange() {}"
+			},
+			{
+				"name": "onMemoryComplete",
+				"type": "function",
+				"description": "MultiCards-prop-onMemoryComplete",
+				"defaultValue": "function onMemoryComplete() {}"
 			},
 			{
 				"name": "oneTime",
@@ -4085,6 +4088,24 @@
 				"name": "style",
 				"type": "object",
 				"description": "MultiCards-prop-style",
+				"defaultValue": {}
+			},
+			{
+				"name": "containerStyle",
+				"type": "object",
+				"description": "MultiCards-prop-containerStyle",
+				"defaultValue": {}
+			},
+			{
+				"name": "frontStyle",
+				"type": "object",
+				"description": "MultiCards-prop-frontStyle",
+				"defaultValue": {}
+			},
+			{
+				"name": "backStyle",
+				"type": "object",
+				"description": "MultiCards-prop-backStyle",
 				"defaultValue": {}
 			}
 		],
@@ -8014,6 +8035,7 @@
 			{
 				"name": "canLoadHTML",
 				"type": "boolean",
+				"description": "TextEditor-prop-canLoadHTML",
 				"defaultValue": true
 			},
 			{
@@ -8038,12 +8060,6 @@
 				"type": "number",
 				"description": "TextEditor-prop-voiceTimeout",
 				"defaultValue": 5000
-			},
-			{
-				"name": "language",
-				"type": "string",
-				"description": "TextEditor-prop-language",
-				"defaultValue": "en-US"
 			},
 			{
 				"name": "style",
@@ -8564,12 +8580,6 @@
 	"Weather": {
 		"props": [
 			{
-				"name": "language",
-				"type": "string",
-				"description": "Weather-prop-language",
-				"defaultValue": "en-US"
-			},
-			{
 				"name": "location",
 				"type": "string",
 				"description": "Weather-prop-location",
@@ -8593,10 +8603,10 @@
 	"Wikipedia": {
 		"props": [
 			{
-				"name": "language",
+				"name": "defaultEntry",
 				"type": "string",
-				"description": "Wikipedia-prop-language",
-				"defaultValue": "en-US"
+				"description": "Wikipedia-prop-defaultEntry",
+				"defaultValue": null
 			},
 			{
 				"name": "style",
