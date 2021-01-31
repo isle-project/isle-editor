@@ -1,10 +1,31 @@
 # Changelog
 
+## [v0.74.6](https://github.com/isle-project/isle-editor/releases/tag/v0.74.6) (2021-01-31)
+
+## [v0.74.5](https://github.com/isle-project/isle-editor/releases/tag/v0.74.5) (2021-01-31)
+
+Most importantly, this release contains a series of bug fixes:
+
+- fixes dragging of elements in the preview pane of the editor on Windows operating systems
+- restores click behavior for elements on draggable windows such as the calculator or chats on iOS
+- fixes an error which caused the data explorer to throw an error when running clustering models
+- fixes behavior of multiple-choice surveys with no `id` attribute
+
+It also comes with the following usability improvements:
+
+- the entire "Download PDF" button of the sketchpad now triggers a download of the notes
+- adds a new `mode` option called `cohort` to the text editor, which allows students from any given cohort to work with each other
+- enlarges the drop area when positioning elements using the preview pane of the editor
+- adds a toggle button to the component wizards that allows one to selectively show either all active or all inactive properties for the component
+
+
+
 ## [v0.74.4](https://github.com/isle-project/isle-editor/releases/tag/v0.74.4) (2021-01-31)
 
 **Fixed bugs:**
 
 - bottom of "select component" menu gets cut off when searching [\#1662](https://github.com/isle-project/isle-editor/issues/1662)
+- explanation text cut off by right edge of editor window [\#1661](https://github.com/isle-project/isle-editor/issues/1661)
 
 ## [v0.74.3](https://github.com/isle-project/isle-editor/releases/tag/v0.74.3) (2021-01-22)
 
