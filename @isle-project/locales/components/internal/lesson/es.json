@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "No se insertó el texto. El portapapeles está actualmente vacío.",
 	"copy": "Kopieren",
 	"cut": "Cortar",
+	"encountered-error": "Se ha producido un error:",
 	"end-interface-tour": "Haga clic para terminar el recorrido de la interfaz actualmente en curso",
 	"highlight": "Destacar",
 	"not-available-yet": "Lección no disponible (aún)",

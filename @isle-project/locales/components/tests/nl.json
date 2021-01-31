@@ -2,6 +2,7 @@
 	"and": "en",
 	"anova": "ANOVA voor {{variable}} tussen {{group}}",
 	"correlation-test": "Correlatietest tussen {{var1}} en {{var2}}",
+	"data-missing": "Er ontbreken gegevens.",
 	"hypothesis-test-between": "Hypothesetest voor {{x}} tussen {{group}}",
 	"hypothesis-test-for": "Hypothesetest voor {{variable}}",
 	"hypothesis-test-for-independence": "Hypothesetest voor onafhankelijkheid tussen {{var1}} en {{var2}}",

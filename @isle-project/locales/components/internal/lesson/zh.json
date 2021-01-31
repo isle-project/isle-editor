@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "插入文本失败。目前剪贴板为空。",
 	"copy": "复制",
 	"cut": "切",
+	"encountered-error": "遇到一个错误。",
 	"end-interface-tour": "点击结束当前正在进行的界面浏览。",
 	"highlight": "亮点",
 	"not-available-yet": "尚未有课程",

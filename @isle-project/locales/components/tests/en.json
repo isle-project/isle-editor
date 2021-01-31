@@ -2,6 +2,7 @@
 	"and": "and",
 	"anova": "ANOVA for {{variable}} between {{group}}",
 	"correlation-test": "Correlation test between {{var1}} and {{var2}}",
+	"data-missing": "Data are missing.",
 	"hypothesis-test-between": "Hypothesis test for {{x}} between {{group}}",
 	"hypothesis-test-for": "Hypothesis test for {{variable}}",
 	"hypothesis-test-for-independence": "Hypothesis test for independence between {{var1}} and {{var2}}",
@@ -18,6 +19,5 @@
 	"sample-proportion": "Sample proportion: ",
 	"sample-proportion-in-group": "Sample proportion in group",
 	"vs": "vs.",
-	"we-test": "We test",
-	"data-missing": "Data are missing."
+	"we-test": "We test"
 }

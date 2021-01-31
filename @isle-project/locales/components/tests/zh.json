@@ -2,6 +2,7 @@
 	"and": "和",
 	"anova": "方差分析{{group}}之间的{{variable}}。",
 	"correlation-test": "{{var1}}和{{var2}}之间的相关性检验。",
+	"data-missing": "数据缺失。",
 	"hypothesis-test-between": "假设检验{{group}}之间的{{x}}。",
 	"hypothesis-test-for": "对{{variable}}进行假设检验。",
 	"hypothesis-test-for-independence": "{{var1}}和{{var2}}之间独立性的假设检验。",

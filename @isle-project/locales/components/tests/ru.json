@@ -2,6 +2,7 @@
 	"and": "и",
 	"anova": "АНОВА для {{variable}} между {{group}}",
 	"correlation-test": "Тест на корреляцию между {{var1}} и {{var2}}",
+	"data-missing": "Данные отсутствуют.",
 	"hypothesis-test-between": "Тест на гипотезу для {{x}} между {{group}}",
 	"hypothesis-test-for": "Тест на гипотезу для {{variable}}",
 	"hypothesis-test-for-independence": "Тест на гипотезу независимости между {{var1}} и {{var2}}",

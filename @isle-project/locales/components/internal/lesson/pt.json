@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "Falha na inserção de texto. A prancheta está atualmente vazia.",
 	"copy": "Cópia",
 	"cut": "Corte",
+	"encountered-error": "Encontrou um erro:",
 	"end-interface-tour": "Clique para terminar o tour da interface atualmente em andamento",
 	"highlight": "Destaque",
 	"not-available-yet": "Lição não disponível (ainda)",

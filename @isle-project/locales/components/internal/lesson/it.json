@@ -6,6 +6,7 @@
 	"clipboard-empty-message": "Impossibile inserire il testo. La clipboard è attualmente vuota.",
 	"copy": "Copia",
 	"cut": "Taglia",
+	"encountered-error": "Si è verificato un errore:",
 	"end-interface-tour": "Cliccare per terminare il tour dell'interfaccia attualmente in corso",
 	"highlight": "Evidenziare",
 	"not-available-yet": "Lezione non disponibile (ancora)",

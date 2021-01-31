@@ -2,6 +2,7 @@
 	"and": "oraz",
 	"anova": "ANOVA dla {{variable}} pomiędzy {{group}}",
 	"correlation-test": "Test korelacji między {{var1}} i {{var2}}",
+	"data-missing": "Brak danych.",
 	"hypothesis-test-between": "Test hipotezy na {{x}} pomiędzy {{group}}",
 	"hypothesis-test-for": "Test hipotezy na {{variable}}",
 	"hypothesis-test-for-independence": "Test na niezależność między {{var1}} i {{var2}}.",
