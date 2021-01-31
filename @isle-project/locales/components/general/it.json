@@ -1,6 +1,7 @@
 {
 	"click-to-cycle-through-options": "Fare clic per scorrere le opzioni disponibili.",
 	"encountered-an-error": "Ho incontrato un errore...",
+	"expected-object-array": "`{{field}}` deve essere un array di oggetti.",
 	"flippable-requires-two-children": "La carta capovolgibile richiede due elementi figli.",
 	"grid-requires-two-children": "La griglia trascinabile richiede almeno due elementi figli per essere resa.",
 	"retry": "Riprova",

@@ -1,6 +1,7 @@
 {
 	"click-to-cycle-through-options": "Cliquez pour faire défiler les options disponibles.",
 	"encountered-an-error": "A rencontré une erreur...",
+	"expected-object-array": "{{field}} doit être un tableau d'objets.",
 	"flippable-requires-two-children": "La carte à feuilleter nécessite deux éléments enfantins.",
 	"grid-requires-two-children": "La grille glissable nécessite au moins deux éléments enfants pour être rendue.",
 	"retry": "Retrouvez",
