@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
@@ -56,6 +57,9 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 // MAIN //
 
 function ViolinPlot({ data, variable, id, group, showBox, action, onShare }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateViolinplotConfig({ data, variable, group, showBox });
 	return (
 		<Plotly

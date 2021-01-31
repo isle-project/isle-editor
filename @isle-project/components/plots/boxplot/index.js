@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import isnan from '@stdlib/assert/is-nan';
@@ -159,6 +160,9 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 * @property {boolean} overlayPoints - controls whether to overlay points
 */
 const BoxPlot = ({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) =>{
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateBoxplotConfig({
 		data,
 		variable,

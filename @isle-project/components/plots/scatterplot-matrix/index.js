@@ -2,9 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import floor from '@stdlib/math/base/special/floor';
 import objectKeys from '@stdlib/utils/keys';
 import Plotly from '@isle-project/components/plotly';
+import { i18n } from '@isle-project/locales';
 import { CAT20 } from '@isle-project/constants/colors';
 
 
@@ -72,6 +74,9 @@ export function generateScatterplotMatrixConfig({ data, variables, color }) {
 }
 
 function ScatterPlotMatrix({ id, data, variables, color, action, onShare, onSelected }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateScatterplotMatrixConfig({ data, variables, color });
 	return (
 		<Plotly

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
 import RPlot from '@isle-project/components/r/plot';
 import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales';
@@ -65,6 +66,9 @@ export function generateMosaicPlotCode({ data, variables, showColors, axisLabels
 // MAIN //
 
 function MosaicPlot({ data, id, variables, showColors, axisLabels, action, onShare, onPlotDone }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const code = generateMosaicPlotCode({ data, variables, showColors, axisLabels });
 	return (
 		<RPlot

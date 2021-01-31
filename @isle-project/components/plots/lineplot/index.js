@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
@@ -68,6 +69,9 @@ export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 // MAIN //
 
 const LinePlot = ({ data, x, y, group, showPoints, id, action, onShare }) => {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateLineplotConfig({
 		data,
 		x,

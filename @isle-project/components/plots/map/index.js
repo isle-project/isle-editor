@@ -1,6 +1,7 @@
 // MODULES //
 
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import PropTypes from 'prop-types';
 import startcase from '@stdlib/string/startcase';
@@ -108,6 +109,9 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 // MAIN //
 
 function Map({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, id, action, onShare }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateMapConfig({ data, locationmode, longitude, latitude, locations, variable, scope, showLand });
 	return (
 		<Plotly

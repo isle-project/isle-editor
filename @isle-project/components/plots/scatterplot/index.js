@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
@@ -391,6 +392,9 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 // MAIN //
 
 function ScatterPlot({ id, data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, action, onShare, onSelected }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan });
 	return (
 		<Plotly

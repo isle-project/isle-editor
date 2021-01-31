@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import maxScalar from '@stdlib/math/base/special/max';
 import floor from '@stdlib/math/base/special/floor';
@@ -124,6 +125,9 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 // MAIN //
 
 function ContourChart({ id, data, x, y, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan });
 	return (
 		<Plotly

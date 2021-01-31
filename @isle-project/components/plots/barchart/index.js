@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import countBy from '@stdlib/utils/count-by';
@@ -16,11 +17,17 @@ import by from '@isle-project/utils/by';
 
 export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction }) {
 	let traces;
+	if ( !data[ variable ] ) {
+		return {};
+	}
 	const nObs = data[ variable ].length;
 	const allCats = new Set();
 	if ( !group ) {
 		let freqs;
 		if ( yvar ) {
+			if ( !data[ yvar ] ) {
+				return {};
+			}
 			freqs = by( data[ yvar ], data[ variable ], statistic( summary ) );
 		} else {
 			freqs = countBy( data[ variable ], identity );
@@ -55,7 +62,13 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		}
 	} else {
 		let freqs;
+		if ( !data[ group ] ) {
+			return {};
+		}
 		if ( yvar ) {
+			if ( !data[ yvar ] ) {
+				return {};
+			}
 			freqs = by2( data[ group ], data[ yvar ], data[ variable ], ( labels, vals ) => {
 				return by( vals, labels, statistic( summary ) );
 			});
@@ -194,6 +207,9 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 * @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
 */
 const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
 	return (
 		<Plotly

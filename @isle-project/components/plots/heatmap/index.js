@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
@@ -280,6 +281,9 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 // MAIN //
 
 function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan, action, onShare, onSelected }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan });
 	return ( <Plotly
 		editable

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import countBy from '@stdlib/utils/count-by';
@@ -21,8 +22,14 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 	if ( !group ) {
 		let freqs;
 		if ( summaryVariable ) {
+			if ( !data[ summaryVariable] || !data[ variable ] ) {
+				return {};
+			}
 			freqs = by( data[ summaryVariable ], data[ variable ], sum );
 		} else {
+			if ( !data[ variable ] ) {
+				return {};
+			}
 			freqs = countBy( data[ variable ], identity );
 		}
 		const categories = extractUsedCategories( freqs, variable );
@@ -36,6 +43,9 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 			type: 'pie'
 		} ];
 	} else {
+		if ( !data[ variable] || !data[ group ] ) {
+			return {};
+		}
 		const freqs = by( data[ variable ], data[ group ], arr => {
 			return countBy( arr, identity );
 		});
@@ -91,6 +101,9 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 // MAIN //
 
 function PieChart({ variable, group, data, summaryVariable, id, action, onShare }) {
+	if ( !data ) {
+		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
 	const config = generatePiechartConfig({
 		data,
 		variable,
