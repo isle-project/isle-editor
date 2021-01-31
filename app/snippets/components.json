@@ -37,15 +37,15 @@
 	},
 	{
 		"name": "DataSampler",
-		"value": "<DataSampler data={${1:}}>\n  {( sample ) => {\n    ${2:}\n  }}\n</DataSampler>"
+		"value": "<DataSampler data={${1:null}}>\n  {( sample ) => {\n    ${2:}\n  }}\n</DataSampler>"
 	},
 	{
 		"name": "DataTable",
-		"value": "<DataTable\n  data={${1:}}\n/>\n"
+		"value": "<DataTable\n  data={${1:null}}\n/>\n"
 	},
 	{
 		"name": "DensityPlot",
-		"value": "<DensityPlot\n  data={${1:}}\n  xmin={0}\n  xmax={1}\n  ymax={0.15}\n  nBins={2}\n/>\n"
+		"value": "<DensityPlot\n  data={${1:null}}\n  xmin={0}\n  xmax={1}\n  ymax={0.15}\n  nBins={2}\n/>\n"
 	},
 	{
 		"name": "DraggableGrid",
@@ -745,134 +745,134 @@
 	},
 	{
 		"name": "BoxPlot",
-		"value": "<BoxPlot data={${1:}} variable=\"${2:}\" />"
+		"value": "<BoxPlot data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "BarChart",
-		"value": "<BarChart data={${1:}} variable=\"${2:}\" />"
+		"value": "<BarChart data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "ContourChart",
-		"value": "<ContourChart data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
+		"value": "<ContourChart data={${1:null}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "HeatMap",
-		"value": "<HeatMap data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
+		"value": "<HeatMap data={${1:null}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "Histogram",
-		"value": "<Histogram data={${1:}} variable=\"${2:}\" />"
+		"value": "<Histogram data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "LinePlot",
-		"value": "<LinePlot data={${1:}} y=\"${2:}\" />"
+		"value": "<LinePlot data={${1:null}} y=\"${2:}\" />"
 	},
 	{
 		"name": "Map",
-		"value": "<Map\n  data={${1:}}\n  ${2:} />"
+		"value": "<Map\n  data={${1:null}}\n  ${2:} />"
 	},
 	{
 		"name": "MosaicPlot",
-		"value": "<MosaicPlot data={${1:}} variable={[${2:}]} />"
+		"value": "<MosaicPlot data={${1:null}} variable={[${2:}]} />"
 	},
 	{
 		"name": "PieChart",
-		"value": "<PieChart data={${1:}} variable=\"${2:}\" />"
+		"value": "<PieChart data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "QQPlot",
-		"value": "<QQPlot data={${1:}} variable=\"${2:}\" />"
+		"value": "<QQPlot data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "ScatterPlotMatrix",
-		"value": "<ScatterPlotMatrix data={${1:}} variables={[${2:}]} />"
+		"value": "<ScatterPlotMatrix data={${1:null}} variables={[${2:}]} />"
 	},
 	{
 		"name": "ScatterPlot",
-		"value": "<ScatterPlot data={${1:}} xval=\"${2:}\" yval=\"${3:}\" />"
+		"value": "<ScatterPlot data={${1:null}} xval=\"${2:}\" yval=\"${3:}\" />"
 	},
 	{
 		"name": "ViolinPlot",
-		"value": "<ViolinPlot data={${1:}} variable=\"${2:}\" />"
+		"value": "<ViolinPlot data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "FrequencyTable",
-		"value": "<FrequencyTable data={${1:}} variable=\"${2:}\" />"
+		"value": "<FrequencyTable data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "ContingencyTable",
-		"value": "<ContingencyTable data={${1:}} rowVar=\"${2:}\" colVar=\"${3:}\" />"
+		"value": "<ContingencyTable data={${1:null}} rowVar=\"${2:}\" colVar=\"${3:}\" />"
 	},
 	{
 		"name": "Anova",
-		"value": "<Anova data={${1:}} variable=\"${2:}\" />"
+		"value": "<Anova data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "Chi2Test",
-		"value": "<Chi2Test data={${1:}} var1=\"${2:}\" var2=\"${3:}\" />"
+		"value": "<Chi2Test data={${1:null}} var1=\"${2:}\" var2=\"${3:}\" />"
 	},
 	{
 		"name": "CorrTest",
-		"value": "<CorrTest data={${1:}} var1=\"${2:}\" var2=\"${3:}\" />"
+		"value": "<CorrTest data={${1:null}} var1=\"${2:}\" var2=\"${3:}\" />"
 	},
 	{
 		"name": "Kruskal",
-		"value": "<Kruskal data={${1:}} variable=\"${2:}\" />"
+		"value": "<Kruskal data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "MeanTest",
-		"value": "<MeanTest data={${1:}} variable=\"${2:}\" />"
+		"value": "<MeanTest data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
 		"name": "MeanTest2",
-		"value": "<MeanTest2\n  data={${1:}}\n  x=\"${2:}\"\n  ${3:} />"
+		"value": "<MeanTest2\n  data={${1:null}}\n  x=\"${2:}\"\n  ${3:} />"
 	},
 	{
 		"name": "PropTest",
-		"value": "<PropTest\n  data={${1:}}\n  variable=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
+		"value": "<PropTest\n  data={${1:null}}\n  variable=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
 	},
 	{
 		"name": "PropTest2",
-		"value": "<PropTest2\n  data={${1:}}\n  var1=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
+		"value": "<PropTest2\n  data={${1:null}}\n  var1=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
 	},
 	{
 		"name": "DecisionTree",
-		"value": "<DecisionTree data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
+		"value": "<DecisionTree data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
 	},
 	{
 		"name": "LassoRegression",
-		"value": "<LassoRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" lambda={${5:1e-3}} />"
+		"value": "<LassoRegression data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" lambda={${5:1e-3}} />"
 	},
 	{
 		"name": "LogisticRegression",
-		"value": "<LogisticRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" success=\"${5:}\" />"
+		"value": "<LogisticRegression data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" success=\"${5:}\" />"
 	},
 	{
 		"name": "MultipleLinearRegression",
-		"value": "<MultipleLinearRegression data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
+		"value": "<MultipleLinearRegression data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
 	},
 	{
 		"name": "RandomForest",
-		"value": "<RandomForest data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
+		"value": "<RandomForest data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" type=\"${5:Classification}\" />"
 	},
 	{
 		"name": "SimpleLinearRegression",
-		"value": "<SimpleLinearRegression data={${1:}} x=\"${2:}\" y=\"${3:}\" />"
+		"value": "<SimpleLinearRegression data={${1:null}} x=\"${2:}\" y=\"${3:}\" />"
 	},
 	{
 		"name": "PrincipalComponentAnalysis",
-		"value": "<PrincipalComponentAnalysis data={${1:}} variables={[${2:}]} />"
+		"value": "<PrincipalComponentAnalysis data={${1:null}} variables={[${2:}]} />"
 	},
 	{
 		"name": "HierarchicalClustering",
-		"value": "<HierarchicalClustering data={${1:}} variables={[${2:}]} />"
+		"value": "<HierarchicalClustering data={${1:null}} variables={[${2:}]} />"
 	},
 	{
 		"name": "KMeans",
-		"value": "<KMeans data={${1:}} variables={[${2:}]} />"
+		"value": "<KMeans data={${1:null}} variables={[${2:}]} />"
 	},
 	{
 		"name": "NaiveBayes",
-		"value": "<NaiveBayes data={${1:}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
+		"value": "<NaiveBayes data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
 	}
 ]
