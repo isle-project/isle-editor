@@ -2,5 +2,6 @@
 	"direction": "direction",
 	"humidity": "humidity",
 	"loading-weather-data-for": "Loading weather data for {{loc}}...",
-	"wind": "wind"
+	"wind": "wind",
+	"in": "in"
 }

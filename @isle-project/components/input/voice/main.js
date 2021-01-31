@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
+import { i18n } from '@isle-project/locales';
 import Microphone from './microphone.js';
 import './voice.css';
 
@@ -49,7 +50,6 @@ function createGrammarList( grammars ) {
 * @property {boolean} autorecord - controls whether to automatically start recording
 * @property {string} defaultValue - default text value
 * @property {Array} grammars - speech grammar list (unsupported)
-* @property {string} language - language identifier
 * @property {string} legend - legend displayed in front of input field
 * @property {string} mode - set to `full` to display a text input field alongside the microphone, `status` to only display a statusbar with the transcribed texts, `microphone` to show just a button to toggle recording, or `none` when the voice input should be invisible and purely controlled via hotkeys / voice commands
 * @property {number} maxAlternatives - maximum number of alternatives provided per speech recognition result
@@ -72,7 +72,7 @@ function createGrammarList( grammars ) {
 * @property {Object} style - CSS inline styles
 */
 const VoiceInput = ( props ) => {
-	const { autorecord, bind, defaultValue, grammars, id, language,
+	const { autorecord, bind, defaultValue, grammars, id,
 		maxAlternatives, remote, startTooltip, stopTooltip, speechInterface,
 		onChange, onClick, onFinalText, onRecordingStart, onRecordingStop, onSegment, onSubmit, timeout } = props;
 	const [ isRecording, setIsRecording ] = useState( autorecord );
@@ -119,7 +119,7 @@ const VoiceInput = ( props ) => {
 		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //eslint-disable-line
 		if ( SpeechRecognition ) {
 			const recognizer = new SpeechRecognition();
-			recognizer.lang = language;
+			recognizer.lang = i18n.language;
 			recognizer.continuous = true;
 			recognizer.interimResults = true;
 			recognizer.maxAlternatives = maxAlternatives;
@@ -215,7 +215,7 @@ const VoiceInput = ( props ) => {
 		}
 		debug( 'Set `isRecording` to true...' );
 		setIsRecording( true );
-	}, [ grammars, id, isRecording, language, maxAlternatives, onRecordingStart, session, speechInterface, stop, timeout, onFinalText, onSegment ] );
+	}, [ grammars, id, isRecording, maxAlternatives, onRecordingStart, session, speechInterface, stop, timeout, onFinalText, onSegment ] );
 
 	const tooltipMessage = useCallback( ( recognizable ) => {
 		let text = '';
@@ -337,7 +337,6 @@ VoiceInput.defaultProps = {
 	autorecord: false,
 	defaultValue: '',
 	grammars: [],
-	language: 'en-US',
 	legend: '',
 	mode: 'full',
 	maxAlternatives: 1,
@@ -364,7 +363,6 @@ VoiceInput.propTypes = {
 	autorecord: PropTypes.bool,
 	defaultValue: PropTypes.string,
 	grammars: PropTypes.array,
-	language: PropTypes.string,
 	legend: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node

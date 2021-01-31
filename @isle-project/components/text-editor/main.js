@@ -80,10 +80,10 @@ async function toDataURL( url ){
 *
 * @property {boolean} allowSubmissions - controls whether students may submit their reports to the server
 * @property {string} defaultValue - default text of the editor
+* @property {boolean} canLoadHTML - controls whether to display button for loading a saved HTML file into the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {string} mode - controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort)
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
-* @property {string} language - language identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked when editor text changes; receives the current text as its sole argument
 */
@@ -264,7 +264,6 @@ class TextEditor extends Component {
 				title: '',
 				content: <VoiceInput
 					mode="microphone"
-					language={this.props.language}
 					timeout={this.props.voiceTimeout}
 					width={26}
 					height={26}
@@ -713,7 +712,6 @@ TextEditor.propTypes= {
 		tooltip: PropTypes.string
 	}),
 	voiceTimeout: PropTypes.number,
-	language: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -723,7 +721,6 @@ TextEditor.defaultProps = {
 	defaultValue: DEFAULT_VALUE,
 	mode: 'individual',
 	voiceTimeout: 5000,
-	language: 'en-US',
 	resetModal: null,
 	style: {}
 };

@@ -85,7 +85,6 @@ const Details = ({ main, wind, t }) => {
 * A component for displaying the current weather at a designated location.
 *
 * @property {string} location - location name
-* @property {string} language - language identifier
 * @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 */
@@ -126,18 +125,7 @@ class Weather extends Component {
 		} else {
 			this.callback = null;
 		}
-		let marker = 'in';
-		switch ( this.props.language ) {
-		case 'en-US':
-			marker= ' in';
-			break;
-		case 'de-DE':
-			marker= ' in';
-			break;
-		case 'fr-FR':
-			marker = ' à';
-			break;
-		}
+		const marker = this.props.t( 'in' );
 		let n = text.search( marker );
 		n += ( marker.length + 1 );
 		if ( n !== -1 ) {
@@ -205,14 +193,12 @@ class Weather extends Component {
 // PROPERTIES //
 
 Weather.propTypes = {
-	language: PropTypes.string,
 	location: PropTypes.string,
 	voiceID: PropTypes.string,
 	style: PropTypes.object
 };
 
 Weather.defaultProps = {
-	language: 'en-US',
 	location: null,
 	voiceID: null,
 	style: {}
