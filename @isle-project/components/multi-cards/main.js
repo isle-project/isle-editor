@@ -1,18 +1,32 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
+import shuffle from '@stdlib/random/shuffle';
+import incrspace from '@stdlib/math/utils/incrspace';
+import isObjectArray from '@stdlib/assert/is-object-array';
+import isNull from '@stdlib/assert/is-null';
 import FlippableCard from '@isle-project/components/flippable-card';
-import SessionContext from '@isle-project/session/context.js';
-import VoiceInput from '@isle-project/components/input/voice';
-import Memory from './memory.js';
-import Bingo from './bingo.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:multi-cards' );
+
+
+// FUNCTIONS //
+
+function duplicateElements( arr ) {
+	const out = [];
+	for ( let i = 0; i < arr.length; i++ ){
+		out.push( arr[ i ]);
+		out.push( arr[ i ]);
+	}
+	return out;
+}
 
 
 // MAIN //
@@ -21,7 +35,7 @@ const debug = logger( 'isle:multi-cards' );
 * An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory).
 *
 * @property {Array<Object>} values - the values for the respective cards, input in an array that has entry fields for a `front` and `back` value. Such a value could be a string, but also a full fledged ISLE component
-* @property {string} game - multi-card games. Can be either `memory` or `bingo`.
+* @property {boolean} memory - whether to enable the memory game mode in which one has to match pairs of the supplied values
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
 * @property {Object} animation - if set the component uses an entry animation; the object contains a name (like `anim-scale-up`) and a duration (like `1.7s` = 1.7 seconds)
 * @property {Object} style - CSS inline styles
@@ -29,176 +43,154 @@ const debug = logger( 'isle:multi-cards' );
 * @property {Object} frontStyle - CSS style of the front of the cards
 * @property {Object} backStyle - CSS style of the back of the cards
 * @property {Function} onChange - a function that receives the matrix of the flippable cards
+* @property {Function} onMemoryComplete - callback invoked if the memory game is complete
 */
-class MultiCards extends Component {
-	constructor( props ) {
-		super( props );
+const MultiCards = ({ id, animation, values, memory, oneTime, style, containerStyle, frontStyle, backStyle, onChange, onMemoryComplete }) => {
+	const len = memory ? values.length*2 : values.length;
+	const [ state, setState ] = useState({
+		cardList: new Array( len ).fill({}),
+		blocked: false
+	});
+	const [ opened, setOpened ] = useState( null );
+	const [ solved, setSolved ] = useState( 0 );
+	const positions = useRef(
+		memory ? shuffle( incrspace( 0, len, 1 ) ) : incrspace( 0, len, 1 )
+	);
+	const { t } = useTranslation( 'General' );
 
-		this.state = {
-			cardList: new Array( this.props.values.length ).fill( false ),
-			shaking: []
-		};
+	useEffect( () => {
+		const len = memory ? values.length*2 : values.length;
+		setState({
+			cardList: new Array( len ).fill({}),
+			opened: null
+		});
+		setSolved( 0 );
+		positions.current = memory ? shuffle( incrspace( 0, len, 1 ) ) : incrspace( 0, len, 1 );
+	}, [ memory, values ]);
+
+	useEffect( () => {
+		if ( solved === values.length ) {
+			debug( 'Completed memory game...' );
+			onMemoryComplete();
+		}
+	}, [ solved, values, onMemoryComplete ] );
+
+	if ( !isObjectArray( values ) ) {
+		return <Alert variant="danger" >{t('expected-object-array', { field: 'values' })}</Alert>;
 	}
-
-	componentDidMount() {
-		if ( this.props.game === 'memory' ) {
-			this.Memory = new Memory( this.props.values, this.flipCard );
-		}
-		else if ( this.props.game === 'bingo' ) {
-			this.Bingo = new Bingo( this.flipCard, this.shake );
-		}
-	}
-
-	getCard( ndx ) {
-		const id = this.props.id + '_' + ndx;
-		const values = this.props.values;
-		let front = 'front value not defined';
-		let back = 'back value not defined';
-		if ( values[ ndx ] ) {
-			if ( values[ ndx ].front ) {
-				front = values[ ndx ].front;
-			}
-			if ( values[ ndx ].back ) {
-				back = values[ ndx ].back;
-			}
-		}
-		const containerStyle = {
-			...this.props.containerStyle
-		};
-		if ( this.state.shaking.includes( ndx ) ) {
-			containerStyle.animation = 'shake-top 1.2s';
-		}
-		return (
-			<FlippableCard
-				value={this.state.cardList[ ndx ]}
-				containerStyle={containerStyle}
-				frontStyle={this.props.frontStyle}
-				backStyle={this.props.backStyle}
-				onChange={this.changeFactory( ndx )}
-				oneTime={this.props.oneTime}
-				id={id}
-				key={ndx}
+	const list = new Array( len );
+	if ( memory ) {
+		const duplicates = duplicateElements( values );
+		for ( let i = 0; i < state.cardList.length; i++ ) {
+			list[ positions.current[ i ] ] = <FlippableCard
+				value={state.cardList[ i ].opened}
+				disabled={state.blocked}
+				containerStyle={containerStyle} frontStyle={frontStyle} backStyle={backStyle}
+				onChange={( value ) => {
+					const { cardList, blocked } = state;
+					const arr = cardList.slice();
+					if ( blocked || arr[ i ].solved ) {
+						return;
+					}
+					arr[ i ] = {
+						...arr[ i ],
+						opened: value
+					};
+					setState({
+						cardList: arr,
+						blocked: opened ? true : false
+					});
+					if ( isNull( opened ) ) {
+						debug( `Clicked on first card at index ${i}...` );
+						setOpened( i );
+						onChange( arr );
+					} else {
+						setTimeout( () => {
+							debug( `Clicked on second card at index ${i}...` );
+							if (
+								i % 2 === 0 && opened === i + 1 ||
+								i % 2 === 1 && opened === i - 1
+							) {
+								debug( 'Found match...' );
+								arr[ opened ] = {
+									opened: true,
+									solved: true
+								};
+								arr[ i ] = {
+									opened: true,
+									solved: true
+								};
+								setSolved( solved + 1 );
+							} else {
+								debug( `Close both opened cards (${i}, ${opened}) as no match is found...` );
+								arr[ opened ] = {
+									solved: false,
+									opened: false
+								};
+								arr[ i ] = {
+									solved: false,
+									opened: false
+								};
+							}
+							setOpened( null );
+							setState({
+								cardList: arr,
+								blocked: false
+							});
+							onChange( arr );
+						}, 1200 );
+					}
+				}} oneTime={oneTime}
+				id={`${id}_${i}`} key={i}
 			>
-				<div>{front}</div>
-				<div>{back}</div>
-			</FlippableCard>
-		);
-	}
-
-	gameDraw( ndx ) {
-		const item = this.props.values[ ndx ];
-		if ( this.props.game === 'memory' ) {
-			this.Memory.draw( item, ndx, this.resetCards );
+				<div>{duplicates[ i ].front}</div>
+				<div>{duplicates[ i ].back}</div>
+			</FlippableCard>;
 		}
-		else if ( this.props.game === 'bingo' ) {
-			this.Bingo.draw( item, ndx, this.state.cardList );
-		}
-	}
-
-	shake = ( list ) => {
-		this.setState({
-			shaking: list
-		});
-		setTimeout( () => {
-			this.setState({
-				shaking: []
-			});
-		}, 1300 );
-	}
-
-	flipCard = (ndx) => {
-		debug( 'Flip card at index: ' + ndx );
-		let matrix = this.state.cardList.slice( 0 );
-		matrix[ndx] = !matrix[ndx];
-		this.setState({
-			cardList: matrix
-		}, () => {
-			this.props.onChange( matrix );
-		});
-	}
-
-	resetCards = ( list ) => {
-		setTimeout( () => {
-			const arr = this.state.cardList.slice( 0 );
-			for ( let i = 0; i < list.length; i++ ) {
-				const n = list[i];
-				arr[ n ] = !arr[ n ];
-			}
-			this.props.onChange( arr );
-			this.setState({
-				cardList: arr
-			});
-		}, 1500 );
-	}
-
-	changeFactory = ( ndx ) => {
-		return ( value ) => {
-			const matrix = this.state.cardList.slice( 0 );
-			matrix[ ndx ] = value;
-			this.setState({
-				cardList: matrix
-			}, () => {
-				if (this.props.game !== void 0) this.gameDraw( ndx );
-				this.props.onChange( this.state.cardList );
-			});
-		};
-	}
-
-	trigger = ( value ) => {
-		debug( `Received text: ${value}:` );
-		for ( let i = 0; i < this.props.values.length; i++ ) {
-			const item = this.props.values[i];
-			if ( item.voiceKey ) {
-				const marker = item.voiceKey;
-				const x = value.search( marker );
-				if ( x !== -1 ){
-					debug( `Received ${marker}. This should flip card number ${i}.` );
-					this.changeFactory( i )( true );
-				}
-			}
+	} else {
+		for ( let i = 0; i < values.length; i++ ) {
+			list[ positions.current[ i ] ] = <FlippableCard
+				value={state.cardList[ i ].opened}
+				containerStyle={containerStyle} frontStyle={frontStyle} backStyle={backStyle}
+				onChange={( value ) => {
+					const arr = state.cardList.slice();
+					arr[ i ] = {
+						opened: value
+					};
+					setState({
+						cardList: arr,
+						opened: state.opened
+					});
+					onChange( arr );
+				}}
+				oneTime={oneTime}
+				id={`${id}_${i}`} key={i}
+			>
+				<div>{values[ i ].front}</div>
+				<div>{values[ i ].back}</div>
+			</FlippableCard>;
 		}
 	}
-
-	renderCards() {
-		const list = [];
-		let needVoice = false;
-		for ( let i = 0; i < this.props.values.length; i++ ) {
-			list.push( this.getCard( i ) );
-			if ( this.props.values[ i ].voiceKey ) {
-				needVoice = true;
-			}
-		}
-		if ( needVoice ) {
-			list.push( <VoiceInput
-				mode="none" autorecord
-				onSegment={this.trigger}
-			/> );
-		}
-		return list;
-	}
-
-	render() {
-		const style = {
+	return (
+		<div style={{
 			overflow: 'auto',
-			animationName: this.props.animation.name,
-			animationDuration: this.props.animation.duration,
-			...this.props.style
-		};
-		return (
-			<div style={style} >
-				{this.renderCards()}
-			</div>
-		);
-	}
-}
+			animationName: animation.name,
+			animationDuration: animation.duration,
+			...style
+		}} >
+			{list}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
 
 MultiCards.propTypes = {
 	animation: PropTypes.object,
-	game: PropTypes.string,
+	memory: PropTypes.bool,
 	onChange: PropTypes.func,
+	onMemoryComplete: PropTypes.func,
 	oneTime: PropTypes.bool,
 	values: PropTypes.arrayOf( PropTypes.object ),
 	style: PropTypes.object,
@@ -209,8 +201,9 @@ MultiCards.propTypes = {
 
 MultiCards.defaultProps = {
 	animation: {},
-	game: null,
+	memory: null,
 	onChange() {},
+	onMemoryComplete() {},
 	oneTime: false,
 	values: [],
 	style: {},
@@ -218,8 +211,6 @@ MultiCards.defaultProps = {
 	frontStyle: {},
 	backStyle: {}
 };
-
-MultiCards.contextType = SessionContext;
 
 
 // EXPORTS //

@@ -23,6 +23,7 @@ import isArray from '@stdlib/assert/is-array';
 * @property {boolean} value - flip state of the card (for controlled component)
 * @property {number} perspective - CSS property value to give 3d-positioned element a perspective
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
+* @property {boolean} disabled - controls whether the flippable card is disabled
 * @property {Object} containerStyle - CSS style of the container
 * @property {Object} frontStyle - CSS style of the front card
 * @property {Object} backStyle - CSS style of the back card
@@ -103,12 +104,13 @@ const FlippableCard = ( props ) => {
 		}
 	};
 	const button = props.button ?
-		<Button onClick={handleToggle} block >
+		<Button onClick={!props.disabled ? handleToggle : noop} block >
 			{props.button}
 		</Button> : null;
+	const handleClick = !button && !props.disabled ? handleToggle : noop;
 	const out = <div
 		id={props.id} role="button" tabIndex={0}
-		onClick={!button ? handleToggle : noop} onKeyPress={!button ? handleToggle : noop}
+		onClick={handleClick} onKeyPress={handleClick}
 		className="react-card-flip" style={styles.container}
 	>
 		<div className="react-card-flipper" style={styles.flipper} >
@@ -146,6 +148,7 @@ FlippableCard.propTypes = {
 	oneTime: PropTypes.bool,
 	perspective: PropTypes.number,
 	size: PropTypes.number,
+	disabled: PropTypes.bool,
 	value: PropTypes.bool,
 	defaultValue: PropTypes.bool,
 	containerStyle: PropTypes.object,
@@ -163,6 +166,7 @@ FlippableCard.defaultProps = {
 	oneTime: false,
 	perspective: 1000,
 	size: 250,
+	disabled: false,
 	value: void 0,
 	defaultValue: false,
 	containerStyle: {},
