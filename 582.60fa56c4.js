@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[582],{2663:function(n){n.exports=JSON.parse('{"confirm":"Best\xe4tigen"}')}}]);

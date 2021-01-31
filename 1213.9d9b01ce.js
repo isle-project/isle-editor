@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1213],{3338:function(a){a.exports=JSON.parse('{"category":"Categoria","column-totals":"Totais de Coluna","count":"Conde","count-relative-frequency":"Contagem (Freq\xfc\xeancia Relativa)","grouped-by":"Agrupado por","relative-frequency":"Freq\xfc\xeancia Relativa","row-totals":"Totais de fileiras","total":"Total"}')}}]);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1211],{3186:function(e){e.exports=JSON.parse('{"category":"Categorie","column-totals":"Kolom totalen","count":"Tel","count-relative-frequency":"Telling (relatieve frequentie)","grouped-by":"Gegroepeerd door","relative-frequency":"Relatieve Frequentie","row-totals":"Rijtotalen","total":"Totaal"}')}}]);

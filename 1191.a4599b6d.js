@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1191],{3336:function(i){i.exports=JSON.parse('{"click-to-minimize":"Clique para minimizar","click-to-remove":"Clique para remover","instructor":"Instrutor","private":"Pessoal","public":"P\xfablico","save":"Salvar","type-in-the-title":"Digite no t\xedtulo","type-in-your-note":"Escreva sua nota"}')}}]);

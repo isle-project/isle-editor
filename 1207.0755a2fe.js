@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1207],{2874:function(e){e.exports=JSON.parse('{"category":"Categor\xeda","column-totals":"Totales de la columna","count":"Cuenta","count-relative-frequency":"Recuento (frecuencia relativa)","grouped-by":"Agrupados por","relative-frequency":"Frecuencia relativa","row-totals":"Totales de fila","total":"Total"}')}}]);
