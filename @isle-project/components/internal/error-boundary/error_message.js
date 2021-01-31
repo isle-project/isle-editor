@@ -1,20 +1,23 @@
 // MODULES //
 
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import Ansi from 'ansi-to-react';
 import Card from 'react-bootstrap/Card';
 import formatError from '@isle-project/utils/format-error';
 import './error_message.css';
 
 
+// VARIABLES //
+
+const ENCOUNTERED_AN_ERROR = 'Encountered an Error:';
+
+
 // MAIN //
 
 const ErrorMessage = ( props ) => {
-	const { t } = useTranslation( 'Lesson' );
 	return ( <Card className="error-message">
 		<Card.Body>
-			<h3>{t('encountered-error')}</h3>
+			<h3>{ENCOUNTERED_AN_ERROR}</h3>
 			<pre>
 				<Ansi>{formatError( props.msg )}</Ansi>
 			</pre>
