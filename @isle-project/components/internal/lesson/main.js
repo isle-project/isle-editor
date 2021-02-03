@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
-import { ContextMenuTrigger } from 'react-contextmenu';
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@isle-project/locales';
+import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
 import StickyNote from '@isle-project/components/sticky-note';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';

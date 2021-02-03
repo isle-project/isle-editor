@@ -10,7 +10,7 @@ import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { SearchAddon } from 'xterm-addon-search';
-import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
+import { ContextMenuTrigger, ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 import IS_WINDOWS from '@stdlib/assert/is-windows';
 import './terminal.css';
 

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
-import { ContextMenu, MenuItem } from 'react-contextmenu';
+import { ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 
 
 // VARIABLES //

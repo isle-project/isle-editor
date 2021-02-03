@@ -205,7 +205,6 @@ const config = {
 		'pdfjs-dist/webpack': 'pdfjsLib',
 		'react-table': 'ReactTable',
 		'prop-types': 'PropTypes',
-		'react-contextmenu': 'ReactContextMenu',
 		'react-draggable': 'ReactDraggable',
 		'react-list': 'ReactList',
 		'react-notification-system': 'ReactNotificationSystem',

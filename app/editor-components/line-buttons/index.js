@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useDrop } from 'react-dnd';
 import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
-import { ContextMenuTrigger } from 'react-contextmenu';
+import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import { connect } from 'react-redux';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import { jumpToElementInEditor, switchWithPrevious, switchWithNext } from 'actions';

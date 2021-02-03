@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import { ContextMenuTrigger, ContextMenu, MenuItem } from 'react-contextmenu';
+import { ContextMenuTrigger, ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 import objectKeys from '@stdlib/utils/keys';
 import Tooltip from '@isle-project/components/tooltip';
 import Loadable from '@isle-project/components/internal/loadable';

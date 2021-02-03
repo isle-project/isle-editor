@@ -1461,20 +1461,7 @@ label {
 }
 
 .react-contextmenu {
-	min-width: 260px;
-	padding: 2px 0;
-	margin: 2px 0 0;
 	font-size: 28px;
-	color: #373a3c;
-	text-align: left;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 0.25rem;
-	outline: none;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 250ms ease !important;
 	z-index: 1004;
 	box-shadow: 0 0 2px darkgrey;
 	font-family: Open Sans Condensed;
@@ -1482,27 +1469,6 @@ label {
 
 .Pane1 .react-contextmenu {
 	font-size: 18px;
-}
-
-.react-contextmenu.react-contextmenu--visible {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.react-contextmenu-item {
-	padding: 3px 5px;
-	font-weight: 400;
-	line-height: 1;
-	color: #373a3c;
-	text-align: inherit;
-	white-space: nowrap;
-	background: 0 0;
-	border: 0;
-	cursor: pointer;
-}
-
-.react-contextmenu-item:hover {
-	background-color: #ffffce;
 }
 
 .react-contextmenu-item.react-contextmenu-item::after {
@@ -1519,14 +1485,6 @@ label {
 
 .react-contextmenu-item.react-contextmenu-item--active::after {
 	color: black;
-}
-
-.react-contextmenu-glyph {
-	float: right;
-}
-
-.react-contextmenu-glyph:hover {
-	background-color: #ca5800;
 }
 
 .react-contextmenu-item.react-contextmenu-item--active,

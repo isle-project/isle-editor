@@ -3,9 +3,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import { ContextMenuTrigger } from 'react-contextmenu';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import startsWith from '@stdlib/string/starts-with';
+import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
 import { OPEN_LINK } from '@isle-project/constants/actions.js';

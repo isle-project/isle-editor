@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ContextMenu, MenuItem } from 'react-contextmenu';
 import logger from 'debug';
+import { ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 import { OPEN_LINK } from '@isle-project/constants/actions.js';
 
 

@@ -9,7 +9,7 @@ import pdfjsLib from 'pdfjs-dist/webpack';
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
-import { ContextMenuTrigger } from 'react-contextmenu';
+import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';

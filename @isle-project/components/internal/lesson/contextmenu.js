@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import logger from 'debug';
-import { ContextMenu, MenuItem } from 'react-contextmenu';
+import { ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 import replace from '@stdlib/string/replace';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 
