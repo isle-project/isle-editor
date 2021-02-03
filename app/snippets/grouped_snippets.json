@@ -123,14 +123,6 @@
       "value": "<SortableTree treeData={[\n  {title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3' }] }]}\n/>"
     },
     {
-      "name": "LearnNetworks",
-      "value": "<LearnNetworks />\n"
-    },
-    {
-      "name": "LearnSOTU",
-      "value": "<LearnSOTU />\n"
-    },
-    {
       "name": "Bibliography",
       "value": "<Bibliography />"
     },
@@ -643,8 +635,16 @@
       "value": "<LearnMeanTest />\n"
     },
     {
+      "name": "LearnNetworks",
+      "value": "<LearnNetworks />\n"
+    },
+    {
       "name": "LearnProportionTest",
       "value": "<LearnProportionTest />\n"
+    },
+    {
+      "name": "LearnSOTU",
+      "value": "<LearnSOTU />\n"
     },
     {
       "name": "LearnVennDiagramBuilder",
