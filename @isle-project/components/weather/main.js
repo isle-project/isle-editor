@@ -47,6 +47,7 @@ const Temperature = ({ main, weather }) => {
 		label = round( main.temp );
 		type = 'F';
 	}
+	// eslint-disable-next-line i18next/no-literal-string
 	const icon = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
 	return (
 		<div className="weather-temperature">{label}{DEGREES}
