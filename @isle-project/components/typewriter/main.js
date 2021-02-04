@@ -1,14 +1,22 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import randu from '@stdlib/random/base/randu';
+import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
+import randu from '@stdlib/random/base/randu';
+import useRandomInterval from '@isle-project/utils/hooks/use-random-interval';
+import keystroke from './keystroke.ogg';
 
 
 // VARIABLES //
 
-const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
+const debug = logger( 'isle:typewriter' );
+const DEFAULT_STATE = {
+	displayedText: '',
+	counter: 0,
+	arrayCounter: 0
+};
 
 
 // MAIN //
@@ -16,163 +24,108 @@ const SOUND_FILE = 'https://isle.heinz.cmu.edu/keystroke2_1544120411143.ogg';
 /**
 * An ISLE component that allows you to create a typewriter effect
 *
-* @property {string} text - the full text to be displayed
-* @property {number} hold - if text is an array of strings, hold specified the duration the full will be displayed before it passes over to the next item in the array
+* @property {string} text - the full text to be displayed or an array of texts to be displayed sequentially
+* @property {number} hold - if text is an array of strings, hold specifies the duration the line will be displayed before it passes over to the next item in the array
 * @property {number} interval - the interval of the typewriter (in milliseconds)
 * @property {number} delay - initial delay before typewriter starts (in milliseconds)
 * @property {boolean} random - if random is set, the keystrokes will be performed with a certain, "humane" randomness
-* @property {number} deviation - allows you to specify the randomness
 * @property {boolean} sound - the typed keystroke will be also heard
 * @property {Object} style - CSS inline styles
 */
-class Typewriter extends Component {
-	constructor( props ) {
-		super( props );
-		this.started = false;
+const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
+	const [ state, setState ] = useState( DEFAULT_STATE );
+	const [ holding, setHolding ] = useState( false );
+	const audio = useRef( new Audio( keystroke ) );
+	const cleanupInterval = useRef();
 
-		this.state = {
-			actualText: '',
-			ct: 0,
-			textCt: 0
-		};
-	}
-
-	componentWillUnmount() {
-		if ( this.timeout ) {
-			clearTimeout(this.timeout);
-			this.timeout = 0;
-		}
-	}
-
-	init() {
-		if ( !this.audio ) {
-			this.audio = new Audio( SOUND_FILE );
-		}
-		if ( this.props.delay !== null ) {
-			this.timeout = setTimeout( () => {
-				this.started = true;
-				this.next();
-			}, this.props.delay );
-		}
-		else {
-			this.started = true;
-			this.next();
-		}
-	}
-
-	playAudio = ( char ) => {
-		this.audio.volume = 0.3 + ( randu() * 0.7 );
+	const playAudio = useCallback( ( char ) => {
+		audio.current.volume = 0.3 + ( randu() * 0.7 );
 		if ( char !== ' ' ) {
-			this.audio.play();
+			audio.current.play();
 		}
-	}
+	}, [ audio ] );
 
-	setText = () => {
-		if ( this.state.ct < this.props.text.length ) {
-			const n = this.state.ct + 1;
-			const text = this.props.text.slice( 0, n );
-
-			if ( this.props.sound ) {
-				const actualChar = text[ text.length - 1 ];
-				this.playAudio( actualChar );
-			}
-			this.setState({
-				ct: n,
-				actualText: text
-			});
+	const args = random ? [ interval * 0.5, interval * 1.5, delay ] : [ interval, interval, delay ];
+	cleanupInterval.current = useRandomInterval( () => {
+		if ( holding ) {
+			return;
 		}
-	}
+		if ( isArray( text ) ) {
+			if ( state.arrayCounter < text.length ) {
+				const current = text[ state.arrayCounter ];
 
-	setArrayText = () => {
-		if ( this.state.textCt < this.props.text.length) {
-			let current = this.props.text[ this.state.textCt ];
-
-			// Check if the text is fully displayed:
-			if ( this.state.ct < current.length ) {
-				const n = this.state.ct + 1;
-				const text = current.slice( 0, n );
-
-				if ( this.props.sound ) {
-					const actualChar = text[ text.length - 1 ];
-					this.playAudio( actualChar );
-				}
-
-				this.setState({
-					ct: n,
-					actualText: text
-				});
-			}
-			else {
-				let ct = this.state.textCt + 1;
-
-				this.timeout = setTimeout( () => {
-					this.setState({
-						ct: 0,
-						textCt: ct
+				debug( 'Check if the text is fully displayed...' );
+				if ( state.counter < current.length ) {
+					debug( 'Print one more character of the current text...' );
+					const n = state.counter + 1;
+					const text = current.slice( 0, n );
+					if ( sound ) {
+						playAudio( text[ text.length - 1 ] );
+					}
+					setState({
+						counter: n,
+						displayedText: text,
+						arrayCounter: state.arrayCounter
 					});
-				}, this.props.hold );
+				}
+				else {
+					debug( 'Advances to the next text in the array...' );
+					setHolding( true );
+					setTimeout( () => {
+						setHolding( false );
+						setState({
+							counter: 0,
+							displayedText: state.displayedText,
+							arrayCounter: state.arrayCounter + 1
+						});
+					}, hold );
+				}
+			} else {
+				cleanupInterval.current();
 			}
-		}
-	}
-
-	next() {
-		let next = this.props.interval;
-		if ( this.props.random ) {
-			next = randu() * this.props.deviation;
-			next -= this.props.deviation * 0.5;
-			next = parseInt( next, 10 );
-			next += this.props.interval;
-		}
-		if ( isArray( this.props.text ) ) {
-			this.timeout = setTimeout( this.setArrayText, next );
+		} else if ( state.counter < text.length ) {
+			const n = state.counter + 1;
+			const copiedText = text.slice( 0, n );
+			if ( sound ) {
+				playAudio( copiedText[ text.length - 1 ] );
+			}
+			setState({
+				counter: n,
+				displayedText: copiedText,
+				arrayCounter: state.arrayCounter
+			});
 		} else {
-			this.timeout = setTimeout( this.setText, next );
+			cleanupInterval.current();
 		}
-	}
+	}, ...args );
 
-	process = () => {
-		if ( this.started === false ) {
-			this.init();
-		}
-		else {
-			this.next();
-		}
-	}
-
-	type( ) {
-		this.process();
-		return (
-			<span style={this.props.style}>
-				{this.state.actualText}
-			</span>
-		);
-	}
-
-	render() {
-		return (
-			<span>
-				{this.type()}
-			</span>
-		);
-	}
-}
+	useEffect( () => {
+		setState( DEFAULT_STATE );
+	}, [ delay, text, interval, hold, sound ] );
+	return (
+		<span style={style} >
+			{state.displayedText}
+		</span>
+	);
+};
 
 
 // PROPERTIES //
 
 Typewriter.propTypes = {
-	deviation: PropTypes.number,
 	delay: PropTypes.number,
 	hold: PropTypes.number,
 	interval: PropTypes.number,
 	random: PropTypes.bool,
 	sound: PropTypes.bool,
 	style: PropTypes.object,
-	text: PropTypes.string
+	text: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.arrayOf( PropTypes.string )
+	])
 };
 
 Typewriter.defaultProps = {
-	deviation: 30,
 	delay: null,
 	hold: 2000,
 	interval: 100,
