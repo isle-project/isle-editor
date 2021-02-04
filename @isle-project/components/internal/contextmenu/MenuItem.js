@@ -90,14 +90,19 @@ class MenuItem extends Component {
 			}
 		);
 
+		/* eslint-disable jsx-a11y/click-events-have-key-events */
 		return (
 			<div
-				{...attributes} className={menuItemClassNames}
-				role='menuitem' tabIndex='-1' aria-disabled={disabled ? 'true' : 'false'}
-				aria-orientation={divider ? 'horizontal' : null}
+				{...attributes}
+				className={menuItemClassNames}
+				role='menuitem' tabIndex='-1'
+				aria-disabled={disabled ? 'true' : 'false'}
 				ref={(ref) => { this.ref = ref; }}
-				onMouseMove={this.props.onMouseMove} onMouseLeave={this.props.onMouseLeave}
-				onTouchEnd={this.handleClick} onClick={this.handleClick}>
+				onMouseMove={this.props.onMouseMove}
+				onMouseLeave={this.props.onMouseLeave}
+				onTouchEnd={this.handleClick}
+				onClick={this.handleClick}
+			>
 				{divider ? null : children}
 			</div>
 		);

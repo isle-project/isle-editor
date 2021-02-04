@@ -631,6 +631,8 @@ class FullscreenActionDisplay extends Component {
 		}
 		const session = this.context;
 		const date = new Date( elem.absoluteTime );
+
+		/* eslint-disable i18next/no-literal-string */
 		return ( <ListGroupItem key={key} style={style}>
 			{ this.props.showExtended ?
 				<span style={{ textAlign: 'left' }}>

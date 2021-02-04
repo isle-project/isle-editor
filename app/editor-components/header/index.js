@@ -21,6 +21,7 @@ import './header.css';
 // VARIABLES //
 
 const debug = logger( 'isle:header' );
+const F5 = '(F5)';
 
 
 // MAIN //
@@ -116,7 +117,7 @@ class Header extends Component {
 							inline
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
-						<Tooltip placement="top" tooltip={`${t('trigger-update')} (F5)`} >
+						<Tooltip placement="top" tooltip={`${t('trigger-update')} ${F5}`} >
 							<Button
 								onClick={this.props.triggerUpdate}
 								style={{

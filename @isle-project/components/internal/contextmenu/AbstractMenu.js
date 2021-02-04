@@ -107,7 +107,7 @@ class AbstractMenu extends Component {
 
 			if ([MenuItem, this.getSubMenuType()].indexOf(child.type) < 0) {
 				// Maybe the MenuItem or SubMenu is capsuled in a wrapper div or something else
-				React.Children.forEach(child.props.children, childCollector);
+				React.Children.forEach( child.props ? child.props.children : [], childCollector);
 			} else if (!child.props.divider) {
 				if (child.props.disabled) {
 					++disabledChildrenCount;
@@ -173,7 +173,7 @@ class AbstractMenu extends Component {
 		if (!React.isValidElement(child)) return child;
 		if ([MenuItem, this.getSubMenuType()].indexOf(child.type) < 0) {
 			// Maybe the MenuItem or SubMenu is capsuled in a wrapper div or something else
-			props.children = this.renderChildren(child.props.children);
+			props.children = this.renderChildren( child.props ? child.props.children : [] );
 			return React.cloneElement(child, props);
 		}
 		props.onMouseLeave = this.onChildMouseLeave.bind(this);
