@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly when just supplied text 1`] = `
-<span>
-  <span
-    style={Object {}}
-  >
-    
-  </span>
+<span
+  style={Object {}}
+>
+  
 </span>
 `;
