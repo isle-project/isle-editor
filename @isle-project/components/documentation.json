@@ -6798,27 +6798,15 @@
 	"ShapedForm": {
 		"props": [
 			{
-				"name": "margin",
-				"type": "number",
-				"description": "ShapedForm-prop-margin",
-				"defaultValue": 10
-			},
-			{
-				"name": "onClick",
-				"type": "function",
-				"description": "ShapedForm-prop-onClick",
-				"defaultValue": null
-			},
-			{
-				"name": "image",
+				"name": "type",
 				"type": "string",
-				"description": "ShapedForm-prop-image",
-				"defaultValue": null
+				"description": "ShapedForm-prop-type",
+				"defaultValue": "star"
 			},
 			{
-				"name": "svg",
+				"name": "src",
 				"type": "string",
-				"description": "ShapedForm-prop-svg",
+				"description": "ShapedForm-prop-src",
 				"defaultValue": null
 			},
 			{
@@ -6826,6 +6814,12 @@
 				"type": "object",
 				"description": "ShapedForm-prop-style",
 				"defaultValue": {}
+			},
+			{
+				"name": "onClick",
+				"type": "function",
+				"description": "ShapedForm-prop-onClick",
+				"defaultValue": null
 			}
 		],
 		"description": "ShapedForm-description"
