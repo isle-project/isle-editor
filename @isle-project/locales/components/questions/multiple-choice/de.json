@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Leider waren nicht alle deine Antworten richtig. Versuche eine andere Kombination.",
 	"answer-incorrect-incremental-extra": "Du hast alle richtigen Antwortmöglichkeiten ausgewählt, aber mindestens eine falsche hat sich eingeschlichen. Deselektiere die falsche(n) Antwort(en) und schicke sie erneut ab.",
 	"answer-incorrect-incremental-missing": "Du hast nicht alle richtigen Antworten gegeben. Wähle zusätzliche Antwortmöglichkeiten aus.",
+	"answer-re-submitted": "Antwort wird erneut gesendet.",
 	"answer-submitted": "Antwort eingereicht.",
 	"answer-submitted-nofeedback": "Sie haben Ihre Antwort erfolgreich übermittelt. Sie können Ihre Antwort ändern und erneut einreichen, wenn Sie dies wünschen.",
 	"answers": "Antworten",
 	"chose-all-apply": "Wähle alle zutreffenden Antworten",
+	"each-row-click-check-boxes-which-apply": "Klicken Sie für jede Zeile alle zutreffenden Kontrollkästchen an",
+	"each-row-pick-answer-by-clicking": "Wählen Sie für jede Zeile eine Antwort, indem Sie auf das jeweilige Optionsfeld klicken",
 	"question-closed": "Frage ist nun geschlossen.",
 	"resubmit": "Erneut einreichen",
 	"select-answer": "Wähle eine Antwort",
 	"submit": "Abschicken",
-	"submitted": "Eingereicht"
+	"submitted": "Eingereicht",
+	"successfully-re-submitted-your-answer": "Sie haben Ihre Antwort erfolgreich erneut abgeschickt.",
+	"successfully-submitted-your-answer": "Sie haben Ihre Antwort erfolgreich abgeschickt. Sie können Ihre Antwort ändern und erneut absenden, wenn Sie möchten."
 }

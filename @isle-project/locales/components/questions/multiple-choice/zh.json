@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "不幸的是，不是所有的答案都是正确的。试试其他组合。",
 	"answer-incorrect-incremental-extra": "您检查了所有正确的答案选择，但至少有一个错误的答案溜进来了。请选择错误的答案并重新提交。",
 	"answer-incorrect-incremental-missing": "你还没有提供所有的正确答案。请选择其他答案。",
+	"answer-re-submitted": "答复重新提交。",
 	"answer-submitted": "提交的答复：",
 	"answer-submitted-nofeedback": "你已经成功提交了你的答案。如果你愿意，你可以更改你的答案并重新提交。",
 	"answers": "答案",
 	"chose-all-apply": "选择所有适用的内容",
+	"each-row-click-check-boxes-which-apply": "对于每一行，点击所有适用的复选框。",
+	"each-row-pick-answer-by-clicking": "对于每一行，通过点击相应的单选按钮选择一个答案。",
 	"question-closed": "问题现已结束。",
 	"resubmit": "重新提交",
 	"select-answer": "选择一个答案",
 	"submit": "提交",
-	"submitted": "已提交"
+	"submitted": "已提交",
+	"successfully-re-submitted-your-answer": "你已经成功地重新提交了你的答案。",
+	"successfully-submitted-your-answer": "你已经成功提交了你的答案。如果你愿意，你可以更改你的答案并重新提交。"
 }

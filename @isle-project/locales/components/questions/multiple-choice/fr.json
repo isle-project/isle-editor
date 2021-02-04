@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Malheureusement, toutes vos réponses n'étaient pas correctes. Essayez une autre combinaison.",
 	"answer-incorrect-incremental-extra": "Vous avez vérifié tous les choix de réponse corrects, mais au moins un choix incorrect s'est glissé dans la liste. Désélectionnez la ou les réponses incorrectes et soumettez à nouveau.",
 	"answer-incorrect-incremental-missing": "Vous n'avez pas fourni toutes les bonnes réponses. Sélectionnez des choix de réponses supplémentaires.",
+	"answer-re-submitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
 	"answer-submitted-nofeedback": "Vous avez soumis votre réponse avec succès. Vous pouvez modifier votre réponse et la soumettre à nouveau si vous le souhaitez.",
 	"answers": "Réponses",
 	"chose-all-apply": "Choisissez toutes les réponses applicables",
+	"each-row-click-check-boxes-which-apply": "Pour chaque ligne, cliquez sur toutes les cases à cocher qui s'appliquent",
+	"each-row-pick-answer-by-clicking": "Pour chaque ligne, choisissez une réponse en cliquant sur le bouton radio correspondant",
 	"question-closed": "La question est maintenant close.",
 	"resubmit": "Soumettre à nouveau",
 	"select-answer": "Sélectionnez une réponse",
 	"submit": "Soumettre",
-	"submitted": "Soumis"
+	"submitted": "Soumis",
+	"successfully-re-submitted-your-answer": "Vous avez soumis à nouveau votre réponse avec succès.",
+	"successfully-submitted-your-answer": "Vous avez soumis votre réponse avec succès. Vous pouvez modifier votre réponse et la soumettre à nouveau si vous le souhaitez."
 }

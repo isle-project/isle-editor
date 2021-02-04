@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { withTranslation } from 'react-i18next';
 import uppercase from '@stdlib/string/uppercase';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Button from 'react-bootstrap/Button';
@@ -14,12 +15,14 @@ import SolutionButton from '@isle-project/components/solution-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import Text from '@isle-project/components/text';
 import SessionContext from '@isle-project/session/context.js';
+import { addResources } from '@isle-project/locales';
 import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
 import './multiple_choice_matrix.css';
 
 
 // VARIABLES //
 
+addResources( 'MultipleChoiceQuestion' );
 const debug = logger( 'isle:multiple-choice-matrix' );
 
 
@@ -106,15 +109,14 @@ class MultipleChoiceMatrix extends Component {
 		const session = this.context;
 		if ( this.state.submitted ) {
 			session.addNotification({
-				title: 'Answer re-submitted.',
-				message: 'You have successfully re-submitted your answer.',
+				title: this.props.t('answer-re-submitted'),
+				message: this.props.t('successfully-re-submitted-your-answer'),
 				level: 'success'
 			});
 		} else {
-			let msg = 'You have successfully submitted your answer. You can change your answer and re-submit if you want to.';
 			session.addNotification({
-				title: 'Answer submitted.',
-				message: msg,
+				title: this.props.t('answer-submitted'),
+				message: this.props.t('successfully-submitted-your-answer'),
 				level: 'success'
 			});
 		}
@@ -203,7 +205,12 @@ class MultipleChoiceMatrix extends Component {
 					</Card.Header> : null
 				}
 				<Card.Body>
-					<i style={{ fontSize: '0.8rem' }}>For each row, {this.props.type === 'checkbox' ? 'click on all check boxes which apply' : 'pick an answer by clicking on the respective radio button'}.</i>
+					<i style={{ fontSize: '0.8rem' }}>
+						{this.props.type === 'checkbox' ?
+							this.props.t('each-row-click-check-boxes-which-apply') :
+							this.props.t('each-row-pick-answer-by-clicking')
+						}.
+					</i>
 					<Form style={{ marginTop: '12px' }} onClick={this.props.type === 'checkbox' ? this.handleCheckboxClick : this.handleRadioClick}>
 						{this.renderAnswerHeader()}
 						{this.renderQuestionRows()}
@@ -218,7 +225,9 @@ class MultipleChoiceMatrix extends Component {
 							style={{
 								marginTop: '10px'
 							}}
-						>{ this.state.submitted ? 'Resubmit' : 'Submit'}</Button>
+						>
+							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit')}
+						</Button>
 						<ResponseVisualizer
 							id={this.props.id}
 							data={{
@@ -270,4 +279,4 @@ MultipleChoiceMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default MultipleChoiceMatrix;
+export default withTranslation( 'MultipleChoiceQuestion' )( MultipleChoiceMatrix );

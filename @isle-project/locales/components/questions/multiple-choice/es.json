@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Desafortunadamente, no todas tus respuestas eran correctas. Intenta otra combinación.",
 	"answer-incorrect-incremental-extra": "Has marcado todas las opciones de respuesta correctas pero al menos una incorrecta se ha colado. Deselecciona la(s) respuesta(s) incorrecta(s) y vuelve a enviarla(s).",
 	"answer-incorrect-incremental-missing": "No has dado todas las respuestas correctas. Seleccione opciones de respuesta adicionales.",
+	"answer-re-submitted": "Respuesta reenviada.",
 	"answer-submitted": "Respuesta presentada.",
 	"answer-submitted-nofeedback": "Has enviado tu respuesta con éxito. Puede cambiar su respuesta y volver a enviarla si lo desea.",
 	"answers": "Respuestas",
 	"chose-all-apply": "Elija todos los que apliquen",
+	"each-row-click-check-boxes-which-apply": "Para cada fila, haga clic en todas las casillas que correspondan",
+	"each-row-pick-answer-by-clicking": "Para cada fila, elija una respuesta haciendo clic en el botón de opción correspondiente",
 	"question-closed": "La pregunta está ahora cerrada.",
 	"resubmit": "Volver a presentar",
 	"select-answer": "Selecciona una respuesta",
 	"submit": "Presentar",
-	"submitted": "Presentado"
+	"submitted": "Presentado",
+	"successfully-re-submitted-your-answer": "Ha reenviado correctamente su respuesta.",
+	"successfully-submitted-your-answer": "Ha enviado correctamente su respuesta. Puede cambiar su respuesta y volver a enviarla si lo desea."
 }

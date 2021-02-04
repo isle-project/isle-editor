@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Purtroppo, non tutte le sue risposte erano corrette. Prova un'altra combinazione.",
 	"answer-incorrect-incremental-extra": "Avete controllato tutte le risposte corrette, ma almeno una non corretta è stata inserita di nascosto. Deselezionate la risposta o le risposte errate e ripresentatela.",
 	"answer-incorrect-incremental-missing": "Non hai fornito tutte le risposte corrette. Selezionare ulteriori opzioni di risposta.",
+	"answer-re-submitted": "Risposta ripresentata.",
 	"answer-submitted": "Risposta inviata.",
 	"answer-submitted-nofeedback": "La risposta è stata inviata con successo. Se lo desidera, può modificare la sua risposta e ripresentarla.",
 	"answers": "Risposte",
 	"chose-all-apply": "Scegliere tutto ciò che si applica",
+	"each-row-click-check-boxes-which-apply": "Per ogni riga, clicca su tutte le caselle di controllo che si applicano",
+	"each-row-pick-answer-by-clicking": "Per ogni riga, scegli una risposta cliccando sul rispettivo pulsante di opzione",
 	"question-closed": "La domanda è chiusa.",
 	"resubmit": "Invia di nuovo",
 	"select-answer": "Seleziona una risposta",
 	"submit": "Invia a",
-	"submitted": "Presentata all'indirizzo"
+	"submitted": "Presentata all'indirizzo",
+	"successfully-re-submitted-your-answer": "Hai ripresentato con successo la tua risposta.",
+	"successfully-submitted-your-answer": "Hai inviato la tua risposta con successo. Puoi cambiare la tua risposta e ripresentarla se vuoi."
 }

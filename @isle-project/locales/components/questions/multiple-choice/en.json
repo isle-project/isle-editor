@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Unfortunately, not all of your answers were correct. Try another combination.",
 	"answer-incorrect-incremental-extra": "You checked all correct answer choices but at least one incorrect one sneaked in. Deselect the incorrect answer(s) and resubmit.",
 	"answer-incorrect-incremental-missing": "You haven't provided all the correct answers. Select additional answer choices.",
+	"answer-re-submitted": "Answer re-submitted.",
 	"answer-submitted": "Answer submitted.",
 	"answer-submitted-nofeedback": "You have successfully submitted your answer. You may change your answer and re-submit if you want to.",
 	"answers": "Answers",
 	"chose-all-apply": "Choose all that apply",
+	"each-row-click-check-boxes-which-apply": "For each row, click on all check boxes which apply",
+	"each-row-pick-answer-by-clicking": "For each row, pick an answer by clicking on the respective radio button",
 	"question-closed": "Question is now closed.",
 	"resubmit": "Resubmit",
 	"select-answer": "Select an answer",
 	"submit": "Submit",
-	"submitted": "Submitted"
+	"submitted": "Submitted",
+	"successfully-re-submitted-your-answer": "You have successfully re-submitted your answer.",
+	"successfully-submitted-your-answer": "You have successfully submitted your answer. You can change your answer and re-submit if you want to."
 }

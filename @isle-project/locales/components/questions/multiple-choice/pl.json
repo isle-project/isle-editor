@@ -6,13 +6,18 @@
 	"answer-incorrect-incremental-equal": "Niestety, nie wszystkie twoje odpowiedzi były poprawne. Spróbuj innej kombinacji.",
 	"answer-incorrect-incremental-extra": "Sprawdziłeś wszystkie poprawne odpowiedzi, ale co najmniej jedna nieprawidłowa została zakradnięta. Usuń zaznaczenie nieprawidłowych odpowiedzi i prześlij je ponownie.",
 	"answer-incorrect-incremental-missing": "Nie udzieliłeś wszystkich prawidłowych odpowiedzi. Wybierz dodatkowe opcje odpowiedzi.",
+	"answer-re-submitted": "Odpowiedź została ponownie przesłana.",
 	"answer-submitted": "Odpowiedź nadesłana.",
 	"answer-submitted-nofeedback": "Udało ci się przekazać swoją odpowiedź. Możesz zmienić swoją odpowiedź i przesłać ją ponownie, jeśli chcesz.",
 	"answers": "Odpowiedzi",
 	"chose-all-apply": "Wybierz wszystko, co ma zastosowanie",
+	"each-row-click-check-boxes-which-apply": "Dla każdego wiersza kliknij wszystkie pola wyboru, które mają zastosowanie.",
+	"each-row-pick-answer-by-clicking": "Dla każdego wiersza wybierz odpowiedź, klikając odpowiedni przycisk radiowy.",
 	"question-closed": "Pytanie jest już zamknięte.",
 	"resubmit": "Ponowne przedłożenie",
 	"select-answer": "Wybierz odpowiedź",
 	"submit": "Zgłoś się",
-	"submitted": "Zgłoszony"
+	"submitted": "Zgłoszony",
+	"successfully-re-submitted-your-answer": "Udało Ci się ponownie przesłać odpowiedź.",
+	"successfully-submitted-your-answer": "Pomyślnie przesłałeś swoją odpowiedź. Jeśli chcesz, możesz zmienić swoją odpowiedź i przesłać ją ponownie."
 }
