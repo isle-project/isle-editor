@@ -124,7 +124,6 @@
 	"SelectQuestion": "@isle-project/components/questions/select",
 	"SelectQuestionMatrix": "@isle-project/components/questions/select-matrix",
 	"ShapedForm": "@isle-project/components/shaped-form",
-	"ShapedImage": "@isle-project/components/shaped-image",
 	"Sketchpad": "@isle-project/components/sketchpad",
 	"Slider": "@isle-project/components/slider",
 	"SliderInput": "@isle-project/components/input/slider",

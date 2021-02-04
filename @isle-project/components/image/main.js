@@ -32,6 +32,7 @@ addResources( 'Image' );
 * @property {boolean} showModal - controls whether to display fullscreen modal view
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
+* @property {boolean} inline - allows the image to be surrounded by text
 * @property {Function} onShare - callback invoked with the image if the "share" button is clicked
 */
 const Image = ( props ) => {
@@ -126,6 +127,18 @@ const Image = ( props ) => {
 			</Modal>
 		</Fragment>;
 	}
+	const style = {
+		...props.style
+	};
+	if ( props.inline ) {
+		if ( !style.float ) {
+			style.float = 'left';
+		}
+		if ( !style.shapeMargin ) {
+			style.shapeMargin = 10;
+		}
+		style.shapeOutside = 'url(' + props.src + ')';
+	}
 	return (
 		<Fragment>
 			<img
@@ -149,7 +162,7 @@ const Image = ( props ) => {
 					ev.dataTransfer.setData( 'text/html', plotData.value );
 					ev.dataTransfer.setData( 'text/plain', plotData.key );
 				}}
-				style={props.style}
+				style={style}
 			/>
 			{modal}
 		</Fragment>
@@ -171,6 +184,7 @@ Image.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	inline: PropTypes.bool,
 	id: PropTypes.string,
 	showModal: PropTypes.bool,
 	className: PropTypes.string,
@@ -181,6 +195,7 @@ Image.propTypes = {
 Image.defaultProps = {
 	body: null,
 	className: '',
+	inline: false,
 	id: null,
 	height: null,
 	width: null,

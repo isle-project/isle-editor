@@ -135,7 +135,6 @@ const config = {
 			'@isle-project/components/questions/select',
 			'@isle-project/components/questions/select-matrix',
 			'@isle-project/components/shaped-form',
-			'@isle-project/components/shaped-image',
 			'@isle-project/components/sketchpad',
 			'@isle-project/components/slider',
 			'@isle-project/components/solution-button',

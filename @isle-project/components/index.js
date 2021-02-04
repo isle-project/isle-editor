@@ -122,7 +122,6 @@ import ScrollingText from '@isle-project/components/scrolling-text';
 import SelectQuestion from '@isle-project/components/questions/select';
 import SelectQuestionMatrix from '@isle-project/components/questions/select-matrix';
 import ShapedForm from '@isle-project/components/shaped-form';
-import ShapedImage from '@isle-project/components/shaped-image';
 import Sketchpad from '@isle-project/components/sketchpad';
 import Slider from '@isle-project/components/slider';
 import Spinner from '@isle-project/components/internal/spinner';
@@ -338,7 +337,6 @@ const scope = {
 	SelectQuestion,
 	SelectQuestionMatrix,
 	ShapedForm,
-	ShapedImage,
 	Sketchpad,
 	Slider,
 	Spinner,
