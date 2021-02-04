@@ -1686,6 +1686,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "inline",
+				"type": "boolean",
+				"description": "Image-prop-inline",
+				"defaultValue": false
+			},
+			{
 				"name": "id",
 				"type": "string",
 				"description": "Image-prop-id",
@@ -6823,53 +6829,6 @@
 			}
 		],
 		"description": "ShapedForm-description"
-	},
-	"ShapedImage": {
-		"props": [
-			{
-				"name": "alt",
-				"type": "string",
-				"description": "ShapedImage-prop-alt",
-				"defaultValue": ""
-			},
-			{
-				"name": "background",
-				"type": "boolean",
-				"description": "ShapedImage-prop-background",
-				"defaultValue": false
-			},
-			{
-				"name": "margin",
-				"type": "number",
-				"description": "ShapedImage-prop-margin",
-				"defaultValue": 10
-			},
-			{
-				"name": "onClick",
-				"type": "function",
-				"description": "ShapedImage-prop-onClick",
-				"defaultValue": null
-			},
-			{
-				"name": "src",
-				"type": "string",
-				"description": "ShapedImage-prop-src",
-				"defaultValue": ""
-			},
-			{
-				"name": "style",
-				"type": "object",
-				"description": "ShapedImage-prop-style",
-				"defaultValue": {}
-			},
-			{
-				"name": "threshold",
-				"type": "number",
-				"description": "ShapedImage-prop-threshold",
-				"defaultValue": 1
-			}
-		],
-		"description": "ShapedImage-description"
 	},
 	"Sketchpad": {
 		"props": [

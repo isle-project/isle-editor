@@ -25,6 +25,7 @@ Component to display an image.
 * __body__ | `string`: base64 encoded data of image. Default: `none`.
 * __height__ | `(number|string)`: image height (in px). Default: `none`.
 * __width__ | `(number|string)`: image width (in px). Default: `none`.
+* __inline__ | `boolean`: allows the image to be surrounded by text. Default: `false`.
 * __id__ | `string`: component identifier. Default: `none`.
 * __showModal__ | `boolean`: controls whether to display fullscreen modal view. Default: `true`.
 * __className__ | `string`: class name. Default: `''`.
