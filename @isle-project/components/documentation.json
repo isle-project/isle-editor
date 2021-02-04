@@ -6835,6 +6835,7 @@
 			{
 				"name": "alt",
 				"type": "string",
+				"description": "ShapedImage-prop-alt",
 				"defaultValue": ""
 			},
 			{
@@ -8256,12 +8257,6 @@
 	"Typewriter": {
 		"props": [
 			{
-				"name": "deviation",
-				"type": "number",
-				"description": "Typewriter-prop-deviation",
-				"defaultValue": 30
-			},
-			{
 				"name": "delay",
 				"type": "number",
 				"description": "Typewriter-prop-delay",
@@ -8299,7 +8294,7 @@
 			},
 			{
 				"name": "text",
-				"type": "string",
+				"type": "(string|array<string>)",
 				"description": "Typewriter-prop-text",
 				"defaultValue": ""
 			}
