@@ -139,10 +139,7 @@ function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, a
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
 		const egrouping = escapeLatex( group );
-		console.log( egrouping );
-		console.log( out );
 		const ecat1 = escapeLatex( out.firstCategory );
-		console.log( ecat1 );
 		const ecat2 = escapeLatex( out.secondCategory );
 		value = <div style={{ overflowX: 'auto', width: '100%' }}>
 			<span className="title" >{t('hypothesis-test-between', { x, group })}:</span>
