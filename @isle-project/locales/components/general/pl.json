@@ -2,6 +2,7 @@
 	"click-to-cycle-through-options": "Kliknij, aby przejrzeć dostępne opcje.",
 	"encountered-an-error": "Napotkano błąd...",
 	"expected-object-array": "`{{field}}` musi być tablicą obiektów.",
+	"expected-value-from-list": "`{field}} musi być jednym z następujących: {{list}}.",
 	"flippable-requires-two-children": "Suwakowa karta wymaga dwóch elementów dziecięcych.",
 	"grid-requires-two-children": "Wciągana siatka wymaga do jej renderowania co najmniej dwóch elementów dziecięcych.",
 	"retry": "Retry",

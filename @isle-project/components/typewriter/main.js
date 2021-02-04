@@ -24,7 +24,7 @@ const DEFAULT_STATE = {
 /**
 * An ISLE component that allows you to create a typewriter effect
 *
-* @property {string} text - the full text to be displayed or an array of texts to be displayed sequentially
+* @property {(string|Array<string>)} text - the full text to be displayed or an array of texts to be displayed sequentially
 * @property {number} hold - if text is an array of strings, hold specifies the duration the line will be displayed before it passes over to the next item in the array
 * @property {number} interval - the interval of the typewriter (in milliseconds)
 * @property {number} delay - initial delay before typewriter starts (in milliseconds)

@@ -2,6 +2,7 @@
 	"click-to-cycle-through-options": "单击以循环浏览可用选项。",
 	"encountered-an-error": "遇到一个错误...",
 	"expected-object-array": "`{{field}}`必须是一个对象数组。",
+	"expected-value-from-list": "`{{字段}}`必须是下列之一：{{列表}}。",
 	"flippable-requires-two-children": "可翻转卡片需要两个子元素。",
 	"grid-requires-two-children": "可拖动网格至少需要两个子元素才能呈现。",
 	"retry": "重试",

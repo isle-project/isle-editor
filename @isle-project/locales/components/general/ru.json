@@ -2,6 +2,7 @@
 	"click-to-cycle-through-options": "Нажмите, чтобы перейти к циклу через доступные опции.",
 	"encountered-an-error": "Столкнулся с ошибкой...",
 	"expected-object-array": "`{{field}}`должно быть массивом объектов.",
+	"expected-value-from-list": "{{поле}'' должно быть одним из следующих: {{list}}",
 	"flippable-requires-two-children": "Для перекидной карты требуется два детских элемента.",
 	"grid-requires-two-children": "Для создания перетаскиваемой сетки требуется как минимум два дочерних элемента.",
 	"retry": "Вспомнить",

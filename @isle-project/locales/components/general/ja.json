@@ -2,6 +2,7 @@
 	"click-to-cycle-through-options": "クリックして、利用可能なオプションを循環させます。",
 	"encountered-an-error": "エラーに遭遇しました...",
 	"expected-object-array": "`{{field}}` はオブジェクトの配列でなければなりません。",
+	"expected-value-from-list": "`{{field}}` は以下のいずれかでなければなりません。{{{list}}}でなければなりません。",
 	"flippable-requires-two-children": "フリッパブルカードには2つの子要素が必要です。",
 	"grid-requires-two-children": "ドラッグ可能なグリッドをレンダリングするには、少なくとも2つの子要素が必要です。",
 	"retry": "リトライ",

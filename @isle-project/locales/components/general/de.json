@@ -2,6 +2,7 @@
 	"click-to-cycle-through-options": "Klicken Sie auf , um die verfügbaren Optionen zu durchlaufen.",
 	"encountered-an-error": "Es ist ein Fehler aufgetreten...",
 	"expected-object-array": "`{{field}}` muss ein Array von Objekten sein.",
+	"expected-value-from-list": "`{{feld}}` muss einer der folgenden sein: {{Liste}}.",
 	"flippable-requires-two-children": "Die kippbare Karte benötigt zwei untergeordnete Elemente.",
 	"grid-requires-two-children": "Das verschiebbare Raster benötigt mindestens zwei untergeordnete Elemente, damit es gerendert werden kann.",
 	"retry": "Wiederholen Sie",
