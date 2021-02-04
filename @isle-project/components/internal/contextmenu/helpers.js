@@ -26,7 +26,9 @@ export function hasOwnProp(obj, prop) {
 }
 
 export function uniqueId() {
-	return Math.random().toString(36).substring(7);
+	return Math.random()
+		.toString(36)
+		.substring(7);
 }
 
 export const cssClasses = {

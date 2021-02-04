@@ -72,9 +72,9 @@ class SubMenu extends AbstractMenu {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		this.isVisibilityChange = (this.state.visible !== nextState.visible ||
-								  this.props.forceOpen !== nextProps.forceOpen) &&
-								  !(this.state.visible && nextProps.forceOpen) &&
-								  !(this.props.forceOpen && nextState.visible);
+			this.props.forceOpen !== nextProps.forceOpen) &&
+			!(this.state.visible && nextProps.forceOpen) &&
+			!(this.props.forceOpen && nextState.visible);
 		return true;
 	}
 
@@ -83,9 +83,9 @@ class SubMenu extends AbstractMenu {
 		if (this.props.forceOpen || this.state.visible) {
 			const wrapper = window.requestAnimationFrame || setTimeout;
 			wrapper(() => {
-				const styles = this.props.rtl
-					? this.getRTLMenuPosition()
-					: this.getMenuPosition();
+				const styles = this.props.rtl ?
+					this.getRTLMenuPosition() :
+					this.getMenuPosition();
 
 				this.subMenu.style.removeProperty('top');
 				this.subMenu.style.removeProperty('bottom');
@@ -173,7 +173,7 @@ class SubMenu extends AbstractMenu {
 	}
 
 	hideSubMenu = (e) => {
-		// avoid closing submenus of a different menu tree
+		// Avoid closing sub-menus of a different menu tree:
 		if (e.detail && e.detail.id && this.menu && e.detail.id !== this.menu.id) {
 			return;
 		}
@@ -270,13 +270,14 @@ class SubMenu extends AbstractMenu {
 			ref: this.subMenuRef,
 			style: {
 				position: 'absolute',
-				transition: 'opacity 1ms', // trigger transitionend event
+				transition: 'opacity 1ms', // Trigger transitioned event...
 				top: 0,
 				left: '100%'
 			},
 			className: cx(cssClasses.menu, this.props.className)
 		};
 
+		/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 		return (
 			<nav {...menuProps} role='menuitem' tabIndex='-1' aria-haspopup='true'>
 				<div {...attributes} {...menuItemProps}>

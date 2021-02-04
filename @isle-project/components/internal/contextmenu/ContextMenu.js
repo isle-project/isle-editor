@@ -79,14 +79,14 @@ class ContextMenu extends AbstractMenu {
 			wrapper(() => {
 				const { x, y } = this.state;
 
-				const { top, left } = this.props.rtl
-					? this.getRTLMenuPosition(x, y)
-					: this.getMenuPosition(x, y);
+				const { top, left } = this.props.rtl ?
+					this.getRTLMenuPosition( x, y ) :
+					this.getMenuPosition( x, y );
 
 				wrapper(() => {
-					if (!this.menu) return;
-					this.menu.style.top = `${top}px`;
-					this.menu.style.left = `${left}px`;
+					if ( !this.menu ) return;
+					this.menu.style.top = `${top}px`; // eslint-disable-line i18next/no-literal-string
+					this.menu.style.left = `${left}px`; // eslint-disable-line i18next/no-literal-string
 					this.menu.style.opacity = 1;
 					this.menu.style.pointerEvents = 'auto';
 				});
@@ -162,14 +162,12 @@ class ContextMenu extends AbstractMenu {
 	}
 
 	handleContextMenu = (e) => {
-		if (process.env.NODE_ENV === 'production') {
-			e.preventDefault();
-		}
+		e.preventDefault();
 		this.handleHide(e);
 	}
 
 	hideMenu = (e) => {
-		if (e.keyCode === 27 || e.keyCode === 13) { // ECS or enter
+		if ( e.keyCode === 27 || e.keyCode === 13 ) { // ECS or enter
 			hideMenu();
 		}
 	}
@@ -253,9 +251,11 @@ class ContextMenu extends AbstractMenu {
 			[cssClasses.menuVisible]: isVisible
 		});
 
+		/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 		return (
 			<nav
-				role='menu' tabIndex='-1' ref={this.menuRef} style={inlineStyle} className={menuClassnames}
+				role='menu' tabIndex='-1'
+				ref={this.menuRef} style={inlineStyle} className={menuClassnames}
 				onContextMenu={this.handleContextMenu} onMouseLeave={this.handleMouseLeave}>
 				{this.renderChildren(children)}
 			</nav>

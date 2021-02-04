@@ -186,7 +186,9 @@ class AbstractMenu extends Component {
 		if (!child.props.divider && this.state.selectedItem === child) {
 			// special props for selected item only
 			props.selected = true;
-			props.ref = (ref) => { this.seletedItemRef = ref; };
+			props.ref = (ref) => {
+				this.seletedItemRef = ref;
+			};
 			return React.cloneElement(child, props);
 		}
 		// onMouseMove is only needed for non selected items
