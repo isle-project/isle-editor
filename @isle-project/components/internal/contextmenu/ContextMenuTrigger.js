@@ -22,32 +22,6 @@ import { callIfExists, cssClasses } from './helpers';
 // MAIN //
 
 class ContextMenuTrigger extends Component {
-	static propTypes = {
-		id: PropTypes.string.isRequired,
-		children: PropTypes.node.isRequired,
-		attributes: PropTypes.object,
-		collect: PropTypes.func,
-		disable: PropTypes.bool,
-		holdToDisplay: PropTypes.number,
-		posX: PropTypes.number,
-		posY: PropTypes.number,
-		renderTag: PropTypes.elementType,
-		mouseButton: PropTypes.number,
-		disableIfShiftIsPressed: PropTypes.bool
-	};
-
-	static defaultProps = {
-		attributes: {},
-		collect() { return null; },
-		disable: false,
-		holdToDisplay: 1000,
-		renderTag: 'div',
-		posX: 0,
-		posY: 0,
-		mouseButton: 2, // 0 is left click, 2 is right click
-		disableIfShiftIsPressed: false
-	};
-
 	touchHandled = false;
 
 	handleMouseDown = (event) => {
@@ -175,10 +149,38 @@ class ContextMenuTrigger extends Component {
 			onMouseOut: this.handleMouseOut,
 			ref: this.elemRef
 		});
-
 		return React.createElement(renderTag, newAttrs, children);
 	}
 }
+
+
+// PROPERTIES //
+
+ContextMenuTrigger.propTypes = {
+	id: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
+	attributes: PropTypes.object,
+	collect: PropTypes.func,
+	disable: PropTypes.bool,
+	holdToDisplay: PropTypes.number,
+	posX: PropTypes.number,
+	posY: PropTypes.number,
+	renderTag: PropTypes.elementType,
+	mouseButton: PropTypes.number,
+	disableIfShiftIsPressed: PropTypes.bool
+};
+
+ContextMenuTrigger.defaultProps = {
+	attributes: {},
+	collect() { return null; },
+	disable: false,
+	holdToDisplay: 1000,
+	renderTag: 'div',
+	posX: 0,
+	posY: 0,
+	mouseButton: 2, // 0 is left click, 2 is right click
+	disableIfShiftIsPressed: false
+};
 
 
 // EXPORTS //

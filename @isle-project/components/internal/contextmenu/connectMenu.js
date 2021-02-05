@@ -13,14 +13,15 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import ContextMenuTrigger from './ContextMenuTrigger';
 import listener from './globalEventListener';
 
 
 // VARIABLES //
 
-// collect ContextMenuTrigger's expected props to NOT pass them on as part of the context
-const ignoredTriggerProps = [...Object.keys(ContextMenuTrigger.propTypes), 'children'];
+const ignoredTriggerProps = [
+	'id', 'children', 'attributes', 'collect', 'disable', 'holdToDisplay',
+	'posX', 'posY', 'renderTag', 'mouseButton', 'disableIfShiftIsPressed'
+];
 
 
 // EXPORTS //
