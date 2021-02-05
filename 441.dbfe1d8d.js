@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[441],{2804:function(e){e.exports=JSON.parse('{"edition":"edici\xf3n","references":"Referencias"}')}}]);
