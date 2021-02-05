@@ -103,7 +103,11 @@ class Lesson extends Component {
 	render() {
 		const session = this.context;
 		if ( !this.state.visible ) {
-			return <Forbidden />;
+			return (
+				<I18nextProvider i18n={i18n} >
+					<Forbidden />
+				</I18nextProvider>
+			);
 		}
 		return (
 			<I18nextProvider i18n={i18n} >
