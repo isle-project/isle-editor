@@ -1,0 +1,82 @@
+{
+  "sidebar.docs.category.Basic Components": {
+    "message": "Basic Components",
+    "description": "The label for category Basic Components in sidebar docs"
+  },
+  "sidebar.docs.category.Components": {
+    "message": "Components",
+    "description": "The label for category Components in sidebar docs"
+  },
+  "sidebar.docs.category.Display Components": {
+    "message": "Display Components",
+    "description": "The label for category Display Components in sidebar docs"
+  },
+  "sidebar.docs.category.Distributions": {
+    "message": "Distributions",
+    "description": "The label for category Distributions in sidebar docs"
+  },
+  "sidebar.docs.category.General Components": {
+    "message": "General Components",
+    "description": "The label for category General Components in sidebar docs"
+  },
+  "sidebar.docs.category.Headings": {
+    "message": "Headings",
+    "description": "The label for category Headings in sidebar docs"
+  },
+  "sidebar.docs.category.Input Components": {
+    "message": "Input Components",
+    "description": "The label for category Input Components in sidebar docs"
+  },
+  "sidebar.docs.category.Learning Components": {
+    "message": "Learning Components",
+    "description": "The label for category Learning Components in sidebar docs"
+  },
+  "sidebar.docs.category.Main Components": {
+    "message": "Main Components",
+    "description": "The label for category Main Components in sidebar docs"
+  },
+  "sidebar.docs.category.Online Services": {
+    "message": "Online Services",
+    "description": "The label for category Online Services in sidebar docs"
+  },
+  "sidebar.docs.category.Overview": {
+    "message": "Overview",
+    "description": "The label for category Overview in sidebar docs"
+  },
+  "sidebar.docs.category.Plot Components": {
+    "message": "Plot Components",
+    "description": "The label for category Plot Components in sidebar docs"
+  },
+  "sidebar.docs.category.Presentation Components": {
+    "message": "Presentation Components",
+    "description": "The label for category Presentation Components in sidebar docs"
+  },
+  "sidebar.docs.category.Programmatic": {
+    "message": "Programmatic",
+    "description": "The label for category Programmatic in sidebar docs"
+  },
+  "sidebar.docs.category.Question Components": {
+    "message": "Question Components",
+    "description": "The label for category Question Components in sidebar docs"
+  },
+  "sidebar.docs.category.R Components": {
+    "message": "R Components",
+    "description": "The label for category R Components in sidebar docs"
+  },
+  "sidebar.docs.category.Server": {
+    "message": "Server",
+    "description": "The label for category Server in sidebar docs"
+  },
+  "sidebar.docs.category.Survey Components": {
+    "message": "Survey Components",
+    "description": "The label for category Survey Components in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorials": {
+    "message": "Tutorials",
+    "description": "The label for category Tutorials in sidebar docs"
+  },
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  }
+}

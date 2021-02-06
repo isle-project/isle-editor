@@ -1,0 +1,22 @@
+{
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Neuere Einträge",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Ältere Einträge",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Mehr lesen",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Neuerer Beitrag",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Älterer Beitrag",
+		"description": "The blog post button label to navigate to the older/next post"
+	}
+}

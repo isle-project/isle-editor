@@ -1,0 +1,22 @@
+{
+	"copyright": {
+		"message": "Copyright © 2021 Los autores de ISLE",
+		"description": "The footer copyright"
+	},
+	"link.item.label.Blog": {
+		"message": "Blog",
+		"description": "The label of footer link with label=Blog linking to blog"
+	},
+	"link.item.label.Components": {
+		"message": "Componentes",
+		"description": "The label of footer link with label=Components linking to docs/overview/components"
+	},
+	"link.item.label.Getting Started": {
+		"message": "Cómo empezar",
+		"description": "The label of footer link with label=Getting Started linking to docs/overview/intro"
+	},
+	"link.item.label.GitHub": {
+		"message": "GitHub",
+		"description": "The label of footer link with label=GitHub linking to https://github.com/isle-project"
+	}
+}

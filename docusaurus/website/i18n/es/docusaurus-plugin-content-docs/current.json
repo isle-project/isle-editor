@@ -1,0 +1,22 @@
+{
+	"sidebar.docs.category.Basic Components": {
+		"message": "Componentes básicos",
+		"description": "The label for category Basic Components in sidebar docs"
+	},
+	"sidebar.docs.category.Components": {
+		"message": "Componentes",
+		"description": "The label for category Components in sidebar docs"
+	},
+	"sidebar.docs.category.Display Components": {
+		"message": "Componentes de la pantalla",
+		"description": "The label for category Display Components in sidebar docs"
+	},
+	"sidebar.docs.category.Distributions": {
+		"message": "Distribuciones",
+		"description": "The label for category Distributions in sidebar docs"
+	},
+	"sidebar.docs.category.General Components": {
+		"message": "Componentes generales",
+		"description": "The label for category General Components in sidebar docs"
+	}
+}
