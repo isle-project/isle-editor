@@ -39,6 +39,46 @@ const siteConfig = {
 	url: 'https://isledocs.com', // Your website URL
 	baseUrl: '/',
 
+	i18n: {
+		defaultLocale: 'en',
+		locales: [ 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ],
+		localeConfigs: {
+			de: {
+				label: 'Deutsch'
+			},
+			en: {
+				label: 'English'
+			},
+			es: {
+				label: 'Español'
+			},
+			fr: {
+				label: 'Français'
+			},
+			it: {
+				label: 'Italiano'
+			},
+			ja: {
+				label: 'にほんご'
+			},
+			nl: {
+				label: 'Nederlands'
+			},
+			pl: {
+				label: 'Polski'
+			},
+			pt: {
+				label: 'Porgtugês'
+			},
+			ru: {
+				label: 'русский'
+			},
+			zh: {
+				label: '中文'
+			}
+		}
+	},
+
 	// Used for publishing and more
 	projectName: 'isle-editor',
 	organizationName: 'isle-project',
@@ -126,6 +166,11 @@ const siteConfig = {
 				{
 					href: 'https://discourse.isledocs.com',
 					label: 'Forum'
+				},
+				{
+					type: 'localeDropdown',
+					position: 'right',
+					dropdownItemsAfter: []
 				}
 			]
 		},
