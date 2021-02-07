@@ -4,14 +4,42 @@ title: Accordion
 sidebar_label: Accordion
 ---
 
+An accordion component controlling vertical sliders.
+
 ## Example
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="firstOpened"
+    values={[
+        { label: 'First item opened', value: 'firstOpened' },
+        { label: 'All items can close', value: 'allClosed' },
+    ]}
+    lazy
+>
+<TabItem value="firstOpened">
+
 ```jsx live
-<Accordion headers={[ 'First Question', 'Second Question']}>
+<Accordion headers={[ 'First Question', 'Second Question' ]} active={0} >
     <FreeTextQuestion />
     <FreeTextQuestion />
 </Accordion>
 ```
+
+</TabItem>
+<TabItem value="allClosed">
+
+```jsx live
+<Accordion headers={[ 'First Question', 'Second Question' ]} canCloseAll >
+    <FreeTextQuestion />
+    <FreeTextQuestion />
+</Accordion>
+```
+
+</TabItem>
+</Tabs>
 
 ## Options
 
