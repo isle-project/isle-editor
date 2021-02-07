@@ -5,7 +5,7 @@
 // MODULES //
 
 const path = require( 'path' );
-const fs = require( 'fs' );
+const fs = require( 'fs-extra' );
 const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
@@ -18,6 +18,19 @@ const objectKeys = require( '@stdlib/utils/keys' );
 const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
 const merge = require( '@stdlib/utils/merge' );
+const COMPONENT_DOCS = {
+	'de': require( './../@isle-project/locales/editor/component-docs/de.json' ),
+	'en': require( './../@isle-project/locales/editor/component-docs/en.json' ),
+	'es': require( './../@isle-project/locales/editor/component-docs/es.json' ),
+	'fr': require( './../@isle-project/locales/editor/component-docs/fr.json' ),
+	'it': require( './../@isle-project/locales/editor/component-docs/it.json' ),
+	'ja': require( './../@isle-project/locales/editor/component-docs/ja.json' ),
+	'nk': require( './../@isle-project/locales/editor/component-docs/nl.json' ),
+	'pl': require( './../@isle-project/locales/editor/component-docs/pl.json' ),
+	'pt': require( './../@isle-project/locales/editor/component-docs/pt.json' ),
+	'ru': require( './../@isle-project/locales/editor/component-docs/ru.json' ),
+	'zh': require( './../@isle-project/locales/editor/component-docs/zh.json' )
+};
 const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
 const PropTypes = require( './prop_types.js' );
 
@@ -28,6 +41,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', '@isle-project', 'components' )
 });
+const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
 const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)|(\/\*\*[\s\S]*?@property[\s\S]*?\*\/)\r?\n(?:const)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
@@ -113,7 +127,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	} catch ( err ) {
 		continue;
 	}
-	let str = `## Options
+	let optionsStr = `## Options
 
 `;
 
@@ -172,8 +186,8 @@ for ( let i = 0; i < files.length; i++ ) {
 			continue;
 		}
 		const defaultStr = generateDefaultString( defaults[ key ] );
-		str += `* __${key}__ | \`${types[ key ] }\`: ${TRANSLATIONS[ description[ key ] ]}. ${defaultStr}`; // eslint-disable-line i18next/no-literal-string
-		str += '\n';
+		optionsStr += `* __${key}__ | \`${types[ key ] }\`: ${description[ key ]}. ${defaultStr}`; // eslint-disable-line i18next/no-literal-string
+		optionsStr += '\n';
 		if ( isFunction( defaults[ key ] ) ) {
 			defaults[ key ] = `function ${defaults[ key ].toString()}`; // eslint-disable-line i18next/no-literal-string
 		}
@@ -188,14 +202,34 @@ for ( let i = 0; i < files.length; i++ ) {
 	try {
 		let md = fs.readFileSync( mdpath ).toString();
 		debug( 'Replacing component description...' );
-		if ( componentDescription ) {
-			const replacement = '\n---\n\n'+componentDescription+'\n\n## Example';
-			md = replace( md, /\n---\n\n([\s\S]+?)## Example/, replacement );
+		console.log( `${tagName}-description` );
+		let replacement = '\n---\n\n'+COMPONENT_DOCS[ 'en' ][ `${tagName}-description` ]+'\n\n';
+		replacement += optionsStr;
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			replacement = replace( replacement, ': '+description[ key ]+'.', ': '+COMPONENT_DOCS[ 'en' ][ description[ key ] ]+'.' );
 		}
+		replacement += '\n\n';
+		replacement += '## Examples';
+		md = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
 		debug( 'Replacing parameter descriptions...' );
-		md = replace( md, /## Options[\s\S]*$/, str );
-
 		fs.writeFileSync( mdpath, md );
+
+		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
+			const lng = LANGUAGE_TARGETS[ j ];
+			const lngMdPath = path.join( './docusaurus/website/i18n/'+lng+'/docusaurus-plugin-content-docs/current', component+'.md' );
+			const componentDescription = COMPONENT_DOCS[ lng ][ `${tagName}-description`];
+			let replacement = '\n---\n\n'+componentDescription+'\n\n';
+			replacement += optionsStr;
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				replacement = replace( replacement, ': '+description[ key ]+'.', ': '+COMPONENT_DOCS[ lng ][ description[ key ] ]+'.' );
+			}
+			replacement += '\n\n';
+			replacement += '## Examples';
+			const lngMd = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
+			fs.outputFile( lngMdPath, lngMd );
+		}
 	} catch ( err ) {
 		debug( `Documentation for ${component} does not exist` );
 	}
