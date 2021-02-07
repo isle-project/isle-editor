@@ -18,5 +18,49 @@
 	"theme.BlogPostPaginator.olderPost": {
 		"message": "Entrada más antigua",
 		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Copiado",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Copiar",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Siguiente",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Anteriormente",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Editar esta página",
+		"description": "The link label to edit the current page"
+	},
+	"theme.NotFound.p1": {
+		"message": "No hemos podido encontrar lo que buscaba.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Por favor, póngase en contacto con el propietario del sitio que le enlazó a la URL original y hágale saber que su enlace está roto.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Página no encontrada",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Editor en vivo",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Resultado",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Ir al contenido principal",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
 	}
 }

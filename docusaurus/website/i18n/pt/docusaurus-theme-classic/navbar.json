@@ -8,7 +8,7 @@
 		"description": "Navbar item with label Docs"
 	},
 	"item.label.Forum": {
-		"message": "Forum",
+		"message": "Fórum",
 		"description": "Navbar item with label Forum"
 	},
 	"item.label.GitHub": {
@@ -16,11 +16,11 @@
 		"description": "Navbar item with label GitHub"
 	},
 	"item.label.Help": {
-		"message": "Help",
+		"message": "Ajuda",
 		"description": "Navbar item with label Help"
 	},
 	"title": {
-		"message": "ISLE Documentation",
+		"message": "Documentação ISLE",
 		"description": "The title in the navbar"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"copyright": {
-		"message": "Copyright © 2021 Die ISLE-Autoren",
+		"message": "Copyright © 2021 De ISLE-auteurs",
 		"description": "The footer copyright"
 	},
 	"link.item.label.Blog": {
@@ -8,11 +8,11 @@
 		"description": "The label of footer link with label=Blog linking to blog"
 	},
 	"link.item.label.Components": {
-		"message": "Komponenten",
+		"message": "Componenten",
 		"description": "The label of footer link with label=Components linking to docs/overview/components"
 	},
 	"link.item.label.Getting Started": {
-		"message": "Erste Schritte",
+		"message": "Aan de slag",
 		"description": "The label of footer link with label=Getting Started linking to docs/overview/intro"
 	},
 	"link.item.label.GitHub": {
@@ -20,7 +20,7 @@
 		"description": "The label of footer link with label=GitHub linking to https://github.com/isle-project"
 	},
 	"link.item.label.Go to the discussion forum": {
-		"message": "Gehen Sie zum Diskussionsforum",
+		"message": "Ga naar het discussieforum",
 		"description": "The label of footer link with label=Go to the discussion forum linking to https://discourse.isledocs.com"
 	},
 	"link.item.label.Server": {
@@ -28,11 +28,11 @@
 		"description": "The label of footer link with label=Server linking to docs/server/installation"
 	},
 	"link.item.label.Submit a bug report or feature request": {
-		"message": "Einreichen eines Fehlerberichts oder einer Funktionsanfrage",
+		"message": "Dien een bugrapport of een functieverzoek in",
 		"description": "The label of footer link with label=Submit a bug report or feature request linking to https://github.com/isle-project/isle-editor/issues"
 	},
 	"link.title.Community": {
-		"message": "Gemeinschaft",
+		"message": "Gemeenschap",
 		"description": "The title of the footer links column with title=Community in the footer"
 	},
 	"link.title.Docs": {
@@ -40,7 +40,7 @@
 		"description": "The title of the footer links column with title=Docs in the footer"
 	},
 	"link.title.More": {
-		"message": "Mehr",
+		"message": "Meer",
 		"description": "The title of the footer links column with title=More in the footer"
 	}
 }

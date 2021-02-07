@@ -1,14 +1,14 @@
 {
 	"sidebar.docs.category.Basic Components": {
-		"message": "Basic Components",
+		"message": "Composantes de base",
 		"description": "The label for category Basic Components in sidebar docs"
 	},
 	"sidebar.docs.category.Components": {
-		"message": "Components",
+		"message": "Composants",
 		"description": "The label for category Components in sidebar docs"
 	},
 	"sidebar.docs.category.Display Components": {
-		"message": "Display Components",
+		"message": "Composants d'affichage",
 		"description": "The label for category Display Components in sidebar docs"
 	},
 	"sidebar.docs.category.Distributions": {
@@ -16,67 +16,67 @@
 		"description": "The label for category Distributions in sidebar docs"
 	},
 	"sidebar.docs.category.General Components": {
-		"message": "General Components",
+		"message": "Composantes générales",
 		"description": "The label for category General Components in sidebar docs"
 	},
 	"sidebar.docs.category.Headings": {
-		"message": "Headings",
+		"message": "Rubriques",
 		"description": "The label for category Headings in sidebar docs"
 	},
 	"sidebar.docs.category.Input Components": {
-		"message": "Input Components",
+		"message": "Composantes d'entrée",
 		"description": "The label for category Input Components in sidebar docs"
 	},
 	"sidebar.docs.category.Learning Components": {
-		"message": "Learning Components",
+		"message": "Composantes de l'apprentissage",
 		"description": "The label for category Learning Components in sidebar docs"
 	},
 	"sidebar.docs.category.Main Components": {
-		"message": "Main Components",
+		"message": "Composantes principales",
 		"description": "The label for category Main Components in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
-		"message": "Online Services",
+		"message": "Services en ligne",
 		"description": "The label for category Online Services in sidebar docs"
 	},
 	"sidebar.docs.category.Overview": {
-		"message": "Overview",
+		"message": "Vue d'ensemble",
 		"description": "The label for category Overview in sidebar docs"
 	},
 	"sidebar.docs.category.Plot Components": {
-		"message": "Plot Components",
+		"message": "Composantes du tracé",
 		"description": "The label for category Plot Components in sidebar docs"
 	},
 	"sidebar.docs.category.Presentation Components": {
-		"message": "Presentation Components",
+		"message": "Composantes de la présentation",
 		"description": "The label for category Presentation Components in sidebar docs"
 	},
 	"sidebar.docs.category.Programmatic": {
-		"message": "Programmatic",
+		"message": "Programmatique",
 		"description": "The label for category Programmatic in sidebar docs"
 	},
 	"sidebar.docs.category.Question Components": {
-		"message": "Question Components",
+		"message": "Composantes de la question",
 		"description": "The label for category Question Components in sidebar docs"
 	},
 	"sidebar.docs.category.R Components": {
-		"message": "R Components",
+		"message": "R Composantes",
 		"description": "The label for category R Components in sidebar docs"
 	},
 	"sidebar.docs.category.Server": {
-		"message": "Server",
+		"message": "Serveur",
 		"description": "The label for category Server in sidebar docs"
 	},
 	"sidebar.docs.category.Survey Components": {
-		"message": "Survey Components",
+		"message": "Composantes de l'enquête",
 		"description": "The label for category Survey Components in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
-		"message": "Tutorials",
+		"message": "Tutoriels",
 		"description": "The label for category Tutorials in sidebar docs"
 	},
 	"version.label": {
-		"message": "Next",
+		"message": "Suivant",
 		"description": "The label for version current"
 	}
 }

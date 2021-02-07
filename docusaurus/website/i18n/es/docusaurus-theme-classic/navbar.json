@@ -18,5 +18,9 @@
 	"item.label.Help": {
 		"message": "Ayuda",
 		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "Documentación de ISLE",
+		"description": "The title in the navbar"
 	}
 }

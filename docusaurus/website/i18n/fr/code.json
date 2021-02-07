@@ -1,66 +1,66 @@
 {
 	"theme.BlogListPaginator.newerEntries": {
-		"message": "Newer Entries",
+		"message": "Entrées plus récentes",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"
 	},
 	"theme.BlogListPaginator.olderEntries": {
-		"message": "Older Entries",
+		"message": "Entrées plus anciennes",
 		"description": "The label used to navigate to the older blog posts page (next page)"
 	},
 	"theme.BlogPostItem.readMore": {
-		"message": "Read More",
+		"message": "En savoir plus",
 		"description": "The label used in blog post item excerps to link to full blog posts"
 	},
 	"theme.BlogPostPaginator.newerPost": {
-		"message": "Newer Post",
+		"message": "Poste plus récente",
 		"description": "The blog post button label to navigate to the newer/previous post"
 	},
 	"theme.BlogPostPaginator.olderPost": {
-		"message": "Older Post",
+		"message": "Ancien poste",
 		"description": "The blog post button label to navigate to the older/next post"
 	},
 	"theme.CodeBlock.copied": {
-		"message": "Copied",
+		"message": "Copié",
 		"description": "The copied button label on code blocks"
 	},
 	"theme.CodeBlock.copy": {
-		"message": "Copy",
+		"message": "Copie",
 		"description": "The copy button label on code blocks"
 	},
 	"theme.DocPaginator.next": {
-		"message": "Next",
+		"message": "Suivant",
 		"description": "The label used to navigate to the next doc"
 	},
 	"theme.DocPaginator.previous": {
-		"message": "Previous",
+		"message": "Précédent",
 		"description": "The label used to navigate to the previous doc"
 	},
 	"theme.EditThisPage.editThisPage": {
-		"message": "Edit this page",
+		"message": "Modifier cette page",
 		"description": "The link label to edit the current page"
 	},
 	"theme.NotFound.p1": {
-		"message": "We could not find what you were looking for.",
+		"message": "Nous n'avons pas pu trouver ce que vous cherchiez.",
 		"description": "The first paragraph of the 404 page"
 	},
 	"theme.NotFound.p2": {
-		"message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
+		"message": "Veuillez contacter le propriétaire du site qui vous a lié à l'URL d'origine et lui faire savoir que son lien est rompu.",
 		"description": "The 2nd paragraph of the 404 page"
 	},
 	"theme.NotFound.title": {
-		"message": "Page Not Found",
+		"message": "Page non trouvée",
 		"description": "The title of the 404 page"
 	},
 	"theme.Playground.liveEditor": {
-		"message": "Live Editor",
+		"message": "Éditeur en direct",
 		"description": "The live editor label of the live codeblocks"
 	},
 	"theme.Playground.result": {
-		"message": "Result",
+		"message": "Résultat",
 		"description": "The result label of the live codeblocks"
 	},
 	"theme.SkipToContent.skipToMainContent": {
-		"message": "Skip to main content",
+		"message": "Passer au contenu principal",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
 	}
 }

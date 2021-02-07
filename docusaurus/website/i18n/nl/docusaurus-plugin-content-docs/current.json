@@ -1,66 +1,66 @@
 {
 	"sidebar.docs.category.Basic Components": {
-		"message": "Basic Components",
+		"message": "Basiscomponenten",
 		"description": "The label for category Basic Components in sidebar docs"
 	},
 	"sidebar.docs.category.Components": {
-		"message": "Components",
+		"message": "Componenten",
 		"description": "The label for category Components in sidebar docs"
 	},
 	"sidebar.docs.category.Display Components": {
-		"message": "Display Components",
+		"message": "Weergave Onderdelen",
 		"description": "The label for category Display Components in sidebar docs"
 	},
 	"sidebar.docs.category.Distributions": {
-		"message": "Distributions",
+		"message": "Verdelingen",
 		"description": "The label for category Distributions in sidebar docs"
 	},
 	"sidebar.docs.category.General Components": {
-		"message": "General Components",
+		"message": "Algemene onderdelen",
 		"description": "The label for category General Components in sidebar docs"
 	},
 	"sidebar.docs.category.Headings": {
-		"message": "Headings",
+		"message": "Rubrieken",
 		"description": "The label for category Headings in sidebar docs"
 	},
 	"sidebar.docs.category.Input Components": {
-		"message": "Input Components",
+		"message": "Invoercomponenten",
 		"description": "The label for category Input Components in sidebar docs"
 	},
 	"sidebar.docs.category.Learning Components": {
-		"message": "Learning Components",
+		"message": "Leercomponenten",
 		"description": "The label for category Learning Components in sidebar docs"
 	},
 	"sidebar.docs.category.Main Components": {
-		"message": "Main Components",
+		"message": "Belangrijkste onderdelen",
 		"description": "The label for category Main Components in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
-		"message": "Online Services",
+		"message": "Online diensten",
 		"description": "The label for category Online Services in sidebar docs"
 	},
 	"sidebar.docs.category.Overview": {
-		"message": "Overview",
+		"message": "Overzicht",
 		"description": "The label for category Overview in sidebar docs"
 	},
 	"sidebar.docs.category.Plot Components": {
-		"message": "Plot Components",
+		"message": "Perceel Componenten",
 		"description": "The label for category Plot Components in sidebar docs"
 	},
 	"sidebar.docs.category.Presentation Components": {
-		"message": "Presentation Components",
+		"message": "Presentatie Onderdelen",
 		"description": "The label for category Presentation Components in sidebar docs"
 	},
 	"sidebar.docs.category.Programmatic": {
-		"message": "Programmatic",
+		"message": "Programmatisch",
 		"description": "The label for category Programmatic in sidebar docs"
 	},
 	"sidebar.docs.category.Question Components": {
-		"message": "Question Components",
+		"message": "Vraag Componenten",
 		"description": "The label for category Question Components in sidebar docs"
 	},
 	"sidebar.docs.category.R Components": {
-		"message": "R Components",
+		"message": "R Onderdelen",
 		"description": "The label for category R Components in sidebar docs"
 	},
 	"sidebar.docs.category.Server": {
@@ -68,7 +68,7 @@
 		"description": "The label for category Server in sidebar docs"
 	},
 	"sidebar.docs.category.Survey Components": {
-		"message": "Survey Components",
+		"message": "Enquête-onderdelen",
 		"description": "The label for category Survey Components in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
@@ -76,7 +76,7 @@
 		"description": "The label for category Tutorials in sidebar docs"
 	},
 	"version.label": {
-		"message": "Next",
+		"message": "Volgende",
 		"description": "The label for version current"
 	}
 }

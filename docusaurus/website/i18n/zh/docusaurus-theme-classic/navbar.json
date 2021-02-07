@@ -1,14 +1,14 @@
 {
 	"item.label.Blog": {
-		"message": "Blog",
+		"message": "博客",
 		"description": "Navbar item with label Blog"
 	},
 	"item.label.Docs": {
-		"message": "Docs",
+		"message": "文件",
 		"description": "Navbar item with label Docs"
 	},
 	"item.label.Forum": {
-		"message": "Forum",
+		"message": "论坛",
 		"description": "Navbar item with label Forum"
 	},
 	"item.label.GitHub": {
@@ -16,11 +16,11 @@
 		"description": "Navbar item with label GitHub"
 	},
 	"item.label.Help": {
-		"message": "Help",
+		"message": "帮忙",
 		"description": "Navbar item with label Help"
 	},
 	"title": {
-		"message": "ISLE Documentation",
+		"message": "ISLE文件",
 		"description": "The title in the navbar"
 	}
 }

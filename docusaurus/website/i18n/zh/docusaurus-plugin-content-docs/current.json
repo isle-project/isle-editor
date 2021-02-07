@@ -1,82 +1,82 @@
 {
 	"sidebar.docs.category.Basic Components": {
-		"message": "Basic Components",
+		"message": "基本组件",
 		"description": "The label for category Basic Components in sidebar docs"
 	},
 	"sidebar.docs.category.Components": {
-		"message": "Components",
+		"message": "组成部分",
 		"description": "The label for category Components in sidebar docs"
 	},
 	"sidebar.docs.category.Display Components": {
-		"message": "Display Components",
+		"message": "显示器件",
 		"description": "The label for category Display Components in sidebar docs"
 	},
 	"sidebar.docs.category.Distributions": {
-		"message": "Distributions",
+		"message": "分布",
 		"description": "The label for category Distributions in sidebar docs"
 	},
 	"sidebar.docs.category.General Components": {
-		"message": "General Components",
+		"message": "通用组件",
 		"description": "The label for category General Components in sidebar docs"
 	},
 	"sidebar.docs.category.Headings": {
-		"message": "Headings",
+		"message": "标题",
 		"description": "The label for category Headings in sidebar docs"
 	},
 	"sidebar.docs.category.Input Components": {
-		"message": "Input Components",
+		"message": "输入组件",
 		"description": "The label for category Input Components in sidebar docs"
 	},
 	"sidebar.docs.category.Learning Components": {
-		"message": "Learning Components",
+		"message": "学习内容",
 		"description": "The label for category Learning Components in sidebar docs"
 	},
 	"sidebar.docs.category.Main Components": {
-		"message": "Main Components",
+		"message": "主要成分",
 		"description": "The label for category Main Components in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
-		"message": "Online Services",
+		"message": "在线服务",
 		"description": "The label for category Online Services in sidebar docs"
 	},
 	"sidebar.docs.category.Overview": {
-		"message": "Overview",
+		"message": "概述",
 		"description": "The label for category Overview in sidebar docs"
 	},
 	"sidebar.docs.category.Plot Components": {
-		"message": "Plot Components",
+		"message": "剧情组件",
 		"description": "The label for category Plot Components in sidebar docs"
 	},
 	"sidebar.docs.category.Presentation Components": {
-		"message": "Presentation Components",
+		"message": "演示组件",
 		"description": "The label for category Presentation Components in sidebar docs"
 	},
 	"sidebar.docs.category.Programmatic": {
-		"message": "Programmatic",
+		"message": "方案型",
 		"description": "The label for category Programmatic in sidebar docs"
 	},
 	"sidebar.docs.category.Question Components": {
-		"message": "Question Components",
+		"message": "问题内容",
 		"description": "The label for category Question Components in sidebar docs"
 	},
 	"sidebar.docs.category.R Components": {
-		"message": "R Components",
+		"message": "R组件",
 		"description": "The label for category R Components in sidebar docs"
 	},
 	"sidebar.docs.category.Server": {
-		"message": "Server",
+		"message": "服务器",
 		"description": "The label for category Server in sidebar docs"
 	},
 	"sidebar.docs.category.Survey Components": {
-		"message": "Survey Components",
+		"message": "调查内容",
 		"description": "The label for category Survey Components in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
-		"message": "Tutorials",
+		"message": "教程",
 		"description": "The label for category Tutorials in sidebar docs"
 	},
 	"version.label": {
-		"message": "Next",
+		"message": "下一个",
 		"description": "The label for version current"
 	}
 }

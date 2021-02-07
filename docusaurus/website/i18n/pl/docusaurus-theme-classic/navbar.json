@@ -4,7 +4,7 @@
 		"description": "Navbar item with label Blog"
 	},
 	"item.label.Docs": {
-		"message": "Docs",
+		"message": "Dokumenty",
 		"description": "Navbar item with label Docs"
 	},
 	"item.label.Forum": {
@@ -16,11 +16,11 @@
 		"description": "Navbar item with label GitHub"
 	},
 	"item.label.Help": {
-		"message": "Help",
+		"message": "Pomoc",
 		"description": "Navbar item with label Help"
 	},
 	"title": {
-		"message": "ISLE Documentation",
+		"message": "Dokumentacja ISLE",
 		"description": "The title in the navbar"
 	}
 }

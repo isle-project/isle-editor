@@ -1,46 +1,46 @@
 {
 	"copyright": {
-		"message": "Copyright © 2021 Die ISLE-Autoren",
+		"message": "Copyright © 2021 The ISLE Authors",
 		"description": "The footer copyright"
 	},
 	"link.item.label.Blog": {
-		"message": "Blog",
+		"message": "ブログ",
 		"description": "The label of footer link with label=Blog linking to blog"
 	},
 	"link.item.label.Components": {
-		"message": "Komponenten",
+		"message": "構成要素",
 		"description": "The label of footer link with label=Components linking to docs/overview/components"
 	},
 	"link.item.label.Getting Started": {
-		"message": "Erste Schritte",
+		"message": "はじめに",
 		"description": "The label of footer link with label=Getting Started linking to docs/overview/intro"
 	},
 	"link.item.label.GitHub": {
-		"message": "GitHub",
+		"message": "ギットハブ",
 		"description": "The label of footer link with label=GitHub linking to https://github.com/isle-project"
 	},
 	"link.item.label.Go to the discussion forum": {
-		"message": "Gehen Sie zum Diskussionsforum",
+		"message": "ディスカッションフォーラムへ",
 		"description": "The label of footer link with label=Go to the discussion forum linking to https://discourse.isledocs.com"
 	},
 	"link.item.label.Server": {
-		"message": "Server",
+		"message": "サーバー",
 		"description": "The label of footer link with label=Server linking to docs/server/installation"
 	},
 	"link.item.label.Submit a bug report or feature request": {
-		"message": "Einreichen eines Fehlerberichts oder einer Funktionsanfrage",
+		"message": "バグレポートや機能リクエストを提出する",
 		"description": "The label of footer link with label=Submit a bug report or feature request linking to https://github.com/isle-project/isle-editor/issues"
 	},
 	"link.title.Community": {
-		"message": "Gemeinschaft",
+		"message": "コミュニティ",
 		"description": "The title of the footer links column with title=Community in the footer"
 	},
 	"link.title.Docs": {
-		"message": "Docs",
+		"message": "ドキュメント",
 		"description": "The title of the footer links column with title=Docs in the footer"
 	},
 	"link.title.More": {
-		"message": "Mehr",
+		"message": "もっと見る",
 		"description": "The title of the footer links column with title=More in the footer"
 	}
 }
