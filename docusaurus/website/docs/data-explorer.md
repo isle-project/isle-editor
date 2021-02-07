@@ -6,7 +6,7 @@ sidebar_label: Data Explorer
 
 This component is used by students to briefly summarize data as it is presented and perform various statistical tests.
 
-## Example
+## Examples
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

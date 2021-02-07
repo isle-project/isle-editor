@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnSampleCLT />

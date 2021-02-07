@@ -6,7 +6,7 @@ sidebar_label: Expire
 
 The expire component will cause all of its children to become invisible after a specified amount of time.
 
-## Example
+## Examples
 
 ```jsx live
 <Expire>

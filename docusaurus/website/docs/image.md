@@ -6,7 +6,7 @@ sidebar_label: Image
 
 Component to display an image.
 
-## Example
+## Examples
 
 ```jsx live
 <Image 

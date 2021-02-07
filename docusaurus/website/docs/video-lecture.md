@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 A video lecture component that displays videos interspersed with interactive elements.
 
-## Example
+## Examples
 
 ```jsx live
 <VideoLecture steps={[

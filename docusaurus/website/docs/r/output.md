@@ -6,7 +6,7 @@ sidebar_label: R Output
 
 Component for rendering R output inside an ISLE lesson.
 
-## Example
+## Examples
 
 ```jsx live
 <ROutput code="runif(10)" />

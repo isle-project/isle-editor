@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 Clock component displaying the current time.
 
-## Example
+## Examples
 
 ```jsx live
 <Clock />

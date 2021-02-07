@@ -6,7 +6,7 @@ sidebar_label: Runner
 
 The runner component will execute a supplied function either once or at a given interval.
 
-## Example
+## Examples
 
 ```jsx live
 <Runner

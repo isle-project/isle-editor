@@ -6,7 +6,7 @@ sidebar_label: Negative Binomial Distribution
 
 A learning component for calculating probabilities of a negative binomial distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnNegativeBinomialDistribution />

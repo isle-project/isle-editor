@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Proportions
 
 A learning component on hypothesis tests for a population proportion.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnProportionTest />

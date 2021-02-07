@@ -6,7 +6,7 @@ sidebar_label: Continuous CLT
 
 A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnContinuousCLT />

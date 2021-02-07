@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Card component.
 
-## Example
+## Examples
 
 ```jsx live
 <Panel>

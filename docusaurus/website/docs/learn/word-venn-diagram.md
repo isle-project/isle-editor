@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 A venn diagram visualizing co-occurrence of words in documents of a supplied term-document matrix.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnWordVennDiagram />

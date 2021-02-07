@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 A d3-based density plot component.
 
-## Example
+## Examples
 
 ```jsx live
 <DensityPlot

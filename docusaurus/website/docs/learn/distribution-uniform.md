@@ -6,7 +6,7 @@ sidebar_label: Continuous Uniform Distribution
 
 A learning component for calculating probabilities of a uniform distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnUniformDistribution />

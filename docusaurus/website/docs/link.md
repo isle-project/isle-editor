@@ -6,7 +6,7 @@ sidebar_label: Link
 
 A component for displaying a link.
 
-## Example
+## Examples
 
 ```jsx live
 <Link href="https://wikipedia.org">Wikipedia</Link>

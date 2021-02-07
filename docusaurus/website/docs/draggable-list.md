@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 A list of draggable elements that can be re-ordered by the students.
 
-## Example
+## Examples
 
 ```jsx live
 <DraggableList

@@ -6,7 +6,7 @@ sidebar_label: Revealer
 
 An ISLE component that instructors may use to selectively reveal or hide children content to all students during class.
 
-## Example
+## Examples
 
 ```jsx live
 <Revealer

@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 A word cloud component built on top of [d3-cloud](https://github.com/jasondavies/d3-cloud).
 
-## Example
+## Examples
 
 ```jsx live
 <WordCloud data={[

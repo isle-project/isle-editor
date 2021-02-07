@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 An accordion component controlling vertical sliders.
 
-## Example
+## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

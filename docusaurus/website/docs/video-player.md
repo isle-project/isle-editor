@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 A component for playing media files and content from YouTube, SoundCloud, and Vimeo.
 
-## Example
+## Examples
 
 ```jsx live
 <VideoPlayer

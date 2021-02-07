@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 A dashboard for combining the handling of multiple child input fields.
 
-## Example
+## Examples
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

@@ -6,7 +6,7 @@ sidebar_label: Beta Distribution
 
 A learning component for calculating probabilities of a beta distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnBetaDistribution />

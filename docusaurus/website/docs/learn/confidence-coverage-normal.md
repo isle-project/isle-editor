@@ -6,7 +6,7 @@ sidebar_label: Confidence Interval Coverage Normal
 
 A learning component illustrating coverage of confidence intervals for the mean of a normal distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnConfidenceCoverageNormal />

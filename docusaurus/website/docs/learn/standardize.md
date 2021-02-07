@@ -6,7 +6,7 @@ sidebar_label: Standardization
 
 Learning component explaining the process of standardizing data.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnStandardize />

@@ -6,7 +6,7 @@ sidebar_label: R Table
 
 Component for rendering a R data frame or matrix in a tabular display.
 
-## Example
+## Examples
 
 ```jsx live
 <RTable

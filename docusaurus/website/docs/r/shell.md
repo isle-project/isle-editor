@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/).
 
-## Example
+## Examples
 
 ```jsx live
 <RShell

@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 An ISLE component that allows two render two-sides.
 
-## Example
+## Examples
 
 ```jsx live
 <FlippableCard

@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Component placing a beacon in the lesson, either independently or attached to a `target`. Upon hovering or clicking on the beacon, a tooltip is displayed.
 
-## Example
+## Examples
 
 ```jsx live
 <BeaconTooltip

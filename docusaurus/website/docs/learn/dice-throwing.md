@@ -6,7 +6,7 @@ sidebar_label: Dice Throwing
 
 A learning component illustrating the law of large numbers using dice throwing.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnDiceThrowing />

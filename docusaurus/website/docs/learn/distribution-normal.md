@@ -6,7 +6,7 @@ sidebar_label: Normal Distribution
 
 A learning component for calculating probabilities of a normal distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnNormalDistribution />

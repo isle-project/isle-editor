@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 A survey component in which the instructor may collect multiple-choice survey data from students in real-time.
 
-## Example
+## Examples
 
 ```jsx live
 <MultipleChoiceSurvey

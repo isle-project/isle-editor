@@ -6,7 +6,7 @@ sidebar_label: div
 
 Generic container element.
 
-## Example
+## Examples
 
 ```jsx live
 <div>

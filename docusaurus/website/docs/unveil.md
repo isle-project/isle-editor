@@ -6,7 +6,7 @@ sidebar_label: Unveil
 
 The appear component will cause all of its children to become visible after a specified amount of time.
 
-## Example
+## Examples
 
 ```jsx live
 <Unveil duration={5000} >

@@ -6,7 +6,7 @@ sidebar_label: Free Text Survey
 
 An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time.
 
-## Example
+## Examples
 
 ```jsx live
 <FreeTextSurvey 

@@ -6,7 +6,7 @@ sidebar_label: hr
 
 Horizontal rule defining a thematic break in the document.
 
-## Example
+## Examples
 
 ```jsx live
 <hr />

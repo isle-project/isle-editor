@@ -6,7 +6,7 @@ sidebar_label: Causality Diagram
 
 A learning component illustrating the impact of a confounding variable when assessing a causal relationship between two variables and of randomization.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnCausalityDiagram x="X" y="Y" z="Z" />

@@ -6,7 +6,7 @@ sidebar_label: MultiCard
 
 An ISLE component that allows you to create and control multiple flippable cards (e.g. in a game of Memory).
 
-## Example
+## Examples
 
 ```jsx live
 <MultiCards

@@ -6,7 +6,7 @@ sidebar_label: Recorder
 
 An ISLE component for recording audio, screen and video.
 
-## Example
+## Examples
 
 ```jsx live
 <Recorder 

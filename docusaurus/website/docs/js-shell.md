@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc.
 
-## Example
+## Examples
 
 ```jsx live
 <JSShell id = "jseditor" 

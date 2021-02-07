@@ -6,7 +6,7 @@ sidebar_label: Data Table
 
 A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/).
 
-## Example
+## Examples
 
 ```jsx live
 <DataTable

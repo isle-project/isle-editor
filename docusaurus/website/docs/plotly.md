@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Plotly visualization.
 
-## Example
+## Examples
 
 ```jsx live
 <Plotly

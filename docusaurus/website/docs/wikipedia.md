@@ -6,7 +6,7 @@ sidebar_label: Wikipedia
 
 The **Wikipedia** component scans the **Wikipedia** and returns an entry if anything valid is found under the entered search term.
 
-## Example
+## Examples
 
 ```jsx live
 <Wikipedia

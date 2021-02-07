@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 A text editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
 
-## Example
+## Examples
 
 ```jsx live
 <TextEditor />

@@ -6,7 +6,7 @@ sidebar_label: Student's t Distribution
 
 A learning component for calculating probabilities of a Student's t distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnTDistribution />

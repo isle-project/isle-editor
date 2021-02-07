@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 An ISLE component that allows to display its children only to reserved audiences.
 
-## Example
+## Examples
 
 ```jsx live
 <Gate 

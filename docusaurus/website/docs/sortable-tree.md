@@ -6,7 +6,7 @@ sidebar_label: Sortable Tree
 
 A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.
 
-## Example
+## Examples
 
 ```jsx live
 <SortableTree 

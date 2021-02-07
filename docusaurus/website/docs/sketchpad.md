@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 A drawing sketchpad for note taking on lecture slides or empty pages.
 
-## Example
+## Examples
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

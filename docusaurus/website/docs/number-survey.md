@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 A survey component in which the instructor may collect numeric survey data from students in real-time.
 
-## Example
+## Examples
 
 ```jsx live
 <NumberSurvey

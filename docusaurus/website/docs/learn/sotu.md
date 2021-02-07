@@ -6,7 +6,7 @@ sidebar_label: State of the Union Speeches
 
 Learning component to explore the State of the Union speeches of US presidents.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnSOTU />

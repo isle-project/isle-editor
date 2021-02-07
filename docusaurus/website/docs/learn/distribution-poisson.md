@@ -6,7 +6,7 @@ sidebar_label: Poisson Distribution
 
 A learning component for calculating probabilities of a Poisson distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnPoissonDistribution />

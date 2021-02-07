@@ -6,7 +6,7 @@ sidebar_label: Chi-squared Distribution
 
 A learning component for calculating probabilities of a chi-squared distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnChisquareDistribution />

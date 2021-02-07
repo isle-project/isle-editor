@@ -6,7 +6,7 @@ sidebar_label: Confidence Interval Coverage Binomial
 
 A learning component illustrating coverage of confidence intervals for the mean of a binomial distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnConfidenceCoverageBinomial />

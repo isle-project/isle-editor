@@ -6,7 +6,7 @@ sidebar_label: IFrame
 
 An iFrame component.
 
-## Example
+## Examples
 
 ```jsx live
 <IFrame src="https://wikipedia.org" height="700px" />

@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 A component displaying an image in the style of a polaroid.
 
-## Example
+## Examples
 
 ```jsx live
 <Polaroid image="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beethoven.jpg/747px-Beethoven.jpg" />

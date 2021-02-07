@@ -6,7 +6,7 @@ sidebar_label: Typerwriter
 
 An ISLE component that allows you to create a typewriter effect.
 
-## Example
+## Examples
 
 ```jsx live
 <Typewriter text="Lorem ipsum" />

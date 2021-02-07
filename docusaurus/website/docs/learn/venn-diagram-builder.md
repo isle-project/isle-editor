@@ -6,7 +6,7 @@ sidebar_label: Venn Diagram Builder
 
 A Venn diagram builder.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnVennDiagramBuilder />

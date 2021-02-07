@@ -6,7 +6,7 @@ sidebar_label: Likert Scale
 
 A component showing a question and a five-point scale for students to answer.
 
-## Example
+## Examples
 
 ```jsx live
 <LikertScale 

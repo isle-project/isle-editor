@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Text component, which allows rendering of raw text as Markdown and enables voice control.
 
-## Example
+## Examples
 
 ```jsx live
 <Text>*Markdown* formatted text comes here...</Text>

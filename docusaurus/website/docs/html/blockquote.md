@@ -6,7 +6,7 @@ sidebar_label: blockquote
 
 Component displaying an extended quotation.
 
-## Example
+## Examples
 
 ```jsx live
 <blockquote>

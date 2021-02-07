@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 An ISLE pagination component that allows the user to step through a sequence of pages.
 
-## Example
+## Examples
 
 ```jsx live
 <Pages title="Pages">

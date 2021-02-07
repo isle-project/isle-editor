@@ -6,7 +6,7 @@ sidebar_label: F Distribution
 
 A learning component for calculating probabilities of an F distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnFDistribution />

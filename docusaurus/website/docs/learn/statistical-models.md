@@ -6,7 +6,7 @@ sidebar_label: Statistical Models
 
 Component to browse descriptions of various statistical models.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnStatisticalModels />

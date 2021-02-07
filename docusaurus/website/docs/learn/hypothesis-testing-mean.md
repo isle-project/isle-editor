@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 A learning component on hypothesis tests for a population mean.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnMeanTest />

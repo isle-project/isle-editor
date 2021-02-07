@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
 
-## Example
+## Examples
 
 ```jsx live
 <LessonSubmit />

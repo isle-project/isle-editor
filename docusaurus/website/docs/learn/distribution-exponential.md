@@ -6,7 +6,7 @@ sidebar_label: Exponential Distribution
 
 A learning component for calculating probabilities of a exponential distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnExponentialDistribution />

@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 A dynamic background component that cycles through a list of texts  at a specified interval.
 
-## Example
+## Examples
 
 ```jsx live
 <ScrollingText

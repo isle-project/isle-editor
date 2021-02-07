@@ -6,7 +6,7 @@ sidebar_label: Discrete CLT
 
 A learning component illustrating the Central Limit Theorem (CLT) for a canonical discrete distribution, the binomial distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnDiscreteCLT />

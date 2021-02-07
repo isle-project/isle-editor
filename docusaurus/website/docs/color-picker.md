@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker.
 
-## Example
+## Examples
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

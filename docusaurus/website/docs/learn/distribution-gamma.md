@@ -6,7 +6,7 @@ sidebar_label: Gamma Distribution
 
 A learning component for calculating probabilities of a gamma distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnGammaDistribution />

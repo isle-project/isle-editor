@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 A component which displays its children in a slideshow or carousel.
 
-## Example
+## Examples
 
 ```jsx live
 <Slider title="Questions to explore:" >

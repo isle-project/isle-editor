@@ -6,7 +6,7 @@ sidebar_label: R Help
 
 Make words pull up R documentation in a modal window when clicked.
 
-## Example
+## Examples
 
 ```jsx live
 <span><RHelp library="graphics">hist</RHelp> is used to create a histogram.</span>

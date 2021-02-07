@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Buttons to collect user feedback.
 
-## Example
+## Examples
 
 ```jsx live
 <Panel>

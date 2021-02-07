@@ -6,7 +6,7 @@ sidebar_label: NetworkPlot
 
 A d3-based network plot.
 
-## Example
+## Examples
 
 ```jsx live
 <NetworkPlot

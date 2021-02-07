@@ -6,7 +6,7 @@ sidebar_label: Discrete Distribution
 
 A learning component for visualizing any discrete distribution and evaluating its CDF.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnDiscreteDistribution />

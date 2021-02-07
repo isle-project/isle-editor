@@ -6,7 +6,7 @@ sidebar_label: Weather
 
 A component for displaying the current weather at a designated location.
 
-## Example
+## Examples
 
 ```jsx live
 <Weather

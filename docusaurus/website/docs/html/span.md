@@ -6,7 +6,7 @@ sidebar_label: span
 
 Generic inline container element.
 
-## Example
+## Examples
 
 ```jsx live
 <span>inline text wrapped by span tag</span>

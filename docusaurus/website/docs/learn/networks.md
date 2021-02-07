@@ -6,7 +6,7 @@ sidebar_label: Networks
 
 Generate networks from a Erdős-Rényi model.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnNetworks />

@@ -6,7 +6,7 @@ sidebar_label: Voice Input
 
 A voice input component.
 
-## Example
+## Examples
 
 ```jsx live
 <VoiceInput

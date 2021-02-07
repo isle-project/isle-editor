@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 An interactive game testing student's ability in detecting the median and mean of a given distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnMeanVSMedian />

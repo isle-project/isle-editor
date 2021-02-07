@@ -6,7 +6,7 @@ sidebar_label: Reaction
 
 Shows different components depending on user actions.
 
-## Example
+## Examples
 
 ```jsx live
 <div>

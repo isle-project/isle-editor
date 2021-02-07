@@ -6,7 +6,7 @@ sidebar_label: Geometric Distribution
 
 A learning component for calculating probabilities of a geometric distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnGeometricDistribution />

@@ -6,7 +6,7 @@ sidebar_label: pre
 
 Element displaying preformatted text.
 
-## Example
+## Examples
 
 ```jsx live
 <pre>

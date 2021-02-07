@@ -6,7 +6,7 @@ sidebar_label: Binomial Distribution
 
 A learning component for calculating probabilities of a binomial distribution.
 
-## Example
+## Examples
 
 ```jsx live
 <LearnBinomialDistribution />

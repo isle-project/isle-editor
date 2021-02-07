@@ -6,7 +6,7 @@ sidebar_label: QR Code
 
 QR Code.
 
-## Example
+## Examples
 
 ```jsx live
 <QRCode />
