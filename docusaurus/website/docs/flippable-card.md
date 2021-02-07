@@ -26,34 +26,72 @@ An ISLE component that allows two render two-sides.
 
 ## Examples
 
-```jsx live
-<FlippableCard
-    button="Click me!"
-    perspective={1400}
-    containerStyle={{
-        width: "70%",
-        height: 500,
-        marginBottom: 50
-    }}
-    frontStyle={{
-        textAlign: 'center',
-        fontSize: '30px',
-        color: 'orange',
-        textDecoration: 'overline',
-    }}
-    flipSpeedBackToFront={1.2}
-    flipSpeedFrontToBack={0.9}
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With CSS', value: 'withCSS' },
+        { label: 'Slow Motion', value: 'slowMo' }
+    ]}
+    lazy
 >
+
+<TabItem value="minimal">
+
+```jsx live
+<FlippableCard containerStyle={{float: 'none'}} size={200}>
     <div>
-        <img src="https://www.catster.com/wp-content/uploads/2018/07/Savannah-cat-long-body-shot.jpg" />
-        <br/>
+        <img src="https://bit.ly/2YU5EbU" />
     </div>
     <div>
-        <FreeTextQuestion
-            question="Backside"
-            solution="Enter solution"
-        />
+       <img src="https://bit.ly/3aGv9mp" />
     </div>
 </FlippableCard>
-``` 
+```
 
+</TabItem>
+
+<TabItem value="withCSS">
+
+```jsx live
+<FlippableCard 
+  containerStyle={{float: 'none'}} 
+  frontStyle={{fontSize: 50, textAlign: 'center'}} 
+  backStyle={{fontSize: 50, textAlign: 'center', background: 'purple', color: 'white'}} 
+  >
+    <div>
+      FRONT
+    </div>
+    <div>
+      BACK
+    </div>
+</FlippableCard>
+```
+
+</TabItem>
+
+<TabItem value="slowMo">
+
+```jsx live
+<FlippableCard 
+  flipSpeedBackToFront={7} 
+  flipSpeedFrontToBack={7}   
+  containerStyle={{float: 'none'}} 
+  frontStyle={{fontSize: 50, textAlign: 'center'}} 
+  backStyle={{fontSize: 50, textAlign: 'center', background: 'purple', color: 'white'}} 
+  >
+    <div>
+      FRONT
+    </div>
+    <div>
+      BACK
+    </div>
+</FlippableCard>
+```
+
+</TabItem>
+
+</Tabs>
