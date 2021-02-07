@@ -9,8 +9,9 @@
 
 // MODULES //
 
-import * as React from 'react';
+import React, { useState } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 import './load_datasets.js';
@@ -27,6 +28,7 @@ function preventPropagation( event ) {
 // MAIN //
 
 function Playground({ children, theme, transformCode, ...props }) {
+	const [ copied, setCopied ] = useState( false );
 	return (
 		<LiveProvider
 			code={children.replace(/\n$/, '')}
@@ -39,8 +41,20 @@ function Playground({ children, theme, transformCode, ...props }) {
 				className={clsx(
 					styles.playgroundHeader,
 					styles.playgroundEditorHeader,
-				)}>
+				)}
+			>
 				Live Editor
+				<CopyToClipboard text={children} >
+					<button
+						type="button"
+						className={clsx(styles.btnCopy)}
+						onClick={() => {
+							setCopied( true );
+						}}
+					>
+						{ copied ? 'Copied' : 'Copy' }
+					</button>
+				</CopyToClipboard>
 			</div>
 			<LiveEditor
 				className={styles.playgroundEditor}

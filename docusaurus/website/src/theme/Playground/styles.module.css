@@ -34,3 +34,18 @@
 	padding: 1rem;
 	transform: translateZ(0);
 }
+
+.btnCopy {
+	float: right;
+	z-index: 2;
+	cursor: pointer;
+	border: 1px solid transparent;
+	padding: 0;
+	color: white;
+	background-color: transparent;
+	transition: all 0.25s ease-out;
+}
+
+.btnCopy:hover {
+	color: orange;
+}
