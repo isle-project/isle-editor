@@ -18,7 +18,54 @@ A component displaying an image in the style of a polaroid.
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Pin & Draggable', value: 'pinnedAndDraggable' },
+        { label: 'Custom Width', value: 'customWidth' },
+        { label: 'Handling Clicks', value: 'handlingClicks' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
-<Polaroid image="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beethoven.jpg/747px-Beethoven.jpg" />
+<Polaroid image="https://bit.ly/2MGl7K0" />
 ```
 
+</TabItem>
+
+<TabItem value="pinnedAndDraggable">
+
+```jsx live
+<Polaroid showPin draggable image="https://bit.ly/2MGl7K0" />
+```
+
+</TabItem>
+
+<TabItem value="customWidth">
+
+```jsx live
+<Polaroid width={200}
+ image="https://bit.ly/2MGl7K0" />
+```
+
+</TabItem>
+
+<TabItem value="handlingClicks">
+
+```jsx live
+<Polaroid image="https://bit.ly/2MGl7K0" 
+ onClick={() => {
+     alert( 'The polaroid has been clicked...' );
+ }} />
+```
+
+</TabItem>
+
+</Tabs>
