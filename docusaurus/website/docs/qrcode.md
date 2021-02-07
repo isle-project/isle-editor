@@ -6,12 +6,6 @@ sidebar_label: QR Code
 
 QR Code.
 
-## Examples
-
-```jsx live
-<QRCode />
-```
-
 ## Options
 
 * __text__ | `string`: text to encode in QR code (defaults to lesson URL if not set). Default: `none`.
@@ -21,3 +15,11 @@ QR Code.
 * __showText__ | `boolean`: boolean determining whether to show the text encoded in the QR code. Default: `false`.
 * __center__ | `boolean`: boolean controlling whether to center the QR code. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<QRCode />
+```
+

@@ -6,6 +6,12 @@ sidebar_label: Revealer
 
 An ISLE component that instructors may use to selectively reveal or hide children content to all students during class.
 
+## Options
+
+* __message__ | `(string|node)`: message to be displayed when content is hidden. Default: `none`.
+* __show__ | `boolean`: controls whether to initially display child elements. Default: `false`.
+
+
 ## Examples
 
 ```jsx live
@@ -18,7 +24,3 @@ An ISLE component that instructors may use to selectively reveal or hide childre
 </Revealer>
 ``` 
 
-## Options
-
-* __message__ | `(string|node)`: message to be displayed when content is hidden. Default: `none`.
-* __show__ | `boolean`: controls whether to initially display child elements. Default: `false`.

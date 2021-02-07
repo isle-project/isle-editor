@@ -6,12 +6,6 @@ sidebar_label: Text Editor
 
 A text editor for writing notes or reports. Supports exporting of notes as HTML or PDF files, as well as automatic submission to the ISLE server.
 
-## Examples
-
-```jsx live
-<TextEditor />
-```
-
 ## Options
 
 * __allowSubmissions__ | `boolean`: controls whether students may submit their reports to the server. Default: `true`.
@@ -21,3 +15,11 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: undefined. Default: `none`.
 * __voiceTimeout__ | `number`: time in milliseconds after a chunk of recorded voice input is inserted. Default: `5000`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<TextEditor />
+```
+

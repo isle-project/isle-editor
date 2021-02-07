@@ -6,6 +6,12 @@ sidebar_label: NetworkPlot
 
 A d3-based network plot.
 
+## Options
+
+* __width__ | `number`: width of the plot (in px). Default: `900`.
+* __height__ | `number`: height of the plot (in px). Default: `600`.
+
+
 ## Examples
 
 ```jsx live
@@ -28,7 +34,3 @@ A d3-based network plot.
 />
 ``` 
 
-## Options
-
-* __width__ | `number`: width of the plot (in px). Default: `900`.
-* __height__ | `number`: height of the plot (in px). Default: `600`.

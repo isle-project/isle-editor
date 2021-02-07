@@ -6,6 +6,12 @@ sidebar_label: div
 
 Generic container element.
 
+## Options
+
+* __className__ | `string`: class name. Default: `''`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
 ## Examples
 
 ```jsx live
@@ -14,7 +20,3 @@ Generic container element.
 </div>
 ```
 
-## Options
-
-* __className__ | `string`: class name. Default: `''`.
-* __style__ | `object`: CSS inline styles. Default: `{}`.

@@ -6,12 +6,6 @@ sidebar_label: R Plot
 
 Component for rendering an R plot inside an ISLE lesson.
 
-## Examples
-
-```jsx live
-<RPlot code="hist( c(20,50,40,70,40,30) )" />
-```
-
 ## Options
 
 * __code__ | `string`: R code to generate the plot. Default: `''`.
@@ -24,3 +18,11 @@ Component for rendering an R plot inside an ISLE lesson.
 * __meta__ | `object`: plot meta-information. Default: `none`.
 * __className__ | `string`: class name. Default: `''`.
 * __onDone__ | `function`: callback invoked with `err`, `img` and `body` arguments once a plot is created. Default: `onDone() {}`.
+
+
+## Examples
+
+```jsx live
+<RPlot code="hist( c(20,50,40,70,40,30) )" />
+```
+

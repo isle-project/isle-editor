@@ -6,17 +6,6 @@ sidebar_label: Text Area
 
 A text area component. Used as a stand-alone component, changes should be handled via the `onChange` attribute.
 
-## Examples
-
-```jsx live
-<TextArea
-    legend="Please enter a few sentences"
-    placeholder="Enter text"
-/>
-```
-
-
-
 ## Options
 
 * __defaultValue__ | `string`: default value of the text area. Default: `''`.
@@ -29,3 +18,16 @@ A text area component. Used as a stand-alone component, changes should be handle
 * __resizable__ | `string`: controls whether the text area shall be resizable (can be either `both`, `horizontal`, `vertical`, or `none`). Default: `'none'`.
 * __rows__ | `number`: number of rows. Default: `5`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<TextArea
+    legend="Please enter a few sentences"
+    placeholder="Enter text"
+/>
+```
+
+
+

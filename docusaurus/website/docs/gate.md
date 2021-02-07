@@ -6,19 +6,6 @@ sidebar_label: Gate
 
 An ISLE component that allows to display its children only to reserved audiences.
 
-## Examples
-
-```jsx live
-<Gate 
-    banner={<h2>You have to be logged in to see the content</h2>}
-    user 
->
-    <h1>For users only</h1>
-</Gate>
-``` 
-
-
-
 ## Options
 
 * __user__ | `boolean`: when set the gated content is displayed to users. Default: `false`.
@@ -33,3 +20,18 @@ An ISLE component that allows to display its children only to reserved audiences
 * __disabled__ | `boolean`: if a gate is disabled, the banner will be displayed no matter what. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: controls whether to show gate contents in presentation mode when gate is visible for `owner`s. Default: `false`.
 * __check__ | `function`: callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<Gate 
+    banner={<h2>You have to be logged in to see the content</h2>}
+    user 
+>
+    <h1>For users only</h1>
+</Gate>
+``` 
+
+
+

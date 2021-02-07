@@ -6,14 +6,6 @@ sidebar_label: Typerwriter
 
 An ISLE component that allows you to create a typewriter effect.
 
-## Examples
-
-```jsx live
-<Typewriter text="Lorem ipsum" />
-```
-
-
-
 ## Options
 
 * __delay__ | `number`: initial delay before typewriter starts (in milliseconds). Default: `none`.
@@ -23,3 +15,13 @@ An ISLE component that allows you to create a typewriter effect.
 * __sound__ | `boolean`: the typed keystroke will be also heard. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __text__ | `(string|array<string>)`: the full text to be displayed or an array of texts to be displayed sequentially. Default: `''`.
+
+
+## Examples
+
+```jsx live
+<Typewriter text="Lorem ipsum" />
+```
+
+
+

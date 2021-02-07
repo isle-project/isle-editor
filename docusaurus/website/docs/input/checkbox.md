@@ -6,15 +6,6 @@ sidebar_label: Checkbox Input
 
 A checkbox input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 
-## Examples
-
-```jsx live
-<CheckboxInput
-    legend="Take the logarithm"
-    defaultValue={false}
-/>
-```
-
 ## Options
 
 * __bind__ | `string`: name of global variable for the checkbox value to be assigned to. Default: `''`.
@@ -27,3 +18,14 @@ A checkbox input component. Can be used as part of an ISLE dashboard or standalo
 * __tooltip__ | `string`: text displayed when hovering over checkbox. Default: `''`.
 * __tooltipPlacement__ | `string`: position of button tooltip. Default: `'right'`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<CheckboxInput
+    legend="Take the logarithm"
+    defaultValue={false}
+/>
+```
+

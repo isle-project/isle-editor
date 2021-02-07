@@ -6,12 +6,6 @@ sidebar_label: F Distribution
 
 A learning component for calculating probabilities of an F distribution.
 
-## Examples
-
-```jsx live
-<LearnFDistribution />
-```
-
 ## Options
 
 * __domain__ | `object`: object of `x` and `y` arrays with the starting and end points for the respective axis. Default: `none`.
@@ -22,3 +16,11 @@ A learning component for calculating probabilities of an F distribution.
   'range'
 ]`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<LearnFDistribution />
+```
+

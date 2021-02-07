@@ -6,6 +6,12 @@ sidebar_label: pre
 
 Element displaying preformatted text.
 
+## Options
+
+* __className__ | `string`: class name. Default: `''`.
+* __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
 ## Examples
 
 ```jsx live
@@ -14,7 +20,3 @@ Element displaying preformatted text.
 </pre>
 ```
 
-## Options
-
-* __className__ | `string`: class name. Default: `''`.
-* __style__ | `object`: CSS inline styles. Default: `{}`.

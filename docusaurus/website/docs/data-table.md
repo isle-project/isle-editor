@@ -6,21 +6,6 @@ sidebar_label: Data Table
 
 A component rendering data in a tabular display. Built on top of [react-table](https://react-table.js.org/).
 
-## Examples
-
-```jsx live
-<DataTable
-    showRemove
-    onClickRemove={( data ) => { console.log(data); }}
-    data={{ 
-        firstName: [ 'Hans', 'Lotti', 'Fritz' ], 
-        lastName: [ 'Bauer', 'Müller', 'Schultz' ],
-        age: [ 37, 55, 62 ]
-    }}
-    style={{ width: 600 }}
-/>
-```
-
 ## Options
 
 * __data__ | `(array|object) (required)`: A data object or array to be viewed. If it is an object, the keys correspond to column values while an array will expect an array of objects with a named field corresponding to each column. Default: `none`.
@@ -49,3 +34,20 @@ column, and the table instance). Default: `none`.
 * __disableDownload__ | `boolean`: whether to hide the button to download the data as a CSV or JSON file. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: An object allowing for custom css styling. Defaults to an empty object. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<DataTable
+    showRemove
+    onClickRemove={( data ) => { console.log(data); }}
+    data={{ 
+        firstName: [ 'Hans', 'Lotti', 'Fritz' ], 
+        lastName: [ 'Bauer', 'Müller', 'Schultz' ],
+        age: [ 37, 55, 62 ]
+    }}
+    style={{ width: 600 }}
+/>
+```
+

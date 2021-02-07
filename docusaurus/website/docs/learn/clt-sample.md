@@ -6,12 +6,6 @@ sidebar_label: CLT Sample
 
 A learning component illustrating the Central Limit Theorem (CLT) when sampling from a supplied data set.
 
-## Examples
-
-```jsx live
-<LearnSampleCLT />
-```
-
 ## Options
 
 * __data__ | `object (required)`: data object with keys correspond to variable names and values holding the values of respective variables. Default: `none`.
@@ -20,3 +14,11 @@ A learning component illustrating the Central Limit Theorem (CLT) when sampling 
 * __populationProbabilities__ | `boolean`: whether to display equations for calculation of population probabilities. Default: `false`.
 * __quantiles__ | `boolean`: whether to show tool for calculation of any quantiles. Default: `false`.
 * __variables__ | `array (required)`: names of variables that can be sampled from. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<LearnSampleCLT />
+```
+

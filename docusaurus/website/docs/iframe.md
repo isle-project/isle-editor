@@ -6,12 +6,6 @@ sidebar_label: IFrame
 
 An iFrame component.
 
-## Examples
-
-```jsx live
-<IFrame src="https://wikipedia.org" height="700px" />
-``` 
-
 ## Options
 
 * __src__ | `string (required)`: source URL. Default: `none`.
@@ -21,3 +15,11 @@ An iFrame component.
 * __height__ | `number`: iFrame height (in px). Default: `600`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<IFrame src="https://wikipedia.org" height="700px" />
+``` 
+

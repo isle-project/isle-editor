@@ -6,20 +6,6 @@ sidebar_label: Select Input
 
 A select input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 
-## Examples
-
-```jsx live
-<SelectInput
-    legend="Choose the test direction"
-    defaultValue="two-sided"
-    options={[
-        'left-sided',
-        'right-sided',
-        'two-sided'
-    ]}
-/>
-```
-
 ## Options
 
 * __bind__ | `string`: name of global variable for the number to be assigned to. Default: `''`.
@@ -35,3 +21,19 @@ A select input component. Can be used as part of an ISLE dashboard or standalone
 * __placeholder__ | `string`: value to be displayed before an initial choice is made. Default: `none`.
 * __tooltip__ | `string`: text displayed when hovering over legend. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<SelectInput
+    legend="Choose the test direction"
+    defaultValue="two-sided"
+    options={[
+        'left-sided',
+        'right-sided',
+        'two-sided'
+    ]}
+/>
+```
+

@@ -6,6 +6,11 @@ sidebar_label: Sortable Tree
 
 A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.
 
+## Options
+
+* __title__ | `string`: header title. Default: `none`.
+
+
 ## Examples
 
 ```jsx live
@@ -86,6 +91,3 @@ A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-
 
 
 
-## Options
-
-* __title__ | `string`: header title. Default: `none`.

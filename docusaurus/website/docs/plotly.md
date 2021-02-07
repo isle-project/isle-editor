@@ -6,19 +6,6 @@ sidebar_label: Plotly
 
 Plotly visualization.
 
-## Examples
-
-```jsx live
-<Plotly
-    data={[{
-        values: [ 24, 7, 0.5 ],
-        labels: [ 'English', 'Spanish', 'Other' ],
-        type: 'pie'
-            }]}
-    layout={{ width: 300 }}
-/>
-```
-
 ## Options
 
 * __data__ | `array (required)`: data array. Default: `none`.
@@ -41,3 +28,18 @@ Plotly visualization.
 * __onShare__ | `function`: callback function invoked when clicking on the "Share" button. Default: `none`.
 * __removeButtons__ | `boolean`: controls whether to remove all buttons (aside from fullscreen button if enabled). Default: `false`.
 * __toggleFullscreen__ | `boolean`: controls whether to allow displaying the plot in fullscreen mode. Default: `true`.
+
+
+## Examples
+
+```jsx live
+<Plotly
+    data={[{
+        values: [ 24, 7, 0.5 ],
+        labels: [ 'English', 'Spanish', 'Other' ],
+        type: 'pie'
+            }]}
+    layout={{ width: 300 }}
+/>
+```
+

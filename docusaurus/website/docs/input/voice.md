@@ -6,17 +6,6 @@ sidebar_label: Voice Input
 
 A voice input component.
 
-## Examples
-
-```jsx live
-<VoiceInput
-    langage="en-US"
-    defaultValue="Enter text"
-/>
-```
-
-
-
 ## Options
 
 * __autorecord__ | `boolean`: controls whether to automatically start recording. Default: `false`.
@@ -42,3 +31,16 @@ A voice input component.
 * __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
 * __width__ | `number`: voice input width (in px). Default: `500`.
 * __height__ | `number`: voice input height (in px). Default: `36`.
+
+
+## Examples
+
+```jsx live
+<VoiceInput
+    langage="en-US"
+    defaultValue="Enter text"
+/>
+```
+
+
+

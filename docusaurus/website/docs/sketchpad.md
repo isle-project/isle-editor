@@ -6,12 +6,6 @@ sidebar_label: Sketchpad
 
 A drawing sketchpad for note taking on lecture slides or empty pages.
 
-## Examples
-
-```jsx live
-<Sketchpad canvasWidth={750} />
-```
-
 ## Options
 
 * __autoSave__ | `boolean`: controls whether the editor should save the current text to the local storage of the browser at a given time interval. Default: `true`.
@@ -40,3 +34,11 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked whenever a new line element is drawn. Default: `onChange() {}`.
+
+
+## Examples
+
+```jsx live
+<Sketchpad canvasWidth={750} />
+```
+

@@ -6,18 +6,6 @@ sidebar_label: Image
 
 Component to display an image.
 
-## Examples
-
-```jsx live
-<Image 
-    alt="The Starry Night by Vincent van Gogh" 
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-    className="center"
-    width="50%"
-    height="auto"
-/>
-```
-
 ## Options
 
 * __src__ | `string (required)`: image source location. Default: `none`.
@@ -31,3 +19,17 @@ Component to display an image.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onShare__ | `function`: callback invoked with the image if the "share" button is clicked. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<Image 
+    alt="The Starry Night by Vincent van Gogh" 
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+    className="center"
+    width="50%"
+    height="auto"
+/>
+```
+

@@ -6,6 +6,12 @@ sidebar_label: Reaction
 
 Shows different components depending on user actions.
 
+## Options
+
+* __actionID__ | `string (required)`: ID of component to watch. Default: `none`.
+* __show__ | `(object|function)`: hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result). Default: `{}`.
+
+
 ## Examples
 
 ```jsx live
@@ -25,7 +31,3 @@ Shows different components depending on user actions.
 </div>
 ``` 
 
-## Options
-
-* __actionID__ | `string (required)`: ID of component to watch. Default: `none`.
-* __show__ | `(object|function)`: hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result). Default: `{}`.

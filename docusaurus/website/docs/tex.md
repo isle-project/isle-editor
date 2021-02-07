@@ -6,17 +6,6 @@ sidebar_label: LaTeX Equations
 
 `TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering.
 
-## Examples
-
-```jsx live
-<TeX
-    raw="2 + 3 = 5"
-    displayMode={true}
-/>
-```
-
-
-
 ## Options
 
 * __raw__ | `(string|number) (required)`: The literal LaTeX `string` to render. Also accepts `numbers`. Default: `none`.
@@ -28,3 +17,16 @@ sidebar_label: LaTeX Equations
 * __popoverPlacement__ | `string`: popover position for the specified `elems` (either `top`, `right`, `bottom`, or `left`). Default: `'top'`.
 * __onPopover__ | `function`: callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback `function` invoked whenever a user clicks on the equation. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<TeX
+    raw="2 + 3 = 5"
+    displayMode={true}
+/>
+```
+
+
+

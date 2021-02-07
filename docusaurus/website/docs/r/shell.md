@@ -6,14 +6,6 @@ sidebar_label: R Shell
 
 An interactive R Shell that can be used to execute R commands in the cloud using [OpenCPU](https://www.opencpu.org/).
 
-## Examples
-
-```jsx live
-<RShell
-    code="abs(c(-2,3,-1))"
-/>
-```
-
 ## Options
 
 * __code__ | `string`: R code to be evaluated. Default: `''`.
@@ -31,3 +23,13 @@ An interactive R Shell that can be used to execute R commands in the cloud using
 * __onChange__ | `function`: callback invoked whenever the text field input changes. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate(){}`.
 * __onResult__ | `function`: callback invoked whenever the result of a code execution is obtained from the cloud. The result `string` is passed as the only argument to the callback function. Default: `onResult() {}`.
+
+
+## Examples
+
+```jsx live
+<RShell
+    code="abs(c(-2,3,-1))"
+/>
+```
+

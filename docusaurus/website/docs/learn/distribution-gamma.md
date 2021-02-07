@@ -6,12 +6,6 @@ sidebar_label: Gamma Distribution
 
 A learning component for calculating probabilities of a gamma distribution.
 
-## Examples
-
-```jsx live
-<LearnGammaDistribution />
-```
-
 ## Options
 
 * __domain__ | `object`: object of `x` and `y` arrays with the starting and end points for the respective axis. Default: `none`.
@@ -24,3 +18,11 @@ A learning component for calculating probabilities of a gamma distribution.
   'range'
 ]`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<LearnGammaDistribution />
+```
+

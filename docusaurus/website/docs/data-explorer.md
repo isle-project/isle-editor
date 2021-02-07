@@ -6,40 +6,6 @@ sidebar_label: Data Explorer
 
 This component is used by students to briefly summarize data as it is presented and perform various statistical tests.
 
-## Examples
-
-In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
-
-```js
-require:
-    dataName: "./dataName.json"
-```
-
-Consider a dataset called "heartdisease" with the following variables:
-* __Gender__: _Categorical_
-* __Drugs__: _Categorical_
-* __Complications__: _Categorical_
-* __Cost__: _Quantitative_
-* __Age__: _Quantitative_
-* __Interventions__: _Quantitative_
-* __ERVisit__: _Quantitative_
-* __Comorbidities__: _Quantitative_
-* __Duration__: _Quantitative_
-
-We will include the explorer with the following code:
-
-```jsx live
-<DataExplorer 
-    id="heartdisease"
-    data={heartdisease} 
-    categorical={[ 'Gender', 'Drugs', 'Complications' ]}
-    quantitative={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
-    tests={[]}
-/>
-```
-
-
-
 ## Options
 
 * __categorical__ | `array`: array of strings indicating the name of each categorical variable. Default: `[]`.
@@ -125,3 +91,39 @@ We will include the explorer with the following code:
 * __transformer__ | `boolean`: boolean indicating whether to display variable transformation tools. Default: `true`.
 * __onTutorialCompletion__ | `function`: function invoked when user has completed the data explorer tutorial. Default: `onTutorialCompletion() {}`.
 * __onTutorialStart__ | `function`: function invoked when user starts the data explorer tutorial. Default: `onTutorialStart() {}`.
+
+
+## Examples
+
+In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
+
+```js
+require:
+    dataName: "./dataName.json"
+```
+
+Consider a dataset called "heartdisease" with the following variables:
+* __Gender__: _Categorical_
+* __Drugs__: _Categorical_
+* __Complications__: _Categorical_
+* __Cost__: _Quantitative_
+* __Age__: _Quantitative_
+* __Interventions__: _Quantitative_
+* __ERVisit__: _Quantitative_
+* __Comorbidities__: _Quantitative_
+* __Duration__: _Quantitative_
+
+We will include the explorer with the following code:
+
+```jsx live
+<DataExplorer 
+    id="heartdisease"
+    data={heartdisease} 
+    categorical={[ 'Gender', 'Drugs', 'Complications' ]}
+    quantitative={[ 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+    tests={[]}
+/>
+```
+
+
+

@@ -6,16 +6,6 @@ sidebar_label: Dashboard
 
 A dashboard for combining the handling of multiple child input fields.
 
-## Examples
-
-```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
-    <SliderInput
-        legend="Input value"
-    />
-</Dashboard>
-```
-
 ## Options
 
 * __autoStart__ | `boolean`: if set to `true`, the `onGenerate` function is executed at startup with the default input values. Default: `true`.
@@ -28,3 +18,15 @@ A dashboard for combining the handling of multiple child input fields.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onGenerate__ | `function`: function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: card title. Default: `''`.
+
+
+## Examples
+
+```jsx live
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+    <SliderInput
+        legend="Input value"
+    />
+</Dashboard>
+```
+

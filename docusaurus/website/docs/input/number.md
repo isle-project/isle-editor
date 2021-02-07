@@ -6,16 +6,6 @@ sidebar_label: Number Input
 
 A number input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 
-## Examples
-
-```jsx live
-<NumberInput
-    legend="Number of observations"
-    defaultValue={20}
-    step={5}
-/>
-```
-
 ## Options
 
 * __bind__ | `string`: name of global variable for the number to be assigned to. Default: `''`.
@@ -37,3 +27,15 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __value__ | `number`: number value (for controlled component). Default: `none`.
 * __tooltip__ | `string`: tooltip string (if not set, the tooltip is automatically generated). Default: `none`.
 * __tooltipPlacement__ | `string`: direction of the tooltip. Default: `'left'`.
+
+
+## Examples
+
+```jsx live
+<NumberInput
+    legend="Number of observations"
+    defaultValue={20}
+    step={5}
+/>
+```
+

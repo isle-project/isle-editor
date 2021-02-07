@@ -6,14 +6,6 @@ sidebar_label: JavaScript Shell
 
 An interactive Javascript shell that can be used to execute JavaScript commands. The shell contains a console that displays error messages, warnings etc.
 
-## Examples
-
-```jsx live
-<JSShell id = "jseditor" 
-        code = "var a = 22;" >
-</JSShell>
-```
-
 ## Options
 
 * __code__ | `string`: JavaScript code to be evaluated. Default: `''`.
@@ -30,3 +22,13 @@ An interactive Javascript shell that can be used to execute JavaScript commands.
 * __onEvaluate__ | `function`: callback invoked whenever the `Evaluate` button is clicked. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope object with variables that should be made available to evaluated `code`. Default: `none`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<JSShell id = "jseditor" 
+        code = "var a = 22;" >
+</JSShell>
+```
+

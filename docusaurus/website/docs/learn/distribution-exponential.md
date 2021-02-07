@@ -6,12 +6,6 @@ sidebar_label: Exponential Distribution
 
 A learning component for calculating probabilities of a exponential distribution.
 
-## Examples
-
-```jsx live
-<LearnExponentialDistribution />
-```
-
 ## Options
 
 * __hideCDF__ | `boolean`: controls whether to hide the CDF plots. Default: `false`.
@@ -19,3 +13,11 @@ A learning component for calculating probabilities of a exponential distribution
 * __maxRate__ | `number`: maximum rate parameter that can be chosen in input field. Default: `10`.
 * __minRate__ | `number`: minimum rate parameter that can be chosen in input field. Default: `0.001`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<LearnExponentialDistribution />
+```
+

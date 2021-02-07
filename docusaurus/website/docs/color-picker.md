@@ -6,24 +6,6 @@ sidebar_label: Color Picker
 
 A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker.
 
-## Examples
-
-```jsx live
-<ColorPicker onChangeComplete={ color => {
-    const out = color;
-    /* e.g., returns 
-        {
-            "hsl": {"h":~250,"s":~0.4967,"l":~0.2063,"a":1},
-            "hex":"#231a4f",
-            "rgb":{"r":35,"g":26,"b":79,"a":1},
-            "hsv":{"h":~250,"s":~0.664,"v":~0.3088,"a":1},
-            "oldHue":~250,
-            "source":"rgb"
-        }
-    */
-}} />
-```
-
 ## Options
 
 * __variant__ | `string`: color picker variant (either `Compact`, `Sketch`, `Material`, or `Block`). Default: `'Sketch'`.
@@ -51,3 +33,23 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time color is changed. Default: `onChange() {}`.
 * __onChangeComplete__ | `function`: callback invoked once a color change is complete. Default: `onChangeComplete() {}`.
+
+
+## Examples
+
+```jsx live
+<ColorPicker onChangeComplete={ color => {
+    const out = color;
+    /* e.g., returns 
+        {
+            "hsl": {"h":~250,"s":~0.4967,"l":~0.2063,"a":1},
+            "hex":"#231a4f",
+            "rgb":{"r":35,"g":26,"b":79,"a":1},
+            "hsv":{"h":~250,"s":~0.664,"v":~0.3088,"a":1},
+            "oldHue":~250,
+            "source":"rgb"
+        }
+    */
+}} />
+```
+

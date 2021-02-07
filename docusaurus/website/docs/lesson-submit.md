@@ -6,12 +6,6 @@ sidebar_label: Lesson Submit
 
 A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.
 
-## Examples
-
-```jsx live
-<LessonSubmit />
-```
-
 ## Options
 
 * __label__ | `string`: label of submit button. Default: `none`.
@@ -21,3 +15,11 @@ A button to be displayed at the end of a lesson for students to click on. By def
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onClick__ | `function`: callback invoked when clicking on the submission button. Default: `onClick() {}`.
+
+
+## Examples
+
+```jsx live
+<LessonSubmit />
+```
+

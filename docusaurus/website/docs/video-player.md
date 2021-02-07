@@ -6,17 +6,6 @@ sidebar_label: Video Player
 
 A component for playing media files and content from YouTube, SoundCloud, and Vimeo.
 
-## Examples
-
-```jsx live
-<VideoPlayer
-    url="https://www.youtube.com/watch?v=UzxYlbK2c7E"
-    playing
-/>
-```
-
-
-
 ## Options
 
 * __url__ | `string`: URL of the video. Default: `''`.
@@ -35,3 +24,16 @@ A component for playing media files and content from YouTube, SoundCloud, and Vi
 * __onPlay__ | `function`: callback invoked when the video starts or resumes playing after pausing. Default: `onPlay() {}`.
 * __onStart__ | `function`: callback invoked once the video pauses. Default: `onStart() {}`.
 * __onSeek__ | `function`: callback when media seeks called with `seconds` parameter. Default: `onSeek() {}`.
+
+
+## Examples
+
+```jsx live
+<VideoPlayer
+    url="https://www.youtube.com/watch?v=UzxYlbK2c7E"
+    playing
+/>
+```
+
+
+

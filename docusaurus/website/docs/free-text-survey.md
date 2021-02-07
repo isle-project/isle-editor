@@ -6,15 +6,6 @@ sidebar_label: Free Text Survey
 
 An ISLE component for questions where the answers by the students should be supplied in the form of free text. What differentiates this component from the **FreeTextQuestion** is the fact that the aggregated group data is displayed to everyone in real-time.
 
-## Examples
-
-```jsx live
-<FreeTextSurvey 
-    question="Where are you from?"
-    anonymous
-/>
-``` 
-
 ## Options
 
 * __question__ | `(string|node)`: the question to ask the students. Default: `''`.
@@ -24,3 +15,14 @@ An ISLE component for questions where the answers by the students should be supp
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: callback function called when an answer is submitted. Default: `onSubmit() {}`.
+
+
+## Examples
+
+```jsx live
+<FreeTextSurvey 
+    question="Where are you from?"
+    anonymous
+/>
+``` 
+

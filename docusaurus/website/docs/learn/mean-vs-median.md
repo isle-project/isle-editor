@@ -6,12 +6,6 @@ sidebar_label: Mean vs. Median
 
 An interactive game testing student's ability in detecting the median and mean of a given distribution.
 
-## Examples
-
-```jsx live
-<LearnMeanVSMedian />
-```
-
 ## Options
 
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
@@ -21,3 +15,11 @@ An interactive game testing student's ability in detecting the median and mean o
 * __seed__ | `number`: seed to initialize pseudorandom number generator. Default: `none`.
 * __showStatistics__ | `boolean`: controls whether to display student and group performance statistics. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<LearnMeanVSMedian />
+```
+
