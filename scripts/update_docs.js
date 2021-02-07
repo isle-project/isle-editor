@@ -25,7 +25,7 @@ const COMPONENT_DOCS = {
 	'fr': require( './../@isle-project/locales/editor/component-docs/fr.json' ),
 	'it': require( './../@isle-project/locales/editor/component-docs/it.json' ),
 	'ja': require( './../@isle-project/locales/editor/component-docs/ja.json' ),
-	'nk': require( './../@isle-project/locales/editor/component-docs/nl.json' ),
+	'nl': require( './../@isle-project/locales/editor/component-docs/nl.json' ),
 	'pl': require( './../@isle-project/locales/editor/component-docs/pl.json' ),
 	'pt': require( './../@isle-project/locales/editor/component-docs/pt.json' ),
 	'ru': require( './../@isle-project/locales/editor/component-docs/ru.json' ),
@@ -217,6 +217,7 @@ for ( let i = 0; i < files.length; i++ ) {
 
 		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
 			const lng = LANGUAGE_TARGETS[ j ];
+			debug( 'Handling language: '+lng );
 			const lngMdPath = path.join( './docusaurus/website/i18n/'+lng+'/docusaurus-plugin-content-docs/current', component+'.md' );
 			const componentDescription = COMPONENT_DOCS[ lng ][ `${tagName}-description`];
 			let replacement = '\n---\n\n'+componentDescription+'\n\n';
@@ -228,6 +229,7 @@ for ( let i = 0; i < files.length; i++ ) {
 			replacement += '\n\n';
 			replacement += '## Examples';
 			const lngMd = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
+			debug( 'Writing file: '+lngMdPath );
 			fs.outputFile( lngMdPath, lngMd );
 		}
 	} catch ( err ) {
