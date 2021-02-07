@@ -100,7 +100,8 @@
           "scrolling-text",
           "slider",
           "switch",
-          "text"
+          "text",
+          "typewriter"
         ],
         "Plot Components": [
           "plotly",
