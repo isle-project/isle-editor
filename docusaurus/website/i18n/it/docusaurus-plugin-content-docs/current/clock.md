@@ -16,7 +16,6 @@ Componente dell'orologio che visualizza l'ora corrente.
 
 ## Examples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

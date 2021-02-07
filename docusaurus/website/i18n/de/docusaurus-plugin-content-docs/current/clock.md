@@ -16,7 +16,6 @@ Uhrenkomponente, die die aktuelle Zeit anzeigt.
 
 ## Examples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

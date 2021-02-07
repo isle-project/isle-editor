@@ -1,0 +1,26 @@
+---
+id: distribution-beta
+title: Beta Distribution
+sidebar_label: Beta Distribution
+---
+
+Um componente de aprendizagem para calcular as probabilidades de uma distribuição beta.
+
+## Options
+
+* __domain__ | `object`: objeto dos conjuntos `x` e `y` com os pontos inicial e final para o respectivo eixo. Default: `none`.
+* __step__ | `(number|string)`: tamanho do passo da entrada do scroll. Default: `0.01`.
+* __tabs__ | `array<string>`: que abas exibir (ou "menor", "maior", ou "alcance"). Default: `[
+  'smaller',
+  'greater',
+  'range'
+]`.
+* __style__ | `object`: Estilos em linha CSS. Default: `{}`.
+
+
+## Examples
+
+```jsx live
+<LearnBetaDistribution />
+```
+
