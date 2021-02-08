@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useContext, useRef, useState } from 'react';
+import React, { Fragment, useCallback, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -66,36 +66,33 @@ const ImageQuestion = ( props ) => {
 	const [ displaySolution, setDisplaySolution ] = useState( false );
 	const [ isProcessing, setIsProcessing ] = useState( false );
 
-	const onFileRead = ( event ) => {
+	const onFileRead = useCallback( ( event ) => {
 		setSrc( event.target.result );
-	};
-
-	const nHints = props.hints.length;
+	}, [] );
+	const { hints, t } = props;
+	const nHints = hints.length;
 	const solutionButton = <SolutionButton
 		disabled={!submitted || !exhaustedHints}
 		onClick={() => {
 			setDisplaySolution( !displaySolution );
 		}}
-		hasHints={props.hints.length > 0}
+		hasHints={hints.length > 0}
 	/>;
-	const logHint = ( idx ) => {
+	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
 			id: id.current,
 			type: IMAGE_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	};
-	const sendSubmitNotification = () => {
+	}, [ session ] );
+	const sendSubmitNotification = useCallback( () => {
 		session.addNotification({
-			title: props.t('submitted'),
-			message: props.t('answer-submitted'),
+			title: t('submitted'),
+			message: t('answer-submitted'),
 			level: 'info'
 		});
-	};
-	const toggleSpinner = () => {
-		setIsProcessing( !isProcessing );
-	};
+	}, [ session, t ] );
 
 	/**
 	* Creates FileReader and attaches event listener for when the file is ready.
@@ -139,7 +136,7 @@ const ImageQuestion = ( props ) => {
 	const onDrop = ( evt ) => {
 		evt.stopPropagation();
 		evt.preventDefault();
-		toggleSpinner();
+		setIsProcessing( true );
 		const dt = evt.dataTransfer;
 		const reader = new FileReader();
 		let file = null;
@@ -154,7 +151,7 @@ const ImageQuestion = ( props ) => {
 						const match = str.match( RE_IMAGE_SRC );
 						if ( match ) {
 							setSrc( match[ 1 ] );
-							toggleSpinner();
+							setIsProcessing( false );
 						}
 					} else if ( contains( str, '<thead' ) ) {
 						const node = document.createElement( 'table' );
@@ -168,7 +165,7 @@ const ImageQuestion = ( props ) => {
 							width: 600
 						}).then( data => {
 							setSrc( data );
-							toggleSpinner();
+							setIsProcessing( false );
 							node.remove();
 						});
 					} else {
@@ -182,7 +179,7 @@ const ImageQuestion = ( props ) => {
 							}
 						}).then( data => {
 							setSrc( data );
-							toggleSpinner();
+							setIsProcessing( false );
 							node.remove();
 						});
 					}
