@@ -7,14 +7,14 @@ import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@isle-project/locales';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
-import StickyNote from '@isle-project/components/sticky-note';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import SessionContext from '@isle-project/session/context.js';
 import { INSERT_STICKY_NOTE } from '@isle-project/constants/actions.js';
-import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS, STICKY_NOTES_UPDATED } from '@isle-project/constants/events.js';
+import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
 import InterfaceTourButton from './interface_tour_button.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
+import StickyNotes from './notes.js';
 
 
 // VARIABLES //
@@ -41,11 +41,6 @@ const NOTIFICATION_STYLE = {
 		}
 	}
 };
-const STICKY_NOTE_COLORS = {
-	private: 'green',
-	public: 'orange',
-	instructor: 'pink'
-};
 
 
 // MAIN //
@@ -66,10 +61,7 @@ class Lesson extends Component {
 		const session = this.context;
 		session.onLessonMount();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
-			if ( type === STICKY_NOTES_UPDATED ) {
-				this.forceUpdate();
-			}
-			else if (
+			if (
 				type === RECEIVED_LESSON_INFO ||
 				type === RECEIVED_USER_RIGHTS
 			) {
@@ -101,7 +93,6 @@ class Lesson extends Component {
 	}
 
 	render() {
-		const session = this.context;
 		if ( !this.state.visible ) {
 			return (
 				<I18nextProvider i18n={i18n} >
@@ -125,44 +116,7 @@ class Lesson extends Component {
 						style={this.props.style}
 					>
 						{this.props.children}
-						{session.stickyNotes.map( ( elem, idx ) => {
-							return ( <StickyNote
-								color={STICKY_NOTE_COLORS[ elem.visibility ]}
-								watermark={elem.visibility}
-								editable minimizable removable
-								key={elem._id}
-								draggable={{
-									default: {
-										x: elem.left * window.innerWidth,
-										y: elem.top * window.innerHeight
-									}
-								}}
-								title={elem.title}
-								body={elem.body}
-								onDelete={() => {
-									session.deleteStickyNote( elem._id );
-								}}
-								onMove={({ top, left }) => {
-									session.updateStickyNote({
-										noteID: elem._id,
-										top,
-										left
-									});
-								}}
-								onTitleChange={( title ) => {
-									session.updateStickyNote({
-										noteID: elem._id,
-										title: title
-									});
-								}}
-								onBodyChange={( body ) => {
-									session.updateStickyNote({
-										noteID: elem._id,
-										body: body
-									});
-								}}
-							/> );
-						})}
+						<StickyNotes />
 						<LanguageSwitcher />
 						<InterfaceTourButton />
 					</div>
