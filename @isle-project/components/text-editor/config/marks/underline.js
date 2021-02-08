@@ -3,14 +3,16 @@
 const underline = {
 	parseDOM: [
 		{ tag: 'u' },
-		{ style: 'text-decoration:underline' }
-	],
-	toDOM: () => [
-		'span',
 		{
-			style: 'text-decoration:underline'
+			style: 'text-decoration:underline',
+			getAttrs: value => {
+				return value === 'underline' && null;
+			}
 		}
-	]
+	],
+	toDOM: () => {
+		return [ 'u', 0 ];
+	}
 };
 
 

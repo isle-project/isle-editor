@@ -15,16 +15,16 @@ import underline from './underline.js';
 // MAIN //
 
 const main = {
-	link,
-	em,
-	strong,
+	link, // Render links first, see: https://discuss.prosemirror.net/t/prevent-marks-from-breaking-up-links/401/5
 	code,
+	em,
+	fontSize,
+	strikethrough,
+	strong,
 	subscript,
 	superscript,
-	underline,
-	strikethrough,
 	textColor,
-	fontSize
+	underline // Render underlines last so they have the correct text color
 };
 
 
