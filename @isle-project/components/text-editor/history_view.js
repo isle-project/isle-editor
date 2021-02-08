@@ -9,6 +9,7 @@ import { Step } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import isJSON from '@stdlib/assert/is-json';
+import noop from '@stdlib/utils/noop';
 import SliderInput from '@isle-project/components/input/slider';
 import Tooltip from '@isle-project/components/tooltip';
 import collaborativeCursorPlugin from './config/collab_cursor.js';
@@ -65,6 +66,12 @@ class HistoryView extends Component {
 					document: res.data.document
 				});
 			}
+		}
+	}
+
+	componentWillUnmount() {
+		if ( this.timeoutID ) {
+			clearTimeout( this.timeoutID );
 		}
 	}
 
@@ -136,12 +143,16 @@ class HistoryView extends Component {
 			cursors
 		}, () => {
 			if ( newCounter < this.state.document.steps.length ) {
-				setTimeout( this.addStep, this.state.interval );
+				this.timeoutID = setTimeout( this.addStep, this.state.interval );
 			}
 		});
 	}
 
 	fastForward = () => {
+		if ( this.state.running ) {
+			// Stop current run, reset internal state, and invoke function again:
+			return this.reset( null, this.fastForward );
+		}
 		let newState = this.state.editorState;
 		const invertedSteps = this.state.invertedSteps.slice();
 		for ( let i = 0; i < this.state.document.steps.length; i++ ) {
@@ -220,12 +231,15 @@ class HistoryView extends Component {
 			nWords
 		}, () => {
 			if ( newCounter > 0 ) {
-				setTimeout( this.subtractStep, this.state.interval );
+				this.timeoutID = setTimeout( this.subtractStep, this.state.interval );
 			}
 		});
 	}
 
-	reset = () => {
+	reset = ( event, clbk = noop ) => {
+		if ( this.timeoutID ) {
+			clearTimeout( this.timeoutID );
+		}
 		const value = this.props.defaultValue;
 		const doc = isJSON( value ) ?
 		Node.fromJSON( schema, JSON.parse( value ) ) :
@@ -245,7 +259,7 @@ class HistoryView extends Component {
 			nChars: 0,
 			nWords: 0,
 			running: false
-		});
+		}, clbk );
 	}
 
 	playBackward = () => {
@@ -262,6 +276,9 @@ class HistoryView extends Component {
 
 	stop = () => {
 		this.setState({ running: false });
+		if ( this.timeoutID ) {
+			clearTimeout( this.timeoutID );
+		}
 	}
 
 	handleRestore = () => {
@@ -294,8 +311,8 @@ class HistoryView extends Component {
 							<i className="fas fa-fast-backward" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('play-in-reverse')} show={!notSignedIn && document && counter !== 0} placement="bottom" >
-						<Button variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0} >
+					<Tooltip tooltip={t('play-in-reverse')} show={!notSignedIn && document && counter !== 0 && !this.state.running} placement="bottom" >
+						<Button variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0 || this.state.running} >
 							<i className="fas fa-play fa-rotate-180" ></i>
 						</Button>
 					</Tooltip>
@@ -304,8 +321,8 @@ class HistoryView extends Component {
 							<i className="fas fa-pause" ></i>
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={t('play')} show={!notSignedIn && document && ( document.steps.length > counter )} placement="bottom" >
-						<Button variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
+					<Tooltip tooltip={t('play')} show={!notSignedIn && document && ( document.steps.length > counter ) && !this.state.running} placement="bottom" >
+						<Button variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter ) || this.state.running} >
 							<i className="fas fa-play" ></i>
 						</Button>
 					</Tooltip>
