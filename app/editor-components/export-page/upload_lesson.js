@@ -6,11 +6,12 @@ import { Trans } from 'react-i18next';
 import axios from 'axios';
 import logger from 'debug';
 import { createReadStream, createWriteStream } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import https from 'https';
 import os from 'os';
-import { resolve } from 'url';
 import qs from 'querystring';
+import url from 'url';
+import cp from 'child_process';
 import FormData from 'form-data';
 import jsyaml from 'js-yaml';
 import Button from 'react-bootstrap/Button';
@@ -42,6 +43,9 @@ const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const METADATA_KEYS = [ 'author', 'date', 'keywords', 'license', 'hideProgressBar', 'language', 'presentation' ];
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
 const debug = logger( 'isle-editor:export-page' );
+const options = {
+	stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
+};
 
 
 // MAIN //
@@ -155,8 +159,8 @@ class UploadLesson extends Component {
 	};
 
 	upstreamData = ({ outputPath, outputDir, meta }) => {
-		let { lessonName } = this.state;
-		let { namespaceName, t } = this.props;
+		const { lessonName } = this.state;
+		const { namespaceName, t } = this.props;
 
 		debug( 'Sending POST request to create lesson...' );
 		const form = new FormData();
@@ -199,7 +203,7 @@ class UploadLesson extends Component {
 
 		request.on( 'response', ( res ) => {
 			if ( res.statusCode === 200 ) {
-				const lessonLink = resolve( this.state.server, namespaceName + '/' + lessonName );
+				const lessonLink = url.resolve( this.state.server, namespaceName + '/' + lessonName );
 				const msg = <span>
 					{t('lesson-uploaded')} <a href={lessonLink}>{lessonLink}</a>
 				</span>;
@@ -268,21 +272,24 @@ class UploadLesson extends Component {
 			minify: this.state.minify,
 			loadFromCDN: this.state.loadFromCDN
 		};
-		import( 'bundler' ).then( ( main ) => {
-			const bundler = main.default;
-			bundler( settings, ( error ) => {
-				if ( error ) {
-					return this.setState({
-						error,
-						spinning: false,
-						dirname: randomstring( 16, 65, 90 )
-					});
-				}
+		const script = resolve( settings.basePath, './app/bundler/index.js' );
+		debug( 'Fork script to bundle lesson...' );
+		const child = cp.fork( script, [ JSON.stringify( settings ) ], options );
+		child.on( 'message', message => {
+			debug( 'Received message from child: '+message );
+			if ( message === 'success' ) {
 				debug( 'Lesson successfully bundled...' );
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
 					debug( 'Lesson successfully zipped...' );
 					this.upstreamData( settings );
 				});
+			}
+		});
+		child.on('error', (err) => {
+			this.setState({
+				error: err,
+				spinning: false,
+				dirname: randomstring( 16, 65, 90 )
 			});
 		});
 	}

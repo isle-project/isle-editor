@@ -2,35 +2,32 @@
 
 // MODULES //
 
-import { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
-import { copy, removeSync } from 'fs-extra';
-import { basename, dirname, extname, resolve, join } from 'path';
-import webpack from 'webpack';
-import TerserPlugin from 'terser-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import PreloadWebpackPlugin from 'preload-webpack-plugin';
-import MiniCssExtractPlugin, { loader as MiniCSSLoader } from 'mini-css-extract-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import ManifestPlugin from 'webpack-manifest-plugin';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
-import WebpackCdnPlugin, { CDN_MODULES } from '@isle-project/webpack-cdn-plugin';
-import logger from 'debug';
-import contains from '@stdlib/assert/contains';
-import isURI from '@stdlib/assert/is-uri';
-import isObject from '@stdlib/assert/is-object';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-import replace from '@stdlib/string/replace';
-import startsWith from '@stdlib/string/starts-with';
-import max from '@stdlib/math/base/special/max';
-import objectKeys from '@stdlib/utils/keys';
-import isAbsolutePath from '@stdlib/assert/is-absolute-path';
-import markdownToHTML from 'utils/markdown-to-html';
-import transformToPresentation from 'utils/transform-to-presentation';
-import REQUIRES from './requires.json';
-import COMPONENTS_MANIFEST from '@isle-project/dll/components-manifest.json';
-import LOCALES_MANIFEST from '@isle-project/dll/locales-manifest.json';
-import SESSION_MANIFEST from '@isle-project/dll/session-manifest.json';
-import MANIFEST_TEMPLATE from './manifest.json';
+const { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } = require( 'fs' );
+const { copy, removeSync } = require( 'fs-extra' );
+const { basename, dirname, extname, resolve, join } = require( 'path' );
+const webpack = require( 'webpack' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
+const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
+const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
+const logger = require( 'debug' );
+const contains = require( '@stdlib/assert/contains' );
+const isURI = require( '@stdlib/assert/is-uri' );
+const isObject = require( '@stdlib/assert/is-object' );
+const hasOwnProp = require( '@stdlib/assert/has-own-property' );
+const replace = require( '@stdlib/string/replace' );
+const startsWith = require( '@stdlib/string/starts-with' );
+const max = require( '@stdlib/math/base/special/max' );
+const objectKeys = require( '@stdlib/utils/keys' );
+const isAbsolutePath = require( '@stdlib/assert/is-absolute-path' );
+const markdownToHTML = require( './../utils/markdown-to-html' );
+const transformToPresentation = require( './../utils/transform-to-presentation' );
+const REQUIRES = require( './requires.json' );
+const COMPONENTS_MANIFEST = require( './../../@isle-project/dll/components-manifest.json' );
+const LOCALES_MANIFEST = require( './../../@isle-project/dll/locales-manifest.json' );
+const SESSION_MANIFEST = require( './../../@isle-project/dll/session-manifest.json' );
+const MANIFEST_TEMPLATE = require( './manifest.json' );
 
 
 // VARIABLES //
@@ -38,6 +35,7 @@ import MANIFEST_TEMPLATE from './manifest.json';
 const debug = logger( 'bundler' );
 const EXTERNALS = {};
 const AVAILABLE_COMPONENTS = objectKeys( REQUIRES );
+const { CDN_MODULES } = WebpackCdnPlugin;
 for ( let i = 0; i < CDN_MODULES.length; i++ ) {
 	const p = CDN_MODULES[ i ];
 	EXTERNALS[ p.name ] = p.var || p.name;
@@ -319,19 +317,22 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 * @param {boolean} options.minify - boolean indicating whether code should be minified
 * @param {boolean} options.loadFromCDN - boolean indicating whether resources should be loaded from CDN
 * @param {boolean} options.writeStats - boolean indicating whether bundle stats should be written to `stats.json` file
-* @param {Function} clbk - callback function
 */
-function writeIndexFile({
-	filePath,
-	outputPath,
-	basePath,
-	content,
-	meta,
-	outputDir,
-	minify,
-	loadFromCDN,
-	writeStats
-}, clbk ) {
+function writeIndexFile( options ) {
+	if ( !options ) {
+		return process.send ? process.send( 'Missing options.' ) : console.log( 'Missing options.' );
+	}
+	let {
+		filePath,
+		outputPath,
+		basePath,
+		content,
+		meta,
+		outputDir,
+		minify,
+		loadFromCDN,
+		writeStats
+	} = options;
 	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
 
 	const appDir = join( outputPath, outputDir );
@@ -355,7 +356,7 @@ function writeIndexFile({
 		resourceDirectory = join( fileDir, `${fileName}-resources` );
 		modulePaths.push( resolve( join( resourceDirectory, 'node_modules' ) ) );
 	}
-	const plugins = [
+	let plugins = [
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			title: meta.title,
@@ -365,12 +366,8 @@ function writeIndexFile({
 				meta,
 				loadFromCDN
 			},
+			inject: 'body',
 			minify: false
-		}),
-		new PreloadWebpackPlugin({
-			rel: 'preload',
-			include: 'allAssets',
-			fileBlacklist: [ /\.map/, /\.js/ ]
 		}),
 		new WebpackCdnPlugin({
 			prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
@@ -380,13 +377,12 @@ function writeIndexFile({
 			filename: 'css/[name].css',
 			chunkFilename: 'css/[id].css'
 		}),
-		new ManifestPlugin({
+		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
 		}),
 		new WorkboxWebpackPlugin.GenerateSW({
 			clientsClaim: true,
-			exclude: [/\.map$/, /asset-manifest\.json$/],
-			importWorkboxFrom: 'cdn'
+			exclude: [/\.map$/, /asset-manifest\.json$/]
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -395,21 +391,17 @@ function writeIndexFile({
 		})
 	];
 	if ( loadFromCDN ) {
-		plugins.push(
+		plugins = [
 			new webpack.DllReferencePlugin({
 				manifest: LOCALES_MANIFEST
-			})
-		);
-		plugins.push(
+			}),
+			new webpack.DllReferencePlugin({
+				manifest: SESSION_MANIFEST
+			}),
 			new webpack.DllReferencePlugin({
 				manifest: COMPONENTS_MANIFEST
 			})
-		);
-		plugins.push(
-			new webpack.DllReferencePlugin({
-				manifest: SESSION_MANIFEST
-			})
-		);
+		].concat( plugins );
 	}
 	const config = {
 		context: resolve( basePath ),
@@ -418,13 +410,24 @@ function writeIndexFile({
 			alias: {
 				'csv-parse': resolve(
 					basePath,
-					'./node_modules/csv-parse/lib/es5/index.js'
+					'./node_modules/csv-parse/lib/browser/index.js'
 				),
 				'csv-stringify': resolve(
 					basePath,
-					'./node_modules/csv-stringify/lib/es5/index.js'
+					'./node_modules/csv-stringify/lib/browser/index.js'
 				)
 			},
+			fallback: {
+				'path': resolve(
+					basePath,
+					'./node_modules/path-browserify'
+				),
+				'stream': resolve(
+					basePath,
+					'./node_modules/stream-browserify'
+				)
+			},
+			unsafeCache: true,
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 		},
 		module: {
@@ -436,7 +439,7 @@ function writeIndexFile({
 						/fonts\.js$/
 					],
 					loader: 'babel-loader',
-					query: {
+					options: {
 						plugins: [
 							resolve( basePath, './node_modules/@babel/plugin-transform-react-constant-elements' ),
 							resolve( basePath, './node_modules/@babel/plugin-transform-react-inline-elements' ),
@@ -478,7 +481,7 @@ function writeIndexFile({
 				{
 					test: /(sum-series|is-typed-array|node_modules\/ml-)[\s\S]+?\.js$/,
 					loader: 'babel-loader',
-					query: {
+					options: {
 						presets: [
 							[ resolve( basePath, './node_modules/@babel/preset-env' ), {
 								modules: 'commonjs',
@@ -492,16 +495,9 @@ function writeIndexFile({
 				{
 					test: /\.css$/,
 					use: [
-						MiniCSSLoader,
+						MiniCssExtractPlugin.loader,
 						'css-loader'
 					]
-				},
-				{
-					test: /\.worker\.js$/,
-					exclude: /node_modules/, // do not touch the worker scripts of `pdf.js`
-					use: {
-						loader: 'worker-loader'
-					}
 				},
 				{
 					test: /\.svg$/i,
@@ -514,47 +510,6 @@ function writeIndexFile({
 		},
 		optimization: {
 			minimize: minify,
-			minimizer: [
-				new OptimizeCSSAssetsPlugin({}),
-				new TerserPlugin({
-					extractComments: 'all',
-					cache: true,
-					parallel: true,
-					terserOptions: {
-						warnings: true,
-						compress: {
-							arrows: false,
-							booleans: false,
-							collapse_vars: false,
-							comparisons: false,
-							computed_props: false,
-							hoist_funs: false,
-							hoist_props: false,
-							hoist_vars: false,
-							if_return: false,
-							inline: false,
-							join_vars: false,
-							keep_infinity: false,
-							loops: false,
-							negate_iife: false,
-							properties: false,
-							reduce_funcs: false,
-							reduce_vars: false,
-							sequences: false,
-							side_effects: false,
-							switches: false,
-							top_retain: false,
-							toplevel: false,
-							typeofs: false,
-							unused: false,
-							conditionals: true,
-							dead_code: true,
-							evaluate: true
-						},
-						mangle: true
-					}
-				})
-			],
 			splitChunks: {
 				cacheGroups: {
 					code: {
@@ -563,13 +518,6 @@ function writeIndexFile({
 					}
 				}
 			}
-		},
-		node: {
-			child_process: 'empty',
-			dns: 'mock',
-			fs: 'empty',
-			net: 'mock',
-			tls: 'mock'
 		},
 		externals: EXTERNALS,
 		plugins
@@ -649,7 +597,7 @@ function writeIndexFile({
 	config.output = {
 		path: appDir,
 		publicPath: './',
-		filename: minify ? './js/bundle.min.js' : './js/bundle.js'
+		filename: minify ? './js/[name].bundle.min.js' : './js/[name].bundle.js'
 	};
 	const compiler = webpack( config );
 	compiler.run( ( err, stats ) => {
@@ -657,7 +605,7 @@ function writeIndexFile({
 		if ( err ) {
 			debug( 'Encountered an error during bundling: ' + err );
 			removeSync( appDir );
-			return clbk( err );
+			return process.send ? process.send( err.message ) : console.log( err );
 		}
 		console.dir( stats ); // eslint-disable-line no-console
 		if (
@@ -672,18 +620,18 @@ function writeIndexFile({
 			});
 			err = new Error( errMsg );
 			removeSync( appDir );
-			return clbk( err );
+			return process.send ? process.send( err.message ) : console.log( err );
 		}
 		if ( writeStats ) {
 			debug( 'Write statistics to file...' );
 			const statsJSON = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
-		return clbk( null, meta );
+		return process.send ? process.send( 'success' ) : console.log( 'success' );
 	});
 }
 
 
 // EXPORTS //
 
-export default writeIndexFile;
+writeIndexFile( JSON.parse( process.argv[ 2 ] ) );

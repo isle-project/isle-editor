@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { remote, shell } from 'electron';
+import cp from 'child_process';
 import path from 'path';
 import jsyaml from 'js-yaml';
 import Button from 'react-bootstrap/Button';
@@ -27,6 +28,9 @@ const { dialog } = remote;
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
+const options = {
+	stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
+};
 
 
 // MAIN //
@@ -103,27 +107,30 @@ class ExportLesson extends Component {
 			if ( isArray( meta.author ) ) {
 				meta.author = meta.author.join( ', ' );
 			}
-			import( 'bundler' ).then( main => {
-				const bundler = main.default;
-				bundler({
-					outputPath: outputPath,
-					filePath: this.props.filePath,
-					basePath: IS_PACKAGED ? process.resourcesPath : '.',
-					content,
-					meta,
-					outputDir,
-					minify,
-					loadFromCDN,
-					writeStats
-				}, ( error ) => {
-					const newState = {
-						finished: true,
-						spinning: false
-					};
-					if ( error ) {
-						newState.error = error;
-					}
-					this.setState( newState );
+			const settings = {
+				outputPath: outputPath,
+				filePath: this.props.filePath,
+				basePath: IS_PACKAGED ? process.resourcesPath : '.',
+				content,
+				meta,
+				outputDir,
+				minify,
+				loadFromCDN,
+				writeStats
+			};
+			const script = path.resolve( settings.basePath, './app/bundler/index.js' );
+			const child = cp.fork( script, [ JSON.stringify( settings ) ], options );
+			child.on( 'message', message => {
+				this.setState({
+					finished: true,
+					spinning: false
+				});
+			});
+			child.on('error', ( err ) => {
+				this.setState({
+					error: err,
+					finished: true,
+					spinning: false
 				});
 			});
 		}
