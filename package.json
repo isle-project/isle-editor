@@ -239,7 +239,6 @@
     "react-transition-group": "^4.4.1",
     "react-viewer": "^3.2.2",
     "react-virtualized": "^9.22.3",
-    "readable-stream": "2.3.7",
     "recordrtc": "^5.6.1",
     "redux": "4.0.5",
     "redux-thunk": "^2.3.0",
