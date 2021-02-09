@@ -11,7 +11,6 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 */
 const EXTERNALS = [
 	'@stdlib/stdlib',
-	'ajv',
 	'archiver',
 	'camelcase',
 	'child_process',
@@ -24,11 +23,9 @@ const EXTERNALS = [
 	'eslint', // needs to be external for CLI Engine to work for linting
 	'form-data',
 	'fsevents',
-	'html-webpack-plugin', // must be external due to errors otherwise
 	'markdown-it',
 	'@iktakahiro/markdown-it-katex',
 	'minimist',
-	'mini-css-extract-plugin',
 	'ml-pca',
 	'murmurhash3js',
 	'node-pty',
@@ -54,13 +51,10 @@ const EXTERNALS = [
 	'recordrtc',
 	'stemmer',
 	'svgo',
-	'tapable',
-	'terser-webpack-plugin', // must be external due to errors otherwise
 	'typo-js',
 	'uniq',
 	'venn.js',
-	'webpack',
-	'workbox-webpack-plugin'
+	'webpack'
 ];
 
 
@@ -86,11 +80,6 @@ export default {
 				join( __dirname, '@isle-project' )
 			],
 			exclude: /fonts\.js$/
-		},
-		{
-			test: /\.worker\.js$/,
-			use: { loader: 'worker-loader' },
-			include: join( __dirname, '@isle-project', 'components', 'internal', 'response-visualizer' )
 		},
 		{
 			test: /\.txt$/,

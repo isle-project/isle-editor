@@ -201,7 +201,7 @@ const config = {
 		'i18next': 'i18next',
 		'react': 'React',
 		'react-dom': 'ReactDOM',
-		'pdfjs-dist/webpack': 'pdfjsLib',
+		'pdfjs-dist/build/pdf.min.js': 'pdfjsLib',
 		'react-table': 'ReactTable',
 		'prop-types': 'PropTypes',
 		'react-draggable': 'ReactDraggable',

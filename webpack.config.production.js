@@ -2,9 +2,6 @@
 
 import webpack from 'webpack';
 import path from 'path';
-import HappyPack from 'happypack';
-import TerserPlugin from 'terser-webpack-plugin';
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
@@ -36,47 +33,7 @@ const config = {
 	},
 
 	optimization: {
-		minimize: true,
-		minimizer: [
-			new TerserPlugin({
-				extractComments: 'all',
-				cache: true,
-				parallel: true,
-				terserOptions: {
-					warnings: false,
-					compress: {
-						arrows: false,
-						booleans: false,
-						collapse_vars: false,
-						comparisons: false,
-						computed_props: false,
-						hoist_funs: false,
-						hoist_props: false,
-						hoist_vars: false,
-						if_return: false,
-						inline: false,
-						join_vars: false,
-						keep_infinity: false,
-						loops: false,
-						negate_iife: false,
-						properties: false,
-						reduce_funcs: false,
-						reduce_vars: false,
-						sequences: false,
-						side_effects: false,
-						switches: false,
-						top_retain: false,
-						toplevel: false,
-						typeofs: false,
-						unused: false,
-						conditionals: true,
-						dead_code: true,
-						evaluate: true
-					},
-					mangle: true
-				}
-			})
-		]
+		minimize: true
 	},
 
 	module: {
@@ -85,7 +42,18 @@ const config = {
 		rules: [
 			{
 				test: /.js$/,
-				use: 'happypack/loader',
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							plugins: [
+								'@babel/plugin-transform-react-constant-elements',
+								'@babel/plugin-transform-react-inline-elements'
+							],
+							cacheDirectory: true
+						}
+					}
+				],
 				include: [
 					path.join( __dirname, 'main.development.js' ),
 					path.join( __dirname, 'app' ),
@@ -120,24 +88,10 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
-		}),
-		new HardSourceWebpackPlugin(),
-		new HappyPack({
-			loaders: [{
-				loader: 'babel-loader',
-				options: {
-					plugins: [
-						'@babel/plugin-transform-react-constant-elements',
-						'@babel/plugin-transform-react-inline-elements'
-					],
-					cacheDirectory: true
-				}
-			}]
 		})
 	],
 
