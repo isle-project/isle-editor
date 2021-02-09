@@ -2,7 +2,6 @@
 
 const { DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
-const TerserPlugin = require( 'terser-webpack-plugin' );
 
 
 // MAIN //
@@ -45,6 +44,15 @@ const config = {
 				use: {
 					loader: 'svg-react-loader'
 				}
+			},
+			{
+				test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
+				use: {
+					loader: 'file-loader',
+					options: {
+						name: 'static/media/[name].[hash:8].[ext]'
+					}
+				}
 			}
 		]
 	},
@@ -53,7 +61,14 @@ const config = {
 			resolve( './' ),
 			resolve( './app' ),
 			resolve( './node_modules' )
-		]
+		],
+		alias: {
+			'csv-parse': resolve( './node_modules/csv-parse/lib/browser/index.js' ),
+			'csv-stringify': resolve( './node_modules/csv-stringify/lib/browser/index.js' )
+		},
+		fallback: {
+			'path': resolve( './node_modules/path-browserify' )
+		}
 	},
 	entry: {
 		components: [
@@ -177,17 +192,10 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.0/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.1/'
 	},
 	optimization: {
-		minimize: true,
-		minimizer: [
-			new TerserPlugin({
-				extractComments: 'all',
-				cache: true,
-				parallel: true
-			})
-		]
+		minimize: true
 	},
 	plugins: [
 		new DllPlugin({
