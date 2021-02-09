@@ -1,4 +1,8 @@
 {
+	"help.browse-docs-heading": {
+		"message": "Blader door Documenten",
+		"description": "Browse Docs Heading"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Nieuwere berichten",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

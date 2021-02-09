@@ -1,4 +1,8 @@
 {
+	"help.browse-docs-heading": {
+		"message": "浏览文件",
+		"description": "Browse Docs Heading"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "较新的条目",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"
