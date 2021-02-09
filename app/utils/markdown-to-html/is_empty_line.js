@@ -1,6 +1,6 @@
 // MODULES //
 
-import isWhitespace from './is_whitespace.js';
+const isWhitespace = require( './is_whitespace.js' );
 
 
 // MAIN //
@@ -45,4 +45,4 @@ function isEmptyLine( buffer, pos ) {
 
 // EXPORTS //
 
-export default isEmptyLine;
+module.exports = isEmptyLine;

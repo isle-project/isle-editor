@@ -1,8 +1,8 @@
 // MODULES //
 
-import { dirname } from 'path';
-import logger from 'debug';
-import Tokenizer from './tokenizer.js';
+const { dirname } = require( 'path' );
+const logger = require( 'debug' );
+const Tokenizer = require( './tokenizer.js' );
 
 
 // VARIABLES //
@@ -27,4 +27,4 @@ function toMarkdown( str, { filePath, addEmptySpans = false, lineNumber = 1, add
 
 // EXPORTS //
 
-export default toMarkdown;
+module.exports = toMarkdown;

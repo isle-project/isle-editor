@@ -1,6 +1,6 @@
 // MODULES //
 
-import replace from '@stdlib/string/replace';
+const replace = require( '@stdlib/string/replace' );
 
 
 // VARIABLES //
@@ -23,4 +23,4 @@ function trimLineStarts( str ) {
 
 // EXPORTS //
 
-export default trimLineStarts;
+module.exports = trimLineStarts;

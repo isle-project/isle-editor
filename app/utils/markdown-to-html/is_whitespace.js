@@ -19,4 +19,4 @@ function isWhitespace( c ) {
 
 // EXPORTS //
 
-export default isWhitespace;
+module.exports = isWhitespace;

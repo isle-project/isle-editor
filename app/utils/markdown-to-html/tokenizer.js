@@ -1,21 +1,21 @@
 // MODULES //
 
-import logger from 'debug';
-import { EOL } from 'os';
-import replace from '@stdlib/string/replace';
-import removeFirst from '@stdlib/string/remove-first';
-import trim from '@stdlib/string/trim';
-import endsWith from '@stdlib/string/ends-with';
-import removeLast from '@stdlib/string/remove-last';
-import hasOwnProp from '@stdlib/assert/has-own-property';
-import isLowercase from '@stdlib/assert/is-lowercase';
-import isQuotationMark from './is_quotation_mark.js';
-import isPreviousChar from './is_previous_char.js';
-import trimLineStarts from './trim_line_starts.js';
-import isEmptyLine from './is_empty_line.js';
-import isWhitespace from './is_whitespace.js';
-import tagName from './tagname.js';
-import md from './markdownit.js';
+const logger = require( 'debug' );
+const { EOL } = require( 'os' );
+const replace = require( '@stdlib/string/replace' );
+const removeFirst = require( '@stdlib/string/remove-first' );
+const trim = require( '@stdlib/string/trim' );
+const endsWith = require( '@stdlib/string/ends-with' );
+const removeLast = require( '@stdlib/string/remove-last' );
+const hasOwnProp = require( '@stdlib/assert/has-own-property' );
+const isLowercase = require( '@stdlib/assert/is-lowercase' );
+const isQuotationMark = require( './is_quotation_mark.js' );
+const isPreviousChar = require( './is_previous_char.js' );
+const trimLineStarts = require( './trim_line_starts.js' );
+const isEmptyLine = require( './is_empty_line.js' );
+const isWhitespace = require( './is_whitespace.js' );
+const tagName = require( './tagname.js' );
+const md = require( './markdownit.js' );
 
 
 // VARIABLES //
@@ -848,4 +848,4 @@ class Tokenizer {
 
 // EXPORTS //
 
-export default Tokenizer;
+module.exports = Tokenizer;

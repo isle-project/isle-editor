@@ -1,6 +1,6 @@
 // MODULES //
 
-import markdownit from 'markdown-it';
+const markdownit = require( 'markdown-it' );
 
 
 // VARIABLES //
@@ -112,4 +112,4 @@ md.renderer.rules.html_inline = ( tokens, idx, options, env, renderer ) => {
 
 // EXPORTS //
 
-export default md;
+module.exports = md;

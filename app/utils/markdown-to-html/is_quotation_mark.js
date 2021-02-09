@@ -16,4 +16,4 @@ function isQuotationMark( c ) {
 
 // EXPORTS //
 
-export default isQuotationMark;
+module.exports = isQuotationMark;

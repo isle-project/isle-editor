@@ -1,9 +1,9 @@
 // MODULES //
 
-import logger from 'debug';
-import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import contains from '@stdlib/assert/contains';
-import objectKeys from '@stdlib/utils/keys';
+const logger = require( 'debug' );
+const isString = require( '@stdlib/assert/is-string' );
+const contains = require( '@stdlib/assert/contains' );
+const objectKeys = require( '@stdlib/utils/keys' );
 
 
 // VARIABLES //
@@ -27,7 +27,7 @@ function transformToPresentation( code, preamble ) {
 		for ( let i = 0; i < keys.length; i++ ) {
 			const attr = keys[ i ];
 			let val = preamble.presentation[ attr ];
-			if ( isString( val ) ) {
+			if ( isString.isPrimitive( val ) ) {
 				val = `"${val}"`;
 			}
 			configString += `${attr}={${val}}`;
@@ -62,4 +62,4 @@ function transformToPresentation( code, preamble ) {
 
 // EXPORTS //
 
-export default transformToPresentation;
+module.exports = transformToPresentation;

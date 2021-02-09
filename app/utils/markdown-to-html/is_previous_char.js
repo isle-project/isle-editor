@@ -1,6 +1,6 @@
 // MODULES //
 
-import isWhitespace from './is_whitespace.js';
+const isWhitespace = require( './is_whitespace.js' );
 
 
 // MAIN //
@@ -24,4 +24,4 @@ function isPreviousChar( str, pos, char ) {
 
 // EXPORTS //
 
-export default isPreviousChar;
+module.exports = isPreviousChar;

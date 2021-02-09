@@ -30,4 +30,4 @@ function tagName( str, pos ) {
 
 // EXPORTS //
 
-export default tagName;
+module.exports = tagName;
