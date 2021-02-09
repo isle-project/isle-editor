@@ -7,6 +7,7 @@
 
 import React from 'react';
 import Layout from '@theme/Layout';
+import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -22,7 +23,13 @@ function Support() {
 			<div className="container">
 				<div className="row">
 					<div className="col col--6 col--offset-3 padding-vert--lg">
-						<h1>Need Help?</h1>
+						<h1>
+							{translate({
+								id: 'help.browse-docs-heading',
+								message: 'Browse Docs',
+								description: 'Browse Docs Heading'
+							})}
+	  					</h1>
 						<p>This project is maintained by a dedicated group of people.</p>
 
 						<h2>Browse Docs</h2>
