@@ -273,10 +273,11 @@ class UploadLesson extends Component {
 			loadFromCDN: this.state.loadFromCDN
 		};
 		const script = resolve( settings.basePath, './app/bundler/index.js' );
-		debug( 'Fork script to bundle lesson...' );
+
+		debug( `Fork script at ${script} to bundle lesson...` );
 		const child = cp.fork( script, [ JSON.stringify( settings ) ], options );
 		child.on( 'message', message => {
-			debug( 'Received message from child: '+message );
+			console.log( message ); // eslint-disable-line no-console
 			if ( message === 'success' ) {
 				debug( 'Lesson successfully bundled...' );
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
@@ -285,7 +286,10 @@ class UploadLesson extends Component {
 				});
 			}
 		});
-		child.on('error', (err) => {
+		child.on( 'exit', function onExit( code ) {
+			debug( 'Exited with code: '+code );
+		});
+		child.on( 'error', ( err ) => {
 			this.setState({
 				error: err,
 				spinning: false,

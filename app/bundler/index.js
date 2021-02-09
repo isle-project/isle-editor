@@ -1,4 +1,4 @@
-/* eslint-disable i18next/no-literal-string */
+/* eslint-disable i18next/no-literal-string, no-console */
 
 // MODULES //
 
@@ -11,7 +11,6 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
 const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
-const logger = require( 'debug' );
 const contains = require( '@stdlib/assert/contains' );
 const isURI = require( '@stdlib/assert/is-uri' );
 const isObject = require( '@stdlib/assert/is-object' );
@@ -32,7 +31,6 @@ const MANIFEST_TEMPLATE = require( './manifest.json' );
 
 // VARIABLES //
 
-const debug = logger( 'bundler' );
 const EXTERNALS = {};
 const AVAILABLE_COMPONENTS = objectKeys( REQUIRES );
 const { CDN_MODULES } = WebpackCdnPlugin;
@@ -41,9 +39,26 @@ for ( let i = 0; i < CDN_MODULES.length; i++ ) {
 	EXTERNALS[ p.name ] = p.var || p.name;
 }
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
+if ( process ) {
+	process.on( 'uncaughtException', ( err ) => {
+		process.send( 'Caught exception: '+err.message );
+	});
+}
 
 
 // FUNCTIONS //
+
+const logMsg = ( msg ) => {
+	if ( process.send ) {
+		process.send( msg );
+	} else {
+		console.log( msg ); // eslint-disable-line no-console
+	}
+};
+
+function logError( err ) {
+	logMsg( 'Encountered an error: '+err.message );
+}
 
 const makeOutputDir = ( outputDir ) => {
 	mkdirSync( outputDir );
@@ -259,9 +274,6 @@ const getComponentList = ( code ) => {
 	return ret;
 };
 
-
-// MAIN //
-
 /**
 * Generate contents of index.js file of lesson.
 *
@@ -304,7 +316,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 }
 
 /**
-* Write index.js file to disk
+* Writes index.js file to disk and bundles ISLE lesson.
 *
 * @param {Object} options - options object
 * @param {string} options.filePath - file path of source file
@@ -318,9 +330,9 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 * @param {boolean} options.loadFromCDN - boolean indicating whether resources should be loaded from CDN
 * @param {boolean} options.writeStats - boolean indicating whether bundle stats should be written to `stats.json` file
 */
-function writeIndexFile( options ) {
+function bundleLesson( options ) {
 	if ( !options ) {
-		return process.send ? process.send( 'Missing options.' ) : console.log( 'Missing options.' );
+		return logMsg( 'Missing options.' );
 	}
 	let {
 		filePath,
@@ -333,7 +345,7 @@ function writeIndexFile( options ) {
 		loadFromCDN,
 		writeStats
 	} = options;
-	debug( `Writing index.js file for ${filePath} to ${outputPath}...` );
+	logMsg( `Writing index.js file for ${filePath} to ${outputPath}...` );
 
 	const appDir = join( outputPath, outputDir );
 	const indexPath = join( appDir, 'index.js' );
@@ -341,7 +353,7 @@ function writeIndexFile( options ) {
 	makeOutputDir( appDir );
 	generateISLE( appDir, content );
 
-	debug( `Resolve packages relative to ${basePath}...` );
+	logMsg( `Resolve packages relative to ${basePath}...` );
 	let fileDir;
 	let resourceDirectory;
 	let fileName;
@@ -425,7 +437,8 @@ function writeIndexFile( options ) {
 				'stream': resolve(
 					basePath,
 					'./node_modules/stream-browserify'
-				)
+				),
+				'domain': false
 			},
 			unsafeCache: true,
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -552,9 +565,8 @@ function writeIndexFile( options ) {
 		content = `<Toolbar elements={${elements}} />\n` + content;
 	}
 	const usedComponents = getComponentList( content );
+	logMsg( 'Create JS file...' );
 	const str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
-	debug( `Create JS file: ${str}` );
-
 	writeFileSync( indexPath, str );
 
 	// Copy CSS file:
@@ -577,9 +589,9 @@ function writeIndexFile( options ) {
 	const resourceDirName = `${fileName}-resources`;
 	mkdirSync( join( appDir, `${fileName}-resources` ) );
 	if ( filePath ) {
-		copy( join( resourceDirectory, 'img' ), join( appDir, resourceDirName, 'img' ) ).catch( debug );
-		copy( join( resourceDirectory, 'pdf' ), join( appDir, resourceDirName, 'pdf' ) ).catch( debug );
-		copy( join( resourceDirectory, 'video' ), join( appDir, resourceDirName, 'video' ) ).catch( debug );
+		copy( join( resourceDirectory, 'img' ), join( appDir, resourceDirName, 'img' ) ).catch( logError );
+		copy( join( resourceDirectory, 'pdf' ), join( appDir, resourceDirName, 'pdf' ) ).catch( logError );
+		copy( join( resourceDirectory, 'video' ), join( appDir, resourceDirName, 'video' ) ).catch( logError );
 	}
 
 	let imgPath = join( basePath, 'app', 'img' );
@@ -599,20 +611,27 @@ function writeIndexFile( options ) {
 		publicPath: './',
 		filename: minify ? './js/[name].bundle.min.js' : './js/[name].bundle.js'
 	};
-	const compiler = webpack( config );
+	let compiler;
+	try {
+		logMsg( 'Creating webpack configuration...' );
+		compiler = webpack( config );
+	} catch ( err ) {
+		return logMsg( 'Encountered an error while creating configuration object: '+err.message );
+	}
 	compiler.run( ( err, stats ) => {
 		unlinkSync( indexPath );
 		if ( err ) {
-			debug( 'Encountered an error during bundling: ' + err );
+			logMsg('Encountered an error during bundling: ' + err.message );
 			removeSync( appDir );
-			return process.send ? process.send( err.message ) : console.log( err );
+			return logMsg(err.message );
 		}
-		console.dir( stats ); // eslint-disable-line no-console
+		logMsg( 'Bundling finished without errors...' );
 		if (
 			stats.compilation &&
 			stats.compilation.errors &&
 			stats.compilation.errors.length > 0
 		) {
+			logMsg( JSON.stringify( stats.compilation.errors ) );
 			let errMsg = '';
 			stats.compilation.errors.forEach( v => {
 				errMsg += v;
@@ -620,18 +639,22 @@ function writeIndexFile( options ) {
 			});
 			err = new Error( errMsg );
 			removeSync( appDir );
-			return process.send ? process.send( err.message ) : console.log( err );
+			return logMsg( err.message );
 		}
 		if ( writeStats ) {
-			debug( 'Write statistics to file...' );
+			logMsg( 'Write statistics to file...' );
 			const statsJSON = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
-		return process.send ? process.send( 'success' ) : console.log( 'success' );
+		return logMsg( 'success' );
 	});
 }
 
 
-// EXPORTS //
+// MAIN //
 
-writeIndexFile( JSON.parse( process.argv[ 2 ] ) );
+const argv = process.argv;
+const settings = JSON.parse( argv[ 2 ] );
+
+logMsg( 'Start bundling lesson...' );
+bundleLesson( settings );
