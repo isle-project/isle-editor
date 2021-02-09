@@ -128,16 +128,14 @@ class WebpackCdnPlugin {
 	* Returns the list of all modules in the bundle
 	*/
 	static _getUsedModules(compilation) {
-		let usedModules = {};
-
-		compilation.getStats().toJson().chunks.forEach(c => {
-			c.modules.forEach(m => {
-				m.reasons.forEach(r => {
+		const usedModules = {};
+		compilation.getStats().toJson().chunks.forEach( c => {
+			c.modules.forEach( m => {
+				m.reasons.forEach( r => {
 					usedModules[r.userRequest] = true;
 				});
 			});
 		});
-
 		return usedModules;
 	}
 
@@ -146,10 +144,9 @@ class WebpackCdnPlugin {
 	* - construct the "paths" and "styles" arrays
 	* - add a default path if none provided
 	*/
-	static _cleanModules(modules) {
+	static _cleanModules( modules ) {
 		modules.forEach( p => {
 			p.version = p.version || WebpackCdnPlugin.getVersion( p.name );
-
 			if ( !p.paths ) {
 				p.paths = [];
 			}
@@ -158,7 +155,7 @@ class WebpackCdnPlugin {
 				p.path = void 0;
 			}
 			if ( p.paths.length === 0 && !p.cssOnly ) {
-				p.paths.push( require.resolve(p.name).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/') );
+				p.paths.push( require.resolve( p.name ).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/') );
 			}
 			if ( !p.styles ) {
 				p.styles = [];
@@ -192,8 +189,7 @@ class WebpackCdnPlugin {
 	static _get( modules, url, prefix, prod, publicPath, pathsKey, localKey ) {
 		prefix = prefix || empty;
 		prod = prod !== false;
-
-		let files = [];
+		const files = [];
 		modules
 			.filter( p => p[ localKey ] )
 			.forEach( p => files.push( publicPath + p[ localKey ] ) );
