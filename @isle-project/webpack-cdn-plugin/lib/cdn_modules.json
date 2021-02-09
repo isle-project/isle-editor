@@ -19,11 +19,11 @@
 		"path": "i18next.min.js"
 	},
 	{
-		"name": "pdfjs-dist/webpack",
+		"name": "pdfjs-dist/build/pdf.min.js",
 		"alias": "pdf.js",
 		"var": "pdfjsLib",
 		"path": "pdf.min.js",
-		"version": "2.4.456",
+		"version": "2.6.347",
 		"defer": true
 	},
 	{

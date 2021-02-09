@@ -5,7 +5,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import pdfjsLib from 'pdfjs-dist/webpack';
+const pdfjsLib = require( 'pdfjs-dist/build/pdf.min.js' );
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
@@ -94,7 +94,7 @@ const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
-	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js';
+	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
 }
 
 
