@@ -53,4 +53,5 @@ public
 
 # DLL files
 @isle-project/dll/*.js
+@isle-project/dll/static/*
 @isle-project/dll/*.js.LICENSE.txt
