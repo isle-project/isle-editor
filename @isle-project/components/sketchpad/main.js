@@ -525,7 +525,7 @@ class Sketchpad extends Component {
 									}
 								}
 							}
-							thisdebouncedRedraw();
+							this.debouncedRedraw();
 						}
 					}
 					else if ( type === SKETCHPAD_CLEAR_PAGE ) {
@@ -546,7 +546,7 @@ class Sketchpad extends Component {
 									}
 								}
 								this.sharedElements[ page ] = newElems;
-								thisdebouncedRedraw();
+								this.debouncedRedraw();
 							}
 						}
 					}
