@@ -9,6 +9,7 @@ const pdfjsLib = require( 'pdfjs-dist/build/pdf.min.js' );
 import pdfMake from 'pdfmake/build/pdfmake';
 import logger from 'debug';
 import Pressure from 'pressure';
+import debounce from 'lodash.debounce';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -253,6 +254,8 @@ class Sketchpad extends Component {
 		};
 		this.isMouseDown = false;
 		this.leftMargin = 0;
+
+		this.debouncedRedraw = debounce( this.redraw, 100 );
 	}
 
 	static getDerivedStateFromProps( props, state ) {
@@ -335,7 +338,7 @@ class Sketchpad extends Component {
 						newState.canvasWidth = window.innerWidth - 40;
 					}
 					this.setState( newState, () => {
-						this.redraw();
+						this.debouncedRedraw();
 					});
 				}
 				else if ( type === MEMBER_ACTION ) {
@@ -494,7 +497,7 @@ class Sketchpad extends Component {
 							}
 							if ( isNumber( elemPos ) ) {
 								elems.splice( elemPos, 1 );
-								this.redraw();
+								this.debouncedRedraw();
 							}
 						}
 					}
@@ -522,7 +525,7 @@ class Sketchpad extends Component {
 									}
 								}
 							}
-							this.redraw();
+							thisdebouncedRedraw();
 						}
 					}
 					else if ( type === SKETCHPAD_CLEAR_PAGE ) {
@@ -543,7 +546,7 @@ class Sketchpad extends Component {
 									}
 								}
 								this.sharedElements[ page ] = newElems;
-								this.redraw();
+								thisdebouncedRedraw();
 							}
 						}
 					}
@@ -564,7 +567,7 @@ class Sketchpad extends Component {
 								}
 								this.sharedElements[ page ] = newElems;
 							}
-							this.redraw();
+							this.debouncedRedraw();
 						}
 					}
 				}
@@ -609,7 +612,7 @@ class Sketchpad extends Component {
 			this.setState({
 				noPages: this.props.noPages
 			}, () => {
-				this.redraw();
+				this.debouncedRedraw();
 			});
 		}
 		if ( prevProps.pdf !== this.props.pdf ) {
@@ -619,7 +622,7 @@ class Sketchpad extends Component {
 			this.props.canvasWidth !== prevProps.canvasWidth ||
 			this.props.canvasHeight !== prevProps.canvasHeight
 		) {
-			this.redraw();
+			this.debouncedRedraw();
 		}
 		if (
 			this.props.fill !== prevProps.fill
@@ -667,7 +670,7 @@ class Sketchpad extends Component {
 			canvasHeight: window.innerHeight - this.state.verticalOffset,
 			canvasWidth: window.innerWidth - 40
 		}, () => {
-			this.redraw();
+			this.debouncedRedraw();
 		});
 	}
 
@@ -711,13 +714,13 @@ class Sketchpad extends Component {
 			data.state = omit( data.state, OMITTED_KEYS );
 			data.state.hasRetrievedData = true;
 			this.setState( data.state, () => {
-				this.redraw();
+				this.debouncedRedraw();
 			});
 		} else {
 			this.setState({
 				hasRetrievedData: true
 			}, () => {
-				this.redraw();
+				this.debouncedRedraw();
 			});
 		}
 	}
@@ -764,7 +767,7 @@ class Sketchpad extends Component {
 
 	handleVisibilityChange = () => {
 		if ( !document.hidden ) {
-			this.redraw();
+			this.debouncedRedraw();
 		}
 	}
 
@@ -1032,12 +1035,12 @@ class Sketchpad extends Component {
 				insertedPages: newInsertedPages,
 				selectedPage: this.state.selectedPage - 1
 			}, () => {
-				this.redraw();
+				this.debouncedRedraw();
 			});
 		}
 		else {
 			this.elements[ selectedPage ] = [];
-			this.redraw();
+			this.debouncedRedraw();
 		}
 	}
 
@@ -1073,7 +1076,7 @@ class Sketchpad extends Component {
 		session.store.removeItem( this.id + '_sketchpad' );
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
-				this.redraw();
+				this.debouncedRedraw();
 				this.setState({
 					insertedPages: []
 				});
@@ -1625,7 +1628,7 @@ class Sketchpad extends Component {
 					this.setState({
 						isExporting: false
 					});
-					this.redraw();
+					this.debouncedRedraw();
 				});
 			});
 		});
@@ -1656,7 +1659,7 @@ class Sketchpad extends Component {
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
-			this.redraw();
+			this.debouncedRedraw();
 			if ( !from ) {
 				this.hasChangedSinceLastSave = true;
 				session.log({
@@ -1876,7 +1879,7 @@ class Sketchpad extends Component {
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
-			this.redraw();
+			this.debouncedRedraw();
 			const session = this.context;
 			session.log({
 				id: this.id,
@@ -1899,7 +1902,7 @@ class Sketchpad extends Component {
 		}, () => {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
-			this.redraw();
+			this.debouncedRedraw();
 			const session = this.context;
 			session.log({
 				id: this.id,
@@ -1955,7 +1958,7 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-				this.redraw();
+				this.debouncedRedraw();
 				const session = this.context;
 				session.log({
 					id: this.id,
@@ -1984,7 +1987,7 @@ class Sketchpad extends Component {
 			}, () => {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
-				this.redraw();
+				this.debouncedRedraw();
 				const session = this.context;
 				session.log({
 					id: this.id,
@@ -2018,7 +2021,7 @@ class Sketchpad extends Component {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
 
-				this.redraw();
+				this.debouncedRedraw();
 				if ( shouldLog ) {
 					const session = this.context;
 					session.log({
@@ -2520,7 +2523,7 @@ class Sketchpad extends Component {
 								this.setState({
 									showInstructorAnnotations: !this.state.showInstructorAnnotations
 								}, () => {
-									this.redraw();
+									this.debouncedRedraw();
 								});
 							}}
 							glyph={this.state.showInstructorAnnotations ? 'fa fa-toggle-on' : 'fa fa-toggle-off'}
