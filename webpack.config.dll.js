@@ -192,7 +192,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.2/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.3/'
 	},
 	optimization: {
 		minimize: true
