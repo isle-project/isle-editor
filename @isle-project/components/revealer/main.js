@@ -46,7 +46,7 @@ const Revealer = ( props ) => {
 		setShowChildren( show );
 		setPrevShow( show );
 	}
-	useEffect(() => {
+	useEffect( () => {
 		const readMetadata = () => {
 			if (
 				session &&
@@ -54,7 +54,10 @@ const Revealer = ( props ) => {
 				session.metadata.revealer &&
 				session.metadata.revealer[ id.current ]
 			) {
-				const show = session.metadata.revealer[ id.current ][ session.cohort || 'all' ];
+				let show = session.metadata.revealer[ id.current ][ session.cohort ];
+				if ( show === void 0 ) {
+					show = session.metadata.revealer[ id.current ][ 'all' ];
+				}
 				if ( show === true || show === false ) {
 					setShowChildren( show );
 				}
