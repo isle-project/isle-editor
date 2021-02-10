@@ -41,6 +41,9 @@ const Notes = () => {
 		return null;
 	}
 	return session.stickyNotes.map( ( elem, idx ) => {
+		if ( !elem.size ) {
+			elem.size = {};
+		}
 		return ( <StickyNote
 			color={STICKY_NOTE_COLORS[ elem.visibility ]}
 			watermark={elem.visibility}
@@ -49,7 +52,8 @@ const Notes = () => {
 			draggable={{
 				default: {
 					x: elem.left * window.innerWidth,
-					y: elem.top * window.innerHeight
+					y: elem.top * window.innerHeight,
+					...elem.size
 				}
 			}}
 			title={elem.title}
@@ -57,7 +61,6 @@ const Notes = () => {
 			onDelete={() => {
 				session.deleteStickyNote( elem._id );
 			}}
-			size={elem.size}
 			onMove={({ top, left }) => {
 				session.updateStickyNote({
 					noteID: elem._id,

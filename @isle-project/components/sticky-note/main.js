@@ -8,6 +8,7 @@ import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from '@isle-project/components/draggable';
 import SessionContext from '@isle-project/session/context.js';
 import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from '@isle-project/constants/actions.js';
+import pixelsToNumber from '@isle-project/utils/pixels-to-number';
 import './sticky_note.css';
 
 
@@ -247,10 +248,8 @@ class StickyNote extends Component {
 
 	handleResizeStop = ( e, direction, ref ) => {
 		this.props.onResize({
-			size: {
-				width: ref.style.width,
-				height: ref.style.height
-			}
+			width: pixelsToNumber( ref.style.width ),
+			height: pixelsToNumber( ref.style.height )
 		});
 	}
 
@@ -365,14 +364,16 @@ class StickyNote extends Component {
 				{this.props.editable ? this.showEditableContent() : this.showContent()}
 			</div>
 		</div>;
-		let defaultSize = this.props.size;
-		if ( !defaultSize ) {
-			defaultSize = {
-				width: 300,
-				height: 300
-			};
-		}
 		const props = isObject( this.props.draggable ) ? this.props.draggable : {};
+		if ( !props.default ) {
+			props.default = { ...this.props.size };
+		}
+		if ( !props.default.width ) {
+			props.default.width = 300;
+		}
+		if ( !props.default.width ) {
+			props.default.height = 300;
+		}
 		return ( <Draggable
 			bounds="#Lesson"
 			cancel=".noDrag"
@@ -382,7 +383,6 @@ class StickyNote extends Component {
 			style={{
 				position: 'absolute'
 			}}
-			default={defaultSize}
 			minWidth={200}
 			minHeight={200}
 			maxHeight={500}
