@@ -87,6 +87,9 @@ const LinePlotMenu = ( props ) => {
 						placeholder="Select... (optional)"
 						isClearable
 						styles={selectStyles}
+						menuPortalTarget={document.body}
+						menuPlacement="auto"
+						menuShouldScrollIntoView={false}
 					/>
 				</FormGroup>
 				<SelectInput

@@ -170,6 +170,7 @@ const SelectInput = ( props ) => {
 				<Select
 					id={id}
 					name="form-field-name"
+					menuShouldScrollIntoView={false}
 					{...props}
 					value={renderedValue}
 					options={options}

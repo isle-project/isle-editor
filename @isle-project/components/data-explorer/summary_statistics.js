@@ -669,6 +669,9 @@ class SummaryStatisticsMenu extends Component {
 							});
 						}}
 						tooltip={t('variables-statistics-tooltip')}
+						menuPortalTarget={document.body}
+						menuPlacement="auto"
+						menuShouldScrollIntoView={false}
 					/>
 					{ this.state.showQuantiles ?
 						<FormGroup controlId="quantiles-form-group" >

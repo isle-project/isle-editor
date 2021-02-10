@@ -75,6 +75,8 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 						}}
 						styles={selectStyles}
 						menuPortalTarget={document.body}
+						menuPlacement="auto"
+						menuShouldScrollIntoView={false}
 					/>
 				</FormGroup>
 				<SelectInput
