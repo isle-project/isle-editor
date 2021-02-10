@@ -17,5 +17,6 @@
 	"theoretical-quantiles": "Quantiles teóricos",
 	"toggle-fullscreen": "Alternar pantalla completa",
 	"toggle-legend": "Leyenda de la conmutación",
+	"variable-missing": "Falta la variable a graficar.",
 	"vs": "contra"
 }

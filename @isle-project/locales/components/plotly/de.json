@@ -17,5 +17,6 @@
 	"theoretical-quantiles": "Theoretische Quantile",
 	"toggle-fullscreen": "Vollbildansicht umschalten",
 	"toggle-legend": "Legende ein-/ausschalten",
+	"variable-missing": "Variable, die geplottet werden soll, fehlt.",
 	"vs": "vs."
 }

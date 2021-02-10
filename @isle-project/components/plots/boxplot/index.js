@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
@@ -18,31 +19,39 @@ function isNonMissingNumber( x ) {
 	return isNumber( x ) && !isnan( x );
 }
 
-export function generateBoxplotConfig({ data, variable, group, orientation, overlayPoints }) {
+export function generateBoxplotConfig({ data, variable, group = [], orientation, overlayPoints }) {
 	let categoryarray;
 	let traces;
+	if ( isString( variable ) ) {
+		variable = [ variable ];
+	}
 	if ( group.length === 0 ) {
-		const values = data[ variable ];
-		const nonmissing = [];
-		for ( let i = 0; i < values.length; i++ ) {
-			const v = values[ i ];
-			if ( isNonMissingNumber( v ) ) {
-				nonmissing.push( v );
+		traces = new Array( variable.length );
+		for ( let i = 0; i < variable.length; i++ ) {
+			const x = variable[ i ];
+			const values = data[ x ];
+			const nonmissing = [];
+			for ( let i = 0; i < values.length; i++ ) {
+				const v = values[ i ];
+				if ( isNonMissingNumber( v ) ) {
+					nonmissing.push( v );
+				}
 			}
+			const trace = {
+				type: 'box',
+				name: x
+			};
+			if ( orientation === 'horizontal' ) {
+				trace.x = nonmissing;
+			} else {
+				trace.y = nonmissing;
+			}
+			traces[ i ] = trace;
 		}
-		const trace = {
-			type: 'box',
-			name: variable
-		};
-		if ( orientation === 'horizontal' ) {
-			trace.x = nonmissing;
-		} else {
-			trace.y = nonmissing;
-		}
-		traces = [ trace ];
 	}
 	else if ( group.length === 1 ) {
-		const freqs = by( data[ variable ], data[ group[0] ], arr => {
+		const x = variable[ 0 ];
+		const freqs = by( data[ x ], data[ group[0] ], arr => {
 			return arr;
 		});
 		traces = [];
@@ -70,7 +79,8 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		}
 	}
 	else if ( group.length === 2 ) {
-		const freqs = by( data[ variable ], data[ group[0] ], arr => {
+		const x = variable[ 0 ];
+		const freqs = by( data[ x ], data[ group[0] ], arr => {
 			return arr;
 		});
 		const cats = by( data[ group[1] ], data[ group[0] ], arr => {
@@ -116,7 +126,7 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 		}
 	}
 	const layout = {
-		title: group.length > 0 ? `${variable} ${i18n.t('Plotly:given')} ${group.join( ', ')}` : variable,
+		title: group.length > 0 ? `${variable[ 0 ]} ${i18n.t('Plotly:given')} ${group.join( ', ')}` : variable.join( ', ' ),
 		xaxis: {
 			title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
 			type: orientation === 'vertical' ? 'category' : null,
@@ -154,14 +164,17 @@ export function generateBoxplotConfig({ data, variable, group, orientation, over
 * A box plot.
 *
 * @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
+* @property {(string|Array<string>)} variable - variable(s) to display
 * @property {Array<string>} group - one or two grouping variables
 * @property {string} orientation - `vertical` or `horizontal` orientation
 * @property {boolean} overlayPoints - controls whether to overlay points
 */
-const BoxPlot = ({ data, variable, group = [], orientation, overlayPoints, id, action, onShare }) =>{
+const BoxPlot = ({ data, variable, group, orientation, overlayPoints, id, action, onShare }) =>{
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+	}
+	if ( !variable ) {
+		return <Alert variant="danger">{i18n.t('Plotly:variable-missing')}</Alert>;
 	}
 	const config = generateBoxplotConfig({
 		data,
@@ -186,14 +199,17 @@ const BoxPlot = ({ data, variable, group = [], orientation, overlayPoints, id, a
 // PROPERTIES //
 
 BoxPlot.defaultProps = {
-	group: null,
+	group: [],
 	orientation: 'vertical',
 	overlayPoints: false
 };
 
 BoxPlot.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired,
+	variable: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.string
+	]).isRequired,
 	group: PropTypes.array,
 	orientation: PropTypes.oneOf([ 'vertical', 'horizontal' ]),
 	overlayPoints: PropTypes.bool

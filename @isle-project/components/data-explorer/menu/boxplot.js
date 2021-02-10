@@ -18,9 +18,9 @@ import QuestionButton from '../question_button.js';
 
 // MAIN //
 
-const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, session, logAction, onCreated }) => {
-	const [ variable, setVariable ] = useState( defaultValue || variables[ 0 ] );
-	const [ group, setGroup ] = useState([]);
+const BoxplotMenu = ({ data, variables, groupingVariables, t, session, logAction, onCreated }) => {
+	const [ selectedVariables, setSelectedVariables ] = useState( [] );
+	const [ group, setGroup ] = useState( [] );
 	const [ orientation, setOrientation ] = useState( 'vertical' );
 	const [ overlayPoints, setOverlayPoints ] = useState( false );
 
@@ -28,7 +28,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 		const groupValues = ( group || [] ).map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
-			variable,
+			variables: selectedVariables,
 			group: groupValues,
 			plotId
 		};
@@ -42,8 +42,8 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 			logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
 		};
 		const output = <BoxPlot id={plotId} onShare={onShare} action={action}
-			data={data} variable={variable} group={groupValues} orientation={orientation}
-			overlayPoints={overlayPoints} variables={variables}
+			data={data} variable={selectedVariables} group={groupValues} orientation={orientation}
+			overlayPoints={overlayPoints}
 		/>;
 		logAction( DATA_EXPLORER_BOXPLOT, action );
 		onCreated( output );
@@ -56,10 +56,16 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 			</Card.Header>
 			<Card.Body>
 				<SelectInput
-					legend={t('variable')}
-					defaultValue={variable}
+					legend={t('variable-s')}
+					multi
+					defaultValue={selectedVariables}
 					options={variables}
-					onChange={setVariable}
+					onChange={( value ) => {
+						setSelectedVariables( value || [] );
+						if ( value && value.length > 1 ) {
+							setGroup( [] );
+						}
+					}}
 				/>
 				<FormGroup controlId="boxplot-form-select">
 					<FormLabel>{t('group-by')}</FormLabel>
@@ -73,6 +79,7 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 								setGroup( value );
 							}
 						}}
+						isDisabled={selectedVariables.length > 1}
 						styles={selectStyles}
 						menuPortalTarget={document.body}
 						menuPlacement="auto"
@@ -91,7 +98,10 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 					defaultValue={false}
 					onChange={setOverlayPoints}
 				/>
-				<Button variant="primary" block onClick={generateBoxplot}>
+				<Button
+					variant="primary" block onClick={generateBoxplot}
+					disabled={!selectedVariables || selectedVariables.length === 0}
+				>
 					{t('generate')}
 				</Button>
 			</Card.Body>
@@ -103,7 +113,6 @@ const BoxplotMenu = ({ data, variables, defaultValue, groupingVariables, t, sess
 // PROPERTIES //
 
 BoxplotMenu.defaultProps = {
-	defaultValue: null,
 	groupingVariables: null,
 	logAction() {},
 	onCreated() {}
@@ -111,7 +120,6 @@ BoxplotMenu.defaultProps = {
 
 BoxplotMenu.propTypes = {
 	data: PropTypes.object.isRequired,
-	defaultValue: PropTypes.string,
 	groupingVariables: PropTypes.array,
 	logAction: PropTypes.func,
 	onCreated: PropTypes.func,
