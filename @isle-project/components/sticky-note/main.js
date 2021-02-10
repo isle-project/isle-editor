@@ -45,7 +45,7 @@ class StickyNote extends Component {
 		let body = null;
 		let title = null;
 		if ( props.editable ) {
-			title = props.title || props.t( 'type-in-the-title' );
+			title = props.title || props.t( 'custom-title' );
 			body = props.body || props.t( 'type-in-your-note' );
 		}
 		this.state = {
@@ -56,6 +56,15 @@ class StickyNote extends Component {
 			body: body,
 			title: title
 		};
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.editable & !prevProps.editable ) {
+			this.setState({
+				title: this.props.title || this.props.t( 'custom-title' ),
+				body: this.props.body || this.props.t( 'type-in-your-note' )
+			});
+		}
 	}
 
 	handleClick = () => {
@@ -142,6 +151,9 @@ class StickyNote extends Component {
 				<div className="sticky-note-body">
 					{this.props.body}
 				</div>
+				{this.props.watermark ? <div className="sticky-note-watermark" >
+					{this.props.t( this.props.watermark )}
+				</div> : null }
 			</div>
 		);
 	}
@@ -267,9 +279,6 @@ class StickyNote extends Component {
 				tabIndex={0}
 			>
 				{this.state.body}
-				{this.props.watermark ? <div className="sticky-note-watermark" >
-					{this.props.t( this.props.watermark )}
-				</div> : null }
 			</div>
 		);
 	}
@@ -305,6 +314,9 @@ class StickyNote extends Component {
 			<div className="sticky-note-content">
 				{ this.state.editTitle ? this.showEditableTitle() : this.showTitle() }
 				{ this.state.editBody ? this.showEditableBody() : this.showBody() }
+				{this.props.watermark ? <div className="sticky-note-watermark" >
+					{this.props.t( this.props.watermark )}
+				</div> : null }
 			</div>
 		);
 	}
@@ -350,7 +362,7 @@ class StickyNote extends Component {
 					</div> : null }
 					{ this.props.removable ? this.removeButton() : null }
 				</div>
-				{ this.props.editable ? this.showEditableContent() : this.showContent() }
+				{this.props.editable ? this.showEditableContent() : this.showContent()}
 			</div>
 		</div>;
 		let defaultSize = this.props.size;
