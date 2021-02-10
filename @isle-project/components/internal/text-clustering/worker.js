@@ -18,12 +18,12 @@ const corpus = new Corpus( vocab, [ 3, 5, 7 ] );
 *
 * @param {Event} e - incoming event from main thread
 */
-self.onmessage = function onMessage( e ) {
+onmessage = function onMessage( e ) {
 	const data = e.data;
 	switch ( data.type ) {
 		case 'TO_VECTOR': {
 			const vec = vocab.toVector( data.value );
-			self.postMessage({
+			postMessage({
 				type: 'WORD_VECTOR',
 				value: vec
 			});
@@ -43,7 +43,7 @@ self.onmessage = function onMessage( e ) {
 		}
 		case 'GET_CLUSTERS': {
 			const clusters = corpus.clusters( data.value );
-			self.postMessage({
+			postMessage({
 				type: 'CLUSTERS',
 				value: {
 					clusters,
@@ -54,7 +54,7 @@ self.onmessage = function onMessage( e ) {
 		}
 		case 'GET_CLUSTER_COORDINATES': {
 			const coord = corpus.getClusterXYCoordinates( data.value );
-			self.postMessage({
+			postMessage({
 				type: 'CLUSTER_COORDINATES',
 				value: {
 					coordinates: coord,
@@ -68,7 +68,7 @@ self.onmessage = function onMessage( e ) {
 				cluster: data.value.cluster,
 				modelIndex: data.value.modelIndex
 			});
-			self.postMessage({
+			postMessage({
 				type: 'REPRESENTATIVE_DOCUMENTS',
 				value: answers
 			});

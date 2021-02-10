@@ -513,6 +513,13 @@ function bundleLesson( options ) {
 					]
 				},
 				{
+					test: /\.worker\.js$/,
+					exclude: /node_modules/, // do not touch the worker scripts of `pdf.js`
+					use: {
+						loader: 'worker-loader'
+					}
+				},
+				{
 					test: /\.svg$/i,
 					use: {
 						loader: 'svg-react-loader'
