@@ -7,6 +7,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import Translate, { translate } from '@docusaurus/Translate';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -140,7 +141,11 @@ function Home() {
 									className="button button--primary button--lg"
 									to="http://stat.cmu.edu/isle/faq.html"
 								>
-									Open
+									{translate({
+										id: 'open-link',
+										message: 'Open',
+										description: 'Label for button to open link.'
+									})}
 								</Link>
 							</div>
 						</div>

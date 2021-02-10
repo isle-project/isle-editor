@@ -2737,7 +2737,7 @@ class Sketchpad extends Component {
 		/>;
 		return (
 			<Fragment>
-				<ContextMenuTrigger id="sketchpadWindow" ><Card
+				<Card
 					id={this.id}
 					ref={( div ) => {
 						this.sketchpadPanel = div;
@@ -2767,29 +2767,31 @@ class Sketchpad extends Component {
 						toOriginalPage={this.toOriginalPage}
 						key="overlays"
 					/>
-					<div className="canvas-wrapper"
-						style={{
-							width: this.state.canvasWidth,
-							height: this.state.canvasHeight
-						}}
-						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
-						ref={( div ) => { this.canvasWrapper = div; }}
-					>
-						{canvas}
-						{mangnifyingGlass}
-						<div
-							className="textLayer"
-							ref={( div ) => { this.textLayer = div; }}
+					<ContextMenuTrigger id="sketchpadWindow" >
+						<div className="canvas-wrapper"
 							style={{
-								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'auto'
+								width: this.state.canvasWidth,
+								height: this.state.canvasHeight
 							}}
-							{...eventListeners}
-						/>
-						<div
-							ref={(div) => { this.pointer = div; }}
-							className="sketch-pointer"
-						/>
-					</div>
+							key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
+							ref={( div ) => { this.canvasWrapper = div; }}
+						>
+							{canvas}
+							{mangnifyingGlass}
+							<div
+								className="textLayer"
+								ref={( div ) => { this.textLayer = div; }}
+								style={{
+									pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'auto'
+								}}
+								{...eventListeners}
+							/>
+							<div
+								ref={(div) => { this.pointer = div; }}
+								className="sketch-pointer"
+							/>
+						</div>
+					</ContextMenuTrigger>
 					<input type="text" className="sketch-text-input" style={{
 						display: this.state.mode === 'text' ? 'inline-block' : 'none',
 						fontSize: this.state.fontSize,
@@ -2855,7 +2857,7 @@ class Sketchpad extends Component {
 							run={true}
 						/> : null
 					}
-				</Card></ContextMenuTrigger>
+				</Card>
 				{ this.sketchpadPanel ? <KeyControls
 					container={this.sketchpadPanel}
 					actions={{

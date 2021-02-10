@@ -3,6 +3,26 @@
 		"message": "ドキュメントの閲覧",
 		"description": "Browse Docs Heading"
 	},
+	"help.join-community-heading": {
+		"message": "コミュニティに参加する",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "このプロジェクトは、献身的な人々によって維持されています。",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "助けが必要ですか？",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated-heading": {
+		"message": "最新情報をお届けします",
+		"description": "Stay Updated Heading"
+	},
+	"open-link": {
+		"message": "開く",
+		"description": "Label for button to open link."
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "新しいエントリー",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

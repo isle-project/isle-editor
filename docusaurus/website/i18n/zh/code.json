@@ -3,6 +3,26 @@
 		"message": "浏览文件",
 		"description": "Browse Docs Heading"
 	},
+	"help.join-community-heading": {
+		"message": "加入社区",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "这个项目是由一群专门的人维护的。",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "需要帮助吗？",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated-heading": {
+		"message": "掌握最新信息",
+		"description": "Stay Updated Heading"
+	},
+	"open-link": {
+		"message": "开放式",
+		"description": "Label for button to open link."
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "较新的条目",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

@@ -3,6 +3,26 @@
 		"message": "Обзор документов",
 		"description": "Browse Docs Heading"
 	},
+	"help.join-community-heading": {
+		"message": "Присоединиться к сообществу",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Этот проект поддерживается специальной группой людей.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Нужна помощь?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated-heading": {
+		"message": "Будьте в курсе",
+		"description": "Stay Updated Heading"
+	},
+	"open-link": {
+		"message": "Открыть",
+		"description": "Label for button to open link."
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Новые поступления",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

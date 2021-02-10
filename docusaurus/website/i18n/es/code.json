@@ -3,6 +3,26 @@
 		"message": "Examinar los documentos",
 		"description": "Browse Docs Heading"
 	},
+	"help.join-community-heading": {
+		"message": "Únase a la Comunidad",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Este proyecto es mantenido por un grupo de personas dedicadas.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "¿Necesita ayuda?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated-heading": {
+		"message": "Manténgase al día",
+		"description": "Stay Updated Heading"
+	},
+	"open-link": {
+		"message": "Abrir",
+		"description": "Label for button to open link."
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Entradas más recientes",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

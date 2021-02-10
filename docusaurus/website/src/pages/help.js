@@ -25,22 +25,50 @@ function Support() {
 					<div className="col col--6 col--offset-3 padding-vert--lg">
 						<h1>
 							{translate({
+								id: 'help.need-help-heading',
+								message: 'Need Help?',
+								description: 'Help Page Top-Level Heading'
+							})}
+	  					</h1>
+						<p>
+							{translate({
+								id: 'help.maintained-by-people',
+								message: 'This project is maintained by a dedicated group of people.',
+								description: 'Paragraph mentioning that project is maintained by multiple people'
+							})}
+						</p>
+
+						<h2>
+							{translate({
 								id: 'help.browse-docs-heading',
 								message: 'Browse Docs',
 								description: 'Browse Docs Heading'
 							})}
-	  					</h1>
-						<p>This project is maintained by a dedicated group of people.</p>
-
-						<h2>Browse Docs</h2>
-						<p>Learn more using the <a href={useBaseUrl('docs/overview/intro')}>documentation on this site</a> or by following the <a href={useBaseUrl('video_tutorials')}>
+						</h2>
+						<p>
+							Learn more using the <a href={useBaseUrl('docs/overview/intro')}>documentation on this site</a> or by following the <a href={useBaseUrl('video_tutorials')}>
 						tutorials</a>.</p>
+						<h2>
+							{translate({
+								id: 'help.join-community-heading',
+								message: 'Join the Community',
+								description: 'Join the Community Heading'
+							})}
+						</h2>
+						<p>
+							Ask questions about the documentation and project in the <a href="https://discourse.isledocs.com">discussion forum</a>.
+						</p>
 
-						<h2>Join the community</h2>
-						<p>Ask questions about the documentation and project in the <a href="https://discourse.isledocs.com">discussion forum</a>.</p>
-
-						<h2>Stay up to date</h2>
-						<p>Find out what&apos;s new with this project by browsing the <a href="https://github.com/isle-project/isle-editor/releases">releases</a> of the ISLE editor</p>
+						<h2>
+							{translate({
+								id: 'help.stay-updated-heading',
+								message: 'Stay up to date',
+								description: 'Stay Updated Heading'
+							})}
+						</h2>
+						<p>
+							Find out what&apos;s new with this project by browsing the <a href="https://github.com/isle-project/isle-editor/releases">releases</a> of the ISLE editor
+						</p>
 					</div>
 				</div>
 			</div>
