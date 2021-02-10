@@ -59,6 +59,10 @@
 	opacity: 0.75;
 }
 
+.input-range-clickable-label:hover {
+	color: #dc3545;
+}
+
 .input-range__label--min,
 .input-range__label--max {
 	display: none;

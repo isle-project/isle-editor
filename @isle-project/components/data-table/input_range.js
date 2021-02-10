@@ -63,9 +63,11 @@ class FilterInputRange extends Component {
 				}}
 				formatLabel={( val ) => {
 					return ( <span
+						className="input-range-clickable-label"
 						role="button" tabIndex={0}
 						onKeyPress={this.showRangeInput}
 						onClick={this.showRangeInput}
+						title={this.props.t('click-to-set-value')}
 					>
 						{round( val )}
 					</span> );

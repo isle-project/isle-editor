@@ -255,6 +255,7 @@ function createColumns( props, state ) {
 					return ( <FilterInputRange
 						defaultValue={filter ? filter.value : defaultVal}
 						onChange={onChange} maxValue={maxValue} minValue={minValue}
+						t={t}
 					/> );
 				};
 			} else if ( uniqueValues.length <= 50 ) {
