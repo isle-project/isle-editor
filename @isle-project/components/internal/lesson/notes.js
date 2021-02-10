@@ -57,11 +57,18 @@ const Notes = () => {
 			onDelete={() => {
 				session.deleteStickyNote( elem._id );
 			}}
+			size={elem.size}
 			onMove={({ top, left }) => {
 				session.updateStickyNote({
 					noteID: elem._id,
 					top,
 					left
+				});
+			}}
+			onResize={( size ) => {
+				session.updateStickyNote({
+					noteID: elem._id,
+					size
 				});
 			}}
 			onTitleChange={( title ) => {

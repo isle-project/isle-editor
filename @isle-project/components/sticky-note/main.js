@@ -30,7 +30,8 @@ const debug = logger( 'isle:sticky-note' );
 * @property {boolean} editable - controls whether the component is editable
 * @property {boolean} minimizable - controls whether the component is minimizable
 * @property {boolean} minimized - if set, the component is minimized at the start
-* @property {boolean} stain - controls whether to show a coffee stain
+* @property {boolean} resizable - controls whether the component is resizable
+* @property {Object} size - object with `width` and `height` properties specifying the default size of the note
 * @property {Function} onClick - callback function invoked when the note is clicked
 * @property {boolean} removable - controls whether the note is removed when clicked
 */
@@ -141,7 +142,6 @@ class StickyNote extends Component {
 				<div className="sticky-note-body">
 					{this.props.body}
 				</div>
-				{this.props.stain ? <div className="sticky-note-stain" /> : null }
 			</div>
 		);
 	}
@@ -233,6 +233,15 @@ class StickyNote extends Component {
 		this.props.onMove({ left: data.lastX / window.innerWidth, top: data.lastY / window.innerHeight });
 	}
 
+	handleResizeStop = ( e, direction, ref ) => {
+		this.props.onResize({
+			size: {
+				width: ref.style.width,
+				height: ref.style.height
+			}
+		});
+	}
+
 	showEditableTitle = () => {
 		return (
 			<div className="sticky-note-title">
@@ -285,7 +294,7 @@ class StickyNote extends Component {
 	showEditableBody = () => {
 		return (
 			<div className="sticky-note-body" style={{ overflow: 'hidden' }}>
-				<textarea ref={this.textareaRef} className="sticky-note-editable-body noDrag" rows="6" cols="28">{ this.state.body }</textarea>
+				<textarea ref={this.textareaRef} className="sticky-note-editable-body noDrag" cols="28">{ this.state.body }</textarea>
 				<input onClick={this.submitBody} type="submit" value={this.props.t('save')} />
 			</div>
 		);
@@ -331,35 +340,45 @@ class StickyNote extends Component {
 				onClick={this.handleClick} className={className}
 				onKeyPress={this.handleClick} tabIndex={0} role="button"
 			>
-				<div className="sticky-note-wrapper">
-					<div className="sticky-note-controls">
-						{this.props.minimizable ? <div
-							onClick={this.minimize} className="sticky-note-minimizable"
-							tabIndex={0} role="button" onKeyPress={this.minimize}
-							title={this.props.t('click-to-minimize')}
-						>
-							<i className="fas fa-window-minimize"></i>
-						</div> : null }
-						{ this.props.removable ? this.removeButton() : null }
-					</div>
-					{ this.props.editable ? this.showEditableContent() : this.showContent() }
+				<div className="sticky-note-controls">
+					{this.props.minimizable ? <div
+						onClick={this.minimize} className="sticky-note-minimizable"
+						tabIndex={0} role="button" onKeyPress={this.minimize}
+						title={this.props.t('click-to-minimize')}
+					>
+						<i className="fas fa-window-minimize"></i>
+					</div> : null }
+					{ this.props.removable ? this.removeButton() : null }
 				</div>
+				{ this.props.editable ? this.showEditableContent() : this.showContent() }
 			</div>
 		</div>;
-		if ( this.props.draggable ) {
-			const props = isObject( this.props.draggable ) ? this.props.draggable : {};
-			return ( <Draggable
-				bounds="#Lesson"
-				cancel=".noDrag"
-				onStop={this.handleDragStop}
-				onDrag={this.handleDrag}
-				style={{
-					position: 'absolute'
-				}}
-				{...props}
-			>{out}</Draggable> );
+		let defaultSize = this.props.size;
+		if ( !defaultSize ) {
+			defaultSize = {
+				width: 300,
+				height: 300
+			};
 		}
-		return out;
+		const props = isObject( this.props.draggable ) ? this.props.draggable : {};
+		return ( <Draggable
+			bounds="#Lesson"
+			cancel=".noDrag"
+			onStop={this.handleDragStop}
+			onDrag={this.handleDrag}
+			onResizeStop={this.handleResizeStop}
+			style={{
+				position: 'absolute'
+			}}
+			default={defaultSize}
+			minWidth={200}
+			minHeight={200}
+			maxHeight={500}
+			maxWidth={500}
+			disabled={!this.props.draggable}
+			resizable
+			{...props}
+		>{out}</Draggable> );
 	}
 }
 
@@ -386,11 +405,13 @@ StickyNote.propTypes = {
 	editable: PropTypes.bool,
 	minimizable: PropTypes.bool,
 	minimized: PropTypes.bool,
-	stain: PropTypes.bool,
+	resizable: PropTypes.bool,
+	size: PropTypes.object,
 	onBodyChange: PropTypes.func,
 	onClick: PropTypes.func,
 	onDelete: PropTypes.func,
 	onMove: PropTypes.func,
+	onResize: PropTypes.func,
 	onTitleChange: PropTypes.func,
 	removable: PropTypes.bool
 };
@@ -405,12 +426,14 @@ StickyNote.defaultProps = {
 	editable: false,
 	minimizable: false,
 	minimized: false,
+	resizable: false,
+	size: null,
 	style: {},
-	stain: false,
 	onBodyChange() {},
 	onClick: null,
 	onDelete() {},
 	onMove() {},
+	onResize() {},
 	onTitleChange() {},
 	removable: false
 };
