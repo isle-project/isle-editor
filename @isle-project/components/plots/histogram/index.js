@@ -35,7 +35,7 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	const maxVal = isNumber( xbins.end ) ? xbins.end : max( vals );
 	const minVal = isNumber( xbins.start ) ? xbins.start : min( vals );
 	if ( binStrategy === 'Select # of bins' ) {
-		const sizeVal = ( maxVal - minVal ) / nBins;
+		const sizeVal = ( maxVal - minVal + 1e-3 ) / nBins;
 		config.autobinx = false;
 		config.xbins = {
 			size: sizeVal,
