@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -19,6 +19,11 @@ import QuestionButton from './../question_button.js';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:histogram' );
+const DEFAULT_XBINS = {
+	start: null,
+	size: 100,
+	end: null
+};
 
 
 // MAIN //
@@ -32,13 +37,13 @@ const HistogramMenu = ( props ) => {
 	const [ groupMode, setGroupMode ] = useState( 'Overlay' );
 	const [ nCols, setNCols ] = useState( 2 );
 	const [ nBins, setNBins ] = useState( 10 );
-	const [ xBins, setXBins ] = useState({
-		start: null,
-		size: 100,
-		end: null
-	});
+	const [ xBins, setXBins ] = useState( DEFAULT_XBINS );
 	const [ binStrategy, setBinStrategy ] = useState( 'Automatic' );
 	const { variables, groupingVariables, t } = props;
+
+	useEffect( () => {
+		setXBins( DEFAULT_XBINS );
+	}, [ binStrategy ] );
 
 	const generateHistogram = () => {
 		debug( `Generate a histogram with ${nBins} bins` );
@@ -53,9 +58,8 @@ const HistogramMenu = ( props ) => {
 		};
 		if ( binStrategy === 'Select # of bins' ) {
 			state.nBins = nBins;
-		} else if ( binStrategy === 'Set bin width' ) {
-			state.xBins = xBins;
 		}
+		state.xBins = xBins;
 		if ( groupMode === 'Facets' ) {
 			state.nCols = nCols;
 		}
