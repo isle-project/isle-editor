@@ -1,7 +1,19 @@
 {
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "ビデオチュートリアルでは、ISLEがどのように教室に取り入れられるかをご紹介しています。"
+	},
+	"Help Page": {
+		"message": "ヘルプページ"
+	},
 	"help.browse-docs-heading": {
 		"message": "ドキュメントの閲覧",
 		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "ドキュメントやプロジェクトについての質問は、<a href=\"https://discourse.isledocs.com\">ディスカッションフォーラム</a>でお願いします。"
 	},
 	"help.join-community-heading": {
 		"message": "コミュニティに参加する",
@@ -15,9 +27,15 @@
 		"message": "助けが必要ですか？",
 		"description": "Help Page Top-Level Heading"
 	},
+	"help.stay-updated": {
+		"message": "このプロジェクトの最新情報は、ISLE エディタの <a href=\"https://github.com/isle-project/isle-editor/releases\">リリース</a> を参照してください。"
+	},
 	"help.stay-updated-heading": {
 		"message": "最新情報をお届けします",
 		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "ISLEの特徴や開発に関わる研究プロジェクトの情報は、プロジェクトのウェブサイトに掲載されています。"
 	},
 	"open-link": {
 		"message": "開く",
@@ -63,9 +81,9 @@
 		"message": "プロジェクトサイト",
 		"description": "Project Website"
 	},
-	"overview.video-tutorials": {
-		"message": "ビデオチュートリアル",
-		"description": "Video Tutorials"
+	"overview.welcome": {
+		"message": "統計学と関連分野のインタラクティブな授業を作成するための<i>インタラクティブ統計学学習環境(ISLE)</i>とISLEエディタのドキュメントへようこそ。私たちの目的の一つは、大学やその他の学習機関の先生方にご利用いただくことです。ご質問は、pgb AT andrew.cmu.eduまでメールでお問い合わせください。",
+		"description": "Welcome message at beginning of documentation"
 	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "新しいエントリー",
@@ -130,5 +148,32 @@
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "メインコンテンツへスキップ",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"video-tutorials": {
+		"message": "ビデオチュートリアル",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "ISLEに関する動画の完全なリストは、プロジェクトの<a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\">YouTubeチャンネル</a>で見ることができます。"
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "クラスでISLEを使う",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "リバーラーとブラックアウト",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "スケッチパッドを使う",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "スタイリングレッスン",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "発券システム",
+		"description": "Ticketing System"
 	}
 }

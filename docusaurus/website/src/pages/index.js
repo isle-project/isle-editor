@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/* eslint-disable react/no-danger */
+
+// MODULES //
+
 import React from 'react';
 import classnames from 'classnames';
 import Translate, { translate } from '@docusaurus/Translate';
@@ -14,6 +18,9 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
+
+// VARIABLES //
+
 global.Buffer = global.Buffer || require('buffer').Buffer;
 if ( typeof window === 'undefined' ) {
 	global.window = {};
@@ -21,7 +28,6 @@ if ( typeof window === 'undefined' ) {
 if ( typeof global.localStorage === 'undefined' ) {
 	global.localStorage = null;
 }
-
 const features = [
 	{
 		title: <>
@@ -82,6 +88,9 @@ const features = [
 	}
 ];
 
+
+// MAIN //
+
 function Home() {
 	const context = useDocusaurusContext();
 	const { siteConfig = {}} = context;
@@ -116,7 +125,13 @@ function Home() {
 				<div className="container">
 					<div className="row">
 						<div className="col col--8 col--offset-2 padding-vert--lg">
-							<p>Welcome to the documentation of the <i>interactive statistics learning environment (ISLE)</i> and the ISLE Editor for authoring interactive lessons for statistics and related disciplines. One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.</p>
+							<p dangerouslySetInnerHTML={{
+								__html: translate({
+									id: 'overview.welcome',
+									message: 'Welcome to the documentation of the <i>interactive statistics learning environment (ISLE)</i> and the ISLE Editor for authoring interactive lessons for statistics and related disciplines. One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.',
+									description: 'Welcome message at beginning of documentation'
+								})
+							}} />
 						</div>
 					</div>
 				</div>
@@ -131,11 +146,15 @@ function Home() {
 								/>
 							</div>
 							<h3>{translate({
-								id: 'overview.video-tutorials',
+								id: 'video-tutorials',
 								message: 'Video Tutorials',
 								description: 'Video Tutorials'
 							})}</h3>
-							<p>A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.</p>
+							<p>
+								<Translate>
+									A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.
+								</Translate>
+							</p>
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
@@ -162,7 +181,11 @@ function Home() {
 								message: 'Project Website',
 								description: 'Project Website'
 							})}</h3>
-							<p>Information on the features of ISLE and related research projects informing its development are available on the project website.</p>
+							<p>
+								<Translate>
+									Information on the features of ISLE and related research projects informing its development are available on the project website.
+								</Translate>
+							</p>
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
@@ -241,5 +264,8 @@ function Home() {
 		</Layout>
 	);
 }
+
+
+// EXPORTS //
 
 export default Home;

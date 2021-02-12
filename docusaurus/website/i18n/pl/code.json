@@ -1,7 +1,19 @@
 {
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Wybór samouczków wideo pomoże Ci rozpocząć pracę i zobaczyć, jak ISLE może być włączone do Twojej klasy."
+	},
+	"Help Page": {
+		"message": "Strona pomocy"
+	},
 	"help.browse-docs-heading": {
 		"message": "Przeglądaj dokumenty",
 		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Zadawaj pytania dotyczące dokumentacji i projektu na <a href=\"https://discourse.isledocs.com\">forum dyskusyjnym</a>."
 	},
 	"help.join-community-heading": {
 		"message": "Dołącz do społeczności",
@@ -15,9 +27,15 @@
 		"message": "Potrzebujesz pomocy?",
 		"description": "Help Page Top-Level Heading"
 	},
+	"help.stay-updated": {
+		"message": "Dowiedz się, co nowego w tym projekcie, przeglądając <a href=\"https://github.com/isle-project/isle-editor/releases\">relekcje</a> edytora ISLE"
+	},
 	"help.stay-updated-heading": {
 		"message": "Bądź na bieżąco",
 		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Informacje na temat cech ISLE i powiązanych projektów badawczych, które wpłynęły na jego rozwój, są dostępne na stronie internetowej projektu."
 	},
 	"open-link": {
 		"message": "Otwórz",
@@ -63,9 +81,9 @@
 		"message": "Strona internetowa projektu",
 		"description": "Project Website"
 	},
-	"overview.video-tutorials": {
-		"message": "Samouczki wideo",
-		"description": "Video Tutorials"
+	"overview.welcome": {
+		"message": "Witamy w dokumentacji <i>interaktywnego środowiska do nauki statystyki (ISLE)</i> oraz Edytora ISLE do tworzenia interaktywnych lekcji z zakresu statystyki i dziedzin pokrewnych. Jednym z naszych celów jest zachęcenie instruktorów na uniwersytetach i innych instytucjach edukacyjnych do wykorzystania go do swoich celów. W razie pytań prosimy o kontakt mailowy na adres pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
 	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Nowsze wpisy",
@@ -130,5 +148,32 @@
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "Przejdź do głównej treści",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"video-tutorials": {
+		"message": "Samouczki wideo",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Pełna lista filmów na temat ISLE dostępna jest na <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >kanale YouTube</a> projektu."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "Wykorzystanie ISLE w klasie",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Ujawniacz i Zaciemnienie",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Korzystanie z programu Szkicownik",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Lekcje stylizacji",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "System biletowy",
+		"description": "Ticketing System"
 	}
 }

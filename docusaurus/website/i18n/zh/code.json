@@ -1,7 +1,19 @@
 {
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "精选的视频教程可以帮助你开始学习，看看如何将ISLE融入你的课堂。"
+	},
+	"Help Page": {
+		"message": "帮助页面"
+	},
 	"help.browse-docs-heading": {
 		"message": "浏览文件",
 		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "在<a href=\"https://discourse.isledocs.com\">讨论论坛</a>中提出有关文档和项目的问题。"
 	},
 	"help.join-community-heading": {
 		"message": "加入社区",
@@ -15,9 +27,15 @@
 		"message": "需要帮助吗？",
 		"description": "Help Page Top-Level Heading"
 	},
+	"help.stay-updated": {
+		"message": "通过浏览ISLE编辑器的<a href=\"https://github.com/isle-project/isle-editor/releases\">releases</a>，了解本项目的新内容。"
+	},
 	"help.stay-updated-heading": {
 		"message": "掌握最新信息",
 		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "关于国际土壤环境法的特点和为其发展提供信息的相关研究项目的信息可在项目网站上查阅。"
 	},
 	"open-link": {
 		"message": "开放式",
@@ -63,9 +81,9 @@
 		"message": "项目网站",
 		"description": "Project Website"
 	},
-	"overview.video-tutorials": {
-		"message": "视频教程",
-		"description": "Video Tutorials"
+	"overview.welcome": {
+		"message": "欢迎阅读<i>交互式统计学习环境(ISLE)</i>文件和ISLE编辑器，用于编写统计和相关学科的交互式课程。我们的目标之一是鼓励大学和其他学习机构的教师将其用于他们的目的。如有疑问，请通过电子邮件联系我们，电子邮件地址是pgb AT andrew.cmu.edu。",
+		"description": "Welcome message at beginning of documentation"
 	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "较新的条目",
@@ -130,5 +148,32 @@
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "跳到主要内容",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"video-tutorials": {
+		"message": "视频教程",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "关于ISLE的完整视频列表可在该项目的<a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\">YouTube频道</a>上查阅。"
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "在课堂上使用ISLE",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "揭幕器和遮光器",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "使用草图板",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "造型课程",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "票务系统",
+		"description": "Ticketing System"
 	}
 }
