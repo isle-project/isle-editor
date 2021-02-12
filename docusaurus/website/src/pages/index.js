@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* eslint-disable react/no-danger */
+/* eslint-disable react/no-danger, import/no-unresolved */
 
 // MODULES //
 
@@ -87,6 +87,19 @@ const features = [
 		)
 	}
 ];
+const FeatureImage = ({ title, imageUrl }) => {
+	const imageSrc = useBaseUrl( imageUrl );
+	if ( !imageUrl ) {
+		return null;
+	}
+	return ( <div className="text--center">
+		<img
+			className={styles.featureImage}
+			src={imageSrc}
+			alt={title}
+		/>
+	</div> );
+};
 
 
 // MAIN //
@@ -242,15 +255,9 @@ function Home() {
 										key={idx}
 										className={classnames('col col--4', styles.feature)}
 									>
-										{imageUrl && (
-											<div className="text--center">
-												<img
-													className={styles.featureImage}
-													src={useBaseUrl(imageUrl)}
-													alt={title}
-												/>
-											</div>
-										)}
+										<FeatureImage
+											imageUrl={imageUrl} title={title}
+										/>
 										<h3>{title}</h3>
 										<p>{description}</p>
 									</div>

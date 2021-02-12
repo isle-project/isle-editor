@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions, react/no-danger, import/no-unresolved */
 
 /**
 * Copyright (c) Facebook, Inc. and its affiliates.
@@ -10,6 +10,7 @@
 // MODULES //
 
 import React, { useState } from 'react';
+import { translate } from '@docusaurus/Translate';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import clsx from 'clsx';
@@ -43,7 +44,11 @@ function Playground({ children, theme, transformCode, ...props }) {
 					styles.playgroundEditorHeader,
 				)}
 			>
-				Live Editor
+				{translate({
+					id: 'playground.live-editor',
+					message: 'Live Editor',
+					description: 'Heading of live editor'
+				})}
 				<CopyToClipboard text={children} >
 					<button
 						type="button"
@@ -64,8 +69,13 @@ function Playground({ children, theme, transformCode, ...props }) {
 				className={clsx(
 					styles.playgroundHeader,
 					styles.playgroundPreviewHeader,
-				)}>
-				Result
+				)}
+			>
+				{translate({
+					id: 'playground.result',
+					message: 'Result',
+					description: 'Heading of output pane'
+				})}
 			</div>
 			<div className={styles.playgroundPreview} onKeyDown={preventPropagation} >
 				<LivePreview />

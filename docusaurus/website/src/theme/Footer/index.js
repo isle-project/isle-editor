@@ -1,32 +1,36 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+* Copyright (c) Facebook, Inc. and its affiliates.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+
+ /* eslint-disable react/no-danger, import/no-unresolved */
+
+// MODULES //
 
 import React from 'react';
 import classnames from 'classnames';
-
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+
+
+// FUNCTIONS //
 
 function FooterLink({to, href, label, ...props}) {
 	const toUrl = useBaseUrl(to);
 	return (
 		<Link
 			className="footer__link-item"
-			{...(href
-				? {
-						target: '_blank',
-						rel: 'noopener noreferrer',
-						href
-					}
-				: {
-						to: toUrl
-					})}
+			{...(href ? {
+				target: '_blank',
+				rel: 'noopener noreferrer',
+				href
+			} : {
+				to: toUrl
+			})}
 			{...props}>
 			{label}
 		</Link>
@@ -36,6 +40,9 @@ function FooterLink({to, href, label, ...props}) {
 const FooterLogo = ({ url, alt }) => (
 	<img className="footer__logo" alt={alt} src={url} />
 );
+
+
+// MAIN //
 
 function Footer() {
 	const context = useDocusaurusContext();
@@ -52,17 +59,17 @@ function Footer() {
 	return (
 		<footer
 			className={classnames('footer', {
-				'footer--dark': footer.style === 'dark',
+				'footer--dark': footer.style === 'dark'
 			})}>
 			<div className="container">
 				{links && links.length > 0 && (
 					<div className="row footer__links">
 						{links.map((linkItem, i) => (
 							<div key={i} className="col footer__col">
-								{linkItem.title != null ? (
+								{linkItem.title !== null ? (
 									<h4 className="footer__title">{linkItem.title}</h4>
 								) : null}
-								{linkItem.items != null &&
+								{linkItem.items !== null &&
 								Array.isArray(linkItem.items) &&
 								linkItem.items.length > 0 ? (
 									<ul className="footer__items">
@@ -72,7 +79,7 @@ function Footer() {
 													key={key}
 													className="footer__item"
 													dangerouslySetInnerHTML={{
-														__html: item.html,
+														__html: item.html
 													}}
 												/>
 											) : (
@@ -107,7 +114,7 @@ function Footer() {
 
 						<div
 							dangerouslySetInnerHTML={{
-								__html: copyright,
+								__html: copyright
 							}}
 						/>
 					</div>
@@ -116,5 +123,8 @@ function Footer() {
 		</footer>
 	);
 }
+
+
+// EXPORTS //
 
 export default Footer;

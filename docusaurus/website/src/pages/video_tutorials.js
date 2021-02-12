@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* eslint-disable react/no-danger */
+/* eslint-disable react/no-danger, import/no-unresolved */
 
 // MODULES //
 
