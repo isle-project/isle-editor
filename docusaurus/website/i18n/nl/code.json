@@ -23,6 +23,50 @@
 		"message": "Open",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "FAQ",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Antwoorden op veelgestelde vragen over hoe u ISLE kunt gebruiken voor uw klas zijn verzameld in onze FAQ.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Aan de slag",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE Dashboard",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Gebruik het ISLE dashboard om je cursus te beheren, lessen te geven en de voortgang van je leerlingen te volgen.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE Redacteur",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Gebruik de ISLE editor om nieuwe ISLE lessen te maken, variërend van interactieve lezingen tot lab activiteiten of huiswerk opdrachten.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE Server",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Host een ISLE server instance voor gebruikersbeheer en gegevensverzameling of implementeer op een bestaande server.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Website van het project",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "Video Handleidingen",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Nieuwere berichten",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

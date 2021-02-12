@@ -23,6 +23,50 @@
 		"message": "开放式",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "常见问题",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "关于如何利用ISLE为您的班级服务的常见问题，我们在常见问题中收集了答案。",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "开始吧",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE仪表板",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "使用ISLE仪表板来管理您的课程，管理课程，并监控学生的进度。",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE编辑",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "使用ISLE编辑器来创建新的ISLE课程，从交互式讲座到实验活动或家庭作业。",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE服务器",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "托管一个ISLE服务器实例，用于用户管理和数据收集，或部署到现有服务器上。",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "项目网站",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "视频教程",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "较新的条目",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

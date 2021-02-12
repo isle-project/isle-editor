@@ -23,6 +23,50 @@
 		"message": "開く",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "よくあるご質問",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "ISLEをどのように活用するかについてのよくある質問に対する回答をFAQにまとめました。",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "始める",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE ダッシュボード",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "ISLEのダッシュボードを使用して、コースの管理、レッスンの管理、学生の進捗状況のモニタリングを行うことができます。",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE編集部",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "ISLEエディタを使用して、インタラクティブな講義からラボ活動や宿題まで、新しいISLEレッスンを作成します。",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLEサーバー",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "ユーザー管理やデータ収集のためにISLEサーバーインスタンスをホストするか、既存のサーバーにデプロイします。",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "プロジェクトサイト",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "ビデオチュートリアル",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "新しいエントリー",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

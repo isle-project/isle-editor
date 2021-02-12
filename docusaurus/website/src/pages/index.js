@@ -24,29 +24,59 @@ if ( typeof global.localStorage === 'undefined' ) {
 
 const features = [
 	{
-		title: <>ISLE Editor</>,
+		title: <>
+			{translate({
+				id: 'overview.isle-editor',
+				message: 'ISLE Editor',
+				description: 'ISLE Editor'
+			})}
+		</>,
 		imageUrl: 'img/undraw_editor.svg',
 		description: (
 			<>
-				Use the ISLE editor to create new ISLE lessons, ranging from interactive lectures to lab activities or homework assignments.
+				{translate({
+					id: 'overview.isle-editor-into',
+					message: 'Use the ISLE editor to create new ISLE lessons, ranging from interactive lectures to lab activities or homework assignments.',
+					description: 'Introduction of ISLE editor for creating lessons.'
+				})}
 			</>
 		)
 	},
 	{
-		title: <>ISLE Dashboard</>,
+		title: <>
+			{translate({
+				id: 'overview.isle-dashboard',
+				message: 'ISLE Dashboard',
+				description: 'ISLE Dashboard'
+			})}
+		</>,
 		imageUrl: 'img/undraw_dashboard.svg',
 		description: (
 			<>
-				Use the ISLE dashboard to manage your course, administer lessons, and monitor student progress.
+				{translate({
+					id: 'overview.isle-dashboard-intro',
+					message: 'Use the ISLE dashboard to manage your course, administer lessons, and monitor student progress.',
+					description: 'Introduction of ISLE dashboard for course management.'
+				})}
 			</>
 		)
 	},
 	{
-		title: <>ISLE Server</>,
+		title: <>
+			{translate({
+				id: 'overview.isle-server',
+				message: 'ISLE Server',
+				description: 'ISLE Server'
+			})}
+		</>,
 		imageUrl: 'img/undraw_server.svg',
 		description: (
 			<>
-				Host an ISLE server instance for user management and data collection or deploy to an existing server.
+				{translate({
+					id: 'overview.isle-server-intro',
+					message: 'Host an ISLE server instance for user management and data collection or deploy to an existing server.',
+					description: 'Introduction of ISLE backend server.'
+				})}
 			</>
 		)
 	}
@@ -73,7 +103,11 @@ function Home() {
 							)}
 							to={useBaseUrl('docs/overview/intro')}
 						>
-							Get Started
+							{translate({
+								id: 'overview.get-started',
+								message: 'Get Started',
+								description: 'Label for how to get started.'
+							})}
 						</Link>
 					</div>
 				</div>
@@ -96,14 +130,22 @@ function Home() {
 									alt="Video Tutorials"
 								/>
 							</div>
-							<h3>Video Tutorials</h3>
+							<h3>{translate({
+								id: 'overview.video-tutorials',
+								message: 'Video Tutorials',
+								description: 'Video Tutorials'
+							})}</h3>
 							<p>A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.</p>
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
 									to={useBaseUrl('video_tutorials')}
 								>
-									Open
+									{translate({
+										id: 'open-link',
+										message: 'Open',
+										description: 'Label for button to open link.'
+									})}
 								</Link>
 							</div>
 						</div>
@@ -115,14 +157,22 @@ function Home() {
 									alt="Video Tutorials"
 								/>
 							</div>
-							<h3>Project Website</h3>
+							<h3>{translate({
+								id: 'overview.project-website',
+								message: 'Project Website',
+								description: 'Project Website'
+							})}</h3>
 							<p>Information on the features of ISLE and related research projects informing its development are available on the project website.</p>
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
 									to="http://stat.cmu.edu/isle"
 								>
-									Open
+									{translate({
+										id: 'open-link',
+										message: 'Open',
+										description: 'Label for button to open link.'
+									})}
 								</Link>
 							</div>
 						</div>
@@ -134,8 +184,18 @@ function Home() {
 									alt="Video Tutorials"
 								/>
 							</div>
-							<h3>FAQ</h3>
-							<p>Answers to common questions on how to leverage ISLE for your class are collected in our FAQ.</p>
+							<h3>{translate({
+								id: 'overview.faq',
+								message: 'FAQ',
+								description: 'Frequently Asked Questions'
+							})}</h3>
+							<p>
+								{translate({
+									id: 'overview.faq-intro',
+									message: 'Answers to common questions on how to leverage ISLE for your class are collected in our FAQ.',
+									description: 'Introductory paragraph for FAQ section.'
+								})}
+							</p>
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"

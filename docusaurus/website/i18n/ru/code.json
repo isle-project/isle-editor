@@ -23,6 +23,50 @@
 		"message": "Открыть",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Ответы на общие вопросы о том, как использовать ISLE для вашего класса, собраны в нашем FAQ.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Приступайте к работе",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE Dashboard",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Используйте панель ISLE для управления курсом, администрирования уроков и контроля за успеваемостью учеников.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "редактор ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Используйте ISLE-редактор для создания новых ISLE-уроков, начиная от интерактивных лекций и заканчивая лабораторными занятиями или домашними заданиями.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE-сервер",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Разместить ISLE серверный экземпляр для управления пользователями и сбора данных или развернуть на существующем сервере.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Сайт проекта",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "Видео-инструкции",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Новые поступления",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

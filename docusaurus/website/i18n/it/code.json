@@ -23,6 +23,50 @@
 		"message": "Aprire",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "FAQ",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Le risposte alle domande comuni su come sfruttare ISLE per la tua classe sono raccolte nelle nostre FAQ.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Iniziare",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "Cruscotto ISLE",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Usa la dashboard ISLE per gestire il tuo corso, amministrare le lezioni e monitorare i progressi degli studenti.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "Editore ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Usa l'editor ISLE per creare nuove lezioni ISLE, che vanno dalle lezioni interattive alle attività di laboratorio o ai compiti a casa.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "Server ISLE",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Ospitare un'istanza del server ISLE per la gestione degli utenti e la raccolta dei dati o distribuire su un server esistente.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Sito web del progetto",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "Video tutorial",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Voci più recenti",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

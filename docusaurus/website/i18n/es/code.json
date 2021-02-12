@@ -23,6 +23,50 @@
 		"message": "Abrir",
 		"description": "Label for button to open link."
 	},
+	"overview.faq": {
+		"message": "PREGUNTAS FRECUENTES",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Las respuestas a las preguntas más comunes sobre cómo aprovechar ISLE para su clase están recogidas en nuestras preguntas frecuentes.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Empezar a trabajar",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "Panel de control de ISLE",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Utilice el panel de control de ISLE para gestionar su curso, administrar las lecciones y supervisar el progreso de los estudiantes.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "Editor de ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Utilice el editor de ISLE para crear nuevas lecciones de ISLE, desde conferencias interactivas hasta actividades de laboratorio o tareas para casa.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "Servidor ISLE",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Aloje una instancia del servidor ISLE para la gestión de usuarios y la recopilación de datos o impleméntela en un servidor existente.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Sitio web del proyecto",
+		"description": "Project Website"
+	},
+	"overview.video-tutorials": {
+		"message": "Video Tutoriales",
+		"description": "Video Tutorials"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Entradas más recientes",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"
