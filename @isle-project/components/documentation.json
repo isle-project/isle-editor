@@ -4529,14 +4529,14 @@
 			},
 			{
 				"name": "variable",
-				"type": "string (required)",
+				"type": "(array|string) (required)",
 				"description": "BoxPlot-prop-variable"
 			},
 			{
 				"name": "group",
 				"type": "array",
 				"description": "BoxPlot-prop-group",
-				"defaultValue": null
+				"defaultValue": []
 			},
 			{
 				"name": "orientation",
@@ -7371,10 +7371,16 @@
 				"defaultValue": false
 			},
 			{
-				"name": "stain",
+				"name": "resizable",
 				"type": "boolean",
-				"description": "StickyNote-prop-stain",
+				"description": "StickyNote-prop-resizable",
 				"defaultValue": false
+			},
+			{
+				"name": "size",
+				"type": "object",
+				"description": "StickyNote-prop-size",
+				"defaultValue": null
 			},
 			{
 				"name": "onBodyChange",
@@ -7396,6 +7402,11 @@
 				"name": "onMove",
 				"type": "function",
 				"defaultValue": "function onMove() {}"
+			},
+			{
+				"name": "onResize",
+				"type": "function",
+				"defaultValue": "function onResize() {}"
 			},
 			{
 				"name": "onTitleChange",

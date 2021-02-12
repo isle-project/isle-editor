@@ -7,21 +7,10 @@ import { i18n } from '@isle-project/locales';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
+import ascending from './ascending.js';
 
 
 // FUNCTIONS //
-
-/**
-* Comparator function used to sort values in ascending order.
-*
-* @private
-* @param {number} a
-* @param {number} b
-* @returns {number} difference between `a` and `b`
-*/
-function ascending( a, b ) {
-	return a - b;
-}
 
 export function generateQQPlotConfig( y, variable ) {
 	let annotations;

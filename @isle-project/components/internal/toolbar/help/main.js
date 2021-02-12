@@ -39,6 +39,9 @@ function getDataUrl( img ) {
 
 // MAIN //
 
+/**
+* Documentation page accessible from toolbar.
+*/
 class HelpPage extends Component {
 	constructor( props ) {
 		super( props );
