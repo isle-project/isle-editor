@@ -149,7 +149,7 @@
     "debug": "4.1.0 ",
     "detect-csv": "^1.1.0",
     "dompurify": "^2.2.6",
-    "electron-store": "^7.0.1",
+    "electron-store": "^7.0.2",
     "electron-updater": "^4.3.4",
     "electron-window-state": "^5.0.0",
     "element-resize-event": "^3.0.1",
