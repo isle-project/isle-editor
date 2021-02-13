@@ -2,7 +2,7 @@
 
 import React, { useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import rdunif from '@stdlib/random/base/discrete-uniform';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import './ticker.css';
 
 
@@ -62,9 +62,9 @@ function getAnimation( direction, inTime, outTime, hold ) {
 // MAIN //
 
 /**
-* A dynamic background component that cycles through a list of texts  at a specified interval.
+* A dynamic background component that cycles through a list of texts at a specified interval.
 *
-* @property {Array} text - list of texts to be displayed
+* @property {(string|Array<string>)} text - text or list of texts to be displayed
 * @property {boolean} loop - indicates whether the process shall be displayed infinitely
 * @property {string} direction - the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)
 * @property {number} hold - the time the text remains still (in seconds)
@@ -78,6 +78,12 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 	const [ counter, setCounter ] = useState( 0 );
 	const intervalRef = useRef();
 
+	if ( isString( text ) ) {
+		text = [ text ];
+	}
+	if ( loop && text.length === 1 ) {
+		text.push( text[ 0 ] );
+	}
 	const reset = useCallback( () => {
 		if ( loop ) {
 			setCounter( 0 );
@@ -104,17 +110,16 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 			}
 		};
 	}, [ interval, next ] );
-	const key = rdunif( 0, 100 );
 	return (
-		<div style={{ overflow: 'hidden', width: '100%' }} >
+		<div style={{ overflow: 'hidden', width: '100%', height: '100%' }} >
 			<div
 				className={className}
 				style={{
 					animation: getAnimation( direction, inTime, outTime, hold ),
 					...style
 				}}
-				key={key}
-			>{text[ counter]}</div>
+				key={counter}
+			>{text[ counter ]}</div>
 		</div>
 	);
 };
