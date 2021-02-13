@@ -114,6 +114,17 @@ function missingDescriptions( typeKeys, description ) {
 	return out;
 }
 
+function superfluousDescriptions( types, description ) {
+	const keys = objectKeys( description );
+	const out = [];
+	for ( let i = 0; i < keys.length; i++ ) {
+		if ( !types[ keys[ i ] ] ) {
+			out.push( keys[ i ] );
+		}
+	}
+	return out;
+}
+
 
 // MAIN //
 
@@ -190,10 +201,16 @@ for ( let i = 0; i < files.length; i++ ) {
 		types = extractTypes( ...SCOPE_VALUES );
 	}
 	const keys = Object.keys( types );
-	const arr = missingDescriptions( keys, description );
+
+	let arr = missingDescriptions( keys, description );
 	if ( arr.length > 0 ) {
 		console.log( 'Missing descriptions for component '+tagName+': '+arr.join( ', ' ) );
 	}
+	arr = superfluousDescriptions( types, description );
+	if ( arr.length > 0 ) {
+		console.log( 'Superfluous descriptions for component '+tagName+': '+arr.join( ', ' ) );
+	}
+
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		if ( key === 'children' ) {
