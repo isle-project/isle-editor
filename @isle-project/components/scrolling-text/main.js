@@ -119,7 +119,7 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 		key={counter}
 	>{text[ counter ]}</div>;
 	if ( direction === 'left' || direction === 'right' ) {
-		return ( <div style={{ overflow: 'hidden', width: '100%', height: '100%' }} >
+		return ( <div style={{ overflow: 'hidden', width: '100%' }} >
 			{div}
 		</div> );
 	}
