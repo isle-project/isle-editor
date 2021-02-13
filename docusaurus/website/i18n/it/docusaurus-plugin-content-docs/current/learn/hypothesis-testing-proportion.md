@@ -13,6 +13,7 @@ Una componente di apprendimento su test di ipotesi per una percentuale di popola
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: visualizzare sempre l'ipotesi nulla come un unico valore. Default: `false`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 

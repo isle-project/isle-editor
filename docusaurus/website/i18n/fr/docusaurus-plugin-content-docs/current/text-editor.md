@@ -12,7 +12,8 @@ Un éditeur de texte pour la rédaction de notes ou de rapports. Prend en charge
 * __canLoadHTML__ | `boolean`: contrôle l'affichage ou non d'un bouton permettant de charger un fichier HTML enregistré dans l'éditeur. Default: `true`.
 * __defaultValue__ | `string`: texte par défaut de l'éditeur. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
 * __mode__ | `string`: contrôle le mode d'édition du texte (soit `individual` pour un document personnel, `group` pour un document par groupes, `collaborative` pour un document unique pour tous, ou `cohort` pour un document par cohorte). Default: `'individual'`.
-* __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: undefined. Default: `none`.
+* __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objet pour la personnalisation du mode de réinitialisation du document (ne doit généralement pas être modifié). Default: `none`.
+* __sendSubmissionEmails__ | `boolean`: contrôle l'envoi éventuel de courriels de confirmation avec sortie PDF/HTML lors de la soumission. Default: `false`.
 * __voiceTimeout__ | `number`: temps en millisecondes après l'insertion d'un morceau d'entrée vocale enregistrée. Default: `5000`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 

@@ -8,7 +8,7 @@ sidebar_label: Networks
 
 ## Options
 
-* __maxNumNodes__ | `number`: undefined. Default: `30`.
+* __maxNumNodes__ | `number`: максимальное количество узлов, которые могут быть выбраны для сети. Default: `30`.
 * __showEdgeChart__ | `boolean`: управляет отображением графика, отображающего количество ребер в каждой сгенерированной сети (сбрасывается при изменении количества узлов). Default: `false`.
 * __showTransitivities__ | `boolean`: подсчет переходных процессов / глобальных коэффициентов кластеризации для генерируемых сетей. Default: `false`.
 

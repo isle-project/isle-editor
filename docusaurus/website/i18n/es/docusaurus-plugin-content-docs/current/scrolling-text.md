@@ -8,12 +8,12 @@ Un componente de fondo dinámico que circula por una lista de textos en un inter
 
 ## Options
 
-* __list__ | `array<string>`: lista de textos a mostrar. Default: `[]`.
+* __text__ | `array<string>`: texto o lista de textos a mostrar. Default: `[]`.
 * __loop__ | `boolean`: indica si el proceso se mostrará infinitamente. Default: `false`.
 * __direction__ | `string`: la dirección del flujo de texto (ya sea "izquierda", "derecha", "arriba", "abajo", "seguimiento", "enfoque", o "giro"). Default: `'right'`.
-* __still__ | `number`: el tiempo que el texto permanece quieto (en segundos). Default: `3`.
-* __interval__ | `number`: el intervalo entre las llamadas (en segundos). Default: `15`.
-* __inTime__ | `number`: tiempo del efecto de entrada (en segundos). Default: `0.6`.
+* __hold__ | `number`: el tiempo que el texto permanece inmóvil (en segundos). Default: `5`.
+* __wait__ | `number`: el tiempo antes de que llegue un nuevo texto (en segundos). Default: `3`.
+* __inTime__ | `number`: tiempo del efecto de entrada (en segundos). Default: `1`.
 * __outTime__ | `number`: tiempo del efecto de salida (en segundos). Default: `1`.
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos CSS del texto. Default: `{}`.
@@ -21,16 +21,62 @@ Un componente de fondo dinámico que circula por una lista de textos en un inter
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Delay and Sound', value: 'delayAndSound' },
+        { label: 'With CSS', value: 'withCSS' },
+        { label: 'Array of Strings', value: 'array' },
+        { label: 'Humanized', value: 'humanized' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
-<ScrollingText
-    list={[ 'Heading' ]}
-    style={{ fontSize: 44, color: 'red' }}
-    interval={5}
-    inTime={1.2}
-    outTime={1.2}
-    still={2}
-/>
+<Typewriter text="Lorem ipsum" />
 ```
+
+</TabItem>
+
+<TabItem value="delayAndSound">
+
+```jsx live
+<Typewriter text="Lorem ipsum" sound delay={2000} />
+```
+
+</TabItem>
+
+<TabItem value="withCSS">
+
+```jsx live
+<Typewriter text="Styled Text" style={{ fontSize: 66, color: 'red'}} />
+```
+
+</TabItem>
+
+<TabItem value="array">
+
+```jsx live
+<Typewriter text={["First Entry", "Second Entry", "Third Entry"]}  hold={2000} />
+```
+
+</TabItem>
+
+<TabItem value="humanized">
+
+```jsx live
+<Typewriter text="This is a humanized performance" random interval={170} />
+```
+
+</TabItem>
+
+</Tabs>
 
 
 

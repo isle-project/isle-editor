@@ -13,6 +13,7 @@ sidebar_label: Hypothesis Testing for Proportions
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: всегда отображать нулевую гипотезу в виде одного значения. Default: `false`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 

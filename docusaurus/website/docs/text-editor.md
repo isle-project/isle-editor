@@ -12,7 +12,8 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 * __canLoadHTML__ | `boolean`: controls whether to display button for loading a saved HTML file into the editor. Default: `true`.
 * __defaultValue__ | `string`: default text of the editor. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
 * __mode__ | `string`: controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort). Default: `'individual'`.
-* __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: undefined. Default: `none`.
+* __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: object for customizing the modal for resetting the document (should usually not be changed). Default: `none`.
+* __sendSubmissionEmails__ | `boolean`: controls whether to send confirmation emails with PDF/HTML output upon submission. Default: `false`.
 * __voiceTimeout__ | `number`: time in milliseconds after a chunk of recorded voice input is inserted. Default: `5000`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 

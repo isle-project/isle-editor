@@ -13,6 +13,7 @@ sidebar_label: Hypothesis Testing for Proportions
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: 常に帰無仮説を1つの値として表示する. Default: `false`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 

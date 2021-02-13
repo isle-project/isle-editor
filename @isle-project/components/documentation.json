@@ -3222,6 +3222,12 @@
 				"defaultValue": false
 			},
 			{
+				"name": "nullHypothesisAsValue",
+				"type": "boolean",
+				"description": "LearnProportionTest-prop-nullHypothesisAsValue",
+				"defaultValue": false
+			},
+			{
 				"name": "style",
 				"type": "object",
 				"description": "LearnProportionTest-prop-style",
@@ -3286,6 +3292,7 @@
 			{
 				"name": "maxNumNodes",
 				"type": "number",
+				"description": "LearnNetworks-prop-maxNumNodes",
 				"defaultValue": 30
 			},
 			{
@@ -6663,9 +6670,9 @@
 	"ScrollingText": {
 		"props": [
 			{
-				"name": "list",
+				"name": "text",
 				"type": "array<string>",
-				"description": "ScrollingText-prop-list",
+				"description": "ScrollingText-prop-text",
 				"defaultValue": []
 			},
 			{
@@ -6681,22 +6688,22 @@
 				"defaultValue": "right"
 			},
 			{
-				"name": "still",
+				"name": "hold",
 				"type": "number",
-				"description": "ScrollingText-prop-still",
-				"defaultValue": 3
+				"description": "ScrollingText-prop-hold",
+				"defaultValue": 5
 			},
 			{
-				"name": "interval",
+				"name": "wait",
 				"type": "number",
-				"description": "ScrollingText-prop-interval",
-				"defaultValue": 15
+				"description": "ScrollingText-prop-wait",
+				"defaultValue": 3
 			},
 			{
 				"name": "inTime",
 				"type": "number",
 				"description": "ScrollingText-prop-inTime",
-				"defaultValue": 0.6
+				"defaultValue": 1
 			},
 			{
 				"name": "outTime",
@@ -8018,7 +8025,14 @@
 			{
 				"name": "resetModal",
 				"type": "{title,body,buttonLabel,notificationTitle,notification,tooltip}",
+				"description": "TextEditor-prop-resetModal",
 				"defaultValue": null
+			},
+			{
+				"name": "sendSubmissionEmails",
+				"type": "boolean",
+				"description": "TextEditor-prop-sendSubmissionEmails",
+				"defaultValue": false
 			},
 			{
 				"name": "voiceTimeout",
@@ -8087,6 +8101,7 @@
 			{
 				"name": "className",
 				"type": "string",
+				"description": "TimedButton-prop-className",
 				"defaultValue": ""
 			},
 			{
@@ -8094,11 +8109,6 @@
 				"type": "boolean",
 				"description": "TimedButton-prop-disabled",
 				"defaultValue": false
-			},
-			{
-				"name": "href",
-				"type": "string",
-				"defaultValue": null
 			},
 			{
 				"name": "onClick",
@@ -8195,6 +8205,7 @@
 			{
 				"name": "id",
 				"type": "string",
+				"description": "Tooltip-prop-id",
 				"defaultValue": "tooltip"
 			},
 			{
@@ -8375,11 +8386,13 @@
 			{
 				"name": "height",
 				"type": "number",
+				"description": "VictoryWrapper-prop-height",
 				"defaultValue": null
 			},
 			{
 				"name": "width",
 				"type": "number",
+				"description": "VictoryWrapper-prop-width",
 				"defaultValue": null
 			}
 		],

@@ -13,6 +13,7 @@ Een leercomponent op hypothesetests voor een deel van de bevolking.
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: de nulhypothese altijd als een enkele waarde weergeven. Default: `false`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 

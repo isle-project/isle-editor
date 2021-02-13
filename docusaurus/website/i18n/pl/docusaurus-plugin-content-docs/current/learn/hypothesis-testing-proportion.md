@@ -13,6 +13,7 @@ Komponent do nauki na testach hipotetycznych dla danej populacji.
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: zawsze wyświetlać hipotezę zerową jako pojedynczą wartość. Default: `false`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 

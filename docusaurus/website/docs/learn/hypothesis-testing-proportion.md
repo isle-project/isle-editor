@@ -13,6 +13,7 @@ A learning component on hypothesis tests for a population proportion.
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: always display the null hypothesis as a single value. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 
 

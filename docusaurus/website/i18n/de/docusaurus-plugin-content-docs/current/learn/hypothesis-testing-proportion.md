@@ -13,6 +13,7 @@ Eine Lernkomponente zu Hypothesentests für einen Bevölkerungsanteil.
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: die Nullhypothese immer als Einzelwert anzeigen. Default: `false`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 

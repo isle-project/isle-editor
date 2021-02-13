@@ -13,6 +13,7 @@ Un componente de aprendizaje en pruebas de hipótesis para una proporción de la
   'Two-Sample'
 ]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `false`.
+* __nullHypothesisAsValue__ | `boolean`: mostrar siempre la hipótesis nula como un único valor. Default: `false`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
