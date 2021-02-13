@@ -11,6 +11,7 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 /**
 * A tooltip overlay.
 *
+* @property {string} id - identifier
 * @property {string} tooltip - tooltip content
 * @property {string} placement - direction of the tooltip
 * @property {boolean} show - controls whether the tooltip shall be displayed

@@ -20,13 +20,14 @@ const debug = logger( 'isle:timed-button' );
 *
 * @property {number} duration - the time (in seconds) it takes until the button gets reactivated
 * @property {Function} block - display bottom in full width
-* @property {Function} onClick - callback invoked when clicking the button
 * @property {boolean} disabled - if disabled the button will be inactive, but the countdown starts
 * @property {string} size - button size (passed to the react-bootstrap button component)
 * @property {string} type - button type (passed to the react-bootstrap button component)
 * @property {string} variant - button variant (passed to the react-bootstrap button component)
-* @property {Object} style - CSS inline styles
 * @property {boolean} autoActivate - controls whether to always timeout the button when clicked; if `false`, the timeout is only applied when the callback passed to the `onClick` event handler is invoked with `true`
+* @property {string} className - class name
+* @property {Object} style - CSS inline styles
+* @property {Function} onClick - callback invoked when clicking the button
 */
 class TimedButton extends Component {
 	constructor( props ) {
@@ -117,7 +118,6 @@ class TimedButton extends Component {
 				</div> : null }
 				<Button
 					className={this.props.className}
-					href={this.props.href}
 					size={this.props.size}
 					block={this.props.block}
 					type={this.props.type}
@@ -142,7 +142,6 @@ TimedButton.propTypes = {
 	duration: PropTypes.number,
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
-	href: PropTypes.string,
 	onClick: PropTypes.func,
 	size: PropTypes.string,
 	type: PropTypes.string,
@@ -156,7 +155,6 @@ TimedButton.defaultProps = {
 	className: '',
 	disabled: false,
 	duration: 3,
-	href: null,
 	onClick() {},
 	size: null,
 	type: null,

@@ -373,12 +373,14 @@ class ProportionTest extends Component {
 ProportionTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
 	feedback: false,
+	nullHypothesisAsValue: false,
 	style: {}
 };
 
 ProportionTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,
+	nullHypothesisAsValue: PropTypes.bool,
 	style: PropTypes.object
 };
 
