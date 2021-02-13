@@ -321,7 +321,7 @@
 	},
 	{
 		"name": "ScrollingText",
-		"value": "<ScrollingText list={[${1:'Enter strings'}]} interval={${2:5}} inTime={${3:1.2}} outTime={${4:1.2}} still={${5:2}} />"
+		"value": "<ScrollingText text={[${1:'Enter strings'}]} interval={${2:5}} inTime={${3:1.2}} outTime={${4:1.2}} hold={${5:2}} />"
 	},
 	{
 		"name": "Seal",

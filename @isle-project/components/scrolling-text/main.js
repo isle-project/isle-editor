@@ -2,55 +2,56 @@
 
 import React, { useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import rdunif from '@stdlib/random/base/discrete-uniform';
 import './ticker.css';
 
 
 // FUNCTIONS //
 
-function getAnimation( direction, inTime, outTime, still ) {
+function getAnimation( direction, inTime, outTime, hold ) {
 	let ani = '';
 	switch ( direction ) {
 		case 'left':
 			ani = 'ticker-slide-in-right ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-slide-out-left ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'right':
 			ani = 'ticker-slide-in-left ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-slide-out-right ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'down':
 			ani = 'ticker-slide-in-top ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-slide-out-bottom ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'up':
 			ani = 'ticker-slide-in-bottom ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-slide-out-top ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'focus':
 			ani = 'ticker-text-focus-in ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-text-blur-out ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'tracking':
 			ani = 'ticker-tracking-in-contract-bck ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-tracking-out-expand-fwd ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 		case 'swirl':
 			ani = 'ticker-swirl-in-fwd ';
 			ani += inTime + 's forwards';
 			ani += ', ticker-swirl-out-bck ';
-			ani += outTime + 's ' + still + 's forwards';
+			ani += outTime + 's ' + hold + 's forwards';
 		break;
 	}
 	return ani;
@@ -62,17 +63,17 @@ function getAnimation( direction, inTime, outTime, still ) {
 /**
 * A dynamic background component that cycles through a list of texts  at a specified interval.
 *
-* @property {Array} list - list of texts to be displayed
+* @property {Array} text - list of texts to be displayed
 * @property {boolean} loop - indicates whether the process shall be displayed infinitely
 * @property {string} direction - the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`)
-* @property {number} still - the time the text remains still (in seconds)
+* @property {number} hold - the time the text remains still (in seconds)
 * @property {number} interval - the interval between the calls (in seconds)
 * @property {number} inTime - time of the entrance effect (in seconds)
 * @property {number} outTime - time of the exit effect (in seconds)
 * @property {string} className - class name
 * @property {Object} style - CSS styles of the text
 */
-const ScrollingText = ({ list, loop, direction, interval, inTime, outTime, still, className, style }) => {
+const ScrollingText = ({ text, loop, direction, interval, inTime, outTime, hold, className, style }) => {
 	const [ counter, setCounter ] = useState( 0 );
 	const intervalRef = useRef();
 
@@ -85,13 +86,13 @@ const ScrollingText = ({ list, loop, direction, interval, inTime, outTime, still
 		}
 	}, [ loop ] );
 	const next = useCallback( () => {
-		if ( counter < list.length -1 ) {
+		if ( counter < text.length -1 ) {
 			setCounter( counter + 1 );
 		}
 		else {
 			reset();
 		}
-	}, [ counter, list, reset ] );
+	}, [ counter, text, reset ] );
 
 	useEffect( () => {
 		intervalRef.current = setInterval( next, interval * 1000 );
@@ -101,14 +102,18 @@ const ScrollingText = ({ list, loop, direction, interval, inTime, outTime, still
 			}
 		};
 	}, [ interval, next ] );
+	const key = rdunif( 0, 100 );
 	return (
-		<div
-			className={className}
-			style={{
-				animation: getAnimation( direction, inTime, outTime, still ),
-				...style
-			}}
-		>{list[ counter]}</div>
+		<div style={{ overflow: 'hidden' }} >
+			<div
+				className={className}
+				style={{
+					animation: getAnimation( direction, inTime, outTime, hold ),
+					...style
+				}}
+				key={key}
+			>{text[ counter]}</div>
+		</div>
 	);
 };
 
@@ -116,10 +121,10 @@ const ScrollingText = ({ list, loop, direction, interval, inTime, outTime, still
 // PROPERTIES //
 
 ScrollingText.propTypes = {
-	list: PropTypes.arrayOf( PropTypes.string ),
+	text: PropTypes.arrayOf( PropTypes.string ),
 	loop: PropTypes.bool,
 	direction: PropTypes.string,
-	still: PropTypes.number,
+	hold: PropTypes.number,
 	interval: PropTypes.number,
 	inTime: PropTypes.number,
 	outTime: PropTypes.number,
@@ -128,10 +133,10 @@ ScrollingText.propTypes = {
 };
 
 ScrollingText.defaultProps = {
-	list: [],
+	text: [],
 	loop: false,
 	direction: 'right',
-	still: 3,
+	hold: 3,
 	interval: 15,
 	inTime: 0.6,
 	outTime: 1,
