@@ -104,6 +104,16 @@ function generateDefaultString( defaultValue ) {
 	return 'Default: `'+val+'`.';
 }
 
+function missingDescriptions( typeKeys, description ) {
+	const out = [];
+	for ( let i = 0; i < typeKeys.length; i++ ) {
+		if ( !description[ typeKeys[ i ] ] ) {
+			out.push( typeKeys[ i ] );
+		}
+	}
+	return out;
+}
+
 
 // MAIN //
 
@@ -180,6 +190,10 @@ for ( let i = 0; i < files.length; i++ ) {
 		types = extractTypes( ...SCOPE_VALUES );
 	}
 	const keys = Object.keys( types );
+	const arr = missingDescriptions( keys, description );
+	if ( arr.length > 0 ) {
+		console.log( 'Missing descriptions for component '+tagName+': '+arr.join( ', ' ) );
+	}
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		if ( key === 'children' ) {
@@ -202,7 +216,6 @@ for ( let i = 0; i < files.length; i++ ) {
 	try {
 		let md = fs.readFileSync( mdpath ).toString();
 		debug( 'Replacing component description...' );
-		console.log( `${tagName}-description` );
 		let replacement = '\n---\n\n'+COMPONENT_DOCS[ 'en' ][ `${tagName}-description` ]+'\n\n';
 		replacement += optionsStr;
 		for ( let i = 0; i < keys.length; i++ ) {
