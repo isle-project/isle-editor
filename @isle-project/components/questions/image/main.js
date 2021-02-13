@@ -52,7 +52,6 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
-* @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
 const ImageQuestion = ( props ) => {

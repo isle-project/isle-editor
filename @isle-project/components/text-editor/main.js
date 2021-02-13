@@ -84,8 +84,8 @@ async function toDataURL( url ){
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {string} mode - controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort)
 * @property {number} voiceTimeout - time in milliseconds after a chunk of recorded voice input is inserted
+* @property {Object} resetModal - object for customizing the modal for resetting the document (should usually not be changed)
 * @property {Object} style - CSS inline styles
-* @property {Function} onChange - callback invoked when editor text changes; receives the current text as its sole argument
 */
 class TextEditor extends Component {
 	constructor( props, session ) {
@@ -711,6 +711,7 @@ TextEditor.propTypes= {
 		notification: PropTypes.string,
 		tooltip: PropTypes.string
 	}),
+	sendSubmissionEmails: PropTypes.bool,
 	voiceTimeout: PropTypes.number,
 	style: PropTypes.object
 };
@@ -720,6 +721,7 @@ TextEditor.defaultProps = {
 	canLoadHTML: true,
 	defaultValue: DEFAULT_VALUE,
 	mode: 'individual',
+	sendSubmissionEmails: false,
 	voiceTimeout: 5000,
 	resetModal: null,
 	style: {}

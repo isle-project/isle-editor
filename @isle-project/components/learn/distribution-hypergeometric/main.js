@@ -33,7 +33,6 @@ addResources( 'LearnDistribution' );
 /**
 * A learning component for calculating probabilities of a hypergeometric distribution.
 *
-* @property {number} step - step size of the scroll input
 * @property {Object} style - CSS inline styles
 */
 class HypergeometricProbs extends Component {

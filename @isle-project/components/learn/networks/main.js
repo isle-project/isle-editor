@@ -33,6 +33,7 @@ addResources( 'LearnNetworks' );
 *
 * @property {boolean} showEdgeChart - controls whether to display a chart displaying the number of edges in each generated network (reset when number of nodes is changed)
 * @property {boolean} showTransitivities - whether to tally transitivities / global clustering coefficients for generated networks
+* @property {number} maxNumNodes - maximum number of nodes that can be selected for the network
 */
 class Networks extends Component {
 	constructor( props ) {
