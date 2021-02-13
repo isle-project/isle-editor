@@ -110,18 +110,20 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 			}
 		};
 	}, [ interval, next ] );
-	return (
-		<div style={{ overflow: 'hidden', width: '100%', height: '100%' }} >
-			<div
-				className={className}
-				style={{
-					animation: getAnimation( direction, inTime, outTime, hold ),
-					...style
-				}}
-				key={counter}
-			>{text[ counter ]}</div>
-		</div>
-	);
+	const div = <div
+		className={className}
+		style={{
+			animation: getAnimation( direction, inTime, outTime, hold ),
+			...style
+		}}
+		key={counter}
+	>{text[ counter ]}</div>;
+	if ( direction === 'left' || direction === 'right' ) {
+		return ( <div style={{ overflow: 'hidden', width: '100%', height: '100%' }} >
+			{div}
+		</div> );
+	}
+	return div;
 };
 
 
