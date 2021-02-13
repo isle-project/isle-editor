@@ -12,6 +12,12 @@ import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 
 // MAIN //
 
+/**
+* Wrapper for Victory plots.
+*
+* @property {number} height - height in pixels
+* @property {number} width - width in pixels
+*/
 class VictoryWrapper extends Component {
 	saveToPNG = () => {
 		let { width, height } = this.props;
