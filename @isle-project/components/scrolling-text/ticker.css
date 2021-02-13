@@ -54,8 +54,8 @@
 	}
 
 	100% {
-		-webkit-transform: translateX(1000px);
-		transform: translateX(1000px);
+		-webkit-transform: translateX(1900px);
+		transform: translateX(1900px);
 		opacity: 0;
 	}
 }
