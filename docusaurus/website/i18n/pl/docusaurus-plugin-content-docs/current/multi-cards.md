@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Komponent ISLE, który pozwala na tworzenie i kontrolowanie wielu przerzucalnych kart (np. w grze "Pamięć").

@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Um componente ISLE que lhe permite criar e controlar vários cartões de memória (por exemplo, em um jogo de Memória).

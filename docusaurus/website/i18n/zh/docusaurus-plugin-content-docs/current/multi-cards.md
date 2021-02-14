@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 一个ISLE组件，允许您创建和控制多个可翻转的卡片（例如在记忆游戏中）。

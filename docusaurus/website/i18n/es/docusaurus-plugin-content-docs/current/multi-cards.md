@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Un componente de ISLE que le permite crear y controlar múltiples cartas volteables (por ejemplo, en un juego de Memoria).

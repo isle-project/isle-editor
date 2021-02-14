@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 複数のフリップ可能なカード（メモリーゲームなど）を作成してコントロールすることができるISLEのコンポーネント。

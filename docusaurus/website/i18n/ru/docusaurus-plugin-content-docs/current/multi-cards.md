@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 ISLE компонент, позволяющий создавать и управлять несколькими переворачиваемыми картами (например, в игре на память).

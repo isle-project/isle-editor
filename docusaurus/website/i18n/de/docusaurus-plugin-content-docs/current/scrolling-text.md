@@ -25,57 +25,58 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-    defaultValue="single"
+    defaultValue="minimal"
     values={[
-        { label: 'Single Text', value: 'single' },
-        { label: 'List of Texts', value: 'list' },
-        { label: 'Background Image', value: 'backgroundImage' }
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Delay and Sound', value: 'delayAndSound' },
+        { label: 'With CSS', value: 'withCSS' },
+        { label: 'Array of Strings', value: 'array' },
+        { label: 'Humanized', value: 'humanized' }
     ]}
     lazy
 >
 
-<TabItem value="single">
+<TabItem value="minimal">
 
 ```jsx live
-<ScrollingText
-    text="This is a text reappearing every 5 seconds"
-    style={{ fontSize: 44, color: 'blue' }}
-    wait={5}
-    hold={2}
-    loop
-/>
+<Typewriter text="Lorem ipsum" />
 ```
 
 </TabItem>
 
-<TabItem value="list">
+<TabItem value="delayAndSound">
 
 ```jsx live
-<ScrollingText
-    text={[ 'One', 'Two', 'Three', 'Four'  ]}
-    style={{ fontSize: 84, color: 'red', textAlign: 'center' }}
-    loop
-    direction="left"
-    wait={.5}
-    hold={2}
-/>
+<Typewriter text="Lorem ipsum" sound delay={2000} />
 ```
 
 </TabItem>
 
-<TabItem value="backgroundImage">
+<TabItem value="withCSS">
 
 ```jsx live
-<ScrollingText
-    text={[ 'One', 'Two', 'Three', 'Four'  ]}
-    style={{ fontSize: 84, color: 'white', textAlign: 'center', backgroundImage: 'url(https://bit.ly/3qlRgoR)', backgroundSize: '1200px 200px' }}
-    loop
-    direction="left"
-    wait={.5}
-    hold={2}
-/>
+<Typewriter text="Styled Text" style={{ fontSize: 66, color: 'red'}} />
+```
+
+</TabItem>
+
+<TabItem value="array">
+
+```jsx live
+<Typewriter text={["First Entry", "Second Entry", "Third Entry"]}  hold={2000} />
+```
+
+</TabItem>
+
+<TabItem value="humanized">
+
+```jsx live
+<Typewriter text="This is a humanized performance" random interval={170} />
 ```
 
 </TabItem>
 
 </Tabs>
+
+
+

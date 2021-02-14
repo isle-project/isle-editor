@@ -920,7 +920,6 @@
 	"QQPlot-prop-variable": "variable to display",
 	"QRCode-description": "QR Code.",
 	"QRCode-prop-center": "boolean controlling whether to center the QR code",
-	"QRCode-prop-height": "height in pixels; takes precedence over `scale` property",
 	"QRCode-prop-scale": "number of pixels per modules (black dots)",
 	"QRCode-prop-showText": "boolean determining whether to show the text encoded in the QR code",
 	"QRCode-prop-style": "CSS inline styles",

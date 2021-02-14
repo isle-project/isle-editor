@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Un componente ISLE che permette di creare e controllare più carte capovolgibili (ad esempio in un gioco di memoria).

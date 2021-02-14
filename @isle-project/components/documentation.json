@@ -5149,12 +5149,6 @@
 				"defaultValue": null
 			},
 			{
-				"name": "height",
-				"type": "number",
-				"description": "QRCode-prop-height",
-				"defaultValue": null
-			},
-			{
 				"name": "showText",
 				"type": "boolean",
 				"description": "QRCode-prop-showText",

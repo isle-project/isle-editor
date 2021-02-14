@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Eine ISLE-Komponente, mit der Sie mehrere umdrehbare Karten erstellen und steuern können (z. B. bei einem Memory-Spiel).

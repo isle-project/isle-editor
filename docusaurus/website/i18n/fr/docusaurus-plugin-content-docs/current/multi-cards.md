@@ -1,7 +1,7 @@
 ---
-id: multi-card 
-title: MultiCard
-sidebar_label: MultiCard
+id: multi-cards
+title: Multi Cards
+sidebar_label: Multi Cards
 ---
 
 Un composant ISLE qui vous permet de créer et de contrôler plusieurs cartes retournables (par exemple dans un jeu de mémoire).
