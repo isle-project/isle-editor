@@ -1,7 +1,7 @@
 // MODULES //
 
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
@@ -27,91 +27,80 @@ addResources( 'Iframe' );
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
-class IFrame extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			width: props.width || window.innerWidth,
-			height: props.height || window.innerHeight,
-			loading: true
-		};
-	}
+const IFrame = ({ title, src, id, fullscreen, width, height, className, style }) => {
+	const [ dimensions, setDimensions ] = useState({
+		width: width || window.innerWidth,
+		height: height || window.innerHeight
+	});
+	const [ loaded, setLoaded ] = useState( false );
+	const { t } = useTranslation( 'Iframe' );
 
-	static getDerivedStateFromProps( props, state ) {
-		if ( props.fullscreen ) {
-			return {
+	useEffect( () => {
+		if ( fullscreen ) {
+			setDimensions({
 				width: window.innerWidth,
 				height: window.innerHeight
-			};
+			});
 		}
-		else if (
-			state.width !== props.width ||
-			state.height !== props.height
-		) {
-			return {
-				width: props.width,
-				height: props.height
-			};
+		else if ( dimensions.width !== width || dimensions.height !== height ) {
+			setDimensions({
+				width: width,
+				height: height
+			});
 		}
-		return null;
+	}, [ dimensions, fullscreen, height, width ] );
+	let divStyle;
+	if ( fullscreen ) {
+		divStyle = {
+			position: 'absolute',
+			width: dimensions.width,
+			height: dimensions.height,
+			top: 0,
+			left: 0,
+			...style
+		};
+	} else {
+		divStyle = {
+			width: dimensions.width,
+			height: dimensions.height,
+			...style
+		};
 	}
-
-	render() {
-		let style;
-		if ( this.props.fullscreen ) {
-			style = {
-				position: 'absolute',
-				width: this.state.width,
-				height: this.state.height,
-				top: 0,
-				left: 0,
-				...this.props.style
-			};
-		} else {
-			style = {
-				width: this.state.width,
-				height: this.state.height,
-				...this.props.style
-			};
-		}
-		return (
-			<Card id={this.props.id} className={`center ${this.props.className}`} style={style} >
-				{!this.state.loading && !this.props.fullscreen ? <FullscreenButton
-					header={`${this.props.title}: ${this.props.src}`}
-					body={<iframe
-						src={this.props.src}
-						width="100%"
-						height="100%"
-						title={this.props.title}
-					/>}
-					className={this.props.className}
-					t={this.props.t}
-					style={{
-						left: 0
-					}}
-					wrapInCard={false}
-				/> : null}
-				<iframe
-					src={this.props.src}
-					width={this.state.width}
-					height={this.state.height}
-					style={{
-						display: this.state.loading ? 'none' : 'inherit'
-					}}
-					title={this.props.title}
-					onLoad={( event ) => {
-						this.setState({
-							loading: false
-						});
-					}}
-				/>
-				{this.state.loading ? <Alert variant="warning" style={{ margin: 0 }} >
-					{this.props.t('alert-message')}
-				</Alert> : null}
-			</Card>
-		);
-	}
-}
+	return (
+		<Card id={id} className={`center ${className}`} style={divStyle} >
+			{loaded && !fullscreen ? <FullscreenButton
+				header={`${title}: ${src}`}
+				body={<iframe
+					src={src}
+					width="100%"
+					height="100%"
+					title={title}
+				/>}
+				className={className}
+				t={t}
+				style={{
+					left: 0
+				}}
+				wrapInCard={false}
+			/> : null}
+			<iframe
+				src={src}
+				width={dimensions.width}
+				height={dimensions.height}
+				style={{
+					display: !loaded ? 'none' : 'inherit'
+				}}
+				title={title}
+				onLoad={( event ) => {
+					setLoaded( true );
+				}}
+			/>
+			{!loaded ? <Alert variant="warning" style={{ margin: 0 }} >
+				{t('alert-message')}
+			</Alert> : null}
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
@@ -138,4 +127,4 @@ IFrame.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Iframe' )( IFrame );
+export default IFrame;
