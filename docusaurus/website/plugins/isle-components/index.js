@@ -24,7 +24,7 @@ module.exports = function main( context, options ) {
 				resolve: {
 					modules: modulePaths,
 					alias: {
-						'@isle-project/components/internal/response-visualizer': 'react-bootstrap/Button'
+						'@isle-project/components/internal/response-visualizer': '@isle-project/components/html/div'
 					}
 				},
 				node: {
