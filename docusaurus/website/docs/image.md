@@ -23,13 +23,69 @@ Component to display an image.
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Border', value: 'withStyle' },
+        { label: 'Controlled Size', value: 'controlledSize' },
+        { label: 'Inline', value: 'inline' }
+    ]}
+    lazy
+>
+<TabItem value="minimal">
+
 ```jsx live
 <Image 
-    alt="The Starry Night by Vincent van Gogh" 
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-    className="center"
-    width="50%"
-    height="auto"
+    alt="Self-portrait by Vincent van Gogh from September 1889." 
+    src="https://bit.ly/37cof7K"
 />
 ```
 
+</TabItem>
+
+<TabItem value="withStyle">
+
+```jsx live
+<Image 
+    alt="Self-portrait by Vincent van Gogh from September 1889." 
+    src="https://bit.ly/37cof7K"
+    style={{ border: 'solid 10px black'}}
+/>
+```
+</TabItem>
+
+<TabItem value="controlledSize">
+
+```jsx live
+<Image 
+    alt="The Starry Night by Vincent van Gogh" 
+    src="https://bit.ly/37h3JTj"
+    width="200px"
+    height="auto"
+/>
+```
+</TabItem>
+
+
+<TabItem value="inline">
+
+```jsx live
+<div>
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
+<Image 
+    src="https://isle.heinz.cmu.edu/Summertime_flowerGradient.png"
+    width="300px"
+    height="auto"
+    inline
+/>
+no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, 
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
+```
+</TabItem>
+
+</Tabs>
