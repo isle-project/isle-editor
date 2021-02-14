@@ -1,15 +1,18 @@
 // MODULES //
 
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode';
+import replace from '@stdlib/string/replace';
 import isElectron from '@isle-project/utils/is-electron';
+import './qrcode.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:qrcode' );
+const RE_URL = /(https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&//=]*))/g;
 
 
 // MAIN //
@@ -20,23 +23,22 @@ const debug = logger( 'isle:qrcode' );
 * @property {string} text - text to encode in QR code (defaults to lesson URL if not set)
 * @property {number} scale - number of pixels per modules (black dots)
 * @property {number} width - width in pixels; takes precedence over `scale` property
-* @property {number} height - height in pixels; takes precedence over `scale` property
 * @property {boolean} center - boolean controlling whether to center the QR code
 * @property {boolean} showText - boolean determining whether to show the text encoded in the QR code
 * @property {Object} style - CSS inline styles
 */
-const Qrcode = ({ text, scale, width, height, center, showText, style }) => {
+const Qrcode = ({ text, scale, width, center, showText, style }) => {
 	let canvasRef;
 	useEffect( () => {
 		const txt = text || window.location.href;
 		debug( `Display '${txt}' as QR code...` );
-		QRCode.toCanvas( canvasRef, txt, { scale, width, height }, debug );
+		QRCode.toCanvas( canvasRef, txt, { scale, width }, debug );
 
 		const handleHashChange = () => {
 			if ( !text ) {
 				const txt = text || window.location.href;
 				debug( `Display '${txt}' as QR code...` );
-				QRCode.toCanvas( canvasRef, txt, { scale, width, height }, debug );
+				QRCode.toCanvas( canvasRef, txt, { scale, width }, debug );
 			}
 		};
 		if ( !isElectron ) {
@@ -47,29 +49,31 @@ const Qrcode = ({ text, scale, width, height, center, showText, style }) => {
 				window.removeEventListener( 'hashchange', handleHashChange );
 			}
 		};
-	}, [ text, scale, width, height, canvasRef ] );
+	}, [ text, scale, width, canvasRef ] );
 	const canvas = <canvas
-		className={`qrcode-canvas ${center ? 'center' : ''}`}
+		className="qrcode-canvas"
 		ref={( canvas ) => {
 			if ( canvas ) {
 				canvasRef = canvas;
 			}
 		}}
-		style={style}
 	/>;
 	if ( showText ) {
-		const divStyle = {};
+		const divStyle = { ...style };
 		if ( center ) {
 			divStyle.textAlign = 'center';
 		}
-		return ( <Fragment>
+		/* eslint-disable react/no-danger */
+		return ( <div className={`qrcode-wrapper ${center ? 'center' : ''}`} style={divStyle} >
 			{canvas}
-			<div className="title" style={divStyle} >
-				{text || window.location.href}
-			</div>
-		</Fragment> );
+			<div dangerouslySetInnerHTML={{
+				__html: replace( text || window.location.href, RE_URL, '<a href="$1">$1</a>' )
+			}} />
+		</div> );
 	}
-	return canvas;
+	return ( <div style={style} className={`qrcode-wrapper ${center ? 'center' : ''}`} >
+		{canvas}
+	</div> );
 };
 
 
@@ -79,7 +83,6 @@ Qrcode.defaultProps = {
 	text: null,
 	scale: 8,
 	width: null,
-	height: null,
 	showText: false,
 	center: false,
 	style: {}
@@ -89,7 +92,6 @@ Qrcode.propTypes = {
 	text: PropTypes.string,
 	scale: PropTypes.number,
 	width: PropTypes.number,
-	height: PropTypes.number,
 	showText: PropTypes.bool,
 	center: PropTypes.bool,
 	style: PropTypes.object
