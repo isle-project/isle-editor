@@ -22,7 +22,10 @@ module.exports = function main( context, options ) {
 		configureWebpack( config, isServer ) {
 			return {
 				resolve: {
-					modules: modulePaths
+					modules: modulePaths,
+					alias: {
+						'@isle-project/components/internal/response-visualizer': 'react-bootstrap/Button'
+					}
 				},
 				node: {
 					Buffer: 'mock',
