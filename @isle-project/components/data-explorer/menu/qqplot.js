@@ -12,7 +12,7 @@ import QuestionButton from '../question_button.js';
 
 // MAIN //
 
-const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCreated }) => {
+const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCreated, onSelected }) => {
 	return (
 		<Dashboard
 			title={<span>
@@ -44,7 +44,7 @@ const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCr
 			});
 			logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
 		};
-		const output = <QQPlot data={data} variable={variable} id={plotId} action={action} onShare={onShare} />;
+		const output = <QQPlot data={data} variable={variable} id={plotId} action={action} onShare={onShare} onSelected={onSelected} />;
 		logAction( DATA_EXPLORER_QQPLOT, action );
 		onCreated( output );
 	}

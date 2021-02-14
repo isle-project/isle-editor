@@ -68,7 +68,7 @@ export function generateQQPlotConfig( y, variable ) {
 
 // MAIN //
 
-function QQPlot({ id, data, variable, action, onShare }) {
+function QQPlot({ id, data, variable, action, onShare, onSelected }) {
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
@@ -83,6 +83,11 @@ function QQPlot({ id, data, variable, action, onShare }) {
 			data={config.data}
 			layout={config.layout}
 			onShare={onShare}
+			onSelected={( selected ) => {
+				if ( onSelected ) {
+					onSelected( variable, selected );
+				}
+			}}
 		/>
 	);
 }

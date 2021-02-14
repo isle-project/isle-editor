@@ -797,6 +797,25 @@ class DataExplorer extends Component {
 		});
 	}
 
+	onQQPlotSelection = ( name, selected ) => {
+		if ( selected.range && selected.range.y ) {
+			const newFilters = this.state.filters.filter(
+				x => x.id !== name
+			);
+			const y = selected.range.y;
+			newFilters.push({
+				id: name,
+				value: {
+					min: y[ 0 ],
+					max: y[ 1 ]
+				}
+			});
+			this.setState({
+				filters: newFilters
+			});
+		}
+	}
+
 	onBarchartSelection = ( name, selected ) => {
 		const newFilters = this.state.filters.filter(
 			x => x.id !== name
@@ -893,6 +912,7 @@ class DataExplorer extends Component {
 								onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
 								groupingVariables={this.state.groupVars}
 								on2dSelection={this.on2dSelection}
+								onQQPlotSelection={this.onQQPlotSelection}
 								transformer={this.props.transformer}
 								onBarchartSelection={this.onBarchartSelection}
 								showHistogramDensityOption={this.props.histogramDensities}

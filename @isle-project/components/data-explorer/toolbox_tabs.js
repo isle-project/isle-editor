@@ -61,7 +61,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
 	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
 	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate, onTransformerBeingActive,
-	on2dSelection
+	on2dSelection, onQQPlotSelection
 }) => {
 	const nStatistics = statistics.length;
 	const { t } = useTranslation( 'DataExplorer' );
@@ -285,6 +285,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					{...quantitativeProps}
 					logAction={logAction}
 					session={session}
+					onSelected={onQQPlotSelection}
 					t={t}
 				/>;
 				break;
