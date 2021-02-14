@@ -184,6 +184,12 @@ for ( let i = 0; i < files.length; i++ ) {
 			if ( !contains( propKey, 'undefined' ) ) {
 				description[ tag.name ] = propKey;
 				TRANSLATIONS[ propKey ] = tag.description;
+				if ( COMPONENT_DOCS.en[ propKey ] !== tag.description ) {
+					for ( let i = 0; i < LANGUAGE_TARGETS.length; i++ ) {
+						const lng = LANGUAGE_TARGETS[ i ];
+						delete COMPONENT_DOCS[ lng ][ propKey ];
+					}
+				}
 			} else {
 				console.log( 'Encountered an illegal key: '+propKey );
 			}
@@ -284,9 +290,8 @@ for ( let i = 0; i < translationKeys.length; i++ ) {
 }
 fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, '\t' ).concat( '\n' ) );
 
-const languages = objectKeys( COMPONENT_DOCS );
-for ( let i = 0; i < languages.length; i++ ) {
-	const lng = languages[ i ];
+for ( let i = 0; i < LANGUAGE_TARGETS.length; i++ ) {
+	const lng = LANGUAGE_TARGETS[ i ];
 	fs.writeFileSync( './@isle-project/locales/editor/component-docs/'+lng+'.json', JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
 }
 console.log( 'Finished updating docs.' );
