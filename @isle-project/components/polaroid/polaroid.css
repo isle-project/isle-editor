@@ -50,11 +50,11 @@
 
 .polaroid-stain {
 	position: absolute;
-	left: 45%;
-	top: 16%;
+	left: 60%;
+	bottom: 3%;
 	opacity: 0.5;
-	width: 160px;
-	height: 160px;
+	width: 120px;
+	height: 120px;
 	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_kaffee3.png);
 	background-size: 100% auto;
 	z-index: 5;
