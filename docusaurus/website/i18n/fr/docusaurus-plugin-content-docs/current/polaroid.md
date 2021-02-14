@@ -10,7 +10,8 @@ Composant affichant une image dans le style d'un polaroid.
 
 * __image__ | `string`: l'URL de l'image à afficher dans le cadre du polaroid. Default: `none`.
 * __draggable__ | `boolean`: contrôle si l'on peut faire glisser le polaroid sur l'écran. Default: `false`.
-* __showPin__ | `boolean`: montre une épingle. Default: `false`.
+* __showPin__ | `boolean`: contrôle de la présence ou non d'une broche. Default: `false`.
+* __stain__ | `boolean`: contrôle si une tache de café doit apparaître. Default: `false`.
 * __width__ | `number`: largeur du polaroid (en px). Default: `350`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onClick__ | `function`: gestionnaire d'événements invoqué lorsque l'image est cliquée (reçoit l'identifiant du Polaroïd comme paramètre). Default: `none`.

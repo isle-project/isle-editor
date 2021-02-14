@@ -10,7 +10,8 @@ sidebar_label: Polaroid
 
 * __image__ | `string`: ポラロイドフレームに表示する画像のURL. Default: `none`.
 * __draggable__ | `boolean`: ポラロイドを画面の周りにドラッグするかどうかを制御します。. Default: `false`.
-* __showPin__ | `boolean`: ピンを示す. Default: `false`.
+* __showPin__ | `boolean`: ピンを表示するかどうかを制御します。. Default: `false`.
+* __stain__ | `boolean`: コーヒーの染みを表示するかどうかを制御します。. Default: `false`.
 * __width__ | `number`: ポラロイド幅. Default: `350`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onClick__ | `function`: 画像がクリックされたときに呼び出されるイベントハンドラ（ポラロイドのIDをパラメータとして受け取る. Default: `none`.

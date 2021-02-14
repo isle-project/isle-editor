@@ -12,7 +12,7 @@ An ISLE pagination component that allows the user to step through a sequence of 
 * __disabled__ | `boolean`: controls whether the navigation bar is active or not. Default: `false`.
 * __title__ | `string`: displayed title of the pages container. Default: `''`.
 * __pagination__ | `string`: whether to show the pagination either on the `top`, `bottom`, or `both. Default: `'top'`.
-* __size__ | `string`: size of the pagination buttons (either `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`). Default: `'default'`.
+* __size__ | `string`: size of the pagination buttons (either `default`, `lg`, or `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added. Default: `none`.
 * __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

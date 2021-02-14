@@ -32,7 +32,7 @@ const uid = generateUID( 'pages' );
 * An ISLE pagination component that allows the user to step through a sequence of pages.
 *
 * @property {string} title - displayed title of the pages container
-* @property {string} size - size of the pagination buttons (either `default`, `lg`, `large`, `sm`, `small`, `xs`, or `xsmall`)
+* @property {string} size - size of the pagination buttons (either `default`, `lg`, or `sm`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {number} activePage - active page
 * @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both
@@ -290,9 +290,7 @@ Pages.propTypes = {
 	size: PropTypes.oneOf([
 		'default',
 		'lg',
-		'large',
-		'sm',
-		'small'
+		'sm'
 	]),
 	height: PropTypes.oneOfType([
 		PropTypes.number,

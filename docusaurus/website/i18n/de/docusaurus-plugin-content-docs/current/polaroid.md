@@ -10,7 +10,8 @@ Eine Komponente, die ein Bild im Stil eines Polaroids anzeigt.
 
 * __image__ | `string`: die URL des Bildes, das im Polaroidrahmen angezeigt werden soll. Default: `none`.
 * __draggable__ | `boolean`: steuert, ob man das Polaroid auf dem Bildschirm ziehen kann. Default: `false`.
-* __showPin__ | `boolean`: zeigt einen Stift. Default: `false`.
+* __showPin__ | `boolean`: steuert, ob ein Pin angezeigt werden soll. Default: `false`.
+* __stain__ | `boolean`: steuert, ob ein Kaffeefleck angezeigt werden soll. Default: `false`.
 * __width__ | `number`: Polaroidbreite (in px). Default: `350`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onClick__ | `function`: Event-Handler, der aufgerufen wird, wenn auf das Bild geklickt wird (erhält die ID des Polaroid als Parameter). Default: `none`.

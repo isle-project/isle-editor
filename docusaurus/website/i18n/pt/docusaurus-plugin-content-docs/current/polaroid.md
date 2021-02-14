@@ -10,7 +10,8 @@ Um componente que exibe uma imagem no estilo de uma polaroid.
 
 * __image__ | `string`: a URL da imagem a ser exibida na moldura polaroid. Default: `none`.
 * __draggable__ | `boolean`: controla se é possível arrastar a polaroide ao redor da tela. Default: `false`.
-* __showPin__ | `boolean`: mostra um pino. Default: `false`.
+* __showPin__ | `boolean`: controla se deve mostrar um pino. Default: `false`.
+* __stain__ | `boolean`: controla se deve mostrar uma mancha de café. Default: `false`.
 * __width__ | `number`: largura polaroid (em px). Default: `350`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 * __onClick__ | `function`: manipulador de eventos invocado quando a imagem é clicada (recebe a identificação da Polaroid como parâmetro). Default: `none`.

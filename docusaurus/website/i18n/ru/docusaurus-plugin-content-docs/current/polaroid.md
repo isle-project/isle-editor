@@ -10,7 +10,8 @@ sidebar_label: Polaroid
 
 * __image__ | `string`: URL-адрес изображения для отображения в кадре поляроида. Default: `none`.
 * __draggable__ | `boolean`: контролирует, можно ли перетаскивать поляроид по экрану.. Default: `false`.
-* __showPin__ | `boolean`: показывает булавку. Default: `false`.
+* __showPin__ | `boolean`: контролирует, показывать ли булавку. Default: `false`.
+* __stain__ | `boolean`: контролирует, показывать ли пятно от кофе. Default: `false`.
 * __width__ | `number`: ширина поляроида (в px). Default: `350`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onClick__ | `function`: обработчик события, вызываемый при щелчке по изображению (в качестве параметра получает идентификатор поляроида). Default: `none`.

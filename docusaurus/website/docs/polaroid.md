@@ -10,7 +10,8 @@ A component displaying an image in the style of a polaroid.
 
 * __image__ | `string`: the URL of the image to be displayed in the polaroid frame. Default: `none`.
 * __draggable__ | `boolean`: controls whether one can drag the polaroid around the screen. Default: `false`.
-* __showPin__ | `boolean`: shows a pin. Default: `false`.
+* __showPin__ | `boolean`: controls whether to show a pin. Default: `false`.
+* __stain__ | `boolean`: controls whether to show a coffee stain. Default: `false`.
 * __width__ | `number`: polaroid width (in px). Default: `350`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onClick__ | `function`: event handler invoked when image is clicked (receives the id of the Polaroid as parameter). Default: `none`.

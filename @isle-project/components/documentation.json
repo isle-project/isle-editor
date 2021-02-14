@@ -5014,6 +5014,12 @@
 				"defaultValue": false
 			},
 			{
+				"name": "stain",
+				"type": "boolean",
+				"description": "Polaroid-prop-stain",
+				"defaultValue": false
+			},
+			{
 				"name": "width",
 				"type": "number",
 				"description": "Polaroid-prop-width",

@@ -10,7 +10,8 @@ sidebar_label: Polaroid
 
 * __image__ | `string`: 要在宝丽来相框中显示的图像的URL。. Default: `none`.
 * __draggable__ | `boolean`: 控制是否可以在屏幕上拖动宝丽来。. Default: `false`.
-* __showPin__ | `boolean`: 销子. Default: `false`.
+* __showPin__ | `boolean`: 控制是否显示针脚. Default: `false`.
+* __stain__ | `boolean`: 控制是否显示咖啡渍. Default: `false`.
 * __width__ | `number`: 宝丽来宽度(单位：px). Default: `350`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onClick__ | `function`: 当图像被点击时调用的事件处理程序（接收Polaroid的id作为参数）。. Default: `none`.
