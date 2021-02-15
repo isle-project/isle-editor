@@ -18,11 +18,12 @@ const pkg = require( pkgPath );
 // MAIN //
 
 const extraResources = [
+	'@isle-project/**/*',
 	'app/css/*',
 	'app/constants/*',
-	'@isle-project/**/*',
 	'app/img/*',
 	'app/bundler/*',
+	'app/utils/**/*',
 	'node_modules/**/*',
 	'!node_modules/@stdlib/stdlib/dist/*',
 	'!node_modules/@stdlib/stdlib/lib/node_modules/@stdlib/**/img',
