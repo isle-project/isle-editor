@@ -1,5 +1,28 @@
 # Changelog
 
+## [v0.74.7](https://github.com/isle-project/isle-editor/releases/tag/v0.74.7) (2021-02-15)
+
+This update contains the following changes & patches:
+
+- Refactors sticky notes (insertable via right-click on a live lesson) so that they are now resizable
+- Fixes behavior of the revealer for students enrolled in a cohort when content is revealed to everyone
+- Use start & end values when choosing a manual number of bins for a histogram
+- Deprecates ShapedImage, subsuming the functionality to Image with a new `inline` property
+- Avoid sudden re-renders of sketchpad when advancing slides, which should prevent from pages being erroneously displayed upside-down
+
+
+
+**Implemented enhancements:**
+
+- Resize sticky notes  [\#1651](https://github.com/isle-project/isle-editor/issues/1651)
+- Field for private instructor information [\#1288](https://github.com/isle-project/isle-editor/issues/1288)
+
+**Fixed bugs:**
+
+- return of editor bug: top bar disappears and space appears at bottom, when running output in preview [\#1700](https://github.com/isle-project/isle-editor/issues/1700)
+- Cannot jump to end in editor history view [\#1694](https://github.com/isle-project/isle-editor/issues/1694)
+- in report editor, underline doesn't get new text color \(but in pdf it does\) [\#1673](https://github.com/isle-project/isle-editor/issues/1673)
+
 ## [v0.74.6](https://github.com/isle-project/isle-editor/releases/tag/v0.74.6) (2021-01-31)
 
 ## [v0.74.5](https://github.com/isle-project/isle-editor/releases/tag/v0.74.5) (2021-01-31)
