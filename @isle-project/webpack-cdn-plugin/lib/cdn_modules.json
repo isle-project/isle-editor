@@ -31,7 +31,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "1.58.2"
+		"version": "1.58.4"
 	},
 	{
 		"name": "lodash",
@@ -52,7 +52,7 @@
 		"alias": "moment.js",
 		"var": "moment",
 		"path": "moment.min.js",
-		"version": "2.24.0"
+		"version": "2.29.1"
 	},
 	{
 		"name": "react",
@@ -89,14 +89,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "35.3.5"
+		"version": "35.4.9"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.68",
+		"version": "0.1.70",
 		"defer": true
 	},
 	{
@@ -104,7 +104,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.1.68",
+		"version": "0.1.70",
 		"defer": true
 	},
 	{
@@ -137,14 +137,6 @@
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"version": "2.3.0"
-	},
-	{
-		"name": "react-contextmenu",
-		"alias": "react-contextmenu",
-		"var": "ReactContextMenu",
-		"path": "dist/react-contextmenu.js",
-		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "2.13.0"
 	},
 	{
 		"name": "react-list",
