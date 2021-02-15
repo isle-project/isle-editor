@@ -1,0 +1,30 @@
+---
+id: simple-linear-regression
+title: Simple Linear Regression
+sidebar_label: Simple Linear Regression
+---
+
+Простая линейная регрессия.
+
+## Options
+
+* __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
+* __x__ | `string (required)`: объясняющая переменная. Default: `none`.
+* __y__ | `string (required)`: переменная реакции. Default: `none`.
+* __group__ | `string`: переменная группировки. Default: `none`.
+* __omitMissing__ | `boolean`: контролирует, следует ли пропустить недостающие значения при подгонке модели. Default: `false`.
+* __onDiagnostics__ | `function`: обратный вызов с помощью диагностических графиков. Default: `none`.
+* __onPredict__ | `function`: обратный вызов с установленными значениями и остатками. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<SimpleLinearRegression 
+    data={heartdisease} 
+    y="Cost"
+    x="Interventions"
+    group="Complications"
+/>
+```
+

@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "número de milisegundos entre las invocaciones de \"sobrevalorar\". Si no se establece un intervalo, la función sólo se invoca una vez",
 	"Runner-prop-onEvaluate": "función a ser invocada",
 	"ScatterPlot-description": "Calcula el valor mínimo y máximo de un conjunto.",
-	"ScatterPlot-prop-arr": "conjunto de valores",
 	"ScatterPlot-prop-color": "variable categórica para mapear al color de los puntos",
 	"ScatterPlot-prop-data": "objeto de matrices de valores para cada variable",
 	"ScatterPlot-prop-lineBy": "mostrar una línea de regresión separada para cada categoría de variable categórica especificada",

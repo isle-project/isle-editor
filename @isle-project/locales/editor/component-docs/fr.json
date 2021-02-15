@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "nombre de millisecondes entre les invocations de \"onEvaluate\". Si aucun intervalle n'est défini, la fonction n'est invoquée qu'une seule fois",
 	"Runner-prop-onEvaluate": "fonction à invoquer",
 	"ScatterPlot-description": "Calcule la valeur minimale et maximale d'un tableau.",
-	"ScatterPlot-prop-arr": "gamme de valeurs",
 	"ScatterPlot-prop-color": "variable catégorielle à cartographier à la couleur des points",
 	"ScatterPlot-prop-data": "des tableaux d'objets de valeur pour chaque variable",
 	"ScatterPlot-prop-lineBy": "afficher une ligne de régression séparée pour chaque catégorie de variable catégorielle spécifiée",

@@ -122,7 +122,16 @@
         ],
         "Data Components": [
           { "Models": [
-
+            "models/decision-tree",
+            "models/hierarchical-clustering",
+            "models/kmeans",
+            "models/lasso-regression",
+            "models/logistic-regression",
+            "models/multiple-linear-regression",
+            "models/naive-bayes",
+            "models/principal-component-analysis",
+            "models/random-forest",
+            "models/simple-linear-regression"
           ]},
           { "Tables": [
             "tables/contingency-table",

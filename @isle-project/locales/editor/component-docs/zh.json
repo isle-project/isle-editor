@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "`onEvaluate'调用之间的毫秒数。如果没有设置间隔时间，则函数只被调用一次。",
 	"Runner-prop-onEvaluate": "要调用的函数",
 	"ScatterPlot-description": "计算一个数组的最小值和最大值。",
-	"ScatterPlot-prop-arr": "数组值",
 	"ScatterPlot-prop-color": "分类变量，以映射到点的颜色。",
 	"ScatterPlot-prop-data": "每个变量的值数组对象",
 	"ScatterPlot-prop-lineBy": "为每一类指定的分类变量显示单独的回归线。",

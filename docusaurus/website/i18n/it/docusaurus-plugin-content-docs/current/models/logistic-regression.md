@@ -1,0 +1,32 @@
+---
+id: logistic-regression
+title: Logistic Regression
+sidebar_label: Logistic Regression
+---
+
+Regressione lineare multipla.
+
+## Options
+
+* __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
+* __y__ | `string (required)`: variabile di risultato. Default: `none`.
+* __success__ | `any (required)`: categoria di successo di `y. Default: `none`.
+* __x__ | `(array<string>|string) (required)`: una o più variabili predittrici. Default: `none`.
+* __quantitative__ | `array<string> (required)`: array di variabili in "dati" che sono "quantitative. Default: `none`.
+* __omitMissing__ | `boolean`: controlla se omettere i valori mancanti. Default: `false`.
+* __intercept__ | `boolean`: controlla se inserire un modello con un termine di intercettazione. Default: `true`.
+* __onPredict__ | `function`: richiamo invocato con previsioni e residui dopo il montaggio del modello. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<LogisticRegression 
+    data={heartdisease} 
+    y="Complications"
+    success={1}
+    x={[ 'Drugs', 'Gender', 'Age', 'Interventions' ]}
+    quantitative={[ 'Age', 'Cost', 'Interventions' ]}
+/>
+```
+

@@ -1,0 +1,26 @@
+---
+id: kmeans
+title: k-means Clustering
+sidebar_label: k-means Clustering
+---
+
+K significa agrupación.
+
+## Options
+
+* __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
+* __variables__ | `array<string> (required)`: nombres de las variables utilizadas para la agrupación. Default: `none`.
+* __K__ | `number`: número de grupos. Default: `3`.
+* __initialization__ | `string`: método de inicialización ("significa++", "aleatorio", o "más distante"). Default: `'kmeans++'`.
+* __onResult__ | `function`: llamada de retorno invocada con el objeto modelo. Default: `onResult() {}`.
+
+
+## Examples
+
+```jsx live
+<KMeans 
+    data={heartdisease} 
+    variables={[ 'Age', 'Cost' ]}
+/>
+```
+

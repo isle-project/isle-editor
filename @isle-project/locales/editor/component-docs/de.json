@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "Anzahl der Millisekunden zwischen den Aufrufen von `onEvaluate`. Wenn kein Intervall eingestellt ist, wird die Funktion nur einmal aufgerufen",
 	"Runner-prop-onEvaluate": "aufzurufende Funktion",
 	"ScatterPlot-description": "Berechnet den minimalen und maximalen Wert eines Arrays.",
-	"ScatterPlot-prop-arr": "Wertefeld",
 	"ScatterPlot-prop-color": "kategorische Variable zur Abbildung auf die Farbe der Punkte",
 	"ScatterPlot-prop-data": "Objekt mit Werte-Arrays für jede Variable",
 	"ScatterPlot-prop-lineBy": "separate Regressionslinie für jede Kategorie der angegebenen kategorialen Variable anzeigen",

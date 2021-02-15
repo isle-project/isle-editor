@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "liczba milisekund pomiędzy inwokacjami `onEvaluate`. Jeśli nie ustawiono żadnego odstępu czasu, funkcja jest wywoływana tylko raz",
 	"Runner-prop-onEvaluate": "funkcja, na którą należy się powołać",
 	"ScatterPlot-description": "Oblicza minimalną i maksymalną wartość tablicy.",
-	"ScatterPlot-prop-arr": "szereg wartości",
 	"ScatterPlot-prop-color": "zmienna kategoryczna do mapy do koloru punktów",
 	"ScatterPlot-prop-data": "obiekt tablice wartości dla każdej zmiennej",
 	"ScatterPlot-prop-lineBy": "wyświetlać oddzielną linię regresji dla każdej kategorii określonej zmiennej kategorycznej",

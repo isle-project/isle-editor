@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "numero di millisecondi tra le invocazioni di `onEvaluate`. Se non viene impostato alcun intervallo, la funzione viene invocata una sola volta",
 	"Runner-prop-onEvaluate": "funzione da invocare",
 	"ScatterPlot-description": "Calcola il valore minimo e massimo di una matrice.",
-	"ScatterPlot-prop-arr": "serie di valori",
 	"ScatterPlot-prop-color": "variabile categoriale da mappare a colore dei punti",
 	"ScatterPlot-prop-data": "oggetto di array di valori per ogni variabile",
 	"ScatterPlot-prop-lineBy": "visualizzare la linea di regressione separata per ogni categoria di variabile categoriale specificata",

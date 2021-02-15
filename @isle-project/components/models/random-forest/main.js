@@ -62,7 +62,7 @@ const fitModel = ({ y, x, type, nTrees, nTry, impurityMeasure, data, quantitativ
 // MAIN //
 
 /**
-* Regression and classification trees.
+* Random Forests.
 *
 * @property {Object} data - object of value arrays
 * @property {string} type - currently only `Classification` for categorical responses is supported

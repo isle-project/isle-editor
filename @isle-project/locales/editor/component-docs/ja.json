@@ -1046,7 +1046,6 @@
 	"Runner-prop-interval": "onEvaluate` の呼び出しの間隔をミリ秒単位で指定する。間隔が設定されていない場合、関数は一度だけ呼び出される。",
 	"Runner-prop-onEvaluate": "呼び出し関数",
 	"ScatterPlot-description": "配列の最小値と最大値を計算します。",
-	"ScatterPlot-prop-arr": "値の配列",
 	"ScatterPlot-prop-color": "点の色に対応させる範疇変数",
 	"ScatterPlot-prop-data": "各変数の値の配列のオブジェクト",
 	"ScatterPlot-prop-lineBy": "指定されたカテゴリ変数のカテゴリごとに個別の回帰線を表示する",

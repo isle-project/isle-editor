@@ -203,7 +203,7 @@ const fitModel = ({ y, success, x, intercept, omitMissing, data, quantitative })
 // MAIN //
 
 /**
-* Multiple linear regression.
+* Logistic regression.
 *
 * @property {Object} data - object of value arrays
 * @property {string} y - outcome variable
