@@ -19,9 +19,8 @@ import unique from 'uniq';
 import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
-import PINF from '@stdlib/constants/math/float64-pinf';
-import NINF from '@stdlib/constants/math/float64-ninf';
 import { CAT20 } from '@isle-project/constants/colors';
+import minmax from './minmax.js';
 
 
 // VARIABLES //
@@ -49,26 +48,6 @@ const SYMBOLS = [
 
 
 // FUNCTIONS //
-
-/**
-* Computes the minimum and maximum value of an array.
-*
-* @param {Array} arr - array of values
-* @returns {Array} minimum and maximum value
-*/
-function minmax( arr ) {
-	let min = PINF;
-	let max = NINF;
-	for ( let i = 1; i < arr.length; i++ ) {
-		if ( arr[ i ] < min ) {
-			min = arr[ i ];
-		}
-		if ( arr[ i ] > max ) {
-			max = arr[ i ];
-		}
-	}
-	return [ min, max ];
-}
 
 function scale( arr, a, b ) {
 	const [ minimum, maximum ] = minmax( arr );
