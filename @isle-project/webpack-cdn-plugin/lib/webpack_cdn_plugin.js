@@ -12,24 +12,15 @@
 
 // MODULES //
 
-const { join, resolve } = require( 'path' );
-const { readFileSync } = require( 'fs' );
-const logger = require( 'debug' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 
 // VARIABLES //
 
-const debug = logger( 'bundler:webpack-cdn-plugin' );
 const empty = '';
 const slash = '/';
-const packageJson = 'package.json';
 const paramsRegex = /:([a-z]+)/gi;
 const DEFAULT_MODULE_KEY = 'defaultCdnModuleKey____';
-const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
-const IS_PACKAGED = process.resourcesPath && !( ELECTRON_REGEXP.test( process.resourcesPath ) );
-const BASE_DIR = IS_PACKAGED ? process.resourcesPath : '.';
-const NODE_MODULES_DIR = resolve( BASE_DIR, './node_modules' );
 
 
 // MAIN //
@@ -112,19 +103,6 @@ class WebpackCdnPlugin {
 	}
 
 	/**
-	* Returns the version of a package
-	*/
-	static getVersion( name ) {
-		try {
-			const file = readFileSync( join( NODE_MODULES_DIR, name, packageJson ) );
-			const json = JSON.parse( file );
-			return json.version;
-		} catch ( e ) {
-			debug( 'Encountered an error: '+e.message );
-		}
-	}
-
-	/**
 	* Returns the list of all modules in the bundle
 	*/
 	static _getUsedModules(compilation) {
@@ -146,7 +124,6 @@ class WebpackCdnPlugin {
 	*/
 	static _cleanModules( modules ) {
 		modules.forEach( p => {
-			p.version = p.version || WebpackCdnPlugin.getVersion( p.name );
 			if ( !p.paths ) {
 				p.paths = [];
 			}

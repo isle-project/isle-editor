@@ -3,7 +3,8 @@
 		"name": "axios",
 		"alias": "axios",
 		"var": "axios",
-		"path": "axios.min.js"
+		"path": "axios.min.js",
+		"version": "0.21.1"
 	},
 	{
 		"name": "katex",
@@ -16,7 +17,8 @@
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",
-		"path": "i18next.min.js"
+		"path": "i18next.min.js",
+		"version": "19.8.5"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -58,31 +60,36 @@
 		"name": "react",
 		"alias": "react",
 		"var": "React",
-		"path": "umd/react.production.min.js"
+		"path": "umd/react.production.min.js",
+		"version": "17.0.1"
 	},
 	{
 		"name": "react-dom",
 		"alias": "react-dom",
 		"var": "ReactDOM",
-		"path": "umd/react-dom.production.min.js"
+		"path": "umd/react-dom.production.min.js",
+		"version": "17.0.1"
 	},
 	{
 		"name": "prop-types",
 		"alias": "prop-types",
 		"var": "PropTypes",
-		"path": "prop-types.min.js"
+		"path": "prop-types.min.js",
+		"version": "15.7.2"
 	},
 	{
 		"name": "react-table",
 		"alias": "react-table",
 		"var": "ReactTable",
-		"path": "react-table.min.js"
+		"path": "react-table.min.js",
+		"version": "6.11.5"
 	},
 	{
 		"name": "markdown-it",
 		"alias": "markdown-it",
 		"var": "markdownit",
-		"path": "markdown-it.min.js"
+		"path": "markdown-it.min.js",
+		"version": "12.0.4"
 	},
 	{
 		"name": "victory",
