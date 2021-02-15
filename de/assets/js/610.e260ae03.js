@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[610],{2797:function(s){s.exports=JSON.parse('{"display-instructor-feedback":"Cliquez pour afficher ou masquer les commentaires des instructeurs","your-points":"Vos points pour la question"}')}}]);

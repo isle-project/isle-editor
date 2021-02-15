@@ -84,7 +84,8 @@ h6 {
 }
 
 .alert--warning h5,
-.alert--info h5 {
+.alert--info h5,
+.alert--success h5 {
 	color: white;
 }
 

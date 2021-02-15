@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[474],{3540:function(e){e.exports=JSON.parse('{"generate":"\u751f\u6210"}')}}]);
