@@ -21,6 +21,7 @@ Dynamiczny element tła, który przechodzi cyklicznie przez listę tekstów w ok
 
 ## Examples
 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -28,10 +29,8 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
-        { label: 'Delay and Sound', value: 'delayAndSound' },
-        { label: 'With CSS', value: 'withCSS' },
-        { label: 'Array of Strings', value: 'array' },
-        { label: 'Humanized', value: 'humanized' }
+        { label: 'List of Texts', value: 'list' },
+        { label: 'Background Image', value: 'backgroundImage' }
     ]}
     lazy
 >
@@ -39,44 +38,45 @@ import TabItem from '@theme/TabItem';
 <TabItem value="minimal">
 
 ```jsx live
-<Typewriter text="Lorem ipsum" />
+<ScrollingText
+    text= "This is a text re-appearing every five seconds"
+    style={{ fontSize: 44, color: 'blue' }}
+    wait={5}
+    hold={2}
+    loop
+/>
 ```
 
 </TabItem>
 
-<TabItem value="delayAndSound">
+<TabItem value="list">
 
 ```jsx live
-<Typewriter text="Lorem ipsum" sound delay={2000} />
+<ScrollingText
+    text={[ 'One', 'Two', 'Three', 'Four'  ]}
+    style={{ fontSize: 84, color: 'red', textAlign: 'center' }}
+    loop
+    direction="left"
+    wait={.5}
+    hold={2}
+/>
 ```
 
 </TabItem>
 
-<TabItem value="withCSS">
+<TabItem value="backgroundImage">
 
 ```jsx live
-<Typewriter text="Styled Text" style={{ fontSize: 66, color: 'red'}} />
-```
-
-</TabItem>
-
-<TabItem value="array">
-
-```jsx live
-<Typewriter text={["First Entry", "Second Entry", "Third Entry"]}  hold={2000} />
-```
-
-</TabItem>
-
-<TabItem value="humanized">
-
-```jsx live
-<Typewriter text="This is a humanized performance" random interval={170} />
+<ScrollingText
+    text={[ 'One', 'Two', 'Three', 'Four'  ]}
+    style={{ fontSize: 84, color: 'white', textAlign: 'center', backgroundImage: 'url(https://bit.ly/3qlRgoR)', backgroundSize: '1200px 200px' }}
+    loop
+    direction="left"
+    wait={.5}
+    hold={2}
+/>
 ```
 
 </TabItem>
 
 </Tabs>
-
-
-
