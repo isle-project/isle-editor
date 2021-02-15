@@ -19,7 +19,64 @@ Um botão a ser exibido no final de uma aula para que os alunos possam clicar. P
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Custom Label', value: 'customLabel' },
+        { label: 'Email Feedback', value: 'emailFeedback' },
+        { label: 'With Callback', value: 'withCallback' }
+    ]}
+    lazy
+>
+<TabItem value="minimal">
+
 ```jsx live
 <LessonSubmit />
 ```
 
+</TabItem>
+
+<TabItem value="customLabel">
+
+```jsx live
+<LessonSubmit label="Click to submit" />
+```
+
+</TabItem>
+
+<TabItem value="withEmail">
+
+```jsx live
+<LessonSubmit 
+    style={{ outline: '4px solid black'}}
+    message={`
+    Hi,
+    I am very glad that you solved this lesson. Congratulations! 
+    It was a sophisticated one.
+    If you want some help how to use ISLE, have a look a 
+    [this site](https://isledocs.com/docs/)
+    
+    Best
+    The ISLE team
+    `}
+    label="Click to submit" />
+```
+</TabItem>
+
+<TabItem value="withCallback">
+
+```jsx live
+<LessonSubmit 
+    requireLogin={false}
+    onClick={() => {
+        alert( 'The Button has been clicked...' );
+    }}
+    label="Click to submit" />
+```
+</TabItem>
+
+</Tabs>
