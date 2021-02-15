@@ -151,6 +151,40 @@ import Weather from '@isle-project/components/weather';
 import Wikipedia from '@isle-project/components/wikipedia';
 import WordCloud from '@isle-project/components/word-cloud';
 
+import BarChart from '@isle-project/components/plots/barchart';
+import BoxPlot from '@isle-project/components/plots/boxplot';
+import ContourChart from '@isle-project/components/plots/contourchart';
+import HeatMap from '@isle-project/components/plots/heatmap';
+import Histogram from '@isle-project/components/plots/histogram';
+import LinePlot from '@isle-project/components/plots/lineplot';
+import Map from '@isle-project/components/plots/map';
+import MosaicPlot from '@isle-project/components/plots/mosaicplot';
+import PieChart from '@isle-project/components/plots/piechart';
+import QQPlot from '@isle-project/components/plots/qqplot';
+import ScatterPlotMatrix from '@isle-project/components/plots/scatterplot-matrix';
+import ScatterPlot from '@isle-project/components/plots/scatterplot';
+import ViolinPlot from '@isle-project/components/plots/violinplot';
+import ContingencyTable from '@isle-project/components/tables/contingency-table';
+import FrequencyTable from '@isle-project/components/tables/frequency-table';
+import Anova from '@isle-project/components/tests/anova';
+import Chi2Test from '@isle-project/components/tests/chi2';
+import CorrTest from '@isle-project/components/tests/corrtest';
+import Kruskal from '@isle-project/components/tests/kruskal';
+import MeanTest from '@isle-project/components/tests/meantest';
+import MeanTest2 from '@isle-project/components/tests/meantest2';
+import PropTest from '@isle-project/components/tests/proptest';
+import PropTest2 from '@isle-project/components/tests/proptest2';
+import DecisionTree from '@isle-project/components/models/decision-tree';
+import LassoRegression from '@isle-project/components/models/lasso-regression';
+import LogisticRegression from '@isle-project/components/models/logistic-regression';
+import MultipleLinearRegression from '@isle-project/components/models/multiple-linear-regression';
+import RandomForest from '@isle-project/components/models/random-forest';
+import SimpleLinearRegression from '@isle-project/components/models/simple-linear-regression';
+import PrincipalComponentAnalysis from '@isle-project/components/models/principal-component-analysis';
+import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
+import KMeans from '@isle-project/components/models/kmeans';
+import NaiveBayes from '@isle-project/components/models/naive-bayes';
+
 
 // VARIABLES //
 
@@ -302,7 +336,44 @@ const Components = {
 	VoiceControl,
 	Weather,
 	Wikipedia,
-	WordCloud
+	WordCloud,
+
+	BarChart,
+	BoxPlot,
+	ContourChart,
+	HeatMap,
+	Histogram,
+	LinePlot,
+	Map,
+	MosaicPlot,
+	PieChart,
+	QQPlot,
+	ScatterPlotMatrix,
+	ScatterPlot,
+	ViolinPlot,
+
+	ContingencyTable,
+	FrequencyTable,
+
+	Anova,
+	Chi2Test,
+	CorrTest,
+	Kruskal,
+	MeanTest,
+	MeanTest2,
+	PropTest,
+	PropTest2,
+
+	DecisionTree,
+	HierarchicalClustering,
+	LassoRegression,
+	LogisticRegression,
+	MultipleLinearRegression,
+	NaiveBayes,
+	PrincipalComponentAnalysis,
+	RandomForest,
+	SimpleLinearRegression,
+	KMeans
 };
 
 

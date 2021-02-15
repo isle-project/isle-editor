@@ -1,0 +1,17 @@
+---
+id: mosaicplot
+title: Mosaic Plot
+sidebar_label: Mosaic Plot
+---
+
+Een mozaïekplot.
+
+## Options
+
+* __data__ | `object (required)`: object of value arrays voor elke variabele. Default: `none`.
+* __variables__ | `array (required)`: reeks weer te geven variabelen. Default: `none`.
+* __showColors__ | `boolean`: bepaalt of kleuren met betekenis moeten worden weergegeven. Default: `false`.
+* __axisLabels__ | `string`: groepsvariabele. Default: `'parallel to the axis'`.
+
+
+## Examples

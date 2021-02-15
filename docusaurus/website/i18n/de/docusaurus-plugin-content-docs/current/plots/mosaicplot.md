@@ -1,0 +1,17 @@
+---
+id: mosaicplot
+title: Mosaic Plot
+sidebar_label: Mosaic Plot
+---
+
+Ein Mosaikplot.
+
+## Options
+
+* __data__ | `object (required)`: Objekt mit Werte-Arrays für jede Variable. Default: `none`.
+* __variables__ | `array (required)`: Array der anzuzeigenden Variablen. Default: `none`.
+* __showColors__ | `boolean`: steuert, ob Farben mit Bedeutung angezeigt werden sollen. Default: `false`.
+* __axisLabels__ | `string`: Gruppierungsvariable. Default: `'parallel to the axis'`.
+
+
+## Examples

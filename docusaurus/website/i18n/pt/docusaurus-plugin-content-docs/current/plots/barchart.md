@@ -1,0 +1,32 @@
+---
+id: barchart
+title: Bar Chart
+sidebar_label: Bar Chart
+---
+
+Gráfico de barras.
+
+## Options
+
+* __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
+* __variable__ | `string (required)`: variável a exibir. Default: `none`.
+* __group__ | `string`: variável de agrupamento. Default: `none`.
+* __yvar__ | `string`: undefined. Default: `none`.
+* __summary__ | `string`: nome da estatística a ser calculada para `yvar` e a ser exibida como altura de barra para cada categoria. Default: `none`.
+* __horizontal__ | `boolean`: se as barras devem ser exibidas horizontalmente. Default: `false`.
+* __stackBars__ | `boolean`: ao agrupar, controla se as barras devem ser empilhadas umas sobre as outras. Default: `false`.
+* __relative__ | `boolean`: se deve calcular as freqüências relativas dentro de cada grupo. Default: `false`.
+* __totalPercent__ | `boolean`: se exibir as barras gerais como freqüências relativas. Default: `false`.
+* __xOrder__ | `string`: seja "total", "categoria", "min", "max", "homem", ou "médico".. Default: `none`.
+* __direction__ | `string`: como pedir barras ao lado do eixo x (`ascendente` ou `descendente`). Default: `'ascending'`.
+
+
+## Examples
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+/>
+```
+

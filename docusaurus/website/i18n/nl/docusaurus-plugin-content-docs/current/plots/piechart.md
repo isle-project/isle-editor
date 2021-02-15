@@ -1,0 +1,25 @@
+---
+id: piechart
+title: Pie Chart
+sidebar_label: Pie Chart
+---
+
+Een taartdiagramcomponent die standaard de tellingen van alle categorieën van een gekozen variabele weergeeft.
+
+## Options
+
+* __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
+* __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
+* __group__ | `string`: groepsvariabele. Default: `none`.
+* __summaryVariable__ | `string`: facultatieve variabele waarvan de som voor elke `variabele` categorie moet worden weergegeven. Default: `none`.
+
+
+## Examples
+
+```jsx live
+<PieChart 
+    data={heartdisease} 
+    variable="Drugs"
+/>
+```
+

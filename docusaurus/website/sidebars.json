@@ -105,6 +105,19 @@
         ],
         "Plot Components": [
           "plotly",
+          "plots/barchart",
+          "plots/boxplot",
+          "plots/contourchart",
+          "plots/heatmap",
+          "plots/histogram",
+          "plots/lineplot",
+          "plots/map",
+          "plots/mosaicplot",
+          "plots/piechart",
+          "plots/qqplot",
+          "plots/scatterplot",
+          "plots/scatterplot-matrix",
+          "plots/violinplot",
           "word-cloud"
         ],
         "General Components": [
