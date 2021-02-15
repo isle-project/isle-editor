@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[742],{2806:function(o){o.exports=JSON.parse('{"available-commands":"Commandes vocales disponibles :","click-to-set-active":"Cliquez pour activer le composant","commands":"Commande(s)","description":"Description"}')}}]);

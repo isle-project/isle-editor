@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[577],{3065:function(a){a.exports=JSON.parse('{"close":"Cerca","copy-link":"Copiar Link","copy-svg":"Copiar SVG","save-image":"Descargar imagen","share":"Compartir"}')}}]);
