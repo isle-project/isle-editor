@@ -24,7 +24,8 @@ module.exports = function main( context, options ) {
 				resolve: {
 					modules: modulePaths,
 					alias: {
-						'@isle-project/components/internal/response-visualizer': '@isle-project/components/html/div'
+						'@isle-project/components/internal/response-visualizer': '@isle-project/components/html/div', // Ensure response visualizer is not included (breaks due to usage of Web worker)
+						'pdfjs-dist/build/pdf.min.js': isServer ? '@stdlib/utils/noop' : 'pdfjs-dist/build/pdf.min.js' // Ensure server-side rendering does not break due to non-availability of `canvas`
 					}
 				},
 				node: {

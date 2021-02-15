@@ -8,13 +8,15 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.175d9c3c8",
-    "@docusaurus/preset-classic": "2.0.0-alpha.175d9c3c8",
-    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.175d9c3c8",
+    "@docusaurus/core": "2.0.0-alpha.6a94ad989",
+    "@docusaurus/preset-classic": "2.0.0-alpha.6a94ad989",
+    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.6a94ad989",
     "buffer": "^5.6.0",
+    "bufferutil": "^4.0.1",
     "classnames": "^2.2.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "utf-8-validate": "^5.0.2"
   },
   "browserslist": {
     "production": [
