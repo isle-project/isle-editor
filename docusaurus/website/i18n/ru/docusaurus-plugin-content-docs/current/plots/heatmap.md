@@ -24,8 +24,8 @@ sidebar_label: Heat Map
 ```jsx live
 <HeatMap 
     data={heartdisease} 
-    x="Age"
-    y="Cost"
+    x="Interventions"
+    y="Age"
 />
 ```
 

@@ -17,11 +17,3 @@ sidebar_label: Line Plot
 
 ## Examples
 
-```jsx live
-<LinePlot 
-    data={heartdisease} 
-    x="Cost"
-    y="Drugs"
-/>
-```
-

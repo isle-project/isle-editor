@@ -17,11 +17,3 @@ Una trama de líneas.
 
 ## Examples
 
-```jsx live
-<LinePlot 
-    data={heartdisease} 
-    x="Cost"
-    y="Drugs"
-/>
-```
-

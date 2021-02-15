@@ -24,8 +24,8 @@ Una mappa termica per visualizzare una relazione tra due variabili.
 ```jsx live
 <HeatMap 
     data={heartdisease} 
-    x="Age"
-    y="Cost"
+    x="Interventions"
+    y="Age"
 />
 ```
 

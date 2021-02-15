@@ -15,3 +15,12 @@ Działka mozaikowa.
 
 
 ## Examples
+
+## Examples
+
+```jsx live
+<MosaicPlot
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs' ]}
+/>
+```

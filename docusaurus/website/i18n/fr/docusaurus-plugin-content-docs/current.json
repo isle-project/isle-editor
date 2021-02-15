@@ -7,6 +7,10 @@
 		"message": "Composants",
 		"description": "The label for category Components in sidebar docs"
 	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Composantes des données",
+		"description": "The label for category Data Components in sidebar docs"
+	},
 	"sidebar.docs.category.Display Components": {
 		"message": "Composants d'affichage",
 		"description": "The label for category Display Components in sidebar docs"
@@ -34,6 +38,10 @@
 	"sidebar.docs.category.Main Components": {
 		"message": "Composantes principales",
 		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Modèles",
+		"description": "The label for category Models in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
 		"message": "Services en ligne",
@@ -70,6 +78,14 @@
 	"sidebar.docs.category.Survey Components": {
 		"message": "Composantes de l'enquête",
 		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Tableaux",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Tests",
+		"description": "The label for category Tests in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
 		"message": "Tutoriels",

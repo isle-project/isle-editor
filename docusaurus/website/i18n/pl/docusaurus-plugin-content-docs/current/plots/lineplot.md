@@ -17,11 +17,3 @@ Spisek liniowy.
 
 ## Examples
 
-```jsx live
-<LinePlot 
-    data={heartdisease} 
-    x="Cost"
-    y="Drugs"
-/>
-```
-

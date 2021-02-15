@@ -7,6 +7,10 @@
 		"message": "Componenten",
 		"description": "The label for category Components in sidebar docs"
 	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Gegevenscomponenten",
+		"description": "The label for category Data Components in sidebar docs"
+	},
 	"sidebar.docs.category.Display Components": {
 		"message": "Weergave Onderdelen",
 		"description": "The label for category Display Components in sidebar docs"
@@ -34,6 +38,10 @@
 	"sidebar.docs.category.Main Components": {
 		"message": "Belangrijkste onderdelen",
 		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Modellen",
+		"description": "The label for category Models in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
 		"message": "Online diensten",
@@ -70,6 +78,14 @@
 	"sidebar.docs.category.Survey Components": {
 		"message": "Enquête-onderdelen",
 		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Tabellen",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Tests",
+		"description": "The label for category Tests in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
 		"message": "Tutorials",

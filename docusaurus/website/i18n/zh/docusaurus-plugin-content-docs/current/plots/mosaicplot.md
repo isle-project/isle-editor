@@ -15,3 +15,12 @@ sidebar_label: Mosaic Plot
 
 
 ## Examples
+
+## Examples
+
+```jsx live
+<MosaicPlot
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs' ]}
+/>
+```

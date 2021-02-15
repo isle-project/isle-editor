@@ -24,8 +24,8 @@ Eine Heatmap zur Visualisierung einer Beziehung zwischen zwei Variablen.
 ```jsx live
 <HeatMap 
     data={heartdisease} 
-    x="Age"
-    y="Cost"
+    x="Interventions"
+    y="Age"
 />
 ```
 

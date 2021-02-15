@@ -17,11 +17,3 @@ Un tracé de ligne.
 
 ## Examples
 
-```jsx live
-<LinePlot 
-    data={heartdisease} 
-    x="Cost"
-    y="Drugs"
-/>
-```
-

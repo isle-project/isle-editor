@@ -15,3 +15,12 @@ Uma trama de mosaico.
 
 
 ## Examples
+
+## Examples
+
+```jsx live
+<MosaicPlot
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs' ]}
+/>
+```

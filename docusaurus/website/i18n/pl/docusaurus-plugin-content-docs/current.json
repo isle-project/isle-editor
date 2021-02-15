@@ -7,6 +7,10 @@
 		"message": "Komponenty",
 		"description": "The label for category Components in sidebar docs"
 	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Komponenty danych",
+		"description": "The label for category Data Components in sidebar docs"
+	},
 	"sidebar.docs.category.Display Components": {
 		"message": "Elementy wyświetlacza",
 		"description": "The label for category Display Components in sidebar docs"
@@ -34,6 +38,10 @@
 	"sidebar.docs.category.Main Components": {
 		"message": "Główne komponenty",
 		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Modele",
+		"description": "The label for category Models in sidebar docs"
 	},
 	"sidebar.docs.category.Online Services": {
 		"message": "Usługi online",
@@ -70,6 +78,14 @@
 	"sidebar.docs.category.Survey Components": {
 		"message": "Części składowe ankiety",
 		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Tabele",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Testy",
+		"description": "The label for category Tests in sidebar docs"
 	},
 	"sidebar.docs.category.Tutorials": {
 		"message": "Tutoriale",

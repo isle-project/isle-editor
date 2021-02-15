@@ -17,11 +17,3 @@ Een lijnperceel.
 
 ## Examples
 
-```jsx live
-<LinePlot 
-    data={heartdisease} 
-    x="Cost"
-    y="Drugs"
-/>
-```
-

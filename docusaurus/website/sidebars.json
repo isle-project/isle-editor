@@ -120,6 +120,25 @@
           "plots/violinplot",
           "word-cloud"
         ],
+        "Data Components": [
+          { "Models": [
+
+          ]},
+          { "Tables": [
+            "tables/contingency-table",
+            "tables/frequency-table"
+          ]},
+          { "Tests": [
+            "tests/anova",
+            "tests/chi2",
+            "tests/corrtest",
+            "tests/kruskal",
+            "tests/meantest",
+            "tests/meantest2",
+            "tests/proptest",
+            "tests/proptest2"
+          ]}
+        ],
         "General Components": [
           "beacon-tooltip",
           "clock",

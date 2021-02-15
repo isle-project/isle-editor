@@ -24,8 +24,8 @@ Mapa cieplna do wizualizacji zależności pomiędzy dwoma zmiennymi.
 ```jsx live
 <HeatMap 
     data={heartdisease} 
-    x="Age"
-    y="Cost"
+    x="Interventions"
+    y="Age"
 />
 ```
 
