@@ -19,11 +19,12 @@ import deepEqual from '@stdlib/assert/deep-equal';
 import copy from '@stdlib/utils/copy';
 import SessionContext from '@isle-project/session/context.js';
 import { PLOT_UPDATE } from '@isle-project/constants/actions.js';
+import html2clipboard from '@isle-project/utils/html-to-clipboard';
+import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
 import './tooltip.css';
-import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
 
 
 // VARIABLES //
@@ -259,18 +260,21 @@ class Wrapper extends Component {
 		let draggableBar;
 		const fullscreen = this.state.fullscreen;
 		if ( this.props.draggable && !fullscreen ) {
-			draggableBar = <div
+			draggableBar = <button
 				className="plotly-draggable-bar"
 				draggable={this.state.finishedDrawing}
 				onDragStart={( ev ) => {
 					ev.dataTransfer.setData( 'text/html', this.plotData );
+				}}
+				onClick={() => {
+					html2clipboard( this.plotData );
 				}}
 				style={{
 					opacity: this.state.finishedDrawing ?
 						0.6 :
 						0.2
 				}}
-			>{this.props.t('drag-plot')}</div>;
+			>{this.props.t('drag-plot')}</button>;
 		}
 		const style = {
 			width: this.state.layout.width ? this.props.layout.width : '100%',
