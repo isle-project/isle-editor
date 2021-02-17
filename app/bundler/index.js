@@ -666,7 +666,9 @@ function bundleLesson( options ) {
 // MAIN //
 
 const argv = process.argv;
-const settings = JSON.parse( argv[ 2 ] );
+const settingsPath = argv[ 2 ];
+logMsg( 'Read settings from '+settingsPath );
+const settings = JSON.parse( readFileSync( settingsPath, 'utf-8' ).toString() );
 
 logMsg( 'Start bundling lesson...' );
 bundleLesson( settings );

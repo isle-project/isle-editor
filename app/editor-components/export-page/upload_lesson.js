@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import axios from 'axios';
 import logger from 'debug';
-import { createReadStream, createWriteStream } from 'fs';
+import { createReadStream, createWriteStream, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
 import https from 'https';
 import os from 'os';
@@ -281,7 +281,11 @@ class UploadLesson extends Component {
 		const script = resolve( settings.basePath, './app/bundler/index.js' );
 
 		debug( `Fork script at ${script} to bundle lesson...` );
-		const child = cp.fork( script, [ JSON.stringify( settings ) ], options );
+
+		const settingsPath = join( settings.outputPath, 'lesson_settings.json' );
+		writeFileSync( settingsPath, JSON.stringify( settings ) );
+
+		const child = cp.fork( script, [ settingsPath ], options );
 		child.on( 'message', message => {
 			console.log( message ); // eslint-disable-line no-console
 			if ( message === 'success' ) {
