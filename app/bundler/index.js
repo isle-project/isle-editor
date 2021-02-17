@@ -41,7 +41,12 @@ for ( let i = 0; i < CDN_MODULES.length; i++ ) {
 const RE_PREAMBLE = /^---([\S\s]*?)---/;
 if ( process ) {
 	process.on( 'uncaughtException', ( err ) => {
-		process.send( 'Caught exception: '+err.message );
+		const msg = 'Caught exception: '+err.message;
+		if ( process.send ) {
+			process.send( msg );
+		} else {
+			console.log( msg ); // eslint-disable-line no-console
+		}
 	});
 }
 
