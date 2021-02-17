@@ -19,6 +19,11 @@ import { showMenu, hideMenu } from './actions';
 import { callIfExists, cssClasses } from './helpers';
 
 
+// VARIABLES //
+
+const INPUTS = [ 'input', 'textarea' ];
+
+
 // MAIN //
 
 class ContextMenuTrigger extends Component {
@@ -94,6 +99,10 @@ class ContextMenuTrigger extends Component {
 	handleContextClick = (event) => {
 		if (this.props.disable) return;
 		if (this.props.disableIfShiftIsPressed && event.shiftKey) return;
+
+		const el = document.activeElement;
+		const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 || el.isContentEditable );
+		if ( inTextField ) return;
 
 		event.preventDefault();
 		event.stopPropagation();
