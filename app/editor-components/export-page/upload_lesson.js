@@ -216,13 +216,19 @@ class UploadLesson extends Component {
 			} else {
 				const msg = 'Operation not successful. Message: '+res.statusMessage+' (status code: '+res.statusCode+')';
 				this.setState({
-					error: new Error( msg )
+					error: new Error( msg ),
+					spinning: false,
+					dirname: randomstring( 16, 65, 90 )
 				});
 			}
 		});
 		request.on( 'error', ( error ) => {
 			debug( 'Encountered error: ' + error.message );
-			this.setState({ error });
+			this.setState({
+				error,
+				spinning: false,
+				dirname: randomstring( 16, 65, 90 )
+			});
 		});
 	}
 
