@@ -63,7 +63,7 @@ const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 		return () => {
 			node.removeEventListener( 'scroll', isInViewport );
 		};
-	});
+	}, [ isInViewport ] );
 
 	const args = random ? [ interval * 0.5, interval * 1.5, delay ] : [ interval, interval, delay ];
 	cleanupInterval.current = useRandomInterval( () => {
