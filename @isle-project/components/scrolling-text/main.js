@@ -3,6 +3,7 @@
 import React, { useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isElectron from '@isle-project/utils/is-electron';
 import './ticker.css';
 
 
@@ -77,6 +78,8 @@ function getAnimation( direction, inTime, outTime, hold ) {
 const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, className, style }) => {
 	const [ counter, setCounter ] = useState( 0 );
 	const intervalRef = useRef();
+	const elemRef = useRef( null );
+	const [ inViewport, setInViewport ] = useState( false );
 
 	if ( isString( text ) ) {
 		text = [ text ];
@@ -101,17 +104,36 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 		}
 	}, [ counter, text, reset ] );
 
+	const isInViewport = useCallback( () => {
+		if ( !elemRef.current ) {
+			return false;
+		}
+		const top = elemRef.current.getBoundingClientRect().top;
+		setInViewport( top >= 0 && top <= window.innerHeight );
+	}, [] );
+
+	useEffect( () => {
+		const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+		node.addEventListener( 'scroll', isInViewport );
+		return () => {
+			node.removeEventListener( 'scroll', isInViewport );
+		};
+	}, [ isInViewport ] );
+
 	const interval = wait + inTime + outTime + hold;
 	useEffect( () => {
-		intervalRef.current = setInterval( next, interval * 1000 );
+		if ( inViewport ) {
+			intervalRef.current = setInterval( next, interval * 1000 );
+		}
 		return () => {
 			if ( intervalRef.current ) {
 				clearInterval( intervalRef.current );
 			}
 		};
-	}, [ interval, next ] );
+	}, [ interval, next, inViewport ] );
 	const div = <div
 		className={className}
+		ref={elemRef}
 		style={{
 			animation: getAnimation( direction, inTime, outTime, hold ),
 			...style
