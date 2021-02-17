@@ -6,6 +6,7 @@ import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
 import randu from '@stdlib/random/base/randu';
 import useRandomInterval from '@isle-project/utils/hooks/use-random-interval';
+import isElectron from '@isle-project/utils/is-electron';
 import keystroke from './keystroke.ogg';
 
 
@@ -35,8 +36,10 @@ const DEFAULT_STATE = {
 const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 	const [ state, setState ] = useState( DEFAULT_STATE );
 	const [ holding, setHolding ] = useState( false );
+	const [ inViewport, setInViewport ] = useState( false );
 	const audio = useRef( new Audio( keystroke ) );
 	const cleanupInterval = useRef();
+	const elemRef = useRef( null );
 
 	const playAudio = useCallback( ( char ) => {
 		audio.current.volume = 0.3 + ( randu() * 0.7 );
@@ -45,9 +48,26 @@ const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 		}
 	}, [ audio ] );
 
+	const isInViewport = useCallback( () => {
+		if ( !elemRef.current ) {
+			return false;
+		}
+		const top = elemRef.current.getBoundingClientRect().top;
+		setInViewport( top >= 0 && top <= window.innerHeight );
+	}, [] );
+
+	useEffect( () => {
+		const node = isElectron ? document.getElementById( 'Lesson' ) : document;
+		node.addEventListener( 'scroll', isInViewport );
+
+		return () => {
+			node.removeEventListener( 'scroll', isInViewport );
+		};
+	});
+
 	const args = random ? [ interval * 0.5, interval * 1.5, delay ] : [ interval, interval, delay ];
 	cleanupInterval.current = useRandomInterval( () => {
-		if ( holding ) {
+		if ( !inViewport || holding ) {
 			return;
 		}
 		if ( isArray( text ) ) {
@@ -103,7 +123,7 @@ const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 		setState( DEFAULT_STATE );
 	}, [ delay, text, interval, hold, sound ] );
 	return (
-		<span style={style} >
+		<span style={style} ref={elemRef} >
 			{state.displayedText}
 		</span>
 	);
