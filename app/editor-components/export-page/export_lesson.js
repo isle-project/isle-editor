@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { remote, shell } from 'electron';
+import { writeFileSync } from 'fs';
 import cp from 'child_process';
 import path from 'path';
 import jsyaml from 'js-yaml';
@@ -61,7 +62,7 @@ class ExportLesson extends Component {
 
 	openLesson = () => {
 		const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
-		shell.openItem( fullPath );
+		shell.openPath( fullPath );
 	}
 
 	handleFileInputClick = () => {
@@ -118,8 +119,11 @@ class ExportLesson extends Component {
 				loadFromCDN,
 				writeStats
 			};
+			const settingsPath = path.join( settings.outputPath, 'lesson_settings.json' );
+			writeFileSync( settingsPath, JSON.stringify( settings ) );
+
 			const script = path.resolve( settings.basePath, './app/bundler/index.js' );
-			const child = cp.fork( script, [ JSON.stringify( settings ) ], options );
+			const child = cp.fork( script, [ settingsPath ], options );
 			child.on( 'message', message => {
 				this.setState({
 					finished: true,
