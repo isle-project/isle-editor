@@ -541,6 +541,15 @@ function bundleLesson( options ) {
 					use: {
 						loader: 'svg-react-loader'
 					}
+				},
+				{
+					test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
+					use: {
+						loader: 'file-loader',
+						options: {
+							name: 'static/media/[name].[hash:8].[ext]'
+						}
+					}
 				}
 			],
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
