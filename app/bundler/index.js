@@ -6,6 +6,7 @@ const { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, write
 const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
 const webpack = require( 'webpack' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
@@ -146,7 +147,6 @@ import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import Provider from '@isle-project/components/provider';
 import factor from '@isle-project/utils/factor-variable';
 import obsToVar from '@isle-project/utils/obs-to-var';
-import 'css/lesson.css';
 `;
 
 const getComponents = ( arr ) => {
@@ -363,8 +363,6 @@ function bundleLesson( options ) {
 	let resourceDirectory;
 	let fileName;
 	const modulePaths = [
-		resolve( basePath, './' ),
-		resolve( basePath, './app/' ),
 		resolve( basePath, './node_modules' )
 	];
 	if ( filePath ) {
@@ -425,6 +423,18 @@ function bundleLesson( options ) {
 		resolve: {
 			modules: modulePaths,
 			alias: {
+				'@isle-project': resolve(
+					basePath,
+					'./@isle-project'
+				),
+				'bundler': resolve(
+					basePath,
+					'./app/bundler'
+				),
+				'css': resolve(
+					basePath,
+					'./app/css'
+				),
 				'csv-parse': resolve(
 					basePath,
 					'./node_modules/csv-parse/lib/browser/index.js'
@@ -445,6 +455,7 @@ function bundleLesson( options ) {
 				),
 				'domain': false
 			},
+			symlinks: false,
 			unsafeCache: true,
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
 		},
@@ -542,10 +553,48 @@ function bundleLesson( options ) {
 						chunks: 'all'
 					}
 				}
-			}
+			},
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						warnings: true,
+						compress: {
+							arrows: false,
+							booleans: false,
+							collapse_vars: false,
+							comparisons: false,
+							computed_props: false,
+							hoist_funs: false,
+							hoist_props: false,
+							hoist_vars: false,
+							if_return: false,
+							inline: false,
+							join_vars: false,
+							keep_infinity: false,
+							loops: false,
+							negate_iife: false,
+							properties: false,
+							reduce_funcs: false,
+							reduce_vars: false,
+							sequences: false,
+							side_effects: false,
+							switches: false,
+							top_retain: false,
+							toplevel: false,
+							typeofs: false,
+							unused: false,
+							conditionals: true,
+							dead_code: true,
+							evaluate: true
+						},
+						mangle: true
+					}
+				})
+			]
 		},
 		externals: EXTERNALS,
-		plugins
+		plugins,
+		profile: true
 	};
 
 	// Remove YAML preamble...
@@ -643,7 +692,6 @@ function bundleLesson( options ) {
 			stats.compilation.errors &&
 			stats.compilation.errors.length > 0
 		) {
-			logMsg( JSON.stringify( stats.compilation.errors ) );
 			let errMsg = '';
 			stats.compilation.errors.forEach( v => {
 				errMsg += v;
