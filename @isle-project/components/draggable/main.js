@@ -56,6 +56,8 @@ function onDraggableStop( event ) {
 *
 * @property {boolean} disabled - whether dragging should be disabled
 * @property {boolean} resizable - whether resize handlers should be attached to the edges of the child element
+* @property {Object} default - object with `width` and `height` property for default size and `x` and `y` for default positioning of the component
+* @property {Object} position - object with `x` and `y` position numbers ( for controlled component )
 * @property {Function} onStop - event handler called when dragging is stopped
 * @property {Function} onEscape - event handler called when the escape key is pressed
 * @property {Object} style - CSS inline styles
@@ -91,6 +93,7 @@ class Draggable extends Component {
 						y: window.pageYOffset + 30,
 						...this.props.default
 					}}
+					position={this.props.position}
 					enableResizing={this.props.resizable ? ENABLE_RESIZING : false}
 					enableUserSelectHack={false}
 					style={{
@@ -118,17 +121,22 @@ class Draggable extends Component {
 Draggable.propTypes = {
 	disabled: PropTypes.bool,
 	resizable: PropTypes.bool,
-	onStop: PropTypes.func,
+	position: PropTypes.shape({
+		x: PropTypes.number,
+		y: PropTypes.number
+	}),
+	style: PropTypes.object,
 	onEscape: PropTypes.func,
-	style: PropTypes.object
+	onStop: PropTypes.func
 };
 
 Draggable.defaultProps = {
 	disabled: false,
 	resizable: false,
-	onStop() {},
+	position: null,
+	style: {},
 	onEscape() {},
-	style: {}
+	onStop() {}
 };
 
 
