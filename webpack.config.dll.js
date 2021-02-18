@@ -179,7 +179,8 @@ const config = {
 			'@isle-project/components/internal/spinner',
 			'@isle-project/components/internal/statusbar',
 			'@isle-project/components/internal/toolbar',
-			'@isle-project/components/internal/voice-control'
+			'@isle-project/components/internal/voice-control',
+			'@isle-project/components/internal/error-boundary'
 		],
 		session: [
 			'@isle-project/session'
