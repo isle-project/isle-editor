@@ -183,7 +183,9 @@ const config = {
 			'@isle-project/components/internal/error-boundary'
 		],
 		session: [
-			'@isle-project/session'
+			'@isle-project/session',
+			'@isle-project/utils/factor-variable',
+			'@isle-project/utils/obs-to-var'
 		],
 		locales: [
 			'@isle-project/locales'
@@ -193,7 +195,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.5/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.9/'
 	},
 	optimization: {
 		minimize: true
