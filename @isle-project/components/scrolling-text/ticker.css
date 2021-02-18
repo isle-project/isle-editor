@@ -1,7 +1,4 @@
-.Lesson > .scrolling-text,
-.Lesson > .outer-element > .scrolling-text,
-.Lesson > .outer-element > .outer-element > .scrolling-text,
-.Lesson > .outer-element > .outer-element > .outer-element > .scrolling-text {
+.scrolling-text {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
