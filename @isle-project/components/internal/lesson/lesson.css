@@ -923,7 +923,6 @@ label {
 	animation-duration: 0.3s;
 }
 
-
 @-webkit-keyframes tracking-in {
 	0% {
 		letter-spacing: 1em;

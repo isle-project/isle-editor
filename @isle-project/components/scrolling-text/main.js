@@ -131,21 +131,21 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 			}
 		};
 	}, [ interval, next, inViewport ] );
-	const div = <div
-		className={className}
+	const paragraph = <p
+		className={`scrolling-text ${className}`}
 		ref={elemRef}
 		style={{
 			animation: getAnimation( direction, inTime, outTime, hold ),
 			...style
 		}}
 		key={counter}
-	>{text[ counter ]}</div>;
+	>{text[ counter ]}</p>;
 	if ( direction === 'left' || direction === 'right' ) {
-		return ( <div style={{ overflow: 'hidden', width: '100%' }} >
-			{div}
+		return ( <div className="scrolling-text" style={{ overflow: 'hidden', width: '100%' }} >
+			{paragraph}
 		</div> );
 	}
-	return div;
+	return paragraph;
 };
 
 

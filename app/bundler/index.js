@@ -147,6 +147,7 @@ import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import Provider from '@isle-project/components/provider';
 import factor from '@isle-project/utils/factor-variable';
 import obsToVar from '@isle-project/utils/obs-to-var';
+import 'bundler/loading.css';
 `;
 
 const getComponents = ( arr ) => {

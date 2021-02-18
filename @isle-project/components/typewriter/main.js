@@ -8,6 +8,7 @@ import randu from '@stdlib/random/base/randu';
 import useRandomInterval from '@isle-project/utils/hooks/use-random-interval';
 import isElectron from '@isle-project/utils/is-electron';
 import keystroke from './keystroke.ogg';
+import './typewriter.css';
 
 
 // VARIABLES //
@@ -123,7 +124,7 @@ const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 		setState( DEFAULT_STATE );
 	}, [ delay, text, interval, hold, sound ] );
 	return (
-		<span style={style} ref={elemRef} >
+		<span className="typewriter" style={style} ref={elemRef} >
 			{state.displayedText}
 		</span>
 	);

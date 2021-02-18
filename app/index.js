@@ -6,7 +6,6 @@ import { I18nextProvider } from 'react-i18next';
 import 'v8-compile-cache';
 import App from './app.js';
 import { i18n } from '@isle-project/locales/editor';
-import 'css/lesson.css';
 
 
 // MAIN //
