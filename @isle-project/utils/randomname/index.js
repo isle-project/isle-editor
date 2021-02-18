@@ -12,7 +12,7 @@ import discreteUniform from '@stdlib/random/base/discrete-uniform';
 *
 * @returns {string} random name (first and last name)
 */
-function randomstring() {
+function randomName() {
 	const idx = discreteUniform( 0, lastName.length - 1 );
 	let first;
 	if ( idx % 2 === 1 ) {
@@ -27,4 +27,4 @@ function randomstring() {
 
 // EXPORTS //
 
-export default randomstring;
+export default randomName;
