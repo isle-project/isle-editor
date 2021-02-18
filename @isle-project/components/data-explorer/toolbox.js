@@ -1,14 +1,18 @@
 // MODULES //
 
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SessionContext from '@isle-project/session/context.js';
 import Loadable from '@isle-project/components/internal/loadable';
+import Draggable from '@isle-project/components/draggable';
 import DropdownItem from 'react-bootstrap/DropdownItem';
-import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Tab from 'react-bootstrap/Tab';
 
+const ToolboxTutorialButton = Loadable( () => import( '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
 const ContingencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/contingency_table' ) );
 const FrequencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/frequency_table' ) );
 const SummaryStatistics = Loadable( () => import( '@isle-project/components/data-explorer/summary_statistics' ) );
@@ -57,15 +61,21 @@ const ContourChart = Loadable( () => import( '@isle-project/components/data-expl
 
 // MAIN //
 
-const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, groupingVariables, logAction, data,
+const ToolboxTabs = ({ id, categorical, quantitative, originalQuantitative, groupingVariables, logAction, data,
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
 	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
-	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate, onTransformerBeingActive,
-	on2dSelection, onQQPlotSelection
+	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate,
+	on2dSelection, onQQPlotSelection, onTutorialStart, onTutorialCompletion
 }) => {
 	const nStatistics = statistics.length;
 	const { t } = useTranslation( 'DataExplorer' );
 	const session = useContext( SessionContext );
+	const [ disableDragging, setDisableDragging ] = useState( false );
+	const [ show, setShow ] = useState( false );
+	const toggleShow = useCallback( () => {
+		setShow( !show );
+	}, [ show ] );
+
 	let defaultActiveKey = '1';
 	if ( nStatistics === 0 ) {
 		if ( tables.length > 0 ) {
@@ -560,17 +570,66 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					logAction={logAction}
 					session={session}
 					onGenerate={onGenerateTransformedVariable}
-					onActive={onTransformerBeingActive}
+					onActive={( active ) => {
+						setDisableDragging( active );
+					}}
 					t={t}
 				/>
 			</Tab.Pane> : null
 		}
 	</Tab.Content>;
 	return (
-		<Tab.Container defaultActiveKey={defaultActiveKey} mountOnEnter >
-			{navbar}
-			{tabs}
-		</Tab.Container>
+		<Fragment>
+			<Button
+				variant="secondary" size="sm" className="hide-toolbox-button"
+				onClick={toggleShow}
+			>
+				{t( show ? 'hide-toolbox' : 'show-toolbox' )}
+			</Button>
+			<Draggable
+				cancel=".input"
+				disabled={disableDragging}
+			>
+				<Card
+					border="secondary"
+					id={id}
+					className="data-explorer-toolbox"
+					role="button" tabIndex={0}
+				>
+					<Card.Header className="data-explorer-toolbox-header" >
+						<Card.Title
+							as="h3" unselectable="on" className="data-explorer-toolbox-title"
+						>
+							{t('toolbox')}
+						</Card.Title>
+						<ToolboxTutorialButton
+							onTutorialStart={() => {
+								setDisableDragging( true );
+								onTutorialStart();
+							}}
+							onTutorialCompletion={() => {
+								setDisableDragging( false );
+								onTutorialCompletion();
+							}}
+							for={id}
+							t={t}
+						/>
+						<Button
+							variant="secondary"
+							size="sm"
+							style={{ position: 'absolute', right: '20px' }}
+							onClick={toggleShow}
+						>{t('hide-toolbox')}</Button>
+					</Card.Header>
+					<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
+						<Tab.Container defaultActiveKey={defaultActiveKey} mountOnEnter >
+							{navbar}
+							{tabs}
+						</Tab.Container>
+					</Card.Body>
+				</Card>
+			</Draggable>
+		</Fragment>
 	);
 };
 

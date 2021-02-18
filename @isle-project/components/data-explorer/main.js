@@ -2,7 +2,7 @@
 
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation, Trans } from 'react-i18next';
@@ -32,9 +32,7 @@ import objectKeys from '@stdlib/utils/keys';
 import incrspace from '@stdlib/math/utils/incrspace';
 import generateUID from '@isle-project/utils/uid';
 import Loadable from '@isle-project/components/internal/loadable';
-import Draggable from '@isle-project/components/draggable';
 import SelectInput from '@isle-project/components/input/select';
-const ToolboxTutorialButton = Loadable( () => import( '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
 const TextEditor = Loadable( () => import( '@isle-project/components/text-editor' ) );
 import GridLayout from './grid_layout.js';
 import Pages from '@isle-project/components/pages';
@@ -45,7 +43,7 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 const SpreadsheetUpload = Loadable( () => import( '@isle-project/components/spreadsheet-upload' ) );
 const RPlot = Loadable( () => import( '@isle-project/components/r/plot' ) );
 const DataTable = Loadable( () => import( '@isle-project/components/data-table' ) );
-const ToolboxTabs = Loadable( () => import( './toolbox_tabs.js' ) );
+const ToolboxButton = Loadable( () => import( './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
@@ -57,7 +55,6 @@ import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import './data_explorer.css';
 
 
@@ -80,7 +77,6 @@ import { generateContourChart } from '@isle-project/components/plots/contourchar
 
 // VARIABLES //
 
-addResources( 'DataExplorer' );
 const debug = logger( 'isle:data-explorer' );
 const uid = generateUID( 'data-explorer' );
 
@@ -170,8 +166,6 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			showToolbox: false,
-			disableToolbarDragging: false,
 			openedNav: props.opened || ( isArray( props.questions ) && props.questions.length > 0 ? 'questions' : 'data' ),
 			studentPlots: [],
 			subsetFilters: null,
@@ -343,12 +337,6 @@ class DataExplorer extends Component {
 	toggleStudentPlots = () => {
 		this.setState({
 			showStudentPlots: !this.state.showStudentPlots
-		});
-	}
-
-	toggleToolbox = () => {
-		this.setState({
-			showToolbox: !this.state.showToolbox
 		});
 	}
 
@@ -851,109 +839,6 @@ class DataExplorer extends Component {
 		}
 	}
 
-	renderToolbox() {
-		return (
-			<Draggable
-				cancel=".input" disabled={this.state.disableToolbarDragging}
-				style={{
-					display: this.state.showToolbox ? 'inline' : 'none'
-				}}
-			>
-				<Card
-					border="secondary"
-					id={`${this.id}-toolbox`}
-					className="data-explorer-toolbox"
-					role="button" tabIndex={0}
-				>
-					<Card.Header className="data-explorer-toolbox-header" >
-						<Card.Title
-							as="h3" unselectable="on" className="data-explorer-toolbox-title"
-						>
-							{this.props.t('toolbox')}
-						</Card.Title>
-						<ToolboxTutorialButton
-							onTutorialStart={() => {
-								this.setState({
-									disableToolbarDragging: true
-								});
-								this.props.onTutorialStart();
-							}}
-							onTutorialCompletion={() => {
-								this.setState({
-									disableToolbarDragging: false
-								});
-								this.props.onTutorialCompletion();
-							}}
-							id={`${this.id}-toolbox`}
-							t={this.props.t}
-						/>
-						<Button
-							variant="secondary"
-							size="sm"
-							style={{ position: 'absolute', right: '20px' }}
-							onClick={this.toggleToolbox}
-						>{this.props.t('hide-toolbox')}</Button>
-					</Card.Header>
-					<Card.Body style={{ paddingBottom: '0px', overflowY: 'auto', maxHeight: '90vh' }}>
-						{ this.state.showToolbox ?
-							<ToolboxTabs
-								models={this.props.models}
-								tables={this.props.tables}
-								statistics={this.props.statistics}
-								plots={this.props.plots}
-								tests={this.props.tests}
-								quantitative={this.state.quantitative}
-								originalQuantitative={this.props.quantitative}
-								categorical={this.state.categorical}
-								logAction={this.logAction}
-								onCreated={this.addToOutputs}
-								data={this.state.data}
-								showTestDecisions={this.props.showTestDecisions}
-								onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
-								groupingVariables={this.state.groupVars}
-								on2dSelection={this.on2dSelection}
-								onQQPlotSelection={this.onQQPlotSelection}
-								transformer={this.props.transformer}
-								onBarchartSelection={this.onBarchartSelection}
-								showHistogramDensityOption={this.props.histogramDensities}
-								onGenerateTransformedVariable={this.onGenerateTransformedVariable}
-								onHistogramSelection={this.onHistogramSelection}
-								onTransformerBeingActive={( active ) => {
-									this.setState({
-										disableToolbarDragging: active
-									});
-								}}
-								onCategoricalGenerate={( categorical, data ) => {
-									const groupVars = categorical.slice();
-									this.setState({
-										categorical,
-										groupVars,
-										data
-									});
-								}}
-								onQuantitativeGenerate={( quantitative, data ) => {
-									this.setState({
-										quantitative,
-										data
-									});
-								}}
-								onBothGenerate={( quantitative, categorical, data ) => {
-									this.setState({
-										quantitative,
-										categorical,
-										groupVars: categorical.slice(),
-										data
-									});
-								}}
-							/> :
-							null
-						}
-					</Card.Body>
-				</Card>
-			</Draggable>
-		);
-	}
-
 	render() {
 		debug( 'Render component...' );
 		if ( !this.state.data ) {
@@ -1067,10 +952,54 @@ class DataExplorer extends Component {
 								);
 							}) : null }
 						</Nav>
-						<Button
-							variant="secondary" size="sm" className="hide-toolbox-button"
-							onClick={this.toggleToolbox}
-						>{this.props.t( this.state.showToolbox ? 'hide-toolbox' : 'show-toolbox' )}</Button>
+						<ToolboxButton
+							id={`${this.id}-toolbox`}
+							models={this.props.models}
+							tables={this.props.tables}
+							statistics={this.props.statistics}
+							plots={this.props.plots}
+							tests={this.props.tests}
+							quantitative={this.state.quantitative}
+							originalQuantitative={this.props.quantitative}
+							categorical={this.state.categorical}
+							logAction={this.logAction}
+							onCreated={this.addToOutputs}
+							data={this.state.data}
+							showTestDecisions={this.props.showTestDecisions}
+							onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
+							groupingVariables={this.state.groupVars}
+							on2dSelection={this.on2dSelection}
+							onQQPlotSelection={this.onQQPlotSelection}
+							transformer={this.props.transformer}
+							onBarchartSelection={this.onBarchartSelection}
+							showHistogramDensityOption={this.props.histogramDensities}
+							onGenerateTransformedVariable={this.onGenerateTransformedVariable}
+							onHistogramSelection={this.onHistogramSelection}
+							onCategoricalGenerate={( categorical, data ) => {
+								const groupVars = categorical.slice();
+								this.setState({
+									categorical,
+									groupVars,
+									data
+								});
+							}}
+							onQuantitativeGenerate={( quantitative, data ) => {
+								this.setState({
+									quantitative,
+									data
+								});
+							}}
+							onBothGenerate={( quantitative, categorical, data ) => {
+								this.setState({
+									quantitative,
+									categorical,
+									groupVars: categorical.slice(),
+									data
+								});
+							}}
+							onTutorialStart={this.props.onTutorialStart}
+							onTutorialCompletion={this.props.onTutorialCompletion}
+						/>
 					</Navbar>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						{ hasQuestions ? <Pages
@@ -1268,13 +1197,7 @@ class DataExplorer extends Component {
 				</div>
 			</Col>
 		</Row>;
-
-		return (
-			<Fragment>
-				{mainContainer}
-				{this.renderToolbox()}
-			</Fragment>
-		);
+		return mainContainer;
 	}
 }
 

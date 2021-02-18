@@ -20,7 +20,7 @@ class Tutorial extends Component {
 			running: false
 		};
 		this.stepsWithId = copy( STEPS, 2 ).map( x => {
-			x.target = `#${props.id} ` + x.target;
+			x.target = `#${props.for} ` + x.target;
 			return x;
 		});
 	}
@@ -84,6 +84,7 @@ class Tutorial extends Component {
 // PROPERTIES //
 
 Tutorial.propTypes = {
+	for: PropTypes.string.isRequired,
 	onTutorialCompletion: PropTypes.func.isRequired,
 	onTutorialStart: PropTypes.func.isRequired
 };
