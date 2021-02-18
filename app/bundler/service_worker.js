@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Trans } from 'react-i18next';
-import './update_notification.css';
 
 
 // FUNCTIONS //
