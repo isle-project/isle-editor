@@ -42,8 +42,6 @@
 
 .data-explorer-toolbox {
 	z-index: 1004;
-	position: fixed;
-	top: 10%;
 	min-width: 500px;
 	font-size: 1rem;
 	text-align: left;
@@ -103,4 +101,10 @@
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
 	user-select: none; /* Standard */
+}
+
+.data-explorer-toolbox-body {
+	padding-bottom: 0;
+	overflow-y: auto;
+	max-height: 90vh;
 }
