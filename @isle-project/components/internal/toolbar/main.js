@@ -15,6 +15,7 @@ import KeyControls from '@isle-project/components/key-controls';
 import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
 import pixelsToNumber from '@isle-project/utils/pixels-to-number';
+import { addResources } from '@isle-project/locales';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from '@isle-project/constants/events.js';
 import HelpPage from './help';
@@ -298,7 +299,9 @@ class Toolbar extends Component {
 					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
 					<Tooltip
 						tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} ${F2}`}
-						placement="top" onToggle={Calculator.preload}
+						placement="top" onToggle={() => {
+							addResources( 'Calculator' );
+						}}
 					>
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
@@ -318,7 +321,9 @@ class Toolbar extends Component {
 							variant={this.state.queue ? 'success' : 'light'}
 							className="toolbar-button toolbar-queue"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
-							onMouseOver={Queue.preload}
+							onMouseOver={() => {
+								addResources( 'Queue' );
+							}}
 							style={{
 								display: !this.state.hideQueue ? 'inline-block' : 'none'
 							}}
@@ -351,7 +356,9 @@ class Toolbar extends Component {
 					</Tooltip>
 					<Tooltip
 						tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`}
-						placement="top" onToggle={HelpPage.preload}
+						placement="top" onToggle={() => {
+							addResources( 'HelpPage' );
+						}}
 					>
 						<Button
 							variant={this.state.help ? 'success' : 'light'}

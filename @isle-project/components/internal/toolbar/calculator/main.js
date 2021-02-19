@@ -19,14 +19,12 @@ import SessionContext from '@isle-project/session/context.js';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
-import { addResources } from '@isle-project/locales';
 import evaluate from './shunting_yard.js';
 import './calculator.css';
 
 
 // VARIABLES //
 
-addResources( 'Calculator' );
 const debug = logger( 'isle:calculator' );
 const RE_SPLIT_KEY = /([() +\-/*^!])/;
 const RE_OPERATOR = /[+\-/*^!]/;
