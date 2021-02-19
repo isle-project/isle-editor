@@ -6,6 +6,7 @@ import { toJpeg } from 'html-to-image';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isInteger from '@stdlib/assert/is-integer';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
+import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import FullscreenButton from './fullscreen_button';
 import './tree.css';
 
@@ -96,15 +97,18 @@ class TreePlot extends Component {
 					this.treeWrapper = div;
 				}}
 			>
-				<div
+				<button
 					className="decision-tree-draggable-bar"
 					draggable="true"
 					onDragStart={( ev ) => {
 						ev.dataTransfer.setData( 'text/html', this.state.plotValue );
 						ev.dataTransfer.setData( 'text/plain', this.state.plotKey );
 					}}
+					onClick={() => {
+						html2clipboard( this.state.plotValue );
+					}}
 					style={{ float: 'left' }}
-				>{t('drag-plot')}</div>
+				>{t('drag-plot')}</button>
 				<FullscreenButton
 					variant="outline-danger"
 					size="sm"

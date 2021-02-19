@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 import round from '@stdlib/math/base/special/round';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
+import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import { addResources } from '@isle-project/locales';
 import Dendrogram from './hclust/dendrogram.js';
@@ -99,14 +100,17 @@ class HierarchicalClustering extends Component {
 		return (
 			<div style={{ overflowX: 'auto', width: '100%' }} >
 				<span className="title" >{t('hierarchical-clustering-summary')}</span>
-				<div
+				<button
 					className="hierarchical-clustering-draggable-bar"
 					draggable="true"
 					onDragStart={( ev ) => {
 						ev.dataTransfer.setData( 'text/html', this.plotValue );
 						ev.dataTransfer.setData( 'text/plain', this.plotKey );
 					}}
-				>{t('drag-plot')}</div>
+					onClick={() => {
+						html2clipboard( this.plotValue );
+					}}
+				>{t('drag-plot')}</button>
 				<FullscreenButton
 					variant="outline-danger"
 					size="sm"

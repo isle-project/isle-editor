@@ -61,6 +61,7 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 	text-align: center;
 	cursor: move;
 	padding: 0.1rem 0.3rem;
+	border: 0;
 }
 
 .decision-tree-draggable-bar:hover {

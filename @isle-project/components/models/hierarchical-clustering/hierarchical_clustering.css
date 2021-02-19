@@ -13,6 +13,7 @@
 	text-align: center;
 	cursor: move;
 	padding: 0.1rem 0.3rem;
+	border: 0;
 }
 
 .hierarchical-clustering-draggable-bar:hover {
