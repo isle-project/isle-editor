@@ -3,6 +3,7 @@
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import logger from 'debug';
+import debounce from 'lodash.debounce';
 import normalizeLanguageCode from './normalize_language_code.js';
 
 
@@ -963,6 +964,10 @@ export function changeLanguage( lng, callback = () => {} ) {
 	});
 }
 
+const debouncedUpdate = debounce( ( lng ) => {
+	i18n.changeLanguage( lng );
+}, 1000 );
+
 export function addResources( ns ) {
 	let lng = i18n.language || ( windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) ) || 'en';
 	lng = normalizeLanguageCode( lng );
@@ -978,7 +983,7 @@ export function addResources( ns ) {
 			res().then( ( data ) => {
 				if ( i18n.addResources ) {
 					i18n.addResources( lng, ns, data );
-					i18n.changeLanguage( lng );
+					debouncedUpdate( lng );
 				} else {
 					RESOURCES[ lng ][ ns ] = data;
 				}
