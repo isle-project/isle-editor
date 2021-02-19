@@ -48,7 +48,10 @@ const InterfaceTourButton = () => {
 						} else {
 							setShowTour( false );
 						}
-					}} className="interface-tour-button"
+					}}
+					onMouseOver={InterfaceTour.preload}
+					onFocus={InterfaceTour.preload}
+					className="interface-tour-button"
 					aria-label={t( showTour ? 'end-interface-tour' : 'start-interface-tour')}
 				>
 					<i className="fas fa-info-circle"></i>

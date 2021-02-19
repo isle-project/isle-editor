@@ -296,7 +296,10 @@ class Toolbar extends Component {
 						</Button>
 					</Tooltip>
 					{this.state.elements.filter( x => !!x.component ).map( ( x, i ) => this.renderButton( x, i ))}
-					<Tooltip tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} ${F2}`} placement="top" >
+					<Tooltip
+						tooltip={`${this.state.calculator ? close : open} ${t( 'calculator' )} ${F2}`}
+						placement="top" onToggle={Calculator.preload}
+					>
 						<Button
 							variant={this.state.calculator ? 'success' : 'light'}
 							className="toolbar-button toolbar-calculator"
@@ -315,6 +318,7 @@ class Toolbar extends Component {
 							variant={this.state.queue ? 'success' : 'light'}
 							className="toolbar-button toolbar-queue"
 							onClick={this.toggleQueue} onKeyPress={this.toggleQueue}
+							onMouseOver={Queue.preload}
 							style={{
 								display: !this.state.hideQueue ? 'inline-block' : 'none'
 							}}
@@ -328,7 +332,10 @@ class Toolbar extends Component {
 							</Tooltip>
 						</Button> : null
 					}
-					<Tooltip tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`} placement="top" >
+					<Tooltip
+						tooltip={`${this.state.sketchpad ? close : open} ${t( 'sketchpad' )}`}
+						placement="top" onToggle={Sketchpad.preload}
+					>
 						<Button
 							variant={this.state.sketchpad ? 'success' : 'light'}
 							className="toolbar-button toolbar-sketchpad"
@@ -342,7 +349,10 @@ class Toolbar extends Component {
 							<span className="fa fa-lg fa-paint-brush toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Tooltip tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`} placement="top" >
+					<Tooltip
+						tooltip={`${this.state.help ? close : open} ${t( 'documentation' )}`}
+						placement="top" onToggle={HelpPage.preload}
+					>
 						<Button
 							variant={this.state.help ? 'success' : 'light'}
 							className="toolbar-button toolbar-help"
@@ -354,7 +364,10 @@ class Toolbar extends Component {
 						</Button>
 					</Tooltip>
 					<Gate user disabled={!session.enableTicketing} >
-						<Tooltip tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`} placement="top" >
+						<Tooltip
+							tooltip={`${this.state.ticketing ? close : open} ${t( 'ticketing' )}`}
+							placement="top" onToggle={Ticketing.preload}
+						>
 							<Button
 								variant={this.state.ticketing ? 'success' : 'light'}
 								className="toolbar-button toolbar-ticketing"
@@ -369,7 +382,7 @@ class Toolbar extends Component {
 					<Gate owner inline showOwnerInPresentationMode >
 						<Tooltip
 							tooltip={this.state.engagementInProgress ? this.props.t( 'finish-poll' ) : this.props.t( 'polls' )}
-							placement="top"
+							placement="right"
 						>
 							<Button
 								variant={this.state.engagementInProgress ? 'warning' : ( this.state.engagementMenu ? 'success' : 'light' )}
@@ -384,7 +397,7 @@ class Toolbar extends Component {
 							</Button>
 						</Tooltip>
 						<Overlay
-							placement="right"
+							placement="top"
 							show={this.state.engagementMenu}
 							target={this.engagementButton}
 							trigger="click"
