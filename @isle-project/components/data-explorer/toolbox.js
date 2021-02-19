@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
@@ -22,8 +22,33 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 	const { t } = useTranslation( 'DataExplorer' );
 	const [ disableDragging, setDisableDragging ] = useState( false );
 	const [ show, setShow ] = useState( false );
-	const [ position, setPosition ] = useState( null);
+	const [ position, setPosition ] = useState( null );
+	const buttonRef = useRef();
 
+	useEffect( () => {
+		let resizeObserver;
+		if ( ResizeObserver ) {
+			resizeObserver = new ResizeObserver( ( entries ) => {
+				for ( let entry of entries ) {
+					if ( entry.contentBoxSize ) {
+						const elem = buttonRef.current;
+						const rect = elem.getBoundingClientRect();
+						const top = rect.top + document.documentElement.scrollTop;
+						setPosition({
+							x: 30 + window.pageXOffset,
+							y: top
+						});
+					}
+				}
+			});
+			resizeObserver.observe( document.body );
+		}
+		return () => {
+			if ( resizeObserver ) {
+				resizeObserver.unobserve( document.body );
+			}
+		};
+	}, [] );
 	const toggleShow = useCallback( () => {
 		if ( !position ) {
 			setPosition({
@@ -34,24 +59,18 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 		setShow( !show );
 	}, [ position, show ] );
 
+	const button = <Button
+		variant="secondary" size="sm" className="hide-toolbox-button"
+		onClick={toggleShow} ref={buttonRef}
+	>
+		{show ? t('hide-toolbox' ) : t( 'show-toolbox' )}
+	</Button>;
 	if ( !show ) {
-		return (
-			<Button
-				variant="secondary" size="sm" className="hide-toolbox-button"
-				onClick={toggleShow}
-			>
-				{t( 'show-toolbox' )}
-			</Button>
-		);
+		return button;
 	}
 	return (
 		<Fragment>
-			<Button
-				variant="secondary" size="sm" className="hide-toolbox-button"
-				onClick={toggleShow}
-			>
-				{t( 'hide-toolbox' )}
-			</Button>
+			{button}
 			<Draggable
 				cancel=".input"
 				disabled={disableDragging}
