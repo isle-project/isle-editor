@@ -15,6 +15,7 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 * @property {string} tooltip - tooltip content
 * @property {string} placement - direction of the tooltip
 * @property {boolean} show - controls whether the tooltip shall be displayed
+* @property {Function} onToggle - function invoked when tooltip is toggled
 */
 class Wrapper extends Component {
 	render() {
@@ -24,7 +25,7 @@ class Wrapper extends Component {
 		}
 		const tooltip = <Tooltip id={id} >{this.props.tooltip}</Tooltip>;
 		return (
-			<OverlayTrigger placement={this.props.placement} overlay={tooltip} >
+			<OverlayTrigger placement={this.props.placement} onToggle={this.props.onToggle} overlay={tooltip} >
 				{this.props.children}
 			</OverlayTrigger>
 		);
@@ -41,14 +42,16 @@ Wrapper.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
-	placement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ])
+	placement: PropTypes.oneOf([ 'top', 'right', 'bottom', 'left' ]),
+	onToggle: PropTypes.func
 };
 
 Wrapper.defaultProps = {
 	id: 'tooltip',
 	placement: 'right',
 	show: true,
-	tooltip: null
+	tooltip: null,
+	onToggle: null
 };
 
 
