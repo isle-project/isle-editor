@@ -60,6 +60,7 @@
 	text-align: center;
 	cursor: move;
 	padding: 0.3rem 0.3rem;
+	border: 0;
 }
 
 .data-explorer-draggable-bar:hover {

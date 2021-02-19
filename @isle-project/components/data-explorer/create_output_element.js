@@ -42,6 +42,7 @@ import PrincipalComponentAnalysis from '@isle-project/components/models/principa
 import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
 import KMeans from '@isle-project/components/models/kmeans';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
+import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
 import DatasetButton from './dataset_button.js';
@@ -75,7 +76,7 @@ const createButtons = ( header, table, clearOutput, idx, subsetFilters, onFilter
 const makeDraggable = ( div ) => {
 	return (
 		<Fragment>
-			<div
+			<button
 				draggable={true}
 				className="data-explorer-draggable-bar"
 				onDragStart={( ev ) => {
@@ -85,9 +86,15 @@ const makeDraggable = ( div ) => {
 					ev.dataTransfer.setData( 'text/plain', markup );
 					ev.dataTransfer.setData( 'text/html', markup );
 				}}
+				onClick={( ev ) => {
+					const div = ev.target.nextSibling;
+					let markup = div.outerHTML;
+					markup = replace( markup, RE_CLEAR_BUTTON, '' );
+					html2clipboard( markup );
+				}}
 			>
 				{i18n.t('DataExplorer:drag-table')}
-			</div>
+			</button>
 			{div}
 		</Fragment>
 	);
