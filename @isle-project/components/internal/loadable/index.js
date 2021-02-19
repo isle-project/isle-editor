@@ -8,10 +8,11 @@ import './loadable.css';
 
 // MAIN //
 
-function MyLoadable( loader ) {
-	const out = loadable( loader, {
-		fallback: <Loading />
-	});
+function MyLoadable( loader, opts = {} ) {
+	if ( opts.fallback === void 0 ) {
+		opts.fallback = <Loading />;
+	}
+	const out = loadable( loader, opts );
 	return out;
 }
 
