@@ -105,6 +105,11 @@ const config = {
 			'@isle-project/components/image',
 			'@isle-project/components/questions/image',
 			'@isle-project/components/input',
+			'@isle-project/components/input/checkbox',
+			'@isle-project/components/input/number',
+			'@isle-project/components/input/select',
+			'@isle-project/components/input/slider',
+			'@isle-project/components/input/text',
 			'@isle-project/components/joyride',
 			'@isle-project/components/js-shell',
 			'@isle-project/components/key-controls',
@@ -196,7 +201,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.13/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.14/'
 	},
 	optimization: {
 		minimize: true,
