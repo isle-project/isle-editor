@@ -32,7 +32,7 @@ addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const TSTAT = 't';
 const DF = 'df';
-const R2 = 'R&#178;:';
+const R2 = 'R²:';
 
 
 // FUNCTIONS //
