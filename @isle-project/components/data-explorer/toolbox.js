@@ -74,6 +74,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 			<Draggable
 				cancel=".input"
 				disabled={disableDragging}
+				bounds="body"
 				position={position}
 				style={{
 					position: 'absolute'
@@ -121,7 +122,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 							plots={plots}
 							tests={tests}
 							quantitative={quantitative}
-							originalQuantitative={quantitative}
+							originalQuantitative={originalQuantitative}
 							categorical={categorical}
 							logAction={logAction}
 							onCreated={onCreated}
