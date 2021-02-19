@@ -2,7 +2,7 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation, Trans } from 'react-i18next';
@@ -31,19 +31,18 @@ import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
 import incrspace from '@stdlib/math/utils/incrspace';
 import generateUID from '@isle-project/utils/uid';
-import Loadable from '@isle-project/components/internal/loadable';
 import SelectInput from '@isle-project/components/input/select';
-const TextEditor = Loadable( () => import( '@isle-project/components/text-editor' ) );
+import TextEditor from '@isle-project/components/text-editor';
 import GridLayout from './grid_layout.js';
 import Pages from '@isle-project/components/pages';
 import Gate from '@isle-project/components/gate';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import Plotly from '@isle-project/components/plotly';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
-const SpreadsheetUpload = Loadable( () => import( '@isle-project/components/spreadsheet-upload' ) );
-const RPlot = Loadable( () => import( '@isle-project/components/r/plot' ) );
-const DataTable = Loadable( () => import( '@isle-project/components/data-table' ) );
-const ToolboxButton = Loadable( () => import( './toolbox.js' ) );
+import SpreadsheetUpload from '@isle-project/components/spreadsheet-upload';
+import RPlot from '@isle-project/components/r/plot';
+import DataTable from '@isle-project/components/data-table';
+const ToolboxButton = lazy( () => import( './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
@@ -952,54 +951,61 @@ class DataExplorer extends Component {
 								);
 							}) : null }
 						</Nav>
-						<ToolboxButton
-							id={`${this.id}-toolbox`}
-							models={this.props.models}
-							tables={this.props.tables}
-							statistics={this.props.statistics}
-							plots={this.props.plots}
-							tests={this.props.tests}
-							quantitative={this.state.quantitative}
-							originalQuantitative={this.props.quantitative}
-							categorical={this.state.categorical}
-							logAction={this.logAction}
-							onCreated={this.addToOutputs}
-							data={this.state.data}
-							showTestDecisions={this.props.showTestDecisions}
-							onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
-							groupingVariables={this.state.groupVars}
-							on2dSelection={this.on2dSelection}
-							onQQPlotSelection={this.onQQPlotSelection}
-							transformer={this.props.transformer}
-							onBarchartSelection={this.onBarchartSelection}
-							showHistogramDensityOption={this.props.histogramDensities}
-							onGenerateTransformedVariable={this.onGenerateTransformedVariable}
-							onHistogramSelection={this.onHistogramSelection}
-							onCategoricalGenerate={( categorical, data ) => {
-								const groupVars = categorical.slice();
-								this.setState({
-									categorical,
-									groupVars,
-									data
-								});
-							}}
-							onQuantitativeGenerate={( quantitative, data ) => {
-								this.setState({
-									quantitative,
-									data
-								});
-							}}
-							onBothGenerate={( quantitative, categorical, data ) => {
-								this.setState({
-									quantitative,
-									categorical,
-									groupVars: categorical.slice(),
-									data
-								});
-							}}
-							onTutorialStart={this.props.onTutorialStart}
-							onTutorialCompletion={this.props.onTutorialCompletion}
-						/>
+						<Suspense fallback={<Button
+							variant="secondary" size="sm" className="hide-toolbox-button"
+							disabled
+						>
+							Loading...
+						</Button>} >
+							<ToolboxButton
+								id={`${this.id}-toolbox`}
+								models={this.props.models}
+								tables={this.props.tables}
+								statistics={this.props.statistics}
+								plots={this.props.plots}
+								tests={this.props.tests}
+								quantitative={this.state.quantitative}
+								originalQuantitative={this.props.quantitative}
+								categorical={this.state.categorical}
+								logAction={this.logAction}
+								onCreated={this.addToOutputs}
+								data={this.state.data}
+								showTestDecisions={this.props.showTestDecisions}
+								onPlotDone={this.outputPanel ? this.outputPanel.scrollToBottom : noop}
+								groupingVariables={this.state.groupVars}
+								on2dSelection={this.on2dSelection}
+								onQQPlotSelection={this.onQQPlotSelection}
+								transformer={this.props.transformer}
+								onBarchartSelection={this.onBarchartSelection}
+								showHistogramDensityOption={this.props.histogramDensities}
+								onGenerateTransformedVariable={this.onGenerateTransformedVariable}
+								onHistogramSelection={this.onHistogramSelection}
+								onCategoricalGenerate={( categorical, data ) => {
+									const groupVars = categorical.slice();
+									this.setState({
+										categorical,
+										groupVars,
+										data
+									});
+								}}
+								onQuantitativeGenerate={( quantitative, data ) => {
+									this.setState({
+										quantitative,
+										data
+									});
+								}}
+								onBothGenerate={( quantitative, categorical, data ) => {
+									this.setState({
+										quantitative,
+										categorical,
+										groupVars: categorical.slice(),
+										data
+									});
+								}}
+								onTutorialStart={this.props.onTutorialStart}
+								onTutorialCompletion={this.props.onTutorialCompletion}
+							/>
+						</Suspense>
 					</Navbar>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						{ hasQuestions ? <Pages
