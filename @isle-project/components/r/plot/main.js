@@ -10,6 +10,7 @@ import createPrependCode from '@isle-project/components/r/utils/create-prepend-c
 import Spinner from '@isle-project/components/internal/spinner';
 import Image from '@isle-project/components/image';
 import SessionContext from '@isle-project/session/context.js';
+import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { addResources } from '@isle-project/locales';
 import './plot.css';
 
@@ -18,6 +19,22 @@ import './plot.css';
 
 addResources( 'R' );
 
+
+// FUNCTIONS //
+
+function createImgHTML({ id, meta, plot }) {
+	let img;
+	if ( !meta ) {
+		img = `<img src="${plot}" alt="R Plot" style="display: block; margin: 0 auto;" />`;
+	} else {
+		meta = omitBy( meta, ( _, value ) => {
+			return isNull( value );
+		});
+		meta = jsyaml.dump( meta );
+		img = `<img src="${plot}" style="display: block; margin: 0 auto;" data-plot-id="${id}" data-plot-meta="${meta}"></img>`;
+	}
+	return img;
+}
 
 // MAIN //
 
@@ -84,24 +101,18 @@ class RPlot extends Component {
 	render() {
 		let draggableBar = null;
 		if ( this.props.draggable ) {
-			draggableBar = <div
+			draggableBar = <button
 				className="rplot-draggable-bar"
 				draggable={true}
 				onDragStart={( ev ) => {
-					let img;
-					if ( !this.props.meta ) {
-						img = `<img src="${this.state.plot}" alt="R Plot" style="display: block; margin: 0 auto;" />`;
-					} else {
-						let meta = this.props.meta;
-						meta = omitBy( meta, ( _, value ) => {
-							return isNull( value );
-						});
-						meta = jsyaml.dump( meta );
-						img = `<img src="${this.state.plot}" style="display: block; margin: 0 auto;" data-plot-id="${this.props.id}" data-plot-meta="${meta}"></img>`;
-					}
+					const img = createImgHTML({ id: this.id, meta: this.props.meta, plot: this.state.plot });
 					ev.dataTransfer.setData( 'text/html', img );
 				}}
-			>{this.props.t('drag-plot')}</div>;
+				onClick={() => {
+					const img = createImgHTML({ id: this.id, meta: this.props.meta, plot: this.state.plot });
+					html2clipboard( img );
+				}}
+			>{this.props.t('drag-plot')}</button>;
 		}
 		const { className, ...rest } = this.props;
 		return (
