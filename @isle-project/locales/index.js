@@ -933,7 +933,7 @@ i18n.use( LanguageDetector )
 		resources: RESOURCES,
 		react: {
 			bindI18n: 'languageChanged',
-			wait: false
+			useSuspense: false
 		},
 		interpolation: {
 			escapeValue: false // Not needed for React!
