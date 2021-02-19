@@ -1,11 +1,27 @@
 // MODULES //
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+
+// VARIABLES //
+
+const DELAY = 200;
 
 
 // MAIN //
 
 const Loading = () => {
+	const [ showSpinner, setShowSpinner ] = useState(false);
+
+	useEffect( () => {
+		const timer = setTimeout(() => setShowSpinner( true ), DELAY );
+		return () => {
+			clearTimeout( timer );
+		};
+	});
+	if ( !showSpinner ) {
+		return null;
+	}
 	return (
 		<span className="isle-loadable sk-cube-grid" >
 			<span className="sk-cube sk-cube1"></span>
