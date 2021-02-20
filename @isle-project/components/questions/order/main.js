@@ -95,7 +95,7 @@ const OrderQuestion = ( props ) => {
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
-			id: id,
+			id: id.current,
 			type: ORDER_QUESTION_OPEN_HINT,
 			value: idx
 		});
@@ -132,14 +132,14 @@ const OrderQuestion = ( props ) => {
 		setSubmitted( true );
 
 		session.log({
-			id: id,
+			id: id.current,
 			type: ORDER_QUESTION_SUBMISSION,
 			value: state.cards.map( x => x.text ).join( ' -> ' )
 		});
 	}, [ disableSubmitNotification, sendSubmitNotification, session, state, onSubmit ] );
 	const nHints = props.hints.length;
 	return (
-		<Card id={id} className="order-question" style={props.style} >
+		<Card id={id.current} className="order-question" style={props.style} >
 			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<DraggableList
@@ -165,11 +165,11 @@ const OrderQuestion = ( props ) => {
 					}
 					{
 						props.chat ?
-							<ChatButton for={id} /> : null
+							<ChatButton for={id.current} /> : null
 					}
 				</div>
 				<ResponseVisualizer
-					id={id}
+					id={id.current}
 					data={{
 						type: 'string',
 						question: props.question,
@@ -179,9 +179,9 @@ const OrderQuestion = ( props ) => {
 					points={props.points}
 				/>
 				{ props.feedback ? <FeedbackButtons
-					id={id+'_feedback'}
+					id={id.current+'_feedback'}
 				/> : null }
-				<GradeFeedbackRenderer for={id} points={props.points} />
+				<GradeFeedbackRenderer for={id.current} points={props.points} />
 			</Card.Body>
 		</Card>
 	);

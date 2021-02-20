@@ -56,7 +56,7 @@ const FeedbackButtons = ( props ) => {
 
 	const submitConfused = useCallback( () => {
 		session.log({
-			id: id,
+			id: id.current,
 			type: USER_FEEDBACK_CONFUSED,
 			value: 'confused'
 		}, 'members' );
@@ -70,7 +70,7 @@ const FeedbackButtons = ( props ) => {
 	}, [ session, t ] );
 	const submitUnderstood = useCallback( () => {
 		session.log({
-			id: id,
+			id: id.current,
 			type: USER_FEEDBACK_UNDERSTOOD,
 			value: 'understood'
 		}, 'members' );
@@ -84,12 +84,13 @@ const FeedbackButtons = ( props ) => {
 	}, [ session, t ] );
 	const submitFeedback = useCallback( () => {
 		session.log({
-			id: id,
+			id: id.current,
 			type: USER_FEEDBACK_FORM,
 			value: customFeedback
 		}, 'members' );
 
 		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
+		setShowModal( false );
 		session.addNotification({
 			title: t( 'thank-you' ),
 			message: t( 'submit-custom-message' ),
@@ -107,7 +108,7 @@ const FeedbackButtons = ( props ) => {
 	};
 	const tpos = props.vertical ? 'left' : 'bottom';
 	return (
-		<div id={id} className={`feedback-buttons ${props.className}`} >
+		<div id={id.current} className={`feedback-buttons ${props.className}`} >
 			<ButtonGroup style={{ float: 'right', ...props.style }} vertical={props.vertical} >
 				{ submittedBinary ?
 					<Fragment>
@@ -147,7 +148,7 @@ const FeedbackButtons = ( props ) => {
 						width: '100%'
 					}}
 					showID={false}
-					id={id}
+					id={id.current}
 					success={USER_FEEDBACK_UNDERSTOOD}
 					danger={USER_FEEDBACK_CONFUSED}
 					info={USER_FEEDBACK_FORM}
