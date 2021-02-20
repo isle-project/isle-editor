@@ -171,7 +171,7 @@ const OrderQuestion = ( props ) => {
 				<ResponseVisualizer
 					id={id.current}
 					data={{
-						type: 'string',
+						type: 'factor',
 						question: props.question,
 						solution: props.options
 					}}

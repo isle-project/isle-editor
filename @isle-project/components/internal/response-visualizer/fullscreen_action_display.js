@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { Trans } from 'react-i18next';
+import uniq from 'uniq';
 import tokenize from '@stdlib/nlp/tokenize';
 import contains from '@stdlib/assert/contains';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
@@ -372,16 +373,21 @@ class FullscreenActionDisplay extends Component {
 	renderBarchart() {
 		const actions = this.getActions();
 		let maxLength = 0;
-		let levels = this.props.data.levels.map( ( x, i ) => {
-			let out = isString( x ) ? x : innerText( x );
-			if ( !out ) {
-				out = `${this.props.t('choice')} ${i+1}`;
-			}
-			if ( out.length > maxLength ) {
-				maxLength = out.length;
-			}
-			return out;
-		});
+		let levels;
+		if ( this.props.data.levels ) {
+			levels = this.props.data.levels.map( ( x, i ) => {
+				let out = isString( x ) ? x : innerText( x );
+				if ( !out ) {
+					out = `${this.props.t('choice')} ${i+1}`;
+				}
+				if ( out.length > maxLength ) {
+					maxLength = out.length;
+				}
+				return out;
+			});
+		} else {
+			levels = uniq( actions.map( x => x.value ) );
+		}
 		let leftMargin = max( 250, maxLength * 7.5 );
 		let counts = tabulateValues( actions, levels );
 		if ( levels.length > 7 ) {
