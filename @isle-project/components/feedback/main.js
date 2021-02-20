@@ -1,8 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useCallback, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -24,8 +24,7 @@ import './feedback.css';
 // VARIABLES //
 
 addResources( 'Feedback' );
-const ORIGINAL_STATE = {
-	showModal: false,
+const DEFAULT_CUSTOM_FEEDBACK = {
 	needsExplanation: false,
 	noUnderstanding: false,
 	noLogic: false,
@@ -47,212 +46,180 @@ const uid = generateUID( 'feedback' );
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
-class FeedbackButtons extends Component {
-	constructor( props ) {
-		super( props );
+const FeedbackButtons = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'Feedback' );
+	const [ submittedBinary, setSubmittedBinary ] = useState( false );
+	const [ showModal, setShowModal ] = useState( false );
+	const [ customFeedback, setCustomFeedback ] = useState( DEFAULT_CUSTOM_FEEDBACK );
 
-		this.id = props.id || uid();
-		this.state = {
-			submittedBinaryChoice: false,
-			...ORIGINAL_STATE
-		};
-	}
-
-	/**
-	* Callback invoked when user clicks on the "Confused" button. Sends
-	* data to server and display notification.
-	*/
-	submitConfused = () => {
-		const session = this.context;
+	const submitConfused = useCallback( () => {
 		session.log({
-			id: this.id,
+			id: id,
 			type: USER_FEEDBACK_CONFUSED,
 			value: 'confused'
 		}, 'members' );
 		session.addNotification({
-			title: this.props.t( 'thank-you' ),
-			message: this.props.t( 'submit-confused-message' ),
+			title: t( 'thank-you' ),
+			message: t( 'submit-confused-message' ),
 			level: 'info',
 			position: 'tr'
 		});
-		this.setState({
-			submittedBinaryChoice: true
-		});
-	}
-
-	/**
-	* Callback invoked when the user clicks the "Understood" button. Sends
-	* data to server and display notification.
-	*/
-	submitUnderstood = () => {
-		const session = this.context;
+		setSubmittedBinary( true );
+	}, [ session, t ] );
+	const submitUnderstood = useCallback( () => {
 		session.log({
-			id: this.id,
+			id: id,
 			type: USER_FEEDBACK_UNDERSTOOD,
 			value: 'understood'
 		}, 'members' );
 		session.addNotification({
-			title: this.props.t( 'thank-you' ),
-			message: this.props.t( 'submit-understood-message' ),
+			title: t( 'thank-you' ),
+			message: t( 'submit-understood-message' ),
 			level: 'info',
 			position: 'tr'
 		});
-		this.setState({
-			submittedBinaryChoice: true
-		});
-	}
-
-	submitFeedback = () => {
-		const session = this.context;
-
-		// Fetch form values.
-		const formData = {
-			noUnderstanding: this.state.noUnderstanding,
-			needsExplanation: this.state.needsExplanation,
-			noLogic: this.state.noLogic,
-			comments: this.state.comments
-		};
+		setSubmittedBinary( true );
+	}, [ session, t ] );
+	const submitFeedback = useCallback( () => {
 		session.log({
-			id: this.id,
+			id: id,
 			type: USER_FEEDBACK_FORM,
-			value: formData
+			value: customFeedback
 		}, 'members' );
 
-		this.setState({
-			...ORIGINAL_STATE
-		});
+		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
 		session.addNotification({
-			title: this.props.t( 'thank-you' ),
-			message: this.props.t( 'submit-custom-message' ),
+			title: t( 'thank-you' ),
+			message: t( 'submit-custom-message' ),
 			level: 'info',
 			position: 'tr'
 		});
-	}
+	}, [ customFeedback, session, t ] );
 
-	closeModal = () => {
-		return this.setState({ ...ORIGINAL_STATE });
-	}
-
-	openModal = () => {
-		this.setState({ showModal: true });
-	}
-
-	/*
-	* React component render method.
-	*/
-	render() {
-		const tpos = this.props.vertical ? 'left' : 'bottom';
-		return (
-			<div id={this.id} className={`feedback-buttons ${this.props.className}`} >
-				<ButtonGroup style={{ float: 'right', ...this.props.style }} vertical={this.props.vertical} >
-					{ this.state.submittedBinaryChoice ?
-						<Fragment>
-							<Button aria-label="Confused" variant="light" disabled className="feedback-button-disabled" size="small" >
+	const closeModal = () => {
+		setShowModal( false );
+		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
+	};
+	const openModal = () => {
+		setShowModal( true );
+	};
+	const tpos = props.vertical ? 'left' : 'bottom';
+	return (
+		<div id={id} className={`feedback-buttons ${props.className}`} >
+			<ButtonGroup style={{ float: 'right', ...props.style }} vertical={props.vertical} >
+				{ submittedBinary ?
+					<Fragment>
+						<Button aria-label="Confused" variant="light" disabled className="feedback-button-disabled" size="small" >
+							<Confused className="feedback-icon" />
+						</Button>
+						<Button aria-label="Understood" variant="light" disabled className="feedback-button-disabled" size="small" >
+							<Understood className="feedback-icon" />
+						</Button>
+					</Fragment> :
+					<Fragment>
+						<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{props.confusedMsg || t('not-clear')}</strong>}>
+							<Button aria-label="Confused" variant="light" className="feedback-button" size="small" onClick={submitConfused}>
 								<Confused className="feedback-icon" />
 							</Button>
-							<Button aria-label="Understood" variant="light" disabled className="feedback-button-disabled" size="small" >
+						</Tooltip>
+						<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{props.understoodMsg || t('makes-sense')}</strong>} >
+							<Button aria-label="Understood" variant="light" className="feedback-button" size="small" onClick={submitUnderstood}>
 								<Understood className="feedback-icon" />
 							</Button>
-						</Fragment> :
-						<Fragment>
-							<Tooltip id="tooltip_confused" placement={tpos} tooltip={<strong>{this.props.confusedMsg || this.props.t('not-clear')}</strong>}>
-								<Button aria-label="Confused" variant="light" className="feedback-button" size="small" onClick={this.submitConfused}>
-									<Confused className="feedback-icon" />
-								</Button>
-							</Tooltip>
-							<Tooltip id="tooltip_understood" placement={tpos} tooltip={<strong>{this.props.understoodMsg || this.props.t('makes-sense')}</strong>} >
-								<Button aria-label="Understood" variant="light" className="feedback-button" size="small" onClick={this.submitUnderstood}>
-									<Understood className="feedback-icon" />
-								</Button>
-							</Tooltip>
-						</Fragment>
-					}
-					{ this.props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{this.props.feedbackMsg || this.props.t('have-feedback')}</strong>} >
-						<Button aria-label={this.props.t('give-custom-feedback')} variant="light" className="feedback-button" size="small" onClick={this.openModal}>
-							<Feedback className="feedback-icon" />
-						</Button>
-					</Tooltip> : null }
-					<ResponseVisualizer
-						variant="light"
-						buttonLabel={this.props.vertical ? '' : this.props.t( 'responses' )}
-						buttonStyle={{
-							fontSize: '10px',
-							lineHeight: this.props.vertical ? '2em' : 'inherit'
-						}}
-						style={{
-							width: '100%'
-						}}
-						showID={false}
-						id={this.id}
-						success={USER_FEEDBACK_UNDERSTOOD}
-						danger={USER_FEEDBACK_CONFUSED}
-						info={USER_FEEDBACK_FORM}
-						noSessionRegistration
-					/>
-				</ButtonGroup>
-				<Modal
-					show={this.state.showModal}
-					onHide={this.closeModal}
-					dialogClassName="modal-50w"
-					title={this.props.t('feedback')}
-					backdrop={true}
-				>
-					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">{this.props.t('feedback')}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<FormGroup>
-							<CheckboxInput
-								onChange={() => {
-									this.setState({
-										noUnderstanding: !this.state.noUnderstanding
-									});
-								}}
-								legend={this.props.t('no-understanding')}
-							/>
-							<CheckboxInput
-								onChange={() => {
-									this.setState({
-										needsExplanation: !this.state.needsExplanation
-									});
-								}}
-								legend={this.props.t('needs-detailed-explanation')}
-							/>
-							<CheckboxInput
-								onChange={() => {
-									this.setState({
-										noLogic: !this.state.noLogic
-									});
-								}}
-								legend={this.props.t('cannot-follow')}
-							/>
-						</FormGroup>
-						<TextArea
-							onChange={( comments ) => {
-								this.setState({
-									comments
+						</Tooltip>
+					</Fragment>
+				}
+				{ props.customFeedback ? <Tooltip placement={tpos} id="tooltip_feedback" tooltip={<strong>{props.feedbackMsg || t('have-feedback')}</strong>} >
+					<Button aria-label={t('give-custom-feedback')} variant="light" className="feedback-button" size="small" onClick={openModal}>
+						<Feedback className="feedback-icon" />
+					</Button>
+				</Tooltip> : null }
+				<ResponseVisualizer
+					variant="light"
+					buttonLabel={props.vertical ? '' : t( 'responses' )}
+					buttonStyle={{
+						fontSize: '10px',
+						lineHeight: props.vertical ? '2em' : 'inherit'
+					}}
+					style={{
+						width: '100%'
+					}}
+					showID={false}
+					id={id}
+					success={USER_FEEDBACK_UNDERSTOOD}
+					danger={USER_FEEDBACK_CONFUSED}
+					info={USER_FEEDBACK_FORM}
+					noSessionRegistration
+				/>
+			</ButtonGroup>
+			<Modal
+				show={showModal}
+				onHide={closeModal}
+				dialogClassName="modal-50w"
+				title={t('feedback')}
+				backdrop={true}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title id="contained-modal-title-lg">{t('feedback')}</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<FormGroup>
+						<CheckboxInput
+							onChange={() => {
+								setCustomFeedback({
+									...customFeedback,
+									noUnderstanding: !customFeedback.noUnderstanding
 								});
 							}}
-							legend={this.props.t('textarea-legend')}
-							text={this.props.t('enter-text')}
-							resizable="none"
-							rows={6}
+							legend={t('no-understanding')}
 						/>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.closeModal}>
-							{this.props.t('cancel')}
-						</Button>
-						<Button variant="primary" onClick={this.submitFeedback}>
-							{this.props.t('submit')}
-						</Button>
-					</Modal.Footer>
-				</Modal>
-				<div id="response"></div>
-			</div>
-		);
-	}
-}
+						<CheckboxInput
+							onChange={() => {
+								setCustomFeedback({
+									...customFeedback,
+									needsExplanation: !customFeedback.needsExplanation
+								});
+							}}
+							legend={t('needs-detailed-explanation')}
+						/>
+						<CheckboxInput
+							onChange={() => {
+								setCustomFeedback({
+									...customFeedback,
+									noLogic: !customFeedback.noLogic
+								});
+							}}
+							legend={t('cannot-follow')}
+						/>
+					</FormGroup>
+					<TextArea
+						onChange={( comments ) => {
+							setCustomFeedback({
+								...customFeedback,
+								comments
+							});
+						}}
+						legend={t('textarea-legend')}
+						text={t('enter-text')}
+						resizable="none"
+						rows={6}
+					/>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={closeModal} >
+						{t('cancel')}
+					</Button>
+					<Button variant="primary" onClick={submitFeedback}>
+						{t('submit')}
+					</Button>
+				</Modal.Footer>
+			</Modal>
+			<div id="response"></div>
+		</div>
+	);
+};
 
 
 // PROPERTIES //
@@ -267,8 +234,6 @@ FeedbackButtons.propTypes = {
 	style: PropTypes.object
 };
 
-FeedbackButtons.contextType = SessionContext;
-
 FeedbackButtons.defaultProps = {
 	customFeedback: true,
 	confusedMsg: null,
@@ -282,4 +247,4 @@ FeedbackButtons.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Feedback' )( FeedbackButtons );
+export default FeedbackButtons;
