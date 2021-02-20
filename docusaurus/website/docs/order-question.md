@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
-        { label: 'With Style', value: 'withStyle' },
+        { label: 'Hints', value: 'hints' },
         { label: 'Submit Function', value: 'submitFunction' },
         { label: 'With Grading and Feedback For Grading', value: 'withGradingAndFeedback' },
     ]}
@@ -44,29 +44,30 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <OrderQuestion
-    question="Order the letters alphabetically"
+    question="Order the letters alphabetically!"
     options={[
-        "alpha",
-        "beta",
-        "gamma",
-        "delta"
+        "Alpha",
+        "Beta",
+        "Gamma",
+        "Delta"
     ]}
 />
 ```
 </TabItem>
 
-
-<TabItem value="withStyle">
+<TabItem value="hints">
 
 ```jsx live
 <OrderQuestion
-    question="Order the letters alphabetically"
+    question="Order the letters alphabetically!"
     options={[
-        "alpha",
-        "beta",
-        "gamma",
-        "delta"
+        "Alpha",
+        "Beta",
+        "Gamma",
+        "Delta"
     ]}
+    hints={[ 'Delta succeeds Gamma in the Greek alphabet' ]}
+    hintPlacement="bottom"
 />
 ```
 </TabItem>
@@ -75,7 +76,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <OrderQuestion
-    question="Order the letters alphabetically"
+    question="Order the letters alphabetically!"
     options={[
         "A",
         "G",
