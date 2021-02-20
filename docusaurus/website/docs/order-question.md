@@ -6,22 +6,6 @@ sidebar_label: Order Question
 
 An order question component that asks student to bring a collection of elements into the correct order.
 
-## Example
-
-```jsx live
-<OrderQuestion
-    question="Order the letters alphabetically"
-    options={[
-        "A",
-        "G",
-        "V",
-        "W",
-        "Y",
-        "Z" 
-    ]}
-/>
-```
-
 ## Options
 
 * __question__ | `(string|node)`: question for which the student has to bring the available `options` into the correct order. Default: `''`.
@@ -39,3 +23,87 @@ An order question component that asks student to bring a collection of elements 
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order. Default: `onSubmit() {}`.
+
+## Example
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Style', value: 'withStyle' },
+        { label: 'Submit Function', value: 'submitFunction' },
+        { label: 'With Grading and Feedback For Grading', value: 'withGradingAndFeedback' },
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
+```jsx live
+<OrderQuestion
+    question="Order the letters alphabetically"
+    options={[
+        "alpha",
+        "beta",
+        "gamma",
+        "delta"
+    ]}
+/>
+```
+</TabItem>
+
+
+<TabItem value="withStyle">
+
+```jsx live
+<OrderQuestion
+    question="Order the letters alphabetically"
+    options={[
+        "alpha",
+        "beta",
+        "gamma",
+        "delta"
+    ]}
+/>
+```
+</TabItem>
+
+<TabItem value="submitFunction">
+
+```jsx live
+<OrderQuestion
+    question="Order the letters alphabetically"
+    options={[
+        "A",
+        "G",
+        "V"
+    ]}
+    onSubmit={() => {
+        alert( 'Any JavaScript function could be executed here...' );
+    }}
+/>
+```
+</TabItem>
+
+<TabItem value="withGradingAndFeedback">
+
+```jsx live
+<OrderQuestion
+    question="Arrange the events in historical order"
+    options={[
+        "Napoleon's coronation as emperor",
+        "The Crimean War",
+        "Bombing of Hiroshima",
+        "Fall of the Berlin Wall",
+        "Donald Trump's inauguration",
+    ]}
+    points={10}
+    successMsg = "Great! Looks like you are a history expert"
+/>
+```
+</TabItem>
+
+</Tabs>
