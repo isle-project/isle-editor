@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
         { label: 'Minimal', value: 'minimal' },
         { label: 'Hints', value: 'hints' },
         { label: 'Submit Function', value: 'submitFunction' },
-        { label: 'With Grading and Feedback For Grading', value: 'withGradingAndFeedback' },
+        { label: 'With Points and Feedback Message', value: 'withGradingAndFeedback' },
     ]}
     lazy
 >
