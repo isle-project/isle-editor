@@ -40,13 +40,12 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
-        { label: 'With Due Date', value: 'dueDate' },
-        { label: 'With Points For Grading', value: 'withPointsForGrading' },
-        { label: 'Without Feedback', value: 'withoutFeedbackAndNotification' },
-        { label: 'With Solution', value: 'withSolution' },
-        { label: 'With Hints', value: 'withHints' },
-        { label: 'Instant Solution', value: 'instantSolution' },
-        { label: 'Placeholder Text', value: 'placeholderText' },
+        { label: 'Points for Grading', value: 'withPointsForGrading' },
+        { label: 'No Feedback', value: 'withoutFeedbackAndNotification' },
+        { label: 'Solution', value: 'withSolution' },
+        { label: 'Hints', value: 'withHints' },
+        { label: 'Placeholder', value: 'placeholderText' },
+        { label: 'Due Date', value: 'dueDate' }
     ]}
     lazy
 >
@@ -59,19 +58,6 @@ import TabItem from '@theme/TabItem';
     rows={3} 
 />
 ```
-</TabItem>
-
-<TabItem value="dueDate" >
-
-```jsx live
-<FreeTextQuestion 
-    question="Please tell us your thoughts about this course." 
-    rows={3} 
-    until={new Date( Date.UTC(2029, 0, 1, 3, 33 ) )}
-    placeholder="You can set a date until answers are accepted. In this case it is 2020, 1st of January, 3:30 am UTC time."
-/>
-```
-
 </TabItem>
 
 <TabItem value="withPointsForGrading" >
@@ -125,18 +111,6 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="instantSolution">
-
-```jsx live
-<FreeTextQuestion 
-    question="Please enter the list of primary colors?" 
-    solution="Red, yellow and blue." 
-    instantSolution
-/>
-```
-
-</TabItem>
-
 <TabItem value="placeholderText" >
 
 ```jsx live
@@ -145,6 +119,19 @@ import TabItem from '@theme/TabItem';
     rows={3} 
     solution="Winston Churchill" 
     placeholder="Think of an overweight politician with a big cigar in his mouth."
+/>
+```
+
+</TabItem>
+
+<TabItem value="dueDate" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Please tell us your thoughts about this course." 
+    rows={3} 
+    until={new Date( Date.UTC(2029, 0, 1, 3, 33 ) )}
+    placeholder="You can set a date until answers are accepted. In this case it is 2020, 1st of January, 3:30 am UTC time."
 />
 ```
 
