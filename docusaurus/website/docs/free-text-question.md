@@ -6,16 +6,6 @@ sidebar_label: Free Text Question
 
 An ISLE component for questions where answers by students should be supplied in the form of free text.
 
-## Example
-
-```jsx live
-<FreeTextQuestion 
-    question="What is the p-value your obtained for this test?" 
-    rows={1} 
-    solution="1.476303e-05" 
-/>
-``` 
-
 ## Options
 
 * __question__ | `(string|node)`: the question displayed at the top of the free text question component. Default: `''`.
@@ -40,3 +30,124 @@ An ISLE component for questions where answers by students should be supplied in 
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer; receives the submitted text as its sole argument. Default: `onSubmit() {}`.
+
+## Example
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Due Date', value: 'dueDate' },
+        { label: 'With Points For Grading', value: 'withPointsForGrading' },
+        { label: 'Without Feedback', value: 'withoutFeedbackAndNotification' },
+        { label: 'With Solution', value: 'withSolution' },
+        { label: 'With Hints', value: 'withHints' },
+        { label: 'Instant Solution', value: 'instantSolution' },
+        { label: 'Placeholder Text', value: 'placeholderText' },
+    ]}
+    lazy
+>
+
+<TabItem value="minimal" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Please tell us your thoughts about this course." 
+    rows={3} 
+/>
+```
+</TabItem>
+
+<TabItem value="dueDate" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Please tell us your thoughts about this course." 
+    rows={3} 
+    until={new Date( Date.UTC(2029, 0, 1, 3, 33 ) )}
+    placeholder="You can set a date until answers are accepted. In this case it is 2020, 1st of January, 3:30 am UTC time."
+/>
+```
+
+</TabItem>
+
+<TabItem value="withPointsForGrading" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Can you please explain Montesquieu's System of separation of powers?" 
+    rows={3} 
+    points={15}
+/>
+```
+
+</TabItem>
+
+<TabItem value="withoutFeedbackAndNotification" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Please tell us your thoughts about this course." 
+    rows={3}
+    disableSubmitNotification 
+    feedback={false}
+/>
+```
+
+</TabItem>
+
+<TabItem value="withSolution" > 
+
+```jsx live
+<FreeTextQuestion 
+    question="Who was the English prime minister who spoke of 'blood, sweat and tears'?" 
+    rows={1} 
+    solution="Winston Churchill" 
+/>
+```
+
+</TabItem>
+
+<TabItem value="withHints" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Who was the English prime minister who spoke of 'blood, sweat and tears'?" 
+    rows={1} 
+    solution="Winston Churchill" 
+    hints = {["No, it was not Margret Thatcher", "He believed in Aliens by the way", "His first name was Winston - like the guy in 1984"]}
+    submissionMsg = "His name was Winston churchill, and it occurred in a speech given by him to the House of Commons of the Parliament of the United Kingdom on 13 May 1940. The speech is sometimes known by that name"
+/>
+```
+
+</TabItem>
+
+<TabItem value="instantSolution">
+
+```jsx live
+<FreeTextQuestion 
+    question="Please enter the list of primary colors?" 
+    solution="Red, yellow and blue." 
+    instantSolution
+/>
+```
+
+</TabItem>
+
+<TabItem value="placeholderText" >
+
+```jsx live
+<FreeTextQuestion 
+    question="Who was the English prime minister who spoke of 'blood, sweat and tears'?" 
+    rows={3} 
+    solution="Winston Churchill" 
+    placeholder="Think of an overweight politician with a big cigar in his mouth."
+/>
+```
+
+</TabItem>
+
+</Tabs>
