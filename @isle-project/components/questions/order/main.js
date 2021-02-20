@@ -1,9 +1,9 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import generateUID from '@isle-project/utils/uid';
 import DraggableList from '@isle-project/components/draggable-list';
@@ -14,7 +14,6 @@ import ChatButton from '@isle-project/components/chat-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import permute from '@isle-project/utils/permute';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
 import './order-question.css';
@@ -48,43 +47,36 @@ const debug = logger( 'isle:order-question' );
 * @property {Function} onChange - callback  which is triggered after dragging an element; has two parameters: a `boolean` indicating whether the elements were placed in the correct order and and `array` with the current ordering
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
-class OrderQuestion extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.id = props.id || uid( props );
-
-		// Initialize state variables...
-		this.state = {
-			cards: null,
-			correct: false,
-			submitted: false,
-			options: props.options.map( ( val, idx ) => {
+const OrderQuestion = ( props ) => {
+	const { disableSubmitNotification, onChange, onSubmit } = props;
+	const id = useRef( props.id || uid( props ) );
+	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'OrderQuestion' );
+	const [ submitted, setSubmitted ] = useState( false );
+	const [ options, setOptions ]= useState(
+		props.options.map( ( val, idx ) => {
+			return {
+				id: idx,
+				text: val
+			};
+		})
+	);
+	const [ state, setState ] = useState({
+		cards: null,
+		correct: false
+	});
+	useEffect( () => {
+		setOptions(
+			props.options.map( ( val, idx ) => {
 				return {
 					id: idx,
 					text: val
 				};
-			}),
-			permutations: permute( props.options )
-		};
-	}
+			})
+		);
+	}, [ props.options ] );
 
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.options.length !== prevState.options.length ) {
-			return {
-				options: nextProps.options.map( ( val, idx ) => {
-					return {
-						id: idx,
-						text: val
-					};
-				}),
-				permutations: permute( nextProps.options )
-			};
-		}
-		return null;
-	}
-
-	handleChange = ( cards ) => {
+	const handleChange = useCallback( ( cards ) => {
 		let correct = true;
 		for ( let i = 0; i < cards.length; i++ ) {
 			if ( cards[ i ].id !== i ) {
@@ -92,124 +84,108 @@ class OrderQuestion extends Component {
 				break;
 			}
 		}
-		this.props.onChange( cards, correct );
-		this.setState({
+		onChange( cards, correct );
+		setState({
 			cards,
-			correct,
-			submitted: false
+			correct
 		});
-	}
+		setSubmitted( false );
+	}, [ onChange ] );
 
-	logHint = ( idx ) => {
+	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		const session = this.context;
 		session.log({
-			id: this.id,
+			id: id,
 			type: ORDER_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	}
+	}, [ session ] );
 
-	sendSubmitNotification = () => {
-		const session = this.context;
-		if ( this.props.provideFeedback ) {
-			if ( this.state.correct ) {
+	const sendSubmitNotification = useCallback( () => {
+		if ( props.provideFeedback ) {
+			if ( state.correct ) {
 				session.addNotification({
-					title: this.props.t('correct'),
-					message: this.props.successMsg || this.props.t('submission-correct'),
+					title: t('correct'),
+					message: props.successMsg || t('submission-correct'),
 					level: 'success'
 				});
 			} else {
 				session.addNotification({
-					title: this.props.t('incorrect'),
-					message: this.props.failureMsg || this.props.t('submission-incorrect'),
+					title: t('incorrect'),
+					message: props.failureMsg || t('submission-incorrect'),
 					level: 'error'
 				});
 			}
 		} else {
 			session.addNotification({
-				title: this.props.t('submitted'),
-				message: this.props.t('submission-message'),
+				title: t('submitted'),
+				message: t('submission-message'),
 				level: 'info'
 			});
 		}
-	}
-
-	handleSubmit = () => {
-		const session = this.context;
-		if ( !this.props.disableSubmitNotification ) {
-			this.sendSubmitNotification();
+	}, [ props.failureMsg, props.successMsg, state.correct, props.provideFeedback, session, t ] );
+	const handleSubmit = useCallback( () => {
+		if ( !disableSubmitNotification ) {
+			sendSubmitNotification();
 		}
-		this.props.onSubmit( this.state.cards, this.state.correct );
-		this.setState({
-			submitted: true
-		});
+		onSubmit( state.cards, state.correct );
+		setSubmitted( true );
+
 		session.log({
-			id: this.id,
+			id: id,
 			type: ORDER_QUESTION_SUBMISSION,
-			value: this.state.cards.map( x => x.text ).join( ' -> ' )
+			value: state.cards.map( x => x.text ).join( ' -> ' )
 		});
-	}
-
-	renderSubmitButton() {
-		const session = this.context;
-		if ( this.props.until && session.startTime > this.props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
-		}
-		return (
-			<TimedButton
-				className="submit-button" variant="primary" size="sm"
-				onClick={this.handleSubmit}
-				disabled={this.state.submitted && this.state.correct}
-			>
-				{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit') }
-			</TimedButton>
-		);
-	}
-
-	render() {
-		const nHints = this.props.hints.length;
-		return (
-			<Card id={this.id} className="order-question" style={this.props.style} >
-				<Card.Body style={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
-					<label>{this.props.question}</label>
-					<DraggableList
-						shuffle data={this.state.options}
-						onChange={this.handleChange}
-						onInit={this.handleChange}
-						disabled={this.state.submitted && this.state.correct}
-					/>
-					<div className="order-question-toolbar">
-						{ nHints > 0 ?
-							<HintButton onClick={this.logHint} hints={this.props.hints} placement={this.props.hintPlacement} /> :
-							null
-						}
-						{this.renderSubmitButton()}
-						{
-							this.props.chat ?
-								<ChatButton for={this.id} /> : null
-						}
-					</div>
-					<ResponseVisualizer
-						id={this.id}
-						data={{
-							type: 'factor',
-							levels: this.state.permutations.map( x => x.join( ' -> ' ) ),
-							question: this.props.question,
-							solution: this.props.options
-						}}
-						info="ORDER_QUESTION_SUBMISSION"
-						points={this.props.points}
-					/>
-					{ this.props.feedback ? <FeedbackButtons
-						id={this.id+'_feedback'}
-					/> : null }
-					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+	}, [ disableSubmitNotification, sendSubmitNotification, session, state, onSubmit ] );
+	const nHints = props.hints.length;
+	return (
+		<Card id={id} className="order-question" style={props.style} >
+			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
+				<label>{props.question}</label>
+				<DraggableList
+					shuffle data={options}
+					onChange={handleChange}
+					onInit={handleChange}
+					disabled={submitted && state.correct}
+				/>
+				<div className="order-question-toolbar">
+					{ nHints > 0 ?
+						<HintButton onClick={logHint} hints={props.hints} placement={props.hintPlacement} /> :
+						null
+					}
+					{ props.until && session.startTime > props.until ?
+						<span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span> :
+						<TimedButton
+							className="submit-button" variant="primary" size="sm"
+							onClick={handleSubmit}
+							disabled={submitted && state.correct}
+						>
+							{ submitted ? t('resubmit') : t('submit') }
+						</TimedButton>
+					}
+					{
+						props.chat ?
+							<ChatButton for={id} /> : null
+					}
+				</div>
+				<ResponseVisualizer
+					id={id}
+					data={{
+						type: 'string',
+						question: props.question,
+						solution: props.options
+					}}
+					info="ORDER_QUESTION_SUBMISSION"
+					points={props.points}
+				/>
+				{ props.feedback ? <FeedbackButtons
+					id={id+'_feedback'}
+				/> : null }
+				<GradeFeedbackRenderer for={id} points={props.points} />
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
@@ -254,9 +230,7 @@ OrderQuestion.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-OrderQuestion.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default withTranslation( 'OrderQuestion' )( OrderQuestion );
+export default OrderQuestion;
