@@ -3,7 +3,6 @@
 import React from 'react';
 import Provider from '@isle-project/components/provider';
 import Session from '@isle-project/session';
-import 'css/lesson.css';
 import './i18n.js';
 
 import Loadable from '@isle-project/components/internal/loadable';
