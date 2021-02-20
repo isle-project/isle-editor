@@ -27,6 +27,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactBootstrapTable from 'react-bootstrap/Table';
+import isTouchDevice from 'is-touch-device';
 import './sortable.css';
 
 
@@ -43,14 +44,6 @@ let sortableTypes;
 
 
 // FUNCTIONS //
-
-function isTouchDevice() {
-	return (
-		'ontouchstart' in window ||
-		navigator.MaxTouchPoints > 0 ||
-		navigator.msMaxTouchPoints > 0
-	);
-}
 
 function addEventListener( el, event, handler ) {
 	if ( el.addEventListener !== null ) {

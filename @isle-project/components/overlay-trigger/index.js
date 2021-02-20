@@ -2,17 +2,7 @@
 
 import React, { Component } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-
-
-// FUNCTIONS //
-
-function isTouchDevice() {
-	return (
-		'ontouchstart' in window ||
-		navigator.MaxTouchPoints > 0 ||
-		navigator.msMaxTouchPoints > 0
-	);
-}
+import isTouchDevice from 'is-touch-device';
 
 
 // VARIABLES //
