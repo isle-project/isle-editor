@@ -1,13 +1,41 @@
 // MODULES //
 
-import Loadable from '@isle-project/components/internal/loadable';
+import React, { Component } from 'react';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+
+
+// FUNCTIONS //
+
+function isTouchDevice() {
+	return (
+		'ontouchstart' in window ||
+		navigator.MaxTouchPoints > 0 ||
+		navigator.msMaxTouchPoints > 0
+	);
+}
+
+
+// VARIABLES //
+
+const IS_TOUCH = isTouchDevice();
 
 
 // MAIN //
 
-const OverlayTrigger = Loadable( () => import( /* webpackChunkName: "OverlayTrigger" */ './main.js' ) );
+/**
+* Wrapper around react-bootstrap's OverlayTrigger disabling the overlay on touch devices.
+*/
+class Placeholder extends Component {
+	render() {
+		if ( IS_TOUCH ) {
+			// Do not render tooltips on touch devices to prevent users from having to double tap buttons:
+			return this.props.children;
+		}
+		return <OverlayTrigger {...this.props} >{this.props.children}</OverlayTrigger>;
+	}
+}
 
 
 // EXPORTS //
 
-export default OverlayTrigger;
+export default Placeholder;
