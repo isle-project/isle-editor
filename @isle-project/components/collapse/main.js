@@ -34,6 +34,7 @@ function getClassName( val ) {
 * @property {(string|node)} header - header content
 * @property {string} headerClassName - this overrules the given class name of the header
 * @property {Object} headerStyle - one may also assign a style to the header bar
+* @property {string} className - class name
 * @property {Object} style - inline CSS styles for outer container
 * @property {Function} onClick - event handler invoked when header is clicked
 */
@@ -60,13 +61,15 @@ class Collapse extends Component {
 	}
 
 	toggleVisibility = () => {
-		this.props.onClick();
 		if ( !isBoolean( this.props.visible ) ) {
 			const v = !this.state.visible;
+			this.props.onClick( v );
 			this.setState({
 				visible: v,
 				className: getClassName( v )
 			});
+		} else {
+			this.props.onClick( this.props.visible );
 		}
 	}
 
@@ -94,7 +97,7 @@ class Collapse extends Component {
 
 	render() {
 		return (
-			<div className="vertical-slider" style={this.props.style} >
+			<div className={`${this.props.className} vertical-slider`} style={this.props.style} >
 				{ this.renderHeader() }
 				<div className={this.state.className}>
 					{this.props.children}
@@ -113,6 +116,7 @@ Collapse.propTypes = {
 	headerClassName: PropTypes.string,
 	defaultVisible: PropTypes.bool,
 	visible: PropTypes.bool,
+	className: PropTypes.string,
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };
@@ -123,6 +127,7 @@ Collapse.defaultProps = {
 	headerStyle: null,
 	defaultVisible: false,
 	visible: null,
+	className: '',
 	style: {},
 	onClick() {}
 };
