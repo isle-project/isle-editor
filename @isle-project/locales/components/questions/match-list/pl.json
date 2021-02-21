@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
 	"answer-submitted": "Odpowiedź nadesłana.",
 	"answers": "Odpowiedzi",
+	"expect-a-or-b-for-each-element": "Tablica `elements` musi składać się z obiektów posiadających obie właściwości `a` i `b` lub przynajmniej jedną z nich.",
 	"instructions": "Dopasuj elementy z lewej strony do odpowiednich elementów z prawej strony, klikając na nie.",
 	"question-closed": "Pytanie jest już zamknięte.",
 	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",

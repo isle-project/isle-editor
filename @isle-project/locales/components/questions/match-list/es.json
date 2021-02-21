@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Respuesta presentada de nuevo.",
 	"answer-submitted": "Respuesta presentada.",
 	"answers": "Respuestas",
+	"expect-a-or-b-for-each-element": "El array `elementos` debe estar formado por objetos con las propiedades `a` y `b` o al menos una de ellas.",
 	"instructions": "Coincidir {{complete}} los elementos de la izquierda con los elementos correspondientes de la derecha haciendo clic en ellos.",
 	"question-closed": "La pregunta está ahora cerrada.",
 	"resubmission-message": "Ha vuelto a presentar su respuesta con éxito.",

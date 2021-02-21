@@ -2,6 +2,7 @@
 	"answer-resubmitted": "回答を再投稿しました。",
 	"answer-submitted": "回答を提出しました。",
 	"answers": "回答",
+	"expect-a-or-b-for-each-element": "配列 `elements` は、`a` と `b` の両方のプロパティを持つオブジェクト、あるいは少なくともどちらか一方のプロパティを持つオブジェクトから構成されていなければなりません。",
 	"instructions": "左側の{{complete}}要素と右側の対応する要素をクリックしてマッチさせます。",
 	"question-closed": "質問は終了しました。",
 	"resubmission-message": "回答の再提出に成功しました。",

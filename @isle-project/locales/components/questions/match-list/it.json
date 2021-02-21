@@ -2,6 +2,7 @@
 	"answer-resubmitted": "La risposta è stata ripresentata.",
 	"answer-submitted": "Risposta inviata.",
 	"answers": "Risposte",
+	"expect-a-or-b-for-each-element": "L'array `elements` deve consistere di oggetti con entrambe le proprietà `a` e `b` o almeno una delle due.",
 	"instructions": "Far corrispondere gli elementi {{complete}} dal lato sinistro con gli elementi corrispondenti sul lato destro cliccandoci sopra.",
 	"question-closed": "La domanda è chiusa.",
 	"resubmission-message": "Lei ha ripresentato con successo la sua risposta.",

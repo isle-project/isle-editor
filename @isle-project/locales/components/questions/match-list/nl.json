@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Antwoord opnieuw ingediend.",
 	"answer-submitted": "Antwoord ingediend.",
 	"answers": "Antwoorden",
+	"expect-a-or-b-for-each-element": "De `elements` array moet bestaan uit objecten met beide `a` en `b` eigenschappen of ten minste een van hen.",
 	"instructions": "Combineer {{complete}} elementen van de linkerkant met de corresponderende elementen aan de rechterkant door er op te klikken.",
 	"question-closed": "De vraag is nu gesloten.",
 	"resubmission-message": "U heeft uw antwoord met succes opnieuw ingediend.",

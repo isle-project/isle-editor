@@ -2,6 +2,7 @@
 	"answer-resubmitted": "答复重新提交。",
 	"answer-submitted": "提交的答复：",
 	"answers": "答案",
+	"expect-a-or-b-for-each-element": "`元素`数组必须由同时具有`a`和`b`属性或至少具有其中之一的对象组成。",
 	"instructions": "将左侧的{{complete}}元素与右侧的相应元素相匹配，点击它们。",
 	"question-closed": "问题现已结束。",
 	"resubmission-message": "你已经成功地重新提交了你的答案。",

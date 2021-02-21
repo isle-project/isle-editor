@@ -1,9 +1,10 @@
 // MODULES //
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import shuffle from '@stdlib/random/shuffle';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
@@ -59,7 +60,7 @@ function createColorScale( length ) {
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {Array} colorScale - if set, the supplied colors are used for the tiles
-* @property {string} shuffle - specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched; supply any other value to not shuffle elements on either side in case there is no solution present
+* @property {string} shuffle - specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched; supply `none` or any other value to not shuffle elements on either side (may be useful in case when there is no solution present)
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
@@ -71,9 +72,12 @@ function createColorScale( length ) {
 * @property {Function} onSubmit - callback invoked when students submits an answer
 */
 const MatchListQuestion = ( props ) => {
-	const { question, elements, hints } = props;
+	const { question, elements, hints, submissionMsg, resubmissionMsg,
+		disableSubmitNotification, onSubmit, until
+	} = props;
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'MatchListQuestion' );
 
 	const [ leftSelected, setLeftSelected ] = useState( null );
 	const [ rightSelected, setRightSelected ] = useState( null );
@@ -98,29 +102,29 @@ const MatchListQuestion = ( props ) => {
 		}
 	}, [ leftSelected, rightSelected, answers, colorScale ]);
 
-	const logHint = ( idx ) => {
+	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
 			id: id.current,
 			type: MATCH_LIST_OPEN_HINT,
 			value: idx
 		});
-	};
-	const sendSubmitNotification = () => {
+	}, [ session ] );
+	const sendSubmitNotification = useCallback( () => {
 		if ( submitted ) {
 			session.addNotification({
-				title: props.t('answer-resubmitted'),
-				message: props.resubmissionMsg,
+				title: t('answer-resubmitted'),
+				message: resubmissionMsg,
 				level: 'info'
 			});
 		} else {
 			session.addNotification({
-				title: props.t('answer-submitted'),
-				message: props.submissionMsg,
+				title: t('answer-submitted'),
+				message: submissionMsg,
 				level: 'info'
 			});
 		}
-	};
+	}, [ session, submissionMsg, resubmissionMsg, submitted, t ] );
 	const toggleSolution = () => {
 		const { elements, colorScale } = props;
 		let solutionColorScale;
@@ -151,8 +155,8 @@ const MatchListQuestion = ( props ) => {
 			setAnswers( userAnswers );
 		}
 	};
-	const handleSubmit = () => {
-		if ( !props.disableSubmitNotification ) {
+	const handleSubmit = useCallback( () => {
+		if ( !disableSubmitNotification ) {
 			sendSubmitNotification();
 		}
 		setSubmitted( true );
@@ -162,14 +166,14 @@ const MatchListQuestion = ( props ) => {
 			type: MATCH_LIST_SUBMISSION,
 			value: JSON.stringify( newAnswers )
 		});
-		props.onSubmit( newAnswers );
-	};
-	const renderSubmitButton = ( unfinished ) => {
-		if ( props.until && session.startTime > props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
+		onSubmit( newAnswers );
+	}, [ answers, disableSubmitNotification, session, sendSubmitNotification, onSubmit ] );
+	const renderSubmitButton = useCallback( ( unfinished ) => {
+		if ( until && session.startTime > until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
 		return (
-			<Tooltip id={`${id.current}_tooltip`} tooltip={props.t('submit-tooltip')} >
+			<Tooltip id={`${id.current}_tooltip`} tooltip={t('submit-tooltip')} >
 				<div style={{ display: 'inline-block' }}>
 					<Button
 						className="submit-button"
@@ -181,12 +185,16 @@ const MatchListQuestion = ( props ) => {
 						}}
 						disabled={unfinished}
 					>
-						{ !submitted ? props.t('submit') : props.t('resubmit') }
+						{ !submitted ? t('submit') : t('resubmit') }
 					</Button>
 				</div>
 			</Tooltip>
 		);
-	};
+	}, [ session, handleSubmit, submitted, t, until ] );
+
+	if ( elements.some( x => !x.a && !x.b ) ) {
+		return <Alert variant="danger" >{t('expect-a-or-b-for-each-element')}</Alert>;
+	}
 	const nHints = hints.length;
 	const solutionButton = <SolutionButton onClick={toggleSolution} disabled={!submitted} />;
 	const optionsLeft = [];
@@ -204,7 +212,7 @@ const MatchListQuestion = ( props ) => {
 	return (
 		<div id={id.current} className={`match-list-question-container ${props.className}`} style={props.style} >
 			{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
-			<i style={{ fontSize: '0.8rem' }} >{props.t('instructions', { complete: nComplete })}</i>
+			<i style={{ fontSize: '0.8rem' }} >{t('instructions', { complete: nComplete })}</i>
 			<div className="match-list-question-lists">
 				<OptionsList
 					options={optionsLeft}
@@ -260,7 +268,7 @@ const MatchListQuestion = ( props ) => {
 						</div> : null
 				}
 				<ResponseVisualizer
-					buttonLabel={props.t('answers')}
+					buttonLabel={t('answers')}
 					info={MATCH_LIST_SUBMISSION}
 					id={id.current}
 					data={{
@@ -322,7 +330,7 @@ MatchListQuestion.propTypes = {
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	colorScale: PropTypes.array,
-	shuffle: PropTypes.oneOf([ 'left', 'right', 'both' ]),
+	shuffle: PropTypes.oneOf([ 'left', 'right', 'both', 'none' ]),
 	disableSubmitNotification: PropTypes.bool,
 	submissionMsg: PropTypes.string,
 	resubmissionMsg: PropTypes.string,
@@ -336,4 +344,4 @@ MatchListQuestion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'MatchListQuestion' )( MatchListQuestion );
+export default MatchListQuestion;

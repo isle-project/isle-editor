@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
 	"answers": "Réponses",
+	"expect-a-or-b-for-each-element": "Le tableau \"éléments\" doit être constitué d'objets ayant des propriétés \"a\" et \"b\" ou au moins l'une d'entre elles.",
 	"instructions": "Faites correspondre les éléments {{complete}} de la partie gauche avec les éléments correspondants de la partie droite en cliquant dessus.",
 	"question-closed": "La question est maintenant close.",
 	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",
