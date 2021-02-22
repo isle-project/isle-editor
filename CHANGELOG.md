@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.74.8](https://github.com/isle-project/isle-editor/releases/tag/v0.74.8) (2021-02-22)
+
+This small release comes with the following improvements:
+
+- New feature that allows copying of outputs in the data explorer to the user's clipboard when clicking on the "Drag" button (e.g., for when having a text editor far away in the lesson such that dragging does not suffice)
+- Starts animations for typewriter and scrolling texts only once elements enter the user's viewport
+- Performance and load-time improvements of data explorer
+- Fixes a bug in the positioning of the toolbox that could render it invisible
+- In the editor, quick suggestions in the editor are now by default disabled. It is possible to enable them as well as a minimap display via the settings page.
+
 ## [v0.74.7](https://github.com/isle-project/isle-editor/releases/tag/v0.74.7) (2021-02-15)
 
 This update contains the following changes & patches:
