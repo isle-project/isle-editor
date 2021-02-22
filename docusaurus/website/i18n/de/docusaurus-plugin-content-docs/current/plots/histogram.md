@@ -18,7 +18,7 @@ Ein Histogramm.
 * __binStrategy__ | `string`: Binning-Strategie (`Automatisch`, `Anzahl der Bins wählen` oder `Bin-Breite einstellen`). Default: `'Automatic'`.
 * __nBins__ | `number`: Benutzerdefinierte Anzahl von Fächern. Default: `none`.
 * __nCols__ | `number`: Anzahl der Spalten bei der Anzeige eines facettierten gruppierten Histogramms. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: Objekt mit den Eigenschaften `start`, `size` und `end`, die das Binning-Verhalten steuern. Default: `{}`.
 
 
 ## Examples

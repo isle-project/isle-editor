@@ -18,7 +18,7 @@ sidebar_label: Histogram
 * __binStrategy__ | `string`: ビニング戦略 (`自動`, `ビンの数を選択`, `ビンの幅を設定`). Default: `'Automatic'`.
 * __nBins__ | `number`: 慣習的な箱の数. Default: `none`.
 * __nCols__ | `number`: ファセットグループ化されたヒストグラムを表示する際の列数. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: オブジェクトで、ビニング動作を制御する `start`, `size`, `end` プロパティを持ちます。. Default: `{}`.
 
 
 ## Examples

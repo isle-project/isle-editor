@@ -18,7 +18,7 @@ Um histograma.
 * __binStrategy__ | `string`: estratégia de fiação (`Automático`, `Selecionar # de caixas`, ou `Configurar largura da caixa`). Default: `'Automatic'`.
 * __nBins__ | `number`: número personalizado de silos. Default: `none`.
 * __nCols__ | `number`: número de colunas ao exibir um histograma agrupado facetado. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: objeto com propriedades de "início", "tamanho" e "fim" que governam o comportamento de encinchamento. Default: `{}`.
 
 
 ## Examples

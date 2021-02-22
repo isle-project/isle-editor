@@ -18,7 +18,7 @@ Un histogramme.
 * __binStrategy__ | `string`: stratégie de mise en bac ("Automatique", "Sélectionner le nombre de bacs", ou "Définir la largeur du bac"). Default: `'Automatic'`.
 * __nBins__ | `number`: nombre de bacs personnalisé. Default: `none`.
 * __nCols__ | `number`: nombre de colonnes lors de l'affichage d'un histogramme groupé à facettes. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: objet avec les propriétés "start", "size" et "end" qui régissent le comportement du binning. Default: `{}`.
 
 
 ## Examples

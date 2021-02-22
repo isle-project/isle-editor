@@ -18,7 +18,7 @@ Histogram.
 * __binStrategy__ | `string`: Strategia kosza (`Automatyczna`, `Wybieranie # koszy`, lub `Ustawianie szerokości kosza`). Default: `'Automatic'`.
 * __nBins__ | `number`: niestandardowa liczba pojemników. Default: `none`.
 * __nCols__ | `number`: liczba kolumn podczas wyświetlania fasetowanego histogramu grupowego. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: obiekt z "startem", "rozmiarem" i "końcowymi" właściwościami regulującymi zachowanie kosza.. Default: `{}`.
 
 
 ## Examples

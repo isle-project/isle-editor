@@ -64,7 +64,6 @@ function createColorScale( length ) {
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {string} submissionMsg - notification displayed when the learner first submits his answer
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
-* @property {number} maxlength - maximum allowed number of characters
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name

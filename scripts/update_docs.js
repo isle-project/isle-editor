@@ -248,6 +248,12 @@ for ( let i = 0; i < files.length; i++ ) {
 		replacement += '\n\n';
 		replacement += '## Examples';
 		md = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
+		if ( tagName && tagName.includes( 'Question' ) ) {
+			console.log( tagName );
+			console.log( component );
+			console.log( mdpath );
+			console.log( md );
+		}
 		debug( 'Replacing parameter descriptions...' );
 		fs.writeFileSync( mdpath, md );
 

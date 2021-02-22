@@ -1,0 +1,38 @@
+---
+id: number-question 
+title: Number Question
+sidebar_label: Number Question
+---
+
+Un componente de preguntas numéricas.
+
+## Options
+
+* __question__ | `(string|node)`: pregunta de número. Default: `''`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'top'`.
+* __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
+* __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
+* __solution__ | `(number|array<number>)`: una respuesta numérica al problema (o múltiples respuestas correctas si se suministra un array). Default: `none`.
+* __digits__ | `number`: número de dígitos para los cuales la respuesta suministrada por el estudiante debe coincidir con la solución para ser considerada correcta. Ponga 0 para que coincida como un número entero. Si se pone a cero buscará una coincidencia exacta.. Default: `3`.
+* __max__ | `number`: máximo valor de entrada permitido. Default: `null`.
+* __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
+* __defaultValue__ | `number`: valor preseleccionado de entrada de números. Default: `0`.
+* __provideFeedback__ | `boolean`: indica si la retroalimentación, incluyendo la respuesta correcta, debe ser mostrada después de que los estudiantes envíen sus respuestas. Default: `true`.
+* __nTries__ | `number`: después de cuántos intentos se debe suministrar la retroalimentación (si "suministrarRetroalimentación" es "verdadero"). Default: `1`.
+* __disableSubmitNotification__ | `boolean`: controla si se desactivan las notificaciones de presentación. Default: `false`.
+* __chat__ | `boolean`: controla si el elemento debe tener un chat integrado. Default: `false`.
+* __until__ | `Date`: tiempo hasta que los estudiantes puedan presentar sus respuestas. Default: `none`.
+* __points__ | `number`: número máximo de puntos otorgados en la calificación. Default: `10`.
+* __style__ | `object`: Estilos en línea CSS. Default: `{}`.
+* __onChange__ | `function`: llamada de retorno que se dispara después de que el valor del campo numérico cambia; recibe el valor actual como único argumento. Default: `onChange() {}`.
+* __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como primer parámetro un "booleano" que indica si la respuesta fue contestada correctamente (si es aplicable, "nulo" en caso contrario) y la respuesta suministrada como segundo parámetro. Default: `onSubmit() {}`.
+
+
+## Examples
+
+```jsx live
+<NumberQuestion
+    question="What is the number PI - three digits after the period"
+    solution={3.142}
+/>
+```

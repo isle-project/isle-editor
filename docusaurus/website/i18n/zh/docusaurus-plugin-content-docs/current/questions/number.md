@@ -1,0 +1,38 @@
+---
+id: number-question 
+title: Number Question
+sidebar_label: Number Question
+---
+
+一个数字问题的组成部分。
+
+## Options
+
+* __question__ | `(string|node)`: 号码题. Default: `''`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.
+* __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
+* __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
+* __solution__ | `(number|array<number>)`: 问题的数字答案（如果提供数组，则提供多个正确答案. Default: `none`.
+* __digits__ | `number`: 学生提供的答案必须与解法相匹配才算正确的数字。设为0则为整数匹配。如果设置为空，将搜索完全匹配的答案。. Default: `3`.
+* __max__ | `number`: 最大允许输入值. Default: `null`.
+* __min__ | `number`: 最小允许输入值. Default: `null`.
+* __defaultValue__ | `number`: 预先选择的数字输入值. Default: `0`.
+* __provideFeedback__ | `boolean`: 表示是否应该在学习者提交答案后显示包括正确答案在内的反馈信息。. Default: `true`.
+* __nTries__ | `number`: 在多少次尝试后，应提供反馈（如果`provideFeedback`为`true`）。. Default: `1`.
+* __disableSubmitNotification__ | `boolean`: 控制是否禁用提交通知. Default: `false`.
+* __chat__ | `boolean`: 控制该元素是否应该有一个集成的聊天. Default: `false`.
+* __until__ | `Date`: 允许学生提交答案的时间. Default: `none`.
+* __points__ | `number`: 最高分. Default: `10`.
+* __style__ | `object`: CSS内联样式. Default: `{}`.
+* __onChange__ | `function`: 回调，在数字字段的值改变后触发；接收当前值作为唯一的参数。. Default: `onChange() {}`.
+* __onSubmit__ | `function`: 提交答案时调用的回调；第一个参数是一个 "boolean"，表示答案是否正确（如果适用，否则为 "null"），第二个参数是提供的答案。. Default: `onSubmit() {}`.
+
+
+## Examples
+
+```jsx live
+<NumberQuestion
+    question="What is the number PI - three digits after the period"
+    solution={3.142}
+/>
+```

@@ -4726,8 +4726,9 @@
 				"defaultValue": null
 			},
 			{
-				"name": "xbins",
+				"name": "xBins",
 				"type": "{start,size,end}",
+				"description": "Histogram-prop-xBins",
 				"defaultValue": {}
 			}
 		],
@@ -6101,6 +6102,7 @@
 			{
 				"name": "rows",
 				"type": "array",
+				"description": "SelectQuestionMatrix-prop-rows",
 				"defaultValue": []
 			},
 			{
@@ -6172,6 +6174,7 @@
 			{
 				"name": "cellLabels",
 				"type": "object",
+				"description": "SelectQuestionMatrix-prop-cellLabels",
 				"defaultValue": {}
 			},
 			{

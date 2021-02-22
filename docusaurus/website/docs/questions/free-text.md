@@ -17,7 +17,7 @@ An ISLE component for questions where answers by students should be supplied in 
 * __rows__ | `number`: number of rows of the text field for students to type their answers. Default: `5`.
 * __chat__ | `boolean`: controls whether to enable group chat should for the question. Default: `false`.
 * __resizable__ | `boolean`: controls whether the text area should be resizable. Default: `false`.
-* __placeholder__ | `string`: placeholder text displayed before user has entered any text. Default: `'Enter your answer here...'`.
+* __placeholder__ | `string`: placeholder text displayed before user has entered any text. Default: `''`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `''`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
@@ -31,7 +31,8 @@ An ISLE component for questions where answers by students should be supplied in 
 * __onChange__ | `function`: callback invoked every time the text area value changes; receives the current text as its sole argument. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer; receives the submitted text as its sole argument. Default: `onSubmit() {}`.
 
-## Example
+
+## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

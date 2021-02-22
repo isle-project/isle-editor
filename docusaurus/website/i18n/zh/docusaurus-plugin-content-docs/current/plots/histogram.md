@@ -18,7 +18,7 @@ sidebar_label: Histogram
 * __binStrategy__ | `string`: 分仓策略（"自动"、"选择仓数 "或 "设置仓宽"）。. Default: `'Automatic'`.
 * __nBins__ | `number`: 自定义箱数. Default: `none`.
 * __nCols__ | `number`: 显示分面分组直方图时的列数。. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: 对象，具有 "start"、"size "和 "end "属性，管理分批行为。. Default: `{}`.
 
 
 ## Examples

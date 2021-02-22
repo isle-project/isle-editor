@@ -18,7 +18,7 @@ A histogram.
 * __binStrategy__ | `string`: binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: custom number of bins. Default: `none`.
 * __nCols__ | `number`: number of columns when displaying a facetted grouped histogram. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: object with `start`, `size`, and `end` properties governing binning behavior. Default: `{}`.
 
 
 ## Examples

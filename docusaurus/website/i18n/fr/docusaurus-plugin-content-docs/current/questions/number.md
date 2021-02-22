@@ -1,0 +1,38 @@
+---
+id: number-question 
+title: Number Question
+sidebar_label: Number Question
+---
+
+Un élément de question numérique.
+
+## Options
+
+* __question__ | `(string|node)`: question numéro. Default: `''`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'top'`.
+* __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
+* __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
+* __solution__ | `(number|array<number>)`: une réponse numérique au problème (ou plusieurs réponses correctes si un tableau est fourni). Default: `none`.
+* __digits__ | `number`: nombre de chiffres pour lesquels la réponse fournie par l'étudiant doit correspondre à la solution pour être considérée comme correcte. Mettre à 0 pour correspondre comme un nombre entier. S'il est fixé à zéro, il recherchera une correspondance exacte.. Default: `3`.
+* __max__ | `number`: valeur d'entrée maximale autorisée. Default: `null`.
+* __min__ | `number`: valeur d'entrée minimale autorisée. Default: `null`.
+* __defaultValue__ | `number`: valeur présélectionnée de la saisie du numéro. Default: `0`.
+* __provideFeedback__ | `boolean`: indique si un retour d'information comprenant la bonne réponse doit être affiché après que les apprenants aient soumis leurs réponses. Default: `true`.
+* __nTries__ | `number`: après combien d'essais un retour d'information doit être fourni (si "provideFeedback" est "true"). Default: `1`.
+* __disableSubmitNotification__ | `boolean`: contrôle s'il faut désactiver les notifications de soumission. Default: `false`.
+* __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.
+* __until__ | `Date`: le temps nécessaire pour permettre aux étudiants de soumettre des réponses. Default: `none`.
+* __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.
+* __style__ | `object`: Styles CSS en ligne. Default: `{}`.
+* __onChange__ | `function`: rappel qui est déclenché après que la valeur du champ du numéro change ; reçoit la valeur actuelle comme seul argument. Default: `onChange() {}`.
+* __onSubmit__ | `function`: rappel invoqué lors de la soumission de la réponse ; a comme premier paramètre un "booléen" indiquant si la réponse a été correctement donnée (le cas échéant, "nul" sinon) et la réponse fournie comme second paramètre. Default: `onSubmit() {}`.
+
+
+## Examples
+
+```jsx live
+<NumberQuestion
+    question="What is the number PI - three digits after the period"
+    solution={3.142}
+/>
+```

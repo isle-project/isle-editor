@@ -245,7 +245,7 @@ Histogram.defaultProps = {
 	binStrategy: 'Automatic',
 	nBins: null,
 	nCols: null,
-	xbins: {}
+	xBins: {}
 };
 
 Histogram.propTypes = {
@@ -259,7 +259,7 @@ Histogram.propTypes = {
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
 	nBins: PropTypes.number,
 	nCols: PropTypes.number,
-	xbins: PropTypes.shape({
+	xBins: PropTypes.shape({
 		start: PropTypes.number,
 		size: PropTypes.number,
 		end: PropTypes.number

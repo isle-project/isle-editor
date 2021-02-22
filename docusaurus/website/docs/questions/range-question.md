@@ -6,15 +6,6 @@ sidebar_label: Range Question
 
 A range question component that asks students to supply a lower and upper end point.
 
-## Example
-
-```jsx live
-<RangeQuestion
-    question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
-    solution={[-3,3]}
-/>
-```
-
 ## Options
 
 * __question__ | `(string|node)`: displayed question. Default: `''`.
@@ -34,3 +25,12 @@ A range question component that asks students to supply a lower and upper end po
 * __onChangeLower__ | `function`: callback triggered after the lower bound is changed by the user. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback triggered after the upper bound is changed by the user. Default: `onChangeUpper() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.
+
+## Examples
+
+```jsx live
+<RangeQuestion
+    question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
+    solution={[-3,3]}
+/>
+```

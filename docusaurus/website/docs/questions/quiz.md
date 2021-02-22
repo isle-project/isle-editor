@@ -24,7 +24,8 @@ A quiz component displaying a sequence of question components.
 * __onFinished__ | `function`: callback invoked when the quiz is finished and the results page is displayed. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback invoked when user submits an answer. Default: `onSubmit() {}`.
 
-## Example
+
+## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

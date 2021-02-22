@@ -1,0 +1,38 @@
+---
+id: number-question 
+title: Number Question
+sidebar_label: Number Question
+---
+
+数字の質問成分。
+
+## Options
+
+* __question__ | `(string|node)`: ナンバークエスチョン. Default: `''`.
+* __hintPlacement__ | `string`: ヒントの配置 (`top`, `left`, `right`, `bottom` のいずれか). Default: `'top'`.
+* __hints__ | `array<(string|node)>`: 解答のヒント. Default: `[]`.
+* __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `true`.
+* __solution__ | `(number|array<number>)`: 問題の数値解答（配列が与えられた場合は複数の正解）。. Default: `none`.
+* __digits__ | `number`: 学生が与えた答えが正しいとみなされるためには、その答えと一致しなければならない桁数を指定します。0に設定すると整数で一致します。nullに設定すると、完全一致を検索します。. Default: `3`.
+* __max__ | `number`: 最大許容入力値. Default: `null`.
+* __min__ | `number`: 最小許容入力値. Default: `null`.
+* __defaultValue__ | `number`: 事前選択数入力値. Default: `0`.
+* __provideFeedback__ | `boolean`: は、学習者が解答を提出した後に、正解を含むフィードバックを表示するかどうかを指定します。. Default: `true`.
+* __nTries__ | `number`: 何回試行した後にフィードバックを提供するか ( `provideFeedback` が `true` の場合). Default: `1`.
+* __disableSubmitNotification__ | `boolean`: 投稿通知を無効にするかどうかを制御します。. Default: `false`.
+* __chat__ | `boolean`: 要素が統合されたチャットを持つべきかどうかを制御します。. Default: `false`.
+* __until__ | `Date`: 学生が回答を提出するまでの時間. Default: `none`.
+* __points__ | `number`: 採点点数. Default: `10`.
+* __style__ | `object`: CSSインラインスタイル. Default: `{}`.
+* __onChange__ | `function`: 数値フィールドの値が変更された後にトリガされるコールバックで、現在の値を唯一の引数として受け取ります。. Default: `onChange() {}`.
+* __onSubmit__ | `function`: 最初のパラメータとして、アンサーが正しく回答されたかどうかを示す `boolean` (該当する場合は `null`) と、2番目のパラメータとして与えられたアンサーを指定します。. Default: `onSubmit() {}`.
+
+
+## Examples
+
+```jsx live
+<NumberQuestion
+    question="What is the number PI - three digits after the period"
+    solution={3.142}
+/>
+```

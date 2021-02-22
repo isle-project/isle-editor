@@ -18,7 +18,7 @@ Un istogramma.
 * __binStrategy__ | `string`: strategia di binning (`Automatico`, `Seleziona # di bidoni`, o `Imposta larghezza bidone`). Default: `'Automatic'`.
 * __nBins__ | `number`: numero personalizzato di bidoni. Default: `none`.
 * __nCols__ | `number`: numero di colonne quando si visualizza un istogramma raggruppato sfaccettato. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: oggetto con proprietà `start`, `size` e `end` che regolano il comportamento di binning. Default: `{}`.
 
 
 ## Examples

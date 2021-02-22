@@ -42,9 +42,11 @@ const uid = generateUID( 'select-question-matrix' );
 * A question with an answer consisting of multiple select boxes.
 *
 * @param {(node|string)} question - question to be displayed at the top of the select question matrix
+* @param {Array} rows - row labels
 * @param {Array} cols - column labels
 * @param {Object} options - object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being arrays of the possible answer choices for the individual select questions
 * @param {Object} solution - solution object with key-value pairs with keys having the form `row:col`, e.g. `0:0`, `0:1`, `1:0` etc., and their corresponding values being the index of the correct answer element from the respective `options` array
+* @param {Object} cellLabels - labels for cells defined by object with keys having the format `row:col`
 * @property {Array<(string|node)>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons

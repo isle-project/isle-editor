@@ -18,7 +18,7 @@ Een histogram.
 * __binStrategy__ | `string`: binning strategie (`Automatisch`, `Selecteer # van bakken`, of `Set bin breedte`). Default: `'Automatic'`.
 * __nBins__ | `number`: aangepast aantal bakken. Default: `none`.
 * __nCols__ | `number`: aantal kolommen bij weergave van een gefacetteerd gegroepeerd histogram. Default: `none`.
-* __xbins__ | `{start,size,end}`: undefined. Default: `{}`.
+* __xBins__ | `{start,size,end}`: object met `start`, `grootte`, en `eind` eigenschappen die het eetgedrag regelen. Default: `{}`.
 
 
 ## Examples

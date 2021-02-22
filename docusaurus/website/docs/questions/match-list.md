@@ -16,7 +16,7 @@ An ISLE component that renders a question in which the learner has to match elem
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __colorScale__ | `array`: if set, the supplied colors are used for the tiles. Default: `none`.
-* __shuffle__ | `string`: specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched. Default: `'both'`.
+* __shuffle__ | `string`: specifies whether to shuffle the `left`, `right`, or `both` columns whose elements have to be matched; supply `none` or any other value to not shuffle elements on either side (may be useful in case when there is no solution present). Default: `'both'`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __submissionMsg__ | `string`: notification displayed when the learner first submits his answer. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: notification displayed for all submissions after the first one. Default: `'You have successfully re-submitted your answer.'`.
@@ -26,7 +26,8 @@ An ISLE component that renders a question in which the learner has to match elem
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: callback invoked when students submits an answer. Default: `onSubmit() {}`.
 
-## Example
+
+## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
