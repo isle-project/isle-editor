@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "suggerimenti che forniscono indicazioni su come rispondere alla domanda",
 	"ImageQuestion-prop-onSubmit": "richiamata al momento dell'invio della risposta; ha come unico parametro un `booleano` che indica se gli elementi sono stati messi nell'ordine corretto",
 	"ImageQuestion-prop-points": "numero massimo di punti assegnati in classifica",
-	"ImageQuestion-prop-question": "domanda per la quale lo studente deve portare le \"opzioni\" disponibili nell'ordine corretto",
+	"ImageQuestion-prop-question": "testo per la domanda",
 	"ImageQuestion-prop-sketchpad": "proprietà da passare al componente <Sketchpad />; per rendere lo sketchpad, passare almeno un oggetto vuoto `{}``.",
 	"ImageQuestion-prop-solution": "URL dell'immagine della soluzione del modello",
 	"ImageQuestion-prop-style": "Stili in linea CSS",

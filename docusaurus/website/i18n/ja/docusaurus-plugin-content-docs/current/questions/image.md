@@ -8,7 +8,7 @@ sidebar_label: Image Question
 
 ## オプション
 
-* __question__ | `(string|node)`: 択一問題. Default: `''`.
+* __question__ | `(string|node)`: 問題文. Default: `''`.
 * __hintPlacement__ | `string`: ヒントの配置 (`top`, `left`, `right`, `bottom` のいずれか). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: 解答のヒント. Default: `[]`.
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `true`.

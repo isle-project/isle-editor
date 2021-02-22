@@ -8,7 +8,7 @@ sidebar_label: Image Question
 
 ## Варианты
 
-* __question__ | `(string|node)`: вопрос, для ответа на который ученик должен привести доступные "опции" в правильный порядок.. Default: `''`.
+* __question__ | `(string|node)`: текст для вопроса. Default: `''`.
 * __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: подсказки с рекомендациями, как ответить на вопрос. Default: `[]`.
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `true`.

@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "指导如何回答问题的提示。",
 	"ImageQuestion-prop-onSubmit": "提交答案时调用的回调；唯一的参数是一个 \"boolean\"，表示元素是否按正确的顺序放置。",
 	"ImageQuestion-prop-points": "最高分",
-	"ImageQuestion-prop-question": "学生必须将可用的 \"选项 \"按正确的顺序排列出来。",
+	"ImageQuestion-prop-question": "题文",
 	"ImageQuestion-prop-sketchpad": "属性传递给<Sketchpad />组件；要渲染sketchpad，至少要传递一个空对象`{}`。",
 	"ImageQuestion-prop-solution": "模型解决方案的图像URL",
 	"ImageQuestion-prop-style": "CSS内联样式",

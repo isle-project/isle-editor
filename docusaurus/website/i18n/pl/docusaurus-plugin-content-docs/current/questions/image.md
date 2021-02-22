@@ -8,7 +8,7 @@ Pytanie, które wymaga od użytkownika przesłania obrazu.
 
 ## Opcje
 
-* __question__ | `(string|node)`: pytanie, na które student musi uporządkować dostępne `opcje` w odpowiedniej kolejności. Default: `''`.
+* __question__ | `(string|node)`: tekst do pytania. Default: `''`.
 * __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.

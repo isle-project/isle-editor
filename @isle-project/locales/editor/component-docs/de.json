@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "Hinweise, die bei der Beantwortung der Frage helfen",
 	"ImageQuestion-prop-onSubmit": "Callback, der beim Absenden der Antwort aufgerufen wird; hat als einzigen Parameter ein `Boolesches`, das angibt, ob die Elemente in der richtigen Reihenfolge platziert wurden",
 	"ImageQuestion-prop-points": "maximale Anzahl von Punkten, die bei der Benotung vergeben werden",
-	"ImageQuestion-prop-question": "Frage, bei der der Schüler die verfügbaren `Optionen` in die richtige Reihenfolge bringen muss",
+	"ImageQuestion-prop-question": "Text für die Frage",
 	"ImageQuestion-prop-sketchpad": "Eigenschaften, die an die <Sketchpad />-Komponente übergeben werden sollen; um den Skizzenblock zu rendern, übergeben Sie mindestens ein leeres Objekt `{}`",
 	"ImageQuestion-prop-solution": "Bild-URL der Musterlösung",
 	"ImageQuestion-prop-style": "CSS-Inline-Stile",

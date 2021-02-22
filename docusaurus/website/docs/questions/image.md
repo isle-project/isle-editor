@@ -8,7 +8,7 @@ A question that asks the user to upload an image.
 
 ## Options
 
-* __question__ | `(string|node)`: question for which the student has to bring the available `options` into the correct order. Default: `''`.
+* __question__ | `(string|node)`: text for the question. Default: `''`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.

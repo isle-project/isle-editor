@@ -8,7 +8,7 @@ Une question qui demande à l'utilisateur de télécharger une image.
 
 ## Options
 
-* __question__ | `(string|node)`: question pour laquelle l'étudiant doit mettre les "options" disponibles dans le bon ordre. Default: `''`.
+* __question__ | `(string|node)`: texte de la question. Default: `''`.
 * __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.

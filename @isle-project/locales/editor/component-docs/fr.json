@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "des conseils sur la façon de répondre à la question",
 	"ImageQuestion-prop-onSubmit": "rappel invoqué lors de la soumission de la réponse ; a comme seul paramètre un \"booléen\" indiquant si les éléments ont été placés dans le bon ordre",
 	"ImageQuestion-prop-points": "nombre maximum de points attribués dans le classement",
-	"ImageQuestion-prop-question": "question pour laquelle l'étudiant doit mettre les \"options\" disponibles dans le bon ordre",
+	"ImageQuestion-prop-question": "texte de la question",
 	"ImageQuestion-prop-sketchpad": "propriétés à passer à <Sketchpad /> component ; pour rendre le sketchpad, passez au moins un objet vide `{}`.",
 	"ImageQuestion-prop-solution": "image URL de la solution modèle",
 	"ImageQuestion-prop-style": "Styles CSS en ligne",

@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "解答のヒント",
 	"ImageQuestion-prop-onSubmit": "回答が提出されたときに呼び出されるコールバック; 唯一のパラメータとして、要素が正しい順序で配置されているかどうかを示す `boolean` を持ちます。",
 	"ImageQuestion-prop-points": "採点点数",
-	"ImageQuestion-prop-question": "択一問題",
+	"ImageQuestion-prop-question": "問題文",
 	"ImageQuestion-prop-sketchpad": "プロパティを <Sketchpad /> コンポーネントに渡します; スケッチパッドをレンダリングするには、少なくとも空のオブジェクト `{}` を渡します。",
 	"ImageQuestion-prop-solution": "モデルソリューションの画像URL",
 	"ImageQuestion-prop-style": "CSSインラインスタイル",

@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie",
 	"ImageQuestion-prop-onSubmit": "wywołanie zwrotne wywołane podczas udzielania odpowiedzi; ma jako jedyny parametr `boolean` wskazujący, czy elementy zostały umieszczone we właściwej kolejności",
 	"ImageQuestion-prop-points": "maksymalna liczba punktów przyznawanych w poszczególnych klasach",
-	"ImageQuestion-prop-question": "pytanie, na które student musi uporządkować dostępne `opcje` w odpowiedniej kolejności",
+	"ImageQuestion-prop-question": "tekst do pytania",
 	"ImageQuestion-prop-sketchpad": "właściwości, które mają być przekazane do <Sketchpad /> komponentu; aby renderować szkicownik, należy przekazać co najmniej pusty obiekt `{}`.",
 	"ImageQuestion-prop-solution": "URL obrazu rozwiązania modelowego",
 	"ImageQuestion-prop-style": "Style CSS inline",

@@ -8,7 +8,7 @@ Una pregunta que pide al usuario que suba una imagen.
 
 ## Opciones
 
-* __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que poner las "opciones" disponibles en el orden correcto. Default: `''`.
+* __question__ | `(string|node)`: texto de la pregunta. Default: `''`.
 * __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.

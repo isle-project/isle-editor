@@ -8,7 +8,7 @@ Een vraag die de gebruiker vraagt om een afbeelding te uploaden.
 
 ## Opties
 
-* __question__ | `(string|node)`: vraag waarvoor de student de beschikbare `opties` in de juiste volgorde moet brengen. Default: `''`.
+* __question__ | `(string|node)`: tekst voor de vraag. Default: `''`.
 * __hintPlacement__ | `string`: plaatsing van de hints (ofwel `top`, `left`, `right`, of `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips die een leidraad bieden voor het beantwoorden van de vraag. Default: `[]`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `true`.

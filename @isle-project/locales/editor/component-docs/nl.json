@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "tips die een leidraad bieden voor het beantwoorden van de vraag",
 	"ImageQuestion-prop-onSubmit": "callback ingeroepen bij het indienen van een antwoord; heeft als enige parameter een `boolean` die aangeeft of de elementen in de juiste volgorde zijn geplaatst",
 	"ImageQuestion-prop-points": "maximumaantal punten voor de indeling in klassen",
-	"ImageQuestion-prop-question": "vraag waarvoor de student de beschikbare `opties` in de juiste volgorde moet brengen",
+	"ImageQuestion-prop-question": "tekst voor de vraag",
 	"ImageQuestion-prop-sketchpad": "eigenschappen die moeten worden doorgegeven aan <Sketchpad /> component; om het schetsblok weer te geven, geef je ten minste een leeg object `{}` door",
 	"ImageQuestion-prop-solution": "beeld URL van modeloplossing",
 	"ImageQuestion-prop-style": "CSS inline-stijlen",

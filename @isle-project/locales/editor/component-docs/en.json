@@ -390,7 +390,7 @@
 	"ImageQuestion-prop-hints": "hints providing guidance on how to answer the question",
 	"ImageQuestion-prop-onSubmit": "callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order",
 	"ImageQuestion-prop-points": "maximum number of points awarded in grading",
-	"ImageQuestion-prop-question": "question for which the student has to bring the available `options` into the correct order",
+	"ImageQuestion-prop-question": "text for the question",
 	"ImageQuestion-prop-sketchpad": "properties to be passed to <Sketchpad /> component; to render the sketchpad, pass in at least an empty object `{}`",
 	"ImageQuestion-prop-solution": "image URL of model solution",
 	"ImageQuestion-prop-style": "CSS inline styles",
