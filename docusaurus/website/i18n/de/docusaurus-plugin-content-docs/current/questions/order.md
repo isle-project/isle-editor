@@ -11,7 +11,7 @@ Eine Ordnungsfragekomponente, die den Schüler auffordert, eine Sammlung von Ele
 * __question__ | `(string|node)`: Frage, bei der der Schüler die verfügbaren `Optionen` in die richtige Reihenfolge bringen muss. Default: `''`.
 * __options__ | `array (required)`: eine Reihe von Texten, die der Kursteilnehmer in die richtige Reihenfolge bringen muss (es wird angenommen, dass es sich um die mitgelieferte Reihenfolge handelt). Default: `none`.
 * __provideFeedback__ | `boolean`: steuert, ob eine Benachrichtigung angezeigt werden soll, die angibt, ob die eingereichte Antwort korrekt ist oder nicht. Default: `true`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.

@@ -10,7 +10,7 @@ Eine ISLE-Komponente für Fragen, bei denen die Antworten der Schüler in Form v
 
 * __question__ | `(string|node)`: die Frage, die oben in der Freitext-Fragenkomponente angezeigt wird. Default: `''`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'top'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __solution__ | `(string|node)`: eine Musterlösung für das Problem. Default: `''`.
 * __instantSolution__ | `boolean`: ob man die Anzeige der Modellantwort sofort umschalten kann. Default: `false`.

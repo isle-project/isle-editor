@@ -11,7 +11,7 @@ Eine ISLE-Komponente, die eine Multiple-Choice-Frage wiedergibt. Sie unterstütz
 * __question__ | `(string|node)`: die oben in der Multiple-Choice-Komponente angezeigte Frage. Default: `''`.
 * __solution__ | `(number|array)`: Zahl, die angibt, welche Antwort richtig ist, oder eine "Reihe" der richtigen Antwortnummern, falls der Lernende mehrere Antworten auswählen kann. Default: `none`.
 * __answers__ | `array (required)`: ein `Array` von Antwort-Objekten. Jede Antwort sollte ein Objekt mit den Feldern `Content` und `Explanation` sein, die die angezeigte Antwortoption und eine nach dem Absenden der Frage sichtbare Erklärung bezeichnen, warum die Antwort richtig oder falsch ist. Default: `none`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __disabled__ | `boolean`: steuert, ob die Frage deaktiviert ist. Default: `false`.

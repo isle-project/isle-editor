@@ -14,7 +14,7 @@ Eine Frage mit einer Antwort, die aus mehreren Auswahlfeldern besteht.
 * __options__ | `object`: Objekt mit Schlüssel-Wert-Paaren, deren Schlüssel die Form `Zeile:Spalte` haben, z. B. `0:0`, `0:1`, `1:0` usw., und deren entsprechende Werte Arrays der möglichen Antwortmöglichkeiten für die einzelnen Auswahlfragen sind. Default: `{}`.
 * __solution__ | `object`: Lösungsobjekt mit Schlüssel-Wert-Paaren, deren Schlüssel die Form `Zeile:Spalte` haben, z.B. `0:0`, `0:1`, `1:0` usw., und deren zugehörige Werte der Index des richtigen Antwortelements aus dem jeweiligen `Options`-Array sind. Default: `{}`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __provideFeedback__ | `string`: ob Sie "kein" Feedback, "individuelles" Feedback zu den eingereichten Antworten oder "allgemeines" Feedback für alle Fragen geben möchten. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: ob Eingaben ohne Auswahl in jedem Auswahlfeld erlaubt werden sollen. Default: `false`.

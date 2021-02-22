@@ -9,7 +9,7 @@ Eine Frage, die den Benutzer auffordert, ein Bild hochzuladen.
 ## Optionen
 
 * __question__ | `(string|node)`: Frage, bei der der Schüler die verfügbaren `Optionen` in die richtige Reihenfolge bringen muss. Default: `''`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.

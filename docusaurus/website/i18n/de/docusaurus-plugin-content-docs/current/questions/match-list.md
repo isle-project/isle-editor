@@ -10,7 +10,7 @@ Eine ISLE-Komponente, die eine Frage wiedergibt, bei der der Lerner Elemente aus
 
 * __question__ | `(string|node)`: Frage, die oben in der Fragenkomponente der Übereinstimmungsliste angezeigt werden soll. Default: `''`.
 * __elements__ | `array<{a,b}>`: ein "Array", das die richtigen Paare enthält, die oben in der Freitext-Fragenkomponente angezeigt werden. Jedes "Array"-Element muss ein "Objekt" mit "a"- und "b"-Eigenschaften sein; liefern Sie Elemente mit nur "a"- oder "b"-Eigenschaften, um Ablenkungsantworten hinzuzufügen. Default: `[]`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __provideFeedback__ | `boolean`: gibt an, ob die Lösung zugänglich sein soll, nachdem die Lernenden ihre Antworten abgegeben haben. Default: `true`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.

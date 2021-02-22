@@ -13,7 +13,7 @@ Eine ausgewählte Fragekomponente.
 * __solution__ | `number (required)`: Index des Lösungselements in `options`. Default: `none`.
 * __preselected__ | `number`: Index der vorgewählten Antwortmöglichkeit. Default: `0`.
 * __inline__ | `boolean`: steuert, ob die Komponente inline gerendert wird oder nicht. Default: `false`.
-* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'top'`.
+* __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.

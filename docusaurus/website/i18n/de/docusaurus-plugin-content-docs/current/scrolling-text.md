@@ -10,7 +10,7 @@ Eine dynamische Hintergrundkomponente, die in einem festgelegten Intervall eine 
 
 * __text__ | `array<string>`: Text oder Liste von Texten, die angezeigt werden sollen. Default: `[]`.
 * __loop__ | `boolean`: gibt an, ob der Prozess unendlich angezeigt werden soll. Default: `false`.
-* __direction__ | `string`: die Richtung des Textflusses (entweder `left`, `right`, `oben`, `unten`, `verfolgen`, `fokussieren` oder `wirbeln`). Default: `'right'`.
+* __direction__ | `string`: die Richtung des Textflusses (entweder `left`, `right`, `top`, `bottom`, `verfolgen`, `fokussieren` oder `wirbeln`). Default: `'right'`.
 * __hold__ | `number`: die Zeit, die der Text stillsteht (in Sekunden). Default: `5`.
 * __wait__ | `number`: die Zeit bis zum Eintreffen eines neuen Textes (in Sekunden). Default: `3`.
 * __inTime__ | `number`: Zeit des Eintrittseffekts (in Sekunden). Default: `1`.
