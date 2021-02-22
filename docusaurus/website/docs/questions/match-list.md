@@ -6,25 +6,6 @@ sidebar_label: Match List Question
 
 An ISLE component that renders a question in which the learner has to match elements from two lists with each other in the correct way.
 
-## Example
-
-```jsx live
-<MatchListQuestion
-    question="Please match the correct surnames and first names of three statisticians."
-    elements={[
-        { a: 'Ronald', b: 'Fisher' },
-        { a: 'Florence', b: 'Nightingale' },
-        { a: 'Karl', b: 'Pearson' },
-        { a: 'Sofia' },
-        { a: 'Carrie' },
-        { b: 'Coppola' }
-    ]}
-    onSubmit={ ( answers ) => {
-        
-    }}
-/>
-```
-
 ## Options
 
 * __question__ | `(string|node)`: question to be displayed at the top of the match list question component. Default: `''`.
@@ -44,3 +25,94 @@ An ISLE component that renders a question in which the learner has to match elem
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: callback invoked when students submits an answer. Default: `onSubmit() {}`.
+
+## Example
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Solution & Style', value: 'withFeedback' },
+        { label: 'Shuffle Right', value: 'shuffleRight' },
+        { label: 'Points for Grading', value: 'grading' },
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
+```jsx live
+<MatchListQuestion
+    question="Please match the symbols and the respective chemical element."
+    elements={[
+        { a: 'Be', b: 'Berlyllium' },
+        { a: 'Br', b: 'Bromine' },
+        { a: 'Ar', b: 'Argon' },
+        { a: 'Ac' , b: 'Actinium'},
+        { b: 'Arsenic' },
+        { b: 'Boron' }
+    ]}
+    provideFeedback={false}
+/>
+```
+</TabItem>
+
+
+<TabItem value="withFeedback">
+
+```jsx live
+<MatchListQuestion
+    question="Please match the symbols and the respective chemical element."
+    style={{ color: 'darkblue'}}
+    elements={[
+        { a: 'Ac' , b: 'Actinium'},
+        { a: 'Ar', b: 'Argon' },
+        { a: 'Be', b: 'Berlyllium' },
+        { a: 'Br', b: 'Bromine' },
+        { b: 'Arsenic' },
+        { b: 'Boron' }
+    ]}
+/>
+```
+</TabItem>
+
+<TabItem value="shuffleRight">
+
+```jsx live
+<MatchListQuestion
+    question="Please match the correct surnames and first names of these statisticians."
+    elements={[
+        { a: 'Carl Friedrich', b: 'Gauß' },
+        { a: 'Florence', b: 'Nightingale' },
+        { a: 'Francis', b: 'Galton' },
+        { a: 'John W.', b: 'Tukey' },
+        { a: 'Karl', b: 'Pearson' },
+        { a: 'Ronald', b: 'Fisher' }
+    ]}
+    shuffle="right"
+/>
+```
+</TabItem>
+
+<TabItem value="grading">
+
+```jsx live
+<MatchListQuestion
+    question="Please match the correct surnames and first names of these statisticians."
+    elements={[
+        { a: 'Ronald', b: 'Fisher' },
+        { a: 'Florence', b: 'Nightingale' },
+        { a: 'Karl', b: 'Pearson' },
+        { a: 'John W.', b: 'Tukey' },
+        { a: 'Francis', b: 'Galton' },
+        { a: 'Carl Friedrich', b: 'Gauß' }
+    ]}
+    points={20}
+/>
+```
+</TabItem>
+
+</Tabs>

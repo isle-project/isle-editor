@@ -53,16 +53,17 @@
           ]}
         ],
         "Question Components": [
-          "free-text-question",
-          "match-list-question",
-          "multiple-choice-question",
-          "number-question",
-          "order-question",
-          "question-form",
-          "quiz",
-          "range-question",
-          "select-question",
-          "select-question-matrix"
+          "questions/free-text",
+          "questions/image",
+          "questions/match-list",
+          "questions/multiple-choice",
+          "questions/number",
+          "questions/order",
+          "questions/question-form",
+          "questions/quiz",
+          "questions/range",
+          "questions/select",
+          "questions/select-matrix"
         ],
         "Survey Components": [
           "free-text-survey",
