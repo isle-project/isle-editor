@@ -18,7 +18,6 @@ const EXTERNALS = [
 	'csv-stringify',
 	'd3',
 	'd3-cloud',
-	'detect-csv',
 	'eslint', // needs to be external for CLI Engine to work for linting
 	'form-data',
 	'fsevents',
