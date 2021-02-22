@@ -68,7 +68,10 @@ const config = {
 			'csv-stringify': resolve( './node_modules/csv-stringify/lib/browser/index.js' )
 		},
 		fallback: {
-			'path': resolve( './node_modules/path-browserify' )
+			'buffer': resolve( './node_modules/buffer' ),
+			'path': resolve( './node_modules/path-browserify' ),
+			'stream': resolve( './node_modules/stream-browserify' ),
+			'domain': false
 		}
 	},
 	entry: {

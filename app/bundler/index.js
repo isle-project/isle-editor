@@ -446,6 +446,10 @@ function bundleLesson( options ) {
 				)
 			},
 			fallback: {
+				'buffer': resolve(
+					basePath,
+					'./node_modules/buffer'
+				),
 				'path': resolve(
 					basePath,
 					'./node_modules/path-browserify'
