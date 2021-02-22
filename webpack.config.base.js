@@ -15,7 +15,6 @@ const EXTERNALS = [
 	'camelcase',
 	'child_process',
 	'compute-chunkify',
-	'csv-parse',
 	'csv-stringify',
 	'd3',
 	'd3-cloud',

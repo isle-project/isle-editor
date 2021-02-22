@@ -64,11 +64,9 @@ const config = {
 			resolve( './node_modules' )
 		],
 		alias: {
-			'csv-parse': resolve( './node_modules/csv-parse/lib/browser/index.js' ),
 			'csv-stringify': resolve( './node_modules/csv-stringify/lib/browser/index.js' )
 		},
 		fallback: {
-			'buffer': resolve( './node_modules/buffer' ),
 			'path': resolve( './node_modules/path-browserify' ),
 			'stream': resolve( './node_modules/stream-browserify' ),
 			'domain': false

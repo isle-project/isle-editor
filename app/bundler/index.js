@@ -436,20 +436,12 @@ function bundleLesson( options ) {
 					basePath,
 					'./app/css'
 				),
-				'csv-parse': resolve(
-					basePath,
-					'./node_modules/csv-parse/lib/browser/index.js'
-				),
 				'csv-stringify': resolve(
 					basePath,
 					'./node_modules/csv-stringify/lib/browser/index.js'
 				)
 			},
 			fallback: {
-				'buffer': resolve(
-					basePath,
-					'./node_modules/buffer'
-				),
 				'path': resolve(
 					basePath,
 					'./node_modules/path-browserify'
