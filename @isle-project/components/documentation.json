@@ -2498,11 +2498,13 @@
 			{
 				"name": "parentNode",
 				"type": "node",
+				"description": "Joyride-prop-parentNode",
 				"defaultValue": null
 			},
 			{
 				"name": "styles",
 				"type": "object",
+				"description": "Joyride-prop-styles",
 				"defaultValue": {}
 			}
 		],
@@ -3771,6 +3773,12 @@
 				"type": "boolean",
 				"description": "LassoRegression-prop-intercept",
 				"defaultValue": true
+			},
+			{
+				"name": "onPredict",
+				"type": "function",
+				"description": "LassoRegression-prop-onPredict",
+				"defaultValue": "function onPredict() {}"
 			}
 		],
 		"description": "LassoRegression-description"
@@ -7342,6 +7350,7 @@
 			{
 				"name": "watermark",
 				"type": "string",
+				"description": "StickyNote-prop-watermark",
 				"defaultValue": null
 			},
 			{
@@ -7401,6 +7410,7 @@
 			{
 				"name": "onBodyChange",
 				"type": "function",
+				"description": "StickyNote-prop-onBodyChange",
 				"defaultValue": "function onBodyChange() {}"
 			},
 			{
@@ -7412,6 +7422,7 @@
 			{
 				"name": "onDelete",
 				"type": "function",
+				"description": "StickyNote-prop-onDelete",
 				"defaultValue": "function onDelete() {}"
 			},
 			{
@@ -7422,11 +7433,13 @@
 			{
 				"name": "onResize",
 				"type": "function",
+				"description": "StickyNote-prop-onResize",
 				"defaultValue": "function onResize() {}"
 			},
 			{
 				"name": "onTitleChange",
 				"type": "function",
+				"description": "StickyNote-prop-onTitleChange",
 				"defaultValue": "function onTitleChange() {}"
 			},
 			{

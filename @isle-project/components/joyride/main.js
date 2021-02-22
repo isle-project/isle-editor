@@ -1,9 +1,9 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import merge from '@stdlib/utils/merge';
 import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
 import { addResources } from '@isle-project/locales';
@@ -32,48 +32,44 @@ const STYLES = {
 // MAIN //
 
 /**
-* Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walkthroughs and guided tours.
+* Wrapper around [react-joyride](https://github.com/gilbarbara/react-joyride) to create walk-throughs and guided tours.
 *
 * @property {Array} steps - array of step `objects`
 * @property {boolean} scrollToSteps - controls whether the window should scroll to the current step
 * @property {boolean} run - controls whether the guide is active
+* @property {node} parentNode - node of parent element for z-index adjustment
+* @property {Object} styles - object to override the [default styles](https://github.com/gilbarbara/react-joyride/blob/3e08384415a831b20ce21c8423b6c271ad419fbf/src/styles.js)
 */
-class Wrapper extends Component {
-	constructor( props ) {
-		super( props );
-		this.zIndexAdjustment = zIndexAdjustment( props.parentNode );
-	}
+const Wrapper = ( props ) => {
+	const { t } = useTranslation( 'Joyride' );
+	const { parentNode } = props;
+	const zIndex = useRef();
 
-	componentDidUpdate( prevProps ) {
-		if ( this.props.parentNode !== prevProps.parentNode ) {
-			this.zIndexAdjustment = zIndexAdjustment( this.props.parentNode );
-		}
-	}
+	useEffect( () => {
+		zIndex.current = zIndexAdjustment( parentNode );
+	}, [ parentNode ]);
 
-	render() {
-		const { t } = this.props;
-		const styles = merge( {}, STYLES, this.props.styles );
-		if ( styles.options && styles.options.zIndex === 100 ) {
-			styles.options.zIndex = this.zIndexAdjustment + 100;
-		}
-		return (
-			<Joyride
-				showSkipButton
-				{...this.props}
-				run={this.props.run}
-				steps={this.props.steps}
-				styles={styles}
-				locale={{
-					back: t('back'),
-					close: t('close'),
-					last: t('last'),
-					next: t('next'),
-					skip: t('skip')
-				}}
-			/>
-		);
+	const styles = merge( {}, STYLES, props.styles );
+	if ( styles.options && styles.options.zIndex === 100 ) {
+		styles.options.zIndex = zIndex.current + 100;
 	}
-}
+	return (
+		<Joyride
+			showSkipButton
+			{...props}
+			run={props.run}
+			steps={props.steps}
+			styles={styles}
+			locale={{
+				back: t('back'),
+				close: t('close'),
+				last: t('last'),
+				next: t('next'),
+				skip: t('skip')
+			}}
+		/>
+	);
+};
 
 
 // PROPERTIES //
@@ -96,4 +92,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Joyride' )( Wrapper );
+export default Wrapper;

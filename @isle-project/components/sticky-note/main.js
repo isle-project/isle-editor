@@ -32,7 +32,12 @@ const debug = logger( 'isle:sticky-note' );
 * @property {boolean} minimizable - controls whether the component is minimizable
 * @property {boolean} minimized - if set, the component is minimized at the start
 * @property {boolean} resizable - controls whether the component is resizable
+* @property {boolean} watermark - controls whether to display a watermark
 * @property {Object} size - object with `width` and `height` properties specifying the default size of the note
+* @property {Function} onBodyChange - callback function invoked with new text when user changes body of the note
+* @property {Function} onDelete - callback function invoked when user deletes the note
+* @property {Function} onResize - callback function invoked with object of new `width` and `height` when user re-sizes the note
+* @property {Function} onTitleChange - callback function invoked with new title when user changes the title
 * @property {Function} onClick - callback function invoked when the note is clicked
 * @property {boolean} removable - controls whether the note is removed when clicked
 */

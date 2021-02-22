@@ -14,6 +14,7 @@ LASSO回归。
 * __quantitative__ | `array<string> (required)`: "数据 "中的 "定量 "变量数组。. Default: `none`.
 * __lambda__ | `number`: 正则化参数. Default: `0.001`.
 * __intercept__ | `boolean`: 控制是否拟合带有截距项的模型。. Default: `true`.
+* __onPredict__ | `function`: 模型拟合后，调用回调来处理预测和残差。. Default: `onPredict() {}`.
 
 
 ## 例子

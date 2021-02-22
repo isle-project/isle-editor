@@ -236,7 +236,8 @@ class LassoRegression extends Component {
 
 LassoRegression.defaultProps = {
 	lambda: 1e-3,
-	intercept: true
+	intercept: true,
+	onPredict() {}
 };
 
 LassoRegression.propTypes = {
@@ -248,7 +249,8 @@ LassoRegression.propTypes = {
 	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	lambda: PropTypes.number,
-	intercept: PropTypes.bool
+	intercept: PropTypes.bool,
+	onPredict: PropTypes.func
 };
 
 
