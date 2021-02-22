@@ -129,7 +129,10 @@ function superfluousDescriptions( types, description ) {
 // MAIN //
 
 const DOCS = {};
-const TRANSLATIONS = {};
+const TRANSLATIONS = {
+	'options': 'Options',
+	'examples': 'Examples'
+};
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
 	const tagName = REQUIRES_MAP[ '@isle-project/components/'+component ];
@@ -248,12 +251,6 @@ for ( let i = 0; i < files.length; i++ ) {
 		replacement += '\n\n';
 		replacement += '## Examples';
 		md = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
-		if ( tagName && tagName.includes( 'Question' ) ) {
-			console.log( tagName );
-			console.log( component );
-			console.log( mdpath );
-			console.log( md );
-		}
 		debug( 'Replacing parameter descriptions...' );
 		fs.writeFileSync( mdpath, md );
 
@@ -263,13 +260,13 @@ for ( let i = 0; i < files.length; i++ ) {
 			const lngMdPath = path.join( './docusaurus/website/i18n/'+lng+'/docusaurus-plugin-content-docs/current', component+'.md' );
 			const componentDescription = COMPONENT_DOCS[ lng ][ `${tagName}-description`];
 			let replacement = '\n---\n\n'+componentDescription+'\n\n';
-			replacement += optionsStr;
+			replacement += replace( optionsStr, '## Options', '## '+COMPONENT_DOCS[ lng ][ 'options' ] );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				replacement = replace( replacement, ': '+description[ key ]+'.', ': '+COMPONENT_DOCS[ lng ][ description[ key ] ]+'.' );
 			}
 			replacement += '\n\n';
-			replacement += '## Examples';
+			replacement += '## '+COMPONENT_DOCS[ lng ][ 'examples' ];
 			const lngMd = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
 			debug( 'Writing file: '+lngMdPath );
 			fs.outputFile( lngMdPath, lngMd );
